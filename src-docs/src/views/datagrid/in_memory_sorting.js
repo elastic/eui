@@ -89,7 +89,7 @@ export default () => {
 
   return (
     <EuiDataGrid
-      aria-label="Data grid demo"
+      aria-label="inMemory level set to sorting data grid demo"
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={raw_data.length}

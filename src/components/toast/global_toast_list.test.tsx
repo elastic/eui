@@ -76,6 +76,39 @@ describe('EuiGlobalToastList', () => {
       });
     });
 
+    describe('side', () => {
+      test('can be changed to left', () => {
+        const toasts: Toast[] = [
+          {
+            title: 'A',
+            text: 'a',
+            color: 'success',
+            iconType: 'check',
+            'data-test-subj': 'a',
+            id: 'a',
+          },
+          {
+            title: 'B',
+            text: 'b',
+            color: 'danger',
+            iconType: 'alert',
+            'data-test-subj': 'b',
+            id: 'b',
+          },
+        ];
+
+        const component = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            side="left"
+          />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('dismissToast', () => {
       test('is called when a toast is clicked', () => {
         const dismissToastSpy = jest.fn();

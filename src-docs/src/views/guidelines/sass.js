@@ -5,7 +5,7 @@ import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../s
 import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
 import { rgbToHex } from '../../../../src/services';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { GuidePage, GuideRuleTitle } from '../../components';
 import { getSassVars } from './_get_sass_vars';
@@ -960,7 +960,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <GuideRuleTitle>Animation</GuideRuleTitle>
       <EuiText grow={false} className="guideSection__text">
         <p>
-          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">
+          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animations.scss">
             View the Sass code for animation
           </EuiLink>
           .

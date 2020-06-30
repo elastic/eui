@@ -35,6 +35,10 @@ export interface Pagination {
 
 export interface PaginationBarProps {
   pagination: Pagination;
+  /**
+   * id of the table being controlled
+   */
+  'aria-controls'?: string;
   onPageSizeChange: ItemsPerPageChangeHandler;
   onPageChange: PageChangeHandler;
 }
@@ -45,6 +49,7 @@ export const defaults = {
 
 export const PaginationBar = ({
   pagination,
+  'aria-controls': ariaControls,
   onPageSizeChange,
   onPageChange,
 }: PaginationBarProps) => {
@@ -70,6 +75,7 @@ export const PaginationBar = ({
         pageCount={pageCount}
         onChangeItemsPerPage={onPageSizeChange}
         onChangePage={onPageChange}
+        aria-controls={ariaControls}
       />
     </div>
   );

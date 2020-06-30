@@ -104,6 +104,7 @@ const webpackConfig = {
     allowedHosts: ['*'],
     port: getPortSync({ port: getPort.makeRange(8030, 8130), host: '0.0.0.0' }),
     disableHostCheck: true,
+    historyApiFallback: true,
   },
 };
 

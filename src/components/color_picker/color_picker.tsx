@@ -46,7 +46,7 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keyCodes } from '../../services';
+import { VISUALIZATION_COLORS, keys } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -150,7 +150,7 @@ export interface EuiColorPickerProps
 function isKeyboardEvent(
   event: React.MouseEvent | React.KeyboardEvent
 ): event is React.KeyboardEvent {
-  return typeof event === 'object' && 'keyCode' in event;
+  return typeof event === 'object' && 'key' in event;
 }
 
 const getOutput = (
@@ -312,8 +312,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     closeColorSelector(true);
   };
 
-  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === keyCodes.ENTER) {
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === keys.ENTER) {
       if (isColorSelectorShown) {
         handleFinalSelection();
       } else {
@@ -323,13 +323,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleInputActivity = (
-    e:
+    event:
       | React.KeyboardEvent<HTMLInputElement>
       | React.MouseEvent<HTMLInputElement>
   ) => {
-    if (isKeyboardEvent(e)) {
-      if (e.keyCode === keyCodes.ENTER) {
-        e.preventDefault();
+    if (isKeyboardEvent(event)) {
+      if (event.key === keys.ENTER) {
+        event.preventDefault();
         handleToggle();
       }
     } else {
@@ -337,9 +337,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const handleToggleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === keyCodes.DOWN) {
-      e.preventDefault();
+  const handleToggleOnKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (event.key === keys.ARROW_DOWN) {
+      event.preventDefault();
       if (isColorSelectorShown) {
         const nextFocusEl = mode !== 'swatch' ? satruationRef : swatchRef;
         if (nextFocusEl.current) {
@@ -351,9 +353,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleOnChange(e.target.value);
-    const newColor = getChromaColor(e.target.value, showAlpha);
+  const handleColorInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleOnChange(event.target.value);
+    const newColor = getChromaColor(event.target.value, showAlpha);
     if (newColor) {
       updateColorAsHsv(newColor.hsv());
     }

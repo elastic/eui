@@ -20,7 +20,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import { keyCodes } from '../../../services';
+import { keys } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import {
@@ -254,11 +254,14 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     );
   };
 
-  _isDirectionalKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  _isDirectionalKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     return (
-      [keyCodes.UP, keyCodes.RIGHT, keyCodes.DOWN, keyCodes.LEFT].indexOf(
-        e.keyCode
-      ) > -1
+      [
+        keys.ARROW_UP,
+        keys.ARROW_RIGHT,
+        keys.ARROW_DOWN,
+        keys.ARROW_LEFT,
+      ].indexOf(event.key) > -1
     );
   };
 
@@ -280,24 +283,24 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
   _handleKeyDown = (
     value: ValueMember,
-    e: React.KeyboardEvent<HTMLInputElement>
+    event: React.KeyboardEvent<HTMLInputElement>
   ) => {
     let newVal = Number(value);
     let stepRemainder = 0;
     const step = this.props.step || 1;
-    switch (e.keyCode) {
-      case keyCodes.UP:
-      case keyCodes.RIGHT:
-        e.preventDefault();
+    switch (event.key) {
+      case keys.ARROW_UP:
+      case keys.ARROW_RIGHT:
+        event.preventDefault();
         newVal += step;
         stepRemainder = (newVal - this.props.min) % step;
         if (step !== 1 && stepRemainder > 0) {
           newVal = newVal - stepRemainder;
         }
         break;
-      case keyCodes.DOWN:
-      case keyCodes.LEFT:
-        e.preventDefault();
+      case keys.ARROW_DOWN:
+      case keys.ARROW_LEFT:
+        event.preventDefault();
         newVal -= step;
         stepRemainder = (newVal - this.props.min) % step;
         if (step !== 1 && stepRemainder > 0) {
@@ -308,40 +311,40 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     return newVal;
   };
 
-  handleLowerKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  handleLowerKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     let lower = this.lowerValue;
-    switch (e.keyCode) {
-      case keyCodes.TAB:
+    switch (event.key) {
+      case keys.TAB:
         return;
       default:
         if (!this.lowerValueIsValid) {
           // Relevant only when initial value is `''` and `showInput` is not set
-          e.preventDefault();
-          this._resetToRangeEnds(e);
+          event.preventDefault();
+          this._resetToRangeEnds(event);
           return;
         }
-        lower = this._handleKeyDown(lower, e);
+        lower = this._handleKeyDown(lower, event);
     }
     if (lower >= this.upperValue || lower < this.props.min) return;
-    this._handleOnChange(lower, this.upperValue, e);
+    this._handleOnChange(lower, this.upperValue, event);
   };
 
-  handleUpperKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  handleUpperKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     let upper = this.upperValue;
-    switch (e.keyCode) {
-      case keyCodes.TAB:
+    switch (event.key) {
+      case keys.TAB:
         return;
       default:
         if (!this.upperValueIsValid) {
           // Relevant only when initial value is `''` and `showInput` is not set
-          e.preventDefault();
-          this._resetToRangeEnds(e);
+          event.preventDefault();
+          this._resetToRangeEnds(event);
           return;
         }
-        upper = this._handleKeyDown(upper, e);
+        upper = this._handleKeyDown(upper, event);
     }
     if (upper <= this.lowerValue || upper > this.props.max) return;
-    this._handleOnChange(this.lowerValue, upper, e);
+    this._handleOnChange(this.lowerValue, upper, event);
   };
 
   calculateThumbPositionStyle = (value: number, width?: number) => {

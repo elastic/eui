@@ -1,8 +1,5 @@
 import React, { createElement } from 'react';
 
-import { useRouterHistory } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
-
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
@@ -200,6 +197,8 @@ import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
 
+import { TextDiffExample } from './views/text_diff/text_diff_example';
+
 import { TextExample } from './views/text/text_example';
 
 import { TitleExample } from './views/title/title_example';
@@ -388,6 +387,7 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
+
       TextExample,
       TitleExample,
       ToastExample,
@@ -450,6 +450,7 @@ const navigation = [
       PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
+      TextDiffExample,
       ToggleExample,
       WindowEventExample,
     ].map(example => createExample(example)),
@@ -475,7 +476,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

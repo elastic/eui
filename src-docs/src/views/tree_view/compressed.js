@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiTreeView, EuiToken } from '../../../../src/components';
 
-export const TreeViewCompressed = () => {
+export default () => {
   const items = [
     {
       label: 'transporter',

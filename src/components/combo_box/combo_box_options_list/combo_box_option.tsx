@@ -26,7 +26,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { ENTER, SPACE } from '../../../services/key_codes';
+import { keys } from '../../../services';
 import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
 
@@ -55,7 +55,7 @@ export class EuiComboBoxOption<T> extends Component<EuiComboBoxOptionProps<T>> {
   };
 
   onKeyDown: KeyboardEventHandler<HTMLButtonElement> = event => {
-    if (event.keyCode === ENTER || event.keyCode === SPACE) {
+    if (event.key === keys.ENTER || event.key === keys.SPACE) {
       event.preventDefault();
       event.stopPropagation();
       const { onEnterKey, option, disabled } = this.props;

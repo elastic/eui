@@ -153,35 +153,39 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiMarkdownEditor__dropZone"
+    style="display:block"
   >
-    <textarea
-      class="euiMarkdownEditor__textArea"
-      id="editorId"
-      rows="6"
-      style="height:calc(118px"
-    />
-    <button
-      class="euiMarkdownEditor__dropZone__button"
+    <div
+      class="euiMarkdownEditor__dropZone"
     >
-      <div
-        aria-hidden="true"
-        class="euiMarkdownEditor__dropZone__icon"
-        data-euiicon-type="paperClip"
+      <textarea
+        class="euiMarkdownEditor__textArea"
+        id="editorId"
+        rows="6"
+        style="height:calc(118px"
       />
-      <div
-        class="euiMarkdownEditor__dropZone__text"
+      <button
+        class="euiMarkdownEditor__dropZone__button"
       >
-        Attach files by dragging & dropping or by clicking this area
-      </div>
-    </button>
-    <input
-      autocomplete="off"
-      multiple=""
-      style="display:none"
-      tabindex="-1"
-      type="file"
-    />
+        <div
+          aria-hidden="true"
+          class="euiMarkdownEditor__dropZone__icon"
+          data-euiicon-type="paperClip"
+        />
+        <div
+          class="euiMarkdownEditor__dropZone__text"
+        >
+          Attach files by dragging & dropping or by clicking this area
+        </div>
+      </button>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display:none"
+        tabindex="-1"
+        type="file"
+      />
+    </div>
   </div>
 </div>
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
-// @ts-ignore
+// @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
 
 const defaultState = {

@@ -30,7 +30,7 @@ export const DataGridFocusExample = {
             based upon the content of the individual inner cells. The following
             scenarios are supported and tested:
           </p>
-          <h3>Initial focus</h3>
+          <h2>Initial focus</h2>
           <ul>
             <li>
               When tabbing to the grid before it has received focus, the first
@@ -43,7 +43,7 @@ export const DataGridFocusExample = {
               focused cell remains focused.
             </li>
           </ul>
-          <h3>Click and key events</h3>
+          <h2>Click and key events</h2>
           <ul>
             <li>
               Clicking on an interactive cell (not its content) should focus on
@@ -60,29 +60,29 @@ export const DataGridFocusExample = {
               if the logic below allows it.
             </li>
           </ul>
-          <h3>
+          <h2>
             The content and expandability of the cells dicate the focus target
             of the cell
-          </h3>
+          </h2>
           <p>
             The following combinations of focus are maintained to provide for a
             good balance between accessibility and ease of use while navigating
             a grid with your keyboard.
           </p>
-          <h5>
+          <h3>
             Cell alone recieves the focus, with no possible inner focus action
             when:
-          </h5>
+          </h3>
           <ul>
             <li>The cell is not expandable.</li>
             <li>The cell has no interactive elements</li>
           </ul>
-          <h5>A single inner element within the cell recieves focus when:</h5>
+          <h3>A single inner element within the cell recieves focus when:</h3>
           <ul>
             <li>The cell is not expandable.</li>
             <li>The cell has a single interaction element.</li>
           </ul>
-          <h5>A cell will focus on the expansion action when:</h5>
+          <h3>A cell will focus on the expansion action when:</h3>
           <ul>
             <li>The expansion ability is allowed on the cell.</li>
             <li>
@@ -90,7 +90,7 @@ export const DataGridFocusExample = {
               the cell contents.
             </li>
           </ul>
-          <h5>A cell will allow a non-expanding focus trap on keyDown when</h5>
+          <h3>A cell will allow a non-expanding focus trap on keyDown when</h3>
           <ul>
             <li>The cell is not expandable.</li>
             <li>The cell contains multiple interactive elements.</li>

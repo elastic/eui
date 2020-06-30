@@ -29,9 +29,12 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
   processor,
 }) => {
-  const result = useMemo(() => processor.processSync(children), [
-    processor,
-    children,
-  ]);
-  return <div className="euiMarkdownFormat">{result.contents}</div>;
+  const result = useMemo(() => {
+    try {
+      return processor.processSync(children).contents;
+    } catch (e) {
+      return children;
+    }
+  }, [processor, children]);
+  return <div className="euiMarkdownFormat">{result}</div>;
 };

@@ -22,19 +22,24 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useState,
+  forwardRef,
+  useCallback,
+  useRef,
 } from 'react';
 import unified, { PluggableList, Processor } from 'unified';
+import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
-// @ts-ignore
+// @ts-ignore TODO
 import emoji from 'remark-emoji';
 import markdown from 'remark-parse';
-// @ts-ignore
+// @ts-ignore TODO
 import remark2rehype from 'remark-rehype';
-// @ts-ignore
+// @ts-ignore TODO
 import highlight from 'remark-highlight.js';
-// @ts-ignore
+// @ts-ignore TODO
 import rehype2react from 'rehype-react';
 
 import { CommonProps } from '../common';
@@ -105,147 +110,199 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** array of unified plugins to convert the AST into a ReactNode */
     processingPluginList?: PluggableList;
 
+    /** array of toolbar plugins **/
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
+
+    /** callback triggered when parsing results are available **/
+    onParse?: (
+      error: any | null,
+      data: {
+        messages: VFileMessage[];
+        ast: any;
+      }
+    ) => void;
   };
 
-export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
-  className,
-  editorId: _editorId,
-  value,
-  onChange,
-  height = 150,
-  parsingPluginList = defaultParsingPlugins,
-  processingPluginList = defaultProcessingPlugins,
-  uiPlugins = [],
-  ...rest
-}) => {
-  const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
-  const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [_editorId]);
+export const EuiMarkdownEditor: FunctionComponent<
+  EuiMarkdownEditorProps
+> = forwardRef(
+  (
+    {
+      className,
+      editorId: _editorId,
+      value,
+      onChange,
+      height = 150,
+      parsingPluginList = defaultParsingPlugins,
+      processingPluginList = defaultProcessingPlugins,
+      uiPlugins = [],
+      onParse,
+      ...rest
+    },
+    ref
+  ) => {
+    const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
+    const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [
+      _editorId,
+    ]);
 
-  const [pluginEditorPlugin, setPluginEditorPlugin] = useState<
-    EuiMarkdownEditorUiPlugin | undefined
-  >(undefined);
+    const [pluginEditorPlugin, setPluginEditorPlugin] = useState<
+      EuiMarkdownEditorUiPlugin | undefined
+    >(undefined);
 
-  const markdownActions = useMemo(
-    () => new MarkdownActions(editorId, uiPlugins),
-    // uiPlugins _is_ accounted for
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [editorId, uiPlugins.map(({ name }) => name).join(',')]
-  );
+    const markdownActions = useMemo(
+      () => new MarkdownActions(editorId, uiPlugins),
+      // uiPlugins _is_ accounted for
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [editorId, uiPlugins.map(({ name }) => name).join(',')]
+    );
 
-  const classes = classNames('euiMarkdownEditor', className);
+    const classes = classNames('euiMarkdownEditor', className);
 
-  const parser = useMemo(() => {
-    const Compiler = (tree: any) => {
-      return tree;
-    };
+    const parser = useMemo(() => {
+      const Compiler = (tree: any) => {
+        return tree;
+      };
 
-    function identityCompiler(this: Processor) {
-      this.Compiler = Compiler;
-    }
-    return unified()
-      .use(parsingPluginList)
-      .use(identityCompiler);
-  }, [parsingPluginList]);
-
-  const parsed = useMemo(() => parser.processSync(value), [parser, value]);
-
-  const processor = useMemo(
-    () =>
-      unified()
+      function identityCompiler(this: Processor) {
+        this.Compiler = Compiler;
+      }
+      return unified()
         .use(parsingPluginList)
-        .use(processingPluginList),
-    [parsingPluginList, processingPluginList]
-  );
+        .use(identityCompiler);
+    }, [parsingPluginList]);
 
-  const isPreviewing = viewMode === MODE_VIEWING;
+    const [parsed, parseError] = useMemo<
+      [any | null, VFileMessage | null]
+    >(() => {
+      try {
+        const parsed = parser.processSync(value);
+        return [parsed, null];
+      } catch (e) {
+        return [null, e];
+      }
+    }, [parser, value]);
 
-  const contextValue = useMemo<ContextShape>(
-    () => ({
-      openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
-        setPluginEditorPlugin(() => plugin),
-      replaceNode: (position, next) => {
+    const processor = useMemo(
+      () =>
+        unified()
+          .use(parsingPluginList)
+          .use(processingPluginList),
+      [parsingPluginList, processingPluginList]
+    );
+
+    const isPreviewing = viewMode === MODE_VIEWING;
+
+    const replaceNode = useCallback(
+      (position, next) => {
         const leading = value.substr(0, position.start.offset);
         const trailing = value.substr(position.end.offset);
         onChange(`${leading}${next}${trailing}`);
       },
-    }),
-    [value, onChange]
-  );
+      [value, onChange]
+    );
 
-  const [selectedNode, setSelectedNode] = useState();
+    const contextValue = useMemo<ContextShape>(
+      () => ({
+        openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
+          setPluginEditorPlugin(() => plugin),
+        replaceNode,
+      }),
+      [replaceNode]
+    );
 
-  const [textareaRef, setTextareaRef] = useState<HTMLTextAreaElement | null>(
-    null
-  );
-  useEffect(() => {
-    if (textareaRef == null) return;
+    const [selectedNode, setSelectedNode] = useState();
 
-    const getCursorNode = () => {
-      const { selectionStart } = textareaRef;
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-      let node: any = parsed.contents;
+    useEffect(() => {
+      if (textareaRef == null) return;
+      if (parsed == null) return;
 
-      outer: while (true) {
-        if (node.children) {
-          for (let i = 0; i < node.children.length; i++) {
-            const child = node.children[i];
-            if (
-              child.position.start.offset < selectionStart &&
-              selectionStart < child.position.end.offset
-            ) {
-              if (child.type === 'text') break outer; // don't dive into `text` nodes
-              node = child;
-              continue outer;
+      const getCursorNode = () => {
+        const { selectionStart } = textareaRef.current!;
+
+        let node: any = parsed.contents;
+
+        outer: while (true) {
+          if (node.children) {
+            for (let i = 0; i < node.children.length; i++) {
+              const child = node.children[i];
+              if (
+                child.position.start.offset < selectionStart &&
+                selectionStart < child.position.end.offset
+              ) {
+                if (child.type === 'text') break outer; // don't dive into `text` nodes
+                node = child;
+                continue outer;
+              }
             }
           }
+          break;
         }
-        break;
+
+        setSelectedNode(node);
+      };
+
+      const textarea = textareaRef.current!;
+
+      textarea.addEventListener('keyup', getCursorNode);
+      textarea.addEventListener('mouseup', getCursorNode);
+
+      return () => {
+        textarea.removeEventListener('keyup', getCursorNode);
+        textarea.removeEventListener('mouseup', getCursorNode);
+      };
+    }, [parsed]);
+
+    useEffect(() => {
+      if (onParse) {
+        const messages = parsed ? parsed.messages : [];
+        const ast = parsed ? parsed.contents : null;
+        onParse(parseError, { messages, ast });
       }
+    }, [onParse, parsed, parseError]);
 
-      setSelectedNode(node);
-    };
+    useImperativeHandle(
+      ref,
+      () => ({ textarea: textareaRef.current, replaceNode }),
+      [replaceNode]
+    );
 
-    textareaRef.addEventListener('keyup', getCursorNode);
-    textareaRef.addEventListener('mouseup', getCursorNode);
+    return (
+      <EuiMarkdownContext.Provider value={contextValue}>
+        <div className={classes} {...rest}>
+          <EuiMarkdownEditorToolbar
+            selectedNode={selectedNode}
+            markdownActions={markdownActions}
+            onClickPreview={() =>
+              setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
+            }
+            viewMode={viewMode}
+            uiPlugins={uiPlugins}
+          />
 
-    return () => {
-      textareaRef.removeEventListener('keyup', getCursorNode);
-      textareaRef.removeEventListener('mouseup', getCursorNode);
-    };
-  }, [textareaRef, parsed]);
-
-  return (
-    <EuiMarkdownContext.Provider value={contextValue}>
-      <div className={classes} {...rest}>
-        <EuiMarkdownEditorToolbar
-          selectedNode={selectedNode}
-          markdownActions={markdownActions}
-          onClickPreview={() =>
-            setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
-          }
-          viewMode={viewMode}
-          uiPlugins={uiPlugins}
-        />
-
-        {isPreviewing ? (
-          <div
-            className="euiMarkdownEditor__preview"
-            style={{ height: `${height}px` }}>
-            <EuiMarkdownFormat processor={processor}>{value}</EuiMarkdownFormat>
-          </div>
-        ) : (
-          <>
+          {isPreviewing && (
+            <div
+              className="euiMarkdownEditor__preview"
+              style={{ height: `${height}px` }}>
+              <EuiMarkdownFormat processor={processor}>
+                {value}
+              </EuiMarkdownFormat>
+            </div>
+          )}
+          {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
+          <div style={{ display: isPreviewing ? 'none' : 'block' }}>
             <EuiMarkdownEditorDropZone>
               <EuiMarkdownEditorTextArea
-                ref={setTextareaRef}
+                ref={textareaRef}
                 height={height}
                 id={editorId}
                 onChange={e => onChange(e.target.value)}
                 value={value}
               />
             </EuiMarkdownEditorDropZone>
-            {textareaRef && pluginEditorPlugin && (
+            {pluginEditorPlugin && (
               <EuiOverlayMask>
                 <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
                   {createElement(pluginEditorPlugin.editor!, {
@@ -260,12 +317,12 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
                         selectedNode &&
                         selectedNode.type === pluginEditorPlugin.name
                       ) {
-                        textareaRef.setSelectionRange(
+                        textareaRef.current!.setSelectionRange(
                           selectedNode.position.start.offset,
                           selectedNode.position.end.offset
                         );
                       }
-                      insertText(textareaRef, {
+                      insertText(textareaRef.current!, {
                         text: markdown,
                         selectionStart: undefined,
                         selectionEnd: undefined,
@@ -276,9 +333,10 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
                 </EuiModal>
               </EuiOverlayMask>
             )}
-          </>
-        )}
-      </div>
-    </EuiMarkdownContext.Provider>
-  );
-};
+          </div>
+        </div>
+      </EuiMarkdownContext.Provider>
+    );
+  }
+);
+EuiMarkdownEditor.displayName = 'EuiMarkdownEditor';

@@ -161,7 +161,7 @@ class MarkdownActions {
 
     if (editor) {
       editor.focus();
-      // @ts-ignore
+      // @ts-ignore TODO
       styleSelectedText(editor, outgoingStyle);
     }
   }
@@ -227,14 +227,8 @@ function wordSelectionEnd(text: string, i: number, multiline: boolean): number {
   return index;
 }
 
-let canInsertText: boolean | null = null;
-
-/**
- * Note that we're using the native HTMLTextAreaElement.set() method to play nicely with
- * React's synthetic event system. We fallback to a brute force way of doing it if the
- * above doesn't work. Although all modern browsers, including IE, seem to be fine:
- * https://hustle.bizongo.in/simulate-react-on-change-on-controlled-components-baa336920e04
- */
+const MAX_TRIES = 10;
+const TRY_TIMEOUT = 10 /*ms*/;
 export function insertText(
   textarea: HTMLTextAreaElement,
   { text, selectionStart, selectionEnd }: SelectionRange
@@ -242,39 +236,54 @@ export function insertText(
   const originalSelectionStart = textarea.selectionStart;
   const before = textarea.value.slice(0, originalSelectionStart);
   const after = textarea.value.slice(textarea.selectionEnd);
-  const inputEvent = new Event('input', { bubbles: true });
 
-  if (canInsertText === null || canInsertText === true) {
-    canInsertText = true;
+  // configuration modal/dialog will continue intercepting focus in Safari
+  // need to wait until the textarea can receive focus
+  let tries = 0;
 
-    const nativeInputValueSetter =
-      // @ts-ignore
-      Object.getOwnPropertyDescriptor(
-        // @ts-ignore
-        window.HTMLTextAreaElement.prototype,
-        'value'
-      ).set;
-    try {
-      // @ts-ignore
+  const insertText = () => {
+    const insertResult = document.execCommand('insertText', false, text);
+
+    if (insertResult === false) {
+      /**
+       * Fallback for Firefox; this kills undo/redo but at least updates the value
+       *
+       * Note that we're using the native HTMLTextAreaElement.set() method to play nicely with
+       * React's synthetic event system.
+       * https://hustle.bizongo.in/simulate-react-on-change-on-controlled-components-baa336920e04
+       */
+      const inputEvent = new Event('input', { bubbles: true });
+      const nativeInputValueSetter =
+        // @ts-ignore TODO
+        Object.getOwnPropertyDescriptor(
+          // @ts-ignore TODO
+          window.HTMLTextAreaElement.prototype,
+          'value'
+        ).set;
+      // @ts-ignore TODO
       nativeInputValueSetter.call(textarea, before + text + after);
-
       textarea.dispatchEvent(inputEvent);
-    } catch (error) {
-      canInsertText = false;
     }
-  }
 
-  if (!canInsertText) {
-    // If calling [HTMLTextAreaElement.set()] fails, just brute-force it
-    textarea.value = before + text + after;
-    textarea.dispatchEvent(inputEvent);
-  }
+    if (selectionStart != null && selectionEnd != null) {
+      textarea.setSelectionRange(selectionStart, selectionEnd);
+    } else {
+      textarea.setSelectionRange(originalSelectionStart, textarea.selectionEnd);
+    }
+  };
 
-  if (selectionStart != null && selectionEnd != null) {
-    textarea.setSelectionRange(selectionStart, selectionEnd);
-  } else {
-    textarea.setSelectionRange(originalSelectionStart, textarea.selectionEnd);
-  }
+  const focusTextarea = () => {
+    textarea.focus();
+    if (document.activeElement === textarea) {
+      insertText();
+    } else if (++tries === MAX_TRIES) {
+      insertText();
+    } else {
+      setTimeout(focusTextarea, TRY_TIMEOUT);
+    }
+  };
+
+  focusTextarea();
 }
 
 function styleSelectedText(

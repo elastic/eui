@@ -33,7 +33,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
 } from '../../context_menu';
-import { keyCodes } from '../../../services';
+import { keys } from '../../../services';
 import { EuiI18n } from '../../i18n';
 
 enum ShiftDirection {
@@ -180,38 +180,38 @@ export class EuiSuperSelect<T extends string> extends Component<
     }
   };
 
-  onSelectKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.keyCode === keyCodes.UP || e.keyCode === keyCodes.DOWN) {
-      e.preventDefault();
-      e.stopPropagation();
+  onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === keys.ARROW_UP || event.key === keys.ARROW_DOWN) {
+      event.preventDefault();
+      event.stopPropagation();
       this.openPopover();
     }
   };
 
-  onItemKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    switch (e.keyCode) {
-      case keyCodes.ESCAPE:
+  onItemKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    switch (event.key) {
+      case keys.ESCAPE:
         // close the popover and prevent ancestors from handling
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         this.closePopover();
         break;
 
-      case keyCodes.TAB:
+      case keys.TAB:
         // no-op
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         break;
 
-      case keyCodes.UP:
-        e.preventDefault();
-        e.stopPropagation();
+      case keys.ARROW_UP:
+        event.preventDefault();
+        event.stopPropagation();
         this.shiftFocus(ShiftDirection.BACK);
         break;
 
-      case keyCodes.DOWN:
-        e.preventDefault();
-        e.stopPropagation();
+      case keys.ARROW_DOWN:
+        event.preventDefault();
+        event.stopPropagation();
         this.shiftFocus(ShiftDirection.FORWARD);
         break;
     }

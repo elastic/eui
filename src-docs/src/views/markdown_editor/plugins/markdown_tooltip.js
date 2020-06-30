@@ -55,13 +55,27 @@ function TooltipParser() {
     const tooltipAnchor = readArg('[', ']');
     const tooltipText = readArg('(', ')');
 
+    const now = eat.now();
+
+    if (!tooltipAnchor) {
+      this.file.info('No tooltip anchor found', {
+        line: now.line,
+        column: now.column + 10,
+      });
+    }
+    if (!tooltipText) {
+      this.file.info('No tooltip text found', {
+        line: now.line,
+        column: now.column + 12 + tooltipAnchor.length,
+      });
+    }
+
     if (!tooltipText || !tooltipAnchor) return false;
 
     if (silent) {
       return true;
     }
 
-    const now = eat.now();
     now.column += 10;
     now.offset += 10;
     const children = this.tokenizeInline(tooltipAnchor, now);

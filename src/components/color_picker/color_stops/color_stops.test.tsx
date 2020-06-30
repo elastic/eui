@@ -25,13 +25,12 @@ import { EuiColorStops } from './color_stops';
 import {
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
-  keyCodes,
+  keys,
 } from '../../../services';
 import { requiredProps, findTestSubject } from '../../../test';
 
 jest.mock('../../portal', () => ({
-  // @ts-ignore
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: any }) => children,
 }));
 
 const onChange = jest.fn();
@@ -369,11 +368,11 @@ test('thumb focus changes', () => {
   const thumbs = findTestSubject(colorStops, 'euiColorStopThumb');
   wrapper.simulate('focus');
   wrapper.simulate('keydown', {
-    keyCode: keyCodes.DOWN,
+    key: keys.ARROW_DOWN,
   });
   expect(thumbs.first().getDOMNode()).toEqual(document.activeElement);
   thumbs.first().simulate('keydown', {
-    keyCode: keyCodes.DOWN,
+    key: keys.ARROW_DOWN,
   });
   expect(thumbs.at(1).getDOMNode()).toEqual(document.activeElement);
 });
@@ -394,11 +393,11 @@ test('thumb direction movement', () => {
   const thumbs = findTestSubject(colorStops, 'euiColorStopThumb');
   wrapper.simulate('focus');
   wrapper.simulate('keydown', {
-    keyCode: keyCodes.DOWN,
+    key: keys.ARROW_DOWN,
   });
   expect(thumbs.first().getDOMNode()).toEqual(document.activeElement);
   thumbs.first().simulate('keydown', {
-    keyCode: keyCodes.RIGHT,
+    key: keys.ARROW_RIGHT,
   });
   expect(onChange).toBeCalledWith(
     [
@@ -409,7 +408,7 @@ test('thumb direction movement', () => {
     false
   );
   thumbs.first().simulate('keydown', {
-    keyCode: keyCodes.LEFT,
+    key: keys.ARROW_LEFT,
   });
   expect(onChange).toBeCalledWith(
     [
@@ -436,7 +435,7 @@ test('add new thumb via keyboard', () => {
   const wrapper = findTestSubject(colorStops, 'euiColorStops');
   wrapper.simulate('focus');
   wrapper.simulate('keydown', {
-    keyCode: keyCodes.ENTER,
+    key: keys.ENTER,
   });
   expect(onChange).toBeCalled();
   expect(onChange).toBeCalledWith(
