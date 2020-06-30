@@ -170,13 +170,21 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <p>
-          Determinate progress bar can be used as simple bar charts. Use them
-          with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
-          props to show the data corresponding to each bar.{' '}
-          <EuiCode>valueText</EuiCode> takes the same color that is passed to{' '}
-          <strong>EuiProgress</strong>.
-        </p>
+        <div>
+          <p>
+            Determinate progress bar can be used as simple bar charts. Use them
+            with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
+            props to show the data corresponding to each bar.{' '}
+            <EuiCode>valueText</EuiCode> takes the same color that is passed to{' '}
+            <strong>EuiProgress</strong>.
+          </p>
+          <p>
+            Setting <EuiCode language="ts">{'valueText={true}'}</EuiCode> will
+            add a % sign next to the<EuiCode>value</EuiCode> passed. If you want
+            to display a custom <EuiCode>valueText</EuiCode>, you can pass a
+            node instead.
+          </p>
+        </div>
       ),
       demo: <ProgressChart />,
       snippet: progressChartSnippet,
