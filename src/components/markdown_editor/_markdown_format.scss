@@ -9,9 +9,33 @@
 // 7. Tables
 // 8. Code
 
+$browserDefaultFontSize: 16px;
+
+// We're setting a function o transform px in em 
+// because it's easier to think in px 
+@function em($pixels, $context: $browserDefaultFontSize) {
+  @return #{$pixels/$context}em;
+}
+
 .euiMarkdownFormat {
   @include euiFont;
   @include euiText;
+
+  $euiMarkdownFontSizeXS: em(12px);
+  $euiMarkdownFontSizeS: em(14px);
+  $euiMarkdownFontSize: em(16px);
+  $euiMarkdownFontSizeM:  em(18px);
+  $euiMarkdownFontSizeL: em(20px);
+  $euiMarkdownFontSizeXL: em(28px);
+  $euiMarkdownFontSizeXXL: em(36px);
+
+  $euiSizeXXS: em(4px);
+  $euiSizeXS: em(8px);
+  $euiSizeS: em(12px);
+  $euiSize: em(16px);
+  $euiSizeL: em(24px);
+
+
 
   > *:first-child {
     // sass-lint:disable-block no-important
@@ -51,19 +75,19 @@
   }
 
   h1 {
-    font-size: $euiFontSizeXXL;
+    font-size: $euiMarkdownFontSizeXXL;
     line-height: 1.333333em;
     font-weight: 300;
   }
 
   h2 {
-    font-size: $euiFontSizeXL;
+    font-size: $euiMarkdownFontSizeXL;
     line-height: 1.428571em;
     font-weight: 300;
   }
 
   h3 {
-    font-size: $euiFontSizeL;
+    font-size: $euiMarkdownFontSizeL;
     line-height: 1.6em;
     font-weight: 600;
   }
@@ -75,13 +99,13 @@
   }
 
   h5 {
-    font-size: $euiFontSizeS;
+    font-size: $euiMarkdownFontSizeS;
     line-height: 1.142857em;
     font-weight: 700;
   }
 
   h6 {
-    font-size: $euiFontSizeXS;
+    font-size: $euiMarkdownFontSizeXS;
     line-height: 1.333333em;
     font-weight: 700;
     text-transform: uppercase;
@@ -103,7 +127,7 @@
   // 4. Blockquotes
   blockquote {
     padding: 0 1em;
-    border-left: $euiSizeXS solid $euiBorderColor;
+    border-left: $euiSizeXXS solid $euiBorderColor;
   }
 
   // 5. Horizontal rules
@@ -173,11 +197,11 @@
   }
 
   li > p {
-    margin-bottom: $euiSizeS;
+    margin-bottom: $euiSizeXS;
   }
 
   li + li {
-    margin-top: $euiSizeXS;
+    margin-top: $euiSizeXXS;
   }
 
   .task-list-item {
@@ -185,7 +209,7 @@
   }
 
   .task-list-item + .task-list-item {
-    margin-top: $euiSizeXS;
+    margin-top: $euiSizeXXS;
   }
 
   .task-list-item input {
@@ -210,7 +234,7 @@
 
   table th,
   table td {
-    padding: $euiSizeXS $euiSizeS;
+    padding: $euiSizeXXS $euiSizeXS;
     border-top: $euiBorderThin;
     border-bottom: $euiBorderThin;
 
@@ -230,16 +254,16 @@
   &__code {
     @include euiCodeFont;
     color: $euiCodeBlockColor;
-    font-size: $euiFontSizeXS;
-    padding: $euiSizeXS 0;
-    margin-bottom: $euiSizeS;
+    font-size: $euiMarkdownFontSizeXS;
+    padding: $euiSizeXXS 0;
+    margin-bottom: $euiSizeXS;
     background: $euiCodeBlockBackgroundColor;
   }
 
   // default styles for code blocks
   pre &__code {
     display: block;
-    padding: $euiFontSizeL;
+    padding: $euiMarkdownFontSizeL;
     overflow: visible;
     line-height: inherit;
     word-wrap: normal;
