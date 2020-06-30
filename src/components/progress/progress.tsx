@@ -25,6 +25,7 @@ import React, {
   Fragment,
 } from 'react';
 import classNames from 'classnames';
+import { EuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
@@ -80,7 +81,10 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 type Determinate = EuiProgressProps &
   ProgressHTMLAttributes<HTMLProgressElement> & {
     max?: number;
-    valueText?: ReactNode;
+    /*
+     * If true, will render the percentage, otherwise pass a custom node
+     */
+    valueText?: boolean | ReactNode;
     label?: ReactNode;
   };
 
@@ -92,7 +96,7 @@ export const EuiProgress: FunctionComponent<
   size = 'm',
   position = 'static',
   max,
-  valueText,
+  valueText = false,
   label,
   value,
   ...rest
@@ -117,15 +121,34 @@ export const EuiProgress: FunctionComponent<
     dataColorToClassNameMap[color]
   );
 
+  let valueRender;
+  if (typeof valueText === 'boolean' && valueText) {
+    // valueText is a true boolean
+    valueRender = (
+      <EuiI18n
+        token="euiProgress.valueText"
+        default="{value}%"
+        values={{
+          value,
+        }}
+      />
+    );
+    `${value}%`;
+  } else if (valueText) {
+    // valueText exists
+    valueRender = valueText;
+  }
+
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
+
   if (determinate) {
     return (
       <Fragment>
         {label || valueText ? (
           <div className={dataClasses}>
             <span className="euiProgress__label">{label}</span>
-            <span className="euiProgress__valueText">{valueText}</span>
+            <span className="euiProgress__valueText">{valueRender}</span>
           </div>
         ) : (
           undefined
@@ -134,6 +157,7 @@ export const EuiProgress: FunctionComponent<
           className={classes}
           max={max}
           value={value}
+          aria-hidden={label && valueText ? true : false}
           {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
         />
       </Fragment>

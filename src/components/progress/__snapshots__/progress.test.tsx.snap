@@ -2,6 +2,7 @@
 
 exports[`EuiProgress has max 1`] = `
 <progress
+  aria-hidden="false"
   aria-label="aria-label"
   class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
   data-test-subj="test subject string"
@@ -30,10 +31,11 @@ Array [
     <span
       class="euiProgress__valueText"
     >
-      50
+      150
     </span>
   </div>,
   <progress
+    aria-hidden="true"
     aria-label="aria-label"
     class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
     data-test-subj="test subject string"
@@ -45,6 +47,7 @@ Array [
 
 exports[`EuiProgress is determinate 1`] = `
 <progress
+  aria-hidden="false"
   aria-label="aria-label"
   class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
   data-test-subj="test subject string"

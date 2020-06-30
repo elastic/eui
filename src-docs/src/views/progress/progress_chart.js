@@ -3,11 +3,11 @@ import React, { Fragment } from 'react';
 import { EuiProgress, EuiSpacer } from '../../../../src/components';
 
 const data = [
-  { label: "Men's Clothing", valueText: '80' },
-  { label: "Women's Clothing", valueText: '60' },
-  { label: "Women's Shoes", valueText: '45' },
-  { label: "Men's Shoes", valueText: '40' },
-  { label: "Women's Accessories", valueText: '24' },
+  { label: "Men's Clothing", value: '80' },
+  { label: "Women's Clothing", value: '60' },
+  { label: "Women's Shoes", value: '45' },
+  { label: "Men's Shoes", value: '40' },
+  { label: "Women's Accessories", value: '24' },
 ];
 
 export default () => (
@@ -17,8 +17,8 @@ export default () => (
         <>
           <EuiProgress
             label={item.label}
-            valueText={`${item.valueText}%`}
-            value={item.valueText}
+            valueText={true}
+            value={item.value}
             max={100}
             color="secondary"
             size="s"
@@ -33,8 +33,8 @@ export default () => (
         <>
           <EuiProgress
             label={item.label}
-            valueText={`${item.valueText}%`}
-            value={item.valueText}
+            valueText={true}
+            value={item.value}
             max={100}
             color="primary"
             size="m"

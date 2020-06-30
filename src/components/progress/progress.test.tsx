@@ -63,7 +63,7 @@ describe('EuiProgress', () => {
   test('has valueText and Label', () => {
     const component = render(
       <EuiProgress
-        valueText="50"
+        valueText="150"
         label="Label"
         value={50}
         max={100}
