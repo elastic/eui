@@ -114,25 +114,25 @@ export const EuiStat: FunctionComponent<
 
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      <p aria-hidden="true">{description}</p>
+      <span aria-hidden="true">{description}</span>
     </EuiText>
   );
 
   const titleDisplay = isColorClass(titleColor) ? (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p aria-hidden="true">{isLoading ? '--' : title}</p>
+      <span aria-hidden="true">{isLoading ? '--' : title}</span>
     </EuiTitle>
   ) : (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p aria-hidden="true" style={{ color: `${titleColor}` }}>
+      <span aria-hidden="true" style={{ color: `${titleColor}` }}>
         {isLoading ? '--' : title}
-      </p>
+      </span>
     </EuiTitle>
   );
 
   const screenReader = (
     <EuiScreenReaderOnly>
-      <p>
+      <span>
         {isLoading ? (
           <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
         ) : (
@@ -140,7 +140,7 @@ export const EuiStat: FunctionComponent<
             {reverse ? `${title} ${description}` : `${description} ${title}`}
           </Fragment>
         )}
-      </p>
+      </span>
     </EuiScreenReaderOnly>
   );
 
