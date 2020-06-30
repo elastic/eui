@@ -518,9 +518,9 @@ export class EuiSelectable extends Component<
             visibleOptions={visibleOptions}
             searchValue={searchValue}
             activeOptionIndex={activeOptionIndex}
-            setActiveOptionIndex={index =>
-              this.setState({ activeOptionIndex: index })
-            }
+            setActiveOptionIndex={(index, cb) => {
+              this.setState({ activeOptionIndex: index }, cb);
+            }}
             onOptionClick={this.onOptionClick}
             singleSelection={singleSelection}
             ref={this.optionsListRef}
