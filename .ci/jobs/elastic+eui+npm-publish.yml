@@ -27,11 +27,11 @@
 
           export VAULT_TOKEN=$(vault write -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
 
-          export GITHUB_TOKEN=$(vault read -field=github_token secret/kibana-issues/dev/kibanamachine)
           # write npm auth to .npmrc
           NPM_TOKEN=$(vault read -field=token secret/jenkins-ci/npmjs/elasticmachine)
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
+          # get 2FA code
           export NPM_OTP=$(vault read --field=code totp/code/npmjs-elasticmachine)
 
           unset VAULT_ROLE_ID VAULT_SECRET_ID VAULT_ADDR VAULT_TOKEN VAULT_ACCOUNT
