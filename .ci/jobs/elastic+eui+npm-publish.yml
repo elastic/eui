@@ -23,6 +23,19 @@
       - shell: |-
           #!/usr/local/bin/runbld
           set -eo pipefail
+
+          # some nvm shuffling: initializing nvm fails if there is an .nvmrc
+          # file in the current directory specifying a Node.js version that is
+          # not installed. temporarily moving the .nvmrc file works around this.
+          export NVM_DIR="/var/lib/jenkins/.nvm"
+          NVM_VERSION=$(cat .nvmrc)
+          mv .nvmrc .nvmrc.bak
+          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+          nvm install $NVM_VERSION
+          nvm use $NVM_VERSION --delete-prefix
+          npm install -g yarn
+          mv .nvmrc.bak .nvmrc
+
           set +x
 
           export VAULT_TOKEN=$(vault write -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
@@ -37,14 +50,6 @@
           unset VAULT_ROLE_ID VAULT_SECRET_ID VAULT_ADDR VAULT_TOKEN VAULT_ACCOUNT
 
           set -x
-
-          export NVM_DIR="/var/lib/jenkins/.nvm"
-          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
-
-          nvm install 10
-
-          nvm use 10 --delete-prefix
-          npm install -g yarn
 
           export VERSION_TYPE=${version_type}
           npm run release
