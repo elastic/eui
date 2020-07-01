@@ -91,7 +91,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
       <div className="euiMarkdownEditor__footerPopover">
         <EuiPopoverTitle>
           <EuiI18n
-            token="euiMarkdownEditorFooter.syntaxTitle"
+            token="euiMarkdownEditorFooter.errorsTitle"
             default="Errors"
           />
         </EuiPopoverTitle>
