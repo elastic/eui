@@ -4,12 +4,7 @@ import { EuiExpression } from '../../../../src/components/expression';
 
 export default () => (
   <div>
-    <EuiExpression
-      description="Select"
-      value="count(*)"
-      // tslint:disable no-empty
-      onClick={() => {}}
-    />
+    <EuiExpression description="Select" value="count(*)" onClick={() => {}} />
     <EuiExpression
       description="From"
       value="kibana_sample_data_ky_counties left"

@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  GuidePage,
-  GuideRule,
-  GuideRuleTitle,
-  GuideRuleExample,
-} from '../../components';
+import { GuideRule, GuideRuleTitle, GuideRuleExample } from '../../components';
 
 import {
   EuiText,
@@ -13,6 +8,7 @@ import {
   EuiFlexItem,
   EuiImage,
   EuiPanel,
+  EuiTitle,
 } from '../../../../src/components';
 
 // import imgFormRowGeneral from '../../images/form-row--00.png';
@@ -25,14 +21,18 @@ import imgFormRowPanelsBad from '../../images/form-row--05.png';
 import imgFormRowPanelsGood from '../../images/form-row--06.png';
 
 export default () => (
-  <GuidePage title="Form guidelines" componentLinkTo="/forms/form-layouts">
+  <>
     <EuiText className="guideSection__text" grow={false}>
       <p>
         This page documents patterns for form layout, validation and how best to
         use various components.
       </p>
     </EuiText>
-    <GuideRuleTitle>Key Principles</GuideRuleTitle>
+    <EuiSpacer size="xl" />
+
+    <EuiTitle>
+      <h1>Key Principles</h1>
+    </EuiTitle>
 
     <GuideRule
       heading="Help users achieve success"
@@ -215,5 +215,5 @@ export default () => (
     </GuideRule>
 
     <EuiSpacer size="xl" />
-  </GuidePage>
+  </>
 );

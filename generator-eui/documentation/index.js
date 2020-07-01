@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 const chalk = require('chalk');
 const Generator = require('yeoman-generator');
 const utils = require('../utils');
@@ -12,16 +31,20 @@ module.exports = class extends Generator {
   }
 
   prompting() {
-    let prompts = [{
-      message: 'What\'s the name of the component you\'re documenting? Use snake_case, please.',
-      name: 'name',
-      type: 'input',
-      store: true,
-    }];
+    const prompts = [
+      {
+        message:
+          "What's the name of the component you're documenting? Use snake_case, please.",
+        name: 'name',
+        type: 'input',
+        store: true,
+      },
+    ];
 
     if (this.fileType === 'demo') {
       prompts.push({
-        message: `What's the name of the directory this demo should go in? (Within src-docs/src/views). Use snake_case, please.`,
+        message:
+          "What's the name of the directory this demo should go in? (Within src-docs/src/views). Use snake_case, please.",
         name: 'folderName',
         type: 'input',
         store: true,
@@ -29,7 +52,8 @@ module.exports = class extends Generator {
       });
 
       prompts.push({
-        message: 'What would you like to name this demo? Use snake_case, please.',
+        message:
+          'What would you like to name this demo? Use snake_case, please.',
         name: 'demoName',
         type: 'input',
         store: true,
@@ -46,22 +70,24 @@ module.exports = class extends Generator {
 
     const writeDocumentationPage = () => {
       const componentExampleName = utils.makeComponentName(config.name, false);
-      const componentExamplePrefix = utils.lowerCaseFirstLetter(componentExampleName);
+      const componentExamplePrefix = utils.lowerCaseFirstLetter(
+        componentExampleName
+      );
       const componentName = utils.makeComponentName(config.name);
       const fileName = config.name;
 
       const path = DOCUMENTATION_PAGE_PATH;
 
-      const vars = config.documentationVars = {
+      const vars = (config.documentationVars = {
         componentExampleName,
         componentExamplePrefix,
         componentName,
         fileName,
-      };
+      });
 
-      const documentationPagePath
-        = config.documentationPagePath
-        = `${path}/${config.name}/${config.name}_example.js`;
+      const documentationPagePath = (config.documentationPagePath = `${path}/${
+        config.name
+      }/${config.name}_example.js`);
 
       this.fs.copyTpl(
         this.templatePath('documentation_page.js'),
@@ -72,21 +98,22 @@ module.exports = class extends Generator {
 
     const writeDocumentationPageDemo = (fileName, folderName) => {
       const componentExampleName = utils.makeComponentName(fileName, false);
-      const componentExamplePrefix = utils.lowerCaseFirstLetter(componentExampleName);
+      const componentExamplePrefix = utils.lowerCaseFirstLetter(
+        componentExampleName
+      );
       const componentName = utils.makeComponentName(config.name);
 
       const path = DOCUMENTATION_PAGE_PATH;
 
-      const vars = config.documentationVars = {
+      const vars = (config.documentationVars = {
         componentExampleName,
         componentExamplePrefix,
         componentName,
         fileName,
-      };
+        folderName,
+      });
 
-      const documentationPageDemoPath
-        = config.documentationPageDemoPath
-        = `${path}/${folderName}/${fileName}.tsx`;
+      const documentationPageDemoPath = (config.documentationPageDemoPath = `${path}/${folderName}/${fileName}.tsx`);
 
       this.fs.copyTpl(
         this.templatePath('documentation_page_demo.tsx'),
@@ -117,44 +144,55 @@ module.exports = class extends Generator {
 
       this.log(chalk.white('\n// Import demo into example.'));
       this.log(
-        `${chalk.magenta('import')} ${componentExampleName} from ${chalk.cyan(`'./${fileName}'`)};\n` +
-        `${chalk.magenta('const')} ${componentExamplePrefix}Source = require(${chalk.cyan(`'!!raw-loader!./${fileName}'`)});\n` +
-        `${chalk.magenta('const')} ${componentExamplePrefix}Html = renderToHtml(${componentExampleName});`
+        `${chalk.magenta('import')} ${componentExampleName} from ${chalk.cyan(
+          `'./${fileName}'`
+        )};\n` +
+          `${chalk.magenta(
+            'const'
+          )} ${componentExamplePrefix}Source = require(${chalk.cyan(
+            `'!!raw-loader!./${fileName}'`
+          )});\n` +
+          `${chalk.magenta(
+            'const'
+          )} ${componentExamplePrefix}Html = renderToHtml(${componentExampleName});`
       );
 
       this.log(chalk.white('\n// Render demo.'));
       this.log(
-        `<GuideSection\n` +
-        `  title="${componentExampleName}"\n` +
-        `  source={[{\n` +
-        `    type: GuideSectionTypes.JS,\n` +
-        `    code: ${componentExamplePrefix}Source,\n` +
-        `  }, {\n` +
-        `    type: GuideSectionTypes.HTML,\n` +
-        `    code: ${componentExamplePrefix}Html,\n` +
-        `  }]}\n` +
-        `  text={\n` +
-        `    <p>Description needed: how to use the ${componentExampleName} component.</p>\n` +
-        ` }\n` +
-        `  demo={\n` +
-        `    <${componentExampleName} />\n` +
-        ` }\n` +
-        `/>\n`
+        '<GuideSection\n' +
+          `  title="${componentExampleName}"\n` +
+          '  source={[{\n' +
+          '    type: GuideSectionTypes.JS,\n' +
+          `    code: ${componentExamplePrefix}Source,\n` +
+          '  }, {\n' +
+          '    type: GuideSectionTypes.HTML,\n' +
+          `    code: ${componentExamplePrefix}Html,\n` +
+          '  }]}\n' +
+          '  text={\n' +
+          `    <p>Description needed: how to use the ${componentExampleName} component.</p>\n` +
+          ' }\n' +
+          '  demo={\n' +
+          `    <${componentExampleName} />\n` +
+          ' }\n' +
+          '/>\n'
       );
     };
 
     const showImportRouteSnippet = (suffix, appendToRoute) => {
-      const {
-        componentExampleName,
-        fileName,
-      } = this.config.documentationVars;
+      const { componentExampleName, fileName } = this.config.documentationVars;
 
-      this.log(chalk.white('\n// Import example into routes.js and then add it to the "components" array.'));
+      this.log(
+        chalk.white(
+          '\n// Import example into routes.js and then add it to the "components" array.'
+        )
+      );
       this.log(
         `${chalk.magenta('import')} { ${componentExampleName}${suffix} }\n` +
-        `  ${chalk.magenta('from')} ${chalk.cyan(`'./views/${fileName}/${fileName}_${suffix.toLowerCase()}'`)};`
+          `  ${chalk.magenta('from')} ${chalk.cyan(
+            `'./views/${fileName}/${fileName}_${suffix.toLowerCase()}'`
+          )};`
       );
-    }
+    };
 
     this.log('------------------------------------------------');
     this.log(chalk.bold('Import snippets:'));
@@ -170,4 +208,4 @@ module.exports = class extends Generator {
     }
     this.log('------------------------------------------------');
   }
-}
+};

@@ -25,6 +25,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   .guideSideNav {
     top: $euiHeaderHeightCompensation * 2;
   }
+
+  .euiHeader:not(.euiHeader--fixed) {
+    // Force headers below the full screen.
+    // This shouldn't be necessary in consuming applications because headers should always be at the top of the page
+    z-index: 0;
+  }
 }
 
 .guidePage {

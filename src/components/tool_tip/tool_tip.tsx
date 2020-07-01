@@ -32,6 +32,7 @@ import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { enqueueStateChange } from '../../services/react';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -48,12 +49,10 @@ export const POSITIONS = keysOf(positionsToClassNameMap);
 
 export type ToolTipDelay = 'regular' | 'long';
 
-const delayToClassNameMap: { [key in ToolTipDelay]: string | null } = {
-  regular: null,
-  long: 'euiToolTip--delayLong',
+const delayToMsMap: { [key in ToolTipDelay]: number } = {
+  regular: 250,
+  long: 250 * 5,
 };
-
-export const DELAY = keysOf(delayToClassNameMap);
 
 interface ToolTipStyles {
   top: number;
@@ -126,6 +125,7 @@ export class EuiToolTip extends Component<Props, State> {
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
+  private timeoutId?: ReturnType<typeof setTimeout>;
 
   state: State = {
     visible: false,
@@ -140,11 +140,18 @@ export class EuiToolTip extends Component<Props, State> {
     delay: 'regular',
   };
 
+  clearAnimationTimeout = () => {
+    if (this.timeoutId) {
+      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
+    }
+  };
+
   componentDidMount() {
     this._isMounted = true;
   }
 
   componentWillUnmount() {
+    this.clearAnimationTimeout();
     this._isMounted = false;
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
@@ -184,7 +191,11 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   showToolTip = () => {
-    this.setState({ visible: true });
+    if (!this.timeoutId) {
+      this.timeoutId = setTimeout(() => {
+        enqueueStateChange(() => this.setState({ visible: true }));
+      }, delayToMsMap[this.props.delay]);
+    }
   };
 
   positionToolTip = () => {
@@ -232,8 +243,9 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   hideToolTip = () => {
+    this.clearAnimationTimeout();
     if (this._isMounted) {
-      this.setState({ visible: false });
+      enqueueStateChange(() => this.setState({ visible: false }));
     }
   };
 
@@ -280,7 +292,6 @@ export class EuiToolTip extends Component<Props, State> {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
-      delayToClassNameMap[delay],
       className
     );
 

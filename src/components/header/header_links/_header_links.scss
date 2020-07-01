@@ -1,5 +1,3 @@
-@import '../../link/mixins';
-
 .euiHeaderLinks {
   display: flex;
   justify-content: space-between;
@@ -11,6 +9,11 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+
+  > * {
+    // Apply margins to any children
+    margin: 0 $euiSizeS;
+  }
 }
 
 .euiHeaderLinks__mobile {

@@ -391,6 +391,20 @@ Object {
 }
 `;
 
+exports[`astToEsQueryDsl ast - name:"First \\"Nickname\\" Last" 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "match_phrase": Object {
+          "name": "First \\"Nickname\\" Last",
+        },
+      },
+    ],
+  },
+}
+`;
+
 exports[`astToEsQueryDsl ast - name:john (is:enrolled OR Teacher) 1`] = `
 Object {
   "bool": Object {
