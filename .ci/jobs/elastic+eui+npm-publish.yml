@@ -24,17 +24,14 @@
           #!/usr/local/bin/runbld
           set -eo pipefail
 
-          # some nvm shuffling: initializing nvm fails if there is an .nvmrc
-          # file in the current directory specifying a Node.js version that is
-          # not installed. temporarily moving the .nvmrc file works around this.
+          # initialize nvm
           export NVM_DIR="/var/lib/jenkins/.nvm"
-          NVM_VERSION=$(cat .nvmrc)
-          mv .nvmrc .nvmrc.bak
-          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
-          nvm install $NVM_VERSION
-          nvm use $NVM_VERSION --delete-prefix
+          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh" --no-use
+
+          # install correct Node.js version (commands assume presence of .nvmrc)
+          nvm install
+          nvm use --delete-prefix
           npm install -g yarn
-          mv .nvmrc.bak .nvmrc
 
           set +x
 
