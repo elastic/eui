@@ -41,7 +41,7 @@ import remark2rehype from 'remark-rehype';
 import highlight from 'remark-highlight.js';
 import rehype2react from 'rehype-react';
 
-import { CommonProps } from '../common';
+import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
@@ -97,7 +97,7 @@ export const defaultProcessingPlugins: PluggableList = [
   ],
 ];
 
-export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
+type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /** A unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
@@ -133,6 +133,10 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
       }
     ) => void;
   };
+export type EuiMarkdownEditorProps = OneOf<
+  CommonMarkdownEditorProps,
+  'aria-label' | 'aria-labelledby'
+>;
 
 export const EuiMarkdownEditor: FunctionComponent<
   EuiMarkdownEditorProps
@@ -149,6 +153,8 @@ export const EuiMarkdownEditor: FunctionComponent<
       uiPlugins = [],
       onParse,
       errors = [],
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       ...rest
     },
     ref
@@ -316,6 +322,10 @@ export const EuiMarkdownEditor: FunctionComponent<
                 id={editorId}
                 onChange={e => onChange(e.target.value)}
                 value={value}
+                {...{
+                  'aria-label': ariaLabel,
+                  'aria-labelledby': ariaLabelledBy,
+                }}
               />
             </EuiMarkdownEditorDropZone>
 

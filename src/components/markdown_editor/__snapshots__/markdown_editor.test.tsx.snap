@@ -2,7 +2,6 @@
 
 exports[`EuiMarkdownEditor is rendered 1`] = `
 <div
-  aria-label="aria-label"
   class="euiMarkdownEditor testClass1 testClass2"
   data-test-subj="test subject string"
 >
@@ -192,6 +191,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       class="euiMarkdownEditor__dropZone"
     >
       <textarea
+        aria-label="aria-label"
         class="euiMarkdownEditor__textArea"
         id="editorId"
         rows="6"

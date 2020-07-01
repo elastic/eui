@@ -30,6 +30,7 @@ export default () => {
   return (
     <>
       <EuiMarkdownEditor
+        aria-label="EUI markdown editor demo"
         value={value}
         onChange={setValue}
         height={400}
