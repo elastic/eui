@@ -98,7 +98,7 @@ export const Table = () => {
   ];
 
   const items = store.users.filter((user, index) => index < 10);
-
+  console.log('items', items);
   const getRowProps = item => {
     const { id } = item;
     return {

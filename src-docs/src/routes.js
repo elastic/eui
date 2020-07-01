@@ -264,7 +264,7 @@ const createExample = (example, customTitle) => {
   let playgroundComponent;
   if (playground) {
     playgroundComponent = playgroundCreator(playground());
-    console.log(playgroundComponent, 'playground', playground());
+    // console.log(playgroundComponent, 'playground', playground());
   }
 
   const component = () => (

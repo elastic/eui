@@ -11,6 +11,13 @@ import {
   EuiSelect,
   EuiFieldNumber,
   EuiToolTip,
+  EuiTable,
+  EuiTableFooter,
+  EuiTableBody,
+  EuiTableHeader,
+  EuiTableHeaderCell,
+  EuiTableRow,
+  EuiTableRowCell,
 } from '../../../../src/components/';
 
 const getTooltip = (description, type, name) => (
@@ -92,7 +99,7 @@ const Knob = ({
     case PropTypes.Date:
       return (
         <Spacing>
-          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
 
           <EuiFieldText
             placeholder={placeholder}
@@ -130,7 +137,7 @@ const Knob = ({
 
       let valueKey = val || defaultValue;
 
-      if (numberOfOptions < 6) {
+      if (numberOfOptions < 1) {
         if (valueKey && !valueKey.includes('__')) {
           valueKey = `${valueKey}__${name}`;
         }
@@ -141,7 +148,7 @@ const Knob = ({
 
         return (
           <Spacing>
-            <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+            {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
 
             <EuiRadioGroup
               options={flattenedOptions}
@@ -164,7 +171,7 @@ const Knob = ({
 
         return (
           <Spacing>
-            <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+            {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
 
             <EuiSelect
               id={name}
@@ -187,7 +194,7 @@ const Knob = ({
       // /*
       return (
         <Spacing>
-          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
           <EuiTextArea
             placeholder={placeholder}
             value={val ? val : ''}
@@ -210,52 +217,91 @@ const Knob = ({
 
 const KnobColumn = ({ state, knobNames, error, set }) => {
   return (
-    <EuiFlexItem>
+    <>
       {knobNames.map(name => (
-        <Knob
-          key={name}
-          name={name}
-          error={error.where === name ? error.msg : null}
-          description={state[name].description}
-          type={state[name].type}
-          val={state[name].value}
-          options={state[name].options}
-          placeholder={state[name].placeholder}
-          set={value => set(value, name)}
-          enumName={state[name].enumName}
-          defaultValue={state[name].defaultValue}
-        />
+        <EuiTableRow>
+          <EuiTableRowCell>{name}</EuiTableRowCell>
+          <EuiTableRowCell>
+            <Knob
+              key={name}
+              name={name}
+              error={error.where === name ? error.msg : null}
+              description={state[name].description}
+              type={state[name].type}
+              val={state[name].value}
+              options={state[name].options}
+              placeholder={state[name].placeholder}
+              set={value => set(value, name)}
+              enumName={state[name].enumName}
+              defaultValue={state[name].defaultValue}
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
       ))}
-    </EuiFlexItem>
+    </>
   );
 };
 
+const columns = [
+  {
+    field: 'prop',
+    name: 'Prop',
+    sortable: true,
+    'data-test-subj': 'PropCell',
+  },
+  {
+    field: 'type',
+    name: 'Type',
+  },
+  {
+    field: 'default',
+    name: 'Default',
+  },
+  {
+    field: 'modify',
+    name: 'Modify',
+  },
+];
+
 const Knobs = ({ state, set, error }) => {
-  const allKnobNames = Object.keys(state).filter(
-    name => state[name].type !== PropTypes.Custom
-  );
-  const filteredKnobNames = allKnobNames.filter(
-    name => state[name].hidden !== true
-  );
-  const knobNames = filteredKnobNames;
+  // const allKnobNames = Object.keys(state).filter(
+  //   name => state[name].type !== PropTypes.Custom
+  // );
+  // const filteredKnobNames = allKnobNames.filter(
+  //   name => state[name].hidden !== true
+  // );
+  const knobNames = Object.keys(state);
   // const knobNames = showAllKnobs ? allKnobNames : filteredKnobNames;
 
-  const firstGroup = knobNames.slice(0, Math.round(knobNames.length / 2));
-  const secondGroup = knobNames.slice(Math.round(knobNames.length / 2));
+  // const firstGroup = knobNames.slice(0, Math.round(knobNames.length / 2));
+  // const secondGroup = knobNames.slice(Math.round(knobNames.length / 2));
+
+  const items = [];
+
+  return (
+    <EuiTable id={'playground__ID'}>
+      <EuiTableHeader>
+        {columns.map(({ name }, id) => {
+          return <EuiTableHeaderCell key={id}>{name}</EuiTableHeaderCell>;
+        })}
+      </EuiTableHeader>
+
+      <EuiTableBody>
+        <KnobColumn
+          state={state}
+          knobNames={knobNames}
+          set={set}
+          error={error}
+        />
+      </EuiTableBody>
+
+      <EuiTableFooter>Footer</EuiTableFooter>
+    </EuiTable>
+  );
+
   return (
     <EuiFlexGroup>
-      <KnobColumn
-        state={state}
-        knobNames={firstGroup}
-        set={set}
-        error={error}
-      />
-      <KnobColumn
-        state={state}
-        knobNames={secondGroup}
-        set={set}
-        error={error}
-      />
+      <KnobColumn state={state} knobNames={knobNames} set={set} error={error} />
     </EuiFlexGroup>
   );
 };
