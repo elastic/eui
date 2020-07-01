@@ -149,7 +149,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     optionalOverlay = (
       <EuiOverlayMask
         onClick={collapse}
-        headerAdjacent="below"
+        headerZindexLocation="below"
         {...maskProps}
       />
     );

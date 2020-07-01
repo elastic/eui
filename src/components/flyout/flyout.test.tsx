@@ -24,7 +24,9 @@ import { requiredProps } from '../../test';
 import { EuiFlyout, EuiFlyoutSize } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: ({ headerAdjacent, ...props }: any) => <div {...props} />,
+  EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
+    <div {...props} />
+  ),
 }));
 
 const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
@@ -126,7 +128,7 @@ describe('EuiFlyout', () => {
           <EuiFlyout
             onClose={() => {}}
             ownFocus
-            maskProps={{ headerAdjacent: 'above' }}
+            maskProps={{ headerZindexLocation: 'above' }}
           />
         );
 

@@ -43,7 +43,7 @@ export interface EuiOverlayMaskInterface {
   /**
    * Should the mask visually sit above or below the EuiHeader (controlled by z-index)
    */
-  headerAdjacent?: 'above' | 'below';
+  headerZindexLocation?: 'above' | 'below';
 }
 
 export type EuiOverlayMaskProps = CommonProps &
@@ -57,7 +57,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   className,
   children,
   onClick,
-  headerAdjacent = 'above',
+  headerZindexLocation = 'above',
   ...rest
 }) => {
   const overlayMaskNode = useRef<HTMLDivElement>(document.createElement('div'));
@@ -99,10 +99,10 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     if (!overlayMaskNode.current) return;
     overlayMaskNode.current.className = classNames(
       'euiOverlayMask',
-      `euiOverlayMask--${headerAdjacent}Header`,
+      `euiOverlayMask--${headerZindexLocation}Header`,
       className
     );
-  }, [className, headerAdjacent]);
+  }, [className, headerZindexLocation]);
 
   useEffect(() => {
     if (!overlayMaskNode.current || !onClick) return;

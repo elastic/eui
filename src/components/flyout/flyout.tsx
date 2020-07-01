@@ -160,7 +160,11 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   let optionalOverlay;
   if (ownFocus) {
     optionalOverlay = (
-      <EuiOverlayMask onClick={onClose} headerAdjacent="below" {...maskProps} />
+      <EuiOverlayMask
+        onClick={onClose}
+        headerZindexLocation="below"
+        {...maskProps}
+      />
     );
   }
 

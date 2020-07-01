@@ -78,9 +78,9 @@ export const OverlayMaskExample = {
             <Link to="/layout/header">
               <strong>EuiHeader</strong>
             </Link>{' '}
-            by providing the <EuiCode>headerAdjacent</EuiCode> prop. By default
-            this is set to <EuiCode>{'"above"'}</EuiCode> for common cases like
-            with{' '}
+            by providing the <EuiCode>headerZindexLocation</EuiCode> prop. By
+            default this is set to <EuiCode>{'"above"'}</EuiCode> for common
+            cases like with{' '}
             <Link to="/layout/modal">
               <strong>EuiModal</strong>
             </Link>{' '}
@@ -94,7 +94,7 @@ export const OverlayMaskExample = {
         </div>
       ),
       props: { EuiOverlayMask },
-      snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerAdjacent="below" />
+      snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />
 <EuiFlyout onClose={toggleFlyOut}></EuiFlyout>`,
       demo: <OverlayMaskHeader />,
     },

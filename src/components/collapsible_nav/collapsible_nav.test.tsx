@@ -24,7 +24,9 @@ import { requiredProps } from '../../test/required_props';
 import { EuiCollapsibleNav } from './collapsible_nav';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: ({ headerAdjacent, ...props }: any) => <div {...props} />,
+  EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
+    <div {...props} />
+  ),
 }));
 
 const propsNeededToRender = { id: 'id', isOpen: true };
@@ -88,7 +90,7 @@ describe('EuiCollapsibleNav', () => {
       const component = render(
         <EuiCollapsibleNav
           {...propsNeededToRender}
-          maskProps={{ headerAdjacent: 'above' }}
+          maskProps={{ headerZindexLocation: 'above' }}
         />
       );
 
