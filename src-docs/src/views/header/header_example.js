@@ -296,7 +296,7 @@ export const HeaderExample = {
             .
           </p>
           <p>
-            The example below shows how to incorprate{' '}
+            The example below shows how to incorporate{' '}
             <strong>EuiHeaderAlert</strong> components to show a list of
             updates.
           </p>
