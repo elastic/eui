@@ -10,6 +10,7 @@
   width: $euiCollapsibleNavWidth;
   max-width: 80vw;
   animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
+  clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%); // Must include the width of the close button too
 }
 
 .euiCollapsibleNav__closeButton {
@@ -37,6 +38,7 @@
 .euiCollapsibleNav.euiCollapsibleNav--isDocked {
   @include euiBottomShadowMedium;
   z-index: $euiZHeader; // When docked, make it the same level as the header
+  clip-path: none;
 
   .euiCollapsibleNav__closeButton {
     display: none;
