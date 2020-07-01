@@ -78,15 +78,13 @@ type ButtonControlProps = ExclusiveUnion<
  * Requires `label` as the `children`.
  * `onClick` must be provided to handle the content swapping.
  */
-export type TabControl = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'id' | 'onClick'
-> & {
+export interface TabControl
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'onClick'> {
   controlType: 'tab';
   id: string;
   label: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 /**
  * Extends EuiBreadcrumbs
@@ -452,9 +450,7 @@ export class EuiControlBar extends Component<
               ref={node => {
                 this.bar = node;
               }}>
-              {controls.map((control, index) => {
-                return controlItem(control, index);
-              })}
+              {controls.map((control, index) => controlItem(control, index))}
             </div>
             {this.props.showContent ? (
               <div className="euiControlBar__content">{children}</div>
