@@ -1,9 +1,6 @@
 import React from 'react';
 
 import { useView, Compiler, Error, Placeholder } from 'react-view';
-import 'brace/mode/jsx';
-import 'brace/theme/github';
-
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../src/components';
 import Knobs from './services/playground/knobs';
 
