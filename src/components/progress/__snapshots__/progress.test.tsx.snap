@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiProgress has labelProps 1`] = `
+Array [
+  <div
+    class="euiProgress__data euiProgress__data--secondary"
+  >
+    <span
+      class="euiProgress__label"
+      title="Custom title"
+    />
+    <span
+      class="euiProgress__valueText"
+    >
+      150
+    </span>
+  </div>,
+  <progress
+    aria-hidden="false"
+    aria-label="aria-label"
+    class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
+    data-test-subj="test subject string"
+    max="100"
+    value="50"
+  />,
+]
+`;
+
 exports[`EuiProgress has max 1`] = `
 <progress
   aria-hidden="false"
@@ -18,7 +44,7 @@ exports[`EuiProgress has value 1`] = `
 />
 `;
 
-exports[`EuiProgress has valueText and Label 1`] = `
+exports[`EuiProgress has valueText and label 1`] = `
 Array [
   <div
     class="euiProgress__data euiProgress__data--secondary"

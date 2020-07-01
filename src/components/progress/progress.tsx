@@ -86,6 +86,10 @@ type Determinate = EuiProgressProps &
      */
     valueText?: boolean | ReactNode;
     label?: ReactNode;
+    /**
+     * Object of props passed to the <span/> wrapping the determinate progress's label
+     */
+    labelProps?: HTMLAttributes<HTMLSpanElement>;
   };
 
 export const EuiProgress: FunctionComponent<
@@ -99,6 +103,7 @@ export const EuiProgress: FunctionComponent<
   valueText = false,
   label,
   value,
+  labelProps,
   ...rest
 }) => {
   const determinate = !isNil(max);
@@ -119,6 +124,10 @@ export const EuiProgress: FunctionComponent<
       'euiProgress__data--l': size === 'l',
     },
     dataColorToClassNameMap[color]
+  );
+  const labelClasses = classNames(
+    'euiProgress__label',
+    labelProps && labelProps.className
   );
 
   let valueRender;
@@ -147,7 +156,9 @@ export const EuiProgress: FunctionComponent<
       <Fragment>
         {label || valueText ? (
           <div className={dataClasses}>
-            <span className="euiProgress__label">{label}</span>
+            <span {...labelProps} className={labelClasses}>
+              {label}
+            </span>
             <span className="euiProgress__valueText">{valueRender}</span>
           </div>
         ) : (
