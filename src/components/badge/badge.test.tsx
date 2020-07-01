@@ -137,6 +137,20 @@ describe('EuiBadge', () => {
           expect(component).toMatchSnapshot();
         });
       });
+
+      it('accepts rgba', () => {
+        const component = render(
+          <EuiBadge color="rgba(255,255,255,1)">Content</EuiBadge>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('accepts hex', () => {
+        const component = render(<EuiBadge color="#333">Content</EuiBadge>);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('iconSide', () => {

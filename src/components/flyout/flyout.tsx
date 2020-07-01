@@ -30,7 +30,7 @@ import { keys, EuiWindowEvent } from '../../services';
 
 import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiOverlayMask } from '../overlay_mask';
+import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
 
@@ -55,7 +55,8 @@ export interface EuiFlyoutProps
    */
   hideCloseButton?: boolean;
   /**
-   * Locks the mouse / keyboard focus to within the flyout
+   * Locks the mouse / keyboard focus to within the flyout,
+   * and shows an EuiOverlayMask
    */
   ownFocus?: boolean;
   /**
@@ -73,6 +74,11 @@ export interface EuiFlyoutProps
   maxWidth?: boolean | number | string;
 
   style?: CSSProperties;
+
+  /**
+   * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
+   */
+  maskProps?: EuiOverlayMaskProps;
 }
 
 export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
@@ -85,6 +91,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   closeButtonAriaLabel,
   maxWidth = false,
   style,
+  maskProps,
   ...rest
 }) => {
   const onKeyDown = (event: KeyboardEvent) => {
@@ -152,7 +159,13 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   // to click it to close it.
   let optionalOverlay;
   if (ownFocus) {
-    optionalOverlay = <EuiOverlayMask onClick={onClose} />;
+    optionalOverlay = (
+      <EuiOverlayMask
+        onClick={onClose}
+        headerZindexLocation="below"
+        {...maskProps}
+      />
+    );
   }
 
   return (

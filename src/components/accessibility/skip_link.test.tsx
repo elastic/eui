@@ -26,20 +26,40 @@ import { EuiSkipLink, POSITIONS } from './skip_link';
 describe('EuiSkipLink', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSkipLink destinationId="somewhere" {...requiredProps} />
+      <EuiSkipLink destinationId="somewhere" {...requiredProps}>
+        Skip
+      </EuiSkipLink>
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  describe('position', () => {
-    POSITIONS.forEach(position => {
-      test(`${position} is rendered`, () => {
-        const component = render(
-          <EuiSkipLink position={position} destinationId="somewhere" />
-        );
+  describe('props', () => {
+    test('tabIndex is rendered', () => {
+      const component = render(
+        <EuiSkipLink destinationId="somewhere" tabIndex={-1} />
+      );
 
-        expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('onClick is rendered', () => {
+      const component = render(
+        <EuiSkipLink destinationId="somewhere" onClick={() => {}} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('position', () => {
+      POSITIONS.forEach(position => {
+        test(`${position} is rendered`, () => {
+          const component = render(
+            <EuiSkipLink destinationId="somewhere" position={position} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });

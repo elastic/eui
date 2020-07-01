@@ -66,7 +66,7 @@ const displayToClassNameMap: { [display in CardDisplay]: string } = {
 
 export const DISPLAYS = keysOf(displayToClassNameMap);
 
-type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
+export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Card's are required to have at least a title and description
    */
