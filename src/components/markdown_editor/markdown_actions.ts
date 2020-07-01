@@ -111,6 +111,15 @@ class MarkdownActions {
           orderedList: true,
         },
       },
+      mdTl: {
+        name: 'mdTl',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '- [ ] ',
+          multiline: true,
+          surroundWithNewlines: true,
+        },
+      },
     };
   }
 

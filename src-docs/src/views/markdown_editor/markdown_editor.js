@@ -5,37 +5,24 @@ import {
   defaultProcessingPlugins,
   EuiMarkdownEditor,
   EuiSpacer,
-  EuiText,
   EuiCodeBlock,
+  EuiButtonToggle,
 } from '../../../../src';
 import * as MarkdownChart from './plugins/markdown_chart';
-import * as MarkdownTooltip from './plugins/markdown_tooltip';
-import * as MarkdownCheckbox from './plugins/markdown_checkbox';
 
 const markdownExample = require('!!raw-loader!./markdown-example.md');
 
-const exampleParsingList = [
-  ...defaultParsingPlugins,
-  MarkdownChart.parser,
-  MarkdownTooltip.parser,
-  MarkdownCheckbox.parser,
-];
+const exampleParsingList = [...defaultParsingPlugins, MarkdownChart.parser];
 
 const exampleProcessingList = [...defaultProcessingPlugins]; // pretend mutation doesn't happen immediately next 😅
 exampleProcessingList[0][1].handlers.chartDemoPlugin = MarkdownChart.handler;
 exampleProcessingList[1][1].components.chartDemoPlugin = MarkdownChart.renderer;
 
-exampleProcessingList[0][1].handlers.tooltipPlugin = MarkdownTooltip.handler;
-exampleProcessingList[1][1].components.tooltipPlugin = MarkdownTooltip.renderer;
-
-exampleProcessingList[0][1].handlers.checkboxPlugin = MarkdownCheckbox.handler;
-exampleProcessingList[1][1].components.checkboxPlugin =
-  MarkdownCheckbox.renderer;
-
 export default () => {
   const [value, setValue] = useState(markdownExample);
   const [messages, setMessages] = useState([]);
   const [ast, setAst] = useState(null);
+  const [isAstShowing, setIsAstShowing] = useState(false);
   const onParse = useCallback((err, { messages, ast }) => {
     setMessages(err ? [err] : messages);
     setAst(JSON.stringify(ast, null, 2));
@@ -43,19 +30,28 @@ export default () => {
   return (
     <>
       <EuiMarkdownEditor
+        aria-label="EUI markdown editor demo"
         value={value}
         onChange={setValue}
         height={400}
-        uiPlugins={[MarkdownChart.plugin, MarkdownTooltip.plugin]}
+        uiPlugins={[MarkdownChart.plugin]}
         parsingPluginList={exampleParsingList}
         processingPluginList={exampleProcessingList}
         onParse={onParse}
+        errors={messages}
       />
-      <EuiSpacer />
-      {messages.map((message, idx) => (
-        <EuiText key={idx}>{message.toString()}</EuiText>
-      ))}
-      <EuiCodeBlock language="json">{ast}</EuiCodeBlock>
+      <EuiSpacer size="s" />
+      <div className="eui-textRight">
+        <EuiButtonToggle
+          label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+          size="s"
+          isEmpty
+          iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+          onChange={() => setIsAstShowing(!isAstShowing)}
+          isSelected={isAstShowing}
+        />
+      </div>
+      {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
     </>
   );
 };

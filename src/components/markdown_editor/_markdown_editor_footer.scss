@@ -1,0 +1,39 @@
+.euiMarkdownEditor__footer {
+  display: inline-flex;
+  padding: $euiSizeXS;
+  border: $euiBorderThin;
+  border-top: none;
+  align-items: center;
+  background: $euiPageBackgroundColor;
+}
+
+.euiMarkdownEditor__footerPopover {
+  width: 300px;
+}
+
+.euiMarkdownEditor__footerActions {
+  flex: 1;
+  display: inline-flex;
+
+  > button,
+  > span {
+    margin-right: $euiSizeXS;
+    align-self: center;
+  }
+}
+
+.euiMarkdownEditor__footerHelp {
+  justify-self: flex-end;
+
+  // overrides the default button icon width size
+  > svg {
+    width: 26px;
+  }
+}
+
+.euiMarkdownEditor__footerErrors {
+  // overrides the default button icon width size
+  > svg {
+    color: $euiTextSubduedColor;
+  }
+}

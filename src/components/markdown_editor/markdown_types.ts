@@ -17,8 +17,34 @@
  * under the License.
  */
 
+import { ComponentType, ReactNode } from 'react';
+import { VFile } from 'vfile';
 import { IconType } from '../icon';
-import { ComponentType } from 'react';
+
+export interface RemarkParser {
+  Parser: any;
+  tokenizeInline: Function;
+  file: VFile;
+}
+export interface RemarkTokenizer {
+  (
+    this: RemarkParser,
+    eat: Function & { now: Function },
+    value: string,
+    silent: boolean
+  ): boolean | void;
+
+  locator?: (value: string, fromIndex: number) => number;
+
+  notInLink?: boolean;
+}
+export interface RemarkRehypeHandler {
+  (h: any, node: any): any;
+}
+export interface AstNodePosition {
+  start: { line: number; column: number; offset: number };
+  end: { line: number; column: number; offset: number };
+}
 
 export interface EuiMarkdownEditorUiPluginEditorProps {
   node?: object | null;
@@ -48,6 +74,7 @@ export type EuiMarkdownEditorUiPlugin = {
     label: string;
     iconType: IconType;
   };
+  helpText?: ReactNode;
 } & (PluginWithImmediateFormatting | PluginWithDelayedFormatting);
 
 export interface EuiMarkdownFormatting {
