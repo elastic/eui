@@ -87,5 +87,13 @@
     padding-right: $euiSizeM;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, #{$euiSizeS} 50%);
   }
+
+  // In case the item is first AND last, aka only, just make it a fully rounded item
+  .euiBreadcrumb:only-child {
+    clip-path: none;
+    padding-left: $euiSizeM;
+    padding-right: $euiSizeM;
+    border-radius: $euiBorderRadius;
+  }
 }
 

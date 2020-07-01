@@ -71,8 +71,8 @@ export const OverlayMaskExample = {
       text: (
         <div>
           <p>
-            Managing z-index levels of multiple portal-positioned components and their
-            different contexts is complicated from within the library.{' '}
+            Managing z-index levels of multiple portal-positioned components and
+            their different contexts is complicated from within the library.{' '}
             <strong>EuiOverlayMask</strong> gives you control over whether it
             should appear below or above an{' '}
             <Link to="/layout/header">
