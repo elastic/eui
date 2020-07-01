@@ -73,38 +73,37 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
     );
   }
 
-  const errorsButton = (
-    <EuiPopover
-      button={
-        <EuiButtonEmpty
-          iconType="crossInACircleFilled"
-          size="s"
-          color={errors.length > 0 ? 'danger' : 'text'}
-          aria-label="Show errors"
-          onClick={onButtonClick}>
-          {errors.length > 0 ? errors.length : 0}
-        </EuiButtonEmpty>
-      }
-      isOpen={isPopoverOpen}
-      closePopover={closePopover}
-      anchorPosition="upCenter">
-      <div className="euiMarkdownEditor__footerPopover">
-        <EuiPopoverTitle>
-          <EuiI18n
-            token="euiMarkdownEditorFooter.errorsTitle"
-            default="Errors"
-          />
-        </EuiPopoverTitle>
-        {errors.length > 0 ? (
-          errors.map((message: any, idx: any) => (
+  let errorsButton;
+  if (errors && errors.length) {
+    errorsButton = (
+      <EuiPopover
+        button={
+          <EuiButtonEmpty
+            iconType="crossInACircleFilled"
+            size="s"
+            color="danger"
+            aria-label="Show errors"
+            onClick={onButtonClick}>
+            {errors.length}
+          </EuiButtonEmpty>
+        }
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        anchorPosition="upCenter">
+        <div className="euiMarkdownEditor__footerPopover">
+          <EuiPopoverTitle>
+            <EuiI18n
+              token="euiMarkdownEditorFooter.errorsTitle"
+              default="Errors"
+            />
+          </EuiPopoverTitle>
+          {errors.map((message: any, idx: any) => (
             <EuiText key={idx}>{message.toString()}</EuiText>
-          ))
-        ) : (
-          <EuiText>No errors</EuiText>
-        )}
-      </div>
-    </EuiPopover>
-  );
+          ))}
+        </div>
+      </EuiPopover>
+    );
+  }
 
   return (
     <footer className="euiMarkdownEditor__footer">

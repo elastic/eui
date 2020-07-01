@@ -214,34 +214,6 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
               data-euiicon-type="paperClip"
             />
           </button>
-          <div
-            class="euiPopover euiPopover--anchorUpCenter"
-          >
-            <div
-              class="euiPopover__anchor"
-            >
-              <button
-                aria-label="Show errors"
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
-                type="button"
-              >
-                <span
-                  class="euiButtonEmpty__content"
-                >
-                  <div
-                    aria-hidden="true"
-                    class="euiButtonEmpty__icon"
-                    data-euiicon-type="crossInACircleFilled"
-                  />
-                  <span
-                    class="euiButtonEmpty__text"
-                  >
-                    0
-                  </span>
-                </span>
-              </button>
-            </div>
-          </div>
         </div>
         <button
           aria-label="Show markdown help"
