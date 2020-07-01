@@ -3,10 +3,11 @@ import { PropTypes } from 'react-view';
 
 const getProp = (prop, propName) => {
   const newProp = {};
+  if (prop.description) newProp.description = prop.description;
+  newProp.origin = prop;
   switch (prop.type.name) {
     case 'bool':
       newProp.type = PropTypes.Boolean;
-      if (prop.description) newProp.description = prop.description;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value === 'true';
         newProp.value = prop.defaultValue.value === 'true';
@@ -19,7 +20,6 @@ const getProp = (prop, propName) => {
     case 'enum':
       //   console.log('prop', prop);
       newProp.type = PropTypes.Enum;
-      newProp.description = prop.description;
       newProp.required = prop.required;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value;
@@ -41,7 +41,6 @@ const getProp = (prop, propName) => {
     case 'number':
       newProp.type = PropTypes.Number;
       newProp.placeholder = propName;
-      if (prop.description) newProp.description = prop.description;
       if (prop.defaultValue) newProp.value = prop.defaultValue.value;
       else newProp.value = 0;
       break;
@@ -49,7 +48,6 @@ const getProp = (prop, propName) => {
     case 'string':
       newProp.type = PropTypes.String;
       newProp.placeholder = propName;
-      if (prop.description) newProp.description = prop.description;
       if (prop.defaultValue) newProp.value = prop.defaultValue.value;
       else newProp.value = '';
       break;
@@ -57,7 +55,6 @@ const getProp = (prop, propName) => {
     case 'func':
       newProp.type = PropTypes.Function;
       newProp.placeholder = propName;
-      if (prop.description) newProp.description = prop.description;
 
       break;
 
@@ -65,7 +62,6 @@ const getProp = (prop, propName) => {
     case 'element':
       newProp.type = PropTypes.ReactNode;
       newProp.placeholder = propName;
-      if (prop.description) newProp.description = prop.description;
       if (prop.defaultValue) newProp.value = prop.defaultValue.value;
       else newProp.value = undefined;
       break;
@@ -73,7 +69,6 @@ const getProp = (prop, propName) => {
     default:
       newProp.type = PropTypes.Custom;
       newProp.custom = {};
-      if (prop.description) newProp.description = prop.description;
       newProp.value = undefined;
   }
 

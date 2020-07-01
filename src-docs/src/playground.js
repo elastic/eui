@@ -8,6 +8,21 @@ import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../src/components';
 import Knobs from './services/playground/knobs';
 
 export default config => {
+  const getSnippet = code => {
+    const regex = /return \(([\S\s]*?)(;)$/gm;
+    let newCode = code.match(regex)[0];
+
+    if (newCode.startsWith('return ('))
+      newCode = newCode.replace('return (', '');
+
+    if (newCode.endsWith(');')) {
+      newCode = newCode.replace(/(\);)$/m, '');
+    }
+
+    // console.log('newCode', newCode);
+    return newCode.trim();
+  };
+
   const Playground = () => {
     // if (config.props) {
     //   if (config.props.className) config.props.className.hidden = true;
@@ -20,7 +35,7 @@ export default config => {
     return (
       <React.Fragment>
         <EuiTitle>
-          <h2>{config.componentName}</h2>
+          <h3>{config.componentName}</h3>
         </EuiTitle>
         {/* <EuiSpacer /> */}
 
@@ -38,7 +53,7 @@ export default config => {
           paddingSize="m"
           overflowHeight={300}
           isCopyable>
-          {params.editorProps.code}
+          {getSnippet(params.editorProps.code)}
         </EuiCodeBlock>
         <EuiSpacer />
 

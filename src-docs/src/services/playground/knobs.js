@@ -7,7 +7,7 @@ import {
   EuiFieldText,
   EuiTextArea,
   EuiFlexGroup,
-  EuiFlexItem,
+  EuiCode,
   EuiSelect,
   EuiFieldNumber,
   EuiToolTip,
@@ -19,6 +19,11 @@ import {
   EuiTableRow,
   EuiTableRowCell,
 } from '../../../../src/components/';
+
+import {
+  humanizeType,
+  markup,
+} from '../../components/guide_section/guide_section';
 
 const getTooltip = (description, type, name) => (
   <span>
@@ -33,7 +38,7 @@ const Spacing = ({ children }) => {
   return (
     <>
       <>{children}</>
-      <EuiSpacer />
+      {/* <EuiSpacer /> */}
     </>
   );
 };
@@ -191,22 +196,20 @@ const Knob = ({
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
-      // /*
-      return (
-        <Spacing>
-          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
-          <EuiTextArea
-            placeholder={placeholder}
-            value={val ? val : ''}
-            onChange={e => {
-              globalSet(e.target.value);
-            }}
-          />
-          {error && <div>error {error}</div>}
-        </Spacing>
-      );
+    // return (
+    //   <Spacing>
+    //     {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
+    //     <EuiTextArea
+    //       placeholder={placeholder}
+    //       value={val ? val : ''}
+    //       onChange={e => {
+    //         globalSet(e.target.value);
+    //       }}
+    //     />
+    //     {error && <div>error {error}</div>}
+    //   </Spacing>
+    // );
 
-    //   */
     case PropTypes.Custom:
       return null;
     default:
@@ -218,26 +221,58 @@ const Knob = ({
 const KnobColumn = ({ state, knobNames, error, set }) => {
   return (
     <>
-      {knobNames.map(name => (
-        <EuiTableRow>
-          <EuiTableRowCell>{name}</EuiTableRowCell>
-          <EuiTableRowCell>
-            <Knob
-              key={name}
-              name={name}
-              error={error.where === name ? error.msg : null}
-              description={state[name].description}
-              type={state[name].type}
-              val={state[name].value}
-              options={state[name].options}
-              placeholder={state[name].placeholder}
-              set={value => set(value, name)}
-              enumName={state[name].enumName}
-              defaultValue={state[name].defaultValue}
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      ))}
+      {knobNames.map(name => {
+        let humanizedType = '';
+
+        if (state[name].origin && state[name].origin.type)
+          humanizedType = humanizeType(state[name].origin.type);
+
+        // console.log(humanizedType, 'state[name]', state[name]);
+
+        const typeMarkup = (
+          <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+        );
+
+        return (
+          <EuiTableRow key={name}>
+            <EuiTableRowCell key="prop" header="Prop">
+              <strong className="eui-textBreakNormal">{name}</strong>
+              {state[name].description && (
+                <>
+                  <br />
+                  <>{markup(state[name].description)}</>
+                </>
+              )}
+            </EuiTableRowCell>
+            <EuiTableRowCell key="default" header="Default">
+              <EuiCode>{typeMarkup}</EuiCode>
+              {/* typeMarkup */}
+            </EuiTableRowCell>
+            <EuiTableRowCell key="default" header="Default">
+              <EuiCode key={`defaultValue-${name}`}>
+                <span className="eui-textBreakNormal">
+                  {state[name].defaultValue}
+                </span>
+              </EuiCode>
+            </EuiTableRowCell>
+            <EuiTableRowCell key="modify" header="Modify">
+              <Knob
+                key={name}
+                name={name}
+                error={error.where === name ? error.msg : null}
+                description={state[name].description}
+                type={state[name].type}
+                val={state[name].value}
+                options={state[name].options}
+                placeholder={state[name].placeholder}
+                set={value => set(value, name)}
+                enumName={state[name].enumName}
+                defaultValue={state[name].defaultValue}
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        );
+      })}
     </>
   );
 };
@@ -275,11 +310,11 @@ const Knobs = ({ state, set, error }) => {
 
   // const firstGroup = knobNames.slice(0, Math.round(knobNames.length / 2));
   // const secondGroup = knobNames.slice(Math.round(knobNames.length / 2));
-
-  const items = [];
+  // console.log('state', state);
+  // const items = [];
 
   return (
-    <EuiTable id={'playground__ID'}>
+    <EuiTable compressed id={'playground__ID'}>
       <EuiTableHeader>
         {columns.map(({ name }, id) => {
           return <EuiTableHeaderCell key={id}>{name}</EuiTableHeaderCell>;
@@ -295,7 +330,7 @@ const Knobs = ({ state, set, error }) => {
         />
       </EuiTableBody>
 
-      <EuiTableFooter>Footer</EuiTableFooter>
+      {/* <EuiTableFooter>Footer</EuiTableFooter> */}
     </EuiTable>
   );
 
