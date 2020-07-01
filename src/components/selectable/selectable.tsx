@@ -194,6 +194,7 @@ export class EuiSelectable extends Component<
   };
 
   onFocus = () => {
+    console.log(this.state.visibleOptions);
     if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
       return;
     }
@@ -254,6 +255,10 @@ export class EuiSelectable extends Component<
           activeOptionIndex: this.state.visibleOptions.length - 1,
         });
         break;
+
+      default:
+        this.setState({ activeOptionIndex: undefined }, this.onFocus);
+        break;
     }
   };
 
@@ -307,6 +312,7 @@ export class EuiSelectable extends Component<
       {
         visibleOptions,
         searchValue,
+        activeOptionIndex: undefined,
       },
       () => {
         if (this.state.isFocused) {
@@ -519,6 +525,7 @@ export class EuiSelectable extends Component<
             searchValue={searchValue}
             activeOptionIndex={activeOptionIndex}
             setActiveOptionIndex={(index, cb) => {
+              console.log('set');
               this.setState({ activeOptionIndex: index }, cb);
             }}
             onOptionClick={this.onOptionClick}
