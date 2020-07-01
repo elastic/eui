@@ -194,7 +194,7 @@ export class EuiSelectable extends Component<
   };
 
   onFocus = () => {
-    if (!this.state.visibleOptions.length) {
+    if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
       return;
     }
 
