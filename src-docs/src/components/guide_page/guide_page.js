@@ -1,23 +1,27 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-
+import { Switch, Route, withRouter } from 'react-router-dom';
 import {
   EuiTitle,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButton,
   EuiBetaBadge,
+  EuiTab,
+  EuiTabs,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
-import { getRouterLinkProps } from '../../services';
-
-export const GuidePage = ({
+const GuidePageComponent = ({
   children,
   title,
   intro,
-  componentLinkTo,
   isBeta,
+  playground,
+  guidelines,
+  location,
+  match,
+  history,
 }) => {
   const betaBadge = isBeta ? (
     <EuiBetaBadge
@@ -28,30 +32,90 @@ export const GuidePage = ({
     undefined
   );
 
+  const tabs = [
+    {
+      id: 'examples',
+      name: 'Examples',
+      handleClick: () => {
+        history.push(`${match.path}`);
+      },
+    },
+  ];
+  if (playground)
+    tabs.push({
+      id: 'playground',
+      name: 'Playground',
+      handleClick: () => {
+        history.push(`${match.path}/playground`);
+      },
+    });
+  if (guidelines)
+    tabs.push({
+      id: 'guidelines',
+      name: 'Guidelines',
+      handleClick: () => {
+        history.push(`${match.path}/guidelines`);
+      },
+    });
+
+  const isGuideLineView = location.pathname.includes('guidelines');
+  const isPlaygroundView = location.pathname.includes('playground');
+
+  const renderTabs = () => {
+    return tabs.map(({ id, handleClick, name }, index) => {
+      let isSelected = false;
+      if (id === 'playground') isSelected = isPlaygroundView;
+      else if (id === 'guidelines') isSelected = isGuideLineView;
+      else isSelected = !isGuideLineView && !isPlaygroundView;
+
+      return (
+        <EuiTab
+          onClick={() => {
+            if (handleClick) handleClick();
+          }}
+          isSelected={isSelected}
+          key={index}>
+          {name}
+        </EuiTab>
+      );
+    });
+  };
+
   return (
     <Fragment>
       <div className="guideSection__text">
-        <EuiFlexGroup>
-          <EuiFlexItem>
+        <EuiFlexGroup justifyContent="spaceBetween">
+          <EuiFlexItem grow={false}>
             <EuiTitle size="l">
               <h1>
                 {title} {betaBadge}
               </h1>
             </EuiTitle>
           </EuiFlexItem>
-          {componentLinkTo && (
-            <EuiFlexItem grow={false}>
-              <EuiButton href={getRouterLinkProps(componentLinkTo).href}>
-                View component code
-              </EuiButton>
-            </EuiFlexItem>
-          )}
+          <EuiFlexItem grow={false}>
+            <EuiTabs display="condensed">
+              {tabs.length > 1 && renderTabs()}
+            </EuiTabs>
+          </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer />
-        {intro}
+
+        {tabs.length > 1 && <EuiHorizontalRule />}
+
+        <EuiSpacer size="m" />
       </div>
 
-      {children}
+      <Switch>
+        {playground && (
+          <Route path={`${match.path}/playground`}>{playground}</Route>
+        )}
+        {guidelines && (
+          <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+        )}
+        <Route path="">
+          <div className="guideSection__text">{intro}</div>
+          <>{children}</>
+        </Route>
+      </Switch>
 
       {/* Give some space between the bottom of long content and the bottom of the screen */}
       <EuiSpacer size="xl" />
@@ -59,10 +123,17 @@ export const GuidePage = ({
   );
 };
 
-GuidePage.propTypes = {
+GuidePageComponent.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
   intro: PropTypes.node,
   componentLinkTo: PropTypes.string,
   isBeta: PropTypes.bool,
+  playground: PropTypes.node,
+  guidelines: PropTypes.node,
+  location: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
 };
+
+export const GuidePage = withRouter(GuidePageComponent);

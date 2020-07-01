@@ -16,7 +16,7 @@ import {
   EuiCallOut,
   EuiText,
 } from '../../../../src/components';
-
+import Guidelines from './guidelines';
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
 const buttonHtml = renderToHtml(Button);
@@ -386,4 +386,5 @@ export const ButtonExample = {
       demo: <ButtonGhost />,
     },
   ],
+  guidelines: <Guidelines />,
 };
