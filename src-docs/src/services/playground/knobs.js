@@ -2,7 +2,7 @@ import React from 'react';
 import { assertUnreachable, PropTypes, useValueDebounce } from 'react-view';
 import {
   EuiSpacer,
-  EuiCheckbox,
+  EuiSwitch,
   EuiRadioGroup,
   EuiFieldText,
   // EuiTextArea,
@@ -94,6 +94,7 @@ const Knob = ({
             value={val ? val : undefined}
             onChange={e => set(e.target.value)}
             aria-label={description}
+            compressed
           />
 
           {error && <div>error {error}</div>}
@@ -115,6 +116,7 @@ const Knob = ({
               // else set(+e.target.value);
             }}
             aria-label={description}
+            compressed
           />
 
           {error && <div>error {error}</div>}
@@ -125,13 +127,14 @@ const Knob = ({
 
       return (
         <Spacing>
-          <EuiCheckbox
+          <EuiSwitch
             id={name}
-            label={name}
+            label=""
             checked={val}
             onChange={e => {
               globalSet(e.target.checked);
             }}
+            compressed
           />
           {error && <div>error {error}</div>}
         </Spacing>
@@ -186,6 +189,7 @@ const Knob = ({
                 globalSet(e.target.value);
               }}
               aria-label={`Select ${name}`}
+              compressed
             />
             {error && <div>error {error}</div>}
           </Spacing>
