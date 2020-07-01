@@ -5,14 +5,14 @@ import {
   EuiCheckbox,
   EuiRadioGroup,
   EuiFieldText,
-  EuiTextArea,
-  EuiFlexGroup,
+  // EuiTextArea,
+  // EuiFlexGroup,
   EuiCode,
   EuiSelect,
   EuiFieldNumber,
   EuiToolTip,
   EuiTable,
-  EuiTableFooter,
+  // EuiTableFooter,
   EuiTableBody,
   EuiTableHeader,
   EuiTableHeaderCell,
@@ -221,7 +221,7 @@ const Knob = ({
 const KnobColumn = ({ state, knobNames, error, set }) => {
   return (
     <>
-      {knobNames.map(name => {
+      {knobNames.map((name, idx) => {
         let humanizedType = '';
 
         if (state[name].origin && state[name].origin.type)
@@ -235,7 +235,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
 
         return (
           <EuiTableRow key={name}>
-            <EuiTableRowCell key="prop" header="Prop">
+            <EuiTableRowCell key={`prop__${name}-${idx}`} header="Prop">
               <strong className="eui-textBreakNormal">{name}</strong>
               {state[name].description && (
                 <>
@@ -244,18 +244,18 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 </>
               )}
             </EuiTableRowCell>
-            <EuiTableRowCell key="default" header="Default">
+            <EuiTableRowCell key={`type__${name}-${idx}`} header="Type">
               <EuiCode>{typeMarkup}</EuiCode>
               {/* typeMarkup */}
             </EuiTableRowCell>
-            <EuiTableRowCell key="default" header="Default">
+            <EuiTableRowCell key={`default__${name}-${idx}`} header="Default">
               <EuiCode key={`defaultValue-${name}`}>
                 <span className="eui-textBreakNormal">
                   {state[name].defaultValue}
                 </span>
               </EuiCode>
             </EuiTableRowCell>
-            <EuiTableRowCell key="modify" header="Modify">
+            <EuiTableRowCell key={`modify__${name}-${idx}`} header="Modify">
               <Knob
                 key={name}
                 name={name}
@@ -332,12 +332,6 @@ const Knobs = ({ state, set, error }) => {
 
       {/* <EuiTableFooter>Footer</EuiTableFooter> */}
     </EuiTable>
-  );
-
-  return (
-    <EuiFlexGroup>
-      <KnobColumn state={state} knobNames={knobNames} set={set} error={error} />
-    </EuiFlexGroup>
   );
 };
 
