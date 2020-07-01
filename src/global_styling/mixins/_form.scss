@@ -68,7 +68,6 @@
 @mixin euiFormControlText {
   @include euiFont;
   font-size: $euiFontSizeS;
-  line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
 
   // sass-lint:disable-block mixins-before-declarations
@@ -85,6 +84,7 @@
   max-width: $euiFormMaxWidth;
   width: 100%;
   height: $height;
+  line-height: $height;
 
   @if ($includeAlternates) {
     &--fullWidth {
@@ -93,6 +93,7 @@
 
     &--compressed {
       height: $euiFormControlCompressedHeight;
+      line-height: $euiFormControlCompressedHeight;
     }
 
     &--inGroup {
