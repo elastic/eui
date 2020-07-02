@@ -32,6 +32,7 @@
           nvm install
           nvm use --delete-prefix
           npm install -g yarn
+          yarn
 
           set +x
 
