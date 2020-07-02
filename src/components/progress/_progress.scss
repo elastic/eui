@@ -142,6 +142,7 @@ $euiProgressColors: (
   .euiProgress__label {
     @include euiTextTruncate;
     flex-basis: 80%;
+    flex-grow: 1;
   }
 
   .euiProgress__valueText {

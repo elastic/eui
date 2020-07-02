@@ -1,11 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
+- Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
 
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
 - Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
-- Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
 
 ## [`26.2.0`](https://github.com/elastic/eui/tree/v26.2.0)
 
