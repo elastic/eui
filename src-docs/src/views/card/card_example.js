@@ -45,6 +45,10 @@ import CardCheckable from './card_checkable';
 const cardCheckableSource = require('!!raw-loader!./card_checkable');
 const cardCheckableHtml = renderToHtml(CardCheckable);
 
+import CardDisplay from './card_display';
+const cardDisplaySource = require('!!raw-loader!./card_display');
+const cardDisplayHtml = renderToHtml(CardDisplay);
+
 export const CardExample = {
   title: 'Card',
   sections: [
@@ -366,6 +370,42 @@ export const CardExample = {
     </ul>
   </EuiText>
 </EuiCard>`,
+    },
+    {
+      title: 'Plain cards',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardDisplaySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardDisplayHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            If you need a card with no borders or shadows pass{' '}
+            <EuiCode language="ts">{'display="plain"'}</EuiCode>. This is a good
+            option to avoid nested panels. Adding an interaction to the card
+            will provide the clickable styling on hover. Note that{' '}
+            <EuiCode>plain</EuiCode> display is not available for
+            <EuiCode>selectable</EuiCode> cards.
+          </p>
+          <p>
+            For non-interactive cards, reduce or eliminate the padding as needed
+            to suit your layout with the prop <EuiCode>paddingSize</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiCard },
+      demo: <CardDisplay />,
+      snippet: `<EuiCard
+  title="title"
+  description="description" 
+  display="plain"
+/>`,
     },
   ],
 };

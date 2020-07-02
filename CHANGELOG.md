@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `26.3.0`.
+- Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
 
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
