@@ -23,6 +23,16 @@
       - shell: |-
           #!/usr/local/bin/runbld
           set -eo pipefail
+
+          # initialize nvm
+          export NVM_DIR="/var/lib/jenkins/.nvm"
+          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh" --no-use
+
+          # install correct Node.js version (commands assume presence of .nvmrc)
+          nvm install
+          nvm use --delete-prefix
+          npm install -g yarn
+
           set +x
 
           export VAULT_TOKEN=$(vault write -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
@@ -37,14 +47,6 @@
           unset VAULT_ROLE_ID VAULT_SECRET_ID VAULT_ADDR VAULT_TOKEN VAULT_ACCOUNT
 
           set -x
-
-          export NVM_DIR="/var/lib/jenkins/.nvm"
-          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
-
-          nvm install 10
-
-          nvm use 10 --delete-prefix
-          npm install -g yarn
 
           export VERSION_TYPE=${version_type}
           npm run release
