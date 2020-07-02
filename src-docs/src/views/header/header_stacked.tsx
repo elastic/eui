@@ -70,7 +70,11 @@ export default () => {
             borders: 'right',
           },
           {
-            items: isFixed ? [<HeaderUpdates />] : undefined,
+            items: [
+              <HeaderUpdates
+                flyoutOrPopover={isFixed ? 'flyout' : 'popover'}
+              />,
+            ],
             borders: 'none',
           },
         ]}

@@ -530,6 +530,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
 >
   <EuiPopover
     anchorPosition="downCenter"
+    buffer={0}
     button={
       <EuiSuperSelectControl
         className="euiSuperSelect--isOpen__button"

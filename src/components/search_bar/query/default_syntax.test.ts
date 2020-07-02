@@ -468,7 +468,7 @@ describe('defaultSyntax', () => {
     expect(clause.value).toBe('foo (bar)');
 
     const printedQuery = defaultSyntax.print(ast);
-    expect(printedQuery).toBe('"foo \\(bar\\)"');
+    expect(printedQuery).toBe('"foo (bar)"');
   });
 
   test('field phrases', () => {
@@ -589,6 +589,25 @@ describe('defaultSyntax', () => {
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe('f:"this is a relaxed phrase"');
+  });
+
+  test('phrases with extra characters', () => {
+    const term = '& _ - \\\\ \\" \' or OR < > ? : @';
+    const term_unescaped = term.replace(/\\(.)/g, '$1');
+    const query = `"${term}"`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause: Clause = ast.getTermClause(term_unescaped)!;
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe(term_unescaped);
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
   });
 
   test('single term or expression', () => {

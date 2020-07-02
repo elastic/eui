@@ -79,7 +79,6 @@ interface State {
     items: Props['items'];
   };
   menuItems: HTMLElement[];
-  isTransitioning: boolean;
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
@@ -104,7 +103,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         items: this.props.items,
       },
       menuItems: [],
-      isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
       currentHeight: undefined,
     };
@@ -226,7 +224,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
-      if (this.state.isTransitioning) {
+      if (this.props.transitionType) {
         return;
       }
 
@@ -261,10 +259,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   }
 
   onTransitionComplete = () => {
-    this.setState({
-      isTransitioning: false,
-    });
-
     if (this.props.onTransitionComplete) {
       this.props.onTransitionComplete();
     }
@@ -291,11 +285,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       needsUpdate = true;
       nextState.menuItems = [];
       nextState.prevProps = { items: nextProps.items };
-    }
-
-    if (nextProps.transitionType) {
-      needsUpdate = true;
-      nextState.isTransitioning = true;
     }
 
     if (needsUpdate) {
@@ -349,7 +338,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       return true;
     }
 
-    if (nextState.isTransitioning !== this.state.isTransitioning) {
+    if (nextProps.transitionType !== this.props.transitionType) {
       return true;
     }
 
@@ -470,8 +459,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     const classes = classNames(
       'euiContextMenuPanel',
       className,
-      this.state.isTransitioning &&
-        transitionDirection &&
+      transitionDirection &&
         transitionType &&
         transitionDirectionAndTypeToClassNameMap[transitionDirection]
         ? transitionDirectionAndTypeToClassNameMap[transitionDirection][

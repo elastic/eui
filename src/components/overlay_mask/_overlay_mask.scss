@@ -1,6 +1,5 @@
 .euiOverlayMask {
   position: fixed;
-  z-index: $euiZMask;
   top: 0;
   left: 0;
   right: 0;
@@ -22,4 +21,13 @@
 
 .euiBody-hasOverlayMask {
   overflow: hidden;
+}
+
+// Handling the z-index based on whether it should be displayed above or below the header
+.euiOverlayMask--aboveHeader {
+  z-index: $euiZMask;
+}
+
+.euiOverlayMask--belowHeader {
+  z-index: $euiZHeader - 1;
 }

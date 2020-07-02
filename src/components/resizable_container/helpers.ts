@@ -145,12 +145,18 @@ export const useContainerCallbacks = ({
         );
 
         setState({ ...state, isDragging: false });
-        if (onPanelWidthChange) {
+        const panelObject = registry.fetchAllPanels(
+          prevPanelId,
+          nextPanelId,
+          containerSize - resizersSize
+        );
+        if (prevPanelSize !== nextPanelSize && onPanelWidthChange) {
           onPanelWidthChange({
+            ...panelObject,
             [prevPanelId]: prevPanelSize,
             [nextPanelId]: nextPanelSize,
           });
-        } else {
+
           prevPanel.setSize(prevPanelSize);
           nextPanel.setSize(nextPanelSize);
         }
@@ -204,16 +210,21 @@ export const useContainerCallbacks = ({
           containerSize
         );
 
+        const panelObject = registry.fetchAllPanels(
+          state.previousPanelId,
+          state.nextPanelId,
+          containerSize
+        );
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           if (onPanelWidthChange) {
             onPanelWidthChange({
+              ...panelObject,
               [state.previousPanelId]: prevPanelSize,
               [state.nextPanelId]: nextPanelSize,
             });
-          } else {
-            prevPanel.setSize(prevPanelSize);
-            nextPanel.setSize(nextPanelSize);
           }
+          prevPanel.setSize(prevPanelSize);
+          nextPanel.setSize(nextPanelSize);
 
           setState({ ...state, currentResizerPos: x });
         }
