@@ -194,7 +194,6 @@ export class EuiSelectable extends Component<
   };
 
   onFocus = () => {
-    console.log(this.state.visibleOptions);
     if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
       return;
     }
@@ -525,7 +524,6 @@ export class EuiSelectable extends Component<
             searchValue={searchValue}
             activeOptionIndex={activeOptionIndex}
             setActiveOptionIndex={(index, cb) => {
-              console.log('set');
               this.setState({ activeOptionIndex: index }, cb);
             }}
             onOptionClick={this.onOptionClick}

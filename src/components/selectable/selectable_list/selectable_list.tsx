@@ -336,10 +336,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       return;
     }
 
-    const { allowExclusions } = this.props;
+    const { allowExclusions, options, visibleOptions = options } = this.props;
 
     this.props.setActiveOptionIndex(
-      this.props.options.findIndex(({ label }) => label === option.label),
+      visibleOptions.findIndex(({ label }) => label === option.label),
       () => {
         if (option.checked === 'on' && allowExclusions) {
           this.onExcludeOption(option);
