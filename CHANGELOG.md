@@ -6,6 +6,7 @@
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
 - Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
+- Fixed the exporting in the documentation for `EuiFilePicker` ([#3695](https://github.com/elastic/eui/pull/3695))
 
 ## [`26.2.0`](https://github.com/elastic/eui/tree/v26.2.0)
 
