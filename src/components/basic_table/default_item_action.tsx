@@ -27,6 +27,8 @@ import {
 } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { DefaultItemAction as Action } from './action_types';
+import { htmlIdGenerator } from '../../services/accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export interface DefaultItemActionProps<T> {
   action: Action<T>;
@@ -73,18 +75,25 @@ export const DefaultItemAction = <T extends {}>({
       }]. It is configured to render as an icon but no
       icon is provided. Make sure to set the 'icon' property of the action`);
     }
+    const ariaLabelId = htmlIdGenerator()();
     button = (
-      <EuiButtonIcon
-        className={className}
-        aria-label={action.name}
-        isDisabled={!enabled}
-        color={color}
-        iconType={icon}
-        onClick={onClick}
-        href={action.href}
-        target={action.target}
-        data-test-subj={action['data-test-subj']}
-      />
+      <>
+        <EuiButtonIcon
+          className={className}
+          aria-labelledby={ariaLabelId}
+          isDisabled={!enabled}
+          color={color}
+          iconType={icon}
+          onClick={onClick}
+          href={action.href}
+          target={action.target}
+          data-test-subj={action['data-test-subj']}
+        />
+        {/* action.name is a ReactNode and must be rendered to an element and referenced by ID for screen readers */}
+        <EuiScreenReaderOnly>
+          <span id={ariaLabelId}>{action.name}</span>
+        </EuiScreenReaderOnly>
+      </>
     );
   } else {
     button = (
