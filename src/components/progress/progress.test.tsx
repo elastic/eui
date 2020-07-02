@@ -74,6 +74,14 @@ describe('EuiProgress', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('valueText is true', () => {
+    const component = render(
+      <EuiProgress valueText={true} value={50} max={100} {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('has labelProps', () => {
     const component = render(
       <EuiProgress

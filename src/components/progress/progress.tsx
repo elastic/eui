@@ -142,7 +142,6 @@ export const EuiProgress: FunctionComponent<
         }}
       />
     );
-    `${value}%`;
   } else if (valueText) {
     // valueText exists
     valueRender = valueText;
@@ -156,10 +155,14 @@ export const EuiProgress: FunctionComponent<
       <Fragment>
         {label || valueText ? (
           <div className={dataClasses}>
-            <span {...labelProps} className={labelClasses}>
-              {label}
-            </span>
-            <span className="euiProgress__valueText">{valueRender}</span>
+            {label && (
+              <span {...labelProps} className={labelClasses}>
+                {label}
+              </span>
+            )}
+            {valueRender && (
+              <span className="euiProgress__valueText">{valueRender}</span>
+            )}
           </div>
         ) : (
           undefined

@@ -42,7 +42,7 @@ const progressChartSource = require('!!raw-loader!./progress_chart');
 const progressChartHtml = renderToHtml(ProgressChart);
 const progressChartSnippet = `<EuiProgress 
   value={20}
-  valueText={valueText}
+  valueText={true}
   label={label}
   max={100} 
 />`;
@@ -174,8 +174,8 @@ export const ProgressExample = {
           <p>
             Determinate progress bar can be used as simple bar charts. Use them
             with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
-            props to show the data corresponding to each bar.{' '}
-            <EuiCode>valueText</EuiCode> takes the same color that is passed to{' '}
+            props to show the data corresponding to each bar. The{' '}
+            <EuiCode>valueText</EuiCode> renders as the same color as the{' '}
             <strong>EuiProgress</strong>.
           </p>
           <p>
