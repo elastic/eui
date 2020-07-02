@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `26.3.0`.
+
+## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
+
 - Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
 
 ## [`26.2.0`](https://github.com/elastic/eui/tree/v26.2.0)
