@@ -44,7 +44,7 @@ export const FormLayoutsExample = {
     <EuiText>
       <p>
         Be sure to read the full{' '}
-        <Link to="/guidelines/forms">forms usage guidelines</Link>.
+        <Link to="/guidelines/form-layouts">forms usage guidelines</Link>.
       </p>
       <EuiSpacer />
     </EuiText>
