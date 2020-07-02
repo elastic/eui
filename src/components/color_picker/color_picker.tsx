@@ -145,7 +145,13 @@ export interface EuiColorPickerProps
    * Placement option for a secondary color value input.
    */
   secondaryInputDisplay?: 'top' | 'bottom' | 'none';
+  /**
+   * Add a button to the primary input to clear its value.
+   */
   isClearable?: boolean;
+  /**
+   * Text to repalce the default 'Transparent' placeholder for unset color values.
+   */
   placeholder?: string;
 }
 
