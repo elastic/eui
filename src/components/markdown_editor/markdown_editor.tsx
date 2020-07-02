@@ -39,10 +39,9 @@ import markdown from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 // @ts-ignore TODO
 import highlight from 'remark-highlight.js';
-// @ts-ignore TODO
 import rehype2react from 'rehype-react';
 
-import { CommonProps } from '../common';
+import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
@@ -56,11 +55,15 @@ import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
+import * as MarkdownTooltip from './plugins/markdown_tooltip';
+import * as MarkdownCheckbox from './plugins/markdown_checkbox';
 
 export const defaultParsingPlugins: PluggableList = [
   [markdown, {}],
   [highlight, {}],
   [emoji, { emoticon: true }],
+  [MarkdownTooltip.parser, {}],
+  [MarkdownCheckbox.parser, {}],
 ];
 
 export const defaultProcessingPlugins: PluggableList = [
@@ -68,7 +71,10 @@ export const defaultProcessingPlugins: PluggableList = [
     remark2rehype,
     {
       allowDangerousHtml: true,
-      handlers: {},
+      handlers: {
+        tooltipPlugin: MarkdownTooltip.handler,
+        checkboxPlugin: MarkdownCheckbox.handler,
+      },
     },
   ],
   [
@@ -84,12 +90,14 @@ export const defaultProcessingPlugins: PluggableList = [
           ) : (
             <code className="euiMarkdownFormat__code" {...props} />
           ),
+        tooltipPlugin: MarkdownTooltip.renderer,
+        checkboxPlugin: MarkdownCheckbox.renderer,
       },
     },
   ],
 ];
 
-export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
+type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /** A unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
@@ -113,6 +121,9 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** array of toolbar plugins **/
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
 
+    /** Errors to buble up */
+    errors?: any;
+
     /** callback triggered when parsing results are available **/
     onParse?: (
       error: any | null,
@@ -122,6 +133,10 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
       }
     ) => void;
   };
+export type EuiMarkdownEditorProps = OneOf<
+  CommonMarkdownEditorProps,
+  'aria-label' | 'aria-labelledby'
+>;
 
 export const EuiMarkdownEditor: FunctionComponent<
   EuiMarkdownEditorProps
@@ -137,6 +152,9 @@ export const EuiMarkdownEditor: FunctionComponent<
       processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
       onParse,
+      errors = [],
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       ...rest
     },
     ref
@@ -150,11 +168,13 @@ export const EuiMarkdownEditor: FunctionComponent<
       EuiMarkdownEditorUiPlugin | undefined
     >(undefined);
 
+    const toolbarPlugins = [MarkdownTooltip.plugin, ...uiPlugins];
+
     const markdownActions = useMemo(
-      () => new MarkdownActions(editorId, uiPlugins),
-      // uiPlugins _is_ accounted for
+      () => new MarkdownActions(editorId, toolbarPlugins),
+      // toolbarPlugins _is_ accounted for
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      [editorId, uiPlugins.map(({ name }) => name).join(',')]
+      [editorId, toolbarPlugins.map(({ name }) => name).join(',')]
     );
 
     const classes = classNames('euiMarkdownEditor', className);
@@ -279,7 +299,7 @@ export const EuiMarkdownEditor: FunctionComponent<
               setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
             }
             viewMode={viewMode}
-            uiPlugins={uiPlugins}
+            uiPlugins={toolbarPlugins}
           />
 
           {isPreviewing && (
@@ -293,21 +313,29 @@ export const EuiMarkdownEditor: FunctionComponent<
           )}
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
           <div style={{ display: isPreviewing ? 'none' : 'block' }}>
-            <EuiMarkdownEditorDropZone>
+            <EuiMarkdownEditorDropZone
+              uiPlugins={toolbarPlugins}
+              errors={errors}>
               <EuiMarkdownEditorTextArea
                 ref={textareaRef}
                 height={height}
                 id={editorId}
                 onChange={e => onChange(e.target.value)}
                 value={value}
+                {...{
+                  'aria-label': ariaLabel,
+                  'aria-labelledby': ariaLabelledBy,
+                }}
               />
             </EuiMarkdownEditorDropZone>
+
             {pluginEditorPlugin && (
               <EuiOverlayMask>
                 <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
                   {createElement(pluginEditorPlugin.editor!, {
                     node:
                       selectedNode &&
+                      // @ts-ignore TODO
                       selectedNode.type === pluginEditorPlugin.name
                         ? selectedNode
                         : null,
@@ -315,10 +343,13 @@ export const EuiMarkdownEditor: FunctionComponent<
                     onSave: markdown => {
                       if (
                         selectedNode &&
+                        // @ts-ignore TODO
                         selectedNode.type === pluginEditorPlugin.name
                       ) {
                         textareaRef.current!.setSelectionRange(
+                          // @ts-ignore TODO
                           selectedNode.position.start.offset,
+                          // @ts-ignore TODO
                           selectedNode.position.end.offset
                         );
                       }

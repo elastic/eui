@@ -17,21 +17,27 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
-import { EuiIcon } from '../icon';
-import { EuiLoadingSpinner } from '../loading';
+import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
-export const EuiMarkdownEditorDropZone = (props: any) => {
+interface EuiMarkdownEditorDropZoneProps {
+  uiPlugins: EuiMarkdownEditorUiPlugin[];
+  errors: any;
+}
+
+export const EuiMarkdownEditorDropZone: FunctionComponent<
+  EuiMarkdownEditorDropZoneProps
+> = props => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
 
-  const { children, className } = props;
+  const { children, uiPlugins, errors } = props;
 
   const classes = classNames('euiMarkdownEditor__dropZone', {
     'euiMarkdownEditor__dropZone--isDragging': isDragging,
-    className,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -56,37 +62,15 @@ export const EuiMarkdownEditorDropZone = (props: any) => {
     },
   });
 
-  let buttonIcon;
-
-  if (isUploadingFiles) {
-    buttonIcon = (
-      <EuiLoadingSpinner
-        className="euiMarkdownEditor__dropZone__icon"
-        size="m"
-      />
-    );
-  } else {
-    buttonIcon = (
-      <EuiIcon
-        className="euiMarkdownEditor__dropZone__icon"
-        type="paperClip"
-        size="s"
-        aria-hidden="true"
-      />
-    );
-  }
-
   return (
     <div {...getRootProps()} className={classes}>
       {children}
-      <button className="euiMarkdownEditor__dropZone__button" onClick={open}>
-        {buttonIcon}
-        <div className="euiMarkdownEditor__dropZone__text">
-          {isUploadingFiles
-            ? 'Uploading your files...'
-            : 'Attach files by dragging & dropping or by clicking this area'}
-        </div>
-      </button>
+      <EuiMarkdownEditorFooter
+        uiPlugins={uiPlugins}
+        openFiles={open}
+        isUploadingFiles={isUploadingFiles}
+        errors={errors}
+      />
       <input {...getInputProps()} />
     </div>
   );

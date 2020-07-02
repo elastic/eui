@@ -1,12 +1,12 @@
 .euiMarkdownEditor__textArea {
   @include euiFormControlText;
+  @include euiScrollBar;
   width: 100%;
   height: 100%;
   min-height: 150px;
   padding: $euiSizeM;
   background-color: $euiFormBackgroundColor;
   border: $euiBorderThin;
-  border-bottom: 1px dashed $euiColorLightShade;
   border-color: $euiColorLightShade;
   // Overrides the euiFormControlText line-height that is very small
   line-height: $euiLineHeight;

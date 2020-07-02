@@ -24,41 +24,13 @@
     }
   }
 
-  &__button {
-    display: inline-flex;
-    height: $euiSizeXL;
-    padding: 0 $euiSizeS;
-    border: $euiBorderThin;
-    border-top: none;
-    align-items: center;
-    background: $euiPageBackgroundColor;
-
-    &:focus {
-      background-color: transparentize($euiColorPrimary, .88);
-    }
-  }
-
-  &__icon {
-    align-self: center;
-    margin-right: $euiSizeXS;
-    width: 12px;
-    height: 12px;
-  }
-
-  &__text {
-    @include euiFontSizeS;
-    @include euiTextTruncate;
-    line-height: $euiSize;
-    display: block;
-  }
-
   &--isDragging {
     .euiMarkdownEditor__textArea,
-    .euiMarkdownEditor__dropZone__button {
+    .euiMarkdownEditor__footer {
       background-color: transparentize($euiColorSecondary, .88);
     }
 
-    .euiMarkdownEditor__dropZone__button {
+    .euiMarkdownEditor__footer {
       border-top-color: $euiColorSecondary;
     }
   }
