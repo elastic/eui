@@ -1,13 +1,14 @@
-// Default styles for Markdown element
-//
-// 1. Links (EuiLink)
-// 2. Headings
-// 3. Images
-// 4. Blockquotes
-// 5. Horizontal rules
-// 6. Lists
-// 7. Tables
-// 8. Code
+// Default styles for Markdown Format
+// 1. Headings
+// 2. Images
+// 3. Blockquotes
+// 4. Horizontal rules
+// 5. Lists
+// 6. Tables
+// 7. Code
+
+// The Markdown Format uses by default a few EUI components
+// to render elements: EuiLink and EuiCode.
 
 $browserDefaultFontSize: 16px;
 
@@ -150,13 +151,10 @@ $browserDefaultFontSize: 16px;
 
   // 5. Horizontal rules
   hr {
-    overflow: hidden;
-    background: transparent;
-    height: 2px;
-    padding: 0;
-    margin: $euiMarkdownSizeL 0;
-    background-color: $euiMarkdownAlphaLightShade;
     border: none;
+    height: 1px;
+    background-color: $euiMarkdownAlphaLightShade;
+    margin: $euiMarkdownSizeL 0;
   }
 
   hr::before {
