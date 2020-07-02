@@ -21,6 +21,10 @@ $browserDefaultFontSize: 16px;
   @include euiFont;
   @include euiText;
 
+  // We're using `em` values to support apps where consumers might adjust sizes 
+  // and consequently the markdown needs to adjust to these changes
+
+  // Font size variables
   $euiMarkdownFontSizeXS: em(12px);
   $euiMarkdownFontSizeS: em(14px);
   $euiMarkdownFontSize: em(16px);
@@ -29,13 +33,29 @@ $browserDefaultFontSize: 16px;
   $euiMarkdownFontSizeXL: em(28px);
   $euiMarkdownFontSizeXXL: em(36px);
 
+  // Spacing variables
   $euiMarkdownSizeXXS: em(4px);
   $euiMarkdownSizeXS: em(8px);
   $euiMarkdownSizeS: em(12px);
   $euiMarkdownSize: em(16px);
   $euiMarkdownSizeL: em(24px);
 
+  // We're using alpha values to support apps that 
+  // display markdown on backgrounds of various colors
 
+  // Grayscale variables
+  $euiMarkdownAlphaLightestShade: rgba($euiColorFullShade, .05);
+  $euiMarkdownAlphaLightShade: rgba($euiColorFullShade, .15);
+  $euiMarkdownAlphaDarkShade: rgba($euiColorFullShade, .65);
+
+  // Reverse grayscale for opposite of theme
+  $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
+  $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
+  $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
+
+  &--reversed {
+    color: $euiColorLightestShade;
+  }
 
   > *:first-child {
     // sass-lint:disable-block no-important
@@ -71,7 +91,7 @@ $browserDefaultFontSize: 16px;
   h5,
   h6 {
     margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+    margin-bottom: $euiMarkdownSizeXS;
   }
 
   h1 {
@@ -111,12 +131,6 @@ $browserDefaultFontSize: 16px;
     text-transform: uppercase;
   }
 
-  h1,
-  h2 {
-    padding-bottom: .3em;
-    border-bottom: $euiBorderThin;
-  }
-
   // 3. Images
   img {
     max-width: 100%;
@@ -127,7 +141,11 @@ $browserDefaultFontSize: 16px;
   // 4. Blockquotes
   blockquote {
     padding: 0 1em;
-    border-left: $euiMarkdownSizeXXS solid $euiBorderColor;
+    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
+  }
+
+  &--reversed blockquote {
+    border-left-color: $euiMarkdownAlphaLightShadeReversed;
   }
 
   // 5. Horizontal rules
@@ -137,7 +155,7 @@ $browserDefaultFontSize: 16px;
     height: 2px;
     padding: 0;
     margin: $euiMarkdownSizeL 0;
-    background-color: $euiBorderColor;
+    background-color: $euiMarkdownAlphaLightShade;
     border: none;
   }
 
@@ -222,7 +240,7 @@ $browserDefaultFontSize: 16px;
     display: block;
     width: 100%;
     overflow: auto;
-    border-left: 1px solid $euiBorderThin;
+    border-left: 1px solid $euiMarkdownAlphaLightShade;
     border-spacing: 0;
     border-collapse: collapse;
   }
@@ -235,17 +253,17 @@ $browserDefaultFontSize: 16px;
   table th,
   table td {
     padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
-    border-top: $euiBorderThin;
-    border-bottom: $euiBorderThin;
+    border-top: 1px solid $euiMarkdownAlphaLightShade;
+    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
 
     &:last-child {
-      border-right: $euiBorderThin;
+      border-right: 1px solid $euiMarkdownAlphaLightShade;
     }
   }
 
   table tr {
     background-color: transparent;
-    border-top: $euiBorderThin;
+    border-top: 1px solid $euiMarkdownAlphaLightShade;
   }
 
   // 8. Code
@@ -257,7 +275,7 @@ $browserDefaultFontSize: 16px;
     font-size: $euiMarkdownFontSizeXS;
     padding: $euiMarkdownSizeXXS 0;
     margin-bottom: $euiMarkdownSizeXS;
-    background: $euiCodeBlockBackgroundColor;
+    background-color: $euiMarkdownAlphaLightestShade;
   }
 
   // default styles for code blocks
