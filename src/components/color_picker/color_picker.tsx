@@ -150,7 +150,7 @@ export interface EuiColorPickerProps
    */
   isClearable?: boolean;
   /**
-   * Text to repalce the default 'Transparent' placeholder for unset color values.
+   * Text to replace the default 'Transparent' placeholder for unset color values.
    */
   placeholder?: string;
 }
