@@ -147,12 +147,7 @@ test('renders EuiColorPicker with a color swatch when color is defined', () => {
 
 test('renders EuiColorPicker with a custom placeholder', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color={'#ffeedd'}
-      placeholder="Auto"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} placeholder="Auto" {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });

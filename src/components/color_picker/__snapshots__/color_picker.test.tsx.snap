@@ -218,9 +218,7 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
       <div
         class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          style="color:rgb(255,238,221)"
-        >
+        <div>
           <div
             class="euiFormControlLayout"
           >
@@ -232,8 +230,9 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
+                placeholder="Auto"
                 type="text"
-                value="#FFEEDD"
+                value=""
               />
               <div
                 class="euiFormControlLayoutIcons"
@@ -244,7 +243,7 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
                   <div
                     aria-hidden="true"
                     class="euiFormControlLayoutCustomIcon__icon"
-                    data-euiicon-type="swatchInput"
+                    data-euiicon-type="stopSlash"
                   />
                 </span>
               </div>
