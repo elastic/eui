@@ -16,8 +16,9 @@ export default config => {
       newCode = newCode.replace(/(\);)$/m, '');
     }
 
+    while (newCode.startsWith('\n')) newCode = newCode.replace('\n', '');
     // console.log('newCode', newCode);
-    return newCode.trim();
+    return newCode.trimEnd();
   };
 
   const Playground = () => {
