@@ -16,7 +16,7 @@ import {
   EuiCallOut,
   EuiText,
 } from '../../../../src/components';
-
+import Guidelines from './guidelines';
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
 const buttonHtml = renderToHtml(Button);
@@ -115,7 +115,7 @@ export const ButtonExample = {
         <strong>EuiButton</strong> comes in two styles. The{' '}
         <EuiCode>fill</EuiCode> style should be reserved for the main action and
         limited in number for a single page. Be sure to read the full{' '}
-        <Link to="/guidelines/buttons">button usage guidelines</Link>.
+        <Link to="/guidelines/button">button usage guidelines</Link>.
       </p>
     </EuiText>
   ),
@@ -386,4 +386,5 @@ export const ButtonExample = {
       demo: <ButtonGhost />,
     },
   ],
+  guidelines: <Guidelines />,
 };

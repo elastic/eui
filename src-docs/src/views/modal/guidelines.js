@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  GuidePage,
-  GuideRule,
-  GuideRuleExample,
-  GuideRuleTitle,
-} from '../../components';
+import { GuideRule, GuideRuleExample, GuideRuleTitle } from '../../components';
 
 import {
   EuiButton,
@@ -26,7 +21,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="Modal guidelines" componentLinkTo="/layout/modal">
+  <>
     <EuiText grow={false} className="guideSection__text">
       <p>
         A modal says “pay attention to me and nothing else.” A modal works best
@@ -35,7 +30,9 @@ export default () => (
       </p>
     </EuiText>
 
-    <GuideRuleTitle>Modal in context</GuideRuleTitle>
+    <EuiTitle>
+      <h1>Modal in context</h1>
+    </EuiTitle>
     <EuiSpacer />
 
     <EuiSpacer size="xxl" />
@@ -399,5 +396,5 @@ export default () => (
         </EuiPanel>
       </GuideRuleExample>
     </GuideRule>
-  </GuidePage>
+  </>
 );

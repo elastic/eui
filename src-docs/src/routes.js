@@ -8,19 +8,9 @@ import { EuiErrorBoundary } from '../../src/components';
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ButtonGuidelines from './views/guidelines/button';
-
-import FormGuidelines from './views/guidelines/forms';
-
 import ColorGuidelines from './views/guidelines/colors';
 
-import ModalGuidelines from './views/guidelines/modals';
-
 import { SassGuidelines } from './views/guidelines/sass';
-
-import TextScales from './views/text_scaling/text_scaling_sandbox';
-
-import { ToastGuidelines } from './views/guidelines/toasts';
 
 import WritingGuidelines from './views/guidelines/writing';
 
@@ -249,7 +239,15 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta, isNew } = example;
+  const {
+    title,
+    intro,
+    sections,
+    beta,
+    isNew,
+    playground,
+    guidelines,
+  } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -263,7 +261,12 @@ const createExample = (example, customTitle) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
+      <GuidePage
+        title={title}
+        intro={intro}
+        isBeta={beta}
+        playground={playground}
+        guidelines={guidelines}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -274,6 +277,7 @@ const createExample = (example, customTitle) => {
     component,
     sections,
     isNew,
+    hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
@@ -283,32 +287,12 @@ const navigation = [
     items: [
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
-        name: 'Buttons',
-        component: ButtonGuidelines,
-      },
-      {
         name: 'Colors',
         component: ColorGuidelines,
       },
       {
-        name: 'Forms',
-        component: FormGuidelines,
-      },
-      {
-        name: 'Modals',
-        component: ModalGuidelines,
-      },
-      {
         name: 'Sass',
         component: SassGuidelines,
-      },
-      {
-        name: 'Text scales',
-        component: TextScales,
-      },
-      {
-        name: 'Toasts',
-        component: ToastGuidelines,
       },
       {
         name: 'Writing',
@@ -459,11 +443,20 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, ...rest }) => ({
-    name: itemName,
-    path: `${slugify(name)}/${slugify(itemName)}`,
-    ...rest,
-  })),
+  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
+    const item = {
+      name: itemName,
+      path: `${slugify(name)}/${slugify(itemName)}`,
+      ...rest,
+    };
+
+    if (hasGuidelines) {
+      item.from = `guidelines/${slugify(itemName)}`;
+      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+    }
+
+    return item;
+  }),
   ...rest,
 }));
 

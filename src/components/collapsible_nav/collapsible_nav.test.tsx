@@ -24,7 +24,9 @@ import { requiredProps } from '../../test/required_props';
 import { EuiCollapsibleNav } from './collapsible_nav';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: (props: any) => <div {...props} />,
+  EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
+    <div {...props} />
+  ),
 }));
 
 const propsNeededToRender = { id: 'id', isOpen: true };
@@ -78,6 +80,17 @@ describe('EuiCollapsibleNav', () => {
           button={<button />}
           isDocked={true}
           showButtonIfDocked={true}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('can alter mask props with maskProps without throwing error', () => {
+      const component = render(
+        <EuiCollapsibleNav
+          {...propsNeededToRender}
+          maskProps={{ headerZindexLocation: 'above' }}
         />
       );
 

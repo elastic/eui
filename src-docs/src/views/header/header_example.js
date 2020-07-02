@@ -49,6 +49,10 @@ import HeaderStacked from './header_stacked';
 const headerStackedSource = require('!!raw-loader!./header_stacked');
 const headerStackedHtml = renderToHtml(HeaderStacked);
 
+import HeaderElasticPattern from './header_elastic_pattern';
+const headerElasticPatternSource = require('!!raw-loader!./header_elastic_pattern');
+const headerElasticPatternHtml = renderToHtml(HeaderElasticPattern);
+
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection grow={false}>
     <EuiHeaderSectionItem border="right">
@@ -264,7 +268,7 @@ export const HeaderExample = {
       demo: <HeaderDark theme={lightColors} />,
     },
     {
-      title: 'Alerts in the header',
+      title: 'Portal content in the header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -276,20 +280,27 @@ export const HeaderExample = {
         },
       ],
       text: (
-        <p>
-          Use an <strong>EuiHeaderSectionItemButton</strong> to display
-          additional information in an{' '}
-          <Link to="/layout/popover">
-            <strong>EuiPopover</strong>
-          </Link>{' '}
-          or{' '}
-          <Link to="/layout/flyout">
-            <strong>EuiFlyout</strong>
-          </Link>
-          , such as a user profile or news feed. In the latter example, this
-          additional content can be presented in a list style format using{' '}
-          <strong>EuiHeaderAlert</strong> components, as shown below.
-        </p>
+        <>
+          <p>
+            Use an <strong>EuiHeaderSectionItemButton</strong> to display
+            additional information in <Link to="/layout/popover">popovers</Link>{' '}
+            or <Link to="/layout/flyout">flyouts</Link>, such as a user profile
+            or news feed. When using{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyout</strong>
+            </Link>
+            , be sure to wrap it in a{' '}
+            <Link to="/utilities/portal">
+              <strong>EuiPortal</strong>
+            </Link>
+            .
+          </p>
+          <p>
+            The example below shows how to incorporate{' '}
+            <strong>EuiHeaderAlert</strong> components to show a list of
+            updates.
+          </p>
+        </>
       ),
       props: {
         EuiHeaderAlert,
@@ -311,12 +322,12 @@ export const HeaderExample = {
       ],
       text: (
         <p>
-          Stacking multiple headers provide a great way to separate global
+          Stacking multiple headers provides a great way to separate global
           navigation concerns. However, the{' '}
           <EuiCode language="ts">{'position="fixed"'}</EuiCode> option will not
-          be aware of the number of headers. Therefore, if you do need fixed and
-          stacked headers, you will need to apply the helper mixin and pass in
-          the correct height to afford for.
+          be aware of the number of headers. If you do need fixed{' '}
+          <strong>and</strong> stacked headers, you will need to apply the SASS
+          helper mixin and pass in the correct height to afford for.
         </p>
       ),
       snippet: [
@@ -325,6 +336,41 @@ export const HeaderExample = {
         '@include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);',
       ],
       demo: <HeaderStacked />,
+    },
+    {
+      title: 'The Elastic navigation pattern',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerElasticPatternSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerElasticPatternHtml,
+        },
+      ],
+      text: (
+        <>
+          <h3>Putting it all together</h3>
+          <p>
+            The button below will launch a full screen example that includes two{' '}
+            <strong>EuiHeaders</strong> with all the appropriate navigation
+            pieces including{' '}
+            <Link to="/navigation/collapsible-nav">
+              <strong>EuiCollapsibleNav</strong>,
+            </Link>{' '}
+            <strong>EuiHeaderAlerts</strong>, user menu, deployment switcher,
+            space selector, <strong>EuiHeaderBreadcrumbs</strong> and{' '}
+            <strong>EuiHeaderLinks</strong> for app menu items.
+          </p>
+          <p>
+            This is just a pattern and should be treated as such. Consuming
+            applications will need to recreate the pattern according to their
+            context and save the states as is appropriate to their data store.
+          </p>
+        </>
+      ),
+      demo: <HeaderElasticPattern theme={lightColors} />,
     },
   ],
 };

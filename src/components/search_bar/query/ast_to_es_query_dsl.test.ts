@@ -185,4 +185,11 @@ describe('astToEsQueryDsl', () => {
     );
     expect(query).toMatchSnapshot();
   });
+
+  test('ast - name:"First \\"Nickname\\" Last"', () => {
+    const query = astToEsQueryDsl(
+      AST.create([AST.Field.must.eq('name', 'First "Nickname" Last')])
+    );
+    expect(query).toMatchSnapshot();
+  });
 });

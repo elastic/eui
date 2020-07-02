@@ -61,6 +61,11 @@ const humanReadableTypes = {
 }()).catch(e => console.error(e));
 
 async function ensureMasterBranch() {
+  // ignore master check in CI since it's checking out the HEAD commit instead
+  if (process.env.CI === 'true') {
+    return;
+  }
+
   const repo = await git.Repository.open(cwd);
   const currentBranch = await repo.getCurrentBranch();
   const currentBranchName = currentBranch.shorthand();
