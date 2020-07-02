@@ -145,6 +145,8 @@ export interface EuiColorPickerProps
    * Placement option for a secondary color value input.
    */
   secondaryInputDisplay?: 'top' | 'bottom' | 'none';
+  isClearable?: boolean;
+  placeholder?: string;
 }
 
 function isKeyboardEvent(
@@ -207,6 +209,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   showAlpha = false,
   format,
   secondaryInputDisplay = 'none',
+  isClearable = false,
+  placeholder,
 }) => {
   const preferredFormat = useMemo(() => {
     if (format) return format;
@@ -361,6 +365,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
+  const handleClearInput = () => {
+    handleOnChange('');
+    if (isColorSelectorShown) {
+      closeColorSelector();
+    }
+  };
+
   const updateWithHsv = (hsv: ColorSpaces['hsv']) => {
     const color = chroma.hsv(...hsv).alpha(alphaChannel);
     let formatted;
@@ -439,7 +450,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           <EuiFieldText
             compressed={true}
             value={color ? color.toUpperCase() : HEX_FALLBACK}
-            placeholder={!color ? transparent : undefined}
+            placeholder={!color ? placeholder || transparent : undefined}
             onChange={handleColorInput}
             isInvalid={isInvalid}
             disabled={disabled}
@@ -557,6 +568,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               }
             : undefined
         }
+        clear={
+          isClearable && color && !readOnly && !disabled
+            ? { onClick: handleClearInput }
+            : undefined
+        }
         readOnly={readOnly}
         fullWidth={fullWidth}
         compressed={compressed}
@@ -585,7 +601,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : HEX_FALLBACK}
-                placeholder={!color ? transparent : undefined}
+                placeholder={!color ? placeholder || transparent : undefined}
                 id={id}
                 onChange={handleColorInput}
                 icon={chromaColor ? 'swatchInput' : 'stopSlash'}
