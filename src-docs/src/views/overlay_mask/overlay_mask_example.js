@@ -7,6 +7,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiOverlayMask, EuiCode } from '../../../../src/components';
 
+import { EuiOverlayMaskProps } from './props';
+
 import OverlayMask from './overlay_mask';
 const overlayMaskSource = require('!!raw-loader!./overlay_mask');
 const overlayMaskHtml = renderToHtml(OverlayMask);
@@ -50,7 +52,7 @@ export const OverlayMaskExample = {
           </p>
         </div>
       ),
-      props: { EuiOverlayMask },
+      props: { EuiOverlayMask: EuiOverlayMaskProps },
       snippet: `<EuiOverlayMask onClick={() => {}}>
   <!-- Content goes here -->
 </EuiOverlayMask>`,
@@ -93,7 +95,7 @@ export const OverlayMaskExample = {
           </p>
         </div>
       ),
-      props: { EuiOverlayMask },
+      props: { EuiOverlayMask: EuiOverlayMaskProps },
       snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />
 <EuiFlyout onClose={toggleFlyOut}></EuiFlyout>`,
       demo: <OverlayMaskHeader />,
