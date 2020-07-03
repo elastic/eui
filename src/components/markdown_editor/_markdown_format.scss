@@ -1,39 +1,48 @@
-// Default styles for Markdown element
-//
-// 1. Links (EuiLink)
-// 2. Headings
-// 3. Images
-// 4. Blockquotes
-// 5. Horizontal rules
-// 6. Lists
-// 7. Tables
-// 8. Code
+// Default styles for Markdown Format
+// 1. Headings
+// 2. Images
+// 3. Blockquotes
+// 4. Horizontal rules
+// 5. Lists
+// 6. Tables
+// 7. Code
 
-// Functions
-// Note: The inlined base font size is set in common/functions/font.js. It should match $euiMdFontSize.
-$euiDefaultFontSize: 14px;
+// The Markdown Format uses by default a few EUI components
+// to render elements: EuiLink and EuiCode.
 
-@function canvasToEm($size) {
-  @return #{$size / $euiDefaultFontSize}em;
+$browserDefaultFontSize: 16px;
+
+// We're setting a function o transform px in em 
+// because it's easier to think in px 
+@function em($pixels, $context: $browserDefaultFontSize) {
+  @return #{$pixels/$context}em;
 }
 
 .euiMarkdownFormat {
   @include euiFont;
   @include euiText;
 
+  // We're using `em` values to support apps where consumers might adjust sizes 
+  // and consequently the markdown needs to adjust to these changes
+
   // Font size variables
-  $euiMarkdownFontSizeS: canvasToEm(12px);
-  $euiMarkdownFontSize: canvasToEm(14px);
-  $euiMarkdownFontSizeL: canvasToEm(20px);
-  $euiMarkdownFontSizeXL: canvasToEm(28px);
-  $euiMarkdownFontSizeXXL: canvasToEm(36px);
+  $euiMarkdownFontSizeXS: em(12px);
+  $euiMarkdownFontSizeS: em(14px);
+  $euiMarkdownFontSize: em(16px);
+  $euiMarkdownFontSizeM:  em(18px);
+  $euiMarkdownFontSizeL: em(20px);
+  $euiMarkdownFontSizeXL: em(28px);
+  $euiMarkdownFontSizeXXL: em(36px);
 
   // Spacing variables
-  $euiMarkdownSizeL: canvasToEm(24px);
-  $euiMarkdownSize: canvasToEm(16px);
-  $euiMarkdownSizeS: canvasToEm(12px);
-  $euiMarkdownSizeXS: canvasToEm(8px);
-  $euiMarkdownSizeXXS: canvasToEm(4px);
+  $euiMarkdownSizeXXS: em(4px);
+  $euiMarkdownSizeXS: em(8px);
+  $euiMarkdownSizeS: em(12px);
+  $euiMarkdownSize: em(16px);
+  $euiMarkdownSizeL: em(24px);
+
+  // We're using alpha values to support apps that 
+  // display markdown on backgrounds of various colors
 
   // Grayscale variables
   $euiMarkdownAlphaLightestShade: rgba($euiColorFullShade, .05);
@@ -44,6 +53,10 @@ $euiDefaultFontSize: 14px;
   $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
   $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
   $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
+
+  &--reversed {
+    color: $euiColorLightestShade;
+  }
 
   > *:first-child {
     // sass-lint:disable-block no-important
@@ -107,22 +120,16 @@ $euiDefaultFontSize: 14px;
   }
 
   h5 {
-    font-size: $euiMarkdownFontSize;
+    font-size: $euiMarkdownFontSizeS;
     line-height: 1.142857em;
     font-weight: 700;
   }
 
   h6 {
-    font-size: $euiMarkdownFontSizeS;
+    font-size: $euiMarkdownFontSizeXS;
     line-height: 1.333333em;
     font-weight: 700;
     text-transform: uppercase;
-  }
-
-  h1,
-  h2 {
-    padding-bottom: .3em;
-    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
   }
 
   // 3. Images
@@ -144,13 +151,10 @@ $euiDefaultFontSize: 14px;
 
   // 5. Horizontal rules
   hr {
-    overflow: hidden;
-    background: transparent;
-    height: 2px;
-    padding: 0;
-    margin: $euiMarkdownSizeL 0;
-    background-color: $euiMarkdownAlphaLightShade;
     border: none;
+    height: 1px;
+    background-color: $euiMarkdownAlphaLightShade;
+    margin: $euiMarkdownSizeL 0;
   }
 
   hr::before {
@@ -246,7 +250,7 @@ $euiDefaultFontSize: 14px;
 
   table th,
   table td {
-    padding: $euiMarkdownSizeXXS $euiMarkdownSizeS;
+    padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
     border-top: 1px solid $euiMarkdownAlphaLightShade;
     border-bottom: 1px solid $euiMarkdownAlphaLightShade;
 
@@ -261,34 +265,24 @@ $euiDefaultFontSize: 14px;
   }
 
   // 8. Code
-  .euiMarkdownFormat__code {
+  // the markdown editor adds a EuiCodeBlock when consumers specify the language
+  // when no language is specified it gets the .euiMarkdownFormat__code styles
+  &__code {
     @include euiCodeFont;
     color: $euiCodeBlockColor;
-    font-size: $euiFontSizeXS;
+    font-size: $euiMarkdownFontSizeXS;
     padding: $euiMarkdownSizeXXS 0;
     margin-bottom: $euiMarkdownSizeXS;
-    border-radius: $euiMarkdownSizeXXS;
-    background: $euiCodeBlockBackgroundColor;
+    background-color: $euiMarkdownAlphaLightestShade;
   }
 
-  .euiMarkdownFormat__code::before,
-  .euiMarkdownFormat__code::after {
-    letter-spacing: -.2em;
-    content: '\00a0';
-  }
-
-  // code block
-  pre .euiMarkdownFormat__code {
+  // default styles for code blocks
+  pre &__code {
     display: block;
-    padding: $euiSizeL;
+    padding: $euiMarkdownFontSizeL;
     overflow: visible;
     line-height: inherit;
     word-wrap: normal;
     white-space: pre;
-  }
-
-  pre .euiMarkdownFormat__code::before,
-  pre .euiMarkdownFormat__code::after {
-    content: normal;
   }
 }
