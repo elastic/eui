@@ -104,7 +104,7 @@ export const MarkdownEditorExample = {
           code: markdownEditorWithPluginsHtml,
         },
       ],
-      title: 'Markdown plugins',
+      title: 'Adding custom plugins',
       text: (
         <p>
           Both <strong>EuiMarkdownEditor</strong> and{' '}
