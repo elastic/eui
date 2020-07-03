@@ -27,6 +27,7 @@ import {
   RemarkTokenizer,
 } from '../markdown_types';
 import { EuiToolTip } from '../../tool_tip';
+import { EuiIcon } from '../../icon';
 import { EuiCodeBlock } from '../../code';
 
 interface TooltipNodeDetails {
@@ -144,9 +145,17 @@ const tooltipMarkdownRenderer: FunctionComponent<
   TooltipNodeDetails & { position: AstNodePosition }
 > = ({ content, children }) => {
   return (
-    <EuiToolTip content={content}>
-      <span>{children}</span>
-    </EuiToolTip>
+    <span>
+      <EuiToolTip content={content}>
+        <span>
+          <strong>{children}</strong>
+          <EuiIcon
+            type="questionInCircle"
+            className="euiMarkdownTooltip__icon"
+          />
+        </span>
+      </EuiToolTip>
+    </span>
   );
 };
 

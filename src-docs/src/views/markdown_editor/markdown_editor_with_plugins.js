@@ -1,16 +1,35 @@
 import React, { useCallback, useState } from 'react';
 
 import {
+  EuiMarkdownDefaultParsingPlugins,
+  EuiMarkdownDefaultProcessingPlugins,
   EuiMarkdownEditor,
   EuiSpacer,
   EuiCodeBlock,
   EuiButtonToggle,
 } from '../../../../src';
+import * as MarkdownChart from './plugins/markdown_chart';
 
-const markdownExample = require('!!raw-loader!./markdown-example.md');
+const exampleParsingList = [
+  ...EuiMarkdownDefaultParsingPlugins,
+  MarkdownChart.parser,
+];
+
+const exampleProcessingList = [...EuiMarkdownDefaultProcessingPlugins]; // pretend mutation doesn't happen immediately next 😅
+exampleProcessingList[0][1].handlers.chartDemoPlugin = MarkdownChart.handler;
+exampleProcessingList[1][1].components.chartDemoPlugin = MarkdownChart.renderer;
+
+const initialExample = `## Chart plugin
+
+Notice the toolbar above has a new chart button. Click it to add a chart.
+
+Once you finish, it'll add some syntax that looks like the below.
+
+!{chart{"palette":4,"height":300}}
+`;
 
 export default () => {
-  const [value, setValue] = useState(markdownExample);
+  const [value, setValue] = useState(initialExample);
   const [messages, setMessages] = useState([]);
   const [ast, setAst] = useState(null);
   const [isAstShowing, setIsAstShowing] = useState(false);
@@ -21,10 +40,13 @@ export default () => {
   return (
     <>
       <EuiMarkdownEditor
-        aria-label="EUI markdown editor demo"
+        aria-label="EUI markdown editor with plugins demo"
         value={value}
         onChange={setValue}
         height={400}
+        uiPlugins={[MarkdownChart.plugin]}
+        parsingPluginList={exampleParsingList}
+        processingPluginList={exampleProcessingList}
         onParse={onParse}
         errors={messages}
       />

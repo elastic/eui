@@ -18,16 +18,25 @@
  */
 
 import React, { FunctionComponent, useMemo } from 'react';
-import { Processor } from 'unified';
+import unified, { Processor } from 'unified';
+import {
+  EuiMarkdownDefaultProcessingPlugins,
+  EuiMarkdownDefaultParsingPlugins,
+} from './markdown_default_plugins';
 
 interface EuiMarkdownFormatProps {
   children: string;
-  processor: Processor;
+  /** A function to process the text. Will use unified/remark with EUI's additional default plugins when not provided */
+  processor?: Processor;
 }
+
+const defaultProcessor = unified()
+  .use(EuiMarkdownDefaultParsingPlugins)
+  .use(EuiMarkdownDefaultProcessingPlugins);
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
-  processor,
+  processor = defaultProcessor,
 }) => {
   const result = useMemo(() => {
     try {
