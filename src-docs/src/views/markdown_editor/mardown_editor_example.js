@@ -17,16 +17,12 @@ import MarkdownEditor from './markdown_editor';
 const markdownEditorSource = require('!!raw-loader!./markdown_editor');
 const markdownEditorHtml = renderToHtml(MarkdownEditor);
 
-import MarkdownFormat from './markdown_format';
-const markdownFormatSource = require('!!raw-loader!./markdown_format');
-const markdownFormatHtml = renderToHtml(MarkdownFormat);
-
 import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
 const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
 const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
 
 export const MarkdownEditorExample = {
-  title: 'Markdown',
+  title: 'Markdown editor',
   intro: (
     <Fragment>
       <EuiText>
@@ -42,32 +38,6 @@ export const MarkdownEditorExample = {
     </Fragment>
   ),
   sections: [
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: markdownFormatSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownFormatHtml,
-        },
-      ],
-      title: 'Markdown format',
-      text: (
-        <p>
-          <strong>EuiMarkdownFormat</strong> is a wrapper that will render
-          Markdown provided. EuiMarkdownFormat uses{' '}
-          <Link to="https://github.com/remarkjs/remark)">Remark</Link> by
-          default, though you could replace it with your own processor if you
-          are feeling adventurous.
-        </p>
-      ),
-      props: {
-        EuiMarkdownFormat,
-      },
-      demo: <MarkdownFormat />,
-    },
     {
       source: [
         {
