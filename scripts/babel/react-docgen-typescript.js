@@ -51,8 +51,10 @@ module.exports = function() {
         // find if components extends types from other modules
         const componentExtends = [];
 
+        // props that should be whitelisted even if its from an external module
         const whiteListedProps = ['children', 'className', 'aria-label'];
 
+        // external modules whose props must be whitelisted
         const whiteListedParent = [
           'DragDropContextProps',
           'DraggableProps',
@@ -63,25 +65,14 @@ module.exports = function() {
         try {
           docgenResults = propsParser
             .withDefaultConfig({
-              propFilter: prop => {
-                if (whiteListedProps.includes(prop.name)) {
-                  return true;
-                }
-                if (prop.parent) {
-                  if (whiteListedParent.includes(prop.parent.name)) return true;
-                  if (
-                    prop.parent.name === 'DOMAttributes' &&
-                    !componentExtends.includes('DOMAttributes')
-                  ) {
-                    componentExtends.push('DOMAttributes');
-                  }
-                  if (prop.name.includes(whiteListedProps)) {
-                    return true;
-                  }
-                  return !prop.parent.fileName.includes('node_modules');
-                }
-                return true;
-              },
+              propFilter: prop =>
+                filterProp(
+                  prop,
+                  state,
+                  whiteListedProps,
+                  whiteListedParent,
+                  componentExtends
+                ),
               shouldExtractLiteralValuesFromEnum: true,
               shouldRemoveUndefinedFromOptional: true,
               savePropValueAsString: true,
@@ -89,6 +80,10 @@ module.exports = function() {
             .parseWithProgramProvider(filename, () => program);
           // eslint-disable-next-line no-empty
         } catch (e) {}
+
+        if (state.get('childrenProp')) {
+          getChildrenTypeFromPropTypes(path, state.get('childrenProp'));
+        }
 
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
@@ -112,3 +107,58 @@ module.exports = function() {
     },
   };
 };
+
+/**
+ * Filter props to remove props from node modules while keeping those whitelisted
+ *
+ * @param {*} prop
+ * @param {*} state
+ * @param {*} whiteListedProps
+ * @param {*} whiteListedParent
+ * @param {*} componentExtends
+ */
+function filterProp(
+  prop,
+  state,
+  whiteListedProps,
+  whiteListedParent,
+  componentExtends
+) {
+  if (prop.name === 'children') {
+    state.set('childrenProp', prop);
+  }
+  if (whiteListedProps.includes(prop.name)) {
+    return true;
+  }
+  if (prop.parent) {
+    //Check if props are extended from other node module
+    if (whiteListedParent.includes(prop.parent.name)) return true;
+    if (
+      prop.parent.name === 'DOMAttributes' &&
+      !componentExtends.includes('DOMAttributes')
+    ) {
+      componentExtends.push('DOMAttributes');
+    }
+    if (prop.name.includes(whiteListedProps)) {
+      return true;
+    }
+    return !prop.parent.fileName.includes('node_modules');
+  }
+  return true;
+}
+
+/**
+ * Parser takes type generated for children prop from FunctionComponent PropsWithChildren. Here a regex pattern is used
+ * to match children prop from sourcefile and replace it in docgenInfo
+ *
+ * @param {*} path
+ * @param {*} prop
+ */
+function getChildrenTypeFromPropTypes(path, prop) {
+  const code = path.hub.file.code;
+  const match = code.match(/(children)(\?)*: (.*);/);
+  if (match) {
+    prop.type.name = match[3];
+    prop.required = !(match[2] === '?');
+  }
+}
