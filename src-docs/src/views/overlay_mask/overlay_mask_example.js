@@ -5,7 +5,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiOverlayMask, EuiCode } from '../../../../src/components';
+import { EuiCode } from '../../../../src/components';
 
 import { EuiOverlayMaskProps } from './props';
 

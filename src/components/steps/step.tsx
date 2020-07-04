@@ -53,7 +53,7 @@ export interface EuiStepInterface {
 }
 
 export type EuiStepProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
   EuiStepInterface;
 
 export const EuiStep: FunctionComponent<EuiStepProps> = ({
