@@ -6,9 +6,9 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiMarkdownEditor,
-  EuiMarkdownFormat,
   EuiText,
   EuiSpacer,
+  EuiCode,
 } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
@@ -21,17 +21,26 @@ import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
 const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
 const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
 
+import MarkdownEditorErrors from './markdown_editor_errors';
+const markdownEditorErrorsSource = require('!!raw-loader!./markdown_editor_errors');
+const markdownEditorErrorsHtml = renderToHtml(MarkdownEditorErrors);
+
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
   intro: (
     <Fragment>
       <EuiText>
         <p>
-          EUI provides components to both edit and render markdown-like content
-          with dynamic previews. The components, built on top of the{' '}
-          <Link to="https://github.com/unifiedjs/unified">Unified</Link>{' '}
-          framework, are extendible through an optional plugin layer that allows
-          for translating additional string syntax into React renders.
+          <strong>EuiMarkdownEditor</strong> provides a markdown authoring
+          experience for the user. The component consists of a toolbar, text
+          area, and a drag-and-drop zone to accept files. There are two modes: a
+          textarea that keeps track of cursor position, and a rendered preview
+          mode that is powered by{' '}
+          <strong>
+            <Link to="/editors-syntax/markdown-format/">EuiMarkdownFormat</Link>
+          </strong>
+          . State is maintained between the two and it is possible to pass
+          changes from the preview area to the text area and vice versa.
         </p>
       </EuiText>
       <EuiSpacer size="xxl" />
@@ -49,19 +58,44 @@ export const MarkdownEditorExample = {
           code: markdownEditorHtml,
         },
       ],
-      title: 'Markdown editor',
+      title: 'Base editor',
       text: (
         <p>
-          <strong>EuiMarkdownEditor</strong> provides a markdown authoring
-          experience for the user. This component consists of a toolbar, text
-          area, and optionally a drag-and-drop zone to accept files. It can be
-          toggled by the user between editing and preview modes
+          The base editor can render basic markdown along with some built-in
+          plugins.
         </p>
       ),
       props: {
         EuiMarkdownEditor,
       },
       demo: <MarkdownEditor />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: markdownEditorErrorsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: markdownEditorErrorsHtml,
+        },
+      ],
+      title: 'Error handling and feedback',
+      text: (
+        <p>
+          The <EuiCode>errors</EuiCode> prop allows you to pass an array of
+          errors if syntax is malformed. Below the tooltip plugin is able to
+          provide this message by default. These errors are meant to be
+          emphemeral and part of the editing experience. They should not be a
+          substitute for{' '}
+          <Link to="/forms/form-validation">form validation</Link>.
+        </p>
+      ),
+      props: {
+        EuiMarkdownEditor,
+      },
+      demo: <MarkdownEditorErrors />,
     },
     {
       source: [
@@ -77,9 +111,15 @@ export const MarkdownEditorExample = {
       title: 'Adding custom plugins',
       text: (
         <p>
-          Both <strong>EuiMarkdownEditor</strong> and{' '}
-          <strong>EuiMarkdownFormat</strong> can utilize additional plugins to a
-          syntax to react render pipeline.
+          <strong>EuiMarkdownEditor</strong> can extend its functionality with
+          additional plugins. These allow you to add additional toolbar items,
+          syntax and rendering abilities. For a more technical overview check
+          out the{' '}
+          <Link to="/editors-syntax/markdown-plugins">
+            plugin documentation
+          </Link>
+          . The below example shows how to embed charts that can be added
+          through a modal GUI and then modified afterwards through syntax.
         </p>
       ),
       props: {

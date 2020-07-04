@@ -1,21 +1,20 @@
 import React, { useCallback, useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
   EuiMarkdownEditor,
   EuiSpacer,
   EuiCodeBlock,
   EuiButtonToggle,
+  EuiFormErrorText,
 } from '../../../../src/components';
 
-const initialContent = `## Hello world!
+const initialContent = `## Errors
 
-Basic "github flavored" markdown will work as you'd expect.
+The tooltip is empty and will error
 
-The editor also ships with some built in plugins. For example it can handle checkboxes. Notice how they toggle state even in the preview mode.
-
-- [ ] Checkboxes
-- [x] Can be filled
-- [ ] Or empty
+!{tooltip[]()}
 `;
 
 export default () => {
@@ -38,6 +37,15 @@ export default () => {
         errors={messages}
       />
       <EuiSpacer size="s" />
+
+      <EuiFormErrorText id="error" className="euiFormRow__text">
+        Utilize error text or{' '}
+        <strong>
+          <Link to="/forms/form-validation">EuiFormRow</Link>
+        </strong>{' '}
+        for more permanent error feedback
+      </EuiFormErrorText>
+
       <div className="eui-textRight">
         <EuiButtonToggle
           label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
@@ -48,6 +56,7 @@ export default () => {
           isSelected={isAstShowing}
         />
       </div>
+
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
     </>
   );

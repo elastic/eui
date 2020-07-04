@@ -28,7 +28,7 @@ import {
   EuiSelect,
   EuiRange,
   EuiText,
-} from '../../../../src';
+} from '../../../../src/components';
 
 import {
   euiPaletteColorBlind,

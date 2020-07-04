@@ -145,6 +145,8 @@ import { MarkdownEditorExample } from './views/markdown_editor/mardown_editor_ex
 
 import { MarkdownFormatExample } from './views/markdown_editor/mardown_format_example';
 
+import { MarkdownPluginExample } from './views/markdown_editor/markdown_plugin_example';
+
 import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
@@ -419,8 +421,9 @@ const navigation = [
   {
     name: 'Editors & syntax',
     items: [
-      MarkdownEditorExample,
       MarkdownFormatExample,
+      MarkdownEditorExample,
+      MarkdownPluginExample,
       CodeEditorExample,
       CodeExample,
     ].map(example => createExample(example)),
