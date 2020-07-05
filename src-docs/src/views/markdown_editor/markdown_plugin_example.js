@@ -23,10 +23,17 @@ const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
 
 const pluginSnippet = `<EuiMarkdownEditor
   uiPlugin={myPluginUI}
-  parsingPlugin={myPluginParsing}
-  processingPluginList={myPluginProcessing}
+  parsingPluginList={myPluginParsingList}
+  processingPluginList={myPluginProcessingList}
   {..otherProps}
-/>`;
+/>
+
+<!-- Note that the format component does not need a UI prop. -->
+<EuiMarkdownFormat
+  parsingPluginList={myPluginParsingList}
+  processingPluginList={myPluginProcessingList}
+/>
+`;
 
 const uiPluginSnippet = `const myPluginUI = {
   name: 'myPlugin',
@@ -34,7 +41,7 @@ const uiPluginSnippet = `const myPluginUI = {
     label: 'Chart',
     iconType: 'visArea',
   },
-  helpText: (<div />),
+  helpText: (<div>A node that explains how the syntax works</div>),
   editor: function editor({ node, onSave, onCancel }) { return ('something'); },
 }; `;
 
@@ -49,7 +56,7 @@ const pluginConcepts = [
     ),
   },
   {
-    title: 'parsingPlugin',
+    title: 'parsingPluginList',
     description: (
       <span>
         Provides the logic to identify the new syntax and parse it into an{' '}
@@ -162,7 +169,7 @@ export const MarkdownPluginExample = {
       <EuiText>
         <p>
           An <strong>EuiMarkdown plugin</strong> is comprised of three major
-          pieces, which are passed searpately into the editor component.
+          pieces, which are passed searpately as props.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -197,20 +204,24 @@ export const MarkdownPluginExample = {
       <EuiSpacer />
       <EuiHorizontalRule size="s" />
       <EuiTitle>
-        <h3>parsingPlugin</h3>
+        <h3>parsingPluginList</h3>
       </EuiTitle>
       <EuiSpacer />
       <EuiText>
         <Fragment>
           <p>
-            <Link to="https://www.npmjs.com/package/remark-parse">
+            <a
+              href="https://www.npmjs.com/package/remark-parse"
+              target="_blank">
               Remark-parse
-            </Link>{' '}
+            </a>{' '}
             is used to parse the input text into markdown AST nodes. Its
             documentation for{' '}
-            <Link to="https://www.npmjs.com/package/remark-parse#extending-the-parser">
+            <a
+              href="https://www.npmjs.com/package/remark-parse#extending-the-parser"
+              target="_blank">
               writing parsers
-            </Link>{' '}
+            </a>{' '}
             is under the Extending the Parser section, but highlights are
             included below.
           </p>
