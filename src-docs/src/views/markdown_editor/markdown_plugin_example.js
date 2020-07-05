@@ -5,17 +5,38 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
-  EuiMarkdownFormat,
+  EuiMarkdownEditor,
   EuiText,
+  EuiTitle,
   EuiSpacer,
   EuiDescriptionList,
+  EuiHorizontalRule,
+  EuiCodeBlock,
+  EuiCode,
 } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
 
-import MarkdownFormat from './markdown_format';
-const markdownFormatSource = require('!!raw-loader!./markdown_format');
-const markdownFormatHtml = renderToHtml(MarkdownFormat);
+import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
+const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
+const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
+
+const pluginSnippet = `<EuiMarkdownEditor
+  uiPlugin={myPluginUI}
+  parsingPlugin={myPluginParsing}
+  processingPlugin={myPluginProcessing}
+  {..otherProps}
+/>`;
+
+const uiPluginSnippet = `const myPluginUI = {
+  name: 'myPlugin',
+  button: {
+    label: 'Chart',
+    iconType: 'visArea',
+  },
+  helpText: (<div />),
+  editor: function editor({ node, onSave, onCancel }) { return ('something'); },
+}; `;
 
 const pluginConcepts = [
   {
@@ -133,6 +154,114 @@ export const MarkdownPluginExample = {
           markdown tags.
         </p>
       </EuiText>
+      <EuiHorizontalRule />
+      <EuiTitle>
+        <h3>Plugin development</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiText>
+        <p>
+          An <strong>EuiMarkdown plugin</strong> is comprised of three major
+          pieces, which are passed searpately into the editor component.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiCodeBlock size="s" language="html">
+        {pluginSnippet}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiDescriptionList
+        compressed
+        listItems={pluginConcepts}
+        type="responsiveColumn"
+        titleProps={{ style: { width: '20%' } }}
+        descriptionProps={{ style: { width: '80%' } }}
+      />
+      <EuiSpacer />
+      <EuiHorizontalRule size="s" />
+      <EuiTitle>
+        <h3>uiPlugin</h3>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiCodeBlock size="s" language="javascript">
+        {uiPluginSnippet}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiDescriptionList
+        compressed
+        listItems={uiPluginConcepts}
+        type="responsiveColumn"
+        titleProps={{ style: { width: '20%' } }}
+        descriptionProps={{ style: { width: '80%' } }}
+      />
+      <EuiSpacer />
+      <EuiHorizontalRule size="s" />
+      <EuiTitle>
+        <h3>parsingPlugin</h3>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiText>
+        <Fragment>
+          <p>
+            <Link to="https://www.npmjs.com/package/remark-parse">
+              Remark-parse
+            </Link>{' '}
+            is used to parse the input text into markdown AST nodes. Its
+            documentation for{' '}
+            <Link to="https://www.npmjs.com/package/remark-parse#extending-the-parser">
+              writing parsers
+            </Link>{' '}
+            is under the Extending the Parser section, but highlights are
+            included below.
+          </p>
+
+          <p>
+            A parser is comprised of three pieces. There is a wrapping function
+            which is provided to remark-parse and injects the parser, the parser
+            method itself, and a locator function if the markdown tag is inline.
+          </p>
+
+          <p>
+            The parsing method is called at locations where its markdown down
+            might be found at. The method is responsible for determining if the
+            location is a valid tag, process the tag, and mark report the
+            result.
+          </p>
+
+          <h4>Inline vs block</h4>
+          <p>
+            Inline tags are allowed at any point in text, and will be rendered
+            somewhere within a <EuiCode>{'<p>'}</EuiCode> element. For better
+            performance, inline parsers must provide a locate method which
+            reports the location where their next tag might be found. They are
+            not allowed to span multiple lines of the input.
+          </p>
+
+          <p>
+            Block tags are rendered inside <EuiCode>{'<span>'}</EuiCode>{' '}
+            elements, and do not have a locate method. They can consume as much
+            input text as desired, across multiple lines.
+          </p>
+        </Fragment>
+      </EuiText>
+      <EuiSpacer />
+
+      <EuiCodeBlock size="s" language="javascript">
+        Chandler, a simple parser example here maybe?
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiHorizontalRule size="s" />
+      <EuiTitle>
+        <h3>processingPlugin</h3>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiText>
+        <p>This needs some explanation</p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiCodeBlock size="s" language="javascript">
+        Chandler, a simple processingPluginList example
+      </EuiCodeBlock>
       <EuiSpacer size="xxl" />
     </Fragment>
   ),
@@ -141,41 +270,24 @@ export const MarkdownPluginExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: markdownFormatSource,
+          code: markdownEditorWithPluginsSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: markdownFormatHtml,
+          code: markdownEditorWithPluginsHtml,
         },
       ],
-      title: 'Plugin development',
+      title: 'Putting it all together: a simple chart plugin',
       text: (
-        <Fragment>
-          <p>
-            An <strong>EuiMarkdown plugin</strong> is comprised of three major
-            pieces, which are passed searpately into the editor component.
-          </p>
-          <EuiDescriptionList
-            compressed
-            listItems={pluginConcepts}
-            type="responsiveColumn"
-            titleProps={{ style: { width: '20%' } }}
-            descriptionProps={{ style: { width: '80%' } }}
-          />
-          <h3>uiPlugin</h3>
-          <EuiDescriptionList
-            compressed
-            listItems={uiPluginConcepts}
-            type="responsiveColumn"
-            titleProps={{ style: { width: '20%' } }}
-            descriptionProps={{ style: { width: '80%' } }}
-          />
-        </Fragment>
+        <p>
+          The below example takes the concepts from above to construct a simple
+          chart embed that is initiated from a new button in the editor toolbar.
+        </p>
       ),
       props: {
-        EuiMarkdownFormat,
+        EuiMarkdownEditor,
       },
-      demo: <MarkdownFormat />,
+      demo: <MarkdownEditorWithPlugins />,
     },
   ],
 };

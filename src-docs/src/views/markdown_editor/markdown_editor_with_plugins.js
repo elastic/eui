@@ -251,7 +251,7 @@ const initialExample = `## Chart plugin
 
 Notice the toolbar above has a new chart button. Click it to add a chart.
 
-Once you finish, it'll add some syntax that looks like the below.
+Once you finish it'll add some syntax that looks like the below.
 
 !{chart{"palette":4,"height":300}}
 `;

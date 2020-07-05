@@ -17,10 +17,6 @@ import MarkdownEditor from './markdown_editor';
 const markdownEditorSource = require('!!raw-loader!./markdown_editor');
 const markdownEditorHtml = renderToHtml(MarkdownEditor);
 
-import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
-const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
-const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
-
 import MarkdownEditorErrors from './markdown_editor_errors';
 const markdownEditorErrorsSource = require('!!raw-loader!./markdown_editor_errors');
 const markdownEditorErrorsHtml = renderToHtml(MarkdownEditorErrors);
@@ -96,36 +92,6 @@ export const MarkdownEditorExample = {
         EuiMarkdownEditor,
       },
       demo: <MarkdownEditorErrors />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: markdownEditorWithPluginsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorWithPluginsHtml,
-        },
-      ],
-      title: 'Adding custom plugins',
-      text: (
-        <p>
-          <strong>EuiMarkdownEditor</strong> can extend its functionality with
-          additional plugins. These allow you to add additional toolbar items,
-          syntax and rendering abilities. For a more technical overview check
-          out the{' '}
-          <Link to="/editors-syntax/markdown-plugins">
-            plugin documentation
-          </Link>
-          . The below example shows how to embed charts that can be added
-          through a modal GUI and then modified afterwards through syntax.
-        </p>
-      ),
-      props: {
-        EuiMarkdownEditor,
-      },
-      demo: <MarkdownEditorWithPlugins />,
     },
   ],
 };
