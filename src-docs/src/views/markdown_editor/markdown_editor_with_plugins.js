@@ -14,6 +14,7 @@ import {
   EuiMarkdownDefaultParsingPlugins,
   EuiMarkdownDefaultProcessingPlugins,
   EuiMarkdownEditor,
+  EuiMarkdownFormat,
   EuiSpacer,
   EuiCodeBlock,
   EuiButtonToggle,
@@ -290,6 +291,12 @@ export default () => {
         />
       </div>
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
+
+      <EuiMarkdownFormat
+        parsingPluginList={exampleParsingList}
+        processingPluginList={exampleProcessingList}>
+        {value}
+      </EuiMarkdownFormat>
     </>
   );
 };

@@ -156,14 +156,6 @@ export const EuiMarkdownEditor: FunctionComponent<
       }
     }, [parser, value]);
 
-    const processor = useMemo(
-      () =>
-        unified()
-          .use(parsingPluginList)
-          .use(processingPluginList),
-      [parsingPluginList, processingPluginList]
-    );
-
     const isPreviewing = viewMode === MODE_VIEWING;
 
     const replaceNode = useCallback(
@@ -260,7 +252,9 @@ export const EuiMarkdownEditor: FunctionComponent<
             <div
               className="euiMarkdownEditor__preview"
               style={{ height: `${height}px` }}>
-              <EuiMarkdownFormat processor={processor}>
+              <EuiMarkdownFormat
+                parsingPluginList={parsingPluginList}
+                processingPluginList={processingPluginList}>
                 {value}
               </EuiMarkdownFormat>
             </div>

@@ -32,7 +32,7 @@ export const MarkdownFormatExample = {
             <Link to="/editors-syntax/markdown-editor/">EuiMarkdownEditor</Link>
           </strong>{' '}
           and has the ability to be modified by additional{' '}
-          <Link to="">markdown plugins</Link>.
+          <Link to="/editors-syntax/markdown-plugins">markdown plugins</Link>.
         </p>
       </EuiText>
       <EuiSpacer size="xxl" />

@@ -24,7 +24,7 @@ const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
 const pluginSnippet = `<EuiMarkdownEditor
   uiPlugin={myPluginUI}
   parsingPlugin={myPluginParsing}
-  processingPlugin={myPluginProcessing}
+  processingPluginList={myPluginProcessing}
   {..otherProps}
 />`;
 
@@ -58,7 +58,7 @@ const pluginConcepts = [
     ),
   },
   {
-    title: 'processingPlugin',
+    title: 'processingPluginList',
     description: (
       <span>
         Provides the logic to process the new <strong>AST node</strong> into a{' '}
@@ -252,7 +252,7 @@ export const MarkdownPluginExample = {
       <EuiSpacer />
       <EuiHorizontalRule size="s" />
       <EuiTitle>
-        <h3>processingPlugin</h3>
+        <h3>processingPluginList</h3>
       </EuiTitle>
       <EuiSpacer />
       <EuiText>
@@ -279,10 +279,19 @@ export const MarkdownPluginExample = {
       ],
       title: 'Putting it all together: a simple chart plugin',
       text: (
-        <p>
-          The below example takes the concepts from above to construct a simple
-          chart embed that is initiated from a new button in the editor toolbar.
-        </p>
+        <Fragment>
+          <p>
+            The below example takes the concepts from above to construct a
+            simple chart embed that is initiated from a new button in the editor
+            toolbar.
+          </p>
+          <p>
+            Note that the <strong>EuiMarkdownEditor</strong> and{' '}
+            <strong>EuiMarkdownFormat</strong> examples utilize the same prop
+            list. The editor manages additional controls through the{' '}
+            <EuiCode>uiPlugins</EuiCode> prop.
+          </p>
+        </Fragment>
       ),
       props: {
         EuiMarkdownEditor,
