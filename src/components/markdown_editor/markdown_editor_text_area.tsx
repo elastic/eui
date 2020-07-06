@@ -64,7 +64,7 @@ export const EuiMarkdownEditorTextArea = forwardRef<
     },
     ref
   ) => {
-    const markdownFooterHeight = 32;
+    const markdownFooterHeight = 34;
 
     return (
       <textarea
