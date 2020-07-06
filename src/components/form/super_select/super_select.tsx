@@ -339,7 +339,8 @@ export class EuiSuperSelect<T extends string> extends Component<
         anchorPosition="downCenter"
         ownFocus={false}
         popoverRef={this.setPopoverRef}
-        hasArrow={false}>
+        hasArrow={false}
+        buffer={0}>
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n

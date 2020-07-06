@@ -171,6 +171,17 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
 />
 `;
 
+import Empty from './empty_state';
+const emptySource = require('!!raw-loader!./empty_state');
+const emptyHtml = renderToHtml(CustomButton);
+const emptySnippet = `<EuiColorPicker
+  onChange={handleChange}
+  color={chosenColor}
+  placeholder="Auto"
+  isClearable={true}
+/>
+`;
+
 import Modes from './modes';
 const modesSource = require('!!raw-loader!./modes');
 const modesHtml = renderToHtml(Modes);
@@ -550,6 +561,32 @@ export const ColorPickerExample = {
       ),
       snippet: [customButtonSnippet, customBadgeSnippet],
       demo: <CustomButton />,
+    },
+    {
+      title: 'Empty state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: emptySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: emptyHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            For instances where an &quot;empty&quot; color picker has meaning
+            other than transparent color value, use the{' '}
+            <EuiCode>placeholder</EuiCode> prop to provide context. Removing
+            color selection and returning to the default state can be made
+            easier by setting <EuiCode>isClearable=true</EuiCode>.
+          </p>
+        </>
+      ),
+      snippet: emptySnippet,
+      demo: <Empty />,
     },
     {
       title: 'Inline',

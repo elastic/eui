@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   <%= componentName %>,
-} from '../../../../src/components/<%= fileName %>';
+} from '../../../../src/components/<%= folderName %>';
 
 export default () => (
   <<%= componentName %>>

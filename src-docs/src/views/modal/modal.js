@@ -25,7 +25,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
-  const [superSelectvalue, setSuperSeelctValue] = useState('option_one');
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
 
   const onSwitchChange = () =>
     setIsSwitchChecked(isSwitchChecked => !isSwitchChecked);
@@ -118,7 +118,7 @@ export default () => {
   );
 
   const onSuperSelectChange = value => {
-    setSuperSeelctValue(value);
+    setSuperSelectValue(value);
   };
 
   let modal;
