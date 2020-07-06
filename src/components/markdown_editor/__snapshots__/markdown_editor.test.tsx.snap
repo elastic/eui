@@ -187,7 +187,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         class="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(118px"
+        style="height:calc(116px"
       />
       <footer
         class="euiMarkdownEditorFooter"
