@@ -95,6 +95,7 @@ const Knob = ({
             onChange={e => set(e.target.value)}
             aria-label={description}
             compressed
+            fullWidth
           />
 
           {error && <div>error {error}</div>}
@@ -117,6 +118,7 @@ const Knob = ({
             }}
             aria-label={description}
             compressed
+            fullWidth
           />
 
           {error && <div>error {error}</div>}
@@ -182,6 +184,7 @@ const Knob = ({
             {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
 
             <EuiSelect
+              fullWidth
               id={name}
               options={flattenedOptions}
               value={valueKey}
@@ -238,7 +241,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
         );
 
         return (
-          <EuiTableRow key={name}>
+          <EuiTableRow key={name} className="playgroundKnobs__rowCell">
             <EuiTableRowCell key={`prop__${name}-${idx}`} header="Prop">
               <strong className="eui-textBreakNormal">{name}</strong>
               {state[name].description && (
@@ -259,7 +262,10 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 </span>
               </EuiCode>
             </EuiTableRowCell>
-            <EuiTableRowCell key={`modify__${name}-${idx}`} header="Modify">
+            <EuiTableRowCell
+              key={`modify__${name}-${idx}`}
+              header="Modify"
+              textOnly={false}>
               <Knob
                 key={name}
                 name={name}

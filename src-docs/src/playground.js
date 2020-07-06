@@ -36,12 +36,13 @@ export default config => {
           <h3>{config.componentName}</h3>
         </EuiTitle>
         {/* <EuiSpacer /> */}
-
-        <Compiler
-          {...params.compilerProps}
-          minHeight={62}
-          placeholder={Placeholder}
-        />
+        <div>
+          <Compiler
+            {...params.compilerProps}
+            minHeight={62}
+            placeholder={Placeholder}
+          />
+        </div>
         <Error msg={params.errorProps.msg} isPopup />
         <EuiSpacer />
 
