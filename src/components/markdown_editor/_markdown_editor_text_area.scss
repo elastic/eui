@@ -21,7 +21,10 @@
     background-size $euiAnimSpeedFast ease-in,
     background-color $euiAnimSpeedFast ease-in;
 
-  &:focus {
+  &:focus,
+  // preventing the text area of loosing focus when clicking on an action button
+  // from the toolbar
+  .euiMarkdownEditor:focus-within &  {
     background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
     background-image: euiFormControlGradient();
     background-size: 100% 100%;
