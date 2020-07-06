@@ -36,8 +36,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
 
   const { children, uiPlugins, errors } = props;
 
-  const classes = classNames('euiMarkdownEditor__dropZone', {
-    'euiMarkdownEditor__dropZone--isDragging': isDragging,
+  const classes = classNames('euiMarkdownEditorDropZone', {
+    'euiMarkdownEditorDropZone--isDragging': isDragging,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({

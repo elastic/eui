@@ -1,22 +1,29 @@
-.euiMarkdownEditor__textArea {
+.euiMarkdownEditorTextArea {
   @include euiFormControlText;
   @include euiScrollBar;
   width: 100%;
   height: 100%;
   min-height: 150px;
   padding: $euiSizeM;
-  background-color: $euiFormBackgroundColor;
   border: $euiBorderThin;
-  border-color: $euiColorLightShade;
+  border-bottom: none;
   // Overrides the euiFormControlText line-height that is very small
   line-height: $euiLineHeight;
   resize: vertical;
+  background-color: $euiFormBackgroundColor;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+
+  // sass-lint:disable-block indentation
+  transition:
+    box-shadow $euiAnimSpeedFast ease-in,
+    background-image $euiAnimSpeedFast ease-in,
+    background-size $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in;
 
   &:focus {
     background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
-
-    + .euiMarkdownEditor__dropZone__button {
-      background-image: euiFormControlGradient();
-    }
+    background-image: euiFormControlGradient();
+    background-size: 100% 100%;
   }
 }

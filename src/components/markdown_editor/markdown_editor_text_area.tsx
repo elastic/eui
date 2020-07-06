@@ -64,13 +64,13 @@ export const EuiMarkdownEditorTextArea = forwardRef<
     },
     ref
   ) => {
-    const dropZoneButtonHeight = 32;
+    const markdownFooterHeight = 32;
 
     return (
       <textarea
         ref={ref}
-        style={{ height: `calc(${height - dropZoneButtonHeight}px` }}
-        className="euiMarkdownEditor__textArea"
+        style={{ height: `calc(${height - markdownFooterHeight}px` }}
+        className="euiMarkdownEditorTextArea"
         {...rest}
         rows={6}
         name={name}

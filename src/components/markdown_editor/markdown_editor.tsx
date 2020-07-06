@@ -304,7 +304,7 @@ export const EuiMarkdownEditor: FunctionComponent<
 
           {isPreviewing && (
             <div
-              className="euiMarkdownEditor__preview"
+              className="euiMarkdownEditorPreview"
               style={{ height: `${height}px` }}>
               <EuiMarkdownFormat processor={processor}>
                 {value}

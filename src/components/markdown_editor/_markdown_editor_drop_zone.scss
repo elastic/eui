@@ -1,4 +1,4 @@
-.euiMarkdownEditor__dropZone {
+.euiMarkdownEditorDropZone {
   @include euiFormControlDefaultShadow;
   display: flex;
   position: relative;
@@ -25,13 +25,9 @@
   }
 
   &--isDragging {
-    .euiMarkdownEditor__textArea,
-    .euiMarkdownEditor__footer {
+    .euiMarkdownEditorTextArea,
+    .euiMarkdownEditorFooter {
       background-color: transparentize($euiColorSecondary, .88);
-    }
-
-    .euiMarkdownEditor__footer {
-      border-top-color: $euiColorSecondary;
     }
   }
 }
