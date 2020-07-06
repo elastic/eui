@@ -3,6 +3,7 @@
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
 - Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
 - Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
+- Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
 
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
