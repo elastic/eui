@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount } from 'enzyme';
+import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiModal } from './modal';
 
@@ -30,5 +30,7 @@ test('renders EuiModal', () => {
     </EuiModal>
   );
 
-  expect(render(component)).toMatchSnapshot();
+  expect(
+    takeMountedSnapshot(mount(component), { hasArrayOutput: true })
+  ).toMatchSnapshot();
 });
