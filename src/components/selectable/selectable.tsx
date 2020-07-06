@@ -86,7 +86,7 @@ export type EuiSelectableProps = Omit<
     /**
      * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: EuiSelectableOption[];
+    options: Array<Exclude<EuiSelectableOption, 'id'>>;
     /**
      * Passes back the altered `options` array with selected options as
      */
@@ -127,6 +127,7 @@ export interface EuiSelectableState {
   activeOptionIndex?: number;
   searchValue: string;
   visibleOptions: EuiSelectableOption[];
+  isFocused: boolean;
 }
 
 export class EuiSelectable extends Component<
@@ -163,6 +164,7 @@ export class EuiSelectable extends Component<
       activeOptionIndex,
       searchValue: initialSearchValue,
       visibleOptions,
+      isFocused: false,
     };
   }
 
@@ -192,14 +194,23 @@ export class EuiSelectable extends Component<
   };
 
   onFocus = () => {
+    if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
+      return;
+    }
+
     const firstSelected = this.state.visibleOptions.findIndex(
-      option => option.checked && !option.disabled
+      option => option.checked && !option.disabled && !option.isGroupLabel
     );
 
     if (firstSelected > -1) {
-      this.setState({ activeOptionIndex: firstSelected });
+      this.setState({ activeOptionIndex: firstSelected, isFocused: true });
     } else {
-      this.incrementActiveOptionIndex(1);
+      this.setState({
+        activeOptionIndex: this.state.visibleOptions.findIndex(
+          option => !option.disabled && !option.isGroupLabel
+        ),
+        isFocused: true,
+      });
     }
   };
 
@@ -245,10 +256,8 @@ export class EuiSelectable extends Component<
         break;
 
       default:
-        if (this.props.onKeyDown) {
-          this.props.onKeyDown(event);
-        }
-        this.clearActiveOption();
+        this.setState({ activeOptionIndex: undefined }, this.onFocus);
+        break;
     }
   };
 
@@ -294,29 +303,35 @@ export class EuiSelectable extends Component<
     });
   };
 
-  clearActiveOption = () => {
-    this.setState({
-      activeOptionIndex: undefined,
-    });
-  };
-
   onSearchChange = (
     visibleOptions: EuiSelectableOption[],
     searchValue: string
   ) => {
-    this.setState({
-      visibleOptions,
-      searchValue,
-    });
+    this.setState(
+      {
+        visibleOptions,
+        searchValue,
+        activeOptionIndex: undefined,
+      },
+      () => {
+        if (this.state.isFocused) {
+          this.onFocus();
+        }
+      }
+    );
   };
 
   onContainerBlur = () => {
-    this.clearActiveOption();
+    this.setState({
+      activeOptionIndex: undefined,
+      isFocused: false,
+    });
   };
 
   onOptionClick = (options: EuiSelectableOption[]) => {
     this.setState(state => ({
       visibleOptions: getMatchingOptions(options, state.searchValue),
+      activeOptionIndex: this.state.activeOptionIndex,
     }));
     if (this.props.onChange) {
       this.props.onChange(options);
@@ -508,9 +523,9 @@ export class EuiSelectable extends Component<
             visibleOptions={visibleOptions}
             searchValue={searchValue}
             activeOptionIndex={activeOptionIndex}
-            setActiveOptionIndex={index =>
-              this.setState({ activeOptionIndex: index })
-            }
+            setActiveOptionIndex={(index, cb) => {
+              this.setState({ activeOptionIndex: index }, cb);
+            }}
             onOptionClick={this.onOptionClick}
             singleSelection={singleSelection}
             ref={this.optionsListRef}

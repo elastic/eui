@@ -106,7 +106,7 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   searchable?: boolean;
   makeOptionId: (index: number | undefined) => string;
   listId: string;
-  setActiveOptionIndex: (index: number) => void;
+  setActiveOptionIndex: (index: number, cb?: () => void) => void;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
@@ -223,6 +223,9 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         id={this.props.makeOptionId(index)}
         style={style}
         key={key || label.toLowerCase()}
+        onMouseDown={() => {
+          this.props.setActiveOptionIndex(index);
+        }}
         onClick={() => this.onAddOrRemoveOption(option)}
         ref={ref ? ref.bind(null, index) : undefined}
         isFocused={this.props.activeOptionIndex === index}
@@ -333,19 +336,20 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       return;
     }
 
-    const { allowExclusions } = this.props;
+    const { allowExclusions, options, visibleOptions = options } = this.props;
 
     this.props.setActiveOptionIndex(
-      this.props.options.findIndex(({ label }) => label === option.label)
+      visibleOptions.findIndex(({ label }) => label === option.label),
+      () => {
+        if (option.checked === 'on' && allowExclusions) {
+          this.onExcludeOption(option);
+        } else if (option.checked === 'on' || option.checked === 'off') {
+          this.onRemoveOption(option);
+        } else {
+          this.onAddOption(option);
+        }
+      }
     );
-
-    if (option.checked === 'on' && allowExclusions) {
-      this.onExcludeOption(option);
-    } else if (option.checked === 'on' || option.checked === 'off') {
-      this.onRemoveOption(option);
-    } else {
-      this.onAddOption(option);
-    }
   };
 
   private onAddOption = (addedOption: EuiSelectableOption) => {
