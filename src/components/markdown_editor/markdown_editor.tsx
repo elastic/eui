@@ -32,12 +32,9 @@ import React, {
 import unified, { PluggableList, Processor } from 'unified';
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
-// @ts-ignore TODO
 import emoji from 'remark-emoji';
 import markdown from 'remark-parse';
-// @ts-ignore TODO
 import remark2rehype from 'remark-rehype';
-// @ts-ignore TODO
 import highlight from 'remark-highlight.js';
 import rehype2react from 'rehype-react';
 
