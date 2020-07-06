@@ -123,9 +123,13 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       this.preventFocusExit &&
       this.lastInterceptedEvent &&
       event.target === this.lastInterceptedEvent.target
-    )
+    ) {
       return;
+    }
     this.toggleDisabled(true);
+    if (this.props.onClickOutside) {
+      this.props.onClickOutside(event as MouseEvent);
+    }
   };
 
   // Event handler to capture events from within the focus trap subtree and
@@ -142,10 +146,11 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       clickOutsideDisables = false,
       disabled = false,
       returnFocus = true,
+      onClickOutside,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
-    const lockProps = {
+    const focusOnProps = {
       returnFocus,
       enabled: !isDisabled,
       ...rest,
@@ -155,13 +160,11 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
         isDisabled={isDisabled}
         onOutsideClick={this.handleOutsideClick}>
         <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusOn {...lockProps} noIsolation={true}>
-            {children}
-          </FocusOn>
+          <FocusOn {...focusOnProps}>{children}</FocusOn>
         </OutsideEventDetector>
       </EuiOutsideClickDetector>
     ) : (
-      <FocusOn {...lockProps}>{children}</FocusOn>
+      <FocusOn {...focusOnProps}>{children}</FocusOn>
     );
   }
 }

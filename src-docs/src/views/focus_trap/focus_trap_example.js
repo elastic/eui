@@ -47,6 +47,12 @@ export const FocusTrapExample = {
             Use <EuiCode>clickOutsideDisables</EuiCode> to disable the focus
             trap when the user clicks outside the trap.
           </p>
+          <p>
+            Use <EuiCode>noIsolation</EuiCode> when allowing pointer events on
+            outside elements is needed. For instance, when used with an{' '}
+            <strong>EuiOverlayMask</strong> that has a click handler, set{' '}
+            <EuiCode>noIsolation=true</EuiCode>.
+          </p>
         </React.Fragment>
       ),
       props: { EuiFocusTrap },
