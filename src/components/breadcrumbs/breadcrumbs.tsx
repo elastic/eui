@@ -223,7 +223,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
     let link;
 
-    if (!href) {
+    if (!href && !onClick) {
       link = (
         <EuiInnerText>
           {(ref, innerText) => (

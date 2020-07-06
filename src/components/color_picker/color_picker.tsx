@@ -145,6 +145,14 @@ export interface EuiColorPickerProps
    * Placement option for a secondary color value input.
    */
   secondaryInputDisplay?: 'top' | 'bottom' | 'none';
+  /**
+   * Add a button to the primary input to clear its value.
+   */
+  isClearable?: boolean;
+  /**
+   * Text to replace the default 'Transparent' placeholder for unset color values.
+   */
+  placeholder?: string;
 }
 
 function isKeyboardEvent(
@@ -207,6 +215,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   showAlpha = false,
   format,
   secondaryInputDisplay = 'none',
+  isClearable = false,
+  placeholder,
 }) => {
   const preferredFormat = useMemo(() => {
     if (format) return format;
@@ -361,6 +371,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
+  const handleClearInput = () => {
+    handleOnChange('');
+    if (secondaryInputDisplay === 'none' && isColorSelectorShown) {
+      closeColorSelector();
+    }
+  };
+
   const updateWithHsv = (hsv: ColorSpaces['hsv']) => {
     const color = chroma.hsv(...hsv).alpha(alphaChannel);
     let formatted;
@@ -436,18 +453,27 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           display="rowCompressed"
           isInvalid={isInvalid}
           error={isInvalid ? colorErrorMessage : null}>
-          <EuiFieldText
-            compressed={true}
-            value={color ? color.toUpperCase() : HEX_FALLBACK}
-            placeholder={!color ? transparent : undefined}
-            onChange={handleColorInput}
-            isInvalid={isInvalid}
-            disabled={disabled}
+          <EuiFormControlLayout
+            clear={
+              isClearable && color && !readOnly && !disabled
+                ? { onClick: handleClearInput }
+                : undefined
+            }
             readOnly={readOnly}
-            aria-label={colorLabel}
-            autoComplete="off"
-            data-test-subj={`${secondaryInputDisplay}ColorPickerInput`}
-          />
+            compressed={compressed}>
+            <EuiFieldText
+              compressed={true}
+              value={color ? color.toUpperCase() : HEX_FALLBACK}
+              placeholder={!color ? placeholder || transparent : undefined}
+              onChange={handleColorInput}
+              isInvalid={isInvalid}
+              disabled={disabled}
+              readOnly={readOnly}
+              aria-label={colorLabel}
+              autoComplete="off"
+              data-test-subj={`${secondaryInputDisplay}ColorPickerInput`}
+            />
+          </EuiFormControlLayout>
         </EuiFormRow>
       )}
     </EuiI18n>
@@ -557,6 +583,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               }
             : undefined
         }
+        clear={
+          isClearable && color && !readOnly && !disabled
+            ? { onClick: handleClearInput }
+            : undefined
+        }
         readOnly={readOnly}
         fullWidth={fullWidth}
         compressed={compressed}
@@ -585,7 +616,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : HEX_FALLBACK}
-                placeholder={!color ? transparent : undefined}
+                placeholder={!color ? placeholder || transparent : undefined}
                 id={id}
                 onChange={handleColorInput}
                 icon={chromaColor ? 'swatchInput' : 'stopSlash'}

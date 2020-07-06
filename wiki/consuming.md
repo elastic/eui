@@ -59,12 +59,27 @@ Most of the time, you just need the CSS, which provides the styling for the Reac
 import '@elastic/eui/dist/eui_theme_light.css';
 ```
 
-If you want access to the Sass variables, functions, and mixins in EUI then you'll need to import the SCSS file. This will require `style`, `css`, `postcss`, and `sass` loaders. You'll also want to import the SCSS file into one of your own SCSS files, to gain access to these variables, functions, and mixins.
+If you want access to the Sass variables, functions, and mixins in EUI then you'll need to import the Sass files. This will require `style`, `css`, `postcss`, and `sass` loaders. You'll also want to import the Sass file into one of your own Sass files, to gain access to these variables, functions, and mixins.
 
 ```scss
-// index.scss
-@import '../node_modules/@elastic/eui/src/theme_light.scss';
+@import '@elastic/eui/src/theme/eui/eui_colors_light.scss';
+@import '@elastic/eui/src/theme/eui/eui_global.scss';
 ```
+
+For the dark theme, import the dark colors file before the globals.
+
+```scss
+@import '@elastic/eui/src/theme/eui/eui_colors_dark.scss';
+@import '@elastic/eui/src/theme/eui/eui_global.scss';
+```
+
+If you want to use new, but in progress Amsterdam theme, you can import it similarly.
+
+```scss
+@import '@elastic/eui/src/theme/eui_amsterdam/eui_amsterdam_colors_light.scss';
+@import '@elastic/eui/src/theme/eui_amsterdam/eui_amsterdam_global.scss';
+```
+
 
 By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
 
@@ -115,7 +130,7 @@ appendIconComponentCache({
   arrowDown: EuiIconArrowDown,
   arrowLeft: EuiIconArrowLeft,
 });
-``` 
+```
 
 ## Customizing with `className`
 

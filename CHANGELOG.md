@@ -1,6 +1,40 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `26.0.1`.
+- Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
+- Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
+- Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
+- Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
+
+## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
+
+- Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
+
+## [`26.2.0`](https://github.com/elastic/eui/tree/v26.2.0)
+
+- Added `background.color` to `EUI_CHARTS_THEME_LIGHT/DARK.theme` ([#3669](https://github.com/elastic/eui/pull/3669))
+- Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
+- Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
+- Updated `EuiResizableContainer` `onPanelWidthChange` callback method to include all panel widths ([#3630](https://github.com/elastic/eui/pull/3630))
+- Extended `Query` / `EuiSearchBar` to allow any character inside double-quoted phrases ([#3432](https://github.com/elastic/eui/pull/3432))
+- Added `headerZindexLocation` prop to `EuiOverlayMask` ([#3655](https://github.com/elastic/eui/pull/3655))
+- Added `maskProps` prop to `EuiFlyout` and `EuiCollapsibleNav` ([#3655](https://github.com/elastic/eui/pull/3655))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenu` panel `onAnimationEnd` transition bug in Chrome ([#3656](https://github.com/elastic/eui/pull/3656))
+- Fixed `EuiSkipLink` interactive props and Safari click issue ([#3665](https://github.com/elastic/eui/pull/3665))
+- Fixed `z-index` issues with `EuiHeader`, `EuiFlyout`, and other portal content ([#3655](https://github.com/elastic/eui/pull/3655))
+- Fixed `color` prop error in `EuiBadge` to be more flexible with what format it accepts ([#3655](https://github.com/elastic/eui/pull/3655))
+- Fixed `EuiSuperSelect` popover from moving 16px horizontally when it's close to a window edge ([#3685](https://github.com/elastic/eui/pull/3685))
+
+**Theme: Amsterdam**
+
+- Fixed `EuiHeaderBreadcrumb` height, `onClick`, border-radius, and single item display ([#3655](https://github.com/elastic/eui/pull/3655))
+
+## [`26.1.0`](https://github.com/elastic/eui/tree/v26.1.0)
+
+- Optimized in-memory datagrid mount performance ([#3628](https://github.com/elastic/eui/pull/3628))
+- Exported `EuiCardProps` and `EuiCheckableCardProps` types ([#3640](https://github.com/elastic/eui/pull/3640))
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
 
