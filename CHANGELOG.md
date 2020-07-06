@@ -4,6 +4,11 @@
 - Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
 - Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
 
+**Bug fixes**
+
+- Fixed a bug in `EuiResizableContainer` preventing nested containers ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed a bug in `EuiResizableContainer` preventing resizing by arrow keys in some cases ([#3699](https://github.com/elastic/eui/pull/3699))
+
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
 - Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
