@@ -14,16 +14,24 @@ export default () => {
     description: 'Visible label.',
     hidden: true,
   };
+
+  const setGhostBackground = {
+    color: 'ghost',
+  };
+
   return {
-    componentName: 'EuiButton',
-    props: propsToUse,
-    scope: {
-      EuiButton,
-    },
-    imports: {
-      '@elastic/eui': {
-        named: ['EuiButton'],
+    config: {
+      componentName: 'EuiButton',
+      props: propsToUse,
+      scope: {
+        EuiButton,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiButton'],
+        },
       },
     },
+    setGhostBackground,
   };
 };

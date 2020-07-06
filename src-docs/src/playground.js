@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useView, Compiler, Error, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../src/components';
 import Knobs from './services/playground/knobs';
 
-export default config => {
+export default ({ config, setGhostBackground }) => {
   const getSnippet = code => {
     const regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex)[0];
@@ -28,15 +28,27 @@ export default config => {
     //     config.props['data-test-subj'].hidden = true;
     //   if (config.props['aria-label']) config.props['aria-label'].hidden = true;
     // }
-
+    const [isGhost, setGhost] = useState(false);
     const params = useView(config);
+
+    useEffect(() => {
+      const { state } = params.knobProps;
+      if (setGhostBackground) {
+        let br = false;
+        Object.keys(setGhostBackground).forEach(name => {
+          if (state[name].value === setGhostBackground[name]) br = true;
+        });
+        setGhost(br);
+      }
+    }, [params.knobProps]);
+
     return (
       <React.Fragment>
         <EuiTitle>
           <h3>{config.componentName}</h3>
         </EuiTitle>
         {/* <EuiSpacer /> */}
-        <div>
+        <div className={isGhost ? 'guideDemo__ghostBackground' : ''}>
           <Compiler
             {...params.compilerProps}
             minHeight={62}

@@ -231,10 +231,14 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
       {knobNames.map((name, idx) => {
         let humanizedType = '';
 
-        if (state[name].origin && state[name].origin.type)
-          humanizedType = humanizeType(state[name].origin.type);
+        if (
+          state[name].custom &&
+          state[name].custom.origin &&
+          state[name].custom.origin.type
+        )
+          humanizedType = humanizeType(state[name].custom.origin.type);
 
-        // console.log(humanizedType, 'state[name]', state[name]);
+        // if (name === 'color') console.log(state[name], name);
 
         const typeMarkup = (
           <span className="eui-textBreakNormal">{markup(humanizedType)}</span>

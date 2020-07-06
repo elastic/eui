@@ -4,7 +4,9 @@ import { PropTypes } from 'react-view';
 const getProp = (prop, propName) => {
   const newProp = {};
   if (prop.description) newProp.description = prop.description;
-  newProp.origin = prop;
+  // newProp.origin = prop;
+  newProp.custom = { origin: prop };
+
   switch (prop.type.name) {
     case 'bool':
       newProp.type = PropTypes.Boolean;
@@ -68,7 +70,6 @@ const getProp = (prop, propName) => {
 
     default:
       newProp.type = PropTypes.Custom;
-      newProp.custom = {};
       newProp.value = undefined;
   }
 
