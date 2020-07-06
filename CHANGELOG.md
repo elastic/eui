@@ -10,6 +10,8 @@
   - `virtualizedProps` on `EuiSelectableOptionsList` renamed to `windowProps`
   - Removed `rootId` and added `makeOptionId`, `listId`, and `setActiveOptionIndex` to `EuiSelectableList`
   - Added `listId` to `EuiSelectableSearch`
+  - `options` passed into `EuiSelectable` cannot have an `id`
+  - Requires an `onChange` to be passed into `EuiSelectableSearch`
 
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
