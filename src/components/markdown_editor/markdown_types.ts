@@ -19,6 +19,7 @@
 
 import { ComponentType, ReactNode } from 'react';
 import { VFile } from 'vfile';
+import { Node as UnistNode, Position as UnistPosition } from 'unist';
 import { IconType } from '../icon';
 
 export interface RemarkParser {
@@ -38,8 +39,17 @@ export interface RemarkTokenizer {
 
   notInLink?: boolean;
 }
+interface RehypeNode {}
+interface RemarkRehypeHandlerCallback {
+  (
+    node: UnistPosition,
+    tagName: string,
+    props: Object,
+    children: RehypeNode[]
+  ): RehypeNode;
+}
 export interface RemarkRehypeHandler {
-  (h: any, node: any): any;
+  (h: RemarkRehypeHandlerCallback, node: UnistNode): RehypeNode;
 }
 export interface AstNodePosition {
   start: { line: number; column: number; offset: number };

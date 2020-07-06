@@ -138,7 +138,7 @@ const TooltipParser: Plugin = function TooltipParser() {
 };
 
 const tooltipMarkdownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position, 'tooltipPlugin', node, all(h, node));
+  return h(node.position!, 'tooltipPlugin', node, all(h, node));
 };
 const tooltipMarkdownRenderer: FunctionComponent<
   TooltipNodeDetails & { position: AstNodePosition }

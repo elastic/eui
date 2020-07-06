@@ -1255,6 +1255,13 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.118.tgz#247bab39bfcc6d910d4927c6e06cbc70ec376f27"
   integrity sha512-iiJbKLZbhSa6FYRip/9ZDX6HXhayXLDGY2Fqws9cOkEQ6XeKfaxB0sC541mowZJueYyMnVUmmG+al5/4fCDrgw==
 
+"@types/mdast@^3.0.0":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@types/mdast/-/mdast-3.0.3.tgz#2d7d671b1cd1ea3deb306ea75036c2a0407d2deb"
+  integrity sha512-SXPBMnFVQg1s00dlMCc/jCdvPqdE4mXaMMCeRlxLDmTAEoegHT53xKtkDnzDTOcmMHUfcjyf36/YYZ6SxRdnsw==
+  dependencies:
+    "@types/unist" "*"
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -1339,7 +1346,7 @@
   resolved "https://registry.yarnpkg.com/@types/tabbable/-/tabbable-3.1.0.tgz#540d4c2729872560badcc220e73c9412c1d2bffe"
   integrity sha512-LL0q/bTlzseaXQ8j91eZ+Z8FQUzo0nwkng00B8365qULvFyiSOWylxV8m31Gmee3QuidkDqR72a9NRfR8s4qTw==
 
-"@types/unist@^2.0.0", "@types/unist@^2.0.2", "@types/unist@^2.0.3":
+"@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2", "@types/unist@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
@@ -10388,21 +10395,23 @@ mdast-util-compact@^1.0.0:
   dependencies:
     unist-util-visit "^1.1.0"
 
-mdast-util-definitions@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/mdast-util-definitions/-/mdast-util-definitions-2.0.1.tgz#2c931d8665a96670639f17f98e32c3afcfee25f3"
-  integrity sha512-Co+DQ6oZlUzvUR7JCpP249PcexxygiaKk9axJh+eRzHDZJk2julbIdKB4PXHVxdBuLzvJ1Izb+YDpj2deGMOuA==
+mdast-util-definitions@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mdast-util-definitions/-/mdast-util-definitions-3.0.1.tgz#06af6c49865fc63d6d7d30125569e2f7ae3d0a86"
+  integrity sha512-BAv2iUm/e6IK/b2/t+Fx69EL/AGcq/IG2S+HxHjDJGfLJtd6i9SZUS76aC9cig+IEucsqxKTR0ot3m933R3iuA==
   dependencies:
     unist-util-visit "^2.0.0"
 
-mdast-util-to-hast@^8.0.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-8.2.0.tgz#adf9f824defcd382e53dd7bace4282a45602ac67"
-  integrity sha512-WjH/KXtqU66XyTJQ7tg7sjvTw1OQcVV0hKdFh3BgHPwZ96fSBCQ/NitEHsN70Mmnggt+5eUUC7pCnK+2qGQnCA==
+mdast-util-to-hast@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-9.1.0.tgz#6ef121dd3cd3b006bf8650b1b9454da0faf79ffe"
+  integrity sha512-Akl2Vi9y9cSdr19/Dfu58PVwifPXuFt1IrHe7l+Crme1KvgUT+5z+cHLVcQVGCiNTZZcdqjnuv9vPkGsqWytWA==
   dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.3"
     collapse-white-space "^1.0.0"
     detab "^2.0.0"
-    mdast-util-definitions "^2.0.0"
+    mdast-util-definitions "^3.0.0"
     mdurl "^1.0.0"
     trim-lines "^1.0.0"
     unist-builder "^2.0.0"
@@ -14440,12 +14449,12 @@ remark-parse@^7.0.2:
     vfile-location "^2.0.0"
     xtend "^4.0.1"
 
-remark-rehype@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-6.0.0.tgz#dcd340ebee412709a81b15a69f4ae474a38aa72a"
-  integrity sha512-dt7cHCD2NbbmXoSnnNolk+MnWzylsOIEU07pyhZSM71Xy08xX07+yuCh+4rddyrB/a1hebygeteVEJieyCeDzg==
+remark-rehype@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-7.0.0.tgz#8e106e49806c69b2e9523b76d24965119e2da67b"
+  integrity sha512-uqQ/VbaTdxyu/da6npHAso6hA00cMqhA3a59RziQdOLN2KEIkPykAVy52IcmZEVTuauXO0VtpxkyCey4phtHzQ==
   dependencies:
-    mdast-util-to-hast "^8.0.0"
+    mdast-util-to-hast "^9.1.0"
 
 remark-stringify@^4.0.0:
   version "4.0.0"

@@ -24,12 +24,6 @@ declare module 'remark-emoji' {
   export = RemarkEmoji;
 }
 
-declare module 'remark-rehype' {
-  import { Plugin } from 'unified';
-  const RemarkRehype: Plugin;
-  export = RemarkRehype;
-}
-
 declare module 'remark-highlight.js' {
   import { Plugin } from 'unified';
   const RemarkHighlight: Plugin;

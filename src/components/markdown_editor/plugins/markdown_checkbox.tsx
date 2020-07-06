@@ -83,7 +83,7 @@ const CheckboxParser: Plugin = function CheckboxParser() {
 };
 
 const checkboxMarkdownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position, 'checkboxPlugin', node, all(h, node));
+  return h(node.position!, 'checkboxPlugin', node, all(h, node));
 };
 const CheckboxMarkdownRenderer: FunctionComponent<
   CheckboxNodeDetails & { position: AstNodePosition }
