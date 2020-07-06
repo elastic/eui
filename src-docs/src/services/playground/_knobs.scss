@@ -3,3 +3,7 @@ $knobTableRowMinHeight: 42px;
 .playgroundKnobs__rowCell {
   min-height: $knobTableRowMinHeight;
 }
+
+.playgroundCompiler__ghostBackground {
+  background: $euiColorDarkestShade;
+}

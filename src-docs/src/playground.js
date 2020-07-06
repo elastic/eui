@@ -48,7 +48,7 @@ export default ({ config, setGhostBackground }) => {
           <h3>{config.componentName}</h3>
         </EuiTitle>
         {/* <EuiSpacer /> */}
-        <div className={isGhost ? 'guideDemo__ghostBackground' : ''}>
+        <div className={isGhost ? 'playgroundCompiler__ghostBackground' : ''}>
           <Compiler
             {...params.compilerProps}
             minHeight={62}
