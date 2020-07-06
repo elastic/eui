@@ -245,8 +245,8 @@ exports[`EuiFlyout props max width can be set to a default 1`] = `
 `;
 
 exports[`EuiFlyout props ownFocus can alter mask props with maskProps without throwing error 1`] = `
-<main>
-  <div />
+Array [
+  <div />,
   <div>
     <div
       data-focus-guard="true"
@@ -285,13 +285,13 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>
-</main>
+  </div>,
+]
 `;
 
 exports[`EuiFlyout props ownFocus is rendered 1`] = `
-<main>
-  <div />
+Array [
+  <div />,
   <div>
     <div
       data-focus-guard="true"
@@ -330,8 +330,8 @@ exports[`EuiFlyout props ownFocus is rendered 1`] = `
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>
-</main>
+  </div>,
+]
 `;
 
 exports[`EuiFlyout props size l is rendered 1`] = `

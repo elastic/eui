@@ -115,30 +115,26 @@ describe('EuiFlyout', () => {
     describe('ownFocus', () => {
       test('is rendered', () => {
         const component = mount(
-          // Workaround for `takeMountedSnapshot` only returning the first element.
-          // Output is an array, which is here replaced in the snapshot with `main`
-          <main>
-            <EuiFlyout onClose={() => {}} ownFocus={true} />
-          </main>
+          <EuiFlyout onClose={() => {}} ownFocus={true} />
         );
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
 
       test('can alter mask props with maskProps without throwing error', () => {
         const component = mount(
-          // Workaround for `takeMountedSnapshot` only returning the first element.
-          // Output is an array, which is here replaced in the snapshot with `main`
-          <main>
-            <EuiFlyout
-              onClose={() => {}}
-              ownFocus={true}
-              maskProps={{ headerZindexLocation: 'above' }}
-            />
-          </main>
+          <EuiFlyout
+            onClose={() => {}}
+            ownFocus={true}
+            maskProps={{ headerZindexLocation: 'above' }}
+          />
         );
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
     });
   });
