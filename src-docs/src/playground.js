@@ -57,7 +57,7 @@ export default ({ config, setGhostBackground }) => {
         <EuiSpacer />
 
         <EuiCodeBlock
-          language="js"
+          language="html"
           fontSize="m"
           paddingSize="m"
           overflowHeight={300}
