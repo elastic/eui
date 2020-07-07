@@ -166,11 +166,12 @@ class MarkdownActions {
       ...defaults,
       ...incomingStyle,
     };
-    const editor = document.getElementById(this.editorID);
+    const editor = document.getElementById(
+      this.editorID
+    ) as HTMLTextAreaElement;
 
     if (editor) {
       editor.focus();
-      // @ts-ignore TODO
       styleSelectedText(editor, outgoingStyle);
     }
   }
@@ -262,15 +263,11 @@ export function insertText(
        * https://hustle.bizongo.in/simulate-react-on-change-on-controlled-components-baa336920e04
        */
       const inputEvent = new Event('input', { bubbles: true });
-      const nativeInputValueSetter =
-        // @ts-ignore TODO
-        Object.getOwnPropertyDescriptor(
-          // @ts-ignore TODO
-          window.HTMLTextAreaElement.prototype,
-          'value'
-        ).set;
-      // @ts-ignore TODO
-      nativeInputValueSetter.call(textarea, before + text + after);
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLTextAreaElement.prototype,
+        'value'
+      )!.set;
+      nativeInputValueSetter!.call(textarea, before + text + after);
       textarea.dispatchEvent(inputEvent);
     }
 

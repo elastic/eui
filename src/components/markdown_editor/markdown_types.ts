@@ -19,6 +19,7 @@
 
 import { ComponentType, ReactNode } from 'react';
 import { VFile } from 'vfile';
+// eslint-disable-next-line import/no-unresolved
 import { Node as UnistNode, Position as UnistPosition } from 'unist';
 import { IconType } from '../icon';
 

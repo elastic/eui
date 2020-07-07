@@ -18,7 +18,6 @@
  */
 
 import React, { FunctionComponent } from 'react';
-// @ts-ignore TODO
 import all from 'mdast-util-to-hast/lib/all';
 import {
   AstNodePosition,

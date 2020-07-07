@@ -29,3 +29,21 @@ declare module 'remark-highlight.js' {
   const RemarkHighlight: Plugin;
   export = RemarkHighlight;
 }
+
+declare module 'mdast-util-to-hast/lib/all' {
+  // eslint-disable-next-line import/no-unresolved
+  import { Node as UnistNode, Position as UnistPosition } from 'unist';
+
+  interface RehypeNode {}
+  interface RemarkRehypeHandlerCallback {
+    (
+      node: UnistPosition,
+      tagName: string,
+      props: Object,
+      children: RehypeNode[]
+    ): RehypeNode;
+  }
+
+  const all: (h: RemarkRehypeHandlerCallback, node: UnistNode) => RehypeNode[];
+  export = all;
+}

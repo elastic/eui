@@ -18,7 +18,6 @@
  */
 
 import React, { FunctionComponent, useContext } from 'react';
-// @ts-ignore TODO
 import all from 'mdast-util-to-hast/lib/all';
 import { EuiCheckbox } from '../../form/checkbox';
 import { EuiMarkdownContext } from '../markdown_context';
