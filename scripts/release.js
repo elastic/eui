@@ -81,10 +81,6 @@ function parseArguments() {
     choices: Object.values(humanReadableTypes),
   });
 
-  parser.addArgument('--mfa', {
-    help: 'Multi-factor authentication code used by npm',
-  });
-
   parser.addArgument('--dry-run', {
     action: 'storeTrue',
     defaultValue: false,
@@ -215,10 +211,9 @@ async function getOneTimePassword() {
   console.log('');
   console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
 
-  if (args.mfa) {
-    // skip prompting user for manual input if --mfa argument is present
-    console.log(chalk.magenta('2FA code provided by ---mfa argument'));
-    return args.mfa;
+  if (process.env.NPM_OTP) {
+    console.log(chalk.magenta('2FA code provided by NPM_OTP environment variable'));
+    return process.env.NPM_OTP;
   }
 
   console.log(chalk.magenta('What is your one-time password?'));
