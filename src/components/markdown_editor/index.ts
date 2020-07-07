@@ -24,3 +24,11 @@ export {
   defaultProcessingPlugins,
 } from './markdown_editor';
 export { EuiMarkdownContext } from './markdown_context';
+export {
+  EuiMarkdownParseError,
+  EuiMarkdownAstNode,
+  EuiMarkdownAstNodePosition,
+  EuiMarkdownFormatting,
+  EuiMarkdownEditorUiPlugin,
+  RemarkRehypeHandler,
+} from './markdown_types';

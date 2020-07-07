@@ -29,7 +29,10 @@ import { EuiOverlayMask } from '../overlay_mask';
 import { EuiTitle } from '../title';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
 import { EuiI18n } from '../i18n';
-import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+import {
+  EuiMarkdownEditorUiPlugin,
+  EuiMarkdownParseError,
+} from './markdown_types';
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
 import { EuiSpacer } from '../spacer';
@@ -41,7 +44,7 @@ interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   isUploadingFiles: boolean;
   openFiles: () => void;
-  errors: any;
+  errors: EuiMarkdownParseError[];
 }
 
 export const EuiMarkdownEditorFooter: FunctionComponent<
@@ -97,7 +100,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
               default="Errors"
             />
           </EuiPopoverTitle>
-          {errors.map((message: any, idx: any) => (
+          {errors.map((message, idx) => (
             <EuiText key={idx}>{message.toString()}</EuiText>
           ))}
         </div>

@@ -46,9 +46,13 @@ import { EuiMarkdownFormat } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { EuiLink } from '../link';
-import { EuiCodeBlock } from '../code';
+import { EuiCodeBlock, EuiCodeBlockProps } from '../code';
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
-import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+import {
+  EuiMarkdownAstNode,
+  EuiMarkdownEditorUiPlugin,
+  EuiMarkdownParseError,
+} from './markdown_types';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
@@ -80,7 +84,7 @@ export const defaultProcessingPlugins: PluggableList = [
       createElement: createElement,
       components: {
         a: EuiLink,
-        code: (props: any) =>
+        code: (props: EuiCodeBlockProps) =>
           // if has classNames is a codeBlock using highlight js
           props.className ? (
             <EuiCodeBlock {...props} />
@@ -118,15 +122,15 @@ type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** array of toolbar plugins **/
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
 
-    /** Errors to buble up */
-    errors?: any;
+    /** Errors to bubble up */
+    errors?: EuiMarkdownParseError[];
 
     /** callback triggered when parsing results are available **/
     onParse?: (
-      error: any | null,
+      error: EuiMarkdownParseError | null,
       data: {
         messages: VFileMessage[];
-        ast: any;
+        ast: EuiMarkdownAstNode;
       }
     ) => void;
   };
@@ -190,7 +194,7 @@ export const EuiMarkdownEditor: FunctionComponent<
     }, [parsingPluginList]);
 
     const [parsed, parseError] = useMemo<
-      [any | null, VFileMessage | null]
+      [any | null, EuiMarkdownParseError | null]
     >(() => {
       try {
         const parsed = parser.processSync(value);
@@ -239,7 +243,7 @@ export const EuiMarkdownEditor: FunctionComponent<
       const getCursorNode = () => {
         const { selectionStart } = textareaRef.current!;
 
-        let node: any = parsed.contents;
+        let node: EuiMarkdownAstNode = parsed.contents;
 
         outer: while (true) {
           if (node.children) {

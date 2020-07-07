@@ -21,10 +21,12 @@ import { ComponentType, ReactNode } from 'react';
 import { VFile } from 'vfile';
 // eslint-disable-next-line import/no-unresolved
 import { Node as UnistNode, Position as UnistPosition } from 'unist';
+import { Parser } from 'remark-parse';
+import { VFileMessage } from 'vfile-message';
 import { IconType } from '../icon';
 
 export interface RemarkParser {
-  Parser: any;
+  Parser: typeof Parser;
   tokenizeInline: Function;
   file: VFile;
 }
@@ -51,10 +53,6 @@ interface RemarkRehypeHandlerCallback {
 }
 export interface RemarkRehypeHandler {
   (h: RemarkRehypeHandlerCallback, node: UnistNode): RehypeNode;
-}
-export interface AstNodePosition {
-  start: { line: number; column: number; offset: number };
-  end: { line: number; column: number; offset: number };
 }
 
 export interface EuiMarkdownEditorUiPluginEditorProps {
@@ -101,3 +99,15 @@ export interface EuiMarkdownFormatting {
   orderedList?: boolean;
   trimFirst?: boolean;
 }
+
+export interface EuiMarkdownAstNode {
+  type: string;
+  children?: EuiMarkdownAstNode[];
+  position: EuiMarkdownAstNodePosition;
+}
+export interface EuiMarkdownAstNodePosition {
+  start: { line: number; column: number; offset: number };
+  end: { line: number; column: number; offset: number };
+}
+
+export type EuiMarkdownParseError = string | VFileMessage | Error;

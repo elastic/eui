@@ -23,7 +23,7 @@ import { EuiCheckbox } from '../../form/checkbox';
 import { EuiMarkdownContext } from '../markdown_context';
 import { htmlIdGenerator } from '../../../services/accessibility';
 import {
-  AstNodePosition,
+  EuiMarkdownAstNodePosition,
   RemarkRehypeHandler,
   RemarkTokenizer,
 } from '../markdown_types';
@@ -85,7 +85,7 @@ const checkboxMarkdownHandler: RemarkRehypeHandler = (h, node) => {
   return h(node.position!, 'checkboxPlugin', node, all(h, node));
 };
 const CheckboxMarkdownRenderer: FunctionComponent<
-  CheckboxNodeDetails & { position: AstNodePosition }
+  CheckboxNodeDetails & { position: EuiMarkdownAstNodePosition }
 > = ({ position, lead, label, isChecked, children }) => {
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (

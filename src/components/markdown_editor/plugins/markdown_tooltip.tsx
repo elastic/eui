@@ -20,7 +20,7 @@
 import React, { FunctionComponent } from 'react';
 import all from 'mdast-util-to-hast/lib/all';
 import {
-  AstNodePosition,
+  EuiMarkdownAstNodePosition,
   RemarkRehypeHandler,
   RemarkTokenizer,
 } from '../markdown_types';
@@ -140,7 +140,7 @@ const tooltipMarkdownHandler: RemarkRehypeHandler = (h, node) => {
   return h(node.position!, 'tooltipPlugin', node, all(h, node));
 };
 const tooltipMarkdownRenderer: FunctionComponent<
-  TooltipNodeDetails & { position: AstNodePosition }
+  TooltipNodeDetails & { position: EuiMarkdownAstNodePosition }
 > = ({ content, children }) => {
   return (
     <EuiToolTip content={content}>

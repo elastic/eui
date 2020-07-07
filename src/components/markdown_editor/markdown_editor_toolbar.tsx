@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEventHandler,
+  useContext,
+} from 'react';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
@@ -35,7 +40,7 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
     selectedNode?: null | any;
     markdownActions: MarkdownActions;
     viewMode: MARKDOWN_MODE;
-    onClickPreview: any;
+    onClickPreview: MouseEventHandler<HTMLButtonElement>;
     uiPlugins: EuiMarkdownEditorUiPlugin[];
   };
 
