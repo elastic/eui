@@ -1,9 +1,33 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `27.0.0`.
+
+## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
 - Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
 - Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
 - Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
+
+**Bug fixes**
+
+- Fixed a bug in `EuiResizableContainer` preventing nested containers ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed a bug in `EuiResizableContainer` preventing resizing by arrow keys in some cases ([#3699](https://github.com/elastic/eui/pull/3699))
+
+**Breaking changes**
+
+- Significant accessibility refactor of `EuiSelectable` ([#3169](https://github.com/elastic/eui/pull/3169))
+  - `react-virtualized` replaced with `react-window`
+  - `virtualizedProps` on `EuiSelectableOptionsList` renamed to `windowProps`
+  - Removed `rootId` and added `makeOptionId`, `listId`, and `setActiveOptionIndex` to `EuiSelectableList`
+  - Added `listId` to `EuiSelectableSearch`
+  - `options` passed into `EuiSelectable` cannot have an `id`
+  - Requires an `onChange` to be passed into `EuiSelectableSearch`
+  
+## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
+
+**Note: this release is a backport containing changes originally made in `27.0.0`**
+
+- Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
 
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 

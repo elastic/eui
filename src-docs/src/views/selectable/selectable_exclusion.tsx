@@ -8,6 +8,7 @@ export default () => {
 
   return (
     <EuiSelectable
+      aria-label="Example of Selectable supporting exclusions"
       allowExclusions
       options={options}
       onChange={newOptions => setOptions(newOptions)}>

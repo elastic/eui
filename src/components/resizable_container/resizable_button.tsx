@@ -23,11 +23,14 @@ import React, {
   KeyboardEvent,
   MouseEvent,
   TouchEvent,
+  useCallback,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
+import { EuiResizablePanelRegistry } from './context';
 
 export type EuiResizableButtonMouseEvent =
   | MouseEvent<HTMLButtonElement>
@@ -41,6 +44,7 @@ interface EuiResizableButtonControls {
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
   onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
   isHorizontal: boolean;
+  registryRef: React.MutableRefObject<EuiResizablePanelRegistry>;
 }
 
 export interface EuiResizableButtonProps
@@ -69,6 +73,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   isHorizontal,
   className,
   size = 'm',
+  registryRef,
   ...rest
 }) => {
   const classes = classNames(
@@ -79,6 +84,22 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
       'euiResizableButton--horizontal': isHorizontal,
     },
     className
+  );
+
+  const previousRef = useRef<HTMLElement>();
+  const onRef = useCallback(
+    (ref: HTMLElement | null) => {
+      if (ref) {
+        previousRef.current = ref;
+        registryRef!.current.registerResizerRef(ref);
+      } else {
+        if (previousRef.current != null) {
+          registryRef!.current.deregisterResizerRef(previousRef.current);
+          previousRef.current = undefined;
+        }
+      }
+    },
+    [registryRef]
   );
 
   const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
@@ -96,6 +117,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
       ]}>
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
         <button
+          ref={onRef}
           aria-label={
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
