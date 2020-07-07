@@ -1,9 +1,10 @@
+const argparse = require('argparse');
 const chalk = require('chalk');
 const fs = require('fs');
 const git = require('nodegit');
 const path = require('path');
 const prompt = require('prompt');
-const { execSync } = require('child_process');
+let { execSync } = require('child_process');
 
 const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
@@ -17,6 +18,15 @@ const humanReadableTypes = {
   [TYPE_MINOR]: 'minor',
   [TYPE_PATCH]: 'patch'
 };
+
+const args = parseArguments();
+
+if (args.dry_run) {
+  console.warn(chalk.yellow('Dry run mode: no changes will be pushed to npm or Github'));
+  execSync = function() {
+    console.log.apply(arguments);
+  };
+}
 
 (async function () {
   // make sure the release script is being run by npm (required for `npm publish` step)
@@ -59,6 +69,29 @@ const humanReadableTypes = {
   // update docs, git commit, git push
   execSync('npm run sync-docs', execOptions);
 }()).catch(e => console.error(e));
+
+function parseArguments() {
+  const parser = new argparse.ArgumentParser({
+    addHelp: true,
+    description: 'Tag and publish a new version of EUI',
+  });
+
+  parser.addArgument('--type', {
+    help: 'Version type; can be "major", "minor" or "patch"',
+    choices: Object.values(humanReadableTypes),
+  });
+
+  parser.addArgument('--mfa', {
+    help: 'Multi-factor authentication code used by npm',
+  });
+
+  parser.addArgument('--dry-run', {
+    action: 'storeTrue',
+    defaultValue: false,
+  });
+
+  return parser.parseArgs();
+}
 
 async function ensureMasterBranch() {
   // ignore master check in CI since it's checking out the HEAD commit instead
@@ -131,23 +164,17 @@ async function getVersionTypeFromChangelog() {
   console.log('');
   console.log(`${chalk.magenta('The recommended version update for these changes is')} ${chalk.blue(humanReadableRecommendation)}`);
 
-  // checking for VERSION_TYPE environment variable, which overrides prompts to
-  // the user to choose a version type; this is used by CI to automate releases
-  const envVersion = process.env.VERSION_TYPE;
-  if (envVersion) {
+  // checking for --type argument value; used by CI to automate releases
+  const versionType = args.type;
+  if (versionType) {
     // detected version type preference set
-    console.log(`${chalk.magenta('VERSION_TYPE environment variable identifed, set to')} ${chalk.blue(envVersion)}`);
+    console.log(`${chalk.magenta('--type argument identifed, set to')} ${chalk.blue(versionType)}`);
 
-    if (['major', 'minor', 'patch'].indexOf(envVersion) === -1) {
-      console.error(`${chalk.magenta('VERSION_TYPE environment variable is not "major", "minor" or "patch"')}`);
-      process.exit(1);
+    if (versionType !== recommendedType) {
+      console.warn(`${chalk.yellow('WARNING: --type argument does not match recommended version update')}`);
     }
 
-    if (envVersion !== recommendedType) {
-      console.warn(`${chalk.yellow('WARNING: VERSION_TYPE does not match recommended version update')}`);
-    }
-
-    return envVersion;
+    return versionType;
   } else {
     console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
 
@@ -188,10 +215,10 @@ async function getOneTimePassword() {
   console.log('');
   console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
 
-  if (process.env.NPM_OTP) {
-    // skip prompting user for manual input if NPM_OTP env var is present
-    console.log(chalk.magenta('2FA code provided by NPM_OTP environment variable'));
-    return process.env.NPM_OTP;
+  if (args.mfa) {
+    // skip prompting user for manual input if --mfa argument is present
+    console.log(chalk.magenta('2FA code provided by ---mfa argument'));
+    return args.mfa;
   }
 
   console.log(chalk.magenta('What is your one-time password?'));
