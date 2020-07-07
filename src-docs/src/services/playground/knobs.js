@@ -246,7 +246,10 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
 
         return (
           <EuiTableRow key={name}>
-            <EuiTableRowCell key={`prop__${name}-${idx}`} header="Prop" className="playgroundKnobs__rowCell">
+            <EuiTableRowCell
+              key={`prop__${name}-${idx}`}
+              header="Prop"
+              className="playgroundKnobs__rowCell">
               <strong className="eui-textBreakNormal">{name}</strong>
               {state[name].description && (
                 <>
