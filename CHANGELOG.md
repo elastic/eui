@@ -22,6 +22,12 @@ No public interface changes since `27.0.0`.
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+  
+## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
+
+**Note: this release is a backport containing changes originally made in `27.0.0`**
+
+- Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
 
 ## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
 
