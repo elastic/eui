@@ -57,6 +57,7 @@
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
+    "html-format": "^1.0.1",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.11",
     "numeral": "^2.0.6",

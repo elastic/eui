@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import format from 'html-format';
 
 import { useView, Compiler, Error, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
@@ -17,21 +18,7 @@ export default ({ config, setGhostBackground }) => {
       newCode = newCode.replace(/(\);)$/m, '');
     }
 
-    while (newCode.startsWith('\n')) newCode = newCode.replace('\n', '');
-
-    newCode = newCode.trimEnd();
-
-    const codeArray = newCode.split('\n');
-
-    newCode = '';
-
-    for (let i = 0; i < codeArray.length; i++) {
-      let line = codeArray[i];
-      if (line.startsWith('    ')) line = line.replace('    ', '');
-      newCode = `${newCode}${line}\n`;
-    }
-
-    return newCode.trimEnd();
+    return format(newCode.trim(), ' '.repeat(4));
   };
 
   const Playground = () => {
