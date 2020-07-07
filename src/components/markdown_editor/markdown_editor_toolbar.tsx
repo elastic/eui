@@ -20,7 +20,6 @@
 import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
-import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { EuiI18n } from '../i18n';
 import { EuiToolTip } from '../tool_tip';
 import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
@@ -115,104 +114,91 @@ export const EuiMarkdownEditorToolbar: FunctionComponent<
   const isPreviewing = viewMode === MODE_VIEWING;
 
   return (
-    <div className="euiMarkdownEditor__toolbar">
-      <EuiFlexGroup
-        justifyContent="spaceBetween"
-        alignItems="center"
-        responsive={false}>
-        <EuiFlexItem
-          grow={false}
-          className="euiMarkdownEditor__toolbar__buttons">
-          {boldItalicButtons.map(item => (
-            <EuiToolTip key={item.id} content={item.label} delay="long">
-              <EuiButtonIcon
-                color="text"
-                onClick={() => handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label={item.label}
-                isDisabled={isPreviewing}
-              />
-            </EuiToolTip>
-          ))}
-          <span className="euiMarkdownEditor__toolbar__divider" />
-          {listButtons.map(item => (
-            <EuiToolTip key={item.id} content={item.label} delay="long">
-              <EuiButtonIcon
-                color="text"
-                onClick={() => handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label={item.label}
-                isDisabled={isPreviewing}
-              />
-            </EuiToolTip>
-          ))}
-          <span className="euiMarkdownEditor__toolbar__divider" />
-          {quoteCodeLinkButtons.map(item => (
-            <EuiToolTip key={item.id} content={item.label} delay="long">
-              <EuiButtonIcon
-                color="text"
-                onClick={() => handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label={item.label}
-                isDisabled={isPreviewing}
-              />
-            </EuiToolTip>
-          ))}
-
-          {uiPlugins.length > 0 ? (
-            <>
-              <span className="euiMarkdownEditor__toolbar__divider" />
-              {uiPlugins.map(({ name, button }) => {
-                const isSelectedNodeType =
-                  selectedNode && selectedNode.type === name;
-                return (
-                  <EuiToolTip key={name} content={button.label} delay="long">
-                    <EuiButtonIcon
-                      color="text"
-                      {...(isSelectedNodeType
-                        ? {
-                            style: { background: 'rgba(0, 0, 0, 0.15)' },
-                          }
-                        : null)}
-                      onClick={() => handleMdButtonClick(name)}
-                      iconType={button.iconType}
-                      aria-label={button.label}
-                      isDisabled={isPreviewing}
-                    />
-                  </EuiToolTip>
-                );
-              })}
-            </>
-          ) : null}
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          {/* The idea was to use the EuiButtonToggle but it doesn't work when pressing the enter key */}
-          {isPreviewing ? (
-            <EuiButtonEmpty
-              iconType="editorCodeBlock"
+    <div className="euiMarkdownEditorToolbar">
+      <div className="euiMarkdownEditorToolbar__buttons">
+        {boldItalicButtons.map(item => (
+          <EuiToolTip key={item.id} content={item.label} delay="long">
+            <EuiButtonIcon
               color="text"
-              size="s"
-              onClick={onClickPreview}>
-              <EuiI18n
-                token="euiMarkdownEditorToolbar.editor"
-                default="Editor"
-              />
-            </EuiButtonEmpty>
-          ) : (
-            <EuiButtonEmpty
-              iconType="eye"
+              onClick={() => handleMdButtonClick(item.id)}
+              iconType={item.iconType}
+              aria-label={item.label}
+              isDisabled={isPreviewing}
+            />
+          </EuiToolTip>
+        ))}
+        <span className="euiMarkdownEditorToolbar__divider" />
+        {listButtons.map(item => (
+          <EuiToolTip key={item.id} content={item.label} delay="long">
+            <EuiButtonIcon
               color="text"
-              size="s"
-              onClick={onClickPreview}>
-              <EuiI18n
-                token="euiMarkdownEditorToolbar.previewMarkdown"
-                default="Preview"
-              />
-            </EuiButtonEmpty>
-          )}
-        </EuiFlexItem>
-      </EuiFlexGroup>
+              onClick={() => handleMdButtonClick(item.id)}
+              iconType={item.iconType}
+              aria-label={item.label}
+              isDisabled={isPreviewing}
+            />
+          </EuiToolTip>
+        ))}
+        <span className="euiMarkdownEditorToolbar__divider" />
+        {quoteCodeLinkButtons.map(item => (
+          <EuiToolTip key={item.id} content={item.label} delay="long">
+            <EuiButtonIcon
+              color="text"
+              onClick={() => handleMdButtonClick(item.id)}
+              iconType={item.iconType}
+              aria-label={item.label}
+              isDisabled={isPreviewing}
+            />
+          </EuiToolTip>
+        ))}
+
+        {uiPlugins.length > 0 ? (
+          <>
+            <span className="euiMarkdownEditorToolbar__divider" />
+            {uiPlugins.map(({ name, button }) => {
+              const isSelectedNodeType =
+                selectedNode && selectedNode.type === name;
+              return (
+                <EuiToolTip key={name} content={button.label} delay="long">
+                  <EuiButtonIcon
+                    color="text"
+                    {...(isSelectedNodeType
+                      ? {
+                          style: { background: 'rgba(0, 0, 0, 0.15)' },
+                        }
+                      : null)}
+                    onClick={() => handleMdButtonClick(name)}
+                    iconType={button.iconType}
+                    aria-label={button.label}
+                    isDisabled={isPreviewing}
+                  />
+                </EuiToolTip>
+              );
+            })}
+          </>
+        ) : null}
+      </div>
+
+      {isPreviewing ? (
+        <EuiButtonEmpty
+          iconType="editorCodeBlock"
+          color="text"
+          size="s"
+          onClick={onClickPreview}>
+          <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
+        </EuiButtonEmpty>
+      ) : (
+        <EuiButtonEmpty
+          iconType="eye"
+          color="text"
+          size="s"
+          onClick={onClickPreview}>
+          <EuiI18n
+            token="euiMarkdownEditorToolbar.previewMarkdown"
+            default="Preview"
+          />
+        </EuiButtonEmpty>
+      )}
     </div>
   );
 };

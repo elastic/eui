@@ -90,7 +90,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         anchorPosition="upCenter">
-        <div className="euiMarkdownEditor__footerPopover">
+        <div className="euiMarkdownEditorFooter__popover">
           <EuiPopoverTitle>
             <EuiI18n
               token="euiMarkdownEditorFooter.errorsTitle"
@@ -106,14 +106,14 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
   }
 
   return (
-    <footer className="euiMarkdownEditor__footer">
-      <div className="euiMarkdownEditor__footerActions">
+    <footer className="euiMarkdownEditorFooter">
+      <div className="euiMarkdownEditorFooter__actions">
         {uploadButton}
         {errorsButton}
       </div>
 
       <EuiButtonIcon
-        className="euiMarkdownEditor__footerHelp"
+        className="euiMarkdownEditorFooter__help"
         iconType={MarkdownLogo}
         color="text"
         aria-label="Show markdown help"

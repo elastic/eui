@@ -1,4 +1,6 @@
-.euiMarkdownEditor__toolbar {
+.euiMarkdownEditorToolbar {
+  display: flex;
+  flex-wrap: wrap;
   background: $euiColorLightestShade;
   border: $euiBorderThin;
   border-color: $euiColorLightShade;
@@ -6,7 +8,10 @@
   padding: $euiSizeXS;
 
   &__buttons {
-    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    align-items: center;
 
     > * {
       margin-right: $euiSizeXS;
