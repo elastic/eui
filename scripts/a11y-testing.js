@@ -38,7 +38,6 @@ const docsPages = async (root, page) => {
     `${root}#/forms/color-selection`,
     `${root}#/forms/code-editor`,
     `${root}#/forms/date-picker`,
-    `${root}#/forms/selectable`,
     `${root}#/forms/suggest`,
     `${root}#/forms/super-date-picker`,
     `${root}#/elastic-charts/creating-charts`,
@@ -102,7 +101,7 @@ const printResult = result =>
           { id: 'color-contrast', enabled: false },
           {
             id: 'scrollable-region-focusable',
-            matches: '[role="grid"]',
+            selector: '[data-skip-axe="scrollable-region-focusable"]',
           },
         ],
       })

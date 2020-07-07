@@ -1,5 +1,34 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `27.0.0`.
+
+## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
+- Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
+- Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
+- Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
+- Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
+
+**Bug fixes**
+
+- Fixed a bug in `EuiResizableContainer` preventing nested containers ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed a bug in `EuiResizableContainer` preventing resizing by arrow keys in some cases ([#3699](https://github.com/elastic/eui/pull/3699))
+
+**Breaking changes**
+
+- Significant accessibility refactor of `EuiSelectable` ([#3169](https://github.com/elastic/eui/pull/3169))
+  - `react-virtualized` replaced with `react-window`
+  - `virtualizedProps` on `EuiSelectableOptionsList` renamed to `windowProps`
+  - Removed `rootId` and added `makeOptionId`, `listId`, and `setActiveOptionIndex` to `EuiSelectableList`
+  - Added `listId` to `EuiSelectableSearch`
+  - `options` passed into `EuiSelectable` cannot have an `id`
+  - Requires an `onChange` to be passed into `EuiSelectableSearch`
+
+## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
+
+- Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
+
+## [`26.2.0`](https://github.com/elastic/eui/tree/v26.2.0)
+
 - Added `background.color` to `EUI_CHARTS_THEME_LIGHT/DARK.theme` ([#3669](https://github.com/elastic/eui/pull/3669))
 - Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
 - Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
@@ -14,6 +43,7 @@
 - Fixed `EuiSkipLink` interactive props and Safari click issue ([#3665](https://github.com/elastic/eui/pull/3665))
 - Fixed `z-index` issues with `EuiHeader`, `EuiFlyout`, and other portal content ([#3655](https://github.com/elastic/eui/pull/3655))
 - Fixed `color` prop error in `EuiBadge` to be more flexible with what format it accepts ([#3655](https://github.com/elastic/eui/pull/3655))
+- Fixed `EuiSuperSelect` popover from moving 16px horizontally when it's close to a window edge ([#3685](https://github.com/elastic/eui/pull/3685))
 
 **Theme: Amsterdam**
 

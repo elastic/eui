@@ -252,8 +252,8 @@ export const ComboBoxExample = {
       text: (
         <p>
           <strong>EuiComboBoxList</strong> uses{' '}
-          <EuiLink href="https://github.com/bvaughn/react-virtualized">
-            react-virtualized
+          <EuiLink href="https://github.com/bvaughn/react-window">
+            react-window
           </EuiLink>{' '}
           to only render visible options to be super fast no matter how many
           options there are.

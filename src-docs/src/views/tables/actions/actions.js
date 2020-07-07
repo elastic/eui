@@ -134,7 +134,7 @@ export const Table = () => {
         ]
       : [
           {
-            name: 'Clone',
+            name: <span>Clone</span>,
             description: 'Clone this user',
             icon: 'copy',
             onClick: cloneUser,

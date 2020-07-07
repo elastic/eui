@@ -393,9 +393,9 @@ export const propsInfo = {
       props: {
         name: {
           description:
-            'The display name of the action (will be the button caption',
+            'The display name of the action (will be the button caption)',
           required: true,
-          type: { name: 'string' },
+          type: { name: 'PropTypes.node' },
         },
         description: {
           description: 'Describes the action (will be the button title)',

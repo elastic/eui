@@ -77,15 +77,13 @@ export const useContainerCallbacks = ({
 
   const getResizerButtonsSize = useCallback(() => {
     // get sum of all of resizer button sizes to proper calculate panels ratio
-    const allResizers = containerRef.current!.getElementsByClassName(
-      'euiResizableButton'
-    ) as HTMLCollectionOf<HTMLButtonElement>;
-    const size = isHorizontal
-      ? allResizers[0].offsetWidth
-      : allResizers[0].offsetHeight;
-
-    return size * allResizers.length;
-  }, [containerRef, isHorizontal]);
+    const allResizers = registryRef.current.getAllResizers();
+    return allResizers.reduce(
+      (size, resizer) =>
+        size + (isHorizontal ? resizer.offsetWidth : resizer.offsetHeight),
+      0
+    );
+  }, [registryRef, isHorizontal]);
 
   const onMouseDown = useCallback(
     (event: EuiResizableButtonMouseEvent) => {
@@ -150,16 +148,16 @@ export const useContainerCallbacks = ({
           nextPanelId,
           containerSize - resizersSize
         );
-        if (prevPanelSize !== nextPanelSize && onPanelWidthChange) {
+
+        if (onPanelWidthChange) {
           onPanelWidthChange({
             ...panelObject,
             [prevPanelId]: prevPanelSize,
             [nextPanelId]: nextPanelSize,
           });
-
-          prevPanel.setSize(prevPanelSize);
-          nextPanel.setSize(nextPanelSize);
         }
+        prevPanel.setSize(prevPanelSize);
+        nextPanel.setSize(nextPanelSize);
       }
     },
     // `setState` is safe to omit from `useCallback`
