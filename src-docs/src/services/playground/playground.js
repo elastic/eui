@@ -20,7 +20,18 @@ export default ({ config, setGhostBackground }) => {
     while (newCode.startsWith('\n')) newCode = newCode.replace('\n', '');
 
     newCode = newCode.trimEnd();
-    return newCode;
+
+    const codeArray = newCode.split('\n');
+
+    newCode = '';
+
+    for (let i = 0; i < codeArray.length; i++) {
+      let line = codeArray[i];
+      if (line.startsWith('    ')) line = line.replace('    ', '');
+      newCode = `${newCode}${line}\n`;
+    }
+
+    return newCode.trimEnd();
   };
 
   const Playground = () => {
