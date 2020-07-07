@@ -1,3 +1,7 @@
+.playgroundCompiler {
+  padding: $euiSize;
+}
+
 .playgroundCompiler__ghostBackground {
   @if (lightness($euiTextColor) < 50) {
     background: $euiColorDarkestShade;

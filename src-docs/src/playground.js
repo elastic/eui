@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 
 import { useView, Compiler, Error, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../src/components';
@@ -42,12 +43,16 @@ export default ({ config, setGhostBackground }) => {
       }
     }, [params.knobProps]);
 
+    const compilerClasses = classNames('playgroundCompiler', {
+      playgroundCompiler__ghostBackground: isGhost,
+    });
+
     return (
       <React.Fragment>
         <EuiTitle>
           <h3>{config.componentName}</h3>
         </EuiTitle>
-        <div className={isGhost ? 'playgroundCompiler__ghostBackground' : ''}>
+        <div className={compilerClasses}>
           <Compiler
             {...params.compilerProps}
             minHeight={62}
