@@ -1,4 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
+
+No public interface changes since `27.0.0`.
+
+## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
 - Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
 - Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
