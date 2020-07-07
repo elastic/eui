@@ -49,5 +49,4 @@
 
           set -x
 
-          export VERSION_TYPE=${version_type}
-          npm run release
+          npm run release -- --type=${version_type}
