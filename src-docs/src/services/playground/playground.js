@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { useView, Compiler, Error, Placeholder } from 'react-view';
-import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../src/components';
-import Knobs from './services/playground/knobs';
+import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
+import Knobs from './knobs';
 
 export default ({ config, setGhostBackground }) => {
   const getSnippet = code => {
@@ -18,7 +18,9 @@ export default ({ config, setGhostBackground }) => {
     }
 
     while (newCode.startsWith('\n')) newCode = newCode.replace('\n', '');
-    return newCode.trimEnd();
+
+    newCode = newCode.trimEnd();
+    return newCode;
   };
 
   const Playground = () => {

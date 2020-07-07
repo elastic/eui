@@ -4,7 +4,7 @@ import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
 
-import playgroundCreator from './playground';
+import { playgroundCreator } from './services/playground';
 
 // Guidelines
 

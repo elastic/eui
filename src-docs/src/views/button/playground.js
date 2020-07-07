@@ -1,6 +1,6 @@
 import { PropTypes } from 'react-view';
 import { EuiButton } from '../../../../src/components/';
-import propUtilityForPlayground from '../../services/playground/props';
+import { propUtilityForPlayground } from '../../services/playground';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiButton.__docgenInfo)
