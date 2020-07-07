@@ -17,7 +17,6 @@ export default ({ config, setGhostBackground }) => {
     }
 
     while (newCode.startsWith('\n')) newCode = newCode.replace('\n', '');
-    // console.log('newCode', newCode);
     return newCode.trimEnd();
   };
 
@@ -47,7 +46,6 @@ export default ({ config, setGhostBackground }) => {
         <EuiTitle>
           <h3>{config.componentName}</h3>
         </EuiTitle>
-        {/* <EuiSpacer /> */}
         <div className={isGhost ? 'playgroundCompiler__ghostBackground' : ''}>
           <Compiler
             {...params.compilerProps}
