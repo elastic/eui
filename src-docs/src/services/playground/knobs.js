@@ -5,14 +5,11 @@ import {
   EuiSwitch,
   EuiRadioGroup,
   EuiFieldText,
-  // EuiTextArea,
-  // EuiFlexGroup,
   EuiCode,
   EuiSelect,
   EuiFieldNumber,
   EuiToolTip,
   EuiTable,
-  // EuiTableFooter,
   EuiTableBody,
   EuiTableHeader,
   EuiTableHeaderCell,
@@ -33,15 +30,6 @@ const getTooltip = (description, type, name) => (
     <p>{description}</p>
   </span>
 );
-
-const Spacing = ({ children }) => {
-  return (
-    <>
-      <>{children}</>
-      {/* <EuiSpacer /> */}
-    </>
-  );
-};
 
 const Label = ({ children, tooltip }) => {
   return (
@@ -64,13 +52,12 @@ const Knob = ({
   options = {},
   description,
   placeholder,
-  // enumName,
 }) => {
   const [val, set] = useValueDebounce(globalVal, globalSet);
   switch (type) {
     case PropTypes.Ref:
       return (
-        <Spacing>
+        <>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <a
             href="https://reactjs.org/docs/refs-and-the-dom.html"
@@ -82,12 +69,12 @@ const Knob = ({
             React Ref documentation
           </a>
           {error && <div>error {error}</div>}
-        </Spacing>
+        </>
       );
 
     case PropTypes.Number:
       return (
-        <Spacing>
+        <>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <EuiFieldNumber
             placeholder={placeholder}
@@ -99,22 +86,18 @@ const Knob = ({
           />
 
           {error && <div>error {error}</div>}
-        </Spacing>
+        </>
       );
 
     case PropTypes.String:
     case PropTypes.Date:
       return (
-        <Spacing>
-          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
-
+        <>
           <EuiFieldText
             placeholder={placeholder}
             value={val ? val : undefined}
             onChange={e => {
-              // if (isNaN(e.target.value))
               set(e.target.value);
-              // else set(+e.target.value);
             }}
             aria-label={description}
             compressed
@@ -122,13 +105,11 @@ const Knob = ({
           />
 
           {error && <div>error {error}</div>}
-        </Spacing>
+        </>
       );
     case PropTypes.Boolean:
-      //   console.log('data', { description, type, name });
-
       return (
-        <Spacing>
+        <>
           <EuiSwitch
             id={name}
             label=""
@@ -139,7 +120,7 @@ const Knob = ({
             compressed
           />
           {error && <div>error {error}</div>}
-        </Spacing>
+        </>
       );
     case PropTypes.Enum:
       const optionsKeys = Object.keys(options);
@@ -157,9 +138,7 @@ const Knob = ({
         }));
 
         return (
-          <Spacing>
-            {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
-
+          <>
             <EuiRadioGroup
               options={flattenedOptions}
               idSelected={valueKey}
@@ -171,7 +150,7 @@ const Knob = ({
               name={`Select ${name}`}
             />
             {error && <div>error {error}</div>}
-          </Spacing>
+          </>
         );
       } else {
         const flattenedOptions = optionsKeys.map(key => ({
@@ -180,9 +159,7 @@ const Knob = ({
         }));
 
         return (
-          <Spacing>
-            {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
-
+          <>
             <EuiSelect
               fullWidth
               id={name}
@@ -195,7 +172,7 @@ const Knob = ({
               compressed
             />
             {error && <div>error {error}</div>}
-          </Spacing>
+          </>
         );
       }
 
@@ -203,24 +180,9 @@ const Knob = ({
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
-    // return (
-    //   <Spacing>
-    //     {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
-    //     <EuiTextArea
-    //       placeholder={placeholder}
-    //       value={val ? val : ''}
-    //       onChange={e => {
-    //         globalSet(e.target.value);
-    //       }}
-    //     />
-    //     {error && <div>error {error}</div>}
-    //   </Spacing>
-    // );
-
     case PropTypes.Custom:
       return null;
     default:
-      console.log('name', name);
       return assertUnreachable();
   }
 };
@@ -237,8 +199,6 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           state[name].custom.origin.type
         )
           humanizedType = humanizeType(state[name].custom.origin.type);
-
-        // if (name === 'color') console.log(state[name], name);
 
         const typeMarkup = (
           <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
@@ -263,7 +223,6 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
               header="Type"
               className="playgroundKnobs__rowCell">
               <EuiCode>{typeMarkup}</EuiCode>
-              {/* typeMarkup */}
             </EuiTableRowCell>
             <EuiTableRowCell
               key={`default__${name}-${idx}`}
@@ -323,19 +282,7 @@ const columns = [
 ];
 
 const Knobs = ({ state, set, error }) => {
-  // const allKnobNames = Object.keys(state).filter(
-  //   name => state[name].type !== PropTypes.Custom
-  // );
-  // const filteredKnobNames = allKnobNames.filter(
-  //   name => state[name].hidden !== true
-  // );
   const knobNames = Object.keys(state);
-  // const knobNames = showAllKnobs ? allKnobNames : filteredKnobNames;
-
-  // const firstGroup = knobNames.slice(0, Math.round(knobNames.length / 2));
-  // const secondGroup = knobNames.slice(Math.round(knobNames.length / 2));
-  // console.log('state', state);
-  // const items = [];
 
   return (
     <EuiTable compressed id={'playground__ID'}>
@@ -353,8 +300,6 @@ const Knobs = ({ state, set, error }) => {
           error={error}
         />
       </EuiTableBody>
-
-      {/* <EuiTableFooter>Footer</EuiTableFooter> */}
     </EuiTable>
   );
 };

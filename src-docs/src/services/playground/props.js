@@ -19,7 +19,6 @@ const getProp = (prop, propName) => {
       break;
 
     case 'enum':
-      //   console.log('prop', prop);
       newProp.type = PropTypes.Enum;
       newProp.required = prop.required;
       if (prop.defaultValue) {

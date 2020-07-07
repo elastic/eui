@@ -22,12 +22,6 @@ export default ({ config, setGhostBackground }) => {
   };
 
   const Playground = () => {
-    // if (config.props) {
-    //   if (config.props.className) config.props.className.hidden = true;
-    //   if (config.props['data-test-subj'])
-    //     config.props['data-test-subj'].hidden = true;
-    //   if (config.props['aria-label']) config.props['aria-label'].hidden = true;
-    // }
     const [isGhost, setGhost] = useState(false);
     const params = useView(config);
 
