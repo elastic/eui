@@ -1,8 +1,12 @@
 .playgroundCompiler {
-  padding: $euiSize;
+  > div {
+    justify-content: left !important; // sass-lint:disable-line no-important
+  }
 }
 
 .playgroundCompiler__ghostBackground {
+  padding: 0 $euiSize;
+
   @if (lightness($euiTextColor) < 50) {
     background: $euiColorDarkestShade;
   }

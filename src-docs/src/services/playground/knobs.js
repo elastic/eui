@@ -258,11 +258,17 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 </>
               )}
             </EuiTableRowCell>
-            <EuiTableRowCell key={`type__${name}-${idx}`} header="Type">
+            <EuiTableRowCell
+              key={`type__${name}-${idx}`}
+              header="Type"
+              className="playgroundKnobs__rowCell">
               <EuiCode>{typeMarkup}</EuiCode>
               {/* typeMarkup */}
             </EuiTableRowCell>
-            <EuiTableRowCell key={`default__${name}-${idx}`} header="Default">
+            <EuiTableRowCell
+              key={`default__${name}-${idx}`}
+              header="Default"
+              className="playgroundKnobs__rowCell">
               <EuiCode key={`defaultValue-${name}`}>
                 <span className="eui-textBreakNormal">
                   {state[name].defaultValue}
@@ -272,7 +278,8 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
             <EuiTableRowCell
               key={`modify__${name}-${idx}`}
               header="Modify"
-              textOnly={false}>
+              textOnly={false}
+              className="playgroundKnobs__rowCell">
               <Knob
                 key={name}
                 name={name}
