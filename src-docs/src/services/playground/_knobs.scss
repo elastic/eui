@@ -5,5 +5,7 @@ $knobTableRowMinHeight: 42px;
 }
 
 .playgroundCompiler__ghostBackground {
-  background: $euiColorDarkestShade;
+  @if (lightness($euiTextColor) < 50) {
+    background: $euiColorDarkestShade;
+  }
 }
