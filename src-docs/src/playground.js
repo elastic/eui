@@ -34,11 +34,11 @@ export default ({ config, setGhostBackground }) => {
     useEffect(() => {
       const { state } = params.knobProps;
       if (setGhostBackground) {
-        let br = false;
+        let needGhostTheme = false;
         Object.keys(setGhostBackground).forEach(name => {
-          if (state[name].value === setGhostBackground[name]) br = true;
+          if (state[name].value === setGhostBackground[name]) needGhostTheme = true;
         });
-        setGhost(br);
+        setGhost(needGhostTheme);
       }
     }, [params.knobProps]);
 
