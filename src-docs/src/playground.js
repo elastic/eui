@@ -35,7 +35,8 @@ export default ({ config, setGhostBackground }) => {
       if (setGhostBackground) {
         let needGhostTheme = false;
         Object.keys(setGhostBackground).forEach(name => {
-          if (state[name].value === setGhostBackground[name]) needGhostTheme = true;
+          if (state[name].value === setGhostBackground[name])
+            needGhostTheme = true;
         });
         setGhost(needGhostTheme);
       }
