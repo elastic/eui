@@ -54,7 +54,13 @@ const OutsideEventDetector: FunctionComponent<DetectorProps> = ({
 export type FocusTarget = HTMLElement | string | (() => HTMLElement);
 
 interface EuiFocusTrapInterface {
+  /**
+   * Clicking outside the trap area will disable the trap
+   */
   clickOutsideDisables?: boolean;
+  /**
+   * Reference to element that will get focus when the trap is initiated
+   */
   initialFocus?: FocusTarget;
   style?: CSSProperties;
   disabled?: boolean;
