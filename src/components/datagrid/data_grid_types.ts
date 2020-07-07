@@ -167,6 +167,10 @@ export interface EuiDataGridToolBarVisibilityOptions {
 // which defeats the generic's purpose & functionality as it would check for `number` in `number[]`
 export interface EuiDataGridPaginationProps {
   /**
+   * Hide per page options if necessary
+   */
+  hidePerPageOptions?: boolean;
+  /**
    * The index of the current page, starts at 0 for the first page
    */
   pageIndex: number;

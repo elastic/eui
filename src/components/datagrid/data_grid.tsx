@@ -210,6 +210,7 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
   }
 
   const {
+    hidePerPageOptions,
     pageIndex,
     pageSize,
     pageSizeOptions,
@@ -247,6 +248,7 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
                   <EuiTablePagination
                     aria-controls={controls}
                     activePage={pageIndex}
+                    hidePerPageOptions={hidePerPageOptions}
                     itemsPerPage={pageSize}
                     itemsPerPageOptions={pageSizeOptions}
                     pageCount={pageCount}

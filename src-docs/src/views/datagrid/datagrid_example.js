@@ -71,6 +71,7 @@ const gridSnippet = `
     }
     // Optional. Add pagination.
     pagination={{
+      hidePerPageOptions: true,
       pageIndex: 1,
       pageSize: 100,
       pageSizeOptions: [50, 100, 200],
