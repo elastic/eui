@@ -90,7 +90,6 @@ exports[`EuiCardSelect props isSelected 1`] = `
     class="euiButtonEmpty__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="check"
     />

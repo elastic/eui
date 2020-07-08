@@ -165,7 +165,6 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
     class="euiButton__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -187,7 +186,6 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
     class="euiButton__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -209,7 +207,6 @@ exports[`EuiButton props iconType is rendered 1`] = `
     class="euiButton__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -222,7 +219,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
 
 exports[`EuiButton props isDisabled is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton euiButton--primary euiButton-isDisabled"
   disabled=""
   type="button"
 >
@@ -238,7 +235,7 @@ exports[`EuiButton props isDisabled is rendered 1`] = `
 
 exports[`EuiButton props isDisabled renders a button even when href is defined 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton euiButton--primary euiButton-isDisabled"
   disabled=""
   type="button"
 >
@@ -254,7 +251,7 @@ exports[`EuiButton props isDisabled renders a button even when href is defined 1
 
 exports[`EuiButton props isLoading is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton euiButton--primary euiButton-isDisabled"
   disabled=""
   type="button"
 >

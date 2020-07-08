@@ -920,7 +920,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
         type="radio"
       />
       <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
+        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButton-isDisabled"
         disabled=""
         id="button00"
         tabindex="-1"
@@ -948,7 +948,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
         type="radio"
       />
       <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
+        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButton-isDisabled"
         disabled=""
         id="button01"
         tabindex="-1"
@@ -976,7 +976,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
         type="radio"
       />
       <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
+        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButton-isDisabled"
         disabled=""
         id="button02"
         tabindex="-1"

@@ -150,7 +150,6 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
     class="euiButtonEmpty__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -172,7 +171,6 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
     class="euiButtonEmpty__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -194,7 +192,6 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
     class="euiButtonEmpty__content"
   >
     <div
-      aria-hidden="true"
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />

@@ -101,6 +101,86 @@ export interface EuiButtonProps extends CommonProps {
   textProps?: HTMLAttributes<HTMLSpanElement>;
 }
 
+export interface EuiButtonDisplayProps extends EuiButtonProps {
+  element: 'a' | 'button' | 'label';
+}
+
+/**
+ *
+ * *INTERNAL ONLY* Component for displaying any element as a button
+ */
+const EuiButtonDisplay = React.forwardRef<
+  HTMLAnchorElement | HTMLButtonElement | HTMLLabelElement,
+  EuiButtonDisplayProps
+>(
+  (
+    {
+      children,
+      className,
+      iconType,
+      iconSide = 'left',
+      color = 'primary',
+      size = 'm',
+      fill = false,
+      isDisabled,
+      isLoading,
+      contentProps,
+      textProps,
+      fullWidth,
+      element: Element = 'button',
+      ...rest
+    },
+    ref
+  ) => {
+    // If in the loading state, force disabled to true
+    isDisabled = isLoading ? true : isDisabled;
+
+    const classes = classNames(
+      'euiButton',
+      color ? colorToClassNameMap[color] : null,
+      size ? sizeToClassNameMap[size] : null,
+      iconSide ? iconSideToClassNameMap[iconSide] : null,
+      className,
+      {
+        'euiButton--fill': fill,
+        'euiButton--fullWidth': fullWidth,
+        'euiButton-isDisabled': isDisabled,
+      }
+    );
+
+    const contentClassNames = classNames(
+      'euiButton__content',
+      contentProps && contentProps.className
+    );
+
+    const textClassNames = classNames(
+      'euiButton__text',
+      textProps && textProps.className
+    );
+
+    const innerNode = (
+      <EuiButtonContent
+        isLoading={isLoading}
+        iconType={iconType}
+        textProps={{ className: textClassNames, ...textProps }}
+        {...contentProps}
+        // className has to come last to override contentProps.className
+        className={contentClassNames}>
+        {children}
+      </EuiButtonContent>
+    );
+
+    return (
+      <Element className={classes} disabled={isDisabled} ref={ref} {...rest}>
+        {innerNode}
+      </Element>
+    );
+  }
+);
+
+EuiButtonDisplay.displayName = 'EuiButtonDisplay';
+export { EuiButtonDisplay };
+
 type EuiButtonPropsForAnchor = PropsForAnchor<
   EuiButtonProps,
   {
@@ -121,65 +201,19 @@ export type Props = ExclusiveUnion<
 >;
 
 export const EuiButton: FunctionComponent<Props> = ({
-  children,
-  className,
-  iconType,
-  iconSide = 'left',
-  color = 'primary',
-  size = 'm',
-  fill = false,
   isDisabled,
-  isLoading,
+  disabled,
   href,
   target,
   rel,
   type = 'button',
   buttonRef,
-  contentProps,
-  textProps,
-  fullWidth,
   ...rest
 }) => {
-  // If in the loading state, force disabled to true
-  isDisabled = isLoading ? true : isDisabled;
-
-  const classes = classNames(
-    'euiButton',
-    color ? colorToClassNameMap[color] : null,
-    size ? sizeToClassNameMap[size] : null,
-    iconSide ? iconSideToClassNameMap[iconSide] : null,
-    className,
-    {
-      'euiButton--fill': fill,
-      'euiButton--fullWidth': fullWidth,
-    }
-  );
-
-  const contentClassNames = classNames(
-    'euiButton__content',
-    contentProps && contentProps.className
-  );
-
-  const textClassNames = classNames(
-    'euiButton__text',
-    textProps && textProps.className
-  );
-
-  const innerNode = (
-    <EuiButtonContent
-      isLoading={isLoading}
-      iconType={iconType}
-      textProps={{ className: textClassNames, ...textProps }}
-      {...contentProps}
-      // className has to come last to override contentProps.className
-      className={contentClassNames}>
-      {children}
-    </EuiButtonContent>
-  );
-
+  const buttonIsDisabled = isDisabled || disabled;
   // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
-  const Element = href && !isDisabled ? 'a' : 'button';
+  const element = href && !isDisabled ? 'a' : 'button';
 
   const relObj: {
     rel?: string;
@@ -188,7 +222,7 @@ export const EuiButton: FunctionComponent<Props> = ({
     target?: string;
   } = {};
 
-  if (href && !isDisabled) {
+  if (href && !buttonIsDisabled) {
     relObj.href = href;
     relObj.rel = getSecureRelForTarget({ href, target, rel });
     relObj.target = target;
@@ -197,13 +231,12 @@ export const EuiButton: FunctionComponent<Props> = ({
   }
 
   return (
-    <Element
-      className={classes}
-      disabled={isDisabled}
+    <EuiButtonDisplay
+      element={element}
+      isDisabled={buttonIsDisabled}
       {...relObj}
       ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
-      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}>
-      {innerNode}
-    </Element>
+      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}
+    />
   );
 };

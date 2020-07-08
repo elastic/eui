@@ -61,7 +61,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -116,7 +115,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -173,7 +171,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -224,7 +221,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -275,7 +271,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -324,7 +319,6 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
           class="euiButtonEmpty__content"
         >
           <div
-            aria-hidden="true"
             class="euiButtonContent__icon"
             data-euiicon-type="cross"
           />
@@ -374,7 +368,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -430,7 +423,6 @@ Array [
             class="euiButtonEmpty__content"
           >
             <div
-              aria-hidden="true"
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
