@@ -8,6 +8,12 @@ export default () => {
     : EuiButton.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
+  propsToUse.iconType = {
+    ...propsToUse.iconType,
+    value: undefined,
+    type: PropTypes.String,
+  };
+
   propsToUse.children = {
     value: 'Button',
     type: PropTypes.ReactNode,
