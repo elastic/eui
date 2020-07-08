@@ -32,11 +32,11 @@ import {
   PropsForButton,
   keysOf,
 } from '../common';
-import { EuiLoadingSpinner } from '../loading';
 
 import { getSecureRelForTarget } from '../../services';
 
-import { IconType, EuiIcon } from '../icon';
+import { IconType } from '../icon';
+import { EuiButtonContentProps, EuiButtonContent } from './button_content';
 
 export type ButtonIconSide = 'left' | 'right';
 
@@ -94,7 +94,7 @@ export interface EuiButtonProps extends CommonProps {
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: HTMLAttributes<HTMLSpanElement>;
+  contentProps?: EuiButtonContentProps;
   /**
    * Object of props passed to the <span/> wrapping the component's {children}
    */
@@ -155,39 +155,15 @@ export const EuiButton: FunctionComponent<Props> = ({
     }
   );
 
-  const contentClassNames = classNames(
-    'euiButton__content',
-    contentProps && contentProps.className
-  );
-
-  const textClassNames = classNames(
-    'euiButton__text',
-    textProps && textProps.className
-  );
-
-  // Add an icon to the button if one exists.
-  let buttonIcon;
-
-  if (isLoading) {
-    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
-  } else if (iconType) {
-    buttonIcon = (
-      <EuiIcon
-        className="euiButton__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
-    );
-  }
-
   const innerNode = (
-    <span {...contentProps} className={contentClassNames}>
-      {buttonIcon}
-      <span {...textProps} className={textClassNames}>
-        {children}
-      </span>
-    </span>
+    <EuiButtonContent
+      isLoading={isLoading}
+      iconType={iconType}
+      iconSide={iconSide}
+      textProps={textProps}
+      {...contentProps}>
+      {children}
+    </EuiButtonContent>
   );
 
   // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend

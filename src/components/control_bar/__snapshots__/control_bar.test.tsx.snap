@@ -305,15 +305,19 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <span
-                  className="euiButton__content"
+                <EuiButtonContent
+                  iconSide="left"
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
+                </EuiButtonContent>
               </button>
             </EuiButton>
             <div
@@ -600,15 +604,19 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <span
-                  className="euiButton__content"
+                <EuiButtonContent
+                  iconSide="left"
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
+                </EuiButtonContent>
               </button>
             </EuiButton>
             <div
@@ -894,15 +902,19 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <span
-                  className="euiButton__content"
+                <EuiButtonContent
+                  iconSide="left"
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
+                </EuiButtonContent>
               </button>
             </EuiButton>
             <div
@@ -1101,15 +1113,19 @@ exports[`EuiControlBar props position is rendered 1`] = `
             onClick={[Function]}
             type="button"
           >
-            <span
-              className="euiButton__content"
+            <EuiButtonContent
+              iconSide="left"
             >
               <span
-                className="euiButton__text"
+                className="euiButton__content"
               >
-                Sound the Alarm
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
               </span>
-            </span>
+            </EuiButtonContent>
           </button>
         </EuiButton>
         <div
@@ -1380,15 +1396,19 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <span
-                  className="euiButton__content"
+                <EuiButtonContent
+                  iconSide="left"
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
+                </EuiButtonContent>
               </button>
             </EuiButton>
             <div
@@ -1679,15 +1699,19 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <span
-                  className="euiButton__content"
+                <EuiButtonContent
+                  iconSide="left"
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
+                </EuiButtonContent>
               </button>
             </EuiButton>
             <div
@@ -1978,15 +2002,19 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <span
-                  className="euiButton__content"
+                <EuiButtonContent
+                  iconSide="left"
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
+                </EuiButtonContent>
               </button>
             </EuiButton>
             <div
