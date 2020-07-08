@@ -24,7 +24,7 @@ const args = parseArguments();
 if (args.dry_run) {
   console.warn(chalk.yellow('Dry run mode: no changes will be pushed to npm or Github'));
   execSync = function() {
-    console.log.apply(arguments);
+    console.log.apply(null, arguments);
   };
 }
 
@@ -41,33 +41,46 @@ if (args.dry_run) {
   await ensureMasterBranch();
 
   // run linting and unit tests
-  execSync('npm test', execOptions);
+  if (args.steps.indexOf('test') > -1) {
+    execSync('npm test', execOptions);
+  }
 
   // (trans|com)pile `src` into `lib` and `dist`
-  execSync('npm run build', execOptions);
+  if (args.steps.indexOf('build') > -1) {
+    execSync('npm run build', execOptions);
+  }
 
-  // prompt user for what type of version bump to make (major|minor|patch)
-  const versionTarget = await getVersionTypeFromChangelog();
+  
+  if (args.steps.indexOf('version') > -1) {
+    // prompt user for what type of version bump to make (major|minor|patch)
+    const versionTarget = await getVersionTypeFromChangelog();
 
-  // build may have generated a new src-docs/src/i18ntokens.json file, dirtying the git workspace
-  // it's important to track those changes with this release, so determine the changes and write them
-  // to src-docs/src/i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
-  execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
+    // build may have generated a new src-docs/src/i18ntokens.json file, dirtying the git workspace
+    // it's important to track those changes with this release, so determine the changes and write them
+    // to src-docs/src/i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
+    execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
-  // update package.json & package-lock.json version, git commit, git tag
-  execSync(`npm version ${versionTarget}`, execOptions);
+    // update package.json & package-lock.json version, git commit, git tag
+    execSync(`npm version ${versionTarget}`, execOptions);
+  }
 
-  // push the version commit & tag to upstream
-  execSync('git push upstream --tags', execOptions);
+  if (args.steps.indexOf('tag') > -1) {
+    // push the version commit & tag to upstream
+    execSync('git push upstream --tags', execOptions);
+  }
 
-  // prompt user for npm 2FA
-  const otp = await getOneTimePassword();
+  if (args.steps.indexOf('publish') > -1) {
+    // prompt user for npm 2FA
+    const otp = await getOneTimePassword();
 
-  // publish new version to npm
-  execSync(`npm publish --otp=${otp}`, execOptions);
+    // publish new version to npm
+    execSync(`npm publish --otp=${otp}`, execOptions);
+  }
 
-  // update docs, git commit, git push
-  execSync('npm run sync-docs', execOptions);
+  if (args.steps.indexOf('docs') > -1) {
+    // update docs, git commit, git push
+    execSync('npm run sync-docs', execOptions);
+  }
 }()).catch(e => console.error(e));
 
 function parseArguments() {
@@ -84,9 +97,29 @@ function parseArguments() {
   parser.addArgument('--dry-run', {
     action: 'storeTrue',
     defaultValue: false,
+    help: 'Dry run mode; no changes are made',
   });
 
-  return parser.parseArgs();
+  const allSteps = ['test', 'build', 'version', 'tag', 'publish', 'docs'];
+  parser.addArgument('--steps', {
+    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
+    defaultValue: allSteps.join(','),
+  });
+
+  const args = parser.parseArgs();
+
+  // validate --steps argument
+  const steps = args.steps.trim().split(',');
+  const diff = steps.filter(x => allSteps.indexOf(x) === -1);
+  if (diff.length > 0) {
+    console.error(`Invalid --step value(s): ${diff.join(', ')}`);
+    process.exit(1);
+  }
+
+  return {
+    ...args,
+    steps,
+  };
 }
 
 async function ensureMasterBranch() {
@@ -166,7 +199,7 @@ async function getVersionTypeFromChangelog() {
     // detected version type preference set
     console.log(`${chalk.magenta('--type argument identifed, set to')} ${chalk.blue(versionType)}`);
 
-    if (versionType !== recommendedType) {
+    if (versionType !== humanReadableRecommendation) {
       console.warn(`${chalk.yellow('WARNING: --type argument does not match recommended version update')}`);
     }
 
