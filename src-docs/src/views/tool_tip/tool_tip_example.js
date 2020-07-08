@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -84,6 +85,36 @@ export const ToolTipExample = {
         </a>
         .
       </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <EuiCallOut
+        iconType="accessibility"
+        color="warning"
+        title={
+          <>
+            Anchoring a tooltip to a non-interactive element will make it
+            difficult for keyboard-only and screen reader users to read it.
+          </>
+        }
+      />
+
+      <EuiSpacer size="l" />
+
+      <EuiCallOut
+        iconType="accessibility"
+        color="warning"
+        title={
+          <>
+            Putting anything other than plain text into a tooltip will be lost
+            to screen readers. Consider switching to{' '}
+            <Link href="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            if you need more content inside a tooltip.
+          </>
+        }
+      />
 
       <EuiSpacer size="l" />
     </Fragment>

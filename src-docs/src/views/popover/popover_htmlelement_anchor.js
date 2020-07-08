@@ -18,6 +18,7 @@ const PopoverApp = props => {
 
   return (
     <EuiWrappingPopover
+      ownFocus
       button={props.anchor}
       isOpen={isPopoverOpen}
       closePopover={closePopover}>

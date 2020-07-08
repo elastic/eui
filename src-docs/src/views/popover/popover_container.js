@@ -29,6 +29,7 @@ export default () => {
   return (
     <EuiPanel panelRef={setPanelRef}>
       <EuiPopover
+        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}

@@ -77,7 +77,7 @@ export const ModalExample = {
         <p>
           Use a modal to temporarily interrupt a user’s current task and block
           interactions to the content below it. Be sure to read the full{' '}
-          <Link to="/guidelines/modals">modal usage guidelines</Link>.
+          <Link to="/layout/modal/guidelines">modal usage guidelines</Link>.
         </p>
       ),
       props: { EuiModal, EuiOverlayMask },

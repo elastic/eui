@@ -20,7 +20,6 @@ export default () => {
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
-        ownFocus
         onClose={closeFlyout}
         size="s"
         aria-labelledby="flyoutSmallTitle">
