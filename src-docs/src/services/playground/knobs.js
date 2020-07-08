@@ -52,6 +52,7 @@ const Knob = ({
   options = {},
   description,
   placeholder,
+  custom,
 }) => {
   const [val, set] = useValueDebounce(globalVal, globalSet);
   switch (type) {
@@ -95,9 +96,14 @@ const Knob = ({
         <>
           <EuiFieldText
             placeholder={placeholder}
-            value={val ? val : undefined}
             onChange={e => {
-              set(e.target.value);
+              const value = e.target.value;
+              if (custom && custom.options) {
+                if (custom.options[value]) set(value);
+                else set(undefined);
+              } else {
+                set(value);
+              }
             }}
             aria-label={description}
             compressed
@@ -251,6 +257,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 set={value => set(value, name)}
                 enumName={state[name].enumName}
                 defaultValue={state[name].defaultValue}
+                custom={state[name].custom}
               />
             </EuiTableRowCell>
           </EuiTableRow>

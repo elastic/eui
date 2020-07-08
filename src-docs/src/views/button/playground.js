@@ -1,6 +1,10 @@
 import { PropTypes } from 'react-view';
 import { EuiButton } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
+import {
+  propUtilityForPlayground,
+  mapOptions,
+} from '../../services/playground';
+import { iconTypes } from '../icon/icons';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiButton.__docgenInfo)
@@ -12,6 +16,10 @@ export default () => {
     ...propsToUse.iconType,
     value: undefined,
     type: PropTypes.String,
+    custom: {
+      ...propsToUse.iconType.custom,
+      options: mapOptions(iconTypes),
+    },
   };
 
   propsToUse.children = {
