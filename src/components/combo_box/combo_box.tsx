@@ -528,7 +528,7 @@ export class EuiComboBox<T> extends Component<
       Boolean(singleSelection) &&
       onCreateOption &&
       selectedOptions.length > 0 &&
-      !options.includes(selectedOptions[0])
+      !JSON.stringify(options).includes(JSON.stringify(selectedOptions[0]))
     );
   };
 
