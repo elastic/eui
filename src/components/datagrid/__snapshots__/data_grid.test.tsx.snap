@@ -63,7 +63,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           >
             <div
               aria-hidden="true"
-              class="euiButton__icon"
+              class="euiButtonContent__icon"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -208,7 +208,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -237,7 +237,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -259,7 +259,7 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButton__icon"
+              class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -749,7 +749,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -778,7 +778,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -800,7 +800,7 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButton__icon"
+              class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1611,7 +1611,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1640,7 +1640,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1662,7 +1662,7 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButton__icon"
+              class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2151,7 +2151,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -2180,7 +2180,7 @@ Array [
               >
                 <div
                   aria-hidden="true"
-                  class="euiButton__icon"
+                  class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -2202,7 +2202,7 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButton__icon"
+              class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
             <span

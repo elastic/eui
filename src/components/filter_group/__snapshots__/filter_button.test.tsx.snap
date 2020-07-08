@@ -50,7 +50,7 @@ exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiButton__icon"
+      class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
     <span

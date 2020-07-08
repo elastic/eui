@@ -47,11 +47,13 @@ export const EuiButtonContent: FunctionComponent<EuiButtonContentProps> = ({
   let buttonIcon;
 
   if (isLoading) {
-    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
+    buttonIcon = (
+      <EuiLoadingSpinner className="euiButtonContent__spinner" size="m" />
+    );
   } else if (iconType) {
     buttonIcon = (
       <EuiIcon
-        className="euiButton__icon"
+        className="euiButtonContent__icon"
         type={iconType}
         size="m"
         aria-hidden="true"

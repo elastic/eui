@@ -41,21 +41,10 @@
   }
 
   &:disabled {
+    @include euiButtonContentDisabled;
+
     color: $euiButtonColorDisabledText;
     pointer-events: none;
-
-    .euiButtonEmpty__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiButton__icon {
-      fill: currentColor;
-    }
-
-    .euiButton__spinner {
-      border-color: euiLoadingSpinnerBorderColors(currentColor);
-    }
 
     &:focus {
       background-color: transparent;

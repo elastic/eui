@@ -44,18 +44,11 @@
   }
 
   &:disabled {
+    @include euiButtonContentDisabled;
+
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
     pointer-events: none;
-
-    .euiButton__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiButton__spinner {
-      border-color: euiLoadingSpinnerBorderColors(currentColor);
-    }
 
     &.euiButton--fill {
       // Only increase the contrast of background color to text to 2.0 for disabled

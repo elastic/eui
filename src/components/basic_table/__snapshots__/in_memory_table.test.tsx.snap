@@ -402,13 +402,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   >
                                     <EuiIcon
                                       aria-hidden="true"
-                                      className="euiButton__icon"
+                                      className="euiButtonContent__icon"
                                       size="m"
                                       type="arrowDown"
                                     >
                                       <div
                                         aria-hidden="true"
-                                        className="euiButton__icon"
+                                        className="euiButtonContent__icon"
                                         data-euiicon-type="arrowDown"
                                         size="m"
                                       />

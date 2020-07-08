@@ -166,7 +166,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiButton__icon"
+      class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
     <span
@@ -188,7 +188,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiButton__icon"
+      class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
     <span
@@ -210,7 +210,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiButton__icon"
+      class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
     <span
@@ -262,7 +262,7 @@ exports[`EuiButton props isLoading is rendered 1`] = `
     class="euiButton__content"
   >
     <span
-      class="euiLoadingSpinner euiLoadingSpinner--medium euiButton__spinner"
+      class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
     />
     <span
       class="euiButton__text"

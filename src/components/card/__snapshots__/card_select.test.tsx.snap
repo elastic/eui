@@ -91,7 +91,7 @@ exports[`EuiCardSelect props isSelected 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiButton__icon"
+      class="euiButtonContent__icon"
       data-euiicon-type="check"
     />
     <span
