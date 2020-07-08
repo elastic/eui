@@ -12,6 +12,7 @@ No public interface changes since `27.0.0`.
 
 - Fixed a bug in `EuiResizableContainer` preventing nested containers ([#3699](https://github.com/elastic/eui/pull/3699))
 - Fixed a bug in `EuiResizableContainer` preventing resizing by arrow keys in some cases ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed a bug in `EuiComboBox` preventing the options list to open when `singleSelection` and `onCreateOption` are true ([#3706](https://github.com/elastic/eui/pull/3706))
 
 **Breaking changes**
 
