@@ -155,13 +155,24 @@ export const EuiButton: FunctionComponent<Props> = ({
     }
   );
 
+  const contentClassNames = classNames(
+    'euiButton__content',
+    contentProps && contentProps.className
+  );
+
+  const textClassNames = classNames(
+    'euiButton__text',
+    textProps && textProps.className
+  );
+
   const innerNode = (
     <EuiButtonContent
       isLoading={isLoading}
       iconType={iconType}
-      iconSide={iconSide}
-      textProps={textProps}
-      {...contentProps}>
+      textProps={{ className: textClassNames, ...textProps }}
+      {...contentProps}
+      // className has to come last to override contentProps.className
+      className={contentClassNames}>
       {children}
     </EuiButtonContent>
   );

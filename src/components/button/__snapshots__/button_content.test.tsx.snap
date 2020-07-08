@@ -3,11 +3,9 @@
 exports[`EuiButtonContent is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiButton__content testClass1 testClass2"
+  class="testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiButton__text"
-  />
+  <span />
 </span>
 `;

@@ -23,7 +23,7 @@ exports[`EuiTablePagination is rendered 1`] = `
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="arrowDown"
             />
             <span

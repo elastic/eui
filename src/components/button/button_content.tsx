@@ -22,24 +22,13 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps, keysOf } from '../common';
-import classNames from 'classnames';
+import { CommonProps } from '../common';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiIcon, IconType } from '../icon';
-
-export type ButtonIconSide = 'left' | 'right';
-
-const iconSideToClassNameMap: { [side in ButtonIconSide]: string | null } = {
-  left: null,
-  right: 'euiButton--iconRight',
-};
-
-export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
 export type EuiButtonContentProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
     iconType?: IconType;
-    iconSide?: ButtonIconSide;
     isLoading?: boolean;
     /**
      * Object of props passed to the <span/> wrapping the component's {children}
@@ -49,24 +38,11 @@ export type EuiButtonContentProps = HTMLAttributes<HTMLSpanElement> &
 
 export const EuiButtonContent: FunctionComponent<EuiButtonContentProps> = ({
   children,
-  className,
   textProps,
   isLoading,
   iconType,
-  iconSide,
-  ...rest
+  ...contentProps
 }) => {
-  const contentClassNames = classNames(
-    'euiButton__content',
-    iconSide ? iconSideToClassNameMap[iconSide] : null,
-    className
-  );
-
-  const textClassNames = classNames(
-    'euiButton__text',
-    textProps && textProps.className
-  );
-
   // Add an icon to the button if one exists.
   let buttonIcon;
 
@@ -84,11 +60,9 @@ export const EuiButtonContent: FunctionComponent<EuiButtonContentProps> = ({
   }
 
   return (
-    <span {...rest} className={contentClassNames}>
+    <span {...contentProps}>
       {buttonIcon}
-      <span {...textProps} className={textClassNames}>
-        {children}
-      </span>
+      <span {...textProps}>{children}</span>
     </span>
   );
 };

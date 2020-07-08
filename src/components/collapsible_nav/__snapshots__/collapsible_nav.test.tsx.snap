@@ -62,11 +62,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -117,11 +117,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -174,11 +174,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -225,11 +225,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -276,11 +276,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -325,11 +325,11 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
         >
           <div
             aria-hidden="true"
-            class="euiButtonEmpty__icon"
+            class="euiButton__icon"
             data-euiicon-type="cross"
           />
           <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+            class="euiCollapsibleNav__closeButtonText"
           >
             close
           </span>
@@ -375,11 +375,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -431,11 +431,11 @@ Array [
           >
             <div
               aria-hidden="true"
-              class="euiButtonEmpty__icon"
+              class="euiButton__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+              class="euiCollapsibleNav__closeButtonText"
             >
               close
             </span>

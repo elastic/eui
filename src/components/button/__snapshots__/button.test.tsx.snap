@@ -184,7 +184,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiButton__content euiButton--iconRight"
+    class="euiButton__content"
   >
     <div
       aria-hidden="true"

@@ -49,8 +49,12 @@
       cursor: not-allowed;
     }
 
-    .euiButtonEmpty__icon {
+    .euiButton__icon {
       fill: currentColor;
+    }
+
+    .euiButton__spinner {
+      border-color: euiLoadingSpinnerBorderColors(currentColor);
     }
 
     &:focus {

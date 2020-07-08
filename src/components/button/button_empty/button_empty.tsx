@@ -27,10 +27,10 @@ import {
   PropsForButton,
   keysOf,
 } from '../../common';
-import { EuiLoadingSpinner } from '../../loading';
 import { getSecureRelForTarget } from '../../../services';
-import { IconType, EuiIcon } from '../../icon';
+import { IconType } from '../../icon';
 import { ButtonIconSide } from '../button';
+import { EuiButtonContent, EuiButtonContentProps } from '../button_content';
 
 export type EuiButtonEmptyColor =
   | 'primary'
@@ -94,7 +94,7 @@ interface CommonEuiButtonEmptyProps extends CommonProps {
   /**
    * Passes props to `euiButtonEmpty__content` span
    */
-  contentProps?: Partial<HTMLAttributes<HTMLSpanElement>>;
+  contentProps?: EuiButtonContentProps;
 
   /**
    * Passes props to `euiButtonEmpty__text` span
@@ -152,29 +152,16 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     textProps && textProps.className
   );
 
-  // Add an icon to the button if one exists.
-  let buttonIcon;
-
-  if (isLoading) {
-    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
-  } else if (iconType) {
-    buttonIcon = (
-      <EuiIcon
-        className="euiButtonEmpty__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
-    );
-  }
-
   const innerNode = (
-    <span {...contentProps} className={contentClassNames}>
-      {buttonIcon}
-      <span {...textProps} className={textClassNames}>
-        {children}
-      </span>
-    </span>
+    <EuiButtonContent
+      isLoading={isLoading}
+      iconType={iconType}
+      textProps={{ className: textClassNames, ...textProps }}
+      {...contentProps}
+      // className has to come last to override contentProps.className
+      className={contentClassNames}>
+      {children}
+    </EuiButtonContent>
   );
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
