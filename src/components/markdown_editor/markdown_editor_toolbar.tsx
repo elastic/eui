@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEventHandler,
+  useContext,
+} from 'react';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
@@ -26,7 +31,7 @@ import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiMarkdownContext } from './markdown_context';
 import MarkdownActions from './markdown_actions';
-// @ts-ignore TODO
+// @ts-ignore a react svg
 import MarkdownCheckmarkIcon from './icons/markdown_checkmark';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
@@ -34,7 +39,7 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
     selectedNode?: null | any;
     markdownActions: MarkdownActions;
     viewMode: MARKDOWN_MODE;
-    onClickPreview: any;
+    onClickPreview: MouseEventHandler<HTMLButtonElement>;
     uiPlugins: EuiMarkdownEditorUiPlugin[];
   };
 
