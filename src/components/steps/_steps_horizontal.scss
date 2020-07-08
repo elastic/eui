@@ -82,7 +82,7 @@
 
 .euiStepHorizontal__number {
   position: relative; /* 1 */
-  z-index: $euiZLevel1; /* 1 */
+  z-index: $euiZLevel0 + 1; /* 1 */
   transition: all $euiAnimSpeedFast ease-in-out;
 }
 
