@@ -25,7 +25,7 @@ import { CodeSandboxLink } from '../codesandbox';
 
 import { cleanEuiImports } from '../../services';
 
-function markup(text) {
+export const markup = text => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split(regex).map((token, index) => {
     if (!token) {
@@ -48,9 +48,9 @@ function markup(text) {
     }
     return token;
   });
-}
+};
 
-const humanizeType = type => {
+export const humanizeType = type => {
   if (!type) {
     return '';
   }
