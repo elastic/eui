@@ -130,7 +130,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 };
 
 // TODO: Migrate to a service
-function checkValidColor(color: EuiAvatarProps['color']) {
+export const checkValidColor = (color: EuiAvatarProps['color']) => {
   const validHex = color && isValidHex(color);
   if (color && !validHex) {
     throw new Error(
@@ -138,7 +138,7 @@ function checkValidColor(color: EuiAvatarProps['color']) {
         'or six character hex value'
     );
   }
-}
+};
 
 function checkValidInitials(initials: EuiAvatarProps['initials']) {
   // Must be a string of 1 or 2 characters
