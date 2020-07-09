@@ -263,7 +263,9 @@ const createExample = (example, customTitle) => {
 
   let playgroundComponent;
   if (playground) {
-    playgroundComponent = playgroundCreator(playground());
+    if (Array.isArray(playground)) {
+      playgroundComponent = playground.map(elm => playgroundCreator(elm()));
+    } else playgroundComponent = playgroundCreator(playground());
   }
 
   const component = () => (
