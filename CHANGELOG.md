@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `securityAnalyticsApp` app icon to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 
 ## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
