@@ -12,6 +12,7 @@ import {
   EuiLoadingChart,
   EuiLoadingContent,
 } from '../../../../src/components';
+import { loadingConfig } from './playground';
 
 import LoadingKibana from './loading_kibana';
 const loadingKibanaSource = require('!!raw-loader!./loading_kibana');
@@ -144,4 +145,5 @@ export const LoadingExample = {
       snippet: '<EuiLoadingContent lines={3} />',
     },
   ],
+  playground: loadingConfig,
 };
