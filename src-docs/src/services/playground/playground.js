@@ -8,11 +8,20 @@ import Knobs from './knobs';
 
 export default ({ config, setGhostBackground }) => {
   const getSnippet = code => {
-    const regex = /return \(([\S\s]*?)(;)$/gm;
-    let newCode = code.match(regex)[0];
+    console.log(code);
+    let regex = /return \(([\S\s]*?)(;)$/gm;
+    let newCode = code.match(regex);
 
-    if (newCode.startsWith('return ('))
-      newCode = newCode.replace('return (', '');
+    if (newCode) {
+      newCode = newCode[0];
+      if (newCode.startsWith('return ('))
+        newCode = newCode.replace('return (', '');
+    } else {
+      regex = /return ([\S\s]*?)(;)$/gm;
+      newCode = code.match(regex)[0];
+      if (newCode.startsWith('return '))
+        newCode = newCode.replace('return ', '');
+    }
 
     if (newCode.endsWith(');')) {
       newCode = newCode.replace(/(\);)$/m, '');
