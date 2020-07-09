@@ -8,7 +8,6 @@ import Knobs from './knobs';
 
 export default ({ config, setGhostBackground }) => {
   const getSnippet = code => {
-    console.log(code);
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
 
