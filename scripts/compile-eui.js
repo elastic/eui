@@ -130,8 +130,8 @@ function compileBundle() {
     out: 'lib/test/index.d.ts',
     baseDir: path.resolve(__dirname, '..', 'src/test/'),
     files: ['index.ts'],
-    resolveModuleId() {
-      return '@elastic/eui/lib/test';
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
     },
   });
   dtsGenerator({
@@ -139,8 +139,8 @@ function compileBundle() {
     out: 'es/test/index.d.ts',
     baseDir: path.resolve(__dirname, '..', 'src/test/'),
     files: ['index.ts'],
-    resolveModuleId() {
-      return '@elastic/eui/es/test';
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
     },
   });
   console.log(chalk.green('✔ Finished test utils files'));
