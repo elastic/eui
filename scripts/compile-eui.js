@@ -124,17 +124,26 @@ function compileBundle() {
     },
   });
 
-  console.log('Building test utils .d.ts file...');
+  console.log('Building test utils .d.ts files...');
   dtsGenerator({
     name: '@elastic/eui/lib/test',
-    out: 'dist/test.d.ts',
+    out: 'lib/test/index.d.ts',
     baseDir: path.resolve(__dirname, '..', 'src/test/'),
     files: ['index.ts'],
     resolveModuleId() {
       return '@elastic/eui/lib/test';
     },
   });
-  console.log(chalk.green('✔ Finished test utils'));
+  dtsGenerator({
+    name: '@elastic/eui/es/test',
+    out: 'es/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId() {
+      return '@elastic/eui/es/test';
+    },
+  });
+  console.log(chalk.green('✔ Finished test utils files'));
 
   console.log('Building chart theme module...');
   execSync(
