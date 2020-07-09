@@ -1,4 +1,4 @@
-import { EuiAvatar } from '../../../../src/components/';
+import { EuiAvatar, checkValidColor } from '../../../../src/components/avatar';
 import { propUtilityForPlayground } from '../../services/playground';
 
 export default () => {
@@ -7,7 +7,6 @@ export default () => {
     : EuiAvatar.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
   propsToUse.name.value = 'Avatar';
-  const regex = /^#(?:[0-9a-fA-F]{3}){1,2}$/g;
 
   propsToUse.color = {
     ...propsToUse.color,
@@ -15,7 +14,12 @@ export default () => {
     custom: {
       ...propsToUse.color.custom,
       validator: val => {
-        return val.match(regex);
+        try {
+          checkValidColor(val);
+          return true;
+        } catch (error) {
+          return false;
+        }
       },
     },
   };
