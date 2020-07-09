@@ -106,6 +106,9 @@ const webpackConfig = {
     disableHostCheck: true,
     historyApiFallback: true,
   },
+  node: {
+    fs: 'empty',
+  },
 };
 
 // Inspired by `get-port-sync`, but propogates options

@@ -4,6 +4,8 @@ import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
 
+import { playgroundCreator } from './services/playground';
+
 // Guidelines
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
@@ -259,13 +261,18 @@ const createExample = (example, customTitle) => {
     })
   );
 
+  let playgroundComponent;
+  if (playground) {
+    playgroundComponent = playgroundCreator(playground());
+  }
+
   const component = () => (
     <EuiErrorBoundary>
       <GuidePage
         title={title}
         intro={intro}
         isBeta={beta}
-        playground={playground}
+        playground={playgroundComponent}
         guidelines={guidelines}>
         {renderedSections}
       </GuidePage>
