@@ -65,13 +65,15 @@ module.exports = function() {
         try {
           docgenResults = propsParser
             .withDefaultConfig({
-              propFilter: prop =>
+              propFilter: (prop, component) =>
                 filterProp(
                   prop,
+                  component,
                   state,
                   whiteListedProps,
                   whiteListedParent,
-                  componentExtends
+                  componentExtends,
+                  filename
                 ),
               shouldExtractLiteralValuesFromEnum: true,
               shouldRemoveUndefinedFromOptional: true,
@@ -81,8 +83,13 @@ module.exports = function() {
           // eslint-disable-next-line no-empty
         } catch (e) {}
 
-        if (state.get('childrenProp')) {
-          getChildrenTypeFromPropTypes(path, state.get('childrenProp'));
+        if (state.get('childrenProp') && state.get('componentName')) {
+          getChildrenTypeFromPropTypes(
+            path,
+            state.get('childrenProp'),
+            state.get('componentName'),
+            filename
+          );
         }
 
         if (docgenResults.length === 0) return;
@@ -119,6 +126,7 @@ module.exports = function() {
  */
 function filterProp(
   prop,
+  component,
   state,
   whiteListedProps,
   whiteListedParent,
@@ -126,6 +134,7 @@ function filterProp(
 ) {
   if (prop.name === 'children') {
     state.set('childrenProp', prop);
+    state.set('componentName', component.name);
   }
   if (whiteListedProps.includes(prop.name)) {
     return true;
@@ -148,17 +157,98 @@ function filterProp(
 }
 
 /**
- * Parser takes type generated for children prop from FunctionComponent PropsWithChildren. Here a regex pattern is used
- * to match children prop from sourcefile and replace it in docgenInfo
+ * Parser takes type generated for children prop from FunctionComponent PropsWithChildren. Here ast is traversed
+ * to find children prop from sourcefile and replace it in docgenInfo
  *
  * @param {*} path
  * @param {*} prop
+ * @param {*} componentName
  */
-function getChildrenTypeFromPropTypes(path, prop) {
-  const code = path.hub.file.code;
-  const match = code.match(/(children)(\?)*: (.*);/);
-  if (match) {
-    prop.type.name = match[3];
-    prop.required = !(match[2] === '?');
+function getChildrenTypeFromPropTypes(path, prop, componentName, filename) {
+  if (filename.includes('highlight.tsx')) {
+    path.traverse({
+      VariableDeclarator: ({ node }) => {
+        if (node.id && node.id.name === componentName) {
+          if (
+            node.id &&
+            node.id.typeAnnotation &&
+            node.id.typeAnnotation.typeAnnotation &&
+            node.id.typeAnnotation.typeAnnotation.typeName &&
+            node.id.typeAnnotation.typeAnnotation.typeName.name ===
+              'FunctionComponent'
+          ) {
+            node.id.typeAnnotation.typeAnnotation.typeParameters.params.map(
+              param => {
+                getChildrenFromInterface(param.typeName.name, path, prop);
+              }
+            );
+          }
+        }
+      },
+    });
   }
+}
+
+function getChildrenFromInterface(interfaceName, path, prop) {
+  path.traverse({
+    TSInterfaceDeclaration: ({ node }) => {
+      if (node.id.name === interfaceName) {
+        const childrenTypeNode = node.body.body.filter(
+          node => node.key && node.key.name === 'children'
+        )[0];
+        if (childrenTypeNode) {
+          getTypeForNode(
+            childrenTypeNode.typeAnnotation.typeAnnotation,
+            !childrenTypeNode.optional,
+            prop
+          );
+        }
+      }
+    },
+    TSTypeAliasDeclaration: ({ node }) => {
+      if (node.id.name === interfaceName) {
+        node.typeAnnotation.types.map(type => {
+          if (type.members) {
+            const childrenTypeNode = node.typeAnnotation.types.members.filter(
+              node => node.key.name === 'children'
+            )[0];
+            if (childrenTypeNode) {
+              getTypeForNode(
+                childrenTypeNode.typeAnnotation.typeAnnotation,
+                !childrenTypeNode.optional,
+                prop
+              );
+            }
+          }
+        });
+      }
+    },
+  });
+}
+
+function getTypeForNode(node, optional, prop) {
+  const type = getTypeFromTSTypes(node);
+  prop.type.name = type;
+  prop.required = optional;
+}
+
+function getTypeFromTSTypes(node) {
+  switch (node.type) {
+    case 'TSStringKeyword':
+      return 'string';
+
+    case 'TSNumberKeyword':
+      return 'number';
+
+    case 'TSBooleanKeyword':
+      return 'boolean';
+
+    case 'TSFunctionType':
+      return '() => void';
+
+    case 'TSUnionType':
+      const types = node.types.map(node => getTypeFromTSTypes(node));
+      return types.join(' | ');
+  }
+  return 'ReactNode';
 }
