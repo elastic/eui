@@ -26,6 +26,7 @@ import { CommonProps, keysOf } from '../../common';
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupGutterSize } from '../../flex';
+import { EuiFlexItemProps } from '../../flex/flex_item';
 
 const paddingSizeToClassNameMap = {
   xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
@@ -60,6 +61,14 @@ export type EuiDescribedFormGroupProps = CommonProps &
      * Added as a child of `EuiText`
      */
     description?: ReactNode;
+    /**
+     * For customizing the description container
+     */
+    descriptionFlexItemProps?: Partial<EuiFlexItemProps>;
+    /**
+     * For customizing the field container
+     */
+    fieldFlexItemProps?: Partial<EuiFlexItemProps>;
   };
 
 export const EuiDescribedFormGroup: React.FunctionComponent<
@@ -72,6 +81,8 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
   titleSize = 'xs',
   title,
   description,
+  descriptionFlexItemProps,
+  fieldFlexItemProps,
   ...rest
 }) => {
   const classes = classNames(
@@ -103,7 +114,7 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
   return (
     <div role="group" className={classes} {...rest}>
       <EuiFlexGroup gutterSize={gutterSize}>
-        <EuiFlexItem>
+        <EuiFlexItem {...descriptionFlexItemProps}>
           <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
             {title}
           </EuiTitle>
@@ -111,7 +122,9 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
           {renderedDescription}
         </EuiFlexItem>
 
-        <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
+        <EuiFlexItem {...fieldFlexItemProps} className={fieldClasses}>
+          {children}
+        </EuiFlexItem>
       </EuiFlexGroup>
     </div>
   );
