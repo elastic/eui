@@ -323,5 +323,4 @@ export const BadgeExample = {
     },
   ],
   playground: [badgeConfig, betaBadgeConfig, notificationBadgeConfig],
-  // playground: badgeConfig,
 };
