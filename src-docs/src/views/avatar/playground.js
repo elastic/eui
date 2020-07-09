@@ -7,6 +7,18 @@ export default () => {
     : EuiAvatar.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
   propsToUse.name.value = 'Avatar';
+  const regex = /^#(?:[0-9a-fA-F]{3}){1,2}$/g;
+
+  propsToUse.color = {
+    ...propsToUse.color,
+    value: undefined,
+    custom: {
+      ...propsToUse.color.custom,
+      validator: val => {
+        return val.match(regex);
+      },
+    },
+  };
 
   return {
     config: {
