@@ -87,8 +87,7 @@ module.exports = function() {
           getChildrenTypeFromPropTypes(
             path,
             state.get('childrenProp'),
-            state.get('componentName'),
-            filename
+            state.get('componentName')
           );
         }
 
@@ -164,7 +163,7 @@ function filterProp(
  * @param {*} prop
  * @param {*} componentName
  */
-function getChildrenTypeFromPropTypes(path, prop, componentName, filename) {
+function getChildrenTypeFromPropTypes(path, prop, componentName) {
   path.traverse({
     VariableDeclarator: ({ node }) => {
       if (node.id && node.id.name === componentName) {
