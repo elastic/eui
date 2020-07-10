@@ -85,9 +85,10 @@ module.exports = function() {
 
         if (state.get('childrenProp') && state.get('componentName')) {
           getChildrenTypeFromPropTypes(
-            path,
             state.get('childrenProp'),
-            state.get('componentName')
+            state.get('componentName'),
+            program,
+            filename
           );
         }
 
@@ -163,93 +164,75 @@ function filterProp(
  * @param {*} prop
  * @param {*} componentName
  */
-function getChildrenTypeFromPropTypes(path, prop, componentName) {
-  path.traverse({
-    VariableDeclarator: ({ node }) => {
-      if (node.id && node.id.name === componentName) {
-        if (
-          node.id &&
-          node.id.typeAnnotation &&
-          node.id.typeAnnotation.typeAnnotation &&
-          node.id.typeAnnotation.typeAnnotation.typeName &&
-          node.id.typeAnnotation.typeAnnotation.typeName.name ===
-            'FunctionComponent'
-        ) {
-          node.id.typeAnnotation.typeAnnotation.typeParameters.params.map(
-            param => {
-              if (param.typeName) {
-                getChildrenFromInterface(param.typeName.name, path, prop);
-              }
-            }
-          );
-        }
-      }
-    },
-  });
-}
 
-function getChildrenFromInterface(interfaceName, path, prop) {
-  path.traverse({
-    TSInterfaceDeclaration: ({ node }) => {
-      if (node.id.name === interfaceName) {
-        const childrenTypeNode = node.body.body.filter(
-          node => node.key && node.key.name === 'children'
-        )[0];
-        if (childrenTypeNode) {
-          getTypeForNode(
-            childrenTypeNode.typeAnnotation.typeAnnotation,
-            !childrenTypeNode.optional,
-            prop
-          );
-        }
-      }
-    },
-    TSTypeAliasDeclaration: ({ node }) => {
-      if (node.id.name === interfaceName) {
-        if (node.typeAnnotation && node.typeAnnotation.types) {
-          node.typeAnnotation.types.map(type => {
-            if (type.members) {
-              const childrenTypeNode = type.members.filter(
-                node => node.key.name === 'children'
-              )[0];
-              if (childrenTypeNode) {
-                getTypeForNode(
-                  childrenTypeNode.typeAnnotation.typeAnnotation,
-                  !childrenTypeNode.optional,
-                  prop
-                );
-              }
-            }
-          });
-        }
-      }
-    },
-  });
-}
+function getChildrenTypeFromPropTypes(
+  initialProp,
+  componentName,
+  program,
+  filename
+) {
+  const source = program.getSourceFile(filename);
+  const checker = program.getTypeChecker();
 
-function getTypeForNode(node, optional, prop) {
-  const type = getTypeFromTSTypes(node);
-  prop.type.name = type;
-  prop.required = optional;
-}
+  const moduleSymbol = checker.getSymbolAtLocation(source);
+  if (!moduleSymbol) return;
 
-function getTypeFromTSTypes(node) {
-  switch (node.type) {
-    case 'TSStringKeyword':
-      return 'string';
+  const components = checker.getExportsOfModule(moduleSymbol);
+  const componentToParse = components.filter(
+    component => component.escapedName === componentName
+  )[0];
 
-    case 'TSNumberKeyword':
-      return 'number';
-
-    case 'TSBooleanKeyword':
-      return 'boolean';
-
-    case 'TSFunctionType':
-      return '() => void';
-
-    case 'TSUnionType':
-      const types = node.types.map(node => getTypeFromTSTypes(node));
-      return types.join(' | ');
+  if (
+    !!componentToParse.declarations &&
+    componentToParse.declarations.length === 0
+  ) {
+    return null;
   }
-  return 'ReactNode';
+
+  const declaration =
+    componentToParse.valueDeclaration ||
+    (componentToParse.declarations && componentToParse.declarations[0]);
+
+  const type = checker.getTypeOfSymbolAtLocation(componentToParse, declaration);
+
+  const typeSymbol = type.symbol || type.aliasSymbol;
+
+  if (typeSymbol.escapedName === 'FunctionComponent') {
+    const callSignatures = type.getCallSignatures();
+    if (callSignatures.length) {
+      for (const sig of callSignatures) {
+        const params = sig.getParameters();
+        if (params.length === 0) {
+          continue;
+        }
+        const propsParam = params[0];
+        if (propsParam.name === 'props' || params.length === 1) {
+          const propsType = checker.getTypeOfSymbolAtLocation(
+            propsParam,
+            propsParam.valueDeclaration
+          );
+          const propTypes = propsType.getProperties();
+          const childrenProp = propTypes.filter(
+            prop => prop.getName() === 'children'
+          )[0];
+          const prop = childrenProp.declarations.filter(
+            declarations => declarations.parent.symbol.name !== 'DOMAttributes'
+          )[0];
+          if (prop) {
+            prop.symbol.parent.members.forEach((value, key) => {
+              if (key === 'children') {
+                const propType = checker.getTypeOfSymbolAtLocation(
+                  value,
+                  value.valueDeclaration
+                );
+                const type = checker.typeToString(propType);
+                initialProp.required = !prop.questionToken;
+                initialProp.type.name = type;
+              }
+            });
+          }
+        }
+      }
+    }
+  }
 }
