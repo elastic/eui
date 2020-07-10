@@ -152,26 +152,17 @@ export const EuiStat: FunctionComponent<
     </EuiTitle>
   );
 
-  const screenReaderChildren = () =>
-    isLoading ? (
-      <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
-    ) : (
-      <Fragment>
-        {reverse ? (
-          <>
-            {title} {description}
-          </>
-        ) : (
-          <>
-            {description} {title}
-          </>
-        )}
-      </Fragment>
-    );
-
   const screenReader = (
     <EuiScreenReaderOnly>
-      {createElement(titleElement, {}, screenReaderChildren())}
+      <p>
+        {isLoading ? (
+          <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
+        ) : (
+          <Fragment>
+            {reverse ? `${title} ${description}` : `${description} ${title}`}
+          </Fragment>
+        )}
+      </p>
     </EuiScreenReaderOnly>
   );
 
@@ -180,7 +171,9 @@ export const EuiStat: FunctionComponent<
       {!reverse && descriptionDisplay}
       {titleDisplay}
       {reverse && descriptionDisplay}
-      {screenReader}
+      {typeof title === 'string' &&
+        typeof description === 'string' &&
+        screenReader}
     </Fragment>
   );
 
