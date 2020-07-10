@@ -8,10 +8,16 @@ exports[`EuiSelectableSearch is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <input
+      aria-autocomplete="list"
+      aria-controls="list"
+      aria-expanded="true"
+      aria-haspopup="listbox"
       aria-label="aria-label"
+      aria-owns="list"
+      autocomplete="off"
       class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
       data-test-subj="test subject string"
-      placeholder="Filter options"
+      role="combobox"
       type="search"
       value=""
     />
@@ -40,8 +46,14 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <input
+      aria-autocomplete="list"
+      aria-controls="list"
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-owns="list"
+      autocomplete="off"
       class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
-      placeholder="Filter options"
+      role="combobox"
       type="search"
       value="Mi"
     />

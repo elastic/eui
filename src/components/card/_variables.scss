@@ -16,3 +16,10 @@ $euiCardSelectButtonBackgrounds: (
   danger: tintOrShade($euiColorDanger, 90%, 70%),
   ghost: $euiColorDarkShade,
 );
+
+$euiCardPaddingModifiers: (
+  'paddingNone': 0,
+  'paddingSmall': $euiSizeS,
+  'paddingMedium': $euiSize,
+  'paddingLarge': $euiSizeL
+) !default;

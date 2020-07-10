@@ -21,8 +21,11 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ProgressHTMLAttributes,
+  ReactNode,
+  Fragment,
 } from 'react';
 import classNames from 'classnames';
+import { EuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
@@ -49,6 +52,14 @@ export const COLORS = Object.keys(colorToClassNameMap);
 
 export type EuiProgressColor = keyof typeof colorToClassNameMap;
 
+const dataColorToClassNameMap = {
+  primary: 'euiProgress__data--primary',
+  secondary: 'euiProgress__data--secondary',
+  danger: 'euiProgress__data--danger',
+  subdued: 'euiProgress__data--subdued',
+  accent: 'euiProgress__data--accent',
+};
+
 const positionsToClassNameMap = {
   fixed: 'euiProgress--fixed',
   absolute: 'euiProgress--absolute',
@@ -70,6 +81,15 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 type Determinate = EuiProgressProps &
   ProgressHTMLAttributes<HTMLProgressElement> & {
     max?: number;
+    /*
+     * If true, will render the percentage, otherwise pass a custom node
+     */
+    valueText?: boolean | ReactNode;
+    label?: ReactNode;
+    /**
+     * Object of props passed to the <span/> wrapping the determinate progress's label
+     */
+    labelProps?: HTMLAttributes<HTMLSpanElement>;
   };
 
 export const EuiProgress: FunctionComponent<
@@ -80,7 +100,10 @@ export const EuiProgress: FunctionComponent<
   size = 'm',
   position = 'static',
   max,
+  valueText = false,
+  label,
   value,
+  labelProps,
   ...rest
 }) => {
   const determinate = !isNil(max);
@@ -95,17 +118,63 @@ export const EuiProgress: FunctionComponent<
     positionsToClassNameMap[position],
     className
   );
+  const dataClasses = classNames(
+    'euiProgress__data',
+    {
+      'euiProgress__data--l': size === 'l',
+    },
+    dataColorToClassNameMap[color]
+  );
+  const labelClasses = classNames(
+    'euiProgress__label',
+    labelProps && labelProps.className
+  );
+
+  let valueRender;
+  if (typeof valueText === 'boolean' && valueText) {
+    // valueText is a true boolean
+    valueRender = (
+      <EuiI18n
+        token="euiProgress.valueText"
+        default="{value}%"
+        values={{
+          value,
+        }}
+      />
+    );
+  } else if (valueText) {
+    // valueText exists
+    valueRender = valueText;
+  }
 
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
+
   if (determinate) {
     return (
-      <progress
-        className={classes}
-        max={max}
-        value={value}
-        {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
-      />
+      <Fragment>
+        {label || valueText ? (
+          <div className={dataClasses}>
+            {label && (
+              <span {...labelProps} className={labelClasses}>
+                {label}
+              </span>
+            )}
+            {valueRender && (
+              <span className="euiProgress__valueText">{valueRender}</span>
+            )}
+          </div>
+        ) : (
+          undefined
+        )}
+        <progress
+          className={classes}
+          max={max}
+          value={value}
+          aria-hidden={label && valueText ? true : false}
+          {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+        />
+      </Fragment>
     );
   } else {
     return (
