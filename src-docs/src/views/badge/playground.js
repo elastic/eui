@@ -4,7 +4,14 @@ import {
   EuiNotificationBadge,
   EuiBetaBadge,
 } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
+import {
+  propUtilityForPlayground,
+  mapOptions,
+} from '../../services/playground';
+import { checkValidColor } from '../../../../src/components/avatar';
+import { iconTypes } from '../icon/icons';
+
+const options = mapOptions(iconTypes);
 
 export const badgeConfig = () => {
   const docgenInfo = Array.isArray(EuiBadge.__docgenInfo)
@@ -25,7 +32,12 @@ export const badgeConfig = () => {
 
   propsToUse.iconType = {
     ...propsToUse.iconType,
+    value: undefined,
     type: PropTypes.String,
+    custom: {
+      ...propsToUse.iconType.custom,
+      validator: val => options[val],
+    },
   };
 
   propsToUse.color = {
@@ -34,10 +46,14 @@ export const badgeConfig = () => {
     type: PropTypes.String,
     custom: {
       ...propsToUse.color.custom,
-      // validator: val => {
-      //   const regex = /^#(?:[0-9a-fA-F]{3}){1,2}$/g;
-      //   return val.match(regex);
-      // },
+      validator: val => {
+        try {
+          checkValidColor(val);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
     },
   };
 
@@ -68,9 +84,15 @@ export const betaBadgeConfig = () => {
     type: PropTypes.String,
     value: 'content',
   };
+
   propsToUse.iconType = {
     ...propsToUse.iconType,
+    value: undefined,
     type: PropTypes.String,
+    custom: {
+      ...propsToUse.iconType.custom,
+      validator: val => options[val],
+    },
   };
 
   return {
