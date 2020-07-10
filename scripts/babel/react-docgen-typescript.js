@@ -157,12 +157,14 @@ function filterProp(
 }
 
 /**
- * Parser takes type generated for children prop from FunctionComponent PropsWithChildren. Here ast is traversed
- * to find children prop from sourcefile and replace it in docgenInfo
+ * Parser takes type generated for children prop from PropsWithChildren. Here
+ * children prop is parsed from the interface used the component by reusing
+ * typescript program.
  *
- * @param {*} path
- * @param {*} prop
+ * @param {*} initialProp
  * @param {*} componentName
+ * @param {*} program
+ * @param {*} filename
  */
 
 function getChildrenTypeFromPropTypes(
@@ -195,44 +197,64 @@ function getChildrenTypeFromPropTypes(
 
   const type = checker.getTypeOfSymbolAtLocation(componentToParse, declaration);
 
-  const typeSymbol = type.symbol || type.aliasSymbol;
-
-  if (typeSymbol.escapedName === 'FunctionComponent') {
-    const callSignatures = type.getCallSignatures();
-    if (callSignatures.length) {
-      for (const sig of callSignatures) {
-        const params = sig.getParameters();
-        if (params.length === 0) {
-          continue;
-        }
-        const propsParam = params[0];
-        if (propsParam.name === 'props' || params.length === 1) {
-          const propsType = checker.getTypeOfSymbolAtLocation(
-            propsParam,
-            propsParam.valueDeclaration
-          );
-          const propTypes = propsType.getProperties();
-          const childrenProp = propTypes.filter(
-            prop => prop.getName() === 'children'
-          )[0];
-          const prop = childrenProp.declarations.filter(
-            declarations => declarations.parent.symbol.name !== 'DOMAttributes'
-          )[0];
-          if (prop) {
-            prop.symbol.parent.members.forEach((value, key) => {
-              if (key === 'children') {
-                const propType = checker.getTypeOfSymbolAtLocation(
-                  value,
-                  value.valueDeclaration
-                );
-                const type = checker.typeToString(propType);
-                initialProp.required = !prop.questionToken;
-                initialProp.type.name = type;
-              }
-            });
-          }
+  // For stateless components there will be callSignatures.
+  const callSignatures = type.getCallSignatures();
+  if (callSignatures && callSignatures.length) {
+    for (const sig of callSignatures) {
+      const params = sig.getParameters();
+      if (params.length === 0) {
+        continue;
+      }
+      const propsParam = params[0];
+      if (propsParam.name === 'props' || params.length === 1) {
+        replaceProp(propsParam, checker, initialProp);
+      }
+    }
+  } else {
+    // For for statefull components there will be constructSignatures.
+    const constructSignatures = type.getConstructSignatures();
+    if (constructSignatures && constructSignatures.length) {
+      for (const sig of constructSignatures) {
+        const instanceType = sig.getReturnType();
+        const props = instanceType.getProperty('props');
+        if (props.valueDeclaration) {
+          replaceProp(props, checker, initialProp);
         }
       }
     }
+  }
+}
+
+/**
+ * Replace children prop type and required from information from interface
+ *
+ * @param {*} props
+ * @param {*} checker
+ * @param {*} initialProp
+ */
+function replaceProp(props, checker, initialProp) {
+  const propsType = checker.getTypeOfSymbolAtLocation(
+    props,
+    props.valueDeclaration
+  );
+  const propTypes = propsType.getProperties();
+  const childrenProp = propTypes.filter(
+    prop => prop.getName() === 'children'
+  )[0];
+  const prop = childrenProp.declarations.filter(
+    declarations => declarations.parent.symbol.name !== 'DOMAttributes'
+  )[0];
+  if (prop) {
+    prop.symbol.parent.members.forEach((value, key) => {
+      if (key === 'children') {
+        const propType = checker.getTypeOfSymbolAtLocation(
+          value,
+          value.valueDeclaration
+        );
+        const type = checker.typeToString(propType);
+        initialProp.required = !prop.questionToken;
+        initialProp.type.name = type.replace(' | undefined', '');
+      }
+    });
   }
 }
