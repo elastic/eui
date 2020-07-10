@@ -324,14 +324,6 @@ exports[`EuiStat props render with custom description element 1`] = `
   >
     title
   </p>
-  <p
-    class="euiScreenReaderOnly"
-  />
-  <div>
-    description
-  </div>
-   title
-  <p />
 </div>
 `;
 
@@ -352,14 +344,6 @@ exports[`EuiStat props render with custom title element 1`] = `
     aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
-    <div>
-      title
-    </div>
-  </div>
-  <div
-    class="euiScreenReaderOnly"
-  >
-    description 
     <div>
       title
     </div>
