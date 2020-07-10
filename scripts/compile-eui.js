@@ -124,6 +124,27 @@ function compileBundle() {
     },
   });
 
+  console.log('Building test utils .d.ts files...');
+  dtsGenerator({
+    name: '@elastic/eui/lib/test',
+    out: 'lib/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+    },
+  });
+  dtsGenerator({
+    name: '@elastic/eui/es/test',
+    out: 'es/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+    },
+  });
+  console.log(chalk.green('✔ Finished test utils files'));
+
   console.log('Building chart theme module...');
   execSync(
     'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
