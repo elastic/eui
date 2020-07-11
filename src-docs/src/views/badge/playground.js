@@ -11,7 +11,7 @@ import {
 import { checkValidColor } from '../../../../src/components/avatar';
 import { iconTypes } from '../icon/icons';
 
-const options = mapOptions(iconTypes);
+const iconOptions = mapOptions(iconTypes);
 
 export const badgeConfig = () => {
   const docgenInfo = Array.isArray(EuiBadge.__docgenInfo)
@@ -36,7 +36,7 @@ export const badgeConfig = () => {
     type: PropTypes.String,
     custom: {
       ...propsToUse.iconType.custom,
-      validator: val => options[val],
+      validator: val => iconOptions[val],
     },
   };
 
@@ -91,7 +91,7 @@ export const betaBadgeConfig = () => {
     type: PropTypes.String,
     custom: {
       ...propsToUse.iconType.custom,
-      validator: val => options[val],
+      validator: val => iconOptions[val],
     },
   };
 
