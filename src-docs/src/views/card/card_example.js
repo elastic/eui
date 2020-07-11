@@ -12,6 +12,7 @@ import {
 } from '../../../../src/components';
 
 import { EuiCardSelect } from '../../../../src/components/card/card_select';
+import cardConfig from './playground';
 
 import Card from './card';
 const cardSource = require('!!raw-loader!./card');
@@ -408,4 +409,5 @@ export const CardExample = {
 />`,
     },
   ],
+  playground: cardConfig,
 };
