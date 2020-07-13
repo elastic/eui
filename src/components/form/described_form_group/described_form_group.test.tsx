@@ -121,7 +121,7 @@ describe('EuiDescribedFormGroup', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('props for the FlexItem containers are passed down', () => {
+    test('props for the flex item containers are passed down', () => {
       const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
