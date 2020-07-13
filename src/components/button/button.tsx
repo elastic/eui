@@ -102,7 +102,7 @@ export interface EuiButtonProps extends CommonProps {
 }
 
 export interface EuiButtonDisplayProps extends EuiButtonProps {
-  element: 'a' | 'button' | 'label';
+  element: keyof JSX.IntrinsicElements;
 }
 
 /**
@@ -132,9 +132,6 @@ const EuiButtonDisplay = React.forwardRef<
     },
     ref
   ) => {
-    // If in the loading state, force disabled to true
-    isDisabled = isLoading ? true : isDisabled;
-
     const classes = classNames(
       'euiButton',
       color ? colorToClassNameMap[color] : null,
@@ -170,35 +167,12 @@ const EuiButtonDisplay = React.forwardRef<
       </EuiButtonContent>
     );
 
-    if (Element === 'label') {
-      return (
-        <Element
-          className={classes}
-          ref={ref as Ref<HTMLLabelElement>}
-          {...rest}>
-          {innerNode}
-        </Element>
-      );
-    } else if (Element === 'a') {
-      return (
-        <Element
-          className={classes}
-          ref={ref as Ref<HTMLAnchorElement>}
-          {...rest}>
-          {innerNode}
-        </Element>
-      );
-    } else {
-      return (
-        <Element
-          className={classes}
-          disabled={isDisabled}
-          ref={ref as Ref<HTMLButtonElement>}
-          {...rest}>
-          {innerNode}
-        </Element>
-      );
-    }
+    return (
+      // @ts-ignore difficult to verify `rest` applied to `Element`
+      <Element className={classes} ref={ref} {...rest}>
+        {innerNode}
+      </Element>
+    );
   }
 );
 
@@ -234,10 +208,16 @@ export const EuiButton: FunctionComponent<Props> = ({
   buttonRef,
   ...rest
 }) => {
-  const buttonIsDisabled = isDisabled || disabled;
+  const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
   // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
   const element = href && !isDisabled ? 'a' : 'button';
+
+  let elementProps = {};
+  elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
+  if (element === 'button') {
+    elementProps = { ...elementProps, disabled: buttonIsDisabled };
+  }
 
   const relObj: {
     rel?: string;
@@ -257,7 +237,7 @@ export const EuiButton: FunctionComponent<Props> = ({
   return (
     <EuiButtonDisplay
       element={element}
-      isDisabled={buttonIsDisabled}
+      {...elementProps}
       {...relObj}
       ref={buttonRef}
       {...rest}
