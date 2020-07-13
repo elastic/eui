@@ -24,6 +24,8 @@ export const iconTypes = [
   'accessibility',
   'aggregate',
   'alert',
+  'analyzeEvent',
+  'analyzeEventDisabled',
   'annotation',
   'apmTrace',
   'apps',

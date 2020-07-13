@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.0.0`.
+- Added `analyzeEvent` and `analyzeEventDisabled` glyph to `EuiIcon` ([#3364](https://github.com/elastic/eui/pull/3364))
 
 ## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
