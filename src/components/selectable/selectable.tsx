@@ -33,13 +33,11 @@ import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
 import { EuiLoadingChart } from '../loading';
 import { getMatchingOptions } from './matching_options';
-import { keys } from '../../services';
+import { keys, htmlIdGenerator } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
-import {
-  EuiSelectableOptionsListProps,
-  EuiSelectableSingleOptionProps,
-} from './selectable_list/selectable_list';
+import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
+import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -65,7 +63,7 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
     /**
      * Passes props down to the `EuiFieldSearch`
      */
-    searchProps?: {};
+    searchProps?: Partial<EuiSelectableSearchProps>;
   }
 >;
 
@@ -88,7 +86,7 @@ export type EuiSelectableProps = Omit<
     /**
      * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: EuiSelectableOption[];
+    options: Array<Exclude<EuiSelectableOption, 'id'>>;
     /**
      * Passes back the altered `options` array with selected options as
      */
@@ -99,7 +97,7 @@ export type EuiSelectableProps = Omit<
      * `true`: only allows one selection
      * `always`: can and must have only one selection
      */
-    singleSelection?: EuiSelectableSingleOptionProps;
+    singleSelection?: EuiSelectableOptionsListProps['singleSelection'];
     /**
      * Allows marking options as `checked='off'` as well as `'on'`
      */
@@ -129,6 +127,7 @@ export interface EuiSelectableState {
   activeOptionIndex?: number;
   searchValue: string;
   visibleOptions: EuiSelectableOption[];
+  isFocused: boolean;
 }
 
 export class EuiSelectable extends Component<
@@ -142,7 +141,7 @@ export class EuiSelectable extends Component<
   };
 
   private optionsListRef = createRef<EuiSelectableList>();
-
+  rootId = htmlIdGenerator();
   constructor(props: EuiSelectableProps) {
     super(props);
 
@@ -165,6 +164,7 @@ export class EuiSelectable extends Component<
       activeOptionIndex,
       searchValue: initialSearchValue,
       visibleOptions,
+      isFocused: false,
     };
   }
 
@@ -193,6 +193,27 @@ export class EuiSelectable extends Component<
     return this.state.activeOptionIndex != null;
   };
 
+  onFocus = () => {
+    if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
+      return;
+    }
+
+    const firstSelected = this.state.visibleOptions.findIndex(
+      option => option.checked && !option.disabled && !option.isGroupLabel
+    );
+
+    if (firstSelected > -1) {
+      this.setState({ activeOptionIndex: firstSelected, isFocused: true });
+    } else {
+      this.setState({
+        activeOptionIndex: this.state.visibleOptions.findIndex(
+          option => !option.disabled && !option.isGroupLabel
+        ),
+        isFocused: true,
+      });
+    }
+  };
+
   onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const optionsList = this.optionsListRef.current;
 
@@ -210,6 +231,8 @@ export class EuiSelectable extends Component<
         break;
 
       case keys.ENTER:
+      case keys.SPACE:
+        event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
           optionsList.onAddOrRemoveOption(
@@ -218,20 +241,23 @@ export class EuiSelectable extends Component<
         }
         break;
 
-      case keys.TAB:
-        // Disallow tabbing when the user is navigating the options.
-        // TODO: Can we force the tab to the next sibling element?
-        if (this.hasActiveOption()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
+      case keys.HOME:
+        event.preventDefault();
+        event.stopPropagation();
+        this.setState({ activeOptionIndex: 0 });
+        break;
+
+      case keys.END:
+        event.preventDefault();
+        event.stopPropagation();
+        this.setState({
+          activeOptionIndex: this.state.visibleOptions.length - 1,
+        });
         break;
 
       default:
-        if (this.props.onKeyDown) {
-          this.props.onKeyDown(event);
-        }
-        this.clearActiveOption();
+        this.setState({ activeOptionIndex: undefined }, this.onFocus);
+        break;
     }
   };
 
@@ -258,10 +284,12 @@ export class EuiSelectable extends Component<
         }
       }
 
-      // Group titles are included in option list but are not selectable
-      // Skip group title options
+      // Group titles and disabled options are included in option list but are not selectable
       const direction = amount > 0 ? 1 : -1;
-      while (visibleOptions[nextActiveOptionIndex].isGroupLabel) {
+      while (
+        visibleOptions[nextActiveOptionIndex].isGroupLabel ||
+        visibleOptions[nextActiveOptionIndex].disabled
+      ) {
         nextActiveOptionIndex = nextActiveOptionIndex + direction;
 
         if (nextActiveOptionIndex < 0) {
@@ -275,29 +303,35 @@ export class EuiSelectable extends Component<
     });
   };
 
-  clearActiveOption = () => {
-    this.setState({
-      activeOptionIndex: undefined,
-    });
-  };
-
   onSearchChange = (
     visibleOptions: EuiSelectableOption[],
     searchValue: string
   ) => {
-    this.setState({
-      visibleOptions,
-      searchValue,
-    });
+    this.setState(
+      {
+        visibleOptions,
+        searchValue,
+        activeOptionIndex: undefined,
+      },
+      () => {
+        if (this.state.isFocused) {
+          this.onFocus();
+        }
+      }
+    );
   };
 
   onContainerBlur = () => {
-    this.clearActiveOption();
+    this.setState({
+      activeOptionIndex: undefined,
+      isFocused: false,
+    });
   };
 
   onOptionClick = (options: EuiSelectableOption[]) => {
     this.setState(state => ({
       visibleOptions: getMatchingOptions(options, state.searchValue),
+      activeOptionIndex: this.state.activeOptionIndex,
     }));
     if (this.props.onChange) {
       this.props.onChange(options);
@@ -319,12 +353,32 @@ export class EuiSelectable extends Component<
       renderOption,
       height,
       allowExclusions,
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
       ...rest
     } = this.props;
 
     const { searchValue, visibleOptions, activeOptionIndex } = this.state;
 
-    let messageContent;
+    // Some messy destructuring here to remove aria-label/describedby from searchProps and listProps
+    // Made messier by some TS requirements
+    // The aria attributes are then used in getAccessibleName() to place them where they need to go
+    const unknownAccessibleName = {
+      'aria-label': undefined,
+      'aria-describedby': undefined,
+    };
+    const {
+      'aria-label': searchAriaLabel,
+      'aria-describedby': searchAriaDescribedby,
+      ...cleanedSearchProps
+    } = searchProps || unknownAccessibleName;
+    const {
+      'aria-label': listAriaLabel,
+      'aria-describedby': listAriaDescribedby,
+      ...cleanedListProps
+    } = listProps || unknownAccessibleName;
+
+    let messageContent: JSX.Element | undefined;
 
     if (isLoading) {
       messageContent = (
@@ -368,36 +422,126 @@ export class EuiSelectable extends Component<
       className
     );
 
+    const messageContentId = messageContent && this.rootId('messageContent');
+    const listId = this.rootId('listbox');
+    const makeOptionId = (index: number | undefined) => {
+      if (typeof index === 'undefined') {
+        return '';
+      }
+
+      return `${listId}_option-${index}`;
+    };
+
+    /**
+     * There are lots of ways to add an accessible name
+     * Usually we want the same name for the input and the listbox (which is added by aria-label/describedby)
+     * But you can always override it using searchProps or listProps
+     * This finds the correct name to use
+     *
+     * TODO: This doesn't handle being labelled (<label for="idOfInput">)
+     *
+     * @param props
+     */
+    const getAccessibleName = (
+      props:
+        | Partial<EuiSelectableSearchProps>
+        | EuiSelectableOptionsListPropsWithDefaults
+        | undefined,
+      messageContentId?: string
+    ) => {
+      if (props && props['aria-label']) {
+        return { 'aria-label': props['aria-label'] };
+      }
+
+      const messageContentIdString = messageContentId
+        ? ` ${messageContentId}`
+        : '';
+
+      if (props && props['aria-describedby']) {
+        return {
+          'aria-describedby': `${
+            props['aria-describedby']
+          }${messageContentIdString}`,
+        };
+      }
+
+      if (ariaLabel) {
+        return { 'aria-label': ariaLabel };
+      }
+
+      if (ariaDescribedby) {
+        return {
+          'aria-describedby': `${ariaDescribedby}${messageContentIdString}`,
+        };
+      }
+
+      return {};
+    };
+
+    const searchAccessibleName = getAccessibleName(
+      searchProps,
+      messageContentId
+    );
+    const searchHasAccessibleName = Boolean(
+      Object.keys(searchAccessibleName).length
+    );
     const search = searchable ? (
-      <EuiSelectableSearch
-        key="listSearch"
-        options={options}
-        onChange={this.onSearchChange}
-        {...searchProps}
-      />
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
+          <EuiSelectableSearch
+            key="listSearch"
+            options={options}
+            onChange={this.onSearchChange}
+            listId={listId}
+            aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
+            placeholder={placeholderName}
+            {...(searchHasAccessibleName
+              ? searchAccessibleName
+              : { 'aria-label': placeholderName })}
+            {...cleanedSearchProps}
+          />
+        )}
+      </EuiI18n>
     ) : (
       undefined
     );
 
+    const listAccessibleName = getAccessibleName(listProps);
+    const listHasAccessibleName = Boolean(
+      Object.keys(listAccessibleName).length
+    );
     const list = messageContent ? (
-      <EuiSelectableMessage key="listMessage">
+      <EuiSelectableMessage key="listMessage" id={messageContentId}>
         {messageContent}
       </EuiSelectableMessage>
     ) : (
-      <EuiSelectableList
-        key="list"
-        options={options}
-        visibleOptions={visibleOptions}
-        searchValue={searchValue}
-        activeOptionIndex={activeOptionIndex}
-        onOptionClick={this.onOptionClick}
-        singleSelection={singleSelection}
-        ref={this.optionsListRef}
-        renderOption={renderOption}
-        height={height}
-        allowExclusions={allowExclusions}
-        {...listProps}
-      />
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
+          <EuiSelectableList
+            key="list"
+            options={options}
+            visibleOptions={visibleOptions}
+            searchValue={searchValue}
+            activeOptionIndex={activeOptionIndex}
+            setActiveOptionIndex={(index, cb) => {
+              this.setState({ activeOptionIndex: index }, cb);
+            }}
+            onOptionClick={this.onOptionClick}
+            singleSelection={singleSelection}
+            ref={this.optionsListRef}
+            renderOption={renderOption}
+            height={height}
+            allowExclusions={allowExclusions}
+            searchable={searchable}
+            makeOptionId={makeOptionId}
+            listId={listId}
+            {...(listHasAccessibleName
+              ? listAccessibleName
+              : searchable && { 'aria-label': placeholderName })}
+            {...cleanedListProps}
+          />
+        )}
+      </EuiI18n>
     );
 
     return (
@@ -405,6 +549,7 @@ export class EuiSelectable extends Component<
         className={classes}
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
+        onFocus={this.onFocus}
         {...rest}>
         {children && children(list, search)}
       </div>

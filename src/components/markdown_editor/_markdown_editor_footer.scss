@@ -1,17 +1,16 @@
-.euiMarkdownEditor__footer {
+.euiMarkdownEditorFooter {
   display: inline-flex;
   padding: $euiSizeXS;
   border: $euiBorderThin;
-  border-top: none;
   align-items: center;
   background: $euiPageBackgroundColor;
 }
 
-.euiMarkdownEditor__footerPopover {
+.euiMarkdownEditorFooter__popover {
   width: 300px;
 }
 
-.euiMarkdownEditor__footerActions {
+.euiMarkdownEditorFooter__actions {
   flex: 1;
   display: inline-flex;
 
@@ -22,7 +21,7 @@
   }
 }
 
-.euiMarkdownEditor__footerHelp {
+.euiMarkdownEditorFooter__help {
   justify-self: flex-end;
 
   // overrides the default button icon width size
@@ -31,7 +30,7 @@
   }
 }
 
-.euiMarkdownEditor__footerErrors {
+.euiMarkdownEditorFooter__errors {
   // overrides the default button icon width size
   > svg {
     color: $euiTextSubduedColor;

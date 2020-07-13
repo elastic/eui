@@ -591,6 +591,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
   >
     <EuiPopover
       anchorPosition="downCenter"
+      buffer={0}
       button={
         <EuiSuperSelectControl
           className="euiSuperSelect--isOpen__button"

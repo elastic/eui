@@ -9,7 +9,7 @@ const EuiIconTokenBinary = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path fillRule="evenodd" d="M12 4H4V12H12V4ZM8.5 5.5H5.5V10.5H8.5V5.5Z" />
+    <path fillRule="evenodd" d="M12 4H4v8h8V4zM8.5 5.5h-3v5h3v-5z" />
   </svg>
 );
 

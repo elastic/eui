@@ -24,3 +24,11 @@ export {
 } from './markdown_default_plugins';
 export { EuiMarkdownContext } from './markdown_context';
 export { EuiMarkdownFormat } from './markdown_format';
+export {
+  EuiMarkdownParseError,
+  EuiMarkdownAstNode,
+  EuiMarkdownAstNodePosition,
+  EuiMarkdownFormatting,
+  EuiMarkdownEditorUiPlugin,
+  RemarkRehypeHandler,
+} from './markdown_types';

@@ -180,4 +180,11 @@ describe('astToEsQueryString', () => {
     );
     expect(query).toBe('+name:john +(enrolled:true Teacher)');
   });
+
+  test('ast - name:"First \\"Nickname\\" Last"', () => {
+    const query = astToEsQueryString(
+      AST.create([AST.Field.must.eq('name', 'First "Nickname" Last')])
+    );
+    expect(query).toBe('+name:"First \\"Nickname\\" Last"');
+  });
 });

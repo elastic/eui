@@ -117,6 +117,12 @@ $euiProgressColors: (
       }
     }
   }
+
+  .euiProgress__data--#{$name} {
+    .euiProgress__valueText {
+      color: $color;
+    }
+  }
 }
 
 @keyframes euiProgress {
@@ -126,5 +132,35 @@ $euiProgressColors: (
 
   100% {
     transform: scaleX(1) translateX(100%);
+  }
+}
+
+.euiProgress__data {
+  display: flex;
+  justify-content: space-between;
+
+  .euiProgress__label {
+    @include euiTextTruncate;
+    flex-basis: 80%;
+    flex-grow: 1;
+  }
+
+  .euiProgress__valueText {
+    @include euiTextTruncate;
+    margin-left: auto;
+  }
+}
+
+.euiProgress__label,
+.euiProgress__valueText {
+  @include euiText;
+  @include euiFontSize;
+  @include fontSize($euiFontSizeXS);
+}
+
+.euiProgress__data--l {
+  .euiProgress__label,
+  .euiProgress__valueText {
+    @include fontSize($euiFontSizeS);
   }
 }

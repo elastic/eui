@@ -18,17 +18,16 @@
  */
 
 import React, { FunctionComponent, useContext } from 'react';
-// @ts-ignore TODO
 import all from 'mdast-util-to-hast/lib/all';
 import { EuiCheckbox } from '../../form/checkbox';
 import { EuiMarkdownContext } from '../markdown_context';
 import { htmlIdGenerator } from '../../../services/accessibility';
 import {
-  AstNodePosition,
-  RemarkParser,
+  EuiMarkdownAstNodePosition,
   RemarkRehypeHandler,
   RemarkTokenizer,
 } from '../markdown_types';
+import { Plugin } from 'unified';
 
 interface CheckboxNodeDetails {
   type: 'checkboxPlugin';
@@ -37,7 +36,7 @@ interface CheckboxNodeDetails {
   isChecked: boolean;
 }
 
-function CheckboxParser(this: RemarkParser) {
+const CheckboxParser: Plugin = function CheckboxParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.blockTokenizers;
   const methods = Parser.prototype.blockMethods;
@@ -80,13 +79,13 @@ function CheckboxParser(this: RemarkParser) {
 
   tokenizers.checkbox = tokenizeCheckbox;
   methods.splice(methods.indexOf('list'), 0, 'checkbox'); // Run it just before default `list` plugin to inject our own idea of checkboxes.
-}
+};
 
 const checkboxMarkdownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position, 'checkboxPlugin', node, all(h, node));
+  return h(node.position!, 'checkboxPlugin', node, all(h, node));
 };
 const CheckboxMarkdownRenderer: FunctionComponent<
-  CheckboxNodeDetails & { position: AstNodePosition }
+  CheckboxNodeDetails & { position: EuiMarkdownAstNodePosition }
 > = ({ position, lead, label, isChecked, children }) => {
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (

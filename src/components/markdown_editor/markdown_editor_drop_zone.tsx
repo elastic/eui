@@ -21,11 +21,14 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
-import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+import {
+  EuiMarkdownEditorUiPlugin,
+  EuiMarkdownParseError,
+} from './markdown_types';
 
 interface EuiMarkdownEditorDropZoneProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
-  errors: any;
+  errors: EuiMarkdownParseError[];
 }
 
 export const EuiMarkdownEditorDropZone: FunctionComponent<
@@ -36,8 +39,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
 
   const { children, uiPlugins, errors } = props;
 
-  const classes = classNames('euiMarkdownEditor__dropZone', {
-    'euiMarkdownEditor__dropZone--isDragging': isDragging,
+  const classes = classNames('euiMarkdownEditorDropZone', {
+    'euiMarkdownEditorDropZone--isDragging': isDragging,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({

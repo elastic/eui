@@ -40,15 +40,18 @@ export const FacetExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiFacetButtons</strong> are to be used when allowing lists
-          with multiple search params to be filtered down by these particular
-          params. They allow for an <EuiCode>icon</EuiCode> node and/or{' '}
-          <EuiCode>quantity</EuiCode> to be passed. You can also indicate the
-          current selection with <EuiCode>isSelected</EuiCode>. Other props
-          include <EuiCode>isDisabled</EuiCode> and <EuiCode>isLoading</EuiCode>{' '}
-          (which will swap the quantity indicator with a loading icon).
-        </p>
+        <>
+          <p>
+            <strong>EuiFacetButtons</strong> are to be used when allowing lists
+            with multiple search params to be filtered down by these particular
+            params. They allow for an <EuiCode>icon</EuiCode> node and/or{' '}
+            <EuiCode>quantity</EuiCode> to be passed. You can also indicate the
+            current selection with <EuiCode>isSelected</EuiCode>. Other props
+            include <EuiCode>isDisabled</EuiCode> and{' '}
+            <EuiCode>isLoading</EuiCode> (which will swap the quantity indicator
+            with a loading icon).
+          </p>
+        </>
       ),
       props: { EuiFacetButton },
       snippet: facetSnippet,
@@ -67,30 +70,32 @@ export const FacetExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Typically, each facet grouping should display similarly. For
-            example, they should all have icons or be similar icon nodes (like
-            avatars). It is up to you whether each group should be single or
-            multi-selection.
-          </p>
+        <>
           <p>
             Utilize the <strong>EuiFacetGroup</strong> wrapper to correctly
             layout multiple facets. You can supply a <EuiCode>layout</EuiCode>{' '}
             of either <EuiCode>horizontal</EuiCode> or{' '}
             <EuiCode>vertical</EuiCode> with the default being{' '}
             <EuiCode>vertical</EuiCode>. Be sure to contain vertical layouts in
-            a skinny component or give it a max-width.
+            a skinny component or give it a max-width. You can also adjust the
+            spacing between items with the <EuiCode>gutterSize</EuiCode> prop.
           </p>
-        </div>
+          <p>
+            Typically, each facet grouping should display similarly. For
+            example, they should all have icons or be similar icon nodes (like
+            avatars). It is up to you whether each group should be single or
+            multi-selection.
+          </p>
+        </>
       ),
       props: { EuiFacetGroup },
       demo: <FacetLayout />,
-      snippet: `// Restrict the width of default (vertical) if not restricted by parent
-<EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
-
-// Horizontal
-<EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>`,
+      snippet: [
+        `// Restrict the width of default (vertical) if not restricted by parent
+<EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>`,
+        `// Horizontal
+<EuiFacetGroup layout="horizontal" gutterSize="l">{facets}</EuiFacetGroup>`,
+      ],
     },
   ],
 };

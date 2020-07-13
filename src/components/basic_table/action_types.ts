@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { EuiIconType } from '../icon/icon';
 import { EuiButtonIconColor } from '../button/button_icon/button_icon';
 import { EuiButtonEmptyColor } from '../button/button_empty';
@@ -28,7 +28,7 @@ type ButtonColor = EuiButtonIconColor | EuiButtonEmptyColor;
 type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 interface DefaultItemActionBase<T> {
-  name: string;
+  name: ReactNode;
   description: string;
   onClick?: (item: T) => void;
   href?: string;

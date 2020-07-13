@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiIcon,
@@ -15,9 +15,14 @@ import {
   EuiButtonEmpty,
   EuiText,
   EuiBadge,
+  EuiPopover,
+  EuiPopoverTitle,
+  EuiPopoverFooter,
+  EuiSpacer,
 } from '../../../../src/components';
+import { EuiPortal } from '../../../../src/components/portal';
 
-export default () => {
+export default ({ flyoutOrPopover = 'flyout' }) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
 
@@ -120,20 +125,69 @@ export default () => {
     </EuiHeaderSectionItemButton>
   );
 
-  let flyout;
-  if (isFlyoutVisible) {
-    flyout = (
-      <EuiFlyout
-        onClose={() => closeFlyout()}
-        size="s"
-        id="headerNewsFeed"
-        aria-labelledby="flyoutSmallTitle">
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="s">
-            <h2 id="flyoutSmallTitle">What&apos;s new</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
-        <EuiFlyoutBody>
+  let content;
+  if (flyoutOrPopover === 'flyout') {
+    content = (
+      <>
+        {button}
+        {isFlyoutVisible && (
+          <EuiPortal>
+            <EuiFlyout
+              onClose={() => closeFlyout()}
+              size="s"
+              id="headerNewsFeed"
+              aria-labelledby="flyoutSmallTitle">
+              <EuiFlyoutHeader hasBorder>
+                <EuiTitle size="s">
+                  <h2 id="flyoutSmallTitle">What&apos;s new</h2>
+                </EuiTitle>
+              </EuiFlyoutHeader>
+              <EuiFlyoutBody>
+                {alerts.map((alert, i) => (
+                  <EuiHeaderAlert
+                    key={`alert-${i}`}
+                    title={alert.title}
+                    action={alert.action}
+                    text={alert.text}
+                    date={alert.date}
+                    badge={alert.badge}
+                  />
+                ))}
+              </EuiFlyoutBody>
+              <EuiFlyoutFooter>
+                <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonEmpty
+                      iconType="cross"
+                      onClick={() => closeFlyout()}
+                      flush="left">
+                      Close
+                    </EuiButtonEmpty>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiText color="subdued" size="s">
+                      <p>Version 7.0</p>
+                    </EuiText>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlyoutFooter>
+            </EuiFlyout>
+          </EuiPortal>
+        )}
+      </>
+    );
+  }
+
+  if (flyoutOrPopover === 'popover') {
+    content = (
+      <EuiPopover
+        button={button}
+        isOpen={isFlyoutVisible}
+        closePopover={() => closeFlyout()}
+        panelPaddingSize="none">
+        <EuiPopoverTitle>What&apos;s new</EuiPopoverTitle>
+        <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
+          <EuiSpacer size="s" />
           {alerts.map((alert, i) => (
             <EuiHeaderAlert
               key={`alert-${i}`}
@@ -144,32 +198,15 @@ export default () => {
               badge={alert.badge}
             />
           ))}
-        </EuiFlyoutBody>
-        <EuiFlyoutFooter>
-          <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-            <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
-                iconType="cross"
-                onClick={() => closeFlyout()}
-                flush="left">
-                Close
-              </EuiButtonEmpty>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiText color="subdued" size="s">
-                <p>Version 7.0</p>
-              </EuiText>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlyoutFooter>
-      </EuiFlyout>
+        </div>
+        <EuiPopoverFooter>
+          <EuiText color="subdued" size="s">
+            <p>Version 7.0</p>
+          </EuiText>
+        </EuiPopoverFooter>
+      </EuiPopover>
     );
   }
 
-  return (
-    <Fragment>
-      {button}
-      {flyout}
-    </Fragment>
-  );
+  return content;
 };

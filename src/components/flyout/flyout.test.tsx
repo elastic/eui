@@ -23,6 +23,12 @@ import { requiredProps } from '../../test';
 
 import { EuiFlyout, EuiFlyoutSize } from './flyout';
 
+jest.mock('../overlay_mask', () => ({
+  EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
+    <div {...props} />
+  ),
+}));
+
 const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
 
 describe('EuiFlyout', () => {
@@ -71,41 +77,63 @@ describe('EuiFlyout', () => {
 
       expect(component).toMatchSnapshot();
     });
-  });
 
-  describe('size', () => {
-    SIZES.forEach(size => {
-      it(`${size} is rendered`, () => {
-        const component = render(<EuiFlyout onClose={() => {}} size={size} />);
+    describe('size', () => {
+      SIZES.forEach(size => {
+        it(`${size} is rendered`, () => {
+          const component = render(
+            <EuiFlyout onClose={() => {}} size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('max width', () => {
+      test('can be set to a default', () => {
+        const component = render(
+          <EuiFlyout onClose={() => {}} maxWidth={true} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be set to a custom number', () => {
+        const component = render(
+          <EuiFlyout onClose={() => {}} maxWidth={1024} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be set to a custom value and measurement', () => {
+        const component = render(
+          <EuiFlyout onClose={() => {}} maxWidth="24rem" />
+        );
 
         expect(component).toMatchSnapshot();
       });
     });
-  });
 
-  describe('max width', () => {
-    test('can be set to a default', () => {
-      const component = render(
-        <EuiFlyout onClose={() => {}} maxWidth={true} />
-      );
+    describe('ownFocus', () => {
+      test('is rendered', () => {
+        const component = render(<EuiFlyout onClose={() => {}} ownFocus />);
 
-      expect(component).toMatchSnapshot();
-    });
+        expect(component).toMatchSnapshot();
+      });
 
-    test('can be set to a custom number', () => {
-      const component = render(
-        <EuiFlyout onClose={() => {}} maxWidth={1024} />
-      );
+      test('can alter mask props with maskProps without throwing error', () => {
+        const component = render(
+          <EuiFlyout
+            onClose={() => {}}
+            ownFocus
+            maskProps={{ headerZindexLocation: 'above' }}
+          />
+        );
 
-      expect(component).toMatchSnapshot();
-    });
-
-    test('can be set to a custom value and measurement', () => {
-      const component = render(
-        <EuiFlyout onClose={() => {}} maxWidth="24rem" />
-      );
-
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });

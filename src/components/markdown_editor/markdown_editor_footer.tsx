@@ -29,7 +29,10 @@ import { EuiOverlayMask } from '../overlay_mask';
 import { EuiTitle } from '../title';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
 import { EuiI18n } from '../i18n';
-import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+import {
+  EuiMarkdownEditorUiPlugin,
+  EuiMarkdownParseError,
+} from './markdown_types';
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
 import { EuiSpacer } from '../spacer';
@@ -41,7 +44,7 @@ interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   isUploadingFiles: boolean;
   openFiles: () => void;
-  errors: any;
+  errors: EuiMarkdownParseError[];
 }
 
 export const EuiMarkdownEditorFooter: FunctionComponent<
@@ -90,14 +93,14 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         anchorPosition="upCenter">
-        <div className="euiMarkdownEditor__footerPopover">
+        <div className="euiMarkdownEditorFooter__popover">
           <EuiPopoverTitle>
             <EuiI18n
               token="euiMarkdownEditorFooter.errorsTitle"
               default="Errors"
             />
           </EuiPopoverTitle>
-          {errors.map((message: any, idx: any) => (
+          {errors.map((message, idx) => (
             <EuiText key={idx}>{message.toString()}</EuiText>
           ))}
         </div>
@@ -106,14 +109,14 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
   }
 
   return (
-    <footer className="euiMarkdownEditor__footer">
-      <div className="euiMarkdownEditor__footerActions">
+    <footer className="euiMarkdownEditorFooter">
+      <div className="euiMarkdownEditorFooter__actions">
         {uploadButton}
         {errorsButton}
       </div>
 
       <EuiButtonIcon
-        className="euiMarkdownEditor__footerHelp"
+        className="euiMarkdownEditorFooter__help"
         iconType={MarkdownLogo}
         color="text"
         aria-label="Show markdown help"

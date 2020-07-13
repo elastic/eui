@@ -29,9 +29,12 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
+// @ts-ignore missing declaration file
 import unified, { PluggableList, Processor } from 'unified';
+// @ts-ignore missing declaration file
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
+
 import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
@@ -39,8 +42,13 @@ import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 import { htmlIdGenerator } from '../../services/accessibility';
+
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
-import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+import {
+  EuiMarkdownAstNode,
+  EuiMarkdownEditorUiPlugin,
+  EuiMarkdownParseError,
+} from './markdown_types';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
@@ -74,15 +82,15 @@ type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** array of toolbar plugins **/
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
 
-    /** Errors to buble up */
-    errors?: any;
+    /** Errors to bubble up */
+    errors?: EuiMarkdownParseError[];
 
     /** callback triggered when parsing results are available **/
     onParse?: (
-      error: any | null,
+      error: EuiMarkdownParseError | null,
       data: {
         messages: VFileMessage[];
-        ast: any;
+        ast: EuiMarkdownAstNode;
       }
     ) => void;
   };
@@ -146,7 +154,7 @@ export const EuiMarkdownEditor: FunctionComponent<
     }, [parsingPluginList]);
 
     const [parsed, parseError] = useMemo<
-      [any | null, VFileMessage | null]
+      [any | null, EuiMarkdownParseError | null]
     >(() => {
       try {
         const parsed = parser.processSync(value);
@@ -187,7 +195,7 @@ export const EuiMarkdownEditor: FunctionComponent<
       const getCursorNode = () => {
         const { selectionStart } = textareaRef.current!;
 
-        let node: any = parsed.contents;
+        let node: EuiMarkdownAstNode = parsed.contents;
 
         outer: while (true) {
           if (node.children) {
@@ -250,7 +258,7 @@ export const EuiMarkdownEditor: FunctionComponent<
 
           {isPreviewing && (
             <div
-              className="euiMarkdownEditor__preview"
+              className="euiMarkdownEditorPreview"
               style={{ height: `${height}px` }}>
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
@@ -283,7 +291,6 @@ export const EuiMarkdownEditor: FunctionComponent<
                   {createElement(pluginEditorPlugin.editor!, {
                     node:
                       selectedNode &&
-                      // @ts-ignore TODO
                       selectedNode.type === pluginEditorPlugin.name
                         ? selectedNode
                         : null,
@@ -291,13 +298,10 @@ export const EuiMarkdownEditor: FunctionComponent<
                     onSave: markdown => {
                       if (
                         selectedNode &&
-                        // @ts-ignore TODO
                         selectedNode.type === pluginEditorPlugin.name
                       ) {
                         textareaRef.current!.setSelectionRange(
-                          // @ts-ignore TODO
                           selectedNode.position.start.offset,
-                          // @ts-ignore TODO
                           selectedNode.position.end.offset
                         );
                       }

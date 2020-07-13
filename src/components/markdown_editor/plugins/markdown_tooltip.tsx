@@ -18,17 +18,16 @@
  */
 
 import React, { FunctionComponent } from 'react';
-// @ts-ignore TODO
 import all from 'mdast-util-to-hast/lib/all';
 import {
-  AstNodePosition,
-  RemarkParser,
+  EuiMarkdownAstNodePosition,
   RemarkRehypeHandler,
   RemarkTokenizer,
 } from '../markdown_types';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiIcon } from '../../icon';
 import { EuiCodeBlock } from '../../code';
+import { Plugin } from 'unified';
 
 interface TooltipNodeDetails {
   type: 'tooltipPlugin';
@@ -53,7 +52,7 @@ const tooltipPlugin = {
   ),
 };
 
-function TooltipParser(this: RemarkParser) {
+const TooltipParser: Plugin = function TooltipParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.inlineTokenizers;
   const methods = Parser.prototype.inlineMethods;
@@ -136,13 +135,13 @@ function TooltipParser(this: RemarkParser) {
 
   tokenizers.tooltip = tokenizeTooltip;
   methods.splice(methods.indexOf('text'), 0, 'tooltip');
-}
+};
 
 const tooltipMarkdownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position, 'tooltipPlugin', node, all(h, node));
+  return h(node.position!, 'tooltipPlugin', node, all(h, node));
 };
 const tooltipMarkdownRenderer: FunctionComponent<
-  TooltipNodeDetails & { position: AstNodePosition }
+  TooltipNodeDetails & { position: EuiMarkdownAstNodePosition }
 > = ({ content, children }) => {
   return (
     <span>

@@ -1,3 +1,6 @@
+// Import base theme first, then override
+@import '../../../../global_styling/variables/index';
+
 @import 'buttons';
 @import 'borders';
 @import 'flyout';

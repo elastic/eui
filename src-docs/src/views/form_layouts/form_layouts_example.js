@@ -13,7 +13,7 @@ import {
   EuiSpacer,
   EuiDescribedFormGroup,
 } from '../../../../src/components';
-
+import Guidelines from './guidelines';
 import FormRows from './form_rows';
 const formRowsSource = require('!!raw-loader!./form_rows');
 const formRowsHtml = renderToHtml(FormRows);
@@ -44,7 +44,7 @@ export const FormLayoutsExample = {
     <EuiText>
       <p>
         Be sure to read the full{' '}
-        <Link to="/guidelines/forms">forms usage guidelines</Link>.
+        <Link to="/guidelines/form-layouts">forms usage guidelines</Link>.
       </p>
       <EuiSpacer />
     </EuiText>
@@ -237,4 +237,5 @@ export const FormLayoutsExample = {
       demo: <InlinePopover />,
     },
   ],
+  guidelines: <Guidelines />,
 };
