@@ -21,12 +21,11 @@ import React, { ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps, keysOf, PropsOf } from '../../common';
 
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupGutterSize } from '../../flex';
-import { EuiFlexItemProps } from '../../flex/flex_item';
 
 const paddingSizeToClassNameMap = {
   xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
@@ -62,13 +61,13 @@ export type EuiDescribedFormGroupProps = CommonProps &
      */
     description?: ReactNode;
     /**
-     * For customizing the description container
+     * For customizing the description container. Extended from `EuiFlexItem`
      */
-    descriptionFlexItemProps?: Partial<EuiFlexItemProps>;
+    descriptionFlexItemProps?: PropsOf<typeof EuiFlexItem>;
     /**
-     * For customizing the field container
+     * For customizing the field container. Extended from `EuiFlexItem`
      */
-    fieldFlexItemProps?: Partial<EuiFlexItemProps>;
+    fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
 export const EuiDescribedFormGroup: React.FunctionComponent<
@@ -95,7 +94,8 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
 
   const fieldClasses = classNames(
     'euiDescribedFormGroup__fields',
-    paddingSizeToClassNameMap[titleSize]
+    paddingSizeToClassNameMap[titleSize],
+    fieldFlexItemProps && fieldFlexItemProps.className
   );
 
   let renderedDescription: ReactNode;
