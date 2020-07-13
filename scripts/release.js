@@ -109,7 +109,7 @@ function parseArguments() {
   const args = parser.parseArgs();
 
   // validate --steps argument
-  const steps = args.steps.trim().split(',');
+  const steps = args.steps.split(',').map(step => step.trim());
   const diff = steps.filter(x => allSteps.indexOf(x) === -1);
   if (diff.length > 0) {
     console.error(`Invalid --step value(s): ${diff.join(', ')}`);
