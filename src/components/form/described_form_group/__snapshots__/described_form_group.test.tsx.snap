@@ -369,7 +369,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 </EuiDescribedFormGroup>
 `;
 
-exports[`EuiDescribedFormGroup props props for the FlexItem containers are passed down 1`] = `
+exports[`EuiDescribedFormGroup props props for the flex item containers are passed down 1`] = `
 <EuiDescribedFormGroup
   aria-label="aria-label"
   className="testClass1 testClass2"
