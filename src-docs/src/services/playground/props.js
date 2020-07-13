@@ -23,7 +23,7 @@ const getProp = (prop, propName) => {
       newProp.required = prop.required;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value;
-        newProp.value = prop.defaultValue.value;
+        newProp.value = prop.defaultValue && prop.defaultValue.value;
       } else {
         newProp.value = undefined;
       }
