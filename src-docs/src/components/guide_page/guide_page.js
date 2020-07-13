@@ -41,20 +41,21 @@ const GuidePageComponent = ({
       },
     },
   ];
-  if (playground)
-    tabs.push({
-      id: 'playground',
-      name: 'Playground',
-      handleClick: () => {
-        history.push(`${match.path}/playground`);
-      },
-    });
+
   if (guidelines)
     tabs.push({
       id: 'guidelines',
       name: 'Guidelines',
       handleClick: () => {
         history.push(`${match.path}/guidelines`);
+      },
+    });
+  if (playground)
+    tabs.push({
+      id: 'playground',
+      name: 'Playground',
+      handleClick: () => {
+        history.push(`${match.path}/playground`);
       },
     });
 
