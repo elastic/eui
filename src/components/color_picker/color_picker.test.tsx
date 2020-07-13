@@ -145,6 +145,25 @@ test('renders EuiColorPicker with a color swatch when color is defined', () => {
   expect(colorPicker).toMatchSnapshot();
 });
 
+test('renders EuiColorPicker with a custom placeholder', () => {
+  const colorPicker = render(
+    <EuiColorPicker onChange={onChange} placeholder="Auto" {...requiredProps} />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
+test('renders EuiColorPicker with a clearable input', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color={'#ffeedd'}
+      isClearable={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
 test('popover color selector is not shown by default', () => {
   const colorPicker = mount(
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
@@ -279,6 +298,25 @@ test('Setting a new alpha value calls onChange', () => {
     hex: '#ffeedd40',
     isValid: true,
     rgba: [255, 238, 221, 0.25],
+  });
+});
+
+test('Clicking the "clear" button calls onChange', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      isClearable={true}
+      {...requiredProps}
+    />
+  );
+
+  colorPicker.find('.euiFormControlLayoutClearButton').simulate('click');
+  expect(onChange).toBeCalled();
+  expect(onChange).toBeCalledWith('', {
+    hex: '',
+    isValid: false,
+    rgba: [NaN, NaN, NaN, 1],
   });
 });
 

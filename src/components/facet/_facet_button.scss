@@ -1,26 +1,20 @@
 /**
- * 1. We don't want any of the animations that come inherited from the mixin.
- *    These should act like normal links instead.
- * 2. Change the easing, quickness to not bounce so lighter backgrounds don't flash
- * 3. Make sure the quantity doesn't get an underline on hover
+ * 1. Make sure the quantity doesn't get an underline on hover
  */
 .euiFacetButton {
-  // sass-lint:disable-block no-important
-  @include euiButton;
+  @include euiButtonBase;
+  @include euiFont;
   @include euiFontSizeS;
+
+  height: $euiButtonHeightSmall;
   text-align: left;
-  border: none;
-  transform: none !important; /* 1 */
-  animation: none !important; /* 1 */
-  transition: all $euiAnimSpeedFast ease-in; /* 2 */
+  text-decoration: none;
+  transition: all $euiAnimSpeedFast ease-in;
 
   &:hover,
   &:focus {
-    // sass-lint:disable-block no-important
-    text-decoration: none !important; /* 3 */
-
     &:not(:disabled) .euiFacetButton__text {
-      text-decoration: underline; /* 3 */
+      text-decoration: underline; /* 1 */
     }
   }
 

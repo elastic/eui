@@ -30,7 +30,7 @@ import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
 import { EuiWindowEvent, keys, htmlIdGenerator } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiOverlayMask } from '../overlay_mask';
+import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
@@ -69,6 +69,10 @@ export type EuiCollapsibleNavProps = CommonProps &
      */
     closeButtonProps?: EuiButtonEmptyProps;
     onClose?: () => void;
+    /**
+     * Adjustments to the EuiOverlayMask
+     */
+    maskProps?: EuiOverlayMaskProps;
   };
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
@@ -83,6 +87,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   closeButtonProps,
   onClose,
   id,
+  maskProps,
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
@@ -141,7 +146,13 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   let optionalOverlay;
   if (!navIsDocked) {
-    optionalOverlay = <EuiOverlayMask onClick={collapse} />;
+    optionalOverlay = (
+      <EuiOverlayMask
+        onClick={collapse}
+        headerZindexLocation="below"
+        {...maskProps}
+      />
+    );
   }
 
   // Show a trigger button if one was passed but

@@ -77,15 +77,13 @@ export const useContainerCallbacks = ({
 
   const getResizerButtonsSize = useCallback(() => {
     // get sum of all of resizer button sizes to proper calculate panels ratio
-    const allResizers = containerRef.current!.getElementsByClassName(
-      'euiResizableButton'
-    ) as HTMLCollectionOf<HTMLButtonElement>;
-    const size = isHorizontal
-      ? allResizers[0].offsetWidth
-      : allResizers[0].offsetHeight;
-
-    return size * allResizers.length;
-  }, [containerRef, isHorizontal]);
+    const allResizers = registryRef.current.getAllResizers();
+    return allResizers.reduce(
+      (size, resizer) =>
+        size + (isHorizontal ? resizer.offsetWidth : resizer.offsetHeight),
+      0
+    );
+  }, [registryRef, isHorizontal]);
 
   const onMouseDown = useCallback(
     (event: EuiResizableButtonMouseEvent) => {
@@ -145,15 +143,21 @@ export const useContainerCallbacks = ({
         );
 
         setState({ ...state, isDragging: false });
+        const panelObject = registry.fetchAllPanels(
+          prevPanelId,
+          nextPanelId,
+          containerSize - resizersSize
+        );
+
         if (onPanelWidthChange) {
           onPanelWidthChange({
+            ...panelObject,
             [prevPanelId]: prevPanelSize,
             [nextPanelId]: nextPanelSize,
           });
-        } else {
-          prevPanel.setSize(prevPanelSize);
-          nextPanel.setSize(nextPanelSize);
         }
+        prevPanel.setSize(prevPanelSize);
+        nextPanel.setSize(nextPanelSize);
       }
     },
     // `setState` is safe to omit from `useCallback`
@@ -204,16 +208,21 @@ export const useContainerCallbacks = ({
           containerSize
         );
 
+        const panelObject = registry.fetchAllPanels(
+          state.previousPanelId,
+          state.nextPanelId,
+          containerSize
+        );
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           if (onPanelWidthChange) {
             onPanelWidthChange({
+              ...panelObject,
               [state.previousPanelId]: prevPanelSize,
               [state.nextPanelId]: nextPanelSize,
             });
-          } else {
-            prevPanel.setSize(prevPanelSize);
-            nextPanel.setSize(nextPanelSize);
           }
+          prevPanel.setSize(prevPanelSize);
+          nextPanel.setSize(nextPanelSize);
 
           setState({ ...state, currentResizerPos: x });
         }

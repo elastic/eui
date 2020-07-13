@@ -15,7 +15,6 @@ export const Options: EuiSelectableOption[] = [
   },
   {
     label: 'Dione',
-    id: 'id_dione',
   },
   {
     label: 'Iapetus',

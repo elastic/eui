@@ -27,7 +27,7 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [superSelectvalue, setSuperSeelctValue] = useState('option_one');
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
   const [isExpressionOpen, setIsExpressionOpen] = useState(false);
 
   const tabs = [
@@ -106,7 +106,7 @@ export default () => {
   ];
 
   const onSuperSelectChange = value => {
-    setSuperSeelctValue(value);
+    setSuperSelectValue(value);
   };
 
   const flyoutContent = (

@@ -29,7 +29,9 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
+// @ts-ignore missing declaration file
 import unified, { PluggableList, Processor } from 'unified';
+// @ts-ignore missing declaration file
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
 import emoji from 'remark-emoji';

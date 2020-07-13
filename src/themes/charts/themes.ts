@@ -77,6 +77,9 @@ function createTheme(colors: any): EuiChartThemeType {
       sectorLineWidth: 1.5,
     },
     theme: {
+      background: {
+        color: colors.euiColorEmptyShade.rgba,
+      },
       chartMargins: {
         left: 0,
         right: 0,

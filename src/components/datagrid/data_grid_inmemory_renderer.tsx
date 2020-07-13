@@ -18,10 +18,10 @@
  */
 
 import React, {
-  Fragment,
   FunctionComponent,
   JSXElementConstructor,
   useEffect,
+  useCallback,
   useMemo,
   useState,
 } from 'react';
@@ -32,17 +32,14 @@ import {
 } from './data_grid_cell';
 import { EuiDataGridColumn, EuiDataGridInMemory } from './data_grid_types';
 import { enqueueStateChange } from '../../services/react';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 export interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;
   columns: EuiDataGridColumn[];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
-  onCellRender: (
-    rowIndex: number,
-    column: EuiDataGridColumn,
-    value: string
-  ) => void;
+  onCellRender: (rowIndex: number, columnId: string, value: string) => void;
 }
 
 function noop() {}
@@ -55,101 +52,108 @@ function getElementText(element: HTMLElement) {
       element.textContent || undefined;
 }
 
-const ObservedCell: FunctionComponent<{
-  renderCellValue: EuiDataGridInMemoryRendererProps['renderCellValue'];
-  onCellRender: EuiDataGridInMemoryRendererProps['onCellRender'];
-  i: number;
-  column: EuiDataGridColumn;
-  isExpandable: boolean;
-}> = ({ renderCellValue, i, column, onCellRender, isExpandable }) => {
-  const [ref, setRef] = useState<HTMLDivElement | null>();
-
-  useEffect(() => {
-    if (ref) {
-      // this is part of React's component lifecycle, onCellRender->setState are automatically batched
-      onCellRender(i, column, getElementText(ref));
-      const observer = new MutationObserver(() => {
-        // onMutation callbacks aren't in the component lifecycle, intentionally batch any effects
-        enqueueStateChange(
-          onCellRender.bind(null, i, column, getElementText(ref))
-        );
-      });
-      observer.observe(ref, {
-        characterData: true,
-        subtree: true,
-        attributes: true,
-        childList: true,
-      });
-
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, [column, i, onCellRender, ref]);
-
-  const CellElement = renderCellValue as JSXElementConstructor<
-    EuiDataGridCellValueElementProps
-  >;
-
-  return (
-    <div ref={setRef}>
-      <CellElement
-        rowIndex={i}
-        columnId={column.id}
-        setCellProps={noop}
-        isExpandable={isExpandable}
-        isExpanded={false}
-        isDetails={false}
-      />
-    </div>
-  );
-};
-
 export const EuiDataGridInMemoryRenderer: FunctionComponent<
   EuiDataGridInMemoryRendererProps
 > = ({ inMemory, columns, rowCount, renderCellValue, onCellRender }) => {
   const [documentFragment] = useState(() => document.createDocumentFragment());
 
-  const rows = useMemo(() => {
-    const rows = [];
+  const cells = useMemo(() => {
+    const CellElement = renderCellValue as JSXElementConstructor<
+      EuiDataGridCellValueElementProps
+    >;
+
+    const cells = [];
 
     for (let i = 0; i < rowCount; i++) {
-      rows.push(
-        <Fragment key={i}>
-          {columns
-            .map(column => {
-              const skipThisColumn =
-                inMemory.skipColumns &&
-                inMemory.skipColumns.indexOf(column.id) !== -1;
+      cells.push(
+        columns
+          .map(column => {
+            const skipThisColumn =
+              inMemory.skipColumns &&
+              inMemory.skipColumns.indexOf(column.id) !== -1;
 
-              if (skipThisColumn) {
-                return null;
-              }
+            if (skipThisColumn) {
+              return null;
+            }
 
-              const isExpandable =
-                column.isExpandable !== undefined ? column.isExpandable : true;
+            const isExpandable =
+              column.isExpandable !== undefined ? column.isExpandable : true;
 
-              return (
-                <ObservedCell
-                  key={column.id}
-                  i={i}
-                  renderCellValue={renderCellValue}
-                  column={column}
-                  onCellRender={onCellRender}
+            return (
+              <div
+                key={`${i}-${column.id}`}
+                data-dg-row={i}
+                data-dg-column={column.id}>
+                <CellElement
+                  rowIndex={i}
+                  columnId={column.id}
+                  setCellProps={noop}
                   isExpandable={isExpandable}
+                  isExpanded={false}
+                  isDetails={false}
                 />
-              );
-            })
-            .filter(cell => cell != null)}
-        </Fragment>
+              </div>
+            );
+          })
+          .filter(cell => cell != null)
       );
     }
 
-    return rows;
-  }, [rowCount, columns, inMemory.skipColumns, renderCellValue, onCellRender]);
+    return cells;
+  }, [rowCount, columns, inMemory.skipColumns, renderCellValue]);
+
+  const onMutation = useCallback<MutationCallback>(
+    records => {
+      recordLoop: for (let i = 0; i < records.length; i++) {
+        const record = records[i];
+        let target: Node | null = record.target;
+
+        while (true) {
+          if (target == null) continue recordLoop; // somehow hit the document fragment
+          if (
+            target.nodeType === Node.ELEMENT_NODE &&
+            (target as Element).hasAttribute('data-dg-row')
+          ) {
+            // target is the cell wrapping div
+            break;
+          }
+          target = target.parentElement;
+        }
+
+        const cellDiv = target as HTMLDivElement;
+        const rowIndex = parseInt(cellDiv.getAttribute('data-dg-row')!, 10);
+        const column = cellDiv.getAttribute('data-dg-column')!;
+        enqueueStateChange(() =>
+          onCellRender(rowIndex, column, getElementText(cellDiv))
+        );
+      }
+    },
+    [onCellRender]
+  );
+
+  useEffect(() => {
+    const cellDivs = documentFragment.childNodes[0].childNodes;
+    for (let i = 0; i < cellDivs.length; i++) {
+      const cellDiv = cellDivs[i] as HTMLDivElement;
+      const rowIndex = parseInt(cellDiv.getAttribute('data-dg-row')!, 10);
+      const column = cellDiv.getAttribute('data-dg-column')!;
+      onCellRender(rowIndex, column, getElementText(cellDiv));
+    }
+    // changes to documentFragment.children is reflected by `cells`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onCellRender, cells]);
 
   return createPortal(
-    <Fragment>{rows}</Fragment>,
+    <EuiMutationObserver
+      onMutation={onMutation}
+      observerOptions={{
+        characterData: true,
+        subtree: true,
+        attributes: true,
+        childList: true,
+      }}>
+      {ref => <div ref={ref}>{cells}</div>}
+    </EuiMutationObserver>,
     (documentFragment as unknown) as Element
   );
 };

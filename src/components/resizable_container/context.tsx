@@ -28,6 +28,7 @@ export interface EuiResizablePanelController {
 
 export class EuiResizablePanelRegistry {
   private panels: { [key: string]: EuiResizablePanelController } = {};
+  private resizerRefs = new Set<HTMLElement>();
 
   registerPanel(panel: EuiResizablePanelController) {
     this.panels[panel.id] = panel;
@@ -37,8 +38,35 @@ export class EuiResizablePanelRegistry {
     delete this.panels[id];
   }
 
+  registerResizerRef(resizerRef: HTMLElement) {
+    this.resizerRefs.add(resizerRef);
+  }
+
+  deregisterResizerRef(resizerRef: HTMLElement) {
+    this.resizerRefs.delete(resizerRef);
+  }
+
   getResizerSiblings(prevPanelId: string, nextPanelId: string) {
     return [this.panels[prevPanelId], this.panels[nextPanelId]];
+  }
+
+  getAllResizers() {
+    return Array.from(this.resizerRefs);
+  }
+
+  fetchAllPanels(
+    prevPanelId: string,
+    nextPanelId: string,
+    containerSize: number
+  ) {
+    const panelWithSizes: { [key: string]: number } = {};
+    for (const key in this.panels) {
+      if (key !== prevPanelId && key !== nextPanelId) {
+        panelWithSizes[key] =
+          (this.panels[key].getSizePx() / containerSize) * 100;
+      }
+    }
+    return panelWithSizes;
   }
 }
 

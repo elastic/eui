@@ -5,7 +5,7 @@ import 'core-js/modules/es6.number.is-finite';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route } from 'react-router';
+import { Router, Switch, Route, Redirect } from 'react-router';
 
 import configureStore, { history } from './store/configure_store';
 
@@ -51,19 +51,29 @@ ReactDOM.render(
     <ThemeProvider>
       <Router history={history}>
         <Switch>
-          {routes.map(({ name, path, sections, isNew, component }, i) => {
-            if (component)
-              return (
-                <Route key={i} exact path={`/${path}`}>
+          {routes.map(
+            ({ name, path, sections, isNew, component, from, to }, i) => {
+              const mainComponent = () => (
+                <Route key={i} path={`/${path}`}>
                   <AppContainer currentRoute={{ name, path, sections, isNew }}>
                     {createElement(component, {})}
                   </AppContainer>
                 </Route>
               );
-            return null;
-          })}
+
+              if (from)
+                return [
+                  mainComponent(),
+                  <Route exact path={`/${from}`}>
+                    <Redirect to={`/${to}`} />
+                  </Route>,
+                ];
+              else if (component) return [mainComponent()];
+              return null;
+            }
+          )}
         </Switch>
-      </Router>{' '}
+      </Router>
     </ThemeProvider>
   </Provider>,
   document.getElementById('guide')

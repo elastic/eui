@@ -48,12 +48,12 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -128,12 +128,12 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -244,12 +244,12 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -319,12 +319,12 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -394,12 +394,12 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -505,12 +505,12 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />

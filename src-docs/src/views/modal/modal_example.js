@@ -11,6 +11,7 @@ import {
   EuiConfirmModal,
   EuiOverlayMask,
 } from '../../../../src/components';
+import Guidelines from './guidelines';
 
 import Modal from './modal';
 const modalSource = require('!!raw-loader!./modal');
@@ -124,4 +125,5 @@ export const ModalExample = {
       demo: <OverflowTest />,
     },
   ],
+  guidelines: <Guidelines />,
 };

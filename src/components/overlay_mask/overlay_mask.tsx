@@ -35,8 +35,15 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
 export interface EuiOverlayMaskInterface {
+  /**
+   * Function that applies to clicking the mask itself and not the children
+   */
   onClick?: () => void;
   children?: ReactNode;
+  /**
+   * Should the mask visually sit above or below the EuiHeader (controlled by z-index)
+   */
+  headerZindexLocation?: 'above' | 'below';
 }
 
 export type EuiOverlayMaskProps = CommonProps &
@@ -50,6 +57,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   className,
   children,
   onClick,
+  headerZindexLocation = 'above',
   ...rest
 }) => {
   const overlayMaskNode = useRef<HTMLDivElement>(document.createElement('div'));
@@ -89,8 +97,12 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (!overlayMaskNode.current) return;
-    overlayMaskNode.current.className = classNames('euiOverlayMask', className);
-  }, [className]);
+    overlayMaskNode.current.className = classNames(
+      'euiOverlayMask',
+      `euiOverlayMask--${headerZindexLocation}Header`,
+      className
+    );
+  }, [className, headerZindexLocation]);
 
   useEffect(() => {
     if (!overlayMaskNode.current || !onClick) return;
