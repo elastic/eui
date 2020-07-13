@@ -126,8 +126,9 @@ export const EuiResizableContainer: FunctionComponent<
       onMouseDown,
       onTouchStart: onMouseDown,
       isHorizontal,
+      registryRef,
     }),
-    [onKeyDown, onMouseDown, isHorizontal]
+    [onKeyDown, onMouseDown, isHorizontal, registryRef]
   );
 
   const EuiResizablePanel = useCallback(

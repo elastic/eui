@@ -10,7 +10,7 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-export const FilePicker = () => {
+export default () => {
   const [files, setFiles] = useState({});
   const [large, setLarge] = useState(true);
 

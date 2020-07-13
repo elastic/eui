@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconTokenBinary = ({ title, titleId, ...props }) => (
+const EuiIconTokenTokenCount = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
@@ -9,13 +9,8 @@ const EuiIconTokenBinary = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <g>
-      <path d="M8 4H3V7H8V4Z" />
-      <path d="M13 9H8V12H13V9Z" />
-      <path d="M10 4H13V7H10V4Z" />
-      <path d="M6 9H3V12H6V9Z" />
-    </g>
+    <path d="M8 4H3v3h5V4zM13 9H8v3h5V9zM10 4h3v3h-3V4zM6 9H3v3h3V9z" />
   </svg>
 );
 
-export const icon = EuiIconTokenBinary;
+export const icon = EuiIconTokenTokenCount;

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 
-import 'react-ace'; // this import can be omitted from your project, but is required for our Code Sandbox demo link to work
+import { EuiCodeEditor } from '../../../../src/components';
 import 'brace/theme/github';
 import 'brace/mode/javascript';
 import 'brace/snippets/javascript';
 import 'brace/ext/language_tools';
-
-import { EuiCodeEditor } from '../../../../src/components';
 
 export default () => {
   const [value, updateValue] = useState('');

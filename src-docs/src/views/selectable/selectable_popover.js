@@ -99,6 +99,7 @@ export default () => {
       {isFlyoutVisible && (
         <EuiFlyout ownFocus onClose={closeFlyout} aria-labelledby="flyoutTitle">
           <EuiSelectable
+            aria-label="Popover example"
             searchable
             options={countries}
             onChange={onFlyoutChange}
@@ -135,6 +136,7 @@ export default () => {
       <EuiSpacer />
 
       <EuiSelectable
+        aria-label="Bordered selectable example"
         options={options}
         onChange={() => {}}
         style={{ width: 300 }}

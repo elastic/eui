@@ -575,6 +575,7 @@ export class EuiComboBox<T> extends Component<
       relatedTarget &&
       this.comboBoxRefInstance &&
       this.comboBoxRefInstance.contains(relatedTarget);
+
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
 
@@ -693,6 +694,10 @@ export class EuiComboBox<T> extends Component<
 
     if (singleSelection) {
       requestAnimationFrame(this.closeList);
+    } else {
+      this.setState({
+        activeOptionIndex: this.state.matchingOptions.indexOf(addedOption),
+      });
     }
   };
 

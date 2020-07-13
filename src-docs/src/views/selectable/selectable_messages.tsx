@@ -30,7 +30,11 @@ export default () => {
         checked={isLoading}
       />
       <EuiSpacer />
-      <EuiSelectable options={[]} style={{ width: 200 }} isLoading={isLoading}>
+      <EuiSelectable
+        aria-label="Messaging example"
+        options={[]}
+        style={{ width: 200 }}
+        isLoading={isLoading}>
         {list => (useCustomMessage && !isLoading ? customMessage : list)}
       </EuiSelectable>
     </Fragment>

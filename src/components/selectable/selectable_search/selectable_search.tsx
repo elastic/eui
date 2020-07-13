@@ -17,27 +17,25 @@
  * under the License.
  */
 
-import React, { Component, InputHTMLAttributes } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
 
-export type EuiSelectableSearchProps = Omit<
-  InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps,
-  'onChange'
-> &
+export type EuiSelectableSearchProps = Omit<EuiFieldSearchProps, 'onChange'> &
   CommonProps & {
     /**
      * Passes back (matchingOptions, searchValue)
      */
-    onChange?: (
+    onChange: (
       matchingOptions: EuiSelectableOption[],
       searchValue: string
     ) => void;
     options: EuiSelectableOption[];
     defaultValue: string;
+    listId: string;
   };
 
 export interface EuiSelectableSearchState {
@@ -61,38 +59,48 @@ export class EuiSelectableSearch extends Component<
   }
 
   componentDidMount() {
-    const { options } = this.props;
     const { searchValue } = this.state;
-    const matchingOptions = getMatchingOptions(options, searchValue);
-    this.passUpMatches(matchingOptions, searchValue);
+    const matchingOptions = getMatchingOptions(this.props.options, searchValue);
+    this.props.onChange(matchingOptions, searchValue);
   }
 
   onSearchChange = (value: string) => {
-    this.setState({ searchValue: value });
-    const { options } = this.props;
-    const matchingOptions = getMatchingOptions(options, value);
-    this.passUpMatches(matchingOptions, value);
-  };
-
-  passUpMatches = (matches: EuiSelectableOption[], searchValue: string) => {
-    if (this.props.onChange) {
-      this.props.onChange(matches, searchValue);
+    if (value !== this.state.searchValue) {
+      this.setState({ searchValue: value }, () => {
+        const matchingOptions = getMatchingOptions(this.props.options, value);
+        this.props.onChange(matchingOptions, value);
+      });
     }
   };
 
   render() {
-    const { className, onChange, options, defaultValue, ...rest } = this.props;
+    const {
+      className,
+      onChange,
+      options,
+      defaultValue,
+      listId,
+      placeholder,
+      ...rest
+    } = this.props;
 
     const classes = classNames('euiSelectableSearch', className);
 
     return (
       <EuiFieldSearch
         className={classes}
-        placeholder="Filter options"
+        placeholder={placeholder}
         onSearch={this.onSearchChange}
         incremental
         defaultValue={defaultValue}
         fullWidth
+        autoComplete="off"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded="true"
+        aria-controls={listId}
+        aria-owns={listId} // legacy attribute but shims support for nearly everything atm
+        aria-haspopup="listbox"
         {...rest}
       />
     );

@@ -1,5 +1,40 @@
 [
   {
+    "version": "27.0.0",
+    "changes": [
+      {
+        "token": "euiProgress.valueText",
+        "changeType": "added",
+        "value": "{value}%"
+      },
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "added",
+        "value": "Included option."
+      },
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "added",
+        "value": "To exclude this option, press enter or space."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOption",
+        "changeType": "added",
+        "value": "Excluded option."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "added",
+        "value": "To deselect this option, press enter or space."
+      },
+      {
+        "token": "euiSelectable.placeholderName",
+        "changeType": "added",
+        "value": "Filter options"
+      }
+    ]
+  },
+  {
     "version": "26.0.0",
     "changes": [
       {

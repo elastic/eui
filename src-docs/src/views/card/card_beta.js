@@ -29,4 +29,4 @@ const cardNodes = icons.map(function(item, index) {
   );
 });
 
-export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;
+export default () => <EuiFlexGroup gutterSize="l">{cardNodes} </EuiFlexGroup>;

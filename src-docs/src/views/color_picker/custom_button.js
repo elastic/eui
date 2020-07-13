@@ -30,6 +30,7 @@ export default () => {
               aria-label="Select a new color"
             />
           }
+          isClearable={true}
         />
       </EuiFormRow>
       <EuiSpacer />
