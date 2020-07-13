@@ -170,11 +170,35 @@ const EuiButtonDisplay = React.forwardRef<
       </EuiButtonContent>
     );
 
-    return (
-      <Element className={classes} disabled={isDisabled} ref={ref} {...rest}>
-        {innerNode}
-      </Element>
-    );
+    if (Element === 'label') {
+      return (
+        <Element
+          className={classes}
+          ref={ref as Ref<HTMLLabelElement>}
+          {...rest as HTMLAttributes<HTMLLabelElement>}>
+          {innerNode}
+        </Element>
+      );
+    } else if (Element === 'a') {
+      return (
+        <Element
+          className={classes}
+          ref={ref as Ref<HTMLAnchorElement>}
+          {...rest as HTMLAttributes<HTMLAnchorElement>}>
+          {innerNode}
+        </Element>
+      );
+    } else {
+      return (
+        <Element
+          className={classes}
+          disabled={isDisabled}
+          ref={ref as Ref<HTMLButtonElement>}
+          {...rest as HTMLAttributes<HTMLButtonElement>}>
+          {innerNode}
+        </Element>
+      );
+    }
   }
 );
 
@@ -235,8 +259,8 @@ export const EuiButton: FunctionComponent<Props> = ({
       element={element}
       isDisabled={buttonIsDisabled}
       {...relObj}
-      ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
-      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}
+      ref={buttonRef}
+      {...rest}
     />
   );
 };
