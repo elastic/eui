@@ -175,7 +175,7 @@ const EuiButtonDisplay = React.forwardRef<
         <Element
           className={classes}
           ref={ref as Ref<HTMLLabelElement>}
-          {...rest as HTMLAttributes<HTMLLabelElement>}>
+          {...rest}>
           {innerNode}
         </Element>
       );
@@ -184,7 +184,7 @@ const EuiButtonDisplay = React.forwardRef<
         <Element
           className={classes}
           ref={ref as Ref<HTMLAnchorElement>}
-          {...rest as HTMLAttributes<HTMLAnchorElement>}>
+          {...rest}>
           {innerNode}
         </Element>
       );
@@ -194,7 +194,7 @@ const EuiButtonDisplay = React.forwardRef<
           className={classes}
           disabled={isDisabled}
           ref={ref as Ref<HTMLButtonElement>}
-          {...rest as HTMLAttributes<HTMLButtonElement>}>
+          {...rest}>
           {innerNode}
         </Element>
       );
