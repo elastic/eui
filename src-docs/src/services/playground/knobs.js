@@ -98,8 +98,8 @@ const Knob = ({
             placeholder={placeholder}
             onChange={e => {
               const value = e.target.value;
-              if (custom && custom.options) {
-                if (custom.options[value]) set(value);
+              if (custom && custom.validator) {
+                if (custom.validator(value)) set(value);
                 else set(undefined);
               } else {
                 set(value);

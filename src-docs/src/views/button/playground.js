@@ -11,6 +11,7 @@ export default () => {
     ? EuiButton.__docgenInfo[0]
     : EuiButton.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
+  const options = mapOptions(iconTypes);
 
   propsToUse.iconType = {
     ...propsToUse.iconType,
@@ -18,7 +19,7 @@ export default () => {
     type: PropTypes.String,
     custom: {
       ...propsToUse.iconType.custom,
-      options: mapOptions(iconTypes),
+      validator: val => options[val],
     },
   };
 
