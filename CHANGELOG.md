@@ -1,10 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `27.1.0`.
+
+## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
+
 - Added `titleElement` and `descriptionElement` props to `EuiStat` ([#3693](https://github.com/elastic/eui/pull/3693))
 - Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 - Removed `src/test` and `@types/enzyme` references from `eui.d.ts` ([#3715](https://github.com/elastic/eui/pull/3715))
 - Added `index.d.ts` file to `lib/test`  and `es/test` ([#3715](https://github.com/elastic/eui/pull/3715))
 - Added `descriptionFlexItemProps` and `fieldFlexItemProps` props to `EuiDescribedFormGroup` ([#3717](https://github.com/elastic/eui/pull/3717))
+- Expanded `EuiBasicTable`'s default action's name configuration to accept a function that returns a React node ([#3739](https://github.com/elastic/eui/pull/3739))
 
 ## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
