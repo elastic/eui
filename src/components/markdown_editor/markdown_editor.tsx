@@ -31,7 +31,6 @@ import React, {
 } from 'react';
 // @ts-ignore missing declaration file
 import unified, { PluggableList, Processor } from 'unified';
-// @ts-ignore missing declaration file
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
 
