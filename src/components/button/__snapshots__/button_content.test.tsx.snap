@@ -9,3 +9,71 @@ exports[`EuiButtonContent is rendered 1`] = `
   <span />
 </span>
 `;
+
+exports[`EuiButtonContent props children is rendered 1`] = `
+<span
+  class=""
+>
+  <span>
+    Content
+  </span>
+</span>
+`;
+
+exports[`EuiButtonContent props iconSide is rendered 1`] = `
+<span
+  class="euiButtonContent--iconRight"
+>
+  <div
+    class="euiButtonContent__icon"
+    data-euiicon-type="bolt"
+  />
+  <span />
+</span>
+`;
+
+exports[`EuiButtonContent props iconType is rendered 1`] = `
+<span
+  class=""
+>
+  <div
+    class="euiButtonContent__icon"
+    data-euiicon-type="bolt"
+  />
+  <span />
+</span>
+`;
+
+exports[`EuiButtonContent props isLoading is rendered 1`] = `
+<span
+  class=""
+>
+  <span
+    class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
+  />
+  <span />
+</span>
+`;
+
+exports[`EuiButtonContent props isLoading replaces iconType with spinner 1`] = `
+<span
+  class=""
+>
+  <span
+    class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
+  />
+  <span />
+</span>
+`;
+
+exports[`EuiButtonContent props textProps is rendered 1`] = `
+<span
+  class=""
+>
+  <span
+    aria-label="aria-label"
+    class="testClass1 testClass2"
+    data-test-subj="test subject string"
+  />
+</span>
+`;

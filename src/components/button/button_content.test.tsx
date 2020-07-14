@@ -29,4 +29,44 @@ describe('EuiButtonContent', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('children is rendered', () => {
+      const component = render(<EuiButtonContent>Content</EuiButtonContent>);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('iconType is rendered', () => {
+      const component = render(<EuiButtonContent iconType="bolt" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('iconSide is rendered', () => {
+      const component = render(
+        <EuiButtonContent iconSide="right" iconType="bolt" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isLoading is rendered', () => {
+      const component = render(<EuiButtonContent isLoading />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isLoading replaces iconType with spinner', () => {
+      const component = render(<EuiButtonContent isLoading iconType="bolt" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('textProps is rendered', () => {
+      const component = render(<EuiButtonContent textProps={requiredProps} />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

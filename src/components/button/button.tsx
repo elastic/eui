@@ -106,8 +106,8 @@ export interface EuiButtonDisplayProps extends EuiButtonProps {
 }
 
 /**
- *
- * *INTERNAL ONLY* Component for displaying any element as a button
+ * *INTERNAL ONLY*
+ * Component for displaying any element as a button
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */

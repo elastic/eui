@@ -17,10 +17,6 @@
  * under the License.
  */
 
-/**
- * This component is simply a helper component for reuse within other button components
- */
-
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
@@ -36,6 +32,10 @@ const iconSideToClassNameMap: { [side in ButtonIconSide]: string | null } = {
 
 export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
+/**
+ * *INTERNAL ONLY*
+ * This component is simply a helper component for reuse within other button components
+ */
 export type EuiButtonContentProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
     iconType?: IconType;
