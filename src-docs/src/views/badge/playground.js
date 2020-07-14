@@ -8,7 +8,6 @@ import {
   propUtilityForPlayground,
   mapOptions,
 } from '../../services/playground';
-import { checkValidColor } from '../../../../src/components/avatar';
 import { iconTypes } from '../icon/icons';
 
 const iconOptions = mapOptions(iconTypes);
