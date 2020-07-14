@@ -56,6 +56,7 @@ const Knob = ({
   custom,
 }) => {
   const [val, set] = useValueDebounce(globalVal, globalSet);
+  let knobProps = {};
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -93,22 +94,29 @@ const Knob = ({
 
     case PropTypes.String:
     case PropTypes.Date:
+      if (custom && custom.validator) {
+        knobProps = {};
+        knobProps.onChange = e => {
+          const value = e.target.value;
+          if (custom.validator(value)) set(value);
+          else set(undefined);
+        };
+      } else {
+        knobProps = {};
+        knobProps.value = val;
+        knobProps.onChange = e => {
+          const value = e.target.value;
+          set(value);
+        };
+      }
       return (
         <>
           <EuiFieldText
             placeholder={placeholder}
-            onChange={e => {
-              const value = e.target.value;
-              if (custom && custom.validator) {
-                if (custom.validator(value)) set(value);
-                else set(undefined);
-              } else {
-                set(value);
-              }
-            }}
             aria-label={description}
             compressed
             fullWidth
+            {...knobProps}
           />
 
           {error && <div>error {error}</div>}
@@ -211,8 +219,8 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
         );
 
-        if (state[name].custom)
-          console.log('state[name].custom.origin', state[name].custom.origin);
+        // if (state[name].custom)
+        //   console.log('state[name].custom.origin', state[name].custom.origin);
 
         let humanizedName = (
           <strong className="eui-textBreakNormal">{name}</strong>
