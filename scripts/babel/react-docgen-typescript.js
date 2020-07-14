@@ -72,8 +72,7 @@ module.exports = function() {
                   state,
                   whiteListedProps,
                   whiteListedParent,
-                  componentExtends,
-                  filename
+                  componentExtends
                 ),
               shouldExtractLiteralValuesFromEnum: true,
               shouldRemoveUndefinedFromOptional: true,
@@ -138,6 +137,16 @@ function filterProp(
   }
   if (whiteListedProps.includes(prop.name)) {
     return true;
+  }
+
+  if (prop.type.name === 'enum') {
+    const propValueArray = prop.type.value.map(type => type.value);
+    const found = intrinsicValuesRaw.some(
+      value => propValueArray.indexOf(value) >= 0
+    );
+    if (found) {
+      prop.type.name = 'any HTML Element';
+    }
   }
   if (prop.parent) {
     //Check if props are extended from other node module
@@ -258,3 +267,16 @@ function replaceProp(props, checker, initialProp) {
     });
   }
 }
+
+const intrinsicValuesRaw = [
+  '"a"',
+  '"abbr"',
+  '"address"',
+  '"animate"',
+  '"animateMotion"',
+  '"animateTransform"',
+  '"area"',
+  '"article"',
+  '"aside"',
+  '"audio"',
+];
