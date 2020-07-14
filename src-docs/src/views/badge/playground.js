@@ -20,7 +20,21 @@ export const badgeConfig = () => {
 
   propsToUse.onClick = {
     ...propsToUse.onClick,
-    value: "() => console.log('Clicked')",
+    type: PropTypes.Custom,
+    value: undefined,
+    custom: {
+      ...propsToUse.onClick.custom,
+      use: 'switch',
+      modifyOtherProps: (val, state, set) => {
+        if (val) {
+          if (!state.onClickAriaLabel.value) {
+            set('onClickAriaLabel value', 'onClickAriaLabel');
+          }
+        } else {
+          set(state.onClickAriaLabel.value, 'onClickAriaLabel');
+        }
+      },
+    },
   };
 
   propsToUse.children = {
@@ -37,6 +51,15 @@ export const badgeConfig = () => {
   propsToUse.onClickAriaLabel = {
     ...propsToUse.onClickAriaLabel,
     type: PropTypes.String,
+    custom: {
+      ...propsToUse.onClickAriaLabel.custom,
+      checkDep: (val, state) => {
+        if (state.onClick.value && !val) {
+          return 'When passing onClick to EuiBadge, you must also provide onClickAriaLabel';
+        }
+        return undefined;
+      },
+    },
   };
 
   propsToUse.iconOnClickAriaLabel = {
@@ -70,6 +93,13 @@ export const badgeConfig = () => {
       imports: {
         '@elastic/eui': {
           named: ['EuiBadge'],
+        },
+      },
+      customProps: {
+        onClick: {
+          generate: _val => {
+            return null;
+          },
         },
       },
     },

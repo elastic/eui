@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { assertUnreachable, PropTypes, useValueDebounce } from 'react-view';
 import {
   EuiSpacer,
@@ -46,7 +46,7 @@ const Label = ({ children, tooltip }) => {
 
 const Knob = ({
   name,
-  error,
+  error: errorMsg,
   type,
   defaultValue,
   val: globalVal,
@@ -55,8 +55,18 @@ const Knob = ({
   description,
   placeholder,
   custom,
+  state,
+  orgSet,
 }) => {
   const [val, set] = useValueDebounce(globalVal, globalSet);
+  const [error, setError] = useState(errorMsg);
+
+  useEffect(() => {
+    if (custom && custom.checkDep) {
+      setError(custom.checkDep(val, state));
+    }
+  }, [state, val, custom]);
+
   let knobProps = {};
   switch (type) {
     case PropTypes.Ref:
@@ -196,16 +206,35 @@ const Knob = ({
               aria-label={`Select ${name}`}
               compressed
             />
-            {error && <div>error {error}</div>}
           </EuiFormRow>
         );
+      }
+
+    case PropTypes.Custom:
+      if (custom && custom.use) {
+        switch (custom.use) {
+          case 'switch':
+            return (
+              <EuiSwitch
+                id={name}
+                label=""
+                checked={typeof val !== 'undefined' && val}
+                onChange={e => {
+                  const value = e.target.checked;
+                  globalSet(value);
+                  if (custom.modifyOtherProps)
+                    custom.modifyOtherProps(value, state, orgSet);
+                }}
+                compressed
+              />
+            );
+        }
       }
 
     case PropTypes.ReactNode:
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
-    case PropTypes.Custom:
       return null;
     default:
       return assertUnreachable();
@@ -297,6 +326,8 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 enumName={state[name].enumName}
                 defaultValue={state[name].defaultValue}
                 custom={state[name] && state[name].custom}
+                state={state}
+                orgSet={set}
               />
             </EuiTableRowCell>
           </EuiTableRow>
