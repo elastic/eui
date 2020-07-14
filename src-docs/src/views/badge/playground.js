@@ -29,6 +29,16 @@ export const badgeConfig = () => {
     hidden: true,
   };
 
+  propsToUse.onClickAriaLabel = {
+    ...propsToUse.onClickAriaLabel,
+    type: PropTypes.String,
+  };
+
+  propsToUse.iconOnClickAriaLabel = {
+    ...propsToUse.iconOnClickAriaLabel,
+    type: PropTypes.String,
+  };
+
   propsToUse.iconType = {
     ...propsToUse.iconType,
     value: undefined,
@@ -71,6 +81,11 @@ export const betaBadgeConfig = () => {
     ...propsToUse.label,
     type: PropTypes.String,
     value: 'content',
+  };
+
+  propsToUse.tooltipContent = {
+    ...propsToUse.tooltipContent,
+    type: PropTypes.String,
   };
 
   propsToUse.iconType = {

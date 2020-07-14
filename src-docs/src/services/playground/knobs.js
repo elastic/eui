@@ -15,6 +15,7 @@ import {
   EuiTableHeaderCell,
   EuiTableRow,
   EuiTableRowCell,
+  EuiTextColor,
 } from '../../../../src/components/';
 
 import {
@@ -210,13 +211,33 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
         );
 
+        if (state[name].custom)
+          console.log('state[name].custom.origin', state[name].custom.origin);
+
+        let humanizedName = (
+          <strong className="eui-textBreakNormal">{name}</strong>
+        );
+
+        if (
+          state[name].custom &&
+          state[name].custom.origin &&
+          state[name].custom.origin.required
+        ) {
+          humanizedName = (
+            <span>
+              {humanizedName}{' '}
+              <EuiTextColor color="danger">(required)</EuiTextColor>
+            </span>
+          );
+        }
+
         return (
           <EuiTableRow key={name}>
             <EuiTableRowCell
               key={`prop__${name}-${idx}`}
               header="Prop"
               className="playgroundKnobs__rowCell">
-              <strong className="eui-textBreakNormal">{name}</strong>
+              {humanizedName}
               {state[name].description && (
                 <>
                   <br />
