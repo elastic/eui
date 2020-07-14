@@ -22,7 +22,7 @@
     border-top: $euiBorderThin;
   }
 
-  .euiDataGrid__verticalScroll {
+  .euiDataGrid__verticalScroll .euiDataGridRow {
     will-change: transform;
   }
 }
