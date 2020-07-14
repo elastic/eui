@@ -16,6 +16,7 @@ import {
   EuiTableRow,
   EuiTableRowCell,
   EuiTextColor,
+  EuiFormRow,
 } from '../../../../src/components/';
 
 import {
@@ -117,18 +118,18 @@ const Knob = ({
       }
 
       return (
-        <>
+        <EuiFormRow isInvalid={error && error.length > 0} error={error}>
           <EuiFieldText
             placeholder={placeholder}
             aria-label={description}
+            isInvalid={error && error.length > 0}
             compressed
             fullWidth
             {...knobProps}
           />
-
-          {error && <div>error {error}</div>}
-        </>
+        </EuiFormRow>
       );
+
     case PropTypes.Boolean:
       return (
         <>
@@ -144,6 +145,7 @@ const Knob = ({
           {error && <div>error {error}</div>}
         </>
       );
+
     case PropTypes.Enum:
       const optionsKeys = Object.keys(options);
       const numberOfOptions = optionsKeys.length;
@@ -181,7 +183,7 @@ const Knob = ({
         }));
 
         return (
-          <>
+          <EuiFormRow isInvalid={error && error.length > 0} error={error}>
             <EuiSelect
               fullWidth
               id={name}
@@ -190,11 +192,12 @@ const Knob = ({
               onChange={e => {
                 globalSet(e.target.value);
               }}
+              isInvalid={error && error.length > 0}
               aria-label={`Select ${name}`}
               compressed
             />
             {error && <div>error {error}</div>}
-          </>
+          </EuiFormRow>
         );
       }
 
