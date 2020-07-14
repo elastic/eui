@@ -34,6 +34,10 @@ export interface EuiDataGridControlColumn {
    */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];
   /**
+   * Component to render in the column footer
+   */
+  footerCellRender?: EuiDataGridCellProps['renderCellValue'];
+  /**
    * Width of the column, uses are unable to change this
    */
   width: number;
@@ -96,6 +100,7 @@ export interface EuiDataGridColumnWidths {
 export type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
 export type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
 export type EuiDataGridStyleHeader = 'shade' | 'underline';
+export type EuiDataGridStyleFooter = 'shade' | 'underline';
 export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
@@ -116,6 +121,10 @@ export interface EuiDataGridStyle {
    * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarVisibility` is set to `false`.
    */
   header?: EuiDataGridStyleHeader;
+  /**
+   * Visual style for the column footers.
+   */
+  footer?: EuiDataGridStyleFooter;
   /**
    * Will define what visual style to show on row hover
    */

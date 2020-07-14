@@ -30,6 +30,7 @@ export const startingStyles: EuiDataGridStyle = {
   stripes: false,
   rowHover: 'highlight',
   header: 'shade',
+  footer: 'underline',
 };
 
 const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {

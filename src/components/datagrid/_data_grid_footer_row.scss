@@ -1,0 +1,30 @@
+@include euiDataGridFooterCell {
+  font-weight: $euiFontWeightBold;
+}
+
+@include euiDataGridStyles(footerUnderline) {
+  @include euiDataGridFooterCell {
+    border-top: $euiBorderThick;
+    border-top-color: $euiTextColor!important;
+  }
+}
+
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridFooterCell {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@include euiDataGridStyles(bordersHorizontal) {
+  @include euiDataGridFooterCell {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@include euiDataGridStyles(footerShade) {
+  @include euiDataGridFooterCell {
+    background: tintOrShade($euiColorLightestShade, 0%, 10%);
+  }
+}

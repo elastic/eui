@@ -39,12 +39,14 @@ const columns = [
   },
   {
     id: 'name',
+    footerCellValue: 'Max',
   },
   {
     id: 'email',
   },
   {
     id: 'city',
+    footerCellValue: 'Minsk',
   },
   {
     id: 'country',
@@ -236,12 +238,14 @@ const leadingControlColumns = [
     width: 32,
     headerCellRender: SelectionHeaderCell,
     rowCellRender: SelectionRowCell,
+    footerCellRender: () => null,
   },
   {
     id: 'View',
     width: 36,
     headerCellRender: () => null,
     rowCellRender: FlyoutRowCell,
+    footerCellRender: () => null,
   },
 ];
 
@@ -306,6 +310,7 @@ const trailingControlColumns = [
         </div>
       );
     },
+    footerCellRender: () => null,
   },
 ];
 
@@ -349,6 +354,10 @@ export default function DataGrid() {
     []
   );
 
+  const renderFooterCellValue = useCallback(({ columnId }) => {
+    return columns.find(col => col.id === columnId).footerCellValue || null;
+  }, []);
+
   return (
     <SelectionContext.Provider value={rowSelection}>
       <div>
@@ -363,6 +372,7 @@ export default function DataGrid() {
           }}
           rowCount={data.length}
           renderCellValue={renderCellValue}
+          renderFooterCellValue={renderFooterCellValue}
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 15, 25],

@@ -13,6 +13,8 @@ $euiDataGridStyles: (
   'rowHoverHighlight'
   'headerShade'
   'headerUnderline'
+  'footerShade'
+  'footerUnderline'
   'fontSizeSmall'
   'fontSizeLarge'
   'noControls'
@@ -49,6 +51,12 @@ $euiDataGridStyles: (
 
 @mixin euiDataGridRowCell {
   .euiDataGridRowCell {
+    @content;
+  }
+}
+
+@mixin euiDataGridFooterCell {
+  .euiDataGridRowCell.euiDataGridFooterCell {
     @content;
   }
 }

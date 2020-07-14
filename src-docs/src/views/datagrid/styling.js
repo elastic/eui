@@ -11,6 +11,7 @@ import {
   EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSwitch,
 } from '../../../../src/components/';
 
 const columns = [
@@ -19,12 +20,14 @@ const columns = [
   },
   {
     id: 'name',
+    footerCellValue: 'David',
   },
   {
     id: 'email',
   },
   {
     id: 'city',
+    footerCellValue: 'Mexico',
   },
   {
     id: 'country',
@@ -134,6 +137,17 @@ export default class DataGrid extends Component {
       },
     ];
 
+    this.footerOptions = [
+      {
+        id: 'shade',
+        label: 'Shade',
+      },
+      {
+        id: 'underline',
+        label: 'Underline',
+      },
+    ];
+
     this.showSortSelectorOptions = [
       {
         id: 'true',
@@ -231,6 +245,8 @@ export default class DataGrid extends Component {
       isPopoverOpen: false,
       isToolbarPopoverOpen: false,
       headerSelected: 'underline',
+      footerSelected: 'underline',
+      showFooterRow: false,
       showSortSelector: true,
       showStyleSelector: true,
       showColumnSelector: true,
@@ -282,6 +298,12 @@ export default class DataGrid extends Component {
   onHeaderChange = optionId => {
     this.setState({
       headerSelected: optionId,
+    });
+  };
+
+  onFooterChange = optionId => {
+    this.setState({
+      footerSelected: optionId,
     });
   };
 
@@ -369,6 +391,8 @@ export default class DataGrid extends Component {
 
   setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
 
+  setShowFooterRow = showFooterRow => this.setState({ showFooterRow });
+
   render() {
     const { pagination } = this.state;
 
@@ -423,12 +447,19 @@ export default class DataGrid extends Component {
       <div>
         <EuiFlexGroup gutterSize="s">
           <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Show footer row"
+              checked={this.state.showFooterRow}
+              onChange={e => this.setShowFooterRow(e.target.checked)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
             <EuiPopover
               id="styleButton"
               button={styleButton}
               isOpen={this.state.isPopoverOpen}
               anchorPosition="rightUp"
-              zIndex={2}
+              zIndex={4}
               closePopover={this.closePopover.bind(this)}>
               <div style={{ width: 300 }}>
                 <EuiFormRow label="Border" display="columnCompressed">
@@ -494,6 +525,18 @@ export default class DataGrid extends Component {
                     options={this.headerOptions}
                     idSelected={this.state.headerSelected}
                     onChange={this.onHeaderChange}
+                  />
+                </EuiFormRow>
+
+                <EuiFormRow label="Footer" display="columnCompressed">
+                  <EuiButtonGroup
+                    isFullWidth
+                    isDisabled={!this.state.showFooterRow}
+                    buttonSize="compressed"
+                    legend="Footer"
+                    options={this.footerOptions}
+                    idSelected={this.state.footerSelected}
+                    onChange={this.onFooterChange}
                   />
                 </EuiFormRow>
               </div>
@@ -638,9 +681,17 @@ export default class DataGrid extends Component {
             stripes: this.state.stripesSelected,
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
+            footer: this.state.footerSelected,
           }}
           toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          renderFooterCellValue={
+            this.state.showFooterRow
+              ? ({ columnId }) =>
+                  columns.find(col => col.id === columnId).footerCellValue ||
+                  null
+              : undefined
+          }
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 10, 25],
