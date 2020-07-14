@@ -9,27 +9,27 @@ const getProp = (prop, propName) => {
   switch (prop.type.name) {
     case 'bool':
       newProp.type = PropTypes.Boolean;
-      if (prop.defaultValue) {
-        newProp.defaultValue = prop.defaultValue.value === 'true';
-        newProp.value = prop.defaultValue.value === 'true';
-      } else {
-        newProp.defaultValue = false;
-        newProp.value = false;
-      }
+      // if (prop.defaultValue) {
+      // newProp.defaultValue = prop.defaultValue.value === 'true';
+      // newProp.value = prop.defaultValue.value === 'true';
+      // } else {
+      // newProp.defaultValue = false;
+      // newProp.value = false;
+      // }
       break;
 
     case 'enum':
       newProp.type = PropTypes.Enum;
       newProp.required = prop.required;
-      if (prop.defaultValue) {
-        newProp.defaultValue = prop.defaultValue.value;
-        newProp.value = prop.defaultValue.value.substring(
-          1,
-          prop.defaultValue.value.length - 1
-        );
-      } else {
-        newProp.value = undefined;
-      }
+      // if (prop.defaultValue) {
+      //   newProp.defaultValue = prop.defaultValue.value;
+      //   newProp.value = prop.defaultValue.value.substring(
+      //     1,
+      //     prop.defaultValue.value.length - 1
+      //   );
+      // } else {
+      newProp.value = undefined;
+      // }
       newProp.options = {};
       for (const i in prop.type.value) {
         const val = prop.type.value[i].value;
@@ -41,15 +41,15 @@ const getProp = (prop, propName) => {
     case 'number':
       newProp.type = PropTypes.Number;
       newProp.placeholder = propName;
-      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
-      else newProp.value = 0;
+      // if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      // else newProp.value = 0;
       break;
 
     case 'string':
       newProp.type = PropTypes.String;
       newProp.placeholder = propName;
-      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
-      else newProp.value = '';
+      // if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      // else newProp.value = '';
       break;
 
     case 'func':
@@ -62,8 +62,9 @@ const getProp = (prop, propName) => {
     case 'element':
       newProp.type = PropTypes.ReactNode;
       newProp.placeholder = propName;
-      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
-      else newProp.value = undefined;
+      // if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      // else
+      newProp.value = undefined;
       break;
 
     default:

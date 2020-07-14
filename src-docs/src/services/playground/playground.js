@@ -68,7 +68,7 @@ export default ({ config, setGhostBackground }) => {
           language="html"
           fontSize="m"
           paddingSize="m"
-          overflowHeight={300}
+          // overflowHeight={300}
           isCopyable>
           {getSnippet(params.editorProps.code)}
         </EuiCodeBlock>
