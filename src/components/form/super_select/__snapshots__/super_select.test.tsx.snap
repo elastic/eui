@@ -558,6 +558,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
         value="1"
       />
     }
+    buttonRef={[Function]}
     className="euiSuperSelect"
     closePopover={[Function]}
     display="block"
