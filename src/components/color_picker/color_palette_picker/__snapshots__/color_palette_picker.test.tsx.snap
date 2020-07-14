@@ -710,6 +710,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
           value="paletteFixed"
         />
       }
+      buttonRef={[Function]}
       className="euiSuperSelect"
       closePopover={[Function]}
       display="block"
