@@ -193,10 +193,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       <EuiWindowEvent event="keydown" handler={onKeyDown} />
       {optionalOverlay}
       {/* Trap focus only when docked={false} */}
-      <EuiFocusTrap
-        disabled={navIsDocked}
-        clickOutsideDisables={true}
-        noIsolation={true}>
+      <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
         <nav id={flyoutID} className={classes} {...rest}>
           {children}
           {closeButton}

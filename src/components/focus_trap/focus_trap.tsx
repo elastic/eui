@@ -152,12 +152,16 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       clickOutsideDisables = false,
       disabled = false,
       returnFocus = true,
+      noIsolation = true,
+      scrollLock = false,
       onClickOutside,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
     const focusOnProps = {
       returnFocus,
+      noIsolation,
+      scrollLock,
       enabled: !isDisabled,
       ...rest,
     };
