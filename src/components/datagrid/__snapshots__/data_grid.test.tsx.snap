@@ -54,12 +54,12 @@ exports[`EuiDataGrid pagination renders 1`] = `
         class="euiPopover__anchor"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
           data-test-subj="tablePaginationPopoverButton"
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
@@ -112,7 +112,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
             rel="noreferrer"
           >
             <span
-              class="euiButtonEmpty__content"
+              class="euiButtonContent euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -129,13 +129,13 @@ exports[`EuiDataGrid pagination renders 1`] = `
             aria-controls="htmlId"
             aria-current="true"
             aria-label="Page 2 of 2"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
           >
             <span
-              class="euiButtonEmpty__content"
+              class="euiButtonContent euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -203,7 +203,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -231,7 +231,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -252,7 +252,7 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
@@ -741,7 +741,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -769,7 +769,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -790,7 +790,7 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
@@ -1600,7 +1600,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -1628,7 +1628,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -1649,7 +1649,7 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
@@ -2137,7 +2137,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -2165,7 +2165,7 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonEmpty__content"
+                class="euiButtonContent euiButtonEmpty__content"
               >
                 <div
                   class="euiButtonContent__icon"
@@ -2186,7 +2186,7 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"

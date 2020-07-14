@@ -10,8 +10,6 @@
   min-width: $euiButtonMinWidth;
 
   .euiButton__content {
-    @include euiButtonContent;
-
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
@@ -23,12 +21,6 @@
   &.euiButton--small {
     height: $euiButtonHeightSmall;
     line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
-  }
-
-  &.euiButton--iconRight {
-    .euiButton__content {
-      @include euiButtonContent($isReverse: true);
-    }
   }
 
   &:hover,

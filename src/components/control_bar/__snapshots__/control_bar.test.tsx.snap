@@ -43,7 +43,7 @@ exports[`EuiControlBar is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiButton__content"
+        class="euiButtonContent euiButton__content"
       >
         <span
           class="euiButton__text"
@@ -180,7 +180,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButton__content"
+                  class="euiButtonContent euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -316,6 +316,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 >
                   <EuiButtonContent
                     className="euiButton__content"
+                    iconSide="left"
                     textProps={
                       Object {
                         "className": "euiButton__text",
@@ -323,7 +324,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                     }
                   >
                     <span
-                      className="euiButton__content"
+                      className="euiButtonContent euiButton__content"
                     >
                       <span
                         className="euiButton__text"
@@ -494,7 +495,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButton__content"
+                  class="euiButtonContent euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -630,6 +631,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 >
                   <EuiButtonContent
                     className="euiButton__content"
+                    iconSide="left"
                     textProps={
                       Object {
                         "className": "euiButton__text",
@@ -637,7 +639,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                     }
                   >
                     <span
-                      className="euiButton__content"
+                      className="euiButtonContent euiButton__content"
                     >
                       <span
                         className="euiButton__text"
@@ -807,7 +809,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButton__content"
+                  class="euiButtonContent euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -943,6 +945,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 >
                   <EuiButtonContent
                     className="euiButton__content"
+                    iconSide="left"
                     textProps={
                       Object {
                         "className": "euiButton__text",
@@ -950,7 +953,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                     }
                   >
                     <span
-                      className="euiButton__content"
+                      className="euiButtonContent euiButton__content"
                     >
                       <span
                         className="euiButton__text"
@@ -1169,6 +1172,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
             >
               <EuiButtonContent
                 className="euiButton__content"
+                iconSide="left"
                 textProps={
                   Object {
                     "className": "euiButton__text",
@@ -1176,7 +1180,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
                 }
               >
                 <span
-                  className="euiButton__content"
+                  className="euiButtonContent euiButton__content"
                 >
                   <span
                     className="euiButton__text"
@@ -1331,7 +1335,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButton__content"
+                  class="euiButtonContent euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -1467,6 +1471,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 >
                   <EuiButtonContent
                     className="euiButton__content"
+                    iconSide="left"
                     textProps={
                       Object {
                         "className": "euiButton__text",
@@ -1474,7 +1479,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                     }
                   >
                     <span
-                      className="euiButton__content"
+                      className="euiButtonContent euiButton__content"
                     >
                       <span
                         className="euiButton__text"
@@ -1644,7 +1649,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButton__content"
+                  class="euiButtonContent euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -1785,6 +1790,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 >
                   <EuiButtonContent
                     className="euiButton__content"
+                    iconSide="left"
                     textProps={
                       Object {
                         "className": "euiButton__text",
@@ -1792,7 +1798,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                     }
                   >
                     <span
-                      className="euiButton__content"
+                      className="euiButtonContent euiButton__content"
                     >
                       <span
                         className="euiButton__text"
@@ -1967,7 +1973,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButton__content"
+                  class="euiButtonContent euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -2103,6 +2109,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 >
                   <EuiButtonContent
                     className="euiButton__content"
+                    iconSide="left"
                     textProps={
                       Object {
                         "className": "euiButton__text",
@@ -2110,7 +2117,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                     }
                   >
                     <span
-                      className="euiButton__content"
+                      className="euiButtonContent euiButton__content"
                     >
                       <span
                         className="euiButton__text"

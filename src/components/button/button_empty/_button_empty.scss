@@ -16,7 +16,6 @@
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
   .euiButtonEmpty__content {
-    @include euiButtonContent;
     padding: 0 $euiSizeS;
   }
 
@@ -32,12 +31,6 @@
   &.euiButtonEmpty--xSmall {
     height: $euiSizeL;
     font-size: $euiFontSizeS;
-  }
-
-  &.euiButtonEmpty--iconRight {
-    .euiButtonEmpty__content {
-      @include euiButtonContent($isReverse: true);
-    }
   }
 
   &:disabled {

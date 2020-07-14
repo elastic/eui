@@ -58,14 +58,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -112,14 +112,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -168,14 +168,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -218,14 +218,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -268,14 +268,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -316,14 +316,14 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
         type="button"
       >
         <span
-          class="euiButtonEmpty__content"
+          class="euiButtonContent euiButtonEmpty__content"
         >
           <div
             class="euiButtonContent__icon"
             data-euiicon-type="cross"
           />
           <span
-            class="euiCollapsibleNav__closeButtonText"
+            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
           >
             close
           </span>
@@ -365,14 +365,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>
@@ -420,14 +420,14 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <div
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
-              class="euiCollapsibleNav__closeButtonText"
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               close
             </span>

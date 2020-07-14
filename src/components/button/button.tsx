@@ -17,12 +17,7 @@
  * under the License.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  Ref,
-  ButtonHTMLAttributes,
-} from 'react';
+import React, { FunctionComponent, Ref, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -35,10 +30,11 @@ import {
 
 import { getSecureRelForTarget } from '../../services';
 
-import { IconType } from '../icon';
-import { EuiButtonContentProps, EuiButtonContent } from './button_content';
-
-export type ButtonIconSide = 'left' | 'right';
+import {
+  EuiButtonContentProps,
+  EuiButtonContentType,
+  EuiButtonContent,
+} from './button_content';
 
 export type ButtonColor =
   | 'primary'
@@ -72,33 +68,39 @@ const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-const iconSideToClassNameMap: { [side in ButtonIconSide]: string | null } = {
-  left: null,
-  right: 'euiButton--iconRight',
-};
-
-export const ICON_SIDES = keysOf(iconSideToClassNameMap);
-
-export interface EuiButtonProps extends CommonProps {
-  iconType?: IconType;
-  iconSide?: ButtonIconSide;
+/**
+ * Extends EuiButtonContentProps which provides
+ * `iconType`, `iconSide`, and `textProps`
+ */
+export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
+  /**
+   * Make button a solid color for prominence
+   */
   fill?: boolean;
   /**
-   * `text` color is set for deprecation
+   * Any of our named colors. `text` color is set for deprecation
    */
   color?: ButtonColor;
+  /**
+   * Use size `s` in confined spaces
+   */
   size?: ButtonSize;
-  isLoading?: boolean;
+  /**
+   * `disabled` is also allowed
+   */
   isDisabled?: boolean;
+  /**
+   * Extends the button to 100% width
+   */
   fullWidth?: boolean;
+  /**
+   * Force disables the button and changes the icon to a loading spinner
+   */
+  isLoading?: boolean;
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: EuiButtonContentProps;
-  /**
-   * Object of props passed to the <span/> wrapping the component's {children}
-   */
-  textProps?: HTMLAttributes<HTMLSpanElement>;
+  contentProps?: EuiButtonContentType;
 }
 
 export interface EuiButtonDisplayProps extends EuiButtonProps {
@@ -135,7 +137,6 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       'euiButton',
       color ? colorToClassNameMap[color] : null,
       size ? sizeToClassNameMap[size] : null,
-      iconSide ? iconSideToClassNameMap[iconSide] : null,
       className,
       {
         'euiButton--fill': fill,
@@ -158,7 +159,8 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       <EuiButtonContent
         isLoading={isLoading}
         iconType={iconType}
-        textProps={{ className: textClassNames, ...textProps }}
+        iconSide={iconSide}
+        textProps={{ ...textProps, className: textClassNames }}
         {...contentProps}
         // className has to come last to override contentProps.className
         className={contentClassNames}>
@@ -239,9 +241,9 @@ export const EuiButton: FunctionComponent<Props> = ({
   return (
     <EuiButtonDisplay
       element={element}
+      ref={buttonRef}
       {...elementProps}
       {...relObj}
-      ref={buttonRef}
       {...rest}
     />
   );

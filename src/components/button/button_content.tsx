@@ -23,36 +23,41 @@ import { CommonProps, keysOf } from '../common';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiIcon, IconType } from '../icon';
 
-export type ButtonIconSide = 'left' | 'right';
+export type ButtonContentIconSide = 'left' | 'right';
 
-const iconSideToClassNameMap: { [side in ButtonIconSide]: string | null } = {
+const iconSideToClassNameMap: {
+  [side in ButtonContentIconSide]: string | null
+} = {
   left: null,
   right: 'euiButtonContent--iconRight',
 };
 
 export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
+export type EuiButtonContentType = HTMLAttributes<HTMLSpanElement>;
+
 /**
  * *INTERNAL ONLY*
  * This component is simply a helper component for reuse within other button components
  */
-export type EuiButtonContentProps = HTMLAttributes<HTMLSpanElement> &
-  CommonProps & {
-    iconType?: IconType;
-    iconSide?: ButtonIconSide;
-    isLoading?: boolean;
-    /**
-     * Object of props passed to the <span/> wrapping the component's {children}
-     */
-    textProps?: HTMLAttributes<HTMLSpanElement> & CommonProps;
-  };
+export interface EuiButtonContentProps extends CommonProps {
+  iconType?: IconType;
+  iconSide?: ButtonContentIconSide;
+  isLoading?: boolean;
+  /**
+   * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
+   */
+  textProps?: HTMLAttributes<HTMLSpanElement> & CommonProps;
+}
 
-export const EuiButtonContent: FunctionComponent<EuiButtonContentProps> = ({
+export const EuiButtonContent: FunctionComponent<
+  EuiButtonContentType & EuiButtonContentProps
+> = ({
   children,
   textProps,
-  isLoading,
+  isLoading = false,
   iconType,
-  iconSide,
+  iconSide = 'left',
   ...contentProps
 }) => {
   // Add an icon to the button if one exists.
@@ -69,6 +74,7 @@ export const EuiButtonContent: FunctionComponent<EuiButtonContentProps> = ({
   }
 
   const contentClassNames = classNames(
+    'euiButtonContent',
     iconSide ? iconSideToClassNameMap[iconSide] : null,
     contentProps && contentProps.className
   );
