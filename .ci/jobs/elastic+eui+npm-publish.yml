@@ -34,6 +34,9 @@
           npm install -g yarn
           yarn
 
+          # add ssh keys to ensure tags can push to Github
+          /usr/local/bin/ssh-add-from-vault elastic
+
           npm run release -- --type=${version_type} --steps=test,build,version,tag
 
           set +x
