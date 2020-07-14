@@ -44,17 +44,6 @@ export const badgeConfig = () => {
     ...propsToUse.color,
     value: undefined,
     type: PropTypes.String,
-    custom: {
-      ...propsToUse.color.custom,
-      validator: val => {
-        try {
-          checkValidColor(val);
-          return true;
-        } catch (error) {
-          return false;
-        }
-      },
-    },
   };
 
   return {
