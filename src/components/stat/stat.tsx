@@ -140,15 +140,17 @@ export const EuiStat: FunctionComponent<
     },
   };
 
-  const titleChildren = () => (isLoading ? '--' : title);
-
   const titleDisplay = isColorClass(titleColor) ? (
     <EuiTitle size={titleSize} className={titleClasses}>
-      {createElement(titleElement, commonProps, titleChildren())}
+      {createElement(titleElement, commonProps, isLoading ? '--' : title)}
     </EuiTitle>
   ) : (
     <EuiTitle size={titleSize} className={titleClasses}>
-      {createElement(titleElement, titlePropsWithColor, titleChildren())}
+      {createElement(
+        titleElement,
+        titlePropsWithColor,
+        isLoading ? '--' : title
+      )}
     </EuiTitle>
   );
 
