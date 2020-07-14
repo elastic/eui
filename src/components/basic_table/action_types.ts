@@ -28,7 +28,7 @@ type ButtonColor = EuiButtonIconColor | EuiButtonEmptyColor;
 type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 interface DefaultItemActionBase<T> {
-  name: ReactNode;
+  name: ReactNode | ((item: T) => ReactNode);
   description: string;
   onClick?: (item: T) => void;
   href?: string;
