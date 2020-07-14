@@ -1,0 +1,8 @@
+.euiFormControlLayoutDelimited {
+  border-radius: $euiBorderRadius;
+
+  .euiFormControlLayout__childrenWrapper {
+    border-radius: $euiBorderRadius;
+    overflow: hidden;
+  }
+}
