@@ -25,7 +25,7 @@ export const badgeConfig = () => {
 
   propsToUse.children = {
     type: PropTypes.String,
-    value: 'badge content',
+    value: 'Badge content',
     hidden: true,
   };
 
@@ -107,7 +107,7 @@ export const notificationBadgeConfig = () => {
 
   propsToUse.children = {
     type: PropTypes.String,
-    value: 'badge content',
+    value: '10',
     hidden: true,
   };
 
