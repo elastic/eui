@@ -101,6 +101,12 @@ const Knob = ({
           if (custom.validator(value)) set(value);
           else set(undefined);
         };
+      } else if (custom && custom.sanitize) {
+        knobProps = {};
+        knobProps.onChange = e => {
+          const value = e.target.value;
+          set(custom.sanitize(value));
+        };
       } else {
         knobProps = {};
         knobProps.value = val;
@@ -109,6 +115,7 @@ const Knob = ({
           set(value);
         };
       }
+
       return (
         <>
           <EuiFieldText
@@ -286,7 +293,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 set={value => set(value, name)}
                 enumName={state[name].enumName}
                 defaultValue={state[name].defaultValue}
-                custom={state[name].custom}
+                custom={state[name] && state[name].custom}
               />
             </EuiTableRowCell>
           </EuiTableRow>

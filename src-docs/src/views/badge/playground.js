@@ -27,6 +27,11 @@ export const badgeConfig = () => {
     type: PropTypes.String,
     value: 'Badge content',
     hidden: true,
+    custom: {
+      sanitize: val => {
+        return val.replace(/<(?:"[^"]"['"]|'[^']'['"]|[^'">])+>/g, '');
+      },
+    },
   };
 
   propsToUse.onClickAriaLabel = {
