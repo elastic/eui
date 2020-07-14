@@ -216,8 +216,8 @@ export const FlyoutExample = {
           <p>
             In this example, we set <EuiCode>size</EuiCode> to{' '}
             <EuiCode>s</EuiCode> and remove the <EuiCode>ownFocus</EuiCode>{' '}
-            prop. The latter not only remove the focus trap around the flyout,
-            but also remove the background overlay that reinforces your
+            prop. The latter not only removes the focus trap around the flyout,
+            but also removes the background overlay that reinforces your
             boundaries.
           </p>
           <EuiCallOut

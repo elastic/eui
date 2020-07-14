@@ -435,7 +435,7 @@ export const PopoverExample = {
       text: (
         <>
           <p>
-            If the popover cannot be responsible for trapping focus within
+            If the popover cannot trap focus within
             itself, then you can remove <EuiCode>ownFocus</EuiCode>.
           </p>
           <EuiCallOut
