@@ -120,5 +120,21 @@ describe('EuiDescribedFormGroup', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('props for the flex item containers are passed down', () => {
+      const component = mount(
+        <EuiDescribedFormGroup
+          {...requiredProps}
+          {...props}
+          descriptionFlexItemProps={{ grow: 2 }}
+          fieldFlexItemProps={{ component: 'section' }}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

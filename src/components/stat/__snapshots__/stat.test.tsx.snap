@@ -302,6 +302,55 @@ exports[`EuiStat props primary is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiStat props render with custom description element 1`] = `
+<div
+  class="euiStat euiStat--leftAligned"
+>
+  <div
+    class="euiText euiText--small euiStat__description"
+  >
+    <div
+      aria-hidden="true"
+    >
+      <div>
+        description
+      </div>
+    </div>
+  </div>
+  <p
+    aria-hidden="true"
+    class="euiTitle euiTitle--large euiStat__title"
+    style="color:#EB1919"
+  >
+    title
+  </p>
+</div>
+`;
+
+exports[`EuiStat props render with custom title element 1`] = `
+<div
+  class="euiStat euiStat--leftAligned"
+>
+  <div
+    class="euiText euiText--small euiStat__description"
+  >
+    <p
+      aria-hidden="true"
+    >
+      description
+    </p>
+  </div>
+  <div
+    aria-hidden="true"
+    class="euiTitle euiTitle--large euiStat__title"
+  >
+    <div>
+      title
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiStat props right is rendered 1`] = `
 <div
   class="euiStat euiStat--rightAligned"
