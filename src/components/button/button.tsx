@@ -108,11 +108,10 @@ export interface EuiButtonDisplayProps extends EuiButtonProps {
 /**
  *
  * *INTERNAL ONLY* Component for displaying any element as a button
+ * EuiButton is largely responsible for providing relevant props
+ * and the logic for element-specific attributes
  */
-const EuiButtonDisplay = React.forwardRef<
-  HTMLAnchorElement | HTMLButtonElement | HTMLLabelElement,
-  EuiButtonDisplayProps
->(
+const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
       children,
@@ -127,7 +126,7 @@ const EuiButtonDisplay = React.forwardRef<
       contentProps,
       textProps,
       fullWidth,
-      element: Element = 'button',
+      element = 'button',
       ...rest
     },
     ref
@@ -167,11 +166,14 @@ const EuiButtonDisplay = React.forwardRef<
       </EuiButtonContent>
     );
 
-    return (
-      // @ts-ignore difficult to verify `rest` applied to `Element`
-      <Element className={classes} ref={ref} {...rest}>
-        {innerNode}
-      </Element>
+    return React.createElement(
+      element,
+      {
+        className: classes,
+        ref,
+        ...rest,
+      },
+      innerNode
     );
   }
 );
@@ -209,12 +211,12 @@ export const EuiButton: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
-  // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
-  // this is a button and piggyback off its disabled styles.
   const element = href && !isDisabled ? 'a' : 'button';
 
   let elementProps = {};
+  // Props for all elements
   elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
+  // Element-specific attributes
   if (element === 'button') {
     elementProps = { ...elementProps, disabled: buttonIsDisabled };
   }
