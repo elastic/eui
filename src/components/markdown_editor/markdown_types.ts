@@ -18,12 +18,10 @@
  */
 
 import { ComponentType, ReactNode } from 'react';
-// @ts-ignore missing declaration file
 import { VFile } from 'vfile';
 // eslint-disable-next-line import/no-unresolved
 import { Node as UnistNode, Position as UnistPosition } from 'unist';
 import { Parser } from 'remark-parse';
-// @ts-ignore missing declaration file
 import { VFileMessage } from 'vfile-message';
 import { IconType } from '../icon';
 
