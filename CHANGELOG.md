@@ -4,6 +4,7 @@
 - Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 - Removed `src/test` and `@types/enzyme` references from `eui.d.ts` ([#3715](https://github.com/elastic/eui/pull/3715))
 - Added `index.d.ts` file to `lib/test`  and `es/test` ([#3715](https://github.com/elastic/eui/pull/3715))
+- Updated `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
 
 ## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
