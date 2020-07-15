@@ -1,0 +1,91 @@
+import React, { useState } from 'react';
+
+import { EuiComboBox } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
+
+const options = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2]]);
+
+  const onChange = selectedOptions => {
+    // We should only get back either 0 or 1 options.
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        option => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      options.push(newOption);
+    }
+
+    // Select the option.
+    setSelected([newOption]);
+  };
+
+  return (
+    <DisplayToggles
+      canDisabled={false}
+      canReadOnly={false}
+      canLoading={false}
+      canPrepend
+      canAppend>
+      <EuiComboBox
+        placeholder="Select a single option"
+        singleSelection={{ asPlainText: true }}
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isClearable={false}
+      />
+    </DisplayToggles>
+  );
+};
