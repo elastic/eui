@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.1.0`.
+**Bug fixes**
+
+- Fixed `EuiComboBox` always showing a scrollbar ([#3699](https://github.com/elastic/eui/pull/3699))
 
 ## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
 
