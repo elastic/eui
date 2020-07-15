@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
+import React, {
+  InputHTMLAttributes,
+  Ref,
+  FunctionComponent,
+  useState,
+} from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
@@ -27,6 +32,8 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
+import { EuiButtonIcon } from '../../button';
+import { EuiI18n } from '../../i18n';
 
 export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -47,6 +54,19 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
      * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
+
+    /**
+     * Adds the ability to toggle the obfuscation of the input by changing the
+     * type from `password` to `text`.
+     * Adds the button as the first `append` element
+     */
+    canToggleVisibility?: boolean;
+
+    /**
+     * Change the `type` of input for manually handling obfuscation.
+     * For use with a custom visibility toggle
+     */
+    type?: 'password' | 'text';
   };
 
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
@@ -62,15 +82,49 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   inputRef,
   prepend,
   append,
+  type = 'password',
+  canToggleVisibility = true,
   ...rest
 }) => {
+  const [inputType, setInputType] = useState(type);
+
+  // Convert any `append` elements to an array so the visibility
+  // toggle can be added to it
+  const appends = Array.isArray(append) ? append : [];
+  if (append && !Array.isArray(append)) appends.push(append);
+  if (canToggleVisibility) {
+    const isVisible = inputType === 'text';
+
+    const visibilityToggle = (
+      <EuiI18n
+        tokens={[
+          'euiFieldPassword.showPassword',
+          'euiFieldPassword.maskPassword',
+        ]}
+        defaults={[
+          'Show password as plain text. Note: this will visually expose your password on the screen.',
+          'Mask password',
+        ]}>
+        {([showPassword, maskPassword]: string[]) => (
+          <EuiButtonIcon
+            iconType={isVisible ? 'eyeClosed' : 'eye'}
+            onClick={() => setInputType(isVisible ? 'password' : 'text')}
+            aria-label={isVisible ? showPassword : maskPassword}
+            title={isVisible ? showPassword : maskPassword}
+          />
+        )}
+      </EuiI18n>
+    );
+    appends.push(visibilityToggle);
+  }
+
   const classes = classNames(
     'euiFieldPassword',
     {
       'euiFieldPassword--fullWidth': fullWidth,
       'euiFieldPassword--compressed': compressed,
       'euiFieldPassword-isLoading': isLoading,
-      'euiFieldPassword--inGroup': prepend || append,
+      'euiFieldPassword--inGroup': prepend || appends,
     },
     className
   );
@@ -82,10 +136,10 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
       isLoading={isLoading}
       compressed={compressed}
       prepend={prepend}
-      append={append}>
+      append={appends}>
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
-          type="password"
+          type={inputType}
           id={id}
           name={name}
           placeholder={placeholder}
