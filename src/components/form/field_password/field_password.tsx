@@ -21,7 +21,8 @@ import React, {
   InputHTMLAttributes,
   FunctionComponent,
   useState,
-  RefCallback,
+  Ref,
+  useCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
@@ -41,7 +42,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
     fullWidth?: boolean;
     isLoading?: boolean;
     compressed?: boolean;
-    inputRef?: RefCallback<HTMLInputElement>;
+    inputRef?: Ref<HTMLInputElement>;
 
     /**
      * Creates an input group with element(s) coming before input.
@@ -78,7 +79,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   fullWidth,
   isLoading,
   compressed,
-  inputRef,
+  inputRef: _inputRef,
   prepend,
   append,
   type = 'password',
@@ -91,18 +92,24 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   );
 
   // Setup the inputRef to auto-focus when toggling visibility
-  const [input, setInput] = useState<HTMLInputElement | null>(null);
-  const inputRefCallback = (ref: HTMLInputElement | null) => {
-    setInput(ref);
-    if (inputRef) {
-      inputRef(ref);
-    }
-  };
+  const [inputRef, _setInputRef] = useState<HTMLInputElement | null>(null);
+  const setInputRef = useCallback(
+    (ref: HTMLInputElement | null) => {
+      _setInputRef(ref);
+      if (typeof _inputRef === 'function') {
+        _inputRef(ref);
+      } else if (_inputRef) {
+        // @ts-ignore need to mutate current
+        _inputRef.current = ref;
+      }
+    },
+    [_inputRef]
+  );
 
   const handleToggle = (isVisible: boolean) => {
     setInputType(isVisible ? 'password' : 'text');
-    if (input) {
-      input.focus();
+    if (inputRef) {
+      inputRef.focus();
     }
   };
 
@@ -169,7 +176,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
           placeholder={placeholder}
           className={classes}
           value={value}
-          ref={inputRefCallback}
+          ref={setInputRef}
           {...rest}
         />
       </EuiValidatableControl>
