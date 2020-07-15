@@ -93,8 +93,8 @@ export const ToolTipExample = {
         color="warning"
         title={
           <>
-            Anchoring a tooltip to a non-interactive element makes it
-            difficult for keyboard-only and screen reader users to read.
+            Anchoring a tooltip to a non-interactive element makes it difficult
+            for keyboard-only and screen reader users to read.
           </>
         }
       />
@@ -106,8 +106,8 @@ export const ToolTipExample = {
         color="warning"
         title={
           <>
-            Putting anything other than plain text in a tooltip is lost
-            on screen readers. Consider switching to{' '}
+            Putting anything other than plain text in a tooltip is lost on
+            screen readers. Consider switching to{' '}
             <Link href="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>{' '}
