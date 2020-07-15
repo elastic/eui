@@ -75,6 +75,12 @@ export default class Month extends React.Component {
     }
   };
 
+  onBlur = () => {
+    if (this.props.accessibleMode) {
+      this.setState({ readInstructions: false });
+    }
+  };
+
   onInputKeyDown = event => {
     const eventKey = event.key;
     const copy = utils.newDate(this.props.preSelection);
@@ -209,8 +215,8 @@ export default class Month extends React.Component {
           You are focused on a calendar. Use the arrow keys to navigate the days
           in the month. Use the page up and down keys to navigate from month to
           month. Use the home and end keys to navigate from year to year.
-          {utils.formatDate(this.props.preSelection, this.dayFormat)} is the
-          currently focused date.
+          {this.props.preSelection ? `${utils.formatDate(this.props.preSelection, this.dayFormat)} is the
+          currently focused date.` : `No date is currently focused.`}
         </p>
       );
     }
@@ -224,6 +230,7 @@ export default class Month extends React.Component {
         tabIndex={this.props.accessibleMode ? 0 : -1}
         onKeyDown={this.onInputKeyDown}
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
       >
         <ScreenReaderOnly>
           <span>{screenReaderInstructions}</span>

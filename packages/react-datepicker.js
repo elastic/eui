@@ -212,11 +212,6 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
-var tabbable$1 = /*#__PURE__*/Object.freeze({
-  default: tabbable_1,
-  __moduleExports: tabbable_1
-});
-
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -236,8 +231,6 @@ function extend() {
 
     return target
 }
-
-var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
 
 var listeningFocusTrap = null;
 
@@ -418,7 +411,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable$2.isFocusable(e.target)
+        returnFocus: !tabbable_1.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -473,7 +466,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable$2(container);
+    var tabbableNodes = tabbable_1(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -515,6 +508,13 @@ function delay(fn) {
 }
 
 var focusTrap_1 = focusTrap;
+
+var focusTrap$1 = /*#__PURE__*/Object.freeze({
+  default: focusTrap_1,
+  __moduleExports: focusTrap_1
+});
+
+var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -626,7 +626,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: focusTrap_1
+  _createFocusTrap: createFocusTrap
 };
 
 var focusTrapReact = FocusTrap;
@@ -3027,6 +3027,12 @@ var Month = function (_React$Component) {
       }
     };
 
+    _this.onBlur = function () {
+      if (_this.props.accessibleMode) {
+        _this.setState({ readInstructions: false });
+      }
+    };
+
     _this.onInputKeyDown = function (event) {
       var eventKey = event.key;
       var copy = newDate(_this.props.preSelection);
@@ -3161,8 +3167,7 @@ var Month = function (_React$Component) {
         "p",
         { "aria-live": true },
         "You are focused on a calendar. Use the arrow keys to navigate the days in the month. Use the page up and down keys to navigate from month to month. Use the home and end keys to navigate from year to year.",
-        formatDate(this.props.preSelection, this.dayFormat),
-        " is the currently focused date."
+        this.props.preSelection ? formatDate(this.props.preSelection, this.dayFormat) + " is the\n          currently focused date." : "No date is currently focused."
       );
     }
 
@@ -3175,7 +3180,8 @@ var Month = function (_React$Component) {
         "aria-label": "month-" + this.props.day.format("YYYY-MM"),
         tabIndex: this.props.accessibleMode ? 0 : -1,
         onKeyDown: this.onInputKeyDown,
-        onFocus: this.onFocus
+        onFocus: this.onFocus,
+        onBlur: this.onBlur
       },
       React__default.createElement(
         ScreenReaderOnly,
@@ -3311,8 +3317,10 @@ var Time = function (_React$Component) {
       }
 
       // update preSelection to the selection
-      this.setState({
-        preSelection: this.props.selected
+      this.setState(function (prevState) {
+        return {
+          preSelection: prevState.selected
+        };
       });
     }
 
@@ -3355,8 +3363,7 @@ var Time = function (_React$Component) {
         "p",
         { "aria-live": true },
         "You are a in a time selector. Use the up and down keys to select from other common times then press enter to confirm.",
-        formatDate(this.state.preSelection, this.timeFormat),
-        " is currently focused."
+        this.state.preSelection ? formatDate(this.state.preSelection, this.timeFormat) + " is currently\n          focused." : "No time is currently focused."
       );
     }
 
@@ -3449,7 +3456,7 @@ var _initialiseProps = function _initialiseProps() {
 
   this.onBlur = function () {
     if (_this3.props.accessibleMode) {
-      _this3.setState({ isFocused: false });
+      _this3.setState({ readInstructions: false, isFocused: false });
     }
   };
 
@@ -4532,17 +4539,24 @@ var _objectKeysInternal = function (object, names) {
   return result;
 };
 
+var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
+  default: _objectKeysInternal,
+  __moduleExports: _objectKeysInternal
+});
+
 // IE 8- don't enum bug keys
 var _enumBugKeys = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
+
+var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 var _objectKeys = Object.keys || function keys(O) {
-  return _objectKeysInternal(O, _enumBugKeys);
+  return $keys(O, _enumBugKeys);
 };
 
 var f$1 = Object.getOwnPropertySymbols;
@@ -4825,10 +4839,17 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
+var _iterDefine$1 = /*#__PURE__*/Object.freeze({
+  default: _iterDefine,
+  __moduleExports: _iterDefine
+});
+
+var require$$0 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
+
 var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-_iterDefine(String, 'String', function (iterated) {
+require$$0(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4850,7 +4871,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = require$$0(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -4991,7 +5012,7 @@ var _isArray = Array.isArray || function isArray(arg) {
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
 var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return _objectKeysInternal(O, hiddenKeys);
+  return $keys(O, hiddenKeys);
 };
 
 var _objectGopn = {
@@ -5277,18 +5298,11 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$1 = /*#__PURE__*/Object.freeze({
-  default: symbol,
-  __moduleExports: symbol
+var symbol$1 = createCommonjsModule(function (module) {
+module.exports = { "default": symbol, __esModule: true };
 });
 
-var require$$0 = ( symbol$1 && symbol ) || symbol$1;
-
-var symbol$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0, __esModule: true };
-});
-
-unwrapExports(symbol$2);
+unwrapExports(symbol$1);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5300,7 +5314,7 @@ var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$2);
+var _symbol2 = _interopRequireDefault(symbol$1);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5382,11 +5396,18 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-unwrapExports(create$1);
+var require$$0$1 = ( create$1 && create ) || create$1;
+
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$1, __esModule: true };
+});
+
+unwrapExports(create$2);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5398,7 +5419,7 @@ var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$1);
+var _create2 = _interopRequireDefault(create$2);
 
 
 
@@ -7940,6 +7961,11 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
+var gud$1 = /*#__PURE__*/Object.freeze({
+  default: gud,
+  __moduleExports: gud
+});
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8026,6 +8052,15 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
+var warning$1 = /*#__PURE__*/Object.freeze({
+  default: warning_1,
+  __moduleExports: warning_1
+});
+
+var _gud = ( gud$1 && gud ) || gud$1;
+
+var _warning = ( warning$1 && warning_1 ) || warning$1;
+
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8040,11 +8075,11 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(gud);
+var _gud2 = _interopRequireDefault(_gud);
 
 
 
-var _warning2 = _interopRequireDefault(warning_1);
+var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8473,10 +8508,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$1 = function() {};
+var warning$2 = function() {};
 
 if (__DEV__) {
-  warning$1 = function(condition, format, args) {
+  warning$2 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8514,7 +8549,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$1;
+var warning_1$1 = warning$2;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);
