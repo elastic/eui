@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Updated `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
+- Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
 
 ## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
 
