@@ -176,7 +176,7 @@ export interface EuiDataGridPaginationProps {
   pageSize: number;
   /**
    * An array of page sizes the user can select from.
-   * Left this prop as an empty array or undefined to hide "Rows per page" select button
+   * Leave this prop undefined or use an empty array to hide "Rows per page" select button
    */
   pageSizeOptions?: number[];
   /**
