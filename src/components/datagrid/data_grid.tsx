@@ -210,7 +210,6 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
   }
 
   const {
-    hidePerPageOptions,
     pageIndex,
     pageSize,
     pageSizeOptions,
@@ -219,9 +218,12 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
-  if (props.rowCount < pageSizeOptions[0]) {
+  if (pageCount <= 1) {
     return null;
   }
+
+  // hide select rows per page if pageSizeOptions is undefined or an empty array
+  const hidePerPageOptions = !pageSizeOptions || pageSizeOptions.length === 0;
 
   return (
     <EuiI18n

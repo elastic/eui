@@ -167,10 +167,6 @@ export interface EuiDataGridToolBarVisibilityOptions {
 // which defeats the generic's purpose & functionality as it would check for `number` in `number[]`
 export interface EuiDataGridPaginationProps {
   /**
-   * Hide per page options if necessary
-   */
-  hidePerPageOptions?: boolean;
-  /**
    * The index of the current page, starts at 0 for the first page
    */
   pageIndex: number;
@@ -179,9 +175,10 @@ export interface EuiDataGridPaginationProps {
    */
   pageSize: number;
   /**
-   * An array of page sizes the user can select from
+   * An array of page sizes the user can select from.
+   * Left this prop as an empty array or undefined to hide "Rows per page" select button
    */
-  pageSizeOptions: number[];
+  pageSizeOptions?: number[];
   /**
    * A callback for when the user changes the page size selection
    */
