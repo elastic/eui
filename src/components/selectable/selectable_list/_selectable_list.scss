@@ -1,4 +1,10 @@
 // Expand height of list via flex box
+.euiSelectableList {
+  &:focus-within {
+    @include euiFocusRing;
+  }
+}
+
 .euiSelectableList-fullHeight {
   flex-grow: 1;
 }

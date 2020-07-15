@@ -357,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 489,
+        "line": 515,
         "column": 14
       },
       "end": {
-        "line": 492,
+        "line": 518,
         "column": 55
       }
     },
@@ -373,11 +373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 517,
+        "line": 543,
         "column": 10
       },
       "end": {
-        "line": 519,
+        "line": 545,
         "column": 52
       }
     },
@@ -389,11 +389,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 628,
+        "line": 659,
         "column": 14
       },
       "end": {
-        "line": 633,
+        "line": 664,
         "column": 16
       }
     },
@@ -517,11 +517,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 218,
+        "line": 302,
         "column": 12
       },
       "end": {
-        "line": 221,
+        "line": 305,
         "column": 14
       }
     },
@@ -533,11 +533,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 235,
+        "line": 319,
         "column": 14
       },
       "end": {
-        "line": 241,
+        "line": 325,
         "column": 16
       }
     },
@@ -549,11 +549,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 247,
+        "line": 331,
         "column": 14
       },
       "end": {
-        "line": 254,
+        "line": 338,
         "column": 16
       }
     },
@@ -565,11 +565,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 262,
+        "line": 346,
         "column": 14
       },
       "end": {
-        "line": 266,
+        "line": 350,
         "column": 16
       }
     },
@@ -581,11 +581,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
+        "line": 356,
         "column": 14
       },
       "end": {
-        "line": 276,
+        "line": 360,
         "column": 16
       }
     },
@@ -597,11 +597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 284,
+        "line": 368,
         "column": 10
       },
       "end": {
-        "line": 287,
+        "line": 371,
         "column": 12
       }
     },
@@ -613,11 +613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 293,
+        "line": 377,
         "column": 10
       },
       "end": {
-        "line": 296,
+        "line": 380,
         "column": 12
       }
     },
@@ -1904,16 +1904,96 @@
     "filepath": "src/components/popover/popover.tsx"
   },
   {
+    "token": "euiProgress.valueText",
+    "defString": "{value}%",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 137,
+        "column": 6
+      },
+      "end": {
+        "line": 143,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/progress/progress.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.includedOption",
+    "defString": "Included option.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 126,
+        "column": 12
+      },
+      "end": {
+        "line": 129,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.includedOptionInstructions",
+    "defString": "To exclude this option, press enter or space.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 136,
+        "column": 12
+      },
+      "end": {
+        "line": 139,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.excludedOption",
+    "defString": "Excluded option.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 147,
+        "column": 12
+      },
+      "end": {
+        "line": 150,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.excludedOptionInstructions",
+    "defString": "To deselect this option, press enter or space.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 157,
+        "column": 12
+      },
+      "end": {
+        "line": 160,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
     "token": "euiSelectable.loadingOptions",
     "defString": "Loading options",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 335,
+        "line": 389,
         "column": 12
       },
       "end": {
-        "line": 338,
+        "line": 392,
         "column": 14
       }
     },
@@ -1925,11 +2005,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 345,
+        "line": 399,
         "column": 10
       },
       "end": {
-        "line": 349,
+        "line": 403,
         "column": 12
       }
     },
@@ -1941,12 +2021,44 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 355,
+        "line": 409,
         "column": 10
       },
       "end": {
-        "line": 358,
+        "line": 412,
         "column": 12
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.placeholderName",
+    "defString": "Filter options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 489,
+        "column": 6
+      },
+      "end": {
+        "line": 489,
+        "column": 78
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.placeholderName",
+    "defString": "Filter options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 518,
+        "column": 6
+      },
+      "end": {
+        "line": 518,
+        "column": 78
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"

@@ -34,6 +34,8 @@
           npm install -g yarn
           yarn
 
+          npm run release -- --type=${version_type} --steps=test,build,version,tag
+
           set +x
 
           export VAULT_TOKEN=$(vault write -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
@@ -49,5 +51,4 @@
 
           set -x
 
-          export VERSION_TYPE=${version_type}
-          npm run release
+          npm run release -- --type=${version_type} --steps=publish,docs
