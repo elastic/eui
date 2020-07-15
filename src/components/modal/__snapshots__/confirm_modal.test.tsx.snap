@@ -70,7 +70,7 @@ Array [
             type="button"
           >
             <span
-              class="euiButtonEmpty__content"
+              class="euiButtonContent euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -85,7 +85,7 @@ Array [
             type="button"
           >
             <span
-              class="euiButton__content"
+              class="euiButtonContent euiButton__content"
             >
               <span
                 class="euiButton__text"
@@ -160,7 +160,7 @@ Array [
             type="button"
           >
             <span
-              class="euiButtonEmpty__content"
+              class="euiButtonContent euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -175,7 +175,7 @@ Array [
             type="button"
           >
             <span
-              class="euiButton__content"
+              class="euiButtonContent euiButton__content"
             >
               <span
                 class="euiButton__text"

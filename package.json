@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "27.0.0",
+  "version": "27.1.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -104,6 +104,7 @@
     "@types/uuid": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "@typescript-eslint/parser": "^3.2.0",
+    "argparse": "^1.0.10",
     "autoprefixer": "^7.1.5",
     "axe-core": "^3.5.4",
     "axe-puppeteer": "^1.1.0",
