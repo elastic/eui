@@ -19,9 +19,9 @@
 
 import React, {
   InputHTMLAttributes,
-  Ref,
   FunctionComponent,
   useState,
+  RefCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
@@ -41,7 +41,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
     fullWidth?: boolean;
     isLoading?: boolean;
     compressed?: boolean;
-    inputRef?: Ref<HTMLInputElement>;
+    inputRef?: RefCallback<HTMLInputElement>;
 
     /**
      * Creates an input group with element(s) coming before input.
@@ -90,6 +90,22 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
     type === 'dual' ? 'password' : type
   );
 
+  // Setup the inputRef to auto-focus when toggling visibility
+  const [input, setInput] = useState<HTMLInputElement | null>(null);
+  const inputRefCallback = (ref: HTMLInputElement | null) => {
+    setInput(ref);
+    if (inputRef) {
+      inputRef(ref);
+    }
+  };
+
+  const handleToggle = (isVisible: boolean) => {
+    setInputType(isVisible ? 'password' : 'text');
+    if (input) {
+      input.focus();
+    }
+  };
+
   // Convert any `append` elements to an array so the visibility
   // toggle can be added to it
   const appends = Array.isArray(append) ? append : [];
@@ -113,7 +129,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
           <EuiButtonIcon
             {...dualToggleProps}
             iconType={isVisible ? 'eyeClosed' : 'eye'}
-            onClick={() => setInputType(isVisible ? 'password' : 'text')}
+            onClick={() => handleToggle(isVisible)}
             aria-label={isVisible ? maskPassword : showPassword}
             title={isVisible ? maskPassword : showPassword}
             disabled={rest.disabled}
@@ -153,7 +169,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
           placeholder={placeholder}
           className={classes}
           value={value}
-          ref={inputRef}
+          ref={inputRefCallback}
           {...rest}
         />
       </EuiValidatableControl>
