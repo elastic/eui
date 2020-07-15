@@ -48,4 +48,4 @@ const EuiContext: React.FunctionComponent<EuiContextProps> = ({
   children,
 }) => <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>;
 
-export { EuiContext, EuiI18nConsumer };
+export { EuiContext, EuiI18nConsumer, I18nContext };

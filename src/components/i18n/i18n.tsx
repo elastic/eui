@@ -17,10 +17,20 @@
  * under the License.
  */
 
-import React, { Fragment, ReactChild, FunctionComponent } from 'react';
+import React, {
+  Fragment,
+  ReactChild,
+  FunctionComponent,
+  useContext,
+} from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
-import { I18nShape, Renderable, RenderableValues } from '../context/context';
+import {
+  I18nContext,
+  I18nShape,
+  Renderable,
+  RenderableValues,
+} from '../context/context';
 import { processStringToChildren } from './i18n_util';
 
 function errorOnMissingValues(token: string): never {
@@ -93,7 +103,7 @@ type EuiI18nProps<
   DEFAULTS extends any[]
 > = ExclusiveUnion<I18nTokenShape<T, DEFAULT>, I18nTokensShape<DEFAULTS>>;
 
-function hasTokens<T extends any[]>(
+function isI18nTokensShape<T extends any[]>(
   x: EuiI18nProps<any, any, T>
 ): x is I18nTokensShape<T> {
   return x.tokens != null;
@@ -112,7 +122,7 @@ const EuiI18n = <
   <EuiI18nConsumer>
     {i18nConfig => {
       const { mapping, mappingFunc } = i18nConfig;
-      if (hasTokens(props)) {
+      if (isI18nTokensShape(props)) {
         return props.children(
           props.tokens.map((token, idx) =>
             lookupToken(token, mapping, props.defaults[idx], mappingFunc)
@@ -136,4 +146,29 @@ const EuiI18n = <
   </EuiI18nConsumer>
 );
 
-export { EuiI18n };
+function useEuiI18n<
+  T extends {},
+  DEFAULT extends Renderable<T>,
+  DEFAULTS extends any[]
+>(token: string, defaultValue: string, values?: T): string;
+function useEuiI18n<
+  T extends {},
+  DEFAULT extends Renderable<T>,
+  DEFAULTS extends any[]
+>(tokens: string[], defaultValues: string[]): string[];
+function useEuiI18n(...props: any[]) {
+  const i18nConfig = useContext(I18nContext);
+  const { mapping, mappingFunc } = i18nConfig;
+
+  if (typeof props[0] === 'string') {
+    const [token, defaultValue, values] = props;
+    return lookupToken(token, mapping, defaultValue, mappingFunc, values);
+  } else {
+    const [tokens, defaultValues] = props as [string[], string[]];
+    return tokens.map((token, idx) =>
+      lookupToken(token, mapping, defaultValues[idx], mappingFunc)
+    );
+  }
+}
+
+export { EuiI18n, useEuiI18n };
