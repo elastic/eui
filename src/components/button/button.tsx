@@ -104,7 +104,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
 }
 
 export interface EuiButtonDisplayProps extends EuiButtonProps {
-  element: keyof JSX.IntrinsicElements;
+  element: 'a' | 'button' | 'span' | 'label';
 }
 
 /**
