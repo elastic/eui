@@ -43,7 +43,6 @@ const typeToPathMap = {
   aggregate: 'aggregate',
   alert: 'alert',
   analyzeEvent: 'analyze_event',
-  analyzeEventDisabled: 'analyze_event_disabled',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
