@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.1.0`.
+- Replaced `react-focus-lock` with `react-focus-on` ([#3631](https://github.com/elastic/eui/pull/3631))
 
 ## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
 
