@@ -111,3 +111,8 @@ export interface EuiMarkdownAstNodePosition {
 }
 
 export type EuiMarkdownParseError = string | VFileMessage | Error;
+
+export interface EuiMarkdownDropHandler {
+  accepts: (itemType: string) => boolean;
+  getFormattingForItem: (file: File) => string | Promise<string>;
+}

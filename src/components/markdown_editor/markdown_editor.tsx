@@ -51,6 +51,7 @@ import { EuiCodeBlock, EuiCodeBlockProps } from '../code';
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
   EuiMarkdownAstNode,
+  EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
 } from './markdown_types';
@@ -134,6 +135,8 @@ type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
         ast: EuiMarkdownAstNode;
       }
     ) => void;
+
+    dropHandlers?: EuiMarkdownDropHandler[];
   };
 export type EuiMarkdownEditorProps = OneOf<
   CommonMarkdownEditorProps,
@@ -157,6 +160,7 @@ export const EuiMarkdownEditor: FunctionComponent<
       errors = [],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      dropHandlers = [],
       ...rest
     },
     ref
@@ -316,6 +320,14 @@ export const EuiMarkdownEditor: FunctionComponent<
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
           <div style={{ display: isPreviewing ? 'none' : 'block' }}>
             <EuiMarkdownEditorDropZone
+              dropHandlers={dropHandlers}
+              insertText={(text: string) => {
+                insertText(textareaRef.current!, {
+                  text,
+                  selectionStart: undefined,
+                  selectionEnd: undefined,
+                });
+              }}
               uiPlugins={toolbarPlugins}
               errors={errors}>
               <EuiMarkdownEditorTextArea

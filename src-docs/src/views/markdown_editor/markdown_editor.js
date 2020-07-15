@@ -18,6 +18,21 @@ const exampleProcessingList = [...defaultProcessingPlugins]; // pretend mutation
 exampleProcessingList[0][1].handlers.chartDemoPlugin = MarkdownChart.handler;
 exampleProcessingList[1][1].components.chartDemoPlugin = MarkdownChart.renderer;
 
+const dropHandlers = [
+  {
+    accepts: itemType => itemType === 'image/jpeg',
+    getFormattingForItem: item => {
+      // fake an upload
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const url = URL.createObjectURL(item);
+          resolve(`![${item.name}](${url})`);
+        }, 1000);
+      });
+    },
+  },
+];
+
 export default () => {
   const [value, setValue] = useState(markdownExample);
   const [messages, setMessages] = useState([]);
@@ -39,6 +54,7 @@ export default () => {
         processingPluginList={exampleProcessingList}
         onParse={onParse}
         errors={messages}
+        dropHandlers={dropHandlers}
       />
       <EuiSpacer size="s" />
       <div className="eui-textRight">

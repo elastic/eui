@@ -45,12 +45,19 @@ interface EuiMarkdownEditorFooterProps {
   isUploadingFiles: boolean;
   openFiles: () => void;
   errors: EuiMarkdownParseError[];
+  unacceptedItems: DataTransferItem[];
 }
 
 export const EuiMarkdownEditorFooter: FunctionComponent<
   EuiMarkdownEditorFooterProps
 > = props => {
-  const { uiPlugins, isUploadingFiles, openFiles, errors } = props;
+  const {
+    uiPlugins,
+    isUploadingFiles,
+    openFiles,
+    errors,
+    unacceptedItems,
+  } = props;
   const [isShowingHelp, setIsShowingHelp] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
@@ -112,6 +119,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
     <footer className="euiMarkdownEditorFooter">
       <div className="euiMarkdownEditorFooter__actions">
         {uploadButton}
+        {unacceptedItems.length ? "Can't accept!" : null}
         {errorsButton}
       </div>
 
