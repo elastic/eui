@@ -322,10 +322,13 @@ export const EuiMarkdownEditor: FunctionComponent<
             <EuiMarkdownEditorDropZone
               dropHandlers={dropHandlers}
               insertText={(text: string) => {
+                const originalSelectionStart = textareaRef.current!
+                  .selectionStart;
+                const newSelectionPoint = originalSelectionStart + text.length;
                 insertText(textareaRef.current!, {
                   text,
-                  selectionStart: undefined,
-                  selectionEnd: undefined,
+                  selectionStart: newSelectionPoint,
+                  selectionEnd: newSelectionPoint,
                 });
               }}
               uiPlugins={toolbarPlugins}
