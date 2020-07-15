@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiComboBox` always showing a scrollbar ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed `EuiComboBox` always showing a scrollbar ([#3744](https://github.com/elastic/eui/pull/3744))
 
 ## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
 
