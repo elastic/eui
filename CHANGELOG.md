@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
+
 **Bug fixes**
 
 - Fixed `EuiComboBox` always showing a scrollbar ([#3744](https://github.com/elastic/eui/pull/3744))
