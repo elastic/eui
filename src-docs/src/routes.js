@@ -262,7 +262,18 @@ const createExample = (example, customTitle) => {
   );
 
   let playgroundComponent;
-  if (playground) {
+  // react-live doesn't work in IE11
+  if (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined' &&
+    !!window.MSInputMethodContext &&
+    !!document.documentMode
+  ) {
+    console.warn(
+      "Playground service isn't available in IE11! Please use Edge or another modern browser."
+    );
+    playgroundComponent = null;
+  } else if (playground) {
     playgroundComponent = playgroundCreator(playground());
   }
 
