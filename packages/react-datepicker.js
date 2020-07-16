@@ -232,6 +232,13 @@ function extend() {
     return target
 }
 
+var immutable$1 = /*#__PURE__*/Object.freeze({
+  default: immutable,
+  __moduleExports: immutable
+});
+
+var xtend = ( immutable$1 && immutable ) || immutable$1;
+
 var listeningFocusTrap = null;
 
 function focusTrap(element, userOptions) {
@@ -239,7 +246,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = immutable(
+  var config = xtend(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -509,13 +516,6 @@ function delay(fn) {
 
 var focusTrap_1 = focusTrap;
 
-var focusTrap$1 = /*#__PURE__*/Object.freeze({
-  default: focusTrap_1,
-  __moduleExports: focusTrap_1
-});
-
-var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -626,7 +626,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: createFocusTrap
+  _createFocusTrap: focusTrap_1
 };
 
 var focusTrapReact = FocusTrap;
@@ -3035,7 +3035,8 @@ var Month = function (_React$Component) {
 
     _this.onInputKeyDown = function (event) {
       var eventKey = event.key;
-      var copy = newDate(_this.props.preSelection);
+      // `preSelection` can be `null` but `day` is required. Use it as a fallback if necessary for invalid entries.
+      var copy = _this.props.preSelection ? newDate(_this.props.preSelection) : newDate(_this.props.day);
       var newSelection = void 0;
       switch (eventKey) {
         case "ArrowLeft":
@@ -3065,7 +3066,7 @@ var Month = function (_React$Component) {
         case " ":
         case "Enter":
           event.preventDefault();
-          _this.handleDayClick(_this.props.preSelection, event);
+          _this.handleDayClick(copy, event);
           break;
       }
       if (!newSelection) return; // Let the input component handle this keydown
@@ -4611,18 +4612,32 @@ var _objectAssign = !$assign || _fails(function () {
   } return T;
 } : $assign;
 
+var _objectAssign$1 = /*#__PURE__*/Object.freeze({
+  default: _objectAssign,
+  __moduleExports: _objectAssign
+});
+
+var require$$0 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
+
 // 19.1.3.1 Object.assign(target, source)
 
 
-_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
+_export(_export.S + _export.F, 'Object', { assign: require$$0 });
 
 var assign = _core.Object.assign;
 
-var assign$1 = createCommonjsModule(function (module) {
-module.exports = { "default": assign, __esModule: true };
+var assign$1 = /*#__PURE__*/Object.freeze({
+  default: assign,
+  __moduleExports: assign
 });
 
-unwrapExports(assign$1);
+var require$$0$1 = ( assign$1 && assign ) || assign$1;
+
+var assign$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$1, __esModule: true };
+});
+
+unwrapExports(assign$2);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4630,7 +4645,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$1);
+var _assign2 = _interopRequireDefault(assign$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4839,17 +4854,10 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var _iterDefine$1 = /*#__PURE__*/Object.freeze({
-  default: _iterDefine,
-  __moduleExports: _iterDefine
-});
-
-var require$$0 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
-
 var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-require$$0(String, 'String', function (iterated) {
+_iterDefine(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4871,7 +4879,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = require$$0(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -5298,11 +5306,18 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$1 = createCommonjsModule(function (module) {
-module.exports = { "default": symbol, __esModule: true };
+var symbol$1 = /*#__PURE__*/Object.freeze({
+  default: symbol,
+  __moduleExports: symbol
 });
 
-unwrapExports(symbol$1);
+var require$$0$2 = ( symbol$1 && symbol ) || symbol$1;
+
+var symbol$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$2, __esModule: true };
+});
+
+unwrapExports(symbol$2);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5314,7 +5329,7 @@ var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$1);
+var _symbol2 = _interopRequireDefault(symbol$2);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5396,18 +5411,11 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = /*#__PURE__*/Object.freeze({
-  default: create,
-  __moduleExports: create
+var create$1 = createCommonjsModule(function (module) {
+module.exports = { "default": create, __esModule: true };
 });
 
-var require$$0$1 = ( create$1 && create ) || create$1;
-
-var create$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
-});
-
-unwrapExports(create$2);
+unwrapExports(create$1);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5419,7 +5427,7 @@ var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$2);
+var _create2 = _interopRequireDefault(create$1);
 
 
 
@@ -7961,11 +7969,6 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
-var gud$1 = /*#__PURE__*/Object.freeze({
-  default: gud,
-  __moduleExports: gud
-});
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8052,15 +8055,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var warning$1 = /*#__PURE__*/Object.freeze({
-  default: warning_1,
-  __moduleExports: warning_1
-});
-
-var _gud = ( gud$1 && gud ) || gud$1;
-
-var _warning = ( warning$1 && warning_1 ) || warning$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8075,11 +8069,11 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(_gud);
+var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warning2 = _interopRequireDefault(warning_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8508,10 +8502,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$2 = function() {};
+var warning$1 = function() {};
 
 if (__DEV__) {
-  warning$2 = function(condition, format, args) {
+  warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8549,7 +8543,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$2;
+var warning_1$1 = warning$1;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);

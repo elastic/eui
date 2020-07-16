@@ -83,7 +83,8 @@ export default class Month extends React.Component {
 
   onInputKeyDown = event => {
     const eventKey = event.key;
-    const copy = utils.newDate(this.props.preSelection);
+    // `preSelection` can be `null` but `day` is required. Use it as a fallback if necessary for invalid entries.
+    const copy = this.props.preSelection ? utils.newDate(this.props.preSelection) : utils.newDate(this.props.day);
     let newSelection;
     switch (eventKey) {
       case "ArrowLeft":
@@ -113,7 +114,7 @@ export default class Month extends React.Component {
       case " ":
       case "Enter":
         event.preventDefault();
-        this.handleDayClick(this.props.preSelection, event);
+        this.handleDayClick(copy, event);
         break;
     }
     if (!newSelection) return; // Let the input component handle this keydown

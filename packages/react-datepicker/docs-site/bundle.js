@@ -48010,7 +48010,8 @@
 
 	    _this.onInputKeyDown = function (event) {
 	      var eventKey = event.key;
-	      var copy = utils.newDate(_this.props.preSelection);
+	      // `preSelection` can be `null` but `day` is required. Use it as a fallback if necessary for invalid entries.
+	      var copy = _this.props.preSelection ? utils.newDate(_this.props.preSelection) : utils.newDate(_this.props.day);
 	      var newSelection = void 0;
 	      switch (eventKey) {
 	        case "ArrowLeft":
@@ -48040,7 +48041,7 @@
 	        case " ":
 	        case "Enter":
 	          event.preventDefault();
-	          _this.handleDayClick(_this.props.preSelection, event);
+	          _this.handleDayClick(copy, event);
 	          break;
 	      }
 	      if (!newSelection) return; // Let the input component handle this keydown
