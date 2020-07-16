@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiCard } from './card';
+import { EuiCard, SIZES } from './card';
 
 import { EuiIcon } from '../icon';
 
@@ -49,6 +49,18 @@ describe('EuiCard', () => {
           title="Card title"
           description="Card description"
           icon={<EuiIcon className="myIconClass" type="apmApp" />}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('a null icon', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          icon={null}
         />
       );
 
@@ -179,6 +191,22 @@ describe('EuiCard', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('paddingSize', () => {
+      SIZES.forEach(size => {
+        test(`${size} is applied`, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              paddingSize={size}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
   });
 });

@@ -11,9 +11,14 @@ import { Mark } from './mark';
 
 const highlightSource = require('!!raw-loader!./highlight');
 const highlightHtml = renderToHtml(Highlight);
+const highlightSnippet = `<EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
+  <!-- A text where all your search matches will be highlighted -->
+</EuiHighlight>
+`;
 
 const markSource = require('!!raw-loader!./mark');
 const markHtml = renderToHtml(Mark);
+const markSnippet = '<EuiMark><!-- Mark text --></EuiMark>';
 
 export const HighlightAndMarkExample = {
   title: 'Highlight and mark',
@@ -38,6 +43,7 @@ export const HighlightAndMarkExample = {
       ),
       props: { EuiHighlight },
       components: { EuiHighlight },
+      snippet: highlightSnippet,
       demo: <Highlight />,
     },
     {
@@ -59,6 +65,7 @@ export const HighlightAndMarkExample = {
         </p>
       ),
       components: { EuiMark },
+      snippet: markSnippet,
       demo: <Mark />,
     },
   ],

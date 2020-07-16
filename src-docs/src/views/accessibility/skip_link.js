@@ -1,16 +1,18 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
-import { EuiSkipLink } from '../../../../src/components/accessibility/skip_link';
-import { EuiCallOut } from '../../../../src/components/call_out';
-import { EuiText } from '../../../../src/components/text';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiSwitch } from '../../../../src/components/form/switch';
+import {
+  EuiSkipLink,
+  EuiCallOut,
+  EuiText,
+  EuiSpacer,
+  EuiSwitch,
+} from '../../../../src/components';
 
 export default () => {
   const [isFixed, setFixed] = useState(false);
 
   return (
-    <Fragment>
+    <>
       <EuiText>
         {isFixed ? (
           <p>
@@ -36,26 +38,21 @@ export default () => {
         onChange={e => setFixed(e.target.checked)}
       />
       <EuiSpacer />
-      {isFixed ? (
-        <Fragment>
-          <EuiSkipLink
-            destinationId="/utilities/accessibility"
-            position="fixed">
-            Skip to main content
-          </EuiSkipLink>
+      <EuiSkipLink
+        destinationId="/utilities/accessibility"
+        position={isFixed ? 'fixed' : 'static'}
+        data-test-subj="skip-link-demo-subj">
+        Skip to {isFixed && 'main '}content
+      </EuiSkipLink>
+      {isFixed && (
+        <>
           <EuiCallOut
             size="s"
             title="A functional &lsquo;Skip to main content&rsquo; link will be added to the EUI docs site once our URL format is updated."
             iconType="iInCircle"
           />
-        </Fragment>
-      ) : (
-        <EuiSkipLink
-          destinationId="/utilities/accessibility"
-          data-test-subj="skip-link-demo-subj">
-          Skip to content
-        </EuiSkipLink>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };

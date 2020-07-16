@@ -23,7 +23,6 @@ describe('Timer', () => {
   describe('constructor', () => {
     test('counts down until time elapses and calls callback', done => {
       const callbackSpy = jest.fn();
-      // tslint:disable-next-line:no-unused-expression
       new Timer(callbackSpy, 5);
 
       setTimeout(() => {

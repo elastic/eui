@@ -20,7 +20,7 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 import { EuiButtonIcon } from '../button';
 
@@ -58,7 +58,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   ...rest
 }) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
       onClose(event);

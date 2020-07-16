@@ -27,7 +27,6 @@ import _isNaN from 'lodash/isNaN';
 // wrap the lodash functions to avoid having lodash's TS type definition from being
 // exported, which can conflict with the lodash namespace if other versions are used
 
-// tslint:disable-next-line:ban-types
 export const isFunction = (value: any): value is (...args: any[]) => any =>
   _isFunction(value);
 export const isArray = (value: any): value is any[] => _isArray(value);

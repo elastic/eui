@@ -20,7 +20,7 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { EuiCodeEditor } from './code_editor';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import {
   findTestSubject,
   requiredProps,
@@ -85,7 +85,7 @@ describe('EuiCodeEditor', () => {
 
       test('should be disabled when the ui ace box gains focus', () => {
         const hint = findTestSubject(component, 'codeEditorHint');
-        hint.simulate('keyup', { keyCode: keyCodes.ENTER });
+        hint.simulate('keyup', { key: keys.ENTER });
         expect(
           findTestSubject(component, 'codeEditorHint').getDOMNode()
         ).toMatchSnapshot();
@@ -93,8 +93,8 @@ describe('EuiCodeEditor', () => {
 
       test('should be enabled when the ui ace box loses focus', () => {
         const hint = findTestSubject(component, 'codeEditorHint');
-        hint.simulate('keyup', { keyCode: keyCodes.ENTER });
-        // @ts-ignore
+        hint.simulate('keyup', { key: keys.ENTER });
+        // @ts-ignore onBlurAce is known to exist and its params are only passed through to the onBlur callback
         component.instance().onBlurAce();
         expect(
           findTestSubject(component, 'codeEditorHint').getDOMNode()
@@ -106,17 +106,17 @@ describe('EuiCodeEditor', () => {
       test('bluring the ace textbox should call a passed onBlur prop', () => {
         const blurSpy = jest.fn().mockName('blurSpy');
         const el = mount(<EuiCodeEditor onBlur={blurSpy} />);
-        // @ts-ignore
+        // @ts-ignore onBlurAce is known to exist and its params are only passed through to the onBlur callback
         el.instance().onBlurAce();
         expect(blurSpy).toHaveBeenCalled();
       });
 
       test('pressing escape in ace textbox will enable overlay', () => {
-        // @ts-ignore
+        // @ts-ignore onKeydownAce is known to exist and its params' values are unimportant
         component.instance().onKeydownAce({
           preventDefault: () => {},
           stopPropagation: () => {},
-          keyCode: keyCodes.ESCAPE,
+          key: keys.ESCAPE,
         });
         const hint = findTestSubject(component, 'codeEditorHint').getDOMNode();
         expect(hint).toBe(document.activeElement);

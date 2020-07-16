@@ -56,7 +56,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   );
 
   return (
-    <table className={classes} {...rest}>
+    <table tabIndex={-1} className={classes} {...rest}>
       {children}
     </table>
   );

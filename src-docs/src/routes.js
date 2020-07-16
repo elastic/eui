@@ -1,29 +1,18 @@
 import React, { createElement } from 'react';
 
-import { useRouterHistory } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
-
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
+
+import { playgroundCreator } from './services/playground';
 
 // Guidelines
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ButtonGuidelines from './views/guidelines/button';
-
-import FormGuidelines from './views/guidelines/forms';
-
 import ColorGuidelines from './views/guidelines/colors';
 
-import ModalGuidelines from './views/guidelines/modals';
-
 import { SassGuidelines } from './views/guidelines/sass';
-
-import TextScales from './views/text_scaling/text_scaling_sandbox';
-
-import { ToastGuidelines } from './views/guidelines/toasts';
 
 import WritingGuidelines from './views/guidelines/writing';
 
@@ -172,6 +161,8 @@ import { TreeViewExample } from './views/tree_view/tree_view_example';
 
 import { ResizeObserverExample } from './views/resize_observer/resize_observer_example';
 
+import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
+
 import { ResponsiveExample } from './views/responsive/responsive_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
@@ -195,6 +186,8 @@ import { TableExample } from './views/tables/tables_example';
 import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
+
+import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
 
@@ -226,6 +219,7 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
+import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -247,7 +241,15 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta, isNew } = example;
+  const {
+    title,
+    intro,
+    sections,
+    beta,
+    isNew,
+    playground,
+    guidelines,
+  } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -259,9 +261,19 @@ const createExample = (example, customTitle) => {
     })
   );
 
+  let playgroundComponent;
+  if (playground) {
+    playgroundComponent = playgroundCreator(playground());
+  }
+
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
+      <GuidePage
+        title={title}
+        intro={intro}
+        isBeta={beta}
+        playground={playgroundComponent}
+        guidelines={guidelines}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -272,6 +284,7 @@ const createExample = (example, customTitle) => {
     component,
     sections,
     isNew,
+    hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
@@ -281,32 +294,12 @@ const navigation = [
     items: [
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
-        name: 'Buttons',
-        component: ButtonGuidelines,
-      },
-      {
         name: 'Colors',
         component: ColorGuidelines,
       },
       {
-        name: 'Forms',
-        component: FormGuidelines,
-      },
-      {
-        name: 'Modals',
-        component: ModalGuidelines,
-      },
-      {
         name: 'Sass',
         component: SassGuidelines,
-      },
-      {
-        name: 'Text scales',
-        component: TextScales,
-      },
-      {
-        name: 'Toasts',
-        component: ToastGuidelines,
       },
       {
         name: 'Writing',
@@ -328,6 +321,7 @@ const navigation = [
       PageExample,
       PanelExample,
       PopoverExample,
+      ResizableContainerExample,
       SpacerExample,
     ].map(example => createExample(example)),
   },
@@ -382,6 +376,7 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
+
       TextExample,
       TitleExample,
       ToastExample,
@@ -417,6 +412,7 @@ const navigation = [
       ElasticChartsSparklinesExample,
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
+      ElasticChartsPieExample,
     ].map(example => createExample(example)),
   },
   {
@@ -442,6 +438,7 @@ const navigation = [
       PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
+      TextDiffExample,
       ToggleExample,
       WindowEventExample,
     ].map(example => createExample(example)),
@@ -453,11 +450,20 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, ...rest }) => ({
-    name: itemName,
-    path: `${slugify(name)}/${slugify(itemName)}`,
-    ...rest,
-  })),
+  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
+    const item = {
+      name: itemName,
+      path: `${slugify(name)}/${slugify(itemName)}`,
+      ...rest,
+    };
+
+    if (hasGuidelines) {
+      item.from = `guidelines/${slugify(itemName)}`;
+      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+    }
+
+    return item;
+  }),
   ...rest,
 }));
 
@@ -467,7 +473,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

@@ -8,11 +8,13 @@ exports[`EuiPaginationButton is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiButtonEmpty__content"
+    class="euiButtonContent euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
-    />
+    >
+      2
+    </span>
   </span>
 </button>
 `;

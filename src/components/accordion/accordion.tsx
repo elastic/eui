@@ -121,15 +121,19 @@ export class EuiAccordion extends Component<
 
   onToggle = () => {
     const { forceState } = this.props;
-    if (forceState) return this.setState({ isOpen: forceState === 'open' });
-    this.setState(
-      prevState => ({
-        isOpen: !prevState.isOpen,
-      }),
-      () => {
-        this.props.onToggle && this.props.onToggle(this.state.isOpen);
-      }
-    );
+    if (forceState) {
+      this.props.onToggle &&
+        this.props.onToggle(forceState === 'open' ? false : true);
+    } else {
+      this.setState(
+        prevState => ({
+          isOpen: !prevState.isOpen,
+        }),
+        () => {
+          this.props.onToggle && this.props.onToggle(this.state.isOpen);
+        }
+      );
+    }
   };
 
   setChildContentRef = (node: HTMLDivElement | null) => {

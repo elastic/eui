@@ -27,8 +27,7 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore-next-line
-// not generating typescript files or definitions for the generated JS components
+// @ts-ignore not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
@@ -100,6 +99,7 @@ const typeToPathMap = {
   documentEdit: 'documentEdit',
   documents: 'documents',
   dot: 'dot',
+  download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
   editorAlignRight: 'editor_align_right',
@@ -510,6 +510,7 @@ interface State {
   icon: undefined | ComponentType | string;
   iconTitle: undefined | string;
   isLoading: boolean;
+  neededLoading: boolean; // controls the fade-in animation, cached icons are immediately rendered
 }
 
 function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
@@ -521,6 +522,9 @@ function getInitialIcon(icon: EuiIconProps['type']) {
     return undefined;
   }
   if (isEuiIconType(icon)) {
+    if (iconComponentCache.hasOwnProperty(icon)) {
+      return iconComponentCache[icon];
+    }
     return undefined;
   }
 
@@ -528,6 +532,26 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 }
 
 const generateId = htmlIdGenerator();
+
+let iconComponentCache: { [iconType: string]: ComponentType } = {};
+
+export const clearIconComponentCache = (iconType?: EuiIconType) => {
+  if (iconType != null) {
+    delete iconComponentCache[iconType];
+  } else {
+    iconComponentCache = {};
+  }
+};
+
+export const appendIconComponentCache = (iconTypeToIconComponentMap: {
+  [iconType: string]: ComponentType;
+}) => {
+  for (const iconType in iconTypeToIconComponentMap) {
+    if (iconTypeToIconComponentMap.hasOwnProperty(iconType)) {
+      iconComponentCache[iconType] = iconTypeToIconComponentMap[iconType];
+    }
+  }
+};
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
@@ -538,15 +562,18 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     const initialIcon = getInitialIcon(type);
     let isLoading = false;
 
-    if (isEuiIconType(type)) {
+    if (isEuiIconType(type) && initialIcon == null) {
       isLoading = true;
       this.loadIconComponent(type);
+    } else {
+      this.onIconLoad();
     }
 
     this.state = {
       icon: initialIcon,
       iconTitle: undefined,
       isLoading,
+      neededLoading: isLoading,
     };
   }
 
@@ -556,6 +583,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (isEuiIconType(type)) {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
+          neededLoading: iconComponentCache.hasOwnProperty(type),
           isLoading: true,
         });
         this.loadIconComponent(type);
@@ -563,6 +591,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
+          neededLoading: true,
           isLoading: false,
         });
       }
@@ -574,6 +603,17 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
   }
 
   loadIconComponent = (iconType: EuiIconType) => {
+    if (iconComponentCache.hasOwnProperty(iconType)) {
+      // exists in cache
+      this.setState({
+        isLoading: false,
+        neededLoading: false,
+        icon: iconComponentCache[iconType],
+      });
+      this.onIconLoad();
+      return;
+    }
+
     import(
       /* webpackChunkName: "icon.[request]" */
       // It's important that we don't use a template string here, it
@@ -581,6 +621,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
+      iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
         if (this.isMounted && this.props.type === iconType) {
           this.setState(
@@ -589,16 +630,18 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
               iconTitle: iconType,
               isLoading: false,
             },
-            () => {
-              const { onIconLoad } = this.props;
-              if (onIconLoad) {
-                onIconLoad();
-              }
-            }
+            this.onIconLoad
           );
         }
       });
     });
+  };
+
+  onIconLoad = () => {
+    const { onIconLoad } = this.props;
+    if (onIconLoad) {
+      onIconLoad();
+    }
   };
 
   render() {
@@ -613,7 +656,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       ...rest
     } = this.props;
 
-    const { isLoading } = this.state;
+    const { isLoading, neededLoading } = this.state;
 
     let optionalColorClass = null;
     let optionalCustomStyles: any = null;
@@ -639,7 +682,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       {
         'euiIcon--app': isAppIcon,
         'euiIcon-isLoading': isLoading,
-        'euiIcon-isLoaded': !isLoading,
+        'euiIcon-isLoaded': !isLoading && neededLoading,
       },
       className
     );

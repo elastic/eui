@@ -1,0 +1,16 @@
+.euiColorPalettePicker {
+  &__itemTitle {
+    @include euiFontSizeXS;
+  }
+
+  &__itemGradient {
+    border-radius: $euiBorderRadius;
+    overflow: hidden;
+    height: $euiSizeS;
+    box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .9);
+  }
+
+  &__itemTitle + &__itemGradient {
+    margin-top: $euiSizeXS;
+  }
+}

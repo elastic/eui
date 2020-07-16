@@ -49,7 +49,8 @@ export const useColumnSorting = (
   columns: EuiDataGridColumn[],
   sorting: EuiDataGridSorting | undefined,
   schema: EuiDataGridSchema,
-  schemaDetectors: EuiDataGridSchemaDetector[]
+  schemaDetectors: EuiDataGridSchemaDetector[],
+  displayValues: { [key: string]: string }
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
@@ -175,6 +176,7 @@ export const useColumnSorting = (
                     <EuiDataGridColumnSortingDraggable
                       key={id}
                       id={id}
+                      display={displayValues[id]}
                       direction={direction}
                       index={index}
                       sorting={sorting}
@@ -283,7 +285,9 @@ export const useColumnSorting = (
                                     />
                                   </EuiFlexItem>
                                   <EuiFlexItem grow={false}>
-                                    <EuiText size="xs">{id}</EuiText>
+                                    <EuiText size="xs">
+                                      {displayValues[id]}
+                                    </EuiText>
                                   </EuiFlexItem>
                                 </EuiFlexGroup>
                               </button>

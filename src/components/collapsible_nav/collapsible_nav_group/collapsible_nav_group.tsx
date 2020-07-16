@@ -28,7 +28,7 @@ import { CommonProps, ExclusiveUnion } from '../../common';
 import { htmlIdGenerator } from '../../../services';
 
 import { EuiAccordion, EuiAccordionProps } from '../../accordion';
-import { EuiIcon, IconType, IconSize } from '../../icon';
+import { EuiIcon, IconType, IconSize, EuiIconProps } from '../../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../../title';
 
@@ -53,6 +53,10 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
    */
   iconSize?: IconSize;
   /**
+   * Further extend the props applied to EuiIcon
+   */
+  iconProps?: Omit<EuiIconProps, 'type' | 'size'>;
+  /**
    * Optionally provide an id, otherwise one will be created
    */
   id?: string;
@@ -68,7 +72,7 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
   /**
    * Title sizing equivelant to EuiTitle, but only `s` and smaller
    */
-  titleSize?: Omit<EuiTitleProps['size'], 'l' | 'm'>;
+  titleSize?: Exclude<EuiTitleProps['size'], 'l' | 'm'>;
 }
 
 type GroupAsAccordion = EuiCollapsibleNavGroupInterface &
@@ -119,6 +123,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   isCollapsible = false,
   titleElement = 'h3',
   titleSize = 'xxs',
+  iconProps,
   ...rest
 }) => {
   const [groupID] = useState(id || htmlIdGenerator()());
@@ -151,7 +156,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     <EuiFlexGroup gutterSize="m" alignItems="center" responsive={false}>
       {iconType && (
         <EuiFlexItem grow={false}>
-          <EuiIcon type={iconType} size={iconSize} aria-hidden="true" />
+          <EuiIcon {...iconProps} type={iconType} size={iconSize} />
         </EuiFlexItem>
       )}
 

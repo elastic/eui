@@ -6,18 +6,33 @@
 }
 
 .euiPaginationButton-isActive {
-  pointer-events: none;
-  color: $euiColorPrimary;
-  text-decoration: underline;
   font-weight: $euiFontWeightBold;
+
+  &#{&} {
+    color: $euiColorPrimary;
+
+    .euiButtonEmpty__content {
+      cursor: default;
+    }
+
+    &,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-.euiPaginationButton-isPlaceholder:disabled .euiButtonEmpty__content {
-  // needs specifity to override regular disabled button
-  cursor: default;
+.euiPaginationButton-isPlaceholder {
+  align-items: baseline;
+  color: $euiButtonColorDisabledText;
+  font-size: $euiFontSizeS;
+  padding: 0 $euiSizeS;
+  height: $euiSizeL;
+  padding-top: $euiSizeM / 2;
 }
 
 @include euiBreakpoint('xs', 's') {
+  .euiPaginationButton-isPlaceholder,
   .euiPaginationButton--hideOnMobile {
     display: none;
   }

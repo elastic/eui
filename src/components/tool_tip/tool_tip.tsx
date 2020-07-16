@@ -24,13 +24,15 @@ import React, {
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 
 import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { enqueueStateChange } from '../../services/react';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -47,12 +49,10 @@ export const POSITIONS = keysOf(positionsToClassNameMap);
 
 export type ToolTipDelay = 'regular' | 'long';
 
-const delayToClassNameMap: { [key in ToolTipDelay]: string | null } = {
-  regular: null,
-  long: 'euiToolTip--delayLong',
+const delayToMsMap: { [key in ToolTipDelay]: number } = {
+  regular: 250,
+  long: 250 * 5,
 };
-
-export const DELAY = keysOf(delayToClassNameMap);
 
 interface ToolTipStyles {
   top: number;
@@ -115,7 +115,6 @@ export interface Props {
 
 interface State {
   visible: boolean;
-  hasFocus: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
   arrowStyles: undefined | { left: number; top: number };
@@ -126,10 +125,10 @@ export class EuiToolTip extends Component<Props, State> {
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
+  private timeoutId?: ReturnType<typeof setTimeout>;
 
   state: State = {
     visible: false,
-    hasFocus: false,
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
@@ -141,12 +140,20 @@ export class EuiToolTip extends Component<Props, State> {
     delay: 'regular',
   };
 
+  clearAnimationTimeout = () => {
+    if (this.timeoutId) {
+      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
+    }
+  };
+
   componentDidMount() {
     this._isMounted = true;
   }
 
   componentWillUnmount() {
+    this.clearAnimationTimeout();
     this._isMounted = false;
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -184,7 +191,11 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   showToolTip = () => {
-    this.setState({ visible: true });
+    if (!this.timeoutId) {
+      this.timeoutId = setTimeout(() => {
+        enqueueStateChange(() => this.setState({ visible: true }));
+      }, delayToMsMap[this.props.delay]);
+    }
   };
 
   positionToolTip = () => {
@@ -232,39 +243,36 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   hideToolTip = () => {
+    this.clearAnimationTimeout();
     if (this._isMounted) {
-      this.setState({ visible: false });
+      enqueueStateChange(() => this.setState({ visible: false }));
     }
   };
 
-  onFocus = () => {
-    this.setState({
-      hasFocus: true,
-    });
-    this.showToolTip();
-  };
-
-  onBlur = () => {
-    this.setState({
-      hasFocus: false,
-    });
+  hasFocusMouseMoveListener = () => {
     this.hideToolTip();
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   };
 
-  onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
+  onKeyUp = (event: KeyboardEvent<HTMLSpanElement>) => {
+    if (event.key === keys.TAB) {
+      window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
+    }
+  };
+
+  onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
     if (
-      this.anchor === e.relatedTarget ||
-      (this.anchor != null && !this.anchor.contains(e.relatedTarget as Node))
+      this.anchor === event.relatedTarget ||
+      (this.anchor != null &&
+        !this.anchor.contains(event.relatedTarget as Node))
     ) {
-      if (!this.state.hasFocus) {
-        this.hideToolTip();
-      }
+      this.hideToolTip();
     }
 
     if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
+      this.props.onMouseOut(event);
     }
   };
 
@@ -284,7 +292,6 @@ export class EuiToolTip extends Component<Props, State> {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
-      delayToClassNameMap[delay],
       className
     );
 
@@ -318,7 +325,10 @@ export class EuiToolTip extends Component<Props, State> {
         ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}>
+        onMouseOut={this.onMouseOut}
+        onKeyUp={event => {
+          this.onKeyUp(event);
+        }}>
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element

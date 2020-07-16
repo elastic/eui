@@ -27,7 +27,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { keyCodes, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+import { keys, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
   addStop,
@@ -293,21 +293,21 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     handleOnChange(newColorStops);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (disabled) return;
-    switch (e.keyCode) {
-      case keyCodes.ESCAPE:
+    switch (event.key) {
+      case keys.ESCAPE:
         onFocusWrapper();
         break;
 
-      case keyCodes.ENTER:
+      case keys.ENTER:
         if (readOnly || !hasFocus) return;
         onAdd();
         break;
 
-      case keyCodes.BACKSPACE:
+      case keys.BACKSPACE:
         if (readOnly || hasFocus || focusedStopIndex == null) return;
-        if (isTargetAThumb(e.target)) {
+        if (isTargetAThumb(event.target)) {
           if (
             (min == null && focusedStopIndex === 0) ||
             (max == null && focusedStopIndex === sortedStops.length - 1)
@@ -319,9 +319,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
         break;
 
-      case keyCodes.DOWN:
-        if (e.target === wrapperRef || isTargetAThumb(e.target)) {
-          e.preventDefault();
+      case keys.ARROW_DOWN:
+        if (event.target === wrapperRef || isTargetAThumb(event.target)) {
+          event.preventDefault();
           if (focusedStopIndex == null) {
             onFocusStop(0);
           } else {
@@ -334,9 +334,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
         break;
 
-      case keyCodes.UP:
-        if (e.target === wrapperRef || isTargetAThumb(e.target)) {
-          e.preventDefault();
+      case keys.ARROW_UP:
+        if (event.target === wrapperRef || isTargetAThumb(event.target)) {
+          event.preventDefault();
           if (focusedStopIndex == null) {
             onFocusStop(0);
           } else {

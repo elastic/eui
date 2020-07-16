@@ -37,22 +37,22 @@ import FlyoutWithBanner from './flyout_banner';
 const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 const flyoutWithBannerHtml = renderToHtml(FlyoutWithBanner);
 
-const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyOutSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutComplicatedSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
@@ -67,50 +67,50 @@ const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutSmallSnippet = `<EuiFlyout size="s" onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutMaxWidthSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutMaxWidthSnippet = `<EuiFlyout ownFocus maxWidth={448} onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutLargeSnippet = `<EuiFlyout ownFocus size="l" onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutWithBannerSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutWithBannerSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody banner={callOut}>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
@@ -130,19 +130,24 @@ export const FlyoutExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiFlyout</strong> is a fixed position panel that pops in
             from the right side of the screen. It should be used any time you
             need to perform quick, individual actions to a larger page or list.
           </p>
 
-          <p>
-            For accessibility, use{' '}
-            <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to announce the
-            flyout to screen readers when the user opens it.
-          </p>
-        </div>
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>
+                Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> and{' '}
+                <EuiCode>ownFocus</EuiCode> to announce the flyout to screen
+                readers when the user opens it.
+              </>
+            }
+          />
+        </>
       ),
       props: { EuiFlyout, EuiFlyoutHeader, EuiFlyoutBody },
       snippet: flyOutSnippet,
@@ -195,7 +200,7 @@ export const FlyoutExample = {
       demo: <FlyoutWithBanner />,
     },
     {
-      title: 'Small flyout, ownFocus',
+      title: 'Small flyout, without ownFocus',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -207,12 +212,26 @@ export const FlyoutExample = {
         },
       ],
       text: (
-        <p>
-          In this example, we set <EuiCode>size</EuiCode> to{' '}
-          <EuiCode>s</EuiCode> and apply the <EuiCode>ownFocus</EuiCode> prop.
-          The latter not only traps the focus of our flyout, but also adds
-          background overlay to reinforce your boundaries.
-        </p>
+        <>
+          <p>
+            In this example, we set <EuiCode>size</EuiCode> to{' '}
+            <EuiCode>s</EuiCode> and remove the <EuiCode>ownFocus</EuiCode>{' '}
+            prop. The latter not only removes the focus trap around the flyout,
+            but also removes the background overlay that reinforces your
+            boundaries.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <>
+                Removing <EuiCode>ownFocus</EuiCode> makes it difficult for
+                keyboard-only and screen reader users to navigate to and from
+                your flyout.
+              </>
+            }
+          />
+        </>
       ),
       snippet: flyoutSmallSnippet,
       demo: <FlyoutSmall />,

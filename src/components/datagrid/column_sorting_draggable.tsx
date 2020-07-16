@@ -40,11 +40,24 @@ export interface EuiDataGridColumnSortingDraggableProps {
   sorting: EuiDataGridSorting;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
+  /**
+   * Value to be shown in column sorting popover.
+   */
+  display: string;
 }
 
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   EuiDataGridColumnSortingDraggableProps
-> = ({ id, direction, index, sorting, schema, schemaDetectors, ...rest }) => {
+> = ({
+  id,
+  display,
+  direction,
+  index,
+  sorting,
+  schema,
+  schemaDetectors,
+  ...rest
+}) => {
   const schemaDetails =
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
@@ -95,7 +108,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 default="is sorting this data grid">
                 {(activeSortLabel: ReactChild) => (
                   <span>
-                    {id} {activeSortLabel}
+                    {display} {activeSortLabel}
                   </span>
                 )}
               </EuiI18n>
@@ -140,7 +153,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
             </EuiFlexItem>
             <EuiFlexItem aria-hidden>
               <EuiText size="xs">
-                <p>{id}</p>
+                <p>{display}</p>
               </EuiText>
             </EuiFlexItem>
             <EuiFlexItem className="euiDataGridColumnSorting__orderButtons">

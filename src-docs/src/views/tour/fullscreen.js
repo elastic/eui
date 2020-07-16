@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { GuideFullScreen } from '../../services';
 
@@ -66,10 +66,6 @@ export default () => {
     actions,
     reducerState,
   ] = useEuiTour(demoTourSteps, tourConfig);
-
-  useEffect(() => {
-    console.log('Update', reducerState);
-  }, [reducerState]);
 
   const onSelectColor = color => {
     setColor(color);

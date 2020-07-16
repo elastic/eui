@@ -23,7 +23,7 @@ import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line
 
 import dateMath from '@elastic/datemath';
 
-import { EuiDatePicker } from '../../date_picker';
+import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { toSentenceCase } from '../../../../services/string/to_case';
 import { EuiDatePopoverContentProps } from './date_popover_content';
@@ -36,6 +36,7 @@ export interface EuiAbsoluteTabProps {
   onChange: EuiDatePopoverContentProps['onChange'];
   roundUp: boolean;
   position: 'start' | 'end';
+  utcOffset?: number;
 }
 
 interface EuiAbsoluteTabState {
@@ -72,12 +73,12 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
-  handleChange: EuiDatePopoverContentProps['onChange'] = (date, event) => {
+  handleChange: EuiDatePickerProps['onChange'] = (date, event) => {
     const { onChange } = this.props;
     if (date === null) {
       return;
     }
-    onChange(typeof date === 'string' ? date : date.toISOString(), event);
+    onChange(date.toISOString(), event);
 
     const valueAsMoment = moment(date);
     this.setState({
@@ -96,7 +97,7 @@ export class EuiAbsoluteTab extends Component<
     );
     const dateIsValid = valueAsMoment.isValid();
     if (dateIsValid) {
-      onChange(valueAsMoment, event);
+      onChange(valueAsMoment.toISOString(), event);
     }
     this.setState({
       textInputValue: event.target.value as string,
@@ -106,37 +107,38 @@ export class EuiAbsoluteTab extends Component<
   };
 
   render() {
+    const { dateFormat, timeFormat, locale, utcOffset } = this.props;
+    const {
+      valueAsMoment,
+      isTextInvalid,
+      textInputValue,
+      sentenceCasedPosition,
+    } = this.state;
+
     return (
       <div>
         <EuiDatePicker
           inline
           showTimeSelect
           shadow={false}
-          selected={this.state.valueAsMoment}
+          selected={valueAsMoment}
           onChange={this.handleChange}
-          dateFormat={this.props.dateFormat}
-          timeFormat={this.props.timeFormat}
-          locale={this.props.locale}
+          dateFormat={dateFormat}
+          timeFormat={timeFormat}
+          locale={locale}
+          utcOffset={utcOffset}
         />
         <EuiFormRow
           className="euiSuperDatePicker__absoluteDateFormRow"
-          isInvalid={this.state.isTextInvalid}
-          error={
-            this.state.isTextInvalid
-              ? `Expected format ${this.props.dateFormat}`
-              : undefined
-          }>
+          isInvalid={isTextInvalid}
+          error={isTextInvalid ? `Expected format ${dateFormat}` : undefined}>
           <EuiFieldText
             compressed
-            isInvalid={this.state.isTextInvalid}
-            value={this.state.textInputValue}
+            isInvalid={isTextInvalid}
+            value={textInputValue}
             onChange={this.handleTextChange}
             data-test-subj={'superDatePickerAbsoluteDateInput'}
-            prepend={
-              <EuiFormLabel>
-                {this.state.sentenceCasedPosition} date
-              </EuiFormLabel>
-            }
+            prepend={<EuiFormLabel>{sentenceCasedPosition} date</EuiFormLabel>}
           />
         </EuiFormRow>
       </div>

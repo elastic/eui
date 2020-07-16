@@ -56,6 +56,16 @@ describe('EuiStep', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('titleSize', () => {
+      const component = render(
+        <EuiStep titleSize="xs" title={'First step'}>
+          <p>Do this</p>
+        </EuiStep>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('status', () => {
       STATUS.forEach(status => {
         test(`${status} is rendered`, () => {

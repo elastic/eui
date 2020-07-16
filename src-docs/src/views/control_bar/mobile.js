@@ -20,7 +20,6 @@ export default () => {
     {
       controlType: 'breadcrumbs',
       id: 'current_file_path',
-      responsive: true,
       className: 'eui-hideFor--s eui-hideFor--xs',
       breadcrumbs: [
         {

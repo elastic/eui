@@ -57,7 +57,7 @@ export default () => {
 
   return (
     <EuiDataGrid
-      aria-label="Top EUI contributors"
+      aria-label="Data grid demo with additional controls"
       columns={columns}
       columnVisibility={{
         visibleColumns: visibleColumns,

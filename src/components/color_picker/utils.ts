@@ -19,6 +19,7 @@
 
 import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
 import chroma, { ColorSpaces } from 'chroma-js';
+import { ColorStop } from './color_stops';
 
 export const getEventPosition = (
   location: { x: number; y: number },
@@ -155,4 +156,78 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
     return chromaColor;
   }
   return null;
+};
+
+// Given an array of objects with key value pairs stop/color returns a css linear-gradient
+// Or given an array of hex colors returns a css linear-gradient
+export const getLinearGradient = (palette: string[] | ColorStop[]) => {
+  const intervals = palette.length;
+
+  let linearGradient;
+
+  const paletteHasStops = palette.some((item: string | ColorStop) => {
+    return typeof item === 'object';
+  });
+
+  if (paletteHasStops) {
+    const paletteColorStop = palette as ColorStop[];
+
+    linearGradient = `linear-gradient(to right, ${
+      paletteColorStop[0].color
+    } 0%,`;
+
+    const decimal = 100 / paletteColorStop[paletteColorStop.length - 1].stop;
+
+    for (let i = 1; i < intervals - 1; i++) {
+      linearGradient = `${linearGradient} ${
+        paletteColorStop[i].color
+      }\ ${Math.floor(paletteColorStop[i].stop * decimal)}%,`;
+    }
+
+    const linearGradientStyle = `${linearGradient} ${
+      paletteColorStop[palette.length - 1].color
+    } 100%)`;
+
+    return linearGradientStyle;
+  } else {
+    linearGradient = `linear-gradient(to right, ${palette[0]} 0%,`;
+
+    for (let i = 1; i < intervals - 1; i++) {
+      linearGradient = `${linearGradient} ${palette[i]}\ ${Math.floor(
+        (100 * i) / (intervals - 1)
+      )}%,`;
+    }
+
+    const linearGradientStyle = `${linearGradient} ${
+      palette[palette.length - 1]
+    } 100%)`;
+
+    return linearGradientStyle;
+  }
+};
+
+// Given an array of hex colors returns a css linear-gradient with individual color blocks
+export const getFixedLinearGradient = (palette: string[]) => {
+  const intervals = palette.length;
+
+  let fixedLinearGradient;
+
+  for (let i = 0; i < intervals; i++) {
+    const initialColorStop = `${palette[0]} 0%, ${palette[0]}\ ${Math.floor(
+      (100 * 1) / intervals
+    )}%`;
+    const colorStop = `${palette[i]}\ ${Math.floor((100 * i) / intervals)}%, ${
+      palette[i]
+    }\ ${Math.floor((100 * (i + 1)) / intervals)}%`;
+
+    if (i === 0) {
+      fixedLinearGradient = `linear-gradient(to right, ${initialColorStop},`;
+    } else if (i === palette.length - 1) {
+      fixedLinearGradient = `${fixedLinearGradient} ${colorStop})`;
+    } else {
+      fixedLinearGradient = `${fixedLinearGradient} ${colorStop},`;
+    }
+  }
+
+  return fixedLinearGradient;
 };

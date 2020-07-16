@@ -18,10 +18,14 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 
-import { findTestSubject, requiredProps } from '../../test';
-import { keyCodes } from '../../services';
+import {
+  findTestSubject,
+  requiredProps,
+  takeMountedSnapshot,
+} from '../../test';
+import { keys } from '../../services';
 
 import {
   CANCEL_BUTTON,
@@ -39,7 +43,7 @@ beforeEach(() => {
 
 describe('EuiConfirmModal', () => {
   test('renders EuiConfirmModal', () => {
-    const component = render(
+    const component = mount(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -50,11 +54,13 @@ describe('EuiConfirmModal', () => {
         This is a confirmation modal example
       </EuiConfirmModal>
     );
-    expect(component).toMatchSnapshot();
+    expect(
+      takeMountedSnapshot(component, { hasArrayOutput: true })
+    ).toMatchSnapshot();
   });
 
   test('renders EuiConfirmModal without EuiModalBody, if empty', () => {
-    const component = render(
+    const component = mount(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -64,7 +70,9 @@ describe('EuiConfirmModal', () => {
         {...requiredProps}
       />
     );
-    expect(component).toMatchSnapshot();
+    expect(
+      takeMountedSnapshot(component, { hasArrayOutput: true })
+    ).toMatchSnapshot();
   });
 
   test('onConfirm', () => {
@@ -126,7 +134,7 @@ describe('EuiConfirmModal', () => {
       );
 
       findTestSubject(component, 'modal').simulate('keydown', {
-        keyCode: keyCodes.ESCAPE,
+        key: keys.ESCAPE,
       });
       expect(onConfirm).toHaveBeenCalledTimes(0);
       expect(onCancel).toHaveBeenCalledTimes(1);

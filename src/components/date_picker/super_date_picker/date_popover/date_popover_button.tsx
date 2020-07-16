@@ -49,6 +49,7 @@ export interface EuiDatePopoverButtonProps {
   roundUp?: boolean;
   timeFormat: string;
   value: string;
+  utcOffset?: number;
 }
 
 export const EuiDatePopoverButton: FunctionComponent<
@@ -65,6 +66,7 @@ export const EuiDatePopoverButton: FunctionComponent<
     onChange,
     locale,
     dateFormat,
+    utcOffset,
     timeFormat,
     isOpen,
     onPopoverToggle,
@@ -120,6 +122,7 @@ export const EuiDatePopoverButton: FunctionComponent<
         timeFormat={timeFormat}
         locale={locale}
         position={position}
+        utcOffset={utcOffset}
       />
     </EuiPopover>
   );

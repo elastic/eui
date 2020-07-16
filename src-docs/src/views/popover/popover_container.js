@@ -10,15 +10,11 @@ import {
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [panelRef, setPanelRef] = useState(null);
 
   const onButtonClick = () =>
     setIsPopoverOpen(isPopoverOpen1 => !isPopoverOpen1);
   const closePopover = () => setIsPopoverOpen(false);
-
-  let panel;
-  const setPanelRef = node => {
-    panel = node;
-  };
 
   const button = (
     <EuiButton
@@ -33,10 +29,11 @@ export default () => {
   return (
     <EuiPanel panelRef={setPanelRef}>
       <EuiPopover
+        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        container={panel}>
+        container={panelRef}>
         <div>
           Popover is positioned <EuiCode>downCenter</EuiCode> but constrained to
           fit within the panel.

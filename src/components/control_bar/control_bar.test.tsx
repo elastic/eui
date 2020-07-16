@@ -31,7 +31,7 @@ const controls: Control[] = [
   {
     controlType: 'breadcrumbs',
     id: 'current_file_path',
-    responsive: true,
+    responsive: false,
     breadcrumbs: [
       {
         text: 'src',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment, useRef } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 import {
@@ -7,6 +7,9 @@ import {
   EuiButton,
   EuiInMemoryTable,
   EuiEmptyPrompt,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
 } from '../../../../../src/components';
 import { Random } from '../../../../../src/services/random';
 
@@ -61,6 +64,7 @@ export const Table = () => {
 
   const [selection, setSelection] = useState([]);
   const [error, setError] = useState();
+  const tableRef = useRef();
 
   const loadUsers = () => {
     setMessage('Loading users...');
@@ -208,16 +212,33 @@ export const Table = () => {
     pageSizeOptions: [3, 5, 8],
   };
 
+  const onlineUsers = store.users.filter(user => user.online);
+
   const selectionValue = {
     selectable: user => user.online,
     selectableMessage: selectable =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: selection => setSelection(selection),
+    initialSelected: onlineUsers,
+  };
+
+  const onSelection = () => {
+    tableRef.current.setSelection(onlineUsers);
   };
 
   return (
-    <div>
+    <Fragment>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={onSelection}>Select online users</EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem />
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
       <EuiInMemoryTable
+        ref={tableRef}
         items={users}
         itemId="id"
         error={error}
@@ -230,6 +251,6 @@ export const Table = () => {
         selection={selectionValue}
         isSelectable={true}
       />
-    </div>
+    </Fragment>
   );
 };

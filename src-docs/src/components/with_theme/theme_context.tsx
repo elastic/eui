@@ -4,8 +4,10 @@ import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 import euiLightTheme from '../../../../src/theme_light';
 import euiDarkTheme from '../../../../src/theme_dark';
 import PropagateContext from '../../../../src/services/propagate/propagate_context';
-// @ts-ignore
+// @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
+
+const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 
 const defaultState = {
   theme: EUI_THEMES[0].value,
@@ -28,7 +30,8 @@ export class ThemeProvider extends React.Component<object, State> {
   constructor(props: object) {
     super(props);
 
-    const theme = localStorage.getItem('theme') || defaultState.theme;
+    let theme = localStorage.getItem('theme');
+    if (!theme || !THEME_NAMES.includes(theme)) theme = defaultState.theme;
     applyTheme(theme);
     const fullTheme =
       theme === 'light'

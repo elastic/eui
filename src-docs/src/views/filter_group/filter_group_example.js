@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import {} from 'react-router';
-
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';

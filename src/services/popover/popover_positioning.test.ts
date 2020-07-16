@@ -469,9 +469,9 @@ describe('popover_positioning', () => {
   describe('findPopoverPosition', () => {
     beforeEach(() => {
       // reset any scrolling before each test
-      // @ts-ignore
+      // @ts-ignore setting a "readonly" property
       window.pageXOffset = 0;
-      // @ts-ignore
+      // @ts-ignore setting a "readonly" property
       window.pageYOffset = 0;
     });
 
@@ -666,9 +666,9 @@ describe('popover_positioning', () => {
 
     describe('scrolling', () => {
       it('adds body scroll position to position values', () => {
-        // @ts-ignore
+        // @ts-ignore setting a "readonly" property
         window.pageYOffset = 100;
-        // @ts-ignore
+        // @ts-ignore setting a "readonly" property
         window.pageXOffset = 15;
 
         const anchor = document.createElement('div');

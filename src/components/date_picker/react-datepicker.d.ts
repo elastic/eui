@@ -39,6 +39,7 @@ type popperPlacement =
   | 'bottom-start'
   | 'left'
   | 'left-end'
+  | 'left-start'
   | 'right'
   | 'right-end'
   | 'right-start'

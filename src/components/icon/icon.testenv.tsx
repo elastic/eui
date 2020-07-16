@@ -17,10 +17,17 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { ComponentType } from 'react';
+
 export const EuiIcon = ({ type, ...rest }: any) => (
   <div data-euiicon-type={type} {...rest} />
 );
+
+export const appendIconComponentCache = (_: {
+  [iconType: string]: ComponentType;
+}) => {
+  // manually appending to the internal EuiIcon cache is out-of-scope of this test environment
+};
 
 export const TYPES = [];
 export const COLORS = [];

@@ -55,7 +55,7 @@ export default () => {
     <EuiPanel style={{ width: 400, paddingBottom: 4 }} paddingSize="none">
       <div style={{ height: 300 }}>
         <EuiDataGrid
-          aria-label="Top EUI contributors"
+          aria-label="Container constrained data grid demo"
           columns={columns}
           columnVisibility={{
             visibleColumns: visibleColumns,

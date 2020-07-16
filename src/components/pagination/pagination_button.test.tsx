@@ -25,7 +25,9 @@ import { EuiPaginationButton } from './pagination_button';
 
 describe('EuiPaginationButton', () => {
   test('is rendered', () => {
-    const component = render(<EuiPaginationButton {...requiredProps} />);
+    const component = render(
+      <EuiPaginationButton pageIndex={1} {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });

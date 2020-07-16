@@ -29,7 +29,7 @@ import React, {
 import { htmlIdGenerator } from '../../services/accessibility';
 import classnames from 'classnames';
 import { EuiDataGridHeaderRowPropsSpecificProps } from './data_grid_header_row';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
@@ -210,22 +210,22 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         });
       }
 
-      function onKeyUp(e: KeyboardEvent) {
-        switch (e.keyCode) {
-          case keyCodes.ENTER: {
-            e.preventDefault();
+      function onKeyUp(event: KeyboardEvent) {
+        switch (event.key) {
+          case keys.ENTER: {
+            event.preventDefault();
             setIsCellEntered(true);
             break;
           }
-          case keyCodes.ESCAPE: {
-            e.preventDefault();
+          case keys.ESCAPE: {
+            event.preventDefault();
             // move focus to cell
             setIsCellEntered(false);
             headerRef.current!.focus();
             break;
           }
-          case keyCodes.F2: {
-            e.preventDefault();
+          case keys.F2: {
+            event.preventDefault();
             if (document.activeElement === headerRef.current) {
               // move focus into cell's interactives
               setIsCellEntered(true);

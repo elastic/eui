@@ -30,7 +30,7 @@ which is used for routing in EUI docs. Aside from the benefit of shorter path na
 ```js
 import {
   Link,
-} from 'react-router';
+} from 'react-router-dom';
 
 // ...
 

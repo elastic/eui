@@ -179,7 +179,6 @@
 
   .hljs-keyword {
     color: $euiCodeBlockKeywordColor;
-    font-weight: bold;
   }
 
   .hljs-function > .hljs-title {
@@ -227,18 +226,18 @@
     color: $euiCodeBlockSectionColor;
   }
 
+  .hljs-addition,
+  .hljs-deletion {
+    padding-left: $euiSizeXS;
+    margin-left: -$euiSizeXS;
+  }
+
   .hljs-addition {
-    background-color: $euiCodeBlockAdditionBackgroundColor;
-    color: $euiCodeBlockAdditionColor;
-    display: inline-block;
-    width: 100%;
+    box-shadow: -$euiSizeXS 0 $euiCodeBlockAdditionColor;
   }
 
   .hljs-deletion {
-    background-color: $euiCodeBlockDeletionBackgroundColor;
-    color: $euiCodeBlockDeletionColor;
-    display: inline-block;
-    width: 100%;
+    box-shadow: -$euiSizeXS 0 $euiCodeBlockDeletionColor;
   }
 
   .hljs-selector-class {

@@ -9,6 +9,7 @@ import {
   EuiFieldText,
   EuiSpacer,
 } from '../../../../src/components';
+import { keys } from '../../../../src/services';
 
 import { ModalExample } from './modal_example_container';
 
@@ -18,10 +19,10 @@ const ConflictModal = props => {
   const updateInputValue = e => {
     setInputValue(e.target.value);
   };
-  const clearInputValueOnEscape = e => {
-    if (e.key === 'Escape') {
+  const clearInputValueOnEscape = event => {
+    if (event.key === keys.ESCAPE) {
       setInputValue('');
-      e.stopPropagation();
+      event.stopPropagation();
     }
   };
 

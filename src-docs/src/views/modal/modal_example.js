@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -11,6 +11,7 @@ import {
   EuiConfirmModal,
   EuiOverlayMask,
 } from '../../../../src/components';
+import Guidelines from './guidelines';
 
 import Modal from './modal';
 const modalSource = require('!!raw-loader!./modal');
@@ -76,7 +77,7 @@ export const ModalExample = {
         <p>
           Use a modal to temporarily interrupt a user’s current task and block
           interactions to the content below it. Be sure to read the full{' '}
-          <Link to="/guidelines/modals">modal usage guidelines</Link>.
+          <Link to="/layout/modal/guidelines">modal usage guidelines</Link>.
         </p>
       ),
       props: { EuiModal, EuiOverlayMask },
@@ -124,4 +125,5 @@ export const ModalExample = {
       demo: <OverflowTest />,
     },
   ],
+  guidelines: <Guidelines />,
 };

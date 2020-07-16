@@ -20,8 +20,8 @@
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
-import { ENTER } from '../../../services/key_codes';
 import { CommonProps } from '../../common';
+import { keys } from '../../../services';
 
 import {
   EuiFormControlLayout,
@@ -76,6 +76,8 @@ interface EuiFieldSearchState {
   value: string;
 }
 
+let isSearchSupported: boolean = false;
+
 export class EuiFieldSearch extends Component<
   EuiFieldSearchProps,
   EuiFieldSearchState
@@ -97,10 +99,11 @@ export class EuiFieldSearch extends Component<
 
   componentDidMount() {
     if (!this.inputElement) return;
-    if (Browser.isEventSupported('search', this.inputElement)) {
+    isSearchSupported = Browser.isEventSupported('search', this.inputElement);
+    if (isSearchSupported) {
       const onSearch = (event?: Event) => {
         if (this.props.onSearch) {
-          if (!event || !event.target) return;
+          if (!event || !event.target || event.defaultPrevented) return;
           this.props.onSearch((event.target as HTMLInputElement).value);
         }
       };
@@ -110,6 +113,20 @@ export class EuiFieldSearch extends Component<
         this.inputElement.removeEventListener('search', onSearch);
       });
     }
+    const onChange = (event: Event) => {
+      if (
+        event.target &&
+        (event.target as HTMLInputElement).value !== this.state.value
+      ) {
+        this.setState({
+          value: (event.target as HTMLInputElement).value,
+        });
+        if (this.props.onSearch) {
+          this.props.onSearch((event.target as HTMLInputElement).value);
+        }
+      }
+    };
+    this.inputElement.addEventListener('change', onChange);
   }
 
   onClear = () => {
@@ -153,6 +170,7 @@ export class EuiFieldSearch extends Component<
       }
       // set focus on the search field
       this.inputElement.focus();
+      this.inputElement.dispatchEvent(new Event('change'));
     }
     this.setState({ value: '' });
 
@@ -187,7 +205,12 @@ export class EuiFieldSearch extends Component<
         return;
       }
     }
-    if (onSearch && (incremental || event.keyCode === ENTER)) {
+
+    if (
+      onSearch &&
+      ((event.key !== keys.ENTER && incremental) ||
+        (event.key === keys.ENTER && !isSearchSupported))
+    ) {
       onSearch((event.target as HTMLInputElement).value);
     }
   };

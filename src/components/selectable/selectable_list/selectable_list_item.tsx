@@ -17,11 +17,13 @@
  * under the License.
  */
 
-import React, { Component, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
+import React, { Component, LiHTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
-import { EuiIcon, IconType, IconColor } from '../../icon';
+import { EuiI18n } from '../../i18n';
+import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiSelectableOptionCheckedType } from '../selectable_option';
+import { EuiScreenReaderOnly } from '../../accessibility';
 
 function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
@@ -34,9 +36,7 @@ function resolveIconAndColor(
     : { icon: 'cross', color: 'text' };
 }
 
-export type EuiSelectableListItemProps = ButtonHTMLAttributes<
-  HTMLButtonElement
-> &
+export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
     children?: React.ReactNode;
     /**
@@ -54,6 +54,7 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
     disabled?: boolean;
     prepend?: React.ReactNode;
     append?: React.ReactNode;
+    allowExclusions?: boolean;
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -72,12 +73,13 @@ export class EuiSelectableListItem extends Component<
     const {
       children,
       className,
-      disabled,
+      disabled = false,
       checked,
       isFocused,
       showIcons,
       prepend,
       append,
+      allowExclusions,
       ...rest
     } = this.props;
 
@@ -89,10 +91,10 @@ export class EuiSelectableListItem extends Component<
       className
     );
 
-    let buttonIcon: React.ReactNode;
+    let optionIcon: React.ReactNode;
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
-      buttonIcon = (
+      optionIcon = (
         <EuiIcon
           className="euiSelectableListItem__icon"
           color={color}
@@ -115,22 +117,71 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
+    let state: React.ReactNode;
+    let instruction: React.ReactNode;
+    if (allowExclusions && checked === 'on') {
+      state = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.includedOption"
+              default="Included option."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+      instruction = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.includedOptionInstructions"
+              default="To exclude this option, press enter or space."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+    } else if (allowExclusions && checked === 'off') {
+      state = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.excludedOption"
+              default="Excluded option."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+      instruction = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.excludedOptionInstructions"
+              default="To deselect this option, press enter or space."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+    }
+
     return (
-      <button
+      <li
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         role="option"
-        type="button"
-        aria-selected={isFocused}
+        aria-selected={!disabled && typeof checked === 'string'}
         className={classes}
-        disabled={disabled}
         aria-disabled={disabled}
         {...rest}>
         <span className="euiSelectableListItem__content">
-          {buttonIcon}
+          {optionIcon}
           {prependNode}
-          <span className="euiSelectableListItem__text">{children}</span>
+          <span className="euiSelectableListItem__text">
+            {state}
+            {children}
+            {instruction}
+          </span>
           {appendNode}
         </span>
-      </button>
+      </li>
     );
   }
 }

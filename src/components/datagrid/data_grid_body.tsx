@@ -18,7 +18,6 @@
  */
 
 import React, { Fragment, FunctionComponent, useMemo } from 'react';
-// @ts-ignore-next-line
 import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridControlColumn,

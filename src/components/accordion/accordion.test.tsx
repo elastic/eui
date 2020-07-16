@@ -117,6 +117,21 @@ describe('EuiAccordion', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      it('accepts and calls an optional callback on click', () => {
+        const onToggleHandler = jest.fn();
+        const component = mount(
+          <EuiAccordion
+            id={getId()}
+            onToggle={onToggleHandler}
+            forceState="closed"
+          />
+        );
+
+        component.find('button').simulate('click');
+        expect(onToggleHandler).toBeCalled();
+        expect(onToggleHandler).toBeCalledWith(true);
+      });
     });
   });
 

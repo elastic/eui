@@ -47,7 +47,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   iconType,
   iconColor = 'subdued',
   title,
-  titleSize,
+  titleSize = 'm',
   body,
   actions,
   className,

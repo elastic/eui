@@ -63,10 +63,8 @@ export const Categorical = () => {
   const [numCharts, setNumCharts] = useState('3');
   const [data, setData] = useState([]);
   const [dataString, setDataString] = useState('[{x: 1, y: 5.5, g: 0}]');
-  const [vizColors, setVizColors] = useState(euiPaletteColorBlind());
-  const [vizColorsString, setVizColorsString] = useState(
-    'euiPaletteColorBlind()'
-  );
+  const [vizColors, setVizColors] = useState();
+  const [vizColorsString, setVizColorsString] = useState();
   const [chartType, setChartType] = useState('LineSeries');
 
   useEffect(() => {
@@ -132,8 +130,8 @@ export const Categorical = () => {
 
     setData(data);
     setDataString("[{x: 1, y: 5.5, g: 'Categorical 1'}]");
-    setVizColors(euiPaletteColorBlind());
-    setVizColorsString('euiPaletteColorBlind()');
+    setVizColors(undefined);
+    setVizColorsString(undefined);
     setChartType('LineSeries');
   };
 
@@ -235,13 +233,20 @@ export const Categorical = () => {
       undefined
     );
 
-  const customColors = {
-    colors: { vizColors },
-  };
-  const customColorsString = `[
+  const customTheme = vizColors
+    ? [
+        {
+          colors: { vizColors },
+        },
+        theme,
+      ]
+    : theme;
+  const customColorsString = vizColors
+    ? `[
   { colors: { vizColors: ${vizColorsString} }},
   isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
-]`;
+]`
+    : 'isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme';
 
   const charts = [];
   let customLegend;
@@ -278,7 +283,7 @@ export const Categorical = () => {
           data={data}
           xAccessor={'x'}
           yAccessors={['y']}
-          customSeriesColors={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
+          color={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
           lineSeriesStyle={{
             line: {
               strokeWidth: isOdd ? 1 : 6,
@@ -315,7 +320,7 @@ export const Categorical = () => {
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
           <Settings
-            theme={[customColors, theme]}
+            theme={customTheme}
             showLegend={showLegend}
             legendPosition="right"
             showLegendDisplayValue={false}

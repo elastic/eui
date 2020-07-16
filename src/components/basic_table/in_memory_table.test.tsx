@@ -22,9 +22,12 @@ import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
-import { ENTER } from '../../services/key_codes';
-import { SortDirection } from '../../services';
+import { keys, SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
+
+jest.mock('../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 interface BasicItem {
   id: number | string;
@@ -476,6 +479,32 @@ describe('EuiInMemoryTable', () => {
     expect(itemsProp).toEqual(items);
   });
 
+  test('with initial selection', () => {
+    const props: EuiInMemoryTableProps<BasicItem> = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+      ],
+      selection: {
+        onSelectionChange: () => undefined,
+        initialSelected: [{ id: '1', name: 'name1' }],
+      },
+    };
+    const component = mount(<EuiInMemoryTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with pagination and selection', () => {
     const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
@@ -736,7 +765,7 @@ describe('EuiInMemoryTable', () => {
         target: {
           value: 'is:active',
         },
-        keyCode: ENTER,
+        key: keys.ENTER,
       });
       component.update();
 
@@ -747,7 +776,7 @@ describe('EuiInMemoryTable', () => {
         target: {
           value: 'active:false',
         },
-        keyCode: ENTER,
+        key: keys.ENTER,
       });
       component.update();
 
@@ -904,8 +933,7 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       component
-        .find('[data-test-subj="pagination-button-1"]')
-        .first()
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
         .simulate('click');
 
       // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
@@ -943,7 +971,7 @@ describe('EuiInMemoryTable', () => {
 
       expect(props.onTableChange).toHaveBeenCalledTimes(0);
       component
-        .find('EuiPaginationButton[data-test-subj="pagination-button-1"]')
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({

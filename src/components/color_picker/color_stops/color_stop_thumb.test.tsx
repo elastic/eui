@@ -25,8 +25,7 @@ import { EuiColorStopThumb } from './color_stop_thumb';
 import { requiredProps } from '../../../test';
 
 jest.mock('../../portal', () => ({
-  // @ts-ignore
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: any }) => children,
 }));
 
 const onChange = jest.fn();

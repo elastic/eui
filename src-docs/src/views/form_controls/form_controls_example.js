@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -86,7 +86,7 @@ const textAreaSnippet = [
 />`,
 ];
 
-import { FilePicker } from './file_picker';
+import FilePicker from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
 const filePickerSnippet = [

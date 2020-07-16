@@ -25,7 +25,9 @@ import { EuiStepHorizontalProps, EuiStepHorizontal } from './step_horizontal';
 
 type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProps, 'step'>;
 
-export interface EuiStepsHorizontalProps {
+export interface EuiStepsHorizontalProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * An array of `EuiStepHorizontal` objects excluding the `step` prop
    */
@@ -38,9 +40,11 @@ function renderHorizontalSteps(steps: ContainedEuiStepHorizontalProps[]) {
   });
 }
 
-export const EuiStepsHorizontal: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsHorizontalProps
-> = ({ className, steps, ...rest }) => {
+export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
+  className,
+  steps,
+  ...rest
+}) => {
   const classes = classNames('euiStepsHorizontal', className);
 
   return (

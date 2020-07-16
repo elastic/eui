@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -77,7 +77,7 @@ export const ColorPaletteExample = {
       demo: <ColorPalette />,
       snippet: [
         'euiPaletteColorBlind()',
-        "euiPaletteColorBlind(3, 'group', 'both)",
+        "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
       ],
       props: qualitativePropsInfo,
     },

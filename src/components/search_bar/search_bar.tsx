@@ -134,7 +134,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     prevState: State
   ): State | null {
     if (
-      nextProps.query &&
+      (nextProps.query || nextProps.query === '') &&
       (!prevState.query ||
         (typeof nextProps.query !== 'string' &&
           nextProps.query.text !== prevState.query.text) ||

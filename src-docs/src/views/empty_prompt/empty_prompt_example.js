@@ -9,14 +9,31 @@ import { EuiCode, EuiEmptyPrompt } from '../../../../src/components';
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptHtml = renderToHtml(EmptyPrompt);
+const emptyPromptSnippet = `<EuiEmptyPrompt
+  iconType="editorStrike"
+  title={<h2>You have no spice</h2>}
+  body={bodyContent}
+  actions={actions}
+/>`;
 
 import Custom from './custom';
 const customSource = require('!!raw-loader!./custom');
 const customHtml = renderToHtml(Custom);
+const customSnippet = `<EuiEmptyPrompt
+  iconType="editorStrike"
+  title={<h2>You have no spice</h2>}
+  titleSize="xs"
+  body={bodyContent}
+  actions={actions}
+/>`;
 
 import Simple from './simple';
 const simpleSource = require('!!raw-loader!./simple');
 const simpleHtml = renderToHtml(Simple);
+const simpleSnippet = `<EuiEmptyPrompt
+  title={<h2>You have no spice</h2>}
+  actions={multipleActions}
+/>`;
 
 export const EmptyPromptExample = {
   title: 'Empty prompt',
@@ -40,6 +57,7 @@ export const EmptyPromptExample = {
       ),
       props: { EuiEmptyPrompt },
       demo: <EmptyPrompt />,
+      snippet: emptyPromptSnippet,
     },
     {
       title: 'Custom sizes and colors',
@@ -61,6 +79,7 @@ export const EmptyPromptExample = {
       ),
       props: { EuiEmptyPrompt },
       demo: <Custom />,
+      snippet: customSnippet,
     },
     {
       title: 'Less content, more actions',
@@ -85,6 +104,7 @@ export const EmptyPromptExample = {
       ),
       props: { EuiEmptyPrompt },
       demo: <Simple />,
+      snippet: simpleSnippet,
     },
   ],
 };

@@ -15,7 +15,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services/accessibility';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const idPrefix = htmlIdGenerator()();

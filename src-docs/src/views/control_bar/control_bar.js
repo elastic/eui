@@ -30,7 +30,6 @@ export default () => {
     {
       controlType: 'breadcrumbs',
       id: 'current_file_path',
-      responsive: true,
       breadcrumbs: [
         {
           text: 'src',

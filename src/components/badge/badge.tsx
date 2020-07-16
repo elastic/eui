@@ -26,15 +26,16 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import chroma from 'chroma-js';
+import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import {
   euiPaletteColorBlindBehindText,
-  isValidHex,
   getSecureRelForTarget,
+  isColorDark,
 } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
+import { chromaValid, parseColor } from '../color_picker/utils';
 
 type IconSide = 'left' | 'right';
 
@@ -269,7 +270,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   }
 
   if (iconOnClick) {
-    return (
+    return onClick || href ? (
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
           <EuiInnerText>
@@ -289,6 +290,22 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           {optionalIcon}
         </span>
       </span>
+    ) : (
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            className={classes}
+            style={optionalCustomStyles}
+            ref={ref}
+            title={innerText}
+            {...rest}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </span>
+        )}
+      </EuiInnerText>
     );
   } else if (onClick || href) {
     return (
@@ -338,24 +355,23 @@ function getColorContrast(textColor: string, color: string) {
 }
 
 function setTextColor(bgColor: string) {
-  const textColor =
-    getColorContrast(colorInk, bgColor) > getColorContrast(colorGhost, bgColor)
-      ? colorInk
-      : colorGhost;
+  const textColor = isColorDark(...chroma(bgColor).rgb())
+    ? colorGhost
+    : colorInk;
 
   return textColor;
 }
 
 function checkValidColor(color: null | IconColor | string) {
-  if (
-    color != null &&
-    !isValidHex(color) &&
-    !COLORS.includes(color) &&
-    color !== 'hollow'
-  ) {
+  const colorExists = !!color;
+  const isNamedColor = (color && COLORS.includes(color)) || color === 'hollow';
+  const isValidColorString = color && chromaValid(parseColor(color) || '');
+
+  if (!colorExists && !isNamedColor && !isValidColorString) {
     console.warn(
       'EuiBadge expects a valid color. This can either be a three or six ' +
-        `character hex value, hollow, or one of the following: ${COLORS}`
+        `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +
+        `Instead got ${color}.`
     );
   }
 }

@@ -6,22 +6,22 @@
 }
 
 @mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
-  $firstIconSize: $euiFormControlPadding + $euiSize + $euiFormControlPadding;
-  $secondIconSize: $euiFormControlPadding + $euiSize;
+  $iconSize: $euiSize;
+  $iconPadding: $euiFormControlPadding;
+  $marginBetweenIcons: $euiFormControlPadding / 2;
 
   @if ($compressed) {
-    $firstIconSize: $euiFormControlCompressedPadding + $euiSize + $euiFormControlCompressedPadding;
-    $secondIconSize: $euiFormControlCompressedPadding + $euiSize;
+    $iconPadding: $euiFormControlCompressedPadding;
   }
 
   @if variable-exists(numOfIcons) == false {
     @error '$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayoutPadding().';
   } @else if $numOfIcons == 1 {
-    padding-#{$side}: $firstIconSize;
+    padding-#{$side}: $iconPadding + $iconSize + $iconPadding;
   } @else if $numOfIcons == 2 {
-    padding-#{$side}: $firstIconSize + $secondIconSize;
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
   } @else if $numOfIcons == 3 {
-    padding-#{$side}: $firstIconSize + ($secondIconSize * 2);
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
   }
 }
 
@@ -120,6 +120,14 @@
         @include euiFormControlLayoutPadding(2);
       } @else {
         @include euiFormControlLayoutPadding(1);
+      }
+    }
+
+    #{&}-isLoading#{&}--compressed {
+      @if ($isNextToIcon) {
+        @include euiFormControlLayoutPadding(2, $compressed: true);
+      } @else {
+        @include euiFormControlLayoutPadding(1, $compressed: true);
       }
     }
   }

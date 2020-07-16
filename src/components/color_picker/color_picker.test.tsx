@@ -21,12 +21,11 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiColorPicker } from './color_picker';
-import { VISUALIZATION_COLORS, keyCodes } from '../../services';
+import { VISUALIZATION_COLORS, keys } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
-  // @ts-ignore
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: any }) => children,
 }));
 
 const onChange = jest.fn();
@@ -146,6 +145,25 @@ test('renders EuiColorPicker with a color swatch when color is defined', () => {
   expect(colorPicker).toMatchSnapshot();
 });
 
+test('renders EuiColorPicker with a custom placeholder', () => {
+  const colorPicker = render(
+    <EuiColorPicker onChange={onChange} placeholder="Auto" {...requiredProps} />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
+test('renders EuiColorPicker with a clearable input', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color={'#ffeedd'}
+      isClearable={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
 test('popover color selector is not shown by default', () => {
   const colorPicker = mount(
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
@@ -186,7 +204,7 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   await sleep();
   findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
-    keyCode: keyCodes.ESCAPE,
+    key: keys.ESCAPE,
   });
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   expect(onBlurHandler).toBeCalled();
@@ -205,7 +223,7 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
-    keyCode: keyCodes.ENTER,
+    key: keys.ENTER,
   });
   expect(
     findTestSubject(colorPicker, 'colorPickerAnchor').getDOMNode()
@@ -280,6 +298,25 @@ test('Setting a new alpha value calls onChange', () => {
     hex: '#ffeedd40',
     isValid: true,
     rgba: [255, 238, 221, 0.25],
+  });
+});
+
+test('Clicking the "clear" button calls onChange', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      isClearable={true}
+      {...requiredProps}
+    />
+  );
+
+  colorPicker.find('.euiFormControlLayoutClearButton').simulate('click');
+  expect(onChange).toBeCalled();
+  expect(onChange).toBeCalledWith('', {
+    hex: '',
+    isValid: false,
+    rgba: [NaN, NaN, NaN, 1],
   });
 });
 

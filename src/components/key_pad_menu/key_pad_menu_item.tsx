@@ -122,7 +122,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   } = {};
 
   if (href && !isDisabled) {
-    relObj.role = 'menuitem';
     relObj.href = href;
     relObj.target = target;
     relObj.rel = getSecureRelForTarget({ href, rel, target });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
@@ -46,6 +46,10 @@ export const FocusTrapExample = {
           <p>
             Use <EuiCode>clickOutsideDisables</EuiCode> to disable the focus
             trap when the user clicks outside the trap.
+          </p>
+          <p>
+            Use <EuiCode>noIsolation=false</EuiCode> when pointer events on
+            outside elements should be disallowed.
           </p>
         </React.Fragment>
       ),

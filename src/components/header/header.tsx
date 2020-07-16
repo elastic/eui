@@ -27,7 +27,7 @@ import {
   EuiHeaderSection,
 } from './header_section';
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
-import { Breadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
+import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
 
 type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 type EuiHeaderSectionBorderType = EuiHeaderSectionItemProps['border'];
@@ -43,9 +43,9 @@ export interface EuiHeaderSections {
   borders?: EuiHeaderSectionBorderType;
   /**
    * Breadcrumbs in the header cannot be wrapped in a #EuiHeaderSection in order for truncation to work.
-   * Simply pass the array of Breadcrumb objects
+   * Simply pass the array of EuiBreadcrumb objects
    */
-  breadcrumbs?: Breadcrumb[];
+  breadcrumbs?: EuiBreadcrumb[];
   /**
    * Other props to pass to #EuiHeaderBreadcrumbs
    */
@@ -79,24 +79,45 @@ export type EuiHeaderProps = CommonProps &
      * adds the correct amount of top padding to the window when in `fixed` mode
      */
     position?: 'static' | 'fixed';
+    /**
+     * The `default` will inherit its coloring from the light or dark theme.
+     * Or, force the header into pseudo `dark` theme for all themes.
+     */
+    theme?: 'default' | 'dark';
   };
+
+// Start a counter to manage the total number of fixed headers that need the body class
+let euiHeaderFixedCounter = 0;
 
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,
   sections,
   position = 'static',
+  theme = 'default',
   ...rest
 }) => {
-  const classes = classNames('euiHeader', `euiHeader--${position}`, className);
+  const classes = classNames(
+    'euiHeader',
+    `euiHeader--${theme}`,
+    `euiHeader--${position}`,
+    className
+  );
 
   useEffect(() => {
     if (position === 'fixed') {
+      // Increment fixed header counter for each fixed header
+      euiHeaderFixedCounter++;
       document.body.classList.add('euiBody--headerIsFixed');
+
+      return () => {
+        // Both decrement the fixed counter AND then check if there are none
+        if (--euiHeaderFixedCounter === 0) {
+          // If there are none, THEN remove class
+          document.body.classList.remove('euiBody--headerIsFixed');
+        }
+      };
     }
-    return () => {
-      document.body.classList.remove('euiBody--headerIsFixed');
-    };
   }, [position]);
 
   let contents;

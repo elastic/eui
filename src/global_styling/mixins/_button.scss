@@ -63,8 +63,8 @@
   width: 100%;
   vertical-align: middle;
 
-  .euiButton__icon,
-  .euiButton__spinner {
+  .euiButtonContent__icon,
+  .euiButtonContent__spinner {
     flex-shrink: 0; // Ensures the icons/spinner don't scale down below their intended size
   }
 
@@ -83,6 +83,19 @@
     > * + * {
       margin-left: $euiSizeS; // 1
     }
+  }
+}
+
+@mixin euiButtonContentDisabled {
+  pointer-events: auto;
+  cursor: not-allowed;
+
+  .euiButtonContent__icon {
+    fill: currentColor;
+  }
+
+  .euiButtonContent__spinner {
+    border-color: euiLoadingSpinnerBorderColors(currentColor);
   }
 }
 

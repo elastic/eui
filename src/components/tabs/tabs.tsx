@@ -87,3 +87,5 @@ export const EuiTabs = React.forwardRef<
     );
   }
 );
+
+EuiTabs.displayName = 'EuiTabs';

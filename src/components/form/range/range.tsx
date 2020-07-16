@@ -254,7 +254,8 @@ export class EuiRange extends Component<EuiRangeProps> {
           ticks={ticks}
           levels={levels}
           onChange={this.handleOnChange}
-          value={value}>
+          value={value}
+          aria-hidden={showInput === true}>
           {showRange && this.isValid && (
             <EuiRangeHighlight
               compressed={compressed}
@@ -287,6 +288,7 @@ export class EuiRange extends Component<EuiRangeProps> {
             }
             onFocus={showInput === true ? undefined : onFocus}
             onBlur={showInputOnly ? this.onInputBlur : onBlur}
+            aria-hidden={showInput === true ? true : false}
             {...rest}
           />
 

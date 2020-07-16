@@ -39,6 +39,17 @@ export const assertNever = (x: never): never => {
 };
 
 // utility types:
+/**
+ * XOR for some properties applied to a type
+ * (XOR is one of these but not both or neither)
+ *
+ * Usage: OneOf<typeToExtend, one | but | not | multiple | of | these | are | required>
+ *
+ * To require aria-label or aria-labelledby but not both
+ * Example: OneOf<Type, 'aria-label' | 'aria-labelledby'>
+ */
+export type OneOf<T, K extends keyof T> = Omit<T, K> &
+  { [k in K]: Pick<Required<T>, k> & { [k1 in Exclude<K, k>]?: never } }[K];
 
 /**
  * Wraps Object.keys with proper typescript definition of the resulting array
@@ -73,7 +84,11 @@ export type ApplyClassComponentDefaults<
   C extends new (...args: any) => any,
   D = ExtractDefaultProps<C>,
   P = ExtractProps<C>
-> = Omit<P, keyof D> & Partial<D>;
+> =
+  // definition of Props that are not defaulted
+  Omit<P, keyof D> &
+    // definition of Props, made optional, that are have keys in defaultProps
+    { [K in keyof D]?: K extends keyof P ? P[K] : never };
 
 /*
 https://github.com/Microsoft/TypeScript/issues/28339
@@ -177,3 +192,14 @@ export type PropsForButton<T, P = {}> = T &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
   } & P;
+
+/**
+ * Makes all recursive keys optional
+ */
+export type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<RecursivePartial<U>>
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P]
+};

@@ -50,6 +50,12 @@ describe('EuiHeader', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('renders dark theme', () => {
+    const component = render(<EuiHeader theme="dark" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('sections', () => {
     test('render simple items and borders', () => {
       const component = render(

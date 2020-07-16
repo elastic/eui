@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiResizableContainer can adjust button spacing 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    Testing
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeSmall euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    123
+  </div>
+</div>
+`;
+
+exports[`EuiResizableContainer can be controlled externally 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    Testing
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    123
+  </div>
+</div>
+`;
+
+exports[`EuiResizableContainer can be vertical 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--vertical testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:100%;height:50%;min-width:0;min-height:0px"
+  >
+    Testing
+  </div>
+  <button
+    aria-label="Press up or down to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--vertical"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:100%;height:50%;min-width:0;min-height:0px"
+  >
+    123
+  </div>
+</div>
+`;
+
+exports[`EuiResizableContainer can have more than two panels 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:33%;height:100%;min-width:0px;min-height:0"
+  >
+    Testing
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:33%;height:100%;min-width:0px;min-height:0"
+  >
+    123
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:33%;height:100%;min-width:0px;min-height:0"
+  >
+    And again
+  </div>
+</div>
+`;
+
+exports[`EuiResizableContainer can have scrollable panels 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    Testing
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    123
+  </div>
+</div>
+`;
+
+exports[`EuiResizableContainer is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    Testing
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:50%;height:100%;min-width:0px;min-height:0"
+  >
+    123
+  </div>
+</div>
+`;

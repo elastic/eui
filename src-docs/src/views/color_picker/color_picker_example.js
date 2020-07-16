@@ -7,12 +7,18 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiColorPicker,
+  EuiColorPalettePicker,
   EuiColorStops,
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+import {
+  EuiColorPalettePickerPaletteText,
+  EuiColorPalettePickerPaletteFixed,
+  EuiColorPalettePickerPaletteGradient,
+} from './props';
 
-import { ColorPicker } from './color_picker';
+import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
 const colorPickerHtml = renderToHtml(ColorPicker);
 const colorPickerSnippet = `<EuiColorPicker
@@ -23,7 +29,24 @@ const colorPickerSnippet = `<EuiColorPicker
 />
 `;
 
-import { ColorStops } from './color_stops';
+import { ColorPalettePicker } from './color_palette_picker';
+const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
+const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
+const colorPalettePickerSnippet = `<EuiColorPalettePicker
+  palettes={[
+    {
+      value: 'palette1',
+      title: 'Palette 1',
+      palette: euiPaletteColorBlind(),
+      type: 'fixed',
+    },
+  ]}
+  onChange={onPaletteChange}
+  valueOfSelected={palette}
+/>
+`;
+
+import ColorStops from './color_stops';
 const colorStopsSource = require('!!raw-loader!./color_stops');
 const colorStopsHtml = renderToHtml(ColorStops);
 const colorStopsSnippetStandard = `<EuiColorStops
@@ -53,7 +76,7 @@ const colorStopsSnippetFixed = `<EuiColorStops
 />
 `;
 
-import { ColorStopsRange } from './color_stops_range';
+import ColorStopsRange from './color_stops_range';
 const colorStopsRangeSource = require('!!raw-loader!./color_stops_range');
 const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
 const colorPickerRangeSnippet = `<EuiColorStops
@@ -63,7 +86,7 @@ const colorPickerRangeSnippet = `<EuiColorStops
 />
 `;
 
-import { Alpha } from './alpha';
+import Alpha from './alpha';
 const alphaSource = require('!!raw-loader!./alpha');
 const alphaHtml = renderToHtml(Alpha);
 const alphaSnippet = `<EuiColorPicker
@@ -74,7 +97,7 @@ const alphaSnippet = `<EuiColorPicker
   isInvalid={hasErrors}
 />`;
 
-import { Formats } from './formats';
+import Formats from './formats';
 const formatsSource = require('!!raw-loader!./formats');
 const formatsHtml = renderToHtml(Formats);
 const formatsSnippet = `<EuiColorPicker
@@ -85,7 +108,7 @@ const formatsSnippet = `<EuiColorPicker
   isInvalid={hasErrors}
 />`;
 
-import { CustomSwatches } from './custom_swatches';
+import CustomSwatches from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
 const customSwatchesSnippet = `<EuiColorPicker
@@ -116,7 +139,7 @@ const stopCustomSwatchesSnippet = `<EuiColorStops
 />
 `;
 
-import { CustomButton } from './custom_button';
+import CustomButton from './custom_button';
 const customButtonSource = require('!!raw-loader!./custom_button');
 const customButtonHtml = renderToHtml(CustomButton);
 const customButtonSnippet = `<EuiColorPicker
@@ -148,7 +171,18 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
 />
 `;
 
-import { Modes } from './modes';
+import Empty from './empty_state';
+const emptySource = require('!!raw-loader!./empty_state');
+const emptyHtml = renderToHtml(CustomButton);
+const emptySnippet = `<EuiColorPicker
+  onChange={handleChange}
+  color={chosenColor}
+  placeholder="Auto"
+  isClearable={true}
+/>
+`;
+
+import Modes from './modes';
 const modesSource = require('!!raw-loader!./modes');
 const modesHtml = renderToHtml(Modes);
 const modesSwatchSnippet = `// Swatches only
@@ -188,7 +222,7 @@ const stopModesPickerSnippet = `// Gradient map only
 />
 `;
 
-import { Inline } from './inline';
+import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
 const inlineHtml = renderToHtml(Inline);
 const inlineSnippet = `<EuiColorPicker
@@ -203,7 +237,7 @@ import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
 const containersHtml = renderToHtml(Containers);
 
-import { KitchenSink } from './kitchen_sink';
+import KitchenSink from './kitchen_sink';
 const kitchenSinkSource = require('!!raw-loader!./kitchen_sink');
 const kitchenSinkHtml = renderToHtml(KitchenSink);
 const kitchenSinkSnippet = `<EuiColorPicker
@@ -248,8 +282,10 @@ export const ColorPickerExample = {
     <React.Fragment>
       <EuiText>
         <p>
-          Two components exist to aid color selection:{' '}
-          <strong>EuiColorPicker</strong> and <strong>EuiColorStops</strong>.
+          Three components exist to aid color selection:{' '}
+          <strong>EuiColorPicker</strong>,{' '}
+          <strong>EuiColorPalettePicker</strong> and{' '}
+          <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -290,6 +326,44 @@ export const ColorPickerExample = {
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
       demo: <ColorPicker />,
+    },
+    {
+      title: 'Color palette picker',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Use <strong>EuiColorPalettePicker</strong> to select palettes to
+              apply colors to data visualization like maps and charts.
+            </p>
+            <p>
+              Use the <EuiCode>palettes</EuiCode> prop to pass your palettes as
+              an array of objects. For each object, you should pass a palette
+              (array of hex values) and specify the <EuiCode>type</EuiCode>. Use{' '}
+              <EuiCode>fixed</EuiCode> palettes for categorical data and{' '}
+              <EuiCode>gradient</EuiCode> palettes for continuous data.
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorPalettePickerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorPalettePickerHtml,
+        },
+      ],
+      props: {
+        EuiColorPalettePicker,
+        EuiColorPalettePickerPaletteText,
+        EuiColorPalettePickerPaletteFixed,
+        EuiColorPalettePickerPaletteGradient,
+      },
+      snippet: colorPalettePickerSnippet,
+      demo: <ColorPalettePicker />,
     },
     {
       title: 'Color stops',
@@ -487,6 +561,32 @@ export const ColorPickerExample = {
       ),
       snippet: [customButtonSnippet, customBadgeSnippet],
       demo: <CustomButton />,
+    },
+    {
+      title: 'Empty state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: emptySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: emptyHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            For instances where an &quot;empty&quot; color picker has meaning
+            other than transparent color value, use the{' '}
+            <EuiCode>placeholder</EuiCode> prop to provide context. Removing
+            color selection and returning to the default state can be made
+            easier by setting <EuiCode>isClearable=true</EuiCode>.
+          </p>
+        </>
+      ),
+      snippet: emptySnippet,
+      demo: <Empty />,
     },
     {
       title: 'Inline',

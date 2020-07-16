@@ -19,7 +19,7 @@ const iconsSnippet = '<EuiIcon type="alert" />';
 
 import Tokens from './tokens';
 const tokensSnippet = [
-  '<EuiToken type="tokenAnnotation" />',
+  '<EuiToken iconType="tokenAnnotation" />',
   `<EuiToken
   iconType="tokenElement"
   color="euiColorVis07"

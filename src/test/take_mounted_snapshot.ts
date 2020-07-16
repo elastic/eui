@@ -20,6 +20,10 @@
 import { ReactWrapper } from 'enzyme';
 import { Component } from 'react';
 
+interface TakeMountedSnapshotOptions {
+  hasArrayOutput?: boolean;
+}
+
 /**
  * Use this function to generate a Jest snapshot of components that have been fully rendered
  * using Enzyme's `mount` method. Typically, a mounted component will result in a snapshot
@@ -27,10 +31,23 @@ import { Component } from 'react';
  * leaving only HTML elements in the snapshot.
  */
 export const takeMountedSnapshot = (
-  mountedComponent: ReactWrapper<{}, {}, Component>
+  mountedComponent: ReactWrapper<{}, {}, Component>,
+  options: TakeMountedSnapshotOptions = {}
 ) => {
+  const opts: TakeMountedSnapshotOptions = {
+    hasArrayOutput: false,
+    ...options,
+  };
   const html = mountedComponent.html();
   const template = document.createElement('template');
   template.innerHTML = html;
-  return template.content.firstChild;
+  const snapshot = template.content.firstChild;
+  if (opts.hasArrayOutput) {
+    const snapshotArray: ChildNode[] = [];
+    template.content.childNodes.forEach(el => {
+      snapshotArray.push(el);
+    });
+    return snapshotArray;
+  }
+  return snapshot;
 };

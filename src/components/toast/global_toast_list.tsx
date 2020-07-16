@@ -20,10 +20,19 @@
 import React, { Component, ReactChild } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
+
+type ToastSide = 'right' | 'left';
+
+const sideToClassNameMap: { [side in ToastSide]: string } = {
+  left: 'euiGlobalToastList--left',
+  right: 'euiGlobalToastList--right',
+};
+
+export const SIDES = keysOf(sideToClassNameMap);
 
 export const TOAST_FADE_OUT_MS = 250;
 
@@ -37,6 +46,10 @@ export interface EuiGlobalToastListProps extends CommonProps {
   toasts: Toast[];
   dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
   toastLifeTimeMs: number;
+  /**
+   * Determines which side of the browser window the toasts should appear
+   */
+  side?: ToastSide;
 }
 
 interface State {
@@ -69,6 +82,7 @@ export class EuiGlobalToastList extends Component<
 
   static defaultProps = {
     toasts: [],
+    side: 'right',
   };
 
   startScrollingToBottom() {
@@ -247,6 +261,7 @@ export class EuiGlobalToastList extends Component<
       toasts,
       dismissToast,
       toastLifeTimeMs,
+      side,
       ...rest
     } = this.props;
 
@@ -267,8 +282,11 @@ export class EuiGlobalToastList extends Component<
         </EuiGlobalToastListItem>
       );
     });
-
-    const classes = classNames('euiGlobalToastList', className);
+    const classes = classNames(
+      'euiGlobalToastList',
+      side ? sideToClassNameMap[side] : null,
+      className
+    );
 
     return (
       <div

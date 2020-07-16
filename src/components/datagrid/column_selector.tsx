@@ -59,7 +59,8 @@ const getShowColumnSelectorValue = (
 export const useColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility,
-  showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector']
+  showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
+  displayValues: { [key: string]: string }
 ): [ReactElement, EuiDataGridColumn[]] => {
   const allowColumnHiding = getShowColumnSelectorValue(
     showColumnSelector,
@@ -109,6 +110,7 @@ export const useColumnSelector = (
   const filteredColumns = sortedColumns.filter(
     id => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
   );
+
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
 
   let buttonText = (
@@ -197,7 +199,7 @@ export const useColumnSelector = (
                             {allowColumnHiding ? (
                               <EuiSwitch
                                 name={id}
-                                label={id}
+                                label={displayValues[id] || id}
                                 checked={visibleColumnIds.has(id)}
                                 compressed
                                 className="euiSwitch--mini"

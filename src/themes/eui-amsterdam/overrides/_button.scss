@@ -26,33 +26,18 @@
 // and no border
 @each $name, $color in $euiButtonTypes {
   .euiButton--#{$name} {
-    // This variable simulates the possibly darkest background the button could be on
-    // Simulates the 20% opaque color on top of the page background color
-    $backgroundColorSimulated: mix($euiPageBackgroundColor, $color, 80%);
+    @include euiButtonDefaultStyle($color);
 
     @if ($name == 'ghost') {
       // Ghost is unique and ALWAYS sits against a dark background.
       $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
-    } @else {
-      // Then we can calculate the darkest text color needed
-      color: makeHighContrastColor($color, $backgroundColorSimulated);
     }
 
-    // But still use transparency
-    background-color: transparentize($color, .8);
-
-    &:enabled {
+    &.euiButton--fill:enabled {
       &:hover,
       &:focus {
-        background-color: transparentize($color, lightOrDarkTheme(.9, .65));
-      }
-
-      &.euiButton--fill {
-        &:hover,
-        &:focus {
-          background-color: darken($color, 10%);
-        }
+        background-color: darken($color, 10%);
       }
     }
   }

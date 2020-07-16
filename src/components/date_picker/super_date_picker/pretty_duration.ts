@@ -87,7 +87,7 @@ export function prettyDuration(
       return timeFrom === quickFrom && timeTo === quickTo;
     }
   );
-  if (matchingQuickRange) {
+  if (matchingQuickRange && matchingQuickRange.label) {
     return matchingQuickRange.label;
   }
 

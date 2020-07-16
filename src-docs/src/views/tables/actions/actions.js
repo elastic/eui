@@ -134,14 +134,14 @@ export const Table = () => {
         ]
       : [
           {
-            name: 'Clone',
+            name: <span>Clone</span>,
             description: 'Clone this user',
             icon: 'copy',
             onClick: cloneUser,
             'data-test-subj': 'action-clone',
           },
           {
-            name: 'Delete',
+            name: item => (item.id ? 'Delete' : 'Remove'),
             description: 'Delete this user',
             icon: 'trash',
             color: 'danger',

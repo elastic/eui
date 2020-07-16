@@ -33,7 +33,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
 } from '../../context_menu';
-import { keyCodes } from '../../../services';
+import { keys } from '../../../services';
 import { EuiI18n } from '../../i18n';
 
 enum ShiftDirection {
@@ -101,6 +101,14 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
   private popoverRef: HTMLDivElement | null = null;
+  private buttonRef: HTMLElement | null = null;
+  private setButtonRef = (popoverButtonRef: HTMLDivElement | null) => {
+    if (popoverButtonRef) {
+      this.buttonRef = popoverButtonRef.querySelector('button')!;
+    } else {
+      this.buttonRef = null;
+    }
+  };
   private _isMounted: boolean = false;
 
   state = {
@@ -110,6 +118,9 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   componentDidMount() {
     this._isMounted = true;
+    if (this.props.isOpen) {
+      this.openPopover();
+    }
   }
 
   componentWillUnmount() {
@@ -175,40 +186,43 @@ export class EuiSuperSelect<T extends string> extends Component<
     if (this.props.onChange) {
       this.props.onChange(value);
     }
+    if (this.buttonRef) {
+      this.buttonRef.focus();
+    }
   };
 
-  onSelectKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.keyCode === keyCodes.UP || e.keyCode === keyCodes.DOWN) {
-      e.preventDefault();
-      e.stopPropagation();
+  onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === keys.ARROW_UP || event.key === keys.ARROW_DOWN) {
+      event.preventDefault();
+      event.stopPropagation();
       this.openPopover();
     }
   };
 
-  onItemKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    switch (e.keyCode) {
-      case keyCodes.ESCAPE:
+  onItemKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    switch (event.key) {
+      case keys.ESCAPE:
         // close the popover and prevent ancestors from handling
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         this.closePopover();
         break;
 
-      case keyCodes.TAB:
+      case keys.TAB:
         // no-op
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         break;
 
-      case keyCodes.UP:
-        e.preventDefault();
-        e.stopPropagation();
+      case keys.ARROW_UP:
+        event.preventDefault();
+        event.stopPropagation();
         this.shiftFocus(ShiftDirection.BACK);
         break;
 
-      case keyCodes.DOWN:
-        e.preventDefault();
-        e.stopPropagation();
+      case keys.ARROW_DOWN:
+        event.preventDefault();
+        event.stopPropagation();
         this.shiftFocus(ShiftDirection.FORWARD);
         break;
     }
@@ -336,7 +350,9 @@ export class EuiSuperSelect<T extends string> extends Component<
         anchorPosition="downCenter"
         ownFocus={false}
         popoverRef={this.setPopoverRef}
-        hasArrow={false}>
+        buttonRef={this.setButtonRef}
+        hasArrow={false}
+        buffer={0}>
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n

@@ -19,7 +19,7 @@
 
 import React, { Component, ReactElement, ReactNode } from 'react';
 import { isArray, isNil } from '../../../services/predicate';
-import { keyCodes } from '../../../services';
+import { keys } from '../../../services';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiFieldSearch } from '../../form/field_search';
 import { EuiFilterButton, EuiFilterSelectItem } from '../../filter_group';
@@ -300,15 +300,15 @@ export class FieldValueSelectionFilter extends Component<
       | React.KeyboardEvent<HTMLInputElement>
       | React.KeyboardEvent<HTMLButtonElement>
   ) {
-    switch (event.keyCode) {
-      case keyCodes.DOWN:
+    switch (event.key) {
+      case keys.ARROW_DOWN:
         if (index < this.selectItems.length - 1) {
           event.preventDefault();
           this.selectItems[index + 1].focus();
         }
         break;
 
-      case keyCodes.UP:
+      case keys.ARROW_UP:
         if (index < 0) {
           return; // it's coming from the search box... nothing to do... nowhere to go
         }

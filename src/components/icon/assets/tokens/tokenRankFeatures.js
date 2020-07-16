@@ -9,7 +9,7 @@ const EuiIconTokenRankFeatures = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M13 4V12H11V6H9V10H5V12H3V8H7V4H13Z" />
+    <path d="M13 4v8h-2V6H9v4H5v2H3V8h4V4h6z" />
   </svg>
 );
 

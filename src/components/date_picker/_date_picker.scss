@@ -109,7 +109,7 @@
 // }
 
 .euiDatePicker.euiDatePicker--shadow .react-datepicker-popper {
-  z-index: 1;
+  z-index: $euiZContentMenu;
   animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
 
   &[data-placement^="bottom"] {

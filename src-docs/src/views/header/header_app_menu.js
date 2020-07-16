@@ -7,8 +7,13 @@ import {
   EuiKeyPadMenuItem,
   EuiPopover,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
+  const idGenerator = htmlIdGenerator();
+  const popoverId = idGenerator('popover');
+  const keypadId = idGenerator('keypad');
+
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
@@ -21,7 +26,7 @@ export default () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls="keyPadMenu"
+      aria-controls={keypadId}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Apps menu with 1 new app"
@@ -33,13 +38,13 @@ export default () => {
 
   return (
     <EuiPopover
-      id="headerAppMenu"
+      id={popoverId}
       ownFocus
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}>
-      <EuiKeyPadMenu id="keyPadMenu" style={{ width: 288 }}>
+      <EuiKeyPadMenu id={keypadId} style={{ width: 288 }}>
         <EuiKeyPadMenuItem label="Discover" href="#">
           <EuiIcon type="discoverApp" size="l" />
         </EuiKeyPadMenuItem>

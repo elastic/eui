@@ -29,4 +29,10 @@ describe('EuiHeaderLink', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('is rendered as active', () => {
+    const component = render(<EuiHeaderLink isActive />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

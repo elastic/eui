@@ -53,3 +53,5 @@ export const EuiColorPickerSwatch = forwardRef<
     />
   );
 });
+
+EuiColorPickerSwatch.displayName = 'EuiColorPickerSwatch';

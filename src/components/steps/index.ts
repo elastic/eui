@@ -17,12 +17,19 @@
  * under the License.
  */
 
-export { EuiStep } from './step';
+export { EuiStep, EuiStepProps } from './step';
 
-export { EuiSteps } from './steps';
+export { EuiSteps, EuiStepsProps } from './steps';
 
-export { EuiSubSteps } from './sub_steps';
+export { EuiSubSteps, EuiSubStepsProps } from './sub_steps';
 
-export { EuiStepsHorizontal } from './steps_horizontal';
+export {
+  EuiStepsHorizontal,
+  EuiStepsHorizontalProps,
+} from './steps_horizontal';
 
-export { EuiStepStatus } from './step_number';
+export {
+  EuiStepStatus,
+  EuiStepNumber,
+  EuiStepNumberProps,
+} from './step_number';

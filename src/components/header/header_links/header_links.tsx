@@ -24,10 +24,7 @@ import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
-import {
-  EuiHeaderSectionItemButton,
-  EuiHeaderSectionItem,
-} from '../header_section';
+import { EuiHeaderSectionItemButton } from '../header_section';
 
 interface State {
   isOpen: boolean;
@@ -64,28 +61,24 @@ export class EuiHeaderLinks extends Component<CommonProps, State> {
     const classes = classNames('euiHeaderLinks', className);
 
     const button = (
-      <EuiHeaderSectionItem border="left">
-        <EuiI18n
-          token="euiHeaderLinks.openNavigationMenu"
-          default="Open navigation menu">
-          {(openNavigationMenu: string) => (
-            <EuiHeaderSectionItemButton
-              aria-label={openNavigationMenu}
-              onClick={this.onMenuButtonClick}>
-              <EuiIcon type="apps" size="m" />
-            </EuiHeaderSectionItemButton>
-          )}
-        </EuiI18n>
-      </EuiHeaderSectionItem>
+      <EuiI18n
+        token="euiHeaderLinks.openNavigationMenu"
+        default="Open navigation menu">
+        {(openNavigationMenu: string) => (
+          <EuiHeaderSectionItemButton
+            aria-label={openNavigationMenu}
+            onClick={this.onMenuButtonClick}>
+            <EuiIcon type="apps" size="m" />
+          </EuiHeaderSectionItemButton>
+        )}
+      </EuiI18n>
     );
 
     return (
       <EuiI18n token="euiHeaderLinks.appNavigation" default="App navigation">
         {(appNavigation: string) => (
           <nav className={classes} aria-label={appNavigation} {...rest}>
-            <div className="euiHeaderLinks__list" role="navigation">
-              {children}
-            </div>
+            <div className="euiHeaderLinks__list">{children}</div>
 
             <EuiPopover
               className="euiHeaderLinks__mobile"

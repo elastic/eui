@@ -58,14 +58,6 @@
   overflow-y: hidden; // Ensures the movement of buttons in :focus don't cause scrollbars
   overflow-x: auto;
   padding: 0 $euiSizeM;
-
-  .euiBreadcrumbSeparator {
-    background: $euiControlBarBorderColor;
-  }
-
-  .euiBreadcrumb.euiLink--subdued {
-    color: makeHighContrastColor($euiColorDarkShade, $euiControlBarBackground);
-  }
 }
 
 .euiControlBar__content {
@@ -109,7 +101,16 @@
   &:last-child {
     margin-right: $euiSizeXS;
   }
+}
 
+.euiControlBar__breadcrumbs {
+  .euiBreadcrumb:not(.euiBreadcrumb--last) {
+    color: makeHighContrastColor($euiTextSubduedColor, $euiControlBarBackground);
+  }
+
+  .euiBreadcrumbSeparator {
+    background: $euiControlBarBorderColor;
+  }
 }
 
 .euiControlBar__spacer {
@@ -164,6 +165,10 @@
       &:hover {
         color: tintOrShade($colorValue, 30%, 30%);
       }
+    }
+
+    .euiLink.euiLink--text {
+      color: $euiColorGhost;
     }
 
     .euiControlBar__button.euiButton--#{$colorName}:enabled {

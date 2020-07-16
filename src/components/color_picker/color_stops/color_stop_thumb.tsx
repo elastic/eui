@@ -35,7 +35,7 @@ import {
   isStopInvalid,
 } from './utils';
 import { useMouseMove, getChromaColor } from '../utils';
-import { keyCodes } from '../../../services';
+import { keys } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
@@ -200,21 +200,21 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     handleStopChange(newStop);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    switch (e.keyCode) {
-      case keyCodes.ENTER:
-        e.preventDefault();
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    switch (event.key) {
+      case keys.ENTER:
+        event.preventDefault();
         openPopover();
         break;
 
-      case keyCodes.LEFT:
-        e.preventDefault();
+      case keys.ARROW_LEFT:
+        event.preventDefault();
         if (readOnly) return;
         handleStopChange(stop - 1);
         break;
 
-      case keyCodes.RIGHT:
-        e.preventDefault();
+      case keys.ARROW_RIGHT:
+        event.preventDefault();
         if (readOnly) return;
         handleStopChange(stop + 1);
         break;

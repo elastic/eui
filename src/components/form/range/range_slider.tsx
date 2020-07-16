@@ -94,3 +94,5 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
     );
   }
 );
+
+EuiRangeSlider.displayName = 'EuiRangeSlider';

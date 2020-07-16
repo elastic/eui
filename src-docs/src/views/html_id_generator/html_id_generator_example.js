@@ -27,7 +27,7 @@ const PrefixSufixHtml = renderToHtml(PrefixSufix);
 const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
 
 export const HtmlIdGeneratorExample = {
-  title: 'HTML ID Generator',
+  title: 'HTML ID generator',
   sections: [
     {
       source: [

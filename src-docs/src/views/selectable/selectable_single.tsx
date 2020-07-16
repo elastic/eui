@@ -13,6 +13,7 @@ export default () => {
 
   return (
     <EuiSelectable
+      aria-label="Single selection example"
       options={options}
       onChange={newOptions => setOptions(newOptions)}
       singleSelection={true}

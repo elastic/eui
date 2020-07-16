@@ -119,6 +119,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Specifies the formatted used when displaying times
    */
   timeFormat: string;
+  utcOffset?: number;
 };
 
 interface EuiSuperDatePickerState {
@@ -359,6 +360,7 @@ export class EuiSuperDatePicker extends Component<
       locale,
       refreshInterval,
       timeFormat,
+      utcOffset,
     } = this.props;
 
     if (isAutoRefreshOnly) {
@@ -425,6 +427,7 @@ export class EuiSuperDatePicker extends Component<
                 onChange={this.setStart}
                 value={start}
                 dateFormat={dateFormat}
+                utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
                 isOpen={this.state.isStartDatePopoverOpen}
@@ -441,6 +444,7 @@ export class EuiSuperDatePicker extends Component<
                 onChange={this.setEnd}
                 value={end}
                 dateFormat={dateFormat}
+                utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
                 roundUp

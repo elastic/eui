@@ -60,7 +60,6 @@ export default () => {
   );
 
   useEffect(() => {
-    console.log('Updating localStorage', STORAGE_KEY, reducerState);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
   }, [reducerState]);
 

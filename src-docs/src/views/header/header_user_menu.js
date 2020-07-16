@@ -10,8 +10,10 @@ import {
   EuiSpacer,
   EuiPopover,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
+  const id = htmlIdGenerator()();
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
@@ -24,7 +26,7 @@ export default () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls="headerUserMenu"
+      aria-controls={id}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Account menu"
@@ -35,7 +37,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="headerUserMenu"
+      id={id}
       ownFocus
       button={button}
       isOpen={isOpen}

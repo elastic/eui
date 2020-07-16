@@ -30,7 +30,9 @@ import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 
 import { EuiStepStatus, EuiStepNumber } from './step_number';
 
-export interface EuiStepHorizontalProps {
+export interface EuiStepHorizontalProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * Is the current step
    */
@@ -53,9 +55,7 @@ export interface EuiStepHorizontalProps {
   status?: EuiStepStatus;
 }
 
-export const EuiStepHorizontal: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepHorizontalProps
-> = ({
+export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   className,
   step = 1,
   title,

@@ -3,7 +3,7 @@ import React from 'react';
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
 import { useColorPickerState } from '../../../../src/services';
 
-export const ColorPicker = () => {
+export default () => {
   const [color, setColor, errors] = useColorPickerState('#D36086');
   return (
     <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>

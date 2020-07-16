@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'brace/mode/text';
 
 import { EuiCodeEditor } from '../../../../src/components';
@@ -10,7 +10,11 @@ class MyCustomAceMode extends TextMode {
 }
 
 export default () => {
-  const value = '';
+  const [value, updateValue] = useState('');
+
+  const onChange = value => {
+    updateValue(value);
+  };
 
   return (
     <EuiCodeEditor
@@ -19,6 +23,7 @@ export default () => {
       theme="github"
       width="100%"
       value={value}
+      onChange={onChange}
       setOptions={{ fontSize: '14px' }}
     />
   );

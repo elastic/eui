@@ -27,13 +27,13 @@ export const ExternalBadge = () => {
     <EuiBadge
       iconType="popout"
       iconSide="right"
-      onClickAriaLabel="Go to elastic-charts docs"
+      onClickAriaLabel="Go to @elastic/charts docs"
       onClick={() =>
         window.open(
           `https://github.com/elastic/elastic-charts/tree/v${chartsVersion}`
         )
       }>
-      External library: elastic-charts v{chartsVersion}
+      External library: @elastic/charts v{chartsVersion}
     </EuiBadge>
   );
 };

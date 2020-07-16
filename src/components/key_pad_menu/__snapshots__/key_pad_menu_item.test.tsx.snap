@@ -7,7 +7,6 @@ exports[`EuiKeyPadMenuItem is rendered 1`] = `
   data-test-subj="test subject string"
   href="#"
   rel="noreferrer"
-  role="menuitem"
 >
   <div
     class="euiKeyPadMenuItem__inner"
@@ -53,7 +52,6 @@ exports[`EuiKeyPadMenuItem renders href 1`] = `
   class="euiKeyPadMenuItem"
   href="#"
   rel="noreferrer"
-  role="menuitem"
 >
   <div
     class="euiKeyPadMenuItem__inner"
@@ -77,7 +75,6 @@ exports[`EuiKeyPadMenuItem renders href with rel 1`] = `
   class="euiKeyPadMenuItem"
   href="#"
   rel="noreferrer"
-  role="menuitem"
 >
   <div
     class="euiKeyPadMenuItem__inner"

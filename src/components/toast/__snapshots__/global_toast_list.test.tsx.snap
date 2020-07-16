@@ -4,16 +4,111 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 <div
   aria-label="aria-label"
   aria-live="polite"
-  class="euiGlobalToastList testClass1 testClass2"
+  class="euiGlobalToastList euiGlobalToastList--right testClass1 testClass2"
   data-test-subj="test subject string"
   role="region"
 />
 `;
 
+exports[`EuiGlobalToastList props side can be changed to left 1`] = `
+<div
+  aria-live="polite"
+  class="euiGlobalToastList euiGlobalToastList--left"
+  role="region"
+>
+  <div
+    class="euiToast euiToast--success euiGlobalToastListItem"
+    data-test-subj="a"
+    id="a"
+  >
+    <p
+      class="euiScreenReaderOnly"
+    >
+      A new notification appears
+    </p>
+    <div
+      aria-label="Notification"
+      class="euiToastHeader euiToastHeader--withBody"
+      data-test-subj="euiToastHeader"
+    >
+      <div
+        aria-hidden="true"
+        class="euiToastHeader__icon"
+        data-euiicon-type="check"
+      />
+      <span
+        class="euiToastHeader__title"
+      >
+        A
+      </span>
+    </div>
+    <button
+      aria-label="Dismiss toast"
+      class="euiToast__closeButton"
+      data-test-subj="toastCloseButton"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        data-euiicon-type="cross"
+      />
+    </button>
+    <div
+      class="euiText euiText--small euiToastBody"
+    >
+      a
+    </div>
+  </div>
+  <div
+    class="euiToast euiToast--danger euiGlobalToastListItem"
+    data-test-subj="b"
+    id="b"
+  >
+    <p
+      class="euiScreenReaderOnly"
+    >
+      A new notification appears
+    </p>
+    <div
+      aria-label="Notification"
+      class="euiToastHeader euiToastHeader--withBody"
+      data-test-subj="euiToastHeader"
+    >
+      <div
+        aria-hidden="true"
+        class="euiToastHeader__icon"
+        data-euiicon-type="alert"
+      />
+      <span
+        class="euiToastHeader__title"
+      >
+        B
+      </span>
+    </div>
+    <button
+      aria-label="Dismiss toast"
+      class="euiToast__closeButton"
+      data-test-subj="toastCloseButton"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        data-euiicon-type="cross"
+      />
+    </button>
+    <div
+      class="euiText euiText--small euiToastBody"
+    >
+      b
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
   aria-live="polite"
-  class="euiGlobalToastList"
+  class="euiGlobalToastList euiGlobalToastList--right"
   role="region"
 >
   <div

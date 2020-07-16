@@ -7,8 +7,7 @@ export default () => {
   const [value, setValue] = useState('');
 
   const onChange = e => {
-    const sanitizedValue = parseInt(e.target.value, 10);
-    setValue(isNaN(sanitizedValue) ? '' : sanitizedValue);
+    setValue(e.target.value);
   };
 
   return (

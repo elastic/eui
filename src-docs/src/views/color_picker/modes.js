@@ -12,7 +12,7 @@ import {
   useColorStopsState,
 } from '../../../../src/services';
 
-export const Modes = () => {
+export default () => {
   const [color, setColor, errors] = useColorPickerState('#D36086');
   const [colorStops, setColorStops] = useColorStopsState();
 

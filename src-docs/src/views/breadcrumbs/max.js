@@ -41,8 +41,6 @@ export default () => {
     <EuiBreadcrumbs
       max={4}
       breadcrumbs={breadcrumbs}
-      responsive={false}
-      truncate={false}
       aria-label="An example of EuiBreadcrumbs with specifying max prop"
     />
   );

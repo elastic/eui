@@ -27,7 +27,7 @@ import React, {
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 import { EuiTitle } from '../title';
 import { EuiNavDrawerGroup, FlyoutMenuItem } from './nav_drawer_group';
@@ -84,9 +84,9 @@ export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
   );
 
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       handleClose();
-    } else if (event.keyCode === keyCodes.TAB) {
+    } else if (event.key === keys.TAB) {
       let tabs = tabbables;
       if (!tabs && menuElementRef.current) {
         tabs = tabbable(menuElementRef.current).filter(

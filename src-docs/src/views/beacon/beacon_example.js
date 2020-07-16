@@ -9,6 +9,7 @@ import { EuiBeacon, EuiText } from '../../../../src/components';
 import Beacon from './beacon';
 const beaconSource = require('!!raw-loader!./beacon');
 const beaconHtml = renderToHtml(Beacon);
+const beaconSnippet = '<EuiBeacon />';
 
 export const BeaconExample = {
   title: 'Beacon',
@@ -33,6 +34,7 @@ export const BeaconExample = {
         </EuiText>
       ),
       props: { EuiBeacon },
+      snippet: beaconSnippet,
       demo: <Beacon />,
     },
   ],

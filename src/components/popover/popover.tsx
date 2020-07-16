@@ -30,10 +30,10 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
-import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
+import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
-  cascadingMenuKeyCodes,
+  cascadingMenuKeys,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
@@ -140,12 +140,18 @@ export interface EuiPopoverProps {
   /**
    * Function callback for when the focus trap is deactivated
    */
-  onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+  onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
 
   /**
    * Distance away from the anchor that the popover will render.
    */
   offset?: number;
+
+  /**
+   * Minimum distance between the popover and the bounding container.
+   * Default is 16
+   */
+  buffer?: number;
 
   /**
    * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
@@ -330,11 +336,11 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === cascadingMenuKeyCodes.ESCAPE) {
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === cascadingMenuKeys.ESCAPE) {
       if (this.state.isOpenStable || this.state.isOpening) {
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         this.props.closePopover();
       }
     }
@@ -520,6 +526,7 @@ export class EuiPopover extends Component<Props, State> {
         arrowBuffer: 10,
       },
       returnBoundingBox: this.props.attachToAnchor,
+      buffer: this.props.buffer,
     });
 
     // the popover's z-index must inherit from the button
@@ -613,6 +620,7 @@ export class EuiPopover extends Component<Props, State> {
       attachToAnchor,
       display,
       onTrapDeactivation,
+      buffer,
       ...rest
     } = this.props;
 

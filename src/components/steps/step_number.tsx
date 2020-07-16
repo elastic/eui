@@ -22,6 +22,8 @@ import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
 
+import { EuiStepProps } from './step';
+
 import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
 
@@ -42,7 +44,9 @@ export type EuiStepStatus =
   | 'danger'
   | 'disabled';
 
-export interface EuiStepNumberProps {
+export interface EuiStepNumberProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * May replace the number provided in props.number with alternate styling
    */
@@ -52,13 +56,20 @@ export interface EuiStepNumberProps {
    * Uses a border and removes the step number
    */
   isHollow?: boolean;
+  /**
+   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
+   */
+  titleSize?: EuiStepProps['titleSize'];
 }
 
-export const EuiStepNumber: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepNumberProps
-  // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
-  // tslint:disable-next-line:variable-name
-> = ({ className, status, number, isHollow, ...rest }) => {
+export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
+  className,
+  status,
+  number,
+  isHollow,
+  titleSize,
+  ...rest
+}) => {
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,
@@ -68,6 +79,8 @@ export const EuiStepNumber: FunctionComponent<
     className
   );
 
+  const iconSize = titleSize === 'xs' ? 's' : 'm';
+
   let numberOrIcon;
   if (status === 'complete') {
     numberOrIcon = (
@@ -76,6 +89,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="check"
             className="euiStepNumber__icon"
+            size={iconSize}
             aria-label={isComplete}
           />
         )}
@@ -88,6 +102,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="alert"
             className="euiStepNumber__icon"
+            size={iconSize}
             aria-label={hasWarnings}
           />
         )}
@@ -100,6 +115,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="cross"
             className="euiStepNumber__icon"
+            size={iconSize}
             aria-label={hasErrors}
           />
         )}

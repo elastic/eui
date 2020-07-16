@@ -12,6 +12,7 @@ export default function() {
 
   return (
     <EuiPagination
+      aria-label="Many pages example"
       pageCount={PAGE_COUNT}
       activePage={activePage}
       onPageClick={activePage => goToPage(activePage)}

@@ -12,7 +12,7 @@ import {
   useColorStopsState,
 } from '../../../../src/services';
 
-export const CustomSwatches = () => {
+export default () => {
   const [color, setColor, errors] = useColorPickerState();
   const [colorStops, setColorStops] = useColorStopsState();
 

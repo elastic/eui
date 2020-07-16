@@ -46,6 +46,43 @@ exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__heading"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <div
+          data-euiicon-type="bolt"
+          data-test-subj="DTS"
+        />
+      </div>
+      <div
+        class="euiFlexItem"
+      >
+        <h3
+          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          id="id__title"
+        >
+          Title
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
 exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 <div
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
@@ -61,7 +98,6 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          aria-hidden="true"
           data-euiicon-type="bolt"
         />
       </div>
@@ -98,7 +134,6 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          aria-hidden="true"
           data-euiicon-type="bolt"
         />
       </div>

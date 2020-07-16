@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -61,7 +66,9 @@ const displayToClassNameMap: { [display in CardDisplay]: string } = {
 
 export const DISPLAYS = keysOf(displayToClassNameMap);
 
-type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
+type CardPaddingSize = 'none' | 's' | 'm' | 'l';
+
+export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Card's are required to have at least a title and description
    */
@@ -84,14 +91,14 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   description: NonNullable<ReactNode>;
 
   /**
-   * Requires a <EuiIcon> node
+   * Accepts an `<EuiIcon>` node or `null`
    */
-  icon?: ReactElement<EuiIconProps>;
+  icon?: ReactElement<EuiIconProps> | null;
 
   /**
-   * Accepts a url in string form
+   * Accepts a url in string form or ReactElement for a custom image component
    */
-  image?: string;
+  image?: string | ReactElement;
 
   /**
    * Content to be rendered between the description and the footer
@@ -149,7 +156,22 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
    * Selectable cards will always display as 'panel'.
    */
   display?: CardDisplay;
+  /**
+   * Padding applied around the content of the card
+   */
+  paddingSize?: CardPaddingSize;
 };
+
+const paddingSizeToClassNameMap: {
+  [paddingSize in CardPaddingSize]: string
+} = {
+  none: 'euiCard--paddingNone',
+  s: 'euiCard--paddingSmall',
+  m: 'euiCard--paddingMedium',
+  l: 'euiCard--paddingLarge',
+};
+
+export const SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
@@ -173,6 +195,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   layout = 'vertical',
   selectable,
   display = 'panel',
+  paddingSize = 'm',
   ...rest
 }) => {
   /**
@@ -204,6 +227,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
+    paddingSizeToClassNameMap[paddingSize],
     displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
@@ -229,7 +253,15 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let imageNode;
   if (image && layout === 'vertical') {
-    imageNode = <img className="euiCard__image" src={image} alt="" />;
+    if (isValidElement(image) || typeof image === 'string') {
+      imageNode = (
+        <div className="euiCard__image">
+          {isValidElement(image) ? image : <img src={image} alt="" />}
+        </div>
+      );
+    } else {
+      imageNode = null;
+    }
   }
 
   let iconNode;

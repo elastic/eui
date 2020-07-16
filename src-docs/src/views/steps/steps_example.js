@@ -70,6 +70,14 @@ const statusSnippet = `<EuiSteps
   ]}
 />`;
 
+import StepsTitleSizes from './steps_title_sizes';
+const stepsTitleSizesSource = require('!!raw-loader!./steps_title_sizes');
+const stepsTitleSizesHtml = renderToHtml(StepsTitleSizes);
+const stepsTitleSizesSnippet = `<EuiSteps titleSize="xs" steps={[{
+  title: 'Completed step',
+}]} />
+`;
+
 export const StepsExample = {
   title: 'Steps',
   sections: [
@@ -171,6 +179,33 @@ export const StepsExample = {
       ),
       snippet: statusSnippet,
       demo: <Status />,
+    },
+    {
+      title: 'Custom title sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: stepsTitleSizesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: stepsTitleSizesHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            You can set a different title size using{' '}
+            <EuiCode>titleSize</EuiCode>. If <EuiCode>titleSize</EuiCode> is set
+            in both <strong>EuiSteps</strong> and <strong>EuiStep</strong>, the
+            latter value will override the former. Additionally, the title size{' '}
+            <EuiCode>xs</EuiCode> will automatically generate smaller steps
+            circles.
+          </p>
+        </Fragment>
+      ),
+      demo: <StepsTitleSizes />,
+      snippet: stepsTitleSizesSnippet,
     },
     {
       title: 'Horizontal steps',

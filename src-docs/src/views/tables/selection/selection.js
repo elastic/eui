@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useRef } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -9,6 +9,7 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
 } from '../../../../../src/components';
 
 /*
@@ -41,6 +42,7 @@ export const Table = () => {
   const [sortField, setSortField] = useState('firstName');
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedItems, setSelectedItems] = useState([]);
+  const tableRef = useRef();
 
   const onTableChange = ({ page = {}, sort = {} }) => {
     const { index: pageIndex, size: pageSize } = page;
@@ -176,17 +178,34 @@ export const Table = () => {
     },
   };
 
+  const onlineUsers = store.users.filter(user => user.online);
+
   const selection = {
     selectable: user => user.online,
     selectableMessage: selectable =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
+    initialSelected: onlineUsers,
+  };
+
+  const onSelection = () => {
+    tableRef.current.setSelection(onlineUsers);
   };
 
   return (
     <Fragment>
-      {deleteButton}
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={onSelection}>Select online users</EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem />
+        {deleteButton}
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
       <EuiBasicTable
+        ref={tableRef}
         items={pageOfItems}
         itemId="id"
         columns={columns}

@@ -15,17 +15,19 @@ export default () => {
         <EuiHeaderLogo href="#">Product</EuiHeaderLogo>
       </EuiHeaderSectionItem>
 
-      <EuiHeaderLinks>
-        <EuiHeaderLink href="#" isActive>
-          Docs
-        </EuiHeaderLink>
+      <EuiHeaderSectionItem>
+        <EuiHeaderLinks aria-label="App navigation links example">
+          <EuiHeaderLink href="#" isActive>
+            Docs
+          </EuiHeaderLink>
 
-        <EuiHeaderLink href="#">Code</EuiHeaderLink>
+          <EuiHeaderLink href="#">Code</EuiHeaderLink>
 
-        <EuiHeaderLink iconType="help" href="#">
-          Help
-        </EuiHeaderLink>
-      </EuiHeaderLinks>
+          <EuiHeaderLink iconType="help" href="#">
+            Help
+          </EuiHeaderLink>
+        </EuiHeaderLinks>
+      </EuiHeaderSectionItem>
     </EuiHeader>
   );
 };
