@@ -141,7 +141,7 @@ function filterProp(
 
   if (prop.type.name === 'enum') {
     const propValueArray = prop.type.value.map(type => type.value);
-    const found = intrinsicValuesRaw.some(
+    const found = intrinsicValuesRaw.every(
       value => propValueArray.indexOf(value) >= 0
     );
     if (found) {
