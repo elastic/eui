@@ -92,7 +92,7 @@ describe('Propagate', () => {
       const propagate = new Propagate();
       propagate.set('chars', [], () => ['A', 'B', 'C']);
       propagate.set('charsLower', ['chars'], chars =>
-        chars.map(char => char.toLowerCase())
+        chars.map((char: string) => char.toLowerCase())
       );
       expect(propagate.get('charsLower')).toEqual(['a', 'b', 'c']);
     });

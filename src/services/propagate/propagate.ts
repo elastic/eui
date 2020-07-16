@@ -128,7 +128,7 @@ export default class Propagate {
     ];
 
     while (remainingChecks.length) {
-      const check = remainingChecks.shift();
+      const check = remainingChecks.shift()!;
       const { path, dependencies } = check;
 
       for (let i = 0; i < dependencies.length; i++) {
