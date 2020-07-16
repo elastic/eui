@@ -6,12 +6,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -24,7 +24,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -37,12 +37,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -75,7 +75,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -90,12 +90,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -129,7 +129,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -148,12 +148,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -185,7 +185,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -198,12 +198,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -235,7 +235,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -248,12 +248,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -285,7 +285,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -345,12 +345,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -382,7 +382,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -400,12 +400,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="-1"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="-1"
     />
     <div
@@ -437,7 +437,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="-1"
     />
   </div>,
