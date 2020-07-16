@@ -1,40 +1,29 @@
 import React, { useState } from 'react';
 
-import { EuiComboBox } from '../../../../src/components';
-import { DisplayToggles } from '../form_controls/display_toggles';
+import { EuiComboBox, EuiFormRow } from '../../../../src/components';
 
 const options = [
   {
-    label: 'Titan',
-    'data-test-subj': 'titanOption',
+    label: 'Software Developer',
+    'data-test-subj': 'softDevOption',
   },
   {
-    label: 'Enceladus',
+    label: 'Mobile Developer',
   },
   {
-    label: 'Mimas',
+    label: 'Javascript Engineer',
   },
   {
-    label: 'Dione',
+    label: 'UX Designer',
   },
   {
-    label: 'Iapetus',
+    label: 'UI Designer',
   },
   {
-    label: 'Phoebe',
+    label: 'Product Designer',
   },
   {
-    label: 'Rhea',
-  },
-  {
-    label:
-      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-  },
-  {
-    label: 'Tethys',
-  },
-  {
-    label: 'Hyperion',
+    label: 'QA Engineer',
   },
 ];
 
@@ -62,12 +51,9 @@ export default () => {
   };
 
   return (
-    <DisplayToggles
-      canDisabled={false}
-      canReadOnly={false}
-      canLoading={false}
-      canPrepend
-      canAppend>
+    <EuiFormRow
+      label="Your occupation"
+      helpText="Select an occupation from the list. If your occupation isn’t available, create a custom one.">
       <EuiComboBox
         placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}
@@ -77,6 +63,6 @@ export default () => {
         onCreateOption={onCreateOption}
         isClearable={false}
       />
-    </DisplayToggles>
+    </EuiFormRow>
   );
 };
