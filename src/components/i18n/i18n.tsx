@@ -22,6 +22,7 @@ import React, {
   ReactChild,
   FunctionComponent,
   useContext,
+  ReactElement,
 } from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
@@ -146,16 +147,25 @@ const EuiI18n = <
   </EuiI18nConsumer>
 );
 
-function useEuiI18n<
-  T extends {},
-  DEFAULT extends Renderable<T>,
-  DEFAULTS extends any[]
->(token: string, defaultValue: DEFAULT, values?: T): string;
-function useEuiI18n<
-  T extends {},
-  DEFAULT extends Renderable<T>,
-  DEFAULTS extends any[]
->(tokens: string[], defaultValues: DEFAULTS): string[];
+// A single default could be a string, react child, or render function
+type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactChild
+  ? K
+  : (K extends () => infer RetValue ? RetValue : never);
+
+// An array with multiple defaults can only be an array of strings or elements
+type DefaultsRenderType<
+  K extends Array<string | ReactElement>
+> = K extends Array<infer Item> ? Item : never;
+
+function useEuiI18n<T extends {}, DEFAULT extends Renderable<T>>(
+  token: string,
+  defaultValue: DEFAULT,
+  values?: T
+): DefaultRenderType<T, DEFAULT>;
+function useEuiI18n<DEFAULTS extends Array<string | ReactElement>>(
+  tokens: string[],
+  defaultValues: DEFAULTS
+): Array<DefaultsRenderType<DEFAULTS>>;
 function useEuiI18n(...props: any[]) {
   const i18nConfig = useContext(I18nContext);
   const { mapping, mappingFunc } = i18nConfig;
