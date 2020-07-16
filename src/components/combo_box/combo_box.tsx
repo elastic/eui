@@ -473,7 +473,7 @@ export class EuiComboBox<T> extends Component<
 
     this.clearSearchValue();
 
-    if (Boolean(singleSelection) && matchingOptions.length < 1) {
+    if (Boolean(singleSelection)) {
       // Adding a custom option to a single select that does not appear in the list of options
       this.closeList();
     }
