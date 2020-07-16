@@ -114,6 +114,7 @@ const Knob = ({
         };
       } else if (custom && custom.sanitize) {
         knobProps = {};
+        knobProps.value = val;
         knobProps.onChange = e => {
           const value = e.target.value;
           set(custom.sanitize(value));
@@ -128,7 +129,10 @@ const Knob = ({
       }
 
       return (
-        <EuiFormRow isInvalid={error && error.length > 0} error={error}>
+        <EuiFormRow
+          isInvalid={error && error.length > 0}
+          error={error}
+          fullWidth>
           <EuiFieldText
             placeholder={placeholder}
             aria-label={description}
@@ -193,7 +197,10 @@ const Knob = ({
         }));
 
         return (
-          <EuiFormRow isInvalid={error && error.length > 0} error={error}>
+          <EuiFormRow
+            isInvalid={error && error.length > 0}
+            error={error}
+            fullWidth>
             <EuiSelect
               fullWidth
               id={name}

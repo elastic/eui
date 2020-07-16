@@ -28,7 +28,7 @@ export const badgeConfig = () => {
       modifyOtherProps: (val, state, set) => {
         if (val) {
           if (!state.onClickAriaLabel.value) {
-            set('onClickAriaLabel value', 'onClickAriaLabel');
+            set('onClickAriaLabel', 'onClickAriaLabel');
           }
         } else {
           set(state.onClickAriaLabel.value, 'onClickAriaLabel');
