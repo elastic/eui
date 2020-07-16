@@ -46,7 +46,7 @@ export default () => {
     setSelected(selectedOptions);
   };
 
-  const onCreateOption = (searchValue, flattenedOptions = []) => {
+  const onCreateOption = (searchValue = []) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -56,15 +56,6 @@ export default () => {
     const newOption = {
       label: searchValue,
     };
-
-    // Create the option if it doesn't exist.
-    if (
-      flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
-      ) === -1
-    ) {
-      options.push(newOption);
-    }
 
     // Select the option.
     setSelected([newOption]);
