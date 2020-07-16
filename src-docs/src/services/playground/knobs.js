@@ -49,16 +49,14 @@ const Knob = ({
   error: errorMsg,
   type,
   defaultValue,
-  val: globalVal,
-  set: globalSet,
+  val,
+  set,
   options = {},
   description,
   placeholder,
   custom,
   state,
-  orgSet,
 }) => {
-  const [val, set] = useValueDebounce(globalVal, globalSet);
   const [error, setError] = useState(errorMsg);
 
   useEffect(() => {
@@ -152,7 +150,7 @@ const Knob = ({
             label=""
             checked={val}
             onChange={e => {
-              globalSet(e.target.checked);
+              set(e.target.checked);
             }}
             compressed
           />
@@ -183,7 +181,7 @@ const Knob = ({
               onChange={id => {
                 let val = id;
                 if (val.includes('__')) val = val.split('__')[0];
-                globalSet(val);
+                set(val);
               }}
               name={`Select ${name}`}
             />
@@ -207,7 +205,7 @@ const Knob = ({
               options={flattenedOptions}
               value={valueKey}
               onChange={e => {
-                globalSet(e.target.value);
+                set(e.target.value);
               }}
               isInvalid={error && error.length > 0}
               aria-label={`Select ${name}`}
@@ -222,18 +220,19 @@ const Knob = ({
         switch (custom.use) {
           case 'switch':
             return (
-              <EuiSwitch
-                id={name}
-                label=""
-                checked={typeof val !== 'undefined' && val}
-                onChange={e => {
-                  const value = e.target.checked;
-                  globalSet(value);
-                  if (custom.modifyOtherProps)
-                    custom.modifyOtherProps(value, state, orgSet);
-                }}
-                compressed
-              />
+              <>
+                <EuiSwitch
+                  id={name}
+                  label={custom.label || ''}
+                  checked={typeof val !== 'undefined' && val}
+                  onChange={e => {
+                    const value = e.target.checked;
+
+                    set(value ? value : undefined);
+                  }}
+                  compressed
+                />
+              </>
             );
         }
       }

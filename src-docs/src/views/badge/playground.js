@@ -9,6 +9,7 @@ import {
   mapOptions,
 } from '../../services/playground';
 import { iconTypes } from '../icon/icons';
+import * as t from '@babel/types';
 
 const iconOptions = mapOptions(iconTypes);
 
@@ -25,7 +26,9 @@ export const badgeConfig = () => {
     custom: {
       ...propsToUse.onClick.custom,
       use: 'switch',
+      label: 'Simulate',
       modifyOtherProps: (val, state, set) => {
+        console.log(val, 'state', state);
         if (val) {
           if (!state.onClickAriaLabel.value) {
             set('onClickAriaLabel', 'onClickAriaLabel');
@@ -97,8 +100,14 @@ export const badgeConfig = () => {
       },
       customProps: {
         onClick: {
-          generate: _val => {
-            return null;
+          generate: val => {
+            if (!val) return null;
+            const obj = t.arrowFunctionExpression(
+              [],
+              t.blockStatement([]),
+              false
+            );
+            return obj;
           },
         },
       },
