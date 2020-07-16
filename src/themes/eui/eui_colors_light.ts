@@ -138,7 +138,6 @@ const euiPaletteColorBlind = {
   },
 };
 
-// euiPaletteColorBlindKeys: euiPaletteColorBlind;
 //
 const euiColorVisGraphic = {
   euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,

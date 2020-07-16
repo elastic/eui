@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { css } from '@emotion/core';
-// import { useTheme } from 'emotion-theming';
 import usePropagate from '../../../../src/services/propagate/use_propagate';
 import { EuiTitle } from '../../../../src/components';
 
 export const componentClassName = 'euiGuideRuleTitle';
 
 export const GuideRuleTitle = ({ children, className, ...rest }) => {
-  // const theme = useTheme();
   const [sizes, borders] = usePropagate(['sizes', 'borders']);
 
   const classes = classNames(componentClassName, className);

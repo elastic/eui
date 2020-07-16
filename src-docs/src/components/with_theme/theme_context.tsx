@@ -1,5 +1,4 @@
 import React from 'react';
-// import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 import euiLightTheme from '../../../../src/theme_light';
 import euiDarkTheme from '../../../../src/theme_dark';
@@ -64,11 +63,6 @@ export class ThemeProvider extends React.Component<object, State> {
         16
       )}`,
     });
-    // this.state.fullTheme.set(
-    //   'euiColorLightShade',
-    //   `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    // );
-    // euiBorderColor
   };
 
   render() {
@@ -76,7 +70,6 @@ export class ThemeProvider extends React.Component<object, State> {
     const { theme, fullTheme } = this.state;
     return (
       <PropagateContext.Provider value={fullTheme}>
-        {/*<EmotionThemeProvider theme={{ name: theme, ...fullTheme }}>*/}
         <ThemeContext.Provider
           value={{
             theme,
@@ -86,7 +79,6 @@ export class ThemeProvider extends React.Component<object, State> {
           }}>
           {children}
         </ThemeContext.Provider>
-        {/*</EmotionThemeProvider>*/}
       </PropagateContext.Provider>
     );
   }

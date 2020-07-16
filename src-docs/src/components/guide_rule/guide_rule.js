@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-// import { useTheme } from 'emotion-theming';
 import usePropagate from '../../../../src/services/propagate/use_propagate';
 import { EuiFlexGroup } from '../../../../src/components';
 
@@ -10,8 +9,6 @@ import { componentClassName as guideRuleTitleClass } from './guide_rule_title';
 
 export const GuideRule = ({ children, heading, description, ...rest }) => {
   const [sizes] = usePropagate(['sizes']);
-  // const theme = useTheme();
-  // console.log(theme[0].euiSizeL);
 
   let siblingMarginTop = sizes.euiSizeL;
   if (description) {

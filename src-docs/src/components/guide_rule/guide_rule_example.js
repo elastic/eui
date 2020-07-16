@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-// import { useTheme } from 'emotion-theming';
 import usePropagate from '../../../../src/services/propagate/use_propagate';
 import { EuiFlexItem, EuiPanel } from '../../../../src/components';
 
@@ -21,7 +20,6 @@ export const GuideRuleExample = ({
   panelStyles,
   ...rest
 }) => {
-  // const theme = useTheme();
   const [colors, sizes, typography] = usePropagate([
     'colors',
     'sizes',
@@ -55,9 +53,9 @@ export const GuideRuleExample = ({
   `;
 
   const guideRuleExampleCaption = css`
-    @include euiFontSizeS; // TODO
-    font-size: ${typography.euiFontSizeS}px; // TODO
-    line-height: ${typography.euiLineHeight}; // TODO
+    @include euiFontSizeS; // TODO: not yet part of emotion theme
+    font-size: ${typography.euiFontSizeS}px; // TODO: not yet part of emotion theme
+    line-height: ${typography.euiLineHeight}; // TODO: not yet part of emotion theme
     max-height: ${typography.euiFontSizeS * typography.euiLineHeight}px; /* 1 */
     overflow-y: visible; /* 1 */
 
