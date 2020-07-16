@@ -302,6 +302,22 @@ describe('EuiI18n', () => {
         const component = mount(<Component />);
         expect(component).toMatchSnapshot();
       });
+
+      it('calls a function and renders the result to the dom', () => {
+        const values = { type: 'callback', special: 'values' };
+        const renderCallback = jest.fn(({ type, special }) => (
+          <p>
+            This is a {type} with {special}.
+          </p>
+        ));
+        const Component = () => (
+          <div>{useEuiI18n('test', renderCallback, values)}</div>
+        );
+        const component = mount(<Component />);
+        expect(component).toMatchSnapshot();
+
+        expect(renderCallback).toHaveBeenCalledWith(values);
+      });
     });
   });
 

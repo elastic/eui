@@ -150,12 +150,12 @@ function useEuiI18n<
   T extends {},
   DEFAULT extends Renderable<T>,
   DEFAULTS extends any[]
->(token: string, defaultValue: string, values?: T): string;
+>(token: string, defaultValue: DEFAULT, values?: T): string;
 function useEuiI18n<
   T extends {},
   DEFAULT extends Renderable<T>,
   DEFAULTS extends any[]
->(tokens: string[], defaultValues: string[]): string[];
+>(tokens: string[], defaultValues: DEFAULTS): string[];
 function useEuiI18n(...props: any[]) {
   const i18nConfig = useContext(I18nContext);
   const { mapping, mappingFunc } = i18nConfig;

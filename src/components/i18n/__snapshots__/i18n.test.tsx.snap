@@ -475,6 +475,20 @@ exports[`EuiI18n reading values from context rendering to dom renders a mapped s
 </EuiContext>
 `;
 
+exports[`EuiI18n useEuiI18n unmapped calls a function and renders the result to the dom 1`] = `
+<Component>
+  <div>
+    <p>
+      This is a 
+      callback
+       with 
+      values
+      .
+    </p>
+  </div>
+</Component>
+`;
+
 exports[`EuiI18n useEuiI18n unmapped handles multiple tokens 1`] = `
 <Component>
   <p>
