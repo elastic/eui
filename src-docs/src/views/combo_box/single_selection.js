@@ -54,12 +54,12 @@ export default () => {
       canPrepend
       canAppend>
       <EuiComboBox
-        placeholder="Select a single option"
+        placeholder="Select a single occupation"
         singleSelection={{ asPlainText: true }}
         options={options}
         selectedOptions={selectedOptions}
         onChange={onChange}
-        isClearable={false}
+        isClearable={true}
       />
     </DisplayToggles>
   );
