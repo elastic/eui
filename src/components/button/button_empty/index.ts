@@ -19,7 +19,6 @@
 
 export {
   COLORS,
-  ICON_SIDES,
   EuiButtonEmpty,
   EuiButtonEmptyColor,
   EuiButtonEmptyProps,
