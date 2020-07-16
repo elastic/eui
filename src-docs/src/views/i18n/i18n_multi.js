@@ -12,8 +12,7 @@ import {
 export default () => {
   const [title, description] = useEuiI18n(
     ['euiI18nMulti.title', 'euiI18nMulti.description'],
-    ['Card Title', 'Card Description'],
-    {}
+    ['Card Title', 'Card Description']
   );
   return (
     <>
