@@ -317,12 +317,12 @@ exports[`props options list is rendered 1`] = `
       class="euiComboBoxOptionsList__rowWrap"
     >
       <div
-        style="position: relative; height: 189px; width: 0px; overflow: auto; direction: ltr;"
+        style="position: relative; height: 203px; width: 0px; overflow: auto; direction: ltr;"
       >
         <div
           id="htmlid_listbox"
           role="listBox"
-          style="height: 270px; width: 100%;"
+          style="height: 290px; width: 100%;"
           tabindex="0"
         >
           <button
@@ -331,7 +331,7 @@ exports[`props options list is rendered 1`] = `
             data-test-subj="titanOption"
             id="htmlid__option-0"
             role="option"
-            style="position: absolute; left: 0px; top: 0px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
             title="Titan"
             type="button"
           >
@@ -354,7 +354,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-1"
             role="option"
-            style="position: absolute; left: 0px; top: 27px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
             title="Enceladus"
             type="button"
           >
@@ -377,7 +377,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-2"
             role="option"
-            style="position: absolute; left: 0px; top: 54px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
             title="Mimas"
             type="button"
           >
@@ -400,7 +400,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-3"
             role="option"
-            style="position: absolute; left: 0px; top: 81px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
             title="Dione"
             type="button"
           >
@@ -423,7 +423,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-4"
             role="option"
-            style="position: absolute; left: 0px; top: 108px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
             title="Iapetus"
             type="button"
           >
@@ -446,7 +446,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-5"
             role="option"
-            style="position: absolute; left: 0px; top: 135px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
             title="Phoebe"
             type="button"
           >
@@ -469,7 +469,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-6"
             role="option"
-            style="position: absolute; left: 0px; top: 162px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
             title="Rhea"
             type="button"
           >
@@ -492,7 +492,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-7"
             role="option"
-            style="position: absolute; left: 0px; top: 189px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
             type="button"
           >
@@ -515,7 +515,7 @@ exports[`props options list is rendered 1`] = `
             class="euiFilterSelectItem"
             id="htmlid__option-8"
             role="option"
-            style="position: absolute; left: 0px; top: 216px; height: 27px; width: 100%;"
+            style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
             title="Tethys"
             type="button"
           >
@@ -741,7 +741,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
       }
       position="bottom"
       rootId={[Function]}
-      rowHeight={27}
+      rowHeight={29}
       scrollToIndex={-1}
       searchValue=""
       selectedOptions={Array []}
@@ -875,7 +875,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
       }
       position="bottom"
       rootId={[Function]}
-      rowHeight={27}
+      rowHeight={29}
       scrollToIndex={-1}
       searchValue=""
       selectedOptions={
