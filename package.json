@@ -64,7 +64,7 @@
     "prop-types": "^15.6.0",
     "react-ace": "^7.0.5",
     "react-beautiful-dnd": "^13.0.0",
-    "react-focus-lock": "^1.17.7",
+    "react-focus-on": "^3.4.1",
     "react-input-autosize": "^2.2.2",
     "react-is": "~16.3.0",
     "react-view": "^2.3.2",
