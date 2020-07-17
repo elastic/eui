@@ -82,7 +82,6 @@ const singleSelectionSnippet = `<EuiComboBox
   singleSelection={{ asPlainText: true }}
   options={options}
   selectedOptions={selectedOptions}
-  onCreateOption={onCreateOption}
   onChange={onChange}
 />`;
 
@@ -96,6 +95,7 @@ const singleSelectionCustomOptionsSnippet = `<EuiComboBox
   singleSelection={{ asPlainText: true }}
   options={options}
   selectedOptions={selectedOptions}
+  onCreateOption={onCreateOption}
   onChange={onChange}
 />`;
 
@@ -439,8 +439,9 @@ export const ComboBoxExample = {
             <EuiCode>onCreateOption</EuiCode> prop.
           </p>
           <p>
-            <strong>Note:</strong> Creating custom options might not be obvious to the user,
-            so provide help text explaining that this option is available.
+            <strong>Note:</strong> Creating custom options might not be obvious
+            to the user, so provide help text explaining that this option is
+            available.
           </p>
         </Fragment>
       ),
