@@ -61,7 +61,6 @@ export default () => {
         selectedOptions={selectedOptions}
         onChange={onChange}
         onCreateOption={onCreateOption}
-        isClearable={true}
       />
     </EuiFormRow>
   );

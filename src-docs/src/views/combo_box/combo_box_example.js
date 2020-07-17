@@ -82,6 +82,7 @@ const singleSelectionSnippet = `<EuiComboBox
   singleSelection={{ asPlainText: true }}
   options={options}
   selectedOptions={selectedOptions}
+  onCreateOption={onCreateOption}
   onChange={onChange}
 />`;
 
