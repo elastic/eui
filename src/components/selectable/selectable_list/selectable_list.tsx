@@ -208,7 +208,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
           role="presentation"
           className="euiSelectableList__groupLabel"
           style={style}
-          {...optionRest as HTMLAttributes<HTMLLIElement>}>
+          {...(optionRest as HTMLAttributes<HTMLLIElement>)}>
           {prepend}
           {label}
           {append}
@@ -238,7 +238,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         aria-posinset={index + 1 - labelCount}
         aria-setsize={data.length - labelCount}
         allowExclusions={this.props.allowExclusions}
-        {...optionRest as EuiSelectableListItemProps}>
+        {...(optionRest as EuiSelectableListItemProps)}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
         ) : (

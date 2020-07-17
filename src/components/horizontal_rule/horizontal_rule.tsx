@@ -53,9 +53,14 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const EuiHorizontalRule: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
-> = ({ className, size = 'full', margin = 'l', ...rest }) => {
+export const EuiHorizontalRule: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLHRElement> &
+  EuiHorizontalRuleProps> = ({
+  className,
+  size = 'full',
+  margin = 'l',
+  ...rest
+}) => {
   const classes = classNames(
     'euiHorizontalRule',
     sizeToClassNameMap[size],

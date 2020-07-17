@@ -35,7 +35,7 @@ export const LAYOUTS = keysOf(layoutToClassNameMap);
 type FacetGroupGutterSize = 'none' | 's' | 'm' | 'l';
 
 const gutterSizeToClassNameMap: {
-  [gutterSize in FacetGroupGutterSize]: string
+  [gutterSize in FacetGroupGutterSize]: string;
 } = {
   none: 'euiFacetGroup--gutterNone',
   s: 'euiFacetGroup--gutterSmall',

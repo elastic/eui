@@ -54,7 +54,7 @@ import {
 import { CommonProps } from '../../common';
 
 const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string
+  [position in EuiComboBoxOptionsListPosition]: string;
 } = {
   top: 'euiComboBoxOptionsList--top',
   bottom: 'euiComboBoxOptionsList--bottom',

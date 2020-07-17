@@ -49,14 +49,14 @@ const relatedDimension: { [position in EuiPopoverPosition]: Dimension } = {
 };
 
 const dimensionPositionAttribute: {
-  [dimension in Dimension]: 'top' | 'left'
+  [dimension in Dimension]: 'top' | 'left';
 } = {
   height: 'top',
   width: 'left',
 };
 
 const positionComplements: {
-  [position in EuiPopoverPosition]: EuiPopoverPosition
+  [position in EuiPopoverPosition]: EuiPopoverPosition;
 } = {
   top: 'bottom',
   right: 'left',
@@ -67,7 +67,7 @@ const positionComplements: {
 // always resolving to top/left is taken advantage of by knowing they are the
 // minimum edges of the bounding box
 const positionSubstitutes: {
-  [position in EuiPopoverPosition]: 'left' | 'top'
+  [position in EuiPopoverPosition]: 'left' | 'top';
 } = {
   top: 'left',
   right: 'top',

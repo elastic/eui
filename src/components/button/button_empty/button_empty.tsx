@@ -179,7 +179,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef}
-        {...rest as EuiButtonEmptyPropsForAnchor}>
+        {...(rest as EuiButtonEmptyPropsForAnchor)}>
         {innerNode}
       </a>
     );
@@ -191,7 +191,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       className={classes}
       type={type}
       ref={buttonRef}
-      {...rest as EuiButtonEmptyPropsForButton}>
+      {...(rest as EuiButtonEmptyPropsForButton)}>
       {innerNode}
     </button>
   );
