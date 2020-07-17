@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import format from 'html-format';
 
-import { useView, Compiler, Error, Placeholder } from 'react-view';
+import { useView, Compiler, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import Knobs from './knobs';
 
@@ -61,7 +61,6 @@ export default ({ config, setGhostBackground }) => {
             placeholder={Placeholder}
           />
         </div>
-        <Error msg={params.errorProps.msg} isPopup />
         <EuiSpacer />
 
         <EuiCodeBlock
