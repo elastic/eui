@@ -437,6 +437,10 @@ export const ComboBoxExample = {
             <EuiCode>singleSelection</EuiCode> in conjunction with the{' '}
             <EuiCode>onCreateOption</EuiCode> prop.
           </p>
+          <p>
+            Creating custom options might not be obvious, so provide a help text
+            explaining that this option is available.
+          </p>
         </Fragment>
       ),
       props: { EuiComboBox },
