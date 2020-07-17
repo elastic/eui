@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
 - Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
 
 **Bug fixes**
