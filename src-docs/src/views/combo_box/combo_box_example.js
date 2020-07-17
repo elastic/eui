@@ -440,7 +440,7 @@ export const ComboBoxExample = {
           </p>
           <p>
             <strong>Note:</strong> Creating custom options might not be obvious,
-            so provide a help text explaining that this option is available.
+            so provide help text explaining that this option is available.
           </p>
         </Fragment>
       ),
