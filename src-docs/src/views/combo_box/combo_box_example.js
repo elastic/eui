@@ -83,7 +83,20 @@ const singleSelectionSnippet = `<EuiComboBox
   options={options}
   selectedOptions={selectedOptions}
   onChange={onChange}
-  isClearable={false}
+/>`;
+
+import SingleSelectionCustomOptions from './single_selection_custom_options';
+const singleSelectionCustomOptionsSource = require('!!raw-loader!./single_selection_custom_options');
+const singleSelectionCustomOptionsHtml = renderToHtml(
+  SingleSelectionCustomOptions
+);
+const singleSelectionCustomOptionsSnippet = `<EuiComboBox
+  placeholder="Select a single option"
+  singleSelection={{ asPlainText: true }}
+  options={options}
+  selectedOptions={selectedOptions}
+  onCreateOption={onCreateOption}
+  onChange={onChange}
 />`;
 
 import DisallowCustomOptions from './disallow_custom_options';
@@ -404,6 +417,37 @@ export const ComboBoxExample = {
       props: { EuiComboBox },
       snippet: singleSelectionSnippet,
       demo: <SingleSelection />,
+    },
+    {
+      title: 'Single selection with custom options',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: singleSelectionCustomOptionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: singleSelectionCustomOptionsHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            You can allow the user to select a single option and also allow the
+            creation of custom options. To do that, use the{' '}
+            <EuiCode>singleSelection</EuiCode> in conjunction with the{' '}
+            <EuiCode>onCreateOption</EuiCode> prop.
+          </p>
+          <p>
+            <strong>Note:</strong> Creating custom options might not be obvious
+            to the user, so provide help text explaining that this option is
+            available.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiComboBox },
+      snippet: singleSelectionCustomOptionsSnippet,
+      demo: <SingleSelectionCustomOptions />,
     },
     {
       title: 'Disallowing custom options',
