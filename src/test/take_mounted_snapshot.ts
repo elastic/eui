@@ -30,8 +30,8 @@ interface TakeMountedSnapshotOptions {
  * containing both React components and HTML elements. This function removes the React components,
  * leaving only HTML elements in the snapshot.
  */
-export const takeMountedSnapshot = (
-  mountedComponent: ReactWrapper<{}, {}, Component>,
+export const takeMountedSnapshot = <T = {}>(
+  mountedComponent: ReactWrapper<T, {}, Component>,
   options: TakeMountedSnapshotOptions = {}
 ) => {
   const opts: TakeMountedSnapshotOptions = {
