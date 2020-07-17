@@ -438,8 +438,8 @@ export const ComboBoxExample = {
             <EuiCode>onCreateOption</EuiCode> prop.
           </p>
           <p>
-            Creating custom options might not be obvious, so provide a help text
-            explaining that this option is available.
+            <strong>Note:</strong> Creating custom options might not be obvious,
+            so provide a help text explaining that this option is available.
           </p>
         </Fragment>
       ),
