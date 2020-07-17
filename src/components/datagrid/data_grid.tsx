@@ -218,7 +218,10 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
-  if (pageCount <= 1) {
+  if (
+    props.rowCount <
+    ((pageSizeOptions && pageSizeOptions.sort((a, b) => a - b)[0]) || pageSize)
+  ) {
     return null;
   }
 
