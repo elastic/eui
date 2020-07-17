@@ -1,6 +1,11 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
 // specifically polyfill Object.entries for IE11 support (used by @elastic/charts)
 import 'core-js/modules/es7.object.entries';
 import 'core-js/modules/es6.number.is-finite';
+// import 'core-js/es6/map';
+// import 'core-js/es6/set';
 
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import format from 'html-format';
+// import format from 'html-format';
 
 import { useView, Compiler, Error, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
@@ -25,8 +25,8 @@ export default ({ config, setGhostBackground }) => {
     if (newCode.endsWith(');')) {
       newCode = newCode.replace(/(\);)$/m, '');
     }
-
-    return format(newCode.trim(), ' '.repeat(4));
+    return newCode.trim();
+    // return format(newCode.trim(), ' '.repeat(4));
   };
 
   const Playground = () => {

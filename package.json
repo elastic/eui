@@ -46,6 +46,7 @@
     "test-staged"
   ],
   "dependencies": {
+    "@babel/plugin-transform-destructuring": "^7.10.4",
     "@types/chroma-js": "^2.0.0",
     "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
@@ -57,12 +58,12 @@
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
-    "html-format": "^1.0.1",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.11",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
     "react-ace": "^7.0.5",
+    "react-app-polyfill": "^1.0.6",
     "react-beautiful-dnd": "^13.0.0",
     "react-focus-lock": "^1.17.7",
     "react-input-autosize": "^2.2.2",

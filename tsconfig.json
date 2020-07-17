@@ -52,5 +52,6 @@
   "include": [
     "./src/**/*",
     "./src-docs/**/*",
+    "./node_modules/react-view/**/*",
   ],
 }
