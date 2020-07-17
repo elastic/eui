@@ -47,6 +47,7 @@ export default () => {
 
     flyout = (
       <EuiFlyout
+        ownFocus
         onClose={closeFlyout}
         aria-labelledby="flyoutMaxWidthTitle"
         size={flyoutSize}

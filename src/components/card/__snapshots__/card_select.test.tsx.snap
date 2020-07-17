@@ -10,7 +10,7 @@ exports[`EuiCardSelect is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiButtonEmpty__content"
+    class="euiButtonContent euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -29,7 +29,7 @@ exports[`EuiCardSelect props can override color 1`] = `
   type="button"
 >
   <span
-    class="euiButtonEmpty__content"
+    class="euiButtonContent euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -48,7 +48,7 @@ exports[`EuiCardSelect props can override text 1`] = `
   type="button"
 >
   <span
-    class="euiButtonEmpty__content"
+    class="euiButtonContent euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -62,13 +62,13 @@ exports[`EuiCardSelect props can override text 1`] = `
 exports[`EuiCardSelect props isDisabled 1`] = `
 <button
   aria-checked="false"
-  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiCardSelect euiCardSelect--text"
   disabled=""
   role="switch"
   type="button"
 >
   <span
-    class="euiButtonEmpty__content"
+    class="euiButtonContent euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -87,11 +87,10 @@ exports[`EuiCardSelect props isSelected 1`] = `
   type="button"
 >
   <span
-    class="euiButtonEmpty__content"
+    class="euiButtonContent euiButtonEmpty__content"
   >
     <div
-      aria-hidden="true"
-      class="euiButtonEmpty__icon"
+      class="euiButtonContent__icon"
       data-euiicon-type="check"
     />
     <span

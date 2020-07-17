@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { render, mount } from 'enzyme';
+import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiFlyout, EuiFlyoutSize } from './flyout';
 
@@ -33,20 +33,18 @@ const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
-    const component = render(
+    const component = mount(
       <EuiFlyout {...requiredProps} onClose={() => {}} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('close button is not rendered', () => {
-      const component = render(
-        <EuiFlyout onClose={() => {}} hideCloseButton />
-      );
+      const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
 
-      expect(component).toMatchSnapshot();
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
 
     describe('closeButtonLabel', () => {
@@ -73,66 +71,70 @@ describe('EuiFlyout', () => {
     });
 
     test('accepts div props', () => {
-      const component = render(<EuiFlyout onClose={() => {}} id="imaflyout" />);
+      const component = mount(<EuiFlyout onClose={() => {}} id="imaflyout" />);
 
-      expect(component).toMatchSnapshot();
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
 
     describe('size', () => {
       SIZES.forEach(size => {
         it(`${size} is rendered`, () => {
-          const component = render(
-            <EuiFlyout onClose={() => {}} size={size} />
-          );
+          const component = mount(<EuiFlyout onClose={() => {}} size={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(takeMountedSnapshot(component)).toMatchSnapshot();
         });
       });
     });
 
     describe('max width', () => {
       test('can be set to a default', () => {
-        const component = render(
+        const component = mount(
           <EuiFlyout onClose={() => {}} maxWidth={true} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(takeMountedSnapshot(component)).toMatchSnapshot();
       });
 
       test('can be set to a custom number', () => {
-        const component = render(
+        const component = mount(
           <EuiFlyout onClose={() => {}} maxWidth={1024} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(takeMountedSnapshot(component)).toMatchSnapshot();
       });
 
       test('can be set to a custom value and measurement', () => {
-        const component = render(
+        const component = mount(
           <EuiFlyout onClose={() => {}} maxWidth="24rem" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(takeMountedSnapshot(component)).toMatchSnapshot();
       });
     });
 
     describe('ownFocus', () => {
       test('is rendered', () => {
-        const component = render(<EuiFlyout onClose={() => {}} ownFocus />);
+        const component = mount(
+          <EuiFlyout onClose={() => {}} ownFocus={true} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
 
       test('can alter mask props with maskProps without throwing error', () => {
-        const component = render(
+        const component = mount(
           <EuiFlyout
             onClose={() => {}}
-            ownFocus
+            ownFocus={true}
             maskProps={{ headerZindexLocation: 'above' }}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
     });
   });

@@ -40,6 +40,9 @@
 
           export VAULT_TOKEN=$(vault write -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
 
+          # add ssh keys to ensure tags can push to Github
+          /usr/local/bin/ssh-add-from-vault elastic
+
           # write npm auth to .npmrc
           NPM_TOKEN=$(vault read -field=token secret/jenkins-ci/npmjs/elasticmachine)
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc

@@ -112,7 +112,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   static defaultProps = {
     'data-test-subj': '',
-    rowHeight: 27, // row height of default option renderer
+    rowHeight: 29, // row height of default option renderer
   };
 
   updatePosition = () => {

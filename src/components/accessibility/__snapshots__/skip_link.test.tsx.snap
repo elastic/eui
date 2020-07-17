@@ -9,7 +9,7 @@ exports[`EuiSkipLink is rendered 1`] = `
   rel="noreferrer"
 >
   <span
-    class="euiButton__content"
+    class="euiButtonContent euiButton__content"
   >
     <span
       class="euiButton__text"
@@ -27,7 +27,7 @@ exports[`EuiSkipLink props onClick is rendered 1`] = `
   rel="noreferrer"
 >
   <span
-    class="euiButton__content"
+    class="euiButtonContent euiButton__content"
   >
     <span
       class="euiButton__text"
@@ -43,7 +43,7 @@ exports[`EuiSkipLink props position absolute is rendered 1`] = `
   rel="noreferrer"
 >
   <span
-    class="euiButton__content"
+    class="euiButtonContent euiButton__content"
   >
     <span
       class="euiButton__text"
@@ -60,7 +60,7 @@ exports[`EuiSkipLink props position fixed is rendered 1`] = `
   tabindex="0"
 >
   <span
-    class="euiButton__content"
+    class="euiButtonContent euiButton__content"
   >
     <span
       class="euiButton__text"
@@ -76,7 +76,7 @@ exports[`EuiSkipLink props position static is rendered 1`] = `
   rel="noreferrer"
 >
   <span
-    class="euiButton__content"
+    class="euiButtonContent euiButton__content"
   >
     <span
       class="euiButton__text"
@@ -93,7 +93,7 @@ exports[`EuiSkipLink props tabIndex is rendered 1`] = `
   tabindex="-1"
 >
   <span
-    class="euiButton__content"
+    class="euiButtonContent euiButton__content"
   >
     <span
       class="euiButton__text"
