@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { assertUnreachable, PropTypes, useValueDebounce } from 'react-view';
+import { assertUnreachable, PropTypes } from 'react-view';
 import {
   EuiSpacer,
   EuiSwitch,
