@@ -63,12 +63,7 @@ export default ({ config, setGhostBackground }) => {
         </div>
         <EuiSpacer />
 
-        <EuiCodeBlock
-          language="html"
-          fontSize="m"
-          paddingSize="m"
-          // overflowHeight={300}
-          isCopyable>
+        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
           {getSnippet(params.editorProps.code)}
         </EuiCodeBlock>
         <EuiSpacer />

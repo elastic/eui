@@ -264,9 +264,6 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
         );
 
-        // if (state[name].custom)
-        //   console.log('state[name].custom.origin', state[name].custom.origin);
-
         let humanizedName = (
           <strong className="eui-textBreakNormal">{name}</strong>
         );

@@ -23,14 +23,8 @@ const getProp = prop => {
       newProp.required = prop.required;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value;
-        //   newProp.value = prop.defaultValue.value.substring(
-        //     1,
-        //     prop.defaultValue.value.length - 1
-        //   );
       }
-      //  else {
       newProp.value = undefined;
-      // }
       newProp.options = {};
       for (const i in prop.type.value) {
         const val = prop.type.value[i].value;
@@ -41,30 +35,23 @@ const getProp = prop => {
 
     case 'number':
       newProp.type = PropTypes.Number;
-      // newProp.placeholder = propName;
       if (prop.defaultValue) newProp.defaultValue = prop.defaultValue.value;
-      // else newProp.value = 0;
       break;
 
     case 'string':
       newProp.type = PropTypes.String;
-      // newProp.placeholder = propName;
       if (prop.defaultValue) newProp.defaultValue = prop.defaultValue.value;
-      // else newProp.value = '';
       break;
 
     case 'func':
       newProp.type = PropTypes.Function;
-      // newProp.placeholder = propName;
 
       break;
 
     case 'node':
     case 'element':
       newProp.type = PropTypes.ReactNode;
-      // newProp.placeholder = propName;
       if (prop.defaultValue) newProp.defaultValue = prop.defaultValue.value;
-      // else
       newProp.value = undefined;
       break;
 
