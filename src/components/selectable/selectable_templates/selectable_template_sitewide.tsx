@@ -138,7 +138,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       searchProps={{
         placeholder: searchPlaceholder,
         onFocus: () => setInputHasFocus(true),
-        // inputRef: (ref: HTMLInputElement) => (inputRef = ref),
         isClearable: true,
         ...searchProps,
         className: searchClasses,

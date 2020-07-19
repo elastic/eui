@@ -11,7 +11,6 @@ import {
 } from '../../../../src/components/selectable';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
-import { EuiPopover } from '../../../../src/components/popover';
 import { EuiAvatar } from '../../../../src/components/avatar';
 
 export type EuiSelectableProps = React.ComponentProps<typeof EuiSelectable>;
@@ -143,6 +142,7 @@ export default () => {
         // onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
         compressed: true,
         className: 'customSearchClass',
+        inputRef: (ref: HTMLInputElement) => (inputRef = ref),
       }}
       listProps={{
         className: 'customListClass',
