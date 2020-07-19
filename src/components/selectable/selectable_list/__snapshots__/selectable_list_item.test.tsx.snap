@@ -44,6 +44,7 @@ exports[`EuiSelectableListItem props append 1`] = `
       class="euiSelectableListItem__append"
     >
       <span />
+       
     </span>
   </span>
 </li>
@@ -131,6 +132,89 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
     <span
       class="euiSelectableListItem__text"
     />
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props onFocusBadgeContent can be custom 1`] = `
+<li
+  aria-disabled="false"
+  aria-selected="false"
+  class="euiSelectableListItem"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiSelectableListItem__text"
+    />
+    <span
+      class="euiSelectableListItem__append"
+    >
+       
+      <span
+        aria-hidden="true"
+        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
+      >
+        <span
+          class="euiBadge__content"
+        >
+          <span
+            class="euiBadge__text"
+          >
+            Focus
+          </span>
+        </span>
+      </span>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props onFocusBadgeContent can be true 1`] = `
+<li
+  aria-disabled="false"
+  aria-selected="false"
+  class="euiSelectableListItem"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiSelectableListItem__text"
+    />
+    <span
+      class="euiSelectableListItem__append"
+    >
+       
+      <span
+        aria-hidden="true"
+        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
+      >
+        <span
+          class="euiBadge__content"
+        >
+          <span
+            class="euiBadge__text"
+          >
+            <small>
+              ↩
+            </small>
+             to select
+          </span>
+        </span>
+      </span>
+    </span>
   </span>
 </li>
 `;

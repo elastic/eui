@@ -72,5 +72,23 @@ describe('EuiSelectableListItem', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    describe('onFocusBadgeContent', () => {
+      test('can be true', () => {
+        const component = render(
+          <EuiSelectableListItem onFocusBadgeContent={true} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be custom', () => {
+        const component = render(
+          <EuiSelectableListItem onFocusBadgeContent="Focus" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

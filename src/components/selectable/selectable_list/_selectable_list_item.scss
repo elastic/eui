@@ -11,6 +11,10 @@
     border-bottom: $euiSelectableListItemBorder;
   }
 
+  &-isFocused:not([aria-disabled='true']) .euiSelectableListItem__onFocusBadge {
+    display: inline-block;
+  }
+
   &-isFocused:not([aria-disabled='true']),
   &:hover:not([aria-disabled='true']) {
     color: $euiColorPrimary;
@@ -27,6 +31,10 @@
   }
 }
 
+.euiSelectableListItem__onFocusBadge {
+  display: none;
+}
+
 .euiSelectableListItem__content {
   display: flex;
   align-items: center;
@@ -35,10 +43,12 @@
 .euiSelectableListItem__icon,
 .euiSelectableListItem__prepend {
   margin-right: $euiSizeM;
+  flex-shrink: 0;
 }
 
 .euiSelectableListItem__append {
   margin-left: $euiSizeM;
+  flex-shrink: 0;
 }
 
 .euiSelectableListItem__text {

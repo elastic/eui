@@ -65,6 +65,12 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * Useful when the list scrolls, otherwise use your own container
      */
     bordered?: boolean;
+    /**
+     * When enabled by setting to either `true` or passing custom text,
+     * shows a hollow badge as an append (far right) when the item is focused.
+     * The default content when `true` is `↩ to select/deselect/include/exclude`
+     */
+    onFocusBadgeContent?: boolean | ReactNode;
   };
 
 export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
@@ -237,6 +243,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         append={append}
         aria-posinset={index + 1 - labelCount}
         aria-setsize={data.length - labelCount}
+        onFocusBadgeContent={this.props.onFocusBadgeContent}
         allowExclusions={this.props.allowExclusions}
         {...(optionRest as EuiSelectableListItemProps)}>
         {this.props.renderOption ? (
@@ -266,6 +273,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       allowExclusions,
       bordered,
       searchable,
+      onFocusBadgeContent,
       listId,
       setActiveOptionIndex,
       'aria-label': ariaLabel,

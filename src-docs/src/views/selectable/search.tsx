@@ -26,19 +26,7 @@ function createAppendNodes(space?: string) {
     undefined
   );
 
-  return (
-    <EuiFlexGroup responsive={false} gutterSize="s">
-      {spaceAvatar && <EuiFlexItem grow={false}>{spaceAvatar}</EuiFlexItem>}
-      <EuiFlexItem grow={false}>
-        <EuiBadge
-          aria-hidden={true}
-          className="kibanaChromeSearch__itemGotoBadge"
-          color="hollow">
-          Go to <small>↩</small>
-        </EuiBadge>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  );
+  return spaceAvatar;
 }
 
 const allSearches = searchData.concat(recents);

@@ -147,6 +147,11 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         showIcons: false,
         ...listProps,
         className: listClasses,
+        onFocusBadgeContent: (
+          <>
+            <small>↩</small> Go to
+          </>
+        ),
       }}
       {...rest}
       className={classes}
