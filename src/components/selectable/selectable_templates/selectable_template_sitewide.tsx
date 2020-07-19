@@ -105,7 +105,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
    */
   const closePopover = () => {
     setInputHasFocus(false);
-    popoverProps && popoverProps.closePopover();
+    popoverProps && popoverProps.closePopover && popoverProps.closePopover();
   };
   // Width applied to the internal div
   let popoverWidth: CSSProperties['width'] = 600;
@@ -131,12 +131,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
 
   return (
     <EuiSelectable
-      className={classes}
-      searchable
       options={options}
-      // onChange={onChange}
       // renderOption={renderOption}
-      // height={300}
+      height={300}
       singleSelection={true}
       searchProps={{
         placeholder: searchPlaceholder,
@@ -152,7 +149,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         ...listProps,
         className: listClasses,
       }}
-      {...rest}>
+      {...rest}
+      className={classes}
+      searchable>
       {(list, search) => (
         <EuiPopover
           panelPaddingSize="none"

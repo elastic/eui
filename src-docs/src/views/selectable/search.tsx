@@ -136,11 +136,12 @@ export default () => {
 
   return (
     <EuiSelectableTemplateSitewide
+      onChange={onChange}
       options={searchValueExists ? options : recentData}
       searchProps={{
         append: '⌘K',
         // onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
-        compressed: 'true',
+        compressed: true,
         className: 'customSearchClass',
       }}
       listProps={{

@@ -41,6 +41,7 @@ export const Options: EuiSelectableOption[] = [
 export const recents = [
   {
     title: 'Welcome dashboards',
+    url: 'welcome-dashboards',
     type: {
       title: 'Saved dashboard',
       iconType: 'dashboardApp',
