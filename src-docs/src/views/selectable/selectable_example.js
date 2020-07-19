@@ -11,6 +11,7 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiSpacer,
+  EuiSelectableTemplateSitewide,
 } from '../../../../src/components';
 
 import { EuiSelectableOptionProps, EuiSelectableOptionsList } from './props';
@@ -42,6 +43,10 @@ const selectableMessagesHtml = renderToHtml(SelectableMessages);
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
 const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
+
+import Search from './search';
+const searchSource = require('!!raw-loader!./search');
+const searchHtml = renderToHtml(Search);
 
 export const SelectableExample = {
   title: 'Selectable',
@@ -368,6 +373,27 @@ export const SelectableExample = {
     </Fragment>
   )}
 </EuiSelectable>`,
+    },
+    {
+      title: 'Global search template',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: searchSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: searchHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p />
+        </Fragment>
+      ),
+      props: { EuiSelectableTemplateSitewide },
+      demo: <Search />,
+      // snippet: '<EuiSelectableMessage>You have no spice</EuiSelectableMessage>',
     },
   ],
 };
