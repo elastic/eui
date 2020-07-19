@@ -32,7 +32,7 @@ import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiSelectableOption } from '../selectable_option';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
-import { useEuiI18n } from '../../i18n';
+import { useEuiI18n, EuiI18n } from '../../i18n';
 import { EuiText } from '../../text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiLink } from '../../link';
@@ -148,9 +148,13 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         ...listProps,
         className: listClasses,
         onFocusBadgeContent: (
-          <>
-            <small>↩</small> Go to
-          </>
+          <EuiI18n
+            token="euiSelectableTemplateSitewide.onFocusBadgeContentGoTo"
+            default="{enterSymbol} Go to"
+            values={{
+              enterSymbol: <small>↩</small>,
+            }}
+          />
         ),
       }}
       {...rest}

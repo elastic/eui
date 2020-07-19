@@ -1,7 +1,6 @@
 .euiSelectableListItem {
   @include euiFontSizeS;
-  padding: $euiSelectableListItemPadding;
-  display: block; // Necessary to make sure it doesn't force the whole popover to be too wide
+  display: inline-flex; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
   text-align: left;
   color: $euiTextColor;
@@ -36,6 +35,8 @@
 }
 
 .euiSelectableListItem__content {
+  padding: $euiSelectableListItemPadding;
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -53,5 +54,5 @@
 
 .euiSelectableListItem__text {
   @include euiTextTruncate;
-  flex-grow: 1; // Pushed appended content to the far right
+  flex-grow: 1; // Pushes appended content to the far right
 }
