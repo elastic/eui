@@ -31,15 +31,18 @@ import { EuiDataGridSchema } from './data_grid_schema';
 import { EuiDataGridDataRowProps } from './data_grid_data_row';
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
+import { EuiListGroupItemProps } from '../list_group';
 
 export interface EuiDataGridHeaderRowPropsSpecificProps {
   leadingControlColumns?: EuiDataGridControlColumn[];
   trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
   columnWidths: EuiDataGridColumnWidths;
+  columnOptions?: EuiListGroupItemProps[];
   schema: EuiDataGridSchema;
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
+  setVisibleColumns: (columnId: string[]) => void;
   sorting?: EuiDataGridSorting;
   focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
@@ -60,9 +63,11 @@ const EuiDataGridHeaderRow = forwardRef<
     columns,
     schema,
     columnWidths,
+    columnOptions,
     defaultColumnWidth,
     className,
     setColumnWidth,
+    setVisibleColumns,
     sorting,
     focusedCell,
     setFocusedCell,
@@ -96,12 +101,15 @@ const EuiDataGridHeaderRow = forwardRef<
         <EuiDataGridHeaderCell
           key={column.id}
           column={column}
+          columns={columns}
           index={index + leadingControlColumns.length}
           columnWidths={columnWidths}
+          columnOptions={columnOptions}
           focusedCell={focusedCell}
           setFocusedCell={setFocusedCell}
           schema={schema}
           setColumnWidth={setColumnWidth}
+          setVisibleColumns={setVisibleColumns}
           defaultColumnWidth={defaultColumnWidth}
           sorting={sorting}
           headerIsInteractive={headerIsInteractive}

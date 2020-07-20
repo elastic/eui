@@ -37,11 +37,12 @@ import { EuiIcon } from '../icon/icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
 import { EuiDataGridColumn } from './data_grid_types';
+import { EuiListGroupItemProps } from '../list_group';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'columns' | 'leadingControlColumns'
+    'leadingControlColumns'
   > {
   column: EuiDataGridColumn;
   index: number;
@@ -54,10 +55,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   const {
     column,
     index,
+    columns,
     columnWidths,
+    columnOptions,
     schema,
     defaultColumnWidth,
     setColumnWidth,
+    setVisibleColumns,
     sorting,
     focusedCell,
     setFocusedCell,
@@ -264,47 +268,51 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     setFocusedCell,
     index,
   ]);
-
-  console.log(schema);
-
-  const columnOptions = [
-    {
-      label: 'Hide column',
-      href: '#/display/list-group',
-      iconType: 'eyeClosed',
-      size: 'xs',
-      color: 'text',
-    },
-    {
-      label: 'Sort schema asc',
-      href: '#/display/list-group',
-      isActive: true,
-      iconType: 'sortUp',
-      size: 'xs',
-      color: 'text',
-    },
-    {
-      label: 'Sort schema desc',
-      href: '#/display/list-group',
-      iconType: 'sortDown',
-      size: 'xs',
-      color: 'text',
-    },
-    {
-      label: 'Move left',
-      href: '#/display/list-group',
-      iconType: 'sortLeft',
-      size: 'xs',
-      color: 'text',
-    },
-    {
-      label: 'Move right',
-      href: '#/display/list-group',
-      iconType: 'sortRight',
-      size: 'xs',
-      color: 'text',
-    },
-  ];
+  const usedColumnOptions =
+    columnOptions && columnOptions.length
+      ? columnOptions
+      : ([
+          {
+            label: 'Hide column',
+            onClick: () =>
+              setVisibleColumns(
+                columns.filter(col => col.id !== column.id).map(col => col.id)
+              ),
+            iconType: 'eyeClosed',
+            size: 'xs',
+            color: 'text',
+          },
+          /**
+          {
+            label: 'Sort schema asc',
+            isActive: true,
+            iconType: 'sortUp',
+            size: 'xs',
+            color: 'text',
+          },
+          {
+            label: 'Sort schema desc',
+            iconType: 'sortDown',
+            size: 'xs',
+            color: 'text',
+          },
+          {
+            label: 'Move left',
+            iconType: 'sortLeft',
+            size: 'xs',
+            color: 'text',
+            onClick: () =>
+              setVisibleColumns(
+                columns.filter(col => col.id !== column.id).map(col => col.id)
+              ),
+          },
+          {
+            label: 'Move right',
+            iconType: 'sortRight',
+            size: 'xs',
+            color: 'text',
+          },**/
+        ] as EuiListGroupItemProps[]);
 
   return (
     <div
@@ -329,22 +337,24 @@ export const EuiDataGridHeaderCell: FunctionComponent<
           <div id={screenReaderId}>{sortString}</div>
         </EuiScreenReaderOnly>
       )}
-      <EuiPopover
-        id={`${screenReaderId}_popover`}
-        className="euiDataGridHeaderCell__popover"
-        panelPaddingSize="none"
-        anchorPosition="downRight"
-        button={
-          <button onClick={() => setIsPopoverOpen(true)}>
-            <EuiIcon type="arrowDown" size="s" />
-          </button>
-        }
-        isOpen={isPopoverOpen}
-        closePopover={() => setIsPopoverOpen(false)}>
-        <div>
-          <EuiListGroup listItems={columnOptions} gutterSize="none" />
-        </div>
-      </EuiPopover>
+      {usedColumnOptions && usedColumnOptions.length && (
+        <EuiPopover
+          id={`${screenReaderId}_popover`}
+          className="euiDataGridHeaderCell__popover"
+          panelPaddingSize="none"
+          anchorPosition="downRight"
+          button={
+            <button onClick={() => setIsPopoverOpen(true)}>
+              <EuiIcon type="arrowDown" size="s" />
+            </button>
+          }
+          isOpen={isPopoverOpen}
+          closePopover={() => setIsPopoverOpen(false)}>
+          <div>
+            <EuiListGroup listItems={usedColumnOptions} gutterSize="none" />
+          </div>
+        </EuiPopover>
+      )}
     </div>
   );
 };

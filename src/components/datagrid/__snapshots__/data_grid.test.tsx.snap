@@ -302,6 +302,20 @@ Array [
                 >
                   A
                 </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -319,6 +333,20 @@ Array [
                   class="euiDataGridHeaderCell__content"
                 >
                   B
+                </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -854,6 +882,20 @@ Array [
                 >
                   A
                 </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -871,6 +913,20 @@ Array [
                   class="euiDataGridHeaderCell__content"
                 >
                   B
+                </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
               <div
@@ -1697,6 +1753,20 @@ Array [
                 >
                   Column A
                 </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1715,6 +1785,20 @@ Array [
                 >
                   <div>
                     More Elements
+                  </div>
+                </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2233,6 +2317,20 @@ Array [
                 >
                   A
                 </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2250,6 +2348,20 @@ Array [
                   class="euiDataGridHeaderCell__content"
                 >
                   B
+                </div>
+                <div
+                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  id="undefined_popover"
+                >
+                  <div
+                    class="euiPopover__anchor"
+                  >
+                    <button>
+                      <div
+                        data-euiicon-type="arrowDown"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

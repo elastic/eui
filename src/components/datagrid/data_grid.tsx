@@ -64,7 +64,10 @@ import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiResizeObserver } from '../observer/resize_observer';
+import {
+  EuiResizeObserver,
+  useResizeObserver,
+} from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   useMergedSchema,
@@ -75,7 +78,7 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
-import { useResizeObserver } from '../observer/resize_observer/resize_observer';
+import { EuiListGroupItemProps } from '../list_group';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -101,6 +104,10 @@ type CommonGridProps = CommonProps &
      * An array of #EuiDataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
      */
     columnVisibility: EuiDataGridColumnVisibility;
+    /**
+     * An array of #EuiListGroupItemProps that can be used to overwrite the internally used columnOptions that provide functionality like moving columns left, right
+     */
+    columnOptions?: EuiListGroupItemProps[];
     /**
      * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
      */
@@ -667,6 +674,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     trailingControlColumns = emptyArrayDefault,
     columns,
     columnVisibility,
+    columnOptions,
     schemaDetectors,
     rowCount,
     renderCellValue,
@@ -736,7 +744,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     {}
   );
 
-  const [columnSelector, orderedVisibleColumns] = useColumnSelector(
+  const [
+    columnSelector,
+    orderedVisibleColumns,
+    setVisibleColumns,
+  ] = useColumnSelector(
     columns,
     columnVisibility,
     checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector'),
@@ -1013,10 +1025,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                           }
                                           columns={orderedVisibleColumns}
                                           columnWidths={columnWidths}
+                                          columnOptions={columnOptions}
                                           defaultColumnWidth={
                                             defaultColumnWidth
                                           }
                                           setColumnWidth={setColumnWidth}
+                                          setVisibleColumns={setVisibleColumns}
                                           schema={mergedSchema}
                                           sorting={sorting}
                                           headerIsInteractive={
