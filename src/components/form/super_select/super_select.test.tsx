@@ -175,6 +175,8 @@ describe('EuiSuperSelect', () => {
       component.find('button[data-test-subj="superSelect"]').simulate('click');
 
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

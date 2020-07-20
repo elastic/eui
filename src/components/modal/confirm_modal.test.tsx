@@ -18,13 +18,9 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, render } from 'enzyme';
 
-import {
-  findTestSubject,
-  requiredProps,
-  takeMountedSnapshot,
-} from '../../test';
+import { findTestSubject, requiredProps } from '../../test';
 import { keys } from '../../services';
 
 import {
@@ -43,7 +39,7 @@ beforeEach(() => {
 
 describe('EuiConfirmModal', () => {
   test('renders EuiConfirmModal', () => {
-    const component = mount(
+    const component = render(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -54,13 +50,11 @@ describe('EuiConfirmModal', () => {
         This is a confirmation modal example
       </EuiConfirmModal>
     );
-    expect(
-      takeMountedSnapshot(component, { hasArrayOutput: true })
-    ).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders EuiConfirmModal without EuiModalBody, if empty', () => {
-    const component = mount(
+    const component = render(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -70,9 +64,7 @@ describe('EuiConfirmModal', () => {
         {...requiredProps}
       />
     );
-    expect(
-      takeMountedSnapshot(component, { hasArrayOutput: true })
-    ).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('onConfirm', () => {

@@ -174,5 +174,7 @@ describe('EuiColorPalettePicker', () => {
       .simulate('click');
 
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
+
+    expect(component).toMatchSnapshot();
   });
 });
