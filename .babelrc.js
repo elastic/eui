@@ -24,6 +24,7 @@ module.exports = {
     "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
     "./scripts/babel/proptypes-from-ts-props",
+    "./scripts/babel/docgen-from-ts-props",
     "add-module-exports",
     [
       "react-docgen",
