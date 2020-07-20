@@ -10,6 +10,7 @@ import {
   EuiSpacer,
   EuiI18n,
   EuiI18nNumber,
+  useEuiI18n,
 } from '../../../../src/components';
 
 const mappings = {
@@ -24,6 +25,38 @@ const mappings = {
   },
 };
 
+const ContextConsumer = () => {
+  return (
+    <div>
+      <strong>
+        <EuiI18n token="euiContext.greeting" default="Welcome!" />
+      </strong>
+
+      <EuiSpacer size="s" />
+
+      <p>
+        <EuiI18n token="euiContext.guestNo" default="You are guest #" />
+        <EuiI18nNumber value={1582394} />
+      </p>
+
+      <EuiSpacer size="m" />
+
+      <Fragment>
+        <EuiFormRow
+          label={useEuiI18n('euiContext.question', 'What is your name?')}>
+          <EuiFieldText
+            placeholder={useEuiI18n('euiContext.placeholder', 'John Doe')}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer />
+
+        <EuiButton>{useEuiI18n('euiContext.action', 'Submit')}</EuiButton>
+      </Fragment>
+    </div>
+  );
+};
+
 export default () => {
   const [language, setLanguage] = useState('en');
 
@@ -33,61 +66,26 @@ export default () => {
   };
 
   return (
-    <EuiContext i18n={i18n}>
-      <div>
-        <EuiFlexGroup gutterSize="s" alignItems="center">
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              fill={language === 'en'}
-              onClick={() => setLanguage('en')}>
-              <EuiI18n token="euiContext.english" default="English" />
-            </EuiButton>
-          </EuiFlexItem>
+    <>
+      <EuiFlexGroup gutterSize="s" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton fill={language === 'en'} onClick={() => setLanguage('en')}>
+            <EuiI18n token="euiContext.english" default="English" />
+          </EuiButton>
+        </EuiFlexItem>
 
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              fill={language === 'fr'}
-              onClick={() => setLanguage('fr')}>
-              <EuiI18n token="euiContext.french" default="French" />
-            </EuiButton>
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiButton fill={language === 'fr'} onClick={() => setLanguage('fr')}>
+            <EuiI18n token="euiContext.french" default="French" />
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <strong>
-          <EuiI18n token="euiContext.greeting" default="Welcome!" />
-        </strong>
-
-        <EuiSpacer size="s" />
-
-        <p>
-          <EuiI18n token="euiContext.guestNo" default="You are guest #" />
-          <EuiI18nNumber value={1582394} />
-        </p>
-
-        <EuiSpacer size="m" />
-
-        <EuiI18n
-          tokens={[
-            'euiContext.question',
-            'euiContext.action',
-            'euiContext.placeholder',
-          ]}
-          defaults={['What is your name?', 'Submit', 'John Doe']}>
-          {([question, action, placeholder]) => (
-            <Fragment>
-              <EuiFormRow label={question}>
-                <EuiFieldText placeholder={placeholder} />
-              </EuiFormRow>
-
-              <EuiSpacer />
-
-              <EuiButton>{action}</EuiButton>
-            </Fragment>
-          )}
-        </EuiI18n>
-      </div>
-    </EuiContext>
+      <EuiContext i18n={i18n}>
+        <ContextConsumer />
+      </EuiContext>
+    </>
   );
 };

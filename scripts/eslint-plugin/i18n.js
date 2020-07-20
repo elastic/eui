@@ -15,8 +15,8 @@ function attributesArrayToLookup(attributesArray) {
 }
 
 function getDefinedValues(valuesNode) {
-  if (valuesNode == null || valuesNode.expression.properties == null) return new Set();
-  return valuesNode.expression.properties.reduce(
+  if (valuesNode == null || valuesNode.properties == null) return new Set();
+  return valuesNode.properties.reduce(
     (valueNames, property) => {
       valueNames.add(property.key.name);
       return valueNames;
@@ -223,7 +223,9 @@ module.exports = {
           }
 
           // validate default string interpolation matches values
-          const valueNames = getDefinedValues(attributes.values);
+          const valueNames = getDefinedValues(
+            attributes.values && attributes.values.expression
+          );
 
           if (attributes.default.type === 'Literal') {
             // default is a string literal
@@ -319,7 +321,195 @@ module.exports = {
         }
 
         // debugger;
-      }
+      },
+      CallExpression(node) {
+        // Only process calls to useEuiI18n
+        if (
+          !node.callee ||
+          node.callee.type !== 'Identifier' ||
+          node.callee.name !== 'useEuiI18n'
+        )
+          return;
+
+        const arguments = node.arguments;
+
+        const isSingleToken = arguments[0].type === 'Literal';
+
+        // validate argument types
+        if (isSingleToken) {
+          // default must be either a Literal of an ArrowFunctionExpression
+          const defaultArg = arguments[1];
+          const isLiteral = defaultArg.type === 'Literal';
+          const isArrowExpression =
+            defaultArg.type === 'ArrowFunctionExpression';
+          if (!isLiteral && !isArrowExpression) {
+            context.report({
+              node,
+              loc: defaultArg.loc,
+              messageId: 'invalidDefaultType',
+              data: { type: defaultArg.type },
+            });
+            return;
+          }
+        } else {
+          const tokensArg = arguments[0];
+          const defaultsArg = arguments[1];
+
+          // tokens must be an array of Literals
+          if (tokensArg.type !== 'ArrayExpression') {
+            context.report({
+              node,
+              loc: tokensArg.loc,
+              messageId: 'invalidTokensType',
+              data: { type: tokensArg.type },
+            });
+            return;
+          }
+
+          for (let i = 0; i < tokensArg.elements.length; i++) {
+            const tokenNode = tokensArg.elements[i];
+            if (
+              tokenNode.type !== 'Literal' ||
+              typeof tokenNode.value !== 'string'
+            ) {
+              context.report({
+                node,
+                loc: tokenNode.loc,
+                messageId: 'invalidTokensType',
+                data: { type: tokenNode.type }
+              });
+              return;
+            }
+          }
+
+          // defaults must be an array of either Literals or ArrowFunctionExpressions
+          if (defaultsArg.type !== 'ArrayExpression') {
+            context.report({
+              node,
+              loc: defaultsArg.loc,
+              messageId: 'invalidDefaultsType',
+              data: { type: defaultsArg.type }
+            });
+            return;
+          }
+
+          for (let i = 0; i < defaultsArg.elements.length; i++) {
+            const defaultNode = defaultsArg.elements[i];
+            if (
+              defaultNode.type !== 'Literal' ||
+              typeof defaultNode.value !== 'string'
+            ) {
+              context.report({
+                node,
+                loc: defaultNode.loc,
+                messageId: 'invalidDefaultsType',
+                data: { type: defaultNode.type }
+              });
+              return;
+            }
+          }
+        }
+
+        if (isSingleToken) {
+          const tokenArgument = arguments[0];
+          const defaultArgument = arguments[1];
+          const valuesArgument = arguments[2];
+
+          // validate token format
+          const tokenParts = tokenArgument.value.split('.');
+          if (
+            tokenParts.length <= 1 ||
+            tokenParts[0] !== expectedTokenNamespace
+          ) {
+            context.report({
+              node,
+              loc: tokenArgument.loc,
+              messageId: 'invalidToken',
+              data: {
+                tokenValue: tokenArgument.value,
+                tokenNamespace: expectedTokenNamespace,
+              },
+            });
+          }
+
+          // validate default string interpolation matches values
+          const valueNames = getDefinedValues(valuesArgument);
+
+          if (defaultArgument.type === 'Literal') {
+            // default is a string literal
+            const expectedNames = getExpectedValueNames(defaultArgument.value);
+            if (areSetsEqual(expectedNames, valueNames) === false) {
+              context.report({
+                node,
+                loc: valuesArgument.loc,
+                messageId: 'mismatchedValues',
+                data: {
+                  expected: formatSet(expectedNames),
+                  provided: formatSet(valueNames),
+                },
+              });
+            }
+          } else {
+            // default is a function
+            // validate the destructured param defined by default function match the values
+            const defaultFn = defaultArgument;
+            const objProperties =
+              defaultFn.params && defaultFn.params[0]
+                ? defaultFn.params[0].properties
+                : [];
+            const expectedNames = new Set(
+              objProperties.map(property => property.key.name)
+            );
+            if (areSetsEqual(valueNames, expectedNames) === false) {
+              context.report({
+                node,
+                loc: valuesArgument.loc,
+                messageId: 'mismatchedValues',
+                data: {
+                  expected: formatSet(expectedNames),
+                  provided: formatSet(valueNames),
+                },
+              });
+            }
+          }
+        } else {
+          // has multiple tokens
+          const tokensArgument = arguments[0];
+          const defaultsArgument = arguments[1];
+
+          // validate their names
+          const tokens = tokensArgument.elements;
+          for (let i = 0; i < tokens.length; i++) {
+            const token = tokens[i];
+            const tokenParts = token.value.split('.');
+            if (
+              tokenParts.length <= 1 ||
+              tokenParts[0] !== expectedTokenNamespace
+            ) {
+              context.report({
+                node,
+                loc: token.loc,
+                messageId: 'invalidToken',
+                data: { tokenValue: token.value, tokenNamespace: expectedTokenNamespace }
+              });
+            }
+          }
+
+          // validate the number of tokens equals the number of defaults
+          const defaults = defaultsArgument.elements;
+          if (tokens.length !== defaults.length) {
+            context.report({
+              node,
+              loc: node.loc,
+              messageId: 'mismatchedTokensAndDefaults',
+              data: {
+                tokenLength: tokens.length,
+                defaultsLength: defaults.length,
+              },
+            });
+          }
+        }
+      },
       // callback functions
     };
   }
