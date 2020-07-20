@@ -11,9 +11,14 @@ import { Mark } from './mark';
 
 const highlightSource = require('!!raw-loader!./highlight');
 const highlightHtml = renderToHtml(Highlight);
+const highlightSnippet = `<EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
+  <!-- A text where all your search matches will be highlighted -->
+</EuiHighlight>
+`;
 
 const markSource = require('!!raw-loader!./mark');
 const markHtml = renderToHtml(Mark);
+const markSnippet = '<EuiMark><!-- Mark text --></EuiMark>';
 
 export const HighlightAndMarkExample = {
   title: 'Highlight and mark',
@@ -32,12 +37,13 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiHighlight</EuiCode> to highlight substrings within a
+          Use <strong>EuiHighlight</strong> to highlight substrings within a
           string, typically in response to user input.
         </p>
       ),
       props: { EuiHighlight },
       components: { EuiHighlight },
+      snippet: highlightSnippet,
       demo: <Highlight />,
     },
     {
@@ -54,11 +60,12 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiMark</EuiCode> to wrap a string in an
+          Use <strong>EuiMark</strong> to wrap a string in an
           <EuiCode>mark</EuiCode> element.
         </p>
       ),
       components: { EuiMark },
+      snippet: markSnippet,
       demo: <Mark />,
     },
   ],

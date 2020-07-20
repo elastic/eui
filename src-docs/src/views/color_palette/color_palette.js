@@ -23,14 +23,25 @@ const customPalettes = [
   },
   {
     title: 'More than 10 colors are needed',
-    palette: euiPaletteColorBlind(2),
-    code: 'euiPaletteColorBlind(2)',
+    palette: euiPaletteColorBlind({ rotations: 2 }),
+    code: 'euiPaletteColorBlind({rotations: 2})',
   },
   {
     title:
       'Series may have multiple metrics and so the colors must coordinate but be distinguishable',
-    palette: euiPaletteColorBlind(3, 'group', 'both'),
-    code: "euiPaletteColorBlind(3, 'group', 'both')",
+    palette: euiPaletteColorBlind({
+      rotations: 3,
+      order: 'group',
+      direction: 'both',
+    }),
+    code:
+      "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
+  },
+  {
+    title:
+      "The default sort order is close but not exactly aligned with the color wheel. To sort this better add the 'natural' sort param.",
+    palette: euiPaletteColorBlind({ sortBy: 'natural' }),
+    code: "euiPaletteColorBlind({sortBy: 'natural'})",
   },
 ];
 
@@ -73,19 +84,21 @@ export default () => (
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem grow={false} style={{ maxWidth: 240 }}>
         <EuiFlexGrid columns={4} gutterSize="s">
-          {euiPaletteColorBlindBehindText().map((color, i) => (
-            <EuiFlexItem key={i} grow={false}>
-              <span>
-                <EuiBadge color={color}>Text</EuiBadge>
-              </span>
-            </EuiFlexItem>
-          ))}
+          {euiPaletteColorBlindBehindText({ sortBy: 'natural' }).map(
+            (color, i) => (
+              <EuiFlexItem key={i} grow={false}>
+                <span>
+                  <EuiBadge color={color}>Text</EuiBadge>
+                </span>
+              </EuiFlexItem>
+            )
+          )}
         </EuiFlexGrid>
       </EuiFlexItem>
       <EuiFlexItem>
         <ColorPaletteCopyCode
-          textToCopy={'euiPaletteColorBlindBehindText()'}
-          code={'euiPaletteColorBlindBehindText()'}
+          textToCopy={"euiPaletteColorBlindBehindText({ sortBy: 'natural' })"}
+          code={"euiPaletteColorBlindBehindText({ sortBy: 'natural' })"}
         />
       </EuiFlexItem>
     </EuiFlexGroup>

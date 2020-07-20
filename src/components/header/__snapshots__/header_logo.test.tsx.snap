@@ -5,6 +5,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   aria-label="aria-label"
   class="euiHeaderLogo testClass1 testClass2"
   data-test-subj="test subject string"
+  rel="noreferrer"
 >
   <div
     aria-label="Elastic"
@@ -18,6 +19,21 @@ exports[`EuiHeaderLogo renders href 1`] = `
 <a
   class="euiHeaderLogo"
   href="#"
+  rel="noreferrer"
+>
+  <div
+    aria-label="Elastic"
+    class="euiHeaderLogo__icon"
+    data-euiicon-type="logoElastic"
+  />
+</a>
+`;
+
+exports[`EuiHeaderLogo renders href with rel 1`] = `
+<a
+  class="euiHeaderLogo"
+  href="#"
+  rel="noreferrer"
 >
   <div
     aria-label="Elastic"
@@ -30,6 +46,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
 exports[`EuiHeaderLogo renders optional props 1`] = `
 <a
   class="euiHeaderLogo"
+  rel="noreferrer"
   style="color:red"
 >
   <div

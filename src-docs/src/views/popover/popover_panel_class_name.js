@@ -1,46 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiPopover, EuiButton } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
-
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
-
-  render() {
-    return (
-      <EuiPopover
-        ownFocus
-        button={
-          <EuiButton
-            iconType="arrowDown"
-            iconSide="right"
-            onClick={this.onButtonClick.bind(this)}>
-            Turn padding off and apply a custom class
-          </EuiButton>
-        }
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
-        panelClassName="yourClassNameHere"
-        panelPaddingSize="none">
-        This should have no padding, and if you inspect, also a custom class.
-      </EuiPopover>
-    );
-  }
-}
+  return (
+    <EuiPopover
+      ownFocus
+      button={
+        <EuiButton
+          iconType="arrowDown"
+          iconSide="right"
+          onClick={onButtonClick}>
+          Turn padding off and apply a custom class
+        </EuiButton>
+      }
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      panelClassName="yourClassNameHere"
+      panelPaddingSize="none">
+      This should have no padding, and if you inspect, also a custom class.
+    </EuiPopover>
+  );
+};

@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiAccordion,
-  EuiText,
-  EuiCode,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiAccordion, EuiText, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
@@ -15,8 +10,7 @@ export default () => (
       paddingSize="s">
       <EuiText>
         <p>
-          Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear
-          here.
+          Any content inside of <strong>EuiAccordion</strong> will appear here.
         </p>
       </EuiText>
     </EuiAccordion>
@@ -28,8 +22,7 @@ export default () => (
       paddingSize="s">
       <EuiText>
         <p>
-          Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear
-          here.
+          Any content inside of <strong>EuiAccordion</strong> will appear here.
         </p>
       </EuiText>
     </EuiAccordion>
@@ -41,8 +34,7 @@ export default () => (
       paddingSize="s">
       <EuiText>
         <p>
-          Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear
-          here.
+          Any content inside of <strong>EuiAccordion</strong> will appear here.
         </p>
       </EuiText>
     </EuiAccordion>

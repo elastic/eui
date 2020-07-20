@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   EuiButton,
@@ -8,64 +8,53 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [value, setValue] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
 
-    this.state = {
-      value: 0,
-      showProgress: false,
-    };
-
-    this.toggleProgress = this.toggleProgress.bind(this);
-  }
-
-  toggleProgress() {
-    const currentState = this.state.showProgress;
+  let timer;
+  const progress = value => {
+    if (value > 100) {
+      setValue(100);
+    } else {
+      setValue(value);
+      const diff = Math.round(Math.random() * 10);
+      timer = setTimeout(() => progress(value + diff), 250);
+    }
+  };
+  const toggleProgress = () => {
+    const currentState = showProgress;
 
     if (!currentState) {
-      this.timer = setTimeout(() => this.progress(0), 250);
+      timer = setTimeout(() => progress(0), 250);
     } else {
-      clearTimeout(this.timer);
-      this.setState({ value: 0 });
+      clearTimeout(timer);
+      setValue(0);
     }
+    setShowProgress(!showProgress);
+  };
 
-    this.setState({
-      showProgress: !this.state.showProgress,
-    });
-  }
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [timer]);
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  progress(value) {
-    if (value > 100) {
-      this.setState({ value: 100 });
-    } else {
-      this.setState({ value });
-      const diff = Math.round(Math.random() * 10);
-      this.timer = setTimeout(() => this.progress(value + diff), 250);
-    }
-  }
-
-  render() {
-    return (
-      <EuiFlexGroup alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiButton size="s" onClick={this.toggleProgress}>
-            Toggle progress
-          </EuiButton>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText>
-            <p>{this.state.value}</p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiProgress value={this.state.value} max={100} size="xs" />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-  }
-}
+  return (
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton size="s" onClick={toggleProgress}>
+          Toggle progress
+        </EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiText>
+          <p>{value}</p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiProgress value={value} max={100} size="xs" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};

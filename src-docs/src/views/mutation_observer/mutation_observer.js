@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -10,78 +10,61 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export class MutationObserver extends Component {
-  constructor(props) {
-    super(props);
+export const MutationObserver = () => {
+  const [lastMutation, setLastMutation] = useState('no changes detected');
+  const [buttonColor, setButtonColor] = useState('primary');
+  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
 
-    this.state = {
-      lastMutation: 'no changes detected',
-      buttonColor: 'primary',
-      items: ['Item 1', 'Item 2', 'Item 3'],
-    };
-  }
-
-  toggleButtonColor = () => {
-    this.setState(({ buttonColor }) => ({
-      buttonColor: buttonColor === 'primary' ? 'warning' : 'primary',
-    }));
+  const toggleButtonColor = () => {
+    setButtonColor(buttonColor === 'primary' ? 'warning' : 'primary');
   };
 
-  addItem = () => {
-    this.setState(({ items }) => ({
-      items: [...items, `Item ${items.length + 1}`],
-    }));
+  const addItem = () => {
+    setItems([...items, `Item ${items.length + 1}`]);
   };
 
-  onMutation = ([{ type }]) => {
-    this.setState({
-      lastMutation:
-        type === 'attributes'
-          ? 'button class name changed'
-          : 'DOM tree changed',
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <p>{this.state.lastMutation}</p>
-
-        <EuiSpacer />
-
-        <EuiMutationObserver
-          observerOptions={{ subtree: true, attributes: true, childList: true }}
-          onMutation={this.onMutation}>
-          {mutationRef => (
-            <div ref={mutationRef}>
-              <EuiButton
-                color={this.state.buttonColor}
-                fill={true}
-                onClick={this.toggleButtonColor}>
-                Toggle button color
-              </EuiButton>
-
-              <EuiSpacer />
-
-              <EuiFlexGroup>
-                <EuiFlexItem grow={false}>
-                  <EuiPanel grow={false}>
-                    <ul>
-                      {this.state.items.map(item => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                    <EuiSpacer size="s" />
-                    <EuiButtonEmpty onClick={this.addItem}>
-                      add item
-                    </EuiButtonEmpty>
-                  </EuiPanel>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </div>
-          )}
-        </EuiMutationObserver>
-      </div>
+  const onMutation = ([{ type }]) => {
+    setLastMutation(
+      type === 'attributes' ? 'button class name changed' : 'DOM tree changed'
     );
-  }
-}
+  };
+
+  return (
+    <div>
+      <p>{lastMutation}</p>
+
+      <EuiSpacer />
+
+      <EuiMutationObserver
+        observerOptions={{ subtree: true, attributes: true, childList: true }}
+        onMutation={onMutation}>
+        {mutationRef => (
+          <div ref={mutationRef}>
+            <EuiButton
+              color={buttonColor}
+              fill={true}
+              onClick={toggleButtonColor}>
+              Toggle button color
+            </EuiButton>
+
+            <EuiSpacer />
+
+            <EuiFlexGroup>
+              <EuiFlexItem grow={false}>
+                <EuiPanel grow={false}>
+                  <ul>
+                    {items.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <EuiSpacer size="s" />
+                  <EuiButtonEmpty onClick={addItem}>add item</EuiButtonEmpty>
+                </EuiPanel>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
+        )}
+      </EuiMutationObserver>
+    </div>
+  );
+};

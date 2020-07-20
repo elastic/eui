@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiRange,
@@ -7,79 +7,67 @@ import {
   EuiDualRange,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [value, setValue] = useState('20');
+  const [dualValue, setDualValue] = useState([20, 100]);
 
-    this.state = {
-      value: '20',
-      dualValue: [20, 100],
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  onDualChange = value => {
-    this.setState({
-      dualValue: value,
-    });
+  const onDualChange = value => {
+    setDualValue(value);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiRange
-          id={makeId()}
-          step={10}
-          value={this.state.value}
-          onChange={this.onChange}
-          showTicks
-          aria-label="An example of EuiRange with ticks"
-        />
+  return (
+    <Fragment>
+      <EuiRange
+        id={htmlIdGenerator()()}
+        step={10}
+        value={value}
+        onChange={onChange}
+        showTicks
+        aria-label="An example of EuiRange with ticks"
+      />
 
-        <EuiSpacer size="xl" />
+      <EuiSpacer size="xl" />
 
-        <EuiTitle size="xxs">
-          <h3>Custom tick interval</h3>
-        </EuiTitle>
+      <EuiTitle size="xxs">
+        <h3>Custom tick interval</h3>
+      </EuiTitle>
 
-        <EuiSpacer size="l" />
+      <EuiSpacer size="l" />
 
-        <EuiRange
-          id={makeId()}
-          value={this.state.value}
-          onChange={this.onChange}
-          showInput
-          showRange
-          showTicks
-          tickInterval={20}
-          aria-label="An example of EuiRange with custom tickInterval"
-        />
+      <EuiRange
+        id={htmlIdGenerator()()}
+        value={value}
+        onChange={onChange}
+        showInput
+        showRange
+        showTicks
+        tickInterval={20}
+        aria-label="An example of EuiRange with custom tickInterval"
+      />
 
-        <EuiSpacer size="xl" />
+      <EuiSpacer size="xl" />
 
-        <EuiTitle size="xxs">
-          <h3>Custom ticks object</h3>
-        </EuiTitle>
+      <EuiTitle size="xxs">
+        <h3>Custom ticks object</h3>
+      </EuiTitle>
 
-        <EuiSpacer size="l" />
+      <EuiSpacer size="l" />
 
-        <EuiDualRange
-          id={makeId()}
-          value={this.state.dualValue}
-          onChange={this.onDualChange}
-          showTicks
-          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
-          showInput
-          aria-label="An example of EuiDualRange with ticks"
-        />
-      </Fragment>
-    );
-  }
-}
+      <EuiDualRange
+        id={htmlIdGenerator()()}
+        value={dualValue}
+        onChange={onDualChange}
+        showTicks
+        ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+        showInput
+        aria-label="An example of EuiDualRange with ticks"
+      />
+    </Fragment>
+  );
+};

@@ -58,12 +58,22 @@ const search = {
 };
 
 export const I18nTokens = {
-  name: 'I18n Tokens',
+  name: 'I18n tokens',
   component: () => (
-    <GuidePage title="I18n Tokens">
+    <GuidePage title="I18n tokens">
+      <EuiInMemoryTable
+        items={tokens}
+        columns={columns}
+        search={search}
+        pagination={{ initialPageSize: 50 }}
+      />
+
+      <EuiSpacer size="m" />
+
       <EuiTitle size="m">
         <span>Token changelog</span>
       </EuiTitle>
+
       {tokenChangelog.map(({ version, changes }) => (
         <EuiAccordion
           key={version}
@@ -89,18 +99,6 @@ export const I18nTokens = {
           <EuiSpacer size="s" />
         </EuiAccordion>
       ))}
-
-      <EuiSpacer size="m" />
-
-      <EuiTitle size="m">
-        <span>All tokens</span>
-      </EuiTitle>
-      <EuiInMemoryTable
-        items={tokens}
-        columns={columns}
-        search={search}
-        pagination={{ initialPageSize: 50 }}
-      />
     </GuidePage>
   ),
 };

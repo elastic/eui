@@ -60,7 +60,11 @@ export default () => {
   ];
 
   const renderSearch = (
-    <EuiFieldSearch placeholder="Search for anything" compressed />
+    <EuiFieldSearch
+      placeholder="Search for anything"
+      aria-label="Search for anything"
+      compressed
+    />
   );
 
   const sections = [
@@ -68,6 +72,9 @@ export default () => {
       items: [renderLogo, <HeaderSpacesMenu />],
       borders: 'right',
       breadcrumbs: breadcrumbs,
+      breadcrumbProps: {
+        'aria-label': 'Header sections breadcrumbs',
+      },
     },
     {
       items: [renderSearch, <div style={{ width: 8 }} />],

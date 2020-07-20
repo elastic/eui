@@ -1,8 +1,28 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiButton, COLORS, SIZES, ICON_SIDES } from './button';
+import { EuiButton, COLORS, SIZES } from './button';
+import { ICON_SIDES } from './button_content';
 
 describe('EuiButton', () => {
   test('is rendered', () => {
@@ -29,6 +49,12 @@ describe('EuiButton', () => {
 
       it('renders a button even when href is defined', () => {
         const component = render(<EuiButton href="#" isDisabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('renders if passed as disabled', () => {
+        const component = render(<EuiButton disabled />);
 
         expect(component).toMatchSnapshot();
       });
@@ -114,6 +140,22 @@ describe('EuiButton', () => {
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
+    });
+
+    test('contentProps is rendered', () => {
+      const component = render(
+        <EuiButton contentProps={requiredProps}>Content</EuiButton>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('textProps is rendered', () => {
+      const component = render(
+        <EuiButton textProps={requiredProps}>Content</EuiButton>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

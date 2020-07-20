@@ -1,10 +1,35 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
-import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
+import {
+  PartialTheme,
+  LineAnnotationStyle,
+  PartitionConfig,
+} from '@elastic/charts';
 
-// @ts-ignore
+import { RecursivePartial } from '../../components/common';
+
+// @ts-ignore typescript doesn't understand the webpack loader
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
-// @ts-ignore
+// @ts-ignore typescript doesn't understand the webpack loader
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
 const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
@@ -13,9 +38,10 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
+  partition: RecursivePartial<PartitionConfig>;
 }
 
-function createTheme(colors: any) {
+function createTheme(colors: any): EuiChartThemeType {
   return {
     lineAnnotation: {
       line: {
@@ -30,7 +56,30 @@ function createTheme(colors: any) {
         padding: 0,
       },
     },
+    partition: {
+      fontFamily: fontFamily,
+      minFontSize: 8,
+      maxFontSize: 16,
+      fillLabel: {
+        textInvertible: false,
+        valueFont: {
+          fontWeight: 700,
+        },
+      },
+      linkLabel: {
+        maxCount: 5,
+        fontSize: 11,
+        textColor: colors.euiColorDarkestShade.rgba,
+      },
+      outerSizeRatio: 1,
+      circlePadding: 4,
+      sectorLineStroke: colors.euiColorEmptyShade.rgba,
+      sectorLineWidth: 1.5,
+    },
     theme: {
+      background: {
+        color: colors.euiColorEmptyShade.rgba,
+      },
       chartMargins: {
         left: 0,
         right: 0,
@@ -111,7 +160,7 @@ function createTheme(colors: any) {
         },
       },
       colors: {
-        vizColors: euiPaletteColorBlind(),
+        vizColors: euiPaletteColorBlind({ sortBy: 'natural' }),
         defaultVizColor: DEFAULT_VISUALIZATION_COLOR,
       },
       crosshair: {

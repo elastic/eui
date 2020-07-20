@@ -40,7 +40,7 @@ export type EuiMegaMenuProps = {
 };
 ```
 
-For the default props we can just specify the enum values we want to use in the constructor and then use the maps to generate the classname for the component:
+For the default props we can just specify the enum values we want to use in the constructor and then use the maps to generate the className for the component:
 
 ```tsx
 export const EuiMegaMenu: FunctionComponent<EuiMegaMenuProps> = ({
@@ -126,7 +126,7 @@ All event handlers should take the form `onEvent` and accurately describe when i
 Try to leverage the `children` prop wherever possible. This will create a simpler more uniform
 API throughout our components.
 
-We also [require some props](../src/test/reqiured_props.js) to be supported by all components, as
+We also [require some props](../src/test/required_props.ts) to be supported by all components, as
 reflected in our tests; for example, `className`. These are easily added via the `CommonProps` mentioned above.
 
 [component-development]: component-development.md

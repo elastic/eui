@@ -13,7 +13,7 @@ import {
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSuperSelect,
+  EuiColorPalettePicker,
 } from '../../../../src/components';
 
 import {
@@ -32,6 +32,7 @@ import {
   euiPalettePositive,
   euiPaletteGray,
 } from '../../../../src/services';
+
 const paletteData = {
   euiPaletteColorBlind,
   euiPaletteForStatus,
@@ -43,22 +44,29 @@ const paletteData = {
   euiPaletteWarm,
   euiPaletteGray,
 };
+
 const paletteNames = Object.keys(paletteData);
 
 export const Theming = () => {
   const themeContext = useContext(ThemeContext);
 
-  /**
-   * Create palette select
-   */
-  const paletteOptions = paletteNames.map((paletteName, index) =>
-    createPaletteOption(paletteName, index)
-  );
+  const palettes = paletteNames.map((paletteName, index) => {
+    const options =
+      index > 0
+        ? 10
+        : {
+            sortBy: 'natural',
+          };
 
-  const [barPalette, setBarPalette] = useState('5');
-  const onBarPaletteChange = value => {
-    setBarPalette(value);
-  };
+    return {
+      value: paletteName,
+      title: paletteName,
+      palette: paletteData[paletteNames[index]](options),
+      type: 'fixed',
+    };
+  });
+
+  const [barPalette, setBarPalette] = useState('euiPaletteColorBlind');
 
   /**
    * Create data
@@ -75,20 +83,24 @@ export const Theming = () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const customColors = {
-    colors: {
-      vizColors: paletteData[paletteNames[Number(barPalette)]](5),
-    },
-  };
+  const barPaletteIndex = paletteNames.findIndex(item => item === barPalette);
+
+  const customTheme =
+    barPaletteIndex > 0
+      ? [
+          {
+            colors: {
+              vizColors: paletteData[paletteNames[barPaletteIndex]](5),
+            },
+          },
+          theme,
+        ]
+      : theme;
 
   return (
     <Fragment>
       <Chart size={{ height: 200 }}>
-        <Settings
-          theme={[customColors, theme]}
-          showLegend={false}
-          showLegendDisplayValue={false}
-        />
+        <Settings theme={customTheme} showLegend={false} />
         <BarSeries
           id="status"
           name="Status"
@@ -104,57 +116,21 @@ export const Theming = () => {
           data={data1}
           xAccessor={'x'}
           yAccessors={['y']}
-          customSeriesColors={['black']}
+          color={['black']}
         />
         <Axis id="bottom-axis" position="bottom" showGridLines />
         <Axis id="left-axis" position="left" showGridLines />
       </Chart>
       <EuiSpacer size="xxl" />
       <EuiFlexGroup justifyContent="center">
-        <EuiFlexItem grow={false}>
-          <EuiSuperSelect
-            id="setChartBarColor"
-            options={paletteOptions}
+        <EuiFlexItem grow={false} style={{ width: 300 }}>
+          <EuiColorPalettePicker
+            palettes={palettes}
+            onChange={setBarPalette}
             valueOfSelected={barPalette}
-            onChange={onBarPaletteChange}
-            aria-label="Bars color palette"
-            style={{ width: 300 }}
           />
         </EuiFlexItem>
       </EuiFlexGroup>
     </Fragment>
-  );
-};
-
-const createPaletteOption = function(paletteName, index) {
-  return {
-    value: String(index),
-    inputDisplay: createPalette(
-      paletteData[paletteNames[index]](index > 0 ? 10 : 1)
-    ),
-    dropdownDisplay: (
-      <Fragment>
-        <strong>{paletteName}</strong>
-        <EuiSpacer size="xs" />
-        {createPalette(paletteData[paletteNames[index]](index > 0 ? 10 : 1))}
-      </Fragment>
-    ),
-  };
-};
-
-const createPalette = function(palette) {
-  return (
-    <EuiFlexGroup
-      className="guideColorPalette__swatchHolder"
-      gutterSize="none"
-      responsive={false}>
-      {palette.map(hexCode => (
-        <EuiFlexItem
-          key={hexCode}
-          className={'guideColorPalette__swatch--small'}>
-          <span title={hexCode} style={{ backgroundColor: hexCode }} />
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
   );
 };

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { TokenProps } from './token';
 
 export type EuiTokenMapType =
@@ -37,7 +56,20 @@ export type EuiTokenMapType =
   | 'tokenGeo'
   | 'tokenRange'
   | 'tokenSymbol'
-  | 'tokenVariable';
+  | 'tokenVariable'
+  | 'tokenBinary'
+  | 'tokenJoin'
+  | 'tokenPercolator'
+  | 'tokenFlattened'
+  | 'tokenRankFeature'
+  | 'tokenRankFeatures'
+  | 'tokenKeyword'
+  | 'tokenCompletionSuggester'
+  | 'tokenDenseVector'
+  | 'tokenText'
+  | 'tokenTokenCount'
+  | 'tokenSearchType'
+  | 'tokenHistogram';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -198,5 +230,57 @@ export const TOKEN_MAP: {
   tokenAlias: {
     shape: 'circle',
     color: 'euiColorVis3',
+  },
+  tokenBinary: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenJoin: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenPercolator: {
+    shape: 'square',
+    color: 'euiColorVis6',
+  },
+  tokenFlattened: {
+    shape: 'square',
+    color: 'euiColorVis7',
+  },
+  tokenRankFeature: {
+    shape: 'square',
+    color: 'euiColorVis8',
+  },
+  tokenRankFeatures: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
+  tokenKeyword: {
+    shape: 'square',
+    color: 'euiColorVis9',
+  },
+  tokenCompletionSuggester: {
+    shape: 'square',
+    color: 'euiColorVis1',
+  },
+  tokenDenseVector: {
+    shape: 'square',
+    color: 'euiColorVis2',
+  },
+  tokenText: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
+  tokenTokenCount: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenSearchType: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenHistogram: {
+    shape: 'square',
+    color: 'euiColorVis6',
   },
 };

@@ -40,9 +40,9 @@ export const LinkExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiLink</EuiCode> will apply the correct styling onto links
-          and make sure they are accessible. Links can be passed a color. Note
-          that the <EuiCode>ghost</EuiCode> type should only be used on dark
+          <strong>EuiLink</strong> will apply the correct styling onto links and
+          make sure they are accessible. Links can be passed a color. Note that
+          the <EuiCode>ghost</EuiCode> type should only be used on dark
           backgrounds (regardless of theming). It will always create a white
           link.
         </p>
@@ -52,7 +52,7 @@ export const LinkExample = {
       demo: <Link />,
     },
     {
-      title: 'Disabled Links',
+      title: 'Disabled links',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -65,7 +65,7 @@ export const LinkExample = {
       ],
       text: (
         <p>
-          When an <EuiCode>EuiLink</EuiCode> is passed an{' '}
+          When an <strong>EuiLink</strong> is passed an{' '}
           <EuiCode>onClick</EuiCode> method, and is not passed an{' '}
           <EuiCode>href</EuiCode>, it can optionally be set to
           <EuiCode>disabled</EuiCode> which disables the click behavior, and

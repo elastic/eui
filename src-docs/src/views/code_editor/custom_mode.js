@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import 'brace/mode/text';
 
 import { EuiCodeEditor } from '../../../../src/components';
@@ -9,21 +9,22 @@ class MyCustomAceMode extends TextMode {
   // See https://github.com/ajaxorg/ace/wiki/Creating-or-Extending-an-Edit-Mode
 }
 
-export default class extends Component {
-  state = {
-    value: '',
+export default () => {
+  const [value, updateValue] = useState('');
+
+  const onChange = value => {
+    updateValue(value);
   };
 
-  render() {
-    return (
-      <EuiCodeEditor
-        mode={new MyCustomAceMode()}
-        aria-label="Custom mode code editor"
-        theme="github"
-        width="100%"
-        value={this.state.value}
-        setOptions={{ fontSize: '14px' }}
-      />
-    );
-  }
-}
+  return (
+    <EuiCodeEditor
+      mode={new MyCustomAceMode()}
+      aria-label="Custom mode code editor"
+      theme="github"
+      width="100%"
+      value={value}
+      onChange={onChange}
+      setOptions={{ fontSize: '14px' }}
+    />
+  );
+};

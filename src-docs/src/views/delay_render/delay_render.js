@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   EuiDelayRender,
   EuiFlexItem,
@@ -8,52 +8,48 @@ import {
   EuiLoadingSpinner,
 } from '../../../../src/components';
 
-export default class extends Component {
-  state = {
-    minimumDelay: 3000,
-    render: false,
+export default () => {
+  const [minimumDelay, setDelay] = useState(3000);
+  const [render, setRender] = useState(false);
+
+  const onChangeMinimumDelay = event => {
+    setDelay(parseInt(event.target.value, 10));
   };
 
-  onChangeMinimumDelay = event => {
-    this.setState({ minimumDelay: parseInt(event.target.value, 10) });
+  const onChangeHide = event => {
+    setRender(event.target.checked);
   };
 
-  onChangeHide = event => {
-    this.setState({ render: event.target.checked });
-  };
+  const status = render ? 'showing' : 'hidden';
+  const label = `Child (${status})`;
+  return (
+    <Fragment>
+      <EuiFlexItem>
+        <EuiFormRow>
+          <EuiCheckbox
+            id="dummy-id"
+            checked={render}
+            onChange={onChangeHide}
+            label="Show child"
+          />
+        </EuiFormRow>
+        <EuiFormRow label="Minimum delay">
+          <EuiFieldNumber
+            value={minimumDelay}
+            onChange={onChangeMinimumDelay}
+          />
+        </EuiFormRow>
 
-  render() {
-    const status = this.state.render ? 'showing' : 'hidden';
-    const label = `Child (${status})`;
-    return (
-      <Fragment>
-        <EuiFlexItem>
-          <EuiFormRow>
-            <EuiCheckbox
-              id="dummy-id"
-              checked={this.state.render}
-              onChange={this.onChangeHide}
-              label="Show child"
-            />
-          </EuiFormRow>
-          <EuiFormRow label="Minimum delay">
-            <EuiFieldNumber
-              value={this.state.minimumDelay}
-              onChange={this.onChangeMinimumDelay}
-            />
-          </EuiFormRow>
-
-          <EuiFormRow label={label}>
-            {this.state.render ? (
-              <EuiDelayRender delay={this.state.minimumDelay}>
-                <EuiLoadingSpinner size="m" />
-              </EuiDelayRender>
-            ) : (
-              <Fragment />
-            )}
-          </EuiFormRow>
-        </EuiFlexItem>
-      </Fragment>
-    );
-  }
-}
+        <EuiFormRow label={label}>
+          {render ? (
+            <EuiDelayRender delay={minimumDelay}>
+              <EuiLoadingSpinner size="m" />
+            </EuiDelayRender>
+          ) : (
+            <Fragment />
+          )}
+        </EuiFormRow>
+      </EuiFlexItem>
+    </Fragment>
+  );
+};

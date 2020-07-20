@@ -23,6 +23,6 @@
   margin-bottom: $euiSizeXS;
 }
 
-@mixin euiToolTipAnimation($side: 'top', $delay: $euiAnimSpeedNormal) {
-  animation: #{map-get($euiTooltipAnimations, $side)} $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
+@mixin euiToolTipAnimation($side: 'top') {
+  animation: #{map-get($euiTooltipAnimations, $side)} $euiAnimSpeedSlow ease-out 0s forwards;
 }

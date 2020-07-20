@@ -22,7 +22,7 @@ needs of that theme.
 4. Import your variables into the top of this file, making sure the global_variables and
 components load after it.
 
-```sass
+```scss
 // These are variable overwrites used only for this theme.
 @import 'themes/my_theme_name/my_theme_name_sizes';
 @import 'themes/my_theme_name/my_theme_name_colors';
@@ -36,7 +36,7 @@ components load after it.
 
 #### Make your theme available in the docs
 
-Lastly, make sure to include your theme in the /src-docs/index.js file so that it's available
+Lastly, make sure to include your theme in the `/src-docs/index.js` file so that it's available
 through the theme selector.
 
 ## Theming tips

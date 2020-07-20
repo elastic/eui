@@ -9,6 +9,7 @@
 
 /**
  * 1. Account for inner box-shadow style border
+ * 2. Ensure truncation works in children elements
  */
 
 .euiFormControlLayout--group {
@@ -30,6 +31,7 @@
 
   .euiFormControlLayout__childrenWrapper {
     flex-grow: 1;
+    overflow: hidden; /* 2 */
   }
 
   .euiFormControlLayout__prepend,

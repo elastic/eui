@@ -6,15 +6,31 @@
   align-items: center;
   transition: background-color $euiAnimSpeedFast;
   position: relative;
-  line-height: $euiSize;
 
   &.euiListGroupItem-isActive,
   &.euiListGroupItem-isClickable:hover {
-    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+    background-color: $euiListGroupItemHoverBackground;
   }
 
-  &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
-    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+  // Can't be grouped with above or else IE will ignore the whole group
+  &.euiListGroupItem-isClickable:focus-within {
+    background-color: $euiListGroupItemHoverBackground;
+  }
+
+  &.euiListGroupItem--ghost {
+    &.euiListGroupItem-isClickable:hover {
+      background-color: $euiListGroupItemHoverBackgroundGhost;
+    }
+
+    // Can't be grouped with above or else IE will ignore the whole group
+    &.euiListGroupItem-isClickable:focus-within {
+      background-color: $euiListGroupItemHoverBackgroundGhost;
+    }
+  }
+
+  &.euiListGroupItem-isClickable:hover .euiListGroupItem__button,
+  .euiListGroupItem__button:hover,
+  .euiListGroupItem__button:focus {
     text-decoration: underline;
   }
 
@@ -25,15 +41,30 @@
   &.euiListGroupItem-isDisabled .euiListGroupItem__button:hover,
   &.euiListGroupItem-isDisabled .euiListGroupItem__button:focus {
     color: $euiButtonColorDisabled;
-    text-decoration: none;
     cursor: not-allowed;
     background-color: transparent;
+    text-decoration: none;
+  }
+}
+
+// IE doesn't support :focus-within
+@include internetExplorerOnly {
+  .euiListGroupItem__button:hover,
+  .euiListGroupItem__button:focus {
+    background-color: $euiListGroupItemHoverBackground;
+    border-radius: $euiBorderRadius;
+
+    .euiListGroupItem--ghost .euiListGroupItem__button:hover,
+    .euiListGroupItem--ghost .euiListGroupItem__button:focus {
+      background-color: $euiListGroupItemHoverBackgroundGhost;
+    }
   }
 }
 
 .euiListGroupItem__text,
 .euiListGroupItem__button {
-  padding: $euiSizeS;
+  line-height: $euiSizeL;
+  padding: $euiSizeXS $euiSizeS;
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
@@ -46,9 +77,13 @@
   }
 
   @each $colorName, $color in $euiListGroupItemColorTypes {
-    .euiListGroupItem--#{$colorName} & {
+    .euiListGroupItem--#{$colorName} &:not(:disabled) {
       color: $color;
     }
+  }
+
+  .euiListGroupItem-isActive:not(.euiListGroupItem--ghost) & {
+    color: $euiTextColor;
   }
 }
 
@@ -91,7 +126,17 @@
 }
 
 .euiListGroupItem--xSmall {
-  line-height: $euiSizeM;
+  .euiListGroupItem__button,
+  .euiListGroupItem__text {
+    line-height: $euiSize;
+  }
+}
+
+.euiListGroupItem--large {
+  .euiListGroupItem__button,
+  .euiListGroupItem__text {
+    line-height: $euiSizeXL;
+  }
 }
 
 .euiListGroupItem--wrapText {

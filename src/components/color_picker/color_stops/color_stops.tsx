@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   useCallback,
@@ -8,7 +27,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { keyCodes, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+import { keys, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
   addStop,
@@ -77,7 +96,7 @@ function getValidStops(colorStops: ColorStop[]) {
 function getRangeMin(colorStops: ColorStop[], min?: number) {
   const rangeMin = min || DEFAULT_MIN;
   const stops = getValidStops(colorStops);
-  const first = Math.min.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+  const first = Math.min(...stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (first < rangeMin) {
     if (stops.length === 1) {
@@ -91,7 +110,7 @@ function getRangeMin(colorStops: ColorStop[], min?: number) {
 function getRangeMax(colorStops: ColorStop[], max?: number) {
   const rangeMax = max || DEFAULT_MAX;
   const stops = getValidStops(colorStops);
-  const last = Math.max.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+  const last = Math.max(...stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (last > rangeMax) {
     if (stops.length === 1) {
@@ -274,21 +293,21 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     handleOnChange(newColorStops);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (disabled) return;
-    switch (e.keyCode) {
-      case keyCodes.ESCAPE:
+    switch (event.key) {
+      case keys.ESCAPE:
         onFocusWrapper();
         break;
 
-      case keyCodes.ENTER:
+      case keys.ENTER:
         if (readOnly || !hasFocus) return;
         onAdd();
         break;
 
-      case keyCodes.BACKSPACE:
+      case keys.BACKSPACE:
         if (readOnly || hasFocus || focusedStopIndex == null) return;
-        if (isTargetAThumb(e.target)) {
+        if (isTargetAThumb(event.target)) {
           if (
             (min == null && focusedStopIndex === 0) ||
             (max == null && focusedStopIndex === sortedStops.length - 1)
@@ -300,9 +319,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
         break;
 
-      case keyCodes.DOWN:
-        if (e.target === wrapperRef || isTargetAThumb(e.target)) {
-          e.preventDefault();
+      case keys.ARROW_DOWN:
+        if (event.target === wrapperRef || isTargetAThumb(event.target)) {
+          event.preventDefault();
           if (focusedStopIndex == null) {
             onFocusStop(0);
           } else {
@@ -315,9 +334,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
         break;
 
-      case keyCodes.UP:
-        if (e.target === wrapperRef || isTargetAThumb(e.target)) {
-          e.preventDefault();
+      case keys.ARROW_UP:
+        if (event.target === wrapperRef || isTargetAThumb(event.target)) {
+          event.preventDefault();
           if (focusedStopIndex == null) {
             onFocusStop(0);
           } else {

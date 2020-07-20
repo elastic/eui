@@ -1,0 +1,6 @@
+.euiImage-isFullScreen {
+  .euiImage__caption {
+    color: $euiColorGhost;
+    text-shadow: 0 1px 2px transparentize($euiColorInk, .6);
+  }
+}

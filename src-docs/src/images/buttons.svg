@@ -9,7 +9,7 @@
     </filter>
   </defs>
   <g fill="none" fill-rule="evenodd">
-    <rect width="300" height="150" fill="#D3DAE6"/>
+    <rect width="300" height="150" fill="#5A77AD" opacity=".18"/>
     <rect width="97" height="16" x="171" y="67" fill="#006BB4"/>
     <g transform="translate(32 55)">
       <use fill="#000" filter="url(#buttons-a)" xlink:href="#buttons-b"/>

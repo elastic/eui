@@ -4,14 +4,14 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiErrorBoundary } from '../../../../src/components';
+import { EuiErrorBoundary } from '../../../../src/components';
 
 import ErrorBoundary from './error_boundary';
 const errorBoundarySource = require('!!raw-loader!./error_boundary');
 const errorBoundaryHtml = renderToHtml(ErrorBoundary);
 
 export const ErrorBoundaryExample = {
-  title: 'Error Boundary',
+  title: 'Error boundary',
   sections: [
     {
       source: [
@@ -26,7 +26,7 @@ export const ErrorBoundaryExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiErrorBoundary</EuiCode> to prevent errors from taking
+          Use <strong>EuiErrorBoundary</strong> to prevent errors from taking
           down the entire app.
         </p>
       ),

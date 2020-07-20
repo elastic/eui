@@ -8,7 +8,7 @@ const source = require('!!raw-loader!./footer');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Adding a footer to a BasicTable',
+  title: 'Adding a footer to a table',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -26,8 +26,8 @@ export const section = {
       your columns contains a <EuiCode>footer</EuiCode> definition, the footer
       area will be visible. By default, columns with no footer specified
       (undefined) will render an empty cell to preserve the table layout. Check
-      out the &quot;Custom Table&quot; section below for more examples of how
-      you can work with table footers in EUI.
+      out the <em>Build a custom table</em> section below for more examples of
+      how you can work with table footers in EUI.
     </p>
   ),
   components: { EuiBasicTable },

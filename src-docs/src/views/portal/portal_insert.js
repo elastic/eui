@@ -1,45 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiPortal, EuiButton } from '../../../../src/components';
 import { EuiSpacer } from '../../../../src/components/spacer/spacer';
 
-export class PortalInsert extends Component {
-  constructor(props) {
-    super(props);
+let buttonRef = null;
 
-    this.buttonRef = null;
+export const PortalInsert = () => {
+  const [isPortalVisible, setIsPortalVisible] = useState(false);
 
-    this.state = {
-      isPortalVisible: false,
-    };
-  }
+  const setButtonRef = node => (buttonRef = node);
 
-  setButtonRef = node => (this.buttonRef = node);
-
-  togglePortal = () => {
-    this.setState(prevState => ({
-      isPortalVisible: !prevState.isPortalVisible,
-    }));
+  const togglePortal = () => {
+    setIsPortalVisible(!isPortalVisible);
   };
 
-  render() {
-    let portal;
+  let portal;
 
-    if (this.state.isPortalVisible) {
-      portal = (
-        <EuiPortal insert={{ sibling: this.buttonRef, position: 'after' }}>
-          <EuiSpacer />
-          <p>This element is appended immediately after the button.</p>
-        </EuiPortal>
-      );
-    }
-    return (
-      <div>
-        <EuiButton onClick={this.togglePortal} buttonRef={this.setButtonRef}>
-          Toggle portal
-        </EuiButton>
-        {portal}
-      </div>
+  if (isPortalVisible) {
+    portal = (
+      <EuiPortal insert={{ sibling: buttonRef, position: 'after' }}>
+        <EuiSpacer />
+        <p>This element is appended immediately after the button.</p>
+      </EuiPortal>
     );
   }
-}
+  return (
+    <div>
+      <EuiButton onClick={togglePortal} buttonRef={setButtonRef}>
+        Toggle portal
+      </EuiButton>
+      {portal}
+    </div>
+  );
+};

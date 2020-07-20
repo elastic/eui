@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, ReactNode } from 'react';
 import {
   EuiBasicTable,
@@ -89,7 +108,9 @@ interface State<T> {
     items: T[];
     sortName: ReactNode;
     sortDirection?: Direction;
+    search?: Search;
   };
+  search?: Search;
   query: Query | null;
   pageIndex: number;
   pageSize?: number;
@@ -100,12 +121,20 @@ interface State<T> {
   hidePerPageOptions: boolean | undefined;
 }
 
-const getInitialQuery = (search: Search | undefined) => {
+const getQueryFromSearch = (
+  search: Search | undefined,
+  defaultQuery: boolean
+) => {
   let query: Query | string;
   if (!search) {
     query = '';
   } else {
-    query = (search as EuiSearchBarProps).defaultQuery || '';
+    query =
+      (defaultQuery
+        ? (search as EuiSearchBarProps).defaultQuery ||
+          (search as EuiSearchBarProps).query ||
+          ''
+        : (search as EuiSearchBarProps).query) || '';
   }
 
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
@@ -211,16 +240,21 @@ export class EuiInMemoryTable<T> extends Component<
     responsive: true,
     tableLayout: 'fixed',
   };
+  tableRef: React.RefObject<EuiBasicTable>;
 
   static getDerivedStateFromProps<T>(
     nextProps: EuiInMemoryTableProps<T>,
     prevState: State<T>
   ) {
+    let updatedPrevState = prevState;
+    let componentShouldUpdate = false;
     if (nextProps.items !== prevState.prevProps.items) {
       // We have new items because an external search has completed, so reset pagination state.
-      return {
+      componentShouldUpdate = true;
+      updatedPrevState = {
+        ...updatedPrevState,
         prevProps: {
-          ...prevState.prevProps,
+          ...updatedPrevState.prevProps,
           items: nextProps.items,
         },
         pageIndex: 0,
@@ -234,10 +268,34 @@ export class EuiInMemoryTable<T> extends Component<
       sortName !== prevState.prevProps.sortName ||
       sortDirection !== prevState.prevProps.sortDirection
     ) {
-      return {
+      componentShouldUpdate = true;
+      updatedPrevState = {
+        ...updatedPrevState,
         sortName,
         sortDirection,
       };
+    }
+
+    const nextQuery = nextProps.search
+      ? (nextProps.search as EuiSearchBarProps).query
+      : '';
+    const prevQuery = prevState.prevProps.search
+      ? (prevState.prevProps.search as EuiSearchBarProps).query
+      : '';
+
+    if (nextQuery !== prevQuery) {
+      componentShouldUpdate = true;
+      updatedPrevState = {
+        ...updatedPrevState,
+        prevProps: {
+          ...updatedPrevState.prevProps,
+          search: nextProps.search,
+        },
+        query: getQueryFromSearch(nextProps.search, false),
+      };
+    }
+    if (componentShouldUpdate) {
+      return updatedPrevState;
     }
     return null;
   }
@@ -259,8 +317,10 @@ export class EuiInMemoryTable<T> extends Component<
         items: props.items,
         sortName,
         sortDirection,
+        search,
       },
-      query: getInitialQuery(search),
+      search: search,
+      query: getQueryFromSearch(search, true),
       pageIndex: pageIndex || 0,
       pageSize,
       pageSizeOptions,
@@ -269,6 +329,14 @@ export class EuiInMemoryTable<T> extends Component<
       allowNeutralSort: allowNeutralSort !== false,
       hidePerPageOptions,
     };
+
+    this.tableRef = React.createRef<EuiBasicTable>();
+  }
+
+  setSelection(newSelection: T[]) {
+    if (this.tableRef.current) {
+      this.tableRef.current.setSelection(newSelection);
+    }
   }
 
   onTableChange = ({ page, sort }: Criteria<T>) => {
@@ -350,10 +418,14 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState({
+    this.setState(state => ({
+      prevProps: {
+        ...state.prevProps,
+        search,
+      },
       query,
       pageIndex: 0,
-    });
+    }));
   };
 
   renderSearchBar() {
@@ -529,6 +601,7 @@ export class EuiInMemoryTable<T> extends Component<
     const table = (
       // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
       <EuiBasicTable
+        ref={this.tableRef}
         items={items}
         itemId={itemId}
         rowProps={rowProps}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiComboBox, EuiFormRow } from '../../../../src/components';
 
@@ -7,17 +7,11 @@ const isValid = value => {
   return value.match(/^[a-zA-Z]+$/) !== null;
 };
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [selectedOptions, setSelected] = useState([]);
+  const [isInvalid, setInvalid] = useState(false);
 
-    this.state = {
-      isInvalid: false,
-      selectedOptions: [],
-    };
-  }
-
-  onCreateOption = searchValue => {
+  const onCreateOption = searchValue => {
     if (!isValid(searchValue)) {
       // Return false to explicitly reject the user's input.
       return false;
@@ -28,49 +22,38 @@ export default class extends Component {
     };
 
     // Select the option.
-    this.setState(prevState => ({
-      selectedOptions: prevState.selectedOptions.concat(newOption),
-    }));
+    setSelected([...selectedOptions, newOption]);
   };
 
-  onSearchChange = searchValue => {
+  const onSearchChange = searchValue => {
     if (!searchValue) {
-      this.setState({
-        isInvalid: false,
-      });
+      setInvalid(false);
 
       return;
     }
 
-    this.setState({
-      isInvalid: !isValid(searchValue),
-    });
+    setInvalid(!isValid(searchValue));
   };
 
-  onChange = selectedOptions => {
-    this.setState({
-      selectedOptions,
-      isInvalid: false,
-    });
+  const onChange = selectedOptions => {
+    setSelected(selectedOptions);
+    setInvalid(false);
   };
 
-  render() {
-    const { selectedOptions, isInvalid } = this.state;
-    return (
-      <EuiFormRow
-        label="Only custom options"
+  return (
+    <EuiFormRow
+      label="Only custom options"
+      isInvalid={isInvalid}
+      error={isInvalid ? 'Only letters are allowed' : undefined}>
+      <EuiComboBox
+        noSuggestions
+        placeholder="Create some tags (letters only)"
+        selectedOptions={selectedOptions}
+        onCreateOption={onCreateOption}
+        onChange={onChange}
+        onSearchChange={onSearchChange}
         isInvalid={isInvalid}
-        error={isInvalid ? 'Only letters are allowed' : undefined}>
-        <EuiComboBox
-          noSuggestions
-          placeholder="Create some tags (letters only)"
-          selectedOptions={selectedOptions}
-          onCreateOption={this.onCreateOption}
-          onChange={this.onChange}
-          onSearchChange={this.onSearchChange}
-          isInvalid={isInvalid}
-        />
-      </EuiFormRow>
-    );
-  }
-}
+      />
+    </EuiFormRow>
+  );
+};

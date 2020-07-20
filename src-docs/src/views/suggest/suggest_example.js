@@ -40,10 +40,10 @@ const suggestItemSnippet = [
 
 const suggestSnippet = [
   `<EuiSuggest
-  status={this.state.status}
-  tooltipContent={this.state.tooltipContent}
-  onInputChange={this.getInputValue}
-  onItemClick={this.onItemClick}
+  status={status}
+  tooltipContent={tooltipContent}
+  onInputChange={getInputValue}
+  onItemClick={onItemClick}
   suggestions={[
     {
       type: { iconType: 'kqlField', color: 'tint4' },
@@ -76,7 +76,7 @@ export const SuggestExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiSuggest</EuiCode> is a text field component used to
+            <strong>EuiSuggest</strong> is a text field component used to
             display suggestions. The status of the component is shown on its
             right side. The available <EuiCode>status</EuiCode> are:{' '}
             <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
@@ -89,7 +89,7 @@ export const SuggestExample = {
       demo: <Suggest />,
     },
     {
-      title: 'Suggest Item',
+      title: 'Suggest item',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -103,11 +103,10 @@ export const SuggestExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiSuggestItem</EuiCode> is a list item component to
-            display suggestions when typing queries in{' '}
-            <EuiCode>EuiSuggest</EuiCode>. Use <EuiCode>labelDisplay</EuiCode>{' '}
-            to set whether the <EuiCode>label</EuiCode> has a fixed width or
-            not.
+            <strong>EuiSuggestItem</strong> is a list item component to display
+            suggestions when typing queries in <strong>EuiSuggest</strong>. Use{' '}
+            <EuiCode>labelDisplay</EuiCode> to set whether the{' '}
+            <EuiCode>label</EuiCode> has a fixed width or not.
           </p>
         </div>
       ),

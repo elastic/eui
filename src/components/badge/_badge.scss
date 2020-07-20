@@ -22,8 +22,8 @@
   &.euiBadge-isDisabled {
     // sass-lint:disable-block no-important
     // Using !important to override inline styles
+    color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2) !important;
     background-color: $euiButtonColorDisabled !important;
-    color: $euiButtonColorDisabledText !important;
   }
 
   &:focus-within {
@@ -46,6 +46,7 @@
     text-align: inherit;
     font-weight: inherit;
     line-height: inherit;
+    color: inherit;
 
     &:disabled {
       cursor: not-allowed;

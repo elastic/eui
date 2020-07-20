@@ -1,5 +1,4 @@
 import React from 'react';
-import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -10,7 +9,7 @@ const source = require('!!raw-loader!./in_memory_search');
 const html = renderToHtml(Table);
 
 export const searchSection = {
-  title: 'In-Memory Table - With Search',
+  title: 'In-memory table with search',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -24,8 +23,8 @@ export const searchSection = {
   text: (
     <div>
       <p>
-        The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode>{' '}
-        to display a search bar
+        The example shows how to configure <strong>EuiInMemoryTable</strong> to
+        display a search bar.
       </p>
     </div>
   ),

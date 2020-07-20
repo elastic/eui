@@ -28,7 +28,7 @@
 
 @keyframes focusRingAnimate {
   0% {
-    box-shadow: 0 0 0 6px $euiFocusRingAnimStartColor;
+    box-shadow: 0 0 0 $euiFocusRingAnimStartSize $euiFocusRingAnimStartColor;
   }
 
   100% {
@@ -38,7 +38,7 @@
 
 @keyframes focusRingAnimateLarge {
   0% {
-    box-shadow: 0 0 0 10px $euiFocusRingAnimStartColor;
+    box-shadow: 0 0 0 $euiFocusRingAnimStartSizeLarge $euiFocusRingAnimStartColor;
   }
 
   100% {

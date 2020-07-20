@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiCheckableCard,
@@ -8,94 +8,88 @@ import {
   EuiFormFieldset,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  state = {
-    radioName: makeId(),
-    radio: 'radio2',
-    nestedRadio: 'nestedRadio1',
-    checkbox: false,
-  };
+export default () => {
+  const radioName = htmlIdGenerator()();
+  const [radio, setRadio] = useState('radio2');
+  const [nestedRadio, setNestedRadio] = useState('nestedRadio1');
+  const [checkbox, setCheckbox] = useState(false);
 
-  render() {
-    const { radioName } = this.state;
+  const nestedRadios = [
+    {
+      id: 'nestedRadio1',
+      label: 'Nested option one',
+    },
+    {
+      id: 'nestedRadio2',
+      label: 'Nested option two',
+    },
+    {
+      id: 'nestedRadio3',
+      label: 'Nested option three',
+    },
+  ];
 
-    const nestedRadios = [
-      {
-        id: 'nestedRadio1',
-        label: 'Nested option one',
-      },
-      {
-        id: 'nestedRadio2',
-        label: 'Nested option two',
-      },
-      {
-        id: 'nestedRadio3',
-        label: 'Nested option three',
-      },
-    ];
+  return (
+    <Fragment>
+      <EuiFormFieldset
+        legend={{
+          children: (
+            <EuiTitle size="xs">
+              <span>Checkable card radio group with legend</span>
+            </EuiTitle>
+          ),
+        }}>
+        <EuiCheckableCard
+          id={htmlIdGenerator()()}
+          label="Option one"
+          name={radioName}
+          value="radio1"
+          checked={radio === 'radio1'}
+          onChange={() => setRadio('radio1')}
+        />
 
-    return (
-      <Fragment>
-        <EuiFormFieldset
-          legend={{
-            children: (
-              <EuiTitle size="xs">
-                <span>Checkable card radio group with legend</span>
-              </EuiTitle>
-            ),
-          }}>
-          <EuiCheckableCard
-            id={makeId()}
-            label="Option one"
-            name={radioName}
-            value="radio1"
-            checked={this.state.radio === 'radio1'}
-            onChange={() => this.setState({ radio: 'radio1' })}
-          />
-
-          <EuiSpacer size="m" />
-
-          <EuiCheckableCard
-            id={makeId()}
-            label="Option two"
-            name={radioName}
-            value="radio2"
-            checked={this.state.radio === 'radio2'}
-            onChange={() => this.setState({ radio: 'radio2' })}>
-            <EuiRadioGroup
-              options={nestedRadios}
-              idSelected={this.state.nestedRadio}
-              onChange={nestedRadio => this.setState({ nestedRadio })}
-              disabled={this.state.radio !== 'radio2'}
-            />
-          </EuiCheckableCard>
-
-          <EuiSpacer size="m" />
-
-          <EuiCheckableCard
-            id={makeId()}
-            label="Option three (disabled)"
-            name={radioName}
-            value="radio3"
-            checked={this.state.radio === 'radio3'}
-            onChange={() => this.setState({ radio: 'radio3' })}
-            disabled
-          />
-        </EuiFormFieldset>
-
-        <EuiSpacer size="xl" />
+        <EuiSpacer size="m" />
 
         <EuiCheckableCard
-          id={makeId()}
-          label="I am a checkbox"
-          checkableType="checkbox"
-          value="checkbox1"
-          checked={this.state.checkbox}
-          onChange={() => this.setState({ checkbox: !this.state.checkbox })}
+          id={htmlIdGenerator()()}
+          label="Option two"
+          name={radioName}
+          value="radio2"
+          checked={radio === 'radio2'}
+          onChange={() => setRadio('radio2')}>
+          <EuiRadioGroup
+            options={nestedRadios}
+            idSelected={nestedRadio}
+            onChange={nestedRadio => setNestedRadio(nestedRadio)}
+            disabled={radio !== 'radio2'}
+          />
+        </EuiCheckableCard>
+
+        <EuiSpacer size="m" />
+
+        <EuiCheckableCard
+          id={htmlIdGenerator()()}
+          label="Option three (disabled)"
+          name={radioName}
+          value="radio3"
+          checked={radio === 'radio3'}
+          onChange={() => setRadio('radio3')}
+          disabled
         />
-      </Fragment>
-    );
-  }
-}
+      </EuiFormFieldset>
+
+      <EuiSpacer size="xl" />
+
+      <EuiCheckableCard
+        id={htmlIdGenerator()()}
+        label="I am a checkbox"
+        checkableType="checkbox"
+        value="checkbox1"
+        checked={checkbox}
+        onChange={() => setCheckbox(!checkbox)}
+      />
+    </Fragment>
+  );
+};

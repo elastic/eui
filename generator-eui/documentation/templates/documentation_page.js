@@ -7,7 +7,6 @@ import {
 } from '../../components';
 
 import {
-  EuiCode,
   <%= componentName %>,
 } from '../../../../src/components';
 
@@ -28,7 +27,7 @@ export const <%= componentExampleName %>Example = {
     }],
     text: (
       <p>
-        Description needed: how to use the <EuiCode>Eui<%= componentExampleName %></EuiCode> component.
+        Description needed: how to use the <strong>Eui<%= componentExampleName %></strong> component.
       </p>
     ),
     props: { <%= componentName %> },

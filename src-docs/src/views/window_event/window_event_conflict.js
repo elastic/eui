@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiModal,
@@ -9,53 +9,47 @@ import {
   EuiFieldText,
   EuiSpacer,
 } from '../../../../src/components';
+import { keys } from '../../../../src/services';
 
 import { ModalExample } from './modal_example_container';
 
-class ConflictModal extends React.Component {
-  constructor(props) {
-    super(props);
+const ConflictModal = props => {
+  const [inputValue, setInputValue] = useState('');
 
-    this.state = {
-      inputValue: '',
-    };
-  }
-
-  updateInputValue = e => this.setState({ inputValue: e.target.value });
-
-  clearInputValueOnEscape = e => {
-    if (e.key === 'Escape') {
-      this.setState({ inputValue: '' });
-      e.stopPropagation();
+  const updateInputValue = e => {
+    setInputValue(e.target.value);
+  };
+  const clearInputValueOnEscape = event => {
+    if (event.key === keys.ESCAPE) {
+      setInputValue('');
+      event.stopPropagation();
     }
   };
 
-  render() {
-    return (
-      <EuiOverlayMask>
-        <EuiModal onClose={this.props.onClose} style={{ width: '800px' }}>
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
-          </EuiModalHeader>
-          <EuiModalBody>
-            <EuiFieldText
-              value={this.state.inputValue}
-              onChange={this.updateInputValue}
-              onKeyDown={this.clearInputValueOnEscape}
-            />
-            <EuiSpacer size="s" />
-            <p>While typing in this field, ESC will clear the field.</p>
-            <EuiSpacer size="l" />
-            <p>
-              Otherwise, the event bubbles up to the window and ESC closes the
-              modal.
-            </p>
-          </EuiModalBody>
-        </EuiModal>
-      </EuiOverlayMask>
-    );
-  }
-}
+  return (
+    <EuiOverlayMask>
+      <EuiModal onClose={props.onClose} style={{ width: '800px' }}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
+        </EuiModalHeader>
+        <EuiModalBody>
+          <EuiFieldText
+            value={inputValue}
+            onChange={updateInputValue}
+            onKeyDown={clearInputValueOnEscape}
+          />
+          <EuiSpacer size="s" />
+          <p>While typing in this field, ESC will clear the field.</p>
+          <EuiSpacer size="l" />
+          <p>
+            Otherwise, the event bubbles up to the window and ESC closes the
+            modal.
+          </p>
+        </EuiModalBody>
+      </EuiModal>
+    </EuiOverlayMask>
+  );
+};
 
 export const WindowEventConflict = () => (
   <ModalExample

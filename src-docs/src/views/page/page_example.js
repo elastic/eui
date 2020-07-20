@@ -15,6 +15,8 @@ import {
   EuiPageHeader,
   EuiPageHeaderSection,
   EuiPageSideBar,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import Page from './page';
@@ -39,6 +41,16 @@ const PageContentCenterWithSideBarHtml = renderToHtml(Page);
 
 export const PageExample = {
   title: 'Page',
+  intro: (
+    <EuiText>
+      <p>
+        Page layouts are modular and have the ability to add or remove
+        components as needed for the design. These examples are colored for
+        illustrative purposes only.
+      </p>
+      <EuiSpacer />
+    </EuiText>
+  ),
   sections: [
     {
       title: 'Page with everything on',
@@ -54,11 +66,6 @@ export const PageExample = {
       ],
       text: (
         <div>
-          <p>
-            Page layouts are modular and have the ability to add or remove
-            components as needed for the design. These examples are colored for
-            illustrative purposes only.
-          </p>
           <p>
             By default, the entire page will always be 100% of the window&apos;s
             width; to max out the typical width and center the page, set the{' '}

@@ -28,19 +28,21 @@ export const ElasticChartsCategoryExample = {
 
           <ul>
             <li>
-              <EuiCode>Settings.rotation = 90</EuiCode>
+              <EuiCode language="js">Settings.rotation = 90</EuiCode>
             </li>
             <li>
-              <EuiCode>
+              <EuiCode language="js">
                 BarSeries.data = orderBy(DATASET, [&apos;count&apos;],
                 [&apos;desc&apos;])
               </EuiCode>
             </li>
             <li>
-              <EuiCode>BarSeries.xAccessor = &quot;vizType&quot;</EuiCode>
+              <EuiCode language="js">
+                BarSeries.xAccessor = &quot;vizType&quot;
+              </EuiCode>
             </li>
             <li>
-              <EuiCode>
+              <EuiCode language="js">
                 Axis.tickFormat = (d =&gt; Number(d)&apos;k&apos;)
               </EuiCode>
             </li>

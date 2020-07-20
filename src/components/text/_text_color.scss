@@ -1,7 +1,7 @@
 
-$textColors: (
+$euiTextColors: (
   default: $euiTextColor,
-  subdued: $euiColorDarkShade,
+  subdued: $euiTextSubduedColor,
   secondary: $euiColorSecondary,
   accent: $euiColorAccent,
   warning: $euiColorWarning,
@@ -10,7 +10,7 @@ $textColors: (
 );
 
 // Create color modifiers based on the map
-@each $name, $color in $textColors {
+@each $name, $color in $euiTextColors {
   .euiTextColor--#{$name} {
 
     // The below function makes sure the color is accessible on our default background.

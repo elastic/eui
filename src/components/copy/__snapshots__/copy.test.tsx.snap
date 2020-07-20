@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCopy is rendered 1`] = `
+<EuiToolTip
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  delay="regular"
+  onMouseOut={[Function]}
+  position="top"
+>
+  <button
+    onClick={[Function]}
+  >
+    Click to copy input text
+  </button>
+</EuiToolTip>
+`;

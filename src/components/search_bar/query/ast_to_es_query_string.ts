@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import moment from 'moment';
 import { printIso8601 } from './date_format';
 import { DateValue, isDateValue } from './date_value';
@@ -27,6 +46,13 @@ const emitMatch = (match: MatchType | undefined) => {
     return '';
   }
   return AST.Match.isMust(match) ? '+' : '-';
+};
+
+const escapeValue = (value: Value) => {
+  if (typeof value === 'string') {
+    return value.replace(/([\\"])/g, '\\$1');
+  }
+  return value;
 };
 
 const emitFieldDateLikeClause = (
@@ -120,9 +146,9 @@ const emitFieldStringClause = (
 ) => {
   const matchOp = emitMatch(match);
   if (value.match(/\s/)) {
-    return `${matchOp}${field}:"${value}"`;
+    return `${matchOp}${field}:"${escapeValue(value)}"`;
   }
-  return `${matchOp}${field}:${value}`;
+  return `${matchOp}${field}:${escapeValue(value)}`;
 };
 
 const emitFieldBooleanClause = (
@@ -186,7 +212,7 @@ const emitTermClause = (clause: TermClause, isGroupMember: boolean): string => {
   }
 
   const matchOp = emitMatch(match);
-  return `${matchOp}${value}`;
+  return `${matchOp}${escapeValue(value)}`;
 };
 
 const emitIsClause = (clause: IsClause, isGroupMember: boolean): string => {

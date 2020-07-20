@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiTextAlign direction prop center is rendered 1`] = `
+<div
+  class="euiTextAlign euiTextAlign--center"
+/>
+`;
+
+exports[`EuiTextAlign direction prop left is rendered 1`] = `
+<div
+  class="euiTextAlign euiTextAlign--left"
+/>
+`;
+
+exports[`EuiTextAlign direction prop right is rendered 1`] = `
+<div
+  class="euiTextAlign euiTextAlign--right"
+/>
+`;
+
 exports[`EuiTextAlign is rendered 1`] = `
 <div
   aria-label="aria-label"

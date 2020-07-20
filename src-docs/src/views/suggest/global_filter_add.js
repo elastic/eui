@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButtonEmpty,
@@ -10,55 +10,45 @@ import {
 
 import GlobalFilterForm from './global_filter_form';
 
-export default class GlobalFilterAdd extends Component {
-  static propTypes = {};
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  state = {
-    isPopoverOpen: false,
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
   };
 
-  togglePopover = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
+  const closePopover = () => {
+    setIsPopoverOpen(false);
   };
 
-  closePopover = () => {
-    this.setState({ isPopoverOpen: false });
-  };
+  return (
+    <EuiPopover
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      button={
+        <EuiButtonEmpty onClick={togglePopover} size="xs">
+          + Add filter
+        </EuiButtonEmpty>
+      }
+      anchorPosition="downCenter"
+      withTitle>
+      <EuiPopoverTitle>
+        <EuiFlexGroup alignItems="baseline">
+          <EuiFlexItem>Add a filter</EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            {/* This button should open a modal */}
+            <EuiButtonEmpty flush="right" size="xs">
+              Edit as Query DSL
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPopoverTitle>
 
-  render() {
-    const { isPopoverOpen } = this.state;
-
-    return (
-      <EuiPopover
-        isOpen={isPopoverOpen}
-        closePopover={this.closePopover}
-        button={
-          <EuiButtonEmpty onClick={this.togglePopover} size="xs">
-            + Add filter
-          </EuiButtonEmpty>
-        }
-        anchorPosition="downCenter"
-        withTitle>
-        <EuiPopoverTitle>
-          <EuiFlexGroup alignItems="baseline">
-            <EuiFlexItem>Add a filter</EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              {/* This button should open a modal */}
-              <EuiButtonEmpty flush="right" size="xs">
-                Edit as Query DSL
-              </EuiButtonEmpty>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPopoverTitle>
-
-        <GlobalFilterForm
-          style={{ width: 400 }}
-          onAdd={this.togglePopover}
-          onCancel={this.togglePopover}
-        />
-      </EuiPopover>
-    );
-  }
-}
+      <GlobalFilterForm
+        style={{ width: 400 }}
+        onAdd={togglePopover}
+        onCancel={togglePopover}
+      />
+    </EuiPopover>
+  );
+};

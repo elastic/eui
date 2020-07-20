@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+  <g fill="none" fill-rule="evenodd">
+    <rect width="300" height="150" fill="#5A77AD" opacity=".18"/>
+    <polygon fill="#5B6272" points="42 18 217 18 217 40 42 40"/>
+    <polygon fill="#7D869C" points="42 50 257 50 257 62 42 62" opacity=".473"/>
+    <polygon fill="#7D869C" points="42 71 163 71 163 83 42 83" opacity=".473"/>
+    <polygon fill="#7D869C" points="65 102 228 102 228 114 65 114" opacity=".473"/>
+    <rect width="12" height="12" x="42" y="102" fill="#7D869C" opacity=".473"/>
+    <polygon fill="#7D869C" points="65 123 212 123 212 135 65 135" opacity=".473"/>
+    <rect width="12" height="12" x="42" y="123" fill="#7D869C" opacity=".473"/>
+  </g>
+</svg>

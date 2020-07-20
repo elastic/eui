@@ -36,11 +36,11 @@ export const section = {
   text: (
     <div>
       <p>
-        As an alternative to <EuiCode>EuiBasicTable</EuiCode> you can instead
+        As an alternative to <strong>EuiBasicTable</strong> you can instead
         construct a table from individual{' '}
         <strong>low level, basic components</strong> like{' '}
-        <EuiCode>EuiTableHeader</EuiCode>
-        &nbsp;and <EuiCode>EuiTableRowCell</EuiCode>. Below is one of many ways
+        <strong>EuiTableHeader</strong>
+        &nbsp;and <strong>EuiTableRowCell</strong>. Below is one of many ways
         you might set this up on your own. Important to note are how you need to
         set individual props like the <EuiCode>truncateText</EuiCode> prop to
         cells to enforce a single-line behavior and truncate their contents, or
@@ -49,18 +49,18 @@ export const section = {
       </p>
       <h3>Responsive extras</h3>
       <p>
-        You must supply a <EuiCode>mobileOptions.header</EuiCode> prop
-        equivalent to the column header on each{' '}
-        <EuiCode>EuiTableRowCell</EuiCode> so that the mobile version will use
+        You must supply a <EuiCode language="js">mobileOptions.header</EuiCode>{' '}
+        prop equivalent to the column header on each{' '}
+        <strong>EuiTableRowCell</strong> so that the mobile version will use
         that to populate the per cell headers.
       </p>
       <p>
         Also, custom table implementations <strong>will not</strong>{' '}
         auto-populate any header level functions like selection and filtering.
         In order to add mobile support for these functions, you will need to
-        implement the <EuiCode>EuiTableHeaderMobile</EuiCode> component as a
-        wrapper around these and use <EuiCode>EuiTableSortMobile</EuiCode>
-        &nbsp;and <EuiCode>EuiTableSortMobileItem</EuiCode> components to supply
+        implement the <strong>EuiTableHeaderMobile</strong> component as a
+        wrapper around these and use <strong>EuiTableSortMobile</strong>
+        &nbsp;and <strong>EuiTableSortMobileItem</strong> components to supply
         mobile sorting. See demo below.
       </p>
     </div>

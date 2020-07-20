@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, HTMLAttributes, createContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -5,7 +24,7 @@ import { EuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiText } from '../text';
-import { keyCodes, htmlIdGenerator } from '../../services';
+import { keys, htmlIdGenerator } from '../../services';
 
 const EuiTreeViewContext = createContext<string>('');
 const treeIdGenerator = htmlIdGenerator('euiTreeView');
@@ -150,54 +169,54 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
   };
 
   // Enable keyboard navigation
-  onKeyDown = (e: React.KeyboardEvent, node: Node) => {
-    switch (e.keyCode) {
-      case keyCodes.DOWN: {
+  onKeyDown = (event: React.KeyboardEvent, node: Node) => {
+    switch (event.key) {
+      case keys.ARROW_DOWN: {
         const nodeButtons = Array.from(
           document.querySelectorAll(
             `[data-test-subj="euiTreeViewButton-${this.state.treeID}"]`
           )
         );
-        const currentIndex = nodeButtons.indexOf(e.currentTarget);
+        const currentIndex = nodeButtons.indexOf(event.currentTarget);
         if (currentIndex > -1) {
           const nextButton = nodeButtons[currentIndex + 1] as HTMLElement;
           if (nextButton) {
-            e.preventDefault();
-            e.stopPropagation();
+            event.preventDefault();
+            event.stopPropagation();
             nextButton.focus();
           }
         }
         break;
       }
-      case keyCodes.UP: {
+      case keys.ARROW_UP: {
         const nodeButtons = Array.from(
           document.querySelectorAll(
             `[data-test-subj="euiTreeViewButton-${this.state.treeID}"]`
           )
         );
-        const currentIndex = nodeButtons.indexOf(e.currentTarget);
+        const currentIndex = nodeButtons.indexOf(event.currentTarget);
         if (currentIndex > -1) {
           const prevButton = nodeButtons[currentIndex + -1] as HTMLElement;
           if (prevButton) {
-            e.preventDefault();
-            e.stopPropagation();
+            event.preventDefault();
+            event.stopPropagation();
             prevButton.focus();
           }
         }
         break;
       }
-      case keyCodes.RIGHT: {
+      case keys.ARROW_RIGHT: {
         if (!this.isNodeOpen(node)) {
-          e.preventDefault();
-          e.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
           this.handleNodeClick(node, true);
         }
         break;
       }
-      case keyCodes.LEFT: {
+      case keys.ARROW_LEFT: {
         if (this.isNodeOpen(node)) {
-          e.preventDefault();
-          e.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
           this.handleNodeClick(node, true);
         }
       }
@@ -206,10 +225,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     }
   };
 
-  onChildrenKeydown = (e: React.KeyboardEvent, index: number) => {
-    if (e.keyCode === keyCodes.LEFT) {
-      e.preventDefault();
-      e.stopPropagation();
+  onChildrenKeydown = (event: React.KeyboardEvent, index: number) => {
+    if (event.key === keys.ARROW_LEFT) {
+      event.preventDefault();
+      event.stopPropagation();
       this.buttonRef[index]!.focus();
     }
   };

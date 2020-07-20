@@ -1,9 +1,9 @@
 .euiHorizontalRule {
   border: none;
-  // Sometimes Chrome "calculates" an element height of e.g. 0.990px, which it
-  // rounds down, thereby hiding the element.
-  height: 1.1px;
+  height: 1px;
   background-color: $euiBorderColor;
+  flex-shrink: 0; // Ensure when used in flex group, it retains its size
+  flex-grow: 0; // Ensure when used in flex group, it retains its size
 
   &.euiHorizontalRule--full {
     width: 100%;

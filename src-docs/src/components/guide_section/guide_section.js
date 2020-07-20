@@ -18,9 +18,14 @@ import {
   EuiTextColor,
   EuiTitle,
   EuiLink,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
-function markup(text) {
+import { CodeSandboxLink } from '../codesandbox';
+
+import { cleanEuiImports } from '../../services';
+
+export const markup = text => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split(regex).map((token, index) => {
     if (!token) {
@@ -43,9 +48,9 @@ function markup(text) {
     }
     return token;
   });
-}
+};
 
-const humanizeType = type => {
+export const humanizeType = type => {
   if (!type) {
     return '';
   }
@@ -140,6 +145,8 @@ export class GuideSection extends Component {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
     };
+
+    this.memoScroll = 0;
   }
 
   onSelectedTabChanged = selectedTab => {
@@ -154,10 +161,6 @@ export class GuideSection extends Component {
 
       if (name === 'javascript') {
         renderedCode = renderedCode
-          .replace(
-            /(from )'(..\/)+src\/components(\/?';)/g,
-            "from '@elastic/eui';"
-          )
           .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
             "from '@elastic/eui/lib/services';"
@@ -201,12 +204,21 @@ export class GuideSection extends Component {
           renderedCode = renderedCode.replace('\n\n\n', '\n\n');
           len = renderedCode.replace('\n\n\n', '\n\n').length;
         }
+        renderedCode = cleanEuiImports(renderedCode);
       } else if (name === 'html') {
         renderedCode = code.render();
       }
     }
 
-    this.setState({ selectedTab, renderedCode });
+    this.setState({ selectedTab, renderedCode }, () => {
+      if (name === 'javascript') {
+        requestAnimationFrame(() => {
+          const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+          if (!pre) return;
+          pre.scrollTop = this.memoScroll;
+        });
+      }
+    });
   };
 
   renderTabs() {
@@ -434,13 +446,32 @@ export class GuideSection extends Component {
   }
 
   renderCode(name) {
-    return (
-      <div key={name} ref={name}>
-        <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-          {this.state.renderedCode}
-        </EuiCodeBlock>
-      </div>
+    const euiCodeBlock = (
+      <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
+        {this.state.renderedCode}
+      </EuiCodeBlock>
     );
+
+    const divProps = {
+      key: name,
+      ref: name,
+    };
+
+    const memoScrollUtility = () => {
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      this.memoScroll = pre.scrollTop;
+    };
+
+    if (name === 'javascript') {
+      return (
+        <div {...divProps} onScroll={memoScrollUtility}>
+          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
+          {euiCodeBlock}
+        </div>
+      );
+    }
+
+    return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
   renderContent() {
@@ -471,6 +502,16 @@ export class GuideSection extends Component {
           {this.props.demo}
         </div>
       </EuiErrorBoundary>
+    );
+  }
+
+  renderCodeSandBoxButton() {
+    return (
+      <CodeSandboxLink content={this.props.source[0].code}>
+        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
+          Try out this demo on Code Sandbox
+        </EuiButtonEmpty>
+      </CodeSandboxLink>
     );
   }
 

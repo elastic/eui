@@ -14,29 +14,81 @@ import {
 import DescriptionList from './description_list';
 const descriptionListSource = require('!!raw-loader!./description_list');
 const descriptionListHtml = renderToHtml(DescriptionList);
+const descriptionListSnippet = [
+  `<EuiDescriptionList
+  listItems={[
+    {
+      title: 'The Elder Scrolls: Morrowind',
+      description: 'The opening music alone evokes such strong memories.',
+    },
+  ]}
+/>`,
+  `<EuiDescriptionList>
+  <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
+  <EuiDescriptionListDescription>
+    A videogame that I have spent way too much time on over the years.
+  </EuiDescriptionListDescription>
+</EuiDescriptionList>`,
+];
 
 import DescriptionListColumn from './description_list_column';
 const descriptionListColumnSource = require('!!raw-loader!./description_list_column');
 const descriptionListColumnHtml = renderToHtml(DescriptionListColumn);
+const descriptionListColumnSnippet = [
+  `<EuiDescriptionList
+  type="column"
+  listItems={favoriteVideoGames}
+/>`,
+  `<EuiDescriptionList
+  type="responsiveColumn"
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 import DescriptionListStyling from './description_list_styling';
 const descriptionListStylingSource = require('!!raw-loader!./description_list_styling');
 const descriptionListStylingHtml = renderToHtml(DescriptionListStyling);
+const descriptionListStylingSnippet = [
+  `<EuiDescriptionList
+  listItems={favoriteVideoGames}
+  align="center"
+  compressed
+/>`,
+];
 
 import DescriptionListInline from './description_list_inline';
 const descriptionListInlineSource = require('!!raw-loader!./description_list_inline');
 const descriptionListInlineHtml = renderToHtml(DescriptionListInline);
+const descriptionListInlineSnippet = [
+  `<EuiDescriptionList
+  type="inline"
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 import DescriptionListReverse from './description_list_reverse';
 const descriptionListReverseSource = require('!!raw-loader!./description_list_reverse');
 const descriptionListReverseHtml = renderToHtml(DescriptionListReverse);
+const descriptionListReverseSnippet = [
+  `<EuiDescriptionList
+  textStyle="reverse"
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 import DescriptionListClasses from './description_list_classes';
 const descriptionListClassesSource = require('!!raw-loader!./description_list_classes');
 const descriptionListClassesHtml = renderToHtml(DescriptionListClasses);
+const descriptionListClassesSnippet = [
+  `<EuiDescriptionList
+  titleProps={{ className: 'eui-textTruncate' }}
+  descriptionProps={{ className: 'eui-textTruncate' }}
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 export const DescriptionListExample = {
-  title: 'Description List',
+  title: 'Description list',
   sections: [
     {
       source: [
@@ -51,12 +103,12 @@ export const DescriptionListExample = {
       ],
       text: (
         <p>
-          <EuiCode>DescriptionList</EuiCode> is a component for listing pairs of
-          information together. You can use the component on its own, passing in
-          an object for the list, or use the{' '}
-          <EuiCode>EuiDescriptionListTitle</EuiCode> and{' '}
-          <EuiCode>EuiDescriptionListDescription</EuiCode>
-          components separately to build a list manually.
+          <strong>EuiDescriptionList</strong> is a component for listing pairs
+          of information together. You can use the component on its own, passing
+          in an object for the list, or use the{' '}
+          <strong>EuiDescriptionListTitle</strong> and{' '}
+          <strong>EuiDescriptionListDescription</strong> components separately
+          to build a list manually.
         </p>
       ),
       props: {
@@ -64,6 +116,7 @@ export const DescriptionListExample = {
         EuiDescriptionListTitle,
         EuiDescriptionListDescription,
       },
+      snippet: descriptionListSnippet,
       demo: <DescriptionList />,
     },
     {
@@ -93,6 +146,7 @@ export const DescriptionListExample = {
           </p>
         </div>
       ),
+      snippet: descriptionListReverseSnippet,
       demo: <DescriptionListReverse />,
     },
     {
@@ -120,6 +174,7 @@ export const DescriptionListExample = {
           </p>
         </Fragment>
       ),
+      snippet: descriptionListColumnSnippet,
       demo: <DescriptionListColumn />,
     },
     {
@@ -142,6 +197,7 @@ export const DescriptionListExample = {
           smaller than normal lists due to their compact nature.
         </p>
       ),
+      snippet: descriptionListInlineSnippet,
       demo: <DescriptionListInline />,
     },
     {
@@ -163,6 +219,7 @@ export const DescriptionListExample = {
           works with column and inline types.
         </p>
       ),
+      snippet: descriptionListStylingSnippet,
       demo: <DescriptionListStyling />,
     },
     {
@@ -180,12 +237,13 @@ export const DescriptionListExample = {
       text: (
         <p>
           When using the <EuiCode>listItems</EuiCode> prop to pass an object of
-          items and you need to also add <EuiCode>className</EuiCode>s (or other
-          available props) to the individual pieces, you can use the{' '}
+          items and you need to also add a <EuiCode>className</EuiCode> (or
+          other available prop) to the individual pieces, you can use the{' '}
           <EuiCode>titleProps</EuiCode> and <EuiCode>descriptionProps</EuiCode>{' '}
           to do so.
         </p>
       ),
+      snippet: descriptionListClassesSnippet,
       demo: <DescriptionListClasses />,
     },
   ],

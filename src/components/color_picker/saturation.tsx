@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   HTMLAttributes,
   KeyboardEvent,
@@ -10,7 +29,7 @@ import classNames from 'classnames';
 import { ColorSpaces } from 'chroma-js';
 
 import { CommonProps } from '../common';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -101,7 +120,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       handleChange,
       boxRef.current
     );
-    const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isNil(boxRef) || isNil(boxRef.current)) {
         return;
       }
@@ -112,21 +131,21 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       let newLeft = left;
       let newTop = top;
 
-      switch (e.keyCode) {
-        case keyCodes.DOWN:
-          e.preventDefault();
+      switch (event.key) {
+        case keys.ARROW_DOWN:
+          event.preventDefault();
           newTop = top < height ? top + heightScale : height;
           break;
-        case keyCodes.LEFT:
-          e.preventDefault();
+        case keys.ARROW_LEFT:
+          event.preventDefault();
           newLeft = left > 0 ? left - widthScale : 0;
           break;
-        case keyCodes.UP:
-          e.preventDefault();
+        case keys.ARROW_UP:
+          event.preventDefault();
           newTop = top > 0 ? top - heightScale : 0;
           break;
-        case keyCodes.RIGHT:
-          e.preventDefault();
+        case keys.ARROW_RIGHT:
+          event.preventDefault();
           newLeft = left < width ? left + widthScale : width;
           break;
         default:
@@ -189,3 +208,5 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     );
   }
 );
+
+EuiSaturation.displayName = 'EuiSaturation';

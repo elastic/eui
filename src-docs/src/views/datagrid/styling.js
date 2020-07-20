@@ -424,11 +424,11 @@ export default class DataGrid extends Component {
         <EuiFlexGroup gutterSize="s">
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="popover"
+              id="styleButton"
               button={styleButton}
               isOpen={this.state.isPopoverOpen}
               anchorPosition="rightUp"
-              zIndex={2}
+              zIndex={3}
               closePopover={this.closePopover.bind(this)}>
               <div style={{ width: 300 }}>
                 <EuiFormRow label="Border" display="columnCompressed">
@@ -501,11 +501,11 @@ export default class DataGrid extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="popover"
+              id="toolbarVisibility"
               button={toolbarButton}
               isOpen={this.state.isToolbarPopoverOpen}
               anchorPosition="rightUp"
-              zIndex={2}
+              zIndex={3}
               closePopover={this.closeToolbarPopover.bind(this)}>
               <div style={{ width: 400 }}>
                 <EuiFormRow

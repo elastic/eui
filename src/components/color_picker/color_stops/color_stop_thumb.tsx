@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   ReactChild,
@@ -16,12 +35,12 @@ import {
   isStopInvalid,
 } from './utils';
 import { useMouseMove, getChromaColor } from '../utils';
-import { keyCodes } from '../../../services';
+import { keys } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiFieldNumber, EuiFieldText, EuiFormRow } from '../../form';
+import { EuiFieldNumber, EuiFormRow } from '../../form';
 import { EuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -136,9 +155,6 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     onChange({ stop, color: value });
   };
 
-  const handleColorInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    handleColorChange(e.target.value);
-
   const handleStopChange = (value: ColorStop['stop']) => {
     const willBeInvalid = value > localMax || value < localMin;
 
@@ -184,21 +200,21 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     handleStopChange(newStop);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    switch (e.keyCode) {
-      case keyCodes.ENTER:
-        e.preventDefault();
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    switch (event.key) {
+      case keys.ENTER:
+        event.preventDefault();
         openPopover();
         break;
 
-      case keyCodes.LEFT:
-        e.preventDefault();
+      case keys.ARROW_LEFT:
+        event.preventDefault();
         if (readOnly) return;
         handleStopChange(stop - 1);
         break;
 
-      case keyCodes.RIGHT:
-        e.preventDefault();
+      case keys.ARROW_RIGHT:
+        event.preventDefault();
         if (readOnly) return;
         handleStopChange(stop + 1);
         break;
@@ -334,65 +350,41 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               )}
             </EuiI18n>
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
-              <EuiI18n
-                token="euiColorStopThumb.removeLabel"
-                default="Remove this stop">
-                {(removeLabel: string) => (
-                  <EuiButtonIcon
-                    iconType="trash"
-                    color="danger"
-                    aria-label={removeLabel}
-                    title={removeLabel}
-                    disabled={!onRemove || readOnly}
-                    onClick={handleOnRemove}
-                  />
-                )}
-              </EuiI18n>
-            </EuiFormRow>
-          </EuiFlexItem>
+          {!readOnly && (
+            <EuiFlexItem grow={false}>
+              <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
+                <EuiI18n
+                  token="euiColorStopThumb.removeLabel"
+                  default="Remove this stop">
+                  {(removeLabel: string) => (
+                    <EuiButtonIcon
+                      iconType="trash"
+                      color="danger"
+                      aria-label={removeLabel}
+                      title={removeLabel}
+                      disabled={!onRemove}
+                      onClick={handleOnRemove}
+                    />
+                  )}
+                </EuiI18n>
+              </EuiFormRow>
+            </EuiFlexItem>
+          )}
         </EuiFlexGroup>
-        {!readOnly && (
-          <React.Fragment>
-            <EuiSpacer size="m" />
-            <EuiColorPicker
-              onChange={handleColorChange}
-              color={color}
-              mode={colorPickerMode}
-              swatches={colorPickerSwatches}
-              display="inline"
-              showAlpha={colorPickerShowAlpha}
-            />
-          </React.Fragment>
-        )}
-        {colorPickerMode !== 'swatch' && (
-          <React.Fragment>
-            <EuiSpacer size="s" />
-            <EuiI18n
-              tokens={[
-                'euiColorStopThumb.hexLabel',
-                'euiColorStopThumb.hexErrorMessage',
-              ]}
-              defaults={['Color', 'Invalid color value']}>
-              {([hexLabel, hexErrorMessage]: React.ReactChild[]) => (
-                <EuiFormRow
-                  label={hexLabel}
-                  display="rowCompressed"
-                  isInvalid={colorIsInvalid}
-                  error={colorIsInvalid ? hexErrorMessage : null}>
-                  <EuiFieldText
-                    compressed={true}
-                    readOnly={readOnly}
-                    value={color}
-                    isInvalid={colorIsInvalid}
-                    onChange={handleColorInputChange}
-                  />
-                </EuiFormRow>
-              )}
-            </EuiI18n>
-          </React.Fragment>
-        )}
+        {!readOnly && <EuiSpacer size="s" />}
+        <EuiColorPicker
+          readOnly={readOnly}
+          onChange={handleColorChange}
+          color={color}
+          mode={readOnly ? 'secondaryInput' : colorPickerMode}
+          swatches={colorPickerSwatches}
+          display="inline"
+          showAlpha={colorPickerShowAlpha}
+          isInvalid={colorIsInvalid}
+          secondaryInputDisplay={
+            colorPickerMode === 'swatch' ? 'none' : 'bottom'
+          }
+        />
       </div>
     </EuiPopover>
   );

@@ -12,7 +12,7 @@ import {
 
 export default () => (
   <EuiPage>
-    <EuiPageBody>
+    <EuiPageBody component="div">
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>

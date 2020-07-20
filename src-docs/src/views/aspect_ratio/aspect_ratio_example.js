@@ -5,7 +5,6 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import {
   EuiLink,
-  EuiCode,
   EuiCallOut,
   EuiAspectRatio,
   EuiSpacer,
@@ -42,7 +41,7 @@ export const AspectRatioExample = {
           />
           <EuiSpacer />
           <p>
-            <EuiCode>EuiAspectRatio</EuiCode> provides a way to responsively
+            <strong>EuiAspectRatio</strong> provides a way to responsively
             resize a single block level child element to a specificied ratio.
             This is useful for things like YouTube iframes or other embeds that
             initially have a fixed size. If you need something similar for

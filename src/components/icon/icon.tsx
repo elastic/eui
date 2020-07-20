@@ -1,15 +1,33 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   PureComponent,
   HTMLAttributes,
-  ReactElement,
+  ComponentType,
   SVGAttributes,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore-next-line
-// not generating typescript files or definitions for the generated JS components
+// @ts-ignore not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
@@ -24,6 +42,7 @@ const typeToPathMap = {
   advancedSettingsApp: 'app_advanced_settings',
   aggregate: 'aggregate',
   alert: 'alert',
+  analyzeEvent: 'analyze_event',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
@@ -81,6 +100,7 @@ const typeToPathMap = {
   documentEdit: 'documentEdit',
   documents: 'documents',
   dot: 'dot',
+  download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
   editorAlignRight: 'editor_align_right',
@@ -142,6 +162,7 @@ const typeToPathMap = {
   heartbeatApp: 'app_heartbeat',
   heatmap: 'heatmap',
   help: 'help',
+  home: 'home',
   iInCircle: 'iInCircle',
   image: 'image',
   importAction: 'import',
@@ -241,6 +262,7 @@ const typeToPathMap = {
   managementApp: 'app_management',
   mapMarker: 'map_marker',
   memory: 'memory',
+  menu: 'menu',
   menuLeft: 'menuLeft',
   menuRight: 'menuRight',
   merge: 'merge',
@@ -394,13 +416,26 @@ const typeToPathMap = {
   tokenShape: 'tokens/tokenShape',
   tokenGeo: 'tokens/tokenGeo',
   tokenRange: 'tokens/tokenRange',
+  tokenBinary: 'tokens/tokenBinary',
+  tokenJoin: 'tokens/tokenJoin',
+  tokenPercolator: 'tokens/tokenPercolator',
+  tokenFlattened: 'tokens/tokenFlattened',
+  tokenRankFeature: 'tokens/tokenRankFeature',
+  tokenRankFeatures: 'tokens/tokenRankFeatures',
+  tokenKeyword: 'tokens/tokenKeyword',
+  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
+  tokenDenseVector: 'tokens/tokenDenseVector',
+  tokenText: 'tokens/tokenText',
+  tokenTokenCount: 'tokens/tokenTokenCount',
+  tokenSearchType: 'tokens/tokenSearchType',
+  tokenHistogram: 'tokens/tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);
 
 export type EuiIconType = keyof typeof typeToPathMap;
 
-export type IconType = EuiIconType | string | ReactElement;
+export type IconType = EuiIconType | string | ComponentType;
 
 const colorToClassMap = {
   default: null,
@@ -442,7 +477,7 @@ export type IconSize = keyof typeof sizeToClassNameMap;
 export type EuiIconProps = CommonProps &
   Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
     /**
-     * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
+     * `Enum` is any of the named icons listed in the docs, `string` is usually a URL to an SVG file, and `elementType` is any React SVG component
      */
     type: IconType;
     /**
@@ -473,9 +508,10 @@ export type EuiIconProps = CommonProps &
   };
 
 interface State {
-  icon: undefined | ReactElement | string;
+  icon: undefined | ComponentType | string;
   iconTitle: undefined | string;
   isLoading: boolean;
+  neededLoading: boolean; // controls the fade-in animation, cached icons are immediately rendered
 }
 
 function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
@@ -487,6 +523,9 @@ function getInitialIcon(icon: EuiIconProps['type']) {
     return undefined;
   }
   if (isEuiIconType(icon)) {
+    if (iconComponentCache.hasOwnProperty(icon)) {
+      return iconComponentCache[icon];
+    }
     return undefined;
   }
 
@@ -494,6 +533,26 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 }
 
 const generateId = htmlIdGenerator();
+
+let iconComponentCache: { [iconType: string]: ComponentType } = {};
+
+export const clearIconComponentCache = (iconType?: EuiIconType) => {
+  if (iconType != null) {
+    delete iconComponentCache[iconType];
+  } else {
+    iconComponentCache = {};
+  }
+};
+
+export const appendIconComponentCache = (iconTypeToIconComponentMap: {
+  [iconType: string]: ComponentType;
+}) => {
+  for (const iconType in iconTypeToIconComponentMap) {
+    if (iconTypeToIconComponentMap.hasOwnProperty(iconType)) {
+      iconComponentCache[iconType] = iconTypeToIconComponentMap[iconType];
+    }
+  }
+};
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
@@ -504,15 +563,18 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     const initialIcon = getInitialIcon(type);
     let isLoading = false;
 
-    if (isEuiIconType(type)) {
+    if (isEuiIconType(type) && initialIcon == null) {
       isLoading = true;
       this.loadIconComponent(type);
+    } else {
+      this.onIconLoad();
     }
 
     this.state = {
       icon: initialIcon,
       iconTitle: undefined,
       isLoading,
+      neededLoading: isLoading,
     };
   }
 
@@ -522,6 +584,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (isEuiIconType(type)) {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
+          neededLoading: iconComponentCache.hasOwnProperty(type),
           isLoading: true,
         });
         this.loadIconComponent(type);
@@ -529,6 +592,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
+          neededLoading: true,
           isLoading: false,
         });
       }
@@ -540,6 +604,17 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
   }
 
   loadIconComponent = (iconType: EuiIconType) => {
+    if (iconComponentCache.hasOwnProperty(iconType)) {
+      // exists in cache
+      this.setState({
+        isLoading: false,
+        neededLoading: false,
+        icon: iconComponentCache[iconType],
+      });
+      this.onIconLoad();
+      return;
+    }
+
     import(
       /* webpackChunkName: "icon.[request]" */
       // It's important that we don't use a template string here, it
@@ -547,24 +622,27 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
+      iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
-        if (this.isMounted) {
+        if (this.isMounted && this.props.type === iconType) {
           this.setState(
             {
               icon,
               iconTitle: iconType,
               isLoading: false,
             },
-            () => {
-              const { onIconLoad } = this.props;
-              if (onIconLoad) {
-                onIconLoad();
-              }
-            }
+            this.onIconLoad
           );
         }
       });
     });
+  };
+
+  onIconLoad = () => {
+    const { onIconLoad } = this.props;
+    if (onIconLoad) {
+      onIconLoad();
+    }
   };
 
   render() {
@@ -579,7 +657,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       ...rest
     } = this.props;
 
-    const { isLoading } = this.state;
+    const { isLoading, neededLoading } = this.state;
 
     let optionalColorClass = null;
     let optionalCustomStyles: any = null;
@@ -605,12 +683,12 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       {
         'euiIcon--app': isAppIcon,
         'euiIcon-isLoading': isLoading,
-        'euiIcon-isLoaded': !isLoading,
+        'euiIcon-isLoaded': !isLoading && neededLoading,
       },
       className
     );
 
-    const icon = this.state.icon || empty;
+    const icon = this.state.icon || (empty as ComponentType);
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
@@ -623,7 +701,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          alt={title}
+          alt={title ? title : ''}
           src={icon}
           className={classes}
           tabIndex={tabIndex}

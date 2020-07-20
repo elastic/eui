@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiListGroup,
@@ -10,77 +10,58 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [flushWidth, setFlushWidth] = useState(false);
+  const [showBorder, setShowBorder] = useState(false);
 
-    this.state = {
-      flushWidth: false,
-      showBorder: false,
-    };
-  }
-
-  toggleFlushWidth = () => {
-    this.setState(prevState => ({ flushWidth: !prevState.flushWidth }));
+  const handleOnClick = () => {
+    alert('Item was clicked');
   };
 
-  toggleBorder = () => {
-    this.setState(prevState => ({ showBorder: !prevState.showBorder }));
-  };
-
-  render() {
-    const { flushWidth, showBorder } = this.state;
-    const handleOnClick = () => {
-      alert('Item was clicked');
-    };
-
-    return (
-      <Fragment>
-        <EuiFlexGroup alignItems="center">
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label={
-                <span>
-                  Show as <EuiCode>flush</EuiCode>
-                </span>
-              }
-              checked={this.state.flushWidth}
-              onChange={this.toggleFlushWidth}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label={
-                <span>
-                  Show as <EuiCode>bordered</EuiCode>
-                </span>
-              }
-              checked={this.state.showBorder}
-              onChange={this.toggleBorder}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-
-        <EuiSpacer size="l" />
-
-        <EuiListGroup flush={flushWidth} bordered={showBorder}>
-          <EuiListGroupItem onClick={handleOnClick} label="First item" />
-
-          <EuiListGroupItem onClick={handleOnClick} label="Second item" />
-
-          <EuiListGroupItem
-            onClick={handleOnClick}
-            label="Third item"
-            isActive
+  return (
+    <Fragment>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={
+              <span>
+                Show as <EuiCode>flush</EuiCode>
+              </span>
+            }
+            checked={flushWidth}
+            onChange={() => setFlushWidth(!flushWidth)}
           />
-
-          <EuiListGroupItem
-            onClick={handleOnClick}
-            label="Fourth item"
-            isDisabled
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={
+              <span>
+                Show as <EuiCode>bordered</EuiCode>
+              </span>
+            }
+            checked={showBorder}
+            onChange={() => {
+              setShowBorder(!showBorder);
+            }}
           />
-        </EuiListGroup>
-      </Fragment>
-    );
-  }
-}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiListGroup flush={flushWidth} bordered={showBorder}>
+        <EuiListGroupItem onClick={handleOnClick} label="First item" />
+
+        <EuiListGroupItem onClick={handleOnClick} label="Second item" />
+
+        <EuiListGroupItem onClick={handleOnClick} label="Third item" isActive />
+
+        <EuiListGroupItem
+          onClick={handleOnClick}
+          label="Fourth item"
+          isDisabled
+        />
+      </EuiListGroup>
+    </Fragment>
+  );
+};

@@ -8,10 +8,10 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { useColorPicker } from './utils';
+import { useColorPickerState } from '../../../../src/services';
 
-export const CustomButton = () => {
-  const [color, setColor, errors] = useColorPicker('');
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('');
   const [selectedColor, setSelectedColor] = useState(color);
   const handleColorChange = (text, { hex, isValid }) => {
     setColor(text, { hex, isValid });
@@ -23,12 +23,14 @@ export const CustomButton = () => {
         <EuiColorPicker
           onChange={handleColorChange}
           color={color}
+          secondaryInputDisplay="top"
           button={
             <EuiColorPickerSwatch
               color={selectedColor}
               aria-label="Select a new color"
             />
           }
+          isClearable={true}
         />
       </EuiFormRow>
       <EuiSpacer />
@@ -36,6 +38,7 @@ export const CustomButton = () => {
         onChange={handleColorChange}
         color={color}
         isInvalid={!!errors}
+        secondaryInputDisplay="bottom"
         button={
           <EuiBadge
             color={selectedColor ? selectedColor : 'hollow'}

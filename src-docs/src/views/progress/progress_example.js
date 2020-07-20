@@ -30,6 +30,22 @@ const progressFixedSnippet = `<!-- Position at top of parent container -->
 import ProgressSizeColor from './progress_size_color';
 const progressSizeColorSource = require('!!raw-loader!./progress_size_color');
 const progressSizeColorHtml = renderToHtml(ProgressSizeColor);
+const progressSizeColorSnippet = `<EuiProgress
+  value={20}
+  max={100} 
+  size="s"
+  color="accent"
+/>`;
+
+import ProgressChart from './progress_chart';
+const progressChartSource = require('!!raw-loader!./progress_chart');
+const progressChartHtml = renderToHtml(ProgressChart);
+const progressChartSnippet = `<EuiProgress 
+  value={20}
+  valueText={true}
+  label={label}
+  max={100} 
+/>`;
 
 export const ProgressExample = {
   title: 'Progress',
@@ -47,7 +63,7 @@ export const ProgressExample = {
       ],
       text: (
         <p>
-          The <EuiCode>Progress</EuiCode> component by default will display in
+          The <strong>EuiProgress</strong> component by default will display in
           an indeterminate loading state (rendered as a single div) until you
           define a <EuiCode>max</EuiCode> and <EuiCode>value</EuiCode> prop. The{' '}
           <EuiCode>size</EuiCode> prop refers to its vertical height. It will
@@ -100,19 +116,18 @@ export const ProgressExample = {
             options, the background color of the base bar is dropped (since the
             context of width is already known from your wrapping element). For
             the absolute option, make sure that your wrapping element has{' '}
-            <EuiCode>position: relative</EuiCode> applied.
+            <EuiCode language="sass">position: relative</EuiCode> applied.
           </p>
           <EuiCallOut
             title="Note about progress bars over fixed headers"
             iconType="iInCircle">
             <p>
-              Using <EuiCode>EuiProgress</EuiCode> with a{' '}
-              <EuiCode>fixed</EuiCode> position may result in it being overlayed
-              when its parent wrapper has a <EuiCode>z-index</EuiCode> value
-              lower than another fixed element, such as{' '}
-              <EuiCode>EuiHeader</EuiCode>. In that case, wrap{' '}
-              <EuiCode>EuiProgress</EuiCode> in an <EuiCode>EuiPortal</EuiCode>{' '}
-              as seen on the Snippet tab.
+              Using <strong>EuiProgress</strong> with a <EuiCode>fixed</EuiCode>{' '}
+              position may result in it being overlayed when its parent wrapper
+              has a <EuiCode>z-index</EuiCode> value lower than another fixed
+              element, such as <strong>EuiHeader</strong>. In that case, wrap{' '}
+              <strong>EuiProgress</strong> in an <strong>EuiPortal</strong> as
+              seen on the Snippet tab.
             </p>
           </EuiCallOut>
         </div>
@@ -140,6 +155,39 @@ export const ProgressExample = {
         </p>
       ),
       demo: <ProgressSizeColor />,
+      snippet: progressSizeColorSnippet,
+    },
+    {
+      title: 'Progress for charts',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: progressChartSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: progressChartHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Determinate progress bar can be used as simple bar charts. Use them
+            with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
+            props to show the data corresponding to each bar. The{' '}
+            <EuiCode>valueText</EuiCode> renders as the same color as the{' '}
+            <strong>EuiProgress</strong>.
+          </p>
+          <p>
+            Setting <EuiCode language="ts">{'valueText={true}'}</EuiCode> will
+            add a % sign next to the<EuiCode>value</EuiCode> passed. If you want
+            to display a custom <EuiCode>valueText</EuiCode>, you can pass a
+            node instead.
+          </p>
+        </div>
+      ),
+      demo: <ProgressChart />,
+      snippet: progressChartSnippet,
     },
   ],
 };

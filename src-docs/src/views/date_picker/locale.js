@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import moment from 'moment';
 
@@ -8,72 +8,60 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
 
-    this.state = {
-      startDate: moment(),
-    };
+  const handleChange = date => {
+    setStartDate(date);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  return (
+    <div>
+      <EuiFormRow label="US with fractional seconds">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dateFormat="YYYY-MM-DD hh:mm:ss:SSS A"
+        />
+      </EuiFormRow>
 
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    });
-  }
+      <EuiSpacer size="m" />
 
-  render() {
-    return (
-      <div>
-        <EuiFormRow label="US with fractional seconds">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            dateFormat="YYYY-MM-DD hh:mm:ss:SSS A"
-          />
-        </EuiFormRow>
+      <EuiFormRow label="China">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dateFormat="YYYY-MM-DD hh:mm A"
+          locale="zh-cn"
+        />
+      </EuiFormRow>
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiFormRow label="China">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            dateFormat="YYYY-MM-DD hh:mm A"
-            locale="zh-cn"
-          />
-        </EuiFormRow>
+      <EuiFormRow label="Korea">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          locale="ko"
+          dateFormat="YYYY-MM-DD hh:mm A"
+        />
+      </EuiFormRow>
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiFormRow label="Korea">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            locale="ko"
-            dateFormat="YYYY-MM-DD hh:mm A"
-          />
-        </EuiFormRow>
-
-        <EuiSpacer size="m" />
-
-        <EuiFormRow label="Germany on 24 hour clock">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            dateFormat="DD-MM-YYYY HH:mm"
-            timeFormat="HH:mm"
-            locale="de-de"
-          />
-        </EuiFormRow>
-      </div>
-    );
-  }
-}
+      <EuiFormRow label="Germany on 24 hour clock">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dateFormat="DD-MM-YYYY HH:mm"
+          timeFormat="HH:mm"
+          locale="de-de"
+        />
+      </EuiFormRow>
+    </div>
+  );
+};

@@ -5,6 +5,32 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideBody {
   background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
+
+  &--overflowHidden {
+    overflow: hidden;
+  }
+}
+
+@include euiHeaderAffordForFixed;
+
+.euiBody--headerIsFixed {
+  .guideSideNav {
+    top: $euiHeaderHeightCompensation;
+  }
+}
+
+.euiBody--headerIsFixed--double {
+  @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
+
+  .guideSideNav {
+    top: $euiHeaderHeightCompensation * 2;
+  }
+
+  .euiHeader:not(.euiHeader--fixed) {
+    // Force headers below the full screen.
+    // This shouldn't be necessary in consuming applications because headers should always be at the top of the page
+    z-index: 0;
+  }
 }
 
 .guidePage {
@@ -36,6 +62,27 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     bottom: 0;
     top: 132px;
     overflow-y: auto;
+  }
+}
+
+.guideSideNav__item {
+  // Hate to do this, but it's the only way to get the badge to display correctly
+  .euiSideNavItemButton__label {
+    // By using the `icon` display of EuiSideNavItem, it will continue to:
+    // a) truncate properly
+    // b) not underline the badge when selected
+    // But it shows to the left of the label instead of right, so we have to shift the order of the label
+    order: -1;
+  }
+
+  .guideSideNav__newBadge {
+    margin-left: $euiSizeXS;
+    margin-right: $euiSizeXS;
+  }
+
+  // Shift the margin on the badge when selected and the dropdown arrow no longer shows
+  .euiSideNavItemButton-isSelected .guideSideNav__newBadge {
+    margin-right: 0;
   }
 }
 
@@ -182,6 +229,27 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 1px;
 }
 
+.guideFullScreenOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.euiDataGridRowCell--favoriteFranchise {
+  background: transparentize($color: #800080, $amount: .95) !important;
+}
+
+.euiDataGridHeaderCell--favoriteFranchise {
+  background: transparentize($color: #800080, $amount: .9) !important;
+}
+
+.euiTreeView__nodeInnerExample {
+  color: $euiColorDanger;
+  font-weight: $euiFontWeightBold;
+}
+
 @import '../views/guidelines/index';
 @import 'guide_section/index';
 @import 'guide_rule/index';
@@ -196,7 +264,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   .guideSideNav {
-    position: relative;
+    position: static;
     width: auto;
 
     // This is a temporary hack till we fix how classes pass into form controls
@@ -229,17 +297,4 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     margin-left: 0;
     width: 100%;
   }
-}
-
-.euiDataGridRowCell--favoriteFranchise {
-  background: transparentize($color: #800080, $amount: .95) !important;
-}
-
-.euiDataGridHeaderCell--favoriteFranchise {
-  background: transparentize($color: #800080, $amount: .9) !important;
-}
-
-.euiTreeView__nodeInnerExample {
-  color: $euiColorDanger;
-  font-weight: $euiFontWeightBold;
 }

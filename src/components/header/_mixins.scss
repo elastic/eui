@@ -1,0 +1,37 @@
+@mixin euiHeaderDarkTheme($backgroundColor) {
+  background-color: $backgroundColor;
+  border-bottom-color: lightOrDarkTheme($backgroundColor, $euiHeaderBorderColor);
+
+  .euiHeaderLogo__text,
+  .euiHeaderLink,
+  .euiHeaderSectionItem__button {
+    color: $euiColorGhost;
+  }
+
+  .euiHeaderLink-isActive {
+    color: makeHighContrastColor($euiColorPrimary, $backgroundColor);
+  }
+
+  .euiHeaderSectionItem {
+    &:after {
+      background: lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade);
+    }
+  }
+
+  .euiHeaderLogo,
+  .euiHeaderLink,
+  .euiHeaderSectionItem__button {
+    &:hover {
+      background: transparentize(lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade), .5);
+    }
+
+    &:focus {
+      background: shade($euiColorPrimary, 50%);
+    }
+  }
+
+  .euiHeaderNotification,
+  .euiHeaderSectionItemButton__notification {
+    box-shadow: 0 0 0 1px $backgroundColor;
+  }
+}

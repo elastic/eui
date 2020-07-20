@@ -101,7 +101,6 @@
   @include euiFontSizeS;
   @include euiTextTruncate;
   line-height: $euiSize;
-  display: block;
 
   // make normal sized prompt look like placeholder
   .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {

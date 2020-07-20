@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiComboBox,
@@ -10,100 +10,91 @@ import {
   euiPaletteColorBlindBehindText,
 } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+const visColors = euiPaletteColorBlind();
+const visColorsBehindText = euiPaletteColorBlindBehindText();
+const options = [
+  {
+    value: {
+      size: 5,
+    },
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    color: visColorsBehindText[0],
+  },
+  {
+    value: {
+      size: 2,
+    },
+    label: 'Enceladus',
+    color: visColorsBehindText[1],
+  },
+  {
+    value: {
+      size: 15,
+    },
+    label: 'Mimas',
+    color: visColorsBehindText[2],
+  },
+  {
+    value: {
+      size: 1,
+    },
+    label: 'Dione',
+    color: visColorsBehindText[3],
+  },
+  {
+    value: {
+      size: 8,
+    },
+    label: 'Iapetus',
+    color: visColorsBehindText[4],
+  },
+  {
+    value: {
+      size: 2,
+    },
+    label: 'Phoebe',
+    color: visColorsBehindText[5],
+  },
+  {
+    value: {
+      size: 33,
+    },
+    label: 'Rhea',
+    color: visColorsBehindText[6],
+  },
+  {
+    value: {
+      size: 18,
+    },
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    color: visColorsBehindText[7],
+  },
+  {
+    value: {
+      size: 9,
+    },
+    label: 'Tethys',
+    color: visColorsBehindText[8],
+  },
+  {
+    value: {
+      size: 4,
+    },
+    label: 'Hyperion',
+    color: visColorsBehindText[9],
+  },
+];
 
-    this.visColors = euiPaletteColorBlind();
-    this.visColorsBehindText = euiPaletteColorBlindBehindText();
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2], options[5]]);
 
-    this.options = [
-      {
-        value: {
-          size: 5,
-        },
-        label: 'Titan',
-        'data-test-subj': 'titanOption',
-        color: this.visColorsBehindText[0],
-      },
-      {
-        value: {
-          size: 2,
-        },
-        label: 'Enceladus',
-        color: this.visColorsBehindText[1],
-      },
-      {
-        value: {
-          size: 15,
-        },
-        label: 'Mimas',
-        color: this.visColorsBehindText[2],
-      },
-      {
-        value: {
-          size: 1,
-        },
-        label: 'Dione',
-        color: this.visColorsBehindText[3],
-      },
-      {
-        value: {
-          size: 8,
-        },
-        label: 'Iapetus',
-        color: this.visColorsBehindText[4],
-      },
-      {
-        value: {
-          size: 2,
-        },
-        label: 'Phoebe',
-        color: this.visColorsBehindText[5],
-      },
-      {
-        value: {
-          size: 33,
-        },
-        label: 'Rhea',
-        color: this.visColorsBehindText[6],
-      },
-      {
-        value: {
-          size: 18,
-        },
-        label:
-          "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-        color: this.visColorsBehindText[7],
-      },
-      {
-        value: {
-          size: 9,
-        },
-        label: 'Tethys',
-        color: this.visColorsBehindText[8],
-      },
-      {
-        value: {
-          size: 4,
-        },
-        label: 'Hyperion',
-        color: this.visColorsBehindText[9],
-      },
-    ];
-
-    this.state = {
-      selectedOptions: [this.options[2], this.options[5]],
-    };
-  }
-
-  onChange = selectedOptions => {
-    this.setState({
-      selectedOptions,
-    });
+  const onChange = selectedOptions => {
+    setSelected(selectedOptions);
   };
 
-  onCreateOption = (searchValue, flattenedOptions = []) => {
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
     if (!searchValue) {
       return;
     }
@@ -125,18 +116,16 @@ export default class extends Component {
         option => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
-      this.options.push(newOption);
+      options.push(newOption);
     }
 
     // Select the option.
-    this.setState(prevState => ({
-      selectedOptions: prevState.selectedOptions.concat(newOption),
-    }));
+    setSelected([...selectedOptions, newOption]);
   };
 
-  renderOption = (option, searchValue, contentClassName) => {
+  const renderOption = (option, searchValue, contentClassName) => {
     const { color, label, value } = option;
-    const dotColor = this.visColors[this.visColorsBehindText.indexOf(color)];
+    const dotColor = visColors[visColorsBehindText.indexOf(color)];
     return (
       <EuiHealth color={dotColor}>
         <span className={contentClassName}>
@@ -148,17 +137,14 @@ export default class extends Component {
     );
   };
 
-  render() {
-    const { selectedOptions } = this.state;
-    return (
-      <EuiComboBox
-        placeholder="Select or create options"
-        options={this.options}
-        selectedOptions={selectedOptions}
-        onChange={this.onChange}
-        onCreateOption={this.onCreateOption}
-        renderOption={this.renderOption}
-      />
-    );
-  }
-}
+  return (
+    <EuiComboBox
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      renderOption={renderOption}
+    />
+  );
+};

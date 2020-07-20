@@ -1,12 +1,23 @@
+/**
+ * 1. Add vertical space between breadcrumbs,
+ *    but make sure the whole breadcrumb set doesn't add space below itself
+ */
+
 .euiBreadcrumbs {
   @include euiFontSizeS;
+  margin-bottom: -$euiSizeXS; /* 1 */
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .euiBreadcrumb {
   display: inline-block;
+  margin-bottom: $euiSizeXS; /* 1 */
 
   &:not(.euiBreadcrumb--last) {
     margin-right: $euiBreadcrumbSpacing;
+    color: $euiTextSubduedColor;
   }
 }
 
@@ -15,88 +26,27 @@
 }
 
 .euiBreadcrumb--collapsed {
-  color: $euiColorLightShade;
+  flex-shrink: 0;
 }
 
 .euiBreadcrumbSeparator {
   flex-shrink: 0;
-  pointer-events: none;
   display: inline-block;
   margin-right: $euiBreadcrumbSpacing;
   width: 1px;
   height: $euiSize;
-  transform: translateY(.2em) rotate(15deg);
+  transform: translateY(-1px) rotate(15deg);
   background: $euiColorLightShade;
 }
 
-.euiBreadcrumbs__inPopover {
-  .euiBreadcrumb--last.euiLink.euiLink--text {
-    font-weight: $euiFontWeightRegular;
-    color: $euiColorDarkShade;
-  }
-}
-
-.euiBreadcrumb__collapsedBadge {
-  height: $euiSize;
-  margin-top: -$euiSizeM / 2;
-  background-color: transparentize($euiColorDarkestShade, .85);
-
-  .euiBadge__content {
-    margin-top: -$euiSizeXS / 2;
-  }
-}
-
-/**
- * 1. Can't target separator vs breadcrumb with -of-type because it takes
- *    the dom element into consideration too and there could be divs, or spans, or a's
- *    as breadcrumbs.
- */
-
-.euiBreadcrumbs--responsive {
-  // Laptop
-  @include euiBreakpoint('l') {
-    .euiBreadcrumbSeparator,
-    .euiBreadcrumb {
-      display: none;
-
-      // Only show last 4 breadcrumbs
-      &:nth-last-child(-n+7) { /* 1 */
-        display: inline-block;
-      }
-    }
-  }
-
-  // Tablets
-  @include euiBreakpoint('m') {
-    .euiBreadcrumbSeparator,
-    .euiBreadcrumb {
-      display: none;
-
-      // Only show last 2 breadcrumbs
-      &:nth-last-child(-n+3) { /* 1 */
-        display: inline-block;
-      }
-    }
-  }
-
-  // Mobile
-  @include euiBreakpoint('xs', 's') {
-    .euiBreadcrumbSeparator,
-    .euiBreadcrumb {
-      display: none;
-
-      // Only show last 1 breadcrumb
-      &:nth-last-child(-n+1) { /* 1 */
-        display: inline-block;
-      }
-    }
-  }
+.euiBreadcrumbs__inPopover .euiBreadcrumb--last {
+  font-weight: $euiFontWeightRegular;
+  color: $euiColorDarkShade !important; // sass-lint:disable-line no-important
 }
 
 .euiBreadcrumbs--truncate {
   white-space: nowrap;
-  display: flex;
-  align-items: center;
+  flex-wrap: nowrap;
   overflow: hidden;
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
@@ -108,22 +58,11 @@
       max-width: none;
     }
   }
-
-  .euiBreadcrumbSeparator {
-    // Align with flex versus inline-block misaligns the separator slightly
-    transform: translateY(0) rotate(15deg);
-  }
-
-  .euiBreadcrumbBadge {
-    margin-top: -$euiSizeXS / 2;
-  }
 }
 
 .euiBreadcrumb--truncate {
-  white-space: nowrap;
+  @include euiTextTruncate;
   max-width: $euiBreadcrumbTruncateWidth;
-  overflow: hidden;
-  text-overflow: ellipsis;
   text-align: center;
   vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
 }

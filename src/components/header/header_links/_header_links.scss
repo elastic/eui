@@ -1,23 +1,24 @@
-@import '../../link/mixins';
-
 .euiHeaderLinks {
   display: flex;
   justify-content: space-between;
   position: relative;
-  flex-grow: 1;
 }
 
 .euiHeaderLinks__list {
   white-space: nowrap;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  > * {
+    // Apply margins to any children
+    margin: 0 $euiSizeS;
+  }
 }
 
 .euiHeaderLinks__mobile {
   // sass-lint:disable-block no-important
   display: none !important; // override popover inline-block
-  position: absolute !important; // override popover relative
-  right: 0;
-
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {

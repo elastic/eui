@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiHorizontalRule } from '../../../../src/components';
+import { EuiHorizontalRule } from '../../../../src/components';
 
 import HorizontalRule from './horizontal_rule';
 const horizontalRuleSource = require('!!raw-loader!./horizontal_rule');
@@ -18,7 +18,7 @@ const horizontalRuleSnippet = '<EuiHorizontalRule size="quarter" />';
 const horizontalRuleMarginSnippet = '<EuiHorizontalRule margin="xs" />';
 
 export const HorizontalRuleExample = {
-  title: 'Horizontal Rule',
+  title: 'Horizontal rule',
   sections: [
     {
       source: [
@@ -33,8 +33,8 @@ export const HorizontalRuleExample = {
       ],
       text: (
         <p>
-          <EuiCode>HorizontalRule</EuiCode> can carry a size. By default it will
-          be full.
+          <strong>EuiHorizontalRule</strong> can carry a size. By default it
+          will be full.
         </p>
       ),
       props: { EuiHorizontalRule },
@@ -55,7 +55,7 @@ export const HorizontalRuleExample = {
       ],
       text: (
         <p>
-          <EuiCode>HorizontalRule</EuiCode> margins can also be defined.
+          <strong>EuiHorizontalRule</strong> margins can also be defined.
           Don&rsquo;t forget that margins will collapse against items that
           proceed / follow.
         </p>

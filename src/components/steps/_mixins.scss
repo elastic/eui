@@ -1,12 +1,12 @@
-@mixin createStepsNumber {
-  @include size($euiStepNumberSize);
+@mixin createStepsNumber($size: $euiStepNumberSize, $fontSize: $euiFontSize) {
+  @include size($size);
 
   display: inline-block;
-  line-height: $euiStepNumberSize;
-  border-radius: $euiStepNumberSize;
+  line-height: $size;
+  border-radius: $size;
   text-align: center;
   color: $euiColorEmptyShade;
   background-color: $euiColorPrimary;
-  font-size: $euiSize; // setting to actual base size will keep it aligned if base font-size changes
+  font-size: $fontSize;
   font-weight: $euiFontWeightMedium;
 }

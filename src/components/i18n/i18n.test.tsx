@@ -1,7 +1,26 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { ReactChild } from 'react';
 import { mount } from 'enzyme';
 import { EuiContext } from '../context';
-import { EuiI18n } from './i18n';
+import { EuiI18n, useEuiI18n } from './i18n';
 
 /* eslint-disable local/i18n */
 
@@ -37,6 +56,13 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
 
         expect(renderCallback).toHaveBeenCalledWith(values);
+      });
+
+      it('renders when value is null', () => {
+        const component = mount(
+          <EuiI18n token="test" default="{arg}" values={{ arg: null }} />
+        );
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -230,6 +256,153 @@ describe('EuiI18n', () => {
             <EuiI18n token="test1" default="This is the basic string.">
               {(one: string) => <div aria-label={one}>{one}</div>}
             </EuiI18n>
+          </EuiContext>
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('useEuiI18n', () => {
+    describe('unmapped', () => {
+      it('handles single token without values', () => {
+        const Component = () => {
+          const value = useEuiI18n('token', 'placeholder');
+          return <p>{value}</p>;
+        };
+        const component = mount(<Component />);
+        expect(component).toMatchSnapshot();
+      });
+
+      it('handles single token with values', () => {
+        const Component = () => {
+          const value = useEuiI18n('myToken', 'first {first}, then {second}', {
+            first: 'apples',
+            second: 'aardvarks',
+          });
+          return <p>{value}</p>;
+        };
+        const component = mount(<Component />);
+        expect(component).toMatchSnapshot();
+      });
+
+      it('handles multiple tokens', () => {
+        const Component = () => {
+          const [first, second] = useEuiI18n(
+            ['test1', 'test2'],
+            ['the first placeholder', 'the second placeholder']
+          );
+          return (
+            <p>
+              <span>{first}</span>
+              <span>{second}</span>
+            </p>
+          );
+        };
+        const component = mount(<Component />);
+        expect(component).toMatchSnapshot();
+      });
+
+      it('calls a function and renders the result to the dom', () => {
+        const values = { type: 'callback', special: 'values' };
+        const renderCallback = jest.fn(({ type, special }) => (
+          <p>
+            This is a {type} with {special}.
+          </p>
+        ));
+        const Component = () => (
+          <div>{useEuiI18n('test', renderCallback, values)}</div>
+        );
+        const component = mount(<Component />);
+        expect(component).toMatchSnapshot();
+
+        expect(renderCallback).toHaveBeenCalledWith(values);
+      });
+    });
+  });
+
+  describe('mapped tokens', () => {
+    it('handles single token without values', () => {
+      const Component = () => {
+        const value = useEuiI18n('token', 'placeholder');
+        return <p>{value}</p>;
+      };
+      const component = mount(
+        <EuiContext
+          i18n={{
+            mapping: {
+              token: 'This is the mapped value.',
+            },
+          }}>
+          <Component />
+        </EuiContext>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    it('handles single token with values', () => {
+      const Component = () => {
+        const value = useEuiI18n('myToken', 'first {first}, then {second}', {
+          first: 'apples',
+          second: 'aardvarks',
+        });
+        return <p>{value}</p>;
+      };
+      const component = mount(
+        <EuiContext
+          i18n={{
+            mapping: {
+              myToken: 'In reverse order: {second}, then {first}',
+            },
+          }}>
+          <Component />
+        </EuiContext>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    it('handles multiple tokens', () => {
+      const Component = () => {
+        const [first, second] = useEuiI18n(
+          ['test1', 'test2'],
+          ['the first placeholder', 'the second placeholder']
+        );
+        return (
+          <p>
+            <span>{first}</span>
+            <span>{second}</span>
+          </p>
+        );
+      };
+      const component = mount(
+        <EuiContext
+          i18n={{
+            mapping: {
+              test1: 'first value',
+              test2: 'second value',
+            },
+          }}>
+          <Component />
+        </EuiContext>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('mappingFunc', () => {
+      it('calls the mapping function with the source string', () => {
+        const Component = () => {
+          const value = useEuiI18n('test1', 'placeholder');
+          return <div aria-label={value}>{value}</div>;
+        };
+        const component = mount(
+          <EuiContext
+            i18n={{
+              mapping: {
+                test1: 'This is the mapped value.',
+              },
+              mappingFunc: (value: string) => value.toUpperCase(),
+            }}>
+            <Component />
           </EuiContext>
         );
         expect(component).toMatchSnapshot();

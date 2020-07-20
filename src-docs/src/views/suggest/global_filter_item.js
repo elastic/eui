@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -24,103 +24,81 @@ function flattenPanelTree(tree, array = []) {
   return array;
 }
 
-export class GlobalFilterItem extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    id: PropTypes.string.isRequired,
-    field: PropTypes.string.isRequired,
-    operator: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    isDisabled: PropTypes.bool.isRequired,
-    isPinned: PropTypes.bool.isRequired,
-    isExcluded: PropTypes.bool.isRequired,
+export const GlobalFilterItem = props => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
   };
 
-  state = {
-    isPopoverOpen: false,
+  const closePopover = () => {
+    setIsPopoverOpen(false);
   };
 
-  togglePopover = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
-  };
-
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
-
-  deleteFilter = e => {
+  const deleteFilter = e => {
     window.alert('Filter would have been deleted.');
     // Make sure it doesn't also trigger the onclick for the whole badge
     e.stopPropagation();
   };
 
-  render() {
-    const {
-      className,
-      id,
-      field,
-      operator, // eslint-disable-line no-unused-vars
-      value,
-      isDisabled,
-      isPinned,
-      isExcluded,
-      ...rest
-    } = this.props;
+  const {
+    className,
+    id,
+    field,
+    operator, // eslint-disable-line no-unused-vars
+    value,
+    isDisabled,
+    isPinned,
+    isExcluded,
+    ...rest
+  } = props;
 
-    const classes = classNames(
-      'globalFilterItem',
-      {
-        'globalFilterItem-isDisabled': isDisabled,
-        'globalFilterItem-isPinned': isPinned,
-        'globalFilterItem-isExcluded': isExcluded,
-      },
-      className
-    );
+  const classes = classNames(
+    'globalFilterItem',
+    {
+      'globalFilterItem-isDisabled': isDisabled,
+      'globalFilterItem-isPinned': isPinned,
+      'globalFilterItem-isExcluded': isExcluded,
+    },
+    className
+  );
 
-    let prefix = null;
-    if (isExcluded) {
-      prefix = <span>NOT </span>;
-    }
-
-    let title = `Filter: ${field}: "${value}". Select for more filter actions.`;
-    if (isPinned) {
-      title = `Pinned ${title}`;
-    } else if (isDisabled) {
-      title = `Disabled ${title}`;
-    }
-
-    const badge = (
-      <EuiBadge
-        id={id}
-        className={classes}
-        title={title}
-        iconOnClick={this.deleteFilter}
-        iconOnClickAriaLabel={'Delete filter'}
-        color="hollow"
-        iconType="cross"
-        iconSide="right"
-        onClick={this.togglePopover}
-        onClickAriaLabel="Filter actions"
-        closeButtonProps={{
-          // Removing tab focus on close button because the same option can be optained through the context menu
-          // Also, we may want to add a `DEL` keyboard press functionality
-          tabIndex: '-1',
-        }}
-        {...rest}>
-        {prefix}
-        <span>{field}: </span>
-        <span>&quot;{value}&quot;</span>
-      </EuiBadge>
-    );
-
-    return this._createFilterContextMenu(this.props, badge);
+  let prefix = null;
+  if (isExcluded) {
+    prefix = <span>NOT </span>;
   }
 
-  _createFilterContextMenu = (filter, button) => {
+  let title = `Filter: ${field}: "${value}". Select for more filter actions.`;
+  if (isPinned) {
+    title = `Pinned ${title}`;
+  } else if (isDisabled) {
+    title = `Disabled ${title}`;
+  }
+
+  const badge = (
+    <EuiBadge
+      id={id}
+      className={classes}
+      title={title}
+      iconOnClick={deleteFilter}
+      iconOnClickAriaLabel={'Delete filter'}
+      color="hollow"
+      iconType="cross"
+      iconSide="right"
+      onClick={togglePopover}
+      onClickAriaLabel="Filter actions"
+      closeButtonProps={{
+        // Removing tab focus on close button because the same option can be optained through the context menu
+        // Also, we may want to add a `DEL` keyboard press functionality
+        tabIndex: '-1',
+      }}
+      {...rest}>
+      {prefix}
+      <span>{field}: </span>
+      <span>&quot;{value}&quot;</span>
+    </EuiBadge>
+  );
+
+  const _createFilterContextMenu = (filter, button) => {
     const selectedObject = {
       field: [{ label: filter.field }],
       operand: [{ label: filter.operator }],
@@ -134,7 +112,7 @@ export class GlobalFilterItem extends Component {
           name: `${filter.isPinned ? 'Unpin' : 'Pin across all apps'}`,
           icon: 'pin',
           onClick: () => {
-            this.closePopover();
+            closePopover();
           },
         },
         {
@@ -147,8 +125,8 @@ export class GlobalFilterItem extends Component {
               <div style={{ padding: 16 }}>
                 <GlobalFilterForm
                   selectedObject={selectedObject}
-                  onAdd={this.closePopover}
-                  onCancel={this.closePopover}
+                  onAdd={closePopover}
+                  onCancel={closePopover}
                 />
               </div>
             ),
@@ -158,21 +136,21 @@ export class GlobalFilterItem extends Component {
           name: `${filter.isExcluded ? 'Include results' : 'Exclude results'}`,
           icon: `${filter.isExcluded ? 'plusInCircle' : 'minusInCircle'}`,
           onClick: () => {
-            this.closePopover();
+            closePopover();
           },
         },
         {
           name: `${filter.isDisabled ? 'Re-enable' : 'Temporarily disable'}`,
           icon: `${filter.isDisabled ? 'eye' : 'eyeClosed'}`,
           onClick: () => {
-            this.closePopover();
+            closePopover();
           },
         },
         {
           name: 'Delete',
           icon: 'trash',
           onClick: () => {
-            this.closePopover();
+            closePopover();
           },
         },
       ],
@@ -181,8 +159,8 @@ export class GlobalFilterItem extends Component {
     return (
       <EuiPopover
         id={`popoverFor_${filter.id}`}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
         button={button}
         anchorPosition="downCenter"
         panelPaddingSize="none"
@@ -194,4 +172,17 @@ export class GlobalFilterItem extends Component {
       </EuiPopover>
     );
   };
-}
+
+  return _createFilterContextMenu(props, badge);
+};
+
+GlobalFilterItem.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  field: PropTypes.string.isRequired,
+  operator: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  isPinned: PropTypes.bool.isRequired,
+  isExcluded: PropTypes.bool.isRequired,
+};

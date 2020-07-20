@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { GuideRule, GuideRuleExample } from '../../components';
 
@@ -24,7 +24,7 @@ const codeBlockProps = {
 };
 
 export default {
-  title: 'Accessibility',
+  title: 'Accessibility guidelines',
   intro: (
     <>
       <EuiText className="guideSection__text" grow={false}>

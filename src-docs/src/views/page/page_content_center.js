@@ -12,7 +12,7 @@ import {
 
 export default () => (
   <EuiPage>
-    <EuiPageBody>
+    <EuiPageBody component="div">
       <EuiPageContent verticalPosition="center" horizontalPosition="center">
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>

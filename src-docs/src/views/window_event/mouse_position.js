@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiSwitch,
@@ -8,43 +8,41 @@ import {
 
 import { EuiWindowEvent } from '../../../../src/services';
 
-export class MousePosition extends Component {
-  state = {
-    tracking: false,
-    coordinates: {},
+export const MousePosition = () => {
+  const [tracking, setTracking] = useState(false);
+  const [coordinates, setCoordinates] = useState({});
+
+  const onSwitchChange = () => {
+    setTracking(!tracking);
   };
 
-  onSwitchChange = () =>
-    this.setState(state => ({ tracking: !state.tracking }));
+  const onMouseMove = ({ clientX, clientY }) => {
+    setCoordinates({ clientX, clientY });
+  };
 
-  onMouseMove = ({ clientX, clientY }) =>
-    this.setState({ coordinates: { clientX, clientY } });
-
-  render() {
-    const listItems = [
-      {
-        title: 'Position X',
-        description: this.state.coordinates.clientX || '??',
-      },
-      {
-        title: 'Position Y',
-        description: this.state.coordinates.clientY || '??',
-      },
-    ];
-    return (
-      <div>
-        <EuiSwitch
-          label="Track mouse position"
-          checked={this.state.tracking}
-          onChange={this.onSwitchChange}
-        />
-        {this.state.tracking ? (
-          <EuiWindowEvent event="mousemove" handler={this.onMouseMove} />
-        ) : null}
-        <EuiSpacer size="l" />
-        <EuiDescriptionList listItems={listItems} />
-        <EuiSpacer size="xxl" />
-      </div>
-    );
-  }
-}
+  const listItems = [
+    {
+      title: 'Position X',
+      description: coordinates.clientX || '??',
+    },
+    {
+      title: 'Position Y',
+      description: coordinates.clientY || '??',
+    },
+  ];
+  return (
+    <div>
+      <EuiSwitch
+        label="Track mouse position"
+        checked={tracking}
+        onChange={onSwitchChange}
+      />
+      {tracking ? (
+        <EuiWindowEvent event="mousemove" handler={onMouseMove} />
+      ) : null}
+      <EuiSpacer size="l" />
+      <EuiDescriptionList listItems={listItems} />
+      <EuiSpacer size="xxl" />
+    </div>
+  );
+};

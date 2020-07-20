@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   ChangeEventHandler,
   Component,
@@ -22,8 +41,6 @@ import {
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';
-
-const makeId = htmlIdGenerator();
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
   autoSizeInputRef?: RefCallback<AutosizeInput & HTMLInputElement>;
@@ -189,7 +206,7 @@ export class EuiComboBoxInput<T> extends Component<
         }Combo box input. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
         'To exit the list of choices, press Escape.';
 
-      removeOptionMessageId = makeId();
+      removeOptionMessageId = htmlIdGenerator()();
 
       // aria-live="assertive" will read this message aloud immediately once it enters the DOM.
       // We'll render to the DOM when the input gains focus and remove it when the input loses focus.

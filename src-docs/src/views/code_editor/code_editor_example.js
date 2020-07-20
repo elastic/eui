@@ -19,7 +19,7 @@ const customModeSource = require('!!raw-loader!./custom_mode');
 const customModeHtml = renderToHtml(CustomMode);
 
 export const CodeEditorExample = {
-  title: 'Code Editor',
+  title: 'Code editor',
   sections: [
     {
       source: [
@@ -35,7 +35,7 @@ export const CodeEditorExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiCodeEditor</EuiCode> component is a wrapper around{' '}
+            The <strong>EuiCodeEditor</strong> component is a wrapper around{' '}
             <EuiCode>react-ace</EuiCode> (which itself wraps the ACE code
             editor), that adds an accessible keyboard mode to it. You should
             always use this component instead of <EuiCode>AceEditor</EuiCode>.

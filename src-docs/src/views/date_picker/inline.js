@@ -1,43 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import moment from 'moment';
 
 import { EuiDatePicker } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
 
-    this.state = {
-      startDate: moment(),
-    };
+  const handleChange = date => {
+    setStartDate(date);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <EuiDatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          inline
-          showTimeSelect
-        />
-        <EuiDatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          inline
-          showTimeSelect
-          shadow={false}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <EuiDatePicker
+        selected={startDate}
+        onChange={handleChange}
+        inline
+        showTimeSelect
+      />
+      <EuiDatePicker
+        selected={startDate}
+        onChange={handleChange}
+        inline
+        showTimeSelect
+        shadow={false}
+      />
+    </div>
+  );
+};

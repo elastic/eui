@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { _AST, AST, Clause, OperatorType, Value } from './ast';
 import { isArray, isString, isDateLike } from '../../../services/predicate';
 import { dateFormat as defaultDateFormat } from './date_format';
@@ -7,7 +26,7 @@ import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unre
 
 const parser = peg`
 {
-  const { AST, Exp, unescapeValue, resolveFieldValue } = options;
+  const { AST, Exp, unescapeValue, unescapePhraseValue, resolveFieldValue } = options;
   const ctx = Object.assign({ error }, options );
 }
 
@@ -139,13 +158,14 @@ containsValue
 
 phrase
   = '"' space? phrase:(
-  	(phraseWord+)? (space phraseWord+)* { return unescapeValue(text()); }
+  	(phraseWord+)? (space phraseWord+)* { return unescapePhraseValue(text()); }
   ) space? '"' { return Exp.string(phrase, location()); }
 
 phraseWord
-  = orWord
-  / word
-  / [()] // adding parens directly to "wordChar" makes it too aggresive as it consumes the closing paren
+  // not a backslash, quote, or space
+  = [^\\\\" ]+
+  // escaped character
+  / '\\\\' (.)
 
 word
   = wordChar+ {
@@ -257,6 +277,14 @@ const unescapeValue = (value: string) => {
 
 const escapeValue = (value: string) => {
   return value.replace(/([:\-\\()])/g, '\\$1');
+};
+
+const unescapePhraseValue = (value: string) => {
+  return value.replace(/\\(.)/g, '$1');
+};
+
+const escapePhraseValue = (value: string) => {
+  return value.replace(/([\\"])/g, '\\$1');
 };
 
 const escapeFieldValue = (value: string) => {
@@ -435,10 +463,11 @@ const printValue = (value: Value, options: ParseOptions) => {
     return value.toString();
   }
 
-  const escapeFn = options.escapeValue || escapeValue;
   if (value.length === 0 || value.match(/\s/) || value.toLowerCase() === 'or') {
-    return `"${escapeFn(value)}"`;
+    return `"${escapePhraseValue(value)}"`;
   }
+
+  const escapeFn = options.escapeValue || escapeValue;
   return escapeFn(value);
 };
 
@@ -476,6 +505,7 @@ export const defaultSyntax: Syntax = Object.freeze({
       AST,
       Exp,
       unescapeValue,
+      unescapePhraseValue,
       parseDate,
       resolveFieldValue,
       validateFlag,

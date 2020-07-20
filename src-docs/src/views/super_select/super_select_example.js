@@ -6,20 +6,59 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSuperSelect } from '../../../../src/components';
 
-import SuperSelect from './super_select';
-const superSelectSource = require('!!raw-loader!./super_select');
-const superSelectHtml = renderToHtml(SuperSelect);
-
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
 const superSelectBasicHtml = renderToHtml(SuperSelectBasic);
+const superSelectBasicSnippet = `<EuiSuperSelect
+  options={[
+    {
+      value: 'warning',
+      inputDisplay: inputDisplay,
+    },
+  ]}
+  valueOfSelected={value}
+  onChange={onChange}
+/>
+`;
 
 import SuperSelectComplex from './super_select_complex';
 const superSelectComplexSource = require('!!raw-loader!./super_select_complex');
 const superSelectComplexHtml = renderToHtml(SuperSelectComplex);
+const superSelectComplexSnippet = `<EuiSuperSelect
+  options={[
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+      dropdownDisplay: dropdownDisplay,
+    },
+  ]}
+  valueOfSelected={value}
+  onChange={onChange}
+  hasDividers
+/>
+`;
+
+import SuperSelectStates from './super_select_states';
+const superSelectStatesSource = require('!!raw-loader!./super_select_states');
+const superSelectStatesHtml = renderToHtml(SuperSelectStates);
+const superSelectStatesSnippet = `<EuiSuperSelect
+  options={[
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+    },
+  ]}
+  valueOfSelected={value}
+  onChange={onChange}
+  compressed={true}
+  fullWidth={true}
+  prepend={prepend}
+  append={append}
+/>
+`;
 
 export const SuperSelectExample = {
-  title: 'SuperSelect',
+  title: 'Super select',
   sections: [
     {
       source: [
@@ -36,9 +75,9 @@ export const SuperSelectExample = {
         <div>
           <p>
             This is a simple replacement component for{' '}
-            <EuiCode>EuiSelect</EuiCode> if you need more customization in
-            either the display of the input or option. Simply pass an array of
-            option objects:
+            <strong>EuiSelect</strong> if you need more customization in either
+            the display of the input or option. Simply pass an array of option
+            objects:
           </p>
           <ul>
             <li>
@@ -60,6 +99,7 @@ export const SuperSelectExample = {
         </div>
       ),
       props: { EuiSuperSelect },
+      snippet: superSelectBasicSnippet,
       demo: <SuperSelectBasic />,
     },
     {
@@ -84,6 +124,7 @@ export const SuperSelectExample = {
         </p>
       ),
       props: {},
+      snippet: superSelectComplexSnippet,
       demo: <SuperSelectComplex />,
     },
     {
@@ -91,22 +132,23 @@ export const SuperSelectExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: superSelectSource,
+          code: superSelectStatesSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: superSelectHtml,
+          code: superSelectStatesHtml,
         },
       ],
       text: (
         <p>
           You can pass the same props as you normally would to{' '}
-          <EuiCode>EuiSelect</EuiCode> like disabled, isLoading, compressed,
+          <strong>EuiSelect</strong> like disabled, isLoading, compressed,
           etc&hellip;
         </p>
       ),
       props: { EuiSuperSelect },
-      demo: <SuperSelect />,
+      snippet: superSelectStatesSnippet,
+      demo: <SuperSelectStates />,
     },
   ],
 };

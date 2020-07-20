@@ -14,8 +14,7 @@
   }
 
   .euiDescribedFormGroup__fields {
-    width: $euiFormMaxWidth;
-    max-width: 100%;
+    min-width: 0; // Needed to support shrinking appropriately with viewport (prevents x-axis content overflow)
   }
 
   .euiDescribedFormGroup__fieldPadding {

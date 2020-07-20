@@ -1,70 +1,58 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import { EuiCheckbox, EuiSpacer } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [checked, setChecked] = useState(false);
+  const [indeterminate, setindeterminate] = useState(true);
 
-    this.state = {
-      checked: false,
-      indeterminate: true,
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      checked: e.target.checked,
-    });
+  const onChange = e => {
+    setChecked(e.target.checked);
   };
 
-  onChangeIndeterminate = () => {
-    this.setState({
-      indeterminate: !this.state.indeterminate,
-    });
+  const onChangeIndeterminate = () => {
+    setindeterminate(!indeterminate);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiCheckbox
-          id={makeId()}
-          label="I am a checkbox"
-          checked={this.state.checked}
-          onChange={this.onChange}
-        />
+  return (
+    <Fragment>
+      <EuiCheckbox
+        id={htmlIdGenerator()()}
+        label="I am a checkbox"
+        checked={checked}
+        onChange={e => onChange(e)}
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiCheckbox
-          id={makeId()}
-          label="I am an indeterminate checkbox"
-          indeterminate={this.state.indeterminate}
-          onChange={this.onChangeIndeterminate}
-        />
+      <EuiCheckbox
+        id={htmlIdGenerator()()}
+        label="I am an indeterminate checkbox"
+        indeterminate={indeterminate}
+        onChange={() => onChangeIndeterminate()}
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiCheckbox
-          id={makeId()}
-          label="I am a disabled checkbox"
-          checked={this.state.checked}
-          onChange={this.onChange}
-          disabled
-        />
+      <EuiCheckbox
+        id={htmlIdGenerator()()}
+        label="I am a disabled checkbox"
+        checked={checked}
+        onChange={e => onChange(e)}
+        disabled
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiCheckbox
-          id={makeId()}
-          label="I am a compressed checkbox"
-          checked={this.state.checked}
-          onChange={this.onChange}
-          compressed
-        />
-      </Fragment>
-    );
-  }
-}
+      <EuiCheckbox
+        id={htmlIdGenerator()()}
+        label="I am a compressed checkbox"
+        checked={checked}
+        onChange={e => onChange(e)}
+        compressed
+      />
+    </Fragment>
+  );
+};

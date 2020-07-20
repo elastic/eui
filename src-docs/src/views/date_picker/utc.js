@@ -49,6 +49,7 @@ export default class extends Component {
         <EuiFormRow label="Select a date">
           <EuiDatePicker
             selected={selected}
+            showTimeSelect
             onChange={this.handleChange}
             utcOffset={this.state.utcOffset * 60}
           />

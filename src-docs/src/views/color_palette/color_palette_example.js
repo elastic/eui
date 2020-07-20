@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -26,7 +26,7 @@ const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
 const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
 export const ColorPaletteExample = {
-  title: 'Color Palettes',
+  title: 'Color palettes',
   intro: (
     <>
       <EuiText>
@@ -77,7 +77,7 @@ export const ColorPaletteExample = {
       demo: <ColorPalette />,
       snippet: [
         'euiPaletteColorBlind()',
-        "euiPaletteColorBlind(3, 'group', 'both)",
+        "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
       ],
       props: qualitativePropsInfo,
     },

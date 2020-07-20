@@ -254,3 +254,88 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiSteps renders steps with titleSize 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSteps testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiStep euiStep--small"
+  >
+    <div
+      class="euiStep__titleWrapper"
+    >
+      <div
+        aria-label="Step 1"
+        class="euiStepNumber euiStep__circle euiStepNumber--small"
+      >
+        1
+      </div>
+      <p
+        class="euiTitle euiTitle--xsmall euiStep__title"
+      >
+        first title
+      </p>
+    </div>
+    <div
+      class="euiStep__content"
+    >
+      <p>
+        Do this first
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep euiStep--small"
+  >
+    <div
+      class="euiStep__titleWrapper"
+    >
+      <div
+        aria-label="Step 2"
+        class="euiStepNumber euiStep__circle euiStepNumber--small"
+      >
+        2
+      </div>
+      <p
+        class="euiTitle euiTitle--xsmall euiStep__title"
+      >
+        second title
+      </p>
+    </div>
+    <div
+      class="euiStep__content"
+    >
+      <p>
+        Then this
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep euiStep--small"
+  >
+    <div
+      class="euiStep__titleWrapper"
+    >
+      <div
+        aria-label="Incomplete Step 3"
+        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle euiStepNumber--small"
+      />
+      <p
+        class="euiTitle euiTitle--xsmall euiStep__title"
+      >
+        third title
+      </p>
+    </div>
+    <div
+      class="euiStep__content"
+    >
+      <p>
+        And finally, do this
+      </p>
+    </div>
+  </div>
+</div>
+`;

@@ -28,10 +28,12 @@ export const ElasticChartsTimeExample = {
           </p>
           <ul>
             <li>
-              <EuiCode>BarSeries.xScaleType = &quot;time&quot;</EuiCode>
+              <EuiCode language="js">
+                BarSeries.xScaleType = &quot;time&quot;
+              </EuiCode>
             </li>
             <li>
-              <EuiCode>
+              <EuiCode language="js">
                 tickFormat = timeFormatter(niceTimeFormatByDay(1));
               </EuiCode>
             </li>

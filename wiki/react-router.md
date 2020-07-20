@@ -104,7 +104,7 @@ Note that if using HMR, you'll need to re-register the router after a hot reload
 ### `routing.js` service
 
 You can create a `routing.js` service to surface the `registerRouter` method as well as your
-conversion function (called `getRouterLinkProps` here).
+conversion function (called `getRouterLinkProps` here). The EUI documentation site [uses this approach](../src-docs/src/services/routing/routing.js).
 
 ```js
 // routing.js
@@ -121,7 +121,7 @@ export const registerRouter = reactRouter => {
 };
 
 /**
- * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
+ * The logic for generating href and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/v3/modules/Link.js.
  */
 export const getRouterLinkProps = to => {
@@ -213,7 +213,7 @@ export const registerRouter = reactRouter => {
 };
 
 /**
- * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
+ * The logic for generating href and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js.
  */
 export const getRouterLinkProps = to => {
@@ -227,7 +227,7 @@ export const getRouterLinkProps = to => {
     if (event.defaultPrevented) {
       return;
     }
-    
+
     // If target prop is set (e.g. to "_blank"), let browser handle link.
     if (event.target.getAttribute('target')) {
       return;
@@ -304,13 +304,17 @@ import React from 'react';
 import { EuiLink } from '@elastic/eui';
 import { useHistory } from 'react-router';
 
-// Most of the content of this files are from https://github.com/elastic/eui/pull/1976.
 const isModifiedEvent = (event) =>
   !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 const isLeftClickEvent = (event) => event.button === 0;
 
-export default function EuiCustomLink({ to, ...props }) {
+const isTargetBlank = (event) => {
+  const target = event.target.getAttribute('target');
+  return target && target !== '_self';
+};
+
+export default function EuiCustomLink({ to, ...rest }) {
   // This is the key!
   const history = useHistory();
 
@@ -319,12 +323,8 @@ export default function EuiCustomLink({ to, ...props }) {
       return;
     }
 
-    // If target prop is set (e.g. to "_blank"), let browser handle link.
-    if (event.target.getAttribute('target')) {
-      return;
-    }
-
-    if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+    // Let the browser handle links that open new tabs/windows
+    if (isModifiedEvent(event) || !isLeftClickEvent(event) || isTargetBlank(event)) {
       return;
     }
 
@@ -335,7 +335,11 @@ export default function EuiCustomLink({ to, ...props }) {
     history.push(to);
   }
 
-  return <EuiLink {...props} href={to} onClick={onClick} />;
+  // Generate the correct link href (with basename accounted for)
+  const href = history.createHref({ pathname: to });
+
+  const props = { ...rest, href, onClick };
+  return <EuiLink {...props} />;
 }
 ```
 

@@ -1,29 +1,18 @@
-import React, { createElement } from 'react';
-
-import { useRouterHistory } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
+import React, { createElement, Fragment } from 'react';
 
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
 
+import { playgroundCreator } from './services/playground';
+
 // Guidelines
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ButtonGuidelines from './views/guidelines/button';
-
-import FormGuidelines from './views/guidelines/forms';
-
 import ColorGuidelines from './views/guidelines/colors';
 
-import ModalGuidelines from './views/guidelines/modals';
-
 import { SassGuidelines } from './views/guidelines/sass';
-
-import TextScales from './views/text_scaling/text_scaling_sandbox';
-
-import { ToastGuidelines } from './views/guidelines/toasts';
 
 import WritingGuidelines from './views/guidelines/writing';
 
@@ -49,6 +38,8 @@ import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
 
+import { BeaconExample } from './views/beacon/beacon_example';
+
 import { BottomBarExample } from './views/bottom_bar/bottom_bar_example';
 
 import { BreadcrumbsExample } from './views/breadcrumbs/breadcrumbs_example';
@@ -63,11 +54,13 @@ import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
+import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
+
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
 
-import { ContextExample } from './views/context/context_example';
+import { CommentListExample } from './views/comment/comment_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
@@ -78,12 +71,12 @@ import { CopyExample } from './views/copy/copy_example';
 import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
+import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
-import { DelayHideExample } from './views/delay_hide/delay_hide_example';
 import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
@@ -122,6 +115,8 @@ import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_an
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
+import { HtmlIdGeneratorExample } from './views/html_id_generator/html_id_generator_example';
+
 import { I18nExample } from './views/i18n/i18n_example';
 
 import { IconExample } from './views/icon/icon_example';
@@ -146,6 +141,8 @@ import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
+import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
+
 import { PageExample } from './views/page/page_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
@@ -163,6 +160,8 @@ import { RangeControlExample } from './views/range/range_example';
 import { TreeViewExample } from './views/tree_view/tree_view_example';
 
 import { ResizeObserverExample } from './views/resize_observer/resize_observer_example';
+
+import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
 
 import { ResponsiveExample } from './views/responsive/responsive_example';
 
@@ -184,7 +183,11 @@ import { SuperDatePickerExample } from './views/super_date_picker/super_date_pic
 
 import { TableExample } from './views/tables/tables_example';
 
+import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
+
 import { TabsExample } from './views/tabs/tabs_example';
+
+import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
 
@@ -195,6 +198,8 @@ import { ToastExample } from './views/toast/toast_example';
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
 import { ToggleExample } from './views/toggle/toggle_example';
+
+import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
@@ -214,6 +219,7 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
+import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -228,14 +234,22 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = example => {
+const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
       'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
     );
   }
 
-  const { title, intro, sections, beta } = example;
+  const {
+    title,
+    intro,
+    sections,
+    beta,
+    isNew,
+    playground,
+    guidelines,
+  } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -247,18 +261,34 @@ const createExample = example => {
     })
   );
 
+  let playgroundComponent;
+  if (playground) {
+    if (Array.isArray(playground)) {
+      playgroundComponent = playground.map((elm, idx) => {
+        return <Fragment key={idx}>{playgroundCreator(elm())}</Fragment>;
+      });
+    } else playgroundComponent = playgroundCreator(playground());
+  }
+
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
+      <GuidePage
+        title={title}
+        intro={intro}
+        isBeta={beta}
+        playground={playgroundComponent}
+        guidelines={guidelines}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
   );
 
   return {
-    name: title,
+    name: customTitle || title,
     component,
     sections,
+    isNew,
+    hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
@@ -266,34 +296,14 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines),
-      {
-        name: 'Buttons',
-        component: ButtonGuidelines,
-      },
+      createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
         component: ColorGuidelines,
       },
       {
-        name: 'Forms',
-        component: FormGuidelines,
-      },
-      {
-        name: 'Modals',
-        component: ModalGuidelines,
-      },
-      {
         name: 'Sass',
         component: SassGuidelines,
-      },
-      {
-        name: 'Text scales',
-        component: TextScales,
-      },
-      {
-        name: 'Toasts',
-        component: ToastGuidelines,
       },
       {
         name: 'Writing',
@@ -315,6 +325,7 @@ const navigation = [
       PageExample,
       PanelExample,
       PopoverExample,
+      ResizableContainerExample,
       SpacerExample,
     ].map(example => createExample(example)),
   },
@@ -323,6 +334,7 @@ const navigation = [
     items: [
       BreadcrumbsExample,
       ButtonExample,
+      CollapsibleNavExample,
       ContextMenuExample,
       ControlBarExample,
       FacetExample,
@@ -341,9 +353,11 @@ const navigation = [
       DataGridExample,
       DataGridMemoryExample,
       DataGridSchemaExample,
+      DataGridFocusExample,
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
+      TableInMemoryExample,
     ].map(example => createExample(example)),
   },
   {
@@ -355,6 +369,7 @@ const navigation = [
       CallOutExample,
       CardExample,
       CodeExample,
+      CommentListExample,
       DescriptionListExample,
       DragAndDropExample,
       EmptyPromptExample,
@@ -365,10 +380,12 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
+
       TextExample,
       TitleExample,
       ToastExample,
       ToolTipExample,
+      TourExample,
     ].map(example => createExample(example)),
   },
   {
@@ -399,30 +416,33 @@ const navigation = [
       ElasticChartsSparklinesExample,
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
+      ElasticChartsPieExample,
     ].map(example => createExample(example)),
   },
   {
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      BeaconExample,
+      IsColorDarkExample,
       ColorPaletteExample,
-      ContextExample,
       CopyExample,
       UtilityClassesExample,
-      DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightAndMarkExample,
+      HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
-      IsColorDarkExample,
-      PrettyDurationExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
+      OverlayMaskExample,
       PortalExample,
+      PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
+      TextDiffExample,
       ToggleExample,
       WindowEventExample,
     ].map(example => createExample(example)),
@@ -434,11 +454,20 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, ...rest }) => ({
-    name: itemName,
-    path: `${slugify(name)}/${slugify(itemName)}`,
-    ...rest,
-  })),
+  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
+    const item = {
+      name: itemName,
+      path: `${slugify(name)}/${slugify(itemName)}`,
+      ...rest,
+    };
+
+    if (hasGuidelines) {
+      item.from = `guidelines/${slugify(itemName)}`;
+      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+    }
+
+    return item;
+  }),
   ...rest,
 }));
 
@@ -448,7 +477,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

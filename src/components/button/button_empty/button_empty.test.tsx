@@ -1,14 +1,28 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import {
-  EuiButtonEmpty,
-  COLORS,
-  SIZES,
-  ICON_SIDES,
-  FLUSH_TYPES,
-} from './button_empty';
+import { EuiButtonEmpty, COLORS, SIZES, FLUSH_TYPES } from './button_empty';
+import { ICON_SIDES } from '../button_content';
 
 describe('EuiButtonEmpty', () => {
   test('is rendered', () => {
@@ -29,6 +43,20 @@ describe('EuiButtonEmpty', () => {
 
       it('renders a button even when href is defined', () => {
         const component = render(<EuiButtonEmpty href="#" isDisabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('renders if passed simply as disabled', () => {
+        const component = render(<EuiButtonEmpty disabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const component = render(<EuiButtonEmpty isLoading />);
 
         expect(component).toMatchSnapshot();
       });
@@ -108,6 +136,22 @@ describe('EuiButtonEmpty', () => {
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
+    });
+
+    test('contentProps is rendered', () => {
+      const component = render(
+        <EuiButtonEmpty contentProps={requiredProps}>Content</EuiButtonEmpty>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('textProps is rendered', () => {
+      const component = render(
+        <EuiButtonEmpty textProps={requiredProps}>Content</EuiButtonEmpty>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

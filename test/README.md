@@ -1,7 +1,7 @@
 # Elastic Visual Regression
 
 This module is a test suite used to test [EUI components](https://elastic.github.io/eui/#/). It is to be used to verify
-that changes to code do not break thethe components visually by verifying current screenshots to a baseline taken 
+that changes to code do not break the components visually by verifying current screenshots to a baseline taken 
 previously. 
 
 ## What EVR Does

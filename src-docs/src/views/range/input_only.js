@@ -1,74 +1,61 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
 import { DisplayToggles } from '../form_controls/display_toggles';
+import { htmlIdGenerator } from '../../../../src/services';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+export default () => {
+  const [value, setValue] = useState('20');
+  const [dualValue, setDualValue] = useState([20, 100]);
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-
-    this.levels = [
-      {
-        min: 0,
-        max: 20,
-        color: 'danger',
-      },
-      {
-        min: 20,
-        max: 100,
-        color: 'success',
-      },
-    ];
-
-    this.state = {
-      value: '20',
-      dualValue: [20, 100],
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  onDualChange = value => {
-    this.setState({
-      dualValue: value,
-    });
+  const onDualChange = value => {
+    setDualValue(value);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <DisplayToggles canAppend canPrepend>
-          <EuiRange
-            id={makeId()}
-            value={this.state.value}
-            onChange={this.onChange}
-            showInput="inputWithPopover"
-            showLabels
-            aria-label="An example of EuiRange with showInput prop"
-          />
-        </DisplayToggles>
+  const levels = [
+    {
+      min: 0,
+      max: 20,
+      color: 'danger',
+    },
+    {
+      min: 20,
+      max: 100,
+      color: 'success',
+    },
+  ];
 
-        <EuiSpacer size="xl" />
+  return (
+    <Fragment>
+      <DisplayToggles canAppend canPrepend>
+        <EuiRange
+          id={htmlIdGenerator()()}
+          value={value}
+          onChange={onChange}
+          showInput="inputWithPopover"
+          showLabels
+          aria-label="An example of EuiRange with showInput prop"
+        />
+      </DisplayToggles>
 
-        <DisplayToggles canAppend canPrepend canLoading={false}>
-          <EuiDualRange
-            id={makeId()}
-            value={this.state.dualValue}
-            onChange={this.onDualChange}
-            showInput="inputWithPopover"
-            showLabels
-            levels={this.levels}
-            aria-label="An example of EuiDualRange with showInput prop"
-          />
-        </DisplayToggles>
-      </Fragment>
-    );
-  }
-}
+      <EuiSpacer size="xl" />
+
+      <DisplayToggles canAppend canPrepend canLoading={false}>
+        <EuiDualRange
+          id={htmlIdGenerator()()}
+          value={dualValue}
+          onChange={onDualChange}
+          showInput="inputWithPopover"
+          showLabels
+          levels={levels}
+          aria-label="An example of EuiDualRange with showInput prop"
+        />
+      </DisplayToggles>
+    </Fragment>
+  );
+};

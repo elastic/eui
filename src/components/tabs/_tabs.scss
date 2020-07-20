@@ -89,18 +89,22 @@
 
   .euiTabs--condensed & {
     font-weight: $euiFontWeightSemiBold;
-    padding: $euiSizeS 0;
+    padding: $euiSizeS $euiSizeXS;
 
     &:focus {
-      background-color: transparent;
+      background-color: $euiFocusBackgroundColor;
 
       &::before {
         display: none;
       }
     }
 
+    &-isSelected {
+      text-decoration: none;
+    }
+
     & + .euiTab {
-      margin-left: $euiSizeL;
+      margin-left: $euiSize;
     }
   }
 

@@ -9,7 +9,7 @@ const source = require('!!raw-loader!./actions');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Adding actions to BasicTable',
+  title: 'Adding actions to table',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -33,8 +33,8 @@ export const section = {
       <ul>
         <li>
           There can only be up to 2 actions visible per row. When more than two
-          actions are defined, the first 2 <code>isPrimary</code> actions will
-          stay visible, an ellipses icon button will hold all actions in a
+          actions are defined, the first 2 <EuiCode>isPrimary</EuiCode> actions
+          will stay visible, an ellipses icon button will hold all actions in a
           single popover.
         </li>
         <li>

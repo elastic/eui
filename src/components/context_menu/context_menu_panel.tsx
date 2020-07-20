@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   cloneElement,
   Component,
@@ -12,7 +31,7 @@ import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeyCodes } from '../../services';
+import { cascadingMenuKeys } from '../../services';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -60,7 +79,6 @@ interface State {
     items: Props['items'];
   };
   menuItems: HTMLElement[];
-  isTransitioning: boolean;
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
@@ -85,7 +103,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         items: this.props.items,
       },
       menuItems: [],
-      isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
       currentHeight: undefined,
     };
@@ -113,7 +130,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     });
   };
 
-  onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // If this panel contains items you can use the left arrow key to go back at any time.
     // But if it doesn't contain items, then you have to focus on the back button specifically,
     // since there could be content inside the panel which requires use of the left arrow key,
@@ -125,10 +142,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       document.activeElement === this.backButton ||
       document.activeElement === this.panel
     ) {
-      if (e.keyCode === cascadingMenuKeyCodes.LEFT) {
+      if (event.key === cascadingMenuKeys.ARROW_LEFT) {
         if (showPreviousPanel) {
-          e.preventDefault();
-          e.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
           showPreviousPanel();
 
           if (this.props.onUseKeyboardToNavigate) {
@@ -139,8 +156,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
 
     if (this.props.items && this.props.items.length) {
-      switch (e.keyCode) {
-        case cascadingMenuKeyCodes.TAB:
+      switch (event.key) {
+        case cascadingMenuKeys.TAB:
           // We need to sync up with the user if s/he is tabbing through the items.
           const focusedItemIndex = this.state.menuItems.indexOf(
             document.activeElement as HTMLElement
@@ -155,8 +172,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           });
           break;
 
-        case cascadingMenuKeyCodes.UP:
-          e.preventDefault();
+        case cascadingMenuKeys.ARROW_UP:
+          event.preventDefault();
           this.incrementFocusedItemIndex(-1);
 
           if (this.props.onUseKeyboardToNavigate) {
@@ -164,8 +181,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           }
           break;
 
-        case cascadingMenuKeyCodes.DOWN:
-          e.preventDefault();
+        case cascadingMenuKeys.ARROW_DOWN:
+          event.preventDefault();
           this.incrementFocusedItemIndex(1);
 
           if (this.props.onUseKeyboardToNavigate) {
@@ -173,9 +190,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           }
           break;
 
-        case cascadingMenuKeyCodes.RIGHT:
+        case cascadingMenuKeys.ARROW_RIGHT:
           if (this.props.showNextPanel) {
-            e.preventDefault();
+            event.preventDefault();
             this.props.showNextPanel(this.state.focusedItemIndex);
 
             if (this.props.onUseKeyboardToNavigate) {
@@ -207,7 +224,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
-      if (this.state.isTransitioning) {
+      if (this.props.transitionType) {
         return;
       }
 
@@ -242,10 +259,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   }
 
   onTransitionComplete = () => {
-    this.setState({
-      isTransitioning: false,
-    });
-
     if (this.props.onTransitionComplete) {
       this.props.onTransitionComplete();
     }
@@ -272,11 +285,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       needsUpdate = true;
       nextState.menuItems = [];
       nextState.prevProps = { items: nextProps.items };
-    }
-
-    if (nextProps.transitionType) {
-      needsUpdate = true;
-      nextState.isTransitioning = true;
     }
 
     if (needsUpdate) {
@@ -330,7 +338,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       return true;
     }
 
-    if (nextState.isTransitioning !== this.state.isTransitioning) {
+    if (nextProps.transitionType !== this.props.transitionType) {
       return true;
     }
 
@@ -451,8 +459,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     const classes = classNames(
       'euiContextMenuPanel',
       className,
-      this.state.isTransitioning &&
-        transitionDirection &&
+      transitionDirection &&
         transitionType &&
         transitionDirectionAndTypeToClassNameMap[transitionDirection]
         ? transitionDirectionAndTypeToClassNameMap[transitionDirection][

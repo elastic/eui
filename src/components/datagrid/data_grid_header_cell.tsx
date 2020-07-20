@@ -1,7 +1,27 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   AriaAttributes,
   FunctionComponent,
   HTMLAttributes,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -9,7 +29,7 @@ import React, {
 import { htmlIdGenerator } from '../../services/accessibility';
 import classnames from 'classnames';
 import { EuiDataGridHeaderRowPropsSpecificProps } from './data_grid_header_row';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiPopover } from '../popover/popover';
 import { EuiListGroup } from '../list_group/list_group';
@@ -95,33 +115,37 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   const [isCellEntered, setIsCellEntered] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
+  const enableInteractives = useCallback(() => {
+    if (headerRef.current) {
+      const interactiveElements = headerRef.current.querySelectorAll(
+        '[data-euigrid-tab-managed]'
+      );
+      for (let i = 0; i < interactiveElements.length; i++) {
+        interactiveElements[i].setAttribute('tabIndex', '0');
+      }
+    }
+  }, []);
+
+  const disableInteractives = useCallback(() => {
+    if (headerRef.current) {
+      const tababbles = tabbable(headerRef.current);
+      if (tababbles.length > 1) {
+        console.warn(
+          `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
+            tababbles.length
+          } found instead`
+        );
+      }
+      for (let i = 0; i < tababbles.length; i++) {
+        const element = tababbles[i];
+        element.setAttribute('data-euigrid-tab-managed', 'true');
+        element.setAttribute('tabIndex', '-1');
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (headerRef.current) {
-      function enableInteractives() {
-        const interactiveElements = headerRef.current!.querySelectorAll(
-          '[data-euigrid-tab-managed]'
-        );
-        for (let i = 0; i < interactiveElements.length; i++) {
-          interactiveElements[i].setAttribute('tabIndex', '0');
-        }
-      }
-
-      function disableInteractives() {
-        const tababbles = tabbable(headerRef.current!);
-        if (tababbles.length > 1) {
-          console.warn(
-            `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
-              tababbles.length
-            } found instead`
-          );
-        }
-        for (let i = 0; i < tababbles.length; i++) {
-          const element = tababbles[i];
-          element.setAttribute('data-euigrid-tab-managed', 'true');
-          element.setAttribute('tabIndex', '-1');
-        }
-      }
-
       if (isCellEntered) {
         enableInteractives();
         const tabbables = tabbable(headerRef.current!);
@@ -132,7 +156,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         disableInteractives();
       }
     }
-  }, [isCellEntered]);
+  }, [disableInteractives, enableInteractives, isCellEntered]);
 
   useEffect(() => {
     if (headerRef.current) {
@@ -158,7 +182,23 @@ export const EuiDataGridHeaderCell: FunctionComponent<
           return false;
         } else {
           // take the focus
-          setFocusedCell([index, -1]);
+          if (
+            focusedCell == null ||
+            focusedCell[0] !== index ||
+            focusedCell[1] !== -1
+          ) {
+            setFocusedCell([index, -1]);
+          } else if (headerRef.current) {
+            // this cell already had the grid's focus, so re-enable interactives
+            enableInteractives();
+            setIsCellEntered(true);
+
+            // if there is only one interactive element shift focus to the interactive element
+            const tabbables = tabbable(headerRef.current);
+            if (tabbables.length === 1) {
+              tabbables[0].focus();
+            }
+          }
         }
       }
 
@@ -174,22 +214,22 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         });
       }
 
-      function onKeyUp(e: KeyboardEvent) {
-        switch (e.keyCode) {
-          case keyCodes.ENTER: {
-            e.preventDefault();
+      function onKeyUp(event: KeyboardEvent) {
+        switch (event.key) {
+          case keys.ENTER: {
+            event.preventDefault();
             setIsCellEntered(true);
             break;
           }
-          case keyCodes.ESCAPE: {
-            e.preventDefault();
+          case keys.ESCAPE: {
+            event.preventDefault();
             // move focus to cell
             setIsCellEntered(false);
             headerRef.current!.focus();
             break;
           }
-          case keyCodes.F2: {
-            e.preventDefault();
+          case keys.F2: {
+            event.preventDefault();
             if (document.activeElement === headerRef.current) {
               // move focus into cell's interactives
               setIsCellEntered(true);
@@ -215,7 +255,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
+  }, [
+    enableInteractives,
+    headerIsInteractive,
+    isFocused,
+    setIsCellEntered,
+    focusedCell,
+    setFocusedCell,
+    index,
+  ]);
 
   console.log(schema);
 
@@ -263,7 +311,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
       role="columnheader"
       {...ariaProps}
       ref={headerRef}
-      tabIndex={isFocused ? 0 : -1}
+      tabIndex={isFocused && !isCellEntered ? 0 : -1}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       style={width != null ? { width: `${width}px` } : {}}>

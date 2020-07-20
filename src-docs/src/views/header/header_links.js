@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
   EuiHeader,
@@ -8,23 +8,15 @@ import {
   EuiHeaderLink,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  return (
+    <EuiHeader>
+      <EuiHeaderSectionItem border="right">
+        <EuiHeaderLogo href="#">Product</EuiHeaderLogo>
+      </EuiHeaderSectionItem>
 
-    this.state = {
-      isAppMenuOpen: false,
-    };
-  }
-
-  render() {
-    return (
-      <EuiHeader>
-        <EuiHeaderSectionItem border="right">
-          <EuiHeaderLogo href="#">Product</EuiHeaderLogo>
-        </EuiHeaderSectionItem>
-
-        <EuiHeaderLinks>
+      <EuiHeaderSectionItem>
+        <EuiHeaderLinks aria-label="App navigation links example">
           <EuiHeaderLink href="#" isActive>
             Docs
           </EuiHeaderLink>
@@ -35,7 +27,7 @@ export default class extends Component {
             Help
           </EuiHeaderLink>
         </EuiHeaderLinks>
-      </EuiHeader>
-    );
-  }
-}
+      </EuiHeaderSectionItem>
+    </EuiHeader>
+  );
+};

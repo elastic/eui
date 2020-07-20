@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { ComponentType, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 
@@ -34,7 +53,7 @@ export interface EuiDataGridColumn {
    */
   schema?: string;
   /**
-   * Defauls to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
+   * Defaults to true. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
   /**
@@ -53,6 +72,10 @@ export interface EuiDataGridColumn {
    * Default sort direction of the column
    */
   defaultSortDirection?: 'asc' | 'desc';
+  /**
+   * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
+   */
+  displayAsText?: string;
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -173,7 +196,10 @@ export interface EuiDataGridSorting {
   /**
    * An array of the column ids currently being sorted and their sort direction. The array order determines the sort order. `{ id: 'A'; direction: 'asc' }`
    */
-  columns: Array<{ id: string; direction: 'asc' | 'desc' }>;
+  columns: Array<{
+    id: string;
+    direction: 'asc' | 'desc';
+  }>;
 }
 
 export interface EuiDataGridInMemory {

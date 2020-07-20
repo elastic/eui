@@ -68,7 +68,7 @@ export const AccessibilityExample = {
       text: (
         <p>
           You can make interactive elements keyboard-accessible with the{' '}
-          <EuiCode>EuiKeyboardAccessible</EuiCode> component. This is necessary
+          <strong>EuiKeyboardAccessible</strong> component. This is necessary
           for non-button elements and <EuiCode>a</EuiCode> tags without{' '}
           <EuiCode>href</EuiCode> attributes.
         </p>
@@ -92,7 +92,7 @@ export const AccessibilityExample = {
       text: (
         <div>
           <p>
-            Use the <EuiCode>EuiScreenReaderOnly</EuiCode> component to visually
+            Use the <strong>EuiScreenReaderOnly</strong> component to visually
             hide elements while still allowing them to be read by screen
             readers. In certain cases, you may want to use the{' '}
             <EuiCode>showOnFocus</EuiCode> prop to display screen reader-only
@@ -136,7 +136,7 @@ export const AccessibilityExample = {
       ],
       text: (
         <p>
-          The <EuiCode>EuiSkipLink</EuiCode> component allows users to bypass
+          The <strong>EuiSkipLink</strong> component allows users to bypass
           navigation, or ornamental elements, and quickly reach the main content
           of the page.
         </p>

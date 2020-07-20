@@ -1,44 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-
-    this.options = [];
-    let groupOptions = [];
-    for (let i = 1; i < 5000; i++) {
-      groupOptions.push({ label: `option${i}` });
-      if (i % 25 === 0) {
-        this.options.push({
-          label: `Options ${i - (groupOptions.length - 1)} to ${i}`,
-          options: groupOptions,
-        });
-        groupOptions = [];
-      }
-    }
-
-    this.state = {
-      selectedOptions: [],
-    };
-  }
-
-  onChange = selectedOptions => {
-    this.setState({
-      selectedOptions,
+const options = [];
+let groupOptions = [];
+for (let i = 1; i < 5000; i++) {
+  groupOptions.push({ label: `option${i}` });
+  if (i % 25 === 0) {
+    options.push({
+      label: `Options ${i - (groupOptions.length - 1)} to ${i}`,
+      options: groupOptions,
     });
-  };
-
-  render() {
-    const { selectedOptions } = this.state;
-    return (
-      <EuiComboBox
-        placeholder="Select or create options"
-        options={this.options}
-        selectedOptions={selectedOptions}
-        onChange={this.onChange}
-      />
-    );
+    groupOptions = [];
   }
 }
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([]);
+
+  const onChange = selectedOptions => {
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <EuiComboBox
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+    />
+  );
+};
