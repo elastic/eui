@@ -44,8 +44,26 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: useCache(['babel-loader']), // eslint-disable-line react-hooks/rules-of-hooks
+        // loaders: useCache(['babel-loader']), // eslint-disable-line react-hooks/rules-of-hooks
+        loaders: ['babel-loader'],
         exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
+      },
+      {
+        test: /\.(js?)$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/plugin-transform-runtime',
+              '@babel/plugin-transform-destructuring',
+            ],
+            sourceType: 'unambiguous',
+          },
+        },
+        include: [
+          /node_modules\/((html-format|vnopts|react-view|@babel\/code-frame|@babel\/template|@babel\/traverse|@babel\/parser|@babel\/core|@babel\/helper-annotate-as-pure|@babel\/generator|@babel\/helper-builder-react-jsx-experimental|@babel\/highlight|@babel\/plugin-syntax-jsx|@miksu\/prettier|ansi-styles|chalk|gensync|is-fullwidth-code-point|jest-docblock|jsesc)\/).*/,
+        ],
       },
       {
         test: /\.scss$/,
