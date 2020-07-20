@@ -151,7 +151,7 @@ export default class Time extends React.Component {
 
   onBlur = () => {
     if (this.props.accessibleMode) {
-      this.setState({ readInstructions: false, isFocused: false });
+      this.setState({ isFocused: false });
     }
   };
 
@@ -316,8 +316,8 @@ export default class Time extends React.Component {
         <p aria-live>
           You are a in a time selector. Use the up and down keys to select from
           other common times then press enter to confirm.
-          {this.state.preSelection ? `${formatDate(this.state.preSelection, this.timeFormat)} is currently
-          focused.`: `No time is currently focused.`}
+          {formatDate(this.state.preSelection, this.timeFormat)} is currently
+          focused.
         </p>
       );
     }

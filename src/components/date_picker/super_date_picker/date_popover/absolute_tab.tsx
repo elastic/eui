@@ -100,7 +100,7 @@ export class EuiAbsoluteTab extends Component<
       onChange(valueAsMoment.toISOString(), event);
     }
     this.setState({
-      textInputValue: event.target.value,
+      textInputValue: event.target.value as string,
       isTextInvalid: !dateIsValid,
       valueAsMoment: dateIsValid ? valueAsMoment : null,
     });
