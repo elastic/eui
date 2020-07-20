@@ -151,6 +151,87 @@ exports[`EuiI18n default rendering rendering to dom renders when value is null 1
 </EuiI18n>
 `;
 
+exports[`EuiI18n mapped tokens handles multiple tokens 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test1": "first value",
+        "test2": "second value",
+      },
+    }
+  }
+>
+  <Component>
+    <p>
+      <span>
+        first value
+      </span>
+      <span>
+        second value
+      </span>
+    </p>
+  </Component>
+</EuiContext>
+`;
+
+exports[`EuiI18n mapped tokens handles single token with values 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "myToken": "In reverse order: {second}, then {first}",
+      },
+    }
+  }
+>
+  <Component>
+    <p>
+      In reverse order: aardvarks, then apples
+    </p>
+  </Component>
+</EuiContext>
+`;
+
+exports[`EuiI18n mapped tokens handles single token without values 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "token": "This is the mapped value.",
+      },
+    }
+  }
+>
+  <Component>
+    <p>
+      This is the mapped value.
+    </p>
+  </Component>
+</EuiContext>
+`;
+
+exports[`EuiI18n mapped tokens mappingFunc calls the mapping function with the source string 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test1": "This is the mapped value.",
+      },
+      "mappingFunc": [Function],
+    }
+  }
+>
+  <Component>
+    <div
+      aria-label="PLACEHOLDER"
+    >
+      PLACEHOLDER
+    </div>
+  </Component>
+</EuiContext>
+`;
+
 exports[`EuiI18n reading values from context mappingFunc calls the mapping function with the source string 1`] = `
 <EuiContext
   i18n={
@@ -392,4 +473,47 @@ exports[`EuiI18n reading values from context rendering to dom renders a mapped s
     An overridden string with values.
   </EuiI18n>
 </EuiContext>
+`;
+
+exports[`EuiI18n useEuiI18n unmapped calls a function and renders the result to the dom 1`] = `
+<Component>
+  <div>
+    <p>
+      This is a 
+      callback
+       with 
+      values
+      .
+    </p>
+  </div>
+</Component>
+`;
+
+exports[`EuiI18n useEuiI18n unmapped handles multiple tokens 1`] = `
+<Component>
+  <p>
+    <span>
+      the first placeholder
+    </span>
+    <span>
+      the second placeholder
+    </span>
+  </p>
+</Component>
+`;
+
+exports[`EuiI18n useEuiI18n unmapped handles single token with values 1`] = `
+<Component>
+  <p>
+    first apples, then aardvarks
+  </p>
+</Component>
+`;
+
+exports[`EuiI18n useEuiI18n unmapped handles single token without values 1`] = `
+<Component>
+  <p>
+    placeholder
+  </p>
+</Component>
 `;
