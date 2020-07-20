@@ -17,21 +17,10 @@
  * under the License.
  */
 
-import React, {
-  Fragment,
-  ReactChild,
-  FunctionComponent,
-  useContext,
-  ReactElement,
-} from 'react';
+import React, { Fragment, ReactChild, FunctionComponent } from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
-import {
-  I18nContext,
-  I18nShape,
-  Renderable,
-  RenderableValues,
-} from '../context/context';
+import { I18nShape, Renderable, RenderableValues } from '../context/context';
 import { processStringToChildren } from './i18n_util';
 
 function errorOnMissingValues(token: string): never {
@@ -104,7 +93,7 @@ type EuiI18nProps<
   DEFAULTS extends any[]
 > = ExclusiveUnion<I18nTokenShape<T, DEFAULT>, I18nTokensShape<DEFAULTS>>;
 
-function isI18nTokensShape<T extends any[]>(
+function hasTokens<T extends any[]>(
   x: EuiI18nProps<any, any, T>
 ): x is I18nTokensShape<T> {
   return x.tokens != null;
@@ -123,7 +112,7 @@ const EuiI18n = <
   <EuiI18nConsumer>
     {i18nConfig => {
       const { mapping, mappingFunc } = i18nConfig;
-      if (isI18nTokensShape(props)) {
+      if (hasTokens(props)) {
         return props.children(
           props.tokens.map((token, idx) =>
             lookupToken(token, mapping, props.defaults[idx], mappingFunc)
@@ -147,38 +136,4 @@ const EuiI18n = <
   </EuiI18nConsumer>
 );
 
-// A single default could be a string, react child, or render function
-type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactChild
-  ? K
-  : (K extends () => infer RetValue ? RetValue : never);
-
-// An array with multiple defaults can only be an array of strings or elements
-type DefaultsRenderType<
-  K extends Array<string | ReactElement>
-> = K extends Array<infer Item> ? Item : never;
-
-function useEuiI18n<T extends {}, DEFAULT extends Renderable<T>>(
-  token: string,
-  defaultValue: DEFAULT,
-  values?: T
-): DefaultRenderType<T, DEFAULT>;
-function useEuiI18n<DEFAULTS extends Array<string | ReactElement>>(
-  tokens: string[],
-  defaultValues: DEFAULTS
-): Array<DefaultsRenderType<DEFAULTS>>;
-function useEuiI18n(...props: any[]) {
-  const i18nConfig = useContext(I18nContext);
-  const { mapping, mappingFunc } = i18nConfig;
-
-  if (typeof props[0] === 'string') {
-    const [token, defaultValue, values] = props;
-    return lookupToken(token, mapping, defaultValue, mappingFunc, values);
-  } else {
-    const [tokens, defaultValues] = props as [string[], string[]];
-    return tokens.map((token, idx) =>
-      lookupToken(token, mapping, defaultValues[idx], mappingFunc)
-    );
-  }
-}
-
-export { EuiI18n, useEuiI18n };
+export { EuiI18n };
