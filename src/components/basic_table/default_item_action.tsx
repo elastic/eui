@@ -68,8 +68,6 @@ export const DefaultItemAction = <T extends {}>({
   }
 
   let button;
-  const actionContent =
-    typeof action.name === 'function' ? action.name(item) : action.name;
   if (action.type === 'icon') {
     if (!icon) {
       throw new Error(`Cannot render item action [${
@@ -91,9 +89,9 @@ export const DefaultItemAction = <T extends {}>({
           target={action.target}
           data-test-subj={action['data-test-subj']}
         />
-        {/* actionContent (action.name) is a ReactNode and must be rendered to an element and referenced by ID for screen readers */}
+        {/* action.name is a ReactNode and must be rendered to an element and referenced by ID for screen readers */}
         <EuiScreenReaderOnly>
-          <span id={ariaLabelId}>{actionContent}</span>
+          <span id={ariaLabelId}>{action.name}</span>
         </EuiScreenReaderOnly>
       </>
     );
@@ -110,7 +108,7 @@ export const DefaultItemAction = <T extends {}>({
         target={action.target}
         data-test-subj={action['data-test-subj']}
         flush="right">
-        {actionContent}
+        {action.name}
       </EuiButtonEmpty>
     );
   }

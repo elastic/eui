@@ -27,7 +27,7 @@ describe('CollapsedItemActions', () => {
     const props = {
       actions: [
         {
-          name: (item: { id: string }) => `default${item.id}`,
+          name: 'default1',
           description: 'default 1',
           onClick: () => {},
         },
@@ -38,7 +38,7 @@ describe('CollapsedItemActions', () => {
         },
       ],
       itemId: 'id',
-      item: { id: '1' },
+      item: { id: 'xyz' },
       actionEnabled: (_: Action<{ id: string }>) => true,
       onFocus: (_: FocusEvent) => {},
       onBlur: () => {},
