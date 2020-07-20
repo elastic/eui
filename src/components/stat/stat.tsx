@@ -22,7 +22,6 @@ import React, {
   HTMLAttributes,
   FunctionComponent,
   ReactNode,
-  createElement,
 } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
@@ -83,14 +82,6 @@ export interface EuiStatProps {
    * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
    */
   titleSize?: EuiTitleSize;
-  /**
-   * HTML Element to be used for title
-   */
-  titleElement?: string;
-  /**
-   * HTML Element to be used for description
-   */
-  descriptionElement?: string;
 }
 
 export const EuiStat: FunctionComponent<
@@ -105,8 +96,6 @@ export const EuiStat: FunctionComponent<
   title,
   titleColor = 'default',
   titleSize = 'l',
-  titleElement = 'p',
-  descriptionElement = 'p',
   ...rest
 }) => {
   const classes = classNames(
@@ -123,32 +112,21 @@ export const EuiStat: FunctionComponent<
     }
   );
 
-  const commonProps = {
-    'aria-hidden': true,
-  };
-
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      {createElement(descriptionElement, commonProps, description)}
+      <p aria-hidden="true">{description}</p>
     </EuiText>
   );
 
-  const titlePropsWithColor = {
-    'aria-hidden': true,
-    style: {
-      color: `${titleColor}`,
-    },
-  };
-
-  const titleChildren = isLoading ? '--' : title;
-
   const titleDisplay = isColorClass(titleColor) ? (
     <EuiTitle size={titleSize} className={titleClasses}>
-      {createElement(titleElement, commonProps, titleChildren)}
+      <p aria-hidden="true">{isLoading ? '--' : title}</p>
     </EuiTitle>
   ) : (
     <EuiTitle size={titleSize} className={titleClasses}>
-      {createElement(titleElement, titlePropsWithColor, titleChildren)}
+      <p aria-hidden="true" style={{ color: `${titleColor}` }}>
+        {isLoading ? '--' : title}
+      </p>
     </EuiTitle>
   );
 
@@ -171,9 +149,7 @@ export const EuiStat: FunctionComponent<
       {!reverse && descriptionDisplay}
       {titleDisplay}
       {reverse && descriptionDisplay}
-      {typeof title === 'string' &&
-        typeof description === 'string' &&
-        screenReader}
+      {screenReader}
     </Fragment>
   );
 
