@@ -13,14 +13,15 @@ exports[`EuiTableSortMobile is rendered 1`] = `
       class="euiPopover__anchor"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--iconRight euiButtonEmpty--flushRight"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+          class="euiButtonEmpty__content"
         >
           <div
-            class="euiButtonContent__icon"
+            aria-hidden="true"
+            class="euiButtonEmpty__icon"
             data-euiicon-type="arrowDown"
           />
           <span

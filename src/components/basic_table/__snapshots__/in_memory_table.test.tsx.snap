@@ -383,49 +383,40 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               size="xs"
                             >
                               <button
-                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
                                 data-test-subj="tablePaginationPopoverButton"
                                 onClick={[Function]}
                                 type="button"
                               >
-                                <EuiButtonContent
+                                <span
                                   className="euiButtonEmpty__content"
-                                  iconSide="right"
-                                  iconType="arrowDown"
-                                  textProps={
-                                    Object {
-                                      "className": "euiButtonEmpty__text",
-                                    }
-                                  }
                                 >
-                                  <span
-                                    className="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                                  <EuiIcon
+                                    aria-hidden="true"
+                                    className="euiButtonEmpty__icon"
+                                    size="m"
+                                    type="arrowDown"
                                   >
-                                    <EuiIcon
-                                      className="euiButtonContent__icon"
+                                    <div
+                                      aria-hidden="true"
+                                      className="euiButtonEmpty__icon"
+                                      data-euiicon-type="arrowDown"
                                       size="m"
-                                      type="arrowDown"
+                                    />
+                                  </EuiIcon>
+                                  <span
+                                    className="euiButtonEmpty__text"
+                                  >
+                                    <EuiI18n
+                                      default="Rows per page"
+                                      token="euiTablePagination.rowsPerPage"
                                     >
-                                      <div
-                                        className="euiButtonContent__icon"
-                                        data-euiicon-type="arrowDown"
-                                        size="m"
-                                      />
-                                    </EuiIcon>
-                                    <span
-                                      className="euiButtonEmpty__text"
-                                    >
-                                      <EuiI18n
-                                        default="Rows per page"
-                                        token="euiTablePagination.rowsPerPage"
-                                      >
-                                        Rows per page
-                                      </EuiI18n>
-                                      : 
-                                      2
-                                    </span>
+                                      Rows per page
+                                    </EuiI18n>
+                                    : 
+                                    2
                                   </span>
-                                </EuiButtonContent>
+                                </span>
                               </button>
                             </EuiButtonEmpty>
                           </div>
@@ -554,25 +545,15 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         onClick={[Function]}
                                         rel="noreferrer"
                                       >
-                                        <EuiButtonContent
+                                        <span
                                           className="euiButtonEmpty__content"
-                                          iconSide="left"
-                                          textProps={
-                                            Object {
-                                              "className": "euiButtonEmpty__text",
-                                            }
-                                          }
                                         >
                                           <span
-                                            className="euiButtonContent euiButtonEmpty__content"
+                                            className="euiButtonEmpty__text"
                                           >
-                                            <span
-                                              className="euiButtonEmpty__text"
-                                            >
-                                              1
-                                            </span>
+                                            1
                                           </span>
-                                        </EuiButtonContent>
+                                        </span>
                                       </a>
                                     </EuiButtonEmpty>
                                   </EuiI18n>
@@ -630,31 +611,21 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         aria-controls="generated-id"
                                         aria-current={true}
                                         aria-label="Page 2 of 2"
-                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
                                         data-test-subj="pagination-button-1"
                                         disabled={true}
                                         onClick={[Function]}
                                         type="button"
                                       >
-                                        <EuiButtonContent
+                                        <span
                                           className="euiButtonEmpty__content"
-                                          iconSide="left"
-                                          textProps={
-                                            Object {
-                                              "className": "euiButtonEmpty__text",
-                                            }
-                                          }
                                         >
                                           <span
-                                            className="euiButtonContent euiButtonEmpty__content"
+                                            className="euiButtonEmpty__text"
                                           >
-                                            <span
-                                              className="euiButtonEmpty__text"
-                                            >
-                                              2
-                                            </span>
+                                            2
                                           </span>
-                                        </EuiButtonContent>
+                                        </span>
                                       </button>
                                     </EuiButtonEmpty>
                                   </EuiI18n>

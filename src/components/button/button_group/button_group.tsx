@@ -26,8 +26,7 @@ import { ToggleType } from '../../toggle';
 import { EuiButtonToggle } from '../button_toggle';
 import { CommonProps } from '../../common';
 
-import { ButtonColor } from '../button';
-import { ButtonContentIconSide } from '../button_content';
+import { ButtonColor, ButtonIconSide } from '../button';
 import { IconType } from '../../icon';
 
 export interface EuiButtonGroupIdToSelectedMap {
@@ -42,7 +41,7 @@ export interface EuiButtonGroupOption extends CommonProps {
   name?: string;
   isDisabled?: boolean;
   value?: any;
-  iconSide?: ButtonContentIconSide;
+  iconSide?: ButtonIconSide;
   iconType?: IconType;
 }
 

@@ -14,15 +14,16 @@ exports[`EuiTablePagination is rendered 1`] = `
         class="euiPopover__anchor"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
           data-test-subj="tablePaginationPopoverButton"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -69,7 +70,7 @@ exports[`EuiTablePagination is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -85,13 +86,13 @@ exports[`EuiTablePagination is rendered 1`] = `
           <button
             aria-current="true"
             aria-label="Page 2 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -111,7 +112,7 @@ exports[`EuiTablePagination is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -131,7 +132,7 @@ exports[`EuiTablePagination is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -151,7 +152,7 @@ exports[`EuiTablePagination is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -220,7 +221,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -236,13 +237,13 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
           <button
             aria-current="true"
             aria-label="Page 2 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -262,7 +263,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -282,7 +283,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -302,7 +303,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"

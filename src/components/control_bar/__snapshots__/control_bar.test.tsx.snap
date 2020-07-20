@@ -43,7 +43,7 @@ exports[`EuiControlBar is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiButtonContent euiButton__content"
+        class="euiButton__content"
       >
         <span
           class="euiButton__text"
@@ -180,7 +180,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButton__content"
+                  class="euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -299,42 +299,22 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
-                className="euiControlBar__button"
-                color="ghost"
+              <button
+                className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                 data-test-subj="dts"
-                element="button"
                 onClick={[Function]}
-                size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  onClick={[Function]}
-                  type="button"
+                <span
+                  className="euiButton__content"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
+                  <span
+                    className="euiButton__text"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -495,7 +475,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButton__content"
+                  class="euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -614,42 +594,22 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
-                className="euiControlBar__button"
-                color="ghost"
+              <button
+                className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                 data-test-subj="dts"
-                element="button"
                 onClick={[Function]}
-                size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  onClick={[Function]}
-                  type="button"
+                <span
+                  className="euiButton__content"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
+                  <span
+                    className="euiButton__text"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -809,7 +769,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButton__content"
+                  class="euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -928,42 +888,22 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
-                className="euiControlBar__button"
-                color="ghost"
+              <button
+                className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                 data-test-subj="dts"
-                element="button"
                 onClick={[Function]}
-                size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  onClick={[Function]}
-                  type="button"
+                <span
+                  className="euiButton__content"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
+                  <span
+                    className="euiButton__text"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -1155,42 +1095,22 @@ exports[`EuiControlBar props position is rendered 1`] = `
           onClick={[Function]}
           size="s"
         >
-          <EuiButtonDisplay
-            className="euiControlBar__button"
-            color="ghost"
+          <button
+            className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
             data-test-subj="dts"
-            element="button"
             onClick={[Function]}
-            size="s"
             type="button"
           >
-            <button
-              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-              data-test-subj="dts"
-              onClick={[Function]}
-              type="button"
+            <span
+              className="euiButton__content"
             >
-              <EuiButtonContent
-                className="euiButton__content"
-                iconSide="left"
-                textProps={
-                  Object {
-                    "className": "euiButton__text",
-                  }
-                }
+              <span
+                className="euiButton__text"
               >
-                <span
-                  className="euiButtonContent euiButton__content"
-                >
-                  <span
-                    className="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </EuiButtonContent>
-            </button>
-          </EuiButtonDisplay>
+                Sound the Alarm
+              </span>
+            </span>
+          </button>
         </EuiButton>
         <div
           className="euiControlBar__text"
@@ -1335,7 +1255,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButton__content"
+                  class="euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -1454,42 +1374,22 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
-                className="euiControlBar__button"
-                color="ghost"
+              <button
+                className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                 data-test-subj="dts"
-                element="button"
                 onClick={[Function]}
-                size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  onClick={[Function]}
-                  type="button"
+                <span
+                  className="euiButton__content"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
+                  <span
+                    className="euiButton__text"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -1649,7 +1549,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButton__content"
+                  class="euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -1773,42 +1673,22 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
-                className="euiControlBar__button"
-                color="ghost"
+              <button
+                className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                 data-test-subj="dts"
-                element="button"
                 onClick={[Function]}
-                size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  onClick={[Function]}
-                  type="button"
+                <span
+                  className="euiButton__content"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
+                  <span
+                    className="euiButton__text"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -1973,7 +1853,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButton__content"
+                  class="euiButton__content"
                 >
                   <span
                     class="euiButton__text"
@@ -2092,42 +1972,22 @@ exports[`EuiControlBar props size is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
-                className="euiControlBar__button"
-                color="ghost"
+              <button
+                className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                 data-test-subj="dts"
-                element="button"
                 onClick={[Function]}
-                size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  onClick={[Function]}
-                  type="button"
+                <span
+                  className="euiButton__content"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
+                  <span
+                    className="euiButton__text"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
             </EuiButton>
             <div
               className="euiControlBar__text"

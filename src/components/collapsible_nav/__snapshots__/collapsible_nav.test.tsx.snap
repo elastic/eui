@@ -58,10 +58,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -112,10 +113,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -168,10 +170,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -218,10 +221,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -268,10 +272,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -316,10 +321,11 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
+          class="euiButtonEmpty__content"
         >
           <div
-            class="euiButtonContent__icon"
+            aria-hidden="true"
+            class="euiButtonEmpty__icon"
             data-euiicon-type="cross"
           />
           <span
@@ -365,10 +371,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -420,10 +427,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="cross"
             />
             <span

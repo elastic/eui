@@ -3,12 +3,12 @@
 exports[`EuiFilterButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -23,11 +23,11 @@ exports[`EuiFilterButton is rendered 1`] = `
 
 exports[`EuiFilterButton props grow can be turned off 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton--noGrow"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton--noGrow"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -42,14 +42,15 @@ exports[`EuiFilterButton props grow can be turned off 1`] = `
 
 exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton--hasIcon"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton--hasIcon"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <div
-      class="euiButtonContent__icon"
+      aria-hidden="true"
+      class="euiButtonEmpty__icon"
       data-euiicon-type="user"
     />
     <span
@@ -65,12 +66,12 @@ exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 
 exports[`EuiFilterButton props isDisabled is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty-isDisabled euiFilterButton"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -85,11 +86,11 @@ exports[`EuiFilterButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFilterButton props isSelected is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton-isSelected"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton-isSelected"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -104,11 +105,11 @@ exports[`EuiFilterButton props isSelected is rendered 1`] = `
 
 exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton-hasActiveFilters"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton-hasActiveFilters"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -123,11 +124,11 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
 
 exports[`EuiFilterButton props numFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton-hasNotification"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton-hasNotification"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
@@ -148,11 +149,11 @@ exports[`EuiFilterButton props numFilters is rendered 1`] = `
 
 exports[`EuiFilterButton props type is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -167,11 +168,11 @@ exports[`EuiFilterButton props type is rendered 1`] = `
 
 exports[`EuiFilterButton props withNext is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton--withNext"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton--withNext"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text"
@@ -187,12 +188,12 @@ exports[`EuiFilterButton props withNext is rendered 1`] = `
 exports[`EuiFilterButton renders zero properly 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton euiFilterButton-hasNotification testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton-hasNotification testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span
       class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
