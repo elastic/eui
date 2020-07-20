@@ -21,7 +21,7 @@ import React, { ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, keysOf, PropsOf } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
@@ -60,14 +60,6 @@ export type EuiDescribedFormGroupProps = CommonProps &
      * Added as a child of `EuiText`
      */
     description?: ReactNode;
-    /**
-     * For customizing the description container. Extended from `EuiFlexItem`
-     */
-    descriptionFlexItemProps?: PropsOf<typeof EuiFlexItem>;
-    /**
-     * For customizing the field container. Extended from `EuiFlexItem`
-     */
-    fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
 export const EuiDescribedFormGroup: React.FunctionComponent<
@@ -80,8 +72,6 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
   titleSize = 'xs',
   title,
   description,
-  descriptionFlexItemProps,
-  fieldFlexItemProps,
   ...rest
 }) => {
   const classes = classNames(
@@ -94,8 +84,7 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
 
   const fieldClasses = classNames(
     'euiDescribedFormGroup__fields',
-    paddingSizeToClassNameMap[titleSize],
-    fieldFlexItemProps && fieldFlexItemProps.className
+    paddingSizeToClassNameMap[titleSize]
   );
 
   let renderedDescription: ReactNode;
@@ -114,7 +103,7 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
   return (
     <div role="group" className={classes} {...rest}>
       <EuiFlexGroup gutterSize={gutterSize}>
-        <EuiFlexItem {...descriptionFlexItemProps}>
+        <EuiFlexItem>
           <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
             {title}
           </EuiTitle>
@@ -122,9 +111,7 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
           {renderedDescription}
         </EuiFlexItem>
 
-        <EuiFlexItem {...fieldFlexItemProps} className={fieldClasses}>
-          {children}
-        </EuiFlexItem>
+        <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
       </EuiFlexGroup>
     </div>
   );

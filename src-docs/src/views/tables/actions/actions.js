@@ -141,7 +141,7 @@ export const Table = () => {
             'data-test-subj': 'action-clone',
           },
           {
-            name: item => (item.id ? 'Delete' : 'Remove'),
+            name: 'Delete',
             description: 'Delete this user',
             icon: 'trash',
             color: 'danger',

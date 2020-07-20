@@ -21,6 +21,7 @@ export {
   COLORS,
   ButtonColor,
   ButtonSize,
+  ButtonIconSide,
   EuiButton,
   EuiButtonProps,
 } from './button';

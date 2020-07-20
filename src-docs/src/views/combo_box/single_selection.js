@@ -59,6 +59,7 @@ export default () => {
         options={options}
         selectedOptions={selectedOptions}
         onChange={onChange}
+        isClearable={false}
       />
     </DisplayToggles>
   );

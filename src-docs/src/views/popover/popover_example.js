@@ -10,7 +10,6 @@ import {
   EuiPopover,
   EuiPopoverTitle,
   EuiPopoverFooter,
-  EuiCallOut,
 } from '../../../../src/components';
 
 import Popover from './popover';
@@ -58,7 +57,6 @@ const inputPopoverSource = require('!!raw-loader!./input_popover');
 const inputPopoverHtml = renderToHtml(PopoverBlock);
 
 const popOverSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -67,13 +65,13 @@ const popOverSnippet = `<EuiPopover
 
 const trapFocusSnippet = `<EuiPopover
   button={button}
+  ownFocus
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
   <!-- Popover content -->
 </EuiPopover>`;
 
 const popoverAnchorSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -82,7 +80,6 @@ const popoverAnchorSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverWithTitleSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -102,7 +99,6 @@ const popoverPanelClassNameSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverWithTitlePaddingSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -112,7 +108,6 @@ const popoverWithTitlePaddingSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverContainerSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -121,7 +116,6 @@ const popoverContainerSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverFixedSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -130,7 +124,6 @@ const popoverFixedSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverBlockSnippet = `<EuiPopover
-  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -168,6 +161,28 @@ export const PopoverExample = {
       props: { EuiPopover },
       snippet: popOverSnippet,
       demo: <Popover />,
+    },
+    {
+      title: 'Trap focus',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: trapFocusSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: trapFocusHtml,
+        },
+      ],
+      text: (
+        <p>
+          If the popover should be responsible for trapping the focus within
+          itself (as opposed to a child component), then you should set{' '}
+          <EuiCode>ownFocus</EuiCode>.
+        </p>
+      ),
+      snippet: trapFocusSnippet,
+      demo: <TrapFocus />,
     },
     {
       title: 'Anchor position',
@@ -419,40 +434,6 @@ export const PopoverExample = {
       props: { EuiInputPopover },
       snippet: inputPopoverSnippet,
       demo: <InputPopover />,
-    },
-    {
-      title: 'Removing the focus focus',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: trapFocusSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: trapFocusHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            If the popover cannot trap focus within itself, then you can remove{' '}
-            <EuiCode>ownFocus</EuiCode>.
-          </p>
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <>
-                Removing <EuiCode>ownFocus</EuiCode> makes it difficult for
-                keyboard-only and screen reader users to navigate to and from
-                your popover.
-              </>
-            }
-          />
-        </>
-      ),
-      snippet: trapFocusSnippet,
-      demo: <TrapFocus />,
     },
   ],
 };

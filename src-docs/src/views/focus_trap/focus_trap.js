@@ -12,7 +12,7 @@ import {
 import FormExample from '../form_compressed/form_compressed';
 
 export default () => {
-  const [isDisabled, changeDisabled] = useState(true);
+  const [isDisabled, changeDisabled] = useState(false);
 
   const toggleDisabled = () => changeDisabled(!isDisabled);
 

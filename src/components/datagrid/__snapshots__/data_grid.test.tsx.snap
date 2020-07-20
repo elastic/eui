@@ -54,15 +54,16 @@ exports[`EuiDataGrid pagination renders 1`] = `
         class="euiPopover__anchor"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
           data-test-subj="tablePaginationPopoverButton"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -112,7 +113,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
             rel="noreferrer"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -129,13 +130,13 @@ exports[`EuiDataGrid pagination renders 1`] = `
             aria-controls="htmlId"
             aria-current="true"
             aria-label="Page 2 of 2"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content"
             >
               <span
                 class="euiButtonEmpty__text"
@@ -178,6 +179,7 @@ Array [
   />,
   <div
     data-focus-lock-disabled="disabled"
+    style="height:100%"
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
@@ -202,10 +204,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -230,10 +233,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -251,10 +255,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -715,6 +720,7 @@ Array [
   />,
   <div
     data-focus-lock-disabled="disabled"
+    style="height:100%"
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
@@ -739,10 +745,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -767,10 +774,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -788,10 +796,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1576,6 +1585,7 @@ Array [
   />,
   <div
     data-focus-lock-disabled="disabled"
+    style="height:100%"
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
@@ -1597,10 +1607,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1625,10 +1636,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1646,10 +1658,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2112,6 +2125,7 @@ Array [
   />,
   <div
     data-focus-lock-disabled="disabled"
+    style="height:100%"
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
@@ -2133,10 +2147,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -2161,10 +2176,11 @@ Array [
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiButtonEmpty__content"
               >
                 <div
-                  class="euiButtonContent__icon"
+                  aria-hidden="true"
+                  class="euiButtonEmpty__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -2182,10 +2198,11 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content"
           >
             <div
-              class="euiButtonContent__icon"
+              aria-hidden="true"
+              class="euiButtonEmpty__icon"
               data-euiicon-type="fullScreen"
             />
             <span

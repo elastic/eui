@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import { render } from 'enzyme';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiCollapsibleNav } from './collapsible_nav';
 
@@ -33,28 +33,20 @@ const propsNeededToRender = { id: 'id', isOpen: true };
 
 describe('EuiCollapsibleNav', () => {
   test('is rendered', () => {
-    const component = mount(
+    const component = render(
       <EuiCollapsibleNav {...propsNeededToRender} {...requiredProps} />
     );
 
-    expect(
-      takeMountedSnapshot(component, {
-        hasArrayOutput: true,
-      })
-    ).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('onClose', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav {...propsNeededToRender} onClose={() => {}} />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('isDocked', () => {
@@ -66,31 +58,23 @@ describe('EuiCollapsibleNav', () => {
     });
 
     test('dockedBreakpoint', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav {...propsNeededToRender} dockedBreakpoint={500} />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('button', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav {...propsNeededToRender} button={<button />} />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('showButtonIfDocked', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav
           {...propsNeededToRender}
           button={<button />}
@@ -99,55 +83,39 @@ describe('EuiCollapsibleNav', () => {
         />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('can alter mask props with maskProps without throwing error', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav
           {...propsNeededToRender}
           maskProps={{ headerZindexLocation: 'above' }}
         />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 
   describe('close button', () => {
     test('can be hidden', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('extends EuiButtonEmpty', () => {
-      const component = mount(
+      const component = render(
         <EuiCollapsibleNav
           {...propsNeededToRender}
           closeButtonProps={{ className: 'class', 'data-test-subj': 'test' }}
         />
       );
 
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 

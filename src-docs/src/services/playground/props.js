@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 import { PropTypes } from 'react-view';
 
-const getProp = prop => {
+const getProp = (prop, propName) => {
   const newProp = {};
   if (prop.description) newProp.description = prop.description;
   newProp.custom = { origin: prop };
@@ -23,8 +23,13 @@ const getProp = prop => {
       newProp.required = prop.required;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value;
+        newProp.value = prop.defaultValue.value.substring(
+          1,
+          prop.defaultValue.value.length - 1
+        );
+      } else {
+        newProp.value = undefined;
       }
-      newProp.value = undefined;
       newProp.options = {};
       for (const i in prop.type.value) {
         const val = prop.type.value[i].value;
@@ -35,24 +40,30 @@ const getProp = prop => {
 
     case 'number':
       newProp.type = PropTypes.Number;
-      if (prop.defaultValue) newProp.defaultValue = prop.defaultValue.value;
+      newProp.placeholder = propName;
+      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      else newProp.value = 0;
       break;
 
     case 'string':
       newProp.type = PropTypes.String;
-      if (prop.defaultValue) newProp.defaultValue = prop.defaultValue.value;
+      newProp.placeholder = propName;
+      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      else newProp.value = '';
       break;
 
     case 'func':
       newProp.type = PropTypes.Function;
+      newProp.placeholder = propName;
 
       break;
 
     case 'node':
     case 'element':
       newProp.type = PropTypes.ReactNode;
-      if (prop.defaultValue) newProp.defaultValue = prop.defaultValue.value;
-      newProp.value = undefined;
+      newProp.placeholder = propName;
+      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      else newProp.value = undefined;
       break;
 
     default:
@@ -67,7 +78,7 @@ const propUtilityForPlayground = props => {
   const modifiedProps = {};
 
   for (const key in props) {
-    if (props[key].type) modifiedProps[key] = getProp(props[key]);
+    if (props[key].type) modifiedProps[key] = getProp(props[key], key);
   }
   return modifiedProps;
 };

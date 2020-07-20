@@ -24,8 +24,7 @@ import React, {
   EventHandler,
   CSSProperties,
 } from 'react';
-import { FocusOn } from 'react-focus-on';
-import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
+import FocusLock, { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
 import { CommonProps } from '../common';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -53,29 +52,19 @@ const OutsideEventDetector: FunctionComponent<DetectorProps> = ({
  */
 export type FocusTarget = HTMLElement | string | (() => HTMLElement);
 
-interface EuiFocusTrapInterface {
-  /**
-   * Clicking outside the trap area will disable the trap
-   */
+interface EuiFocusTrapProps {
   clickOutsideDisables?: boolean;
-  /**
-   * Reference to element that will get focus when the trap is initiated
-   */
   initialFocus?: FocusTarget;
   style?: CSSProperties;
-  disabled?: boolean;
 }
 
-export interface EuiFocusTrapProps
-  extends CommonProps,
-    Omit<ReactFocusOnProps, 'enabled'>, // Inverted `disabled` prop used instead
-    EuiFocusTrapInterface {}
+type Props = CommonProps & ReactFocusLockProps & EuiFocusTrapProps;
 
 interface State {
   hasBeenDisabledByClick: boolean;
 }
 
-export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
+export class EuiFocusTrap extends Component<Props, State> {
   state: State = {
     hasBeenDisabledByClick: false,
   };
@@ -87,7 +76,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     this.setInitialFocus(this.props.initialFocus);
   }
 
-  componentDidUpdate(prevProps: EuiFocusTrapProps) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.disabled === true && this.props.disabled === false) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ hasBeenDisabledByClick: false });
@@ -103,7 +92,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       node = (initialFocus as () => HTMLElement)();
     }
     if (!node) return;
-    // `data-autofocus` is part of the 'react-focus-on' API
+    // `data-autofocus` is part of the 'react-focus-lock' API
     node.setAttribute('data-autofocus', 'true');
   };
 
@@ -129,13 +118,9 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       this.preventFocusExit &&
       this.lastInterceptedEvent &&
       event.target === this.lastInterceptedEvent.target
-    ) {
+    )
       return;
-    }
     this.toggleDisabled(true);
-    if (this.props.onClickOutside) {
-      this.props.onClickOutside(event as MouseEvent);
-    }
   };
 
   // Event handler to capture events from within the focus trap subtree and
@@ -152,17 +137,13 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       clickOutsideDisables = false,
       disabled = false,
       returnFocus = true,
-      noIsolation = true,
-      scrollLock = false,
-      onClickOutside,
+      style,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
-    const focusOnProps = {
+    const lockProps = {
+      disabled: isDisabled,
       returnFocus,
-      noIsolation,
-      scrollLock,
-      enabled: !isDisabled,
       ...rest,
     };
     return clickOutsideDisables ? (
@@ -170,11 +151,15 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
         isDisabled={isDisabled}
         onOutsideClick={this.handleOutsideClick}>
         <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusOn {...focusOnProps}>{children}</FocusOn>
+          <FocusLock lockProps={{ style }} {...lockProps}>
+            {children}
+          </FocusLock>
         </OutsideEventDetector>
       </EuiOutsideClickDetector>
     ) : (
-      <FocusOn {...focusOnProps}>{children}</FocusOn>
+      <FocusLock lockProps={{ style }} {...lockProps}>
+        {children}
+      </FocusLock>
     );
   }
 }

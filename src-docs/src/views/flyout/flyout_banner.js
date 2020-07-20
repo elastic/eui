@@ -44,10 +44,7 @@ export default () => {
 
   if (isFlyoutVisible) {
     flyout = (
-      <EuiFlyout
-        ownFocus
-        onClose={closeFlyout}
-        aria-labelledby="flyoutWithBannerTitle">
+      <EuiFlyout onClose={closeFlyout} aria-labelledby="flyoutWithBannerTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutWithBannerTitle">A flyout with a banner</h2>
