@@ -14,11 +14,6 @@ import {
   EuiBadgeGroup,
   EuiCallOut,
 } from '../../../../src/components';
-import {
-  badgeConfig,
-  betaBadgeConfig,
-  notificationBadgeConfig,
-} from './playground';
 
 import Badge from './badge';
 
@@ -322,5 +317,4 @@ export const BadgeExample = {
       demo: <NotificationBadge />,
     },
   ],
-  playground: [badgeConfig, betaBadgeConfig, notificationBadgeConfig],
 };
