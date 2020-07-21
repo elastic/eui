@@ -38,11 +38,15 @@ const MATCHERS = [
   '*=', // Contains substring
 ] as const;
 
-export const findTestSubject = <T = {}>(
-  mountedComponent: ShallowWrapper<T> | ReactWrapper<T>,
+type FindTestSubject<T extends ShallowWrapper | ReactWrapper> = (
+  mountedComponent: T,
   testSubjectSelector: string,
-  matcher: typeof MATCHERS[number] = '~='
-) => {
+  matcher?: typeof MATCHERS[number]
+) => ReturnType<T['find']>;
+
+export const findTestSubject: FindTestSubject<
+  ShallowWrapper<any> | ReactWrapper<any>
+> = (mountedComponent, testSubjectSelector, matcher = '~=') => {
   if (!MATCHERS.includes(matcher)) {
     throw new Error(
       `Matcher ${matcher} not found in list of allowed matchers: ${MATCHERS.join(
