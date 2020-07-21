@@ -26,31 +26,60 @@ import React, {
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
-import { EuiAvatarProps } from '../../avatar/avatar';
-import { EuiIconProps } from '../../icon';
+import { EuiAvatarProps, EuiAvatar } from '../../avatar/avatar';
+import { EuiIconProps, EuiIcon } from '../../icon';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiSelectableOption } from '../selectable_option';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
+import { EuiHighlight } from '../../highlight';
 import { useEuiI18n, EuiI18n } from '../../i18n';
-import { EuiText } from '../../text';
+import { euiPaletteColorBlind } from '../../../services';
+import { EuiText, EuiTextColor } from '../../text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiLink } from '../../link';
 import { EuiBadge } from '../../badge';
 import { EuiSelectableListItemProps } from '../selectable_list/selectable_list_item';
 
 interface MetaData {
-  text: ReactNode;
+  /**
+   * Required to display the metadata
+   */
+  text: string;
+  /**
+   * Required to style the metadata appropriately
+   */
   type: 'app' | 'deployment' | 'article' | 'case' | 'platform' | 'other';
+  /**
+   * Override the color provided by the `type`
+   */
   color?: string;
-  fontWeight?: 'normal' | 'medium' | 'bold';
+  /**
+   * Override the font-weight provided by the `type`
+   */
+  fontWeight?: CSSProperties['fontWeight'];
 }
 
 export type EuiSelectableTemplateSitewideSchema = EuiSelectableOption & {
   label: ReactNode;
+  /**
+   * Displayed on the left.
+   * Object of `EuiIconProps`
+   */
   icon?: EuiIconProps;
+  /**
+   * Displayed on the right
+   * Object of `EuiAvatarProps`
+   */
   avatar?: EuiAvatarProps;
+  /**
+   * An array of inline metadata displayed beneath the label and separated by bullets.
+   * Each item requires `text` and a `type`
+   */
   meta?: MetaData[];
+  /**
+   * Allow for any other keys the consumer might need
+   */
   [key: string]: any;
 };
 
@@ -129,10 +158,47 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     listProps && listProps.className
   );
 
+  /**
+   * List option renderer
+   */
+  const formattedOptions: EuiSelectableOption = options.map(item => {
+    return {
+      key: item.label,
+      label: `${item.label}`,
+      prepend: item.icon ? (
+        <EuiIcon color="subdued" {...item.icon} size="m" />
+      ) : (
+        undefined
+      ),
+      // className: 'kibanaChromeSearch__item',
+      append: item.avatar ? (
+        <EuiAvatar type="space" size="s" {...item.avatar} />
+      ) : (
+        undefined
+      ),
+    };
+  });
+
+  const renderOption = (option: EuiSelectableOption, searchValue: string) => {
+    const moreInfo = options.find(
+      optionItem => option.key === optionItem.label
+    );
+    if (!moreInfo) return 'Missing info';
+
+    return (
+      <>
+        <strong>
+          <EuiHighlight search={searchValue}>{moreInfo.label}</EuiHighlight>
+        </strong>
+        {renderOptionMeta(moreInfo.meta, searchValue)}
+      </>
+    );
+  };
+
   return (
     <EuiSelectable
-      options={options}
-      // renderOption={renderOption}
+      options={formattedOptions}
+      renderOption={renderOption}
       height={300}
       singleSelection={true}
       searchProps={{
@@ -145,17 +211,17 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       listProps={{
         rowHeight: 68,
         showIcons: false,
-        ...listProps,
-        className: listClasses,
         onFocusBadgeContent: (
           <EuiI18n
             token="euiSelectableTemplateSitewide.onFocusBadgeContentGoTo"
-            default="{enterSymbol} Go to"
+            default="Go to {enterSymbol}"
             values={{
               enterSymbol: <small>↩</small>,
             }}
           />
         ),
+        ...listProps,
+        className: listClasses,
       }}
       {...rest}
       className={classes}
@@ -180,3 +246,48 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     </EuiSelectable>
   );
 };
+
+function renderOptionMeta(
+  meta?: MetaData[],
+  searchValue: string = ''
+): ReactNode {
+  if (!meta) return;
+  const metas = meta.map((meta: MetaData) => {
+    let metaStyles: CSSProperties;
+    switch (meta.type) {
+      case 'app':
+        metaStyles = {
+          color: meta.color || euiPaletteColorBlind()[0],
+          fontWeight: meta.fontWeight || 'bold',
+        };
+        break;
+      case 'deployment':
+        metaStyles = {
+          color: meta.color || undefined,
+          fontWeight: meta.fontWeight || 'bold',
+        };
+        break;
+      default:
+        metaStyles = {
+          color: meta.color || undefined,
+          fontWeight: meta.fontWeight || undefined,
+        };
+        break;
+    }
+    return (
+      <span
+        className="euiSelectableTemplateSitewide__optionMeta"
+        key={meta.text}
+        style={metaStyles}>
+        <EuiHighlight search={searchValue}>{meta.text}</EuiHighlight>
+      </span>
+    );
+  });
+
+  return (
+    <>
+      <br />
+      <small>{metas}</small>
+    </>
+  );
+}

@@ -1,4 +1,5 @@
 import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';
+import { EuiSelectableTemplateSitewideSchema } from 'src/components/selectable/selectable_templates/selectable_template_sitewide';
 
 export const Options: EuiSelectableOption[] = [
   {
@@ -38,47 +39,80 @@ export const Options: EuiSelectableOption[] = [
   },
 ];
 
-export const recents = [
+export const recents: EuiSelectableTemplateSitewideSchema[] = [
   {
-    title: 'Welcome dashboards',
+    label: 'Welcome dashboards',
+    icon: {
+      type: 'dashboardApp',
+    },
+    avatar: {
+      name: 'Default Space',
+    },
+    meta: [
+      {
+        text: 'Saved dashboard',
+        type: 'app',
+      },
+    ],
     url: 'welcome-dashboards',
-    type: {
-      title: 'Saved dashboard',
-      iconType: 'dashboardApp',
-    },
-    space: 'Default Space',
   },
   {
-    title:
+    label:
       '[Flights] Flight Count and Average Ticket Price over the course of several years maybe even decades',
-    type: {
-      title: 'Saved visualization',
-      iconType: 'visualizeApp',
+    icon: {
+      type: 'visualizeApp',
     },
-    space: 'Default Space',
+    avatar: {
+      name: 'Default Space',
+    },
+    meta: [
+      {
+        text: 'Saved visualization',
+        type: 'app',
+      },
+    ],
   },
   {
-    title: '[Flights] Global Flight Dashboard',
-    type: {
-      title: 'Saved dashboard',
-      iconType: 'dashboardApp',
+    label: '[Flights] Global Flight Dashboard',
+    icon: {
+      type: 'dashboardApp',
     },
-    space: 'Hello World',
+    avatar: {
+      name: 'Hello World',
+    },
+    meta: [
+      {
+        text: 'Saved dashboard',
+        type: 'app',
+      },
+    ],
   },
   {
-    title: '[Logs] Host, Visits and Bytes Table',
-    type: {
-      title: 'TSVB visualization',
-      iconType: 'visVisualBuilder',
+    label: '[Logs] Host, Visits and Bytes Table',
+    icon: {
+      type: 'visVisualBuilder',
     },
+    meta: [
+      {
+        text: 'TSVB visualization',
+        type: 'app',
+      },
+    ],
   },
   {
-    title: '[Flights] Flight Log',
-    type: {
-      title: 'Saved discover',
-      iconType: 'discoverApp',
+    label: '[Flights] Flight Log',
+    icon: {
+      type: 'discoverApp',
     },
-    space: 'Hello World',
+    avatar: {
+      name: 'Hello World',
+    },
+    meta: [
+      {
+        text: 'Saved search',
+        type: 'app',
+      },
+    ],
   },
 ];
 

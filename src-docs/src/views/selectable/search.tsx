@@ -18,10 +18,11 @@ export type EuiSelectableOptionsProps = Required<EuiSelectableProps>['options'];
 export type EuiSelectableOptionProps = EuiSelectableOptionsProps[number];
 
 import { searchData, recents } from './data';
+import { EuiAvatarProps } from 'src/components/avatar/avatar';
 
-function createAppendNodes(space?: string) {
-  const spaceAvatar = space ? (
-    <EuiAvatar type="space" name={space} size="s" />
+function createAppendNodes(avatar?: EuiAvatarProps) {
+  const spaceAvatar = avatar ? (
+    <EuiAvatar type="space" size="s" {...avatar} />
   ) : (
     undefined
   );
@@ -32,25 +33,26 @@ function createAppendNodes(space?: string) {
 const allSearches = searchData.concat(recents);
 const data: EuiSelectableOptionsProps = allSearches.map(item => {
   return {
-    key: item.title,
-    label: `${item.title} ${item.type.title}`,
-    prepend: item.type.iconType ? (
-      <EuiIcon type={item.type.iconType} size="m" color="subdued" />
-    ) : (
-      undefined
-    ),
+    key: item.label,
+    label: `${item.label}`,
+    prepend:
+      item.icon && item.icon.type ? (
+        <EuiIcon type={item.icon.type} size="m" color="subdued" />
+      ) : (
+        undefined
+      ),
     className: 'kibanaChromeSearch__item',
-    append: createAppendNodes(item.space),
+    append: createAppendNodes(item.avatar),
   };
 });
 
 const recentData: EuiSelectableOptionsProps = recents.map(item => {
   return {
-    key: item.title,
-    label: `${item.title} ${item.type.title}`,
+    key: item.label,
+    label: `${item.label}`,
     prepend: <EuiIcon type="clock" size="m" color="subdued" />,
     className: 'kibanaChromeSearch__item',
-    append: createAppendNodes(item.space),
+    append: createAppendNodes(item.avatar),
   };
 });
 
@@ -83,7 +85,7 @@ export default () => {
   const onChange = (updatedOptions: EuiSelectableOptionProps[]) => {
     const clickedItem = _.find(updatedOptions, { checked: 'on' });
     if (!clickedItem) return;
-    const searchItem = _.find(allSearches, { title: clickedItem.key });
+    const searchItem = _.find(allSearches, { label: clickedItem.key });
     if (searchItem && searchItem.url) console.log(searchItem.url);
   };
 
@@ -91,17 +93,17 @@ export default () => {
     option: EuiSelectableOptionProps,
     searchValue: string
   ) => {
-    const moreInfo = _.find(allSearches, { title: option.key });
+    const moreInfo = _.find(allSearches, { label: option.key });
     if (!moreInfo) return 'Missing info';
 
     return (
       <>
         <strong>
-          <EuiHighlight search={searchValue}>{moreInfo.title}</EuiHighlight>
+          <EuiHighlight search={searchValue}>{moreInfo.label}</EuiHighlight>
         </strong>
         <br />
         <small>
-          {moreInfo.type.title && (
+          {/* {moreInfo.type.title && (
             <EuiTextColor color="secondary">
               <strong>
                 <EuiHighlight search={searchValue}>
@@ -115,7 +117,7 @@ export default () => {
               &ensp;•&ensp;
               <EuiHighlight search={searchValue}>{moreInfo.meta}</EuiHighlight>
             </EuiTextColor>
-          )}
+          )} */}
         </small>
       </>
     );

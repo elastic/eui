@@ -1,3 +1,8 @@
 .euiSelectableTemplateSitewide {
 
 }
+
+.euiSelectableTemplateSitewide__optionMeta::after {
+  content: '•';
+  margin: 0 $euiSizeXS;
+}
