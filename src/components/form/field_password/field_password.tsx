@@ -34,7 +34,7 @@ import {
 
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
-import { EuiI18n } from '../../i18n';
+import { useEuiI18n } from '../../i18n';
 
 export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -59,7 +59,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
     /**
      * Change the `type` of input for manually handling obfuscation.
      * The `dual` option adds the ability to toggle the obfuscation of the input by
-     * adding the an icon button as the first `append` element
+     * adding an icon button as the first `append` element
      */
     type?: 'password' | 'text' | 'dual';
 
@@ -89,6 +89,15 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   // Set the initial input type to `password` if they want dual
   const [inputType, setInputType] = useState(
     type === 'dual' ? 'password' : type
+  );
+
+  // Setup toggle aria-label
+  const [showPasswordLabel, maskPasswordLabel] = useEuiI18n(
+    ['euiFieldPassword.showPassword', 'euiFieldPassword.maskPassword'],
+    [
+      'Show password as plain text. Note: this will visually expose your password on the screen.',
+      'Mask password',
+    ]
   );
 
   // Setup the inputRef to auto-focus when toggling visibility
@@ -123,26 +132,14 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
     const isVisible = inputType === 'text';
 
     const visibilityToggle = (
-      <EuiI18n
-        tokens={[
-          'euiFieldPassword.showPassword',
-          'euiFieldPassword.maskPassword',
-        ]}
-        defaults={[
-          'Show password as plain text. Note: this will visually expose your password on the screen.',
-          'Mask password',
-        ]}>
-        {([showPassword, maskPassword]: string[]) => (
-          <EuiButtonIcon
-            {...dualToggleProps}
-            iconType={isVisible ? 'eyeClosed' : 'eye'}
-            onClick={() => handleToggle(isVisible)}
-            aria-label={isVisible ? maskPassword : showPassword}
-            title={isVisible ? maskPassword : showPassword}
-            disabled={rest.disabled}
-          />
-        )}
-      </EuiI18n>
+      <EuiButtonIcon
+        {...dualToggleProps}
+        iconType={isVisible ? 'eyeClosed' : 'eye'}
+        onClick={() => handleToggle(isVisible)}
+        aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
+        title={isVisible ? maskPasswordLabel : showPasswordLabel}
+        disabled={rest.disabled}
+      />
     );
     appends.push(visibilityToggle);
   }
