@@ -25,7 +25,7 @@ export default () => {
 
   propsToUse.title = {
     ...propsToUse.title,
-    value: 'Title',
+    value: 'Check it out',
     type: PropTypes.String,
   };
 
