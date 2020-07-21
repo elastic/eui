@@ -20,6 +20,9 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
+import { css } from '@emotion/core';
+import usePropagate from '../../services/propagate/use_propagate';
+
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
     children: string;
@@ -30,10 +33,20 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   className,
   ...rest
 }) => {
+  const [colors, sizes] = usePropagate(['colors', 'sizes']);
+
+  const mark = css`
+    margin: ${sizes.euiSizeXS}px;
+    padding: ${sizes.euiSizeXS}px;
+    // For testing only
+    background-color: ${colors.euiColorHighlight};
+    color: inherit;
+  `;
+
   const classes = classNames('euiMark', className);
 
   return (
-    <mark className={classes} {...rest}>
+    <mark css={mark} className={classes} {...rest}>
       {children}
     </mark>
   );

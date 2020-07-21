@@ -26,7 +26,14 @@ const GuideThemeSelectorComponent = ({ context }) => {
         />
       </EuiFormRow>
       <EuiFormRow label="euiColorLightShade">
-        <EuiButton onClick={context.randomizeLightShade}>Randomize</EuiButton>
+        <EuiButton size="s" onClick={context.randomizeLightShade}>
+          Randomize
+        </EuiButton>
+      </EuiFormRow>
+      <EuiFormRow label="euiColorHighlight">
+        <EuiButton size="s" onClick={context.randomizeHighlight}>
+          Randomize
+        </EuiButton>
       </EuiFormRow>
     </>
   );

@@ -20,7 +20,6 @@
 import React, {
   HTMLAttributes,
   KeyboardEvent,
-  forwardRef,
   useEffect,
   useRef,
   useState,
@@ -47,16 +46,17 @@ interface HTMLDivElementOverrides {
   color?: ColorSpaces['hsv'];
   onChange: (color: ColorSpaces['hsv']) => void;
 }
-export type EuiSaturationProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof HTMLDivElementOverrides
-> &
-  CommonProps &
-  HTMLDivElementOverrides & {
-    hex?: string;
-  };
+export interface EuiSaturationProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, keyof HTMLDivElementOverrides>,
+    CommonProps,
+    HTMLDivElementOverrides {
+  hex?: string;
+}
 
-export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
+export const EuiSaturation = React.forwardRef<
+  HTMLDivElement,
+  EuiSaturationProps
+>(
   (
     {
       className,

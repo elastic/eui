@@ -15,12 +15,14 @@ const defaultState = {
     applyTheme(themeValue);
   },
   randomizeLightShade: () => {},
+  randomizeHighlight: () => {},
 };
 
 interface State {
   theme: EUI_THEME['value'];
   fullTheme: any;
   randomizeLightShade: () => void;
+  randomizeHighlight: () => void;
 }
 
 export const ThemeContext = React.createContext(defaultState);
@@ -41,6 +43,7 @@ export class ThemeProvider extends React.Component<object, State> {
       theme,
       fullTheme,
       randomizeLightShade: () => {},
+      randomizeHighlight: () => {},
     };
   }
 
@@ -56,13 +59,19 @@ export class ThemeProvider extends React.Component<object, State> {
     });
   };
 
-  randomizeLightShade = () => {
+  randomizeColor = (variable: string) => {
     this.state.fullTheme.set('colors', {
       ...this.state.fullTheme.get('colors'),
-      euiColorLightShade: `#${Math.floor(Math.random() * 16777215).toString(
-        16
-      )}`,
+      [variable]: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
     });
+  };
+
+  randomizeLightShade = () => {
+    this.randomizeColor('euiColorLightShade');
+  };
+
+  randomizeHighlight = () => {
+    this.randomizeColor('euiColorHighlight');
   };
 
   render() {
@@ -76,6 +85,7 @@ export class ThemeProvider extends React.Component<object, State> {
             fullTheme,
             changeTheme: this.changeTheme,
             randomizeLightShade: this.randomizeLightShade,
+            randomizeHighlight: this.randomizeHighlight,
           }}>
           {children}
         </ThemeContext.Provider>

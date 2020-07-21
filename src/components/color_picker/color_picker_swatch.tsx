@@ -17,19 +17,20 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
+import React, { ButtonHTMLAttributes, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
 import { getChromaColor } from './utils';
 
-export type EuiColorPickerSwatchProps = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> & {
-    color?: string;
-  };
+export interface EuiColorPickerSwatchProps
+  extends CommonProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
+  color?: string;
+}
 
-export const EuiColorPickerSwatch = forwardRef<
+export const EuiColorPickerSwatch = React.forwardRef<
   HTMLButtonElement,
   EuiColorPickerSwatchProps
 >(({ className, color, style, ...rest }, ref) => {
