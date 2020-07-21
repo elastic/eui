@@ -30,12 +30,13 @@ export default () => {
   };
 
   propsToUse.children = {
+    ...propsToUse.children,
     value: `<p>
    Any content inside of <strong>EuiCallOut</strong> will appear here.
   </p>`,
     type: PropTypes.ReactNode,
     description: 'Visible label.',
-    hidden: true,
+    hidden: false,
   };
 
   return {
