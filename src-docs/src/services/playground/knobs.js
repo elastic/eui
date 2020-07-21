@@ -195,25 +195,23 @@ const Knob = ({
         }));
 
         return (
-          <>
-            <EuiFormRow
+          <EuiFormRow
+            isInvalid={error && error.length > 0}
+            error={error}
+            fullWidth>
+            <EuiSelect
+              id={name}
+              options={flattenedOptions}
+              value={valueKey || defaultValue}
+              onChange={e => {
+                set(e.target.value);
+              }}
+              aria-label={`Select ${name}`}
               isInvalid={error && error.length > 0}
-              error={error}
-              fullWidth>
-              <EuiSelect
-                fullWidth
-                id={name}
-                options={flattenedOptions}
-                value={valueKey || defaultValue}
-                onChange={e => {
-                  set(e.target.value);
-                }}
-                isInvalid={error && error.length > 0}
-                aria-label={`Select ${name}`}
-                compressed
-              />
-            </EuiFormRow>
-          </>
+              compressed
+              fullWidth
+            />
+          </EuiFormRow>
         );
       }
 
