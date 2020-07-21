@@ -182,7 +182,7 @@ Array [
     style="height:100%"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerUnderline euiDataGrid--rowHoverHighlight testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
@@ -723,7 +723,7 @@ Array [
     style="height:100%"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerUnderline euiDataGrid--rowHoverHighlight testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
@@ -1588,7 +1588,7 @@ Array [
     style="height:100%"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerUnderline euiDataGrid--rowHoverHighlight testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
@@ -2128,7 +2128,7 @@ Array [
     style="height:100%"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerUnderline euiDataGrid--rowHoverHighlight testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
