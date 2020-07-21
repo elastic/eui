@@ -294,6 +294,19 @@ export const EuiDataGridHeaderCell: FunctionComponent<
 
     sorting.onSort(newSorting as EuiDataGridSorting['columns']);
   };
+  const changePosition = (moveFromIdx: number, moveToIdx: number) => {
+    const col1 = columns[moveFromIdx] as EuiDataGridColumn;
+    const col2 = columns[moveToIdx] as EuiDataGridColumn;
+
+    const newColumns = Object.values({
+      ...columns,
+      [moveFromIdx]: col2,
+      [moveToIdx]: col1,
+    }) as EuiDataGridColumn[];
+    setVisibleColumns(newColumns.map(col => col.id));
+  };
+  const colIdx = columns.findIndex(col => col.id === column.id);
+
   const usedColumnOptions =
     columnOptions && columnOptions.length
       ? columnOptions
@@ -312,6 +325,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
           {
             label: 'Sort schema asc',
             onClick: () => {
+              setIsPopoverOpen(false);
               sortBy('asc');
             },
             isDisabled: !sorting || column.isSortable === false,
@@ -326,6 +340,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
           {
             label: 'Sort schema desc',
             onClick: () => {
+              setIsPopoverOpen(false);
               sortBy('desc');
             },
             isDisabled: !sorting || column.isSortable === false,
@@ -337,23 +352,28 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             size: 'xs',
             color: 'text',
           },
-          /**
           {
             label: 'Move left',
             iconType: 'sortLeft',
             size: 'xs',
             color: 'text',
-            onClick: () =>
-              setVisibleColumns(
-                columns.filter(col => col.id !== column.id).map(col => col.id)
-              ),
+            onClick: () => {
+              setIsPopoverOpen(false);
+              changePosition(colIdx, colIdx - 1);
+            },
+            isDisabled: colIdx === 0,
           },
           {
             label: 'Move right',
             iconType: 'sortRight',
             size: 'xs',
             color: 'text',
-          },**/
+            onClick: () => {
+              setIsPopoverOpen(false);
+              changePosition(colIdx, colIdx + 1);
+            },
+            isDisabled: colIdx === columns.length - 1,
+          },
         ] as EuiListGroupItemProps[]);
 
   return (
