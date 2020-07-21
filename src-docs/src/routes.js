@@ -1,4 +1,4 @@
-import React, { Fragment, createElement } from 'react';
+import React, { createElement, Fragment } from 'react';
 
 import { GuidePage, GuideSection } from './components';
 
