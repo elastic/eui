@@ -1,9 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
+- Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
+- Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
+
 **Bug fixes**
 
 - Fixed `EuiComboBox` always showing a scrollbar ([#3744](https://github.com/elastic/eui/pull/3744))
 - Replaced `react-focus-lock` with `react-focus-on` ([#3631](https://github.com/elastic/eui/pull/3631))
+- Fixed errors in `EuiSuperDatePicker` related to invalid and `null` date formatting ([#3750](https://github.com/elastic/eui/pull/3750))
+- Fixed type definitions for `findTestSubject` and `takeMountedSnapshot` ([#3763](https://github.com/elastic/eui/pull/3763))
 
 ## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
 

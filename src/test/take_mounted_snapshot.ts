@@ -31,7 +31,7 @@ interface TakeMountedSnapshotOptions {
  * leaving only HTML elements in the snapshot.
  */
 export const takeMountedSnapshot = (
-  mountedComponent: ReactWrapper<{}, {}, Component>,
+  mountedComponent: ReactWrapper<any, {}, Component>,
   options: TakeMountedSnapshotOptions = {}
 ) => {
   const opts: TakeMountedSnapshotOptions = {
