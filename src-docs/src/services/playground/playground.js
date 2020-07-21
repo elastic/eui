@@ -2,17 +2,25 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import format from 'html-format';
 
-import { useView, Compiler, Error, Placeholder } from 'react-view';
+import { useView, Compiler, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import Knobs from './knobs';
 
 export default ({ config, setGhostBackground }) => {
   const getSnippet = code => {
-    const regex = /return \(([\S\s]*?)(;)$/gm;
-    let newCode = code.match(regex)[0];
+    let regex = /return \(([\S\s]*?)(;)$/gm;
+    let newCode = code.match(regex);
 
-    if (newCode.startsWith('return ('))
-      newCode = newCode.replace('return (', '');
+    if (newCode) {
+      newCode = newCode[0];
+      if (newCode.startsWith('return ('))
+        newCode = newCode.replace('return (', '');
+    } else {
+      regex = /return ([\S\s]*?)(;)$/gm;
+      newCode = code.match(regex)[0];
+      if (newCode.startsWith('return '))
+        newCode = newCode.replace('return ', '');
+    }
 
     if (newCode.endsWith(');')) {
       newCode = newCode.replace(/(\);)$/m, '');
@@ -53,15 +61,9 @@ export default ({ config, setGhostBackground }) => {
             placeholder={Placeholder}
           />
         </div>
-        <Error msg={params.errorProps.msg} isPopup />
         <EuiSpacer />
 
-        <EuiCodeBlock
-          language="html"
-          fontSize="m"
-          paddingSize="m"
-          overflowHeight={300}
-          isCopyable>
+        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
           {getSnippet(params.editorProps.code)}
         </EuiCodeBlock>
         <EuiSpacer />

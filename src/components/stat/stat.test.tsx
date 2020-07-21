@@ -89,6 +89,31 @@ describe('EuiStat', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('render with custom description element', () => {
+      const component = render(
+        <EuiStat
+          title="title"
+          description={<div>description</div>}
+          descriptionElement="div"
+          titleColor="#EB1919"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('render with custom title element', () => {
+      const component = render(
+        <EuiStat
+          title={<div>title</div>}
+          titleElement="div"
+          description="description"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     TITLE_SIZES.forEach(size => {
       test(`${size} is rendered`, () => {
         const component = render(
