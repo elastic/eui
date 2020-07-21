@@ -35,7 +35,7 @@ export default () => {
    Any content inside of <strong>EuiCallOut</strong> will appear here.
   </p>`,
     type: PropTypes.ReactNode,
-    description: 'Visible label.',
+    description: 'Content to display inside the callout below the title',
     hidden: false,
   };
 
