@@ -3,11 +3,9 @@ import { fake } from 'faker';
 
 import {
   EuiDataGrid,
-  EuiLink,
+  EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonIcon,
-  EuiSwitch,
 } from '../../../../src/components/';
 
 const raw_data = [];
@@ -15,17 +13,7 @@ const raw_data = [];
 for (let i = 1; i < 20; i++) {
   raw_data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
-    location: (
-      <>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </>
-    ),
     date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
     amount: fake('${{commerce.price}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
@@ -37,31 +25,6 @@ const columns = [
     id: 'name',
     displayAsText: 'Name',
     defaultSortDirection: 'asc',
-  },
-  {
-    id: 'email',
-    display: (
-      // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs" responsive={false}>
-        <EuiFlexItem className="eui-textTruncate">
-          <div className="eui-textTruncate">email</div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            aria-label="Column header email"
-            iconType="gear"
-            color="text"
-            onClick={() => alert('Email Icon Clicked!')}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    ),
-  },
-  {
-    id: 'location',
-  },
-  {
-    id: 'account',
   },
   {
     id: 'date',
@@ -81,8 +44,6 @@ const columns = [
   {
     id: 'version',
     defaultSortDirection: 'desc',
-    initialWidth: 65,
-    isResizable: false,
     footerCellValue: `Latest: ${
       raw_data.map(({ version }) => version).sort()[raw_data.length - 1]
     }`,
@@ -100,15 +61,6 @@ export default () => {
   const onChangePage = useCallback(
     pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
     [setPagination]
-  );
-
-  // ** Sorting config
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = useCallback(
-    sortingColumns => {
-      setSortingColumns(sortingColumns);
-    },
-    [setSortingColumns]
   );
 
   // Column visibility
@@ -140,43 +92,51 @@ export default () => {
     };
   }, []);
 
-  const renderFooterCellValue = useMemo(() => {
-    return ({ columnId }) => {
-      return columns.find(col => col.id === columnId).footerCellValue || null;
-    };
-  }, []);
+  const renderFooterCellValue = useCallback(
+    ({ columnId }) =>
+      columns.find(col => col.id === columnId).footerCellValue || null,
+    []
+  );
 
   // Footer row
   const [showFooterRow, setShowFooterRow] = useState(false);
 
   return (
-    <EuiDataGrid
-      aria-label="Data grid demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      rowCount={raw_data.length}
-      renderCellValue={renderCellValue}
-      renderFooterCellValue={showFooterRow ? renderFooterCellValue : undefined}
-      inMemory={{ level: 'sorting' }}
-      sorting={{ columns: sortingColumns, onSort }}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [10, 15, 20],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-      onColumnResize={eventData => {
-        console.log(eventData);
-      }}
-      toolbarVisibility={{
-        additionalControls: (
-          <EuiSwitch
-            label="Show footer row"
-            checked={showFooterRow}
-            onChange={e => setShowFooterRow(e.target.checked)}
-          />
-        ),
-      }}
-    />
+    <EuiFlexGroup direction="column">
+      <EuiFlexItem>
+        <EuiSwitch
+          label="Show footer row"
+          checked={showFooterRow}
+          onChange={e => setShowFooterRow(e.target.checked)}
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiDataGrid
+          aria-label="Data grid footer row demo"
+          columns={columns}
+          columnVisibility={{ visibleColumns, setVisibleColumns }}
+          rowCount={raw_data.length}
+          renderCellValue={renderCellValue}
+          renderFooterCellValue={
+            showFooterRow ? renderFooterCellValue : undefined
+          }
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [10, 15, 20],
+            onChangeItemsPerPage: onChangeItemsPerPage,
+            onChangePage: onChangePage,
+          }}
+          onColumnResize={eventData => {
+            console.log(eventData);
+          }}
+          gridStyle={{
+            border: 'horizontal',
+            rowHover: 'highlight',
+            header: 'underline',
+            footer: 'underline',
+          }}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 };

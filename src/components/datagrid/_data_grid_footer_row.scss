@@ -5,7 +5,8 @@
 @include euiDataGridStyles(footerUnderline) {
   @include euiDataGridFooterCell {
     border-top: $euiBorderThick;
-    border-top-color: $euiTextColor!important;
+    // sass-lint:disable-block no-important
+    border-top-color: $euiTextColor !important;
   }
 }
 
