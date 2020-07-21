@@ -30,7 +30,7 @@ import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
 
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
 import { EuiFocusTrap } from '../focus_trap';
 
@@ -164,62 +164,57 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
         <figure
           className="euiImage euiImage-isFullScreen"
           aria-label={optionalCaptionText}>
-          <EuiI18n
-            token="euiImage.closeImage"
-            values={{ alt }}
-            default="Close full screen {alt} image">
-            {(closeImage: string) => (
-              <button
-                type="button"
-                aria-label={closeImage}
-                className="euiImage__button"
-                onClick={closeFullScreen}
-                onKeyDown={onKeyDown}>
-                <img
-                  src={url}
-                  alt={alt}
-                  className="euiImage-isFullScreen__img"
-                  {...rest}
-                />
-                <EuiIcon
-                  type="cross"
-                  color={fullScreenIconColorMap[fullScreenIconColor]}
-                  className="euiImage-isFullScreen__icon"
-                />
-              </button>
+          <button
+            type="button"
+            aria-label={useEuiI18n(
+              'euiImage.closeImage',
+              'Close full screen {alt} image',
+              { alt }
             )}
-          </EuiI18n>
+            className="euiImage__button"
+            onClick={closeFullScreen}
+            onKeyDown={onKeyDown}>
+            <img
+              src={url}
+              alt={alt}
+              className="euiImage-isFullScreen__img"
+              {...rest}
+            />
+            <EuiIcon
+              type="cross"
+              color={fullScreenIconColorMap[fullScreenIconColor]}
+              className="euiImage-isFullScreen__icon"
+            />
+          </button>
           {optionalCaption}
         </figure>
       </EuiFocusTrap>
     </EuiOverlayMask>
   );
 
+  const fullscreenLabel = useEuiI18n(
+    'euiImage.openImage',
+    'Open full screen {alt} image',
+    { alt }
+  );
   if (allowFullScreen) {
     return (
       <figure className={classes} aria-label={optionalCaptionText}>
-        <EuiI18n
-          token="euiImage.openImage"
-          values={{ alt }}
-          default="Open full screen {alt} image">
-          {(openImage: string) => (
-            <button
-              type="button"
-              aria-label={openImage}
-              className="euiImage__button"
-              onClick={openFullScreen}>
-              <img
-                src={url}
-                alt={alt}
-                className="euiImage__img"
-                style={customStyle}
-                {...rest}
-              />
-              {allowFullScreenIcon}
-              {isFullScreenActive && fullScreenDisplay}
-            </button>
-          )}
-        </EuiI18n>
+        <button
+          type="button"
+          aria-label={fullscreenLabel}
+          className="euiImage__button"
+          onClick={openFullScreen}>
+          <img
+            src={url}
+            alt={alt}
+            className="euiImage__img"
+            style={customStyle}
+            {...rest}
+          />
+          {allowFullScreenIcon}
+          {isFullScreenActive && fullScreenDisplay}
+        </button>
         {optionalCaption}
       </figure>
     );

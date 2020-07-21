@@ -178,6 +178,7 @@ export default () => {
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
+        ownFocus
         onClose={closeFlyout}
         hideCloseButton
         aria-labelledby="flyoutComplicatedTitle">
