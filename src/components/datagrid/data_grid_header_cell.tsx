@@ -31,13 +31,12 @@ import classnames from 'classnames';
 import { EuiDataGridHeaderRowPropsSpecificProps } from './data_grid_header_row';
 import { keys } from '../../services';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
-import { EuiPopover } from '../popover/popover';
-import { EuiListGroup } from '../list_group/list_group';
-import { EuiIcon } from '../icon/icon';
+import { EuiPopover } from '../popover';
+import { EuiListGroup, EuiListGroupItemProps } from '../list_group';
+import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
-import { EuiDataGridColumn } from './data_grid_types';
-import { EuiListGroupItemProps } from '../list_group';
+import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
@@ -268,6 +267,33 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     setFocusedCell,
     index,
   ]);
+  const sortingIdx = sorting
+    ? sorting.columns.findIndex(col => col.id === column.id)
+    : -1;
+  const sortBy = (direction: 'asc' | 'desc' = 'asc') => {
+    if (!sorting) return;
+
+    const newSorting =
+      sortingIdx >= 0
+        ? //replace existing entry
+          Object.values({
+            ...sorting.columns,
+            [sortingIdx]: {
+              id: column.id,
+              direction: direction,
+            },
+          })
+        : //append entry
+          [
+            ...sorting.columns,
+            {
+              id: column.id,
+              direction: direction,
+            },
+          ];
+
+    sorting.onSort(newSorting as EuiDataGridSorting['columns']);
+  };
   const usedColumnOptions =
     columnOptions && columnOptions.length
       ? columnOptions
@@ -282,20 +308,36 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             size: 'xs',
             color: 'text',
           },
-          /**
+
           {
             label: 'Sort schema asc',
-            isActive: true,
+            onClick: () => {
+              sortBy('asc');
+            },
+            isDisabled: !sorting || column.isSortable === false,
+            isActive:
+              sorting &&
+              sortingIdx >= 0 &&
+              sorting.columns[sortingIdx].direction === 'asc',
             iconType: 'sortUp',
             size: 'xs',
             color: 'text',
           },
           {
             label: 'Sort schema desc',
+            onClick: () => {
+              sortBy('desc');
+            },
+            isDisabled: !sorting || column.isSortable === false,
+            isActive:
+              sorting &&
+              sortingIdx >= 0 &&
+              sorting.columns[sortingIdx].direction === 'desc',
             iconType: 'sortDown',
             size: 'xs',
             color: 'text',
           },
+          /**
           {
             label: 'Move left',
             iconType: 'sortLeft',
