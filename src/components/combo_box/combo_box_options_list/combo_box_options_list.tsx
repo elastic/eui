@@ -30,7 +30,6 @@ import {
   ListChildComponentProps,
 } from 'react-window';
 
-import { EuiCode } from '../../../components/code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
@@ -52,6 +51,7 @@ import {
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';
+import { EuiBadge } from '../../badge/';
 
 const positionToClassNameMap: {
   [position in EuiComboBoxOptionsListPosition]: string
@@ -102,6 +102,15 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     delimiter?: string;
     zIndex?: number;
   };
+
+const hitEnterBadge = (
+  <EuiBadge className="euiComboBoxOption__enterBadge" color="hollow">
+    <EuiI18n
+      token="euiComboBoxOptionsList.hitEnter"
+      default="Hit ENTER &crarr;"
+    />
+  </EuiBadge>
+);
 
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
@@ -228,6 +237,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
       checked = 'on';
     }
 
+    const optionIsFocused = activeOptionIndex === index;
+
     return (
       <EuiFilterSelectItem
         style={style}
@@ -238,21 +249,30 @@ export class EuiComboBoxOptionsList<T> extends Component<
           }
         }}
         ref={optionRef.bind(this, index)}
-        isFocused={activeOptionIndex === index}
+        isFocused={optionIsFocused}
         checked={checked}
         showIcons={singleSelection ? true : false}
         id={rootId(`_option-${index}`)}
         title={label}
         {...rest}>
-        {renderOption ? (
-          renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)
-        ) : (
-          <EuiHighlight
-            search={searchValue}
-            className={OPTION_CONTENT_CLASSNAME}>
-            {label}
-          </EuiHighlight>
-        )}
+        <div className="euiComboBoxOption__contentWrapper">
+          {renderOption ? (
+            <div className={OPTION_CONTENT_CLASSNAME}>
+              {renderOption(
+                option,
+                searchValue,
+                'euiComboBoxOption__renderOption'
+              )}
+            </div>
+          ) : (
+            <EuiHighlight
+              search={searchValue}
+              className={OPTION_CONTENT_CLASSNAME}>
+              {label}
+            </EuiHighlight>
+          )}
+          {optionIsFocused ? hitEnterBadge : null}
+        </div>
       </EuiFilterSelectItem>
     );
   };
@@ -327,28 +347,33 @@ export class EuiComboBoxOptionsList<T> extends Component<
           );
         } else {
           emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.createCustomOption"
-                default="Hit {key} to add {searchValue} as a custom option"
-                values={{
-                  key: <EuiCode>ENTER</EuiCode>,
-                  searchValue: <strong>{searchValue}</strong>,
-                }}
-              />
-            </p>
+            <div className="euiComboBoxOption__contentWrapper">
+              <p className="euiComboBoxOption__emptyStateText">
+                <EuiI18n
+                  token="euiComboBoxOptionsList.createCustomOption"
+                  default="Add {searchValue} as a custom option"
+                  values={{
+                    searchValue: <strong>{searchValue}</strong>,
+                  }}
+                />
+              </p>
+              {hitEnterBadge}
+            </div>
           );
         }
       } else {
         if (delimiter && searchValue.includes(delimiter)) {
           emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.delimiterMessage"
-                default="Hit enter to add each item separated by {delimiter}"
-                values={{ delimiter: <strong>{delimiter}</strong> }}
-              />
-            </p>
+            <div className="euiComboBoxOption__contentWrapper">
+              <p className="euiComboBoxOption__emptyStateText">
+                <EuiI18n
+                  token="euiComboBoxOptionsList.delimiterMessage"
+                  default="Add each item separated by {delimiter}"
+                  values={{ delimiter: <strong>{delimiter}</strong> }}
+                />
+              </p>
+              {hitEnterBadge}
+            </div>
           );
         } else {
           emptyStateContent = (
