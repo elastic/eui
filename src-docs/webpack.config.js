@@ -68,7 +68,7 @@ const webpackConfig = {
             : ie11Loader;
         },
         include: [
-          /node_modules\/((lodash|html-format|vnopts|react-view|@babel\/code-frame|@babel\/template|@babel\/traverse|@babel\/parser|@babel\/core|@babel\/helper-annotate-as-pure|@babel\/generator|@babel\/helper-builder-react-jsx-experimental|@babel\/highlight|@babel\/plugin-syntax-jsx|@miksu\/prettier|ansi-styles|chalk|gensync|is-fullwidth-code-point|jest-docblock|jsesc)\/).*/,
+          /node_modules\/((lodash|html-format|vnopts|react-view|@babel\/code-frame|@babel\/template|@babel\/traverse|@babel\/parser|@babel\/core|@babel\/helper-annotate-as-pure|@babel\/generator|@babel\/helper-builder-react-jsx-experimental|@babel\/highlight|@babel\/plugin-syntax-jsx||@babel\/types|@miksu\/prettier|ansi-styles|chalk|gensync|is-fullwidth-code-point|jest-docblock|jsesc)\/).*/,
         ],
       },
       {
