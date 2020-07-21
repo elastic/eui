@@ -18,28 +18,24 @@
  */
 
 import React, {
-  HTMLAttributes,
   FunctionComponent,
   ReactNode,
   useState,
   CSSProperties,
 } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiAvatarProps, EuiAvatar } from '../../avatar/avatar';
 import { EuiIconProps, EuiIcon } from '../../icon';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
-import { EuiSelectableOption } from '../selectable_option';
+import {
+  EuiSelectableOption,
+  EuiSelectableLIOption,
+} from '../selectable_option';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
 import { EuiHighlight } from '../../highlight';
 import { useEuiI18n, EuiI18n } from '../../i18n';
 import { euiPaletteColorBlind } from '../../../services';
-import { EuiText, EuiTextColor } from '../../text';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiLink } from '../../link';
-import { EuiBadge } from '../../badge';
-import { EuiSelectableListItemProps } from '../selectable_list/selectable_list_item';
 
 interface MetaData {
   /**
@@ -60,8 +56,7 @@ interface MetaData {
   fontWeight?: CSSProperties['fontWeight'];
 }
 
-export type EuiSelectableTemplateSitewideSchema = EuiSelectableOption & {
-  label: ReactNode;
+export type EuiSelectableTemplateSitewideSchema = EuiSelectableLIOption & {
   /**
    * Displayed on the left.
    * Object of `EuiIconProps`
@@ -78,15 +73,22 @@ export type EuiSelectableTemplateSitewideSchema = EuiSelectableOption & {
    */
   meta?: MetaData[];
   /**
-   * Allow for any other keys the consumer might need
+   * A simple string to allow EuiSelectable to search on if different from the regular `label`
    */
-  [key: string]: any;
+  searchableLabel?: string;
 };
 
 export type EuiSelectableTemplateSitewideProps = Omit<
   EuiSelectableProps,
   'options'
 > & {
+  /**
+   * Extend the typical EuiSelectableLiOption with the addition of
+   * `icon`: Object of `EuiIconProps` for creating the `prepend`;
+   * `avatar`: Object of `EuiAvatarProps` for creating the `append` for Space (default) or User;
+   * `meta`: A list of #MetaData items to be displayed beneath the label and separated by bullets;
+   * `searchableLabel`: A simple string to allow EuiSelectable to search on if different from the regular label
+   */
   options: EuiSelectableTemplateSitewideSchema[];
   /**
    * Override some of the EuiPopover props housing the list.
@@ -161,36 +163,38 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   /**
    * List option renderer
    */
-  const formattedOptions: EuiSelectableOption = options.map(item => {
-    return {
-      key: item.label,
-      label: `${item.label}`,
-      prepend: item.icon ? (
-        <EuiIcon color="subdued" {...item.icon} size="m" />
-      ) : (
-        undefined
-      ),
-      // className: 'kibanaChromeSearch__item',
-      append: item.avatar ? (
-        <EuiAvatar type="space" size="s" {...item.avatar} />
-      ) : (
-        undefined
-      ),
-    };
-  });
+  const formattedOptions: EuiSelectableLIOption = options.map(
+    (item: EuiSelectableTemplateSitewideSchema) => {
+      return {
+        key: item.label,
+        label: `${item.label}`,
+        title: item.label,
+        ...item,
+        className: classNames(
+          'euiSelectableTemplateSitewide__listItem',
+          item.className
+        ),
+        prepend: item.icon ? (
+          <EuiIcon color="subdued" {...item.icon} size="m" />
+        ) : (
+          undefined
+        ),
+        append: item.avatar ? (
+          <EuiAvatar type="space" size="s" {...item.avatar} />
+        ) : (
+          undefined
+        ),
+      };
+    }
+  );
 
   const renderOption = (option: EuiSelectableOption, searchValue: string) => {
-    const moreInfo = options.find(
-      optionItem => option.key === optionItem.label
-    );
-    if (!moreInfo) return 'Missing info';
-
     return (
       <>
-        <strong>
-          <EuiHighlight search={searchValue}>{moreInfo.label}</EuiHighlight>
-        </strong>
-        {renderOptionMeta(moreInfo.meta, searchValue)}
+        <span className="euiSelectableTemplateSitewide__listItemTitle">
+          <EuiHighlight search={searchValue}>{option.title}</EuiHighlight>
+        </span>
+        {renderOptionMeta(option.meta, searchValue)}
       </>
     );
   };
@@ -254,29 +258,43 @@ function renderOptionMeta(
   if (!meta) return;
   const metas = meta.map((meta: MetaData) => {
     let metaStyles: CSSProperties;
+    let metaClasses;
     switch (meta.type) {
       case 'app':
         metaStyles = {
           color: meta.color || euiPaletteColorBlind()[0],
-          fontWeight: meta.fontWeight || 'bold',
         };
+        metaClasses = classNames([
+          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
+            'bold'}`,
+        ]);
         break;
       case 'deployment':
         metaStyles = {
           color: meta.color || undefined,
-          fontWeight: meta.fontWeight || 'bold',
         };
+        metaClasses = classNames([
+          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
+            'bold'}`,
+        ]);
         break;
       default:
         metaStyles = {
           color: meta.color || undefined,
-          fontWeight: meta.fontWeight || undefined,
         };
+        metaClasses = meta.fontWeight
+          ? classNames([
+              `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight}`,
+            ])
+          : undefined;
         break;
     }
     return (
       <span
-        className="euiSelectableTemplateSitewide__optionMeta"
+        className={classNames(
+          'euiSelectableTemplateSitewide__optionMeta',
+          metaClasses
+        )}
         key={meta.text}
         style={metaStyles}>
         <EuiHighlight search={searchValue}>{meta.text}</EuiHighlight>
@@ -287,7 +305,9 @@ function renderOptionMeta(
   return (
     <>
       <br />
-      <small>{metas}</small>
+      <span className="euiSelectableTemplateSitewide__optionMetasList">
+        {metas}
+      </span>
     </>
   );
 }

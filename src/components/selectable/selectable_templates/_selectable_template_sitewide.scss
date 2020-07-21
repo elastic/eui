@@ -2,7 +2,28 @@
 
 }
 
-.euiSelectableTemplateSitewide__optionMeta::after {
+.euiSelectableTemplateSitewide__listItem {
+  text-decoration: none !important;
+}
+
+.euiSelectableTemplateSitewide__listItemTitle {
+  font-weight: $euiFontWeightMedium;
+
+  &:hover,
+  &[class*='focus'] {
+    text-decoration: underline;
+  }
+}
+
+.euiSelectableTemplateSitewide__optionMetasList {
+  font-size: $euiFontSizeXS;
+}
+
+.euiSelectableTemplateSitewide__optionMeta:not(:last-of-type)::after {
   content: '•';
   margin: 0 $euiSizeXS;
+}
+
+.euiSelectableTemplateSitewide__optionMeta--bold {
+  font-weight: $euiFontWeightMedium;
 }
