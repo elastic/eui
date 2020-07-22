@@ -83,7 +83,7 @@ export const MarkdownEditorExample = {
           The <EuiCode>errors</EuiCode> prop allows you to pass an array of
           errors if syntax is malformed. Below the tooltip plugin is able to
           provide this message by default. These errors are meant to be
-          emphemeral and part of the editing experience. They should not be a
+          ephemeral and part of the editing experience. They should not be a
           substitute for{' '}
           <Link to="/forms/form-validation">form validation</Link>.
         </p>
