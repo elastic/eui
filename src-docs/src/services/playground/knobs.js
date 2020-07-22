@@ -16,6 +16,7 @@ import {
   EuiTableRow,
   EuiTableRowCell,
   EuiTextColor,
+  EuiTextArea,
   EuiFormRow,
 } from '../../../../src/components/';
 
@@ -56,6 +57,7 @@ const Knob = ({
   placeholder,
   custom,
   state,
+  hidden,
 }) => {
   const [error, setError] = useState(errorMsg);
 
@@ -200,20 +202,33 @@ const Knob = ({
             error={error}
             fullWidth>
             <EuiSelect
-              fullWidth
               id={name}
               options={flattenedOptions}
-              value={valueKey}
+              value={valueKey || defaultValue}
               onChange={e => {
                 set(e.target.value);
               }}
-              isInvalid={error && error.length > 0}
               aria-label={`Select ${name}`}
+              isInvalid={error && error.length > 0}
               compressed
+              fullWidth
             />
           </EuiFormRow>
         );
       }
+
+    case PropTypes.ReactNode:
+      if (name === 'children' && !hidden) {
+        return (
+          <EuiTextArea
+            placeholder={placeholder}
+            value={val}
+            onChange={e => {
+              set(e.target.value);
+            }}
+          />
+        );
+      } else return null;
 
     case PropTypes.Custom:
       if (custom && custom.use) {
@@ -237,7 +252,6 @@ const Knob = ({
         }
       }
 
-    case PropTypes.ReactNode:
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
@@ -323,6 +337,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 description={state[name].description}
                 type={state[name].type}
                 val={state[name].value}
+                hidden={state[name].hidden}
                 options={state[name].options}
                 placeholder={state[name].placeholder}
                 set={value => set(value, name)}
