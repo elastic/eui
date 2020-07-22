@@ -1,5 +1,5 @@
-import React from 'react';
-import { assertUnreachable, PropTypes, useValueDebounce } from 'react-view';
+import React, { useState, useEffect } from 'react';
+import { assertUnreachable, PropTypes } from 'react-view';
 import {
   EuiSpacer,
   EuiSwitch,
@@ -15,6 +15,9 @@ import {
   EuiTableHeaderCell,
   EuiTableRow,
   EuiTableRowCell,
+  EuiTextColor,
+  EuiTextArea,
+  EuiFormRow,
 } from '../../../../src/components/';
 
 import {
@@ -44,17 +47,27 @@ const Label = ({ children, tooltip }) => {
 
 const Knob = ({
   name,
-  error,
+  error: errorMsg,
   type,
   defaultValue,
-  val: globalVal,
-  set: globalSet,
+  val,
+  set,
   options = {},
   description,
   placeholder,
   custom,
+  state,
+  hidden,
 }) => {
-  const [val, set] = useValueDebounce(globalVal, globalSet);
+  const [error, setError] = useState(errorMsg);
+
+  useEffect(() => {
+    if (custom && custom.checkDep) {
+      setError(custom.checkDep(val, state));
+    }
+  }, [state, val, custom]);
+
+  let knobProps = {};
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -92,27 +105,45 @@ const Knob = ({
 
     case PropTypes.String:
     case PropTypes.Date:
+      if (custom && custom.validator) {
+        knobProps = {};
+        knobProps.onChange = e => {
+          const value = e.target.value;
+          if (custom.validator(value)) set(value);
+          else set(undefined);
+        };
+      } else if (custom && custom.sanitize) {
+        knobProps = {};
+        knobProps.value = val;
+        knobProps.onChange = e => {
+          const value = e.target.value;
+          set(custom.sanitize(value));
+        };
+      } else {
+        knobProps = {};
+        knobProps.value = val;
+        knobProps.onChange = e => {
+          const value = e.target.value;
+          set(value);
+        };
+      }
+
       return (
-        <>
+        <EuiFormRow
+          isInvalid={error && error.length > 0}
+          error={error}
+          fullWidth>
           <EuiFieldText
             placeholder={placeholder}
-            onChange={e => {
-              const value = e.target.value;
-              if (custom && custom.validator) {
-                if (custom.validator(value)) set(value);
-                else set(undefined);
-              } else {
-                set(value);
-              }
-            }}
             aria-label={description}
+            isInvalid={error && error.length > 0}
             compressed
             fullWidth
+            {...knobProps}
           />
-
-          {error && <div>error {error}</div>}
-        </>
+        </EuiFormRow>
       );
+
     case PropTypes.Boolean:
       return (
         <>
@@ -121,13 +152,14 @@ const Knob = ({
             label=""
             checked={val}
             onChange={e => {
-              globalSet(e.target.checked);
+              set(e.target.checked);
             }}
             compressed
           />
           {error && <div>error {error}</div>}
         </>
       );
+
     case PropTypes.Enum:
       const optionsKeys = Object.keys(options);
       const numberOfOptions = optionsKeys.length;
@@ -151,7 +183,7 @@ const Knob = ({
               onChange={id => {
                 let val = id;
                 if (val.includes('__')) val = val.split('__')[0];
-                globalSet(val);
+                set(val);
               }}
               name={`Select ${name}`}
             />
@@ -165,28 +197,64 @@ const Knob = ({
         }));
 
         return (
-          <>
+          <EuiFormRow
+            isInvalid={error && error.length > 0}
+            error={error}
+            fullWidth>
             <EuiSelect
-              fullWidth
               id={name}
               options={flattenedOptions}
-              value={valueKey}
+              value={valueKey || defaultValue}
               onChange={e => {
-                globalSet(e.target.value);
+                set(e.target.value);
               }}
               aria-label={`Select ${name}`}
+              isInvalid={error && error.length > 0}
               compressed
+              fullWidth
             />
-            {error && <div>error {error}</div>}
-          </>
+          </EuiFormRow>
         );
       }
 
     case PropTypes.ReactNode:
+      if (name === 'children' && !hidden) {
+        return (
+          <EuiTextArea
+            placeholder={placeholder}
+            value={val}
+            onChange={e => {
+              set(e.target.value);
+            }}
+          />
+        );
+      } else return null;
+
+    case PropTypes.Custom:
+      if (custom && custom.use) {
+        switch (custom.use) {
+          case 'switch':
+            return (
+              <>
+                <EuiSwitch
+                  id={name}
+                  label={custom.label || ''}
+                  checked={typeof val !== 'undefined' && val}
+                  onChange={e => {
+                    const value = e.target.checked;
+
+                    set(value ? value : undefined);
+                  }}
+                  compressed
+                />
+              </>
+            );
+        }
+      }
+
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
-    case PropTypes.Custom:
       return null;
     default:
       return assertUnreachable();
@@ -210,13 +278,30 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
         );
 
+        let humanizedName = (
+          <strong className="eui-textBreakNormal">{name}</strong>
+        );
+
+        if (
+          state[name].custom &&
+          state[name].custom.origin &&
+          state[name].custom.origin.required
+        ) {
+          humanizedName = (
+            <span>
+              {humanizedName}{' '}
+              <EuiTextColor color="danger">(required)</EuiTextColor>
+            </span>
+          );
+        }
+
         return (
           <EuiTableRow key={name}>
             <EuiTableRowCell
               key={`prop__${name}-${idx}`}
               header="Prop"
               className="playgroundKnobs__rowCell">
-              <strong className="eui-textBreakNormal">{name}</strong>
+              {humanizedName}
               {state[name].description && (
                 <>
                   <br />
@@ -252,12 +337,15 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 description={state[name].description}
                 type={state[name].type}
                 val={state[name].value}
+                hidden={state[name].hidden}
                 options={state[name].options}
                 placeholder={state[name].placeholder}
                 set={value => set(value, name)}
                 enumName={state[name].enumName}
                 defaultValue={state[name].defaultValue}
-                custom={state[name].custom}
+                custom={state[name] && state[name].custom}
+                state={state}
+                orgSet={set}
               />
             </EuiTableRowCell>
           </EuiTableRow>
