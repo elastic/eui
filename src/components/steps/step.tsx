@@ -30,7 +30,7 @@ import { EuiI18n } from '../i18n';
 
 export interface EuiStepInterface {
   /**
-   * ReactNode to render as this component's children
+   * ReactNode to render as this component's content
    */
   children: ReactNode;
   /**
