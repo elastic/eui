@@ -153,6 +153,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
       'euiFieldPassword--compressed': compressed,
       'euiFieldPassword-isLoading': isLoading,
       'euiFieldPassword--inGroup': prepend || finalAppend,
+      'euiFieldPassword--withToggle': type === 'dual',
     },
     className
   );
