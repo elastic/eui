@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `27.2.0`.
+
+## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
+
 - Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
 - Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
 - Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
