@@ -105,10 +105,8 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
 
 const hitEnterBadge = (
   <EuiBadge className="euiComboBoxOption__enterBadge" color="hollow">
-    <EuiI18n
-      token="euiComboBoxOptionsList.hitEnter"
-      default="Hit ENTER &crarr;"
-    />
+    <EuiI18n token="euiComboBoxOptionsList.hitEnter" default="Hit enter" />{' '}
+    &#x021A9;
   </EuiBadge>
 );
 
