@@ -36,7 +36,7 @@ export const MarkdownEditorExample = {
             <Link to="/editors-syntax/markdown-format/">EuiMarkdownFormat</Link>
           </strong>
           . State is maintained between the two and it is possible to pass
-          changes from the preview area to the text area and vice versa.
+          changes from the preview area to the textarea and vice versa.
         </p>
       </EuiText>
       <EuiSpacer size="xxl" />
