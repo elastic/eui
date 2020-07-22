@@ -10,8 +10,6 @@
   min-width: $euiButtonMinWidth;
 
   .euiButton__content {
-    @include euiButtonContent;
-
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
@@ -23,12 +21,6 @@
   &.euiButton--small {
     height: $euiButtonHeightSmall;
     line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
-  }
-
-  &.euiButton--iconRight {
-    .euiButton__content {
-      @include euiButtonContent($isReverse: true);
-    }
   }
 
   &:hover,
@@ -44,18 +36,11 @@
   }
 
   &:disabled {
+    @include euiButtonContentDisabled;
+
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
     pointer-events: none;
-
-    .euiButton__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiButton__spinner {
-      border-color: euiLoadingSpinnerBorderColors(currentColor);
-    }
 
     &.euiButton--fill {
       // Only increase the contrast of background color to text to 2.0 for disabled

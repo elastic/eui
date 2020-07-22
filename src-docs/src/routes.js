@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React, { createElement, Fragment } from 'react';
 
 import { GuidePage, GuideSection } from './components';
 
@@ -263,7 +263,11 @@ const createExample = (example, customTitle) => {
 
   let playgroundComponent;
   if (playground) {
-    playgroundComponent = playgroundCreator(playground());
+    if (Array.isArray(playground)) {
+      playgroundComponent = playground.map((elm, idx) => {
+        return <Fragment key={idx}>{playgroundCreator(elm())}</Fragment>;
+      });
+    } else playgroundComponent = playgroundCreator(playground());
   }
 
   const component = () => (

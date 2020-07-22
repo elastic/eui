@@ -152,6 +152,7 @@ export class CollapsedItemActions<T> extends Component<
           if (buttonIcon) {
             icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
           }
+          const buttonContent = typeof name === 'function' ? name(item) : name;
 
           controls.push(
             <EuiContextMenuItem
@@ -164,7 +165,7 @@ export class CollapsedItemActions<T> extends Component<
               onClick={() =>
                 this.onClickItem(onClick ? () => onClick(item) : undefined)
               }>
-              {name}
+              {buttonContent}
             </EuiContextMenuItem>
           );
         }

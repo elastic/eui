@@ -212,11 +212,6 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
-var tabbable$1 = /*#__PURE__*/Object.freeze({
-  default: tabbable_1,
-  __moduleExports: tabbable_1
-});
-
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -237,7 +232,12 @@ function extend() {
     return target
 }
 
-var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
+var immutable$1 = /*#__PURE__*/Object.freeze({
+  default: immutable,
+  __moduleExports: immutable
+});
+
+var xtend = ( immutable$1 && immutable ) || immutable$1;
 
 var listeningFocusTrap = null;
 
@@ -246,7 +246,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = immutable(
+  var config = xtend(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -418,7 +418,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable$2.isFocusable(e.target)
+        returnFocus: !tabbable_1.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -473,7 +473,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable$2(container);
+    var tabbableNodes = tabbable_1(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -3027,9 +3027,16 @@ var Month = function (_React$Component) {
       }
     };
 
+    _this.onBlur = function () {
+      if (_this.props.accessibleMode) {
+        _this.setState({ readInstructions: false });
+      }
+    };
+
     _this.onInputKeyDown = function (event) {
       var eventKey = event.key;
-      var copy = newDate(_this.props.preSelection);
+      // `preSelection` can be `null` but `day` is required. Use it as a fallback if necessary for invalid entries.
+      var copy = _this.props.preSelection ? newDate(_this.props.preSelection) : newDate(_this.props.day);
       var newSelection = void 0;
       switch (eventKey) {
         case "ArrowLeft":
@@ -3059,7 +3066,7 @@ var Month = function (_React$Component) {
         case " ":
         case "Enter":
           event.preventDefault();
-          _this.handleDayClick(_this.props.preSelection, event);
+          _this.handleDayClick(copy, event);
           break;
       }
       if (!newSelection) return; // Let the input component handle this keydown
@@ -3161,8 +3168,7 @@ var Month = function (_React$Component) {
         "p",
         { "aria-live": true },
         "You are focused on a calendar. Use the arrow keys to navigate the days in the month. Use the page up and down keys to navigate from month to month. Use the home and end keys to navigate from year to year.",
-        formatDate(this.props.preSelection, this.dayFormat),
-        " is the currently focused date."
+        this.props.preSelection ? formatDate(this.props.preSelection, this.dayFormat) + " is the\n          currently focused date." : "No date is currently focused."
       );
     }
 
@@ -3175,7 +3181,8 @@ var Month = function (_React$Component) {
         "aria-label": "month-" + this.props.day.format("YYYY-MM"),
         tabIndex: this.props.accessibleMode ? 0 : -1,
         onKeyDown: this.onInputKeyDown,
-        onFocus: this.onFocus
+        onFocus: this.onFocus,
+        onBlur: this.onBlur
       },
       React__default.createElement(
         ScreenReaderOnly,
@@ -3311,8 +3318,10 @@ var Time = function (_React$Component) {
       }
 
       // update preSelection to the selection
-      this.setState({
-        preSelection: this.props.selected
+      this.setState(function (prevState) {
+        return {
+          preSelection: prevState.selected
+        };
       });
     }
 
@@ -3355,8 +3364,7 @@ var Time = function (_React$Component) {
         "p",
         { "aria-live": true },
         "You are a in a time selector. Use the up and down keys to select from other common times then press enter to confirm.",
-        formatDate(this.state.preSelection, this.timeFormat),
-        " is currently focused."
+        this.state.preSelection ? formatDate(this.state.preSelection, this.timeFormat) + " is currently\n          focused." : "No time is currently focused."
       );
     }
 
@@ -3449,7 +3457,7 @@ var _initialiseProps = function _initialiseProps() {
 
   this.onBlur = function () {
     if (_this3.props.accessibleMode) {
-      _this3.setState({ isFocused: false });
+      _this3.setState({ readInstructions: false, isFocused: false });
     }
   };
 
@@ -4532,17 +4540,24 @@ var _objectKeysInternal = function (object, names) {
   return result;
 };
 
+var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
+  default: _objectKeysInternal,
+  __moduleExports: _objectKeysInternal
+});
+
 // IE 8- don't enum bug keys
 var _enumBugKeys = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
+
+var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 var _objectKeys = Object.keys || function keys(O) {
-  return _objectKeysInternal(O, _enumBugKeys);
+  return $keys(O, _enumBugKeys);
 };
 
 var f$1 = Object.getOwnPropertySymbols;
@@ -4597,18 +4612,32 @@ var _objectAssign = !$assign || _fails(function () {
   } return T;
 } : $assign;
 
+var _objectAssign$1 = /*#__PURE__*/Object.freeze({
+  default: _objectAssign,
+  __moduleExports: _objectAssign
+});
+
+var require$$0 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
+
 // 19.1.3.1 Object.assign(target, source)
 
 
-_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
+_export(_export.S + _export.F, 'Object', { assign: require$$0 });
 
 var assign = _core.Object.assign;
 
-var assign$1 = createCommonjsModule(function (module) {
-module.exports = { "default": assign, __esModule: true };
+var assign$1 = /*#__PURE__*/Object.freeze({
+  default: assign,
+  __moduleExports: assign
 });
 
-unwrapExports(assign$1);
+var require$$0$1 = ( assign$1 && assign ) || assign$1;
+
+var assign$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$1, __esModule: true };
+});
+
+unwrapExports(assign$2);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4616,7 +4645,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$1);
+var _assign2 = _interopRequireDefault(assign$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4991,7 +5020,7 @@ var _isArray = Array.isArray || function isArray(arg) {
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
 var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return _objectKeysInternal(O, hiddenKeys);
+  return $keys(O, hiddenKeys);
 };
 
 var _objectGopn = {
@@ -5282,10 +5311,10 @@ var symbol$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: symbol
 });
 
-var require$$0 = ( symbol$1 && symbol ) || symbol$1;
+var require$$0$2 = ( symbol$1 && symbol ) || symbol$1;
 
 var symbol$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0, __esModule: true };
+module.exports = { "default": require$$0$2, __esModule: true };
 });
 
 unwrapExports(symbol$2);
