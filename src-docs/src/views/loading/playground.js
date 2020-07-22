@@ -101,6 +101,7 @@ export const loadingContentConfig = () => {
     ? EuiLoadingContent.__docgenInfo[0]
     : EuiLoadingContent.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
   propsToUse.lines = {
     ...propsToUse.lines,
     type: PropTypes.Number,
