@@ -19,12 +19,6 @@
 
 import { ReactWrapper, ShallowWrapper } from 'enzyme';
 
-type FindTestSubject<T extends ShallowWrapper | ReactWrapper> = (
-  mountedComponent: T,
-  testSubjectSelector: string,
-  matcher?: '=' | '~=' | '|=' | '^=' | '$=' | '*='
-) => ReturnType<T['find']>;
-
 /**
  * Find node which matches a specific test subject selector. Returns ReactWrappers around DOM element,
  * https://github.com/airbnb/enzyme/tree/master/docs/api/ReactWrapper.
@@ -42,13 +36,17 @@ const MATCHERS = [
   '^=', // Begins with substring
   '$=', // Ends with substring
   '*=', // Contains substring
-];
+] as const;
 
-export const findTestSubject: FindTestSubject<ShallowWrapper | ReactWrapper> = (
-  mountedComponent,
-  testSubjectSelector,
-  matcher = '~='
-) => {
+type FindTestSubject<T extends ShallowWrapper | ReactWrapper> = (
+  mountedComponent: T,
+  testSubjectSelector: string,
+  matcher?: typeof MATCHERS[number]
+) => ReturnType<T['find']>;
+
+export const findTestSubject: FindTestSubject<
+  ShallowWrapper<any> | ReactWrapper<any>
+> = (mountedComponent, testSubjectSelector, matcher = '~=') => {
   if (!MATCHERS.includes(matcher)) {
     throw new Error(
       `Matcher ${matcher} not found in list of allowed matchers: ${MATCHERS.join(
