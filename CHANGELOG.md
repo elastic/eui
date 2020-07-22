@@ -3,6 +3,7 @@
 - Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
 - Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
 - Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
+- Added `return` glyph to `EuiIcon` ([#3364](https://github.com/elastic/eui/pull/3364))
 
 **Bug fixes**
 
