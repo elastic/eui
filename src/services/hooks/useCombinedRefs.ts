@@ -17,5 +17,22 @@
  * under the License.
  */
 
-export * from './useCombinedRefs';
-export * from './useDependentState';
+import { MutableRefObject, Ref, useCallback } from 'react';
+
+export const useCombinedRefs = <T>(
+  refs: Array<Ref<T> | MutableRefObject<T | undefined> | undefined>
+) => {
+  return useCallback(
+    (node: T) =>
+      refs.forEach(ref => {
+        if (!ref) return;
+
+        if (typeof ref === 'function') {
+          ref(node);
+        } else {
+          (ref as MutableRefObject<T>).current = node;
+        }
+      }),
+    [refs]
+  );
+};
