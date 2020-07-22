@@ -72,10 +72,6 @@ export type EuiSelectableTemplateSitewideSchema = EuiSelectableLIOption & {
    * Each item requires `text` and a `type`
    */
   meta?: MetaData[];
-  /**
-   * A simple string to allow EuiSelectable to search on if different from the regular `label`
-   */
-  searchableLabel?: string;
 };
 
 export type EuiSelectableTemplateSitewideProps = Omit<
@@ -87,7 +83,6 @@ export type EuiSelectableTemplateSitewideProps = Omit<
    * `icon`: Object of `EuiIconProps` for creating the `prepend`;
    * `avatar`: Object of `EuiAvatarProps` for creating the `append` for Space (default) or User;
    * `meta`: A list of #MetaData items to be displayed beneath the label and separated by bullets;
-   * `searchableLabel`: A simple string to allow EuiSelectable to search on if different from the regular label
    */
   options: EuiSelectableTemplateSitewideSchema[];
   /**

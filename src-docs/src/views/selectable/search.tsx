@@ -22,6 +22,7 @@ const allSearches = searchData.concat(recents);
 const recentData: EuiSelectableOptionsProps = recents.map(item => {
   return {
     prepend: <EuiIcon type="clock" size="m" color="subdued" />,
+  };
 });
 
 export default () => {

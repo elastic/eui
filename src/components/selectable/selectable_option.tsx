@@ -29,6 +29,11 @@ export interface EuiSelectableOptionBase extends CommonProps {
    */
   label: string;
   /**
+   * Optionally change the searchable term by passing a different string other than the `label`.
+   * Best used when creating a custom `optionRender` to separate the label from metadata but allowing to search on both
+   */
+  searchableLabel?: string;
+  /**
    * Must be unique across items.
    * Will be used to match options instead of `label`
    */
