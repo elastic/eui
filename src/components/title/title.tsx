@@ -42,7 +42,7 @@ export type EuiTitleTextTransform = keyof typeof textTransformToClassNameMap;
 
 export type EuiTitleProps = CommonProps & {
   /**
-   * ReactNode to render as this component's children
+   * ReactElement to render as this component's content
    */
   children: ReactElement<any>;
   size?: EuiTitleSize;
