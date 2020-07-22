@@ -144,7 +144,7 @@ export const MarkdownPluginExample = {
           </strong>{' '}
           utilize the same underlying plugin architecture to transform string
           based syntax into React components. At a high level{' '}
-          <Link to="">Unified JS</Link> is used in comination with{' '}
+          <Link to="">Unified JS</Link> is used in combination with{' '}
           <Link to="">Remark</Link> to provide EUI&apos;s markdown components,
           which are separated into a <strong>parsing</strong> and{' '}
           <strong>processing</strong> layer. These two concepts are kept
