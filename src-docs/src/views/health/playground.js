@@ -10,7 +10,19 @@ export default () => {
 
   propsToUse.color = {
     ...propsToUse.color,
-    type: PropTypes.String,
+    options: {
+      default: 'default',
+      primary: 'primary',
+      secondary: 'secondary',
+      success: 'success',
+      accent: 'accent',
+      warning: 'warning',
+      danger: 'danger',
+      text: 'text',
+      subdued: 'subdued',
+      ghost: 'ghost',
+    },
+    type: PropTypes.Enum,
   };
 
   const setGhostBackground = {
