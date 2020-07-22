@@ -41,7 +41,7 @@ export interface EuiNotificationBadgeProps
   extends CommonProps,
     Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
   /**
-   * ReactNode to render as this component's children
+   * ReactNode to render as this component's content
    */
   children: ReactNode;
   size?: BadgeNotificationSize;
