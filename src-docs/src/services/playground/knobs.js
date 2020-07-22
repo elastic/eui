@@ -88,8 +88,10 @@ const Knob = ({
 
     case PropTypes.Number:
       return (
-        <>
-          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+        <EuiFormRow
+          isInvalid={error && error.length > 0}
+          error={error}
+          fullWidth>
           <EuiFieldNumber
             placeholder={placeholder}
             value={val ? val : undefined}
@@ -97,10 +99,9 @@ const Knob = ({
             aria-label={description}
             compressed
             fullWidth
+            isInvalid={error && error.length > 0}
           />
-
-          {error && <div>error {error}</div>}
-        </>
+        </EuiFormRow>
       );
 
     case PropTypes.String:
