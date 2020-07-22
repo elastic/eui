@@ -10,7 +10,7 @@ export default () => {
 
   propsToUse.description = {
     ...propsToUse.description,
-    value: 'Description',
+    value: 'Total people',
     type: PropTypes.String,
   };
 
@@ -23,12 +23,13 @@ export default () => {
       accent: 'accent',
       text: 'text',
     },
+    defaultValue: 'text',
     type: PropTypes.Enum,
   };
 
   propsToUse.title = {
-    ...propsToUse.description,
-    value: 'Title',
+    ...propsToUse.title,
+    value: '7,600 mm',
     type: PropTypes.String,
   };
 
