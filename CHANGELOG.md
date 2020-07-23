@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Update `createTheme` to apply latest changes to chart `Theme`. Add `@elastic/charts` to `optionalDependencies`. ([#3792](https://github.com/elastic/eui/pull/3792))
 - Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
 
 ## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
