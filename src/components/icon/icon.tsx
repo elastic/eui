@@ -301,6 +301,7 @@ const typeToPathMap = {
   refresh: 'refresh',
   reporter: 'reporter',
   reportingApp: 'app_reporting',
+  returnKey: 'return_key',
   save: 'save',
   savedObjectsApp: 'app_saved_objects',
   scale: 'scale',

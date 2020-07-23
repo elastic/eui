@@ -217,10 +217,20 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
     onChangeItemsPerPage,
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
+  const minSizeOption =
+    pageSizeOptions && [...pageSizeOptions].sort((a, b) => a - b)[0];
 
-  if (props.rowCount < pageSizeOptions[0]) {
+  if (props.rowCount < (minSizeOption || pageSize)) {
+    /**
+     * Do not render the pagination when:
+     * 1. Rows count is less than min pagination option (rows per page)
+     * 2. Rows count is less than pageSize (the case when there are no pageSizeOptions provided)
+     */
     return null;
   }
+
+  // hide select rows per page if pageSizeOptions is undefined or an empty array
+  const hidePerPageOptions = !pageSizeOptions || pageSizeOptions.length === 0;
 
   return (
     <EuiI18n
@@ -247,6 +257,7 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
                   <EuiTablePagination
                     aria-controls={controls}
                     activePage={pageIndex}
+                    hidePerPageOptions={hidePerPageOptions}
                     itemsPerPage={pageSize}
                     itemsPerPageOptions={pageSizeOptions}
                     pageCount={pageCount}

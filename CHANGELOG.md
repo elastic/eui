@@ -1,7 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added possibility to hide "Rows per page" select in `EuiDataGrid` ([#3700](https://github.com/elastic/eui/pull/3700))
 - Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
-- Updated prettier to `v1.19.1` ([#3762](https://github.com/elastic/eui/pull/3762))
+- Added `returnKey` glyph to `EuiIcon` ([#3783](https://github.com/elastic/eui/pull/3783))
 
 ## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
 
