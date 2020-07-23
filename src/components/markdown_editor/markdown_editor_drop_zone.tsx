@@ -82,6 +82,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
+    disabled: dropHandlers.length === 0,
     // Disable click and keydown behavior
     noClick: true,
     noKeyboard: true,

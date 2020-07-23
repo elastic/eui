@@ -76,7 +76,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         aria-label="Uploading files"
       />
     );
-  } else if (hasUnacceptedItems) {
+  } else if (dropHandlers.length > 0 && hasUnacceptedItems) {
     uploadButton = (
       <EuiToolTip
         content={`Supported files: ${dropHandlers
@@ -93,7 +93,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         </EuiButtonEmpty>
       </EuiToolTip>
     );
-  } else {
+  } else if (dropHandlers.length > 0) {
     uploadButton = (
       <EuiButtonIcon
         iconType="paperClip"
