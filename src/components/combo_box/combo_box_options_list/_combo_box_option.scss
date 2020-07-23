@@ -30,23 +30,23 @@
 
 .euiComboBoxOption__contentWrapper {
   display: flex;
-  flex-direction: row;
-}
 
-.euiComboBoxOption__enterBadge {
-  align-self: flex-start;
-  margin-left: $euiSizeXS;
+  .euiComboBoxOption__emptyStateText {
+    flex: 1;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .euiComboBoxOption__enterBadge {
+    align-self: flex-start;
+    margin-left: $euiSizeXS;
+  }
 }
 
 .euiComboBoxOption__content {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  flex: 1;
-  text-align: left;
-}
-
-.euiComboBoxOption__emptyStateText {
   flex: 1;
   text-align: left;
 }

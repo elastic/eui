@@ -341,7 +341,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -349,7 +349,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Titan
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -368,7 +368,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -376,7 +376,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Enceladus
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -395,7 +395,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -403,7 +403,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Mimas
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -422,7 +422,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -430,7 +430,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Dione
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -449,7 +449,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -457,7 +457,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Iapetus
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -476,7 +476,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -484,7 +484,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Phoebe
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -503,7 +503,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -511,7 +511,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Rhea
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -530,7 +530,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -538,7 +538,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>
@@ -557,7 +557,7 @@ exports[`props options list is rendered 1`] = `
               <div
                 class="euiFlexItem euiFilterSelectItem__content"
               >
-                <div
+                <span
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
@@ -565,7 +565,7 @@ exports[`props options list is rendered 1`] = `
                   >
                     Tethys
                   </span>
-                </div>
+                </span>
               </div>
             </span>
           </button>

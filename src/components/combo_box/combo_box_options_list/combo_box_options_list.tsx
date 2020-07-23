@@ -37,6 +37,7 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
+import { EuiIcon } from '../../icon';
 import {
   EuiFilterSelectItem,
   FilterChecked,
@@ -103,10 +104,13 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     zIndex?: number;
   };
 
+// TODO replace html entity by new return icon
 const hitEnterBadge = (
-  <EuiBadge className="euiComboBoxOption__enterBadge" color="hollow" aria-hidden="true">
-    <EuiI18n token="euiComboBoxOptionsList.hitEnter" default="Hit enter" />{' '}
-    &#x021A9;
+  <EuiBadge
+    className="euiComboBoxOption__enterBadge"
+    color="hollow"
+    aria-hidden="true">
+    <EuiIcon type="sortLeft" />
   </EuiBadge>
 );
 
@@ -236,6 +240,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
 
     const optionIsFocused = activeOptionIndex === index;
+    const optionIsDisabled =
+      option.hasOwnProperty('disabled') && option.disabled === true;
 
     return (
       <EuiFilterSelectItem
@@ -253,15 +259,15 @@ export class EuiComboBoxOptionsList<T> extends Component<
         id={rootId(`_option-${index}`)}
         title={label}
         {...rest}>
-        <div className="euiComboBoxOption__contentWrapper">
+        <span className="euiComboBoxOption__contentWrapper">
           {renderOption ? (
-            <div className={OPTION_CONTENT_CLASSNAME}>
+            <span className={OPTION_CONTENT_CLASSNAME}>
               {renderOption(
                 option,
                 searchValue,
                 'euiComboBoxOption__renderOption'
               )}
-            </div>
+            </span>
           ) : (
             <EuiHighlight
               search={searchValue}
@@ -269,8 +275,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
               {label}
             </EuiHighlight>
           )}
-          {optionIsFocused ? hitEnterBadge : null}
-        </div>
+          {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
+        </span>
       </EuiFilterSelectItem>
     );
   };
