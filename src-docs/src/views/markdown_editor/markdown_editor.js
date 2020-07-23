@@ -20,6 +20,7 @@ exampleProcessingList[1][1].components.chartDemoPlugin = MarkdownChart.renderer;
 
 const dropHandlers = [
   {
+    supportedFiles: ['.jpg', '.jpeg'],
     accepts: itemType => itemType === 'image/jpeg',
     getFormattingForItem: item => {
       // fake an upload

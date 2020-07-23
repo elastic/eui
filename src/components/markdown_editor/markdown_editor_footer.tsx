@@ -30,6 +30,7 @@ import { EuiTitle } from '../title';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
 import { EuiI18n } from '../i18n';
 import {
+  EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
 } from './markdown_types';
@@ -39,13 +40,15 @@ import { EuiSpacer } from '../spacer';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
+import { EuiToolTip } from '../tool_tip';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   isUploadingFiles: boolean;
   openFiles: () => void;
   errors: EuiMarkdownParseError[];
-  unacceptedItems: DataTransferItem[];
+  hasUnacceptedItems: boolean;
+  dropHandlers: EuiMarkdownDropHandler[];
 }
 
 export const EuiMarkdownEditorFooter: FunctionComponent<
@@ -56,7 +59,8 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
     isUploadingFiles,
     openFiles,
     errors,
-    unacceptedItems,
+    hasUnacceptedItems,
+    dropHandlers,
   } = props;
   const [isShowingHelp, setIsShowingHelp] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -71,6 +75,23 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         iconType={EuiLoadingSpinner}
         aria-label="Uploading files"
       />
+    );
+  } else if (hasUnacceptedItems) {
+    uploadButton = (
+      <EuiToolTip
+        content={`Supported files: ${dropHandlers
+          .map(({ supportedFiles }) => supportedFiles.join(', '))
+          .join(', ')}`}>
+        <EuiButtonEmpty
+          autoFocus
+          size="xs"
+          iconType="paperClip"
+          color="danger"
+          aria-label="Open upload files modal"
+          onClick={openFiles}>
+          File not supported
+        </EuiButtonEmpty>
+      </EuiToolTip>
     );
   } else {
     uploadButton = (
@@ -119,7 +140,6 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
     <footer className="euiMarkdownEditorFooter">
       <div className="euiMarkdownEditorFooter__actions">
         {uploadButton}
-        {unacceptedItems.length ? "Can't accept!" : null}
         {errorsButton}
       </div>
 
