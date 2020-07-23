@@ -43,6 +43,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
+  switchColumnPos: (colFromId: string, colToId: string) => void;
   sorting?: EuiDataGridSorting;
   focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
@@ -68,6 +69,7 @@ const EuiDataGridHeaderRow = forwardRef<
     className,
     setColumnWidth,
     setVisibleColumns,
+    switchColumnPos,
     sorting,
     focusedCell,
     setFocusedCell,
@@ -110,6 +112,7 @@ const EuiDataGridHeaderRow = forwardRef<
           schema={schema}
           setColumnWidth={setColumnWidth}
           setVisibleColumns={setVisibleColumns}
+          switchColumnPos={switchColumnPos}
           defaultColumnWidth={defaultColumnWidth}
           sorting={sorting}
           headerIsInteractive={headerIsInteractive}

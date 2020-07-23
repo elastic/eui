@@ -748,6 +748,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     columnSelector,
     orderedVisibleColumns,
     setVisibleColumns,
+    switchColumnPos,
   ] = useColumnSelector(
     columns,
     columnVisibility,
@@ -1031,6 +1032,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                           }
                                           setColumnWidth={setColumnWidth}
                                           setVisibleColumns={setVisibleColumns}
+                                          switchColumnPos={switchColumnPos}
                                           schema={mergedSchema}
                                           sorting={sorting}
                                           headerIsInteractive={

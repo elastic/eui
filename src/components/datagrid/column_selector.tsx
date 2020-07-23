@@ -61,7 +61,12 @@ export const useColumnSelector = (
   columnVisibility: EuiDataGridColumnVisibility,
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
   displayValues: { [key: string]: string }
-): [ReactElement, EuiDataGridColumn[], (columns: string[]) => void] => {
+): [
+  ReactElement,
+  EuiDataGridColumn[],
+  (columns: string[]) => void,
+  (colFrom: string, colTo: string) => void
+] => {
   const allowColumnHiding = getShowColumnSelectorValue(
     showColumnSelector,
     'allowHide'
@@ -279,6 +284,29 @@ export const useColumnSelector = (
         .filter(column => column != null),
     [availableColumns, visibleColumns]
   );
+  /**
+   * Used for moving columns left/right, available in the headers actions menu
+   */
+  const switchColumnPos = (fromColId: string, toColId: string) => {
+    const moveFromIdx = sortedColumns.indexOf(fromColId);
+    const moveToIdx = sortedColumns.indexOf(toColId);
 
-  return [columnSelector, orderedVisibleColumns, setVisibleColumns];
+    const nextSortedColumns = Object.values({
+      ...sortedColumns,
+      [moveFromIdx]: toColId,
+      [moveToIdx]: fromColId,
+    }) as string[];
+    setSortedColumns(nextSortedColumns);
+    const nextVisibleColumns = nextSortedColumns.filter(columnId =>
+      visibleColumnIds.has(columnId)
+    );
+    setVisibleColumns(nextVisibleColumns);
+  };
+
+  return [
+    columnSelector,
+    orderedVisibleColumns,
+    setVisibleColumns,
+    switchColumnPos,
+  ];
 };

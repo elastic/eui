@@ -61,6 +61,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     defaultColumnWidth,
     setColumnWidth,
     setVisibleColumns,
+    switchColumnPos,
     sorting,
     focusedCell,
     setFocusedCell,
@@ -132,9 +133,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   const disableInteractives = useCallback(() => {
     if (headerRef.current) {
       const tababbles = tabbable(headerRef.current);
-      if (tababbles.length > 1) {
+      if (tababbles.length > 2) {
         console.warn(
-          `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
+          `EuiDataGridHeaderCell expects at most 2 tabbable element, ${
             tababbles.length
           } found instead`
         );
@@ -294,17 +295,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
 
     sorting.onSort(newSorting as EuiDataGridSorting['columns']);
   };
-  const changePosition = (moveFromIdx: number, moveToIdx: number) => {
-    const col1 = columns[moveFromIdx] as EuiDataGridColumn;
-    const col2 = columns[moveToIdx] as EuiDataGridColumn;
 
-    const newColumns = Object.values({
-      ...columns,
-      [moveFromIdx]: col2,
-      [moveToIdx]: col1,
-    }) as EuiDataGridColumn[];
-    setVisibleColumns(newColumns.map(col => col.id));
-  };
   const colIdx = columns.findIndex(col => col.id === column.id);
 
   const usedColumnOptions =
@@ -359,7 +350,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             color: 'text',
             onClick: () => {
               setIsPopoverOpen(false);
-              changePosition(colIdx, colIdx - 1);
+              const targetCol = columns[colIdx - 1];
+              if (targetCol) {
+                switchColumnPos(column.id, targetCol.id);
+              }
             },
             isDisabled: colIdx === 0,
           },
@@ -370,7 +364,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             color: 'text',
             onClick: () => {
               setIsPopoverOpen(false);
-              changePosition(colIdx, colIdx + 1);
+              const targetCol = columns[colIdx + 1];
+              if (targetCol) {
+                switchColumnPos(column.id, targetCol.id);
+              }
             },
             isDisabled: colIdx === columns.length - 1,
           },
