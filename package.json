@@ -220,8 +220,5 @@
     "react": "^16.12",
     "react-dom": "^16.12",
     "typescript": "^3.7.2"
-  },
-  "optionalDependencies": {
-    "@elastic/charts": "^20.0.0"
   }
 }
