@@ -162,6 +162,7 @@ export const iconTypes = [
   'quote',
   'refresh',
   'reporter',
+  'returnKey',
   'save',
   'scale',
   'search',
