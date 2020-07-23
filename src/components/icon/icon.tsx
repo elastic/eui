@@ -42,6 +42,7 @@ const typeToPathMap = {
   advancedSettingsApp: 'app_advanced_settings',
   aggregate: 'aggregate',
   alert: 'alert',
+  analyzeEvent: 'analyze_event',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
