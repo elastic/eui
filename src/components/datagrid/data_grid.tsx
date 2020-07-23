@@ -217,11 +217,15 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
     onChangeItemsPerPage,
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
+  const minSizeOption =
+    pageSizeOptions && [...pageSizeOptions].sort((a, b) => a - b)[0];
 
-  if (
-    props.rowCount <
-    ((pageSizeOptions && pageSizeOptions.sort((a, b) => a - b)[0]) || pageSize)
-  ) {
+  if (props.rowCount < (minSizeOption || pageSize)) {
+    /**
+     * Do not render the pagination when:
+     * 1. Rows count is less than min pagination option (rows per page)
+     * 2. Rows count is less than pageSize (the case when there are no pageSizeOptions provided)
+     */
     return null;
   }
 
