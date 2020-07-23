@@ -2,9 +2,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 import { EuiCode } from '../../../../../src/components';
-
-import { PaginationBarProps } from '../../../../../src/components/basic_table/pagination_bar';
-import { EuiPopoverPosition } from '../../../../../src/services/popover/types';
+import { propsInfo } from './props_info';
 
 import { Table } from './basic';
 
@@ -83,6 +81,6 @@ export const section = {
       </ul>
     </div>
   ),
-  props: { PaginationBarProps, EuiPopoverPosition },
+  props: propsInfo,
   demo: <Table />,
 };
