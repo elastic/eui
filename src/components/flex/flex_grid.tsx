@@ -27,7 +27,7 @@ export type FlexGridDirection = keyof typeof directionToClassNameMap;
 
 export interface EuiFlexGridProps {
   /**
-   * ReactNode to render as this component's children
+   * ReactNode to render as this component's content
    */
   children?: ReactNode;
   /**

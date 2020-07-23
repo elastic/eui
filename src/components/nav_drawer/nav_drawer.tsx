@@ -45,7 +45,7 @@ export interface EuiNavDrawerProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {
   /**
-   * ReactNode to render as this component's children
+   * One or more ReactNodes to render as this component's content
    */
   children?: ReactNode | ReactNode[];
 

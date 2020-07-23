@@ -40,7 +40,7 @@ export interface EuiOverlayMaskInterface {
    */
   onClick?: () => void;
   /**
-   * ReactNode to render as this component's children
+   * ReactNode to render as this component's content
    */
   children?: ReactNode;
   /**

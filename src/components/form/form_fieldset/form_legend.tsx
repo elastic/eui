@@ -25,7 +25,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 export type EuiFormLegendProps = HTMLAttributes<HTMLLegendElement> &
   CommonProps & {
     /**
-     * ReactNode to render as this component's children
+     * ReactNode to render as this component's content
      */
     children: ReactNode;
     /**

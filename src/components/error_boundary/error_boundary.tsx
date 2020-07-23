@@ -31,7 +31,7 @@ interface EuiErrorBoundaryState {
 export type EuiErrorBoundaryProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * ReactNode to render as this component's children
+     * ReactNode to render as this component's content
      */
     children: ReactNode;
   };
