@@ -122,27 +122,33 @@ function createTheme(colors: any): EuiChartThemeType {
         histogramPadding: 0.05,
       },
       axes: {
-        axisTitleStyle: {
+        axisTitle: {
           fontSize: 12,
           fontFamily: fontFamily,
           fill: colors.euiColorDarkestShade.rgba,
-          padding: 10,
+          padding: {
+            inner: 10,
+            outer: 0,
+          },
         },
-        axisLineStyle: {
+        axisLine: {
           stroke: colors.euiColorChartLines.rgba,
         },
-        tickLabelStyle: {
+        tickLabel: {
           fontSize: 10,
           fontFamily: fontFamily,
           fill: colors.euiColorDarkShade.rgba,
-          padding: 8,
+          padding: {
+            outer: 8,
+            inner: 10,
+          },
         },
-        tickLineStyle: {
+        tickLine: {
           visible: false,
           stroke: colors.euiColorChartLines.rgba,
           strokeWidth: 1,
         },
-        gridLineStyle: {
+        gridLine: {
           horizontal: {
             visible: true,
             stroke: colors.euiColorChartLines.rgba,
