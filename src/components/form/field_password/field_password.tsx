@@ -22,7 +22,6 @@ import React, {
   FunctionComponent,
   useState,
   Ref,
-  useCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
@@ -35,6 +34,7 @@ import {
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
 import { useEuiI18n } from '../../i18n';
+import { useCombinedRefs } from '../../../services';
 
 export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -102,18 +102,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
   // Setup the inputRef to auto-focus when toggling visibility
   const [inputRef, _setInputRef] = useState<HTMLInputElement | null>(null);
-  const setInputRef = useCallback(
-    (ref: HTMLInputElement | null) => {
-      _setInputRef(ref);
-      if (typeof _inputRef === 'function') {
-        _inputRef(ref);
-      } else if (_inputRef) {
-        // @ts-ignore need to mutate current
-        _inputRef.current = ref;
-      }
-    },
-    [_inputRef]
-  );
+  const setInputRef = useCombinedRefs([_setInputRef, _inputRef]);
 
   const handleToggle = (isVisible: boolean) => {
     setInputType(isVisible ? 'password' : 'text');
