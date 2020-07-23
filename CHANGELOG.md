@@ -9,6 +9,7 @@
 - Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
 - Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
 - Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
+- Added a hit enter badge to `EuiComboBox` when focusing an option and for empty states that allow pressing enter ([#3782](https://github.com/elastic/eui/pull/3782))
 
 **Bug fixes**
 

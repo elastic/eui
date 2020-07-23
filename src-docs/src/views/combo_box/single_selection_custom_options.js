@@ -55,7 +55,7 @@ export default () => {
       label="Your occupation"
       helpText="Select an occupation from the list. If your occupation isn’t available, create a custom one.">
       <EuiComboBox
-        placeholder="Select a single occupation"
+        placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}
         options={options}
         selectedOptions={selectedOptions}
