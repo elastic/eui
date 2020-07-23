@@ -1,7 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
-- Fixed bug in datagrid calcuate width ([#3789](https://github.com/elastic/eui/pull/3789))
+  
+**Bug fixes**
+
+- Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
 
 ## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
 
