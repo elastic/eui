@@ -75,7 +75,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     isLoading?: boolean;
     listRef: RefCallback<HTMLDivElement>;
     matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-    onCloseList: () => void;
+    onCloseList: (event: Event) => void;
     onCreateOption?: (
       searchValue: string,
       options: Array<EuiComboBoxOptionOption<T>>
@@ -174,7 +174,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       event.target &&
       this.listRefInstance.contains(event.target as Node) === false
     ) {
-      this.props.onCloseList();
+      this.props.onCloseList(event);
     }
   };
 
