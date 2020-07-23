@@ -62,6 +62,9 @@ interface GuaranteedRenderItemProps {
   rel?: string;
   onClick?: ItemProps['onClick'];
   className: string;
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
 }
 export type RenderItem<T> = (

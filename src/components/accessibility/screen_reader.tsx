@@ -21,6 +21,9 @@ import { cloneElement, ReactElement, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiScreenReaderOnlyProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElement<any>;
 
   /**

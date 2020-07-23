@@ -72,6 +72,9 @@ export function useInnerText(
 }
 
 export interface EuiInnerTextProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (ref?: (node: RefT) => void, innerText?: string) => ReactElement;
   fallback?: string;
 }

@@ -32,6 +32,9 @@ export interface EuiEvent extends Event {
 }
 
 interface Props {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElement<any>;
   onOutsideClick: (event: EuiEvent) => void;
   isDisabled?: boolean;
