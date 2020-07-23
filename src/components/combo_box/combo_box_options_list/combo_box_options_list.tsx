@@ -104,13 +104,12 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     zIndex?: number;
   };
 
-// TODO replace html entity by new return icon
 const hitEnterBadge = (
   <EuiBadge
     className="euiComboBoxOption__enterBadge"
     color="hollow"
     aria-hidden="true">
-    <EuiIcon type="sortLeft" />
+    <EuiIcon type="returnKey" />
   </EuiBadge>
 );
 

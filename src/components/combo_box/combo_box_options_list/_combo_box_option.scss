@@ -40,6 +40,11 @@
   .euiComboBoxOption__enterBadge {
     align-self: flex-start;
     margin-left: $euiSizeXS;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
