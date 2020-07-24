@@ -26,6 +26,9 @@ const { SyntaxKind } = require('typescript');
 
 const files = glob.sync('src/**/*.{ts,tsx}', { absolute: true });
 
+/**
+ * To support extended interfaces and types from tsx files too.
+ */
 const options = {
   jsx: ts.JsxEmit.React,
   strict: true,
@@ -42,11 +45,14 @@ module.exports = function() {
         const source = program.getSourceFile(filename);
         if (!source) return;
         const checker = program.getTypeChecker();
+
+        // Get all the interfaces in the file
         const interfaces = source
           .getChildAt(0)
           .getChildren()
           .filter(child => child.kind === SyntaxKind.InterfaceDeclaration);
 
+        // Get all the types in the file
         const types = source
           .getChildAt(0)
           .getChildren()
@@ -55,17 +61,42 @@ module.exports = function() {
         if (interfaces.length > 0) {
           interfaces.map(interface => {
             const displayName = interface.name.escapedText;
+            /**
+             * Get extended if interfaces extended props from a different interface.
+             * All the extended interfaces are available in the heritageClauses property.
+             */
             const props = getExtendedProps(interface.heritageClauses, checker);
             interface.members.map(member => {
               if (member.name) {
-                const type = checker.getTypeAtLocation(member.type);
-                const stringType = checker.typeToString(type);
+                let generatedType = {};
+                const propType = checker.getTypeAtLocation(member.type);
+                generatedType.name = checker.typeToString(propType);
+                /**
+                 * If the type value is an enum or a type, the values are available in  the types property
+                 * If the number of types length is > 6 we could avoid expanding the type. Since it creates
+                 * doesnt looks good in the props table
+                 */
+                if (
+                  propType.types &&
+                  propType.types.length < 6 &&
+                  propType.types.every(type => type.isStringLiteral())
+                ) {
+                  generatedType = {
+                    name: 'enum',
+                    raw: generatedType.name,
+                    value: propType.types.map(type => ({
+                      value: type.isStringLiteral()
+                        ? `"${type.value}"`
+                        : this.checker.typeToString(type),
+                    })),
+                  };
+                }
                 const description = member.jsDoc ? member.jsDoc[0].comment : '';
                 const propName = member.name.escapedText
                   ? member.name.escapedText
                   : member.name.text;
                 props[propName] = setPropInfo(
-                  stringType,
+                  generatedType,
                   propName,
                   !member.questionToken,
                   description
@@ -97,7 +128,9 @@ module.exports = function() {
             docsInfo.push(generateDocInfo(displayName, props));
           });
         }
-
+        /**
+         * Append all the types and interfaces to the file as objects.
+         */
         docsInfo.map(interface => {
           const exportName = interface.displayName;
           const interfaceData = {
@@ -118,12 +151,24 @@ module.exports = function() {
   };
 };
 
+/**
+ *
+ * Returns doc info in the required structure
+ * @param {*} displayName
+ * @param {*} props
+ */
 const generateDocInfo = (displayName, props) => ({
   displayName,
   props,
 });
 
-// Recursively search for all exported props
+/**
+ *
+ * Recursively search for all the interfaces for extended interfaces. Returns all
+ * the extended props.
+ * @param {*} interfaces
+ * @param {*} checker
+ */
 const getExtendedProps = (interfaces, checker) => {
   let extendedProps = {};
 
@@ -143,6 +188,13 @@ const getExtendedProps = (interfaces, checker) => {
   return extendedProps;
 };
 
+/**
+ *
+ * In case of extended interfaces the type info can be obtained from valueDeclaration
+ * of interface
+ * @param {*} interface
+ * @param {*} checker
+ */
 const getPropsFromInterface = (interface, checker) => {
   const props = {};
   interface.members.forEach(value => {
@@ -165,12 +217,18 @@ const getPropsFromInterface = (interface, checker) => {
   return props;
 };
 
+/**
+ *
+ * Returns data in required structure for the props table
+ * @param {*} type
+ * @param {*} name
+ * @param {*} required
+ * @param {*} description
+ */
 const setPropInfo = (type, name, required, description) => ({
   name,
   type,
   required,
   description,
-  type: {
-    name: type,
-  },
+  type,
 });
