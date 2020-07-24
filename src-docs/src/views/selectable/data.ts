@@ -48,7 +48,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Dashboard',
-        type: 'app',
+        type: 'application',
       },
     ],
     url: 'welcome-dashboards',
@@ -62,7 +62,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Visualization',
-        type: 'app',
+        type: 'application',
       },
     ],
   },
@@ -74,7 +74,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Dashboard',
-        type: 'app',
+        type: 'application',
       },
     ],
   },
@@ -83,7 +83,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'TSVB visualization',
-        type: 'app',
+        type: 'application',
       },
     ],
   },
@@ -95,7 +95,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Discover',
-        type: 'app',
+        type: 'application',
       },
     ],
   },
@@ -129,16 +129,17 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Dashboard',
-        type: 'app',
+        type: 'application',
       },
     ],
   },
   {
     label: 'Databoard analytics',
+    title: 'Databoard analytics; Dashboard; Deployment: Flights Data',
     meta: [
       {
         text: 'Dashboard',
-        type: 'app',
+        type: 'application',
       },
       {
         text: 'Flights Data',
@@ -176,7 +177,7 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Management application',
-        type: 'app',
+        type: 'application',
       },
     ],
   },
@@ -199,7 +200,7 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
     meta: [
       {
         text: 'Analyze application',
-        type: 'app',
+        type: 'application',
       },
     ],
     space: 'Hello World',

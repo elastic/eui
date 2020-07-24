@@ -146,6 +146,14 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   }
 
   /**
+   * Search helpers
+   */
+  const searchOnFocus = (e: any) => {
+    setInputHasFocus(true);
+    searchProps && searchProps.onFocus && searchProps.onFocus(e);
+  };
+
+  /**
    * Classes
    */
   const classes = classNames('euiSelectableTemplateSitewide', className);
@@ -220,9 +228,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       singleSelection={true}
       searchProps={{
         placeholder: searchPlaceholder,
-        onFocus: () => setInputHasFocus(true),
         isClearable: true,
         ...searchProps,
+        onFocus: searchOnFocus,
         className: searchClasses,
       }}
       listProps={{

@@ -1,4 +1,5 @@
 .euiMark {
-  margin: $euiSizeXS;
-  padding: $euiSizeXS;
+  padding: $euiSizeXS 0;
+  background: $euiFocusBackgroundColor;
+  font-weight: $euiFontWeightBold;
 }

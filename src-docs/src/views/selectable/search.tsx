@@ -74,6 +74,7 @@ export default () => {
   };
 
   const onChange = (updatedOptions: EuiSelectableOption[]) => {
+    // @ts-ignore For now
     const clickedItem: EuiSelectableOption = _.find(updatedOptions, {
       checked: 'on',
     });
@@ -86,6 +87,7 @@ export default () => {
       isLoading={isLoading}
       onChange={onChange}
       options={searchValueExists ? allSearchesSorted : recentsWithIcon}
+      // @ts-ignore For now
       searchProps={{
         append: '⌘K',
         onKeyUpCapture: onKeyUpCapture,
