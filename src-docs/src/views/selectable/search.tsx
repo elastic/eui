@@ -13,9 +13,8 @@ const allSearches = searchData.concat(recents);
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
+  const [searchRef, setSearchRef] = useState<HTMLInputElement | null>(null);
   const searchValueExists = searchValue && searchValue.length;
-
-  let inputRef: HTMLInputElement;
 
   const recentsWithIcon = recents.map(recent => {
     return {
@@ -56,7 +55,7 @@ export default () => {
   };
 
   const onWindowKeyUp = () => {
-    inputRef && inputRef.focus();
+    searchRef && searchRef.focus();
     window.removeEventListener('keyup', onWindowKeyUp);
   };
 
@@ -77,7 +76,9 @@ export default () => {
         onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
         compressed: true,
         className: 'customSearchClass',
-        inputRef: (ref: HTMLInputElement) => (inputRef = ref),
+        inputRef: (ref: HTMLInputElement) => {
+          setSearchRef(ref);
+        },
       }}
       listProps={{
         className: 'customListClass',
