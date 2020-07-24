@@ -5,4 +5,7 @@
   padding: $euiSizeS;
   text-align: center;
   word-wrap: break-word; /* 1 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -33,6 +33,8 @@ import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
 import { EuiHighlight } from '../../highlight';
 import { useEuiI18n, EuiI18n } from '../../i18n';
+import { EuiSelectableMessage } from '../selectable_message';
+import { EuiLoadingSpinner } from '../../loading';
 
 interface MetaData extends CommonProps {
   /**
@@ -111,6 +113,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   popoverFooter,
   searchProps,
   listProps,
+  isLoading,
   ...rest
 }) => {
   /**
@@ -195,8 +198,23 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     );
   };
 
+  const loadingMessage = (
+    <EuiSelectableMessage style={{ minHeight: 300 }}>
+      <EuiLoadingSpinner size="l" />
+      <br />
+      <p>{'Loading results'}</p>
+    </EuiSelectableMessage>
+  );
+
+  const emptyMessage = (
+    <EuiSelectableMessage style={{ minHeight: 300 }}>
+      <p>{'No results available'}</p>
+    </EuiSelectableMessage>
+  );
+
   return (
     <EuiSelectable
+      isLoading={isLoading}
       options={formattedOptions}
       renderOption={renderOption}
       singleSelection={true}
@@ -222,6 +240,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         ...listProps,
         className: listClasses,
       }}
+      loadingMessage={loadingMessage}
+      emptyMessage={emptyMessage}
+      noMatchesMessage={emptyMessage}
       {...rest}
       className={classes}
       searchable>

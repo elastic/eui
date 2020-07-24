@@ -22,7 +22,6 @@ import React, {
   HTMLAttributes,
   ReactNode,
   createRef,
-  Fragment,
   ReactElement,
   KeyboardEvent,
 } from 'react';
@@ -31,7 +30,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
-import { EuiLoadingChart } from '../loading';
+import { EuiLoadingSpinner } from '../loading';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
 import { EuiI18n } from '../i18n';
@@ -121,6 +120,21 @@ export type EuiSelectableProps = CommonProps &
       option: EuiSelectableOption,
       searchValue: string
     ) => ReactNode;
+    /**
+     * Customize the loading message. Pass a string to simply change the text,
+     * or a node to replace the whole content.
+     */
+    loadingMessage?: ReactElement | string;
+    /**
+     * Customize the no matches message. Pass a string to simply change the text,
+     * or a node to replace the whole content.
+     */
+    noMatchesMessage?: ReactElement | string;
+    /**
+     * Customize the empty message. Pass a string to simply change the text,
+     * or a node to replace the whole content.
+     */
+    emptyMessage?: ReactElement | string;
   };
 
 export interface EuiSelectableState {
@@ -354,6 +368,9 @@ export class EuiSelectable extends Component<
       allowExclusions,
       'aria-label': ariaLabel,
       'aria-describedby': ariaDescribedby,
+      loadingMessage,
+      noMatchesMessage,
+      emptyMessage,
       ...rest
     } = this.props;
 
@@ -377,42 +394,6 @@ export class EuiSelectable extends Component<
       ...cleanedListProps
     } = listProps || unknownAccessibleName;
 
-    let messageContent: JSX.Element | undefined;
-
-    if (isLoading) {
-      messageContent = (
-        <Fragment>
-          <EuiLoadingChart size="m" mono />
-          <br />
-          <p>
-            <EuiI18n
-              token="euiSelectable.loadingOptions"
-              default="Loading options"
-            />
-          </p>
-        </Fragment>
-      );
-    } else if (searchValue && visibleOptions.length === 0) {
-      messageContent = (
-        <p>
-          <EuiI18n
-            token="euiSelectable.noMatchingOptions"
-            default="{searchValue} doesn't match any options"
-            values={{ searchValue: <strong>{searchValue}</strong> }}
-          />
-        </p>
-      );
-    } else if (!options.length) {
-      messageContent = (
-        <p>
-          <EuiI18n
-            token="euiSelectable.noAvailableOptions"
-            default="No options available"
-          />
-        </p>
-      );
-    }
-
     const classes = classNames(
       'euiSelectable',
       {
@@ -421,7 +402,8 @@ export class EuiSelectable extends Component<
       className
     );
 
-    const messageContentId = messageContent && this.rootId('messageContent');
+    /** Create Id's */
+    let messageContentId = this.rootId('messageContent');
     const listId = this.rootId('listbox');
     const makeOptionId = (index: number | undefined) => {
       if (typeof index === 'undefined') {
@@ -430,6 +412,78 @@ export class EuiSelectable extends Component<
 
       return `${listId}_option-${index}`;
     };
+
+    /** Create message content that replaces the list if no options are available (yet) */
+    let messageContent: ReactNode | undefined;
+    if (isLoading) {
+      if (loadingMessage === undefined || typeof loadingMessage === 'string') {
+        messageContent = (
+          <EuiSelectableMessage id={messageContentId}>
+            <EuiLoadingSpinner size="m" />
+            <br />
+            <p>
+              {loadingMessage || (
+                <EuiI18n
+                  token="euiSelectable.loadingOptions"
+                  default="Loading options"
+                />
+              )}
+            </p>
+          </EuiSelectableMessage>
+        );
+      } else {
+        messageContent = React.cloneElement(loadingMessage, {
+          id: messageContentId,
+          ...loadingMessage.props,
+        });
+      }
+    } else if (searchValue && visibleOptions.length === 0) {
+      if (
+        noMatchesMessage === undefined ||
+        typeof noMatchesMessage === 'string'
+      ) {
+        messageContent = (
+          <EuiSelectableMessage id={messageContentId}>
+            <p>
+              {noMatchesMessage || (
+                <EuiI18n
+                  token="euiSelectable.noMatchingOptions"
+                  default="{searchValue} doesn't match any options"
+                  values={{ searchValue: <strong>{searchValue}</strong> }}
+                />
+              )}
+            </p>
+          </EuiSelectableMessage>
+        );
+      } else {
+        messageContent = React.cloneElement(noMatchesMessage, {
+          id: messageContentId,
+          ...noMatchesMessage.props,
+        });
+      }
+    } else if (!options.length) {
+      if (emptyMessage === undefined || typeof emptyMessage === 'string') {
+        messageContent = (
+          <EuiSelectableMessage id={messageContentId}>
+            <p>
+              {emptyMessage || (
+                <EuiI18n
+                  token="euiSelectable.noAvailableOptions"
+                  default="No options available"
+                />
+              )}
+            </p>
+          </EuiSelectableMessage>
+        );
+      } else {
+        messageContent = React.cloneElement(emptyMessage, {
+          id: messageContentId,
+          ...emptyMessage.props,
+        });
+      }
+    } else {
+      messageContentId = '';
+    }
 
     /**
      * There are lots of ways to add an accessible name
@@ -508,7 +562,7 @@ export class EuiSelectable extends Component<
       Object.keys(listAccessibleName).length
     );
     const list = messageContent ? (
-      <EuiSelectableMessage key="listMessage" id={messageContentId}>
+      <EuiSelectableMessage id={messageContentId}>
         {messageContent}
       </EuiSelectableMessage>
     ) : (
