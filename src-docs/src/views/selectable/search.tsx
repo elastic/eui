@@ -13,8 +13,17 @@ const allSearches = searchData.concat(recents);
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
+  const [isLoading, setLoading] = useState(false);
   const [searchRef, setSearchRef] = useState<HTMLInputElement | null>(null);
   const searchValueExists = searchValue && searchValue.length;
+
+  // Timeout to simulate loading
+  // @ts-ignore clear on every render in case it exists
+  clearTimeout(searchTimeout);
+  const searchTimeout = setTimeout(() => {
+    // Simulate a remotely-executed search.
+    setLoading(false);
+  }, 400);
 
   const recentsWithIcon = recents.map(recent => {
     return {
@@ -59,6 +68,11 @@ export default () => {
     window.removeEventListener('keyup', onWindowKeyUp);
   };
 
+  const onKeyUpCapture = (e: any) => {
+    setSearchValue(e.currentTarget.value);
+    setLoading(true);
+  };
+
   const onChange = (updatedOptions: EuiSelectableOption[]) => {
     const clickedItem: EuiSelectableOption = _.find(updatedOptions, {
       checked: 'on',
@@ -69,11 +83,12 @@ export default () => {
 
   return (
     <EuiSelectableTemplateSitewide
+      isLoading={isLoading}
       onChange={onChange}
       options={searchValueExists ? allSearchesSorted : recentsWithIcon}
       searchProps={{
         append: '⌘K',
-        onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
+        onKeyUpCapture: onKeyUpCapture,
         compressed: true,
         className: 'customSearchClass',
         inputRef: (ref: HTMLInputElement) => {
