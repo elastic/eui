@@ -28,8 +28,30 @@
   }
 }
 
+.euiComboBoxOption__contentWrapper {
+  display: flex;
+
+  .euiComboBoxOption__emptyStateText {
+    flex: 1;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .euiComboBoxOption__enterBadge {
+    align-self: flex-start;
+    margin-left: $euiSizeXS;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
 .euiComboBoxOption__content {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  flex: 1;
+  text-align: left;
 }

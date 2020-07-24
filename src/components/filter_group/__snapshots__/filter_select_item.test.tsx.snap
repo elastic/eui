@@ -18,7 +18,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
         data-euiicon-type="empty"
       />
     </div>
-    <div
+    <span
       class="euiFlexItem euiFilterSelectItem__content"
     />
   </span>

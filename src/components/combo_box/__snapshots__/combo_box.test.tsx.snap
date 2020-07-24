@@ -338,15 +338,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Titan
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Titan
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -361,15 +365,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Enceladus
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Enceladus
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -384,15 +392,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Mimas
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Mimas
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -407,15 +419,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Dione
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Dione
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -430,15 +446,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Iapetus
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Iapetus
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -453,15 +473,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Phoebe
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Phoebe
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -476,15 +500,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Rhea
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Rhea
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -499,15 +527,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
           <button
@@ -522,15 +554,19 @@ exports[`props options list is rendered 1`] = `
             <span
               class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
             >
-              <div
+              <span
                 class="euiFlexItem euiFilterSelectItem__content"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__contentWrapper"
                 >
-                  Tethys
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Tethys
+                  </span>
                 </span>
-              </div>
+              </span>
             </span>
           </button>
         </div>
