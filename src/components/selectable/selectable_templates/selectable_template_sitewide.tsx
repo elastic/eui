@@ -24,6 +24,7 @@ import React, {
   CSSProperties,
 } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../..//common';
 import { EuiAvatarProps, EuiAvatar } from '../../avatar/avatar';
 import { EuiIconProps, EuiIcon } from '../../icon';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
@@ -35,9 +36,8 @@ import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
 import { EuiHighlight } from '../../highlight';
 import { useEuiI18n, EuiI18n } from '../../i18n';
-import { euiPaletteColorBlind } from '../../../services';
 
-interface MetaData {
+interface MetaData extends CommonProps {
   /**
    * Required to display the metadata
    */
@@ -53,7 +53,7 @@ interface MetaData {
   /**
    * Override the font-weight provided by the `type`
    */
-  fontWeight?: CSSProperties['fontWeight'];
+  fontWeight?: 'normal' | 'bold';
 }
 
 export type EuiSelectableTemplateSitewideSchema = EuiSelectableLIOption & {
@@ -132,7 +132,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   };
   // Width applied to the internal div
   let popoverWidth: CSSProperties['width'] = 600;
-  if (popoverProps) {
+  if (popoverProps && popoverProps.width) {
     // So it also needs to be removed from the spread
     const { width, ...popoverRest } = popoverProps;
     popoverWidth = popoverProps.width;
@@ -228,7 +228,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
           {...popoverProps}
           button={search}
           closePopover={closePopover}>
-          <div style={{ width: popoverWidth }}>
+          <div style={{ width: popoverWidth, maxWidth: '100%' }}>
             {popoverTitle && <EuiPopoverTitle>{popoverTitle}</EuiPopoverTitle>}
             {list}
             {popoverFooter && (
@@ -248,73 +248,27 @@ function renderOptionMeta(
 ): ReactNode {
   if (!meta || meta.length < 1) return;
   const metas = meta.map((meta: MetaData) => {
-    let metaStyles: CSSProperties;
-    let metaClasses;
-    switch (meta.type) {
-      case 'app':
-        metaStyles = {
-          color: meta.color || euiPaletteColorBlind()[1],
-        };
-        metaClasses = classNames([
-          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
-            'bold'}`,
-        ]);
-        break;
-      case 'deployment':
-        metaStyles = {
-          color: meta.color || euiPaletteColorBlind()[0],
-        };
-        metaClasses = classNames([
-          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
-            'bold'}`,
-        ]);
-        break;
-      case 'article':
-        metaStyles = {
-          color: meta.color || euiPaletteColorBlind()[3],
-        };
-        metaClasses = classNames([
-          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
-            'bold'}`,
-        ]);
-        break;
-      case 'case':
-        metaStyles = {
-          color: meta.color || euiPaletteColorBlind()[9],
-        };
-        metaClasses = classNames([
-          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
-            'bold'}`,
-        ]);
-        break;
-      case 'platform':
-        metaStyles = {
-          color: meta.color || euiPaletteColorBlind()[6],
-        };
-        metaClasses = classNames([
-          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
-            'bold'}`,
-        ]);
-        break;
-      default:
-        metaStyles = {
-          color: meta.color || undefined,
-        };
-        metaClasses = meta.fontWeight
-          ? classNames([
-              `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight}`,
-            ])
-          : undefined;
-        break;
+    // Start with the base and custom classes provided be `fontWeight` or `className`
+    let metaClasses = classNames('euiSelectableTemplateSitewide__optionMeta', [
+      meta.fontWeight
+        ? `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight}`
+        : undefined,
+      meta.className,
+    ]);
+
+    // If they provide one of the specified types, create the class and append
+    if (meta.type) {
+      metaClasses = classNames(
+        [`euiSelectableTemplateSitewide__optionMeta--${meta.type}`],
+        metaClasses
+      );
     }
+
     return (
       <span
-        className={classNames(
-          'euiSelectableTemplateSitewide__optionMeta',
-          metaClasses
-        )}
+        className={metaClasses}
         key={meta.text}
-        style={metaStyles}>
+        style={{ color: meta.color }}>
         <EuiHighlight search={searchValue}>{meta.text}</EuiHighlight>
       </span>
     );

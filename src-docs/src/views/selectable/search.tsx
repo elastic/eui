@@ -27,6 +27,20 @@ export default () => {
     };
   });
 
+  // ERROR: Only seems to be sorting the `searchData` portion
+  const allSearchesSorted = allSearches.sort(function(a, b) {
+    const nameA = a.label.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.label.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+
   useEffect(() => {
     window.addEventListener('keydown', onWindowKeyDown);
 
@@ -57,7 +71,7 @@ export default () => {
   return (
     <EuiSelectableTemplateSitewide
       onChange={onChange}
-      options={searchValueExists ? allSearches : recentsWithIcon}
+      options={searchValueExists ? allSearchesSorted : recentsWithIcon}
       searchProps={{
         append: '⌘K',
         onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
@@ -70,13 +84,17 @@ export default () => {
       }}
       popoverProps={{
         className: 'customPopoverClass',
-        width: '50vw',
+        // width: '50vw',
       }}
       popoverFooter={
         <EuiText color="subdued" size="xs">
-          <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexGroup
+            alignItems="center"
+            gutterSize="s"
+            responsive={false}
+            wrap>
             <EuiFlexItem grow={false}>
-              <EuiLink>View more results</EuiLink>
+              {searchValueExists && <EuiLink>View more results</EuiLink>}
             </EuiFlexItem>
             <EuiFlexItem />
             <EuiFlexItem grow={false}>Quickly search using</EuiFlexItem>

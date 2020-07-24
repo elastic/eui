@@ -229,4 +229,19 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
       },
     ],
   },
+  {
+    label: 'Totally custom',
+    searchableLabel: 'Custom metadata; And a custom search label',
+    icon: {
+      type: 'alert',
+      color: 'accent',
+    },
+    meta: [
+      {
+        text: 'I have no type',
+        fontWeight: 'bold',
+        color: '#FC358E',
+      },
+    ],
+  },
 ];
