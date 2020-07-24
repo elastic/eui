@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
-import { EuiIcon } from '../../../../src/components/icon';
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
-import {
-  EuiSelectable,
-  EuiSelectableTemplateSitewide,
-} from '../../../../src/components/selectable';
+import { EuiSelectableTemplateSitewide } from '../../../../src/components/selectable';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
-
-export type EuiSelectableProps = React.ComponentProps<typeof EuiSelectable>;
-export type EuiSelectableOptionsProps = Required<EuiSelectableProps>['options'];
-export type EuiSelectableOptionProps = EuiSelectableOptionsProps[number];
+import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';
 
 import { searchData, recents } from './data';
-import { EuiSelectableLIOption } from 'src/components/selectable/selectable_option';
-
 const allSearches = searchData.concat(recents);
-const recentData: EuiSelectableOptionsProps = recents.map(item => {
-  return {
-    prepend: <EuiIcon type="clock" size="m" color="subdued" />,
-  };
-});
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
-  const searchValueExists = searchValue && searchValue !== '';
+  const searchValueExists = searchValue && searchValue.length;
 
   let inputRef: HTMLInputElement;
+
+  const recentsWithIcon = recents.map(recent => {
+    return {
+      ...recent,
+      icon: {
+        type: 'clock',
+        color: 'subdued',
+      },
+    };
+  });
 
   useEffect(() => {
     window.addEventListener('keydown', onWindowKeyDown);
@@ -50,8 +46,10 @@ export default () => {
     window.removeEventListener('keyup', onWindowKeyUp);
   };
 
-  const onChange = (updatedOptions: EuiSelectableLIOption[]) => {
-    const clickedItem = _.find(updatedOptions, { checked: 'on' });
+  const onChange = (updatedOptions: EuiSelectableOption[]) => {
+    const clickedItem: EuiSelectableOption = _.find(updatedOptions, {
+      checked: 'on',
+    });
     if (!clickedItem) return;
     if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };
@@ -59,10 +57,10 @@ export default () => {
   return (
     <EuiSelectableTemplateSitewide
       onChange={onChange}
-      options={allSearches}
+      options={searchValueExists ? allSearches : recentsWithIcon}
       searchProps={{
         append: '⌘K',
-        // onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
+        onKeyUpCapture: (e: any) => setSearchValue(e.currentTarget.value),
         compressed: true,
         className: 'customSearchClass',
         inputRef: (ref: HTMLInputElement) => (inputRef = ref),

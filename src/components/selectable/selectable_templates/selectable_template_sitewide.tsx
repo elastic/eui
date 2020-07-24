@@ -45,7 +45,7 @@ interface MetaData {
   /**
    * Required to style the metadata appropriately
    */
-  type: 'app' | 'deployment' | 'article' | 'case' | 'platform' | 'other';
+  type?: 'app' | 'deployment' | 'article' | 'case' | 'platform';
   /**
    * Override the color provided by the `type`
    */
@@ -74,10 +74,7 @@ export type EuiSelectableTemplateSitewideSchema = EuiSelectableLIOption & {
   meta?: MetaData[];
 };
 
-export type EuiSelectableTemplateSitewideProps = Omit<
-  EuiSelectableProps,
-  'options'
-> & {
+export type EuiSelectableTemplateSitewideProps = Partial<EuiSelectableProps> & {
   /**
    * Extend the typical EuiSelectableLiOption with the addition of
    * `icon`: Object of `EuiIconProps` for creating the `prepend`;
@@ -89,7 +86,7 @@ export type EuiSelectableTemplateSitewideProps = Omit<
    * Override some of the EuiPopover props housing the list.
    * The default width is `600`
    */
-  popoverProps?: PopoverProps & { width?: CSSProperties['width'] };
+  popoverProps?: Partial<PopoverProps> & { width?: CSSProperties['width'] };
   /**
    * Optionally provide a title for the popover
    */
@@ -158,19 +155,18 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   /**
    * List option renderer
    */
-  const formattedOptions: EuiSelectableLIOption = options.map(
+  const formattedOptions = options.map(
     (item: EuiSelectableTemplateSitewideSchema) => {
       return {
         key: item.label,
-        label: `${item.label}`,
-        title: item.label,
+        label: item.label,
         ...item,
         className: classNames(
           'euiSelectableTemplateSitewide__listItem',
           item.className
         ),
         prepend: item.icon ? (
-          <EuiIcon color="subdued" {...item.icon} size="m" />
+          <EuiIcon color="subdued" {...item.icon} size="l" />
         ) : (
           undefined
         ),
@@ -187,7 +183,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     return (
       <>
         <span className="euiSelectableTemplateSitewide__listItemTitle">
-          <EuiHighlight search={searchValue}>{option.title}</EuiHighlight>
+          <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
         </span>
         {renderOptionMeta(option.meta, searchValue)}
       </>
@@ -198,7 +194,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     <EuiSelectable
       options={formattedOptions}
       renderOption={renderOption}
-      height={300}
       singleSelection={true}
       searchProps={{
         placeholder: searchPlaceholder,
@@ -246,18 +241,19 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   );
 };
 
+// TODO: Any better way to handle Meta types?
 function renderOptionMeta(
   meta?: MetaData[],
   searchValue: string = ''
 ): ReactNode {
-  if (!meta) return;
+  if (!meta || meta.length < 1) return;
   const metas = meta.map((meta: MetaData) => {
     let metaStyles: CSSProperties;
     let metaClasses;
     switch (meta.type) {
       case 'app':
         metaStyles = {
-          color: meta.color || euiPaletteColorBlind()[0],
+          color: meta.color || euiPaletteColorBlind()[1],
         };
         metaClasses = classNames([
           `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
@@ -266,7 +262,34 @@ function renderOptionMeta(
         break;
       case 'deployment':
         metaStyles = {
-          color: meta.color || undefined,
+          color: meta.color || euiPaletteColorBlind()[0],
+        };
+        metaClasses = classNames([
+          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
+            'bold'}`,
+        ]);
+        break;
+      case 'article':
+        metaStyles = {
+          color: meta.color || euiPaletteColorBlind()[3],
+        };
+        metaClasses = classNames([
+          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
+            'bold'}`,
+        ]);
+        break;
+      case 'case':
+        metaStyles = {
+          color: meta.color || euiPaletteColorBlind()[9],
+        };
+        metaClasses = classNames([
+          `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||
+            'bold'}`,
+        ]);
+        break;
+      case 'platform':
+        metaStyles = {
+          color: meta.color || euiPaletteColorBlind()[6],
         };
         metaClasses = classNames([
           `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight ||

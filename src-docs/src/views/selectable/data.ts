@@ -1,5 +1,5 @@
 import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';
-import { EuiSelectableTemplateSitewideSchema } from 'src/components/selectable/selectable_templates/selectable_template_sitewide';
+import { EuiSelectableTemplateSitewideSchema } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide';
 
 export const Options: EuiSelectableOption[] = [
   {
@@ -42,15 +42,12 @@ export const Options: EuiSelectableOption[] = [
 export const recents: EuiSelectableTemplateSitewideSchema[] = [
   {
     label: 'Welcome dashboards',
-    icon: {
-      type: 'dashboardApp',
-    },
     avatar: {
       name: 'Default Space',
     },
     meta: [
       {
-        text: 'Saved dashboard',
+        text: 'Dashboard',
         type: 'app',
       },
     ],
@@ -59,39 +56,30 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
   {
     label:
       '[Flights] Flight Count and Average Ticket Price over the course of several years maybe even decades',
-    icon: {
-      type: 'visualizeApp',
-    },
     avatar: {
       name: 'Default Space',
     },
     meta: [
       {
-        text: 'Saved visualization',
+        text: 'Visualization',
         type: 'app',
       },
     ],
   },
   {
     label: '[Flights] Global Flight Dashboard',
-    icon: {
-      type: 'dashboardApp',
-    },
     avatar: {
       name: 'Hello World',
     },
     meta: [
       {
-        text: 'Saved dashboard',
+        text: 'Dashboard',
         type: 'app',
       },
     ],
   },
   {
     label: '[Logs] Host, Visits and Bytes Table',
-    icon: {
-      type: 'visVisualBuilder',
-    },
     meta: [
       {
         text: 'TSVB visualization',
@@ -101,92 +89,144 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
   },
   {
     label: '[Flights] Flight Log',
-    icon: {
-      type: 'discoverApp',
-    },
     avatar: {
       name: 'Hello World',
     },
     meta: [
       {
-        text: 'Saved search',
+        text: 'Discover',
         type: 'app',
       },
     ],
   },
 ];
 
-export const searchData = [
+export const searchData: EuiSelectableTemplateSitewideSchema[] = [
   {
-    title: 'Dashboards',
+    label: 'Dashboards',
     url: 'dashboards',
-    type: {
-      iconType: 'logoKibana',
+    icon: {
+      type: 'logoKibana',
     },
   },
   {
-    title:
+    label:
       'Generate HAR Archive of Network Timings/Details for Kibana requests',
-    type: {
-      title: 'Article',
-    },
-    meta:
-      'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
+    meta: [
+      {
+        text: 'Article',
+        type: 'article',
+      },
+      {
+        text:
+          'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
+      },
+    ],
   },
   {
-    title: '[Logs] Web Traffic',
+    label: '[Logs] Web Traffic',
     url: 'dashboard-logs-web-traffic',
-    type: {
-      title: 'Saved dashboard',
-      iconType: 'dashboardApp',
-    },
-    space: 'Another',
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'app',
+      },
+    ],
   },
   {
-    title: 'Databoard analytics',
-    type: {
-      title: 'Saved discover',
-      iconType: 'discoverApp',
-    },
+    label: 'Databoard analytics',
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'app',
+      },
+      {
+        text: 'Flights Data',
+        type: 'deployment',
+      },
+    ],
   },
   {
-    title: 'Primary logs',
-    type: {
-      title: 'personal-databoard',
-      iconType: 'logstashInput',
+    label: 'Primary logs',
+    avatar: {
+      name: 'Another',
     },
-    space: 'Hello World',
+    meta: [
+      {
+        text: 'Flights Data',
+        type: 'deployment',
+      },
+    ],
   },
   {
-    title: 'SIEM',
-    type: {
-      title: 'personal-databoard',
-      iconType: 'logoSecurity',
+    label: 'SIEM',
+    icon: {
+      type: 'logoSecurity',
     },
+    meta: [
+      {
+        text: 'personal-databoard',
+        type: 'deployment',
+      },
+    ],
   },
   {
-    title: 'Dev tools',
+    label: 'Dev tools',
     url: 'dev-tools-console',
-    type: {
-      title: 'Management application',
-      iconType: 'devToolsApp',
-    },
+    meta: [
+      {
+        text: 'Management application',
+        type: 'app',
+      },
+    ],
   },
   {
-    title: 'Console',
-    url: 'dev-tools-console',
-    type: {
-      title: 'Dev tools application',
-      iconType: 'consoleApp',
+    label: 'Billing',
+    icon: {
+      type: 'user',
     },
+    meta: [
+      {
+        text: 'Account',
+        type: 'platform',
+      },
+    ],
   },
   {
-    title: 'Maps',
+    label: 'Maps',
     url: 'maps',
-    type: {
-      title: 'Kibana application',
-      iconType: 'gisApp',
-    },
+    icon: { type: 'logoKibana' },
+    meta: [
+      {
+        text: 'Analyze application',
+        type: 'app',
+      },
+    ],
     space: 'Hello World',
+  },
+  {
+    label: 'Kibana monitoring with MB',
+    searchableLabel: 'Kibana monitoring with MB; Case no. 00508173',
+    meta: [
+      {
+        text: 'Case',
+        type: 'case',
+      },
+      {
+        text: '00508173',
+      },
+    ],
+  },
+  {
+    label: 'My support tickets',
+    icon: {
+      type: 'help',
+    },
+    meta: [
+      {
+        text: 'Support',
+        type: 'platform',
+      },
+    ],
   },
 ];

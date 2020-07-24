@@ -1,18 +1,19 @@
-.euiSelectableTemplateSitewide {
-
-}
-
 .euiSelectableTemplateSitewide__listItem {
-  text-decoration: none !important;
+  .euiSelectableListItem__text {
+    text-decoration: none !important;
+  }
+
+  // TODO: Any better way to override this focus underline?
+  &[class*='-isFocused']:not([aria-disabled='true']),
+  &:hover:not([aria-disabled='true']) {
+    .euiSelectableTemplateSitewide__listItemTitle {
+      text-decoration: underline;
+    }
+  }
 }
 
 .euiSelectableTemplateSitewide__listItemTitle {
   font-weight: $euiFontWeightMedium;
-
-  &:hover,
-  &[class*='focus'] {
-    text-decoration: underline;
-  }
 }
 
 .euiSelectableTemplateSitewide__optionMetasList {
@@ -22,6 +23,7 @@
 .euiSelectableTemplateSitewide__optionMeta:not(:last-of-type)::after {
   content: '•';
   margin: 0 $euiSizeXS;
+  color: $euiTextColor;
 }
 
 .euiSelectableTemplateSitewide__optionMeta--bold {

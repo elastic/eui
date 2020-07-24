@@ -60,8 +60,8 @@ export interface EuiSelectableOptionBase extends CommonProps {
   append?: React.ReactNode;
   ref?: (optionIndex: number) => void;
   /**
-   * The following allows for consumers to keep the data objects the same without
-   * needing to do key lookups when using `renderOption`
+   * The following allows for consumers to keep their data objects intact
+   * the same without needing to do key lookups when using `renderOption`
    */
   [key: string]: any;
 }
