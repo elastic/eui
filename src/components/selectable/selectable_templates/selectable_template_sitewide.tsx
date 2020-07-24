@@ -207,15 +207,15 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       listProps={{
         rowHeight: 68,
         showIcons: false,
-        onFocusBadgeContent: (
-          <EuiI18n
-            token="euiSelectableTemplateSitewide.onFocusBadgeContentGoTo"
-            default="Go to {enterSymbol}"
-            values={{
-              enterSymbol: <small>↩</small>,
-            }}
-          />
-        ),
+        onFocusBadge: {
+          iconSide: 'right',
+          children: (
+            <EuiI18n
+              token="euiSelectableTemplateSitewide.onFocusBadgeGoTo"
+              default="Go to"
+            />
+          ),
+        },
         ...listProps,
         className: listClasses,
       }}

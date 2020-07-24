@@ -18,13 +18,13 @@
  */
 
 import classNames from 'classnames';
-import React, { Component, LiHTMLAttributes, ReactNode } from 'react';
+import React, { Component, LiHTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiSelectableOptionCheckedType } from '../selectable_option';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiBadge } from '../../badge';
+import { EuiBadge, EuiBadgeProps } from '../../badge';
 
 function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
@@ -57,11 +57,11 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     append?: React.ReactNode;
     allowExclusions?: boolean;
     /**
-     * When enabled by setting to either `true` or passing custom text,
+     * When enabled by setting to either `true` or passing custom a custom badge,
      * shows a hollow badge as an append (far right) when the item is focused.
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
-    onFocusBadgeContent?: boolean | ReactNode;
+    onFocusBadge?: boolean | EuiBadgeProps;
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -70,7 +70,7 @@ export class EuiSelectableListItem extends Component<
 > {
   static defaultProps = {
     showIcons: true,
-    onFocusBadgeContent: false,
+    onFocusBadge: true,
   };
 
   constructor(props: EuiSelectableListItemProps) {
@@ -81,14 +81,14 @@ export class EuiSelectableListItem extends Component<
     const {
       children,
       className,
-      disabled = false,
+      disabled,
       checked,
       isFocused,
       showIcons,
       prepend,
       append,
       allowExclusions,
-      onFocusBadgeContent,
+      onFocusBadge,
       ...rest
     } = this.props;
 
@@ -116,18 +116,12 @@ export class EuiSelectableListItem extends Component<
       checked === 'on' ? (
         <EuiI18n
           token="euiSelectableListItem.onFocusBadgeDefaultContentDeselect"
-          default="{enterSymbol} to deselect"
-          values={{
-            enterSymbol: <small>↩</small>,
-          }}
+          default="to deselect"
         />
       ) : (
         <EuiI18n
           token="euiSelectableListItem.onFocusBadgeDefaultContentSelect"
-          default="{enterSymbol} to select"
-          values={{
-            enterSymbol: <small>↩</small>,
-          }}
+          default="to select"
         />
       );
 
@@ -135,10 +129,7 @@ export class EuiSelectableListItem extends Component<
       onFocusBadgeDefaultContent = (
         <EuiI18n
           token="euiSelectableListItem.onFocusBadgeDefaultContentInclude"
-          default="{enterSymbol} to include"
-          values={{
-            enterSymbol: <small>↩</small>,
-          }}
+          default="to include"
         />
       );
     }
@@ -169,10 +160,7 @@ export class EuiSelectableListItem extends Component<
       onFocusBadgeDefaultContent = (
         <EuiI18n
           token="euiSelectableListItem.onFocusBadgeDefaultContentExclude"
-          default="{enterSymbol} to exclude"
-          values={{
-            enterSymbol: <small>↩</small>,
-          }}
+          default="to exclude"
         />
       );
     } else if (allowExclusions && checked === 'off') {
@@ -199,10 +187,7 @@ export class EuiSelectableListItem extends Component<
       onFocusBadgeDefaultContent = (
         <EuiI18n
           token="euiSelectableListItem.onFocusBadgeDefaultContentDeselect"
-          default="{enterSymbol} to deselect"
-          values={{
-            enterSymbol: <small>↩</small>,
-          }}
+          default="to deselect"
         />
       );
     }
@@ -215,23 +200,40 @@ export class EuiSelectableListItem extends Component<
     }
 
     let appendNode: React.ReactNode;
-    if (append || !!onFocusBadgeContent) {
-      let onFocusBadge: React.ReactNode;
-      if (!!onFocusBadgeContent) {
-        onFocusBadge = (
+    if (append || !!onFocusBadge) {
+      let onFocusBadgeNode: React.ReactNode;
+      const defaultOnFocusBadgeProps: EuiBadgeProps = {
+        'aria-hidden': true,
+        iconType: 'returnKey',
+        iconSide: 'left',
+        color: 'hollow',
+      };
+
+      if (onFocusBadge === true) {
+        onFocusBadgeNode = (
           <EuiBadge
-            aria-hidden={true}
             className="euiSelectableListItem__onFocusBadge"
-            color="hollow">
-            {typeof onFocusBadgeContent === 'boolean'
-              ? onFocusBadgeDefaultContent
-              : onFocusBadgeContent}
+            {...defaultOnFocusBadgeProps}>
+            {onFocusBadgeDefaultContent}
+          </EuiBadge>
+        );
+      } else if (!!onFocusBadge && onFocusBadge !== false) {
+        const { children, className, ...restBadgeProps } = onFocusBadge;
+        onFocusBadgeNode = (
+          <EuiBadge
+            className={classNames(
+              'euiSelectableListItem__onFocusBadge',
+              className
+            )}
+            {...defaultOnFocusBadgeProps}
+            {...restBadgeProps as EuiBadgeProps}>
+            {children}
           </EuiBadge>
         );
       }
       appendNode = (
         <span className="euiSelectableListItem__append">
-          {append} {onFocusBadge}
+          {append} {onFocusBadgeNode}
         </span>
       );
     }

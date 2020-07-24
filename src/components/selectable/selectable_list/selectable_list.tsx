@@ -70,7 +70,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * shows a hollow badge as an append (far right) when the item is focused.
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
-    onFocusBadgeContent?: boolean | ReactNode;
+    onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
   };
 
 export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
@@ -244,7 +244,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         append={append}
         aria-posinset={index + 1 - labelCount}
         aria-setsize={data.length - labelCount}
-        onFocusBadgeContent={this.props.onFocusBadgeContent}
+        onFocusBadge={this.props.onFocusBadge}
         allowExclusions={this.props.allowExclusions}
         {...(optionRest as EuiSelectableListItemProps)}>
         {this.props.renderOption ? (
@@ -274,7 +274,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       allowExclusions,
       bordered,
       searchable,
-      onFocusBadgeContent,
+      onFocusBadge,
       listId,
       setActiveOptionIndex,
       'aria-label': ariaLabel,

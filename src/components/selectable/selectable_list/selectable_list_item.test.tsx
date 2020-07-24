@@ -73,18 +73,21 @@ describe('EuiSelectableListItem', () => {
       expect(component).toMatchSnapshot();
     });
 
-    describe('onFocusBadgeContent', () => {
+    describe('onFocusBadge', () => {
       test('can be true', () => {
-        const component = render(
-          <EuiSelectableListItem onFocusBadgeContent={true} />
-        );
+        const component = render(<EuiSelectableListItem onFocusBadge={true} />);
 
         expect(component).toMatchSnapshot();
       });
 
       test('can be custom', () => {
         const component = render(
-          <EuiSelectableListItem onFocusBadgeContent="Focus" />
+          <EuiSelectableListItem
+            onFocusBadge={{
+              children: 'Custom',
+              iconType: 'bolt',
+            }}
+          />
         );
 
         expect(component).toMatchSnapshot();
