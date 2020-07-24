@@ -24,7 +24,7 @@
 .euiSelectableTemplateSitewide__optionMeta:not(:last-of-type)::after {
   content: '•';
   margin: 0 $euiSizeXS;
-  color: inherit;
+  color: $euiTextSubduedColor;
 }
 
 // Established styles for types of meta

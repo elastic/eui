@@ -182,9 +182,11 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   const renderOption = (option: EuiSelectableOption, searchValue: string) => {
     return (
       <>
-        <span className="euiSelectableTemplateSitewide__listItemTitle">
-          <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
-        </span>
+        <EuiHighlight
+          className="euiSelectableTemplateSitewide__listItemTitle"
+          search={searchValue}>
+          {option.label}
+        </EuiHighlight>
         {renderOptionMeta(option.meta, searchValue)}
       </>
     );
@@ -265,12 +267,13 @@ function renderOptionMeta(
     }
 
     return (
-      <span
+      <EuiHighlight
+        search={searchValue}
         className={metaClasses}
         key={meta.text}
         style={{ color: meta.color }}>
-        <EuiHighlight search={searchValue}>{meta.text}</EuiHighlight>
-      </span>
+        {meta.text}
+      </EuiHighlight>
     );
   });
 
