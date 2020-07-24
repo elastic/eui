@@ -28,10 +28,7 @@ import { CommonProps } from '../..//common';
 import { EuiAvatarProps, EuiAvatar } from '../../avatar/avatar';
 import { EuiIconProps, EuiIcon } from '../../icon';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
-import {
-  EuiSelectableOption,
-  EuiSelectableLIOption,
-} from '../selectable_option';
+import { EuiSelectableOption } from '../selectable_option';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
 import { EuiHighlight } from '../../highlight';
@@ -45,7 +42,13 @@ interface MetaData extends CommonProps {
   /**
    * Required to style the metadata appropriately
    */
-  type?: 'app' | 'deployment' | 'article' | 'case' | 'platform';
+  type?:
+    | 'application'
+    | 'deployment'
+    | 'article'
+    | 'case'
+    | 'platform'
+    | string;
   /**
    * Override the color provided by the `type`
    */
@@ -56,7 +59,7 @@ interface MetaData extends CommonProps {
   fontWeight?: 'normal' | 'bold';
 }
 
-export type EuiSelectableTemplateSitewideSchema = EuiSelectableLIOption & {
+export type EuiSelectableTemplateSitewideSchema = EuiSelectableOption & {
   /**
    * Displayed on the left.
    * Object of `EuiIconProps`

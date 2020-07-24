@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
@@ -74,7 +74,7 @@ export interface EuiSelectableGroupLabelOption
 
 export interface EuiSelectableLIOption
   extends EuiSelectableOptionBase,
-    ButtonHTMLAttributes<HTMLLIElement> {}
+    HTMLAttributes<HTMLLIElement> {}
 
 export type EuiSelectableOption = ExclusiveUnion<
   EuiSelectableGroupLabelOption,
