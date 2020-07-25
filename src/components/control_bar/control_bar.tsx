@@ -50,7 +50,7 @@ import { EuiPortal } from '../portal';
  */
 export interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
   id: string;
-  label: React.ReactNode;
+  label: ReactNode;
 }
 
 type ButtonPropsForAnchor = PropsForAnchor<
@@ -104,7 +104,7 @@ export interface TextControl
     HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
   id: string;
-  text: React.ReactNode;
+  text: ReactNode;
 }
 
 export interface SpacerControl {

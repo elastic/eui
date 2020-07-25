@@ -50,7 +50,7 @@ export type EuiFieldPasswordProps = Omit<
      * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
-    value?: string | string[] | number;
+    value?: string | number;
   };
 
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
