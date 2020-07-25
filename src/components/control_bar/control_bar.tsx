@@ -24,6 +24,7 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   Ref,
+  ReactNode,
 } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
@@ -82,8 +83,8 @@ export interface TabControl
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'onClick'> {
   controlType: 'tab';
   id: string;
-  label: React.ReactNode;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  label: ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
