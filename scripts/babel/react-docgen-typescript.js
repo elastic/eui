@@ -144,6 +144,12 @@ function filterProp(
     return true;
   }
 
+  prop.type.name = prop.type.name.replace(
+    reactElementTypeExpanded,
+    'ReactElement'
+  );
+  prop.type.name = prop.type.name.replace(reactNodeTypeExpanded, 'ReactNode');
+
   if (prop.type.name === 'enum') {
     const propValueArray = prop.type.value.map(type => type.value);
     const found = intrinsicValuesRaw.every(
@@ -286,6 +292,14 @@ function replaceProp(props, checker, initialProp) {
         const type = checker.typeToString(propType);
         initialProp.required = !prop.questionToken;
         initialProp.type.name = type.replace(' | undefined', '');
+        initialProp.type.name = initialProp.type.name.replace(
+          reactElementTypeExpanded,
+          'ReactElement'
+        );
+        initialProp.type.name = initialProp.type.name.replace(
+          reactNodeTypeExpanded,
+          'ReactNode'
+        );
       }
     });
   }
@@ -307,3 +321,12 @@ const intrinsicValuesRaw = [
   '"aside"',
   '"audio"',
 ];
+
+/**
+ * Replace ReactElement and ReactNode expanded types with ReactElement and ReactNode
+ */
+const reactElementTypeExpanded =
+  'ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<any, any, any>)>';
+
+const reactNodeTypeExpanded =
+  'string | number | boolean | {} | ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<...>)> | ... 5 more ... | (ReactPortal & string)';
