@@ -47,7 +47,7 @@ interface Props {
   /**
    * ReactNode to render as this component's children
    */
-  children: ReactElement<any>;
+  children: ReactElement;
 }
 
 export class EuiKeyboardAccessible extends Component<Props> {

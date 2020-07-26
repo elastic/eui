@@ -80,7 +80,7 @@ export interface Props {
   /**
    * The in-view trigger for your tooltip.
    */
-  children: ReactElement<any>;
+  children: ReactElement;
   /**
    * Passes onto the tooltip itself, not the trigger.
    */
