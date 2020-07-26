@@ -29,6 +29,9 @@ const files = [
   ...glob.sync('src-docs/**/*.{ts,tsx}', { absolute: true }),
 ];
 
+/**
+ * To support extended props from tsx files.
+ */
 const options = {
   jsx: ts.JsxEmit.React,
 };
@@ -82,6 +85,10 @@ module.exports = function() {
           // eslint-disable-next-line no-empty
         } catch (e) {}
 
+        /**
+         * react-docgen-typescript takes type of children from PropsWithChildren of FunctionComponent,
+         * For our case we need our custom types to replace them.
+         */
         if (state.get('childrenProp') && state.get('componentName')) {
           getChildrenTypeFromPropTypes(
             state.get('childrenProp'),
@@ -94,8 +101,6 @@ module.exports = function() {
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
           const exportName = docgenResult.displayName;
-
-          if (!exportName) return;
           docgenResult.extends = componentExtends;
           path.node.body.push(
             template.default.ast(`          
@@ -148,6 +153,7 @@ function filterProp(
       prop.type.name = 'any HTML Element';
     }
   }
+
   if (prop.parent) {
     //Check if props are extended from other node module
     if (whiteListedParent.includes(prop.parent.name)) return true;
@@ -185,14 +191,23 @@ function getChildrenTypeFromPropTypes(
   const source = program.getSourceFile(filename);
   const checker = program.getTypeChecker();
 
+  // Get the symbol property of the source file
   const moduleSymbol = checker.getSymbolAtLocation(source);
-  if (!moduleSymbol) return;
 
+  // Components must be mostly exported.
   const components = checker.getExportsOfModule(moduleSymbol);
+
+  /**
+   * A single file may contain many components. Filter the component whose children prop
+   * has to be updated
+   */
   const componentToParse = components.filter(
     component => component.escapedName === componentName
   )[0];
 
+  /**
+   * If there are no declarations, then there will be no interfaces.
+   */
   if (
     !!componentToParse.declarations &&
     componentToParse.declarations.length === 0
@@ -204,6 +219,7 @@ function getChildrenTypeFromPropTypes(
     componentToParse.valueDeclaration ||
     (componentToParse.declarations && componentToParse.declarations[0]);
 
+  // get Type of the component symbol
   const type = checker.getTypeOfSymbolAtLocation(componentToParse, declaration);
 
   // For stateless components there will be callSignatures.
@@ -211,11 +227,12 @@ function getChildrenTypeFromPropTypes(
   if (callSignatures && callSignatures.length) {
     for (const sig of callSignatures) {
       const params = sig.getParameters();
+      // if there are no parameters then there will be no props
       if (params.length === 0) {
         continue;
       }
       const propsParam = params[0];
-      if (propsParam.name === 'props' || params.length === 1) {
+      if (propsParam.name === 'props') {
         replaceProp(propsParam, checker, initialProp);
       }
     }
@@ -246,10 +263,16 @@ function replaceProp(props, checker, initialProp) {
     props,
     props.valueDeclaration
   );
+  // get all the props of the interface
   const propTypes = propsType.getProperties();
+  // filter to get the children prop
   const childrenProp = propTypes.filter(
     prop => prop.getName() === 'children'
   )[0];
+  /**
+   * get the first declaration of the props, skip if children prop is from DOMAttributes,
+   * propsWithChildren declaration only occurs last
+   */
   const prop = childrenProp.declarations.filter(
     declarations => declarations.parent.symbol.name !== 'DOMAttributes'
   )[0];
@@ -268,6 +291,10 @@ function replaceProp(props, checker, initialProp) {
   }
 }
 
+/**
+ * For types declared as (key of HTMLElements) all the HTML Element types will appear. This creates a large
+ * list of types. To avoid this we could check if the props the props include the firse few keys of HTMLElements
+ */
 const intrinsicValuesRaw = [
   '"a"',
   '"abbr"',
