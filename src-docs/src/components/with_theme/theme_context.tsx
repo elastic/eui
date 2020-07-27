@@ -2,6 +2,8 @@ import React from 'react';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 import euiLightTheme from '../../../../src/theme_light';
 import euiDarkTheme from '../../../../src/theme_dark';
+import amsterdamLightTheme from '../../../../src/theme_amsterdam_light';
+import amsterdamDarkTheme from '../../../../src/theme_amsterdam_dark';
 import PropagateContext from '../../../../src/services/propagate/propagate_context';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
@@ -46,11 +48,27 @@ export class ThemeProvider extends React.Component<object, State> {
     };
   }
 
+  setTheme = (
+    themeValue: EUI_THEME['value'],
+    currentTheme: State['fullTheme']
+  ): State['fullTheme'] => {
+    switch (themeValue) {
+      case 'light':
+        return euiLightTheme(currentTheme);
+      case 'dark':
+        return euiDarkTheme(currentTheme);
+      case 'amsterdam-light':
+        return amsterdamLightTheme(currentTheme);
+      case 'amsterdam-dark':
+        return amsterdamDarkTheme(currentTheme);
+      default:
+        return defaultState.fullTheme;
+    }
+  };
+
   changeTheme = (themeValue: EUI_THEME['value']) => {
-    console.log(this.state.fullTheme);
-    const fullTheme = themeValue.includes('light')
-      ? euiLightTheme(this.state.fullTheme)
-      : euiDarkTheme(this.state.fullTheme);
+    // console.log(this.state.fullTheme);
+    const fullTheme = this.setTheme(themeValue, this.state.fullTheme);
     this.setState({ theme: themeValue, fullTheme }, () => {
       localStorage.setItem('theme', themeValue);
       applyTheme(themeValue);
