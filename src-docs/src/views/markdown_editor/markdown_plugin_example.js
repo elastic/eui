@@ -111,8 +111,8 @@ const uiPluginConcepts = [
     title: 'formatter',
     description: (
       <span>
-        If no <strong>editor</strong> is provided, a React component can be
-        providing to handle formatting.
+        If no <strong>editor</strong> is provided, this is an object defining
+        how the plugins markdown tag is styled.
       </span>
     ),
   },

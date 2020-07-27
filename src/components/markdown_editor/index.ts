@@ -21,7 +21,7 @@ export { EuiMarkdownEditor, EuiMarkdownEditorProps } from './markdown_editor';
 export {
   EuiMarkdownDefaultParsingPlugins,
   EuiMarkdownDefaultProcessingPlugins,
-} from './markdown_default_plugins';
+} from './plugins/markdown_default_plugins';
 export { EuiMarkdownContext } from './markdown_context';
 export { EuiMarkdownFormat } from './markdown_format';
 export {

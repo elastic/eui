@@ -22,7 +22,7 @@ import unified, { PluggableList } from 'unified';
 import {
   EuiMarkdownDefaultProcessingPlugins,
   EuiMarkdownDefaultParsingPlugins,
-} from './markdown_default_plugins';
+} from './plugins/markdown_default_plugins';
 
 interface EuiMarkdownFormatProps {
   children: string;
@@ -34,12 +34,16 @@ interface EuiMarkdownFormatProps {
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
-  parsingPluginList,
-  processingPluginList,
+  parsingPluginList = EuiMarkdownDefaultParsingPlugins,
+  processingPluginList = EuiMarkdownDefaultProcessingPlugins,
 }) => {
-  const processor = unified()
-    .use(parsingPluginList || EuiMarkdownDefaultParsingPlugins)
-    .use(processingPluginList || EuiMarkdownDefaultProcessingPlugins);
+  const processor = useMemo(
+    () =>
+      unified()
+        .use(parsingPluginList)
+        .use(processingPluginList),
+    [parsingPluginList, processingPluginList]
+  );
   const result = useMemo(() => {
     try {
       return processor.processSync(children).contents;

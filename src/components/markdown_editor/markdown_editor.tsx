@@ -55,7 +55,7 @@ import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import {
   EuiMarkdownDefaultParsingPlugins,
   EuiMarkdownDefaultProcessingPlugins,
-} from './markdown_default_plugins';
+} from './plugins/markdown_default_plugins';
 
 type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -240,7 +240,6 @@ export const EuiMarkdownEditor: FunctionComponent<
       () => ({ textarea: textareaRef.current, replaceNode }),
       [replaceNode]
     );
-    // console.log('editor', processor);
 
     return (
       <EuiMarkdownContext.Provider value={contextValue}>

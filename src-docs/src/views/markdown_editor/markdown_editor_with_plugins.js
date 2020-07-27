@@ -122,7 +122,16 @@ const chartDemoPlugin = {
                 />
               </EuiFormRow>
             </EuiForm>
-            <ChartMarkdownRenderer palette={palette} height={height} />
+            <div
+              style={{
+                width: 600,
+                maxWidth: '100%',
+                height: 500,
+                alignItems: 'center',
+                display: 'flex',
+              }}>
+              <ChartMarkdownRenderer palette={palette} height={height} />
+            </div>
           </>
         </EuiModalBody>
 

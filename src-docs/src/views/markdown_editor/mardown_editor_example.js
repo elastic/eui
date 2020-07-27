@@ -29,9 +29,9 @@ export const MarkdownEditorExample = {
         <p>
           <strong>EuiMarkdownEditor</strong> provides a markdown authoring
           experience for the user. The component consists of a toolbar, text
-          area, and a drag-and-drop zone to accept files. There are two modes: a
-          textarea that keeps track of cursor position, and a rendered preview
-          mode that is powered by{' '}
+          area, and a drag-and-drop zone to accept files (if configured to do
+          so). There are two modes: a textarea that keeps track of cursor
+          position, and a rendered preview mode that is powered by{' '}
           <strong>
             <Link to="/editors-syntax/markdown-format/">EuiMarkdownFormat</Link>
           </strong>
@@ -81,10 +81,10 @@ export const MarkdownEditorExample = {
       text: (
         <p>
           The <EuiCode>errors</EuiCode> prop allows you to pass an array of
-          errors if syntax is malformed. Below the tooltip plugin is able to
-          provide this message by default. These errors are meant to be
-          ephemeral and part of the editing experience. They should not be a
-          substitute for{' '}
+          errors if syntax is malformed. The below example starts with an
+          incomplete tooltip tag, showing this error message by default. These
+          errors are meant to be ephemeral and part of the editing experience.
+          They should not be a substitute for{' '}
           <Link to="/forms/form-validation">form validation</Link>.
         </p>
       ),

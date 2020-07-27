@@ -18,18 +18,15 @@
  */
 
 import { PluggableList } from 'unified';
-// @ts-ignore TODO
 import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
-import * as MarkdownTooltip from './plugins/markdown_tooltip';
-import * as MarkdownCheckbox from './plugins/markdown_checkbox';
+import * as MarkdownTooltip from './markdown_tooltip';
+import * as MarkdownCheckbox from './markdown_checkbox';
 import React, { createElement } from 'react';
-import { EuiLink } from '../link';
-import { EuiCodeBlock, EuiCode } from '../code';
+import { EuiLink } from '../../link';
+import { EuiCodeBlock, EuiCode } from '../../code';
 import markdown from 'remark-parse';
-// @ts-ignore TODO
 import highlight from 'remark-highlight.js';
-// @ts-ignore TODO
 import emoji from 'remark-emoji';
 
 export const EuiMarkdownDefaultParsingPlugins: PluggableList = [
