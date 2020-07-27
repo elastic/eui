@@ -1685,12 +1685,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 167,
-        "column": 10
+        "line": 169,
+        "column": 24
       },
       "end": {
-        "line": 170,
-        "column": 52
+        "line": 173,
+        "column": 13
       }
     },
     "filepath": "src/components/image/image.tsx"
@@ -1701,12 +1701,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 201,
-        "column": 8
+        "line": 195,
+        "column": 26
       },
       "end": {
-        "line": 204,
-        "column": 49
+        "line": 199,
+        "column": 3
       }
     },
     "filepath": "src/components/image/image.tsx"
@@ -1937,7 +1937,7 @@
   },
   {
     "token": "euiSelectableListItem.includedOptionInstructions",
-    "defString": "To exclude this option, press enter or space.",
+    "defString": "To exclude this option, press enter.",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1969,7 +1969,7 @@
   },
   {
     "token": "euiSelectableListItem.excludedOptionInstructions",
-    "defString": "To deselect this option, press enter or space.",
+    "defString": "To deselect this option, press enter.",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1989,11 +1989,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 389,
+        "line": 388,
         "column": 12
       },
       "end": {
-        "line": 392,
+        "line": 391,
         "column": 14
       }
     },
@@ -2005,11 +2005,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 399,
+        "line": 398,
         "column": 10
       },
       "end": {
-        "line": 403,
+        "line": 402,
         "column": 12
       }
     },
@@ -2021,11 +2021,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 409,
+        "line": 408,
         "column": 10
       },
       "end": {
-        "line": 412,
+        "line": 411,
         "column": 12
       }
     },
@@ -2037,11 +2037,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 489,
+        "line": 488,
         "column": 6
       },
       "end": {
-        "line": 489,
+        "line": 488,
         "column": 78
       }
     },
@@ -2053,11 +2053,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 518,
+        "line": 517,
         "column": 6
       },
       "end": {
-        "line": 518,
+        "line": 517,
         "column": 78
       }
     },

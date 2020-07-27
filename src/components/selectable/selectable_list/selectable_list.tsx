@@ -59,7 +59,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
     /**
      * Any props to send specifically to the react-window `FixedSizeList`
      */
-    windowProps?: ListProps;
+    windowProps?: Partial<ListProps>;
     /**
      * Adds a border around the list to indicate the bounds;
      * Useful when the list scrolls, otherwise use your own container
