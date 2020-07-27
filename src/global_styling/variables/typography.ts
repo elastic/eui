@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { euiSize } from './sizes';
+import { euiBaseSize } from './sizes';
 // Some mixins that help us deal with browser scaling of text more consistantly.
 // Essentially, fonts across eui should scale agains the root html element, not
 // against parent inheritance.
@@ -56,7 +56,7 @@ const euiFontFeatureSettings = "'calt' 1, 'kern' 1, 'liga' 1";
 // Font sizes -- scale is loosely based on Major Third (1.250)
 const euiTextScale = [2.25, 1.75, 1.25, 1.125, 1, 0.875, 0.75];
 
-const euiFontSize = euiSize; // 5th position in scale
+const euiFontSize = euiBaseSize; // 5th position in scale
 const sizes = {
   euiFontSizeXS: euiFontSize * euiTextScale[6], // 12px
   euiFontSizeS: euiFontSize * euiTextScale[5], // 14px
