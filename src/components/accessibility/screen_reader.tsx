@@ -22,7 +22,7 @@ import classNames from 'classnames';
 
 export interface EuiScreenReaderOnlyProps {
   /**
-   * ReactNode to render as this component's content
+   * ReactElement to render as this component's content
    */
   children: ReactElement<any>;
 
