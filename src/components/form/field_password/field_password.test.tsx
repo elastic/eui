@@ -21,14 +21,17 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiFieldPassword } from './field_password';
+import { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
 
-jest.mock('../form_control_layout', () => ({
-  EuiFormControlLayout: 'eui-form-control-layout',
-}));
 jest.mock('../validatable_control', () => ({
   EuiValidatableControl: 'eui-validatable-control',
 }));
+
+const TYPES: Array<EuiFieldPasswordProps['type']> = [
+  'password',
+  'text',
+  'dual',
+];
 
 describe('EuiFieldPassword', () => {
   test('is rendered', () => {
@@ -68,6 +71,38 @@ describe('EuiFieldPassword', () => {
     test('prepend and append is rendered', () => {
       const component = render(
         <EuiFieldPassword prepend="String" append="String" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('compressed is rendered', () => {
+      const component = render(<EuiFieldPassword compressed />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('type', () => {
+      TYPES.forEach(type => {
+        test(`${type} is rendered`, () => {
+          const component = render(<EuiFieldPassword type={type} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    test('dualToggleProps is rendered', () => {
+      const component = render(
+        <EuiFieldPassword type="dual" dualToggleProps={requiredProps} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('dual type also renders append', () => {
+      const component = render(
+        <EuiFieldPassword type="dual" append={['String', <span>Span</span>]} />
       );
 
       expect(component).toMatchSnapshot();

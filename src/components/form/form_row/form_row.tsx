@@ -142,8 +142,14 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       onChildFocus(...args);
     }
 
-    this.setState({
-      isFocused: true,
+    this.setState(({ isFocused }) => {
+      if (!isFocused) {
+        return {
+          isFocused: true,
+        };
+      } else {
+        return null;
+      }
     });
   };
 

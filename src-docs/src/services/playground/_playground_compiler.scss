@@ -1,6 +1,7 @@
 .playgroundCompiler {
   > div {
     justify-content: left !important; // sass-lint:disable-line no-important
+    display: block !important; // sass-lint:disable-line no-important
   }
 }
 
