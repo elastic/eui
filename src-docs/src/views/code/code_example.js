@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiCodeBlockImpl } from '../../../../src/components';
+import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
 const codeSource = require('!!raw-loader!./code');
@@ -96,4 +97,5 @@ export const CodeExample = {
       demo: <CodeBlockPre />,
     },
   ],
+  playground: [codeBlockConfig, codeConfig],
 };
