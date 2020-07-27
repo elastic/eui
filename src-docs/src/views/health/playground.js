@@ -8,6 +8,12 @@ export default () => {
     : EuiHealth.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
+  propsToUse.children = {
+    ...propsToUse.children,
+    type: PropTypes.String,
+    value: 'Status',
+  };
+
   propsToUse.color = {
     ...propsToUse.color,
     options: {
