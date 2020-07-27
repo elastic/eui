@@ -375,7 +375,7 @@ export const SelectableExample = {
 </EuiSelectable>`,
     },
     {
-      title: 'Global search template',
+      title: 'Sitewide search template',
       source: [
         {
           type: GuideSectionTypes.JS,
