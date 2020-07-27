@@ -207,7 +207,7 @@ const getPropsFromInterface = (interface, checker) => {
         ? declaration.name.escapedText
         : declaration.name.text;
       props[propName] = setPropInfo(
-        stringType,
+        { name: stringType },
         propName,
         !declaration.questionToken,
         description
@@ -230,5 +230,4 @@ const setPropInfo = (type, name, required, description) => ({
   type,
   required,
   description,
-  type,
 });
