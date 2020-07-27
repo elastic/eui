@@ -20,10 +20,13 @@
 import { createTheme } from './themes/create_theme';
 import euiColorsLight from './themes/eui/eui_colors_light';
 
+const name = 'EuiLight';
+
 export default (theme?: any) => {
   if (theme) {
+    theme.set('name', name);
     theme.set('colors', euiColorsLight);
     return theme;
   }
-  return createTheme(euiColorsLight);
+  return createTheme(euiColorsLight, name);
 };

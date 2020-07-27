@@ -20,10 +20,13 @@
 import { createTheme } from './themes/create_theme';
 import colorsLight from './themes/eui-amsterdam/colors_light';
 
+const name = 'EuiAmsterdamLight';
+
 export default (theme?: any) => {
   if (theme) {
+    theme.set('name', name);
     theme.set('colors', colorsLight);
     return theme;
   }
-  return createTheme(colorsLight);
+  return createTheme(colorsLight, name);
 };

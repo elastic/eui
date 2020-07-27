@@ -20,8 +20,11 @@
 import Propagate from '../services/propagate/propagate';
 import { sizes, typography, createBorders } from '../global_styling/variables';
 
-export const createTheme = (colors: any) => {
+export const createTheme = (colors: any, name?: string) => {
   const propagate = new Propagate();
+  if (name) {
+    propagate.set('name', name);
+  }
   propagate.set('colors', colors);
   propagate.set('sizes', sizes);
   propagate.set('typography', typography);
