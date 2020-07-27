@@ -36,10 +36,10 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   const [colors, sizes] = usePropagate(['colors', 'sizes']);
 
   const mark = css`
-    margin: ${sizes.euiSize(
-      0.25
-    )}; // The only one that is a function for calculations
-    padding: ${sizes.euiSizeXS}; // Named sizes as strings
+    // The only one that is a function for calculations
+    margin: ${sizes.euiSize(0.25)};
+    // Named sizes as strings
+    padding: ${sizes.euiSizeXS};
     // For testing only
     background-color: ${colors.euiColorHighlight};
     color: inherit;
