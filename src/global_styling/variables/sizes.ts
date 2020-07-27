@@ -17,29 +17,22 @@
  * under the License.
  */
 
-const euiSize = 16;
+// The actual number for the scale
+const euiBaseSize = 16;
 
-const sizeScale = {
-  euiSizeXS: euiSize * 0.25,
-  euiSizeS: euiSize * 0.5,
-  euiSizeM: euiSize * 0.75,
-  euiSizeL: euiSize * 1.5,
-  euiSizeXL: euiSize * 2,
-  euiSizeXXL: euiSize * 2.5,
-};
+// Does the scale calculation, then appends the `px` value
+const euiSize = (scale?: number) => `${euiBaseSize * (scale || 1)}px`;
 
-const euiButtonMinWidth = euiSize * 7;
-
-const euiScrollBar = euiSize;
-const euiScrollBarCorner = sizeScale.euiSizeS * 0.75;
-
+// The calculated scales, only `euiSize` is a function
 const sizes = {
   euiSize,
-  ...sizeScale,
-  euiButtonMinWidth,
-  euiScrollBar,
-  euiScrollBarCorner,
+  euiSizeXS: euiSize(0.25),
+  euiSizeS: euiSize(0.5),
+  euiSizeM: euiSize(0.75),
+  euiSizeL: euiSize(1.5),
+  euiSizeXL: euiSize(2),
+  euiSizeXXL: euiSize(2.5),
 };
 
 export default sizes;
-export { sizes, euiSize };
+export { sizes, euiSize, euiBaseSize };
