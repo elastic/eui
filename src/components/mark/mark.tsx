@@ -22,6 +22,7 @@ import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { css } from '@emotion/core';
 import usePropagate from '../../services/propagate/use_propagate';
+import { euiSize } from '../../global_styling/variables/sizes';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -37,7 +38,7 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
 
   const mark = css`
     // The only one that is a function for calculations
-    margin: ${sizes.euiSize(0.25)};
+    margin: ${euiSize(0.25)};
     // Named sizes as strings
     padding: ${sizes.euiSizeXS};
     // For testing only

@@ -17,8 +17,12 @@
  * under the License.
  */
 
+// below comment line is required
+// it tells babel how to convert properly
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/core';
+import usePropagate from '../../services/propagate/use_propagate';
 
 import { CommonProps } from '../common';
 
@@ -39,6 +43,22 @@ const sizeToClassNameMap = {
   quarter: 'euiHorizontalRule--quarter',
 };
 
+const sizeToCssMap = {
+  full: {
+    width: '100%',
+  },
+  half: {
+    width: '50%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  quarter: {
+    width: '25%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+};
+
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 const marginToClassNameMap = {
@@ -51,11 +71,33 @@ const marginToClassNameMap = {
   xxl: 'euiHorizontalRule--marginXXLarge',
 };
 
+const marginToVariableMap = {
+  xs: 'euiSizeS',
+  s: 'euiSizeM',
+  m: 'euiSize',
+  l: 'euiSizeL',
+  xl: 'euiSizeXL',
+  xxl: 'euiSizeXXL',
+};
+
 export const MARGINS = Object.keys(marginToClassNameMap);
 
 export const EuiHorizontalRule: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
 > = ({ className, size = 'full', margin = 'l', ...rest }) => {
+  const [borders, sizes] = usePropagate(['borders', 'sizes']);
+
+  const horizontalRuleMargin =
+    margin in marginToVariableMap
+      ? sizes[marginToVariableMap[margin]]
+      : undefined;
+
+  const horizontalRuleAnyName = css`
+    background-color: ${borders.euiBorderColor};
+    margin: ${horizontalRuleMargin} 0;
+  `;
+
+  const horizontalRuleSize = sizeToCssMap[size];
   const classes = classNames(
     'euiHorizontalRule',
     sizeToClassNameMap[size],
@@ -63,5 +105,11 @@ export const EuiHorizontalRule: FunctionComponent<
     className
   );
 
-  return <hr className={classes} {...rest} />;
+  return (
+    <hr
+      css={[horizontalRuleAnyName, horizontalRuleSize]}
+      className={classes}
+      {...rest}
+    />
+  );
 };

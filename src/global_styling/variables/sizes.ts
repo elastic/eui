@@ -25,10 +25,10 @@ const euiSize = (scale?: number) => `${euiBaseSize * (scale || 1)}px`;
 
 // The calculated scales, only `euiSize` is a function
 const sizes = {
-  euiSize,
   euiSizeXS: euiSize(0.25),
   euiSizeS: euiSize(0.5),
   euiSizeM: euiSize(0.75),
+  euiSize: euiSize(),
   euiSizeL: euiSize(1.5),
   euiSizeXL: euiSize(2),
   euiSizeXXL: euiSize(2.5),
