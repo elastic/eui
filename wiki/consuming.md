@@ -62,22 +62,22 @@ import '@elastic/eui/dist/eui_theme_light.css';
 If you want access to the Sass variables, functions, and mixins in EUI then you'll need to import the Sass files. This will require `style`, `css`, `postcss`, and `sass` loaders. You'll also want to import the Sass file into one of your own Sass files, to gain access to these variables, functions, and mixins.
 
 ```scss
-@import '@elastic/eui/src/theme/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/theme/eui/eui_global.scss';
+@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
+@import '@elastic/eui/src/themes/eui/eui_global.scss';
 ```
 
 For the dark theme, import the dark colors file before the globals.
 
 ```scss
-@import '@elastic/eui/src/theme/eui/eui_colors_dark.scss';
-@import '@elastic/eui/src/theme/eui/eui_global.scss';
+@import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
+@import '@elastic/eui/src/themes/eui/eui_global.scss';
 ```
 
 If you want to use new, but in progress Amsterdam theme, you can import it similarly.
 
 ```scss
-@import '@elastic/eui/src/theme/eui_amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/theme/eui_amsterdam/eui_amsterdam_global.scss';
+@import '@elastic/eui/src/themes/eui_amsterdam/eui_amsterdam_colors_light.scss';
+@import '@elastic/eui/src/themes/eui_amsterdam/eui_amsterdam_global.scss';
 ```
 
 

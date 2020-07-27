@@ -1,5 +1,20 @@
 [
   {
+    "version": "27.2.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "modified",
+        "value": "To exclude this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "modified",
+        "value": "To deselect this option, press enter."
+      }
+    ]
+  },
+  {
     "version": "27.0.0",
     "changes": [
       {
