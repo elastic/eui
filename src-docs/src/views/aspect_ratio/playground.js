@@ -23,7 +23,7 @@ export default () => {
   />`,
     type: PropTypes.ReactNode,
     description: 'Visible label.',
-    hidden: true,
+    hidden: false,
   };
 
   return {
