@@ -13,6 +13,8 @@
   background-color: $euiFormBackgroundColor;
   background-repeat: no-repeat;
   background-size: 0% 100%;
+  // Removes default firefox margin
+  margin: 0;
 
   // sass-lint:disable-block indentation
   transition:
