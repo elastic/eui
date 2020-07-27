@@ -88,9 +88,7 @@ export const EuiHorizontalRule: FunctionComponent<
   const [borders, sizes] = usePropagate(['borders', 'sizes']);
 
   const horizontalRuleMargin =
-    margin in marginToVariableMap
-      ? sizes[marginToVariableMap[margin]]
-      : undefined;
+    margin !== 'none' ? sizes[marginToVariableMap[margin]] : undefined;
 
   const horizontalRuleAnyName = css`
     background-color: ${borders.euiBorderColor};
