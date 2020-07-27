@@ -83,6 +83,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
           .map(({ supportedFiles }) => supportedFiles.join(', '))
           .join(', ')}`}>
         <EuiButtonEmpty
+          className="euiMarkdownEditorFooter__uploadError"
           autoFocus
           size="xs"
           iconType="paperClip"
