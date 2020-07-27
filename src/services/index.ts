@@ -108,4 +108,4 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export { useDependentState } from './hooks';
+export { useCombinedRefs, useDependentState } from './hooks';

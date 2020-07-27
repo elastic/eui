@@ -16,7 +16,6 @@
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
   .euiButtonEmpty__content {
-    @include euiButtonContent;
     padding: 0 $euiSizeS;
   }
 
@@ -34,24 +33,11 @@
     font-size: $euiFontSizeS;
   }
 
-  &.euiButtonEmpty--iconRight {
-    .euiButtonEmpty__content {
-      @include euiButtonContent($isReverse: true);
-    }
-  }
-
   &:disabled {
+    @include euiButtonContentDisabled;
+
     color: $euiButtonColorDisabledText;
     pointer-events: none;
-
-    .euiButtonEmpty__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiButtonEmpty__icon {
-      fill: currentColor;
-    }
 
     &:focus {
       background-color: transparent;

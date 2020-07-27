@@ -294,7 +294,13 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  closeList = () => {
+  closeList = (event?: Event) => {
+    if (event && event.target === this.searchInputRefInstance) {
+      // really long search values / custom entries triggers a scroll event on the input
+      // which the EuiComboBoxOptionsList passes through here
+      return;
+    }
+
     this.clearActiveOption();
     this.setState({
       listZIndex: undefined,
@@ -473,10 +479,7 @@ export class EuiComboBox<T> extends Component<
 
     this.clearSearchValue();
 
-    if (
-      this.isSingleSelectionCustomOption() ||
-      (Boolean(singleSelection) && matchingOptions.length < 1)
-    ) {
+    if (Boolean(singleSelection)) {
       // Adding a custom option to a single select that does not appear in the list of options
       this.closeList();
     }
@@ -516,29 +519,13 @@ export class EuiComboBox<T> extends Component<
     return flattenOptions.length === numberOfSelectedOptions;
   };
 
-  isSingleSelectionCustomOption = () => {
-    const {
-      onCreateOption,
-      options,
-      selectedOptions,
-      singleSelection,
-    } = this.props;
-    // The selected option of a single select is custom and does not appear in the list of options
-    return (
-      Boolean(singleSelection) &&
-      onCreateOption &&
-      selectedOptions.length > 0 &&
-      !options.includes(selectedOptions[0])
-    );
-  };
-
   onComboBoxFocus: FocusEventHandler<HTMLInputElement> = event => {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-    if (!this.isSingleSelectionCustomOption()) {
-      this.openList();
-    }
+
+    this.openList();
+
     this.setState({ hasFocus: true });
   };
 
@@ -693,7 +680,7 @@ export class EuiComboBox<T> extends Component<
     }
 
     if (singleSelection) {
-      requestAnimationFrame(this.closeList);
+      requestAnimationFrame(() => this.closeList());
     } else {
       this.setState({
         activeOptionIndex: this.state.matchingOptions.indexOf(addedOption),

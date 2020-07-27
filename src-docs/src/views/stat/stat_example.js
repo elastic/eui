@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiStat } from '../../../../src/components';
+import statConfig from './playground';
 
 import Stat from './stat';
 const statSource = require('!!raw-loader!./stat');
@@ -231,4 +232,5 @@ export const StatExample = {
       demo: <StatCombos />,
     },
   ],
+  playground: statConfig,
 };

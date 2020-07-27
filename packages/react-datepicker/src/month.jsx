@@ -75,9 +75,16 @@ export default class Month extends React.Component {
     }
   };
 
+  onBlur = () => {
+    if (this.props.accessibleMode) {
+      this.setState({ readInstructions: false });
+    }
+  };
+
   onInputKeyDown = event => {
     const eventKey = event.key;
-    const copy = utils.newDate(this.props.preSelection);
+    // `preSelection` can be `null` but `day` is required. Use it as a fallback if necessary for invalid entries.
+    const copy = this.props.preSelection ? utils.newDate(this.props.preSelection) : utils.newDate(this.props.day);
     let newSelection;
     switch (eventKey) {
       case "ArrowLeft":
@@ -107,7 +114,7 @@ export default class Month extends React.Component {
       case " ":
       case "Enter":
         event.preventDefault();
-        this.handleDayClick(this.props.preSelection, event);
+        this.handleDayClick(copy, event);
         break;
     }
     if (!newSelection) return; // Let the input component handle this keydown
@@ -209,8 +216,8 @@ export default class Month extends React.Component {
           You are focused on a calendar. Use the arrow keys to navigate the days
           in the month. Use the page up and down keys to navigate from month to
           month. Use the home and end keys to navigate from year to year.
-          {utils.formatDate(this.props.preSelection, this.dayFormat)} is the
-          currently focused date.
+          {this.props.preSelection ? `${utils.formatDate(this.props.preSelection, this.dayFormat)} is the
+          currently focused date.` : `No date is currently focused.`}
         </p>
       );
     }
@@ -224,6 +231,7 @@ export default class Month extends React.Component {
         tabIndex={this.props.accessibleMode ? 0 : -1}
         onKeyDown={this.onInputKeyDown}
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
       >
         <ScreenReaderOnly>
           <span>{screenReaderInstructions}</span>

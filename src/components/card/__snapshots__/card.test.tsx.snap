@@ -374,7 +374,7 @@ exports[`EuiCard props selectable 1`] = `
     type="button"
   >
     <span
-      class="euiButtonEmpty__content"
+      class="euiButtonContent euiButtonEmpty__content"
     >
       <span
         class="euiButtonEmpty__text"
