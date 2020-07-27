@@ -36,9 +36,7 @@ export class ThemeProvider extends React.Component<object, State> {
     let theme = localStorage.getItem('theme');
     if (!theme || !THEME_NAMES.includes(theme)) theme = defaultState.theme;
     applyTheme(theme);
-    const fullTheme = theme.includes('light')
-      ? defaultState.fullTheme
-      : euiDarkTheme(defaultState.fullTheme);
+    const fullTheme = this.setTheme(theme, defaultState.fullTheme);
 
     this.state = {
       theme,
@@ -62,7 +60,7 @@ export class ThemeProvider extends React.Component<object, State> {
       case 'amsterdam-dark':
         return amsterdamDarkTheme(currentTheme);
       default:
-        return defaultState.fullTheme;
+        return currentTheme;
     }
   };
 
