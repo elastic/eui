@@ -34,10 +34,9 @@ export class ThemeProvider extends React.Component<object, State> {
     let theme = localStorage.getItem('theme');
     if (!theme || !THEME_NAMES.includes(theme)) theme = defaultState.theme;
     applyTheme(theme);
-    const fullTheme =
-      theme === 'light'
-        ? defaultState.fullTheme
-        : euiDarkTheme(defaultState.fullTheme);
+    const fullTheme = theme.includes('light')
+      ? defaultState.fullTheme
+      : euiDarkTheme(defaultState.fullTheme);
 
     this.state = {
       theme,
@@ -49,10 +48,9 @@ export class ThemeProvider extends React.Component<object, State> {
 
   changeTheme = (themeValue: EUI_THEME['value']) => {
     console.log(this.state.fullTheme);
-    const fullTheme =
-      themeValue === 'light'
-        ? euiLightTheme(this.state.fullTheme)
-        : euiDarkTheme(this.state.fullTheme);
+    const fullTheme = themeValue.includes('light')
+      ? euiLightTheme(this.state.fullTheme)
+      : euiDarkTheme(this.state.fullTheme);
     this.setState({ theme: themeValue, fullTheme }, () => {
       localStorage.setItem('theme', themeValue);
       applyTheme(themeValue);
