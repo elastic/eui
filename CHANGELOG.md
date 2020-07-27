@@ -8,6 +8,10 @@
 
 - Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
 
+**Bug fixes**
+
+- Fixed `EuiComboBox` marking some very long inputs as invalid ([#3797](https://github.com/elastic/eui/pull/3797))
+
 ## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
 
 - Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
