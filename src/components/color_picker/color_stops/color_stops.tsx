@@ -423,9 +423,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     const color = getChromaColor(colorStop.color, showAlpha);
     const rgba = color ? color.css() : 'currentColor';
     if (index === 0) {
-      return `currentColor, currentColor ${positions[index]}%, ${rgba} ${
-        positions[index]
-      }%`;
+      return `currentColor, currentColor ${positions[index]}%, ${rgba} ${positions[index]}%`;
     }
     return `${rgba} ${positions[index]}%`;
   };

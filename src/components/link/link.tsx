@@ -131,7 +131,7 @@ const EuiLink = React.forwardRef<
       return (
         <button
           ref={ref as React.Ref<HTMLButtonElement>}
-          {...buttonProps as EuiLinkButtonProps}>
+          {...(buttonProps as EuiLinkButtonProps)}>
           {children}
         </button>
       );
@@ -150,7 +150,7 @@ const EuiLink = React.forwardRef<
     return (
       <a
         ref={ref as React.Ref<HTMLAnchorElement>}
-        {...anchorProps as EuiLinkAnchorProps}>
+        {...(anchorProps as EuiLinkAnchorProps)}>
         {children}
         {externalLinkIcon}
       </a>

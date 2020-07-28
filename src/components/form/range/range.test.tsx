@@ -84,7 +84,10 @@ describe('EuiRange', () => {
         <EuiRange
           {...props}
           showTicks
-          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+          ticks={[
+            { label: '20kb', value: 20 },
+            { label: '100kb', value: 100 },
+          ]}
         />
       );
 

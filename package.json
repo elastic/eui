@@ -174,7 +174,7 @@
     "postcss-inline-svg": "^3.0.0",
     "postcss-loader": "^2.0.8",
     "pre-commit": "^1.2.2",
-    "prettier": "^1.17.0",
+    "prettier": "^1.19.1",
     "prompt": "^1.0.0",
     "prop-types": "^15.6.0",
     "puppeteer": "^2.0.0",
