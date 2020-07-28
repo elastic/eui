@@ -171,7 +171,7 @@ export const MarkdownPluginExample = {
       </EuiText>
       <EuiHorizontalRule />
       <EuiTitle>
-        <h3>Plugin development</h3>
+        <h2>Plugin development</h2>
       </EuiTitle>
       <EuiSpacer size="m" />
       <EuiText>

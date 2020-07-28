@@ -40,8 +40,6 @@ const docsPages = async (root, page) => {
     `${root}#/forms/date-picker`,
     `${root}#/forms/suggest`,
     `${root}#/forms/super-date-picker`,
-    `${root}#/editors-syntax/markdown-format`,
-    `${root}#/editors-syntax/markdown-plugins`,
     `${root}#/elastic-charts/creating-charts`,
     `${root}#/elastic-charts/part-to-whole-comparisons`,
     `${root}#/utilities/css-utility-classes`,
