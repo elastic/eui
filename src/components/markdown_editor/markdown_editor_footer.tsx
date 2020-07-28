@@ -28,7 +28,7 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiTitle } from '../title';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
-import { EuiI18n } from '../i18n';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import {
   EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
@@ -51,9 +51,7 @@ interface EuiMarkdownEditorFooterProps {
   dropHandlers: EuiMarkdownDropHandler[];
 }
 
-export const EuiMarkdownEditorFooter: FunctionComponent<
-  EuiMarkdownEditorFooterProps
-> = props => {
+export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterProps> = props => {
   const {
     uiPlugins,
     isUploadingFiles,
@@ -69,11 +67,30 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
 
   let uploadButton;
 
+  const ariaLabels = {
+    uploadingFiles: useEuiI18n(
+      'euiMarkdownEditorFooter.uploadingFiles',
+      'Uploading files'
+    ),
+    openUploadModal: useEuiI18n(
+      'euiMarkdownEditorFooter.openUploadModal',
+      'Open upload files modal'
+    ),
+    showSyntaxErrors: useEuiI18n(
+      'euiMarkdownEditorFooter.showSyntaxErrors',
+      'Show errors'
+    ),
+    showMarkdownHelp: useEuiI18n(
+      'euiMarkdownEditorFooter.showMarkdownHelp',
+      'Show markdown help'
+    ),
+  };
+
   if (isUploadingFiles) {
     uploadButton = (
       <EuiButtonIcon
         iconType={EuiLoadingSpinner}
-        aria-label="Uploading files"
+        aria-label={ariaLabels.uploadingFiles}
       />
     );
   } else if (dropHandlers.length > 0 && hasUnacceptedItems) {
@@ -88,9 +105,12 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
           size="xs"
           iconType="paperClip"
           color="danger"
-          aria-label="Open upload files modal"
+          aria-label={ariaLabels.openUploadModal}
           onClick={openFiles}>
-          File not supported
+          <EuiI18n
+            token="euiMarkdownEditorFooter.unsupportedFileType"
+            default="File type not supported"
+          />
         </EuiButtonEmpty>
       </EuiToolTip>
     );
@@ -99,7 +119,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
       <EuiButtonIcon
         iconType="paperClip"
         color="text"
-        aria-label="Open upload files modal"
+        aria-label={ariaLabels.openUploadModal}
         onClick={openFiles}
       />
     );
@@ -114,7 +134,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
             iconType="crossInACircleFilled"
             size="s"
             color="danger"
-            aria-label="Show errors"
+            aria-label={ariaLabels.showSyntaxErrors}
             onClick={onButtonClick}>
             {errors.length}
           </EuiButtonEmpty>
@@ -148,7 +168,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         className="euiMarkdownEditorFooter__help"
         iconType={MarkdownLogo}
         color="text"
-        aria-label="Show markdown help"
+        aria-label={ariaLabels.showMarkdownHelp}
         onClick={() => setIsShowingHelp(!isShowingHelp)}
       />
       {isShowingHelp && (

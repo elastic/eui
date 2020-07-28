@@ -101,9 +101,7 @@ export type EuiMarkdownEditorProps = OneOf<
   'aria-label' | 'aria-labelledby'
 >;
 
-export const EuiMarkdownEditor: FunctionComponent<
-  EuiMarkdownEditorProps
-> = forwardRef(
+export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = forwardRef(
   (
     {
       className,

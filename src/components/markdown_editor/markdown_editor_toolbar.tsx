@@ -100,9 +100,7 @@ const quoteCodeLinkButtons = [
   },
 ];
 
-export const EuiMarkdownEditorToolbar: FunctionComponent<
-  EuiMarkdownEditorToolbarProps
-> = ({
+export const EuiMarkdownEditorToolbar: FunctionComponent<EuiMarkdownEditorToolbarProps> = ({
   markdownActions,
   viewMode,
   onClickPreview,
