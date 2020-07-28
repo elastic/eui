@@ -66,6 +66,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
 > = props => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
+  const [isDraggingError, toggleDraggingError] = React.useState(false);
 
   const {
     children,
@@ -79,6 +80,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
 
   const classes = classNames('euiMarkdownEditorDropZone', {
     'euiMarkdownEditorDropZone--isDragging': isDragging,
+    'euiMarkdownEditorDropZone--hasError': hasUnacceptedItems,
+    'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -87,22 +90,6 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
     noClick: true,
     noKeyboard: true,
     // multiple: false,
-    onDragOver: e => {
-      if (e.dataTransfer) {
-        const unacceptedItems = getUnacceptedItems(
-          e.dataTransfer.items,
-          dropHandlers
-        );
-        setHasUnacceptedItems(unacceptedItems.length > 0);
-        if (unacceptedItems.length > 0) {
-          e.preventDefault();
-        }
-        return unacceptedItems.length === 0;
-      } else {
-        setHasUnacceptedItems(false);
-        return false;
-      }
-    },
     onDragEnter: e => {
       let result: boolean;
 
@@ -112,11 +99,15 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
           dropHandlers
         );
         setHasUnacceptedItems(unacceptedItems.length > 0);
+        toggleDraggingError(unacceptedItems.length > 0);
+
         result = unacceptedItems.length === 0;
       } else {
         setHasUnacceptedItems(false);
         result = false;
       }
+
+      console.log('result', result);
 
       toggleDragging(result);
       if (result === false) {
@@ -142,6 +133,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
 
         // if we get here then a file isn't handled
         setHasUnacceptedItems(true);
+        toggleDragging(false);
+        toggleDraggingError(false);
         return;
       }
 
@@ -163,6 +156,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
         .then(() => {
           toggleDragging(false);
           toggleUploadingFiles(false);
+          toggleDraggingError(false);
         });
     },
   });

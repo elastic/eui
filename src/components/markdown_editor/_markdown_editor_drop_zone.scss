@@ -25,9 +25,36 @@
   }
 
   &--isDragging {
+    .euiMarkdownEditorFooter,
     .euiMarkdownEditorTextArea,
-    .euiMarkdownEditorFooter {
-      background-color: transparentize($euiColorSecondary, .88);
+    .euiMarkdownEditorTextArea:focus,
+    .euiMarkdownEditor:focus-within .euiMarkdownEditorTextArea {
+      // sass-lint:disable-block no-important
+      background-color: transparentize($euiColorPrimary, .9) !important;
+    }
+
+    .euiMarkdownEditorTextArea,
+    .euiMarkdownEditorTextArea:focus {
+      // sass-lint:disable-block no-important
+      background-image: euiFormControlGradient($euiColorPrimary) !important;
+    }
+  }
+
+  &--isDraggingError {
+    .euiMarkdownEditorFooter,
+    .euiMarkdownEditorTextArea,
+    .euiMarkdownEditorTextArea:focus,
+    .euiMarkdownEditor:focus-within .euiMarkdownEditorTextArea {
+      // sass-lint:disable-block no-important
+      background-color: transparentize($euiColorDanger, .9) !important;
+    }
+  }
+
+  &--hasError {
+    .euiMarkdownEditorTextArea,
+    .euiMarkdownEditorTextArea:focus {
+      // sass-lint:disable-block no-important
+      background-image: euiFormControlGradient($euiColorDanger) !important;
     }
   }
 }
