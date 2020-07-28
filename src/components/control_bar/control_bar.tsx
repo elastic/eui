@@ -349,7 +349,7 @@ export class EuiControlBar extends Component<
               onClick={onClick}
               href={href}
               color={color as EuiButtonIconProps['color']}
-              {...rest as IconButtonControlType}
+              {...(rest as IconButtonControlType)}
               size="s"
             />
           ) : (

@@ -115,7 +115,9 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
           component="span"
           responsive={false}>
           {iconNode}
-          <EuiFlexItem className="euiFilterSelectItem__content">
+          <EuiFlexItem
+            className="euiFilterSelectItem__content"
+            component="span">
             {children}
           </EuiFlexItem>
         </EuiFlexGroup>

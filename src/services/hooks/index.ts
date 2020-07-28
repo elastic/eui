@@ -17,4 +17,5 @@
  * under the License.
  */
 
+export * from './useCombinedRefs';
 export * from './useDependentState';

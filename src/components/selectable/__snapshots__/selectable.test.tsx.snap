@@ -31,6 +31,12 @@ exports[`EuiSelectable props isLoading 1`] = `
 />
 `;
 
+exports[`EuiSelectable props listProps 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;
+
 exports[`EuiSelectable props renderOption 1`] = `
 <div
   class="euiSelectable"

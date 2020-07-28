@@ -1,22 +1,22 @@
 import React, { useCallback, useState } from 'react';
 
 import {
-  defaultParsingPlugins,
-  defaultProcessingPlugins,
   EuiMarkdownEditor,
   EuiSpacer,
   EuiCodeBlock,
   EuiButtonToggle,
-} from '../../../../src';
-import * as MarkdownChart from './plugins/markdown_chart';
+} from '../../../../src/components';
 
-const markdownExample = require('!!raw-loader!./markdown-example.md');
+const initialContent = `## Hello world!
 
-const exampleParsingList = [...defaultParsingPlugins, MarkdownChart.parser];
+Basic "github flavored" markdown will work as you'd expect.
 
-const exampleProcessingList = [...defaultProcessingPlugins]; // pretend mutation doesn't happen immediately next 😅
-exampleProcessingList[0][1].handlers.chartDemoPlugin = MarkdownChart.handler;
-exampleProcessingList[1][1].components.chartDemoPlugin = MarkdownChart.renderer;
+The editor also ships with some built in plugins. For example it can handle checkboxes. Notice how they toggle state even in the preview mode.
+
+- [ ] Checkboxes
+- [x] Can be filled
+- [ ] Or empty
+`;
 
 const dropHandlers = [
   {
@@ -35,7 +35,7 @@ const dropHandlers = [
 ];
 
 export default () => {
-  const [value, setValue] = useState(markdownExample);
+  const [value, setValue] = useState(initialContent);
   const [messages, setMessages] = useState([]);
   const [ast, setAst] = useState(null);
   const [isAstShowing, setIsAstShowing] = useState(false);
@@ -50,9 +50,6 @@ export default () => {
         value={value}
         onChange={setValue}
         height={400}
-        uiPlugins={[MarkdownChart.plugin]}
-        parsingPluginList={exampleParsingList}
-        processingPluginList={exampleProcessingList}
         onParse={onParse}
         errors={messages}
         dropHandlers={dropHandlers}

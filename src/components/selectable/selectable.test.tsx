@@ -113,5 +113,20 @@ describe('EuiSelectable', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('listProps', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          listProps={{
+            windowProps: {
+              onScroll: () => {},
+            },
+          }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

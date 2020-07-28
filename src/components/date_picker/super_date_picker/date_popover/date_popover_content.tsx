@@ -45,9 +45,7 @@ export interface EuiDatePopoverContentProps {
   utcOffset?: number;
 }
 
-export const EuiDatePopoverContent: FunctionComponent<
-  EuiDatePopoverContentProps
-> = ({
+export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
   value,
   roundUp = false,
   onChange,

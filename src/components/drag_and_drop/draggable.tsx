@@ -118,12 +118,11 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                 ),
               })}
             </div>
-            {cloneItems &&
-              (snapshot.isDragging && (
-                <div className={classNames(classes, 'euiDraggable--clone')}>
-                  {DraggableElement}
-                </div>
-              ))}
+            {cloneItems && snapshot.isDragging && (
+              <div className={classNames(classes, 'euiDraggable--clone')}>
+                {DraggableElement}
+              </div>
+            )}
           </Fragment>
         );
       }}

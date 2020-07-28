@@ -78,7 +78,7 @@ export type EuiTokenMapType =
  */
 
 export const TOKEN_MAP: {
-  [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>
+  [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>;
 } = {
   tokenClass: {
     shape: 'circle',
