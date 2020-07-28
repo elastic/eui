@@ -33,11 +33,6 @@ import React, {
 import unified, { PluggableList, Processor } from 'unified';
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
-import emoji from 'remark-emoji';
-import markdown from 'remark-parse';
-import remark2rehype from 'remark-rehype';
-import highlight from 'remark-highlight.js';
-import rehype2react from 'rehype-react';
 
 import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
@@ -46,8 +41,7 @@ import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 import { htmlIdGenerator } from '../../services/accessibility';
-import { EuiLink } from '../link';
-import { EuiCodeBlock, EuiCodeBlockProps } from '../code';
+
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
   EuiMarkdownAstNode,
@@ -59,46 +53,10 @@ import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
-import * as MarkdownCheckbox from './plugins/markdown_checkbox';
-
-export const defaultParsingPlugins: PluggableList = [
-  [markdown, {}],
-  [highlight, {}],
-  [emoji, { emoticon: true }],
-  [MarkdownTooltip.parser, {}],
-  [MarkdownCheckbox.parser, {}],
-];
-
-export const defaultProcessingPlugins: PluggableList = [
-  [
-    remark2rehype,
-    {
-      allowDangerousHtml: true,
-      handlers: {
-        tooltipPlugin: MarkdownTooltip.handler,
-        checkboxPlugin: MarkdownCheckbox.handler,
-      },
-    },
-  ],
-  [
-    rehype2react,
-    {
-      createElement: createElement,
-      components: {
-        a: EuiLink,
-        code: (props: EuiCodeBlockProps) =>
-          // if has classNames is a codeBlock using highlight js
-          props.className ? (
-            <EuiCodeBlock {...props} />
-          ) : (
-            <code className="euiMarkdownFormat__code" {...props} />
-          ),
-        tooltipPlugin: MarkdownTooltip.renderer,
-        checkboxPlugin: MarkdownCheckbox.renderer,
-      },
-    },
-  ],
-];
+import {
+  EuiMarkdownDefaultParsingPlugins,
+  EuiMarkdownDefaultProcessingPlugins,
+} from './plugins/markdown_default_plugins';
 
 type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -143,9 +101,7 @@ export type EuiMarkdownEditorProps = OneOf<
   'aria-label' | 'aria-labelledby'
 >;
 
-export const EuiMarkdownEditor: FunctionComponent<
-  EuiMarkdownEditorProps
-> = forwardRef(
+export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = forwardRef(
   (
     {
       className,
@@ -153,8 +109,8 @@ export const EuiMarkdownEditor: FunctionComponent<
       value,
       onChange,
       height = 150,
-      parsingPluginList = defaultParsingPlugins,
-      processingPluginList = defaultProcessingPlugins,
+      parsingPluginList = EuiMarkdownDefaultParsingPlugins,
+      processingPluginList = EuiMarkdownDefaultProcessingPlugins,
       uiPlugins = [],
       onParse,
       errors = [],
@@ -208,14 +164,6 @@ export const EuiMarkdownEditor: FunctionComponent<
         return [null, e];
       }
     }, [parser, value]);
-
-    const processor = useMemo(
-      () =>
-        unified()
-          .use(parsingPluginList)
-          .use(processingPluginList),
-      [parsingPluginList, processingPluginList]
-    );
 
     const isPreviewing = viewMode === MODE_VIEWING;
 
@@ -314,7 +262,9 @@ export const EuiMarkdownEditor: FunctionComponent<
             <div
               className="euiMarkdownEditorPreview"
               style={{ height: `${height}px` }}>
-              <EuiMarkdownFormat processor={processor}>
+              <EuiMarkdownFormat
+                parsingPluginList={parsingPluginList}
+                processingPluginList={processingPluginList}>
                 {value}
               </EuiMarkdownFormat>
             </div>

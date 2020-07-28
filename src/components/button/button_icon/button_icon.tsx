@@ -145,7 +145,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {buttonIcon}
       </a>
     );
@@ -159,7 +159,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       className={classes}
       type={type as typeof buttonType}
       ref={buttonRef as Ref<HTMLButtonElement>}
-      {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {buttonIcon}
     </button>
   );

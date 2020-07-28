@@ -194,7 +194,7 @@ export { EuiImage } from './image';
 
 export { useInnerText, EuiInnerText, useRenderToText } from './inner_text';
 
-export { EuiI18n, EuiI18nNumber } from './i18n';
+export { EuiI18n, EuiI18nNumber, useEuiI18n } from './i18n';
 
 export {
   EuiLoadingKibana,
@@ -217,8 +217,9 @@ export {
 export {
   EuiMarkdownEditor,
   EuiMarkdownContext,
-  defaultProcessingPlugins,
-  defaultParsingPlugins,
+  EuiMarkdownFormat,
+  EuiMarkdownDefaultParsingPlugins,
+  EuiMarkdownDefaultProcessingPlugins,
 } from './markdown_editor';
 export { EuiMark } from './mark';
 

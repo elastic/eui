@@ -93,7 +93,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   const Element = component;
 
   return (
-    <Element className={classes} {...rest as HTMLAttributes<HTMLElement>}>
+    <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
       {optionalErrorAlert}
       {children}
     </Element>

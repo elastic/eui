@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+
 import {
   Chart,
   Settings,
@@ -6,8 +7,17 @@ import {
   BarSeries,
   DataGenerator,
 } from '@elastic/charts';
-import { EUI_CHARTS_THEME_LIGHT } from '../../../../../src/themes/charts/themes';
+
+import { EUI_CHARTS_THEME_LIGHT } from '../../../../src/themes/charts/themes';
+
 import {
+  EuiMarkdownDefaultParsingPlugins,
+  EuiMarkdownDefaultProcessingPlugins,
+  EuiMarkdownEditor,
+  EuiMarkdownFormat,
+  EuiSpacer,
+  EuiCodeBlock,
+  EuiButtonToggle,
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiModalBody,
@@ -18,10 +28,9 @@ import {
   EuiFormRow,
   EuiSelect,
   EuiRange,
-  EuiCodeBlock,
   EuiText,
-  EuiSpacer,
-} from '../../../../../src/components';
+} from '../../../../src/components';
+
 import {
   euiPaletteColorBlind,
   euiPaletteComplimentary,
@@ -32,7 +41,7 @@ import {
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteWarm,
-} from '../../../../../src/services/color';
+} from '../../../../src/services/color';
 
 const paletteData = {
   euiPaletteColorBlind,
@@ -45,6 +54,7 @@ const paletteData = {
   euiPaletteWarm,
   euiPaletteGray,
 };
+
 const paletteNames = Object.keys(paletteData);
 
 const dg = new DataGenerator();
@@ -112,7 +122,16 @@ const chartDemoPlugin = {
                 />
               </EuiFormRow>
             </EuiForm>
-            <ChartMarkdownRenderer palette={palette} height={height} />
+            <div
+              style={{
+                width: 600,
+                maxWidth: '100%',
+                height: 500,
+                alignItems: 'center',
+                display: 'flex',
+              }}>
+              <ChartMarkdownRenderer palette={palette} height={height} />
+            </div>
           </>
         </EuiModalBody>
 
@@ -132,7 +151,7 @@ const chartDemoPlugin = {
   },
 };
 
-function ChartParser() {
+function ChartMarkdownParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.blockTokenizers;
   const methods = Parser.prototype.blockMethods;
@@ -229,9 +248,64 @@ const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
   );
 };
 
-export {
-  chartDemoPlugin as plugin,
-  ChartParser as parser,
-  chartMarkdownHandler as handler,
-  ChartMarkdownRenderer as renderer,
+const exampleParsingList = [
+  ...EuiMarkdownDefaultParsingPlugins,
+  ChartMarkdownParser,
+];
+
+const exampleProcessingList = [...EuiMarkdownDefaultProcessingPlugins]; // pretend mutation doesn't happen immediately next 😅
+exampleProcessingList[0][1].handlers.chartDemoPlugin = chartMarkdownHandler;
+exampleProcessingList[1][1].components.chartDemoPlugin = ChartMarkdownRenderer;
+
+const initialExample = `## Chart plugin
+
+Notice the toolbar above has a new chart button. Click it to add a chart.
+
+Once you finish it'll add some syntax that looks like the below.
+
+!{chart{"palette":4,"height":300}}
+`;
+
+export default () => {
+  const [value, setValue] = useState(initialExample);
+  const [messages, setMessages] = useState([]);
+  const [ast, setAst] = useState(null);
+  const [isAstShowing, setIsAstShowing] = useState(false);
+  const onParse = useCallback((err, { messages, ast }) => {
+    setMessages(err ? [err] : messages);
+    setAst(JSON.stringify(ast, null, 2));
+  }, []);
+  return (
+    <>
+      <EuiMarkdownEditor
+        aria-label="EUI markdown editor with plugins demo"
+        value={value}
+        onChange={setValue}
+        height={400}
+        uiPlugins={[chartDemoPlugin]}
+        parsingPluginList={exampleParsingList}
+        processingPluginList={exampleProcessingList}
+        onParse={onParse}
+        errors={messages}
+      />
+      <EuiSpacer size="s" />
+      <div className="eui-textRight">
+        <EuiButtonToggle
+          label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+          size="s"
+          isEmpty
+          iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+          onChange={() => setIsAstShowing(!isAstShowing)}
+          isSelected={isAstShowing}
+        />
+      </div>
+      {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
+
+      <EuiMarkdownFormat
+        parsingPluginList={exampleParsingList}
+        processingPluginList={exampleProcessingList}>
+        {value}
+      </EuiMarkdownFormat>
+    </>
+  );
 };

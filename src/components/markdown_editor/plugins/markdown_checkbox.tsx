@@ -47,12 +47,12 @@ const CheckboxParser: Plugin = function CheckboxParser() {
     silent
   ) {
     /**
-     * optional leading whitespace & single dash mix
+     * optional leading whitespace & single (dash or asterisk) mix
      * square brackets, optionally containing whitespace and `x`
      * optional whitespace
      * remainder of the line is consumed as the textbox label
      */
-    const checkboxMatch = value.match(/^(\s*-\s*)?\[([\sx]*)\](.+)/);
+    const checkboxMatch = value.match(/^(\s*[-*]\s*)?\[([\sx]*)\](.+)/);
     if (checkboxMatch == null) return false;
 
     if (silent) {
@@ -84,9 +84,9 @@ const CheckboxParser: Plugin = function CheckboxParser() {
 const checkboxMarkdownHandler: RemarkRehypeHandler = (h, node) => {
   return h(node.position!, 'checkboxPlugin', node, all(h, node));
 };
-const CheckboxMarkdownRenderer: FunctionComponent<
-  CheckboxNodeDetails & { position: EuiMarkdownAstNodePosition }
-> = ({ position, lead, label, isChecked, children }) => {
+const CheckboxMarkdownRenderer: FunctionComponent<CheckboxNodeDetails & {
+  position: EuiMarkdownAstNodePosition;
+}> = ({ position, lead, label, isChecked, children }) => {
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (
     <EuiCheckbox

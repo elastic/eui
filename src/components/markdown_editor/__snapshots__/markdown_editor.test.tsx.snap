@@ -161,11 +161,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiButtonEmpty__content"
+        class="euiButtonContent euiButtonEmpty__content"
       >
         <div
-          aria-hidden="true"
-          class="euiButtonEmpty__icon"
+          class="euiButtonContent__icon"
           data-euiicon-type="eye"
         />
         <span
@@ -208,6 +207,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         </button>
       </footer>
       <input
+        accept=""
         autocomplete="off"
         multiple=""
         style="display:none"

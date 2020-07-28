@@ -60,3 +60,23 @@ exports[`DefaultItemAction render - icon 1`] = `
   </EuiScreenReaderOnly>
 </EuiToolTip>
 `;
+
+exports[`DefaultItemAction render - name 1`] = `
+<EuiToolTip
+  content="action 1"
+  delay="long"
+  position="top"
+>
+  <EuiButtonEmpty
+    color="primary"
+    flush="right"
+    isDisabled={false}
+    onClick={[Function]}
+    size="s"
+  >
+    <span>
+      xyz
+    </span>
+  </EuiButtonEmpty>
+</EuiToolTip>
+`;

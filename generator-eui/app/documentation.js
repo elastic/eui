@@ -9,7 +9,7 @@ module.exports = class extends Generator {
       name: 'fileType',
       type: 'list',
       choices: [{
-        name: 'Create a new component documention page',
+        name: 'Create a new component documentation page',
         value: 'documentation',
       }, {
         name: 'Add an example to an existing component documentation page',

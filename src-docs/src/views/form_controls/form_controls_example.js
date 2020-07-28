@@ -72,6 +72,7 @@ const fieldPasswordSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
+  type="dual"
 />`,
 ];
 

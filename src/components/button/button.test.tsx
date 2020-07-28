@@ -21,7 +21,8 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiButton, COLORS, SIZES, ICON_SIDES } from './button';
+import { EuiButton, COLORS, SIZES } from './button';
+import { ICON_SIDES } from './button_content';
 
 describe('EuiButton', () => {
   test('is rendered', () => {
@@ -48,6 +49,12 @@ describe('EuiButton', () => {
 
       it('renders a button even when href is defined', () => {
         const component = render(<EuiButton href="#" isDisabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('renders if passed as disabled', () => {
+        const component = render(<EuiButton disabled />);
 
         expect(component).toMatchSnapshot();
       });
@@ -133,6 +140,22 @@ describe('EuiButton', () => {
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
+    });
+
+    test('contentProps is rendered', () => {
+      const component = render(
+        <EuiButton contentProps={requiredProps}>Content</EuiButton>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('textProps is rendered', () => {
+      const component = render(
+        <EuiButton textProps={requiredProps}>Content</EuiButton>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

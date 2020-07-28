@@ -61,9 +61,7 @@ const getUnacceptedItems = (
   return unacceptedItems;
 };
 
-export const EuiMarkdownEditorDropZone: FunctionComponent<
-  EuiMarkdownEditorDropZoneProps
-> = props => {
+export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = props => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
   const [isDraggingError, toggleDraggingError] = React.useState(false);
@@ -85,6 +83,10 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
+    accept: dropHandlers.reduce<string[]>((accept, dropHandler) => {
+      accept.push(...dropHandler.supportedFiles);
+      return accept;
+    }, []),
     disabled: dropHandlers.length === 0,
     // Disable click and keydown behavior
     noClick: true,

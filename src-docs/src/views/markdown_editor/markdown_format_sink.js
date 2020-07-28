@@ -1,4 +1,8 @@
-# h1 Heading
+import React from 'react';
+
+import { EuiMarkdownFormat } from '../../../../src';
+
+const markdownContent = `# h1 Heading
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
@@ -69,27 +73,27 @@ Ordered
 
 ## Code
 
-Inline `<Code />` is awesome!
+Inline \`<Code />\` is awesome!
 
 Block code "fences"
 
-```
+\`\`\`
 Sample text here...
-```
+\`\`\`
 
 Syntax highlighting JS
 
-``` js
+\`\`\` js
 var foo = function (bar) {
   return bar++;
 };
 
 console.log(foo(5));
-```
+\`\`\`
 
 Syntax highlighting Java
 
-``` java
+\`\`\` java
 package l2f.gameserver.model;
 
 public abstract class L2Char extends L2Object {
@@ -103,7 +107,7 @@ public abstract class L2Char extends L2Object {
     }
   }
 }
-```
+\`\`\`
 
 ## Tables
 
@@ -139,3 +143,8 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
 
 > Classic markup: :wink: :cry: :laughing: :yum:
+`;
+
+export default () => {
+  return <EuiMarkdownFormat>{markdownContent}</EuiMarkdownFormat>;
+};

@@ -133,8 +133,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   return (
     <Element
       className={classes}
-      {...relObj as HTMLAttributes<HTMLElement>}
-      {...rest as HTMLAttributes<HTMLElement>}>
+      {...(relObj as HTMLAttributes<HTMLElement>)}
+      {...(rest as HTMLAttributes<HTMLElement>)}>
       {renderContent(
         children,
         label,
