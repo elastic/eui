@@ -20,7 +20,7 @@ export default () => {
   let bottomBar;
   if (showBar) {
     bottomBar = (
-      <EuiBottomBar>
+      <EuiBottomBar paddingSize={['s', 'none']}>
         <EuiFlexGroup justifyContent="spaceBetween">
           <EuiFlexItem grow={false}>
             <EuiFlexGroup gutterSize="s">

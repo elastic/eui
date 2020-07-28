@@ -18,7 +18,9 @@
  */
 
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react';
+import usePropagate from '../../services/propagate/use_propagate';
+
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -36,6 +38,15 @@ export const paddingSizeToClassNameMap: {
   l: 'euiBottomBar--paddingLarge',
 };
 
+export const paddingSizeToVariableMap: {
+  [value in BottomBarPaddingSize]: string | null
+} = {
+  none: null,
+  s: 'euiSizeS',
+  m: 'euiSize',
+  l: 'euiSizeL',
+};
+
 interface Props extends CommonProps {
   /**
    * Optional class applied to the body class
@@ -43,9 +54,11 @@ interface Props extends CommonProps {
   bodyClassName?: string;
 
   /**
-   * Padding applied to the bar
+   * Padding applied to the bar.
+   * Provide a single value to apply to all sides, or
+   * an array applied to `[top, right, bottom, left]`
    */
-  paddingSize?: BottomBarPaddingSize;
+  paddingSize: BottomBarPaddingSize | BottomBarPaddingSize[];
 
   /**
    * Customize the screen reader heading that helps users find this control. Default is "Page level controls".
@@ -53,84 +66,96 @@ interface Props extends CommonProps {
   landmarkHeading?: string;
 }
 
-export class EuiBottomBar extends Component<Props> {
-  private bar: HTMLElement | null = null;
+export const EuiBottomBar: FunctionComponent<Props> = ({
+  children,
+  className,
+  paddingSize = 'm',
+  bodyClassName,
+  landmarkHeading,
+  ...rest
+}) => {
+  // private bar: HTMLElement | null = null;
 
-  componentDidMount() {
-    const height = this.bar ? this.bar.clientHeight : -1;
-    document.body.style.paddingBottom = `${height}px`;
-    if (this.props.bodyClassName) {
-      document.body.classList.add(this.props.bodyClassName);
-    }
-  }
+  // componentDidMount() {
+  //   const height = this.bar ? this.bar.clientHeight : -1;
+  //   document.body.style.paddingBottom = `${height}px`;
+  //   if (this.props.bodyClassName) {
+  //     document.body.classList.add(this.props.bodyClassName);
+  //   }
+  // }
 
-  componentWillUnmount() {
-    document.body.style.paddingBottom = '';
-    if (this.props.bodyClassName) {
-      document.body.classList.remove(this.props.bodyClassName);
-    }
-  }
+  // componentWillUnmount() {
+  //   document.body.style.paddingBottom = '';
+  //   if (this.props.bodyClassName) {
+  //     document.body.classList.remove(this.props.bodyClassName);
+  //   }
+  // }
 
-  render() {
-    const {
-      children,
-      className,
-      paddingSize = 'm',
-      bodyClassName,
-      landmarkHeading,
-      ...rest
-    } = this.props;
+  const [sizes] = usePropagate(['sizes']);
 
-    const classes = classNames(
-      'euiBottomBar',
-      paddingSizeToClassNameMap[paddingSize],
-      className
-    );
+  const classes = classNames(
+    'euiBottomBar',
+    // paddingSizeToClassNameMap[paddingSize],
+    className
+  );
 
-    return (
-      <EuiPortal>
-        <EuiI18n
-          token="euiBottomBar.screenReaderHeading"
-          default="Page level controls">
-          {(screenReaderHeading: string) => (
-            // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
-            // A bug in voiceover won't list some landmarks in the rotor without an aria-label
-            <section
-              aria-label={
-                landmarkHeading ? landmarkHeading : screenReaderHeading
-              }
-              className={classes}
-              ref={node => {
-                this.bar = node;
-              }}
-              {...rest}>
-              <EuiScreenReaderOnly>
-                <h2>
-                  {landmarkHeading ? landmarkHeading : screenReaderHeading}
-                </h2>
-              </EuiScreenReaderOnly>
-              {/* EMOTION: Something wrapping the children that forces a paricular Propogate theme */}
-              {children}
-            </section>
+  const bottomBarPadding =
+    paddingSize && paddingSize !== 'none'
+      ? {
+          padding:
+            typeof paddingSize === 'string'
+              ? sizes[paddingSizeToVariableMap[paddingSize]] // TODO: Handle null gracefully
+              : paddingSize.reduce(
+                  (string, paddingSize) =>
+                    `${string} ` +
+                    `${sizes[paddingSizeToVariableMap[paddingSize]] || '0'}`,
+                  ''
+                ),
+        }
+      : undefined;
+
+  console.log(paddingSize, bottomBarPadding);
+
+  return (
+    <EuiPortal>
+      <EuiI18n
+        token="euiBottomBar.screenReaderHeading"
+        default="Page level controls">
+        {(screenReaderHeading: string) => (
+          // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
+          // A bug in voiceover won't list some landmarks in the rotor without an aria-label
+          <section
+            aria-label={landmarkHeading ? landmarkHeading : screenReaderHeading}
+            css={bottomBarPadding}
+            className={classes}
+            // ref={node => {
+            //   this.bar = node;
+            // }}
+            {...rest}>
+            <EuiScreenReaderOnly>
+              <h2>{landmarkHeading ? landmarkHeading : screenReaderHeading}</h2>
+            </EuiScreenReaderOnly>
+            {/* EMOTION: Something wrapping the children that forces a paricular Propogate theme */}
+            {children}
+          </section>
+        )}
+      </EuiI18n>
+      <EuiScreenReaderOnly>
+        <p aria-live="assertive">
+          {landmarkHeading ? (
+            <EuiI18n
+              token="euiBottomBar.customScreenReaderAnnouncement"
+              default="There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+              values={{ landmarkHeading }}
+            />
+          ) : (
+            <EuiI18n
+              token="euiBottomBar.screenReaderAnnouncement"
+              default="There is a new region landmark with page level controls at the end of the document."
+            />
           )}
-        </EuiI18n>
-        <EuiScreenReaderOnly>
-          <p aria-live="assertive">
-            {landmarkHeading ? (
-              <EuiI18n
-                token="euiBottomBar.customScreenReaderAnnouncement"
-                default="There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
-                values={{ landmarkHeading }}
-              />
-            ) : (
-              <EuiI18n
-                token="euiBottomBar.screenReaderAnnouncement"
-                default="There is a new region landmark with page level controls at the end of the document."
-              />
-            )}
-          </p>
-        </EuiScreenReaderOnly>
-      </EuiPortal>
-    );
-  }
-}
+        </p>
+      </EuiScreenReaderOnly>
+    </EuiPortal>
+  );
+};

@@ -9,17 +9,17 @@
   animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
   z-index: $euiZNavigation;
 
-  &.euiBottomBar--paddingSmall {
-    padding: $euiSizeS;
-  }
+  // &.euiBottomBar--paddingSmall {
+  //   padding: $euiSizeS;
+  // }
 
-  &.euiBottomBar--paddingMedium {
-    padding: $euiSize;
-  }
+  // &.euiBottomBar--paddingMedium {
+  //   padding: $euiSize;
+  // }
 
-  &.euiBottomBar--paddingLarge {
-    padding: $euiSizeL;
-  }
+  // &.euiBottomBar--paddingLarge {
+  //   padding: $euiSizeL;
+  // }
 }
 
 @keyframes euiBottomBarAppear {
