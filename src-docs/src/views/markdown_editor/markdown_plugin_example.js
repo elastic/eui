@@ -13,6 +13,7 @@ import {
   EuiHorizontalRule,
   EuiCodeBlock,
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
@@ -144,14 +145,21 @@ export const MarkdownPluginExample = {
           </strong>{' '}
           utilize the same underlying plugin architecture to transform string
           based syntax into React components. At a high level{' '}
-          <Link to="">Unified JS</Link> is used in combination with{' '}
-          <Link to="">Remark</Link> to provide EUI&apos;s markdown components,
-          which are separated into a <strong>parsing</strong> and{' '}
-          <strong>processing</strong> layer. These two concepts are kept
-          distinct in EUI components to provide concrete locations for your
-          plugins to be injected, be it editing or rendering. Finally you
-          provide <strong>UI</strong> to the component to handle interactions
-          with the editor.
+          <EuiLink href="https://www.npmjs.com/package/unified" target="_blank">
+            Unified JS
+          </EuiLink>{' '}
+          is used in combination with{' '}
+          <EuiLink
+            href="https://www.npmjs.com/package/remark-parse"
+            target="_blank">
+            Remark
+          </EuiLink>{' '}
+          to provide EUI&apos;s markdown components, which are separated into a{' '}
+          <strong>parsing</strong> and <strong>processing</strong> layer. These
+          two concepts are kept distinct in EUI components to provide concrete
+          locations for your plugins to be injected, be it editing or rendering.
+          Finally you provide <strong>UI</strong> to the component to handle
+          interactions with the editor.
         </p>
         <p>
           In addition to running the full pipeline,{' '}
@@ -185,7 +193,7 @@ export const MarkdownPluginExample = {
         descriptionProps={{ style: { width: '80%' } }}
       />
       <EuiSpacer />
-      <EuiHorizontalRule size="s" />
+      <EuiHorizontalRule />
       <EuiTitle>
         <h3>uiPlugin</h3>
       </EuiTitle>
@@ -202,7 +210,7 @@ export const MarkdownPluginExample = {
         descriptionProps={{ style: { width: '80%' } }}
       />
       <EuiSpacer />
-      <EuiHorizontalRule size="s" />
+      <EuiHorizontalRule />
       <EuiTitle>
         <h3>parsingPluginList</h3>
       </EuiTitle>
@@ -257,22 +265,80 @@ export const MarkdownPluginExample = {
       </EuiText>
       <EuiSpacer />
 
-      <EuiCodeBlock size="s" language="javascript">
-        Chandler, a simple parser example here maybe?
-      </EuiCodeBlock>
+      <EuiCodeBlock size="s" language="javascript">{`// example plugin parser
+function EmojiMarkdownParser() {
+  const Parser = this.Parser;
+  const tokenizers = Parser.prototype.inlineTokenizers;
+  const methods = Parser.prototype.inlineMethods;
+
+  const emojiMap = {
+    wave: '👋',
+    smile: '😀',
+    plane: '🛩',
+  };
+  const emojiNames = Object.keys(emojiMap);
+
+  // function to parse a matching string
+  function tokenizeEmoji(eat, value, silent) {
+    const tokenMatch = value.match(/^:(.*?):/);
+
+    if (!tokenMatch) return false; // no match
+    const [, emojiName] = tokenMatch;
+
+    // ensure we know this one
+    if (emojiNames.indexOf(emojiName) === -1) return false;
+
+    if (silent) {
+      return true;
+    }
+
+    // must consume the exact & entire match string
+    return eat(\`:\${emojiName}:\`)({
+      type: 'emojiPlugin',
+      emoji: emojiMap[emojiName], // configuration is passed to the renderer
+    });
+  }
+
+  // function to detect where the next emoji match might be found
+  tokenizeEmoji.locator = (value, fromIndex) => {
+    return value.indexOf(':', fromIndex);
+  };
+
+  // define the emoji plugin and inject it just before the existing text plugin
+  tokenizers.emoji = tokenizeEmoji;
+  methods.splice(methods.indexOf('text'), 0, 'emoji');
+}`}</EuiCodeBlock>
       <EuiSpacer />
-      <EuiHorizontalRule size="s" />
+      <EuiHorizontalRule />
       <EuiTitle>
         <h3>processingPluginList</h3>
       </EuiTitle>
       <EuiSpacer />
       <EuiText>
-        <p>This needs some explanation</p>
+        <p>
+          After parsing the input into an AST, the nodes need to be transformed
+          into React elements. This is performed by a list of processors, the
+          default set converts remark AST into rehype and then into React.
+          Plugins need to define themselves within this transformation process,
+          identifying with the same type its parser uses in its{' '}
+          <EuiCode>eat</EuiCode> call.
+        </p>
       </EuiText>
       <EuiSpacer />
-      <EuiCodeBlock size="s" language="javascript">
-        Chandler, a simple processingPluginList example
-      </EuiCodeBlock>
+      <EuiCodeBlock size="s" language="javascript">{`// example plugin processor
+
+// convert remark nodes to rehype, basically a pass through 
+const emojiMarkdownHandler = (h, node) => {
+  return h(node.position, 'emojiPlugin', node, []);
+};
+// receives the configuration from the parser and renders
+const EmojiMarkdownRenderer = ({ emoji }) => {
+  return <span>{emoji}</span>;
+};
+
+// add the handler & renderer for \`emojiPlugin\`
+processingList[0][1].handlers.emojiPlugin = emojiMarkdownHandler;
+processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}</EuiCodeBlock>
       <EuiSpacer size="xxl" />
     </Fragment>
   ),
