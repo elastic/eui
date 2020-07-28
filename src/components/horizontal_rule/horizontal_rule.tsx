@@ -90,12 +90,14 @@ export const EuiHorizontalRule: FunctionComponent<
   const horizontalRuleMargin =
     margin !== 'none' ? sizes[marginToVariableMap[margin]] : undefined;
 
-  const horizontalRuleAnyName = css`
+  const horizontalRuleBase = css`
     background-color: ${borders.euiBorderColor};
     margin: ${horizontalRuleMargin} 0;
   `;
 
-  const horizontalRuleSize = sizeToCssMap[size];
+  // Wrapping style objects with the `css()` function appends the const name as a className
+  const horizontalRuleSize = css(sizeToCssMap[size]);
+
   const classes = classNames(
     'euiHorizontalRule',
     sizeToClassNameMap[size],
@@ -105,8 +107,8 @@ export const EuiHorizontalRule: FunctionComponent<
 
   return (
     <hr
-      css={[horizontalRuleAnyName, horizontalRuleSize]}
       className={classes}
+      css={[horizontalRuleBase, horizontalRuleSize]}
       {...rest}
     />
   );

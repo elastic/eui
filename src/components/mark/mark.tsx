@@ -20,9 +20,8 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { css } from '@emotion/core';
 import usePropagate from '../../services/propagate/use_propagate';
-import { euiSize } from '../../global_styling/variables/sizes';
+import { euiMarkStyle, euiMarkAmsterdamStyle } from './mark_style';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -34,22 +33,26 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   className,
   ...rest
 }) => {
-  const [colors, sizes] = usePropagate(['colors', 'sizes']);
-
-  const mark = css`
-    // The only one that is a function for calculations
-    margin: ${euiSize(0.25)};
-    // Named sizes as strings
-    padding: ${sizes.euiSizeXS};
-    // For testing only
-    background-color: ${colors.euiColorHighlight};
-    color: inherit;
-  `;
+  // Is there any way to make this more effecient without having to pull them out first?
+  const [themeName, colors, sizes, borders] = usePropagate([
+    'name',
+    'colors',
+    'sizes',
+    'borders',
+  ]);
 
   const classes = classNames('euiMark', className);
 
+  // Trying to get this second out to auto-spit out the const name onto the class list
+  // Not working when importing the `css()`
+  const euiMarkAmsterdam =
+    themeName.includes('amsterdam') && euiMarkAmsterdamStyle(borders);
+
   return (
-    <mark css={mark} className={classes} {...rest}>
+    <mark
+      css={[euiMarkStyle(sizes, colors), euiMarkAmsterdam]}
+      className={classes}
+      {...rest}>
       {children}
     </mark>
   );

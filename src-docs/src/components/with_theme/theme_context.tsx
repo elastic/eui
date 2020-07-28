@@ -73,6 +73,7 @@ export class ThemeProvider extends React.Component<object, State> {
     });
   };
 
+  // Something is going wrong here where borders is being reverted back to eui light theme
   randomizeColor = (variable: string) => {
     this.state.fullTheme.set('colors', {
       ...this.state.fullTheme.get('colors'),
