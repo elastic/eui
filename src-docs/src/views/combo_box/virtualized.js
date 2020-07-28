@@ -24,7 +24,7 @@ export default () => {
 
   return (
     <EuiComboBox
-      placeholder="Select or create options"
+      placeholder="Select one or more options"
       options={options}
       selectedOptions={selectedOptions}
       onChange={onChange}

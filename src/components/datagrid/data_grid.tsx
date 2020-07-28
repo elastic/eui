@@ -310,6 +310,9 @@ function useDefaultColumnWidth(
 
     const widthToFill = gridWidth - claimedWidth;
     const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    if (unsizedColumnCount === 0) {
+      return 100;
+    }
     return Math.max(widthToFill / unsizedColumnCount, 100);
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
 

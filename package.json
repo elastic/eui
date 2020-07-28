@@ -7,7 +7,10 @@
   "module": "es",
   "types": "eui.d.ts",
   "docker_image": "node:10",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "scripts": {
     "start": "cross-env BABEL_MODULES=false webpack-dev-server --inline --hot --config=src-docs/webpack.config.js",
     "test-docker": "node ./scripts/test-docker.js",
