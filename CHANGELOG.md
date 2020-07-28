@@ -8,6 +8,7 @@
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
+- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3796](https://github.com/elastic/eui/pull/3796))
 
 **Bug fixes**
 
