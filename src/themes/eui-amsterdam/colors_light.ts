@@ -17,19 +17,21 @@
  * under the License.
  */
 
-import euiColorsLight from '../eui/eui_colors_light';
+import colorsLight from '../eui/colors_light';
 
 const brand = {
   // Core
   euiColorPrimary: '#006DE4',
-  euiColorSecondary: '#00BFB3',
   euiColorAccent: '#FC358E',
 };
 
 const colors = {
-  ...euiColorsLight,
-  ...brand,
+  // Default
+  ...colorsLight,
 
+  // Overrides
+  ...brand,
+  euiColorSuccess: '#00BFB3',
   euiColorHighlight: '#E6F0F8',
 };
 

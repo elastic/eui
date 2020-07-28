@@ -18,7 +18,7 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useRef } from 'react';
 import usePropagate from '../../services/propagate/use_propagate';
 
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -41,7 +41,7 @@ export const paddingSizeToClassNameMap: {
 export const paddingSizeToVariableMap: {
   [value in BottomBarPaddingSize]: string | null
 } = {
-  none: null,
+  none: 'euiSize0',
   s: 'euiSizeS',
   m: 'euiSize',
   l: 'euiSizeL',
@@ -58,7 +58,7 @@ interface Props extends CommonProps {
    * Provide a single value to apply to all sides, or
    * an array applied to `[top, right, bottom, left]`
    */
-  paddingSize: BottomBarPaddingSize | BottomBarPaddingSize[];
+  paddingSize?: BottomBarPaddingSize | BottomBarPaddingSize[];
 
   /**
    * Customize the screen reader heading that helps users find this control. Default is "Page level controls".
@@ -74,23 +74,22 @@ export const EuiBottomBar: FunctionComponent<Props> = ({
   landmarkHeading,
   ...rest
 }) => {
-  // private bar: HTMLElement | null = null;
+  const bar = useRef<HTMLDivElement | null>(null);
 
-  // componentDidMount() {
-  //   const height = this.bar ? this.bar.clientHeight : -1;
-  //   document.body.style.paddingBottom = `${height}px`;
-  //   if (this.props.bodyClassName) {
-  //     document.body.classList.add(this.props.bodyClassName);
-  //   }
-  // }
+  useEffect(() => {
+    const height = bar && bar.current ? bar.current.clientHeight : -1;
+    document.body.style.paddingBottom = `${height}px`;
+    if (bodyClassName) {
+      document.body.classList.add(bodyClassName);
+    }
 
-  // componentWillUnmount() {
-  //   document.body.style.paddingBottom = '';
-  //   if (this.props.bodyClassName) {
-  //     document.body.classList.remove(this.props.bodyClassName);
-  //   }
-  // }
-
+    return () => {
+      document.body.style.paddingBottom = '';
+      if (bodyClassName) {
+        document.body.classList.remove(bodyClassName);
+      }
+    };
+  }, [bodyClassName]);
   const [sizes] = usePropagate(['sizes']);
 
   const classes = classNames(
@@ -99,20 +98,17 @@ export const EuiBottomBar: FunctionComponent<Props> = ({
     className
   );
 
-  const bottomBarPadding =
-    paddingSize && paddingSize !== 'none'
-      ? {
-          padding:
-            typeof paddingSize === 'string'
-              ? sizes[paddingSizeToVariableMap[paddingSize]] // TODO: Handle null gracefully
-              : paddingSize.reduce(
-                  (string, paddingSize) =>
-                    `${string} ` +
-                    `${sizes[paddingSizeToVariableMap[paddingSize]] || '0'}`,
-                  ''
-                ),
-        }
-      : undefined;
+  const bottomBarPadding = {
+    padding:
+      typeof paddingSize === 'string'
+        ? sizes[paddingSizeToVariableMap[paddingSize] || 'euiSize0'] // TODO: Handle null more gracefully
+        : paddingSize.reduce(
+            (string, paddingSize) =>
+              `${string} ` +
+              `${sizes[paddingSizeToVariableMap[paddingSize] || 'euiSize0']}`,
+            ''
+          ),
+  };
 
   console.log(paddingSize, bottomBarPadding);
 
@@ -128,14 +124,12 @@ export const EuiBottomBar: FunctionComponent<Props> = ({
             aria-label={landmarkHeading ? landmarkHeading : screenReaderHeading}
             css={bottomBarPadding}
             className={classes}
-            // ref={node => {
-            //   this.bar = node;
-            // }}
+            ref={bar}
             {...rest}>
             <EuiScreenReaderOnly>
               <h2>{landmarkHeading ? landmarkHeading : screenReaderHeading}</h2>
             </EuiScreenReaderOnly>
-            {/* EMOTION: Something wrapping the children that forces a paricular Propogate theme */}
+            {/* EMOTION: Something wrapping the children that forces a particular Propogate theme */}
             {children}
           </section>
         )}

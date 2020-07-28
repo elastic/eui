@@ -17,18 +17,20 @@
  * under the License.
  */
 
-import euiColorsDark from '../eui/eui_colors_dark';
+import colorsDark from '../eui/colors_dark';
 
 const brand = {
   euiColorPrimary: '#238CFF',
-  euiColorSecondary: '#7DE2D1',
   euiColorAccent: '#F990C0',
 };
 
 const colors = {
-  ...euiColorsDark,
-  ...brand,
+  // Default
+  ...colorsDark,
 
+  // Overrides
+  ...brand,
+  euiColorSuccess: '#7DE2D1',
   euiColorHighlight: '#232635',
 };
 

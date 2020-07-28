@@ -18,12 +18,10 @@
  */
 
 // import { createTheme } from './themes/create_theme';
-import euiColorsDark from './themes/eui/eui_colors_dark';
-
-// export default createTheme(euiColorsDark);
+import colorsDark from './themes/eui/colors_dark';
 
 export default (theme: any) => {
   theme.set('name', 'dark');
-  theme.set('colors', euiColorsDark);
+  theme.set('colors', colorsDark);
   return theme;
 };

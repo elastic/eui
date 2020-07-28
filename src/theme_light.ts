@@ -18,15 +18,15 @@
  */
 
 import { createTheme } from './themes/create_theme';
-import euiColorsLight from './themes/eui/eui_colors_light';
+import colorsLight from './themes/eui/colors_light';
 
 const name = 'light';
 
 export default (theme?: any) => {
   if (theme) {
     theme.set('name', name);
-    theme.set('colors', euiColorsLight);
+    theme.set('colors', colorsLight);
     return theme;
   }
-  return createTheme(euiColorsLight, name);
+  return createTheme(colorsLight, name);
 };

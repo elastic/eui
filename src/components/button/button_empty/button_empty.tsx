@@ -21,7 +21,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { css } from '@emotion/core';
 import usePropagate from '../../../services/propagate/use_propagate';
-import euiColorsDark from '../../../themes/eui/eui_colors_dark';
+import euiColorsDark from '../../../themes/eui/colors_dark';
 import amsterdamColorsDark from '../../../themes/eui-amsterdam/colors_dark';
 
 import {
