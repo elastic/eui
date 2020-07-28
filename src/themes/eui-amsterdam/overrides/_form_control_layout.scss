@@ -1,3 +1,33 @@
 .euiFormControlLayout--group {
   border-radius: $euiBorderRadius;
+
+  .euiFormControlLayout__childrenWrapper:nth-child(2) [class*='euiField'],
+  .euiFormControlLayout__childrenWrapper:nth-child(3) [class*='euiField'] {
+    border-radius: 0;
+  }
+
+  .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
+    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+  }
+
+  .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+  }
+
+  &.euiFormControlLayout--compressed {
+    border-radius: $euiBorderRadiusSmall;
+
+    .euiFormControlLayout__childrenWrapper:nth-child(2) [class*='euiField'],
+    .euiFormControlLayout__childrenWrapper:nth-child(3) [class*='euiField'] {
+      border-radius: 0;
+    }
+
+    .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
+      border-radius: $euiBorderRadiusSmall 0 0 $euiBorderRadiusSmall;
+    }
+
+    .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
+      border-radius: 0 $euiBorderRadiusSmall $euiBorderRadiusSmall 0;
+    }
+  }
 }

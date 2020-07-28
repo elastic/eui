@@ -1,8 +1,41 @@
 .euiFormControlLayoutDelimited {
   border-radius: $euiBorderRadius;
 
-  .euiFormControlLayout__childrenWrapper {
+  &.euiFormControlLayout--group {
+    .euiFormControlLayout__childrenWrapper:first-child {
+      border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+    }
+  }
+
+  .euiFormControlLayout__childrenWrapper:only-child {
     border-radius: $euiBorderRadius;
     overflow: hidden;
+  }
+
+  .euiFormControlLayout__prepend +
+  .euiFormControlLayout__childrenWrapper {
+    &:last-child {
+      border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+    }
+  }
+
+  &.euiFormControlLayout--compressed {
+    &.euiFormControlLayout--group {
+      .euiFormControlLayout__childrenWrapper:first-child {
+        border-radius: $euiBorderRadiusSmall 0 0 $euiBorderRadiusSmall;
+      }
+    }
+
+    .euiFormControlLayout__childrenWrapper:only-child {
+      border-radius: $euiBorderRadiusSmall;
+      overflow: hidden;
+    }
+
+    .euiFormControlLayout__prepend +
+    .euiFormControlLayout__childrenWrapper {
+      &:last-child {
+        border-radius: 0 $euiBorderRadiusSmall $euiBorderRadiusSmall 0;
+      }
+    }
   }
 }
