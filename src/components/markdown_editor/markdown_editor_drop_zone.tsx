@@ -80,6 +80,10 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
+    accept: dropHandlers.reduce<string[]>((accept, dropHandler) => {
+      accept.push(...dropHandler.supportedFiles);
+      return accept;
+    }, []),
     disabled: dropHandlers.length === 0,
     // Disable click and keydown behavior
     noClick: true,
