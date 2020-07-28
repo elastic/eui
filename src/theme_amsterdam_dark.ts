@@ -23,7 +23,7 @@ import colorsDark from './themes/eui-amsterdam/colors_dark';
 // export default createTheme(colorsDark);
 
 export default (theme: any) => {
-  theme.set('name', 'EuiAmsterdamDark');
+  theme.set('name', 'amsterdam-dark');
   theme.set('colors', colorsDark);
   return theme;
 };

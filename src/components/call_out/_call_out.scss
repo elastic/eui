@@ -18,6 +18,12 @@
   }
 }
 
+.euiCallOut--amsterdam {
+  .euiCallOutHeader__title {
+    font-weight: $euiFontWeightMedium;
+  }
+}
+
 // smaller font size for headers in small callout
 .euiCallOut--small .euiCallOutHeader__title {
   @include euiCallOutTitle('s');

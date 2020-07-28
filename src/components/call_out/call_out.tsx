@@ -18,6 +18,7 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import { css } from '@emotion/core';
 
 import classNames from 'classnames';
 
@@ -25,6 +26,7 @@ import { CommonProps, keysOf } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
+import usePropagate from '../../services/propagate/use_propagate';
 
 type Color = 'primary' | 'success' | 'warning' | 'danger';
 type Size = 's' | 'm';
@@ -64,15 +66,28 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   heading,
   ...rest
 }) => {
+  const [themeName, borders] = usePropagate(['name', 'borders']);
+
+  const amsterdamClass = themeName.includes('amsterdam')
+    ? 'euiCallOut--amsterdam'
+    : undefined;
+
   const classes = classNames(
     'euiCallOut',
     colorToClassNameMap[color],
     sizeToClassNameMap[size],
+    amsterdamClass,
     className
   );
 
-  let headerIcon;
+  const amsterdamStyles = themeName.includes('amsterdam')
+    ? css`
+        border-radius: ${borders.euiBorderRadius};
+        border-left-width: 0;
+      `
+    : undefined;
 
+  let headerIcon;
   if (iconType) {
     headerIcon = (
       <EuiIcon
@@ -103,7 +118,7 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
     );
   }
   return (
-    <div className={classes} {...rest}>
+    <div css={amsterdamStyles} className={classes} {...rest}>
       {header}
 
       {optionalChildren}
