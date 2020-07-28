@@ -358,17 +358,18 @@ export class EuiComboBoxOptionsList<T> extends Component<
         } else {
           emptyStateContent = (
             <div className="euiComboBoxOption__contentWrapper">
-              <p className="euiComboBoxOption__emptyStateText">
-                {customOptionText ? (
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: customOptionText.replace(
-                        '{searchValue}',
-                        `<strong>${searchValue}</strong>`
-                      ),
-                    }}
-                  />
-                ) : (
+              {customOptionText ? (
+                <p
+                  className="euiComboBoxOption__emptyStateText"
+                  dangerouslySetInnerHTML={{
+                    __html: customOptionText.replace(
+                      '{searchValue}',
+                      `<strong>${searchValue}</strong>`
+                    ),
+                  }}
+                />
+              ) : (
+                <p className="euiComboBoxOption__emptyStateText">
                   <EuiI18n
                     token="euiComboBoxOptionsList.createCustomOption"
                     default="Add {searchValue} as a custom option"
@@ -376,8 +377,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
                       searchValue: <strong>{searchValue}</strong>,
                     }}
                   />
-                )}
-              </p>
+                </p>
+              )}
               {hitEnterBadge}
             </div>
           );
