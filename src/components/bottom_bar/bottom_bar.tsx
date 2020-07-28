@@ -109,6 +109,7 @@ export class EuiBottomBar extends Component<Props> {
                   {landmarkHeading ? landmarkHeading : screenReaderHeading}
                 </h2>
               </EuiScreenReaderOnly>
+              {/* EMOTION: Something wrapping the children that forces a paricular Propogate theme */}
               {children}
             </section>
           )}
