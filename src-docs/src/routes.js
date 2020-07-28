@@ -135,6 +135,10 @@ import { LoadingExample } from './views/loading/loading_example';
 
 import { MarkdownEditorExample } from './views/markdown_editor/mardown_editor_example';
 
+import { MarkdownFormatExample } from './views/markdown_editor/mardown_format_example';
+
+import { MarkdownPluginExample } from './views/markdown_editor/markdown_plugin_example';
+
 import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
@@ -366,7 +370,6 @@ const navigation = [
       BadgeExample,
       CallOutExample,
       CardExample,
-      CodeExample,
       CommentListExample,
       DescriptionListExample,
       DragAndDropExample,
@@ -396,16 +399,24 @@ const navigation = [
       SuperSelectExample,
       ComboBoxExample,
       ColorPickerExample,
-      CodeEditorExample,
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
-      MarkdownEditorExample,
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
+    ].map(example => createExample(example)),
+  },
+  {
+    name: 'Editors & syntax',
+    items: [
+      MarkdownFormatExample,
+      MarkdownEditorExample,
+      MarkdownPluginExample,
+      CodeEditorExample,
+      CodeExample,
     ].map(example => createExample(example)),
   },
   {

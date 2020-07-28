@@ -217,8 +217,9 @@ export {
 export {
   EuiMarkdownEditor,
   EuiMarkdownContext,
-  defaultProcessingPlugins,
-  defaultParsingPlugins,
+  EuiMarkdownFormat,
+  EuiMarkdownDefaultParsingPlugins,
+  EuiMarkdownDefaultProcessingPlugins,
 } from './markdown_editor';
 export { EuiMark } from './mark';
 
