@@ -19,6 +19,10 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/core';
+import usePropagate from '../../../services/propagate/use_propagate';
+import euiColorsDark from '../../../themes/eui/eui_colors_dark';
+import amsterdamColorsDark from '../../../themes/eui-amsterdam/colors_dark';
 
 import {
   CommonProps,
@@ -47,6 +51,14 @@ const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   disabled: 'euiButtonEmpty--disabled',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
+};
+
+const textColorToThemeMap: { [color in EuiButtonEmptyColor]: string } = {
+  primary: 'euiColorPrimary',
+  danger: 'euiColorDanger',
+  disabled: 'euiTextColor',
+  text: 'euiTextColor',
+  ghost: 'euiTextColor',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
@@ -130,6 +142,17 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   textProps,
   ...rest
 }) => {
+  let [themeName, colors] = usePropagate(['name', 'colors']);
+
+  if (color === 'ghost') {
+    // TODO: Can this be moved to a service for reuse elsewhere?
+    colors = themeName.includes('amsterdam')
+      ? amsterdamColorsDark
+      : euiColorsDark;
+  }
+
+  const textColor = colors[textColorToThemeMap[color]];
+
   // If in the loading state, force disabled to true
   const buttonIsDisabled = isLoading || isDisabled || disabled;
 
@@ -187,6 +210,9 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
 
   return (
     <button
+      css={css`
+        color: ${textColor};
+      `}
       disabled={buttonIsDisabled}
       className={classes}
       type={type}

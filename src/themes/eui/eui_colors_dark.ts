@@ -48,6 +48,7 @@ const colors = {
   euiColorFullShade: '#FFF',
 
   euiColorHighlight: '#2E2D25',
+  euiTextColor: '#D4DAE5',
 };
 
 export default colors;
