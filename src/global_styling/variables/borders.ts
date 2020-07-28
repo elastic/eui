@@ -17,12 +17,12 @@
  * under the License.
  */
 
-export const createBorders = (colors: any) => {
+export const createBorders = (colors: any, radius: number = 4) => {
   const euiBorderWidthThin = '1px';
   const euiBorderWidthThick = '2px';
 
   const euiBorderColor = colors.euiColorLightShade;
-  const euiBorderRadius = '4px';
+  const euiBorderRadius = `${radius}px`;
   const euiBorderThick = `${euiBorderWidthThick} solid ${euiBorderColor}`;
   const euiBorderThin = `${euiBorderWidthThin} solid ${euiBorderColor}`;
   const euiBorderEditable = `${euiBorderWidthThick} dotted ${euiBorderColor}`;

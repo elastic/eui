@@ -19,6 +19,7 @@
 
 import { createTheme } from './themes/create_theme';
 import colorsLight from './themes/eui-amsterdam/colors_light';
+import { createBorders } from './global_styling/variables';
 
 const name = 'amsterdam-light';
 
@@ -26,6 +27,7 @@ export default (theme?: any) => {
   if (theme) {
     theme.set('name', name);
     theme.set('colors', colorsLight);
+    theme.set('borders', createBorders(colorsLight, 6));
     return theme;
   }
   return createTheme(colorsLight, name);

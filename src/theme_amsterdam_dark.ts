@@ -19,11 +19,13 @@
 
 // import { createTheme } from './themes/create_theme';
 import colorsDark from './themes/eui-amsterdam/colors_dark';
+import { createBorders } from './global_styling/variables';
 
 // export default createTheme(colorsDark);
 
 export default (theme: any) => {
   theme.set('name', 'amsterdam-dark');
   theme.set('colors', colorsDark);
+  theme.set('borders', createBorders(colorsDark, 6));
   return theme;
 };
