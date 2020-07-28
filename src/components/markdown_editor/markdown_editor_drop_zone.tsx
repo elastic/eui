@@ -92,7 +92,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     noClick: true,
     noKeyboard: true,
     // multiple: false,
-    onDragEnter: e => {
+    onDragOver: e => {
       let result: boolean;
 
       if (e.dataTransfer) {
@@ -109,7 +109,28 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
         result = false;
       }
 
-      console.log('result', result);
+      toggleDragging(result);
+      if (result === false) {
+        e.preventDefault();
+      }
+      return result;
+    },
+    onDragEnter: e => {
+      let result: boolean;
+
+      if (e.dataTransfer) {
+        const unacceptedItems = getUnacceptedItems(
+          e.dataTransfer.items,
+          dropHandlers
+        );
+        setHasUnacceptedItems(unacceptedItems.length > 0);
+        toggleDraggingError(unacceptedItems.length > 0);
+
+        result = unacceptedItems.length === 0;
+      } else {
+        setHasUnacceptedItems(false);
+        result = false;
+      }
 
       toggleDragging(result);
       if (result === false) {
@@ -140,7 +161,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
         return;
       }
 
-      setHasUnacceptedItems(false);
+      // setHasUnacceptedItems(false);
       toggleUploadingFiles(true);
 
       const resolved: Array<string | Promise<string>> = [];
