@@ -105,9 +105,10 @@ type Buttonlike = EuiExpressionProps &
 
 type Spanlike = EuiExpressionProps & HTMLAttributes<HTMLSpanElement>;
 
-export const EuiExpression: React.FunctionComponent<
-  ExclusiveUnion<Buttonlike, Spanlike>
-> = ({
+export const EuiExpression: React.FunctionComponent<ExclusiveUnion<
+  Buttonlike,
+  Spanlike
+>> = ({
   className,
   description,
   descriptionProps,

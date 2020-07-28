@@ -102,12 +102,10 @@ export type EuiDataGridCellValueProps = Omit<
   'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus' | 'popoverContent'
 >;
 
-const EuiDataGridCellContent: FunctionComponent<
-  EuiDataGridCellValueProps & {
-    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-    isExpanded: boolean;
-  }
-> = memo(props => {
+const EuiDataGridCellContent: FunctionComponent<EuiDataGridCellValueProps & {
+  setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
+  isExpanded: boolean;
+}> = memo(props => {
   const { renderCellValue, ...rest } = props;
 
   // React is more permissible than the TS types indicate

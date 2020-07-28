@@ -21,13 +21,8 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import {
-  EuiButtonEmpty,
-  COLORS,
-  SIZES,
-  ICON_SIDES,
-  FLUSH_TYPES,
-} from './button_empty';
+import { EuiButtonEmpty, COLORS, SIZES, FLUSH_TYPES } from './button_empty';
+import { ICON_SIDES } from '../button_content';
 
 describe('EuiButtonEmpty', () => {
   test('is rendered', () => {
@@ -48,6 +43,20 @@ describe('EuiButtonEmpty', () => {
 
       it('renders a button even when href is defined', () => {
         const component = render(<EuiButtonEmpty href="#" isDisabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('renders if passed simply as disabled', () => {
+        const component = render(<EuiButtonEmpty disabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const component = render(<EuiButtonEmpty isLoading />);
 
         expect(component).toMatchSnapshot();
       });
@@ -127,6 +136,22 @@ describe('EuiButtonEmpty', () => {
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
+    });
+
+    test('contentProps is rendered', () => {
+      const component = render(
+        <EuiButtonEmpty contentProps={requiredProps}>Content</EuiButtonEmpty>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('textProps is rendered', () => {
+      const component = render(
+        <EuiButtonEmpty textProps={requiredProps}>Content</EuiButtonEmpty>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

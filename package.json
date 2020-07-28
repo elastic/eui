@@ -1,13 +1,16 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "27.0.0",
+  "version": "27.2.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
   "docker_image": "node:10",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "scripts": {
     "start": "cross-env BABEL_MODULES=false webpack-dev-server --inline --hot --config=src-docs/webpack.config.js",
     "test-docker": "node ./scripts/test-docker.js",
@@ -66,7 +69,7 @@
     "react-ace": "^7.0.5",
     "react-beautiful-dnd": "^13.0.0",
     "react-dropzone": "^10.2.1",
-    "react-focus-lock": "^1.17.7",
+    "react-focus-on": "^3.4.1",
     "react-input-autosize": "^2.2.2",
     "react-is": "~16.3.0",
     "react-view": "^2.3.2",
@@ -183,7 +186,7 @@
     "postcss-inline-svg": "^3.0.0",
     "postcss-loader": "^2.0.8",
     "pre-commit": "^1.2.2",
-    "prettier": "^1.17.0",
+    "prettier": "^1.19.1",
     "prettier-stylelint": "^0.4.2",
     "prompt": "^1.0.0",
     "prop-types": "^15.6.0",

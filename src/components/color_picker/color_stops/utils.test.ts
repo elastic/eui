@@ -74,7 +74,10 @@ describe('addStop', () => {
   test('Should add stop below the max if max is taken', () => {
     expect(
       addStop(
-        [{ stop: 0, color: '#FF0000' }, { stop: 100, color: '#FF0000' }],
+        [
+          { stop: 0, color: '#FF0000' },
+          { stop: 100, color: '#FF0000' },
+        ],
         '#FF0000',
         100
       )
