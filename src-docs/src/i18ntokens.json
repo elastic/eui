@@ -437,11 +437,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 462,
+        "line": 460,
         "column": 10
       },
       "end": {
-        "line": 470,
+        "line": 468,
         "column": 12
       }
     },
@@ -517,11 +517,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 302,
+        "line": 325,
         "column": 12
       },
       "end": {
-        "line": 305,
+        "line": 328,
         "column": 14
       }
     },
@@ -533,11 +533,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 319,
+        "line": 342,
         "column": 14
       },
       "end": {
-        "line": 325,
+        "line": 348,
         "column": 16
       }
     },
@@ -545,32 +545,32 @@
   },
   {
     "token": "euiComboBoxOptionsList.createCustomOption",
-    "defString": "Hit {key} to add {searchValue} as a custom option",
+    "defString": "Add {searchValue} as a custom option",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 331,
-        "column": 14
+        "line": 355,
+        "column": 16
       },
       "end": {
-        "line": 338,
-        "column": 16
+        "line": 361,
+        "column": 18
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.delimiterMessage",
-    "defString": "Hit enter to add each item separated by {delimiter}",
+    "defString": "Add each item separated by {delimiter}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 346,
-        "column": 14
+        "line": 372,
+        "column": 16
       },
       "end": {
-        "line": 350,
-        "column": 16
+        "line": 376,
+        "column": 18
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -581,11 +581,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 356,
+        "line": 384,
         "column": 14
       },
       "end": {
-        "line": 360,
+        "line": 388,
         "column": 16
       }
     },
@@ -597,11 +597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 368,
+        "line": 396,
         "column": 10
       },
       "end": {
-        "line": 371,
+        "line": 399,
         "column": 12
       }
     },
@@ -613,11 +613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 377,
+        "line": 405,
         "column": 10
       },
       "end": {
-        "line": 380,
+        "line": 408,
         "column": 12
       }
     },
@@ -757,11 +757,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 70,
+        "line": 68,
         "column": 6
       },
       "end": {
-        "line": 70,
+        "line": 68,
         "column": 80
       }
     },
@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 77,
+        "line": 75,
         "column": 6
       },
       "end": {
-        "line": 80,
+        "line": 78,
         "column": 8
       }
     },
@@ -789,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 106,
+        "line": 104,
         "column": 14
       },
       "end": {
-        "line": 108,
+        "line": 106,
         "column": 52
       }
     },
@@ -805,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 123,
+        "line": 121,
         "column": 14
       },
       "end": {
-        "line": 125,
+        "line": 123,
         "column": 54
       }
     },
@@ -821,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 160,
+        "line": 158,
         "column": 14
       },
       "end": {
-        "line": 162,
+        "line": 160,
         "column": 60
       }
     },
@@ -901,11 +901,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 382,
+        "line": 380,
         "column": 6
       },
       "end": {
-        "line": 384,
+        "line": 382,
         "column": 67
       }
     },
@@ -1077,11 +1077,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 226,
+        "line": 236,
         "column": 4
       },
       "end": {
-        "line": 229,
+        "line": 239,
         "column": 46
       }
     },
@@ -1093,11 +1093,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 232,
+        "line": 242,
         "column": 10
       },
       "end": {
-        "line": 234,
+        "line": 244,
         "column": 52
       }
     },
@@ -1109,11 +1109,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 893,
+        "line": 907,
         "column": 4
       },
       "end": {
-        "line": 902,
+        "line": 916,
         "column": 9
       }
     },
@@ -1125,11 +1125,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 905,
+        "line": 919,
         "column": 10
       },
       "end": {
-        "line": 913,
+        "line": 927,
         "column": 15
       }
     },
@@ -1141,11 +1141,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1065,
+        "line": 1077,
         "column": 28
       },
       "end": {
-        "line": 1068,
+        "line": 1080,
         "column": 30
       }
     },
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 63,
+        "line": 64,
         "column": 10
       },
       "end": {
-        "line": 66,
+        "line": 67,
         "column": 12
       }
     },
@@ -1589,11 +1589,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 36,
+        "line": 38,
         "column": 4
       },
       "end": {
-        "line": 38,
+        "line": 40,
         "column": 28
       }
     },
@@ -1909,11 +1909,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 137,
+        "line": 138,
         "column": 6
       },
       "end": {
-        "line": 143,
+        "line": 144,
         "column": 8
       }
     },
@@ -2037,11 +2037,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 488,
+        "line": 486,
         "column": 6
       },
       "end": {
-        "line": 488,
+        "line": 486,
         "column": 78
       }
     },
@@ -2053,11 +2053,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 517,
+        "line": 515,
         "column": 6
       },
       "end": {
-        "line": 517,
+        "line": 515,
         "column": 78
       }
     },
@@ -2357,11 +2357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 60,
         "column": 6
       },
       "end": {
-        "line": 57,
+        "line": 60,
         "column": 70
       }
     },
@@ -2373,11 +2373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 71,
+        "line": 74,
         "column": 6
       },
       "end": {
-        "line": 71,
+        "line": 74,
         "column": 74
       }
     },
@@ -2389,11 +2389,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 87,
         "column": 6
       },
       "end": {
-        "line": 84,
+        "line": 87,
         "column": 78
       }
     },
@@ -2405,11 +2405,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 101,
         "column": 4
       },
       "end": {
-        "line": 103,
+        "line": 106,
         "column": 26
       }
     },

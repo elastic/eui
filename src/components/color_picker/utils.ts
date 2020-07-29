@@ -172,9 +172,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
   if (paletteHasStops) {
     const paletteColorStop = palette as ColorStop[];
 
-    linearGradient = `linear-gradient(to right, ${
-      paletteColorStop[0].color
-    } 0%,`;
+    linearGradient = `linear-gradient(to right, ${paletteColorStop[0].color} 0%,`;
 
     const decimal = 100 / paletteColorStop[paletteColorStop.length - 1].stop;
 

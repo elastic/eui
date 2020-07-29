@@ -1,4 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
+  
+**Bug fixes**
+
+- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
+
+## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
 
 - Added possibility to hide "Rows per page" select in `EuiDataGrid` ([#3700](https://github.com/elastic/eui/pull/3700))
 - Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
@@ -8,10 +14,6 @@
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
-- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3796](https://github.com/elastic/eui/pull/3796))
-
-**Bug fixes**
-
 - Fixed `EuiComboBox` marking some very long inputs as invalid ([#3797](https://github.com/elastic/eui/pull/3797))
 
 ## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)

@@ -26,7 +26,7 @@ import { EuiIcon, IconType } from '../icon';
 export type ButtonContentIconSide = 'left' | 'right';
 
 const iconSideToClassNameMap: {
-  [side in ButtonContentIconSide]: string | null
+  [side in ButtonContentIconSide]: string | null;
 } = {
   left: null,
   right: 'euiButtonContent--iconRight',
@@ -50,9 +50,8 @@ export interface EuiButtonContentProps extends CommonProps {
   textProps?: HTMLAttributes<HTMLSpanElement> & CommonProps;
 }
 
-export const EuiButtonContent: FunctionComponent<
-  EuiButtonContentType & EuiButtonContentProps
-> = ({
+export const EuiButtonContent: FunctionComponent<EuiButtonContentType &
+  EuiButtonContentProps> = ({
   children,
   textProps,
   isLoading = false,

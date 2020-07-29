@@ -93,7 +93,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
         totalPages={pageCount}
         onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
         pageIndex={pageIndex}
-        {...hasControl && { 'aria-controls': ariaControls }}
+        {...(hasControl && { 'aria-controls': ariaControls })}
         hideOnMobile
       />
     );

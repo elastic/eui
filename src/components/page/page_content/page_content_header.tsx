@@ -31,9 +31,12 @@ export interface EuiPageContentHeaderProps
   responsive?: boolean;
 }
 
-export const EuiPageContentHeader: FunctionComponent<
-  EuiPageContentHeaderProps
-> = ({ children, className, responsive = true, ...rest }) => {
+export const EuiPageContentHeader: FunctionComponent<EuiPageContentHeaderProps> = ({
+  children,
+  className,
+  responsive = true,
+  ...rest
+}) => {
   const classes = classNames(
     'euiPageContentHeader',
     {

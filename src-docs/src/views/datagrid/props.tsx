@@ -18,9 +18,9 @@ export const DataGridColumn: FunctionComponent<EuiDataGridColumn> = () => (
   <div />
 );
 
-export const DataGridPagination: FunctionComponent<
-  EuiDataGridPaginationProps
-> = () => <div />;
+export const DataGridPagination: FunctionComponent<EuiDataGridPaginationProps> = () => (
+  <div />
+);
 
 export const DataGridSorting: FunctionComponent<EuiDataGridSorting> = () => (
   <div />
@@ -32,30 +32,30 @@ export const DataGridInMemory: FunctionComponent<EuiDataGridInMemory> = () => (
 
 export const DataGridStyle: FunctionComponent<EuiDataGridStyle> = () => <div />;
 
-export const DataGridToolbarVisibilityOptions: FunctionComponent<
-  EuiDataGridToolBarVisibilityOptions
-> = () => <div />;
+export const DataGridToolbarVisibilityOptions: FunctionComponent<EuiDataGridToolBarVisibilityOptions> = () => (
+  <div />
+);
 
-export const DataGridCellValueElement: FunctionComponent<
-  EuiDataGridCellValueElementProps
-> = () => <div />;
+export const DataGridCellValueElement: FunctionComponent<EuiDataGridCellValueElementProps> = () => (
+  <div />
+);
 
-export const DataGridSchemaDetector: FunctionComponent<
-  EuiDataGridSchemaDetector
-> = () => <div />;
+export const DataGridSchemaDetector: FunctionComponent<EuiDataGridSchemaDetector> = () => (
+  <div />
+);
 
-export const DataGridColumnVisibility: FunctionComponent<
-  EuiDataGridColumnVisibility
-> = () => <div />;
+export const DataGridColumnVisibility: FunctionComponent<EuiDataGridColumnVisibility> = () => (
+  <div />
+);
 
-export const DataGridPopoverContent: FunctionComponent<
-  EuiDataGridPopoverContentProps
-> = () => <div />;
+export const DataGridPopoverContent: FunctionComponent<EuiDataGridPopoverContentProps> = () => (
+  <div />
+);
 
-export const DataGridControlColumn: FunctionComponent<
-  EuiDataGridControlColumn
-> = () => <div />;
+export const DataGridControlColumn: FunctionComponent<EuiDataGridControlColumn> = () => (
+  <div />
+);
 
-export const DataGridToolBarVisibilityColumnSelectorOptions: FunctionComponent<
-  EuiDataGridToolBarVisibilityColumnSelectorOptions
-> = () => <div />;
+export const DataGridToolBarVisibilityColumnSelectorOptions: FunctionComponent<EuiDataGridToolBarVisibilityColumnSelectorOptions> = () => (
+  <div />
+);
