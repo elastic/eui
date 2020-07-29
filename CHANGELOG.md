@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
+  
+**Bug fixes**
 
-No public interface changes since `27.3.0`.
+- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
 
 ## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
 
