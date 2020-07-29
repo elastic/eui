@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.3.0`.
+**Bug fixes**
+
+- Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
 
 ## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
 
