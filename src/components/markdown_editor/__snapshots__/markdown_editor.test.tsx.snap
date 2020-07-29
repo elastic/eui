@@ -207,7 +207,6 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         </button>
       </footer>
       <input
-        accept=""
         autocomplete="off"
         multiple=""
         style="display:none"

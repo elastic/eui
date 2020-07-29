@@ -83,10 +83,6 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
-    accept: dropHandlers.reduce<string[]>((accept, dropHandler) => {
-      accept.push(...dropHandler.supportedFiles);
-      return accept;
-    }, []),
     disabled: dropHandlers.length === 0,
     // Disable click and keydown behavior
     noClick: true,
@@ -144,6 +140,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     onDrop: acceptedFiles => {
       const fileHandlers: EuiMarkdownDropHandler[] = [];
 
+      // verify all files being dropped are supported
       preparation: for (let i = 0; i < acceptedFiles.length; i++) {
         const file = acceptedFiles[i];
 
@@ -161,7 +158,6 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
         return;
       }
 
-      // setHasUnacceptedItems(false);
       toggleUploadingFiles(true);
 
       const resolved: Array<string | Promise<string>> = [];
