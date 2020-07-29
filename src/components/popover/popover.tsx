@@ -162,7 +162,7 @@ export interface EuiPopoverProps {
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
 const anchorPositionToPopoverPositionMap: {
-  [position in AnchorPosition]: EuiPopoverPosition
+  [position in AnchorPosition]: EuiPopoverPosition;
 } = {
   up: 'top',
   right: 'right',

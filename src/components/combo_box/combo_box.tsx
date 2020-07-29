@@ -294,7 +294,13 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  closeList = () => {
+  closeList = (event?: Event) => {
+    if (event && event.target === this.searchInputRefInstance) {
+      // really long search values / custom entries triggers a scroll event on the input
+      // which the EuiComboBoxOptionsList passes through here
+      return;
+    }
+
     this.clearActiveOption();
     this.setState({
       listZIndex: undefined,
@@ -561,9 +567,9 @@ export class EuiComboBox<T> extends Component<
       this.closeList();
 
       if (this.props.onBlur) {
-        this.props.onBlur((event as unknown) as React.FocusEvent<
-          HTMLDivElement
-        >);
+        this.props.onBlur(
+          (event as unknown) as React.FocusEvent<HTMLDivElement>
+        );
       }
       this.setState({ hasFocus: false });
 
@@ -674,7 +680,7 @@ export class EuiComboBox<T> extends Component<
     }
 
     if (singleSelection) {
-      requestAnimationFrame(this.closeList);
+      requestAnimationFrame(() => this.closeList());
     } else {
       this.setState({
         activeOptionIndex: this.state.matchingOptions.indexOf(addedOption),

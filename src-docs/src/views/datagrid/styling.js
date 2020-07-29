@@ -459,7 +459,6 @@ export default class DataGrid extends Component {
               button={styleButton}
               isOpen={this.state.isPopoverOpen}
               anchorPosition="rightUp"
-              zIndex={3}
               closePopover={this.closePopover.bind(this)}>
               <div style={{ width: 300 }}>
                 <EuiFormRow label="Border" display="columnCompressed">
@@ -548,7 +547,6 @@ export default class DataGrid extends Component {
               button={toolbarButton}
               isOpen={this.state.isToolbarPopoverOpen}
               anchorPosition="rightUp"
-              zIndex={3}
               closePopover={this.closeToolbarPopover.bind(this)}>
               <div style={{ width: 400 }}>
                 <EuiFormRow

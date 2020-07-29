@@ -180,7 +180,7 @@ const footerToClassMap: { [footer in EuiDataGridStyleFooter]: string } = {
 };
 
 const rowHoverToClassMap: {
-  [rowHighlight in EuiDataGridStyleRowHover]: string
+  [rowHighlight in EuiDataGridStyleRowHover]: string;
 } = {
   highlight: 'euiDataGrid--rowHoverHighlight',
   none: '',
@@ -193,7 +193,7 @@ const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
 };
 
 const cellPaddingsToClassMap: {
-  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string;
 } = {
   s: 'euiDataGrid--paddingSmall',
   m: '',
@@ -229,10 +229,20 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
     onChangeItemsPerPage,
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
+  const minSizeOption =
+    pageSizeOptions && [...pageSizeOptions].sort((a, b) => a - b)[0];
 
-  if (props.rowCount < pageSizeOptions[0]) {
+  if (props.rowCount < (minSizeOption || pageSize)) {
+    /**
+     * Do not render the pagination when:
+     * 1. Rows count is less than min pagination option (rows per page)
+     * 2. Rows count is less than pageSize (the case when there are no pageSizeOptions provided)
+     */
     return null;
   }
+
+  // hide select rows per page if pageSizeOptions is undefined or an empty array
+  const hidePerPageOptions = !pageSizeOptions || pageSizeOptions.length === 0;
 
   return (
     <EuiI18n
@@ -259,7 +269,7 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
                   <EuiTablePagination
                     aria-controls={controls}
                     activePage={pageIndex}
-                    hidePerPageOptions={!pageSizeOptions.length}
+                    hidePerPageOptions={hidePerPageOptions}
                     itemsPerPage={pageSize}
                     itemsPerPageOptions={pageSizeOptions}
                     pageCount={pageCount}
@@ -312,6 +322,9 @@ function useDefaultColumnWidth(
 
     const widthToFill = gridWidth - claimedWidth;
     const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    if (unsizedColumnCount === 0) {
+      return 100;
+    }
     return Math.max(widthToFill / unsizedColumnCount, 100);
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
 
@@ -1006,9 +1019,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                       rowCount={
                                         inMemory.level === 'enhancements'
                                           ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                                            (pagination &&
-                                              pagination.pageSize) ||
-                                            rowCount
+                                            pagination?.pageSize || rowCount
                                           : // otherwise, all of the data is present and usable
                                             rowCount
                                       }

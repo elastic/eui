@@ -231,7 +231,6 @@ export class EuiSelectable extends Component<
         break;
 
       case keys.ENTER:
-      case keys.SPACE:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
@@ -459,9 +458,7 @@ export class EuiSelectable extends Component<
 
       if (props && props['aria-describedby']) {
         return {
-          'aria-describedby': `${
-            props['aria-describedby']
-          }${messageContentIdString}`,
+          'aria-describedby': `${props['aria-describedby']}${messageContentIdString}`,
         };
       }
 
