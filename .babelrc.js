@@ -19,7 +19,13 @@ module.exports = {
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
     "@babel/react",
-    "@emotion/babel-preset-css-prop",
+    [
+      "@emotion/babel-preset-css-prop",
+      {
+        "autoLabel": false,
+        "labelFormat": "[local]"
+      },
+    ],
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",

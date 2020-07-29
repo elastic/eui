@@ -20,6 +20,7 @@
 import { css } from '@emotion/core';
 import { euiSize } from '../../global_styling/variables/sizes';
 import { isColorDark, hexToRgb } from '../../services';
+import { CSSProperties } from 'react';
 
 export const euiMarkStyle = (sizes: any, colors: any) => {
   return css`
@@ -43,4 +44,31 @@ export const euiMarkAmsterdamStyle = (borders: any) => {
     },
     'label:-amsterdam' // Allows for a custom appended label between the hash and [local]
   );
+};
+
+export interface StyleConfig {
+  baseStyle: CSSProperties;
+  [key: string]: { [key: string]: any }; // Anything props
+}
+
+export const EuiMarkStyle = (theme: any): StyleConfig => {
+  return {
+    baseStyle: {
+      background: theme.colorMode === 'dark' ? 'green' : 'red',
+      color: theme.colorMode === 'dark' ? 'black' : 'white',
+      textTransform: 'uppercase',
+      fontWeight: 'bold',
+      letterSpacing: '0.02em',
+      borderRadius: '2px',
+      fontSize: '12px',
+    },
+    size: {
+      s: {
+        padding: theme.sizes.euiSizeXS,
+      },
+      m: {
+        padding: theme.sizes.euiSizeXL,
+      },
+    },
+  };
 };

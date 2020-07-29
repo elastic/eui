@@ -17,40 +17,82 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 import usePropagate from '../../services/propagate/use_propagate';
-import { euiMarkStyle, euiMarkAmsterdamStyle } from './mark_style';
+import {
+  euiMarkStyle,
+  euiMarkAmsterdamStyle,
+  styleConfig,
+  EuiMarkStyle,
+  StyleConfig,
+} from './mark_style';
+import { css } from '@emotion/core';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
     children: string;
+    size?: 's' | 'm';
   };
 
 export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   children,
   className,
+  size = 's',
   ...rest
 }) => {
   // Is there any way to make this more effecient without having to pull them out first?
-  const [themeName, colors, sizes, borders] = usePropagate([
-    'name',
-    'colors',
-    'sizes',
-    'borders',
-  ]);
+  const myFakePropagate = () => {
+    // Returns everything
+    const [themeName, colors, sizes, borders] = usePropagate([
+      'name',
+      'colors',
+      'sizes',
+      'borders',
+    ]);
+    return {
+      colorMode: themeName,
+      themeName,
+      colors,
+      sizes,
+      borders,
+    };
+  };
+
+  const currentTheme = myFakePropagate();
+
+  // Can we make this generic
+  function createStyleFromProps(
+    label: string,
+    style: ({}) => StyleConfig,
+    size: EuiMarkProps['size']
+  ): CSSProperties {
+    // If generic can it still grab the currentTheme wihtout it being passed in
+    const computeStyle = style(currentTheme);
+    return css(
+      {
+        ...computeStyle.baseStyle,
+        ...computeStyle.size[size || 's'],
+      },
+      `label:-${label}` // Creates a consistent class naming structure
+    );
+  }
 
   const classes = classNames('euiMark', className);
 
   // Trying to get this second one to auto-spit out the const name onto the class list
   // Not working when importing the `css()`
   const euiMarkAmsterdam =
-    themeName.includes('amsterdam') && euiMarkAmsterdamStyle(borders);
+    currentTheme.themeName.includes('amsterdam') &&
+    euiMarkAmsterdamStyle(currentTheme.borders);
 
   return (
     <mark
-      css={[euiMarkStyle(sizes, colors), euiMarkAmsterdam]}
+      css={[
+        createStyleFromProps('euiMark', EuiMarkStyle, size),
+        euiMarkAmsterdam,
+      ]}
       className={classes}
       {...rest}>
       {children}
