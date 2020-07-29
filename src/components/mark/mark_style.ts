@@ -23,11 +23,11 @@ import { isColorDark, hexToRgb } from '../../services';
 
 export const euiMarkStyle = (sizes: any, colors: any) => {
   return css`
-    // The only one that is a function for calculations
+    /* The only one that is a function for calculations */
     margin: ${euiSize(0.25)};
-    // Named sizes as strings
+    /* Named sizes as strings */
     padding: ${sizes.euiSizeXS};
-    // For testing only
+    /* For testing only */
     background-color: ${colors.euiColorHighlight};
     color: ${isColorDark(...hexToRgb(colors.euiColorHighlight))
       ? colors.euiColorGhost
@@ -36,8 +36,11 @@ export const euiMarkStyle = (sizes: any, colors: any) => {
 };
 
 export const euiMarkAmsterdamStyle = (borders: any) => {
-  return css`
-    /* Change border-radius for Amsterdam only */
-    border-radius: ${borders.euiBorderRadius};
-  `;
+  return css(
+    {
+      /* Change border-radius for Amsterdam only */
+      borderRadius: borders.euiBorderRadius,
+    },
+    'label:-amsterdam' // Allows for a custom appended label between the hash and [local]
+  );
 };

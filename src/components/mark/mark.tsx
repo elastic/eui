@@ -43,7 +43,7 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
 
   const classes = classNames('euiMark', className);
 
-  // Trying to get this second out to auto-spit out the const name onto the class list
+  // Trying to get this second one to auto-spit out the const name onto the class list
   // Not working when importing the `css()`
   const euiMarkAmsterdam =
     themeName.includes('amsterdam') && euiMarkAmsterdamStyle(borders);

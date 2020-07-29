@@ -27,6 +27,12 @@ import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 import usePropagate from '../../services/propagate/use_propagate';
+import { euiSize } from '../../global_styling/variables/sizes';
+import {
+  euiCallOutHeader,
+  euiCallOutHeaderIcon,
+  euiCallOutColors,
+} from './call_out_style';
 
 type Color = 'primary' | 'success' | 'warning' | 'danger';
 type Size = 's' | 'm';
@@ -66,7 +72,13 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   heading,
   ...rest
 }) => {
-  const [themeName, borders] = usePropagate(['name', 'borders']);
+  const [themeName, colors, sizes, borders, typography] = usePropagate([
+    'name',
+    'colors',
+    'sizes',
+    'borders',
+    'typography',
+  ]);
 
   const amsterdamClass = themeName.includes('amsterdam')
     ? 'euiCallOut--amsterdam'
@@ -80,10 +92,19 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
     className
   );
 
+  const calloutStyles = css`
+    padding: ${size === 's' ? sizes.euiSizeS : sizes.euiSize};
+    border-left: ${euiSize(0.125)} solid transparent;
+  `;
+
   const amsterdamStyles = themeName.includes('amsterdam')
     ? css`
         border-radius: ${borders.euiBorderRadius};
         border-left-width: 0;
+
+        .euiCallOutHeader__title {
+          font-weight: ${typography.euiFontWeightMedium};
+        }
       `
     : undefined;
 
@@ -91,6 +112,7 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   if (iconType) {
     headerIcon = (
       <EuiIcon
+        css={euiCallOutHeaderIcon}
         className="euiCallOutHeader__icon"
         type={iconType}
         size="m"
@@ -111,14 +133,26 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
 
   if (title) {
     header = (
-      <div className="euiCallOutHeader">
+      <div css={[euiCallOutHeader(sizes)]} className="euiCallOutHeader">
         {headerIcon}
-        <H className="euiCallOutHeader__title">{title}</H>
+        <H
+          css={css`
+            /* Not intuitive for consumers to know that its a bunch of styles */
+            ${size === 's' ? typography.euiTitleXXS : typography.euiTitleXS}
+            font-weight: ${typography.euiFontWeightRegular};
+            margin-bottom: 0;
+          `}
+          className="euiCallOutHeader__title">
+          {title}
+        </H>
       </div>
     );
   }
   return (
-    <div css={amsterdamStyles} className={classes} {...rest}>
+    <div
+      css={[euiCallOutColors(colors, color), amsterdamStyles]}
+      className={classes}
+      {...rest}>
       {header}
 
       {optionalChildren}

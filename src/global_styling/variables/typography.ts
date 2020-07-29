@@ -82,39 +82,39 @@ const weights = {
 // Lists all the properties per EuiTitle size that then gets looped through to create the selectors.
 // The map allows for tokenization and easier customization per theme, otherwise you'd have to override the selectors themselves
 const titles = {
-  xxxs: `
-    font-size: ${sizes.euiFontSizeXS}px,
-    line-height: ${lineHeightFromBaseline(3)},
-    font-weight: ${weights.euiFontWeightBold},
+  euiTitleXXXS: `
+    font-size: ${sizes.euiFontSizeXS}px;
+    line-height: ${_lineHeightFromBaseline(3)};
+    font-weight: ${weights.euiFontWeightBold};
   `,
-  xxs: `
-    font-size: ${sizes.euiFontSizeS}px,
-    line-height: ${lineHeightFromBaseline(3)},
-    font-weight: ${weights.euiFontWeightBold},
+  euiTitleXXS: `
+    font-size: ${sizes.euiFontSizeS}px;
+    line-height: ${_lineHeightFromBaseline(3)};
+    font-weight: ${weights.euiFontWeightBold};
   `,
-  xs: `
-    font-size: ${euiFontSize}px,
-    line-height: ${lineHeightFromBaseline(3)},
-    font-weight: ${weights.euiFontWeightSemiBold},
-    letter-spacing: -.02em,
+  euiTitleXS: `
+    font-size: ${euiFontSize}px;
+    line-height: ${_lineHeightFromBaseline(3)};
+    font-weight: ${weights.euiFontWeightSemiBold};
+    letter-spacing: -.02em;
   `,
-  s: `
-    font-size: ${sizes.euiFontSizeL}px,
-    line-heigh': ${lineHeightFromBaseline(4)},
-    font-weight: ${weights.euiFontWeightMedium},
-    letter-spacing: -.025em,
+  euiTitleS: `
+    font-size: ${sizes.euiFontSizeL}px;
+    line-height': ${_lineHeightFromBaseline(4)};
+    font-weight: ${weights.euiFontWeightMedium};
+    letter-spacing: -.025em;
   `,
-  m: `
-    font-size: ${sizes.euiFontSizeXL}px,
-    line-height: ${lineHeightFromBaseline(5)},
-    font-weight: ${weights.euiFontWeightLight},
-    letter-spacing: -.04em,
+  euiTitleM: `
+    font-size: ${sizes.euiFontSizeXL}px;
+    line-height: ${_lineHeightFromBaseline(5)};
+    font-weight: ${weights.euiFontWeightLight};
+    letter-spacing: -.04em;
   `,
-  l: `
-    font-size: ${sizes.euiFontSizeXXL}px,
-    line-height: ${lineHeightFromBaseline(6)},
-    font-weight: ${weights.euiFontWeightLight},
-    letter-spacing: -.03em,
+  euiTitleL: `
+    font-size: ${sizes.euiFontSizeXXL}px;
+    line-height: ${_lineHeightFromBaseline(6)};
+    font-weight: ${weights.euiFontWeightLight};
+    letter-spacing: -.03em;
   `,
 };
 
