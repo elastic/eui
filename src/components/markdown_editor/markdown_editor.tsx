@@ -29,7 +29,7 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
-// @ts-ignore missing declaration file
+
 import unified, { PluggableList, Processor } from 'unified';
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
@@ -45,6 +45,7 @@ import { htmlIdGenerator } from '../../services/accessibility';
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
   EuiMarkdownAstNode,
+  EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
 } from './markdown_types';
@@ -92,15 +93,15 @@ type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
         ast: EuiMarkdownAstNode;
       }
     ) => void;
+
+    dropHandlers?: EuiMarkdownDropHandler[];
   };
 export type EuiMarkdownEditorProps = OneOf<
   CommonMarkdownEditorProps,
   'aria-label' | 'aria-labelledby'
 >;
 
-export const EuiMarkdownEditor: FunctionComponent<
-  EuiMarkdownEditorProps
-> = forwardRef(
+export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = forwardRef(
   (
     {
       className,
@@ -115,6 +116,7 @@ export const EuiMarkdownEditor: FunctionComponent<
       errors = [],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      dropHandlers = [],
       ...rest
     },
     ref
@@ -241,6 +243,8 @@ export const EuiMarkdownEditor: FunctionComponent<
       [replaceNode]
     );
 
+    const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
+
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
         <div className={classes} {...rest}>
@@ -268,14 +272,28 @@ export const EuiMarkdownEditor: FunctionComponent<
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
           <div style={{ display: isPreviewing ? 'none' : 'block' }}>
             <EuiMarkdownEditorDropZone
+              dropHandlers={dropHandlers}
+              insertText={(text: string) => {
+                const originalSelectionStart = textareaRef.current!
+                  .selectionStart;
+                const newSelectionPoint = originalSelectionStart + text.length;
+                insertText(textareaRef.current!, {
+                  text,
+                  selectionStart: newSelectionPoint,
+                  selectionEnd: newSelectionPoint,
+                });
+              }}
               uiPlugins={toolbarPlugins}
-              errors={errors}>
+              errors={errors}
+              hasUnacceptedItems={hasUnacceptedItems}
+              setHasUnacceptedItems={setHasUnacceptedItems}>
               <EuiMarkdownEditorTextArea
                 ref={textareaRef}
                 height={height}
                 id={editorId}
                 onChange={e => onChange(e.target.value)}
                 value={value}
+                onFocus={() => setHasUnacceptedItems(false)}
                 {...{
                   'aria-label': ariaLabel,
                   'aria-labelledby': ariaLabelledBy,

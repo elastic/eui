@@ -161,11 +161,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiButtonEmpty__content"
+        class="euiButtonContent euiButtonEmpty__content"
       >
         <div
-          aria-hidden="true"
-          class="euiButtonEmpty__icon"
+          class="euiButtonContent__icon"
           data-euiicon-type="eye"
         />
         <span
@@ -194,19 +193,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <div
           class="euiMarkdownEditorFooter__actions"
-        >
-          <button
-            aria-label="Open upload files modal"
-            class="euiButtonIcon euiButtonIcon--text"
-            type="button"
-          >
-            <div
-              aria-hidden="true"
-              class="euiButtonIcon__icon"
-              data-euiicon-type="paperClip"
-            />
-          </button>
-        </div>
+        />
         <button
           aria-label="Show markdown help"
           class="euiButtonIcon euiButtonIcon--text euiMarkdownEditorFooter__help"

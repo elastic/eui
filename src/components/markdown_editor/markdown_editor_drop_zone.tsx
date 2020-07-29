@@ -24,44 +24,159 @@ import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
 import {
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
+  EuiMarkdownDropHandler,
 } from './markdown_types';
 
 interface EuiMarkdownEditorDropZoneProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   errors: EuiMarkdownParseError[];
+  dropHandlers: EuiMarkdownDropHandler[];
+  insertText: (text: string) => void;
+  hasUnacceptedItems: boolean;
+  setHasUnacceptedItems: (hasUnacceptedItems: boolean) => void;
 }
 
-export const EuiMarkdownEditorDropZone: FunctionComponent<
-  EuiMarkdownEditorDropZoneProps
-> = props => {
+const getUnacceptedItems = (
+  items: DataTransferItemList,
+  dropHandlers: EuiMarkdownDropHandler[]
+) => {
+  const unacceptedItems: DataTransferItem[] = [];
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+
+    let isAccepted = false;
+    for (let j = 0; j < dropHandlers.length; j++) {
+      if (dropHandlers[j].accepts(item.type)) {
+        isAccepted = true;
+        break;
+      }
+    }
+
+    if (!isAccepted) {
+      unacceptedItems.push(item);
+    }
+  }
+
+  return unacceptedItems;
+};
+
+export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = props => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
+  const [isDraggingError, toggleDraggingError] = React.useState(false);
 
-  const { children, uiPlugins, errors } = props;
+  const {
+    children,
+    uiPlugins,
+    errors,
+    dropHandlers,
+    insertText,
+    hasUnacceptedItems,
+    setHasUnacceptedItems,
+  } = props;
 
   const classes = classNames('euiMarkdownEditorDropZone', {
     'euiMarkdownEditorDropZone--isDragging': isDragging,
+    'euiMarkdownEditorDropZone--hasError': hasUnacceptedItems,
+    'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
+    disabled: dropHandlers.length === 0,
     // Disable click and keydown behavior
     noClick: true,
     noKeyboard: true,
     // multiple: false,
-    onDragEnter: () => {
-      toggleDragging(true);
+    onDragOver: e => {
+      let result: boolean;
+
+      if (e.dataTransfer) {
+        const unacceptedItems = getUnacceptedItems(
+          e.dataTransfer.items,
+          dropHandlers
+        );
+        setHasUnacceptedItems(unacceptedItems.length > 0);
+        toggleDraggingError(unacceptedItems.length > 0);
+
+        result = unacceptedItems.length === 0;
+      } else {
+        setHasUnacceptedItems(false);
+        result = false;
+      }
+
+      toggleDragging(result);
+      if (result === false) {
+        e.preventDefault();
+      }
+      return result;
+    },
+    onDragEnter: e => {
+      let result: boolean;
+
+      if (e.dataTransfer) {
+        const unacceptedItems = getUnacceptedItems(
+          e.dataTransfer.items,
+          dropHandlers
+        );
+        setHasUnacceptedItems(unacceptedItems.length > 0);
+        toggleDraggingError(unacceptedItems.length > 0);
+
+        result = unacceptedItems.length === 0;
+      } else {
+        setHasUnacceptedItems(false);
+        result = false;
+      }
+
+      toggleDragging(result);
+      if (result === false) {
+        e.preventDefault();
+      }
+      return result;
     },
     onDragLeave: () => {
       toggleDragging(false);
     },
-    onDrop: () => {
+    onDrop: acceptedFiles => {
+      const fileHandlers: EuiMarkdownDropHandler[] = [];
+
+      // verify all files being dropped are supported
+      preparation: for (let i = 0; i < acceptedFiles.length; i++) {
+        const file = acceptedFiles[i];
+
+        for (let j = 0; j < dropHandlers.length; j++) {
+          if (dropHandlers[j].accepts(file.type)) {
+            fileHandlers.push(dropHandlers[j]);
+            continue preparation;
+          }
+        }
+
+        // if we get here then a file isn't handled
+        setHasUnacceptedItems(true);
+        toggleDragging(false);
+        toggleDraggingError(false);
+        return;
+      }
+
       toggleUploadingFiles(true);
 
-      // faking the file upload
-      setTimeout(() => {
-        toggleDragging(false);
-        toggleUploadingFiles(false);
-      }, 3000);
+      const resolved: Array<string | Promise<string>> = [];
+      for (let i = 0; i < acceptedFiles.length; i++) {
+        const file = acceptedFiles[i];
+        const handler = fileHandlers[i];
+        resolved.push(handler.getFormattingForItem(file));
+      }
+
+      Promise.all(resolved)
+        .then(results => {
+          results.forEach(result => insertText(result));
+        })
+        .catch(() => {})
+        .then(() => {
+          toggleDragging(false);
+          toggleUploadingFiles(false);
+          toggleDraggingError(false);
+        });
     },
   });
 
@@ -70,8 +185,13 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
       {children}
       <EuiMarkdownEditorFooter
         uiPlugins={uiPlugins}
-        openFiles={open}
+        openFiles={() => {
+          setHasUnacceptedItems(false);
+          open();
+        }}
         isUploadingFiles={isUploadingFiles}
+        hasUnacceptedItems={hasUnacceptedItems}
+        dropHandlers={dropHandlers}
         errors={errors}
       />
       <input {...getInputProps()} />

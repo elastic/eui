@@ -28,8 +28,9 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiTitle } from '../title';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
-import { EuiI18n } from '../i18n';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import {
+  EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
 } from './markdown_types';
@@ -39,18 +40,26 @@ import { EuiSpacer } from '../spacer';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
+import { EuiToolTip } from '../tool_tip';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   isUploadingFiles: boolean;
   openFiles: () => void;
   errors: EuiMarkdownParseError[];
+  hasUnacceptedItems: boolean;
+  dropHandlers: EuiMarkdownDropHandler[];
 }
 
-export const EuiMarkdownEditorFooter: FunctionComponent<
-  EuiMarkdownEditorFooterProps
-> = props => {
-  const { uiPlugins, isUploadingFiles, openFiles, errors } = props;
+export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterProps> = props => {
+  const {
+    uiPlugins,
+    isUploadingFiles,
+    openFiles,
+    errors,
+    hasUnacceptedItems,
+    dropHandlers,
+  } = props;
   const [isShowingHelp, setIsShowingHelp] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
@@ -58,19 +67,59 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
 
   let uploadButton;
 
+  const ariaLabels = {
+    uploadingFiles: useEuiI18n(
+      'euiMarkdownEditorFooter.uploadingFiles',
+      'Uploading files'
+    ),
+    openUploadModal: useEuiI18n(
+      'euiMarkdownEditorFooter.openUploadModal',
+      'Open upload files modal'
+    ),
+    showSyntaxErrors: useEuiI18n(
+      'euiMarkdownEditorFooter.showSyntaxErrors',
+      'Show errors'
+    ),
+    showMarkdownHelp: useEuiI18n(
+      'euiMarkdownEditorFooter.showMarkdownHelp',
+      'Show markdown help'
+    ),
+  };
+
   if (isUploadingFiles) {
     uploadButton = (
       <EuiButtonIcon
         iconType={EuiLoadingSpinner}
-        aria-label="Uploading files"
+        aria-label={ariaLabels.uploadingFiles}
       />
     );
-  } else {
+  } else if (dropHandlers.length > 0 && hasUnacceptedItems) {
+    uploadButton = (
+      <EuiToolTip
+        content={`Supported files: ${dropHandlers
+          .map(({ supportedFiles }) => supportedFiles.join(', '))
+          .join(', ')}`}>
+        <EuiButtonEmpty
+          className="euiMarkdownEditorFooter__uploadError"
+          autoFocus
+          size="xs"
+          iconType="paperClip"
+          color="danger"
+          aria-label={ariaLabels.openUploadModal}
+          onClick={openFiles}>
+          <EuiI18n
+            token="euiMarkdownEditorFooter.unsupportedFileType"
+            default="File type not supported"
+          />
+        </EuiButtonEmpty>
+      </EuiToolTip>
+    );
+  } else if (dropHandlers.length > 0) {
     uploadButton = (
       <EuiButtonIcon
         iconType="paperClip"
         color="text"
-        aria-label="Open upload files modal"
+        aria-label={ariaLabels.openUploadModal}
         onClick={openFiles}
       />
     );
@@ -85,7 +134,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
             iconType="crossInACircleFilled"
             size="s"
             color="danger"
-            aria-label="Show errors"
+            aria-label={ariaLabels.showSyntaxErrors}
             onClick={onButtonClick}>
             {errors.length}
           </EuiButtonEmpty>
@@ -119,7 +168,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         className="euiMarkdownEditorFooter__help"
         iconType={MarkdownLogo}
         color="text"
-        aria-label="Show markdown help"
+        aria-label={ariaLabels.showMarkdownHelp}
         onClick={() => setIsShowingHelp(!isShowingHelp)}
       />
       {isShowingHelp && (

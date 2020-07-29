@@ -18,6 +18,22 @@ The editor also ships with some built in plugins. For example it can handle chec
 - [ ] Or empty
 `;
 
+const dropHandlers = [
+  {
+    supportedFiles: ['.jpg', '.jpeg'],
+    accepts: itemType => itemType === 'image/jpeg',
+    getFormattingForItem: item => {
+      // fake an upload
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const url = URL.createObjectURL(item);
+          resolve(`![${item.name}](${url})`);
+        }, 1000);
+      });
+    },
+  },
+];
+
 export default () => {
   const [value, setValue] = useState(initialContent);
   const [messages, setMessages] = useState([]);
@@ -36,6 +52,7 @@ export default () => {
         height={400}
         onParse={onParse}
         errors={messages}
+        dropHandlers={dropHandlers}
       />
       <EuiSpacer size="s" />
       <div className="eui-textRight">
