@@ -64,6 +64,7 @@ const getUnacceptedItems = (
 export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = props => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
+  const [isDraggingError, toggleDraggingError] = React.useState(false);
 
   const {
     children,
@@ -77,6 +78,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
 
   const classes = classNames('euiMarkdownEditorDropZone', {
     'euiMarkdownEditorDropZone--isDragging': isDragging,
+    'euiMarkdownEditorDropZone--hasError': hasUnacceptedItems,
+    'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -90,20 +93,27 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     noKeyboard: true,
     // multiple: false,
     onDragOver: e => {
+      let result: boolean;
+
       if (e.dataTransfer) {
         const unacceptedItems = getUnacceptedItems(
           e.dataTransfer.items,
           dropHandlers
         );
         setHasUnacceptedItems(unacceptedItems.length > 0);
-        if (unacceptedItems.length > 0) {
-          e.preventDefault();
-        }
-        return unacceptedItems.length === 0;
+        toggleDraggingError(unacceptedItems.length > 0);
+
+        result = unacceptedItems.length === 0;
       } else {
         setHasUnacceptedItems(false);
-        return false;
+        result = false;
       }
+
+      toggleDragging(result);
+      if (result === false) {
+        e.preventDefault();
+      }
+      return result;
     },
     onDragEnter: e => {
       let result: boolean;
@@ -114,6 +124,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
           dropHandlers
         );
         setHasUnacceptedItems(unacceptedItems.length > 0);
+        toggleDraggingError(unacceptedItems.length > 0);
+
         result = unacceptedItems.length === 0;
       } else {
         setHasUnacceptedItems(false);
@@ -144,10 +156,12 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
 
         // if we get here then a file isn't handled
         setHasUnacceptedItems(true);
+        toggleDragging(false);
+        toggleDraggingError(false);
         return;
       }
 
-      setHasUnacceptedItems(false);
+      // setHasUnacceptedItems(false);
       toggleUploadingFiles(true);
 
       const resolved: Array<string | Promise<string>> = [];
@@ -165,6 +179,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
         .then(() => {
           toggleDragging(false);
           toggleUploadingFiles(false);
+          toggleDraggingError(false);
         });
     },
   });
