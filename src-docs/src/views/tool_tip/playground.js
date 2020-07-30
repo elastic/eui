@@ -12,7 +12,7 @@ export default () => {
   propsToUse.children = {
     ...propsToUse.children,
     type: PropTypes.ReactNode,
-    value: '<h4>ToolTip content</h4>',
+    value: '<h4>Hover here</h4>',
     hidden: false,
   };
 
