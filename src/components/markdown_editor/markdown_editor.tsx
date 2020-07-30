@@ -77,13 +77,13 @@ type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** height of the content/preview area */
     height?: number;
 
-    /** array of unified plugins to parse content into an AST */
+    /** plugins to identify new syntax and parse it into an AST node */
     parsingPluginList?: PluggableList;
 
-    /** array of unified plugins to convert the AST into a ReactNode */
+    /** plugins to process the markdown AST nodes into a React nodes */
     processingPluginList?: PluggableList;
 
-    /** array of toolbar plugins */
+    /** defines UI for plugins' buttons in the toolbar as well as any modals or extra UI that provides content to the editor */
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
 
     /** errors to bubble up */
