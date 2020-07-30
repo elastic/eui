@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 
 import { EuiValidatableControl } from './validatable_control';
 
@@ -31,5 +31,35 @@ describe('EuiValidatableControl', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('ref management', () => {
+    it('calls a ref function', () => {
+      const ref = jest.fn();
+
+      mount(
+        <EuiValidatableControl>
+          <input id="testInput" ref={ref} />
+        </EuiValidatableControl>
+      );
+
+      expect(ref).toHaveBeenCalledTimes(1);
+
+      const input = ref.mock.calls[0][0];
+      expect(input.getAttribute('id')).toBe('testInput');
+    });
+
+    it('sets a ref object\'s "current" property', () => {
+      const ref = React.createRef<HTMLInputElement>();
+
+      mount(
+        <EuiValidatableControl>
+          <input id="testInput" ref={ref} />
+        </EuiValidatableControl>
+      );
+
+      expect(ref.current).not.toBeNull();
+      expect(ref.current!.getAttribute('id')).toBe('testInput');
+    });
   });
 });
