@@ -2,9 +2,8 @@ import { PropTypes } from 'react-view';
 import { EuiToast } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
-  mapOptions,
+  iconValidator,
 } from '../../services/playground';
-import { iconTypes } from '../icon/icons';
 import * as t from '@babel/types';
 
 export default () => {
@@ -13,17 +12,7 @@ export default () => {
     : EuiToast.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  const options = mapOptions(iconTypes);
-
-  propsToUse.iconType = {
-    ...propsToUse.iconType,
-    value: undefined,
-    type: PropTypes.String,
-    custom: {
-      ...propsToUse.iconType.custom,
-      validator: val => options[val],
-    },
-  };
+  propsToUse.iconType = iconValidator(propsToUse.iconType);
 
   propsToUse.title = {
     ...propsToUse.title,
