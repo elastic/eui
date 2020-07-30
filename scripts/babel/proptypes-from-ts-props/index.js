@@ -156,6 +156,7 @@ function resolveArrayTypeToPropTypes(node, state) {
  *    - Arrays
  *    - MouseEventHandler is interpretted as functions
  *    - ExclusiveUnion custom type
+ *    - OneOf custom type
  *    - defined types/interfaces (found during initial program body parsing)
  * Returns `null` for unresolvable types
  * @param node
@@ -340,6 +341,13 @@ function resolveIdentifierToPropTypes(node, state) {
     }
 
     return propTypes;
+  }
+
+  if (identifier.name === 'OneOf') {
+    // the second type parameter is ignorable as it is a subset of the first,
+    // and the OneOf operation cannot be well-described by proptypes
+    const [sourceTypes] = node.typeParameters.params;
+    return getPropTypesForNode(sourceTypes, true, state);
   }
 
   // Lookup this identifier from types/interfaces defined in code

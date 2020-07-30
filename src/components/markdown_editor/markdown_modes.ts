@@ -17,7 +17,7 @@
  * under the License.
  */
 
-export const MODE_EDITING = 'editing';
-export const MODE_VIEWING = 'viewing';
+export const MODE_EDITING = 'editing' as const;
+export const MODE_VIEWING = 'viewing' as const;
 
 export type MARKDOWN_MODE = typeof MODE_EDITING | typeof MODE_VIEWING;
