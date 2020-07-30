@@ -1,18 +1,12 @@
 import { PropTypes } from 'react-view';
 import { EuiIcon } from '../../../../src/components/';
-import {
-  mapOptions,
-  //   propUtilityForPlayground,
-} from '../../services/playground';
-import { iconTypes } from './icons';
+import { iconValidator } from '../../services/playground';
 
 export default () => {
   const propsToUse = {};
 
-  propsToUse.onIconLoad = {
-    type: PropTypes.Function,
-    value: '() => console.log("loaded")',
-  };
+  propsToUse.type = iconValidator(propsToUse.iconType);
+
   propsToUse.title = {
     type: PropTypes.String,
     description: 'title',
@@ -21,16 +15,7 @@ export default () => {
     type: PropTypes.String,
     description: 'title Id',
   };
-  propsToUse.type = {
-    type: PropTypes.Enum,
-    description: 'iconType can also be a string',
-    options: mapOptions(iconTypes),
-  };
-  //   propsToUse.color = {
-  //     type: PropTypes.Enum,
-  //     description: 'color',
-  //     options: optionsColor,
-  //   };
+
   propsToUse.size = {
     type: PropTypes.Enum,
     description: 'size',
