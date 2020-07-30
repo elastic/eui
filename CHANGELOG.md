@@ -4,6 +4,7 @@
 
 - Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
 - Removed `pointer-events: none` in both `EuiButton` & `EuiButtonEmpty` to not override the `pointer-events: auto` in the button mixin `euiButtonContentDisabled` ([#3824](https://github.com/elastic/eui/pull/3824))
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
 - Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
 
 ## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
@@ -67,6 +68,12 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+  
+## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
+
+**Note: this release is a backport containing changes originally made in `27.1.0`**
+
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 
 ## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
 
