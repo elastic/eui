@@ -17,18 +17,12 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
+import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 import usePropagate from '../../services/propagate/use_propagate';
-import {
-  euiMarkStyle,
-  euiMarkAmsterdamStyle,
-  styleConfig,
-  EuiMarkStyle,
-  StyleConfig,
-} from './mark_style';
-import { css } from '@emotion/core';
+import { EuiMarkAmsterdamStyle, EuiMarkStyle, StyleConfig } from './mark_style';
+import { css, SerializedStyles } from '@emotion/core';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -42,56 +36,66 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   size = 's',
   ...rest
 }) => {
-  // Is there any way to make this more effecient without having to pull them out first?
-  const myFakePropagate = () => {
-    // Returns everything
+  // Can we make this generic
+  function createStyleFromProps(
+    /**
+     * Required to append a particular label (class name reference) for easy debugging
+     */
+    label: string,
+    /**
+     * The actual StyleConfig object
+     */
+    style: ({}) => StyleConfig | undefined,
+    /**
+     * The optional props that the StyleConfig relies on/manipulates styles of
+     */
+    props?: { [key: string]: any }
+  ): SerializedStyles | undefined {
     const [themeName, colors, sizes, borders] = usePropagate([
       'name',
       'colors',
       'sizes',
       'borders',
     ]);
-    return {
-      colorMode: themeName,
-      themeName,
+    const theme = {
+      colorMode: themeName.includes('light') ? 'light' : 'dark',
+      theme: themeName,
       colors,
       sizes,
       borders,
     };
-  };
 
-  const currentTheme = myFakePropagate();
+    const computedStyle = style(theme);
+    if (!computedStyle) return;
 
-  // Can we make this generic
-  function createStyleFromProps(
-    label: string,
-    style: ({}) => StyleConfig,
-    size: EuiMarkProps['size']
-  ): CSSProperties {
-    // If generic can it still grab the currentTheme wihtout it being passed in
-    const computeStyle = style(currentTheme);
+    let computedLabel = `label:-${label}`;
+
+    const propStyles = props
+      ? Object.keys(props).reduce((styles, propName) => {
+          computedLabel += `-${size}`;
+          return {
+            ...styles,
+            ...computedStyle[propName][props[propName]],
+          };
+        }, {})
+      : undefined;
+
     return css(
       {
-        ...computeStyle.baseStyle,
-        ...computeStyle.size[size || 's'],
+        ...computedStyle.base,
+        ...propStyles,
       },
-      `label:-${label}` // Creates a consistent class naming structure
+      computedLabel // Creates a consistent class naming structure
     );
   }
 
   const classes = classNames('euiMark', className);
 
-  // Trying to get this second one to auto-spit out the const name onto the class list
-  // Not working when importing the `css()`
-  const euiMarkAmsterdam =
-    currentTheme.themeName.includes('amsterdam') &&
-    euiMarkAmsterdamStyle(currentTheme.borders);
-
   return (
     <mark
       css={[
-        createStyleFromProps('euiMark', EuiMarkStyle, size),
-        euiMarkAmsterdam,
+        createStyleFromProps('euiMark', EuiMarkStyle, { size }),
+        createStyleFromProps('amsterdam', EuiMarkAmsterdamStyle),
       ]}
       className={classes}
       {...rest}>

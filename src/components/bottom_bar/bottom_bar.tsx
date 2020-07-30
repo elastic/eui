@@ -110,8 +110,6 @@ export const EuiBottomBar: FunctionComponent<Props> = ({
           ),
   };
 
-  console.log(paddingSize, bottomBarPadding);
-
   return (
     <EuiPortal>
       <EuiI18n

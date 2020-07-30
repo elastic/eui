@@ -17,58 +17,49 @@
  * under the License.
  */
 
-import { css } from '@emotion/core';
 import { euiSize } from '../../global_styling/variables/sizes';
 import { isColorDark, hexToRgb } from '../../services';
-import { CSSProperties } from 'react';
-
-export const euiMarkStyle = (sizes: any, colors: any) => {
-  return css`
-    /* The only one that is a function for calculations */
-    margin: ${euiSize(0.25)};
-    /* Named sizes as strings */
-    padding: ${sizes.euiSizeXS};
-    /* For testing only */
-    background-color: ${colors.euiColorHighlight};
-    color: ${isColorDark(...hexToRgb(colors.euiColorHighlight))
-      ? colors.euiColorGhost
-      : colors.euiTextColor};
-  `;
-};
-
-export const euiMarkAmsterdamStyle = (borders: any) => {
-  return css(
-    {
-      /* Change border-radius for Amsterdam only */
-      borderRadius: borders.euiBorderRadius,
-    },
-    'label:-amsterdam' // Allows for a custom appended label between the hash and [local]
-  );
-};
 
 export interface StyleConfig {
-  baseStyle: CSSProperties;
+  base: any;
   [key: string]: { [key: string]: any }; // Anything props
 }
 
-export const EuiMarkStyle = (theme: any): StyleConfig => {
+export const EuiMarkStyle = ({ colors, sizes }: any): StyleConfig => {
   return {
-    baseStyle: {
-      background: theme.colorMode === 'dark' ? 'green' : 'red',
-      color: theme.colorMode === 'dark' ? 'black' : 'white',
-      textTransform: 'uppercase',
-      fontWeight: 'bold',
-      letterSpacing: '0.02em',
-      borderRadius: '2px',
-      fontSize: '12px',
+    base: {
+      margin: euiSize(0.25),
+      padding: sizes.euiSizeXS,
+      backgroundColor: colors.euiColorHighlight,
+      color: isColorDark(...hexToRgb(colors.euiColorHighlight))
+        ? colors.euiColorGhost
+        : colors.euiTextColor,
+
+      // Test for handling nesting/pseudo-selectors
+      ':hover': {
+        textDecoration: 'underline',
+      },
     },
+    // Test for handling props
     size: {
       s: {
-        padding: theme.sizes.euiSizeXS,
+        padding: sizes.euiSizeXS,
       },
       m: {
-        padding: theme.sizes.euiSizeXL,
+        padding: sizes.euiSizeXL,
       },
+    },
+  };
+};
+
+export const EuiMarkAmsterdamStyle = ({
+  theme,
+  borders,
+}: any): StyleConfig | undefined => {
+  if (!theme.includes('amsterdam')) return;
+  return {
+    base: {
+      borderRadius: borders.euiBorderRadius,
     },
   };
 };
