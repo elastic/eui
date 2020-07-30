@@ -19,12 +19,7 @@
 
 import { euiSize } from '../../global_styling/variables/sizes';
 import { isColorDark, hexToRgb } from '../../services';
-import { Theme } from './create_style';
-
-export interface StyleConfig {
-  base: any;
-  [key: string]: { [key: string]: any }; // Anything props
-}
+import { Theme, StyleConfig } from './create_style';
 
 // The unfortunate thing of how this is currently setup is that
 // it must be style objects and therefore, we can't use the typical
