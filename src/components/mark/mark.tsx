@@ -20,9 +20,9 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { EuiMarkAmsterdamStyle, EuiMarkStyle } from './mark_style';
+import { createStyle } from '../../services/propagate/create_style';
 
-import { createStyle } from './create_style';
+import { EuiMarkStyle, EuiMarkAmsterdamStyle } from './mark_style';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
