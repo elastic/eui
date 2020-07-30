@@ -19,7 +19,6 @@ const gridSnippet = `<EuiDataGrid
       width: 31,
       headerCellRender: () => <span>Select a Row</span>,
       rowCellRender: () => <div><EuiSelectBox ... /></div>,
-      footerCellRender: () => null,
     },
   ]}
   trailingControlColumns={[
@@ -28,7 +27,6 @@ const gridSnippet = `<EuiDataGrid
       width: 40,
       headerCellRender: () => null,
       rowCellRender: MyGridActionsComponent,
-      footerCellRender: () => null,
     },
   ]}
 />
@@ -64,9 +62,8 @@ export const DataGridControlColumnsExample = {
           </p>
           <p>
             As with the data grid&apos;s <EuiCode>renderCellValue</EuiCode>, the
-            control columns&apos; <EuiCode>headerCellRender</EuiCode>,
-            <EuiCode>rowCellRender</EuiCode> and{' '}
-            <EuiCode>footerCellRender</EuiCode> props are treated as React
+            control columns&apos; <EuiCode>headerCellRender</EuiCode> and{' '}
+            <EuiCode>rowCellRender</EuiCode> props are treated as React
             components.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
