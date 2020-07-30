@@ -9,6 +9,7 @@ import {
   EuiAspectRatio,
   EuiSpacer,
 } from '../../../../src/components';
+import aspectRatioConfig from './playground';
 
 import AspectRatio from './aspect_ratio';
 const aspectRatioSource = require('!!raw-loader!./aspect_ratio');
@@ -58,4 +59,5 @@ export const AspectRatioExample = {
       snippet: aspectRatioSnippet,
     },
   ],
+  playground: aspectRatioConfig,
 };

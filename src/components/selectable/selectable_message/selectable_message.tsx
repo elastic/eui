@@ -28,9 +28,11 @@ export type EuiSelectableMessageProps = Omit<
 > &
   CommonProps & {};
 
-export const EuiSelectableMessage: React.FunctionComponent<
-  EuiSelectableMessageProps
-> = ({ children, className, ...rest }) => {
+export const EuiSelectableMessage: React.FunctionComponent<EuiSelectableMessageProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiSelectableMessage', className);
 
   return (

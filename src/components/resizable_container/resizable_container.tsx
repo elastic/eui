@@ -68,7 +68,7 @@ export interface EuiResizableContainerProps
    * Pure function which accepts an object where keys are IDs of panels, which sizes were changed,
    * and values are actual sizes in percents
    */
-  onPanelWidthChange?: ({  }: { [key: string]: number }) => any;
+  onPanelWidthChange?: ({}: { [key: string]: number }) => any;
   style?: CSSProperties;
 }
 
@@ -88,9 +88,7 @@ const initialState: EuiResizableContainerState = {
   resizersSize: 0,
 };
 
-export const EuiResizableContainer: FunctionComponent<
-  EuiResizableContainerProps
-> = ({
+export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps> = ({
   direction = 'horizontal',
   children,
   className,

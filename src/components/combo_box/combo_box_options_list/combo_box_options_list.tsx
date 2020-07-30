@@ -55,7 +55,7 @@ import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge/';
 
 const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string
+  [position in EuiComboBoxOptionsListPosition]: string;
 } = {
   top: 'euiComboBoxOptionsList--top',
   bottom: 'euiComboBoxOptionsList--bottom',

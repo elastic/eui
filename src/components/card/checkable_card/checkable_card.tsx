@@ -75,7 +75,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       <EuiRadio
         checked={checked}
         disabled={disabled}
-        {...rest as EuiRadioProps}
+        {...(rest as EuiRadioProps)}
       />
     );
   } else {

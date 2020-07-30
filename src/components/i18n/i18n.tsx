@@ -150,7 +150,9 @@ const EuiI18n = <
 // A single default could be a string, react child, or render function
 type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactChild
   ? K
-  : (K extends () => infer RetValue ? RetValue : never);
+  : K extends () => infer RetValue
+  ? RetValue
+  : never;
 
 // An array with multiple defaults can only be an array of strings or elements
 type DefaultsRenderType<
