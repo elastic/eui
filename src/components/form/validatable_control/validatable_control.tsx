@@ -17,7 +17,14 @@
  * under the License.
  */
 
-import { Children, cloneElement, Component, ReactElement } from 'react';
+import {
+  Children,
+  cloneElement,
+  Component,
+  MutableRefObject,
+  ReactElement,
+  Ref,
+} from 'react';
 import { CommonProps } from '../../common';
 
 export interface HTMLConstraintValidityElement extends Element {
@@ -25,7 +32,13 @@ export interface HTMLConstraintValidityElement extends Element {
 }
 
 export interface ReactElementWithRef extends ReactElement {
-  ref?: (element: HTMLConstraintValidityElement) => void;
+  ref?: Ref<HTMLConstraintValidityElement>;
+}
+
+function isMutableRef(
+  ref?: Ref<HTMLConstraintValidityElement>
+): ref is MutableRefObject<HTMLConstraintValidityElement> {
+  return ref != null && ref.hasOwnProperty('current');
 }
 
 export interface EuiValidatableControlProps {
@@ -68,6 +81,8 @@ export class EuiValidatableControl extends Component<
     const { ref } = this.props.children;
     if (typeof ref === 'function') {
       ref(element);
+    } else if (isMutableRef(ref)) {
+      ref.current = element;
     }
   };
 
