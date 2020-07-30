@@ -39,7 +39,7 @@ export const DataGridFooterRowExample = {
       text: (
         <Fragment>
           <p>
-            Footer row can be used to include total cells to the grid footer.
+            A footer row can be used to include value aggregations to the grid.
             Values could be based on the dataset, such as sum/average/min/max of
             numeric values in a column, or any other necessary data.
           </p>

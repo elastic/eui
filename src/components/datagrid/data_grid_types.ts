@@ -34,10 +34,6 @@ export interface EuiDataGridControlColumn {
    */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];
   /**
-   * Component to render in the column footer
-   */
-  footerCellRender?: EuiDataGridCellProps['renderCellValue'];
-  /**
    * Width of the column, uses are unable to change this
    */
   width: number;

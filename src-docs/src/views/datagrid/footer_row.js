@@ -32,10 +32,6 @@ const columns = [
   },
   {
     id: 'amount',
-    footerCellValue: `Total: $${raw_data.reduce(
-      (acc, { amount }) => acc + Number(amount.split('$')[1]),
-      0
-    )}`,
   },
   {
     id: 'phone',
@@ -44,11 +40,18 @@ const columns = [
   {
     id: 'version',
     defaultSortDirection: 'desc',
-    footerCellValue: `Latest: ${
-      raw_data.map(({ version }) => version).sort()[raw_data.length - 1]
-    }`,
   },
 ];
+
+const footerCellValues = {
+  amount: `Total: $${raw_data.reduce(
+    (acc, { amount }) => acc + Number(amount.split('$')[1]),
+    0
+  )}`,
+  version: `Latest: ${
+    raw_data.map(({ version }) => version).sort()[raw_data.length - 1]
+  }`,
+};
 
 export default () => {
   // ** Pagination config
@@ -93,8 +96,7 @@ export default () => {
   }, []);
 
   const renderFooterCellValue = useCallback(
-    ({ columnId }) =>
-      columns.find(col => col.id === columnId).footerCellValue || null,
+    ({ columnId }) => footerCellValues[columnId] || null,
     []
   );
 

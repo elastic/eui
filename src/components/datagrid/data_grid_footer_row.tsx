@@ -81,28 +81,24 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
         className={classes}
         data-test-subj={dataTestSubj}
         {...rest}>
-        {leadingControlColumns.map((leadingColumn, i) => {
-          const { id, footerCellRender = () => null } = leadingColumn;
-
-          return (
-            <EuiDataGridCell
-              key={`${id}-${rowIndex}`}
-              rowIndex={rowIndex}
-              visibleRowIndex={visibleRowIndex}
-              colIndex={i}
-              columnId={id}
-              popoverContent={DefaultColumnFormatter}
-              width={leadingColumn.width}
-              renderCellValue={footerCellRender}
-              onCellFocus={onCellFocus}
-              isFocused={focusedCellPositionInTheRow === i}
-              interactiveCellId={interactiveCellId}
-              isExpandable={false}
-              className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
-            />
-          );
-        })}
-        {columns.map(({ id, isExpandable = true }, i) => {
+        {leadingControlColumns.map(({ id, width }, i) => (
+          <EuiDataGridCell
+            key={`${id}-${rowIndex}`}
+            rowIndex={rowIndex}
+            visibleRowIndex={visibleRowIndex}
+            colIndex={i}
+            columnId={id}
+            popoverContent={DefaultColumnFormatter}
+            width={width}
+            renderCellValue={() => null}
+            onCellFocus={onCellFocus}
+            isFocused={focusedCellPositionInTheRow === i}
+            interactiveCellId={interactiveCellId}
+            isExpandable={false}
+            className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
+          />
+        ))}
+        {columns.map(({ id }, i) => {
           const columnType = schema[id] ? schema[id].columnType : null;
           const popoverContent =
             (columnType && popoverContents[columnType]) ||
@@ -125,13 +121,12 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === columnPosition}
               interactiveCellId={interactiveCellId}
-              isExpandable={isExpandable}
+              isExpandable={false}
               className="euiDataGridFooterCell"
             />
           );
         })}
-        {trailingControlColumns.map((leadingColumn, i) => {
-          const { id, footerCellRender = () => null } = leadingColumn;
+        {trailingControlColumns.map(({ id, width }, i) => {
           const colIndex = i + columns.length + leadingControlColumns.length;
 
           return (
@@ -142,8 +137,8 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               colIndex={colIndex}
               columnId={id}
               popoverContent={DefaultColumnFormatter}
-              width={leadingColumn.width}
-              renderCellValue={footerCellRender}
+              width={width}
+              renderCellValue={() => null}
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === colIndex}
               interactiveCellId={interactiveCellId}
