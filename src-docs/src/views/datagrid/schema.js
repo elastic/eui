@@ -110,7 +110,7 @@ export default class DataGridSchema extends Component {
 
     this.state = {
       data,
-      sortingColumns: [{ id: 'contributions', direction: 'asc' }],
+      sortingColumns: [{ id: 'custom', direction: 'asc' }],
 
       pagination: {
         pageIndex: 0,
