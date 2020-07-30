@@ -27,8 +27,11 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
+import { EuiFormRow } from '../form_row';
+import { EuiFormRowCommonProps } from '../form_row/form_row';
 
-export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
+export type EuiFieldTextProps = Omit<EuiFormRowCommonProps, 'children'> &
+  InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
     icon?: EuiFormControlLayoutProps['icon'];
     isInvalid?: boolean;
@@ -77,6 +80,15 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   append,
   readOnly,
   controlOnly,
+  // FormRowProps
+  helpText,
+  error,
+  label,
+  labelAppend,
+  hasEmptyLabelSpace,
+  describedByIds,
+  display,
+  hasChildLabel,
   ...rest
 }) => {
   const classes = classNames('euiFieldText', className, {
@@ -105,7 +117,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
 
   if (controlOnly) return control;
 
-  return (
+  const formControlLayout = (
     <EuiFormControlLayout
       icon={icon}
       fullWidth={fullWidth}
@@ -118,4 +130,21 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
       {control}
     </EuiFormControlLayout>
   );
+
+  if (!label && !error && !helpText) return formControlLayout;
+
+  const formRowProps = {
+    helpText,
+    error,
+    label,
+    labelAppend,
+    hasEmptyLabelSpace,
+    describedByIds: id ? [id] : undefined,
+    display: compressed ? 'rowCompressed' : display,
+    hasChildLabel,
+    fullWidth,
+    isInvalid,
+  };
+
+  return <EuiFormRow {...formRowProps}>{formControlLayout}</EuiFormRow>;
 };
