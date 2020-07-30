@@ -18,7 +18,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
-import { css } from '@emotion/core';
 
 import classNames from 'classnames';
 
@@ -27,11 +26,13 @@ import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 import usePropagate from '../../services/propagate/use_propagate';
-import { euiSize } from '../../global_styling/variables/sizes';
+import { createStyle } from '../../services/propagate/create_style';
 import {
-  euiCallOutHeader,
-  euiCallOutHeaderIcon,
-  euiCallOutColors,
+  EuiCallOutHeader,
+  EuiCallOutHeaderIcon,
+  EuiCallOutStyle,
+  euiCallOutTitleStyles,
+  EuiCallOutAmsterdamStyle,
 } from './call_out_style';
 
 type Color = 'primary' | 'success' | 'warning' | 'danger';
@@ -72,48 +73,20 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   heading,
   ...rest
 }) => {
-  const [themeName, colors, sizes, borders, typography] = usePropagate([
-    'name',
-    'colors',
-    'sizes',
-    'borders',
-    'typography',
-  ]);
-
-  const amsterdamClass = themeName.includes('amsterdam')
-    ? 'euiCallOut--amsterdam'
-    : undefined;
-
   const classes = classNames(
     'euiCallOut',
     colorToClassNameMap[color],
     sizeToClassNameMap[size],
-    amsterdamClass,
     className
   );
-
-  const calloutStyles = css`
-    padding: ${size === 's' ? sizes.euiSizeS : sizes.euiSize};
-    border-left: ${euiSize(0.125)} solid transparent;
-  `;
-
-  const amsterdamStyles = themeName.includes('amsterdam')
-    ? css`
-        border-radius: ${borders.euiBorderRadius};
-        border-left-width: 0;
-
-        .euiCallOutHeader__title {
-          font-weight: ${typography.euiFontWeightMedium};
-        }
-      `
-    : undefined;
 
   let headerIcon;
   if (iconType) {
     headerIcon = (
       <EuiIcon
-        css={euiCallOutHeaderIcon}
-        className="euiCallOutHeader__icon"
+        css={createStyle('euiCallOut__headerIcon', EuiCallOutHeaderIcon, {
+          color,
+        })}
         type={iconType}
         size="m"
         aria-hidden="true"
@@ -133,16 +106,13 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
 
   if (title) {
     header = (
-      <div css={[euiCallOutHeader(sizes)]} className="euiCallOutHeader">
+      <div css={createStyle('euiCallOut__header', EuiCallOutHeader)}>
         {headerIcon}
         <H
-          css={css`
-            /* Not intuitive for consumers to know that its a bunch of styles */
-            ${size === 's' ? typography.euiTitleXXS : typography.euiTitleXS}
-            font-weight: ${typography.euiFontWeightRegular};
-            margin-bottom: 0;
-          `}
-          className="euiCallOutHeader__title">
+          css={createStyle('euiCallOut__title', euiCallOutTitleStyles, {
+            size,
+            color,
+          })}>
           {title}
         </H>
       </div>
@@ -150,7 +120,10 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   }
   return (
     <div
-      css={[euiCallOutColors(colors, color), amsterdamStyles]}
+      css={[
+        createStyle('euiCallOut', EuiCallOutStyle, { size, color }),
+        createStyle('amsterdam', EuiCallOutAmsterdamStyle),
+      ]}
       className={classes}
       {...rest}>
       {header}

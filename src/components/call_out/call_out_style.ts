@@ -17,8 +17,8 @@
  * under the License.
  */
 
-import { css } from '@emotion/core';
 import chroma from 'chroma-js';
+import { Theme, StyleConfig } from '../../services/propagate/create_style';
 
 const $euiCallOutTypes = {
   primary: 'euiColorPrimary',
@@ -47,42 +47,112 @@ function euiCallOutColor(
   }
 }
 
-export const euiCallOutColors = (
-  colors: any,
-  type: keyof typeof $euiCallOutTypes = 'primary'
-) => css`
-  border-color: ${colors[$euiCallOutTypes[type]]};
-  background-color: ${euiCallOutColor(colors, type, 'background')};
+export const EuiCallOutStyle = ({
+  colors,
+  sizes,
+  borders,
+}: Theme): StyleConfig => {
+  return {
+    base: {
+      borderLeft: `${borders.euiBorderWidthThick} solid transparent`,
+    },
+    size: {
+      s: {
+        padding: sizes.euiSizeS,
+      },
+      m: {
+        padding: sizes.euiSize,
+      },
+    },
+    color: Object.keys($euiCallOutTypes).reduce((styles, color) => {
+      return {
+        ...styles,
+        [color]: {
+          borderColor: colors[$euiCallOutTypes[color]],
+          backgroundColor: euiCallOutColor(colors, color, 'background'),
+        },
+      };
+    }, {}),
+  };
+};
 
-  .euiCallOutHeader__icon {
-    fill: ${euiCallOutColor(colors, type, 'foreground')};
-  }
-
-  .euiCallOutHeader__title {
-    color: ${euiCallOutColor(colors, type, 'foreground')};
-  }
-`;
+export const EuiCallOutAmsterdamStyle = ({
+  theme,
+  borders,
+}: Theme): StyleConfig | undefined => {
+  if (!theme.includes('amsterdam')) return;
+  return {
+    base: {
+      borderRadius: borders.euiBorderRadius,
+      borderLeftWidth: 0,
+    },
+  };
+};
 
 /**
  * 1. Align icon with first line of title text if it wraps.
  * 2. If content exists under the header, space it appropriately.
  * 3. Apply margin to all but last item in the flex.
  */
-export const euiCallOutHeader = (sizes: any) => css`
-  display: flex;
-  align-items: baseline; /* 1 */
+export const EuiCallOutHeader = ({ sizes }: Theme): StyleConfig => {
+  return {
+    base: {
+      display: 'flex',
+      alignItems: 'baseline' /* 1 */,
 
-  + * {
-    margin-top: ${sizes.euiSizeS}; /* 2 */
-  }
+      '+ *': {
+        marginTop: sizes.euiSize /* 2 */,
+      },
 
-  > * + * {
-    margin-left: ${sizes.euiSizeS}; /* 3 */
-  }
-`;
+      '> * + *': {
+        marginLeft: sizes.euiSize /* 3 */,
+      },
+    },
+  };
+};
 
-export const euiCallOutHeaderIcon = css`
-  flex: 0 0 auto;
-  /* Vertically center icon with first line of title */
-  transform: translateY(2px);
-`;
+export const EuiCallOutHeaderIcon = ({ colors }): StyleConfig => {
+  return {
+    base: {
+      flex: '0 0 auto',
+      /* Vertically center icon with first line of title */
+      transform: 'translateY(2px)',
+    },
+    color: Object.keys($euiCallOutTypes).reduce((styles, color) => {
+      return {
+        ...styles,
+        [color]: {
+          fill: euiCallOutColor(colors, color, 'foreground'),
+        },
+      };
+    }, {}),
+  };
+};
+
+export const euiCallOutTitleStyles = ({
+  theme,
+  colors,
+  typography,
+}: Theme): StyleConfig => {
+  return {
+    base: {
+      fontWeight: theme.includes('amsterdam')
+        ? typography.euiFontWeightMedium
+        : typography.euiFontWeightRegular,
+      marginBottom: 0,
+    },
+    size: {
+      // The following won't work because it returns a string
+      s: typography.euiTitleXXS,
+      m: typography.euiTitleXS,
+    },
+    color: Object.keys($euiCallOutTypes).reduce((styles, color) => {
+      return {
+        ...styles,
+        [color]: {
+          color: euiCallOutColor(colors, color, 'foreground'),
+        },
+      };
+    }, {}),
+  };
+};
