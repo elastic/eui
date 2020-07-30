@@ -37,7 +37,6 @@
     @include euiButtonContentDisabled;
 
     color: $euiButtonColorDisabledText;
-    pointer-events: none;
 
     &:focus {
       background-color: transparent;
