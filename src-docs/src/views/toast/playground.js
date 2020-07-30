@@ -24,12 +24,13 @@ export default () => {
     ...propsToUse.color,
     type: PropTypes.Enum,
     options: {
+      none: 'none',
       primary: 'primary',
       success: 'success',
       warning: 'warning',
       danger: 'danger',
-      none: 'none',
     },
+    defaultValue: 'none',
   };
 
   propsToUse.onClose = {
