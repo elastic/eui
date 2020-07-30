@@ -50,7 +50,7 @@ describe('EuiValidatableControl', () => {
     });
 
     it('sets a ref object\'s "current" property', () => {
-      const ref: React.RefObject<HTMLInputElement> = { current: null };
+      const ref = React.createRef<HTMLInputElement>();
 
       mount(
         <EuiValidatableControl>
