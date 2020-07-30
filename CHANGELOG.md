@@ -6,6 +6,7 @@
 - Removed `pointer-events: none` in both `EuiButton` & `EuiButtonEmpty` to not override the `pointer-events: auto` in the button mixin `euiButtonContentDisabled` ([#3824](https://github.com/elastic/eui/pull/3824))
 - Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
 - Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
+- Fixed issue where `EuiDataGrid`'s cell expansion popover would sometimes render as a scrollable element ([#3832](https://github.com/elastic/eui/pull/3832))
 
 ## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
 
