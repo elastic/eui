@@ -98,6 +98,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
       <EuiToolTip
         content={`Supported files: ${dropHandlers
           .map(({ supportedFiles }) => supportedFiles.join(', '))
+          .sort()
           .join(', ')}`}>
         <EuiButtonEmpty
           className="euiMarkdownEditorFooter__uploadError"
