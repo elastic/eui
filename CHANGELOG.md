@@ -1,8 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
-  
+
 **Bug fixes**
 
 - Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
+- Removed `pointer-events: none` in both `EuiButton` & `EuiButtonEmpty` to not override the `pointer-events: auto` in the button mixin `euiButtonContentDisabled` ([#3824](https://github.com/elastic/eui/pull/3824))
 - Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
 
 ## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
@@ -11,7 +12,7 @@
 - Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
 - Added `returnKey` glyph to `EuiIcon` ([#3783](https://github.com/elastic/eui/pull/3783))
 - Added `type` prop to `EuiFieldPassword` to support toggling of obfuscation ([#3751](https://github.com/elastic/eui/pull/3751))
-  
+
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
