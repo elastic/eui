@@ -19,17 +19,20 @@
 
 import { euiSize } from '../../global_styling/variables/sizes';
 import { isColorDark, hexToRgb } from '../../services';
+import { Theme } from './create_style';
 
 export interface StyleConfig {
   base: any;
   [key: string]: { [key: string]: any }; // Anything props
 }
 
-export const EuiMarkStyle = ({ colors, sizes }: any): StyleConfig => {
+// The unfortunate thing of how this is currently setup is that
+// it must be style objects and therefore, we can't use the typical
+// CSS format of snake-case with interpolated vars
+export const EuiMarkStyle = ({ colors, sizes }: Theme): StyleConfig => {
   return {
     base: {
       margin: euiSize(0.25),
-      padding: sizes.euiSizeXS,
       backgroundColor: colors.euiColorHighlight,
       color: isColorDark(...hexToRgb(colors.euiColorHighlight))
         ? colors.euiColorGhost
@@ -55,7 +58,7 @@ export const EuiMarkStyle = ({ colors, sizes }: any): StyleConfig => {
 export const EuiMarkAmsterdamStyle = ({
   theme,
   borders,
-}: any): StyleConfig | undefined => {
+}: Theme): StyleConfig | undefined => {
   if (!theme.includes('amsterdam')) return;
   return {
     base: {

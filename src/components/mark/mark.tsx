@@ -20,9 +20,9 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import usePropagate from '../../services/propagate/use_propagate';
-import { EuiMarkAmsterdamStyle, EuiMarkStyle, StyleConfig } from './mark_style';
-import { css, SerializedStyles } from '@emotion/core';
+import { EuiMarkAmsterdamStyle, EuiMarkStyle } from './mark_style';
+
+import { createStyle } from './create_style';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -36,66 +36,14 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   size = 's',
   ...rest
 }) => {
-  // Can we make this generic
-  function createStyleFromProps(
-    /**
-     * Required to append a particular label (class name reference) for easy debugging
-     */
-    label: string,
-    /**
-     * The actual StyleConfig object
-     */
-    style: ({}) => StyleConfig | undefined,
-    /**
-     * The optional props that the StyleConfig relies on/manipulates styles of
-     */
-    props?: { [key: string]: any }
-  ): SerializedStyles | undefined {
-    const [themeName, colors, sizes, borders] = usePropagate([
-      'name',
-      'colors',
-      'sizes',
-      'borders',
-    ]);
-    const theme = {
-      colorMode: themeName.includes('light') ? 'light' : 'dark',
-      theme: themeName,
-      colors,
-      sizes,
-      borders,
-    };
-
-    const computedStyle = style(theme);
-    if (!computedStyle) return;
-
-    let computedLabel = `label:-${label}`;
-
-    const propStyles = props
-      ? Object.keys(props).reduce((styles, propName) => {
-          computedLabel += `-${size}`;
-          return {
-            ...styles,
-            ...computedStyle[propName][props[propName]],
-          };
-        }, {})
-      : undefined;
-
-    return css(
-      {
-        ...computedStyle.base,
-        ...propStyles,
-      },
-      computedLabel // Creates a consistent class naming structure
-    );
-  }
-
   const classes = classNames('euiMark', className);
 
   return (
     <mark
       css={[
-        createStyleFromProps('euiMark', EuiMarkStyle, { size }),
-        createStyleFromProps('amsterdam', EuiMarkAmsterdamStyle),
+        createStyle('euiMark', EuiMarkStyle, { size }), // Ex. of composed class is `css-hash--euiMark-s`
+        // Each style appends it's custom label to the previous style
+        createStyle('amsterdam', EuiMarkAmsterdamStyle), // Ex. of composed class is `css-hash--euiMark-s--amsterdam`
       ]}
       className={classes}
       {...rest}>
