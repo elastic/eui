@@ -27,7 +27,7 @@ export default function() {
           placeholder="Placeholder text"
           value={value}
           onChange={e => onChange(e)}
-          label="Use aria labels when no actual label is in use"
+          label="This text field has its own label prop"
         />
       </DisplayToggles>
     </>
