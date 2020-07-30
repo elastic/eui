@@ -20,6 +20,18 @@ export default () => {
     value: 'Toast content',
   };
 
+  propsToUse.color = {
+    ...propsToUse.color,
+    type: PropTypes.Enum,
+    options: {
+      primary: 'primary',
+      success: 'success',
+      warning: 'warning',
+      danger: 'danger',
+      none: 'none',
+    },
+  };
+
   propsToUse.onClose = {
     ...propsToUse.onClose,
     type: PropTypes.Custom,
