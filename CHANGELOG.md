@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `26.3.2`.
+
+## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
+
 - Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 
 ## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
