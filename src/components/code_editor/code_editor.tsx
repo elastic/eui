@@ -125,6 +125,9 @@ export class EuiCodeEditor extends Component<
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
+      // Handles exiting edit mode when `isReadOnly` is set.
+      // Other 'esc' cases handled by `stopEditingOnEsc` command.
+      // Would run after `stopEditingOnEsc`.
       if (
         this.aceEditor !== null &&
         !this.aceEditor.editor.completer &&
@@ -320,6 +323,8 @@ export class EuiCodeEditor extends Component<
           }}
           cursorStart={filteredCursorStart}
           commands={[
+            // Handles exiting edit mode in all cases except `isReadOnly`
+            // Runs before `onKeydownAce`.
             {
               name: 'stopEditingOnEsc',
               bindKey: { win: 'Esc', mac: 'Esc' },
