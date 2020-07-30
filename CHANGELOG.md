@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
 
 ## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
 
