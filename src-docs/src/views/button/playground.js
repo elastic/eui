@@ -2,26 +2,16 @@ import { PropTypes } from 'react-view';
 import { EuiButton } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
-  mapOptions,
+  iconValidator,
 } from '../../services/playground';
-import { iconTypes } from '../icon/icons';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiButton.__docgenInfo)
     ? EuiButton.__docgenInfo[0]
     : EuiButton.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
-  const options = mapOptions(iconTypes);
 
-  propsToUse.iconType = {
-    ...propsToUse.iconType,
-    value: undefined,
-    type: PropTypes.String,
-    custom: {
-      ...propsToUse.iconType.custom,
-      validator: val => options[val],
-    },
-  };
+  propsToUse.iconType = iconValidator(propsToUse.iconType);
 
   propsToUse.children = {
     value: 'Button',
