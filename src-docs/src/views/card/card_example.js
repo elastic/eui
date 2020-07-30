@@ -10,6 +10,7 @@ import {
   EuiCallOut,
   EuiCheckableCard,
 } from '../../../../src/components';
+import cardConfig from './playground';
 
 import { EuiCardSelect } from '../../../../src/components/card/card_select';
 
@@ -408,4 +409,5 @@ export const CardExample = {
 />`,
     },
   ],
+  playground: cardConfig,
 };

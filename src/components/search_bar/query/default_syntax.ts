@@ -343,9 +343,7 @@ const validateFieldValue = (
       schemaField.validate(value);
     } catch (e) {
       error(
-        `Invalid value \`${expression}\` set for field \`${field}\` - ${
-          e.message
-        }`,
+        `Invalid value \`${expression}\` set for field \`${field}\` - ${e.message}`,
         location
       );
     }

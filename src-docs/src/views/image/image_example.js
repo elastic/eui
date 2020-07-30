@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiImage } from '../../../../src/components';
+import imageConfig from './playground';
 
 import Image from './image';
 const imageSource = require('!!raw-loader!./image');
@@ -115,4 +116,5 @@ export const ImageExample = {
       snippet: imageSizesSnippet,
     },
   ],
+  playground: imageConfig,
 };

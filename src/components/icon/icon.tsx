@@ -42,6 +42,7 @@ const typeToPathMap = {
   advancedSettingsApp: 'app_advanced_settings',
   aggregate: 'aggregate',
   alert: 'alert',
+  analyzeEvent: 'analyze_event',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
@@ -300,6 +301,7 @@ const typeToPathMap = {
   refresh: 'refresh',
   reporter: 'reporter',
   reportingApp: 'app_reporting',
+  returnKey: 'return_key',
   save: 'save',
   savedObjectsApp: 'app_saved_objects',
   scale: 'scale',
@@ -704,7 +706,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           src={icon}
           className={classes}
           tabIndex={tabIndex}
-          {...rest as HTMLAttributes<HTMLImageElement>}
+          {...(rest as HTMLAttributes<HTMLImageElement>)}
         />
       );
     } else {

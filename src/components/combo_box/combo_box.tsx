@@ -211,7 +211,8 @@ export class EuiComboBox<T> extends Component<
       this.props.selectedOptions,
       initialSearchValue,
       this.props.async,
-      Boolean(this.props.singleSelection)
+      Boolean(this.props.singleSelection),
+      this.props.sortMatchesBy
     ),
     searchValue: initialSearchValue,
     width: 0,
@@ -294,7 +295,13 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  closeList = () => {
+  closeList = (event?: Event) => {
+    if (event && event.target === this.searchInputRefInstance) {
+      // really long search values / custom entries triggers a scroll event on the input
+      // which the EuiComboBoxOptionsList passes through here
+      return;
+    }
+
     this.clearActiveOption();
     this.setState({
       listZIndex: undefined,
@@ -473,10 +480,7 @@ export class EuiComboBox<T> extends Component<
 
     this.clearSearchValue();
 
-    if (
-      this.isSingleSelectionCustomOption() ||
-      (Boolean(singleSelection) && matchingOptions.length < 1)
-    ) {
+    if (Boolean(singleSelection)) {
       // Adding a custom option to a single select that does not appear in the list of options
       this.closeList();
     }
@@ -516,29 +520,13 @@ export class EuiComboBox<T> extends Component<
     return flattenOptions.length === numberOfSelectedOptions;
   };
 
-  isSingleSelectionCustomOption = () => {
-    const {
-      onCreateOption,
-      options,
-      selectedOptions,
-      singleSelection,
-    } = this.props;
-    // The selected option of a single select is custom and does not appear in the list of options
-    return (
-      Boolean(singleSelection) &&
-      onCreateOption &&
-      selectedOptions.length > 0 &&
-      !options.includes(selectedOptions[0])
-    );
-  };
-
   onComboBoxFocus: FocusEventHandler<HTMLInputElement> = event => {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-    if (!this.isSingleSelectionCustomOption()) {
-      this.openList();
-    }
+
+    this.openList();
+
     this.setState({ hasFocus: true });
   };
 
@@ -580,9 +568,9 @@ export class EuiComboBox<T> extends Component<
       this.closeList();
 
       if (this.props.onBlur) {
-        this.props.onBlur((event as unknown) as React.FocusEvent<
-          HTMLDivElement
-        >);
+        this.props.onBlur(
+          (event as unknown) as React.FocusEvent<HTMLDivElement>
+        );
       }
       this.setState({ hasFocus: false });
 
@@ -693,7 +681,7 @@ export class EuiComboBox<T> extends Component<
     }
 
     if (singleSelection) {
-      requestAnimationFrame(this.closeList);
+      requestAnimationFrame(() => this.closeList());
     } else {
       this.setState({
         activeOptionIndex: this.state.matchingOptions.indexOf(addedOption),
@@ -802,7 +790,12 @@ export class EuiComboBox<T> extends Component<
     nextProps: _EuiComboBoxProps<T>,
     prevState: EuiComboBoxState<T>
   ) {
-    const { options, selectedOptions, singleSelection } = nextProps;
+    const {
+      options,
+      selectedOptions,
+      singleSelection,
+      sortMatchesBy,
+    } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
     // Calculate and cache the options which match the searchValue, because we use this information
@@ -812,7 +805,8 @@ export class EuiComboBox<T> extends Component<
       selectedOptions,
       searchValue,
       nextProps.async,
-      Boolean(singleSelection)
+      Boolean(singleSelection),
+      sortMatchesBy
     );
 
     const stateUpdate: Partial<EuiComboBoxState<T>> = { matchingOptions };
@@ -870,7 +864,12 @@ export class EuiComboBox<T> extends Component<
   };
 
   componentDidUpdate() {
-    const { options, selectedOptions, singleSelection } = this.props;
+    const {
+      options,
+      selectedOptions,
+      singleSelection,
+      sortMatchesBy,
+    } = this.props;
     const { searchValue } = this.state;
 
     // React 16.3 has a bug (fixed in 16.4) where getDerivedStateFromProps
@@ -882,7 +881,8 @@ export class EuiComboBox<T> extends Component<
         selectedOptions,
         searchValue,
         this.props.async,
-        Boolean(singleSelection)
+        Boolean(singleSelection),
+        sortMatchesBy
       )
     );
   }
@@ -931,27 +931,6 @@ export class EuiComboBox<T> extends Component<
       matchingOptions,
     } = this.state;
 
-    let newMatchingOptions = matchingOptions;
-
-    if (sortMatchesBy === 'startsWith') {
-      const refObj: {
-        startWith: Array<EuiComboBoxOptionOption<T>>;
-        others: Array<EuiComboBoxOptionOption<T>>;
-      } = { startWith: [], others: [] };
-
-      newMatchingOptions.forEach(object => {
-        if (
-          object.label
-            .toLowerCase()
-            .startsWith(searchValue.trim().toLowerCase())
-        ) {
-          refObj.startWith.push(object);
-        } else {
-          refObj.others.push(object);
-        }
-      });
-      newMatchingOptions = [...refObj.startWith, ...refObj.others];
-    }
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -988,7 +967,7 @@ export class EuiComboBox<T> extends Component<
             fullWidth={fullWidth}
             isLoading={isLoading}
             listRef={this.listRefCallback}
-            matchingOptions={newMatchingOptions}
+            matchingOptions={matchingOptions}
             onCloseList={this.closeList}
             onCreateOption={onCreateOption}
             onOptionClick={this.onOptionClick}

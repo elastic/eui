@@ -27,13 +27,13 @@ export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
 
 const verticalPositionToClassNameMap: {
-  [position in EuiPageContentVerticalPositions]: string | null
+  [position in EuiPageContentVerticalPositions]: string | null;
 } = {
   center: 'euiPageContent--verticalCenter',
 };
 
 const horizontalPositionToClassNameMap: {
-  [position in EuiPageContentHorizontalPositions]: string | null
+  [position in EuiPageContentHorizontalPositions]: string | null;
 } = {
   center: 'euiPageContent--horizontalCenter',
 };

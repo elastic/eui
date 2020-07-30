@@ -67,7 +67,7 @@ export default () => {
   return (
     <EuiFormRow error={error} isInvalid={error !== undefined}>
       <EuiComboBox
-        placeholder="Select from a list of options"
+        placeholder="Select one or more options"
         options={options}
         selectedOptions={selectedOptions}
         inputRef={setInputRef}
