@@ -19,13 +19,11 @@
 
 import React, {
   createElement,
-  FunctionComponent,
   HTMLAttributes,
   useEffect,
   useImperativeHandle,
   useMemo,
   useState,
-  forwardRef,
   useCallback,
   useRef,
 } from 'react';
@@ -60,32 +58,38 @@ import {
 
 type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    /** A unique ID to attach to the textarea. If one isn't provided, a random one
+    /** aria-label OR aria-labelledby must be set */
+    'aria-label'?: string;
+
+    /** aria-label OR aria-labelledby must be set */
+    'aria-labelledby'?: string;
+
+    /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
 
     /** A markdown content */
     value: string;
 
-    /** Callback function when markdown content is modified */
+    /** callback function when markdown content is modified */
     onChange: (value: string) => void;
 
-    /** The height of the content/preview area */
+    /** height of the content/preview area */
     height?: number;
 
-    /** array of unified plugins to parse content into an AST */
+    /** plugins to identify new syntax and parse it into an AST node */
     parsingPluginList?: PluggableList;
 
-    /** array of unified plugins to convert the AST into a ReactNode */
+    /** plugins to process the markdown AST nodes into a React nodes */
     processingPluginList?: PluggableList;
 
-    /** array of toolbar plugins **/
+    /** defines UI for plugins' buttons in the toolbar as well as any modals or extra UI that provides content to the editor */
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
 
-    /** Errors to bubble up */
+    /** errors to bubble up */
     errors?: EuiMarkdownParseError[];
 
-    /** callback triggered when parsing results are available **/
+    /** callback triggered when parsing results are available */
     onParse?: (
       error: EuiMarkdownParseError | null,
       data: {
@@ -94,6 +98,10 @@ type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
       }
     ) => void;
 
+    /** initial display mode for the editor */
+    initialViewMode?: MARKDOWN_MODE;
+
+    /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
   };
 export type EuiMarkdownEditorProps = OneOf<
@@ -101,7 +109,15 @@ export type EuiMarkdownEditorProps = OneOf<
   'aria-label' | 'aria-labelledby'
 >;
 
-export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = forwardRef(
+interface EuiMarkdownEditorRef {
+  textarea: HTMLTextAreaElement | null;
+  replaceNode: ContextShape['replaceNode'];
+}
+
+export const EuiMarkdownEditor = React.forwardRef<
+  EuiMarkdownEditorRef,
+  EuiMarkdownEditorProps
+>(
   (
     {
       className,
@@ -116,12 +132,13 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = forw
       errors = [],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      initialViewMode = MODE_EDITING,
       dropHandlers = [],
       ...rest
     },
     ref
   ) => {
-    const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
+    const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(initialViewMode);
     const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [
       _editorId,
     ]);
