@@ -66,6 +66,12 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+  
+## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
+
+**Note: this release is a backport containing changes originally made in `27.1.0`**
+
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 
 ## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
 
