@@ -24,7 +24,7 @@ export default () => {
     ...propsToUse.color,
     type: PropTypes.Enum,
     options: {
-      none: 'none',
+      none: '-- No value selected --',
       primary: 'primary',
       success: 'success',
       warning: 'warning',
