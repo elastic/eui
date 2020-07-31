@@ -218,8 +218,8 @@ export {
   EuiMarkdownEditor,
   EuiMarkdownContext,
   EuiMarkdownFormat,
-  EuiMarkdownDefaultParsingPlugins,
-  EuiMarkdownDefaultProcessingPlugins,
+  getDefaultEuiMarkdownParsingPlugins,
+  getDefaultEuiMarkdownProcessingPlugins,
 } from './markdown_editor';
 export { EuiMark } from './mark';
 

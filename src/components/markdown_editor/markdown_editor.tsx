@@ -52,8 +52,8 @@ import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import {
-  EuiMarkdownDefaultParsingPlugins,
-  EuiMarkdownDefaultProcessingPlugins,
+  defaultParsingPlugins,
+  defaultProcessingPlugins,
 } from './plugins/markdown_default_plugins';
 
 type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
@@ -125,8 +125,8 @@ export const EuiMarkdownEditor = React.forwardRef<
       value,
       onChange,
       height = 150,
-      parsingPluginList = EuiMarkdownDefaultParsingPlugins,
-      processingPluginList = EuiMarkdownDefaultProcessingPlugins,
+      parsingPluginList = defaultParsingPlugins,
+      processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
       onParse,
       errors = [],

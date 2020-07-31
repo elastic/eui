@@ -11,8 +11,8 @@ import {
 import { EUI_CHARTS_THEME_LIGHT } from '../../../../src/themes/charts/themes';
 
 import {
-  EuiMarkdownDefaultParsingPlugins,
-  EuiMarkdownDefaultProcessingPlugins,
+  getDefaultEuiMarkdownParsingPlugins,
+  getDefaultEuiMarkdownProcessingPlugins,
   EuiMarkdownEditor,
   EuiMarkdownFormat,
   EuiSpacer,
@@ -248,12 +248,10 @@ const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
   );
 };
 
-const exampleParsingList = [
-  ...EuiMarkdownDefaultParsingPlugins,
-  ChartMarkdownParser,
-];
+const exampleParsingList = getDefaultEuiMarkdownParsingPlugins();
+exampleParsingList.push(ChartMarkdownParser);
 
-const exampleProcessingList = [...EuiMarkdownDefaultProcessingPlugins]; // pretend mutation doesn't happen immediately next 😅
+const exampleProcessingList = getDefaultEuiMarkdownProcessingPlugins();
 exampleProcessingList[0][1].handlers.chartDemoPlugin = chartMarkdownHandler;
 exampleProcessingList[1][1].components.chartDemoPlugin = ChartMarkdownRenderer;
 
