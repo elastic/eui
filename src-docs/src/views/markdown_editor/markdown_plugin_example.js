@@ -309,7 +309,11 @@ function EmojiMarkdownParser() {
   // define the emoji plugin and inject it just before the existing text plugin
   tokenizers.emoji = tokenizeEmoji;
   methods.splice(methods.indexOf('text'), 0, 'emoji');
-}`}</EuiCodeBlock>
+}
+
+// add the parser for \`emojiPlugin\`
+const parsingList = getDefaultEuiMarkdownParsingPlugins();
+parsingList.push(EmojiMarkdownParser);`}</EuiCodeBlock>
       <EuiSpacer />
       <EuiHorizontalRule />
       <EuiTitle>
@@ -335,6 +339,7 @@ const EmojiMarkdownRenderer = ({ emoji }) => {
 };
 
 // add the renderer for \`emojiPlugin\`
+const processingList = getDefaultEuiMarkdownProcessingPlugins();
 processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}</EuiCodeBlock>
       <EuiSpacer size="xxl" />
     </Fragment>
