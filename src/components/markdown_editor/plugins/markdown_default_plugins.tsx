@@ -29,7 +29,7 @@ import markdown from 'remark-parse';
 import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
 
-export const EuiMarkdownDefaultParsingPlugins: PluggableList = [
+export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
   [highlight, {}],
   [emoji, { emoticon: true }],
@@ -37,7 +37,9 @@ export const EuiMarkdownDefaultParsingPlugins: PluggableList = [
   [MarkdownCheckbox.parser, {}],
 ];
 
-export const EuiMarkdownDefaultProcessingPlugins: PluggableList = [
+export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
+
+export const getDefaultEuiMarkdownProcessingPlugins = (): PluggableList => [
   [
     remark2rehype,
     {
@@ -67,3 +69,5 @@ export const EuiMarkdownDefaultProcessingPlugins: PluggableList = [
     },
   ],
 ];
+
+export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();

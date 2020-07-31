@@ -20,8 +20,8 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import unified, { PluggableList } from 'unified';
 import {
-  EuiMarkdownDefaultProcessingPlugins,
-  EuiMarkdownDefaultParsingPlugins,
+  defaultProcessingPlugins,
+  defaultParsingPlugins,
 } from './plugins/markdown_default_plugins';
 
 interface EuiMarkdownFormatProps {
@@ -34,8 +34,8 @@ interface EuiMarkdownFormatProps {
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
-  parsingPluginList = EuiMarkdownDefaultParsingPlugins,
-  processingPluginList = EuiMarkdownDefaultProcessingPlugins,
+  parsingPluginList = defaultParsingPlugins,
+  processingPluginList = defaultProcessingPlugins,
 }) => {
   const processor = useMemo(
     () =>
