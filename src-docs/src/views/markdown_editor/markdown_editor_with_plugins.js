@@ -217,9 +217,6 @@ function ChartMarkdownParser() {
   methods.splice(methods.indexOf('text'), 0, 'chart');
 }
 
-const chartMarkdownHandler = (h, node) => {
-  return h(node.position, 'chartDemoPlugin', node, []);
-};
 const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
   const customColors = {
     colors: {
@@ -252,7 +249,6 @@ const exampleParsingList = getDefaultEuiMarkdownParsingPlugins();
 exampleParsingList.push(ChartMarkdownParser);
 
 const exampleProcessingList = getDefaultEuiMarkdownProcessingPlugins();
-exampleProcessingList[0][1].handlers.chartDemoPlugin = chartMarkdownHandler;
 exampleProcessingList[1][1].components.chartDemoPlugin = ChartMarkdownRenderer;
 
 const initialExample = `## Chart plugin
