@@ -229,26 +229,39 @@ const generatePropsCodeBlock = options => {
     ts.ScriptTarget.ESNext
   );
 
+  // create typescript object nodes for all interfaces and types that should be appended to node.
   const codeBlocks = options.docsInfo
     .map(d => createDocObject(d, options))
     .filter(source => source !== null);
 
+  // To print the AST, we can use TypeScript's printer
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+
+  // print AST as string for source Node so that they can be added to the source file
   const printNode = sourceNode =>
     printer.printNode(ts.EmitHint.Unspecified, sourceNode, sourceFile);
 
   if (codeBlocks.length > 0) {
+    // Concat original source code with code from generated code blocks.
     const result = codeBlocks.reduce(
       (acc, node) => acc + printNode(node),
       options.fileSource
     );
+    // return updated source file
     return result;
   }
+  // if there is no change return the original source file
   return options.fileSource;
 };
 
-const createDocObject = (d, options) => {
+/**
+ * export var Interface = { __docgenInfo: DocInfo }
+ *
+ * @param {*} d interface definition
+ */
+const createDocObject = d => {
   return ts.createVariableStatement(
+    // export var Interface = { __docgenInfo: {}}
     [ts.createToken(ts.SyntaxKind.ExportKeyword)],
     ts.createVariableDeclarationList([
       ts.createVariableDeclaration(
@@ -257,14 +270,24 @@ const createDocObject = (d, options) => {
         ts.createObjectLiteral([
           ts.createPropertyAssignment(
             '__docgenInfo',
-            generateTypesDocgenInfo(d, options)
+            generateTypesDocgenInfo(d)
           ),
         ])
       ),
     ])
   );
 };
+
+/**
+ * __docgenInfo = {
+ *   displayName: interfaceName,
+ *   props: props definition
+ * }
+ *
+ * @param {*} d interface definition
+ */
 const generateTypesDocgenInfo = d => {
+  // {displayName: InterfaceName, props: {}}
   return ts.createObjectLiteral([
     ts.createPropertyAssignment(
       ts.createLiteral('displayName'),
@@ -281,7 +304,29 @@ const generateTypesDocgenInfo = d => {
   ]);
 };
 
+/**
+ *
+ * __docgenInfo.props.propName = {
+ *  name: propName,
+ *  description: description,
+ *  required: isRequired,
+ *  type: {
+ *    name: typeName,
+ *  }
+ * }
+ *
+ * @param {*} propName name of the prop
+ * @param {*} prop prop definition
+ */
 const createPropDefinition = (propName, prop) => {
+  /**
+   * prop.type = {
+   *  name: 'enum',
+   *  value: [{ value: 'value' }]
+   * }
+   *
+   * @param {*} typeValue for enums
+   */
   const setValue = typeValue =>
     Array.isArray(typeValue) &&
     typeValue.every(value => typeof value.value === 'string')
@@ -299,6 +344,14 @@ const createPropDefinition = (propName, prop) => {
           )
         )
       : undefined;
+  /**
+   * prop.type = {
+   *  name: typeName
+   * }
+   *
+   * @param {*} typeName type name
+   * @param {*} typeValue value for enums
+   */
   const setType = (typeName, typeValue) => {
     const objectFields = [
       ts.createPropertyAssignment(
@@ -320,15 +373,18 @@ const createPropDefinition = (propName, prop) => {
   return ts.createPropertyAssignment(
     ts.createLiteral(propName),
     ts.createObjectLiteral([
+      // prop.description = "description"
       ts.createPropertyAssignment(
         ts.createLiteral('description'),
         // or operator is used otherwise it will throw an error as cannot read emitNode of undefined
         ts.createLiteral(prop.description || '')
       ),
+      // prop.name = "name"
       ts.createPropertyAssignment(
         ts.createLiteral('name'),
         ts.createLiteral(prop.name || '')
       ),
+      // prop.required = "required"
       ts.createPropertyAssignment(
         ts.createLiteral('required'),
         prop.required ? ts.createTrue() : ts.createFalse()
