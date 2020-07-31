@@ -23,15 +23,15 @@ module.exports = {
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
-    "./scripts/babel/proptypes-from-ts-props",
-    "./scripts/babel/docgen-from-ts-props",
+    // "./scripts/babel/proptypes-from-ts-props",
+    // "./scripts/babel/docgen-from-ts-props",
     "add-module-exports",
-    [
-      "react-docgen",
-      {
-        "resolver": "findAllExportedComponentDefinitions"
-      }
-    ],
+    // [
+    //   "react-docgen",
+    //   {
+    //     "resolver": "findAllExportedComponentDefinitions"
+    //   }
+    // ],
     // stage 3
     "@babel/proposal-object-rest-spread",
     // stage 2

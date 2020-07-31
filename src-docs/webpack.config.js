@@ -44,8 +44,19 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: useCache(['babel-loader']), // eslint-disable-line react-hooks/rules-of-hooks
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        use: ['babel-loader'],
         exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
+      },
+      {
+        test: /\.(tsx?)$/,
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        use: [path.resolve('scripts/loaders/prop-loader.js')],
+        exclude: [
+          /node_modules/,
+          /packages(\/|\\)react-datepicker/,
+          /src-docs/,
+        ],
       },
       {
         test: /\.scss$/,

@@ -5,7 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiAvatar, EuiCode } from '../../../../src/components';
-import avatarConfig from './playground';
+// import avatarConfig from './playground';
 
 import Avatar from './avatar';
 const avatarSource = require('!!raw-loader!./avatar');
@@ -96,5 +96,4 @@ export const AvatarExample = {
       demo: <AvatarInitials />,
     },
   ],
-  playground: avatarConfig,
 };

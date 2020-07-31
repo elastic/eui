@@ -17,7 +17,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
-import buttonConfig from './playground';
+// import buttonConfig from './playground';
 
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
@@ -389,5 +389,5 @@ export const ButtonExample = {
     },
   ],
   guidelines: <Guidelines />,
-  playground: buttonConfig,
+  // playground: buttonConfig,
 };
