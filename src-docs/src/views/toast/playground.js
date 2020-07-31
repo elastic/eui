@@ -3,6 +3,7 @@ import { EuiToast } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
+  createOptionalEnum,
 } from '../../services/playground';
 import * as t from '@babel/types';
 
@@ -20,18 +21,7 @@ export default () => {
     value: 'Toast content',
   };
 
-  propsToUse.color = {
-    ...propsToUse.color,
-    type: PropTypes.Enum,
-    options: {
-      none: '-- No value selected --',
-      primary: 'primary',
-      success: 'success',
-      warning: 'warning',
-      danger: 'danger',
-    },
-    defaultValue: 'none',
-  };
+  propsToUse.color = createOptionalEnum(propsToUse.color);
 
   propsToUse.onClose = {
     ...propsToUse.onClose,
