@@ -133,7 +133,6 @@ module.exports = function(fileSource) {
       fileSource,
       docsInfo,
     });
-    logger.info(result);
     return result;
     // eslint-disable-next-line no-empty
   } catch (e) {
