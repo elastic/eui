@@ -1,6 +1,9 @@
 import { PropTypes } from 'react-view';
 import { EuiTitle } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
+import {
+  propUtilityForPlayground,
+  createOptionalEnum,
+} from '../../services/playground';
 
 export const titleConfig = () => {
   const docgenInfo = Array.isArray(EuiTitle.__docgenInfo)
@@ -14,6 +17,8 @@ export const titleConfig = () => {
     value: '<h2>Text content</h2>',
     hidden: false,
   };
+
+  propsToUse.textTransform = createOptionalEnum(propsToUse.textTransform);
 
   return {
     config: {
