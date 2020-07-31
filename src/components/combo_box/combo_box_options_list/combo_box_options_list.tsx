@@ -356,18 +356,22 @@ export class EuiComboBoxOptionsList<T> extends Component<
             </p>
           );
         } else {
+          const highlightSearchValue = (text: string, searchValue: string) => {
+            const reg = new RegExp(/(\{searchValue})/, 'gi');
+            const parts = text.split(reg);
+            return (
+              <p className="euiComboBoxOption__emptyStateText">
+                {parts.map(part =>
+                  part.match(reg) ? <strong>{searchValue}</strong> : part
+                )}
+              </p>
+            );
+          };
+
           emptyStateContent = (
             <div className="euiComboBoxOption__contentWrapper">
               {customOptionText ? (
-                <p
-                  className="euiComboBoxOption__emptyStateText"
-                  dangerouslySetInnerHTML={{
-                    __html: customOptionText.replace(
-                      '{searchValue}',
-                      `<strong>${searchValue}</strong>`
-                    ),
-                  }}
-                />
+                highlightSearchValue(customOptionText, searchValue)
               ) : (
                 <p className="euiComboBoxOption__emptyStateText">
                   <EuiI18n
