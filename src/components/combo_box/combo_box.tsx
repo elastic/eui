@@ -535,7 +535,11 @@ export class EuiComboBox<T> extends Component<
     const { delimiter } = this.props;
     if (delimiter) {
       searchValue.split(delimiter).forEach((option: string) => {
-        if (option.length > 0) this.addCustomOption(true, option);
+        if (option.length > 0) {
+          // Wait a tick between each `addCustomOption` call to avoid
+          // potential race condition that resets state between calls.
+          setTimeout(() => this.addCustomOption(isContainerBlur, option));
+        }
       });
     } else {
       this.addCustomOption(isContainerBlur, searchValue);
@@ -769,9 +773,7 @@ export class EuiComboBox<T> extends Component<
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
     if (delimiter && searchValue.endsWith(delimiter)) {
-      searchValue.split(delimiter).forEach(value => {
-        if (value.length > 0) this.addCustomOption(false, value);
-      });
+      this.setCustomOptions(false);
     }
   };
 
