@@ -535,11 +535,7 @@ export class EuiComboBox<T> extends Component<
     const { delimiter } = this.props;
     if (delimiter) {
       searchValue.split(delimiter).forEach((option: string) => {
-        if (option.length > 0) {
-          // Wait a tick between each `addCustomOption` call to avoid
-          // potential race condition that resets state between calls.
-          setTimeout(() => this.addCustomOption(isContainerBlur, option));
-        }
+        if (option.length > 0) this.addCustomOption(isContainerBlur, option);
       });
     } else {
       this.addCustomOption(isContainerBlur, searchValue);

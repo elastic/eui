@@ -67,7 +67,9 @@ export default () => {
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    // Use the previousState parameter (prevSelected) from the setState
+    // instance (setSelected) to ensure looped calls do not override each other
+    setSelected(prevSelected => [...prevSelected, newOption]);
   };
 
   return (
