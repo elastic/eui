@@ -358,18 +358,45 @@ describe('behavior', () => {
   });
 
   describe('sortMatchesBy', () => {
-    test('options startsWith', () => {
+    const sortMatchesByOptions = [
+      {
+        label: 'Something is Disabled',
+      },
+      ...options,
+    ];
+    test('options "none"', () => {
       const component = mount<
         EuiComboBox<TitanOption>,
         EuiComboBoxProps<TitanOption>,
         { matchingOptions: TitanOption[] }
-      >(<EuiComboBox options={options} sortMatchesBy="startsWith" />);
+      >(<EuiComboBox options={sortMatchesByOptions} sortMatchesBy="none" />);
 
       findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
-        target: { value: 'e' },
+        target: { value: 'di' },
       });
 
-      expect(component.state('matchingOptions')[0].label).toBe('Enceladus');
+      expect(component.state('matchingOptions')[0].label).toBe(
+        'Something is Disabled'
+      );
+    });
+
+    test('options "startsWith"', () => {
+      const component = mount<
+        EuiComboBox<TitanOption>,
+        EuiComboBoxProps<TitanOption>,
+        { matchingOptions: TitanOption[] }
+      >(
+        <EuiComboBox
+          options={sortMatchesByOptions}
+          sortMatchesBy="startsWith"
+        />
+      );
+
+      findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
+        target: { value: 'di' },
+      });
+
+      expect(component.state('matchingOptions')[0].label).toBe('Dione');
     });
   });
 

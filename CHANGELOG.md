@@ -1,17 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
+
+**Bug fixes**
+
+- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
+- Removed `pointer-events: none` in both `EuiButton` & `EuiButtonEmpty` to not override the `pointer-events: auto` in the button mixin `euiButtonContentDisabled` ([#3824](https://github.com/elastic/eui/pull/3824))
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
+- Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
+- Moved `react-view` and `html-format` to be `devDependencies` ([#3828](https://github.com/elastic/eui/pull/3828))
+- Fixed `EuiComboBox` keyboard selection when `sortMatchesBy=startsWith` ([#3823](https://github.com/elastic/eui/pull/3823))
+- Fixed `EuiCodeEditor` not exiting edit mode with `esc` when `enableLiveAutocompletion=true` ([#3833](https://github.com/elastic/eui/pull/3833))
+- Fixed issue where `EuiDataGrid`'s cell expansion popover would sometimes render as a scrollable element ([#3832](https://github.com/elastic/eui/pull/3832))
+
+## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
+
 - Added possibility to hide "Rows per page" select in `EuiDataGrid` ([#3700](https://github.com/elastic/eui/pull/3700))
 - Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
 - Added `returnKey` glyph to `EuiIcon` ([#3783](https://github.com/elastic/eui/pull/3783))
 - Added `type` prop to `EuiFieldPassword` to support toggling of obfuscation ([#3751](https://github.com/elastic/eui/pull/3751))
-- Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
-  
+
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
-
-**Bug fixes**
-
 - Fixed `EuiComboBox` marking some very long inputs as invalid ([#3797](https://github.com/elastic/eui/pull/3797))
 
 ## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
@@ -63,6 +74,12 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+
+## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
+
+**Note: this release is a backport containing changes originally made in `27.1.0`**
+
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 
 ## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
 

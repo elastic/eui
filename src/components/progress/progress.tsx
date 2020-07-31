@@ -92,9 +92,10 @@ type Determinate = EuiProgressProps &
     labelProps?: HTMLAttributes<HTMLSpanElement>;
   };
 
-export const EuiProgress: FunctionComponent<
-  ExclusiveUnion<Determinate, Indeterminate>
-> = ({
+export const EuiProgress: FunctionComponent<ExclusiveUnion<
+  Determinate,
+  Indeterminate
+>> = ({
   className,
   color = 'secondary',
   size = 'm',
@@ -172,13 +173,13 @@ export const EuiProgress: FunctionComponent<
           max={max}
           value={value}
           aria-hidden={label && valueText ? true : false}
-          {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+          {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
         />
       </Fragment>
     );
   } else {
     return (
-      <div className={classes} {...rest as HTMLAttributes<HTMLDivElement>} />
+      <div className={classes} {...(rest as HTMLAttributes<HTMLDivElement>)} />
     );
   }
 };

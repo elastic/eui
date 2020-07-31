@@ -327,11 +327,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...rest as HTMLAttributes<HTMLFieldSetElement>}>
+        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
         {contents}
       </fieldset>
     ) : (
-      <div {...sharedProps} {...rest as HTMLAttributes<HTMLDivElement>}>
+      <div {...sharedProps} {...(rest as HTMLAttributes<HTMLDivElement>)}>
         {contents}
       </div>
     );

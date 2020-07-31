@@ -43,11 +43,9 @@ export interface EuiFlexItemProps {
 
 export const GROW_SIZES: FlexItemGrowSize[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export const EuiFlexItem: FunctionComponent<
-  CommonProps &
-    HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
-    EuiFlexItemProps
-> = ({
+export const EuiFlexItem: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
+  EuiFlexItemProps> = ({
   children,
   className,
   grow = true,

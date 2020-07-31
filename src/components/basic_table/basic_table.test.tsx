@@ -300,7 +300,10 @@ describe('EuiBasicTable', () => {
 
   test('with pagination - 2nd page', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [{ id: '1', name: 'name1' }, { id: '2', name: 'name2' }],
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+      ],
       columns: [
         {
           field: 'name',

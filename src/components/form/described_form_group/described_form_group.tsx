@@ -70,9 +70,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
-export const EuiDescribedFormGroup: React.FunctionComponent<
-  EuiDescribedFormGroupProps
-> = ({
+export const EuiDescribedFormGroup: React.FunctionComponent<EuiDescribedFormGroupProps> = ({
   children,
   className,
   gutterSize = 'l',
