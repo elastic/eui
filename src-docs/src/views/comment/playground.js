@@ -36,8 +36,6 @@ export default () => {
     type: PropTypes.String,
     value: 'added a comment',
   };
-  //   propsToUse.timestamp.value = '<>Jan 1, 2020</>';
-  //   propsToUse.event.value = '<>added a comment</>';
 
   return {
     config: {
