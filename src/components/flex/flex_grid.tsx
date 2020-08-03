@@ -79,13 +79,13 @@ const columnsToClassNameMap = {
   4: 'euiFlexGrid--fourths',
 };
 
-export const COLUMNS = Object.keys(columnsToClassNameMap).map(
-  (columns: string) => parseInt(columns, 10)
-) as FlexGridColumns[];
+export const COLUMNS = Object.keys(
+  columnsToClassNameMap
+).map((columns: string) => parseInt(columns, 10)) as FlexGridColumns[];
 
-export const EuiFlexGrid: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps
-> = ({
+export const EuiFlexGrid: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiFlexGridProps> = ({
   children,
   className,
   gutterSize = 'l',

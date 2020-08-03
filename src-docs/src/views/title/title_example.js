@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiTitle } from '../../../../src/components';
+import { titleConfig } from './playground';
 
 import Title from './title';
 const titleSource = require('!!raw-loader!./title');
@@ -45,4 +46,5 @@ export const TitleExample = {
       demo: <Title />,
     },
   ],
+  playground: titleConfig,
 };

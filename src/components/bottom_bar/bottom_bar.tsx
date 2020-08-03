@@ -28,7 +28,7 @@ type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
 // Exported for testing
 export const paddingSizeToClassNameMap: {
-  [value in BottomBarPaddingSize]: string | null
+  [value in BottomBarPaddingSize]: string | null;
 } = {
   none: null,
   s: 'euiBottomBar--paddingSmall',

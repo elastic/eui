@@ -16,10 +16,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 export const AppContainer = withRouter(
-  connect(
-    mapStateToProps,
-    {
-      toggleLocale,
-    }
-  )(AppView)
+  connect(mapStateToProps, {
+    toggleLocale,
+  })(AppView)
 );

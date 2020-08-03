@@ -12,7 +12,7 @@ const isDevelopment = NODE_ENV !== 'production' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const bypassCache = NODE_ENV === 'puppeteer';
 
-function useCache(loaders) {
+function employCache(loaders) {
   if (isDevelopment && !bypassCache) {
     return ['cache-loader'].concat(loaders);
   }
@@ -44,13 +44,36 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        use: ['babel-loader'],
+        loaders: employCache(['babel-loader']),
         exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
       },
       {
+        // For IE11 and untranspiled node_modules
+        test: /\.(js?)$/,
+        use: () => {
+          const ie11Loader = [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  ['@babel/preset-env', { useBuiltIns: 'usage', corejs: '2' }],
+                ],
+                sourceType: 'unambiguous',
+              },
+            },
+          ];
+
+          return isDevelopment && !bypassCache
+            ? [{ loader: 'cache-loader' }, ...ie11Loader]
+            : ie11Loader;
+        },
+        include: [
+          /node_modules\/((lodash|html-format|vnopts|react-view|@babel\/code-frame|@babel\/template|@babel\/traverse|@babel\/parser|@babel\/core|@babel\/helper-annotate-as-pure|@babel\/generator|@babel\/helper-builder-react-jsx-experimental|@babel\/highlight|@babel\/plugin-syntax-jsx||@babel\/types|@miksu\/prettier|ansi-styles|chalk|gensync|is-fullwidth-code-point|jest-docblock|jsesc)\/).*/,
+        ],
+      },
+      {
         test: /\.scss$/,
-        loaders: useCache([ // eslint-disable-line react-hooks/rules-of-hooks, prettier/prettier
+        loaders: employCache([
           'style-loader/useable',
           'css-loader',
           'postcss-loader',
@@ -60,7 +83,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: useCache(['style-loader/useable', 'css-loader']), // eslint-disable-line react-hooks/rules-of-hooks
+        loaders: employCache(['style-loader/useable', 'css-loader']),
         exclude: /node_modules/,
       },
       {

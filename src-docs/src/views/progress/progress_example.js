@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCallOut, EuiCode, EuiProgress } from '../../../../src/components';
+import progressConfig from './playground';
 
 import Progress from './progress';
 const progressSource = require('!!raw-loader!./progress');
@@ -190,4 +191,5 @@ export const ProgressExample = {
       snippet: progressChartSnippet,
     },
   ],
+  playground: progressConfig,
 };

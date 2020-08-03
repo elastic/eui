@@ -135,7 +135,7 @@ export class EuiSelectableListItem extends Component<
           <span>
             <EuiI18n
               token="euiSelectableListItem.includedOptionInstructions"
-              default="To exclude this option, press enter or space."
+              default="To exclude this option, press enter."
             />
           </span>
         </EuiScreenReaderOnly>
@@ -156,7 +156,7 @@ export class EuiSelectableListItem extends Component<
           <span>
             <EuiI18n
               token="euiSelectableListItem.excludedOptionInstructions"
-              default="To deselect this option, press enter or space."
+              default="To deselect this option, press enter."
             />
           </span>
         </EuiScreenReaderOnly>
