@@ -68,6 +68,11 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
+    /**
+     * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
+     * It won't show if there's no onCreateOption.
+     */
+    customOptionText?: string;
     fullWidth?: boolean;
     getSelectedOptionForSearchValue?: (
       searchValue: string,
@@ -285,6 +290,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       'data-test-subj': dataTestSubj,
       activeOptionIndex,
       areAllOptionsSelected,
+      customOptionText,
       fullWidth,
       getSelectedOptionForSearchValue,
       isLoading,
@@ -335,6 +341,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
           searchValue,
           selectedOptions
         );
+
         if (selectedOptionForValue) {
           // Disallow duplicate custom options.
           emptyStateContent = (
@@ -349,17 +356,37 @@ export class EuiComboBoxOptionsList<T> extends Component<
             </p>
           );
         } else {
+          const highlightSearchValue = (text: string, searchValue: string) => {
+            const reg = new RegExp(/(\{searchValue})/, 'gi');
+            const parts = text.split(reg);
+            return (
+              <p className="euiComboBoxOption__emptyStateText">
+                {parts.map((part, idx) =>
+                  part.match(reg) ? (
+                    <strong key={idx}>{searchValue}</strong>
+                  ) : (
+                    part
+                  )
+                )}
+              </p>
+            );
+          };
+
           emptyStateContent = (
             <div className="euiComboBoxOption__contentWrapper">
-              <p className="euiComboBoxOption__emptyStateText">
-                <EuiI18n
-                  token="euiComboBoxOptionsList.createCustomOption"
-                  default="Add {searchValue} as a custom option"
-                  values={{
-                    searchValue: <strong>{searchValue}</strong>,
-                  }}
-                />
-              </p>
+              {customOptionText ? (
+                highlightSearchValue(customOptionText, searchValue)
+              ) : (
+                <p className="euiComboBoxOption__emptyStateText">
+                  <EuiI18n
+                    token="euiComboBoxOptionsList.createCustomOption"
+                    default="Add {searchValue} as a custom option"
+                    values={{
+                      searchValue: <strong>{searchValue}</strong>,
+                    }}
+                  />
+                </p>
+              )}
               {hitEnterBadge}
             </div>
           );

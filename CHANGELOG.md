@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
+
 **Bug fixes**
 
 - Improve `EuiDataGrid` Chrome rendering performance in Full screen [#3705](https://github.com/elastic/eui/issues/3705)

@@ -61,6 +61,7 @@ export default () => {
         selectedOptions={selectedOptions}
         onChange={onChange}
         onCreateOption={onCreateOption}
+        customOptionText="Add {searchValue} as your occupation"
       />
     </EuiFormRow>
   );
