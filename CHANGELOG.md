@@ -4,7 +4,7 @@
 
 **Bug fixes**
 
-- Improve `EuiDataGrid` Chrome rendering performance in Full screen [#3705](https://github.com/elastic/eui/issues/3705)
+- Improve `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/issues/3726))
 - Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
