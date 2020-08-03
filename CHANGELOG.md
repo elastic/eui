@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `26.3.3`.
+
+## [`26.3.3`](https://github.com/elastic/eui/tree/v26.3.3)
+
 **Note: this release is a backport containing changes originally made in `27.3.1`**
 
 **Bug fixes**
