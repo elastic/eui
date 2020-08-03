@@ -77,6 +77,14 @@ No public interface changes since `27.3.1`.
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
 
+## [`26.3.3`](https://github.com/elastic/eui/tree/v26.3.3)
+
+**Note: this release is a backport containing changes originally made in `27.3.1`**
+
+**Bug fixes**
+
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
+
 ## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
 
 **Note: this release is a backport containing changes originally made in `27.1.0`**
