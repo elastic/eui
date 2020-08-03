@@ -361,8 +361,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
             const parts = text.split(reg);
             return (
               <p className="euiComboBoxOption__emptyStateText">
-                {parts.map(part =>
-                  part.match(reg) ? <strong>{searchValue}</strong> : part
+                {parts.map((part, idx) =>
+                  part.match(reg) ? (
+                    <strong key={idx}>{searchValue}</strong>
+                  ) : (
+                    part
+                  )
                 )}
               </p>
             );
