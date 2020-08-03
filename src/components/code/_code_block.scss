@@ -81,8 +81,12 @@
       right: $euiSizeS;
     }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
       padding-right: $euiSizeS + $controlsPadding;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+      margin-right: $euiSizeS + $controlsPadding;
     }
   }
 
@@ -97,8 +101,12 @@
       right: $euiSize;
     }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
       padding-right: $euiSize + $controlsPadding;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+      margin-right: $euiSize + $controlsPadding;
     }
   }
 
@@ -113,8 +121,12 @@
       right: $euiSizeL;
     }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
       padding-right: $euiSizeL + $controlsPadding;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+      margin-right: $euiSizeL + $controlsPadding;
     }
   }
 
