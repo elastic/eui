@@ -69,7 +69,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
     /**
-     * Creates a custom text option. You can use `{ searchValue }` inside your string to better customize your text.
+     * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
      * It won't show if there's no onCreateOption.
      */
     customOptionText?: string;
