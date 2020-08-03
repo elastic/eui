@@ -18,7 +18,6 @@
  */
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-
 const ts = require('typescript');
 const { SyntaxKind } = require('typescript');
 const glob = require('glob');
@@ -38,20 +37,41 @@ const program = ts.createProgram(files, options);
 module.exports = function(fileSource) {
   const docsInfo = [];
   const source = program.getSourceFile(this.resourcePath);
-  if (!source) return;
+  if (!source) return fileSource;
   const checker = program.getTypeChecker();
 
   // Get all the interfaces in the file
   const interfaces = source
     .getChildAt(0)
     .getChildren()
-    .filter(child => child.kind === SyntaxKind.InterfaceDeclaration);
+    .filter(child => {
+      if (child.kind !== SyntaxKind.InterfaceDeclaration) return false;
+      // verify this interface is exported
+      const isExported =
+        child.modifiers &&
+        child.modifiers.reduce((isExported, modifier) => {
+          if (isExported) return isExported;
+          if (modifier.kind === SyntaxKind.ExportKeyword) return true;
+          return false;
+        }, false);
+      return isExported;
+    });
 
   // Get all the types in the file
   const types = source
     .getChildAt(0)
     .getChildren()
-    .filter(child => child.kind === SyntaxKind.TypeAliasDeclaration);
+    .filter(child => {
+      if (child.kind !== SyntaxKind.TypeAliasDeclaration) return false;
+      const isExported =
+        child.modifiers &&
+        child.modifiers.reduce((isExported, modifier) => {
+          if (isExported) return isExported;
+          if (modifier.kind === SyntaxKind.ExportKeyword) return true;
+          return false;
+        }, false);
+      return isExported;
+    });
 
   if (interfaces.length > 0) {
     interfaces.map(interface => {
@@ -134,9 +154,8 @@ module.exports = function(fileSource) {
       docsInfo,
     });
     return result;
-    // eslint-disable-next-line no-empty
   } catch (e) {
-    logger.info(e);
+    logger.error(e);
   }
   return fileSource;
 };
@@ -231,7 +250,7 @@ const generatePropsCodeBlock = options => {
 
   // create typescript object nodes for all interfaces and types that should be appended to node.
   const codeBlocks = options.docsInfo
-    .map(d => createDocObject(d, options))
+    .map(d => createDocObject(d))
     .filter(source => source !== null);
 
   // To print the AST, we can use TypeScript's printer
@@ -241,17 +260,7 @@ const generatePropsCodeBlock = options => {
   const printNode = sourceNode =>
     printer.printNode(ts.EmitHint.Unspecified, sourceNode, sourceFile);
 
-  if (codeBlocks.length > 0) {
-    // Concat original source code with code from generated code blocks.
-    const result = codeBlocks.reduce(
-      (acc, node) => acc + printNode(node),
-      options.fileSource
-    );
-    // return updated source file
-    return result;
-  }
-  // if there is no change return the original source file
-  return options.fileSource;
+  return codeBlocks.map(node => printNode(node)).join('\n');
 };
 
 /**

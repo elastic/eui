@@ -9,7 +9,7 @@ import DataGridControlColumns from './control_columns';
 const dataGridControlColumnsSource = require('!!raw-loader!./control_columns');
 const dataGridControlColumnsHtml = renderToHtml(DataGridControlColumns);
 
-import { EuiDataGridControlColumn } from '../../../../src/components/datagrid/data_grid_types';
+import { EuiDataGridControlColumn } from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
   {...usualProps}

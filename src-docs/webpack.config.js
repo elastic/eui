@@ -49,16 +49,6 @@ const webpackConfig = {
         exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
       },
       {
-        test: /\.(tsx?)$/,
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        use: [path.resolve('scripts/loaders/prop-loader.js')],
-        exclude: [
-          /node_modules/,
-          /packages(\/|\\)react-datepicker/,
-          /src-docs/,
-        ],
-      },
-      {
         test: /\.scss$/,
         loaders: useCache([ // eslint-disable-line react-hooks/rules-of-hooks, prettier/prettier
           'style-loader/useable',

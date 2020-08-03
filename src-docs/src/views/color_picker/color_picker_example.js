@@ -16,7 +16,7 @@ import {
   EuiColorPalettePickerPaletteTextProps,
   EuiColorPalettePickerPaletteFixedProps,
   EuiColorPalettePickerPaletteGradientProps,
-} from '../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
+} from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
 
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');

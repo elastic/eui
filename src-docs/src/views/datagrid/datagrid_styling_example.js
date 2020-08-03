@@ -25,7 +25,7 @@ import {
   EuiDataGridColumn,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
-} from '../../../../src/components/datagrid/data_grid_types';
+} from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
   {...usualProps}

@@ -29,10 +29,10 @@ import {
   EuiDataGridPopoverContentProps,
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
-} from '../../../../src/components/datagrid/data_grid_types';
+} from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_types';
 
-import { EuiDataGridCellValueElementProps } from '../../../../src/components/datagrid/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '../../../../src/components/datagrid/data_grid_schema';
+import { EuiDataGridCellValueElementProps } from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridSchemaDetector } from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 const gridSnippet = `
   <EuiDataGrid
