@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.3.1`.
+**Bug fixes**
+
+- Improve `EuiDataGrid` Chrome rendering performance in Full screen [#3705](https://github.com/elastic/eui/issues/3705)
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
 
