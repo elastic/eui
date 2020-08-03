@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.3.1`.
+**Bug fixes**
+
+- Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
 
