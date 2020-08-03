@@ -2,6 +2,8 @@
 
 - Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
 
+## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
+
 **Bug fixes**
 
 - Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
