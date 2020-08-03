@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.3.1`.
+**Bug fixes**
+
+- Improve `EuiDataGrid` Chrome rendering performance in Full screen [#3705](https://github.com/elastic/eui/issues/3705)
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
 
@@ -53,10 +55,6 @@ No public interface changes since `27.3.1`.
 - Added `descriptionFlexItemProps` and `fieldFlexItemProps` props to `EuiDescribedFormGroup` ([#3717](https://github.com/elastic/eui/pull/3717))
 - Expanded `EuiBasicTable`'s default action's name configuration to accept a function that returns a React node ([#3739](https://github.com/elastic/eui/pull/3739))
 - Added internal use only button building blocks for reusability in other button components ([#3730](https://github.com/elastic/eui/pull/3730))
-
-**Bug fixes**
-- Improve `EuiDataGrid` Chrome rendering performance in Full screen [#3705](https://github.com/elastic/eui/issues/3705)
-
 
 ## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
