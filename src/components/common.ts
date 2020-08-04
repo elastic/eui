@@ -160,7 +160,7 @@ React.FunctionComponent<ExclusiveUnion<Spanlike, Buttonlike>>
  * returns { 'four': never, 'five': never }
  */
 export type DisambiguateSet<T, U> = {
-  [P in Exclude<keyof T, keyof U>]?: never
+  [P in Exclude<keyof T, keyof U>]?: never;
 };
 
 /**
@@ -229,6 +229,6 @@ export type RecursivePartial<T> = {
     ? Map<K, RecursivePartial<V>>
     : T[P] extends NonAny // checks for primative values
     ? T[P]
-    : RecursivePartial<T[P]> // recurse for all non-array and non-primative values
+    : RecursivePartial<T[P]>; // recurse for all non-array and non-primative values
 };
 type NonAny = number | boolean | string | symbol | null;
