@@ -25,9 +25,7 @@ const columns = [
           <EuiLink
             target="_blank"
             color="subdued"
-            href={`https://github.com/elastic/eui/blob/master/${filepath}#L${
-              loc.start.line
-            }`}>
+            href={`https://github.com/elastic/eui/blob/master/${filepath}#L${loc.start.line}`}>
             {filepath}:{loc.start.line}:{loc.start.column}
           </EuiLink>
         </div>

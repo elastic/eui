@@ -332,7 +332,7 @@ export const AccordionExample = {
       demo: <AccordionForm />,
     },
     {
-      title: 'Force accordion state',
+      title: 'External state control',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -346,7 +346,8 @@ export const AccordionExample = {
       text: (
         <p>
           Use the <EuiCode>forceState</EuiCode> prop to control open and close
-          state.
+          state. The <EuiCode>onToggle</EuiCode> callback prop can still be used
+          to update external state or perform side effects.
         </p>
       ),
       snippet: accordionForceStateSnippet,

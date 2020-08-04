@@ -1,5 +1,146 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
+
+**Bug fixes**
+
+- Improve `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/issues/3726))
+- Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
+
+## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
+
+**Bug fixes**
+
+- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
+- Removed `pointer-events: none` in both `EuiButton` & `EuiButtonEmpty` to not override the `pointer-events: auto` in the button mixin `euiButtonContentDisabled` ([#3824](https://github.com/elastic/eui/pull/3824))
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
+- Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
+- Moved `react-view` and `html-format` to be `devDependencies` ([#3828](https://github.com/elastic/eui/pull/3828))
+- Fixed `EuiComboBox` keyboard selection when `sortMatchesBy=startsWith` ([#3823](https://github.com/elastic/eui/pull/3823))
+- Fixed `EuiCodeEditor` not exiting edit mode with `esc` when `enableLiveAutocompletion=true` ([#3833](https://github.com/elastic/eui/pull/3833))
+- Fixed issue where `EuiDataGrid`'s cell expansion popover would sometimes render as a scrollable element ([#3832](https://github.com/elastic/eui/pull/3832))
+
+## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
+
+- Added possibility to hide "Rows per page" select in `EuiDataGrid` ([#3700](https://github.com/elastic/eui/pull/3700))
+- Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
+- Added `returnKey` glyph to `EuiIcon` ([#3783](https://github.com/elastic/eui/pull/3783))
+- Added `type` prop to `EuiFieldPassword` to support toggling of obfuscation ([#3751](https://github.com/elastic/eui/pull/3751))
+
+**Bug fixes**
+
+- Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
+- Fixed `EuiComboBox` marking some very long inputs as invalid ([#3797](https://github.com/elastic/eui/pull/3797))
+
+## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
+
+- Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
+- Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
+- Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
+- Added a hit enter badge to `EuiComboBox` when focusing an option and for empty states that allow pressing enter ([#3782](https://github.com/elastic/eui/pull/3782))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` always showing a scrollbar ([#3744](https://github.com/elastic/eui/pull/3744))
+- Replaced `react-focus-lock` with `react-focus-on` ([#3631](https://github.com/elastic/eui/pull/3631))
+- Fixed errors in `EuiSuperDatePicker` related to invalid and `null` date formatting ([#3750](https://github.com/elastic/eui/pull/3750))
+- Fixed type definitions for `findTestSubject` and `takeMountedSnapshot` ([#3763](https://github.com/elastic/eui/pull/3763))
+- Fixed `EuiComboBox` not allowing clicks on previously virtualized items when inside of `EuiFormRow` ([#3784](https://github.com/elastic/eui/pull/3784))
+- Removed `[Space]` as a way to select options in `EuiSelectable` ([#3784](https://github.com/elastic/eui/pull/3784))
+- Fixed type definition for `windowProps` in `EuiSelectable` ([#3787](https://github.com/elastic/eui/pull/3787))
+
+## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
+
+- Added `titleElement` and `descriptionElement` props to `EuiStat` ([#3693](https://github.com/elastic/eui/pull/3693))
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
+- Removed `src/test` and `@types/enzyme` references from `eui.d.ts` ([#3715](https://github.com/elastic/eui/pull/3715))
+- Added `index.d.ts` file to `lib/test`  and `es/test` ([#3715](https://github.com/elastic/eui/pull/3715))
+- Added `descriptionFlexItemProps` and `fieldFlexItemProps` props to `EuiDescribedFormGroup` ([#3717](https://github.com/elastic/eui/pull/3717))
+- Expanded `EuiBasicTable`'s default action's name configuration to accept a function that returns a React node ([#3739](https://github.com/elastic/eui/pull/3739))
+- Added internal use only button building blocks for reusability in other button components ([#3730](https://github.com/elastic/eui/pull/3730))
+
+## [`27.0.0`](https://github.com/elastic/eui/tree/v27.0.0)
+- Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
+- Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
+- Added SASS helper files for EUI theme globals ([#3691](https://github.com/elastic/eui/pull/3691))
+- Add `label`, `labelProps` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
+
+**Bug fixes**
+
+- Fixed a bug in `EuiResizableContainer` preventing nested containers ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed a bug in `EuiResizableContainer` preventing resizing by arrow keys in some cases ([#3699](https://github.com/elastic/eui/pull/3699))
+- Fixed `EuiHorizontalSteps` rendering over `EuiHeader` ([#3707](https://github.com/elastic/eui/pull/3707))
+- Fixed bug where `EuiSuperSelect` lost focus after a value selection ([#3734](https://github.com/elastic/eui/pull/3734))
+
+**Breaking changes**
+
+- Significant accessibility refactor of `EuiSelectable` ([#3169](https://github.com/elastic/eui/pull/3169))
+  - `react-virtualized` replaced with `react-window`
+  - `virtualizedProps` on `EuiSelectableOptionsList` renamed to `windowProps`
+  - Removed `rootId` and added `makeOptionId`, `listId`, and `setActiveOptionIndex` to `EuiSelectableList`
+  - Added `listId` to `EuiSelectableSearch`
+  - `options` passed into `EuiSelectable` cannot have an `id`
+  - Requires an `onChange` to be passed into `EuiSelectableSearch`
+
+## [`26.3.3`](https://github.com/elastic/eui/tree/v26.3.3)
+
+**Note: this release is a backport containing changes originally made in `27.3.1`**
+
+**Bug fixes**
+
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
+
+## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
+
+**Note: this release is a backport containing changes originally made in `27.1.0`**
+
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
+
+## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
+
+**Note: this release is a backport containing changes originally made in `27.0.0`**
+
+- Added `isClearable` and `placeholder` options to `EuiColorPicker` ([#3689](https://github.com/elastic/eui/pull/3689))
+
+## [`26.3.0`](https://github.com/elastic/eui/tree/v26.3.0)
+
+- Expanded `EuiBasicTable`'s default action's name configuration to accept any React node ([#3688](https://github.com/elastic/eui/pull/3688))
+
+## [`26.2.0`](https://github.com/elastic/eui/tree/v26.2.0)
+
+- Added `background.color` to `EUI_CHARTS_THEME_LIGHT/DARK.theme` ([#3669](https://github.com/elastic/eui/pull/3669))
+- Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
+- Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
+- Updated `EuiResizableContainer` `onPanelWidthChange` callback method to include all panel widths ([#3630](https://github.com/elastic/eui/pull/3630))
+- Extended `Query` / `EuiSearchBar` to allow any character inside double-quoted phrases ([#3432](https://github.com/elastic/eui/pull/3432))
+- Added `headerZindexLocation` prop to `EuiOverlayMask` ([#3655](https://github.com/elastic/eui/pull/3655))
+- Added `maskProps` prop to `EuiFlyout` and `EuiCollapsibleNav` ([#3655](https://github.com/elastic/eui/pull/3655))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenu` panel `onAnimationEnd` transition bug in Chrome ([#3656](https://github.com/elastic/eui/pull/3656))
+- Fixed `EuiSkipLink` interactive props and Safari click issue ([#3665](https://github.com/elastic/eui/pull/3665))
+- Fixed `z-index` issues with `EuiHeader`, `EuiFlyout`, and other portal content ([#3655](https://github.com/elastic/eui/pull/3655))
+- Fixed `color` prop error in `EuiBadge` to be more flexible with what format it accepts ([#3655](https://github.com/elastic/eui/pull/3655))
+- Fixed `EuiSuperSelect` popover from moving 16px horizontally when it's close to a window edge ([#3685](https://github.com/elastic/eui/pull/3685))
+
+**Theme: Amsterdam**
+
+- Fixed `EuiHeaderBreadcrumb` height, `onClick`, border-radius, and single item display ([#3655](https://github.com/elastic/eui/pull/3655))
+
+## [`26.1.0`](https://github.com/elastic/eui/tree/v26.1.0)
+
+- Optimized in-memory datagrid mount performance ([#3628](https://github.com/elastic/eui/pull/3628))
+- Exported `EuiCardProps` and `EuiCheckableCardProps` types ([#3640](https://github.com/elastic/eui/pull/3640))
+
+## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
+
+**Bug fixes**
+
+- Fixed fullscreen render issue in `EuiCode` ([#3633](https://github.com/elastic/eui/pull/3633))
+
+## [`26.0.0`](https://github.com/elastic/eui/tree/v26.0.0)
+
 - Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
 - Converted `EuiOverlayMask` to be a React functional component ([#3555](https://github.com/elastic/eui/pull/3555))
 - Changed `responsive` and `max` behavior of `EuiBreadcrumbs` to always display collapsed items in popover [#3578](https://github.com/elastic/eui/pull/3578))
@@ -9,6 +150,9 @@
 - Added `side` prop to `EuiGlobalToastList` for choosing which window side to display toasts ([#3600](https://github.com/elastic/eui/pull/3600))
 - Default `titleSize` get's implicitly set to 'm' for `EuiEmptyPrompt` ([#3598](https://github.com/elastic/eui/pull/3598))
 - Updated `logoElastic` to meet brand guidelines ([#3613](https://github.com/elastic/eui/pull/3613))
+- Allowed user to enter hexcode for colors in `EuiStat` ([#3617](https://github.com/elastic/eui/pull/3617))
+- Extended `CommonProps` in `EuiColorPalettePickerPaletteTextProps`, `EuiColorPalettePickerPaletteFixedProps` and `EuiColorPalettePickerPaletteGradientProps` types ([#3616](https://github.com/elastic/eui/pull/3616))
+- Updated `onToggle` callback in `EuiAccordion` to  allow for external state control ([#3614](https://github.com/elastic/eui/pull/3614))
 
 **Bug fixes**
 
@@ -19,6 +163,7 @@
 - Fixed `euiHeaderAffordForFixed` mixin's use of header SASS variable ([#3592](https://github.com/elastic/eui/pull/3592))
 - Included `onClick` as a valid prop for `EuiControlBar` **icon** controls ([#3581](https://github.com/elastic/eui/pull/3581))
 - Fixed poor performance of `EuiToolTip` during frequent mouesover/mouseout events ([#3596](https://github.com/elastic/eui/pull/3596))
+- Fixed `EuiBasicTable` custom actions popover from remaining open after click ([#3619](https://github.com/elastic/eui/pull/3619))
 
 **Breaking changes**
 

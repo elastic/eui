@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
-import { GuidePage, GuideSection, GuideSectionTypes } from '../../components';
+import { GuideSection, GuideSectionTypes } from '../../components';
 
 import TextScaling from './text_scaling';
 const textScalingSource = require('!!raw-loader!./text_scaling');
 const textScalingHtml = renderToHtml(TextScaling);
 
-export default props => (
-  <GuidePage title={props.title}>
+export default () => (
+  <>
     <GuideSection
       source={[
         {
@@ -36,5 +36,5 @@ export default props => (
       }
       demo={<TextScaling />}
     />
-  </GuidePage>
+  </>
 );

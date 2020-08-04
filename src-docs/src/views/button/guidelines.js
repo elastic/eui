@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  GuidePage,
-  GuideRule,
-  GuideRuleTitle,
-  GuideRuleExample,
-} from '../../components';
+import { GuideRule, GuideRuleTitle, GuideRuleExample } from '../../components';
 
 import {
   EuiText,
@@ -23,6 +18,7 @@ import {
   EuiTableBody,
   EuiTableRow,
   EuiTableRowCell,
+  EuiTitle,
 } from '../../../../src/components';
 
 import ContextMenu from '../context_menu/context_menu';
@@ -30,15 +26,18 @@ import ContextMenu from '../context_menu/context_menu';
 import imageButtonPlacement from '../../images/button_placement.png';
 
 export default () => (
-  <GuidePage title="Button guidelines" componentLinkTo="/navigation/button">
+  <>
     <EuiText className="guideSection__text" grow={false}>
       <p>
         This page documents patterns for button design, including types,
         placement, color, and size.
       </p>
     </EuiText>
+    <EuiSpacer size="xl" />
 
-    <GuideRuleTitle>Button types</GuideRuleTitle>
+    <EuiTitle>
+      <h1>Button types</h1>
+    </EuiTitle>
 
     <EuiSpacer size="xl" />
 
@@ -566,5 +565,5 @@ export default () => (
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
-  </GuidePage>
+  </>
 );

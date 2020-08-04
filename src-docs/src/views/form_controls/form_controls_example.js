@@ -72,6 +72,7 @@ const fieldPasswordSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
+  type="dual"
 />`,
 ];
 
@@ -86,7 +87,7 @@ const textAreaSnippet = [
 />`,
 ];
 
-import { FilePicker } from './file_picker';
+import FilePicker from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
 const filePickerSnippet = [

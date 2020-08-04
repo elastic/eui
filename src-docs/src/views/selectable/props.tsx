@@ -4,10 +4,10 @@ import {
   EuiSelectableOptionsListProps,
 } from '../../../../src/components/selectable';
 
-export const EuiSelectableOptionProps: FunctionComponent<
-  EuiSelectableOption
-> = () => <div />;
+export const EuiSelectableOptionProps: FunctionComponent<EuiSelectableOption> = () => (
+  <div />
+);
 
-export const EuiSelectableOptionsList: FunctionComponent<
-  EuiSelectableOptionsListProps
-> = () => <div />;
+export const EuiSelectableOptionsList: FunctionComponent<EuiSelectableOptionsListProps> = () => (
+  <div />
+);

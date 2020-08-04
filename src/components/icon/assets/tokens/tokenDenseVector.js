@@ -9,10 +9,7 @@ const EuiIconTokenDenseVector = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      d="M4.1539 12V4H6.86711V5.13923H5.65807V10.8608H6.86711V12H4.1539ZM11.8461 4V12H9.13288V10.8608H10.3419V5.13923H9.13288V4H11.8461Z"
-    />
+    <path d="M4.154 12V4h2.713v1.14H5.658v5.72h1.21V12H4.153zm7.692-8v8H9.133v-1.14h1.209V5.14h-1.21V4h2.714z" />
   </svg>
 );
 

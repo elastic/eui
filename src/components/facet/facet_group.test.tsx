@@ -21,7 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiFacetGroup } from './facet_group';
+import { EuiFacetGroup, LAYOUTS, GUTTER_SIZES } from './facet_group';
 
 describe('EuiFacetGroup', () => {
   test('is rendered', () => {
@@ -32,10 +32,22 @@ describe('EuiFacetGroup', () => {
 
   describe('props', () => {
     describe('layout', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFacetGroup layout="horizontal" />);
+      LAYOUTS.forEach(layout => {
+        test(`${layout} is rendered`, () => {
+          const component = render(<EuiFacetGroup layout={layout} />);
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('gutterSize', () => {
+      GUTTER_SIZES.forEach(size => {
+        test(`${size} is rendered`, () => {
+          const component = render(<EuiFacetGroup gutterSize={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });

@@ -168,7 +168,7 @@ const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
 };
 
 const rowHoverToClassMap: {
-  [rowHighlight in EuiDataGridStyleRowHover]: string
+  [rowHighlight in EuiDataGridStyleRowHover]: string;
 } = {
   highlight: 'euiDataGrid--rowHoverHighlight',
   none: '',
@@ -181,7 +181,7 @@ const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
 };
 
 const cellPaddingsToClassMap: {
-  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string;
 } = {
   s: 'euiDataGrid--paddingSmall',
   m: '',
@@ -217,10 +217,20 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
     onChangeItemsPerPage,
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
+  const minSizeOption =
+    pageSizeOptions && [...pageSizeOptions].sort((a, b) => a - b)[0];
 
-  if (props.rowCount < pageSizeOptions[0]) {
+  if (props.rowCount < (minSizeOption || pageSize)) {
+    /**
+     * Do not render the pagination when:
+     * 1. Rows count is less than min pagination option (rows per page)
+     * 2. Rows count is less than pageSize (the case when there are no pageSizeOptions provided)
+     */
     return null;
   }
+
+  // hide select rows per page if pageSizeOptions is undefined or an empty array
+  const hidePerPageOptions = !pageSizeOptions || pageSizeOptions.length === 0;
 
   return (
     <EuiI18n
@@ -247,6 +257,7 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
                   <EuiTablePagination
                     aria-controls={controls}
                     activePage={pageIndex}
+                    hidePerPageOptions={hidePerPageOptions}
                     itemsPerPage={pageSize}
                     itemsPerPageOptions={pageSizeOptions}
                     pageCount={pageCount}
@@ -299,6 +310,9 @@ function useDefaultColumnWidth(
 
     const widthToFill = gridWidth - claimedWidth;
     const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    if (unsizedColumnCount === 0) {
+      return 100;
+    }
     return Math.max(widthToFill / unsizedColumnCount, 100);
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
 
@@ -379,28 +393,46 @@ function useInMemoryValues(
   rowCount: number
 ): [
   EuiDataGridInMemoryValues,
-  (rowIndex: number, column: EuiDataGridColumn, value: string) => void
+  (rowIndex: number, columnId: string, value: string) => void
 ] {
-  const [inMemoryValues, setInMemoryValues] = useState<
-    EuiDataGridInMemoryValues
-  >({});
+  /**
+   * For performance, `onCellRender` below mutates the inMemoryValues object
+   * instead of cloning. If this operation were done in a setState call
+   * React would ignore the update as the object itself has not changed.
+   * So, we keep a dual record: the in-memory values themselves and a "version" counter.
+   * When the object is mutated, the version is incremented triggering a re-render, and
+   * the returned `inMemoryValues` object is re-created (cloned) from the mutated version.
+   * The version updates are batched, so only one clone happens per batch.
+   **/
+  const _inMemoryValues = useRef<EuiDataGridInMemoryValues>({});
+  const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
-  const onCellRender = useCallback(
-    (rowIndex, column, value) => {
-      setInMemoryValues(inMemoryValues => {
-        const nextInMemoryValues = { ...inMemoryValues };
-        nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
-        nextInMemoryValues[rowIndex][column.id] = value;
-        return nextInMemoryValues;
-      });
-    },
-    [setInMemoryValues]
-  );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const inMemoryValues = useMemo(() => ({ ..._inMemoryValues.current }), [
+    inMemoryValuesVersion,
+  ]);
+
+  const onCellRender = useCallback((rowIndex, columnId, value) => {
+    const nextInMemoryValues = _inMemoryValues.current;
+    nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
+    nextInMemoryValues[rowIndex][columnId] = value;
+    setInMemoryValuesVersion(version => version + 1);
+  }, []);
 
   // if `inMemory.level` or `rowCount` changes reset the values
   const inMemoryLevel = inMemory && inMemory.level;
+  const resetRunCount = useRef(0);
   useEffect(() => {
-    setInMemoryValues({});
+    if (resetRunCount.current++ > 0) {
+      // this has to delete "overflow" keys from the object instead of resetting to an empty one,
+      // as the internal inmemoryrenderer component's useEffect which sets the values
+      // exectues before this outer, wrapping useEffect
+      const existingRowKeyCount = Object.keys(_inMemoryValues.current).length;
+      for (let i = rowCount; i < existingRowKeyCount; i++) {
+        delete _inMemoryValues.current[i];
+      }
+      setInMemoryValuesVersion(version => version + 1);
+    }
   }, [inMemoryLevel, rowCount]);
 
   return [inMemoryValues, onCellRender];
@@ -961,9 +993,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                       rowCount={
                                         inMemory.level === 'enhancements'
                                           ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                                            (pagination &&
-                                              pagination.pageSize) ||
-                                            rowCount
+                                            pagination?.pageSize || rowCount
                                           : // otherwise, all of the data is present and usable
                                             rowCount
                                       }

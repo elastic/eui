@@ -317,14 +317,260 @@ exports[`props options list is rendered 1`] = `
       class="euiComboBoxOptionsList__rowWrap"
     >
       <div
-        aria-label="grid"
-        aria-readonly="true"
-        class="ReactVirtualized__Grid ReactVirtualized__List"
-        id="htmlid_listbox"
-        role="listbox"
-        style="box-sizing: border-box; direction: ltr; height: 189px; position: relative; width: 0px; overflow-x: hidden; overflow-y: auto;"
-        tabindex="0"
-      />
+        style="position: relative; height: 203px; width: 0px; overflow: auto; direction: ltr;"
+      >
+        <div
+          id="htmlid_listbox"
+          role="listBox"
+          style="height: 290px; width: 100%;"
+          tabindex="0"
+        >
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            data-test-subj="titanOption"
+            id="htmlid__option-0"
+            role="option"
+            style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
+            title="Titan"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Titan
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-1"
+            role="option"
+            style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
+            title="Enceladus"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Enceladus
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-2"
+            role="option"
+            style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
+            title="Mimas"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Mimas
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-3"
+            role="option"
+            style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
+            title="Dione"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Dione
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-4"
+            role="option"
+            style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
+            title="Iapetus"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Iapetus
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-5"
+            role="option"
+            style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
+            title="Phoebe"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Phoebe
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-6"
+            role="option"
+            style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
+            title="Rhea"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Rhea
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-7"
+            role="option"
+            style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
+            title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="euiFilterSelectItem"
+            id="htmlid__option-8"
+            role="option"
+            style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
+            title="Tethys"
+            type="button"
+          >
+            <span
+              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+            >
+              <span
+                class="euiFlexItem euiFilterSelectItem__content"
+              >
+                <span
+                  class="euiComboBoxOption__contentWrapper"
+                >
+                  <span
+                    class="euiComboBoxOption__content"
+                  >
+                    Tethys
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -531,7 +777,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
       }
       position="bottom"
       rootId={[Function]}
-      rowHeight={27}
+      rowHeight={29}
       scrollToIndex={-1}
       searchValue=""
       selectedOptions={Array []}
@@ -665,7 +911,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
       }
       position="bottom"
       rootId={[Function]}
-      rowHeight={27}
+      rowHeight={29}
       scrollToIndex={-1}
       searchValue=""
       selectedOptions={

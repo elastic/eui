@@ -47,5 +47,5 @@ export const EuiHeaderLink: FunctionComponent<EuiHeaderLinkProps> = ({
     color: isActive ? 'primary' : 'text',
   };
 
-  return <EuiButtonEmpty {...props as EuiButtonEmptyProps} />;
+  return <EuiButtonEmpty {...(props as EuiButtonEmptyProps)} />;
 };

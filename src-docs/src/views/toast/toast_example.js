@@ -16,6 +16,8 @@ import {
   EuiText,
   EuiSpacer,
 } from '../../../../src/components';
+import Guidelines from './guidelines';
+import toastConfig from './playground';
 
 import ToastList, { addToast, removeAllToasts } from './toast_list';
 const toastListSource = require('!!raw-loader!./toast_list');
@@ -276,4 +278,6 @@ export const ToastExample = {
       snippet: dangerToastSnippet,
     },
   ],
+  guidelines: <Guidelines />,
+  playground: toastConfig,
 };

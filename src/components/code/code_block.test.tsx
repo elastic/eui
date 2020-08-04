@@ -158,5 +158,20 @@ describe('EuiCodeBlock', () => {
 
       ReactDOM.render(<App />, appDiv);
     });
+
+    it('displays content in fullscreen mode', () => {
+      const component = mount(
+        <EuiCodeBlock language="javascript" overflowHeight={300}>
+          const value = &quot;hello&quot;
+        </EuiCodeBlock>
+      );
+
+      component.find('EuiButtonIcon[iconType="fullScreen"]').simulate('click');
+      component.update();
+
+      expect(component.find('.euiCodeBlock-isFullScreen').text()).toBe(
+        'const value = "hello"'
+      );
+    });
   });
 });

@@ -175,6 +175,40 @@ exports[`EuiBadge props color accent is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBadge props color accepts hex 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#333;color:#fff"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props color accepts rgba 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:rgba(255,255,255,1);color:#000"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
 exports[`EuiBadge props color danger is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"

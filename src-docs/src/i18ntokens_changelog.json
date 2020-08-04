@@ -1,5 +1,85 @@
 [
   {
+    "version": "27.3.0",
+    "changes": [
+      {
+        "token": "euiComboBoxOptionsList.createCustomOption",
+        "changeType": "modified",
+        "value": "Add {searchValue} as a custom option"
+      },
+      {
+        "token": "euiComboBoxOptionsList.delimiterMessage",
+        "changeType": "modified",
+        "value": "Add each item separated by {delimiter}"
+      }
+    ]
+  },
+  {
+    "version": "27.2.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "modified",
+        "value": "To exclude this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "modified",
+        "value": "To deselect this option, press enter."
+      }
+    ]
+  },
+  {
+    "version": "27.0.0",
+    "changes": [
+      {
+        "token": "euiProgress.valueText",
+        "changeType": "added",
+        "value": "{value}%"
+      },
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "added",
+        "value": "Included option."
+      },
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "added",
+        "value": "To exclude this option, press enter or space."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOption",
+        "changeType": "added",
+        "value": "Excluded option."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "added",
+        "value": "To deselect this option, press enter or space."
+      },
+      {
+        "token": "euiSelectable.placeholderName",
+        "changeType": "added",
+        "value": "Filter options"
+      }
+    ]
+  },
+  {
+    "version": "26.0.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "modified",
+        "value": "Show collapsed breadcrumbs"
+      },
+      {
+        "token": "euiForm.addressFormErrors",
+        "changeType": "modified",
+        "value": "Please address the highlighted errors."
+      }
+    ]
+  },
+  {
     "version": "25.0.0",
     "changes": [
       {

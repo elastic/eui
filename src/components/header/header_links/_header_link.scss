@@ -1,13 +1,14 @@
+@import '../../link/mixins';
+
 .euiHeaderLink {
   @include euiLink;
-  margin: 0 $euiSizeS;
 }
 
 .euiHeaderLinks__mobileList {
   .euiHeaderLink {
     display: block;
+    width: 100%;
     padding: $euiSizeS;
-    margin: 0;
 
     // EuiButtons normally center, which makes sense. In mobile though we want
     // them to align left. This is a safe hack given the specificity.

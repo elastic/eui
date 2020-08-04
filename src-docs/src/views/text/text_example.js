@@ -10,6 +10,8 @@ import {
   EuiTextColor,
   EuiTextAlign,
 } from '../../../../src/components';
+import Guidelines from '../text_scaling/text_scaling_sandbox';
+import { textConfig, textColorConfig } from './playground';
 
 import Text from './text';
 const textSource = require('!!raw-loader!./text');
@@ -153,4 +155,6 @@ export const TextExample = {
       demo: <TextAlign />,
     },
   ],
+  guidelines: <Guidelines />,
+  playground: [textConfig, textColorConfig],
 };

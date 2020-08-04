@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  GuidePage,
-  GuideRule,
-  GuideRuleExample,
-  GuideRuleTitle,
-} from '../../components';
+import { GuideRule, GuideRuleExample, GuideRuleTitle } from '../../components';
 
 import {
   EuiText,
@@ -22,9 +17,10 @@ import {
   EuiModalHeaderTitle,
   EuiOverlayMask,
   EuiCodeBlock,
+  EuiTitle,
 } from '../../../../src/components';
 
-export const ToastGuidelines = () => {
+export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const closeModal = () => {
@@ -74,7 +70,7 @@ and space to read it properly. Alternatively just link to a full page.
     );
   }
   return (
-    <GuidePage title="Toast guidelines" componentLinkTo="/display/toast">
+    <>
       <EuiText grow={false} className="guideSection__text">
         <p>
           This page documents patterns for using toasts, short messages that
@@ -83,8 +79,9 @@ and space to read it properly. Alternatively just link to a full page.
           in a layout and don&apos;t disrupt the user.
         </p>
       </EuiText>
-
-      <GuideRuleTitle>Toast types</GuideRuleTitle>
+      <EuiTitle>
+        <h1>Toast types</h1>
+      </EuiTitle>
 
       <EuiSpacer size="xl" />
 
@@ -519,6 +516,6 @@ and space to read it properly. Alternatively just link to a full page.
           </EuiToast>
         </GuideRuleExample>
       </GuideRule>
-    </GuidePage>
+    </>
   );
 };

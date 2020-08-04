@@ -38,6 +38,11 @@ const options: EuiSelectableOption[] = [
   },
 ];
 
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => () => 'htmlId',
+}));
+
 describe('EuiSelectable', () => {
   test('is rendered', () => {
     const component = render(
@@ -102,6 +107,21 @@ describe('EuiSelectable', () => {
                 {searchValue} =&gt; {option.label}
               </span>
             );
+          }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('listProps', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          listProps={{
+            windowProps: {
+              onScroll: () => {},
+            },
           }}
         />
       );

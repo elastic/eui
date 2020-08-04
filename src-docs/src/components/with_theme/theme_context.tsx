@@ -3,8 +3,10 @@ import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
 
+const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
+
 const defaultState = {
-  theme: EUI_THEMES[0].value,
+  theme: THEME_NAMES[0],
   changeTheme: (themeValue: EUI_THEME['value']) => {
     applyTheme(themeValue);
   },
@@ -20,7 +22,8 @@ export class ThemeProvider extends React.Component<object, State> {
   constructor(props: object) {
     super(props);
 
-    const theme = localStorage.getItem('theme') || defaultState.theme;
+    let theme = localStorage.getItem('theme');
+    if (!theme || !THEME_NAMES.includes(theme)) theme = defaultState.theme;
     applyTheme(theme);
 
     this.state = {

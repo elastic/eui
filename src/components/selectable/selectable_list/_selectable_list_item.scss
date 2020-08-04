@@ -5,32 +5,25 @@
   width: 100%;
   text-align: left;
   color: $euiTextColor;
+  cursor: pointer;
 
   &:not(:last-of-type) {
     border-bottom: $euiSelectableListItemBorder;
   }
 
-  &:hover,
-  &:focus {
+  &-isFocused:not([aria-disabled='true']),
+  &:hover:not([aria-disabled='true']) {
+    color: $euiColorPrimary;
+    background-color: $euiFocusBackgroundColor;
+
     .euiSelectableListItem__text {
       text-decoration: underline;
     }
   }
 
-  &:focus,
-  &-isFocused {
-    cursor: pointer;
-    color: $euiColorPrimary;
-    background-color: $euiFocusBackgroundColor;
-  }
-
-  &[disabled] {
+  &[aria-disabled='true'] {
     color: $euiColorMediumShade;
     cursor: not-allowed;
-
-    &:hover {
-      text-decoration: none;
-    }
   }
 }
 
