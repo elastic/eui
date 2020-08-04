@@ -18,15 +18,10 @@
  */
 
 import React, { FunctionComponent, useContext } from 'react';
-import all from 'mdast-util-to-hast/lib/all';
 import { EuiCheckbox } from '../../form/checkbox';
 import { EuiMarkdownContext } from '../markdown_context';
 import { htmlIdGenerator } from '../../../services/accessibility';
-import {
-  EuiMarkdownAstNodePosition,
-  RemarkRehypeHandler,
-  RemarkTokenizer,
-} from '../markdown_types';
+import { EuiMarkdownAstNodePosition, RemarkTokenizer } from '../markdown_types';
 import { Plugin } from 'unified';
 
 interface CheckboxNodeDetails {
@@ -81,9 +76,6 @@ const CheckboxParser: Plugin = function CheckboxParser() {
   methods.splice(methods.indexOf('list'), 0, 'checkbox'); // Run it just before default `list` plugin to inject our own idea of checkboxes.
 };
 
-const checkboxMarkdownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position!, 'checkboxPlugin', node, all(h, node));
-};
 const CheckboxMarkdownRenderer: FunctionComponent<CheckboxNodeDetails & {
   position: EuiMarkdownAstNodePosition;
 }> = ({ position, lead, label, isChecked, children }) => {
@@ -100,8 +92,4 @@ const CheckboxMarkdownRenderer: FunctionComponent<CheckboxNodeDetails & {
   );
 };
 
-export {
-  CheckboxParser as parser,
-  checkboxMarkdownHandler as handler,
-  CheckboxMarkdownRenderer as renderer,
-};
+export { CheckboxParser as parser, CheckboxMarkdownRenderer as renderer };

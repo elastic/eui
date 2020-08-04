@@ -309,7 +309,11 @@ function EmojiMarkdownParser() {
   // define the emoji plugin and inject it just before the existing text plugin
   tokenizers.emoji = tokenizeEmoji;
   methods.splice(methods.indexOf('text'), 0, 'emoji');
-}`}</EuiCodeBlock>
+}
+
+// add the parser for \`emojiPlugin\`
+const parsingList = getDefaultEuiMarkdownParsingPlugins();
+parsingList.push(EmojiMarkdownParser);`}</EuiCodeBlock>
       <EuiSpacer />
       <EuiHorizontalRule />
       <EuiTitle>
@@ -329,17 +333,13 @@ function EmojiMarkdownParser() {
       <EuiSpacer />
       <EuiCodeBlock size="s" language="javascript">{`// example plugin processor
 
-// convert remark nodes to rehype, basically a pass through 
-const emojiMarkdownHandler = (h, node) => {
-  return h(node.position, 'emojiPlugin', node, []);
-};
 // receives the configuration from the parser and renders
 const EmojiMarkdownRenderer = ({ emoji }) => {
   return <span>{emoji}</span>;
 };
 
-// add the handler & renderer for \`emojiPlugin\`
-processingList[0][1].handlers.emojiPlugin = emojiMarkdownHandler;
+// add the renderer for \`emojiPlugin\`
+const processingList = getDefaultEuiMarkdownProcessingPlugins();
 processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}</EuiCodeBlock>
       <EuiSpacer size="xxl" />
     </Fragment>

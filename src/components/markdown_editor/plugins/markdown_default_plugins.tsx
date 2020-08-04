@@ -28,6 +28,8 @@ import { EuiCodeBlock, EuiCode } from '../../code';
 import markdown from 'remark-parse';
 import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
+import { RemarkRehypeHandler } from '../markdown_types';
+import all from 'mdast-util-to-hast/lib/all';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
@@ -39,15 +41,17 @@ export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
 
+const unknownHandler: RemarkRehypeHandler = (h, node) => {
+  return h(node.position!, node.type, node, all(h, node));
+};
+
 export const getDefaultEuiMarkdownProcessingPlugins = (): PluggableList => [
   [
     remark2rehype,
     {
       allowDangerousHtml: true,
-      handlers: {
-        tooltipPlugin: MarkdownTooltip.handler,
-        checkboxPlugin: MarkdownCheckbox.handler,
-      },
+      unknownHandler,
+      handlers: {}, // intentionally empty, allows plugins to extend if they need to
     },
   ],
   [
