@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiBottomBar, EuiCode } from '../../../../src/components';
 
+import { bottomBarConfig } from './playground';
+
 import BottomBar from './bottom_bar';
 const bottomBarSource = require('!!raw-loader!./bottom_bar');
 const bottomBarHtml = renderToHtml(BottomBar);
@@ -50,4 +52,5 @@ export const BottomBarExample = {
       demo: <BottomBar />,
     },
   ],
+  playground: bottomBarConfig,
 };
