@@ -35,7 +35,6 @@ export const keyPadMenuItemConfig = () => {
   propsToUse.betaBadgeTooltipContent = {
     ...propsToUse.betaBadgeTooltipContent,
     type: PropTypes.String,
-    value: 'betaBadge tooltip content',
   };
 
   propsToUse.betaBadgeIconType = iconValidator(propsToUse.betaBadgeIconType);
