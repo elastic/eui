@@ -69,16 +69,14 @@ export const facetLayoutConfig = () => {
 
   propsToUse.children = {
     type: PropTypes.ReactNode,
-    value: `<EuiFacetButton quantity={6} isDisabled>
-    Disabled
+    value: `<EuiFacetButton quantity={6}>
+    Facet one
   </EuiFacetButton>
-  <EuiFacetButton
-    quantity={6}
-    icon={<EuiAvatar size="s" name="Avatar Jones" />}>
-    Avatar as icon
+  <EuiFacetButton quantity={10}>
+     Facet two
   </EuiFacetButton>
-  <EuiFacetButton quantity={6} isLoading>
-    Loading
+  <EuiFacetButton quantity={25}>
+    Facet three
   </EuiFacetButton>`,
     hidden: false,
   };
