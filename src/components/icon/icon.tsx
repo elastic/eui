@@ -47,6 +47,7 @@ const typeToPathMap = {
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
   apps: 'apps',
+  appSearchApp: 'app_app_search',
   arrowDown: 'arrow_down',
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
@@ -378,6 +379,7 @@ const typeToPathMap = {
   visVega: 'vis_vega',
   visVisualBuilder: 'vis_visual_builder',
   watchesApp: 'app_watches',
+  workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
   tokenClass: 'tokens/tokenClass',
