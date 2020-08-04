@@ -16,6 +16,7 @@ import {
   EuiTableRow,
   EuiTableRowCell,
   EuiTextColor,
+  EuiTextArea,
   EuiFormRow,
 } from '../../../../src/components/';
 
@@ -56,6 +57,7 @@ const Knob = ({
   placeholder,
   custom,
   state,
+  hidden,
 }) => {
   const [error, setError] = useState(errorMsg);
 
@@ -86,8 +88,10 @@ const Knob = ({
 
     case PropTypes.Number:
       return (
-        <>
-          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+        <EuiFormRow
+          isInvalid={error && error.length > 0}
+          error={error}
+          fullWidth>
           <EuiFieldNumber
             placeholder={placeholder}
             value={val ? val : undefined}
@@ -95,10 +99,9 @@ const Knob = ({
             aria-label={description}
             compressed
             fullWidth
+            isInvalid={error && error.length > 0}
           />
-
-          {error && <div>error {error}</div>}
-        </>
+        </EuiFormRow>
       );
 
     case PropTypes.String:
@@ -200,20 +203,33 @@ const Knob = ({
             error={error}
             fullWidth>
             <EuiSelect
-              fullWidth
               id={name}
               options={flattenedOptions}
-              value={valueKey}
+              value={valueKey || defaultValue}
               onChange={e => {
                 set(e.target.value);
               }}
-              isInvalid={error && error.length > 0}
               aria-label={`Select ${name}`}
+              isInvalid={error && error.length > 0}
               compressed
+              fullWidth
             />
           </EuiFormRow>
         );
       }
+
+    case PropTypes.ReactNode:
+      if (name === 'children' && !hidden) {
+        return (
+          <EuiTextArea
+            placeholder={placeholder}
+            value={val}
+            onChange={e => {
+              set(e.target.value);
+            }}
+          />
+        );
+      } else return null;
 
     case PropTypes.Custom:
       if (custom && custom.use) {
@@ -237,7 +253,6 @@ const Knob = ({
         }
       }
 
-    case PropTypes.ReactNode:
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
@@ -281,6 +296,22 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           );
         }
 
+        let defaultValueMarkup;
+
+        if (
+          state[name].custom &&
+          state[name].custom.origin &&
+          state[name].custom.origin.defaultValue
+        ) {
+          defaultValueMarkup = (
+            <EuiCode key={`defaultValue-${name}`}>
+              <span className="eui-textBreakNormal">
+                {state[name].custom.origin.defaultValue.value}
+              </span>
+            </EuiCode>
+          );
+        }
+
         return (
           <EuiTableRow key={name}>
             <EuiTableRowCell
@@ -305,11 +336,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
               key={`default__${name}-${idx}`}
               header="Default"
               className="playgroundKnobs__rowCell">
-              <EuiCode key={`defaultValue-${name}`}>
-                <span className="eui-textBreakNormal">
-                  {state[name].defaultValue}
-                </span>
-              </EuiCode>
+              {defaultValueMarkup}
             </EuiTableRowCell>
             <EuiTableRowCell
               key={`modify__${name}-${idx}`}
@@ -323,6 +350,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 description={state[name].description}
                 type={state[name].type}
                 val={state[name].value}
+                hidden={state[name].hidden}
                 options={state[name].options}
                 placeholder={state[name].placeholder}
                 set={value => set(value, name)}

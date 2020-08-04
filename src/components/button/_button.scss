@@ -40,7 +40,6 @@
 
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
-    pointer-events: none;
 
     &.euiButton--fill {
       // Only increase the contrast of background color to text to 2.0 for disabled

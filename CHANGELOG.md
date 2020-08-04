@@ -1,14 +1,53 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
+
+**Bug fixes**
+
+- Improve `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/issues/3726))
+- Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
+
+## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
+
+**Bug fixes**
+
+- Fixed bug in all input fields placeholders in Safari that weren't vertically centered ([#3809](https://github.com/elastic/eui/pull/3809))
+- Removed `pointer-events: none` in both `EuiButton` & `EuiButtonEmpty` to not override the `pointer-events: auto` in the button mixin `euiButtonContentDisabled` ([#3824](https://github.com/elastic/eui/pull/3824))
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
+- Fixed bug in EUI's input field components where their `inputRef` couldn't be a `RefObject` ([#3822](https://github.com/elastic/eui/pull/3822))
+- Moved `react-view` and `html-format` to be `devDependencies` ([#3828](https://github.com/elastic/eui/pull/3828))
+- Fixed `EuiComboBox` keyboard selection when `sortMatchesBy=startsWith` ([#3823](https://github.com/elastic/eui/pull/3823))
+- Fixed `EuiCodeEditor` not exiting edit mode with `esc` when `enableLiveAutocompletion=true` ([#3833](https://github.com/elastic/eui/pull/3833))
+- Fixed issue where `EuiDataGrid`'s cell expansion popover would sometimes render as a scrollable element ([#3832](https://github.com/elastic/eui/pull/3832))
+
+## [`27.3.0`](https://github.com/elastic/eui/tree/v27.3.0)
+
+- Added possibility to hide "Rows per page" select in `EuiDataGrid` ([#3700](https://github.com/elastic/eui/pull/3700))
+- Updated lodash to `v4.17.19` ([#3764](https://github.com/elastic/eui/pull/3764))
+- Added `returnKey` glyph to `EuiIcon` ([#3783](https://github.com/elastic/eui/pull/3783))
+- Added `type` prop to `EuiFieldPassword` to support toggling of obfuscation ([#3751](https://github.com/elastic/eui/pull/3751))
+
+**Bug fixes**
+
+- Fixed bug in `EuiDataGrid` not calculating the width correctly ([#3789](https://github.com/elastic/eui/pull/3789))
+- Fixed `EuiComboBox` marking some very long inputs as invalid ([#3797](https://github.com/elastic/eui/pull/3797))
+
+## [`27.2.0`](https://github.com/elastic/eui/tree/v27.2.0)
+
 - Added `analyzeEvent` glyph in `EuiIcon` ([#3729](https://github.com/elastic/eui/pull/3729))
 - Updated `EuiComboBox` to allow the options list to open for single selection custom options ([#3706](https://github.com/elastic/eui/pull/3706))
 - Added `useEuiI18n` hook for localization ([#3749](https://github.com/elastic/eui/pull/3749))
+- Added a hit enter badge to `EuiComboBox` when focusing an option and for empty states that allow pressing enter ([#3782](https://github.com/elastic/eui/pull/3782))
 
 **Bug fixes**
 
 - Fixed `EuiComboBox` always showing a scrollbar ([#3744](https://github.com/elastic/eui/pull/3744))
 - Replaced `react-focus-lock` with `react-focus-on` ([#3631](https://github.com/elastic/eui/pull/3631))
 - Fixed errors in `EuiSuperDatePicker` related to invalid and `null` date formatting ([#3750](https://github.com/elastic/eui/pull/3750))
+- Fixed type definitions for `findTestSubject` and `takeMountedSnapshot` ([#3763](https://github.com/elastic/eui/pull/3763))
+- Fixed `EuiComboBox` not allowing clicks on previously virtualized items when inside of `EuiFormRow` ([#3784](https://github.com/elastic/eui/pull/3784))
+- Removed `[Space]` as a way to select options in `EuiSelectable` ([#3784](https://github.com/elastic/eui/pull/3784))
+- Fixed type definition for `windowProps` in `EuiSelectable` ([#3787](https://github.com/elastic/eui/pull/3787))
 
 ## [`27.1.0`](https://github.com/elastic/eui/tree/v27.1.0)
 
@@ -42,6 +81,20 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+
+## [`26.3.3`](https://github.com/elastic/eui/tree/v26.3.3)
+
+**Note: this release is a backport containing changes originally made in `27.3.1`**
+
+**Bug fixes**
+
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
+
+## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
+
+**Note: this release is a backport containing changes originally made in `27.1.0`**
+
+- Updated `securityAnalyticsApp` app icon ([#3720](https://github.com/elastic/eui/pull/3720))
 
 ## [`26.3.1`](https://github.com/elastic/eui/tree/v26.3.1)
 

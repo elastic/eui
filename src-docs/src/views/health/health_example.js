@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiHealth } from '../../../../src/components';
+import healthConfig from './playground';
 
 import Health from './health';
 const healthSource = require('!!raw-loader!./health');
@@ -43,4 +44,5 @@ export const HealthExample = {
       demo: <Health />,
     },
   ],
+  playground: healthConfig,
 };

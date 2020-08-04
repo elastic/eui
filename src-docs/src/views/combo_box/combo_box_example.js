@@ -103,7 +103,7 @@ import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
 const disallowCustomOptionsSnippet = `<EuiComboBox
-  placeholder="Select from a list of options"
+  placeholder="Select one or more options"
   options={options}
   onChange={onChange}
   onSearchChange={onSearchChange}
@@ -140,7 +140,7 @@ import Virtualized from './virtualized';
 const virtualizedSource = require('!!raw-loader!./virtualized');
 const virtualizedHtml = renderToHtml(Virtualized);
 const virtualizedSnippet = `<EuiComboBox
-  placeholder="Select or create options"
+  placeholder="Select one or more options"
   options={options}
   selectedOptions={selectedOptions}
   onChange={onChange}
@@ -441,7 +441,8 @@ export const ComboBoxExample = {
           <p>
             <strong>Note:</strong> Creating custom options might not be obvious
             to the user, so provide help text explaining that this option is
-            available.
+            available. You can also customize the custom option text by passing
+            a text to <EuiCode>customOptionText</EuiCode> prop.
           </p>
         </Fragment>
       ),
