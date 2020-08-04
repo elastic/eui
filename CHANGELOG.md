@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `27.4.0`.
+
+## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
+
 - Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
 
 **Bug fixes**
