@@ -34,7 +34,13 @@ export default () => {
       label: 'Simulate',
     },
   };
+
+  const setGhostBackground = {
+    color: 'ghost',
+  };
+
   return {
+    setGhostBackground,
     config: {
       componentName: 'EuiLink',
       props: propsToUse,
