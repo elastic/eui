@@ -103,14 +103,14 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
       <EuiFormFieldset
         className={className}
         legend={legend}
-        {...rest as EuiFormFieldsetProps}>
+        {...(rest as EuiFormFieldsetProps)}>
         {radios}
       </EuiFormFieldset>
     );
   }
 
   return (
-    <div className={className} {...rest as HTMLAttributes<HTMLDivElement>}>
+    <div className={className} {...(rest as HTMLAttributes<HTMLDivElement>)}>
       {radios}
     </div>
   );

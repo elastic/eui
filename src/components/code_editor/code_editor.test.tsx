@@ -112,6 +112,10 @@ describe('EuiCodeEditor', () => {
       });
 
       test('pressing escape in ace textbox will enable overlay', () => {
+        // We cannot simulate the `commands` path, but this interaction still
+        // serves as a fallback in cases where `commands` is unavailable.
+        // @ts-ignore onFocusAce is known to exist
+        component.instance().onFocusAce();
         // @ts-ignore onKeydownAce is known to exist and its params' values are unimportant
         component.instance().onKeydownAce({
           preventDefault: () => {},

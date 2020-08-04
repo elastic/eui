@@ -29,7 +29,7 @@ type RefT = HTMLElement | Element | undefined | null;
 
 export function useInnerText(
   innerTextFallback?: string
-): [((node: RefT) => void), string | undefined] {
+): [(node: RefT) => void, string | undefined] {
   const [ref, setRef] = useState<RefT>(null);
   const [innerText, setInnerText] = useState(innerTextFallback);
 

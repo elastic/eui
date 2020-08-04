@@ -52,9 +52,13 @@ function getElementText(element: HTMLElement) {
       element.textContent || undefined;
 }
 
-export const EuiDataGridInMemoryRenderer: FunctionComponent<
-  EuiDataGridInMemoryRendererProps
-> = ({ inMemory, columns, rowCount, renderCellValue, onCellRender }) => {
+export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryRendererProps> = ({
+  inMemory,
+  columns,
+  rowCount,
+  renderCellValue,
+  onCellRender,
+}) => {
   const [documentFragment] = useState(() => document.createDocumentFragment());
 
   const cells = useMemo(() => {

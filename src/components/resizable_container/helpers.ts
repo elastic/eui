@@ -33,7 +33,7 @@ interface Params {
   setState: React.Dispatch<React.SetStateAction<EuiResizableContainerState>>;
   containerRef: React.RefObject<HTMLDivElement>;
   registryRef: React.MutableRefObject<EuiResizablePanelRegistry>;
-  onPanelWidthChange?: ({  }: { [key: string]: number }) => any;
+  onPanelWidthChange?: ({}: { [key: string]: number }) => any;
 }
 
 type onMouseMove = (event: MouseEvent | TouchEvent) => void;

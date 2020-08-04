@@ -25,7 +25,7 @@ export type EuiBreakpoints = {
   /**
    * Set the minimum window width at which to start to the breakpoint
    */
-  [key in EuiBreakpointSize]: number
+  [key in EuiBreakpointSize]: number;
 };
 
 export const BREAKPOINTS: EuiBreakpoints = {

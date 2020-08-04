@@ -39,9 +39,12 @@ export type EuiHeaderSectionItemProps = CommonProps & {
   children?: ReactNode;
 };
 
-export const EuiHeaderSectionItem: FunctionComponent<
-  EuiHeaderSectionItemProps
-> = ({ border = 'left', children, className, ...rest }) => {
+export const EuiHeaderSectionItem: FunctionComponent<EuiHeaderSectionItemProps> = ({
+  border = 'left',
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiHeaderSectionItem',
     borderToClassNameMap[border],

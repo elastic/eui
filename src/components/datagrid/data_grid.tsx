@@ -168,7 +168,7 @@ const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
 };
 
 const rowHoverToClassMap: {
-  [rowHighlight in EuiDataGridStyleRowHover]: string
+  [rowHighlight in EuiDataGridStyleRowHover]: string;
 } = {
   highlight: 'euiDataGrid--rowHoverHighlight',
   none: '',
@@ -181,7 +181,7 @@ const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
 };
 
 const cellPaddingsToClassMap: {
-  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string;
 } = {
   s: 'euiDataGrid--paddingSmall',
   m: '',
@@ -310,6 +310,9 @@ function useDefaultColumnWidth(
 
     const widthToFill = gridWidth - claimedWidth;
     const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    if (unsizedColumnCount === 0) {
+      return 100;
+    }
     return Math.max(widthToFill / unsizedColumnCount, 100);
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
 
@@ -990,9 +993,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                       rowCount={
                                         inMemory.level === 'enhancements'
                                           ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                                            (pagination &&
-                                              pagination.pageSize) ||
-                                            rowCount
+                                            pagination?.pageSize || rowCount
                                           : // otherwise, all of the data is present and usable
                                             rowCount
                                       }

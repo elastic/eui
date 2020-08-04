@@ -30,7 +30,6 @@ import {
   ListChildComponentProps,
 } from 'react-window';
 
-import { EuiCode } from '../../../components/code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
@@ -38,6 +37,7 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
+import { EuiIcon } from '../../icon';
 import {
   EuiFilterSelectItem,
   FilterChecked,
@@ -52,9 +52,10 @@ import {
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';
+import { EuiBadge } from '../../badge/';
 
 const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string
+  [position in EuiComboBoxOptionsListPosition]: string;
 } = {
   top: 'euiComboBoxOptionsList--top',
   bottom: 'euiComboBoxOptionsList--bottom',
@@ -67,6 +68,11 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
+    /**
+     * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
+     * It won't show if there's no onCreateOption.
+     */
+    customOptionText?: string;
     fullWidth?: boolean;
     getSelectedOptionForSearchValue?: (
       searchValue: string,
@@ -75,7 +81,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     isLoading?: boolean;
     listRef: RefCallback<HTMLDivElement>;
     matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-    onCloseList: () => void;
+    onCloseList: (event: Event) => void;
     onCreateOption?: (
       searchValue: string,
       options: Array<EuiComboBoxOptionOption<T>>
@@ -102,6 +108,15 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     delimiter?: string;
     zIndex?: number;
   };
+
+const hitEnterBadge = (
+  <EuiBadge
+    className="euiComboBoxOption__enterBadge"
+    color="hollow"
+    aria-hidden="true">
+    <EuiIcon type="returnKey" />
+  </EuiBadge>
+);
 
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
@@ -174,7 +189,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       event.target &&
       this.listRefInstance.contains(event.target as Node) === false
     ) {
-      this.props.onCloseList();
+      this.props.onCloseList(event);
     }
   };
 
@@ -228,6 +243,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
       checked = 'on';
     }
 
+    const optionIsFocused = activeOptionIndex === index;
+    const optionIsDisabled =
+      option.hasOwnProperty('disabled') && option.disabled === true;
+
     return (
       <EuiFilterSelectItem
         style={style}
@@ -238,21 +257,30 @@ export class EuiComboBoxOptionsList<T> extends Component<
           }
         }}
         ref={optionRef.bind(this, index)}
-        isFocused={activeOptionIndex === index}
+        isFocused={optionIsFocused}
         checked={checked}
         showIcons={singleSelection ? true : false}
         id={rootId(`_option-${index}`)}
         title={label}
         {...rest}>
-        {renderOption ? (
-          renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)
-        ) : (
-          <EuiHighlight
-            search={searchValue}
-            className={OPTION_CONTENT_CLASSNAME}>
-            {label}
-          </EuiHighlight>
-        )}
+        <span className="euiComboBoxOption__contentWrapper">
+          {renderOption ? (
+            <span className={OPTION_CONTENT_CLASSNAME}>
+              {renderOption(
+                option,
+                searchValue,
+                'euiComboBoxOption__renderOption'
+              )}
+            </span>
+          ) : (
+            <EuiHighlight
+              search={searchValue}
+              className={OPTION_CONTENT_CLASSNAME}>
+              {label}
+            </EuiHighlight>
+          )}
+          {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
+        </span>
       </EuiFilterSelectItem>
     );
   };
@@ -262,6 +290,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       'data-test-subj': dataTestSubj,
       activeOptionIndex,
       areAllOptionsSelected,
+      customOptionText,
       fullWidth,
       getSelectedOptionForSearchValue,
       isLoading,
@@ -312,6 +341,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
           searchValue,
           selectedOptions
         );
+
         if (selectedOptionForValue) {
           // Disallow duplicate custom options.
           emptyStateContent = (
@@ -326,29 +356,54 @@ export class EuiComboBoxOptionsList<T> extends Component<
             </p>
           );
         } else {
+          const highlightSearchValue = (text: string, searchValue: string) => {
+            const reg = new RegExp(/(\{searchValue})/, 'gi');
+            const parts = text.split(reg);
+            return (
+              <p className="euiComboBoxOption__emptyStateText">
+                {parts.map((part, idx) =>
+                  part.match(reg) ? (
+                    <strong key={idx}>{searchValue}</strong>
+                  ) : (
+                    part
+                  )
+                )}
+              </p>
+            );
+          };
+
           emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.createCustomOption"
-                default="Hit {key} to add {searchValue} as a custom option"
-                values={{
-                  key: <EuiCode>ENTER</EuiCode>,
-                  searchValue: <strong>{searchValue}</strong>,
-                }}
-              />
-            </p>
+            <div className="euiComboBoxOption__contentWrapper">
+              {customOptionText ? (
+                highlightSearchValue(customOptionText, searchValue)
+              ) : (
+                <p className="euiComboBoxOption__emptyStateText">
+                  <EuiI18n
+                    token="euiComboBoxOptionsList.createCustomOption"
+                    default="Add {searchValue} as a custom option"
+                    values={{
+                      searchValue: <strong>{searchValue}</strong>,
+                    }}
+                  />
+                </p>
+              )}
+              {hitEnterBadge}
+            </div>
           );
         }
       } else {
         if (delimiter && searchValue.includes(delimiter)) {
           emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.delimiterMessage"
-                default="Hit enter to add each item separated by {delimiter}"
-                values={{ delimiter: <strong>{delimiter}</strong> }}
-              />
-            </p>
+            <div className="euiComboBoxOption__contentWrapper">
+              <p className="euiComboBoxOption__emptyStateText">
+                <EuiI18n
+                  token="euiComboBoxOptionsList.delimiterMessage"
+                  default="Add each item separated by {delimiter}"
+                  values={{ delimiter: <strong>{delimiter}</strong> }}
+                />
+              </p>
+              {hitEnterBadge}
+            </div>
           );
         } else {
           emptyStateContent = (
