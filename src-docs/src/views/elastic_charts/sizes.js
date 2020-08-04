@@ -233,14 +233,10 @@ export class Sizes extends Component {
                 tickFormat={xAxisFormatter}
                 id="bottom-axis"
                 position="bottom"
+                showGridLines={false}
                 style={xAxisStyle}
               />
-              <Axis
-                id="left-axis"
-                position="left"
-                showGridLines
-                style={yAxisStyle}
-              />
+              <Axis id="left-axis" position="left" style={yAxisStyle} />
             </Chart>
           </EuiPageContent>
         </EuiPage>
@@ -332,16 +328,16 @@ export class Sizes extends Component {
       : ''
   }
   <Axis
-    title={'${xAxisTitle}'}
-    tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    style={${JSON.stringify(xAxisStyle)}}
     id="bottom-axis"
     position="bottom"
+    title={'${xAxisTitle}'}
+    tickFormat={timeFormatter(niceTimeFormatByDay(1))}
+    showGridLines={false}
+    style={${JSON.stringify(xAxisStyle)}}
   />
   <Axis
     id="left-axis"
     position="left"
-    showGridLines
     style={${JSON.stringify(yAxisStyle)}}
   />
 </Chart>`}>
