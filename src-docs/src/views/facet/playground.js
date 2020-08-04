@@ -19,10 +19,16 @@ export const facetButtonConfig = () => {
       label: 'Simulate',
     },
   };
+
   propsToUse.children = {
     type: PropTypes.String,
     value: 'Facet content',
     hidden: false,
+  };
+
+  propsToUse.quantity = {
+    ...propsToUse.quantity,
+    value: 10,
   };
 
   return {
@@ -84,7 +90,7 @@ export const facetLayoutConfig = () => {
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiFacetButton', , 'EuiFacetGroup'],
+          named: ['EuiFacetButton', 'EuiFacetGroup'],
         },
       },
     },
