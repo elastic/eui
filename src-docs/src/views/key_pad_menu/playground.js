@@ -29,7 +29,7 @@ export const keyPadMenuItemConfig = () => {
   propsToUse.label = {
     ...propsToUse.label,
     type: PropTypes.String,
-    value: 'label',
+    value: 'Label',
   };
 
   propsToUse.betaBadgeTooltipContent = {
