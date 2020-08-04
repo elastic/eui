@@ -19,7 +19,7 @@ export default () => {
   };
 
   propsToUse.children = {
-    value: 'Link',
+    value: 'Link to our website',
     type: PropTypes.String,
     description: 'Link text.',
     hidden: false,
