@@ -1,10 +1,5 @@
 import { PropTypes } from 'react-view';
-import {
-  EuiFacetButton,
-  EuiIcon,
-  EuiAvatar,
-  EuiFacetGroup,
-} from '../../../../src/components/';
+import { EuiFacetButton, EuiFacetGroup } from '../../../../src/components/';
 import { propUtilityForPlayground } from '../../services/playground';
 import * as t from '@babel/types';
 
@@ -36,12 +31,10 @@ export const facetButtonConfig = () => {
       props: propsToUse,
       scope: {
         EuiFacetButton,
-        EuiIcon,
-        EuiAvatar,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiFacetButton', 'EuiIcon', 'EuiAvatar'],
+          named: ['EuiFacetButton'],
         },
       },
       customProps: {
@@ -88,12 +81,10 @@ export const facetLayoutConfig = () => {
       scope: {
         EuiFacetButton,
         EuiFacetGroup,
-        EuiIcon,
-        EuiAvatar,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiFacetButton', 'EuiIcon', 'EuiAvatar', 'EuiFacetGroup'],
+          named: ['EuiFacetButton', , 'EuiFacetGroup'],
         },
       },
     },
