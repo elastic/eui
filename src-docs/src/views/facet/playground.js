@@ -26,7 +26,7 @@ export const facetButtonConfig = () => {
   };
   propsToUse.children = {
     type: PropTypes.String,
-    value: 'facet content',
+    value: 'Facet content',
     hidden: false,
   };
 
