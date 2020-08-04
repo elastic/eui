@@ -1,10 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `EuiDataGrid` to also show expand button on mouse hover ([#3688](https://github.com/elastic/eui/pull/3688))
 - Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
 
 **Bug fixes**
 
-- Improve `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/issues/3726))
+- Improved `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/pull/3726))
 - Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
