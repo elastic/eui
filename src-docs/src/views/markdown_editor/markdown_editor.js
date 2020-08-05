@@ -27,7 +27,10 @@ const dropHandlers = [
       return new Promise(resolve => {
         setTimeout(() => {
           const url = URL.createObjectURL(item);
-          resolve(`![${item.name}](${url})`);
+          resolve({
+            text: `![${item.name}](${url})`,
+            config: { block: true },
+          });
         }, 1000);
       });
     },

@@ -109,7 +109,7 @@ const uiPluginConcepts = [
     ),
   },
   {
-    title: 'formatter',
+    title: 'formatting',
     description: (
       <span>
         If no <strong>editor</strong> is provided, this is an object defining

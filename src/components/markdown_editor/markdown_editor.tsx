@@ -46,6 +46,7 @@ import {
   EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
+  EuiMarkdownStringTagConfig,
 } from './markdown_types';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal } from '../modal';
@@ -112,6 +113,26 @@ export type EuiMarkdownEditorProps = OneOf<
 interface EuiMarkdownEditorRef {
   textarea: HTMLTextAreaElement | null;
   replaceNode: ContextShape['replaceNode'];
+}
+
+function isNewLine(char: string | undefined): boolean {
+  if (char == null) return true;
+  return !!char.match(/[\r\n]/);
+}
+function padWithNewlinesIfNeeded(textarea: HTMLTextAreaElement, text: string) {
+  const selectionStart = textarea.selectionStart;
+  const selectionEnd = textarea.selectionEnd;
+
+  // block parsing requires two leading new lines and none trailing, but we add an extra trailing line for readability
+  const isPrevNewLine = isNewLine(textarea.value[selectionStart - 1]);
+  const isPrevPrevNewLine = isNewLine(textarea.value[selectionStart - 2]);
+  const isNextNewLine = isNewLine(textarea.value[selectionEnd]);
+
+  // pad text with newlines as needed
+  text = `${isPrevNewLine ? '' : '\n'}${isPrevPrevNewLine ? '' : '\n'}${text}${
+    isNextNewLine ? '' : '\n'
+  }`;
+  return text;
 }
 
 export const EuiMarkdownEditor = React.forwardRef<
@@ -290,10 +311,18 @@ export const EuiMarkdownEditor = React.forwardRef<
           <div style={{ display: isPreviewing ? 'none' : 'block' }}>
             <EuiMarkdownEditorDropZone
               dropHandlers={dropHandlers}
-              insertText={(text: string) => {
+              insertText={(
+                text: string,
+                config: EuiMarkdownStringTagConfig
+              ) => {
+                if (config.block) {
+                  text = padWithNewlinesIfNeeded(textareaRef.current!, text);
+                }
+
                 const originalSelectionStart = textareaRef.current!
                   .selectionStart;
                 const newSelectionPoint = originalSelectionStart + text.length;
+
                 insertText(textareaRef.current!, {
                   text,
                   selectionStart: newSelectionPoint,
@@ -328,15 +357,25 @@ export const EuiMarkdownEditor = React.forwardRef<
                         ? selectedNode
                         : null,
                     onCancel: () => setPluginEditorPlugin(undefined),
-                    onSave: markdown => {
+                    onSave: (markdown, config) => {
                       if (
                         selectedNode &&
                         selectedNode.type === pluginEditorPlugin.name
                       ) {
+                        // modifying an existing node
                         textareaRef.current!.setSelectionRange(
                           selectedNode.position.start.offset,
                           selectedNode.position.end.offset
                         );
+                      } else {
+                        // creating a new node
+                        if (config.block) {
+                          // inject newlines if needed
+                          markdown = padWithNewlinesIfNeeded(
+                            textareaRef.current!,
+                            markdown
+                          );
+                        }
                       }
                       insertText(textareaRef.current!, {
                         text: markdown,

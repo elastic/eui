@@ -25,13 +25,15 @@ import {
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
   EuiMarkdownDropHandler,
+  EuiMarkdownStringTagConfig,
+  EuiMarkdownDragAndDropResult,
 } from './markdown_types';
 
 interface EuiMarkdownEditorDropZoneProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   errors: EuiMarkdownParseError[];
   dropHandlers: EuiMarkdownDropHandler[];
-  insertText: (text: string) => void;
+  insertText: (text: string, config: EuiMarkdownStringTagConfig) => void;
   hasUnacceptedItems: boolean;
   setHasUnacceptedItems: (hasUnacceptedItems: boolean) => void;
 }
@@ -160,7 +162,9 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
 
       toggleUploadingFiles(true);
 
-      const resolved: Array<string | Promise<string>> = [];
+      const resolved: Array<
+        EuiMarkdownDragAndDropResult | Promise<EuiMarkdownDragAndDropResult>
+      > = [];
       for (let i = 0; i < acceptedFiles.length; i++) {
         const file = acceptedFiles[i];
         const handler = fileHandlers[i];
@@ -169,7 +173,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
 
       Promise.all(resolved)
         .then(results => {
-          results.forEach(result => insertText(result));
+          results.forEach(({ text, config }) => insertText(text, config));
         })
         .catch(() => {})
         .then(() => {
