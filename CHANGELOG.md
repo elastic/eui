@@ -2,6 +2,10 @@
 
 - Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))
 
+**Breaking changes**
+
+- Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
+
 ## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
 
 - Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
