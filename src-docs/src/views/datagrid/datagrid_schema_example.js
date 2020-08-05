@@ -17,10 +17,10 @@ import {
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
-} from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_types';
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
-import { EuiDataGridCellValueElementProps } from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '!!../../../../scripts/loaders/prop-loader!../../../../src/components/datagrid/data_grid_schema';
+import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 export const DataGridSchemaExample = {
   title: 'Data grid schemas and popovers',
