@@ -23,10 +23,10 @@ import { EuiSuperSelect } from '../../form';
 
 import { CommonProps } from '../../common';
 
-import { getLinearGradient, getFixedLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
+import { EuiColorPaletteDisplay } from '../color_palette_display';
 
 export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
@@ -62,9 +62,10 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
    */
   type: 'fixed';
   /**
-   * Array of color `strings`.
+   * Array of color `strings` or `ColorStops` in the form of
+   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
    */
-  palette: string[];
+  palette: string[] | ColorStop[];
 }
 
 export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
@@ -130,17 +131,7 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
       | EuiColorPalettePickerPaletteFixedProps
       | EuiColorPalettePickerPaletteGradientProps
   ) => {
-    const background =
-      item.type === 'fixed'
-        ? getFixedLinearGradient(item.palette)
-        : getLinearGradient(item.palette);
-
-    return (
-      <div
-        className="euiColorPalettePicker__itemGradient"
-        style={{ background }}
-      />
-    );
+    return <EuiColorPaletteDisplay type={item.type} palette={item.palette} />;
   };
 
   const paletteOptions = palettes.map(

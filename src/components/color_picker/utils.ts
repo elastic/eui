@@ -204,28 +204,72 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
   }
 };
 
-// Given an array of hex colors returns a css linear-gradient with individual color blocks
-export const getFixedLinearGradient = (palette: string[]) => {
+// Given an array of objects with key value pairs stop/color or an array of hex colors
+// returns a css linear-gradient with individual color blocks
+export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
   const intervals = palette.length;
 
   let fixedLinearGradient;
 
-  for (let i = 0; i < intervals; i++) {
-    const initialColorStop = `${palette[0]} 0%, ${palette[0]}\ ${Math.floor(
-      (100 * 1) / intervals
-    )}%`;
-    const colorStop = `${palette[i]}\ ${Math.floor((100 * i) / intervals)}%, ${
-      palette[i]
-    }\ ${Math.floor((100 * (i + 1)) / intervals)}%`;
+  const paletteHasStops = palette.some((item: string | ColorStop) => {
+    return typeof item === 'object';
+  });
 
-    if (i === 0) {
-      fixedLinearGradient = `linear-gradient(to right, ${initialColorStop},`;
-    } else if (i === palette.length - 1) {
-      fixedLinearGradient = `${fixedLinearGradient} ${colorStop})`;
-    } else {
-      fixedLinearGradient = `${fixedLinearGradient} ${colorStop},`;
+  if (paletteHasStops) {
+    const paletteColorStop = palette as ColorStop[];
+
+    const decimal = 100 / paletteColorStop[paletteColorStop.length - 1].stop;
+
+    // if there's only one palette with stop
+    if (palette.length === 1) {
+      return `linear-gradient(to right, ${paletteColorStop[0].color} 0%, ${
+        paletteColorStop[0].color
+      }\ ${Math.floor(paletteColorStop[0].stop * decimal)}%)`;
     }
-  }
 
-  return fixedLinearGradient;
+    for (let i = 0; i < intervals; i++) {
+      const initialColorStop = `${paletteColorStop[0].color} 0%, ${
+        paletteColorStop[0].color
+      }\ ${Math.floor(paletteColorStop[0].stop * decimal)}%`;
+
+      // we want to get the color with the percentage of the previous color
+      // then the color with its correspondent percentage
+      const colorStop =
+        i > 0 &&
+        `${paletteColorStop[i].color}\ ${Math.floor(
+          paletteColorStop[i - 1].stop * decimal
+        )}%, ${paletteColorStop[i].color}\ ${Math.floor(
+          paletteColorStop[i].stop * decimal
+        )}%`;
+
+      if (i === 0) {
+        fixedLinearGradient = `linear-gradient(to right, ${initialColorStop},`;
+      } else if (i === palette.length - 1) {
+        fixedLinearGradient = `${fixedLinearGradient} ${colorStop})`;
+      } else {
+        fixedLinearGradient = `${fixedLinearGradient} ${colorStop},`;
+      }
+    }
+
+    return fixedLinearGradient;
+  } else {
+    for (let i = 0; i < intervals; i++) {
+      const initialColorStop = `${palette[0]} 0%, ${palette[0]}\ ${Math.floor(
+        (100 * 1) / intervals
+      )}%`;
+      const colorStop = `${palette[i]}\ ${Math.floor(
+        (100 * i) / intervals
+      )}%, ${palette[i]}\ ${Math.floor((100 * (i + 1)) / intervals)}%`;
+
+      if (i === 0) {
+        fixedLinearGradient = `linear-gradient(to right, ${initialColorStop},`;
+      } else if (i === palette.length - 1) {
+        fixedLinearGradient = `${fixedLinearGradient} ${colorStop})`;
+      } else {
+        fixedLinearGradient = `${fixedLinearGradient} ${colorStop},`;
+      }
+    }
+
+    return fixedLinearGradient;
+  }
 };

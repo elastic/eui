@@ -29,6 +29,29 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
   },
   {
     value: 'pallette_3',
+    title: 'Grayscale (fixed with stops)',
+    palette: [
+      {
+        stop: 100,
+        color: 'white',
+      },
+      {
+        stop: 250,
+        color: 'gray',
+      },
+      {
+        stop: 350,
+        color: 'dimgray',
+      },
+      {
+        stop: 470,
+        color: 'black',
+      },
+    ],
+    type: 'fixed',
+  },
+  {
+    value: 'pallette_4',
     title: 'Grayscale (gradient with stops)',
     palette: [
       {
@@ -51,7 +74,7 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     type: 'gradient',
   },
   {
-    value: 'pallette_4',
+    value: 'pallette_5',
     title: 'EUI palette for status (gradient)',
     palette: euiPaletteForStatus(5),
     type: 'gradient',
@@ -65,7 +88,7 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
 
 export const ColorPalettePicker = () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
-  const [pallette, setPallette] = useState('pallette_1');
+  const [pallette, setPallette] = useState('pallette_3');
 
   return (
     <>
