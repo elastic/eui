@@ -6,7 +6,7 @@ Provide a detailed summary of your PR. Explain how you arrived at your solution.
 
 - [ ] Check against **all themes** for compatibility in both light and dark modes
 - [ ] Checked in **mobile**
-- [ ] Checked in **IE11** and **Firefox**
+- [ ] Checked in **Chrome**, **Safari**, **Edge**, and **Firefox**
 - [ ] Props have proper **autodocs**
 - [ ] Added **[documentation](https://github.com/elastic/eui/blob/master/wiki/documentation-guidelines.md)**
 - [ ] Checked **[Code Sandbox](https://codesandbox.io/)** works for the any docs examples
