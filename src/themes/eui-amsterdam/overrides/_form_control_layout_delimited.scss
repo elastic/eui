@@ -22,19 +22,19 @@
   &.euiFormControlLayout--compressed {
     &.euiFormControlLayout--group {
       .euiFormControlLayout__childrenWrapper:first-child {
-        border-radius: $euiBorderRadiusSmall 0 0 $euiBorderRadiusSmall;
+        border-radius: $euiFormControlCompressedBorderRadius 0 0 $euiFormControlCompressedBorderRadius;
       }
     }
 
     .euiFormControlLayout__childrenWrapper:only-child {
-      border-radius: $euiBorderRadiusSmall;
+      border-radius: $euiFormControlCompressedBorderRadius;
       overflow: hidden;
     }
 
     .euiFormControlLayout__prepend +
     .euiFormControlLayout__childrenWrapper {
       &:last-child {
-        border-radius: 0 $euiBorderRadiusSmall $euiBorderRadiusSmall 0;
+        border-radius: 0 $euiFormControlCompressedBorderRadius $euiFormControlCompressedBorderRadius 0;
       }
     }
   }
