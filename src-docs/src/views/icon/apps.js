@@ -24,6 +24,7 @@ const iconTypes = [
   'addDataApp',
   'advancedSettingsApp',
   'apmApp',
+  'appSearchApp',
   'auditbeatApp',
   'canvasApp',
   'codeApp',
@@ -65,6 +66,7 @@ const iconTypes = [
   'usersRolesApp',
   'visualizeApp',
   'watchesApp',
+  'workplaceSearchApp',
 ];
 
 export default () => (

@@ -100,14 +100,17 @@ export const CategoryChart = () => {
           splitSeriesAccessors={multi ? ['issueType'] : undefined}
           stackAccessors={stacked ? ['issueType'] : undefined}
         />
-        <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
+        <Axis
+          id="bottom-axis"
+          position={rotated ? 'left' : 'bottom'}
+          showGridLines={false}
+        />
         <Axis
           id="left-axis"
           position={rotated ? 'bottom' : 'left'}
           tickFormat={
             formatted ? d => `${round(Number(d) / 1000, 2)}k` : undefined
           }
-          showGridLines
         />
       </Chart>
 
@@ -193,10 +196,10 @@ export const CategoryChart = () => {
   <Axis
     id="bottom-axis"
     position={${rotated ? 'left' : 'bottom'}}
+    showGridLines={false}
   />
   <Axis
     id="left-axis"
-    showGridLines
     position={${rotated ? 'bottom' : 'left'}}
     ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
   />

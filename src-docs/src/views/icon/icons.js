@@ -202,6 +202,7 @@ export const iconTypes = [
   'timeline',
   'training',
   'trash',
+  'unlink',
   'user',
   'users',
   'vector',
