@@ -353,6 +353,7 @@ const typeToPathMap = {
   trash: 'trash',
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
+  unlink: 'unlink',
   user: 'user',
   users: 'users',
   usersRolesApp: 'app_users_roles',
