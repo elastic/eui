@@ -6,7 +6,7 @@ import { useView, Compiler, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import Knobs from './knobs';
 
-export default ({ config, setGhostBackground, defaultClasses = [] }) => {
+export default ({ config, setGhostBackground, playgroundClassName }) => {
   const getSnippet = code => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
