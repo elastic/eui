@@ -1,11 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))
 - Added icons for `appSearchApp` and `workplaceSearchApp` to `EuiIcon` ([#3859](https://github.com/elastic/eui/pull/3859))
 - Added `unlink` glyph to `EuiIcon` ([#3869](https://github.com/elastic/eui/pull/3869))
 
 **Bug fixes**
 
 - Fixed `EuiFacetGroup` container expansion due to negative margin value ([#3871](https://github.com/elastic/eui/pull/3871))
+
+**Breaking changes**
+
+- Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
 
 ## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
 
