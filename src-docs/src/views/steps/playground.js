@@ -1,6 +1,9 @@
 import { PropTypes } from 'react-view';
 import { EuiStep } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
+import {
+  propUtilityForPlayground,
+  createOptionalEnum,
+} from '../../services/playground';
 
 export const stepConfig = () => {
   const docgenInfo = Array.isArray(EuiStep.__docgenInfo)
@@ -13,6 +16,8 @@ export const stepConfig = () => {
     ...propsToUse.titleSize,
     type: PropTypes.String,
   };
+
+  propsToUse.status = createOptionalEnum(propsToUse.status);
 
   propsToUse.children = {
     value: 'Do this first',
