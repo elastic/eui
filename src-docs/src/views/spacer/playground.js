@@ -20,6 +20,6 @@ export const spacerConfig = () => {
         },
       },
     },
-    defaultClasses: ['guideDemo__highlightSpacer'],
+    playgroundClassName: 'guideDemo__highlightSpacer',
   };
 };
