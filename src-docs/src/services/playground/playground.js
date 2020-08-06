@@ -50,7 +50,7 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
       {
         playgroundCompiler__ghostBackground: isGhost,
       },
-      ...defaultClasses
+      playgroundClassName
     );
 
     return (
