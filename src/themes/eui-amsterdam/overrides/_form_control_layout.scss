@@ -1,7 +1,7 @@
 $leftSideRadius: $euiBorderRadius 0 0 $euiBorderRadius;
 $rightSideRadius: 0 $euiBorderRadius $euiBorderRadius 0;
-$leftSideRadiusSmall: $euiBorderRadiusSmall 0 0 $euiBorderRadiusSmall;
-$rightSideRadiusSmall: 0 $euiBorderRadiusSmall $euiBorderRadiusSmall 0;
+$leftSideRadiusSmall: $euiFormControlCompressedBorderRadius 0 0 $euiFormControlCompressedBorderRadius;
+$rightSideRadiusSmall: 0 $euiFormControlCompressedBorderRadius $euiFormControlCompressedBorderRadius 0;
 
 
 .euiFormControlLayout--group {
@@ -46,6 +46,22 @@ $rightSideRadiusSmall: 0 $euiBorderRadiusSmall $euiBorderRadiusSmall 0;
 
   &.euiFormControlLayout--compressed {
     border-radius: $euiBorderRadiusSmall;
+
+    .euiFormControlLayout__prepend:first-child {
+      border-radius: $leftSideRadiusSmall;
+
+      [class*='euiButton'] {
+        border-radius: $leftSideRadiusSmall;
+      }
+    }
+
+    .euiFormControlLayout__append:last-child {
+      border-radius: $rightSideRadiusSmall;
+
+      [class*='euiButton'] {
+        border-radius: $rightSideRadiusSmall;
+      }
+    }
 
     .euiFormControlLayout__childrenWrapper:nth-child(2) [class*='euiField'],
     .euiFormControlLayout__childrenWrapper:nth-child(3) [class*='euiField'] {
