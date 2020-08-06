@@ -517,11 +517,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
+        "line": 331,
         "column": 12
       },
       "end": {
-        "line": 328,
+        "line": 334,
         "column": 14
       }
     },
@@ -533,11 +533,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 342,
+        "line": 349,
         "column": 14
       },
       "end": {
-        "line": 348,
+        "line": 355,
         "column": 16
       }
     },
@@ -549,12 +549,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 355,
-        "column": 16
+        "line": 381,
+        "column": 18
       },
       "end": {
-        "line": 361,
-        "column": 18
+        "line": 387,
+        "column": 20
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -565,11 +565,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 372,
+        "line": 399,
         "column": 16
       },
       "end": {
-        "line": 376,
+        "line": 403,
         "column": 18
       }
     },
@@ -581,11 +581,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 384,
+        "line": 411,
         "column": 14
       },
       "end": {
-        "line": 388,
+        "line": 415,
         "column": 16
       }
     },
@@ -597,11 +597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 396,
+        "line": 423,
         "column": 10
       },
       "end": {
-        "line": 399,
+        "line": 426,
         "column": 12
       }
     },
@@ -613,11 +613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 405,
+        "line": 432,
         "column": 10
       },
       "end": {
-        "line": 408,
+        "line": 435,
         "column": 12
       }
     },
