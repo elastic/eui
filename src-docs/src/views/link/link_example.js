@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiLink } from '../../../../src/components';
 
+import linkConfig from './playground';
+
 import Link from './link';
 import { LinkDisable } from './link_disable';
 
@@ -76,4 +78,5 @@ export const LinkExample = {
       demo: <LinkDisable />,
     },
   ],
+  playground: linkConfig,
 };
