@@ -33,10 +33,11 @@ import { keys } from '../../services';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiPopover } from '../popover';
 import { EuiListGroup, EuiListGroupItemProps } from '../list_group';
-import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
 import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
+import { EuiButtonIcon } from '../button/button_icon';
+import { EuiI18n } from '../i18n';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
@@ -299,7 +300,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ? columnOptions
       : ([
           {
-            label: 'Hide column',
+            label: (
+              <EuiI18n
+                token="euiDataGridHeaderCell.hideColumn"
+                default="Hide column"
+              />
+            ),
             onClick: () =>
               setVisibleColumns(
                 columns.filter(col => col.id !== column.id).map(col => col.id)
@@ -310,7 +316,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           },
 
           {
-            label: 'Sort schema asc',
+            label: (
+              <EuiI18n
+                token="euiDataGridHeaderCell.sortAsc"
+                default="Sort schema asc"
+              />
+            ),
             onClick: () => {
               setIsPopoverOpen(false);
               sortBy('asc');
@@ -325,7 +336,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             color: 'text',
           },
           {
-            label: 'Sort schema desc',
+            label: (
+              <EuiI18n
+                token="euiDataGridHeaderCell.sortDesc"
+                default="Sort schema desc"
+              />
+            ),
             onClick: () => {
               setIsPopoverOpen(false);
               sortBy('desc');
@@ -340,7 +356,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             color: 'text',
           },
           {
-            label: 'Move left',
+            label: (
+              <EuiI18n
+                token="euiDataGridHeaderCell.moveLeft"
+                default="Move left"
+              />
+            ),
             iconType: 'sortLeft',
             size: 'xs',
             color: 'text',
@@ -354,7 +375,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             isDisabled: colIdx === 0,
           },
           {
-            label: 'Move right',
+            label: (
+              <EuiI18n
+                token="euiDataGridHeaderCell.moveRight"
+                default="Move right"
+              />
+            ),
             iconType: 'sortRight',
             size: 'xs',
             color: 'text',
@@ -399,9 +425,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           panelPaddingSize="none"
           anchorPosition="downRight"
           button={
-            <button onClick={() => setIsPopoverOpen(true)}>
-              <EuiIcon type="arrowDown" size="s" />
-            </button>
+            <EuiButtonIcon
+              onClick={() => setIsPopoverOpen(true)}
+              iconType="arrowDown"
+              aria-label={'Header actions'}
+            />
           }
           isOpen={isPopoverOpen}
           closePopover={() => setIsPopoverOpen(false)}>

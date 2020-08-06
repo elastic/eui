@@ -309,8 +309,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -341,8 +347,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -889,8 +901,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -921,8 +939,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -1760,8 +1784,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -1794,8 +1824,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -2324,8 +2360,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
@@ -2356,8 +2398,14 @@ Array [
                   <div
                     class="euiPopover__anchor"
                   >
-                    <button>
+                    <button
+                      aria-label="Header actions"
+                      class="euiButtonIcon euiButtonIcon--primary"
+                      type="button"
+                    >
                       <div
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
                         data-euiicon-type="arrowDown"
                       />
                     </button>
