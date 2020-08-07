@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
   EuiButton,
@@ -18,24 +18,24 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
-  const idPrefix = htmlIdGenerator()();
+  const idPrefix = useRef(htmlIdGenerator()());
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
-  const [checkboxes] = useState([
+  const checkboxes = [
     {
-      id: `${idPrefix}0`,
+      id: `${idPrefix.current}0`,
       label: 'Option one',
     },
     {
-      id: `${idPrefix}1`,
+      id: `${idPrefix.current}1`,
       label: 'Option two is checked by default',
     },
     {
-      id: `${idPrefix}2`,
+      id: `${idPrefix.current}2`,
       label: 'Option three',
     },
-  ]);
+  ];
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
-    [`${idPrefix}1`]: true,
+    [`${idPrefix.current}1`]: true,
   });
 
   const onSwitchChange = () => {
