@@ -76,8 +76,8 @@ For the dark theme, import the dark colors file before the globals.
 If you want to use new, but in progress Amsterdam theme, you can import it similarly.
 
 ```scss
-@import '@elastic/eui/src/themes/eui_amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/eui_amsterdam/eui_amsterdam_globals.scss';
+@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
+@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';
 ```
 
 
