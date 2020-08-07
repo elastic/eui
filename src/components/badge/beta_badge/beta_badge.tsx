@@ -34,7 +34,8 @@ type LabelAsNode = (
   | {
       tooltipContent: ReactNode;
       title?: string;
-    }) & {
+    }
+) & {
   label: ReactNode;
 };
 

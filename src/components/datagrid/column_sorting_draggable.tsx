@@ -46,9 +46,7 @@ export interface EuiDataGridColumnSortingDraggableProps {
   display: string;
 }
 
-export const EuiDataGridColumnSortingDraggable: FunctionComponent<
-  EuiDataGridColumnSortingDraggableProps
-> = ({
+export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
   id,
   display,
   direction,

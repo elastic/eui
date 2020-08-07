@@ -32,9 +32,10 @@ export interface EuiScreenReaderOnlyProps {
   showOnFocus?: boolean;
 }
 
-export const EuiScreenReaderOnly: FunctionComponent<
-  EuiScreenReaderOnlyProps
-> = ({ children, showOnFocus }) => {
+export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = ({
+  children,
+  showOnFocus,
+}) => {
   const classes = classNames(
     {
       euiScreenReaderOnly: !showOnFocus,

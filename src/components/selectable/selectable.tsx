@@ -455,9 +455,7 @@ export class EuiSelectable extends Component<
 
       if (props && props['aria-describedby']) {
         return {
-          'aria-describedby': `${
-            props['aria-describedby']
-          }${messageContentIdString}`,
+          'aria-describedby': `${props['aria-describedby']}${messageContentIdString}`,
         };
       }
 

@@ -47,9 +47,10 @@ export type EuiRangeTicksProps = Omit<
   onChange?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const EuiTickValue: FunctionComponent<
-  EuiRangeTicksProps & { tickValue: any; percentageWidth: number }
-> = ({
+const EuiTickValue: FunctionComponent<EuiRangeTicksProps & {
+  tickValue: any;
+  percentageWidth: number;
+}> = ({
   disabled,
   ticks,
   min,

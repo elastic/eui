@@ -1275,10 +1275,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@elastic/charts@^19.6.3":
-  version "19.6.3"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-19.6.3.tgz#c23a1d7a8e245b1a800a3a4ef5fc4378b0da5e74"
-  integrity sha512-lB+rOODUKYZvsWCAcCxtAu8UxdZ2yIjZs+cjXwO1SlngY+jo+gc6XoEZG4kAczRPcr6cMdHesZ8LmFr3Enle5Q==
+"@elastic/charts@^20.0.0":
+  version "20.0.2"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-20.0.2.tgz#e64bd11b75576e87e794c23b0bca2d0ead83149a"
+  integrity sha512-qPua1PcnYfSYEU9ql99BWw5NxqHWBkPFAxlqvA+4vaE4IxXR7IWwFHFgyJY9v1qnQrxc+lN2AWdETJbREPC1nA==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
@@ -13049,10 +13049,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.17.0.tgz#53b303676eed22cc14a9f0cec09b477b3026c008"
-  integrity sha512-sXe5lSt2WQlCbydGETgfm1YBShgOX4HxQkFPvbxkcwgDvGDeqVau8h+12+lmSVlP3rHPz0oavfddSZg/q+Szjw==
+prettier@^1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
+  integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
 
 pretty-bytes@^4.0.2:
   version "4.0.2"

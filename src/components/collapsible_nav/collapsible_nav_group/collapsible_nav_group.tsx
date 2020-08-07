@@ -113,9 +113,7 @@ export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
   GroupAsDiv
 >;
 
-export const EuiCollapsibleNavGroup: FunctionComponent<
-  EuiCollapsibleNavGroupProps
-> = ({
+export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupProps> = ({
   className,
   children,
   id,

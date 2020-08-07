@@ -244,7 +244,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         target={target}
         rel={secureRel}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
-        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {iconNode}
         {labelContent}
       </a>
@@ -257,7 +257,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         disabled={isDisabled}
         onClick={onClick}
         ref={buttonRef}
-        {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+        {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
         {iconNode}
         {labelContent}
       </button>
