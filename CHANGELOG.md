@@ -3,6 +3,7 @@
 - Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))
 - Added icons for `appSearchApp` and `workplaceSearchApp` to `EuiIcon` ([#3859](https://github.com/elastic/eui/pull/3859))
 - Added `unlink` glyph to `EuiIcon` ([#3869](https://github.com/elastic/eui/pull/3869))
+- Add `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
 
 **Bug fixes**
 
