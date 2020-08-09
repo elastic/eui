@@ -110,6 +110,17 @@ const accordionForceStateSnippet = `<EuiAccordion
     <!-- Content to show when expanded -->
 </EuiAccordion>`;
 
+import AccordionIsLoading from './accordion_isLoading';
+const accordionIsLoadingSource = require('!!raw-loader!./accordion_isLoading');
+const accordionIsLoadingHtml = renderToHtml(AccordionIsLoading);
+const accordionIsLoadingSnippet = `<EuiAccordion
+  id={accordionId}
+  isLoading
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
+
 export const AccordionExample = {
   title: 'Accordion',
   intro: (
@@ -352,6 +363,31 @@ export const AccordionExample = {
       ),
       snippet: accordionForceStateSnippet,
       demo: <AccordionForceState />,
+    },
+    {
+      title: 'Loading accordion',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionIsLoadingSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionIsLoadingHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the <EuiCode>isLoading</EuiCode> prop when the accordion&apos;s
+          content is not ready yet. When using <EuiCode>isLoading</EuiCode>, the
+          contents of <EuiCode>extraAction</EuiCode> and{' '}
+          <EuiCode>children</EuiCode> are replaced with a loading spinner. Add a
+          custom message to the content of this state using{' '}
+          <EuiCode>isLoadingMessage</EuiCode>.
+        </p>
+      ),
+      snippet: accordionIsLoadingSnippet,
+      demo: <AccordionIsLoading />,
     },
   ],
 };

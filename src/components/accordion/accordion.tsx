@@ -23,6 +23,7 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
 import { EuiIcon } from '../icon';
+import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
 const paddingSizeToClassNameMap = {
@@ -74,9 +75,17 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
      */
     arrowDisplay?: 'left' | 'right' | 'none';
     /**
-     * Control the opening of accordin via prop
+     * Control the opening of accordion via prop
      */
     forceState?: 'closed' | 'open';
+    /**
+     * Change `extraAction` and children into a loading spinner
+     */
+    isLoading?: boolean;
+    /**
+     * Custom message for the `isLoading` state
+     */
+    isLoadingMessage?: ReactNode;
   };
 
 export class EuiAccordion extends Component<
@@ -87,6 +96,7 @@ export class EuiAccordion extends Component<
     initialIsOpen: false,
     paddingSize: 'none',
     arrowDisplay: 'left',
+    isLoading: false,
   };
 
   childContent: HTMLDivElement | null = null;
@@ -153,6 +163,8 @@ export class EuiAccordion extends Component<
       initialIsOpen,
       arrowDisplay,
       forceState,
+      isLoading,
+      isLoadingMessage,
       ...rest
     } = this.props;
 
@@ -195,8 +207,25 @@ export class EuiAccordion extends Component<
 
     if (extraAction) {
       optionalAction = (
-        <div className="euiAccordion__optionalAction">{extraAction}</div>
+        <div className="euiAccordion__optionalAction">
+          {isLoading ? <EuiLoadingSpinner /> : extraAction}
+        </div>
       );
+    }
+
+    let childrenContent: any;
+    if (isLoading) {
+      if (isLoadingMessage) {
+        childrenContent = (
+          <>
+            <EuiLoadingSpinner /> <span>{isLoadingMessage}</span>
+          </>
+        );
+      } else {
+        childrenContent = <EuiLoadingSpinner />;
+      }
+    } else {
+      childrenContent = children;
     }
 
     return (
@@ -217,7 +246,6 @@ export class EuiAccordion extends Component<
               {buttonContent}
             </span>
           </button>
-
           {optionalAction}
         </div>
 
@@ -234,7 +262,7 @@ export class EuiAccordion extends Component<
                   this.setChildContentRef(ref);
                   resizeRef(ref);
                 }}>
-                <div className={paddingClass}>{children}</div>
+                <div className={paddingClass}>{childrenContent}</div>
               </div>
             )}
           </EuiResizeObserver>
