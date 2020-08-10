@@ -331,40 +331,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       );
     } else if (searchValue && matchingOptions && matchingOptions.length === 0) {
       if (onCreateOption && getSelectedOptionForSearchValue) {
-        const selectedOptionForValue = getSelectedOptionForSearchValue(
-          searchValue,
-          selectedOptions
-        );
-        if (selectedOptionForValue) {
-          // Disallow duplicate custom options.
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.alreadyAdded"
-                default="{label} has already been added"
-                values={{
-                  label: <strong>{selectedOptionForValue.label}</strong>,
-                }}
-              />
-            </p>
-          );
-        } else {
-          emptyStateContent = (
-            <div className="euiComboBoxOption__contentWrapper">
-              <p className="euiComboBoxOption__emptyStateText">
-                <EuiI18n
-                  token="euiComboBoxOptionsList.createCustomOption"
-                  default="Add {searchValue} as a custom option"
-                  values={{
-                    searchValue: <strong>{searchValue}</strong>,
-                  }}
-                />
-              </p>
-              {hitEnterBadge}
-            </div>
-          );
-        }
-      } else {
         if (delimiter && searchValue.includes(delimiter)) {
           emptyStateContent = (
             <div className="euiComboBoxOption__contentWrapper">
@@ -379,16 +345,50 @@ export class EuiComboBoxOptionsList<T> extends Component<
             </div>
           );
         } else {
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.noMatchingOptions"
-                default="{searchValue} doesn't match any options"
-                values={{ searchValue: <strong>{searchValue}</strong> }}
-              />
-            </p>
+          const selectedOptionForValue = getSelectedOptionForSearchValue(
+            searchValue,
+            selectedOptions
           );
+          if (selectedOptionForValue) {
+            // Disallow duplicate custom options.
+            emptyStateContent = (
+              <p>
+                <EuiI18n
+                  token="euiComboBoxOptionsList.alreadyAdded"
+                  default="{label} has already been added"
+                  values={{
+                    label: <strong>{selectedOptionForValue.label}</strong>,
+                  }}
+                />
+              </p>
+            );
+          } else {
+            emptyStateContent = (
+              <div className="euiComboBoxOption__contentWrapper">
+                <p className="euiComboBoxOption__emptyStateText">
+                  <EuiI18n
+                    token="euiComboBoxOptionsList.createCustomOption"
+                    default="Add {searchValue} as a custom option"
+                    values={{
+                      searchValue: <strong>{searchValue}</strong>,
+                    }}
+                  />
+                </p>
+                {hitEnterBadge}
+              </div>
+            );
+          }
         }
+      } else {
+        emptyStateContent = (
+          <p>
+            <EuiI18n
+              token="euiComboBoxOptionsList.noMatchingOptions"
+              default="{searchValue} doesn't match any options"
+              values={{ searchValue: <strong>{searchValue}</strong> }}
+            />
+          </p>
+        );
       }
     } else if (!options.length) {
       emptyStateContent = (
