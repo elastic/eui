@@ -12,10 +12,10 @@
       $gutterAdjustment: $euiSizeM + $gutterSize;
 
       // Collapse margin on the right side of the group to allow it to extend the full width
-      margin-right: -#{$gutterAdjustment};
+      margin-left: -#{$gutterAdjustment};
 
       .euiFacetButton {
-        margin-right: $gutterAdjustment;
+        margin-left: $gutterAdjustment;
         // Adjust the max-width so it fits within the alloted margin
         max-width: calc(100% - #{$gutterAdjustment});
       }

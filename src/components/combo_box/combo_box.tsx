@@ -62,7 +62,11 @@ import { getElementZIndex } from '../../services/popover';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
-  'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
+  | 'customOptionText'
+  | 'onCreateOption'
+  | 'options'
+  | 'renderOption'
+  | 'selectedOptions'
 >;
 
 interface _EuiComboBoxProps<T>
@@ -467,7 +471,7 @@ export class EuiComboBox<T> extends Component<
       return;
     }
 
-    // Add new custom pill if this is custom input, even if it partially matches an option..
+    // Add new custom pill if this is custom input, even if it partially matches an option.
     const isOptionCreated = onCreateOption(
       searchValue,
       flattenOptionGroups(options)
@@ -895,6 +899,7 @@ export class EuiComboBox<T> extends Component<
       async,
       className,
       compressed,
+      customOptionText,
       fullWidth,
       id,
       inputRef,
@@ -961,6 +966,7 @@ export class EuiComboBox<T> extends Component<
             zIndex={this.state.listZIndex}
             activeOptionIndex={this.state.activeOptionIndex}
             areAllOptionsSelected={this.areAllOptionsSelected()}
+            customOptionText={customOptionText}
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
             isLoading={isLoading}

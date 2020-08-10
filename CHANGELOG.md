@@ -1,6 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.3.1`.
+- Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))
+- Added icons for `appSearchApp` and `workplaceSearchApp` to `EuiIcon` ([#3859](https://github.com/elastic/eui/pull/3859))
+- Added `unlink` glyph to `EuiIcon` ([#3869](https://github.com/elastic/eui/pull/3869))
+
+**Bug fixes**
+
+- Fixed `EuiFacetGroup` container expansion due to negative margin value ([#3871](https://github.com/elastic/eui/pull/3871))
+
+**Breaking changes**
+
+- Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
+
+## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
+
+- Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
+
+**Bug fixes**
+
+- Improve `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/issues/3726))
+- Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
 
@@ -76,6 +95,14 @@ No public interface changes since `27.3.1`.
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+
+## [`26.3.3`](https://github.com/elastic/eui/tree/v26.3.3)
+
+**Note: this release is a backport containing changes originally made in `27.3.1`**
+
+**Bug fixes**
+
+- Fixed bug in `EuiPagination` showing wrong page count when `compressed` prop is true. ([#3827](https://github.com/elastic/eui/pull/3827))
 
 ## [`26.3.2`](https://github.com/elastic/eui/tree/v26.3.2)
 
