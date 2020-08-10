@@ -102,9 +102,7 @@ export type EuiSelectableTemplateSitewideProps = Partial<EuiSelectableProps> & {
   popoverFooter?: ReactNode;
 };
 
-export const EuiSelectableTemplateSitewide: FunctionComponent<
-  EuiSelectableTemplateSitewideProps
-> = ({
+export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTemplateSitewideProps> = ({
   children,
   className,
   options,
@@ -310,11 +308,8 @@ function renderOptionMeta(
   });
 
   return (
-    <>
-      <br />
-      <span className="euiSelectableTemplateSitewide__optionMetasList">
-        {metas}
-      </span>
-    </>
+    <span className="euiSelectableTemplateSitewide__optionMetasList">
+      {metas}
+    </span>
   );
 }

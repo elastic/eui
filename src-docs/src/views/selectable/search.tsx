@@ -65,12 +65,12 @@ export default () => {
 
   const onWindowKeyUp = () => {
     searchRef && searchRef.focus();
+    setLoading(true);
     window.removeEventListener('keyup', onWindowKeyUp);
   };
 
   const onKeyUpCapture = (e: any) => {
     setSearchValue(e.currentTarget.value);
-    setLoading(true);
   };
 
   const onChange = (updatedOptions: EuiSelectableOption[]) => {

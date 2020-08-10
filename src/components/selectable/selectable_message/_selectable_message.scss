@@ -9,3 +9,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.euiSelectableMessage--bordered {
+  // Match border from selectable_list
+  overflow: hidden;
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+}

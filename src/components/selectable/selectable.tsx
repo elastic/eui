@@ -562,7 +562,9 @@ export class EuiSelectable extends Component<
       Object.keys(listAccessibleName).length
     );
     const list = messageContent ? (
-      <EuiSelectableMessage id={messageContentId}>
+      <EuiSelectableMessage
+        id={messageContentId}
+        bordered={listProps && listProps.bordered}>
         {messageContent}
       </EuiSelectableMessage>
     ) : (

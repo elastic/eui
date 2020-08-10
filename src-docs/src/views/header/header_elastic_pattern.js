@@ -29,6 +29,8 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
+import Search from '../selectable/search';
+
 export default ({ theme }) => {
   /**
    * FullScreen for docs only
@@ -254,6 +256,10 @@ export default ({ theme }) => {
                     Elastic
                   </EuiHeaderLogo>,
                 ],
+                borders: 'none',
+              },
+              {
+                items: [<Search />],
                 borders: 'none',
               },
               {

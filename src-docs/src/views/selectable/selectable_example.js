@@ -45,6 +45,7 @@ const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_r
 const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
 import Search from './search';
+import { EuiCallOut } from '../../../../src/components/call_out';
 const searchSource = require('!!raw-loader!./search');
 const searchHtml = renderToHtml(Search);
 
@@ -100,6 +101,18 @@ export const SelectableExample = {
             <EuiCode>children</EuiCode> is a function that return the{' '}
             <EuiCode>list</EuiCode> and <EuiCode>search</EuiCode> nodes.
           </p>
+          <EuiCallOut
+            iconType="check"
+            title="Selected options are based on the checked = on property">
+            <p>
+              <strong>EuiSelectable</strong> offers the ability to{' '}
+              <strong>exclude</strong> selections. Therefore, the{' '}
+              <EuiCode>checked</EuiCode> property is one of{' '}
+              <EuiCode>{"undefined | 'on' | 'off'"}</EuiCode>,{' '}
+              <EuiCode>{"'on'"}</EuiCode> being the default for selected options
+              when <EuiCode>allowExclusions = false</EuiCode>.
+            </p>
+          </EuiCallOut>
         </Fragment>
       ),
       props: {
@@ -136,15 +149,23 @@ export const SelectableExample = {
             <EuiCode>searchProps</EuiCode> object which will get passed down to
             the actual <strong>EuiFieldSearch</strong> used.
           </p>
-          <p>
-            <strong>
-              The search will only perform a string match against the{' '}
-              <EuiCode>option.label</EuiCode>.
-            </strong>
-          </p>
+          <EuiCallOut
+            iconType="search"
+            title={
+              <>
+                The search is performed as a string match against the{' '}
+                <EuiCode>option.label</EuiCode> unless a separate{' '}
+                <EuiCode>option.searchableLabel</EuiCode> is provided.
+              </>
+            }
+          />
         </Fragment>
       ),
-      props: { EuiSelectable },
+      props: {
+        EuiSelectable,
+        EuiSelectableOptionProps,
+        EuiSelectableOptionsList,
+      },
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
   aria-label="Searchable example"
@@ -284,16 +305,38 @@ export const SelectableExample = {
       text: (
         <Fragment>
           <p>
-            The component comes with some pre-composed messages for empty and
-            loading states. To pass in your own message you can use the{' '}
-            <strong>EuiSelectableMessage</strong> component and replace the{' '}
-            <EuiCode>list</EuiCode> child with your message.
+            The component comes with pre-composed messages for loading, empty,
+            and no search result states. To display your own messages, pass{' '}
+            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,
+            or <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively,
+            you can replace the entire <EuiCode>list</EuiCode> display with your
+            own message for any state. In which case, we recommend wrapping your
+            custom message in an <strong>EuiSelectableMessage</strong>{' '}
+            component.
           </p>
         </Fragment>
       ),
-      props: { EuiSelectableMessage },
+      props: { EuiSelectable, EuiSelectableMessage },
       demo: <SelectableMessages />,
-      snippet: '<EuiSelectableMessage>You have no spice</EuiSelectableMessage>',
+      snippet: [
+        `<EuiSelectable
+  aria-label="Messaging example"
+  options={[]}
+  listProps={{ bordered: true }}
+  isLoading={isLoading}
+  loadingMessage={customLoadingMessage}
+  emptyMessage={customEmptyMessage}
+  noMatchesMessage={customNoMatchesMessage}>
+  {list => list}
+</EuiSelectable>`,
+        `<EuiSelectable
+  aria-label="Messaging example"
+  options={[]}
+  listProps={{ bordered: true }}
+  isLoading={isLoading}>
+  {list => isLoading ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage> : list}
+</EuiSelectable>`,
+      ],
     },
     {
       title: 'Rendering the options',

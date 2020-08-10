@@ -13,6 +13,8 @@
 }
 
 .euiSelectableTemplateSitewide__optionMetasList {
+  display: block;
+  margin-top: $euiSizeXS;
   font-size: $euiFontSizeXS;
   color: $euiTextSubduedColor;
 }
