@@ -112,28 +112,6 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
-    let onFocusBadgeDefaultContent: React.ReactNode =
-      checked === 'on' ? (
-        <EuiI18n
-          token="euiSelectableListItem.onFocusBadgeDefaultContentDeselect"
-          default="to deselect"
-        />
-      ) : (
-        <EuiI18n
-          token="euiSelectableListItem.onFocusBadgeDefaultContentSelect"
-          default="to select"
-        />
-      );
-
-    if (allowExclusions) {
-      onFocusBadgeDefaultContent = (
-        <EuiI18n
-          token="euiSelectableListItem.onFocusBadgeDefaultContentInclude"
-          default="to include"
-        />
-      );
-    }
-
     let state: React.ReactNode;
     let instruction: React.ReactNode;
     if (allowExclusions && checked === 'on') {
@@ -157,12 +135,6 @@ export class EuiSelectableListItem extends Component<
           </span>
         </EuiScreenReaderOnly>
       );
-      onFocusBadgeDefaultContent = (
-        <EuiI18n
-          token="euiSelectableListItem.onFocusBadgeDefaultContentExclude"
-          default="to exclude"
-        />
-      );
     } else if (allowExclusions && checked === 'off') {
       state = (
         <EuiScreenReaderOnly>
@@ -183,12 +155,6 @@ export class EuiSelectableListItem extends Component<
             />
           </span>
         </EuiScreenReaderOnly>
-      );
-      onFocusBadgeDefaultContent = (
-        <EuiI18n
-          token="euiSelectableListItem.onFocusBadgeDefaultContentDeselect"
-          default="to deselect"
-        />
       );
     }
 
@@ -213,9 +179,8 @@ export class EuiSelectableListItem extends Component<
         onFocusBadgeNode = (
           <EuiBadge
             className="euiSelectableListItem__onFocusBadge"
-            {...defaultOnFocusBadgeProps}>
-            {onFocusBadgeDefaultContent}
-          </EuiBadge>
+            {...defaultOnFocusBadgeProps}
+          />
         );
       } else if (!!onFocusBadge && onFocusBadge !== false) {
         const { children, className, ...restBadgeProps } = onFocusBadge;
@@ -226,14 +191,14 @@ export class EuiSelectableListItem extends Component<
               className
             )}
             {...defaultOnFocusBadgeProps}
-            {...restBadgeProps as EuiBadgeProps}>
+            {...(restBadgeProps as EuiBadgeProps)}>
             {children}
           </EuiBadge>
         );
       }
       appendNode = (
         <span className="euiSelectableListItem__append">
-          {append} {onFocusBadgeNode}
+          {append} {isFocused && !disabled ? onFocusBadgeNode : null}
         </span>
       );
     }

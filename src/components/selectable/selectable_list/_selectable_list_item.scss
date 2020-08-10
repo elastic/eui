@@ -10,10 +10,6 @@
     border-bottom: $euiSelectableListItemBorder;
   }
 
-  &-isFocused:not([aria-disabled='true']) .euiSelectableListItem__onFocusBadge {
-    display: inline-block;
-  }
-
   &-isFocused:not([aria-disabled='true']),
   &:hover:not([aria-disabled='true']) {
     color: $euiColorPrimary;
@@ -28,10 +24,6 @@
     color: $euiColorMediumShade;
     cursor: not-allowed;
   }
-}
-
-.euiSelectableListItem__onFocusBadge {
-  display: none;
 }
 
 .euiSelectableListItem__content {

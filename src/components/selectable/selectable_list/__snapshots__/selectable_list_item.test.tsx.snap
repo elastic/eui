@@ -22,24 +22,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -66,24 +48,6 @@ exports[`EuiSelectableListItem props append 1`] = `
     >
       <span />
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -110,24 +74,6 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -154,24 +100,6 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to deselect
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -198,24 +126,6 @@ exports[`EuiSelectableListItem props disabled 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -248,11 +158,6 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
         <span
           class="euiBadge__content"
         >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
           <div
             class="euiBadge__icon"
             data-euiicon-type="returnKey"
@@ -284,24 +189,6 @@ exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Custom
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="bolt"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -327,24 +214,6 @@ exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -375,24 +244,6 @@ exports[`EuiSelectableListItem props prepend 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>
@@ -414,24 +265,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
       class="euiSelectableListItem__append"
     >
        
-      <span
-        aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            to select
-          </span>
-          <div
-            class="euiBadge__icon"
-            data-euiicon-type="returnKey"
-          />
-        </span>
-      </span>
     </span>
   </span>
 </li>

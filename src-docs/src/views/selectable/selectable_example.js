@@ -51,7 +51,6 @@ const searchHtml = renderToHtml(Search);
 
 export const SelectableExample = {
   title: 'Selectable',
-  beta: true,
   intro: (
     <EuiText>
       <p>

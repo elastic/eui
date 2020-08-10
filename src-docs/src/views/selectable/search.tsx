@@ -102,7 +102,6 @@ export default () => {
       }}
       popoverProps={{
         className: 'customPopoverClass',
-        // width: '50vw',
       }}
       popoverFooter={
         <EuiText color="subdued" size="xs">

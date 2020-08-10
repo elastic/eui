@@ -17,18 +17,115 @@
  * under the License.
  */
 
-// import React from 'react';
-// import { render } from 'enzyme';
-// import { requiredProps } from '../../../test/required_props';
+import React from 'react';
+import { render } from 'enzyme';
+import { requiredProps } from '../../../test/required_props';
 
-// import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
+import {
+  EuiSelectableTemplateSitewide,
+  EuiSelectableTemplateSitewideSchema,
+} from './selectable_template_sitewide';
 
-// describe('EuiSelectableTemplateSitewide', () => {
-//   test('is rendered', () => {
-//     const component = render(
-//       <EuiSelectableTemplateSitewide {...requiredProps} />
-//     );
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => () => 'htmlId',
+}));
 
-//     expect(component).toMatchSnapshot();
-//   });
-// });
+const recents: EuiSelectableTemplateSitewideSchema[] = [
+  {
+    label: 'Welcome dashboards',
+    'data-test-subj': 'test-this',
+    avatar: {
+      name: 'Default Space',
+    },
+    meta: [
+      {
+        text: 'Application',
+        type: 'application',
+      },
+    ],
+    url: 'welcome-dashboards',
+  },
+  {
+    label: 'Billing',
+    icon: {
+      type: 'user',
+    },
+    meta: [
+      {
+        text: 'Account',
+        type: 'platform',
+      },
+      {
+        text: 'personal-databoard',
+        type: 'deployment',
+      },
+    ],
+  },
+  {
+    label: 'Other metas',
+    meta: [
+      {
+        text: 'Article',
+        type: 'article',
+      },
+      {
+        text: 'Case',
+        type: 'case',
+      },
+      {
+        text: 'Text',
+      },
+      {
+        text: 'I have no type',
+        fontWeight: 'bold',
+        color: '#FC358E',
+      },
+    ],
+  },
+];
+
+describe('EuiSelectableTemplateSitewide', () => {
+  test('is rendered', () => {
+    const component = render(
+      <EuiSelectableTemplateSitewide options={recents} {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    test('popoverProps is rendered', () => {
+      const component = render(
+        <EuiSelectableTemplateSitewide
+          options={recents}
+          popoverProps={{ className: 'customPopoverClass' }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('popoverTitle is rendered', () => {
+      const component = render(
+        <EuiSelectableTemplateSitewide
+          options={recents}
+          popoverTitle={<>Title</>}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('popoverFooter is rendered', () => {
+      const component = render(
+        <EuiSelectableTemplateSitewide
+          options={recents}
+          popoverFooter={<>Footer</>}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+});
