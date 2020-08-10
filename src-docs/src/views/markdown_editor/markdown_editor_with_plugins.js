@@ -140,7 +140,9 @@ const chartDemoPlugin = {
 
           <EuiButton
             onClick={() =>
-              onSave(`!{chart${JSON.stringify({ palette, height })}}`)
+              onSave(`!{chart${JSON.stringify({ palette, height })}}`, {
+                block: true,
+              })
             }
             fill>
             Save

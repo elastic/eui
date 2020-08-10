@@ -58,7 +58,7 @@ export interface RemarkRehypeHandler {
 export interface EuiMarkdownEditorUiPluginEditorProps {
   node?: object | null;
   onCancel: () => void;
-  onSave: (markdown: string) => void;
+  onSave: (markdown: string, config: EuiMarkdownStringTagConfig) => void;
 }
 
 export const isPluginWithImmediateFormatting = (
@@ -115,5 +115,16 @@ export type EuiMarkdownParseError = string | VFileMessage | Error;
 export interface EuiMarkdownDropHandler {
   supportedFiles: string[];
   accepts: (itemType: string) => boolean;
-  getFormattingForItem: (file: File) => string | Promise<string>;
+  getFormattingForItem: (
+    file: File
+  ) => EuiMarkdownDragAndDropResult | Promise<EuiMarkdownDragAndDropResult>;
+}
+
+export interface EuiMarkdownStringTagConfig {
+  block: boolean;
+}
+
+export interface EuiMarkdownDragAndDropResult {
+  text: string;
+  config: EuiMarkdownStringTagConfig;
 }
