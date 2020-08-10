@@ -75,7 +75,7 @@ export interface LinkAnchorProps {
 
 export interface EuiLinkAnchorProps
   extends CommonProps,
-    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color'>,
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color' | 'onClick'>,
     LinkAnchorProps {}
 
 export type EuiLinkProps = ExclusiveUnion<
@@ -83,10 +83,7 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-const EuiLink = forwardRef<
-  Omit<HTMLAnchorElement | HTMLButtonElement, 'onClick' | 'type' | 'color'>,
-  EuiLinkProps
->(
+const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,
