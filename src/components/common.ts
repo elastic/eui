@@ -194,12 +194,41 @@ export type PropsForButton<T, P = {}> = T &
   } & P;
 
 /**
- * Makes all recursive keys optional
+ * Replaces all properties on any type as optional, includes nested types
+ *
+ * @example
+ * ```ts
+ * interface Person {
+ *  name: string;
+ *  age?: number;
+ *  spouse: Person;
+ *  children: Person[];
+ * }
+ * type PartialPerson = RecursivePartial<Person>;
+ * // results in
+ * interface PartialPerson {
+ *  name?: string;
+ *  age?: number;
+ *  spouse?: RecursivePartial<Person>;
+ *  children?: RecursivePartial<Person>[]
+ * }
+ * ```
  */
 export type RecursivePartial<T> = {
-  [P in keyof T]?: T[P] extends Array<infer U>
+  [P in keyof T]?: T[P] extends NonAny[] // checks for nested any[]
+    ? T[P]
+    : T[P] extends readonly NonAny[] // checks for nested ReadonlyArray<any>
+    ? T[P]
+    : T[P] extends Array<infer U>
     ? Array<RecursivePartial<U>>
-    : T[P] extends object
-    ? RecursivePartial<T[P]>
-    : T[P];
+    : T[P] extends ReadonlyArray<infer U> // eslint-disable-line @typescript-eslint/array-type
+    ? ReadonlyArray<RecursivePartial<U>> // eslint-disable-line @typescript-eslint/array-type
+    : T[P] extends Set<infer V> // checks for Sets
+    ? Set<RecursivePartial<V>>
+    : T[P] extends Map<infer K, infer V> // checks for Maps
+    ? Map<K, RecursivePartial<V>>
+    : T[P] extends NonAny // checks for primative values
+    ? T[P]
+    : RecursivePartial<T[P]>; // recurse for all non-array and non-primative values
 };
+type NonAny = number | boolean | string | symbol | null;

@@ -10,6 +10,7 @@ import {
   EuiKeyPadMenuItem,
   EuiCallOut,
 } from '../../../../src/components';
+import { keyPadMenuItemConfig } from './playground';
 
 import KeyPadMenu from './key_pad_menu';
 const keyPadMenuSource = require('!!raw-loader!./key_pad_menu');
@@ -141,4 +142,5 @@ export const KeyPadMenuExample = {
       demo: <KeyPadBeta />,
     },
   ],
+  playground: keyPadMenuItemConfig,
 };
