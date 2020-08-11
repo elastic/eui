@@ -85,6 +85,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   /**
    * Popover helpers
    */
+  const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
   const closePopover = () => {
     setInputHasFocus(false);
     popoverProps && popoverProps.closePopover && popoverProps.closePopover();
@@ -102,13 +103,15 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    * Search helpers
    */
   const searchOnFocus = (e: any) => {
-    setInputHasFocus(true);
     searchProps && searchProps.onFocus && searchProps.onFocus(e);
+    setInputHasFocus(true);
   };
 
   const searchOnBlur = (e: any) => {
-    setInputHasFocus(false);
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
+    if (!popoverRef?.contains(e.relatedTarget)) {
+      setInputHasFocus(false);
+    }
   };
 
   /**
@@ -194,6 +197,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
           display="block"
           isOpen={inputHasFocus}
           {...popoverProps}
+          // HELP: How to forward this ref if consumers want it
+          panelRef={setPopoverRef}
           button={search}
           closePopover={closePopover}>
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>

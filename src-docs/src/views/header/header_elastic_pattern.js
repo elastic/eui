@@ -28,8 +28,8 @@ import {
   EuiText,
   EuiTitle,
   EuiSelectableTemplateSitewide,
+  EuiSelectableMessage,
 } from '../../../../src/components';
-import { EuiSelectableMessage } from '../../../../src/components/selectable';
 
 export default ({ theme }) => {
   /**

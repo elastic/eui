@@ -109,7 +109,7 @@ export const ToolTipExample = {
           <>
             Putting anything other than plain text in a tooltip is lost on
             screen readers. Consider switching to{' '}
-            <Link href="/layout/popover">
+            <Link to="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>{' '}
             if you need more content inside a tooltip.
