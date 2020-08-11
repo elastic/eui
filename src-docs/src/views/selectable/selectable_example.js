@@ -12,6 +12,8 @@ import {
   EuiText,
   EuiSpacer,
   EuiSelectableTemplateSitewide,
+  EuiCodeBlock,
+  EuiAccordion,
 } from '../../../../src/components';
 
 import {
@@ -440,9 +442,114 @@ export const SelectableExample = {
             <strong>EuiSelectableTemplateSitewide</strong> is an opinionated
             wrapper around <strong>EuiSelectable</strong> to provide a reusable
             template across the Elastic products that will share the same global
-            search capabilities.
+            search capabilities. It creates the search input that triggers a
+            popover containing the list of options.
           </p>
+          <h3>Search input</h3>
+          <p>
+            The search ability of EuiSelectable is still hooked up to the
+            options provided. It will highlight the portion of the label that
+            matches the search string.
+          </p>
+          <EuiCallOut
+            size="s"
+            iconType="keyboardShortcut"
+            title="The demo showcases the possibility to allow a keyboard shortcut (command + K) to trigger the search input focus, but the template does not come with this ability."
+          />
+          <h3>Popover</h3>
+          <p>
+            The popover itself allows you to display a{' '}
+            <EuiCode>popoverTitle</EuiCode> node,{' '}
+            <EuiCode>popoverFooter</EuiCode> node, or pass any of the{' '}
+            <EuiCode>popoverProps</EuiCode> to the{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            component.
+          </p>
+          <h3>Options</h3>
+          <p>
+            The <EuiCode>options</EuiCode> are the most opinionated portion of
+            the template. Their display is determined by the props passed in and
+            extends the normal <EuiCode>EuiSelectable.option</EuiCode> type. All
+            parts are optional with the exception of the label (B).
+          </p>
+
           <SearchOption />
+          <EuiSpacer size="xs" />
+          <EuiAccordion
+            id="optionSnippet"
+            buttonContent={<small>Code snippet</small>}>
+            <EuiSpacer size="xs" />
+            <EuiCodeBlock language="ts" isCopyable paddingSize="s">
+              {`const options: EuiSelectableTemplateSitewideOptionProps[] = [
+  {
+    label: 'Label',
+    icon: {
+      type: 'logoKibana'
+    }
+    avatar: {
+      name: 'Default',
+    },
+    meta: [
+      {
+        text: 'Meta',
+        type: 'application',
+      },
+      {
+        text: 'Deployment',
+        type: 'deployment',
+      },
+      {
+        text: 'Default display',
+      },
+    ],
+  }
+]`}
+            </EuiCodeBlock>
+          </EuiAccordion>
+          <EuiSpacer />
+          <ul style={{ listStyleType: 'upper-alpha' }}>
+            <li>
+              <EuiCode>label</EuiCode> (required): The name of the item itself.
+              By default, the search box will only use this to match the search
+              term against, but you can supply a separate{' '}
+              <EuiCode>searchableLabel</EuiCode> that combines the label and
+              meta data to search on.
+            </li>
+            <li>
+              <EuiCode>icon</EuiCode>: Only display the solution or
+              application&apos;s logo when the option links to the application
+              itself (Dashboard app) and not lower-level items such as
+              individual dashboards. Size and color are predetermined but can be
+              overridden.
+            </li>
+            <li>
+              <EuiCode>avatar</EuiCode>: Represents the Kibana Space that the
+              item is located in, <strong>if</strong> multiple spaces are
+              present. Type and size are predetermined but can be overridden.
+            </li>
+            <li>
+              <EuiCode>meta</EuiCode>: This bottom line should only contain
+              items if the option is a lower-level item (individual dashboard).
+              The display of which defaults to simple text, but if you pass one
+              of the predetermined <EuiCode>types</EuiCode>, they will be styled
+              according to the design pattern.
+            </li>
+          </ul>
+          <EuiCallOut
+            size="s"
+            iconType="clock"
+            title="The demo shows how you can temporarily replace the icon for a subset of options to display a short list of recently viewed options."
+          />
+          <h3>Selection</h3>
+          <p>
+            The options themselves are simply rendered as list items with no
+            interactive behavior like buttons or links. You must handle the
+            interaction when the component passes back the altered array of
+            options with the selected option having{' '}
+            <EuiCode>{"checked: 'on'"}</EuiCode>.
+          </p>
         </Fragment>
       ),
       props: { EuiSelectableTemplateSitewide, Options, MetaData },

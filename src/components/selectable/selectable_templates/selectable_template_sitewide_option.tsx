@@ -82,7 +82,7 @@ export const euiSelectableTemplateSitewideFormatOptions = (
         item.className
       ),
       prepend: item.icon ? (
-        <EuiIcon color="subdued" {...item.icon} size="l" />
+        <EuiIcon color="subdued" size="l" {...item.icon} />
       ) : (
         item.prepend
       ),

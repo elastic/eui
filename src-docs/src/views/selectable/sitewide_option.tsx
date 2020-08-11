@@ -12,8 +12,8 @@ export default () => {
     },
     title: 'Example of the EuiSelectableSitewideOption',
     showIcons: false,
-    prepend: <EuiAvatar name="A" color="#eee" type="space" size="s" />,
-    append: <EuiAvatar name="D" color="#eee" type="space" size="s" />,
+    prepend: <EuiAvatar name="B" color="#eee" type="space" size="s" />,
+    append: <EuiAvatar name="C" color="#eee" type="space" size="s" />,
     className: 'euiSelectableTemplateSitewide__listItem',
   };
 
@@ -21,11 +21,11 @@ export default () => {
     <EuiPanel paddingSize="none">
       <EuiSelectableListItem {...props}>
         <span className="euiSelectableTemplateSitewide__listItemTitle">
-          B. Label
+          A. Label
         </span>
         <span className="euiSelectableTemplateSitewide__optionMetasList">
           <span className="euiSelectableTemplateSitewide__optionMeta euiSelectableTemplateSitewide__optionMeta--application">
-            C. Meta
+            D. Meta
           </span>
           <span className="euiSelectableTemplateSitewide__optionMeta euiSelectableTemplateSitewide__optionMeta--deployment">
             Deployment

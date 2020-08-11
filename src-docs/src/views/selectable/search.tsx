@@ -3,13 +3,13 @@ import _ from 'lodash';
 
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
-import { EuiSelectableTemplateSitewide } from '../../../../src/components/selectable';
+import {
+  EuiSelectableTemplateSitewide,
+  EuiSelectableTemplateSitewideOptionProps,
+} from '../../../../src/components/selectable';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
 import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';
-
-import { searchData, recents } from './data';
-const allSearches = searchData.concat(recents);
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
@@ -17,7 +17,9 @@ export default () => {
   const [searchRef, setSearchRef] = useState<HTMLInputElement | null>(null);
   const searchValueExists = searchValue && searchValue.length;
 
-  // Timeout to simulate loading
+  /**
+   * Timeout to simulate loading (only on key command+k)
+   */
   // @ts-ignore clear on every render in case it exists
   clearTimeout(searchTimeout);
   const searchTimeout = setTimeout(() => {
@@ -25,6 +27,10 @@ export default () => {
     setLoading(false);
   }, 400);
 
+  /**
+   * Take the first 5 options and simulate recently viewed
+   */
+  const recents = searchData.slice(0, 5);
   const recentsWithIcon = recents.map(recent => {
     return {
       ...recent,
@@ -35,20 +41,9 @@ export default () => {
     };
   });
 
-  // ERROR: Only seems to be sorting the `searchData` portion
-  const allSearchesSorted = allSearches.sort(function(a, b) {
-    const nameA = a.label.toUpperCase(); // ignore upper and lowercase
-    const nameB = b.label.toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    // names must be equal
-    return 0;
-  });
-
+  /**
+   * Hook up the keyboard shortcut for command+k to initiate focus into search input
+   */
   useEffect(() => {
     window.addEventListener('keydown', onWindowKeyDown);
 
@@ -73,12 +68,15 @@ export default () => {
     setSearchValue(e.currentTarget.value);
   };
 
+  /**
+   * Do something with the selection based on the found option with `checked: on`
+   */
   const onChange = (updatedOptions: EuiSelectableOption[]) => {
-    // @ts-ignore For now
-    const clickedItem: EuiSelectableOption = _.find(updatedOptions, {
+    const clickedItem = _.find(updatedOptions, {
       checked: 'on',
     });
     if (!clickedItem) return;
+    // @ts-ignore ??? Help
     if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };
 
@@ -86,8 +84,8 @@ export default () => {
     <EuiSelectableTemplateSitewide
       isLoading={isLoading}
       onChange={onChange}
-      options={searchValueExists ? allSearchesSorted : recentsWithIcon}
-      // @ts-ignore For now
+      options={searchValueExists ? searchData : recentsWithIcon}
+      // @ts-ignore ???? Help
       searchProps={{
         append: '⌘K',
         onKeyUpCapture: onKeyUpCapture,
@@ -124,3 +122,214 @@ export default () => {
     />
   );
 };
+
+/**
+ * The options object
+ */
+const searchData: EuiSelectableTemplateSitewideOptionProps[] = [
+  {
+    label: 'Welcome dashboards',
+    avatar: {
+      name: 'Default Space',
+    },
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'application',
+        highlightSearchString: true,
+      },
+    ],
+    url: 'welcome-dashboards',
+  },
+  {
+    label:
+      '[Flights] Flight Count and Average Ticket Price over the course of several years maybe even decades',
+    avatar: {
+      name: 'Default Space',
+    },
+    meta: [
+      {
+        text: 'Visualization',
+        type: 'application',
+      },
+    ],
+  },
+  {
+    label: '[Flights] Global Flight Dashboard',
+    avatar: {
+      name: 'Hello World',
+    },
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'application',
+        highlightSearchString: true,
+      },
+    ],
+  },
+  {
+    label: '[Logs] Host, Visits and Bytes Table',
+    meta: [
+      {
+        text: 'TSVB visualization',
+        type: 'application',
+      },
+    ],
+  },
+  {
+    label: '[Flights] Flight Log',
+    avatar: {
+      name: 'Hello World',
+    },
+    meta: [
+      {
+        text: 'Discover',
+        type: 'application',
+      },
+    ],
+  },
+  {
+    label: 'Dashboards',
+    url: 'dashboards',
+    icon: {
+      type: 'logoKibana',
+    },
+  },
+  {
+    label:
+      'Generate HAR Archive of Network Timings/Details for Kibana requests',
+    meta: [
+      {
+        text: 'Article',
+        type: 'article',
+      },
+      {
+        text:
+          'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
+        highlightSearchString: true,
+      },
+    ],
+  },
+  {
+    label: '[Logs] Web Traffic',
+    url: 'dashboard-logs-web-traffic',
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'application',
+        highlightSearchString: true,
+      },
+    ],
+  },
+  {
+    label: 'Databoard analytics',
+    title: 'Databoard analytics; Dashboard; Deployment: Flights Data',
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'application',
+      },
+      {
+        text: 'Flights Data',
+        type: 'deployment',
+      },
+    ],
+  },
+  {
+    label: 'Primary logs',
+    avatar: {
+      name: 'Another',
+    },
+    meta: [
+      {
+        text: 'Flights Data',
+        type: 'deployment',
+      },
+    ],
+  },
+  {
+    label: 'SIEM',
+    icon: {
+      type: 'logoSecurity',
+    },
+    meta: [
+      {
+        text: 'personal-databoard',
+        type: 'deployment',
+      },
+    ],
+  },
+  {
+    label: 'Dev tools',
+    url: 'dev-tools-console',
+    meta: [
+      {
+        text: 'Management application',
+        type: 'application',
+      },
+    ],
+  },
+  {
+    label: 'Billing',
+    icon: {
+      type: 'user',
+    },
+    meta: [
+      {
+        text: 'Account',
+        type: 'platform',
+      },
+    ],
+  },
+  {
+    label: 'Maps',
+    url: 'maps',
+    icon: { type: 'logoKibana' },
+    meta: [
+      {
+        text: 'Analyze application',
+        type: 'application',
+      },
+    ],
+    space: 'Hello World',
+  },
+  {
+    label: 'Kibana monitoring with MB',
+    searchableLabel: 'Kibana monitoring with MB; Case no. 00508173',
+    meta: [
+      {
+        text: 'Case',
+        type: 'case',
+      },
+      {
+        text: '00508173',
+      },
+    ],
+  },
+  {
+    label: 'My support tickets',
+    icon: {
+      type: 'help',
+    },
+    meta: [
+      {
+        text: 'Support',
+        type: 'platform',
+      },
+    ],
+  },
+  {
+    label: 'Totally custom',
+    searchableLabel: 'Totally custom with pink metadata',
+    icon: {
+      type: 'alert',
+      color: 'accent',
+    },
+    meta: [
+      {
+        text: 'I have a custom type',
+        type: 'PINK',
+      },
+    ],
+  },
+];
