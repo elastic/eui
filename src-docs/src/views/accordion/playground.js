@@ -3,8 +3,8 @@ import { EuiAccordion, EuiText } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   createOptionalEnum,
+  dummyFunction,
 } from '../../services/playground';
-import * as t from '@babel/types';
 
 export const accordionConfig = () => {
   const docgenInfo = Array.isArray(EuiAccordion.__docgenInfo)
@@ -54,17 +54,7 @@ export const accordionConfig = () => {
         },
       },
       customProps: {
-        onToggle: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onToggle: dummyFunction,
       },
     },
   };
