@@ -41,7 +41,7 @@ export type EuiBreadcrumbResponsiveMaxCount = {
    * Any of the following keys are allowed: `'xs' | 's' | 'm' | 'l' | 'xl'`
    * Omitting a key will display all breadcrumbs at that breakpoint
    */
-  [key in EuiBreakpointSize]?: number
+  [key in EuiBreakpointSize]?: number;
 };
 
 export type EuiBreadcrumb = CommonProps & {
