@@ -57,7 +57,10 @@ import {
   defaultProcessingPlugins,
 } from './plugins/markdown_default_plugins';
 
-type CommonMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
+type CommonMarkdownEditorProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'onChange'
+> &
   CommonProps & {
     /** aria-label OR aria-labelledby must be set */
     'aria-label'?: string;

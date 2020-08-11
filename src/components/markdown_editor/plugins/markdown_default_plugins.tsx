@@ -45,7 +45,22 @@ const unknownHandler: RemarkRehypeHandler = (h, node) => {
   return h(node.position!, node.type, node, all(h, node));
 };
 
-export const getDefaultEuiMarkdownProcessingPlugins = (): PluggableList => [
+interface Remark2RehypeOptions {
+  allowDangerousHtml: boolean;
+  handlers: { [key: string]: RemarkRehypeHandler };
+  [key: string]: any;
+}
+
+interface Rehype2ReactOptions {
+  components: { [key: string]: React.ComponentType<any> };
+  [key: string]: any;
+}
+
+export const getDefaultEuiMarkdownProcessingPlugins = (): [
+  [typeof remark2rehype, Remark2RehypeOptions], // first is well known
+  [typeof rehype2react, Rehype2ReactOptions], // second is well known
+  ...PluggableList // any additional are generic
+] => [
   [
     remark2rehype,
     {
