@@ -49,6 +49,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
       {
         text: 'Dashboard',
         type: 'application',
+        highlightSearchString: true,
       },
     ],
     url: 'welcome-dashboards',
@@ -75,6 +76,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
       {
         text: 'Dashboard',
         type: 'application',
+        highlightSearchString: true,
       },
     ],
   },
@@ -120,6 +122,7 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
       {
         text:
           'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
+        highlightSearchString: true,
       },
     ],
   },
@@ -130,6 +133,7 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
       {
         text: 'Dashboard',
         type: 'application',
+        highlightSearchString: true,
       },
     ],
   },
@@ -232,16 +236,15 @@ export const searchData: EuiSelectableTemplateSitewideSchema[] = [
   },
   {
     label: 'Totally custom',
-    searchableLabel: 'Custom metadata; And a custom search label',
+    searchableLabel: 'Totally custom with pink metadata',
     icon: {
       type: 'alert',
       color: 'accent',
     },
     meta: [
       {
-        text: 'I have no type',
-        fontWeight: 'bold',
-        color: '#FC358E',
+        text: 'I have a custom type',
+        type: 'PINK',
       },
     ],
   },

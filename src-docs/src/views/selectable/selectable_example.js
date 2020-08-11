@@ -14,7 +14,12 @@ import {
   EuiSelectableTemplateSitewide,
 } from '../../../../src/components';
 
-import { EuiSelectableOptionProps, EuiSelectableOptionsList } from './props';
+import {
+  EuiSelectableOptionProps,
+  EuiSelectableOptionsList,
+  Options,
+  MetaData,
+} from './props';
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
@@ -433,7 +438,7 @@ export const SelectableExample = {
           <p />
         </Fragment>
       ),
-      props: { EuiSelectableTemplateSitewide },
+      props: { EuiSelectableTemplateSitewide, Options, MetaData },
       demo: <Search />,
       // snippet: '<EuiSelectableMessage>You have no spice</EuiSelectableMessage>',
     },

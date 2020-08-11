@@ -26,13 +26,10 @@
 }
 
 // Established styles for types of meta
-@each $type, $color in $euiSelectableTemplateSitewideTypes {
+@each $type in map-keys($euiSelectableTemplateSitewideTypes) {
   .euiSelectableTemplateSitewide__optionMeta--#{$type} {
-    font-weight: $euiFontWeightMedium;
-    color: makeHighContrastColor($color);
+    @each $property, $value in map-get($euiSelectableTemplateSitewideTypes, $type) {
+      #{$property}: $value;
+    }
   }
-}
-
-.euiSelectableTemplateSitewide__optionMeta--bold {
-  font-weight: $euiFontWeightMedium;
 }

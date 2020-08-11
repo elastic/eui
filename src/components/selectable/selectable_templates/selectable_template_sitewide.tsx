@@ -36,13 +36,16 @@ import { useEuiI18n, EuiI18n } from '../../i18n';
 import { EuiSelectableMessage } from '../selectable_message';
 import { EuiLoadingSpinner } from '../../loading';
 
-interface MetaData extends CommonProps {
+export interface EuiSelectableTemplateSitewideMetaData extends CommonProps {
   /**
    * Required to display the metadata
    */
   text: string;
   /**
-   * Required to style the metadata appropriately
+   * Styles the metadata according to Elastic's schema.
+   * Can be one of 'application', 'deployment', 'article', 'case', 'platform',
+   * or a custom string to associate with your own schema.
+   * Appends the string to the class name as `euiSelectableTemplateSitewide__optionMeta--[type]`
    */
   type?:
     | 'application'
@@ -52,39 +55,32 @@ interface MetaData extends CommonProps {
     | 'platform'
     | string;
   /**
-   * Override the color provided by the `type`
+   * Will wrap the meta tag in EuiHighlight to mark the portions that match the search text
    */
-  color?: string;
-  /**
-   * Override the font-weight provided by the `type`
-   */
-  fontWeight?: 'normal' | 'bold';
+  highlightSearchString?: boolean;
 }
 
-export type EuiSelectableTemplateSitewideSchema = EuiSelectableOption & {
+export type EuiSelectableTemplateSitewideSchema = {
   /**
-   * Displayed on the left.
-   * Object of `EuiIconProps`
+   * Displayed on the left (`prepend`).
+   * Object of `EuiIconProps` for display of the solution/application's logo
    */
   icon?: EuiIconProps;
   /**
-   * Displayed on the right
-   * Object of `EuiAvatarProps`
+   * Displayed on the right (`append`).
+   * Object of `EuiAvatarProps` for display of the space (default) or user
    */
   avatar?: EuiAvatarProps;
   /**
-   * An array of inline metadata displayed beneath the label and separated by bullets.
-   * Each item requires `text` and a `type`
+   * An array of inline #MetaData displayed beneath the label and separated by bullets.
    */
-  meta?: MetaData[];
-};
+  meta?: EuiSelectableTemplateSitewideMetaData[];
+} & EuiSelectableOption;
 
 export type EuiSelectableTemplateSitewideProps = Partial<EuiSelectableProps> & {
   /**
-   * Extend the typical EuiSelectableLiOption with the addition of
-   * `icon`: Object of `EuiIconProps` for creating the `prepend`;
-   * `avatar`: Object of `EuiAvatarProps` for creating the `append` for Space (default) or User;
-   * `meta`: A list of #MetaData items to be displayed beneath the label and separated by bullets;
+   * Extends the typical EuiSelectable #Options with the addition of pre-composed elements
+   * such as `icon`, `avatar`and `meta`
    */
   options: EuiSelectableTemplateSitewideSchema[];
   /**
@@ -172,6 +168,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
       return {
         key: item.label,
         label: item.label,
+        title: `${item.label}${item.meta &&
+          item.meta.length &&
+          ' • '}${renderOptionMeta(item.meta, '', true)}`,
         ...item,
         className: classNames(
           'euiSelectableTemplateSitewide__listItem',
@@ -180,12 +179,12 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
         prepend: item.icon ? (
           <EuiIcon color="subdued" {...item.icon} size="l" />
         ) : (
-          undefined
+          item.prepend
         ),
         append: item.avatar ? (
           <EuiAvatar type="space" size="s" {...item.avatar} />
         ) : (
-          undefined
+          item.append
         ),
       };
     }
@@ -273,41 +272,48 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   );
 };
 
-// TODO: Any better way to handle Meta types?
 function renderOptionMeta(
-  meta?: MetaData[],
-  searchValue: string = ''
+  meta?: EuiSelectableTemplateSitewideMetaData[],
+  searchValue: string = '',
+  stringsOnly: boolean = false
 ): ReactNode {
   if (!meta || meta.length < 1) return;
-  const metas = meta.map((meta: MetaData) => {
-    // Start with the base and custom classes provided be `fontWeight` or `className`
-    let metaClasses = classNames('euiSelectableTemplateSitewide__optionMeta', [
-      meta.fontWeight
-        ? `euiSelectableTemplateSitewide__optionMeta--${meta.fontWeight}`
-        : undefined,
-      meta.className,
-    ]);
+  const metas: ReactNode = meta.map(
+    (meta: EuiSelectableTemplateSitewideMetaData) => {
+      const { text, highlightSearchString, className, ...rest } = meta;
+      if (stringsOnly) {
+        return ` ${text}`;
+      }
 
-    // If they provide one of the specified types, create the class and append
-    if (meta.type) {
-      metaClasses = classNames(
-        [`euiSelectableTemplateSitewide__optionMeta--${meta.type}`],
-        metaClasses
+      // Start with the base and custom classes
+      let metaClasses = classNames(
+        'euiSelectableTemplateSitewide__optionMeta',
+        className
+      );
+
+      // If they provided a type, create the class and append
+      if (meta.type) {
+        metaClasses = classNames(
+          [`euiSelectableTemplateSitewide__optionMeta--${meta.type}`],
+          metaClasses
+        );
+      }
+
+      return (
+        <EuiHighlight
+          search={highlightSearchString ? searchValue : ''}
+          className={metaClasses}
+          key={text}
+          {...rest}>
+          {text}
+        </EuiHighlight>
       );
     }
+  );
 
-    return (
-      <EuiHighlight
-        search={searchValue}
-        className={metaClasses}
-        key={meta.text}
-        style={{ color: meta.color }}>
-        {meta.text}
-      </EuiHighlight>
-    );
-  });
-
-  return (
+  return stringsOnly ? (
+    metas
+  ) : (
     <span className="euiSelectableTemplateSitewide__optionMetasList">
       {metas}
     </span>

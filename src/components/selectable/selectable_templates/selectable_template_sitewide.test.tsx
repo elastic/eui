@@ -59,11 +59,17 @@ const recents: EuiSelectableTemplateSitewideSchema[] = [
       {
         text: 'personal-databoard',
         type: 'deployment',
+        highlightSearchString: true,
       },
     ],
   },
   {
     label: 'Other metas',
+    searchableLabel: 'Totally custom with pink metadata',
+    icon: {
+      type: 'alert',
+      color: 'accent',
+    },
     meta: [
       {
         text: 'Article',
@@ -77,9 +83,8 @@ const recents: EuiSelectableTemplateSitewideSchema[] = [
         text: 'Text',
       },
       {
-        text: 'I have no type',
-        fontWeight: 'bold',
-        color: '#FC358E',
+        text: 'I have a custom type',
+        type: 'PINK',
       },
     ],
   },
