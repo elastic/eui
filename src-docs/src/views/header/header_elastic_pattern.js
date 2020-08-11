@@ -27,9 +27,9 @@ import {
   EuiShowFor,
   EuiText,
   EuiTitle,
+  EuiSelectableTemplateSitewide,
 } from '../../../../src/components';
-
-import Search from '../selectable/search';
+import { EuiSelectableMessage } from '../../../../src/components/selectable';
 
 export default ({ theme }) => {
   /**
@@ -259,7 +259,26 @@ export default ({ theme }) => {
                 borders: 'none',
               },
               {
-                items: [<Search />],
+                items: [
+                  <EuiSelectableTemplateSitewide
+                    options={[]}
+                    searchProps={{
+                      append: '⌘K',
+                      compressed: true,
+                    }}
+                    emptyMessage={
+                      <EuiSelectableMessage style={{ minHeight: 300 }}>
+                        <p>
+                          Please see the component page for{' '}
+                          <Link to="/forms/selectable">
+                            <strong>EuiSelectableTemplateSitewide</strong>
+                          </Link>{' '}
+                          on how to configure your sitewide search.
+                        </p>
+                      </EuiSelectableMessage>
+                    }
+                  />,
+                ],
                 borders: 'none',
               },
               {

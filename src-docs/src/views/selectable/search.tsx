@@ -89,7 +89,6 @@ export default () => {
       searchProps={{
         append: '⌘K',
         onKeyUpCapture: onKeyUpCapture,
-        compressed: true,
         className: 'customSearchClass',
         inputRef: (ref: HTMLInputElement) => {
           setSearchRef(ref);

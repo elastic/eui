@@ -106,6 +106,11 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     searchProps && searchProps.onFocus && searchProps.onFocus(e);
   };
 
+  const searchOnBlur = (e: any) => {
+    setInputHasFocus(false);
+    searchProps && searchProps.onBlur && searchProps.onBlur(e);
+  };
+
   /**
    * Classes
    */
@@ -128,13 +133,23 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     <EuiSelectableMessage style={{ minHeight: 300 }}>
       <EuiLoadingSpinner size="l" />
       <br />
-      <p>{'Loading results'}</p>
+      <p>
+        <EuiI18n
+          token="euiSelectableTemplateSitewide.loadingResults"
+          default="Loading results"
+        />
+      </p>
     </EuiSelectableMessage>
   );
 
   const emptyMessage = (
     <EuiSelectableMessage style={{ minHeight: 300 }}>
-      <p>{'No results available'}</p>
+      <p>
+        <EuiI18n
+          token="euiSelectableTemplateSitewide.noResults"
+          default="No results available"
+        />
+      </p>
     </EuiSelectableMessage>
   );
 
@@ -149,6 +164,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
         isClearable: true,
         ...searchProps,
         onFocus: searchOnFocus,
+        onBlur: searchOnBlur,
         className: searchClasses,
       }}
       listProps={{
