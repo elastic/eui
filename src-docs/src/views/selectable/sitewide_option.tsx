@@ -15,6 +15,8 @@ export default () => {
     prepend: <EuiAvatar name="B" color="#eee" type="space" size="s" />,
     append: <EuiAvatar name="C" color="#eee" type="space" size="s" />,
     className: 'euiSelectableTemplateSitewide__listItem',
+    role: 'presentation',
+    'aria-selected': undefined,
   };
 
   return (

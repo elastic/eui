@@ -3,10 +3,8 @@ import _ from 'lodash';
 
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
-import {
-  EuiSelectableTemplateSitewide,
-  EuiSelectableTemplateSitewideOptionProps,
-} from '../../../../src/components/selectable';
+import { EuiSelectableTemplateSitewide } from '../../../../src/components/selectable';
+import { EuiSelectableTemplateSitewideOptionProps } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
 import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';

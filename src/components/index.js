@@ -290,9 +290,6 @@ export {
   EuiSelectableMessage,
   EuiSelectableSearch,
   EuiSelectableTemplateSitewide,
-  EuiSelectableTemplateSitewideProps,
-  EuiSelectableTemplateSitewideOptionProps,
-  EuiSelectableTemplateSitewideMetaData,
 } from './selectable';
 
 export { EuiSideNav } from './side_nav';

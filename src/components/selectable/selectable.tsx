@@ -31,6 +31,7 @@ import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
 import { EuiLoadingSpinner } from '../loading';
+import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
 import { EuiI18n } from '../i18n';
@@ -418,9 +419,9 @@ export class EuiSelectable extends Component<
     if (isLoading) {
       if (loadingMessage === undefined || typeof loadingMessage === 'string') {
         messageContent = (
-          <EuiSelectableMessage id={messageContentId}>
+          <>
             <EuiLoadingSpinner size="m" />
-            <br />
+            <EuiSpacer size="xs" />
             <p>
               {loadingMessage || (
                 <EuiI18n
@@ -429,7 +430,7 @@ export class EuiSelectable extends Component<
                 />
               )}
             </p>
-          </EuiSelectableMessage>
+          </>
         );
       } else {
         messageContent = React.cloneElement(loadingMessage, {
@@ -443,17 +444,15 @@ export class EuiSelectable extends Component<
         typeof noMatchesMessage === 'string'
       ) {
         messageContent = (
-          <EuiSelectableMessage id={messageContentId}>
-            <p>
-              {noMatchesMessage || (
-                <EuiI18n
-                  token="euiSelectable.noMatchingOptions"
-                  default="{searchValue} doesn't match any options"
-                  values={{ searchValue: <strong>{searchValue}</strong> }}
-                />
-              )}
-            </p>
-          </EuiSelectableMessage>
+          <p>
+            {noMatchesMessage || (
+              <EuiI18n
+                token="euiSelectable.noMatchingOptions"
+                default="{searchValue} doesn't match any options"
+                values={{ searchValue: <strong>{searchValue}</strong> }}
+              />
+            )}
+          </p>
         );
       } else {
         messageContent = React.cloneElement(noMatchesMessage, {
@@ -464,16 +463,14 @@ export class EuiSelectable extends Component<
     } else if (!options.length) {
       if (emptyMessage === undefined || typeof emptyMessage === 'string') {
         messageContent = (
-          <EuiSelectableMessage id={messageContentId}>
-            <p>
-              {emptyMessage || (
-                <EuiI18n
-                  token="euiSelectable.noAvailableOptions"
-                  default="No options available"
-                />
-              )}
-            </p>
-          </EuiSelectableMessage>
+          <p>
+            {emptyMessage || (
+              <EuiI18n
+                token="euiSelectable.noAvailableOptions"
+                default="No options available"
+              />
+            )}
+          </p>
         );
       } else {
         messageContent = React.cloneElement(emptyMessage, {
