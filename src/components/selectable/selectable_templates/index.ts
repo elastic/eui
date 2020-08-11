@@ -20,6 +20,11 @@
 export {
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideProps,
-  EuiSelectableTemplateSitewideSchema,
-  EuiSelectableTemplateSitewideMetaData,
 } from './selectable_template_sitewide';
+
+export {
+  EuiSelectableTemplateSitewideOptionProps,
+  EuiSelectableTemplateSitewideMetaData,
+  euiSelectableTemplateSitewideFormatOptions,
+  euiSelectableTemplateSitewideRenderOptions,
+} from './selectable_template_sitewide_option';

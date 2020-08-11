@@ -5,9 +5,9 @@ import {
 } from '../../../../src/components/selectable';
 
 import {
-  EuiSelectableTemplateSitewideSchema,
+  EuiSelectableTemplateSitewideOptionProps,
   EuiSelectableTemplateSitewideMetaData,
-} from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide';
+} from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 
 export const EuiSelectableOptionProps: FunctionComponent<EuiSelectableOption> = () => (
   <div />
@@ -17,7 +17,7 @@ export const EuiSelectableOptionsList: FunctionComponent<EuiSelectableOptionsLis
   <div />
 );
 
-export const Options: FunctionComponent<EuiSelectableTemplateSitewideSchema> = () => (
+export const Options: FunctionComponent<EuiSelectableTemplateSitewideOptionProps> = () => (
   <div />
 );
 

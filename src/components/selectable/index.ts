@@ -29,6 +29,6 @@ export { EuiSelectableSearch } from './selectable_search';
 export {
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideProps,
-  EuiSelectableTemplateSitewideSchema,
+  EuiSelectableTemplateSitewideOptionProps,
   EuiSelectableTemplateSitewideMetaData,
 } from './selectable_templates';

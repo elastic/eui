@@ -17,12 +17,13 @@
  * under the License.
  */
 
-import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
-import { EuiSelectableTemplateSitewideOptionProps } from './selectable_template_sitewide_option';
+import {
+  EuiSelectableTemplateSitewideOptionProps,
+  euiSelectableTemplateSitewideFormatOptions,
+  euiSelectableTemplateSitewideRenderOptions,
+} from './selectable_template_sitewide_option';
 
 const options: EuiSelectableTemplateSitewideOptionProps[] = [
   {
@@ -84,49 +85,26 @@ const options: EuiSelectableTemplateSitewideOptionProps[] = [
   },
 ];
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
+describe('EuiSelectableTemplateSitewideOptions', () => {
+  const formattedOptions = euiSelectableTemplateSitewideFormatOptions(options);
 
-describe('EuiSelectableTemplateSitewide', () => {
-  test('is rendered', () => {
-    const component = render(
-      <EuiSelectableTemplateSitewide options={options} {...requiredProps} />
-    );
-
-    expect(component).toMatchSnapshot();
+  test('different configurations are formatted with euiSelectableTemplateSitewideFormatOptions()', () => {
+    expect(formattedOptions).toMatchSnapshot();
   });
 
-  describe('props', () => {
-    test('popoverProps is rendered', () => {
-      const component = render(
-        <EuiSelectableTemplateSitewide
-          options={options}
-          popoverProps={{ className: 'customPopoverClass' }}
-        />
-      );
+  test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions()', () => {
+    options.forEach(option => {
+      const component = euiSelectableTemplateSitewideRenderOptions(option, '');
 
       expect(component).toMatchSnapshot();
     });
+  });
 
-    test('popoverTitle is rendered', () => {
-      const component = render(
-        <EuiSelectableTemplateSitewide
-          options={options}
-          popoverTitle={<>Title</>}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('popoverFooter is rendered', () => {
-      const component = render(
-        <EuiSelectableTemplateSitewide
-          options={options}
-          popoverFooter={<>Footer</>}
-        />
+  test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text', () => {
+    options.forEach(option => {
+      const component = euiSelectableTemplateSitewideRenderOptions(
+        option,
+        'data'
       );
 
       expect(component).toMatchSnapshot();

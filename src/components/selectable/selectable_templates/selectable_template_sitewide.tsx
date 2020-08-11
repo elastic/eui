@@ -24,65 +24,24 @@ import React, {
   CSSProperties,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../..//common';
-import { EuiAvatarProps, EuiAvatar } from '../../avatar/avatar';
-import { EuiIconProps, EuiIcon } from '../../icon';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
-import { EuiSelectableOption } from '../selectable_option';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
-import { EuiHighlight } from '../../highlight';
 import { useEuiI18n, EuiI18n } from '../../i18n';
 import { EuiSelectableMessage } from '../selectable_message';
 import { EuiLoadingSpinner } from '../../loading';
-
-export interface EuiSelectableTemplateSitewideMetaData extends CommonProps {
-  /**
-   * Required to display the metadata
-   */
-  text: string;
-  /**
-   * Styles the metadata according to Elastic's schema.
-   * Can be one of 'application', 'deployment', 'article', 'case', 'platform',
-   * or a custom string to associate with your own schema.
-   * Appends the string to the class name as `euiSelectableTemplateSitewide__optionMeta--[type]`
-   */
-  type?:
-    | 'application'
-    | 'deployment'
-    | 'article'
-    | 'case'
-    | 'platform'
-    | string;
-  /**
-   * Will wrap the meta tag in EuiHighlight to mark the portions that match the search text
-   */
-  highlightSearchString?: boolean;
-}
-
-export type EuiSelectableTemplateSitewideSchema = {
-  /**
-   * Displayed on the left (`prepend`).
-   * Object of `EuiIconProps` for display of the solution/application's logo
-   */
-  icon?: EuiIconProps;
-  /**
-   * Displayed on the right (`append`).
-   * Object of `EuiAvatarProps` for display of the space (default) or user
-   */
-  avatar?: EuiAvatarProps;
-  /**
-   * An array of inline #MetaData displayed beneath the label and separated by bullets.
-   */
-  meta?: EuiSelectableTemplateSitewideMetaData[];
-} & EuiSelectableOption;
+import {
+  EuiSelectableTemplateSitewideOptionProps,
+  euiSelectableTemplateSitewideFormatOptions,
+  euiSelectableTemplateSitewideRenderOptions,
+} from './selectable_template_sitewide_option';
 
 export type EuiSelectableTemplateSitewideProps = Partial<EuiSelectableProps> & {
   /**
    * Extends the typical EuiSelectable #Options with the addition of pre-composed elements
    * such as `icon`, `avatar`and `meta`
    */
-  options: EuiSelectableTemplateSitewideSchema[];
+  options: EuiSelectableTemplateSitewideOptionProps[];
   /**
    * Override some of the EuiPopover props housing the list.
    * The default width is `600`
@@ -161,47 +120,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   );
 
   /**
-   * List option renderer
+   * List options
    */
-  const formattedOptions = options.map(
-    (item: EuiSelectableTemplateSitewideSchema) => {
-      return {
-        key: item.label,
-        label: item.label,
-        title: `${item.label}${item.meta &&
-          item.meta.length &&
-          ' • '}${renderOptionMeta(item.meta, '', true)}`,
-        ...item,
-        className: classNames(
-          'euiSelectableTemplateSitewide__listItem',
-          item.className
-        ),
-        prepend: item.icon ? (
-          <EuiIcon color="subdued" {...item.icon} size="l" />
-        ) : (
-          item.prepend
-        ),
-        append: item.avatar ? (
-          <EuiAvatar type="space" size="s" {...item.avatar} />
-        ) : (
-          item.append
-        ),
-      };
-    }
-  );
-
-  const renderOption = (option: EuiSelectableOption, searchValue: string) => {
-    return (
-      <>
-        <EuiHighlight
-          className="euiSelectableTemplateSitewide__listItemTitle"
-          search={searchValue}>
-          {option.label}
-        </EuiHighlight>
-        {renderOptionMeta(option.meta, searchValue)}
-      </>
-    );
-  };
+  const formattedOptions = euiSelectableTemplateSitewideFormatOptions(options);
 
   const loadingMessage = (
     <EuiSelectableMessage style={{ minHeight: 300 }}>
@@ -221,7 +142,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     <EuiSelectable
       isLoading={isLoading}
       options={formattedOptions}
-      renderOption={renderOption}
+      renderOption={euiSelectableTemplateSitewideRenderOptions}
       singleSelection={true}
       searchProps={{
         placeholder: searchPlaceholder,
@@ -271,51 +192,3 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     </EuiSelectable>
   );
 };
-
-function renderOptionMeta(
-  meta?: EuiSelectableTemplateSitewideMetaData[],
-  searchValue: string = '',
-  stringsOnly: boolean = false
-): ReactNode {
-  if (!meta || meta.length < 1) return;
-  const metas: ReactNode = meta.map(
-    (meta: EuiSelectableTemplateSitewideMetaData) => {
-      const { text, highlightSearchString, className, ...rest } = meta;
-      if (stringsOnly) {
-        return ` ${text}`;
-      }
-
-      // Start with the base and custom classes
-      let metaClasses = classNames(
-        'euiSelectableTemplateSitewide__optionMeta',
-        className
-      );
-
-      // If they provided a type, create the class and append
-      if (meta.type) {
-        metaClasses = classNames(
-          [`euiSelectableTemplateSitewide__optionMeta--${meta.type}`],
-          metaClasses
-        );
-      }
-
-      return (
-        <EuiHighlight
-          search={highlightSearchString ? searchValue : ''}
-          className={metaClasses}
-          key={text}
-          {...rest}>
-          {text}
-        </EuiHighlight>
-      );
-    }
-  );
-
-  return stringsOnly ? (
-    metas
-  ) : (
-    <span className="euiSelectableTemplateSitewide__optionMetasList">
-      {metas}
-    </span>
-  );
-}

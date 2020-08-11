@@ -49,6 +49,7 @@ import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
 const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
+import SearchOption from './sitewide_option';
 import Search from './search';
 import { EuiCallOut } from '../../../../src/components/call_out';
 const searchSource = require('!!raw-loader!./search');
@@ -435,12 +436,17 @@ export const SelectableExample = {
       ],
       text: (
         <Fragment>
-          <p />
+          <p>
+            <strong>EuiSelectableTemplateSitewide</strong> is an opinionated
+            wrapper around <strong>EuiSelectable</strong> to provide a reusable
+            template across the Elastic products that will share the same global
+            search capabilities.
+          </p>
+          <SearchOption />
         </Fragment>
       ),
       props: { EuiSelectableTemplateSitewide, Options, MetaData },
       demo: <Search />,
-      // snippet: '<EuiSelectableMessage>You have no spice</EuiSelectableMessage>',
     },
   ],
 };

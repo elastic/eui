@@ -1,5 +1,5 @@
 import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';
-import { EuiSelectableTemplateSitewideSchema } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide';
+import { EuiSelectableTemplateSitewideOptionProps } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 
 export const Options: EuiSelectableOption[] = [
   {
@@ -39,7 +39,7 @@ export const Options: EuiSelectableOption[] = [
   },
 ];
 
-export const recents: EuiSelectableTemplateSitewideSchema[] = [
+export const recents: EuiSelectableTemplateSitewideOptionProps[] = [
   {
     label: 'Welcome dashboards',
     avatar: {
@@ -103,7 +103,7 @@ export const recents: EuiSelectableTemplateSitewideSchema[] = [
   },
 ];
 
-export const searchData: EuiSelectableTemplateSitewideSchema[] = [
+export const searchData: EuiSelectableTemplateSitewideOptionProps[] = [
   {
     label: 'Dashboards',
     url: 'dashboards',
