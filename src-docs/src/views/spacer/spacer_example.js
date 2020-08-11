@@ -7,6 +7,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSpacer } from '../../../../src/components';
 
+import { spacerConfig } from './playground';
+
 import Spacer from './spacer';
 const spacerSource = require('!!raw-loader!./spacer');
 const spacerHtml = renderToHtml(Spacer);
@@ -48,4 +50,5 @@ export const SpacerExample = {
       ),
     },
   ],
+  playground: spacerConfig,
 };

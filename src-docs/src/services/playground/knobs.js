@@ -296,6 +296,22 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           );
         }
 
+        let defaultValueMarkup;
+
+        if (
+          state[name].custom &&
+          state[name].custom.origin &&
+          state[name].custom.origin.defaultValue
+        ) {
+          defaultValueMarkup = (
+            <EuiCode key={`defaultValue-${name}`}>
+              <span className="eui-textBreakNormal">
+                {state[name].custom.origin.defaultValue.value}
+              </span>
+            </EuiCode>
+          );
+        }
+
         return (
           <EuiTableRow key={name}>
             <EuiTableRowCell
@@ -320,11 +336,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
               key={`default__${name}-${idx}`}
               header="Default"
               className="playgroundKnobs__rowCell">
-              <EuiCode key={`defaultValue-${name}`}>
-                <span className="eui-textBreakNormal">
-                  {state[name].defaultValue}
-                </span>
-              </EuiCode>
+              {defaultValueMarkup}
             </EuiTableRowCell>
             <EuiTableRowCell
               key={`modify__${name}-${idx}`}

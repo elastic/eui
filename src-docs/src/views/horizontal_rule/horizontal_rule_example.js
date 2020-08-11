@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiHorizontalRule } from '../../../../src/components';
 
+import { horizontalRuleConfig } from './playground';
+
 import HorizontalRule from './horizontal_rule';
 const horizontalRuleSource = require('!!raw-loader!./horizontal_rule');
 const horizontalRuleHtml = renderToHtml(HorizontalRule);
@@ -64,4 +66,5 @@ export const HorizontalRuleExample = {
       demo: <HorizontalRuleMargin />,
     },
   ],
+  playground: horizontalRuleConfig,
 };

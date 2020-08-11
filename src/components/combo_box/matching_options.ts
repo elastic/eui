@@ -87,7 +87,8 @@ export const getMatchingOptions = <T>(
   selectedOptions: Array<EuiComboBoxOptionOption<T>>,
   searchValue: string,
   isPreFiltered: boolean,
-  showPrevSelected: boolean
+  showPrevSelected: boolean,
+  sortMatchesBy: string
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
@@ -122,5 +123,22 @@ export const getMatchingOptions = <T>(
       );
     }
   });
+
+  if (sortMatchesBy === 'startsWith') {
+    const refObj: {
+      startWith: Array<EuiComboBoxOptionOption<T>>;
+      others: Array<EuiComboBoxOptionOption<T>>;
+    } = { startWith: [], others: [] };
+
+    matchingOptions.forEach(object => {
+      if (object.label.toLowerCase().startsWith(normalizedSearchValue)) {
+        refObj.startWith.push(object);
+      } else {
+        refObj.others.push(object);
+      }
+    });
+    return [...refObj.startWith, ...refObj.others];
+  }
+
   return matchingOptions;
 };

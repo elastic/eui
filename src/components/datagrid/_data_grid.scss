@@ -21,6 +21,10 @@
     background: $euiColorLightestShade;
     border-top: $euiBorderThin;
   }
+
+  .euiDataGrid__verticalScroll .euiDataGridRow {
+    will-change: transform;
+  }
 }
 
 .euiDataGrid__content {

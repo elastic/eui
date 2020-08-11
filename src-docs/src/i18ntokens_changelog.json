@@ -1,5 +1,20 @@
 [
   {
+    "version": "27.3.0",
+    "changes": [
+      {
+        "token": "euiComboBoxOptionsList.createCustomOption",
+        "changeType": "modified",
+        "value": "Add {searchValue} as a custom option"
+      },
+      {
+        "token": "euiComboBoxOptionsList.delimiterMessage",
+        "changeType": "modified",
+        "value": "Add each item separated by {delimiter}"
+      }
+    ]
+  },
+  {
     "version": "27.2.0",
     "changes": [
       {

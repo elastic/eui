@@ -11,6 +11,7 @@ import {
   EuiComment,
   EuiCommentList,
 } from '../../../../src/components';
+import commentConfig from './playground';
 
 import Comment from './comment';
 const commentSource = require('!!raw-loader!./comment');
@@ -252,4 +253,5 @@ export const CommentListExample = {
       demo: <CommentActions />,
     },
   ],
+  playground: commentConfig,
 };

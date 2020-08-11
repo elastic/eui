@@ -114,17 +114,26 @@ export class EuiCodeEditor extends Component<
     }
   };
 
+  onEscToExit = () => {
+    this.stopEditing();
+    if (this.editorHint) {
+      this.editorHint.focus();
+    }
+  };
+
   onKeydownAce = (event: KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
-      // If the autocompletion context menu is open then we want to let ESCAPE close it but
-      // **not** exit out of editing mode.
-      if (this.aceEditor !== null && !this.aceEditor.editor.completer) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.stopEditing();
-        if (this.editorHint) {
-          this.editorHint.focus();
-        }
+      event.preventDefault();
+      event.stopPropagation();
+      // Handles exiting edit mode when `isReadOnly` is set.
+      // Other 'esc' cases handled by `stopEditingOnEsc` command.
+      // Would run after `stopEditingOnEsc`.
+      if (
+        this.aceEditor !== null &&
+        !this.aceEditor.editor.completer &&
+        this.state.isEditing
+      ) {
+        this.onEscToExit();
       }
     }
   };
@@ -210,13 +219,14 @@ export class EuiCodeEditor extends Component<
     const {
       width,
       height,
-      onBlur, // eslint-disable-line no-unused-vars
+      onBlur,
       isReadOnly,
       setOptions,
       cursorStart,
       mode = DEFAULT_MODE,
       'data-test-subj': dataTestSubj = 'codeEditorContainer',
       theme = DEFAULT_THEME,
+      commands = [],
       ...rest
     } = this.props;
 
@@ -230,7 +240,7 @@ export class EuiCodeEditor extends Component<
 
     let filteredCursorStart;
 
-    const options = { ...setOptions };
+    const options: IAceEditorProps['setOptions'] = { ...setOptions };
 
     if (isReadOnly) {
       // Put the cursor at the beginning of the editor, so that it doesn't look like
@@ -312,6 +322,16 @@ export class EuiCodeEditor extends Component<
             $blockScrolling: Infinity,
           }}
           cursorStart={filteredCursorStart}
+          commands={[
+            // Handles exiting edit mode in all cases except `isReadOnly`
+            // Runs before `onKeydownAce`.
+            {
+              name: 'stopEditingOnEsc',
+              bindKey: { win: 'Esc', mac: 'Esc' },
+              exec: this.onEscToExit,
+            },
+            ...commands,
+          ]}
           {...rest}
         />
       </div>
