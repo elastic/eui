@@ -16,6 +16,6 @@ interface EuiOverlayMaskInterface extends CommonProps {
   headerZindexLocation?: 'above' | 'below';
 }
 
-export const EuiOverlayMaskProps: FunctionComponent<
-  EuiOverlayMaskInterface
-> = () => <div />;
+export const EuiOverlayMaskProps: FunctionComponent<EuiOverlayMaskInterface> = () => (
+  <div />
+);
