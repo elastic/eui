@@ -217,12 +217,23 @@ function filterProp(
     return true;
   }
 
+  // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
+  // in the interace in that case replace it with "string | number"
+  if (prop.type.name === 'ReactText') {
+    prop.type.name = 'string | number';
+  }
+
+  // if prop.type is ReactElement it will be expanded to show all the  supported
+  // react element types that makes the list too long in this case we could show
+  // it as ReactElement
   prop.type.name = prop.type.name.replace(
     reactElementTypeExpanded,
     'ReactElement'
   );
   prop.type.name = prop.type.name.replace(reactNodeTypeExpanded, 'ReactNode');
 
+  // prop.type is key of HTMLElement then all the html attributes will be shown
+  // in that case we could only show it as any HTML Elements
   if (prop.type.name === 'enum') {
     const propValueArray = prop.type.value.map(type => type.value);
     const found = intrinsicValuesRaw.every(
