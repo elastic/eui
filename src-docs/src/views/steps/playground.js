@@ -12,10 +12,6 @@ export const stepConfig = () => {
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.title.value = 'Step';
-  propsToUse.titleSize = {
-    ...propsToUse.titleSize,
-    type: PropTypes.String,
-  };
 
   propsToUse.status = createOptionalEnum(propsToUse.status);
 
