@@ -20,6 +20,7 @@
 import React, {
   FunctionComponent,
   useState,
+  useMemo,
   Fragment,
   ReactChild,
 } from 'react';
@@ -67,14 +68,32 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
 
   let uploadButton;
 
+  const supportedFileTypes = useMemo(
+    () =>
+      dropHandlers
+        .map(({ supportedFiles }) => supportedFiles.join(', '))
+        .sort()
+        .join(', '),
+    [dropHandlers]
+  );
+
   const ariaLabels = {
     uploadingFiles: useEuiI18n(
       'euiMarkdownEditorFooter.uploadingFiles',
-      'Uploading files'
+      'Click to upload files'
     ),
     openUploadModal: useEuiI18n(
       'euiMarkdownEditorFooter.openUploadModal',
       'Open upload files modal'
+    ),
+    unsupportedFileType: useEuiI18n(
+      'euiMarkdownEditorFooter.unsupportedFileType',
+      'File type not supported'
+    ),
+    supportedFileTypes: useEuiI18n(
+      'euiMarkdownEditorFooter.supportedFileTypes',
+      'Supported files: {supportedFileTypes}',
+      { supportedFileTypes }
     ),
     showSyntaxErrors: useEuiI18n(
       'euiMarkdownEditorFooter.showSyntaxErrors',
@@ -95,23 +114,16 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
     );
   } else if (dropHandlers.length > 0 && hasUnacceptedItems) {
     uploadButton = (
-      <EuiToolTip
-        content={`Supported files: ${dropHandlers
-          .map(({ supportedFiles }) => supportedFiles.join(', '))
-          .sort()
-          .join(', ')}`}>
+      <EuiToolTip content={ariaLabels.supportedFileTypes}>
         <EuiButtonEmpty
           className="euiMarkdownEditorFooter__uploadError"
           autoFocus
           size="xs"
           iconType="paperClip"
           color="danger"
-          aria-label={ariaLabels.openUploadModal}
+          aria-label={`${ariaLabels.unsupportedFileType}. ${ariaLabels.supportedFileTypes}. ${ariaLabels.uploadingFiles}`}
           onClick={openFiles}>
-          <EuiI18n
-            token="euiMarkdownEditorFooter.unsupportedFileType"
-            default="File type not supported"
-          />
+          {ariaLabels.unsupportedFileType}
         </EuiButtonEmpty>
       </EuiToolTip>
     );
