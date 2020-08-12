@@ -948,7 +948,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 <DataGridContext.Provider value={datagridContext}>
                   <EuiFocusTrap
                     disabled={!isFullScreen}
-                    style={{ height: '100%' }}>
+                    className="euiDataGrid__focusWrap">
                     <div
                       className={classes}
                       onKeyDown={handleGridKeyDown}
