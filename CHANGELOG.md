@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `28.0.0`.
+
+## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
+
 - Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))
 - Added icons for `appSearchApp` and `workplaceSearchApp` to `EuiIcon` ([#3859](https://github.com/elastic/eui/pull/3859))
 - Added `unlink` glyph to `EuiIcon` ([#3869](https://github.com/elastic/eui/pull/3869))
