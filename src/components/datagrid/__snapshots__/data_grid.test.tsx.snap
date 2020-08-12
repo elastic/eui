@@ -177,6 +177,7 @@ Array [
     tabindex="-1"
   />,
   <div
+    class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -714,6 +715,7 @@ Array [
     tabindex="-1"
   />,
   <div
+    class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -1575,6 +1577,7 @@ Array [
     tabindex="-1"
   />,
   <div
+    class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -2111,6 +2114,7 @@ Array [
     tabindex="-1"
   />,
   <div
+    class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
