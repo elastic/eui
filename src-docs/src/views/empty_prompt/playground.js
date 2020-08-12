@@ -14,7 +14,6 @@ export default () => {
   //   propsToUse.titleSize={... propsToUse.titleSizevalue : 'l'};
   propsToUse.title = {
     ...propsToUse.title,
-    // value: 'You have no spice',
     value: '<>You have no spice</>',
     type: PropTypes.ReactNode,
   };
