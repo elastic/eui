@@ -495,7 +495,6 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
         <span
           class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
         />
-         
         <span>
           Loading
         </span>
@@ -549,7 +548,6 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
         <span
           class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
         />
-         
         <span>
           Please wait
         </span>

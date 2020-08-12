@@ -226,7 +226,7 @@ export class EuiAccordion extends Component<
     if (isLoading) {
       childrenContent = (
         <>
-          <EuiLoadingSpinner className="euiAccordion__spinner" />{' '}
+          <EuiLoadingSpinner className="euiAccordion__spinner" />
           <span>
             {isLoadingMessage ? (
               isLoadingMessage
