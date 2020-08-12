@@ -171,7 +171,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
   }
 
   return (
-    <footer className="euiMarkdownEditorFooter">
+    <div className="euiMarkdownEditorFooter">
       <div className="euiMarkdownEditorFooter__actions">
         {uploadButton}
         {errorsButton}
@@ -242,6 +242,6 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
           </EuiModal>
         </EuiOverlayMask>
       )}
-    </footer>
+    </div>
   );
 };
