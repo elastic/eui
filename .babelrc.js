@@ -23,6 +23,7 @@ module.exports = {
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
+    "./scripts/babel/proptypes-from-ts-props",
     "./scripts/babel/react-docgen-typescript",
     "add-module-exports",
     // stage 3
