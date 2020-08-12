@@ -1,7 +1,9 @@
 import { PropTypes } from 'react-view';
 import { EuiPagination, EuiText } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
-import * as t from '@babel/types';
+import {
+  propUtilityForPlayground,
+  dummyFunction,
+} from '../../services/playground';
 
 export const paginationConfig = () => {
   const docgenInfo = Array.isArray(EuiPagination.__docgenInfo)
@@ -34,17 +36,7 @@ export const paginationConfig = () => {
         },
       },
       customProps: {
-        onPageClick: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onPageClick: dummyFunction,
       },
     },
   };
