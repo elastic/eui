@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 
-const allOptions = [
+const allOptionsStatic = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -38,6 +38,7 @@ const allOptions = [
 ];
 
 export default () => {
+  const [allOptions, setAllOptions] = useState(allOptionsStatic);
   const [selectedOptions, setSelected] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
@@ -82,12 +83,12 @@ export default () => {
       ) === -1
     ) {
       // Simulate creating this option on the server.
-      allOptions.push(newOption);
+      setAllOptions([...allOptions, newOption]);
       setOptions([...options, newOption]);
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    setSelected(prevSelected => [...prevSelected, newOption]);
   };
 
   useEffect(() => {

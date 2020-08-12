@@ -12,6 +12,8 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import { accordionConfig } from './playground';
+
 import Accordion from './accordion';
 const accordionSource = require('!!raw-loader!./accordion');
 const accordionHtml = renderToHtml(Accordion);
@@ -390,4 +392,5 @@ export const AccordionExample = {
       demo: <AccordionIsLoading />,
     },
   ],
+  playground: accordionConfig,
 };
