@@ -11,7 +11,6 @@ export default () => {
     : EuiEmptyPrompt.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  //   propsToUse.titleSize={... propsToUse.titleSizevalue : 'l'};
   propsToUse.title = {
     ...propsToUse.title,
     value: '<>You have no spice</>',
