@@ -11,12 +11,17 @@
     display: block;
   }
 
+  // Storing for re-use the sizing of controls plus extra padding
+  $controlsPadding: $euiSizeL + $euiSizeXS;
+
   .euiCodeBlock__pre--whiteSpacePre {
     white-space: pre;
+    margin-right: $controlsPadding;
   }
 
   .euiCodeBlock__pre--whiteSpacePreWrap {
     white-space: pre-wrap;
+    padding-right: $controlsPadding;
   }
 
   .euiCodeBlock__code {
@@ -66,9 +71,6 @@
   &.euiCodeBlock--fontLarge {
     font-size: $euiFontSize;
   }
-
-  // Storing for re-use the sizing of controls plus extra padding
-  $controlsPadding: $euiSizeL + $euiSizeXS;
 
   // Small padding
   &.euiCodeBlock--paddingSmall {
