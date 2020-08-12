@@ -19,7 +19,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require('path');
-const { transform } = require('@babel/core');
+const core = require('@babel/core');
 const babelOptions = {
   babelrc: false,
   presets: ['@babel/typescript'],
@@ -27,6 +27,12 @@ const babelOptions = {
   filename: 'somefile.tsx',
 };
 const babelPlugin = require('./index');
+
+const transform = (input: string, options: object) => {
+  const result = core.transform(input, options);
+  result.code = result.code.replace(/[\r\n]+/g, '\n')
+  return result;
+}
 
 beforeEach(() => babelPlugin.clearImportCache());
 
