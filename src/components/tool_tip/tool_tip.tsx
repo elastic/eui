@@ -244,9 +244,11 @@ export class EuiToolTip extends Component<Props, State> {
 
   hideToolTip = () => {
     this.clearAnimationTimeout();
-    if (this._isMounted) {
-      enqueueStateChange(() => this.setState({ visible: false }));
-    }
+    enqueueStateChange(() => {
+      if (this._isMounted) {
+        this.setState({ visible: false });
+      }
+    });
   };
 
   hasFocusMouseMoveListener = () => {

@@ -4,8 +4,8 @@ import {
   propUtilityForPlayground,
   iconValidator,
   createOptionalEnum,
+  dummyFunction,
 } from '../../services/playground';
-import * as t from '@babel/types';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiToast.__docgenInfo)
@@ -47,17 +47,7 @@ export default () => {
         },
       },
       customProps: {
-        onClose: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onClose: dummyFunction,
       },
     },
   };
