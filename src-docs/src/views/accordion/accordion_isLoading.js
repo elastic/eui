@@ -8,8 +8,7 @@ export default () => (
     buttonContent="Click to open"
     extraAction={<EuiButton size="s">Extra action!</EuiButton>}
     isLoading
-    isLoadingMessage="Loading, please wait"
-    paddingSize="l">
+    isLoadingMessage="Loading, please wait">
     <div>Opened content.</div>
   </EuiAccordion>
 );

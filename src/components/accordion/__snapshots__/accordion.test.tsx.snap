@@ -476,6 +476,13 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
         class="euiIEFlexWrapFix"
       />
     </button>
+    <div
+      class="euiAccordion__optionalAction"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium"
+      />
+    </div>
   </div>
   <div
     class="euiAccordion__childWrapper"
@@ -483,11 +490,15 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
   >
     <div>
       <div
-        class=""
+        class="euiAccordion__children-isLoading"
       >
         <span
-          class="euiLoadingSpinner euiLoadingSpinner--medium"
+          class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
         />
+         
+        <span>
+          Loading
+        </span>
       </div>
     </div>
   </div>
@@ -519,6 +530,13 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
         class="euiIEFlexWrapFix"
       />
     </button>
+    <div
+      class="euiAccordion__optionalAction"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium"
+      />
+    </div>
   </div>
   <div
     class="euiAccordion__childWrapper"
@@ -526,10 +544,10 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
   >
     <div>
       <div
-        class=""
+        class="euiAccordion__children-isLoading"
       >
         <span
-          class="euiLoadingSpinner euiLoadingSpinner--medium"
+          class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
         />
          
         <span>

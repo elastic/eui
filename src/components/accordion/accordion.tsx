@@ -25,6 +25,7 @@ import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
+import { EuiI18n } from '../i18n';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -182,6 +183,10 @@ export class EuiAccordion extends Component<
       ? classNames(paddingSizeToClassNameMap[paddingSize])
       : undefined;
 
+    const childrenClasses = classNames(paddingClass, {
+      'euiAccordion__children-isLoading': isLoading,
+    });
+
     const buttonClasses = classNames(
       'euiAccordion__button',
       {
@@ -205,25 +210,32 @@ export class EuiAccordion extends Component<
 
     let optionalAction = null;
 
-    if (extraAction) {
+    if (extraAction && !isLoading) {
+      optionalAction = (
+        <div className="euiAccordion__optionalAction">{extraAction}</div>
+      );
+    } else if (isLoading) {
       optionalAction = (
         <div className="euiAccordion__optionalAction">
-          {isLoading ? <EuiLoadingSpinner /> : extraAction}
+          <EuiLoadingSpinner />
         </div>
       );
     }
 
     let childrenContent: any;
     if (isLoading) {
-      if (isLoadingMessage) {
-        childrenContent = (
-          <>
-            <EuiLoadingSpinner /> <span>{isLoadingMessage}</span>
-          </>
-        );
-      } else {
-        childrenContent = <EuiLoadingSpinner />;
-      }
+      childrenContent = (
+        <>
+          <EuiLoadingSpinner className="euiAccordion__spinner" />{' '}
+          <span>
+            {isLoadingMessage ? (
+              isLoadingMessage
+            ) : (
+              <EuiI18n token="euiAccordion.isLoading" default="Loading" />
+            )}
+          </span>
+        </>
+      );
     } else {
       childrenContent = children;
     }
@@ -262,7 +274,7 @@ export class EuiAccordion extends Component<
                   this.setChildContentRef(ref);
                   resizeRef(ref);
                 }}>
-                <div className={paddingClass}>{childrenContent}</div>
+                <div className={childrenClasses}>{childrenContent}</div>
               </div>
             )}
           </EuiResizeObserver>
