@@ -106,7 +106,9 @@ const chartDemoPlugin = {
                     { value: 5, text: 'green' },
                   ]}
                   value={palette}
-                  onChange={e => setPalette(parseInt(e.target.value, 10))}
+                  onChange={e =>
+                    setPalette(parseInt(e.currentTarget.value, 10))
+                  }
                 />
               </EuiFormRow>
 
@@ -118,7 +120,7 @@ const chartDemoPlugin = {
                   step={10}
                   showValue
                   valueAppend="px"
-                  onChange={e => setHeight(parseInt(e.target.value, 10))}
+                  onChange={e => setHeight(parseInt(e.currentTarget.value, 10))}
                 />
               </EuiFormRow>
             </EuiForm>

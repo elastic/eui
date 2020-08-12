@@ -31,4 +31,5 @@ export {
   EuiMarkdownFormatting,
   EuiMarkdownEditorUiPlugin,
   RemarkRehypeHandler,
+  RemarkTokenizer,
 } from './markdown_types';

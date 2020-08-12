@@ -55,14 +55,14 @@ export interface RemarkRehypeHandler {
   (h: RemarkRehypeHandlerCallback, node: UnistNode): RehypeNode;
 }
 
-export interface EuiMarkdownEditorUiPluginEditorProps {
-  node?: object | null;
+export interface EuiMarkdownEditorUiPluginEditorProps<NodeShape> {
+  node: NodeShape | null;
   onCancel: () => void;
   onSave: (markdown: string, config: EuiMarkdownStringTagConfig) => void;
 }
 
 export const isPluginWithImmediateFormatting = (
-  x: PluginWithImmediateFormatting | PluginWithDelayedFormatting
+  x: PluginWithImmediateFormatting | PluginWithDelayedFormatting<any>
 ): x is PluginWithImmediateFormatting => {
   return x.hasOwnProperty('formatting');
 };
@@ -72,19 +72,19 @@ export interface PluginWithImmediateFormatting {
   editor?: never;
 }
 
-export interface PluginWithDelayedFormatting {
+export interface PluginWithDelayedFormatting<NodeShape> {
   formatting?: never;
-  editor: ComponentType<EuiMarkdownEditorUiPluginEditorProps>;
+  editor: ComponentType<EuiMarkdownEditorUiPluginEditorProps<NodeShape>>;
 }
 
-export type EuiMarkdownEditorUiPlugin = {
+export type EuiMarkdownEditorUiPlugin<NodeShape = any> = {
   name: string;
   button: {
     label: string;
     iconType: IconType;
   };
   helpText?: ReactNode;
-} & (PluginWithImmediateFormatting | PluginWithDelayedFormatting);
+} & (PluginWithImmediateFormatting | PluginWithDelayedFormatting<NodeShape>);
 
 export interface EuiMarkdownFormatting {
   prefix?: string;
