@@ -379,14 +379,22 @@ export const AccordionExample = {
         },
       ],
       text: (
-        <p>
-          Use the <EuiCode>isLoading</EuiCode> prop when the accordion&apos;s
-          content is not ready yet. When using <EuiCode>isLoading</EuiCode>, the
-          contents of <EuiCode>extraAction</EuiCode> and{' '}
-          <EuiCode>children</EuiCode> are replaced with a loading spinner. Add a
-          custom message to the content of this state using{' '}
-          <EuiCode>isLoadingMessage</EuiCode>.
-        </p>
+        <div>
+          <p>
+            Use the <EuiCode>isLoading</EuiCode> prop when not all of the
+            accordion&apos;s content is ready yet. When using{' '}
+            <EuiCode>isLoading</EuiCode>, the content of{' '}
+            <EuiCode>extraAction</EuiCode> is replaced with a loading spinner.
+          </p>
+          <p>
+            Manage the behavior of the accordion&apos;s content using{' '}
+            <EuiCode>isLoadingMessage</EuiCode>. By default
+            <EuiCode>isLoadingMessage</EuiCode> is set to false and the content
+            will remain unaltered. Set <EuiCode>isLoadingMessage</EuiCode> to
+            true to show the default loading message or pass a node to show a
+            custom loading message.
+          </p>
+        </div>
       ),
       snippet: accordionIsLoadingSnippet,
       demo: <AccordionIsLoading />,

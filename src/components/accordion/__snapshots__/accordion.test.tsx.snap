@@ -6,6 +6,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   id="12"
   initialIsOpen={false}
   isLoading={false}
+  isLoadingMessage={false}
   paddingSize="none"
 >
   <div
@@ -65,6 +66,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
   id="11"
   initialIsOpen={false}
   isLoading={false}
+  isLoadingMessage={false}
   paddingSize="none"
 >
   <div
@@ -492,12 +494,9 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
       <div
         class="euiAccordion__children-isLoading"
       >
-        <span
-          class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
-        />
-        <span>
-          Loading
-        </span>
+        <p>
+          You can see me.
+        </p>
       </div>
     </div>
   </div>

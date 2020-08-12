@@ -150,7 +150,7 @@ describe('EuiAccordion', () => {
       it('is rendered', () => {
         const component = render(
           <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading>
-            <p>You can see me.</p>
+            <p>You can&apos;t see me.</p>
           </EuiAccordion>
         );
 

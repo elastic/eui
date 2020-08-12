@@ -84,9 +84,9 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
      */
     isLoading?: boolean;
     /**
-     * Custom message for the `isLoading` state
+     * Choose whether the loading message replaces the content. Customize the message by passing a node
      */
-    isLoadingMessage?: ReactNode;
+    isLoadingMessage?: boolean | ReactNode;
   };
 
 export class EuiAccordion extends Component<
@@ -98,6 +98,7 @@ export class EuiAccordion extends Component<
     paddingSize: 'none',
     arrowDisplay: 'left',
     isLoading: false,
+    isLoadingMessage: false,
   };
 
   childContent: HTMLDivElement | null = null;
@@ -223,12 +224,12 @@ export class EuiAccordion extends Component<
     }
 
     let childrenContent: any;
-    if (isLoading) {
+    if (isLoading && isLoadingMessage) {
       childrenContent = (
         <>
           <EuiLoadingSpinner className="euiAccordion__spinner" />
           <span>
-            {isLoadingMessage ? (
+            {isLoadingMessage && isLoadingMessage !== true ? (
               isLoadingMessage
             ) : (
               <EuiI18n token="euiAccordion.isLoading" default="Loading" />
