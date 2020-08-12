@@ -214,6 +214,13 @@ export {
   EuiPinnableListGroup,
 } from './list_group';
 
+export {
+  EuiMarkdownEditor,
+  EuiMarkdownContext,
+  EuiMarkdownFormat,
+  getDefaultEuiMarkdownParsingPlugins,
+  getDefaultEuiMarkdownProcessingPlugins,
+} from './markdown_editor';
 export { EuiMark } from './mark';
 
 export {

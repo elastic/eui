@@ -61,7 +61,7 @@ export default () => {
 
       <EuiSpacer size="m" />
       <EuiAccordion
-        id="accordionExtra"
+        id="accordionLoading"
         initialIsOpen={true}
         buttonContent="Click to open"
         extraAction={<EuiButton size="s">Extra action!</EuiButton>}
