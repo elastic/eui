@@ -17,23 +17,23 @@
  * under the License.
  */
 
-import React, { ComponentType } from 'react';
+import React from 'react';
+import { render } from 'enzyme';
+import { requiredProps } from '../../test/required_props';
 
-export const EuiIcon = ({ type, ...rest }: any) => (
-  <div
-    data-euiicon-type={
-      typeof type === 'string' ? type : type.displayName || type.name
-    }
-    {...rest}
-  />
-);
+import { EuiMarkdownEditor } from './markdown_editor';
 
-export const appendIconComponentCache = (_: {
-  [iconType: string]: ComponentType;
-}) => {
-  // manually appending to the internal EuiIcon cache is out-of-scope of this test environment
-};
+describe('EuiMarkdownEditor', () => {
+  test('is rendered', () => {
+    const component = render(
+      <EuiMarkdownEditor
+        editorId="editorId"
+        value=""
+        onChange={() => null}
+        {...requiredProps}
+      />
+    );
 
-export const TYPES = [];
-export const COLORS = [];
-export const SIZES = [];
+    expect(component).toMatchSnapshot();
+  });
+});

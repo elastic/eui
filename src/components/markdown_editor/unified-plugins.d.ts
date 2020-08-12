@@ -16,24 +16,34 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/* eslint-disable import/no-duplicates */
 
-import React, { ComponentType } from 'react';
+declare module 'remark-emoji' {
+  import { Plugin } from 'unified';
+  const RemarkEmoji: Plugin;
+  export = RemarkEmoji;
+}
 
-export const EuiIcon = ({ type, ...rest }: any) => (
-  <div
-    data-euiicon-type={
-      typeof type === 'string' ? type : type.displayName || type.name
-    }
-    {...rest}
-  />
-);
+declare module 'remark-highlight.js' {
+  import { Plugin } from 'unified';
+  const RemarkHighlight: Plugin;
+  export = RemarkHighlight;
+}
 
-export const appendIconComponentCache = (_: {
-  [iconType: string]: ComponentType;
-}) => {
-  // manually appending to the internal EuiIcon cache is out-of-scope of this test environment
-};
+declare module 'mdast-util-to-hast/lib/all' {
+  // eslint-disable-next-line import/no-unresolved
+  import { Node as UnistNode, Position as UnistPosition } from 'unist';
 
-export const TYPES = [];
-export const COLORS = [];
-export const SIZES = [];
+  interface RehypeNode {}
+  interface RemarkRehypeHandlerCallback {
+    (
+      node: UnistPosition,
+      tagName: string,
+      props: Object,
+      children: RehypeNode[]
+    ): RehypeNode;
+  }
+
+  const all: (h: RemarkRehypeHandlerCallback, node: UnistNode) => RehypeNode[];
+  export = all;
+}

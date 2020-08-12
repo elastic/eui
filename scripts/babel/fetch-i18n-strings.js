@@ -125,7 +125,7 @@ const files = glob.sync(
   '**/*.@(js|ts|tsx)',
   { cwd: srcDir, realpath: true },
 ).filter(filepath => {
-  if (filepath.endsWith('index.d.ts')) return false;
+  if (filepath.endsWith('.d.ts')) return false;
   if (filepath.endsWith('test.ts')) return false;
   if (filepath.endsWith('test.tsx')) return false;
   if (filepath.endsWith('test.js')) return false;

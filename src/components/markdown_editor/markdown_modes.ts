@@ -17,23 +17,7 @@
  * under the License.
  */
 
-import React, { ComponentType } from 'react';
+export const MODE_EDITING = 'editing' as const;
+export const MODE_VIEWING = 'viewing' as const;
 
-export const EuiIcon = ({ type, ...rest }: any) => (
-  <div
-    data-euiicon-type={
-      typeof type === 'string' ? type : type.displayName || type.name
-    }
-    {...rest}
-  />
-);
-
-export const appendIconComponentCache = (_: {
-  [iconType: string]: ComponentType;
-}) => {
-  // manually appending to the internal EuiIcon cache is out-of-scope of this test environment
-};
-
-export const TYPES = [];
-export const COLORS = [];
-export const SIZES = [];
+export type MARKDOWN_MODE = typeof MODE_EDITING | typeof MODE_VIEWING;

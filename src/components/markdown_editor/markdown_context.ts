@@ -17,23 +17,20 @@
  * under the License.
  */
 
-import React, { ComponentType } from 'react';
+import { createContext } from 'react';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
-export const EuiIcon = ({ type, ...rest }: any) => (
-  <div
-    data-euiicon-type={
-      typeof type === 'string' ? type : type.displayName || type.name
-    }
-    {...rest}
-  />
-);
+interface MarkdownPosition {
+  start: { line: number; column: number; offset: number };
+  end: { line: number; column: number; offset: number };
+}
 
-export const appendIconComponentCache = (_: {
-  [iconType: string]: ComponentType;
-}) => {
-  // manually appending to the internal EuiIcon cache is out-of-scope of this test environment
-};
+export interface ContextShape {
+  openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) => void;
+  replaceNode(position: MarkdownPosition, next: string): void;
+}
 
-export const TYPES = [];
-export const COLORS = [];
-export const SIZES = [];
+export const EuiMarkdownContext = createContext<ContextShape>({
+  openPluginEditor: () => {},
+  replaceNode() {},
+});
