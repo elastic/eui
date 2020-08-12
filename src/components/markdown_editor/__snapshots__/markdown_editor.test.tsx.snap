@@ -188,7 +188,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         rows="6"
         style="height:calc(116px"
       />
-      <footer
+      <div
         class="euiMarkdownEditorFooter"
       >
         <div
@@ -205,7 +205,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             data-euiicon-type="MarkdownLogo"
           />
         </button>
-      </footer>
+      </div>
       <input
         autocomplete="off"
         multiple=""

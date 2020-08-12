@@ -68,6 +68,9 @@ type CommonMarkdownEditorProps = Omit<
     /** aria-label OR aria-labelledby must be set */
     'aria-labelledby'?: string;
 
+    /** ID of an element describing the text editor, useful for associating error messages */
+    'aria-describedby'?: string;
+
     /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
@@ -156,6 +159,7 @@ export const EuiMarkdownEditor = React.forwardRef<
       errors = [],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      'aria-describedby': ariaDescribedBy,
       initialViewMode = MODE_EDITING,
       dropHandlers = [],
       ...rest
@@ -346,6 +350,7 @@ export const EuiMarkdownEditor = React.forwardRef<
                 {...{
                   'aria-label': ariaLabel,
                   'aria-labelledby': ariaLabelledBy,
+                  'aria-describedby': ariaDescribedBy,
                 }}
               />
             </EuiMarkdownEditorDropZone>

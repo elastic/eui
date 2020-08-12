@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -10,6 +10,8 @@ import {
   EuiFormErrorText,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 const initialContent = `## Errors
 
 The tooltip is empty and will error
@@ -18,6 +20,7 @@ The tooltip is empty and will error
 `;
 
 export default () => {
+  const errorElementId = useRef(htmlIdGenerator()());
   const [value, setValue] = useState(initialContent);
   const [messages, setMessages] = useState([]);
   const [ast, setAst] = useState(null);
@@ -30,6 +33,7 @@ export default () => {
     <>
       <EuiMarkdownEditor
         aria-label="EUI markdown editor demo"
+        aria-describedby={errorElementId.current}
         value={value}
         onChange={setValue}
         height={400}
@@ -38,7 +42,9 @@ export default () => {
       />
       <EuiSpacer size="s" />
 
-      <EuiFormErrorText id="error" className="euiFormRow__text">
+      <EuiFormErrorText
+        id={errorElementId.current}
+        className="euiFormRow__text">
         Utilize error text or{' '}
         <strong>
           <Link to="/forms/form-validation">EuiFormRow</Link>
