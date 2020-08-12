@@ -5,7 +5,7 @@ import {
 } from '../../../../src/components/selectable';
 
 import {
-  EuiSelectableTemplateSitewideOptionProps,
+  EuiSelectableTemplateSitewideOption,
   EuiSelectableTemplateSitewideMetaData,
 } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 
@@ -17,7 +17,7 @@ export const EuiSelectableOptionsList: FunctionComponent<EuiSelectableOptionsLis
   <div />
 );
 
-export const Options: FunctionComponent<EuiSelectableTemplateSitewideOptionProps> = () => (
+export const Options: FunctionComponent<EuiSelectableTemplateSitewideOption> = () => (
   <div />
 );
 

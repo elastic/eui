@@ -482,7 +482,7 @@ export const SelectableExample = {
             buttonContent={<small>Code snippet</small>}>
             <EuiSpacer size="xs" />
             <EuiCodeBlock language="ts" isCopyable paddingSize="s">
-              {`const options: EuiSelectableTemplateSitewideOptionProps[] = [
+              {`const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Label',
     icon: {

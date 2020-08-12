@@ -49,7 +49,11 @@ export interface EuiSelectableTemplateSitewideMetaData extends CommonProps {
   highlightSearchString?: boolean;
 }
 
-export type EuiSelectableTemplateSitewideOptionProps = {
+/**
+ * The generic extension allows consumers to keep their data objects
+ * intact without needing to do key lookups when using `renderOption`
+ */
+export type EuiSelectableTemplateSitewideOption<T = { [key: string]: any }> = {
   /**
    * Displayed on the left (`prepend`).
    * Object of `EuiIconProps` for display of the solution/application's logo
@@ -64,12 +68,12 @@ export type EuiSelectableTemplateSitewideOptionProps = {
    * An array of inline #MetaData displayed beneath the label and separated by bullets.
    */
   meta?: EuiSelectableTemplateSitewideMetaData[];
-} & EuiSelectableOption;
+} & EuiSelectableOption<T>;
 
 export const euiSelectableTemplateSitewideFormatOptions = (
-  options: EuiSelectableTemplateSitewideOptionProps[]
+  options: EuiSelectableTemplateSitewideOption[]
 ) => {
-  return options.map((item: EuiSelectableTemplateSitewideOptionProps) => {
+  return options.map((item: EuiSelectableTemplateSitewideOption) => {
     return {
       key: item.label,
       label: item.label,
@@ -96,7 +100,7 @@ export const euiSelectableTemplateSitewideFormatOptions = (
 };
 
 export const euiSelectableTemplateSitewideRenderOptions = (
-  option: EuiSelectableOption,
+  option: EuiSelectableTemplateSitewideOption,
   searchValue: string
 ) => {
   return (

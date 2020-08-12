@@ -31,7 +31,7 @@ import { useEuiI18n, EuiI18n } from '../../i18n';
 import { EuiSelectableMessage } from '../selectable_message';
 import { EuiLoadingSpinner } from '../../loading';
 import {
-  EuiSelectableTemplateSitewideOptionProps,
+  EuiSelectableTemplateSitewideOption,
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
@@ -41,7 +41,7 @@ export type EuiSelectableTemplateSitewideProps = Partial<EuiSelectableProps> & {
    * Extends the typical EuiSelectable #Options with the addition of pre-composed elements
    * such as `icon`, `avatar`and `meta`
    */
-  options: EuiSelectableTemplateSitewideOptionProps[];
+  options: EuiSelectableTemplateSitewideOption[];
   /**
    * Override some of the EuiPopover props housing the list.
    * The default width is `600`

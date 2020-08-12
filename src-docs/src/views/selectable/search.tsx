@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import _ from 'lodash';
 
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiSelectableTemplateSitewide } from '../../../../src/components/selectable';
-import { EuiSelectableTemplateSitewideOptionProps } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
+import { EuiSelectableTemplateSitewideOption } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
-import { EuiSelectableOption } from '../../../../src/components/selectable/selectable_option';
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
@@ -18,26 +16,31 @@ export default () => {
   /**
    * Timeout to simulate loading (only on key command+k)
    */
-  // @ts-ignore clear on every render in case it exists
+  let searchTimeout;
+  const startSearchTimeout = () => {
+    searchTimeout = setTimeout(() => {
+      // Simulate a remotely-executed search.
+      setLoading(false);
+    }, 400);
+  };
   clearTimeout(searchTimeout);
-  const searchTimeout = setTimeout(() => {
-    // Simulate a remotely-executed search.
-    setLoading(false);
-  }, 400);
+  startSearchTimeout();
 
   /**
    * Take the first 5 options and simulate recently viewed
    */
   const recents = searchData.slice(0, 5);
-  const recentsWithIcon = recents.map(recent => {
-    return {
-      ...recent,
-      icon: {
-        type: 'clock',
-        color: 'subdued',
-      },
-    };
-  });
+  const recentsWithIcon: EuiSelectableTemplateSitewideOption[] = recents.map(
+    recent => {
+      return {
+        ...recent,
+        icon: {
+          type: 'clock',
+          color: 'subdued',
+        },
+      };
+    }
+  );
 
   /**
    * Hook up the keyboard shortcut for command+k to initiate focus into search input
@@ -69,12 +72,9 @@ export default () => {
   /**
    * Do something with the selection based on the found option with `checked: on`
    */
-  const onChange = (updatedOptions: EuiSelectableOption[]) => {
-    const clickedItem = _.find(updatedOptions, {
-      checked: 'on',
-    });
+  const onChange = (updatedOptions: EuiSelectableTemplateSitewideOption[]) => {
+    const clickedItem = updatedOptions.find(option => option.checked === 'on');
     if (!clickedItem) return;
-    // @ts-ignore ??? Help
     if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };
 
@@ -83,14 +83,11 @@ export default () => {
       isLoading={isLoading}
       onChange={onChange}
       options={searchValueExists ? searchData : recentsWithIcon}
-      // @ts-ignore ???? Help
       searchProps={{
         append: '⌘K',
         onKeyUpCapture: onKeyUpCapture,
         className: 'customSearchClass',
-        inputRef: (ref: HTMLInputElement) => {
-          setSearchRef(ref);
-        },
+        inputRef: setSearchRef,
       }}
       listProps={{
         className: 'customListClass',
@@ -123,7 +120,7 @@ export default () => {
 /**
  * The options object
  */
-const searchData: EuiSelectableTemplateSitewideOptionProps[] = [
+const searchData: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Welcome dashboards',
     avatar: {

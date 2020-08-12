@@ -22,9 +22,9 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
-import { EuiSelectableTemplateSitewideOptionProps } from './selectable_template_sitewide_option';
+import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
 
-const options: EuiSelectableTemplateSitewideOptionProps[] = [
+const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Basic data application',
     'data-test-subj': 'test-this',

@@ -22,7 +22,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 
 export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
 
-export interface EuiSelectableOptionBase extends CommonProps {
+export type EuiSelectableOptionBase<T> = CommonProps & {
   /**
    * Visible label of option.
    * Must be unique across items if `key` is not supplied
@@ -59,24 +59,20 @@ export interface EuiSelectableOptionBase extends CommonProps {
    */
   append?: React.ReactNode;
   ref?: (optionIndex: number) => void;
-  /**
-   * The following allows for consumers to keep their data objects intact
-   * the same without needing to do key lookups when using `renderOption`
-   */
-  [key: string]: any;
-}
+} & T;
 
-export interface EuiSelectableGroupLabelOption
-  extends Omit<EuiSelectableOptionBase, 'isGroupLabel'>,
-    HTMLAttributes<HTMLDivElement> {
-  isGroupLabel: true;
-}
+export type EuiSelectableGroupLabelOption<T> = Omit<
+  EuiSelectableOptionBase<T>,
+  'isGroupLabel'
+> &
+  HTMLAttributes<HTMLDivElement> & {
+    isGroupLabel: true;
+  };
 
-export interface EuiSelectableLIOption
-  extends EuiSelectableOptionBase,
-    HTMLAttributes<HTMLLIElement> {}
+export type EuiSelectableLIOption<T> = EuiSelectableOptionBase<T> &
+  HTMLAttributes<HTMLLIElement>;
 
-export type EuiSelectableOption = ExclusiveUnion<
-  EuiSelectableGroupLabelOption,
-  EuiSelectableLIOption
+export type EuiSelectableOption<T = {}> = ExclusiveUnion<
+  EuiSelectableGroupLabelOption<T>,
+  EuiSelectableLIOption<T>
 >;

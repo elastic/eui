@@ -23,7 +23,7 @@ export {
 } from './selectable_template_sitewide';
 
 export {
-  EuiSelectableTemplateSitewideOptionProps,
+  EuiSelectableTemplateSitewideOption,
   EuiSelectableTemplateSitewideMetaData,
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,

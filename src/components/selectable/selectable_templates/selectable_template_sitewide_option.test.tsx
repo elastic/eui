@@ -20,12 +20,12 @@
 import { requiredProps } from '../../../test/required_props';
 
 import {
-  EuiSelectableTemplateSitewideOptionProps,
+  EuiSelectableTemplateSitewideOption,
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
 
-const options: EuiSelectableTemplateSitewideOptionProps[] = [
+const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Basic data application',
     'data-test-subj': 'test-this',
