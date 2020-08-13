@@ -89,8 +89,6 @@ export class EuiSelectableSearch extends Component<
 
     const classes = classNames('euiSelectableSearch', className);
 
-    console.log('id', listId);
-
     const ariaPropsIfListIsPresent:
       | Partial<EuiFieldSearchProps>
       | undefined = listId
