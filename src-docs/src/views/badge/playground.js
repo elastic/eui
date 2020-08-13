@@ -7,8 +7,8 @@ import {
 import {
   propUtilityForPlayground,
   iconValidator,
+  dummyFunction,
 } from '../../services/playground';
-import * as t from '@babel/types';
 
 export const badgeConfig = () => {
   const docgenInfo = Array.isArray(EuiBadge.__docgenInfo)
@@ -88,17 +88,7 @@ export const badgeConfig = () => {
         },
       },
       customProps: {
-        onClick: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onClick: dummyFunction,
       },
     },
   };

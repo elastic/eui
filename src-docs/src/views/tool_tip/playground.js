@@ -1,7 +1,9 @@
 import { PropTypes } from 'react-view';
 import { EuiToolTip } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
-import * as t from '@babel/types';
+import {
+  propUtilityForPlayground,
+  dummyFunction,
+} from '../../services/playground';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiToolTip.__docgenInfo)
@@ -52,17 +54,7 @@ export default () => {
         },
       },
       customProps: {
-        onMouseOut: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onMouseOut: dummyFunction,
       },
     },
   };

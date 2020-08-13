@@ -528,17 +528,33 @@
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
+    "token": "euiComboBoxOptionsList.delimiterMessage",
+    "defString": "Add each item separated by {delimiter}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 344,
+        "column": 16
+      },
+      "end": {
+        "line": 348,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
+  },
+  {
     "token": "euiComboBoxOptionsList.alreadyAdded",
     "defString": "{label} has already been added",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 349,
-        "column": 14
+        "line": 362,
+        "column": 16
       },
       "end": {
-        "line": 355,
-        "column": 16
+        "line": 368,
+        "column": 18
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -549,28 +565,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 381,
-        "column": 18
-      },
-      "end": {
-        "line": 387,
+        "line": 397,
         "column": 20
-      }
-    },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
-  },
-  {
-    "token": "euiComboBoxOptionsList.delimiterMessage",
-    "defString": "Add each item separated by {delimiter}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 399,
-        "column": 16
       },
       "end": {
         "line": 403,
-        "column": 18
+        "column": 22
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -581,12 +581,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 411,
-        "column": 14
+        "line": 414,
+        "column": 12
       },
       "end": {
-        "line": 415,
-        "column": 16
+        "line": 418,
+        "column": 14
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -597,11 +597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 423,
+        "line": 425,
         "column": 10
       },
       "end": {
-        "line": 426,
+        "line": 428,
         "column": 12
       }
     },
@@ -613,11 +613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 432,
+        "line": 434,
         "column": 10
       },
       "end": {
-        "line": 435,
+        "line": 437,
         "column": 12
       }
     },
@@ -1726,6 +1726,166 @@
       }
     },
     "filepath": "src/components/link/link.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.uploadingFiles",
+    "defString": "Click to upload files",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 81,
+        "column": 20
+      },
+      "end": {
+        "line": 84,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.openUploadModal",
+    "defString": "Open upload files modal",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 85,
+        "column": 21
+      },
+      "end": {
+        "line": 88,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.unsupportedFileType",
+    "defString": "File type not supported",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 89,
+        "column": 25
+      },
+      "end": {
+        "line": 92,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.supportedFileTypes",
+    "defString": "Supported files: {supportedFileTypes}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 93,
+        "column": 24
+      },
+      "end": {
+        "line": 97,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.showSyntaxErrors",
+    "defString": "Show errors",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 98,
+        "column": 22
+      },
+      "end": {
+        "line": 101,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.showMarkdownHelp",
+    "defString": "Show markdown help",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 102,
+        "column": 22
+      },
+      "end": {
+        "line": 105,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.errorsTitle",
+    "defString": "Errors",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 160,
+        "column": 12
+      },
+      "end": {
+        "line": 163,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.syntaxTitle",
+    "defString": "Syntax help",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 193,
+        "column": 18
+      },
+      "end": {
+        "line": 196,
+        "column": 20
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorToolbar.editor",
+    "defString": "Editor",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 191,
+        "column": 10
+      },
+      "end": {
+        "line": 191,
+        "column": 78
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorToolbar.previewMarkdown",
+    "defString": "Preview",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 199,
+        "column": 10
+      },
+      "end": {
+        "line": 202,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
   },
   {
     "token": "euiModal.closeModal",
