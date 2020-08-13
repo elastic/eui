@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.0.0`.
+- Added icons for `rowsCollapse` and `rowsExpand` to `EuiIcon` ([#3904](https://github.com/elastic/eui/pull/3904))
 
 ## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
 
