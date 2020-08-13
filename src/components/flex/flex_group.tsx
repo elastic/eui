@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, Ref } from 'react';
+import React, { HTMLAttributes, Ref, forwardRef } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -85,7 +85,7 @@ const isValidElement = (
   return ['div', 'span'].includes(component);
 };
 
-const EuiFlexGroup = React.forwardRef<
+export const EuiFlexGroup = forwardRef<
   HTMLDivElement | HTMLSpanElement,
   CommonProps &
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
@@ -143,5 +143,3 @@ const EuiFlexGroup = React.forwardRef<
   }
 );
 EuiFlexGroup.displayName = 'EuiFlexGroup';
-
-export { EuiFlexGroup };

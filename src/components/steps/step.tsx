@@ -29,6 +29,9 @@ import { EuiStepStatus, EuiStepNumber } from './step_number';
 import { EuiI18n } from '../i18n';
 
 export interface EuiStepInterface {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
   /**
    * The HTML tag used for the title
@@ -50,7 +53,7 @@ export interface EuiStepInterface {
 }
 
 export type EuiStepProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
   EuiStepInterface;
 
 export const EuiStep: FunctionComponent<EuiStepProps> = ({

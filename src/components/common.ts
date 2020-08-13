@@ -182,16 +182,16 @@ export type ExclusiveUnion<T, U> = T | U extends object // if there are any shar
  * type ComponentProps = ExlcusiveUnion<AnchorLike, ButtonLike>
  * const Component: FunctionComponent<ComponentProps> ...
  */
-export type PropsForAnchor<T, P = {}> = T &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-  } & P;
+export type PropsForAnchor<T, P = {}> = T & {
+  href?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+} & AnchorHTMLAttributes<HTMLAnchorElement> &
+  P;
 
-export type PropsForButton<T, P = {}> = T &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-  } & P;
+export type PropsForButton<T, P = {}> = T & {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement> &
+  P;
 
 /**
  * Replaces all properties on any type as optional, includes nested types
