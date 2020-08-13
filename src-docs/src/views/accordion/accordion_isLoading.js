@@ -46,7 +46,7 @@ export default () => {
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiTitle size="xs">
-            <h2>isLoadingMessage: </h2>
+            <h3>isLoadingMessage: </h3>
           </EuiTitle>
         </EuiFlexItem>
         <EuiFlexItem>

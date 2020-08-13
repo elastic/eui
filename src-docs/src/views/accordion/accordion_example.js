@@ -115,13 +115,22 @@ const accordionForceStateSnippet = `<EuiAccordion
 import AccordionIsLoading from './accordion_isLoading';
 const accordionIsLoadingSource = require('!!raw-loader!./accordion_isLoading');
 const accordionIsLoadingHtml = renderToHtml(AccordionIsLoading);
-const accordionIsLoadingSnippet = `<EuiAccordion
+const accordionIsLoadingSnippet = [
+  `<EuiAccordion
   id={accordionId}
   isLoading
   >
     <!-- Content to show when expanded -->
 </EuiAccordion>
-`;
+`,
+  `<EuiAccordion
+  id={accordionId}
+  isLoading
+  isLoadingMessage={customMessage}
+  >
+  <!-- Content that will be replaced by isLoadingMessage -->
+</EuiAccordion>`,
+];
 
 export const AccordionExample = {
   title: 'Accordion',
