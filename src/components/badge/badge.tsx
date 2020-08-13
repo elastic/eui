@@ -55,7 +55,7 @@ type WithAnchorProps = {
   href: string;
   target?: string;
   rel?: string;
-} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color'>;
+} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color' | 'onClick'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
 

@@ -116,7 +116,7 @@ function compileBundle() {
   });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
+  execSync('NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src/webpack.config.js', {
     stdio: 'inherit',
     env: {
       ...process.env,
