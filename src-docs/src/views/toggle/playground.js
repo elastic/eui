@@ -21,6 +21,11 @@ export const toggleConfig = () => {
     hidden: false,
   };
 
+  propsToUse.value = {
+    ...propsToUse.value,
+    type: PropTypes.String,
+  };
+
   propsToUse.onChange = {
     ...propsToUse.onChange,
     type: PropTypes.Custom,
