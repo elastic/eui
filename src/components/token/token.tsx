@@ -119,7 +119,7 @@ export interface TokenProps {
 
 export type EuiTokenProps = CommonProps &
   TokenProps &
-  HTMLAttributes<HTMLSpanElement>;
+  Omit<HTMLAttributes<HTMLSpanElement>, 'title'>;
 
 export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   iconType,

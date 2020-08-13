@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -40,7 +40,7 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
     size?: SpacerSize;
   };
 
-export const EuiSpacer: React.FunctionComponent<EuiSpacerProps> = ({
+export const EuiSpacer: FunctionComponent<EuiSpacerProps> = ({
   className,
   size = 'l',
   ...rest

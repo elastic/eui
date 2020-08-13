@@ -66,6 +66,9 @@ export interface EuiResizablePanelProps
    */
   scrollable?: boolean;
 
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
 
   /**

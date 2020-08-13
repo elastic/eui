@@ -1,5 +1,60 @@
 [
   {
+    "version": "28.0.0",
+    "changes": [
+      {
+        "token": "euiMarkdownEditorFooter.uploadingFiles",
+        "changeType": "added",
+        "value": "Click to upload files"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.openUploadModal",
+        "changeType": "added",
+        "value": "Open upload files modal"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.unsupportedFileType",
+        "changeType": "added",
+        "value": "File type not supported"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.supportedFileTypes",
+        "changeType": "added",
+        "value": "Supported files: {supportedFileTypes}"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.showSyntaxErrors",
+        "changeType": "added",
+        "value": "Show errors"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.showMarkdownHelp",
+        "changeType": "added",
+        "value": "Show markdown help"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.errorsTitle",
+        "changeType": "added",
+        "value": "Errors"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxTitle",
+        "changeType": "added",
+        "value": "Syntax help"
+      },
+      {
+        "token": "euiMarkdownEditorToolbar.editor",
+        "changeType": "added",
+        "value": "Editor"
+      },
+      {
+        "token": "euiMarkdownEditorToolbar.previewMarkdown",
+        "changeType": "added",
+        "value": "Preview"
+      }
+    ]
+  },
+  {
     "version": "27.3.0",
     "changes": [
       {

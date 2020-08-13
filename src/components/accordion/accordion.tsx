@@ -37,8 +37,8 @@ const paddingSizeToClassNameMap = {
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
 
-export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
+export type EuiAccordionProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'id'> & {
     id: string;
     /**
      * Class that will apply to the trigger for the accordion.

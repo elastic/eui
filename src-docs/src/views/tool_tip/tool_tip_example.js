@@ -14,6 +14,7 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
+import toolTipConfig from './playground';
 
 import ToolTip from './tool_tip';
 const toolTipSource = require('!!raw-loader!./tool_tip');
@@ -169,4 +170,5 @@ export const ToolTipExample = {
       demo: <IconTip />,
     },
   ],
+  playground: toolTipConfig,
 };

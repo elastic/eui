@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { Component, HTMLAttributes } from 'react';
+import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import PropTypes from 'prop-types';
 
@@ -29,7 +29,12 @@ interface EuiErrorBoundaryState {
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
-  HTMLAttributes<HTMLDivElement>;
+  HTMLAttributes<HTMLDivElement> & {
+    /**
+     * ReactNode to render as this component's content
+     */
+    children: ReactNode;
+  };
 
 export class EuiErrorBoundary extends Component<
   EuiErrorBoundaryProps,

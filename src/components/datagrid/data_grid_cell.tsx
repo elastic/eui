@@ -485,6 +485,7 @@ export class EuiDataGridCell extends Component<
       innerContent = (
         <div className="euiDataGridRowCell__content">
           <EuiPopover
+            hasArrow={false}
             anchorClassName="euiDataGridRowCell__expand"
             button={anchorContent}
             isOpen={this.state.popoverIsOpen}

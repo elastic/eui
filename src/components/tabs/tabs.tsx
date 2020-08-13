@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -42,6 +47,10 @@ export type EuiTabsSizes = keyof typeof sizeToClassNameMap;
 export type EuiTabsProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
+     * ReactNode to render as this component's content
+     */
+    children?: ReactNode;
+    /**
      * Choose `default` or alternative `condensed` display styles
      */
     display?: EuiTabsDisplaySizes;
@@ -55,10 +64,7 @@ export type EuiTabsProps = CommonProps &
 
 export type EuiTabRef = HTMLDivElement;
 
-export const EuiTabs = React.forwardRef<
-  EuiTabRef,
-  PropsWithChildren<EuiTabsProps>
->(
+export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
   (
     {
       children,

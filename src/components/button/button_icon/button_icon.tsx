@@ -58,14 +58,18 @@ export interface EuiButtonIconProps extends CommonProps {
   iconSize?: IconSize;
 }
 
-type EuiButtonIconPropsForAnchor = PropsForAnchor<
+type EuiButtonIconPropsForAnchor = {
+  type?: string;
+} & PropsForAnchor<
   EuiButtonIconProps,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
 
-export type EuiButtonIconPropsForButton = PropsForButton<
+export type EuiButtonIconPropsForButton = {
+  type?: 'submit' | 'reset' | 'button';
+} & PropsForButton<
   EuiButtonIconProps,
   {
     buttonRef?: Ref<HTMLButtonElement>;

@@ -441,7 +441,8 @@ export const ComboBoxExample = {
           <p>
             <strong>Note:</strong> Creating custom options might not be obvious
             to the user, so provide help text explaining that this option is
-            available.
+            available. You can also customize the custom option text by passing
+            a text to <EuiCode>customOptionText</EuiCode> prop.
           </p>
         </Fragment>
       ),
