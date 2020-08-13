@@ -42,6 +42,7 @@ export const flexGroupConfig = () => {
           named: ['EuiFlexGroup', 'EuiFlexItem'],
         },
       },
+      playgroundClassName: 'guideDemo__highlightGrid',
     },
   };
 };
@@ -82,6 +83,7 @@ export const flexGridConfig = () => {
           named: ['EuiFlexGrid', 'EuiFlexItem'],
         },
       },
+      playgroundClassName: 'guideDemo__highlightGrid',
     },
   };
 };
