@@ -489,8 +489,6 @@ export class EuiSelectable extends Component<
      * This finds the correct name to use
      *
      * TODO: This doesn't handle being labelled (<label for="idOfInput">)
-     *
-     * @param props
      */
     const getAccessibleName = (
       props:
@@ -540,7 +538,7 @@ export class EuiSelectable extends Component<
             key="listSearch"
             options={options}
             onChange={this.onSearchChange}
-            listId={listId}
+            listId={this.optionsListRef.current ? listId : undefined} // Only pass the listId if it exists on the page
             aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             {...(searchHasAccessibleName

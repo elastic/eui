@@ -35,7 +35,10 @@ export type EuiSelectableSearchProps = Omit<EuiFieldSearchProps, 'onChange'> &
     ) => void;
     options: EuiSelectableOption[];
     defaultValue: string;
-    listId: string;
+    /**
+     * The id of the visible list to create the appropriate aria controls
+     */
+    listId?: string;
   };
 
 export interface EuiSelectableSearchState {
@@ -86,6 +89,20 @@ export class EuiSelectableSearch extends Component<
 
     const classes = classNames('euiSelectableSearch', className);
 
+    console.log('id', listId);
+
+    const ariaPropsIfListIsPresent:
+      | Partial<EuiFieldSearchProps>
+      | undefined = listId
+      ? {
+          role: 'combobox',
+          'aria-autocomplete': 'list',
+          'aria-expanded': true,
+          'aria-controls': listId,
+          'aria-owns': listId, // legacy attribute but shims support for nearly everything atm
+        }
+      : undefined;
+
     return (
       <EuiFieldSearch
         className={classes}
@@ -95,12 +112,8 @@ export class EuiSelectableSearch extends Component<
         defaultValue={defaultValue}
         fullWidth
         autoComplete="off"
-        role="combobox"
-        aria-autocomplete="list"
-        aria-expanded="true"
-        aria-controls={listId}
-        aria-owns={listId} // legacy attribute but shims support for nearly everything atm
         aria-haspopup="listbox"
+        {...ariaPropsIfListIsPresent}
         {...rest}
       />
     );

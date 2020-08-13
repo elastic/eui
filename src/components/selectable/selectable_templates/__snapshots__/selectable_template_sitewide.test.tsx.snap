@@ -19,16 +19,11 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
-            aria-autocomplete="list"
-            aria-controls="htmlId"
-            aria-expanded="true"
             aria-haspopup="listbox"
             aria-label="aria-label"
-            aria-owns="htmlId"
             autocomplete="off"
             class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
             placeholder="Search for anything..."
-            role="combobox"
             type="search"
             value=""
           />
@@ -70,16 +65,11 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
-            aria-autocomplete="list"
-            aria-controls="htmlId"
-            aria-expanded="true"
             aria-haspopup="listbox"
             aria-label="Filter options"
-            aria-owns="htmlId"
             autocomplete="off"
             class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
             placeholder="Search for anything..."
-            role="combobox"
             type="search"
             value=""
           />
@@ -121,16 +111,11 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
-            aria-autocomplete="list"
-            aria-controls="htmlId"
-            aria-expanded="true"
             aria-haspopup="listbox"
             aria-label="Filter options"
-            aria-owns="htmlId"
             autocomplete="off"
             class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
             placeholder="Search for anything..."
-            role="combobox"
             type="search"
             value=""
           />
@@ -172,16 +157,11 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
-            aria-autocomplete="list"
-            aria-controls="htmlId"
-            aria-expanded="true"
             aria-haspopup="listbox"
             aria-label="Filter options"
-            aria-owns="htmlId"
             autocomplete="off"
             class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
             placeholder="Search for anything..."
-            role="combobox"
             type="search"
             value=""
           />
