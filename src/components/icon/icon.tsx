@@ -303,6 +303,8 @@ const typeToPathMap = {
   reporter: 'reporter',
   reportingApp: 'app_reporting',
   returnKey: 'return_key',
+  rowsCollapse: 'rowsCollapse',
+  rowsExpand: 'rowsExpand',
   save: 'save',
   savedObjectsApp: 'app_saved_objects',
   scale: 'scale',

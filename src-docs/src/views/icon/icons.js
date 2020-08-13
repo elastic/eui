@@ -163,6 +163,8 @@ export const iconTypes = [
   'refresh',
   'reporter',
   'returnKey',
+  'rowsCollapse',
+  'rowsExpand',
   'save',
   'scale',
   'search',
