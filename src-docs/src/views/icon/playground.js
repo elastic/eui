@@ -1,31 +1,30 @@
+import {
+  propUtilityForPlayground,
+  dummyFunction,
+  iconValidator,
+  createOptionalEnum,
+} from '../../services/playground';
 import { PropTypes } from 'react-view';
 import { EuiIcon } from '../../../../src/components/';
-import { iconValidator } from '../../services/playground';
 
 export default () => {
-  const propsToUse = {};
+  const docgenInfo = Array.isArray(EuiIcon.__docgenInfo)
+    ? EuiIcon.__docgenInfo[0]
+    : EuiIcon.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.type = iconValidator(propsToUse.iconType);
 
-  propsToUse.title = {
-    type: PropTypes.String,
-    description: 'title',
-  };
-  propsToUse.titleId = {
-    type: PropTypes.String,
-    description: 'title Id',
-  };
+  propsToUse.size = createOptionalEnum(propsToUse.size);
 
-  propsToUse.size = {
-    type: PropTypes.Enum,
-    description: 'size',
-    options: {
-      original: 'original',
-      s: 's',
-      m: 'm',
-      l: 'l',
-      xl: 'xl',
-      xxl: 'xxl',
+  propsToUse.onIconLoad = {
+    ...propsToUse.onIconLoad,
+    type: PropTypes.Custom,
+    value: undefined,
+    custom: {
+      ...propsToUse.onIconLoad.custom,
+      use: 'switch',
+      label: 'Simulate',
     },
   };
 
@@ -40,6 +39,10 @@ export default () => {
         '@elastic/eui': {
           named: ['EuiIcon'],
         },
+      },
+
+      customProps: {
+        onIconLoad: dummyFunction,
       },
     },
   };
