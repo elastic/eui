@@ -113,7 +113,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
   // Convert any `append` elements to an array so the visibility
   // toggle can be added to it
-  const appends = Array.isArray(append) ? append : [];
+  let appends = Array.isArray(append) ? append : [];
   if (append && !Array.isArray(append)) appends.push(append);
   // Add a toggling button to switch between `password` and `input` if consumer wants `dual`
   // https://www.w3schools.com/howto/howto_js_toggle_password.asp
@@ -130,7 +130,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
         disabled={rest.disabled}
       />
     );
-    appends.push(visibilityToggle);
+    appends = [...appends, visibilityToggle];
   }
 
   const finalAppend = appends.length ? appends : undefined;

@@ -22,10 +22,10 @@ const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
 const dataGridColumnWidthsHtml = renderToHtml(DataGridColumnWidths);
 
 import {
-  DataGridStyle,
-  DataGridToolbarVisibilityOptions,
-  DataGridColumn,
-} from './props';
+  EuiDataGridColumn,
+  EuiDataGridStyle,
+  EuiDataGridToolBarVisibilityOptions,
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
   {...usualProps}
@@ -163,8 +163,8 @@ export const DataGridStylingExample = {
 
       props: {
         EuiDataGrid,
-        EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
+        EuiDataGridStyle,
+        EuiDataGridToolBarVisibilityOptions,
       },
       demo: <DataGridStyling />,
     },
@@ -255,7 +255,7 @@ export const DataGridStylingExample = {
       snippet: widthsSnippet,
       props: {
         EuiDataGrid,
-        EuiDataGridColumn: DataGridColumn,
+        EuiDataGridColumn,
       },
       demo: <DataGridColumnWidths />,
     },
