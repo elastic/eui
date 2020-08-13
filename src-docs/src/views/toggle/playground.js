@@ -16,8 +16,7 @@ export const toggleConfig = () => {
   propsToUse.children = {
     ...propsToUse.children,
     type: PropTypes.ReactNode,
-    // eslint-disable-next-line quotes
-    value: `{checked ? 'On' : 'Off'}`,
+    value: "{checked ? 'On' : 'Off'}",
     hidden: false,
   };
 
