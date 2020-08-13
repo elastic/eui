@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added icons for `rowsCollapse` and `rowsExpand` to `EuiIcon`
+- Added icons for `rowsCollapse` and `rowsExpand` to `EuiIcon` ([#3905](https://github.com/elastic/eui/pull/3905))
 
 ## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
 
