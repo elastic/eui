@@ -19,6 +19,7 @@ import {
   EuiTitle,
   EuiLink,
   EuiButtonEmpty,
+  EuiMarkdownFormat,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../codesandbox';
@@ -320,6 +321,11 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
+      const functionMatches = [
+        ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
+      ];
+      const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
+
       const typeMarkup = (
         <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
       );
@@ -335,13 +341,55 @@ export class GuideSection extends Component {
           defaultValueMarkup.push(`(${defaultValue.comment})`);
         }
       }
+
+      let defaultTypeCell = (
+        <EuiTableRowCell
+          className="guideSection__table-row"
+          key="type"
+          header="Type">
+          <EuiCode>{typeMarkup}</EuiCode>
+        </EuiTableRowCell>
+      );
+      if (functionMatches.length > 0) {
+        const elements = [];
+        let j = 0;
+        for (let i = 0; i < types.length; i++) {
+          if (functionMatches[j]) {
+            elements.push(
+              <EuiCode>
+                <span className="eui-textBreakNormal">{types[i]}</span>
+              </EuiCode>
+            );
+            elements.push(
+              <EuiMarkdownFormat>
+                {`\`\`\` ts
+                ${functionMatches[j][0]} `}
+              </EuiMarkdownFormat>
+            );
+            j++;
+          } else {
+            elements.push(
+              <EuiCode>
+                <span className="eui-textBreakNormal">{types[i]}</span>
+              </EuiCode>
+            );
+          }
+        }
+        defaultTypeCell = (
+          <EuiTableRowCell
+            className="guideSection__table-row"
+            key="type"
+            header="Type">
+            {elements}
+          </EuiTableRowCell>
+        );
+      }
+
       const cells = [
         <EuiTableRowCell key="name" header="Prop">
           {humanizedName}
         </EuiTableRowCell>,
-        <EuiTableRowCell key="type" header="Type">
-          <EuiCode>{typeMarkup}</EuiCode>
-        </EuiTableRowCell>,
+        defaultTypeCell,
         <EuiTableRowCell
           key="defaultValue"
           header="Default"
