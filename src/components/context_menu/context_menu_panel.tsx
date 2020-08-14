@@ -59,7 +59,7 @@ export interface EuiContextMenuPanelProps {
 type Props = CommonProps &
   Omit<
     HTMLAttributes<HTMLDivElement>,
-    'onKeyDown' | 'tabIndex' | 'onAnimationEnd'
+    'onKeyDown' | 'tabIndex' | 'onAnimationEnd' | 'title'
   > &
   EuiContextMenuPanelProps;
 

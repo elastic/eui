@@ -36,7 +36,10 @@ import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import { useCombinedRefs } from '../../../services';
 
-export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
+export type EuiFieldPasswordProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'value'
+> &
   CommonProps & {
     isInvalid?: boolean;
     fullWidth?: boolean;
@@ -55,6 +58,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
      * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
+    value?: string | number;
 
     /**
      * Change the `type` of input for manually handling obfuscation.

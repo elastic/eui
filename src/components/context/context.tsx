@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { createContext, ReactChild } from 'react';
+import React, { createContext, ReactChild, ReactNode } from 'react';
 
 export interface RenderableValues {
   [key: string]: ReactChild;
@@ -40,7 +40,10 @@ const { Provider: EuiI18nProvider, Consumer: EuiI18nConsumer } = I18nContext;
 
 interface EuiContextProps {
   i18n: I18nShape;
-  children: React.ReactNode;
+  /**
+   * ReactNode to render as this component's content
+   */
+  children: ReactNode;
 }
 
 const EuiContext: React.FunctionComponent<EuiContextProps> = ({

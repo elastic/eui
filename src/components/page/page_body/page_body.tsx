@@ -17,14 +17,14 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-type ComponentType = keyof JSX.IntrinsicElements | React.ComponentType<any>;
+type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
-export type EuiPageBodyProps<T extends ComponentType = 'main'> = CommonProps &
-  React.ComponentProps<T> & {
+export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
+  ComponentProps<T> & {
     /**
      * Sets the max-width of the page,
      * set to `true` to use the default size,
@@ -39,14 +39,14 @@ export type EuiPageBodyProps<T extends ComponentType = 'main'> = CommonProps &
     component?: T;
   };
 
-export const EuiPageBody = <T extends ComponentType>({
+export const EuiPageBody = <T extends ComponentTypes>({
   children,
   restrictWidth = false,
   style,
   className,
   component: Component = 'main' as T,
   ...rest
-}: React.PropsWithChildren<EuiPageBodyProps<T>>) => {
+}: PropsWithChildren<EuiPageBodyProps<T>>) => {
   let widthClassname;
   let newStyle;
 
