@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.0.0`.
+**Bug fixes**
+
+- Fixed bug in `EuiDataGrid` when a new pagination object would cause every cell to render ([#3919](https://github.com/elastic/eui/pull/3919))
 
 ## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
 
