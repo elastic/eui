@@ -18,6 +18,7 @@
  */
 
 import React, {
+  forwardRef,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   MouseEventHandler,
@@ -58,9 +59,10 @@ export interface LinkButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export type EuiLinkButtonProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> &
-  LinkButtonProps;
+export interface EuiLinkButtonProps
+  extends CommonProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'color' | 'onClick'>,
+    LinkButtonProps {}
 
 export interface LinkAnchorProps {
   type?: EuiLinkType;
@@ -71,19 +73,19 @@ export interface LinkAnchorProps {
   external?: boolean;
 }
 
-export type EuiLinkAnchorProps = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> &
-  LinkAnchorProps;
+export interface EuiLinkAnchorProps
+  extends CommonProps,
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color' | 'onClick'>,
+    LinkAnchorProps {
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+}
 
 export type EuiLinkProps = ExclusiveUnion<
   EuiLinkButtonProps,
   EuiLinkAnchorProps
 >;
 
-const EuiLink = React.forwardRef<
-  HTMLAnchorElement | HTMLButtonElement,
-  EuiLinkProps
->(
+const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,

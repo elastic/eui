@@ -2,6 +2,10 @@
 
 - Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
 
+**Bug fixes**
+
+- Fixed bug in `EuiCodeBlock` content overlapping with control buttons when `whiteSpace` was set to `"pre"` ([#3853](https://github.com/elastic/eui/pull/3853))
+
 ## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
 
 - Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))

@@ -27,26 +27,34 @@ import { cleanEuiImports } from '../../services';
 
 export const markup = text => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split(regex).map((token, index) => {
-    if (!token) {
-      return '';
-    }
-    if (token.startsWith('#')) {
-      const id = token.substring(1);
-      const onClick = () => {
-        document.getElementById(id).scrollIntoView();
-      };
-      return (
-        <EuiLink key={`markup-${index}`} onClick={onClick}>
-          {id}
-        </EuiLink>
-      );
-    }
-    if (token.startsWith('`')) {
-      const code = token.substring(1, token.length - 1);
-      return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-    }
-    return token;
+  return text.split('\n').map(token => {
+    const values = token.split(regex).map((token, index) => {
+      if (!token) {
+        return '';
+      }
+      if (token.startsWith('#')) {
+        const id = token.substring(1);
+        const onClick = () => {
+          document.getElementById(id).scrollIntoView();
+        };
+        return (
+          <EuiLink key={`markup-${index}`} onClick={onClick}>
+            {id}
+          </EuiLink>
+        );
+      }
+      if (token.startsWith('`')) {
+        const code = token.substring(1, token.length - 1);
+        return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
+      }
+      if (token.includes('\n')) {
+        return token
+          .split('\n')
+          .map(item => [item, <br key={`markup-${index}`} />]);
+      }
+      return token;
+    });
+    return [...values, <br />];
   });
 };
 

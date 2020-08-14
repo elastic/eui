@@ -70,6 +70,14 @@
   // Storing for re-use the sizing of controls plus extra padding
   $controlsPadding: $euiSizeL + $euiSizeXS;
 
+  &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
+    padding-right: $controlsPadding;
+  }
+
+  &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+    margin-right: $controlsPadding;
+  }
+
   // Small padding
   &.euiCodeBlock--paddingSmall {
     .euiCodeBlock__pre {
@@ -81,8 +89,12 @@
       right: $euiSizeS;
     }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
       padding-right: $euiSizeS + $controlsPadding;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+      margin-right: $euiSizeS + $controlsPadding;
     }
   }
 
@@ -97,8 +109,12 @@
       right: $euiSize;
     }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
       padding-right: $euiSize + $controlsPadding;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+      margin-right: $euiSize + $controlsPadding;
     }
   }
 
@@ -113,8 +129,12 @@
       right: $euiSizeL;
     }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
       padding-right: $euiSizeL + $controlsPadding;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+      margin-right: $euiSizeL + $controlsPadding;
     }
   }
 

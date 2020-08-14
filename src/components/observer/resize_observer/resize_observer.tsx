@@ -21,6 +21,9 @@ import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { EuiObserver, Observer } from '../observer';
 
 interface Props {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (ref: (e: HTMLElement | null) => void) => ReactNode;
   onResize: (dimensions: { height: number; width: number }) => void;
 }

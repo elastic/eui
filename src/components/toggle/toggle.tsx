@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ChangeEventHandler, HTMLAttributes } from 'react';
+import React, { ChangeEventHandler, HTMLAttributes, SFC } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -58,7 +58,7 @@ export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
     value?: string | number;
   };
 
-export const EuiToggle: React.SFC<EuiToggleProps> = ({
+export const EuiToggle: SFC<EuiToggleProps> = ({
   id,
   className,
   checked,

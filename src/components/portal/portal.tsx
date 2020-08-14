@@ -43,6 +43,9 @@ export const INSERT_POSITIONS: EuiPortalInsertPosition[] = keysOf(
 type EuiPortalInsertPosition = keyof typeof insertPositions;
 
 interface EuiPortalProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: React.ReactNode;
   insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
   portalRef?: (ref: HTMLDivElement | null) => void;

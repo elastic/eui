@@ -68,14 +68,17 @@ export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
 }
 
 type EuiButtonTogglePropsForAnchor = EuiButtonToggleProps &
-  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'name'> & {
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'name' | 'href' | 'onClick'> & {
     href?: string;
     name?: string;
     onClick?: MouseEventHandler<HTMLAnchorElement>;
   };
 
 type EuiButtonTogglePropsForButtonToggle = EuiButtonToggleProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'name'> & {
+  Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    'name' | 'onClick' | 'value'
+  > & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
     name?: string;
     value?: string;

@@ -38,6 +38,9 @@ import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
+    /**
+     * ReactNode to render as this component's content
+     */
     children?: ReactNode;
     /**
      * Keeps navigation flyout visible and push `<body>` content via padding
