@@ -19,7 +19,6 @@ import {
   EuiTitle,
   EuiLink,
   EuiButtonEmpty,
-  EuiMarkdownFormat,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../codesandbox';
@@ -361,10 +360,7 @@ export class GuideSection extends Component {
               </EuiCode>
             );
             elements.push(
-              <EuiMarkdownFormat>
-                {`\`\`\` ts
-                ${functionMatches[j][0]} `}
-              </EuiMarkdownFormat>
+              <EuiCode language="ts">{functionMatches[j][0]}</EuiCode>
             );
             j++;
           } else {
