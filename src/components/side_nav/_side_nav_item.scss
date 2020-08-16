@@ -48,7 +48,7 @@
 }
 
 .euiSideNavItemButton__label {
-  color: $euiColorDarkShade;
+  color: $euiColorDarkestShade;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -148,12 +148,9 @@
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
   }
-}
 
-.euiSideNavItem--hasChildItems {
-  & > .euiSideNavItemButton-isOpen {
-    .euiSideNavItemButton__label {
-      color: $euiColorFullShade;
-    }
-  }
-}
+  .euiSideNavItemButton__label {
+    color: $euiColorDarkShade;
+
+}}
+
