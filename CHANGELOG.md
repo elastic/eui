@@ -31,6 +31,12 @@ No public interface changes since `28.1.0`.
 
 - Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
 
+## [`27.4.1`](https://github.com/elastic/eui/tree/v27.4.1)
+
+**Note: this release is a backport containing changes originally made in `28.1.0`**
+
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
+
 ## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
 
 - Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
