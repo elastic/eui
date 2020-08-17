@@ -37,6 +37,9 @@ interface EuiHighlightChunk {
 
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
+    /**
+     * string to highlight as this component's content
+     */
     children: string;
 
     /**

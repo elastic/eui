@@ -67,11 +67,8 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
   }
 >;
 
-export type EuiSelectableProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'children' | 'onChange'
-> &
-  CommonProps &
+export type EuiSelectableProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> &
   EuiSelectableSearchableProps & {
     /**
      * Function that takes the `list` node and then

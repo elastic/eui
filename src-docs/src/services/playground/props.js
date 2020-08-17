@@ -7,7 +7,7 @@ const getProp = prop => {
   newProp.custom = { origin: prop };
 
   switch (prop.type.name) {
-    case 'bool':
+    case 'boolean':
       newProp.type = PropTypes.Boolean;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value === 'true';

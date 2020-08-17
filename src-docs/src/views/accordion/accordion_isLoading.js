@@ -18,28 +18,39 @@ const toggleButtons = [
   {
     id: `${idPrefix}0`,
     label: 'False',
-    value: false,
   },
   {
     id: `${idPrefix}1`,
     label: 'True',
-    value: true,
   },
   {
     id: `${idPrefix}2`,
     label: 'Custom',
-    value: 'This is a custom loading message',
   },
 ];
 
 export default () => {
-  const [message, setMessage] = useState(false);
+  const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
 
   const onChange = optionId => {
     setToggleIdSelected(optionId);
-    setMessage(toggleButtons.find(x => x.id === optionId).value);
+    setLabel(toggleButtons.find(x => x.id === optionId).label);
   };
+
+  let isLoadingMessage;
+
+  switch (label) {
+    case 'True':
+      isLoadingMessage = true;
+      break;
+    case 'False':
+      isLoadingMessage = false;
+      break;
+    case 'Custom':
+      isLoadingMessage = 'This is a custom loading message';
+      break;
+  }
 
   return (
     <>
@@ -66,7 +77,7 @@ export default () => {
         buttonContent="Click to open"
         extraAction={<EuiButton size="s">Extra action!</EuiButton>}
         isLoading
-        isLoadingMessage={message}>
+        isLoadingMessage={isLoadingMessage}>
         <div>Opened content.</div>
       </EuiAccordion>
     </>

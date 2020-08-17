@@ -76,6 +76,9 @@ type EuiFormRowCommonProps = CommonProps & {
    * Escape hatch to not render duplicate labels if the child also renders a label
    */
   hasChildLabel?: boolean;
+  /**
+   * ReactElement to render as this component's content
+   */
   children: ReactElement;
   label?: ReactNode;
   /**

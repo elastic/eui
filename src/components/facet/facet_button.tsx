@@ -34,8 +34,13 @@ import { EuiNotificationBadge } from '../badge';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiInnerText } from '../inner_text';
 
-export interface EuiFacetButtonProps {
+export interface EuiFacetButtonProps
+  extends CommonProps,
+    Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   buttonRef?: RefCallback<HTMLButtonElement>;
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
   /**
    * Any node, but preferrably a `EuiIcon` or `EuiAvatar`
@@ -57,9 +62,7 @@ export interface EuiFacetButtonProps {
   quantity?: number;
 }
 
-export const EuiFacetButton: FunctionComponent<CommonProps &
-  HTMLAttributes<HTMLButtonElement> &
-  EuiFacetButtonProps> = ({
+export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   children,
   className,
   icon,

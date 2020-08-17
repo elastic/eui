@@ -11,6 +11,8 @@ import {
   EuiPaginationButton,
 } from '../../../../src/components';
 
+import { paginationConfig } from './playground';
+
 import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
 const manyPagesHtml = renderToHtml(ManyPages);
@@ -201,4 +203,5 @@ export const PaginationExample = {
       demo: <CustomizablePagination />,
     },
   ],
+  playground: paginationConfig,
 };

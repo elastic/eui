@@ -24,6 +24,7 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   Ref,
+  ReactNode,
 } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
@@ -49,7 +50,7 @@ import { EuiPortal } from '../portal';
  */
 export interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
   id: string;
-  label: React.ReactNode;
+  label: ReactNode;
 }
 
 type ButtonPropsForAnchor = PropsForAnchor<
@@ -78,12 +79,13 @@ type ButtonControlProps = ExclusiveUnion<
  * Requires `label` as the `children`.
  * `onClick` must be provided to handle the content swapping.
  */
-export type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+export interface TabControl
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'onClick'> {
   controlType: 'tab';
   id: string;
-  label: React.ReactNode;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-};
+  label: ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
 
 /**
  * Extends EuiBreadcrumbs
@@ -102,7 +104,7 @@ export interface TextControl
     HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
   id: string;
-  text: React.ReactNode;
+  text: ReactNode;
 }
 
 export interface SpacerControl {
@@ -449,9 +451,7 @@ export class EuiControlBar extends Component<
               ref={node => {
                 this.bar = node;
               }}>
-              {controls.map((control, index) => {
-                return controlItem(control, index);
-              })}
+              {controls.map((control, index) => controlItem(control, index))}
             </div>
             {this.props.showContent ? (
               <div className="euiControlBar__content">{children}</div>
