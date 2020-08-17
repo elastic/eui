@@ -3,8 +3,8 @@ import {
   dummyFunction,
   iconValidator,
   createOptionalEnum,
+  simulateFunction,
 } from '../../services/playground';
-import { PropTypes } from 'react-view';
 import { EuiIcon } from '../../../../src/components/';
 
 export default () => {
@@ -13,20 +13,11 @@ export default () => {
     : EuiIcon.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  propsToUse.type = iconValidator(propsToUse.iconType);
+  propsToUse.type = iconValidator(propsToUse.type);
 
   propsToUse.size = createOptionalEnum(propsToUse.size);
 
-  propsToUse.onIconLoad = {
-    ...propsToUse.onIconLoad,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onIconLoad.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onIconLoad = simulateFunction(propsToUse.onIconLoad);
 
   return {
     config: {
