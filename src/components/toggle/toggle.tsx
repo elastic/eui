@@ -30,7 +30,7 @@ export const TYPES = Object.keys(typeToInputTypeMap);
 
 export type ToggleType = keyof typeof typeToInputTypeMap;
 
-export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
+export type EuiToggleProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   CommonProps & {
     id?: string;
     /**
