@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `27.4.0`.
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
 
 ## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
 
