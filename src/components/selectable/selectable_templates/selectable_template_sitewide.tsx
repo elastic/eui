@@ -24,6 +24,7 @@ import React, {
   CSSProperties,
 } from 'react';
 import classNames from 'classnames';
+import { useCombinedRefs } from '../../../services';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
@@ -86,18 +87,18 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    * Popover helpers
    */
   const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
+  const { closePopover: _closePopover, panelRef, width, ...popoverRest } = {
+    ...popoverProps,
+  };
+
   const closePopover = () => {
     setInputHasFocus(false);
-    popoverProps && popoverProps.closePopover && popoverProps.closePopover();
+    _closePopover && _closePopover();
   };
+
   // Width applied to the internal div
-  let popoverWidth: CSSProperties['width'] = 600;
-  if (popoverProps && popoverProps.width) {
-    // So it also needs to be removed from the spread
-    const { width, ...popoverRest } = popoverProps;
-    popoverWidth = popoverProps.width;
-    popoverProps = popoverRest;
-  }
+  const popoverWidth: CSSProperties['width'] = width || 600;
+  const setPanelRef = useCombinedRefs([setPopoverRef, panelRef]);
 
   /**
    * Search helpers
@@ -202,9 +203,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
           panelPaddingSize="none"
           display="block"
           isOpen={inputHasFocus}
-          {...popoverProps}
-          // HELP: How to forward this ref if consumers want it
-          panelRef={setPopoverRef}
+          {...popoverRest}
+          panelRef={setPanelRef}
           button={search}
           closePopover={closePopover}>
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
