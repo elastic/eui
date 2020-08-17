@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.1.0`.
+- Adjusted coloring of `EuiSideNav` to be more consistent across open states ([#3926](https://github.com/elastic/eui/pull/3926))
 
 ## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
 
