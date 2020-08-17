@@ -107,6 +107,11 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     setInputHasFocus(true);
   };
 
+  const onSearchInput = (e: any) => {
+    searchProps && searchProps.onInput && searchProps.onInput(e);
+    setInputHasFocus(true);
+  };
+
   const searchOnBlur = (e: any) => {
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (!popoverRef?.contains(e.relatedTarget)) {
@@ -168,6 +173,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
         ...searchProps,
         onFocus: searchOnFocus,
         onBlur: searchOnBlur,
+        onInput: onSearchInput,
         className: searchClasses,
       }}
       listProps={{
