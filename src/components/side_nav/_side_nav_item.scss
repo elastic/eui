@@ -8,7 +8,7 @@
   display: block;
   width: 100%;
   padding: $euiSizeXS / 2 0;
-  color: $euiColorDarkestShade; /* 2 */
+  color: $euiTextColor; /* 2 */
 
   &.euiSideNavItemButton--isClickable {
     &:hover .euiSideNavItemButton__label {
@@ -48,7 +48,7 @@
 }
 
 .euiSideNavItemButton__label {
-  color: $euiColorFullShade;
+  color: $euiTitleColor;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -150,7 +150,7 @@
   }
 
   .euiSideNavItemButton__label {
-    color: $euiColorDarkShade;
+    color: $euiTextSubduedColor;
   }
 }
 
