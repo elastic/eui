@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `28.2.0`.
+
+## [`28.2.0`](https://github.com/elastic/eui/tree/v28.2.0)
+
 - Added `EuiSelectableTemplateSitewide` as wrapper of `EuiSelectable` for Elastic's global search component ([#3800](https://github.com/elastic/eui/pull/3800))
 - Updated styles of `EuiMark` to override browser default ([#3800](https://github.com/elastic/eui/pull/3800))
 - Updated `EuiHighlight` to use `EuiMark` as matching element wrapper ([#3800](https://github.com/elastic/eui/pull/3800))
