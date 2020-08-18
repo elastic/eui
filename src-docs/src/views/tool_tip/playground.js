@@ -3,6 +3,7 @@ import { EuiToolTip } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export default () => {
@@ -30,16 +31,7 @@ export default () => {
     value: 'Content',
   };
 
-  propsToUse.onMouseOut = {
-    ...propsToUse.onMouseOut,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onMouseOut.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onMouseOut = simulateFunction(propsToUse.onMouseOut);
 
   return {
     config: {
