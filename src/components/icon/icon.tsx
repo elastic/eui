@@ -83,8 +83,11 @@ const typeToPathMap = {
   copy: 'copy',
   copyClipboard: 'copy_clipboard',
   createAdvancedJob: 'ml_create_advanced_job',
+  createClassificationJob: 'ml_create_classification_job',
   createMultiMetricJob: 'ml_create_multi_metric_job',
+  createOutlierDetectionJob: 'ml_create_outlier_detection_job',
   createPopulationJob: 'ml_create_population_job',
+  createRegressionJob: 'ml_create_regression_job',
   createSingleMetricJob: 'ml_create_single_metric_job',
   cross: 'cross',
   crossClusterReplicationApp: 'app_cross_cluster_replication',
@@ -678,7 +681,10 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     const isAppIcon =
       type &&
       typeof type === 'string' &&
-      (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
+      (/.+App$/.test(type) ||
+        /.+Job$/.test(type) ||
+        type === 'dataVisualizer' ||
+        type === 'outlierDetection');
 
     const classes = classNames(
       'euiIcon',
@@ -709,7 +715,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           src={icon}
           className={classes}
           tabIndex={tabIndex}
-          {...(rest as HTMLAttributes<HTMLImageElement>)}
+          {...rest as HTMLAttributes<HTMLImageElement>}
         />
       );
     } else {

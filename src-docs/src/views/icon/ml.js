@@ -23,8 +23,11 @@ import {
 const iconTypes = [
   'dataVisualizer',
   'createAdvancedJob',
+  'createClassificationJob',
   'createMultiMetricJob',
+  'createOutlierDetectionJob',
   'createPopulationJob',
+  'createRegressionJob',
   'createSingleMetricJob',
 ];
 
