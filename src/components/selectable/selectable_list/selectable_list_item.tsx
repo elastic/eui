@@ -196,11 +196,15 @@ export class EuiSelectableListItem extends Component<
           </EuiBadge>
         );
       }
-      appendNode = (
-        <span className="euiSelectableListItem__append">
-          {append} {isFocused && !disabled ? onFocusBadgeNode : null}
-        </span>
-      );
+
+      // Only display the append wrapper if append exists or isFocused
+      if (append || (isFocused && !disabled)) {
+        appendNode = (
+          <span className="euiSelectableListItem__append">
+            {append} {isFocused && !disabled ? onFocusBadgeNode : null}
+          </span>
+        );
+      }
     }
 
     return (
