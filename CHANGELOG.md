@@ -1,11 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.1.0`.
-
-## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
-
-- Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
-- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
 - Added `EuiSelectableTemplateSitewide` as wrapper of `EuiSelectable` for Elastic's global search component ([#3800](https://github.com/elastic/eui/pull/3800))
 - Updated styles of `EuiMark` to override browser default ([#3800](https://github.com/elastic/eui/pull/3800))
 - Updated `EuiHighlight` to use `EuiMark` as matching element wrapper ([#3800](https://github.com/elastic/eui/pull/3800))
@@ -15,12 +9,20 @@ No public interface changes since `28.1.0`.
 
 **Bug fixes**
 
+- Fixed display of `EuiBadge` if only the `iconType` is passed ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accessibility error in `EuiSelectable` when the `list` isn't on the page ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accessibility error in `EuiPopover` when `ownFocus = false` ([#3800](https://github.com/elastic/eui/pull/3800))
+
+## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
+
+- Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
+
+**Bug fixes**
+
 - Fixed bug in `EuiCodeBlock` content overlapping with control buttons when `whiteSpace` was set to `"pre"` ([#3853](https://github.com/elastic/eui/pull/3853))
 - Fixed `EuiFocusTrap` not applying provided `style` prop ([#3916](https://github.com/elastic/eui/pull/3916))
 - Fixed bug in `EuiDataGrid` when a new pagination object would cause every cell to render ([#3919](https://github.com/elastic/eui/pull/3919))
-- Fixed display of `EuiBadge` if only the `iconType` is passed ([#3800](https://github.com/elastic/eui/pull/3800))
-- Fixed accesssibility error in `EuiSelectable` when the `list` isn't on the page ([#3800](https://github.com/elastic/eui/pull/3800))
-- Fixed accesssibility error in `EuiPopover` when `ownFocus = false` ([#3800](https://github.com/elastic/eui/pull/3800))
 
 ## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
 
