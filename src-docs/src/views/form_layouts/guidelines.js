@@ -56,7 +56,7 @@ export default () => (
             <h4>Provide help text</h4>
             <p>
               Show validation parameters in the help text below the input. For
-              example: Spaces and special charaters are not allowed.
+              example: Spaces and special characters are not allowed.
             </p>
           </EuiText>
         </EuiPanel>
