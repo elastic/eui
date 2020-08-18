@@ -2,6 +2,11 @@
 
 No public interface changes since `28.1.0`.
 
+
+**Bug fixes**
+
+- Fixed bug in `EuiBasicTable` not fully expanding tall rows (height > 1000px) ([#3855](https://github.com/elastic/eui/pull/3855))
+
 ## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
 
 - Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
