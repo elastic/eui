@@ -37,7 +37,9 @@ import {
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
 
-export type EuiSelectableTemplateSitewideProps = Partial<EuiSelectableProps> & {
+export type EuiSelectableTemplateSitewideProps = Partial<
+  Omit<EuiSelectableProps, 'options'>
+> & {
   /**
    * Extends the typical EuiSelectable #Options with the addition of pre-composed elements
    * such as `icon`, `avatar`and `meta`
@@ -103,19 +105,19 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   /**
    * Search helpers
    */
-  const searchOnFocus = (e: any) => {
+  const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onFocus && searchProps.onFocus(e);
     setInputHasFocus(true);
   };
 
-  const onSearchInput = (e: any) => {
+  const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
     searchProps && searchProps.onInput && searchProps.onInput(e);
     setInputHasFocus(true);
   };
 
-  const searchOnBlur = (e: any) => {
+  const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
-    if (!popoverRef?.contains(e.relatedTarget)) {
+    if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       setInputHasFocus(false);
     }
   };
