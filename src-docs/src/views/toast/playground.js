@@ -5,6 +5,7 @@ import {
   iconValidator,
   createOptionalEnum,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export default () => {
@@ -23,16 +24,7 @@ export default () => {
 
   propsToUse.color = createOptionalEnum(propsToUse.color);
 
-  propsToUse.onClose = {
-    ...propsToUse.onClose,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onClose.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onClose = simulateFunction(propsToUse.onClose);
 
   return {
     config: {

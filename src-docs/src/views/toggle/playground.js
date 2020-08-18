@@ -3,6 +3,7 @@ import { EuiToggle } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export const toggleConfig = () => {
@@ -25,16 +26,7 @@ export const toggleConfig = () => {
     type: PropTypes.String,
   };
 
-  propsToUse.onChange = {
-    ...propsToUse.onChange,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onChange.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onChange = simulateFunction(propsToUse.onChange);
 
   return {
     config: {

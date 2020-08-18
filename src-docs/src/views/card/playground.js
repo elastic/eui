@@ -3,6 +3,7 @@ import { EuiCard } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export default () => {
@@ -28,16 +29,7 @@ export default () => {
     type: PropTypes.String,
   };
 
-  propsToUse.onClick = {
-    ...propsToUse.onClick,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onClick.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onClick = simulateFunction(propsToUse.onClick);
 
   return {
     config: {
