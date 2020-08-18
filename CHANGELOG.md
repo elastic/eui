@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `28.1.0`.
+
+## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
+
 - Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
 
 **Bug fixes**
 
@@ -25,6 +30,12 @@
 **Breaking changes**
 
 - Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
+
+## [`27.4.1`](https://github.com/elastic/eui/tree/v27.4.1)
+
+**Note: this release is a backport containing changes originally made in `28.1.0`**
+
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
 
 ## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
 

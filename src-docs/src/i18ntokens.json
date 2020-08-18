@@ -1,5 +1,21 @@
 [
   {
+    "token": "euiAccordion.isLoading",
+    "defString": "Loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 235,
+        "column": 14
+      },
+      "end": {
+        "line": 235,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/accordion/accordion.tsx"
+  },
+  {
     "token": "euiBasicTable.tableCaptionWithPagination",
     "defString": "{tableCaption}; Page {page} of {pageCount}.",
     "highlighting": "string",
@@ -197,11 +213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 133,
+        "line": 136,
         "column": 6
       },
       "end": {
-        "line": 135,
+        "line": 138,
         "column": 45
       }
     },
@@ -341,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 186,
+        "line": 189,
         "column": 8
       },
       "end": {
-        "line": 186,
+        "line": 189,
         "column": 78
       }
     },
@@ -629,11 +645,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 433,
+        "line": 435,
         "column": 6
       },
       "end": {
-        "line": 435,
+        "line": 437,
         "column": 38
       }
     },
@@ -1109,11 +1125,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 907,
+        "line": 905,
         "column": 4
       },
       "end": {
-        "line": 916,
+        "line": 914,
         "column": 9
       }
     },
@@ -1125,11 +1141,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 919,
+        "line": 917,
         "column": 10
       },
       "end": {
-        "line": 927,
+        "line": 925,
         "column": 15
       }
     },
@@ -1141,11 +1157,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1077,
+        "line": 1075,
         "column": 28
       },
       "end": {
-        "line": 1080,
+        "line": 1078,
         "column": 30
       }
     },
@@ -1717,11 +1733,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 104,
+        "line": 106,
         "column": 6
       },
       "end": {
-        "line": 104,
+        "line": 106,
         "column": 74
       }
     },
@@ -1893,11 +1909,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 91,
+        "line": 94,
         "column": 8
       },
       "end": {
-        "line": 91,
+        "line": 94,
         "column": 80
       }
     },
@@ -2149,11 +2165,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 388,
+        "line": 385,
         "column": 12
       },
       "end": {
-        "line": 391,
+        "line": 388,
         "column": 14
       }
     },
@@ -2165,11 +2181,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 398,
+        "line": 395,
         "column": 10
       },
       "end": {
-        "line": 402,
+        "line": 399,
         "column": 12
       }
     },
@@ -2181,11 +2197,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 408,
+        "line": 405,
         "column": 10
       },
       "end": {
-        "line": 411,
+        "line": 408,
         "column": 12
       }
     },
@@ -2197,11 +2213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 486,
+        "line": 483,
         "column": 6
       },
       "end": {
-        "line": 486,
+        "line": 483,
         "column": 78
       }
     },
@@ -2213,11 +2229,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 515,
+        "line": 512,
         "column": 6
       },
       "end": {
-        "line": 515,
+        "line": 512,
         "column": 78
       }
     },
@@ -2325,11 +2341,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 80,
+        "line": 83,
         "column": 8
       },
       "end": {
-        "line": 86,
+        "line": 89,
         "column": 30
       }
     },
