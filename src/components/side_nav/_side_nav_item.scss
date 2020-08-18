@@ -23,6 +23,10 @@
   }
 
   &.euiSideNavItemButton-isSelected {
+    .euiSideNavItemButton__icon {
+      fill: $euiColorPrimary;
+    }
+
     .euiSideNavItemButton__label {
       color: $euiColorPrimary;
       font-weight: $euiFontWeightBold;
@@ -147,6 +151,10 @@
 
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
+  }
+
+  .euiSideNavItemButton__icon {
+    fill: $euiTextSubduedColor;
   }
 
   .euiSideNavItemButton__label {
