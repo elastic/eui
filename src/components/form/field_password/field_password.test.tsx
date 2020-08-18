@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
@@ -92,20 +92,58 @@ describe('EuiFieldPassword', () => {
       });
     });
 
-    test('dualToggleProps is rendered', () => {
-      const component = render(
-        <EuiFieldPassword type="dual" dualToggleProps={requiredProps} />
-      );
+    describe('dual', () => {
+      test('dualToggleProps is rendered', () => {
+        const component = render(
+          <EuiFieldPassword type="dual" dualToggleProps={requiredProps} />
+        );
 
-      expect(component).toMatchSnapshot();
-    });
+        expect(component).toMatchSnapshot();
+      });
 
-    test('dual type also renders append', () => {
-      const component = render(
-        <EuiFieldPassword type="dual" append={['String', <span>Span</span>]} />
-      );
+      test('dual type also renders append', () => {
+        const component = render(
+          <EuiFieldPassword
+            type="dual"
+            append={['String', <span>Span</span>]}
+          />
+        );
 
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+
+      test('dual does not mutate the append array prop', () => {
+        const props: EuiFieldPasswordProps = {
+          type: 'dual',
+          append: ['one', 'two'],
+          dualToggleProps: {
+            'data-test-subj': 'toggleButton',
+          },
+        };
+        const component = mount(<EuiFieldPassword {...props} />);
+
+        expect(
+          component.find('button[data-test-subj="toggleButton"]').length
+        ).toBe(1);
+        expect(
+          component
+            .find('button[data-test-subj="toggleButton"] EuiIcon')
+            .props().type
+        ).toBe('eye');
+
+        component
+          .find('button[data-test-subj="toggleButton"]')
+          .simulate('click');
+
+        expect(
+          component.find('button[data-test-subj="toggleButton"]').length
+        ).toBe(1);
+        expect(
+          component
+            .find('button[data-test-subj="toggleButton"] EuiIcon')
+            .props().type
+        ).toBe('eyeClosed');
+      });
     });
   });
 });

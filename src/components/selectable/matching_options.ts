@@ -19,13 +19,21 @@
 
 import { EuiSelectableOption } from './selectable_option';
 
+const getSearchableLabel = (
+  option: EuiSelectableOption,
+  normalize: boolean = true
+): string => {
+  const searchableLabel = option.searchableLabel || option.label;
+  return normalize ? searchableLabel.trim().toLowerCase() : searchableLabel;
+};
+
 const getSelectedOptionForSearchValue = (
   searchValue: string,
   selectedOptions: EuiSelectableOption[]
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    option => option.label.toLowerCase() === normalizedSearchValue
+    option => getSearchableLabel(option) === normalizedSearchValue
   );
 };
 
@@ -40,7 +48,7 @@ const collectMatchingOption = (
   // the selectedOptions list exists
   if (selectedOptions) {
     const selectedOption = getSelectedOptionForSearchValue(
-      option.label,
+      getSearchableLabel(option, false),
       selectedOptions
     );
     if (selectedOption) {
@@ -60,7 +68,7 @@ const collectMatchingOption = (
     return;
   }
 
-  const normalizedOption = option.label.trim().toLowerCase();
+  const normalizedOption = getSearchableLabel(option);
   if (normalizedOption.includes(normalizedSearchValue)) {
     accumulator.push(option);
   }
@@ -72,7 +80,7 @@ export const getMatchingOptions = (
    */
   options: EuiSelectableOption[],
   /**
-   * String to match option.label against
+   * String to match option.label || option.searchableLabel against
    */
   searchValue: string,
   /**
@@ -85,7 +93,7 @@ export const getMatchingOptions = (
    */
   selectedOptions?: EuiSelectableOption[]
 ) => {
-  const normalizedSearchValue = searchValue.trim().toLowerCase();
+  const normalizedSearchValue = searchValue.toLowerCase();
   const matchingOptions: EuiSelectableOption[] = [];
 
   options.forEach(option => {

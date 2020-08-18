@@ -1,6 +1,53 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `EuiDataGrid` to also show expand button on mouse hover ([#3688](https://github.com/elastic/eui/pull/3688))
+
+## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
+
+- Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
+- Added `EuiSelectableTemplateSitewide` as wrapper of `EuiSelectable` for Elastic's global search component ([#3800](https://github.com/elastic/eui/pull/3800))
+- Updated styles of `EuiMark` to override browser default ([#3800](https://github.com/elastic/eui/pull/3800))
+- Updated `EuiHighlight` to use `EuiMark` as matching element wrapper ([#3800](https://github.com/elastic/eui/pull/3800))
+- Enhanced `EuiSelectable`'s `option` type to allow for a separate `searchableLabel` and any generic keys ([#3800](https://github.com/elastic/eui/pull/3800))
+- Added `listProps.onFocusBadge`, `loadingMessage`, `noMatchesMessage`, and `emptyMessage` props to `EuiSelectable` ([#3800](https://github.com/elastic/eui/pull/3800))
+- Added `bordered` prop to `EuiSelectableMessage` ([#3800](https://github.com/elastic/eui/pull/3800))
+
+**Bug fixes**
+
+- Fixed bug in `EuiCodeBlock` content overlapping with control buttons when `whiteSpace` was set to `"pre"` ([#3853](https://github.com/elastic/eui/pull/3853))
+- Fixed `EuiFocusTrap` not applying provided `style` prop ([#3916](https://github.com/elastic/eui/pull/3916))
+- Fixed bug in `EuiDataGrid` when a new pagination object would cause every cell to render ([#3919](https://github.com/elastic/eui/pull/3919))
+- Fixed display of `EuiBadge` if only the `iconType` is passed ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accesssibility error in `EuiSelectable` when the `list` isn't on the page ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accesssibility error in `EuiPopover` when `ownFocus = false` ([#3800](https://github.com/elastic/eui/pull/3800))
+
+## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
+
+- Update `createTheme` to apply latest changes to elastic charts `Theme`. ([#3792](https://github.com/elastic/eui/pull/3792))
+- Added icons for `appSearchApp` and `workplaceSearchApp` to `EuiIcon` ([#3859](https://github.com/elastic/eui/pull/3859))
+- Added `unlink` glyph to `EuiIcon` ([#3869](https://github.com/elastic/eui/pull/3869))
+- Added `EuiMarkdownEditor` and `EuiMarkdownFormat` components ([#3522](https://github.com/elastic/eui/pull/3522))
+
+**Bug fixes**
+
+- Fixed `EuiFacetGroup` container expansion due to negative margin value ([#3871](https://github.com/elastic/eui/pull/3871))
+- Fixed `EuiComboBox` delimeter-separated option creation and empty state prompt text ([#3841](https://github.com/elastic/eui/pull/3841))
+- Fixed `EuiDataGrid` not properly resizing within a fixed height container ([#3894](https://github.com/elastic/eui/pull/3894))
+- Fixed bug in `EuiFieldPassword` where an edge case mutated its `append` prop  ([#3884](https://github.com/elastic/eui/pull/3884))
+
+**Breaking changes**
+
+- Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
+
+## [`27.4.1`](https://github.com/elastic/eui/tree/v27.4.1)
+
+**Note: this release is a backport containing changes originally made in `28.1.0`**
+
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
+
+## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
+
 - Added `customOptionText` prop to `EuiComboBox` ([#3811](https://github.com/elastic/eui/pull/3811))
 
 **Bug fixes**

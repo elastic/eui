@@ -654,6 +654,7 @@ export class EuiPopover extends Component<Props, State> {
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
       let tabIndex;
       let initialFocus;
+      let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
       if (ownFocus) {
@@ -667,6 +668,7 @@ export class EuiPopover extends Component<Props, State> {
 
       let focusTrapScreenReaderText;
       if (ownFocus) {
+        ariaDescribedby = descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
             <p id={descriptionId}>
@@ -700,7 +702,7 @@ export class EuiPopover extends Component<Props, State> {
               aria-live={ariaLive}
               role="dialog"
               aria-modal="true"
-              aria-describedby={descriptionId}
+              aria-describedby={ariaDescribedby}
               style={this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}

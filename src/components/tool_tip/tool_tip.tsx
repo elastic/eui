@@ -80,7 +80,7 @@ export interface Props {
   /**
    * The in-view trigger for your tooltip.
    */
-  children: ReactElement<any>;
+  children: ReactElement;
   /**
    * Passes onto the tooltip itself, not the trigger.
    */
@@ -244,9 +244,11 @@ export class EuiToolTip extends Component<Props, State> {
 
   hideToolTip = () => {
     this.clearAnimationTimeout();
-    if (this._isMounted) {
-      enqueueStateChange(() => this.setState({ visible: false }));
-    }
+    enqueueStateChange(() => {
+      if (this._isMounted) {
+        this.setState({ visible: false });
+      }
+    });
   };
 
   hasFocusMouseMoveListener = () => {

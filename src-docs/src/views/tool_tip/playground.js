@@ -1,7 +1,10 @@
 import { PropTypes } from 'react-view';
 import { EuiToolTip } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
-import * as t from '@babel/types';
+import {
+  propUtilityForPlayground,
+  dummyFunction,
+  simulateFunction,
+} from '../../services/playground';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiToolTip.__docgenInfo)
@@ -28,16 +31,7 @@ export default () => {
     value: 'Content',
   };
 
-  propsToUse.onMouseOut = {
-    ...propsToUse.onMouseOut,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onMouseOut.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onMouseOut = simulateFunction(propsToUse.onMouseOut);
 
   return {
     config: {
@@ -52,17 +46,7 @@ export default () => {
         },
       },
       customProps: {
-        onMouseOut: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onMouseOut: dummyFunction,
       },
     },
   };

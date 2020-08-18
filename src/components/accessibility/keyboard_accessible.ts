@@ -44,7 +44,10 @@ import { Component, cloneElement, KeyboardEvent, ReactElement } from 'react';
 import { keys } from '../../services';
 
 interface Props {
-  children: ReactElement<any>;
+  /**
+   * ReactNode to render as this component's children
+   */
+  children: ReactElement;
 }
 
 export class EuiKeyboardAccessible extends Component<Props> {
