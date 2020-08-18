@@ -13,6 +13,7 @@ import {
   EuiSpacer,
   EuiCallOut,
 } from '../../../../src/components';
+import iconConfig from './playground';
 
 import Icons from './icons';
 const iconsSnippet = '<EuiIcon type="alert" />';
@@ -109,9 +110,9 @@ export const IconExample = {
         <div>
           <p>
             Glyphs are small, monochromatic icons that typically should always
-            use the default size of <EuiCode language="js">size=&quot;m&quot;</EuiCode>. They
-            tend to be pixel perfect and don&apos;t scale very well into larger
-            sizes.
+            use the default size of{' '}
+            <EuiCode language="js">size=&quot;m&quot;</EuiCode>. They tend to be
+            pixel perfect and don&apos;t scale very well into larger sizes.
           </p>
         </div>
       ),
@@ -245,12 +246,14 @@ export const IconExample = {
       title: 'Third party logos',
       text: (
         <p>
-          EUI's library of third party logos are mostly maintained for legacy usages.{' '}
-          <strong>EuiIcon</strong> now accepts custom SVG and image content which is how we recommend displaying external logos.
+          EUI's library of third party logos are mostly maintained for legacy
+          usages. <strong>EuiIcon</strong> now accepts custom SVG and image
+          content which is how we recommend displaying external logos.
         </p>
       ),
       snippet: logosThirdSnippet,
       demo: <LogosThird />,
     },
   ],
+  playground: iconConfig,
 };
