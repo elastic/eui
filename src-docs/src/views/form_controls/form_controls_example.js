@@ -30,6 +30,8 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import playgrounds from './playground';
+
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
 const fieldSearchHtml = renderToHtml(FieldSearch);
@@ -632,4 +634,5 @@ export const FormControlsExample = {
       demo: <FormControlLayoutRange />,
     },
   ],
+  playground: playgrounds,
 };
