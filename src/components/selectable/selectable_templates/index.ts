@@ -17,22 +17,14 @@
  * under the License.
  */
 
-import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+export {
+  EuiSelectableTemplateSitewide,
+  EuiSelectableTemplateSitewideProps,
+} from './selectable_template_sitewide';
 
-import { EuiSelectableMessage } from './selectable_message';
-
-describe('EuiSelectableMessage', () => {
-  test('is rendered', () => {
-    const component = render(<EuiSelectableMessage {...requiredProps} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('bordered is rendered', () => {
-    const component = render(<EuiSelectableMessage bordered={true} />);
-
-    expect(component).toMatchSnapshot();
-  });
-});
+export {
+  EuiSelectableTemplateSitewideOption,
+  EuiSelectableTemplateSitewideMetaData,
+  euiSelectableTemplateSitewideFormatOptions,
+  euiSelectableTemplateSitewideRenderOptions,
+} from './selectable_template_sitewide_option';

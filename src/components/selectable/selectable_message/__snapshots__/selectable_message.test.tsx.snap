@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSelectableMessage bordered is rendered 1`] = `
+<div
+  class="euiText euiText--extraSmall euiSelectableMessage euiSelectableMessage--bordered"
+>
+  <div
+    class="euiTextColor euiTextColor--subdued"
+  />
+</div>
+`;
+
 exports[`EuiSelectableMessage is rendered 1`] = `
 <div
   aria-label="aria-label"
