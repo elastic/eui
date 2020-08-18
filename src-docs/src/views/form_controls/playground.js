@@ -5,7 +5,6 @@ import {
   iconValidator,
 } from '../../services/playground';
 import {
-  EuiIcon,
   EuiFieldText,
   EuiFieldSearch,
   EuiFieldNumber,
