@@ -358,23 +358,29 @@ export class GuideSection extends Component {
         for (let i = 0; i < types.length; i++) {
           if (functionMatches[j]) {
             elements.push(
-              <EuiCodeBlock {...codeBlockProps}>{types[i]}</EuiCodeBlock>
+              <Fragment>
+                {types[i]} <br />
+              </Fragment>
             );
             elements.push(
-              <EuiCodeBlock {...codeBlockProps}>
-                {functionMatches[j][0]}
-              </EuiCodeBlock>
+              <Fragment>
+                {functionMatches[j][0]} <br />
+              </Fragment>
             );
             j++;
           } else {
             elements.push(
-              <EuiCodeBlock {...codeBlockProps}>{types[i]}</EuiCodeBlock>
+              <Fragment>
+                {types[i]} <br />
+              </Fragment>
             );
           }
         }
         defaultTypeCell = (
           <EuiTableRowCell key="type" header="Type" textOnly={false}>
-            <div>{elements}</div>
+            <EuiCodeBlock whiteSpace="pre" {...codeBlockProps}>
+              {elements}
+            </EuiCodeBlock>
           </EuiTableRowCell>
         );
       }
