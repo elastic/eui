@@ -25,6 +25,8 @@ import { CodeSandboxLink } from '../codesandbox';
 
 import { cleanEuiImports } from '../../services';
 
+import { extendedTypesInfo } from './guide_section_extends';
+
 export const markup = text => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split('\n').map(token => {
@@ -289,7 +291,7 @@ export class GuideSection extends Component {
     const docgenInfo = Array.isArray(component.__docgenInfo)
       ? component.__docgenInfo[0]
       : component.__docgenInfo;
-    const { description, props } = docgenInfo;
+    const { description, props, extendedInterfaces } = docgenInfo;
 
     if (!props && !description) {
       return;
@@ -328,7 +330,11 @@ export class GuideSection extends Component {
       if (defaultValue) {
         defaultValueMarkup = [
           <EuiCode key={`defaultValue-${propName}`}>
-            <span className="eui-textBreakNormal">{defaultValue.value}</span>
+            <span
+              key={`defaultValueSpan-${propName}`}
+              className="eui-textBreakNormal">
+              {defaultValue.value}
+            </span>
           </EuiCode>,
         ];
         if (defaultValue.comment) {
@@ -360,7 +366,29 @@ export class GuideSection extends Component {
       return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
     });
 
-    const title = <span id={componentName}>{componentName}</span>;
+    const extendedTypes = extendedInterfaces
+      .filter(type => !!extendedTypesInfo[type])
+      .map(type => (
+        <EuiLink
+          key={`extendedTypeValue-${extendedTypesInfo[type].name}`}
+          className="guideSection__extend-element"
+          href={extendedTypesInfo[type].url}>
+          {extendedTypesInfo[type].name}
+        </EuiLink>
+      ));
+
+    const title = (
+      <p id={componentName}>
+        <span>{componentName}</span>
+        {extendedTypes.length > 0 && (
+          <span
+            key={`extendedTypes-${componentName}`}
+            className="guideSection__extend">
+            [ extends {extendedTypes}]
+          </span>
+        )}
+      </p>
+    );
 
     let descriptionElement;
 

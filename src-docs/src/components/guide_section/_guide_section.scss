@@ -7,3 +7,14 @@
 .guideSection__space {
   height: $euiSizeL;
 }
+
+.guideSection__extend {
+  font-size: $euiFontSizeS;
+  padding-left: 10px;
+  font-weight: $euiFontWeightLight;
+  color: $euiColorDarkShade;
+
+  .guideSection__extend-element {
+    padding-right: 5px;
+  }
+}
