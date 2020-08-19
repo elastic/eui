@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are formatted with euiSelectableTemplateSitewideFormatOptions() 1`] = `
+Array [
+  Object {
+    "append": <EuiAvatar
+      name="Default Space"
+      size="s"
+      type="space"
+    />,
+    "aria-label": "aria-label",
+    "avatar": Object {
+      "name": "Default Space",
+    },
+    "className": "euiSelectableTemplateSitewide__listItem testClass1 testClass2",
+    "data-test-subj": "test subject string",
+    "key": "Basic data application",
+    "label": "Basic data application",
+    "meta": Array [
+      Object {
+        "text": "Application",
+        "type": "application",
+      },
+    ],
+    "prepend": undefined,
+    "title": "Basic data application •  Application",
+    "url": "welcome-dashboards",
+  },
+  Object {
+    "append": undefined,
+    "className": "euiSelectableTemplateSitewide__listItem",
+    "icon": Object {
+      "type": "user",
+    },
+    "key": "Platform with deployment highlighted",
+    "label": "Platform with deployment highlighted",
+    "meta": Array [
+      Object {
+        "text": "Account",
+        "type": "platform",
+      },
+      Object {
+        "highlightSearchString": true,
+        "text": "personal-databoard",
+        "type": "deployment",
+      },
+    ],
+    "prepend": <EuiIcon
+      color="subdued"
+      size="l"
+      type="user"
+    />,
+    "title": "Platform with deployment highlighted •  Account, personal-databoard",
+  },
+  Object {
+    "append": undefined,
+    "className": "euiSelectableTemplateSitewide__listItem",
+    "icon": Object {
+      "color": "accent",
+      "type": "alert",
+    },
+    "key": "Other metas",
+    "label": "Other metas",
+    "meta": Array [
+      Object {
+        "text": "Article",
+        "type": "article",
+      },
+      Object {
+        "text": "Case",
+        "type": "case",
+      },
+      Object {
+        "text": "Text",
+      },
+      Object {
+        "text": "I have a custom type",
+        "type": "PINK",
+      },
+    ],
+    "prepend": <EuiIcon
+      color="accent"
+      size="l"
+      type="alert"
+    />,
+    "searchableLabel": "Totally custom with pink metadata",
+    "title": "Other metas •  Article, Case, Text, I have a custom type",
+  },
+]
+`;
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 1`] = `
+<React.Fragment>
+  <EuiHighlight
+    className="euiSelectableTemplateSitewide__listItemTitle"
+    search=""
+  >
+    Basic data application
+  </EuiHighlight>
+  <span
+    className="euiSelectableTemplateSitewide__optionMetasList"
+  >
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--application euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="application"
+    >
+      Application
+    </EuiHighlight>
+  </span>
+</React.Fragment>
+`;
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 2`] = `
+<React.Fragment>
+  <EuiHighlight
+    className="euiSelectableTemplateSitewide__listItemTitle"
+    search=""
+  >
+    Platform with deployment highlighted
+  </EuiHighlight>
+  <span
+    className="euiSelectableTemplateSitewide__optionMetasList"
+  >
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--platform euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="platform"
+    >
+      Account
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--deployment euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="deployment"
+    >
+      personal-databoard
+    </EuiHighlight>
+  </span>
+</React.Fragment>
+`;
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 3`] = `
+<React.Fragment>
+  <EuiHighlight
+    className="euiSelectableTemplateSitewide__listItemTitle"
+    search=""
+  >
+    Other metas
+  </EuiHighlight>
+  <span
+    className="euiSelectableTemplateSitewide__optionMetasList"
+  >
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--article euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="article"
+    >
+      Article
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--case euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="case"
+    >
+      Case
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta"
+      search=""
+    >
+      Text
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--PINK euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="PINK"
+    >
+      I have a custom type
+    </EuiHighlight>
+  </span>
+</React.Fragment>
+`;
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 1`] = `
+<React.Fragment>
+  <EuiHighlight
+    className="euiSelectableTemplateSitewide__listItemTitle"
+    search="data"
+  >
+    Basic data application
+  </EuiHighlight>
+  <span
+    className="euiSelectableTemplateSitewide__optionMetasList"
+  >
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--application euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="application"
+    >
+      Application
+    </EuiHighlight>
+  </span>
+</React.Fragment>
+`;
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 2`] = `
+<React.Fragment>
+  <EuiHighlight
+    className="euiSelectableTemplateSitewide__listItemTitle"
+    search="data"
+  >
+    Platform with deployment highlighted
+  </EuiHighlight>
+  <span
+    className="euiSelectableTemplateSitewide__optionMetasList"
+  >
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--platform euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="platform"
+    >
+      Account
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--deployment euiSelectableTemplateSitewide__optionMeta"
+      search="data"
+      type="deployment"
+    >
+      personal-databoard
+    </EuiHighlight>
+  </span>
+</React.Fragment>
+`;
+
+exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 3`] = `
+<React.Fragment>
+  <EuiHighlight
+    className="euiSelectableTemplateSitewide__listItemTitle"
+    search="data"
+  >
+    Other metas
+  </EuiHighlight>
+  <span
+    className="euiSelectableTemplateSitewide__optionMetasList"
+  >
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--article euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="article"
+    >
+      Article
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--case euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="case"
+    >
+      Case
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta"
+      search=""
+    >
+      Text
+    </EuiHighlight>
+    <EuiHighlight
+      className="euiSelectableTemplateSitewide__optionMeta--PINK euiSelectableTemplateSitewide__optionMeta"
+      search=""
+      type="PINK"
+    >
+      I have a custom type
+    </EuiHighlight>
+  </span>
+</React.Fragment>
+`;

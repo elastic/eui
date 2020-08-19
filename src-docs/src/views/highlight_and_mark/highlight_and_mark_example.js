@@ -62,7 +62,7 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <strong>EuiMark</strong> to wrap a string in an
+          Use <strong>EuiMark</strong> to wrap a string in a{' '}
           <EuiCode>mark</EuiCode> element.
         </p>
       ),

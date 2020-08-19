@@ -3,34 +3,44 @@
 exports[`EuiHighlight behavior loose matching matches strings with different casing 1`] = `
 <span>
   different 
-  <strong>
+  <mark
+    class="euiMark"
+  >
     case
-  </strong>
+  </mark>
    match
 </span>
 `;
 
 exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 <span>
-  <strong>
+  <mark
+    class="euiMark"
+  >
     match
-  </strong>
+  </mark>
    
-  <strong>
+  <mark
+    class="euiMark"
+  >
     match
-  </strong>
+  </mark>
    
-  <strong>
+  <mark
+    class="euiMark"
+  >
     match
-  </strong>
+  </mark>
 </span>
 `;
 
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 <span>
-  <strong>
+  <mark
+    class="euiMark"
+  >
     match
-  </strong>
+  </mark>
    match match
 </span>
 `;

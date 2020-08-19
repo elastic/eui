@@ -1,6 +1,23 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.1.0`.
+**Bug fixes**
+
+- Fixed bug in `EuiBasicTable` not fully expanding tall rows (height > 1000px) ([#3855](https://github.com/elastic/eui/pull/3855))
+
+## [`28.2.0`](https://github.com/elastic/eui/tree/v28.2.0)
+
+- Added `EuiSelectableTemplateSitewide` as wrapper of `EuiSelectable` for Elastic's global search component ([#3800](https://github.com/elastic/eui/pull/3800))
+- Updated styles of `EuiMark` to override browser default ([#3800](https://github.com/elastic/eui/pull/3800))
+- Updated `EuiHighlight` to use `EuiMark` as matching element wrapper ([#3800](https://github.com/elastic/eui/pull/3800))
+- Enhanced `EuiSelectable`'s `option` type to allow for a separate `searchableLabel` and any generic keys ([#3800](https://github.com/elastic/eui/pull/3800))
+- Added `listProps.onFocusBadge`, `loadingMessage`, `noMatchesMessage`, and `emptyMessage` props to `EuiSelectable` ([#3800](https://github.com/elastic/eui/pull/3800))
+- Added `bordered` prop to `EuiSelectableMessage` ([#3800](https://github.com/elastic/eui/pull/3800))
+
+**Bug fixes**
+
+- Fixed display of `EuiBadge` if only the `iconType` is passed ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accessibility error in `EuiSelectable` when the `list` isn't on the page ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accessibility error in `EuiPopover` when `ownFocus = false` ([#3800](https://github.com/elastic/eui/pull/3800))
 
 ## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
 

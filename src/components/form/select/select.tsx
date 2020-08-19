@@ -37,7 +37,10 @@ export interface EuiSelectOption
   text: React.ReactNode;
 }
 
-export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
+export type EuiSelectProps = Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  'value'
+> &
   CommonProps & {
     options?: EuiSelectOption[];
     isInvalid?: boolean;
@@ -49,6 +52,7 @@ export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
      */
     hasNoInitialSelection?: boolean;
     inputRef?: Ref<HTMLSelectElement>;
+    value?: string | number;
 
     /**
      * when `true` creates a shorter height input
