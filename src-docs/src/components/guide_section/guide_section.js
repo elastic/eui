@@ -295,14 +295,7 @@ export class GuideSection extends Component {
       return;
     }
 
-    const sortedProps = {};
-    Object.keys(props)
-      .sort()
-      .forEach(key => {
-        sortedProps[key] = props[key];
-      });
-
-    const propNames = Object.keys(sortedProps);
+    const propNames = Object.keys(props).sort();
 
     const rows = propNames.map(propName => {
       const {
