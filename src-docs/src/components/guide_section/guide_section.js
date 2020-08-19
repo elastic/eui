@@ -363,26 +363,30 @@ export class GuideSection extends Component {
     });
 
     const extendedTypes = extendedInterfaces
-      ? extendedInterfaces
-          .filter(type => !!extendedTypesInfo[type])
-          .map(type => (
-            <EuiLink
-              key={`extendedTypeValue-${extendedTypesInfo[type].name}`}
-              className="guideSection__extend-element"
-              href={extendedTypesInfo[type].url}>
-              {extendedTypesInfo[type].name}
-            </EuiLink>
-          ))
+      ? extendedInterfaces.filter(type => !!extendedTypesInfo[type])
       : [];
+    // if there is an HTMLAttributes type present among others, remove HTMLAttributes
+    if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
+      const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
+      extendedTypes.splice(htmlAttributesIndex, 1);
+    }
+    const extendedTypesElements = extendedTypes.map(type => (
+      <EuiLink
+        key={`extendedTypeValue-${extendedTypesInfo[type].name}`}
+        className="guideSection__extend-element"
+        href={extendedTypesInfo[type].url}>
+        {extendedTypesInfo[type].name}
+      </EuiLink>
+    ));
 
     const title = (
       <p id={componentName}>
         <span>{componentName}</span>
-        {extendedTypes.length > 0 && (
+        {extendedTypesElements.length > 0 && (
           <span
             key={`extendedTypes-${componentName}`}
             className="guideSection__extend">
-            [ extends {extendedTypes}]
+            [ extends {extendedTypesElements}]
           </span>
         )}
       </p>
