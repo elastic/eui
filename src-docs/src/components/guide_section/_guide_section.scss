@@ -8,6 +8,7 @@
   height: $euiSizeL;
 }
 
-.guideSection__table-row {
-  overflow: auto;
+.guideSection__tableCodeBlock {
+  padding-left: $euiSizeXS;
+  padding-right: $euiSizeXS;
 }

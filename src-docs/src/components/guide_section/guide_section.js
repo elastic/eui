@@ -305,6 +305,12 @@ export class GuideSection extends Component {
         type,
       } = props[propName];
 
+      const codeBlockProps = {
+        className: 'guideSection__tableCodeBlock',
+        paddingSize: 'none',
+        language: 'ts',
+      };
+
       let humanizedName = (
         <strong className="eui-textBreakNormal">{propName}</strong>
       );
@@ -332,9 +338,9 @@ export class GuideSection extends Component {
       let defaultValueMarkup = '';
       if (defaultValue) {
         defaultValueMarkup = [
-          <EuiCode key={`defaultValue-${propName}`}>
-            <span className="eui-textBreakNormal">{defaultValue.value}</span>
-          </EuiCode>,
+          <EuiCodeBlock {...codeBlockProps} key={`defaultValue-${propName}`}>
+            {defaultValue.value}
+          </EuiCodeBlock>,
         ];
         if (defaultValue.comment) {
           defaultValueMarkup.push(`(${defaultValue.comment})`);
@@ -342,11 +348,8 @@ export class GuideSection extends Component {
       }
 
       let defaultTypeCell = (
-        <EuiTableRowCell
-          className="guideSection__table-row"
-          key="type"
-          header="Type">
-          <EuiCode>{typeMarkup}</EuiCode>
+        <EuiTableRowCell key="type" header="Type" textOnly={false}>
+          <EuiCodeBlock {...codeBlockProps}>{typeMarkup}</EuiCodeBlock>
         </EuiTableRowCell>
       );
       if (functionMatches.length > 0) {
@@ -355,28 +358,29 @@ export class GuideSection extends Component {
         for (let i = 0; i < types.length; i++) {
           if (functionMatches[j]) {
             elements.push(
-              <EuiCode>
-                <span className="eui-textBreakNormal">{types[i]}</span>
-              </EuiCode>
+              <Fragment>
+                {types[i]} <br />
+              </Fragment>
             );
             elements.push(
-              <EuiCode language="ts">{functionMatches[j][0]}</EuiCode>
+              <Fragment>
+                {functionMatches[j][0]} <br />
+              </Fragment>
             );
             j++;
           } else {
             elements.push(
-              <EuiCode>
-                <span className="eui-textBreakNormal">{types[i]}</span>
-              </EuiCode>
+              <Fragment>
+                {types[i]} <br />
+              </Fragment>
             );
           }
         }
         defaultTypeCell = (
-          <EuiTableRowCell
-            className="guideSection__table-row"
-            key="type"
-            header="Type">
-            {elements}
+          <EuiTableRowCell key="type" header="Type" textOnly={false}>
+            <EuiCodeBlock whiteSpace="pre" {...codeBlockProps}>
+              {elements}
+            </EuiCodeBlock>
           </EuiTableRowCell>
         );
       }
