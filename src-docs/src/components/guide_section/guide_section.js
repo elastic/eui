@@ -56,7 +56,7 @@ export const markup = text => {
       }
       return token;
     });
-    return [...values, <br />];
+    return [...values, <br key="lineBreak" />];
   });
 };
 
@@ -330,11 +330,7 @@ export class GuideSection extends Component {
       if (defaultValue) {
         defaultValueMarkup = [
           <EuiCode key={`defaultValue-${propName}`}>
-            <span
-              key={`defaultValueSpan-${propName}`}
-              className="eui-textBreakNormal">
-              {defaultValue.value}
-            </span>
+            <span className="eui-textBreakNormal">{defaultValue.value}</span>
           </EuiCode>,
         ];
         if (defaultValue.comment) {
