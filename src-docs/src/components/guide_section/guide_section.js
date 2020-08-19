@@ -54,7 +54,7 @@ export const markup = text => {
       }
       return token;
     });
-    return [...values, <br />];
+    return [...values, <br key="lineBreak" />];
   });
 };
 
@@ -358,19 +358,19 @@ export class GuideSection extends Component {
         for (let i = 0; i < types.length; i++) {
           if (functionMatches[j]) {
             elements.push(
-              <Fragment>
+              <Fragment key={`type-${i}`}>
                 {types[i]} <br />
               </Fragment>
             );
             elements.push(
-              <Fragment>
+              <Fragment key={`function-${i}`}>
                 {functionMatches[j][0]} <br />
               </Fragment>
             );
             j++;
           } else {
             elements.push(
-              <Fragment>
+              <Fragment key={`type-${i}`}>
                 {types[i]} <br />
               </Fragment>
             );
