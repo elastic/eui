@@ -19,6 +19,8 @@ import {
   EuiTitle,
   EuiLink,
   EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../codesandbox';
@@ -370,27 +372,14 @@ export class GuideSection extends Component {
       const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
       extendedTypes.splice(htmlAttributesIndex, 1);
     }
-    const extendedTypesElements = extendedTypes.map(type => (
-      <EuiLink
-        key={`extendedTypeValue-${extendedTypesInfo[type].name}`}
-        className="guideSection__extend-element"
-        href={extendedTypesInfo[type].url}>
-        {extendedTypesInfo[type].name}
-      </EuiLink>
+    const extendedTypesElements = extendedTypes.map((type, index) => (
+      <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
+        <EuiLink href={extendedTypesInfo[type].url}>
+          {extendedTypesInfo[type].name}
+        </EuiLink>
+        {index + 1 < extendedTypes.length && ', '}
+      </Fragment>
     ));
-
-    const title = (
-      <p id={componentName}>
-        <span>{componentName}</span>
-        {extendedTypesElements.length > 0 && (
-          <span
-            key={`extendedTypes-${componentName}`}
-            className="guideSection__extend">
-            [ extends {extendedTypesElements}]
-          </span>
-        )}
-      </p>
-    );
 
     let descriptionElement;
 
@@ -435,9 +424,23 @@ export class GuideSection extends Component {
 
     return [
       <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}>
-        <h3>{title}</h3>
-      </EuiTitle>,
+      <EuiFlexGroup
+        key={`propsName-${componentName}`}
+        alignItems="baseline"
+        wrap>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="s">
+            <h3>{componentName}</h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        {extendedTypesElements.length > 0 && (
+          <EuiFlexItem>
+            <EuiText size="s">
+              <p>[ extends {extendedTypesElements} ]</p>
+            </EuiText>
+          </EuiFlexItem>
+        )}
+      </EuiFlexGroup>,
       <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
       descriptionElement,
       table,
