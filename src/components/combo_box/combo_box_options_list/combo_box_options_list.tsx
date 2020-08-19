@@ -37,7 +37,6 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
-import { EuiIcon } from '../../icon';
 import {
   EuiFilterSelectItem,
   FilterChecked,
@@ -113,9 +112,9 @@ const hitEnterBadge = (
   <EuiBadge
     className="euiComboBoxOption__enterBadge"
     color="hollow"
-    aria-hidden="true">
-    <EuiIcon type="returnKey" />
-  </EuiBadge>
+    iconType="returnKey"
+    aria-hidden="true"
+  />
 );
 
 export class EuiComboBoxOptionsList<T> extends Component<

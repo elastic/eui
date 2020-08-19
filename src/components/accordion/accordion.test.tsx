@@ -133,6 +133,30 @@ describe('EuiAccordion', () => {
         expect(onToggleHandler).toBeCalledWith(true);
       });
     });
+
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} isLoading>
+            <p>You can see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('isLoadingMessage', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading>
+            <p>You can&apos;t see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('behavior', () => {

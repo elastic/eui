@@ -21,6 +21,9 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiRangeLabelProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: string | number;
   disabled?: boolean;
   side?: 'min' | 'max';

@@ -9,6 +9,7 @@ import {
   EuiTab,
   EuiTabbedContent,
 } from '../../../../src/components';
+import { tabConfig } from './playground';
 
 import Tabs from './tabs';
 const tabsSource = require('!!raw-loader!./tabs');
@@ -161,4 +162,5 @@ export const TabsExample = {
       demo: <Controlled />,
     },
   ],
+  playground: tabConfig,
 };

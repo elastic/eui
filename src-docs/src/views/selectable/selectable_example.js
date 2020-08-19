@@ -11,9 +11,17 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiSpacer,
+  EuiSelectableTemplateSitewide,
+  EuiCodeBlock,
+  EuiAccordion,
 } from '../../../../src/components';
 
-import { EuiSelectableOptionProps, EuiSelectableOptionsList } from './props';
+import {
+  EuiSelectableOptionProps,
+  EuiSelectableOptionsList,
+  Options,
+  MetaData,
+} from './props';
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
@@ -43,9 +51,14 @@ import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
 const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
+import SearchOption from './sitewide_option';
+import Search from './search';
+import { EuiCallOut } from '../../../../src/components/call_out';
+const searchSource = require('!!raw-loader!./search');
+const searchHtml = renderToHtml(Search);
+
 export const SelectableExample = {
   title: 'Selectable',
-  beta: true,
   intro: (
     <EuiText>
       <p>
@@ -95,6 +108,18 @@ export const SelectableExample = {
             <EuiCode>children</EuiCode> is a function that return the{' '}
             <EuiCode>list</EuiCode> and <EuiCode>search</EuiCode> nodes.
           </p>
+          <EuiCallOut
+            iconType="check"
+            title="Selected options are based on the checked = on property">
+            <p>
+              <strong>EuiSelectable</strong> offers the ability to{' '}
+              <strong>exclude</strong> selections. Therefore, the{' '}
+              <EuiCode>checked</EuiCode> property is one of{' '}
+              <EuiCode>{"undefined | 'on' | 'off'"}</EuiCode>,{' '}
+              <EuiCode>{"'on'"}</EuiCode> being the default for selected options
+              when <EuiCode>allowExclusions = false</EuiCode>.
+            </p>
+          </EuiCallOut>
         </Fragment>
       ),
       props: {
@@ -131,15 +156,23 @@ export const SelectableExample = {
             <EuiCode>searchProps</EuiCode> object which will get passed down to
             the actual <strong>EuiFieldSearch</strong> used.
           </p>
-          <p>
-            <strong>
-              The search will only perform a string match against the{' '}
-              <EuiCode>option.label</EuiCode>.
-            </strong>
-          </p>
+          <EuiCallOut
+            iconType="search"
+            title={
+              <>
+                The search is performed as a string match against the{' '}
+                <EuiCode>option.label</EuiCode> unless a separate{' '}
+                <EuiCode>option.searchableLabel</EuiCode> is provided.
+              </>
+            }
+          />
         </Fragment>
       ),
-      props: { EuiSelectable },
+      props: {
+        EuiSelectable,
+        EuiSelectableOptionProps,
+        EuiSelectableOptionsList,
+      },
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
   aria-label="Searchable example"
@@ -279,16 +312,38 @@ export const SelectableExample = {
       text: (
         <Fragment>
           <p>
-            The component comes with some pre-composed messages for empty and
-            loading states. To pass in your own message you can use the{' '}
-            <strong>EuiSelectableMessage</strong> component and replace the{' '}
-            <EuiCode>list</EuiCode> child with your message.
+            The component comes with pre-composed messages for loading, empty,
+            and no search result states. To display your own messages, pass{' '}
+            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,
+            or <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively,
+            you can replace the entire <EuiCode>list</EuiCode> display with your
+            own message for any state. In which case, we recommend wrapping your
+            custom message in an <strong>EuiSelectableMessage</strong>{' '}
+            component.
           </p>
         </Fragment>
       ),
-      props: { EuiSelectableMessage },
+      props: { EuiSelectable, EuiSelectableMessage },
       demo: <SelectableMessages />,
-      snippet: '<EuiSelectableMessage>You have no spice</EuiSelectableMessage>',
+      snippet: [
+        `<EuiSelectable
+  aria-label="Messaging example"
+  options={[]}
+  listProps={{ bordered: true }}
+  isLoading={isLoading}
+  loadingMessage={customLoadingMessage}
+  emptyMessage={customEmptyMessage}
+  noMatchesMessage={customNoMatchesMessage}>
+  {list => list}
+</EuiSelectable>`,
+        `<EuiSelectable
+  aria-label="Messaging example"
+  options={[]}
+  listProps={{ bordered: true }}
+  isLoading={isLoading}>
+  {list => isLoading ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage> : list}
+</EuiSelectable>`,
+      ],
     },
     {
       title: 'Rendering the options',
@@ -368,6 +423,137 @@ export const SelectableExample = {
     </Fragment>
   )}
 </EuiSelectable>`,
+    },
+    {
+      title: 'Sitewide search template',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: searchSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: searchHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            <strong>EuiSelectableTemplateSitewide</strong> is an opinionated
+            wrapper around <strong>EuiSelectable</strong> to provide a reusable
+            template across the Elastic products that will share the same global
+            search capabilities. It creates the search input that triggers a
+            popover containing the list of options.
+          </p>
+          <h3>Search input</h3>
+          <p>
+            The search ability of EuiSelectable is still hooked up to the
+            options provided. It will highlight the portion of the label that
+            matches the search string.
+          </p>
+          <EuiCallOut
+            size="s"
+            iconType="keyboardShortcut"
+            title="The demo showcases the possibility to allow a keyboard shortcut (command + K) to trigger the search input focus, but the template does not come with this ability."
+          />
+          <h3>Popover</h3>
+          <p>
+            The popover itself allows you to display a{' '}
+            <EuiCode>popoverTitle</EuiCode> node,{' '}
+            <EuiCode>popoverFooter</EuiCode> node, or pass any of the{' '}
+            <EuiCode>popoverProps</EuiCode> to the{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            component.
+          </p>
+          <h3>Options</h3>
+          <p>
+            The <EuiCode>options</EuiCode> are the most opinionated portion of
+            the template. Their display is determined by the props passed in and
+            extends the normal <EuiCode>EuiSelectable.option</EuiCode> type. All
+            parts are optional with the exception of the label (B).
+          </p>
+
+          <SearchOption />
+          <EuiSpacer size="xs" />
+          <EuiAccordion
+            id="optionSnippet"
+            buttonContent={<small>Code snippet</small>}>
+            <EuiSpacer size="xs" />
+            <EuiCodeBlock language="ts" isCopyable paddingSize="s">
+              {`const options: EuiSelectableTemplateSitewideOption[] = [
+  {
+    label: 'Label',
+    icon: {
+      type: 'logoKibana'
+    }
+    avatar: {
+      name: 'Default',
+    },
+    meta: [
+      {
+        text: 'Meta',
+        type: 'application',
+      },
+      {
+        text: 'Deployment',
+        type: 'deployment',
+      },
+      {
+        text: 'Default display',
+      },
+    ],
+  }
+]`}
+            </EuiCodeBlock>
+          </EuiAccordion>
+          <EuiSpacer />
+          <ul style={{ listStyleType: 'upper-alpha' }}>
+            <li>
+              <EuiCode>label</EuiCode> (required): The name of the item itself.
+              By default, the search box will only use this to match the search
+              term against, but you can supply a separate{' '}
+              <EuiCode>searchableLabel</EuiCode> that combines the label and
+              meta data to search on.
+            </li>
+            <li>
+              <EuiCode>icon</EuiCode>: Only display the solution or
+              application&apos;s logo when the option links to the application
+              itself (Dashboard app) and not lower-level items such as
+              individual dashboards. Size and color are predetermined but can be
+              overridden.
+            </li>
+            <li>
+              <EuiCode>avatar</EuiCode>: Represents the Kibana Space that the
+              item is located in, <strong>if</strong> multiple spaces are
+              present. Type and size are predetermined but can be overridden.
+            </li>
+            <li>
+              <EuiCode>meta</EuiCode>: This bottom line should only contain
+              items if the option is a lower-level item (individual dashboard).
+              The display of which defaults to simple text, but if you pass one
+              of the predetermined <EuiCode>types</EuiCode>, they will be styled
+              according to the design pattern.
+            </li>
+          </ul>
+          <EuiCallOut
+            size="s"
+            iconType="clock"
+            title="The demo shows how you can temporarily replace the icon for a subset of options to display a short list of recently viewed options."
+          />
+          <h3>Selection</h3>
+          <p>
+            The options themselves are simply rendered as list items with no
+            interactive behavior like buttons or links. You must handle the
+            interaction when the component passes back the altered array of
+            options with the selected option having{' '}
+            <EuiCode>{"checked: 'on'"}</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiSelectableTemplateSitewide, Options, MetaData },
+      demo: <Search />,
     },
   ],
 };
