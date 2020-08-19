@@ -1,5 +1,25 @@
 [
   {
+    "version": "28.2.0",
+    "changes": [
+      {
+        "token": "euiSelectableTemplateSitewide.loadingResults",
+        "changeType": "added",
+        "value": "Loading results"
+      },
+      {
+        "token": "euiSelectableTemplateSitewide.noResults",
+        "changeType": "added",
+        "value": "No results available"
+      },
+      {
+        "token": "euiSelectableTemplateSitewide.onFocusBadgeGoTo",
+        "changeType": "added",
+        "value": "Go to"
+      }
+    ]
+  },
+  {
     "version": "28.1.0",
     "changes": [
       {
