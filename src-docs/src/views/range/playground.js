@@ -30,6 +30,7 @@ export const rangeConfig = () => {
   propsToUse.showInput = {
     ...propsToUse.showInput,
     type: PropTypes.Boolean,
+    value: false,
   };
   propsToUse.valueAppend = {
     ...propsToUse.valueAppend,
@@ -84,6 +85,7 @@ export const dualRangeConfig = () => {
   propsToUse.showInput = {
     ...propsToUse.showInput,
     type: PropTypes.Boolean,
+    value: false,
   };
 
   return {
