@@ -367,15 +367,17 @@ export class GuideSection extends Component {
     });
 
     const extendedTypes = extendedInterfaces
-      .filter(type => !!extendedTypesInfo[type])
-      .map(type => (
-        <EuiLink
-          key={`extendedTypeValue-${extendedTypesInfo[type].name}`}
-          className="guideSection__extend-element"
-          href={extendedTypesInfo[type].url}>
-          {extendedTypesInfo[type].name}
-        </EuiLink>
-      ));
+      ? extendedInterfaces
+          .filter(type => !!extendedTypesInfo[type])
+          .map(type => (
+            <EuiLink
+              key={`extendedTypeValue-${extendedTypesInfo[type].name}`}
+              className="guideSection__extend-element"
+              href={extendedTypesInfo[type].url}>
+              {extendedTypesInfo[type].name}
+            </EuiLink>
+          ))
+      : [];
 
     const title = (
       <p id={componentName}>
