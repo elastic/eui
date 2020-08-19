@@ -26,14 +26,26 @@ export type EuiSelectableMessageProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'color'
 > &
-  CommonProps & {};
+  CommonProps & {
+    /**
+     * Match this to the `listProps.bordered` property of your `EuiSelectable` instance
+     */
+    bordered?: boolean;
+  };
 
 export const EuiSelectableMessage: React.FunctionComponent<EuiSelectableMessageProps> = ({
   children,
   className,
+  bordered = false,
   ...rest
 }) => {
-  const classes = classNames('euiSelectableMessage', className);
+  const classes = classNames(
+    'euiSelectableMessage',
+    {
+      'euiSelectableMessage--bordered': bordered,
+    },
+    className
+  );
 
   return (
     <EuiText color="subdued" size="xs" className={classes} {...rest}>

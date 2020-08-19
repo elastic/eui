@@ -17,17 +17,22 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
 
-export interface EuiSelectableOptionBase extends CommonProps {
+export type EuiSelectableOptionBase<T> = CommonProps & {
   /**
    * Visible label of option.
    * Must be unique across items if `key` is not supplied
    */
   label: string;
+  /**
+   * Optionally change the searchable term by passing a different string other than the `label`.
+   * Best used when creating a custom `optionRender` to separate the label from metadata but allowing to search on both
+   */
+  searchableLabel?: string;
   /**
    * Must be unique across items.
    * Will be used to match options instead of `label`
@@ -54,19 +59,20 @@ export interface EuiSelectableOptionBase extends CommonProps {
    */
   append?: React.ReactNode;
   ref?: (optionIndex: number) => void;
-}
+} & T;
 
-export interface EuiSelectableGroupLabelOption
-  extends Omit<EuiSelectableOptionBase, 'isGroupLabel'>,
-    HTMLAttributes<HTMLDivElement> {
-  isGroupLabel: true;
-}
+export type EuiSelectableGroupLabelOption<T> = Omit<
+  EuiSelectableOptionBase<T>,
+  'isGroupLabel'
+> &
+  HTMLAttributes<HTMLDivElement> & {
+    isGroupLabel: true;
+  };
 
-export interface EuiSelectableLIOption
-  extends EuiSelectableOptionBase,
-    ButtonHTMLAttributes<HTMLLIElement> {}
+export type EuiSelectableLIOption<T> = EuiSelectableOptionBase<T> &
+  HTMLAttributes<HTMLLIElement>;
 
-export type EuiSelectableOption = ExclusiveUnion<
-  EuiSelectableGroupLabelOption,
-  EuiSelectableLIOption
+export type EuiSelectableOption<T = {}> = ExclusiveUnion<
+  EuiSelectableGroupLabelOption<T>,
+  EuiSelectableLIOption<T>
 >;

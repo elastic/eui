@@ -4,6 +4,7 @@ import {
   propUtilityForPlayground,
   createOptionalEnum,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export const accordionConfig = () => {
@@ -28,15 +29,7 @@ export const accordionConfig = () => {
     hidden: false,
   };
 
-  propsToUse.onToggle = {
-    ...propsToUse.onToggle,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onToggle = simulateFunction(propsToUse.onToggle);
 
   propsToUse.forceState = createOptionalEnum(propsToUse.forceState);
 
