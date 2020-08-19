@@ -37,7 +37,6 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
-import { EuiIcon } from '../../icon';
 import {
   EuiFilterSelectItem,
   FilterChecked,
@@ -68,6 +67,11 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
+    /**
+     * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
+     * It won't show if there's no onCreateOption.
+     */
+    customOptionText?: string;
     fullWidth?: boolean;
     getSelectedOptionForSearchValue?: (
       searchValue: string,
@@ -108,9 +112,9 @@ const hitEnterBadge = (
   <EuiBadge
     className="euiComboBoxOption__enterBadge"
     color="hollow"
-    aria-hidden="true">
-    <EuiIcon type="returnKey" />
-  </EuiBadge>
+    iconType="returnKey"
+    aria-hidden="true"
+  />
 );
 
 export class EuiComboBoxOptionsList<T> extends Component<
@@ -285,6 +289,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       'data-test-subj': dataTestSubj,
       activeOptionIndex,
       areAllOptionsSelected,
+      customOptionText,
       fullWidth,
       getSelectedOptionForSearchValue,
       isLoading,
@@ -331,40 +336,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       );
     } else if (searchValue && matchingOptions && matchingOptions.length === 0) {
       if (onCreateOption && getSelectedOptionForSearchValue) {
-        const selectedOptionForValue = getSelectedOptionForSearchValue(
-          searchValue,
-          selectedOptions
-        );
-        if (selectedOptionForValue) {
-          // Disallow duplicate custom options.
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.alreadyAdded"
-                default="{label} has already been added"
-                values={{
-                  label: <strong>{selectedOptionForValue.label}</strong>,
-                }}
-              />
-            </p>
-          );
-        } else {
-          emptyStateContent = (
-            <div className="euiComboBoxOption__contentWrapper">
-              <p className="euiComboBoxOption__emptyStateText">
-                <EuiI18n
-                  token="euiComboBoxOptionsList.createCustomOption"
-                  default="Add {searchValue} as a custom option"
-                  values={{
-                    searchValue: <strong>{searchValue}</strong>,
-                  }}
-                />
-              </p>
-              {hitEnterBadge}
-            </div>
-          );
-        }
-      } else {
         if (delimiter && searchValue.includes(delimiter)) {
           emptyStateContent = (
             <div className="euiComboBoxOption__contentWrapper">
@@ -379,16 +350,73 @@ export class EuiComboBoxOptionsList<T> extends Component<
             </div>
           );
         } else {
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.noMatchingOptions"
-                default="{searchValue} doesn't match any options"
-                values={{ searchValue: <strong>{searchValue}</strong> }}
-              />
-            </p>
+          const selectedOptionForValue = getSelectedOptionForSearchValue(
+            searchValue,
+            selectedOptions
           );
+          if (selectedOptionForValue) {
+            // Disallow duplicate custom options.
+            emptyStateContent = (
+              <p>
+                <EuiI18n
+                  token="euiComboBoxOptionsList.alreadyAdded"
+                  default="{label} has already been added"
+                  values={{
+                    label: <strong>{selectedOptionForValue.label}</strong>,
+                  }}
+                />
+              </p>
+            );
+          } else {
+            const highlightSearchValue = (
+              text: string,
+              searchValue: string
+            ) => {
+              const reg = new RegExp(/(\{searchValue})/, 'gi');
+              const parts = text.split(reg);
+              return (
+                <p className="euiComboBoxOption__emptyStateText">
+                  {parts.map((part, idx) =>
+                    part.match(reg) ? (
+                      <strong key={idx}>{searchValue}</strong>
+                    ) : (
+                      part
+                    )
+                  )}
+                </p>
+              );
+            };
+
+            emptyStateContent = (
+              <div className="euiComboBoxOption__contentWrapper">
+                {customOptionText ? (
+                  highlightSearchValue(customOptionText, searchValue)
+                ) : (
+                  <p className="euiComboBoxOption__emptyStateText">
+                    <EuiI18n
+                      token="euiComboBoxOptionsList.createCustomOption"
+                      default="Add {searchValue} as a custom option"
+                      values={{
+                        searchValue: <strong>{searchValue}</strong>,
+                      }}
+                    />
+                  </p>
+                )}
+                {hitEnterBadge}
+              </div>
+            );
+          }
         }
+      } else {
+        emptyStateContent = (
+          <p>
+            <EuiI18n
+              token="euiComboBoxOptionsList.noMatchingOptions"
+              default="{searchValue} doesn't match any options"
+              values={{ searchValue: <strong>{searchValue}</strong> }}
+            />
+          </p>
+        );
       }
     } else if (!options.length) {
       emptyStateContent = (

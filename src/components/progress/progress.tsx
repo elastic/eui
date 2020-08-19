@@ -79,7 +79,7 @@ export type EuiProgressProps = CommonProps & {
 type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
-  ProgressHTMLAttributes<HTMLProgressElement> & {
+  Omit<ProgressHTMLAttributes<HTMLProgressElement>, 'max'> & {
     max?: number;
     /*
      * If true, will render the percentage, otherwise pass a custom node

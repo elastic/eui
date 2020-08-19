@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ChangeEventHandler, HTMLAttributes } from 'react';
+import React, { ChangeEventHandler, HTMLAttributes, SFC } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -30,7 +30,7 @@ export const TYPES = Object.keys(typeToInputTypeMap);
 
 export type ToggleType = keyof typeof typeToInputTypeMap;
 
-export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
+export type EuiToggleProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   CommonProps & {
     id?: string;
     /**
@@ -58,7 +58,7 @@ export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
     value?: string | number;
   };
 
-export const EuiToggle: React.SFC<EuiToggleProps> = ({
+export const EuiToggle: SFC<EuiToggleProps> = ({
   id,
   className,
   checked,

@@ -66,7 +66,7 @@ export default () => {
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    setSelected(prevSelected => [...prevSelected, newOption]);
   };
 
   return (

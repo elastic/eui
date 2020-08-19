@@ -33,6 +33,9 @@ interface EuiI18nNumberValueShape {
 
 interface EuiI18nNumberValuesShape {
   values: number[];
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 

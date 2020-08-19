@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiBeacon, EuiText } from '../../../../src/components';
 
+import { beaconConfig } from './playground';
+
 import Beacon from './beacon';
 const beaconSource = require('!!raw-loader!./beacon');
 const beaconHtml = renderToHtml(Beacon);
@@ -38,4 +40,5 @@ export const BeaconExample = {
       demo: <Beacon />,
     },
   ],
+  playground: beaconConfig,
 };

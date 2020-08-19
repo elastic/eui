@@ -10,6 +10,8 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
+import { facetButtonConfig, facetLayoutConfig } from './playground';
+
 import Facet from './facet';
 const facetSource = require('!!raw-loader!./facet');
 const facetHtml = renderToHtml(Facet);
@@ -98,4 +100,5 @@ export const FacetExample = {
       ],
     },
   ],
+  playground: [facetButtonConfig, facetLayoutConfig],
 };

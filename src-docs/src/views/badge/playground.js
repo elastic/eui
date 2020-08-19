@@ -6,12 +6,9 @@ import {
 } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
-  mapOptions,
+  iconValidator,
+  dummyFunction,
 } from '../../services/playground';
-import { iconTypes } from '../icon/icons';
-import * as t from '@babel/types';
-
-const iconOptions = mapOptions(iconTypes);
 
 export const badgeConfig = () => {
   const docgenInfo = Array.isArray(EuiBadge.__docgenInfo)
@@ -70,15 +67,7 @@ export const badgeConfig = () => {
     type: PropTypes.String,
   };
 
-  propsToUse.iconType = {
-    ...propsToUse.iconType,
-    value: undefined,
-    type: PropTypes.String,
-    custom: {
-      ...propsToUse.iconType.custom,
-      validator: val => iconOptions[val],
-    },
-  };
+  propsToUse.iconType = iconValidator(propsToUse.iconType);
 
   propsToUse.color = {
     ...propsToUse.color,
@@ -99,17 +88,7 @@ export const badgeConfig = () => {
         },
       },
       customProps: {
-        onClick: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onClick: dummyFunction,
       },
     },
   };
@@ -132,15 +111,7 @@ export const betaBadgeConfig = () => {
     type: PropTypes.String,
   };
 
-  propsToUse.iconType = {
-    ...propsToUse.iconType,
-    value: undefined,
-    type: PropTypes.String,
-    custom: {
-      ...propsToUse.iconType.custom,
-      validator: val => iconOptions[val],
-    },
-  };
+  propsToUse.iconType = iconValidator(propsToUse.iconType);
 
   return {
     config: {

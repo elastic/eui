@@ -77,6 +77,9 @@ interface ContextProps {
 const EuiResizablePanelContext = createContext<ContextProps>({});
 
 interface ContextProviderProps extends Required<ContextProps> {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: any;
 }
 

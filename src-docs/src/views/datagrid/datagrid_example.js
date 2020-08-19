@@ -19,19 +19,20 @@ const dataGridSource = require('!!raw-loader!./datagrid');
 const dataGridHtml = renderToHtml(DataGrid);
 
 import {
-  DataGridColumn,
-  DataGridPagination,
-  DataGridSorting,
-  DataGridInMemory,
-  DataGridStyle,
-  DataGridCellValueElement,
-  DataGridSchemaDetector,
-  DataGridToolbarVisibilityOptions,
-  DataGridColumnVisibility,
-  DataGridPopoverContent,
-  DataGridControlColumn,
-  DataGridToolBarVisibilityColumnSelectorOptions,
-} from './props';
+  EuiDataGridColumn,
+  EuiDataGridPaginationProps,
+  EuiDataGridSorting,
+  EuiDataGridInMemory,
+  EuiDataGridStyle,
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridColumnVisibility,
+  EuiDataGridPopoverContentProps,
+  EuiDataGridControlColumn,
+  EuiDataGridToolBarVisibilityColumnSelectorOptions,
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+
+import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 const gridSnippet = `
   <EuiDataGrid
@@ -351,18 +352,18 @@ export const DataGridExample = {
       components: { DataGrid },
       props: {
         EuiDataGrid,
-        EuiDataGridColumn: DataGridColumn,
-        EuiDataGridColumnVisibility: DataGridColumnVisibility,
-        EuiDataGridControlColumn: DataGridControlColumn,
-        EuiDataGridInMemory: DataGridInMemory,
-        EuiDataGridPagination: DataGridPagination,
-        EuiDataGridSorting: DataGridSorting,
-        EuiDataGridCellValueElement: DataGridCellValueElement,
-        EuiDataGridSchemaDetector: DataGridSchemaDetector,
-        EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
-        EuiDataGridToolBarVisibilityColumnSelectorOptions: DataGridToolBarVisibilityColumnSelectorOptions,
-        EuiDataGridPopoverContent: DataGridPopoverContent,
+        EuiDataGridColumn,
+        EuiDataGridColumnVisibility,
+        EuiDataGridControlColumn,
+        EuiDataGridInMemory,
+        EuiDataGridPaginationProps,
+        EuiDataGridSorting,
+        EuiDataGridCellValueElementProps,
+        EuiDataGridSchemaDetector,
+        EuiDataGridStyle,
+        EuiDataGridToolBarVisibilityOptions,
+        EuiDataGridToolBarVisibilityColumnSelectorOptions,
+        EuiDataGridPopoverContentProps,
       },
       demo: (
         <Fragment>
