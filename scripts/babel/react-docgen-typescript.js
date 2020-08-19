@@ -200,7 +200,6 @@ module.exports = function({ types }) {
  * @param {*} whiteListedProps
  * @param {*} whiteListedParent
  * @param {*} componentExtends
- * @param {*} extendedTypes
  */
 function filterProp(
   prop,
