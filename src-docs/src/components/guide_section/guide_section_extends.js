@@ -1,4 +1,9 @@
 export const extendedTypesInfo = {
+  // HTMLAttributes is removed from display if any of the following elements also exist
+  HTMLAttributes: {
+    name: 'HTMLElement',
+    url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement',
+  },
   SelectHTMLAttributes: {
     name: 'HTMLSelectElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement',
