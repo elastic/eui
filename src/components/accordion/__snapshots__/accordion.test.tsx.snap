@@ -3,8 +3,10 @@
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="10"
+  id="12"
   initialIsOpen={false}
+  isLoading={false}
+  isLoadingMessage={false}
   paddingSize="none"
 >
   <div
@@ -14,7 +16,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="10"
+        aria-controls="12"
         aria-expanded={false}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -42,7 +44,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="10"
+      id="12"
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -61,8 +63,10 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="9"
+  id="11"
   initialIsOpen={false}
+  isLoading={false}
+  isLoadingMessage={false}
   paddingSize="none"
 >
   <div
@@ -72,7 +76,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="9"
+        aria-controls="11"
         aria-expanded={true}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -100,7 +104,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="9"
+      id="11"
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -443,6 +447,109 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         <p>
           You can see me.
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props isLoading is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="9"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span
+        class="euiIEFlexWrapFix"
+      />
+    </button>
+    <div
+      class="euiAccordion__optionalAction"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium"
+      />
+    </div>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="9"
+  >
+    <div>
+      <div
+        class="euiAccordion__children-isLoading"
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="10"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span
+        class="euiIEFlexWrapFix"
+      />
+    </button>
+    <div
+      class="euiAccordion__optionalAction"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium"
+      />
+    </div>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="10"
+  >
+    <div>
+      <div
+        class="euiAccordion__children-isLoading"
+      >
+        <span
+          class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
+        />
+        <span>
+          Please wait
+        </span>
       </div>
     </div>
   </div>

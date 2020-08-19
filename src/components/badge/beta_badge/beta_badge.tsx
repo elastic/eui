@@ -75,7 +75,7 @@ type BadgeProps = {
 } & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
 type EuiBetaBadgeProps = CommonProps &
-  HTMLAttributes<HTMLSpanElement> &
+  Omit<HTMLAttributes<HTMLSpanElement>, 'title'> &
   BadgeProps;
 
 export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({

@@ -1,3 +1,23 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable new-cap */
 
 const fs = require('fs');
@@ -471,8 +491,7 @@ function getPropTypesForNode(node, optional, state) {
 
       if (
         types.isLiteral(propType) ||
-        (types.isIdentifier(propType) &&
-          propType.name === 'undefined')
+        (types.isIdentifier(propType) && propType.name === 'undefined')
       ) {
         // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
         propType = convertLiteralToOneOf(types, propType);
@@ -511,7 +530,7 @@ function getPropTypesForNode(node, optional, state) {
     // translates intersections (Foo & Bar & Baz) to a shape with the types' members (Foo, Bar, Baz) merged together
     case 'TSIntersectionType':
       const usableNodes = [...node.types].filter(node => {
-        let nodePropTypes = getPropTypesForNode(node, true, state);
+        const nodePropTypes = getPropTypesForNode(node, true, state);
 
         if (
           types.isMemberExpression(nodePropTypes) &&
@@ -526,7 +545,8 @@ function getPropTypesForNode(node, optional, state) {
           !types.isCallExpression(nodePropTypes) ||
           !types.isMemberExpression(nodePropTypes.callee) ||
           nodePropTypes.callee.object.name !== 'PropTypes' ||
-          (nodePropTypes.callee.property.name !== 'shape' && nodePropTypes.callee.property.name !== 'oneOfType')
+          (nodePropTypes.callee.property.name !== 'shape' &&
+            nodePropTypes.callee.property.name !== 'oneOfType')
         ) {
           return false;
         }
@@ -712,9 +732,15 @@ function getPropTypesForNode(node, optional, state) {
                   (types.isIdentifier(propertyPropType) &&
                     propertyPropType.name === 'undefined')
                 ) {
-                  propertyPropType = convertLiteralToOneOf(types, propertyPropType);
+                  propertyPropType = convertLiteralToOneOf(
+                    types,
+                    propertyPropType
+                  );
                   if (!property.optional) {
-                    propertyPropType = makePropTypeRequired(types, propertyPropType);
+                    propertyPropType = makePropTypeRequired(
+                      types,
+                      propertyPropType
+                    );
                   }
                 }
 
@@ -1085,7 +1111,7 @@ const typeDefinitionExtractors = {
         return [];
       }
 
-      const cacheKey = `${sourceFilename}_${resolvedPath}`
+      const cacheKey = `${sourceFilename}_${resolvedPath}`;
       if (importedDefinitionsCache.has(cacheKey)) {
         return importedDefinitionsCache.get(cacheKey);
       }
@@ -1562,8 +1588,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
                 types.isIdentifier(variableDeclarator.init.callee.object) &&
                 variableDeclarator.init.callee.object.name === 'React' &&
                 types.isIdentifier(variableDeclarator.init.callee.property) &&
-                variableDeclarator.init.callee.property.name === 'forwardRef')
-            )
+                variableDeclarator.init.callee.property.name === 'forwardRef'))
           ) {
             // props for the component come from the second argument to the type params
             const typeDefinition =

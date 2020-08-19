@@ -23,6 +23,9 @@ import { CommonProps } from '../common';
 
 export interface EuiGlobalToastListItemProps {
   isDismissed?: boolean;
+  /**
+   * ReactElement to render as this component's content
+   */
   children?: ReactElement;
 }
 

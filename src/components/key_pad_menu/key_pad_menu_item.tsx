@@ -60,6 +60,9 @@ const renderContent = (
 );
 
 interface EuiKeyPadMenuItemCommonProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
   isDisabled?: boolean;
   label: ReactNode;
@@ -85,8 +88,8 @@ interface EuiKeyPadMenuItemCommonProps {
 
 export type EuiKeyPadMenuItemProps = CommonProps &
   ExclusiveUnion<
-    AnchorHTMLAttributes<HTMLAnchorElement>,
-    ButtonHTMLAttributes<HTMLButtonElement>
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'>,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>
   > &
   EuiKeyPadMenuItemCommonProps;
 

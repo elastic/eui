@@ -8,6 +8,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiToggle, EuiCallOut } from '../../../../src/components';
 
+import { toggleConfig } from './playground';
+
 import Toggle from './toggle';
 const toggleSource = require('!!raw-loader!./toggle');
 const toggleHtml = renderToHtml(Toggle);
@@ -70,4 +72,5 @@ export const ToggleExample = {
       props: { EuiToggle },
     },
   ],
+  playground: toggleConfig,
 };

@@ -35,6 +35,7 @@
   }
 
   .euiBadge__content {
+    min-height: $euiSize + ($euiBorderWidthThin * 2); // Ensure proper height in case of just displaying an icon
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -89,14 +90,19 @@
 
   .euiBadge__icon {
     flex: 0 0 auto;
-    margin-left: $euiSizeXS;
+
+    &:not(:only-child) {
+      margin-left: $euiSizeXS;
+    }
   }
 
-  &.euiBadge--iconLeft .euiBadge__content {
-    flex-direction: row-reverse;
+  &.euiBadge--iconLeft {
+    .euiBadge__content {
+      flex-direction: row-reverse;
+    }
 
     .euiBadge__iconButton,
-    .euiBadge__icon {
+    .euiBadge__icon:not(:only-child) {
       margin-right: $euiSizeXS;
       margin-left: 0;
     }

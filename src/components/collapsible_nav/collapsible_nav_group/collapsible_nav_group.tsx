@@ -43,6 +43,9 @@ export const BACKGROUNDS = Object.keys(
 ) as Background[];
 
 export interface EuiCollapsibleNavGroupInterface extends CommonProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children?: ReactNode;
   /**
    * Sits left of the `title` and only when `title` is present
