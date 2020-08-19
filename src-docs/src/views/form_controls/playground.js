@@ -9,6 +9,9 @@ import {
   EuiFieldSearch,
   EuiFieldNumber,
   EuiFieldPassword,
+  EuiTextArea,
+  EuiCheckbox,
+  EuiRadio,
 } from '../../../../src/components/';
 import { PropTypes } from 'react-view';
 
@@ -190,9 +193,131 @@ export const fieldPasswordConfig = () => {
   };
 };
 
+export const textAreaConfig = () => {
+  const docgenInfo = Array.isArray(EuiTextArea.__docgenInfo)
+    ? EuiTextArea.__docgenInfo[0]
+    : EuiTextArea.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.value = {
+    ...propsToUse.value,
+    stateful: false,
+    type: PropTypes.String,
+    value: '',
+  };
+  propsToUse.placeholder = {
+    ...propsToUse.placeholder,
+    type: PropTypes.String,
+  };
+
+  propsToUse.resize = {
+    ...propsToUse.resize,
+    defaultValue: 'vertical',
+  };
+
+  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+
+  return {
+    config: {
+      componentName: 'EuiTextArea',
+      props: propsToUse,
+      scope: {
+        EuiTextArea,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiTextArea'],
+        },
+      },
+      customProps: {
+        onChange: dummyFunction,
+      },
+    },
+  };
+};
+
+export const checkboxConfig = () => {
+  const docgenInfo = Array.isArray(EuiCheckbox.__docgenInfo)
+    ? EuiCheckbox.__docgenInfo[0]
+    : EuiCheckbox.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.id = {
+    ...propsToUse.id,
+    value: 'Plyground__checkbox',
+  };
+  propsToUse.label = {
+    ...propsToUse.label,
+    type: PropTypes.String,
+    value: 'label',
+  };
+
+  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+
+  return {
+    config: {
+      componentName: 'EuiCheckbox',
+      props: propsToUse,
+      scope: {
+        EuiCheckbox,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiCheckbox'],
+        },
+      },
+      customProps: {
+        onChange: dummyFunction,
+      },
+    },
+  };
+};
+
+export const radioConfig = () => {
+  const docgenInfo = Array.isArray(EuiRadio.__docgenInfo)
+    ? EuiRadio.__docgenInfo[0]
+    : EuiRadio.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.id = {
+    ...propsToUse.id,
+    type: PropTypes.String,
+    value: 'Plyground__radio',
+  };
+
+  propsToUse.label = {
+    ...propsToUse.label,
+    type: PropTypes.String,
+    value: 'label',
+  };
+
+  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+
+  return {
+    config: {
+      componentName: 'EuiRadio',
+      props: propsToUse,
+      scope: {
+        EuiRadio,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiRadio'],
+        },
+      },
+      customProps: {
+        onChange: dummyFunction,
+      },
+    },
+  };
+};
+
 export default [
   fieldTextConfig,
   fieldSearchConfig,
   fieldNumberConfig,
   fieldPasswordConfig,
+  textAreaConfig,
+  checkboxConfig,
+  radioConfig,
 ];
