@@ -10,11 +10,10 @@
 
 .guideSection__extend {
   font-size: $euiFontSizeS;
-  padding-left: 10px;
-  font-weight: $euiFontWeightLight;
+  padding-left: $euiSizeM;
   color: $euiColorDarkShade;
 
   .guideSection__extend-element {
-    padding-right: 5px;
+    padding-right: $euiSizeXS;
   }
 }
