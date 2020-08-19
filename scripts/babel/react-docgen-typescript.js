@@ -103,7 +103,7 @@ module.exports = function({ types }) {
           if (docgenResults.length !== 0) {
             docgenResults.forEach(function(docgenResult) {
               const exportName = docgenResult.displayName;
-              docgenResult.extends = componentExtends;
+              docgenResult.extendedInterfaces = componentExtends;
               path.node.body.push(
                 template.default.ast(`          
               try{  
@@ -247,11 +247,8 @@ function filterProp(
   if (prop.parent) {
     //Check if props are extended from other node module
     if (whiteListedParent.includes(prop.parent.name)) return true;
-    if (
-      prop.parent.name === 'DOMAttributes' &&
-      !componentExtends.includes('DOMAttributes')
-    ) {
-      componentExtends.push('DOMAttributes');
+    if (!componentExtends.includes(prop.parent.name)) {
+      componentExtends.push(prop.parent.name);
     }
     if (prop.name.includes(whiteListedProps)) {
       return true;

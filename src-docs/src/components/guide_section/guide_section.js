@@ -19,11 +19,15 @@ import {
   EuiTitle,
   EuiLink,
   EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../codesandbox';
 
 import { cleanEuiImports } from '../../services';
+
+import { extendedTypesInfo } from './guide_section_extends';
 
 export const markup = text => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -54,7 +58,7 @@ export const markup = text => {
       }
       return token;
     });
-    return [...values, <br />];
+    return [...values, <br key="lineBreak" />];
   });
 };
 
@@ -289,7 +293,7 @@ export class GuideSection extends Component {
     const docgenInfo = Array.isArray(component.__docgenInfo)
       ? component.__docgenInfo[0]
       : component.__docgenInfo;
-    const { description, props } = docgenInfo;
+    const { description, props, extendedInterfaces } = docgenInfo;
 
     if (!props && !description) {
       return;
@@ -360,7 +364,22 @@ export class GuideSection extends Component {
       return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
     });
 
-    const title = <span id={componentName}>{componentName}</span>;
+    const extendedTypes = extendedInterfaces
+      ? extendedInterfaces.filter(type => !!extendedTypesInfo[type])
+      : [];
+    // if there is an HTMLAttributes type present among others, remove HTMLAttributes
+    if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
+      const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
+      extendedTypes.splice(htmlAttributesIndex, 1);
+    }
+    const extendedTypesElements = extendedTypes.map((type, index) => (
+      <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
+        <EuiLink href={extendedTypesInfo[type].url}>
+          {extendedTypesInfo[type].name}
+        </EuiLink>
+        {index + 1 < extendedTypes.length && ', '}
+      </Fragment>
+    ));
 
     let descriptionElement;
 
@@ -405,9 +424,23 @@ export class GuideSection extends Component {
 
     return [
       <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}>
-        <h3>{title}</h3>
-      </EuiTitle>,
+      <EuiFlexGroup
+        key={`propsName-${componentName}`}
+        alignItems="baseline"
+        wrap>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="s">
+            <h3>{componentName}</h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        {extendedTypesElements.length > 0 && (
+          <EuiFlexItem>
+            <EuiText size="s">
+              <p>[ extends {extendedTypesElements} ]</p>
+            </EuiText>
+          </EuiFlexItem>
+        )}
+      </EuiFlexGroup>,
       <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
       descriptionElement,
       table,
