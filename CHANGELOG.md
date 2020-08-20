@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Adjusted coloring of `EuiSideNav` to be more consistent across open states ([#3926](https://github.com/elastic/eui/pull/3926))
+- Added build-specific babel configurations for docs and tests ([#3911](https://github.com/elastic/eui/pull/3911))
+- Updated browserslist configuration to remove IE accommodations ([#3911](https://github.com/elastic/eui/pull/3911))
+- Removed docgenInfo from non-docs production builds ([#3911](https://github.com/elastic/eui/pull/3911))
 
 **Bug fixes**
 

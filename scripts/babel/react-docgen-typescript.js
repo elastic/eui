@@ -26,8 +26,8 @@ const util = require('util');
 const { SyntaxKind } = require('typescript');
 
 const files = [
-  ...glob.sync('src/**/*.{ts,tsx}', { absolute: true }),
-  ...glob.sync('src-docs/**/*.{ts,tsx}', { absolute: true }),
+  ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
+  ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
 ];
 
 /**
@@ -105,8 +105,8 @@ module.exports = function({ types }) {
               const exportName = docgenResult.displayName;
               docgenResult.extendedInterfaces = componentExtends;
               path.node.body.push(
-                template.default.ast(`          
-              try{  
+                template.default.ast(`
+              try{
               ${exportName}.__docgenInfo = ${util.inspect(docgenResult, {
                   showHidden: false,
                   depth: null,
