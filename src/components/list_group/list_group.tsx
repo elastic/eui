@@ -34,7 +34,7 @@ export const GUTTER_SIZES = Object.keys(
 ) as GutterSize[];
 
 export type EuiListGroupProps = CommonProps &
-  HTMLAttributes<HTMLUListElement> & {
+  Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {
     /**
      * Add a border to the list container
      */

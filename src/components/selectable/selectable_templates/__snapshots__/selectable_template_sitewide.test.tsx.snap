@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <div
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <div
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock customPopoverClass"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <div
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <div
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

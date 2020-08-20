@@ -22,6 +22,9 @@ import { CommonProps } from '../common';
 import classNames from 'classnames';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
+    /**
+     * ReactNode to render as this component's content
+     */
     children: string;
   };
 

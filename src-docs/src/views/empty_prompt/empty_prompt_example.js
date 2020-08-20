@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiEmptyPrompt } from '../../../../src/components';
 
+import emptyPromptConfig from './playground';
+
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptHtml = renderToHtml(EmptyPrompt);
@@ -107,4 +109,5 @@ export const EmptyPromptExample = {
       snippet: simpleSnippet,
     },
   ],
+  playground: emptyPromptConfig,
 };

@@ -79,7 +79,7 @@ export type EuiProgressProps = CommonProps & {
 type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
-  ProgressHTMLAttributes<HTMLProgressElement> & {
+  Omit<ProgressHTMLAttributes<HTMLProgressElement>, 'max'> & {
     max?: number;
     /*
      * If true, will render the percentage, otherwise pass a custom node
@@ -125,7 +125,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
       'euiProgress__data--l': size === 'l',
     },
     {
-      'euiProgress__data-hasLabel': label,
+      'euiProgress__data--hasLabel': label,
     },
     dataColorToClassNameMap[color]
   );

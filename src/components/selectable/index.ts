@@ -26,3 +26,9 @@ export {
 export { EuiSelectableMessage } from './selectable_message';
 export { EuiSelectableOption } from './selectable_option';
 export { EuiSelectableSearch } from './selectable_search';
+export {
+  EuiSelectableTemplateSitewide,
+  EuiSelectableTemplateSitewideProps,
+  EuiSelectableTemplateSitewideOption,
+  EuiSelectableTemplateSitewideMetaData,
+} from './selectable_templates';

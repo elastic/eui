@@ -1,7 +1,10 @@
 import { PropTypes } from 'react-view';
 import { EuiCard } from '../../../../src/components/';
-import { propUtilityForPlayground } from '../../services/playground';
-import * as t from '@babel/types';
+import {
+  propUtilityForPlayground,
+  dummyFunction,
+  simulateFunction,
+} from '../../services/playground';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiCard.__docgenInfo)
@@ -26,16 +29,7 @@ export default () => {
     type: PropTypes.String,
   };
 
-  propsToUse.onClick = {
-    ...propsToUse.onClick,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onClick.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onClick = simulateFunction(propsToUse.onClick);
 
   return {
     config: {
@@ -50,17 +44,7 @@ export default () => {
         },
       },
       customProps: {
-        onClick: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onClick: dummyFunction,
       },
     },
   };

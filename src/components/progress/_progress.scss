@@ -137,36 +137,28 @@ $euiProgressColors: (
 
 .euiProgress__data {
   display: flex;
-  margin: -2px;
-
-  .euiProgress__label {
-    margin: 2px;
-    flex-basis: auto;
-    flex-grow: 0;
-  }
-
-  .euiProgress__valueText {
-    margin: 2px;
-    flex-basis: 0%;
-    flex-grow: 1;
-  }
-}
-
-.euiProgress__data-hasLabel {
-  justify-content: space-between;
-  margin: 0;
-
-  .euiProgress__label {
-    flex-basis: 80%;
-    flex-grow: 1;
-    margin: 0;
-  }
 
   .euiProgress__valueText {
     margin-left: auto;
-    margin: 0;
   }
 }
+
+.euiProgress__data--hasLabel {
+  margin: -$euiSizeXS * .5;
+
+  .euiProgress__label {
+    margin: $euiSizeXS * .5;
+    flex-basis: 0%;
+    flex-grow: 1;
+  }
+
+  .euiProgress__valueText {
+    margin: $euiSizeXS * .5;
+    flex-basis: auto;
+    flex-grow: 0;
+  }
+}
+
 
 .euiProgress__label,
 .euiProgress__valueText {

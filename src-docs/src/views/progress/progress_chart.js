@@ -43,5 +43,20 @@ export default () => (
         </>
       ))}
     </div>
+    <div style={{ maxWidth: 140 }}>
+      {data.map(item => (
+        <>
+          <EuiProgress
+            label={item.label}
+            valueText={false}
+            value={item.value}
+            max={100}
+            color="accent"
+            size="s"
+          />
+          <EuiSpacer size="s" />
+        </>
+      ))}
+    </div>
   </Fragment>
 );

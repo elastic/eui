@@ -4,8 +4,9 @@ import {
   propUtilityForPlayground,
   iconValidator,
   createOptionalEnum,
+  dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
-import * as t from '@babel/types';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiToast.__docgenInfo)
@@ -23,16 +24,7 @@ export default () => {
 
   propsToUse.color = createOptionalEnum(propsToUse.color);
 
-  propsToUse.onClose = {
-    ...propsToUse.onClose,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onClose.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onClose = simulateFunction(propsToUse.onClose);
 
   return {
     config: {
@@ -47,17 +39,7 @@ export default () => {
         },
       },
       customProps: {
-        onClose: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onClose: dummyFunction,
       },
     },
   };
