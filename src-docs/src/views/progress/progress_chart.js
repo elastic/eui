@@ -28,16 +28,16 @@ export default () => (
       ))}
     </div>
     <EuiSpacer size="m" />
-    <div style={{ maxWidth: 200 }}>
+    <div style={{ maxWidth: 140 }}>
       {data.map(item => (
         <>
           <EuiProgress
-            label={item.label}
+            // label={item.label}
             valueText={true}
             value={item.value}
             max={100}
             color="primary"
-            size="m"
+            size="s"
           />
           <EuiSpacer size="s" />
         </>

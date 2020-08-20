@@ -124,6 +124,9 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     {
       'euiProgress__data--l': size === 'l',
     },
+    {
+      'euiProgress__data-hasLabel': label,
+    },
     dataColorToClassNameMap[color]
   );
   const labelClasses = classNames(
