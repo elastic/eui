@@ -82,7 +82,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 idSelected={idSelected}
                 size={buttonSize}
                 isIconOnly={isIconOnly}
-                isGroupDisabled={isDisabled}
+                isDisabled={isDisabled || option.isDisabled}
                 color={resolvedColor}
                 onChange={onChange}
               />
@@ -97,7 +97,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               color={resolvedColor}
               size={buttonSize}
               isIconOnly={isIconOnly}
-              isGroupDisabled={isDisabled}
+              isDisabled={isDisabled || option.isDisabled}
               onChange={onChange}
             />
           );

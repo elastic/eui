@@ -89,6 +89,7 @@ export default () => {
       id: `${idPrefix3}2`,
       label: 'Align right',
       iconType: 'editorAlignRight',
+      isDisabled: true,
     },
   ];
 
@@ -104,6 +105,7 @@ export default () => {
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
+      isDisabled: true,
     },
     {
       id: `${idPrefix3}5`,

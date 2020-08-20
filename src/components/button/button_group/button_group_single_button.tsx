@@ -37,7 +37,6 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   isDisabled,
   className,
   idSelected,
-  isGroupDisabled,
   isIconOnly,
   size,
   name,
@@ -58,12 +57,13 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
-      element="label"
       htmlFor={id}
+      element={isDisabled ? 'button' : 'label'} // Not sure if this is the best way to handle disabled labels from incurring clicks
       className={buttonClasses}
       color={badColorCombo ? 'text' : color}
       fill={size !== 'compressed' && isSelectedState}
-      isDisabled={isDisabled || isGroupDisabled}
+      isDisabled={isDisabled}
+      disabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id, value)}
       textProps={{
@@ -76,7 +76,7 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
         className="euiScreenReaderOnly"
         name={name}
         checked={isSelectedState}
-        disabled={isGroupDisabled || isDisabled}
+        disabled={isDisabled}
         value={value}
         type="radio"
         onChange={() => onChange(id, value)}

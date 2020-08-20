@@ -28,7 +28,7 @@
     @include euiSlightShadowHover;
   }
 
-  &:enabled {
+  &:not([class*='isDisabled']) {
     &:hover,
     &:focus,
     &:focus-within {
@@ -36,7 +36,7 @@
     }
   }
 
-  &:disabled {
+  &.euiButton-isDisabled {
     @include euiButtonContentDisabled;
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
@@ -89,7 +89,7 @@
 
       color: $fillTextColor;
 
-      &:enabled {
+      &:not([class*='isDisabled']) {
         &:hover,
         &:focus,
         &:focus-within {
@@ -99,7 +99,7 @@
       }
     }
 
-    &:enabled {
+    &:not([class*='isDisabled']) {
       $shadowColor: $euiShadowColor;
       @if ($name == 'ghost') {
         $shadowColor: $euiColorInk;
@@ -125,7 +125,7 @@
 }
 
 // Fix ghost/disabled look specifically
-.euiButton:disabled.euiButton--ghost {
+.euiButton.euiButton-isDisabled.euiButton--ghost {
   &,
   &:hover,
   &:focus,

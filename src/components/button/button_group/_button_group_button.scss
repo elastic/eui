@@ -1,0 +1,8 @@
+.euiButtonGroupButton {
+  // Remove transforms from all states
+  transform: none !important;
+
+  &:focus-within {
+
+  }
+}

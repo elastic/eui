@@ -34,8 +34,6 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
   className,
   id,
   label,
-  isDisabled,
-  isGroupDisabled,
   idToSelectedMap,
   size,
   color,
@@ -60,7 +58,6 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
       id={id}
       color={badColorCombo ? 'text' : color}
       fill={size !== 'compressed' && isSelectedState}
-      isDisabled={isDisabled || isGroupDisabled}
       aria-pressed={isSelectedState}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id)}
