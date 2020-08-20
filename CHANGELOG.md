@@ -1,8 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Adjusted coloring of `EuiSideNav` to be more consistent across open states ([#3926](https://github.com/elastic/eui/pull/3926))
+- Added build-specific babel configurations for docs and tests ([#3911](https://github.com/elastic/eui/pull/3911))
+- Updated browserslist configuration to remove IE accommodations ([#3911](https://github.com/elastic/eui/pull/3911))
+- Removed docgenInfo from non-docs production builds ([#3911](https://github.com/elastic/eui/pull/3911))
+
 **Bug fixes**
 
 - Fixed bug in `EuiBasicTable` not fully expanding tall rows (height > 1000px) ([#3855](https://github.com/elastic/eui/pull/3855))
+- Added `regressionJob`, `outlierDetectionJob` and `classificationJob` icons to Machine Learning icon set, updated others. ([#3931](https://github.com/elastic/eui/pull/3931))
 
 ## [`28.2.0`](https://github.com/elastic/eui/tree/v28.2.0)
 
