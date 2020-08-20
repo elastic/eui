@@ -20,11 +20,11 @@
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiIcon } from '../../icon';
 import {
   ButtonGroupOptionProps,
   EuiButtonSingleGroupOptionProps,
 } from './types';
+import { EuiButtonDisplay } from '../button';
 
 type Props = {
   idSelected: string;
@@ -37,8 +37,6 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   label,
   isDisabled,
   className,
-  iconType,
-  iconSide = 'left',
   idSelected,
   isGroupDisabled,
   isIconOnly,
@@ -49,52 +47,49 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const isSelectedState = id === idSelected;
-  const fill = size !== 'compressed' && isSelectedState;
-  const wrapperClasses = classNames(
-    'euiButton',
-    'euiButton--no-hover',
+  const badColorCombo = size === 'compressed' && color === 'ghost';
+  if (badColorCombo) {
+    console.warn(
+      'EuiButtonGroup of compressed size does not support the ghost color. It will render as text instead.'
+    );
+  }
+
+  const buttonClasses = classNames(
     'euiButtonGroup__toggle',
     {
       'euiButtonGroup__button--selected': isSelectedState,
-      'euiButton--disabled': isGroupDisabled || isDisabled,
-      'euiButtonGroup__toggle--iconOnly': isIconOnly,
-      'euiButton--fill': fill,
-      'euiButton--small': size === 'compressed' || size === 's',
-      'euiButton--ghost': size !== 'compressed' && color === 'ghost',
     },
     className
   );
-  const icon = iconType && <EuiIcon type={iconType} color={color} size="m" />;
 
   return (
-    <div className={wrapperClasses}>
+    <EuiButtonDisplay
+      element="label"
+      htmlFor={id}
+      className={buttonClasses}
+      color={badColorCombo ? 'text' : color}
+      fill={size !== 'compressed' && isSelectedState}
+      isDisabled={isDisabled || isGroupDisabled}
+      aria-pressed={isSelectedState}
+      size={size === 'compressed' ? 's' : size}
+      onClick={() => onChange(id, value)}
+      {...rest}>
       <input
         id={id}
         className="euiButtonGroup__input"
         name={name}
-        onChange={() => onChange(id, value)}
         checked={isSelectedState}
         disabled={isGroupDisabled || isDisabled}
         value={value}
         type="radio"
-        {...rest}
       />
-      <label htmlFor={id} className="euiButton__content euiButtonGroup__label">
-        {isIconOnly ? (
-          <>
-            <EuiScreenReaderOnly>
-              <span>{label}</span>
-            </EuiScreenReaderOnly>
-            {icon}
-          </>
-        ) : (
-          <>
-            {iconSide === 'left' && icon}
-            <span className="euiButton__text">{label}</span>
-            {iconSide === 'right' && icon}
-          </>
-        )}
-      </label>
-    </div>
+      {isIconOnly ? (
+        <EuiScreenReaderOnly>
+          <span>{label}</span>
+        </EuiScreenReaderOnly>
+      ) : (
+        <>{label}</>
+      )}
+    </EuiButtonDisplay>
   );
 };
