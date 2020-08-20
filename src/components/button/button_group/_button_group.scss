@@ -1,193 +1,163 @@
-.euiButtonGroup {
-  max-width: 100%;
-  display: flex;
-  border-radius: $euiBorderRadius;
+// .euiButtonGroup {
+//   max-width: 100%;
+//   display: flex;
+//   border-radius: $euiBorderRadius;
 
-  .euiButton {
-    border-radius: 0;
-    margin-left: -1px;
+//   .euiButtonGroup__button {
+//     border-radius: 0;
+//     margin-left: -1px;
+//     min-width: auto;
 
-    &:not(.euiButton--fill) {
-      border-color: $euiButtonToggleBorderColor;
-    }
+//     &:not([class*='fill']) {
+//       border-color: $euiButtonToggleBorderColor;
+//     }
 
-    &,
-    &:hover,
-    &:focus,
-    &:active {
-      transition: none;
-      transform: none;
-      animation: none;
-      box-shadow: none;
-    }
+//     &,
+//     &:hover,
+//     &:focus,
+//     &:active {
+//       transition: none;
+//       transform: none;
+//       animation: none;
+//       box-shadow: none;
+//     }
 
-    &.euiButton--disabled:hover {
-      text-decoration: none;
-      cursor: not-allowed;
-    }
-  }
+//     &[class*='disabled']:hover {
+//       text-decoration: none;
+//       cursor: not-allowed;
+//     }
 
-  .euiButton--fill {
-    z-index: 0;
-  }
+//     &[class*='fill'] {
+//       z-index: 0;
+//     }
+//   }
 
-  .euiButtonGroup__button--iconOnly,
-  .euiButtonGroup__toggle--iconOnly {
-    min-width: auto;
-  }
+//   &:not(.euiButtonGroup--compressed) {
+//     .euiButtonGroup__button {
+//       &:first-child {
+//         border-top-left-radius: $euiBorderRadius;
+//         border-bottom-left-radius: $euiBorderRadius;
+//       }
 
-  .euiButton--fill + .euiButton {
-    border-left-color: transparent;
-  }
+//       &:last-child {
+//         border-top-right-radius: $euiBorderRadius;
+//         border-bottom-right-radius: $euiBorderRadius;
+//       }
+//     }
 
-  &:not(.euiButtonGroup--compressed) {
-    .euiButton {
-      &[aria-pressed='true'] + [aria-pressed='true'] {
-        box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
-      }
+//     .euiButtonGroup__button--selected + .euiButtonGroup__button--selected {
+//       box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
+//     }
+//   }
+// }
 
-      &:first-child {
-        border-top-left-radius: $euiBorderRadius;
-        border-bottom-left-radius: $euiBorderRadius;
-      }
+// @each $name, $color in $euiButtonTypes {
+//   .euiButtonGroup--#{$name}:not(.euiButtonGroup--compressed) {
+//     @if ($name == 'ghost') {
+//       // Ghost is unique and ALWAYS sits against a dark background.
+//       color: $color;
+//     } @else if ($name == 'text') {
+//       // The default color is lighter than the normal text color, make the it the text color
+//       color: $euiTextColor;
+//     } @else {
+//       // Other colors need to check their contrast against the page background color.
+//       color: makeHighContrastColor($color, $euiPageBackgroundColor);
+//     }
 
-      &:last-child {
-        border-top-right-radius: $euiBorderRadius;
-        border-bottom-right-radius: $euiBorderRadius;
-      }
-    }
-  }
-}
+//     $shadowColor: $euiShadowColor;
+//     @if ($name == 'ghost') {
+//       $shadowColor: $euiColorInk;
+//     } @else if (lightness($euiTextColor) < 50) {
+//       // Only if this is the light theme do we use the button variant color to colorize the shadow
+//       $shadowColor: desaturate($color, 60%);
+//     }
 
-@each $name, $color in $euiButtonTypes {
-  .euiButtonGroup--#{$name}:not(.euiButtonGroup--compressed) {
-    @if ($name == 'ghost') {
-      // Ghost is unique and ALWAYS sits against a dark background.
-      color: $color;
-    } @else if ($name == 'text') {
-      // The default color is lighter than the normal text color, make the it the text color
-      color: $euiTextColor;
-    } @else {
-      // Other colors need to check their contrast against the page background color.
-      color: makeHighContrastColor($color, $euiPageBackgroundColor);
-    }
+//     @include euiSlightShadow($shadowColor);
 
-    $shadowColor: $euiShadowColor;
-    @if ($name == 'ghost') {
-      $shadowColor: $euiColorInk;
-    } @else if (lightness($euiTextColor) < 50) {
-      // Only if this is the light theme do we use the button variant color to colorize the shadow
-      $shadowColor: desaturate($color, 60%);
-    }
+//     .euiButtonGroup__input:focus + .euiButtonGroup__label {
+//       background-color: darken($color, 5%);
+//       border-color: darken($color, 5%);
+//       text-decoration: underline;
+//     }
+//   }
+// }
 
-    @include euiSlightShadow($shadowColor);
+// .euiButtonGroup__button {
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+// }
 
-    .euiButtonGroup__input:focus + .euiButtonGroup__label {
-      background-color: darken($color, 5%);
-      border-color: darken($color, 5%);
-      text-decoration: underline;
-    }
-  }
-}
+// .euiButtonGroup__fieldset {
+//   display: inline-block;
+//   max-width: 100%;
 
-.euiButtonGroup__button {
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
+//   &--fullWidth {
+//     display: block;
+//   }
+// }
 
-.euiButtonGroup__fieldset {
-  display: inline-block;
-  max-width: 100%;
+// .euiButtonGroup__input {
+//   @include euiScreenReaderOnly;
+// }
 
-  &--fullWidth {
-    display: block;
-  }
-}
+// .euiButtonGroup--compressed,
+// .euiButtonGroup--fullWidth {
+//   .euiButtonGroup__button {
+//     flex: 1;
+//   }
+// }
 
-.euiButtonGroup__input {
-  @include euiScreenReaderOnly;
-}
-
-.euiButtonGroup--compressed,
-.euiButtonGroup--fullWidth {
-  .euiButtonGroup__toggle {
-    flex: 1;
-  }
-}
-
-.euiButtonGroup__label {
-  white-space: nowrap;
-  cursor: inherit;
-
-  .euiButton--disabled & {
-    pointer-events: none;
-  }
-}
-
-.euiButtonGroup__button--iconOnly {
-  .euiButton__content {
-    flex-direction: column;
-    padding: 0 $euiSizeS;
-    justify-content: center;
-  }
-
-  .euiIcon {
-    color: inherit;
-    margin: 0;
-  }
-}
 
 @include euiBreakpoint('xs', 's') {
-  .euiButtonGroup__fieldset {
-    display: block;
-  }
+  // .euiButtonGroup__fieldset {
+  //   display: block;
+  // }
 
-  .euiButtonGroup__button {
-    flex: 1;
-    min-width: 0;
-  }
+  // .euiButtonGroup__button {
+  //   flex: 1;
+  //   min-width: 0;
+  // }
 }
 
-.euiButtonGroup--compressed {
-  border: 1px solid $euiFormBorderColor;
-  border-radius: $euiFormControlCompressedBorderRadius;
-  background-color: $euiFormBackgroundColor;
+// .euiButtonGroup--compressed {
+//   border: 1px solid $euiFormBorderColor;
+//   border-radius: $euiFormControlCompressedBorderRadius;
+//   background-color: $euiFormBackgroundColor;
 
-  .euiButtonGroup__button:focus,
-  .euiButtonGroup__input:focus + .euiButtonGroup__label {
-    outline: 2px solid $euiFocusRingColor;
-  }
+//   .euiButtonGroup__button {
+//     border: none;
+//     background: none;
+//     border-radius: $euiBorderRadius;
+//     font-size: $euiFontSizeS;
+//     height: $euiFormControlCompressedHeight - 2px;
+//     box-shadow: none;
+//     min-width: 0;
+//     // Offset the background color from the border by 2px
+//     // by clipping background to before the padding starts
+//     padding: 2px;
+//     background-clip: content-box;
 
-  .euiButtonGroup__button {
-    border: none;
-    background: none;
-    border-radius: $euiBorderRadius;
-    font-size: $euiFontSizeS;
-    height: $euiFormControlCompressedHeight - 2px;
-    box-shadow: none;
-    min-width: 0;
-    // Offset the background color from the border by 2px
-    // by clipping background to before the padding starts
-    padding: 2px;
-    background-clip: content-box;
+//     &:not(.euiButtonGroup__button--selected):not(.euiButton--disabled) {
+//       color: $euiColorDarkShade;
+//     }
 
-    &:not(.euiButtonGroup__button--selected):not(.euiButton--disabled) {
-      color: $euiColorDarkShade;
-    }
+//     &:hover,
+//     &:focus {
+//       box-shadow: none;
+//     }
 
-    &:hover,
-    &:focus {
-      box-shadow: none;
-    }
-  }
+//     &:focus {
+//       outline: 2px solid $euiFocusRingColor;
+//     }
+//   }
 
-  .euiButtonGroup__button--selected {
-    font-weight: $euiFontWeightSemiBold;
-    background-color: $euiFormInputGroupLabelBackground;
-  }
+//   .euiButtonGroup__button--selected {
+//     font-weight: $euiFontWeightSemiBold;
+//     background-color: $euiFormInputGroupLabelBackground;
+//   }
 
-  .euiButton__content {
-    padding-left: $euiSizeS;
-    padding-right: $euiSizeS;
-  }
-}
+//   // .euiButton__content {
+//   //   padding-left: $euiSizeS;
+//   //   padding-right: $euiSizeS;
+//   // }
+// }

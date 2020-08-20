@@ -190,6 +190,7 @@ export default () => {
     <Fragment>
       <EuiButtonGroup
         legend="This is a basic group"
+        name="basic"
         options={toggleButtons}
         idSelected={toggleIdSelected}
         onChange={(id) => onChange(id)}
@@ -239,6 +240,7 @@ export default () => {
       &nbsp;&nbsp;
       <EuiButtonGroup
         legend="Text style"
+        name="Text style"
         options={toggleButtonsIconsMulti}
         idToSelectedMap={toggleIconIdToSelectedMap}
         onChange={(id) => onChangeIconsMulti(id)}

@@ -19,7 +19,6 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButton } from '../button';
 import {
   ButtonGroupOptionProps,
@@ -46,16 +45,11 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
 }) => {
   const isSelectedState = idToSelectedMap[id] || false;
   const badColorCombo = size === 'compressed' && color === 'ghost';
-  if (badColorCombo) {
-    console.warn(
-      'EuiButtonGroup of compressed size does not support the ghost color. It will render as text instead.'
-    );
-  }
 
   const buttonClasses = classNames(
-    'euiButtonGroup__toggle',
+    'euiButtonGroupButton',
     {
-      'euiButtonGroup__button--selected': isSelectedState,
+      'euiButtonGroupButton--selected': isSelectedState,
     },
     className
   );
@@ -70,14 +64,11 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
       aria-pressed={isSelectedState}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id)}
+      textProps={{
+        className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
+      }}
       {...rest}>
-      {isIconOnly ? (
-        <EuiScreenReaderOnly>
-          <span>{label}</span>
-        </EuiScreenReaderOnly>
-      ) : (
-        <>{label}</>
-      )}
+      {label}
     </EuiButton>
   );
 };

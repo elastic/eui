@@ -30,14 +30,14 @@
 
   &:enabled {
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-within {
       background-color: transparentize($euiColorPrimary, .9);
     }
   }
 
   &:disabled {
     @include euiButtonContentDisabled;
-
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
 
@@ -48,16 +48,17 @@
       border-color: $euiButtonColorDisabled;
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:focus-within {
         background-color: $euiButtonColorDisabled;
         border-color: $euiButtonColorDisabled;
       }
     }
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-within {
       @include euiSlightShadow;
-
       text-decoration: none;
     }
   }
@@ -90,7 +91,8 @@
 
       &:enabled {
         &:hover,
-        &:focus {
+        &:focus,
+        &:focus-within {
           background-color: darken($color, 5%);
           border-color: darken($color, 5%);
         }
@@ -109,7 +111,8 @@
       @include euiSlightShadow($shadowColor);
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:focus-within {
         @include euiSlightShadowHover($shadowColor);
         background-color: transparentize($color, .9);
 
@@ -125,7 +128,8 @@
 .euiButton:disabled.euiButton--ghost {
   &,
   &:hover,
-  &:focus {
+  &:focus,
+  &:focus-within {
     @include euiSlightShadow($euiColorInk);
     color: $euiButtonColorGhostDisabled;
     border-color: $euiButtonColorGhostDisabled;

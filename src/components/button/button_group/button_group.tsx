@@ -74,15 +74,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
       <div className={classes} {...rest}>
         {options.map((option, index) => {
-          const optionClasses = classNames(
-            'euiButtonGroup__button',
-            'euiButton--no-hover',
-            {
-              'euiButtonGroup__button--iconOnly': isIconOnly,
-            },
-            option.className
-          );
-
           if (type === 'single') {
             return (
               <EuiButtonGroupSingleButton
@@ -94,7 +85,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 isGroupDisabled={isDisabled}
                 color={resolvedColor}
                 onChange={onChange}
-                className={optionClasses}
               />
             );
           }
@@ -109,7 +99,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               isIconOnly={isIconOnly}
               isGroupDisabled={isDisabled}
               onChange={onChange}
-              className={optionClasses}
             />
           );
         })}
