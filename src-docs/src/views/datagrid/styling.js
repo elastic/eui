@@ -19,14 +19,12 @@ const columns = [
   },
   {
     id: 'name',
-    footerCellValue: 'David',
   },
   {
     id: 'email',
   },
   {
     id: 'city',
-    footerCellValue: 'Mexico',
   },
   {
     id: 'country',
@@ -54,6 +52,10 @@ for (let i = 1; i < 5; i++) {
     account: fake('{{finance.account}}'),
   });
 }
+
+const footerCellValues = {
+  avatar: '4 accounts',
+};
 
 export default class DataGrid extends Component {
   constructor(props) {
@@ -672,7 +674,7 @@ export default class DataGrid extends Component {
           toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
           renderFooterCellValue={({ columnId }) =>
-            columns.find(col => col.id === columnId).footerCellValue || null
+            footerCellValues[columnId] || null
           }
           pagination={{
             ...pagination,
