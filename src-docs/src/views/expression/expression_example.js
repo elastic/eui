@@ -8,6 +8,8 @@ import { EuiCode } from '../../../../src/components';
 
 import { EuiExpression } from '../../../../src/components/expression';
 
+import { expressionConfig } from './playground';
+
 import Expression from './expression';
 const expressionSource = require('!!raw-loader!./expression');
 const expressionHtml = renderToHtml(Expression);
@@ -226,4 +228,5 @@ export const ExpressionExample = {
       demo: <Truncate />,
     },
   ],
+  playground: expressionConfig,
 };

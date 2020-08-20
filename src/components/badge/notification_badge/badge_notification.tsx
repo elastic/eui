@@ -40,6 +40,9 @@ export type BadgeNotificationSize = keyof typeof sizeToClassNameMap;
 export interface EuiNotificationBadgeProps
   extends CommonProps,
     Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
   size?: BadgeNotificationSize;
   color?: BadgeNotificationColor;

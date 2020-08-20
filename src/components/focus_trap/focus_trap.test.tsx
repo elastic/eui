@@ -49,6 +49,16 @@ describe('EuiFocusTrap', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('accepts className and style', () => {
+    const component = render(
+      <EuiFocusTrap className="testing" style={{ height: '100%' }}>
+        <div />
+      </EuiFocusTrap>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('behavior', () => {
     describe('focus', () => {
       test('is set on the first focusable element by default', () => {

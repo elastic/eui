@@ -902,17 +902,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const datagridContext = useMemo(
     () => ({
       onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
-        if (pagination) {
-          const key = `${cell[0]}-${cell[1]}`;
-          cellsUpdateFocus.current.set(key, updateFocus);
+        const key = `${cell[0]}-${cell[1]}`;
+        cellsUpdateFocus.current.set(key, updateFocus);
 
-          return () => {
-            cellsUpdateFocus.current.delete(key);
-          };
-        }
+        return () => {
+          cellsUpdateFocus.current.delete(key);
+        };
       },
     }),
-    [pagination]
+    []
   );
 
   const gridIds = htmlIdGenerator();
@@ -964,7 +962,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 <DataGridContext.Provider value={datagridContext}>
                   <EuiFocusTrap
                     disabled={!isFullScreen}
-                    style={{ height: '100%' }}>
+                    className="euiDataGrid__focusWrap">
                     <div
                       className={classes}
                       onKeyDown={handleGridKeyDown}

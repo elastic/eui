@@ -214,6 +214,13 @@ export {
   EuiPinnableListGroup,
 } from './list_group';
 
+export {
+  EuiMarkdownEditor,
+  EuiMarkdownContext,
+  EuiMarkdownFormat,
+  getDefaultEuiMarkdownParsingPlugins,
+  getDefaultEuiMarkdownProcessingPlugins,
+} from './markdown_editor';
 export { EuiMark } from './mark';
 
 export {
@@ -282,6 +289,7 @@ export {
   EuiSelectableListItem,
   EuiSelectableMessage,
   EuiSelectableSearch,
+  EuiSelectableTemplateSitewide,
 } from './selectable';
 
 export { EuiSideNav } from './side_nav';
