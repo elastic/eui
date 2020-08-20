@@ -282,7 +282,7 @@ export const radioConfig = () => {
   propsToUse.id = {
     ...propsToUse.id,
     type: PropTypes.String,
-    value: 'Plyground__radio',
+    value: 'Playground__radio',
   };
 
   propsToUse.label = {
