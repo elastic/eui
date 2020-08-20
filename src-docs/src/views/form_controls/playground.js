@@ -3,6 +3,7 @@ import {
   dummyFunction,
   simulateFunction,
   iconValidator,
+  createOptionalEnum,
 } from '../../services/playground';
 import {
   EuiFieldText,
@@ -171,6 +172,14 @@ export const fieldPasswordConfig = () => {
     type: PropTypes.String,
     value: '',
   };
+
+  propsToUse.type = createOptionalEnum({
+    ...propsToUse.type,
+    type: PropTypes.Enum,
+    options: {
+      dual: 'dual',
+    },
+  });
 
   propsToUse.onChange = simulateFunction(propsToUse.onChange);
 
