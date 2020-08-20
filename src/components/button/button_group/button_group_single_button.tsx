@@ -58,10 +58,12 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   return (
     <EuiButtonDisplay
       htmlFor={id}
-      element={isDisabled ? 'button' : 'label'} // Not sure if this is the best way to handle disabled labels from incurring clicks
+      // TODO: Not sure if this is the best way to handle disabled labels from incurring clicks
+      element={isDisabled ? 'button' : 'label'}
       className={buttonClasses}
       color={badColorCombo ? 'text' : color}
       fill={size !== 'compressed' && isSelectedState}
+      // TODO: Return to why both disabled types are needed
       isDisabled={isDisabled}
       disabled={isDisabled}
       size={size === 'compressed' ? 's' : size}

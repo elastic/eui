@@ -1,8 +1,37 @@
 .euiButtonGroupButton {
   // Remove transforms from all states
   transform: none !important;
+  animation: none !important;
+  // Also remove all individual styles that will be be applied to the group instead
+  // box-shadow: none !important;
+  border-radius: 0;
+  margin-left: -1px;
 
   &:focus-within {
-
+    text-decoration: underline;
   }
+
+  // Only change the border color when enabled and selected
+  &:not(.euiButtonGroupButton--selected):not([class*='isDisabled']) {
+    border-color: $euiButtonToggleBorderColor;
+  }
+
+  &:not(.euiButtonGroupButton--selected) {
+    z-index: 0;
+  }
+
+  &:first-child {
+    border-top-left-radius: $euiBorderRadius;
+    border-bottom-left-radius: $euiBorderRadius;
+    margin-left: 0;
+  }
+
+  &:last-child {
+    border-top-right-radius: $euiBorderRadius;
+    border-bottom-right-radius: $euiBorderRadius;
+  }
+}
+
+.euiButtonGroup__button--selected + .euiButtonGroup__button--selected {
+  box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
 }

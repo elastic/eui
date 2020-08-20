@@ -1,37 +1,24 @@
+.euiButtonGroup__fieldset {
+  display: inline-block;
+  max-width: 100%;
+
+  &--fullWidth {
+    display: block;
+  }
+}
+
+.euiButtonGroup {
+  max-width: 100%;
+  display: flex;
+
+  // Non-compressed version only
+  &:not(.euiButtonGroup--compressed) {
+    .euiButtonGroup__button {
+    }
+  }
+}
+
 // .euiButtonGroup {
-//   max-width: 100%;
-//   display: flex;
-//   border-radius: $euiBorderRadius;
-
-//   .euiButtonGroup__button {
-//     border-radius: 0;
-//     margin-left: -1px;
-//     min-width: auto;
-
-//     &:not([class*='fill']) {
-//       border-color: $euiButtonToggleBorderColor;
-//     }
-
-//     &,
-//     &:hover,
-//     &:focus,
-//     &:active {
-//       transition: none;
-//       transform: none;
-//       animation: none;
-//       box-shadow: none;
-//     }
-
-//     &[class*='disabled']:hover {
-//       text-decoration: none;
-//       cursor: not-allowed;
-//     }
-
-//     &[class*='fill'] {
-//       z-index: 0;
-//     }
-//   }
-
 //   &:not(.euiButtonGroup--compressed) {
 //     .euiButtonGroup__button {
 //       &:first-child {
@@ -87,37 +74,29 @@
 //   overflow: hidden;
 // }
 
-// .euiButtonGroup__fieldset {
-//   display: inline-block;
-//   max-width: 100%;
-
-//   &--fullWidth {
-//     display: block;
-//   }
-// }
 
 // .euiButtonGroup__input {
 //   @include euiScreenReaderOnly;
 // }
 
 // .euiButtonGroup--compressed,
-// .euiButtonGroup--fullWidth {
+.euiButtonGroup--fullWidth {
+  .euiButtonGroupButton {
+    flex: 1;
+  }
+}
+
+
+// @include euiBreakpoint('xs', 's') {
+//   .euiButtonGroup__fieldset {
+//     display: block;
+//   }
+
 //   .euiButtonGroup__button {
 //     flex: 1;
+//     min-width: 0;
 //   }
 // }
-
-
-@include euiBreakpoint('xs', 's') {
-  // .euiButtonGroup__fieldset {
-  //   display: block;
-  // }
-
-  // .euiButtonGroup__button {
-  //   flex: 1;
-  //   min-width: 0;
-  // }
-}
 
 // .euiButtonGroup--compressed {
 //   border: 1px solid $euiFormBorderColor;

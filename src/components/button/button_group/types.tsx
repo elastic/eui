@@ -27,7 +27,6 @@ export type ButtonGroupOptionProps = {
   color: EuiButtonGroupProps['color'];
   size: EuiButtonGroupProps['buttonSize'];
   isIconOnly: EuiButtonGroupProps['isIconOnly'];
-  // isGroupDisabled: EuiButtonGroupProps['isDisabled'];
   onChange: EuiButtonGroupProps['onChange'];
 };
 
