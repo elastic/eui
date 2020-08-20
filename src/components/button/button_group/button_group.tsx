@@ -17,53 +17,12 @@
  * under the License.
  */
 
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { ToggleType } from '../../toggle';
-
-import { EuiButtonToggle } from '../button_toggle';
-import { CommonProps } from '../../common';
-
-import { ButtonColor } from '../button';
-import { ButtonContentIconSide } from '../button_content';
-import { IconType } from '../../icon';
-
-export interface EuiButtonGroupIdToSelectedMap {
-  [id: string]: boolean;
-}
-
-export type GroupButtonSize = 's' | 'm' | 'compressed';
-
-export interface EuiButtonGroupOption extends CommonProps {
-  id: string;
-  label: ReactNode;
-  name?: string;
-  isDisabled?: boolean;
-  value?: any;
-  iconSide?: ButtonContentIconSide;
-  iconType?: IconType;
-}
-
-export interface EuiButtonGroupProps extends CommonProps {
-  options?: EuiButtonGroupOption[];
-  onChange: (id: string, value?: any) => void;
-  /**
-   * Typical sizing is `s`. Medium `m` size should be reserved for major features.
-   * `compressed` is meant to be used alongside and within compressed forms.
-   */
-  buttonSize?: GroupButtonSize;
-  isDisabled?: boolean;
-  isFullWidth?: boolean;
-  isIconOnly?: boolean;
-  idSelected?: string;
-  legend?: string;
-  color?: ButtonColor;
-  name?: string;
-  type?: ToggleType;
-  idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
-}
+import { EuiButtonGroupMultiButton } from './button_group_multi_button';
+import { EuiButtonGroupSingleButton } from './button_group_single_button';
+import { EuiButtonGroupProps } from './types';
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   EuiButtonGroupProps;
@@ -72,24 +31,33 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   className,
   buttonSize = 's',
   color = 'text',
-  idSelected,
+  idSelected = '',
   idToSelectedMap = {},
-  isDisabled,
-  isFullWidth,
-  isIconOnly,
-  name,
+  isDisabled = false,
+  isFullWidth = false,
+  isIconOnly = false,
   legend,
   onChange,
   options = [],
   type = 'single',
-  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
+  // Compressed style can't support `ghost` color because it's more like a form field than a button
+  const badColorCombo = buttonSize === 'compressed' && color === 'ghost';
+  const resolvedColor = badColorCombo ? 'text' : color;
+  if (badColorCombo) {
+    console.warn(
+      'EuiButtonGroup of compressed size does not support the ghost color. It will render as text instead.'
+    );
+  }
+
   const classes = classNames(
     'euiButtonGroup',
-    [`euiButtonGroup--${buttonSize}`],
+    `euiButtonGroup--${resolvedColor}`,
     {
       'euiButtonGroup--fullWidth': isFullWidth,
+      'euiButtonGroup--compressed': buttonSize === 'compressed',
+      'euiButtonGroup--disabled': isDisabled,
     },
     className
   );
@@ -98,67 +66,50 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
     'euiButtonGroup__fieldset--fullWidth': isFullWidth,
   });
 
-  let legendNode;
-  if (legend) {
-    legendNode = (
+  return (
+    <fieldset className={fieldsetClasses}>
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
-    );
-  }
-
-  return (
-    <fieldset className={fieldsetClasses}>
-      {legendNode}
 
       <div className={classes} {...rest}>
         {options.map((option, index) => {
-          const {
-            id,
-            name: optionName,
-            value,
-            isDisabled: optionDisabled,
-            className,
-            ...rest
-          } = option;
-
-          let isSelectedState;
-          if (type === 'multi') {
-            isSelectedState = idToSelectedMap[id] || false;
-          } else {
-            isSelectedState = id === idSelected;
-          }
-
-          let fill;
-          if (buttonSize !== 'compressed') {
-            fill = isSelectedState;
-          }
-          const buttonClasses = classNames(
+          const optionClasses = classNames(
             'euiButtonGroup__button',
+            'euiButton--no-hover',
             {
-              'euiButtonGroup__button--selected': isSelectedState,
+              'euiButtonGroup__button--iconOnly': isIconOnly,
             },
-            className
+            option.className
           );
 
+          if (type === 'single') {
+            return (
+              <EuiButtonGroupSingleButton
+                key={index}
+                {...option}
+                idSelected={idSelected}
+                size={buttonSize}
+                isIconOnly={isIconOnly}
+                isGroupDisabled={isDisabled}
+                color={resolvedColor}
+                onChange={onChange}
+                className={optionClasses}
+              />
+            );
+          }
+
           return (
-            <EuiButtonToggle
-              className={buttonClasses}
-              toggleClassName="euiButtonGroup__toggle"
-              id={id}
+            <EuiButtonGroupMultiButton
               key={index}
-              value={value}
-              color={color}
-              fill={fill}
-              isDisabled={optionDisabled || isDisabled}
+              {...option}
+              idToSelectedMap={idToSelectedMap}
+              color={resolvedColor}
+              size={buttonSize}
               isIconOnly={isIconOnly}
-              isSelected={isSelectedState}
-              name={optionName || name}
-              onChange={() => onChange(id, value)}
-              size={buttonSize === 'compressed' ? 's' : buttonSize}
-              type={type}
-              data-test-subj={dataTestSubj}
-              {...rest}
+              isGroupDisabled={isDisabled}
+              onChange={onChange}
+              className={optionClasses}
             />
           );
         })}

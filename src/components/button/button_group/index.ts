@@ -17,8 +17,9 @@
  * under the License.
  */
 
+export { EuiButtonGroup } from './button_group';
 export {
-  EuiButtonGroup,
-  EuiButtonGroupOption,
+  EuiButtonSingleGroupOptionProps,
+  EuiButtonMultiGroupOptionProps,
   EuiButtonGroupProps,
-} from './button_group';
+} from './types';
