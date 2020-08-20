@@ -8,7 +8,7 @@
   display: block;
   width: 100%;
   padding: $euiSizeXS / 2 0;
-  color: $euiColorFullShade; /* 2 */
+  color: $euiTextColor; /* 2 */
 
   &.euiSideNavItemButton--isClickable {
     &:hover .euiSideNavItemButton__label {
@@ -23,9 +23,13 @@
   }
 
   &.euiSideNavItemButton-isSelected {
+    .euiSideNavItemButton__icon {
+      fill: $euiColorPrimary;
+    }
+
     .euiSideNavItemButton__label {
       color: $euiColorPrimary;
-      font-weight: $euiFontWeightMedium;
+      font-weight: $euiFontWeightBold;
       text-decoration: underline;
     }
   }
@@ -48,7 +52,7 @@
 }
 
 .euiSideNavItemButton__label {
-  color: $euiColorDarkShade;
+  color: $euiTitleColor;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -148,12 +152,13 @@
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
   }
-}
 
-.euiSideNavItem--hasChildItems {
-  & > .euiSideNavItemButton-isOpen {
-    .euiSideNavItemButton__label {
-      color: $euiColorFullShade;
-    }
+  .euiSideNavItemButton__icon {
+    fill: $euiTextSubduedColor;
+  }
+
+  .euiSideNavItemButton__label {
+    color: $euiTextSubduedColor;
   }
 }
+
