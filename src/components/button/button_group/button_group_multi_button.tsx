@@ -32,22 +32,26 @@ type Props = {
   EuiButtonMultiGroupOptionProps;
 
 export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
+  className,
   id,
   label,
   isDisabled,
-  className,
-  iconType,
-  iconSide,
+  isGroupDisabled,
   idToSelectedMap,
   size,
   color,
   isIconOnly,
-  isGroupDisabled,
   onChange,
   ...rest
 }) => {
   const isSelectedState = idToSelectedMap[id] || false;
   const badColorCombo = size === 'compressed' && color === 'ghost';
+  if (badColorCombo) {
+    console.warn(
+      'EuiButtonGroup of compressed size does not support the ghost color. It will render as text instead.'
+    );
+  }
+
   const buttonClasses = classNames(
     'euiButtonGroup__toggle',
     {
@@ -66,8 +70,6 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
       aria-pressed={isSelectedState}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id)}
-      iconSide={iconSide}
-      iconType={iconType}
       {...rest}>
       {isIconOnly ? (
         <EuiScreenReaderOnly>
