@@ -14,6 +14,7 @@ export const rangeConfig = () => {
   propsToUse.value = {
     ...propsToUse.value,
     type: PropTypes.String,
+    value: '10',
   };
 
   propsToUse.onChange = {
@@ -69,6 +70,7 @@ export const dualRangeConfig = () => {
   propsToUse.value = {
     ...propsToUse.value,
     type: PropTypes.String,
+    value: '10',
   };
 
   propsToUse.onChange = {
