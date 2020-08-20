@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { FunctionComponent, Ref, ButtonHTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  Ref,
+  ButtonHTMLAttributes,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames';
 
 import {
@@ -94,6 +99,10 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   fullWidth?: boolean;
   /**
+   * Override the default minimum width
+   */
+  minWidth?: CSSProperties['minWidth'];
+  /**
    * Force disables the button and changes the icon to a loading spinner
    */
   isLoading?: boolean;
@@ -101,6 +110,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    * Object of props passed to the <span/> wrapping the button's content
    */
   contentProps?: EuiButtonContentType;
+  style?: CSSProperties;
 }
 
 export interface EuiButtonDisplayProps extends EuiButtonProps {
@@ -129,6 +139,8 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       textProps,
       fullWidth,
       element = 'button',
+      minWidth,
+      style,
       ...rest
     },
     ref
@@ -168,10 +180,19 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       </EuiButtonContent>
     );
 
+    let calculatedStyle: CSSProperties | undefined = style;
+    if (minWidth !== undefined || minWidth !== null) {
+      calculatedStyle = {
+        ...calculatedStyle,
+        minWidth,
+      };
+    }
+
     return React.createElement(
       element,
       {
         className: classes,
+        style: calculatedStyle,
         ref,
         ...rest,
       },

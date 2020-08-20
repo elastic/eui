@@ -4,6 +4,7 @@ import {
   propUtilityForPlayground,
   iconValidator,
 } from '../../services/playground';
+import { number } from 'prop-types';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiButton.__docgenInfo)
@@ -18,6 +19,11 @@ export default () => {
     type: PropTypes.ReactNode,
     description: 'Visible label.',
     hidden: true,
+  };
+
+  propsToUse.minWidth = {
+    ...propsToUse.minWidth,
+    type: PropTypes.Number,
   };
 
   const setGhostBackground = {

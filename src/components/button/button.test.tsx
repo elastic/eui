@@ -76,6 +76,14 @@ describe('EuiButton', () => {
       });
     });
 
+    describe('minWidth', () => {
+      it('is rendered', () => {
+        const component = render(<EuiButton minWidth={0} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('iconType', () => {
       it('is rendered', () => {
         const component = render(<EuiButton iconType="user" />);

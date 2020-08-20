@@ -64,12 +64,12 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
       color={badColorCombo ? 'text' : color}
       fill={size !== 'compressed' && isSelectedState}
       isDisabled={isDisabled || isGroupDisabled}
-      aria-pressed={isSelectedState}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id, value)}
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}
+      minWidth={0}
       {...rest}>
       <input
         id={id}
@@ -79,6 +79,7 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
         disabled={isGroupDisabled || isDisabled}
         value={value}
         type="radio"
+        onChange={() => onChange(id, value)}
       />
       {label}
     </EuiButtonDisplay>
