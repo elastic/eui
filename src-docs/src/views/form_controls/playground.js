@@ -244,7 +244,7 @@ export const checkboxConfig = () => {
 
   propsToUse.id = {
     ...propsToUse.id,
-    value: 'Plyground__checkbox',
+    value: 'Playground__checkbox',
   };
   propsToUse.label = {
     ...propsToUse.label,
