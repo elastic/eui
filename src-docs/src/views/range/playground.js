@@ -28,6 +28,19 @@ export const rangeConfig = () => {
     },
   };
 
+  propsToUse.tickInterval = {
+    ...propsToUse.tickInterval,
+    custom: {
+      ...propsToUse.tickInterval.custom,
+      checkDep: (val, state) => {
+        if (state.showTicks.value && !val) {
+          return 'When passing showTicks to EuiDualRange, you must also provide tickInterval';
+        }
+        return undefined;
+      },
+    },
+  };
+
   propsToUse.showInput = {
     ...propsToUse.showInput,
     type: PropTypes.Boolean,
@@ -88,6 +101,19 @@ export const dualRangeConfig = () => {
     ...propsToUse.showInput,
     type: PropTypes.Boolean,
     value: false,
+  };
+
+  propsToUse.tickInterval = {
+    ...propsToUse.tickInterval,
+    custom: {
+      ...propsToUse.tickInterval.custom,
+      checkDep: (val, state) => {
+        if (state.showTicks.value && !val) {
+          return 'When passing showTicks to EuiRange, you must also provide tickInterval';
+        }
+        return undefined;
+      },
+    },
   };
 
   return {
