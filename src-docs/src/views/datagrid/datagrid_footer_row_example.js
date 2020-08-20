@@ -9,15 +9,17 @@ import DataGridFooterRow from './footer_row';
 const dataGridControlColumnsSource = require('!!raw-loader!./footer_row');
 const dataGridControlColumnsHtml = renderToHtml(DataGridFooterRow);
 
-import {
-  DataGridControlColumn as EuiDataGridControlColumn,
-  DataGridCellValueElement as EuiDataGridCellValueElementProps,
-} from './props';
+import { EuiDataGridControlColumn } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
 
-const gridSnippet = `<EuiDataGrid
+const gridSnippet = `const footerCellValues = {
+  // desired data
+};
+
+<EuiDataGrid
   {...usualProps}
   renderFooterCellValue={({ columnId }) =>
-    columns.find(col => col.id === columnId).footerCellValue || null
+    footerCellValues[columnId] || null
   }
 />
 `;

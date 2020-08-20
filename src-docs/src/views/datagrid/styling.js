@@ -11,7 +11,6 @@ import {
   EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSwitch,
 } from '../../../../src/components/';
 
 const columns = [
@@ -143,8 +142,8 @@ export default class DataGrid extends Component {
         label: 'Shade',
       },
       {
-        id: 'underline',
-        label: 'Underline',
+        id: 'overline',
+        label: 'Overline',
       },
     ];
 
@@ -245,8 +244,7 @@ export default class DataGrid extends Component {
       isPopoverOpen: false,
       isToolbarPopoverOpen: false,
       headerSelected: 'underline',
-      footerSelected: 'underline',
-      showFooterRow: false,
+      footerSelected: 'overline',
       showSortSelector: true,
       showStyleSelector: true,
       showColumnSelector: true,
@@ -391,8 +389,6 @@ export default class DataGrid extends Component {
 
   setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
 
-  setShowFooterRow = showFooterRow => this.setState({ showFooterRow });
-
   render() {
     const { pagination } = this.state;
 
@@ -446,13 +442,6 @@ export default class DataGrid extends Component {
     return (
       <div>
         <EuiFlexGroup gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Show footer row"
-              checked={this.state.showFooterRow}
-              onChange={e => this.setShowFooterRow(e.target.checked)}
-            />
-          </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
               id="styleButton"
@@ -530,7 +519,6 @@ export default class DataGrid extends Component {
                 <EuiFormRow label="Footer" display="columnCompressed">
                   <EuiButtonGroup
                     isFullWidth
-                    isDisabled={!this.state.showFooterRow}
                     buttonSize="compressed"
                     legend="Footer"
                     options={this.footerOptions}
@@ -683,12 +671,8 @@ export default class DataGrid extends Component {
           }}
           toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-          renderFooterCellValue={
-            this.state.showFooterRow
-              ? ({ columnId }) =>
-                  columns.find(col => col.id === columnId).footerCellValue ||
-                  null
-              : undefined
+          renderFooterCellValue={({ columnId }) =>
+            columns.find(col => col.id === columnId).footerCellValue || null
           }
           pagination={{
             ...pagination,

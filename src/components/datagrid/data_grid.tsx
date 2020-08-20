@@ -176,7 +176,7 @@ const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
 
 const footerToClassMap: { [footer in EuiDataGridStyleFooter]: string } = {
   shade: 'euiDataGrid--footerShade',
-  underline: 'euiDataGrid--footerUnderline',
+  overline: 'euiDataGrid--footerOverline',
 };
 
 const rowHoverToClassMap: {

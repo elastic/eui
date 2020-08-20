@@ -74,7 +74,7 @@ const gridSnippet = `<EuiDataGrid
     // If showStyleSelector={true} from toolbarVisibility, these last two will be superceded by what the user decides.
     fontSize: 'm',
     cellPadding: 'm',
-    footer: 'underline'
+    footer: 'overline'
   }}
 />
 `;

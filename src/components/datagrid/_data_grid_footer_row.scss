@@ -2,7 +2,7 @@
   font-weight: $euiFontWeightBold;
 }
 
-@include euiDataGridStyles(footerUnderline) {
+@include euiDataGridStyles(footerOverline) {
   @include euiDataGridFooterCell {
     border-top: $euiBorderThick;
     // sass-lint:disable-block no-important
