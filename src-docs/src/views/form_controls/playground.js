@@ -253,7 +253,7 @@ export const checkboxConfig = () => {
 
   propsToUse.id = {
     ...propsToUse.id,
-    value: 'Plyground__checkbox',
+    value: 'Playground__checkbox',
   };
   propsToUse.label = {
     ...propsToUse.label,
@@ -291,7 +291,7 @@ export const radioConfig = () => {
   propsToUse.id = {
     ...propsToUse.id,
     type: PropTypes.String,
-    value: 'Plyground__radio',
+    value: 'Playground__radio',
   };
 
   propsToUse.label = {
