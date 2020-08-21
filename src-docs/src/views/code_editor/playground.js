@@ -94,7 +94,7 @@ export const codeEditorConfig = () => {
     custom: {
       ...propsToUse.mode.custom,
       helpText:
-        'Some available modes are c_cpp,  csharp,  css,  dart,  golang,  html,  java,  javascript,  less,  text,  typescript',
+        'Some available modes are c_cpp, csharp, css, dart, golang, html, java, javascript, less, text, typescript',
     },
   };
 
