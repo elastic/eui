@@ -133,7 +133,8 @@ const Knob = ({
         <EuiFormRow
           isInvalid={error && error.length > 0}
           error={error}
-          fullWidth>
+          fullWidth
+          helpText={custom && custom.helpText}>
           <EuiFieldText
             placeholder={placeholder}
             aria-label={description}
