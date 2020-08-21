@@ -9,7 +9,8 @@ module.exports = {
       "targets": {
         "browsers": [
           "last 2 versions",
-          "> 5%",
+          "not dead",
+          "not IE 11",
           "Safari 7" // for PhantomJS support
         ]
       },
@@ -24,7 +25,6 @@ module.exports = {
     "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
     "./scripts/babel/proptypes-from-ts-props",
-    "./scripts/babel/react-docgen-typescript",
     "add-module-exports",
     // stage 3
     "@babel/proposal-object-rest-spread",
@@ -43,10 +43,4 @@ module.exports = {
       }
     ],
   ],
-
-  "env": {
-    "test": {
-      "plugins": ["dynamic-import-node"]
-    }
-  }
 };

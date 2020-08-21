@@ -1,9 +1,40 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Adjusted coloring of `EuiSideNav` to be more consistent across open states ([#3926](https://github.com/elastic/eui/pull/3926))
+- Added build-specific babel configurations for docs and tests ([#3911](https://github.com/elastic/eui/pull/3911))
+- Updated browserslist configuration to remove IE accommodations ([#3911](https://github.com/elastic/eui/pull/3911))
+- Removed docgenInfo from non-docs production builds ([#3911](https://github.com/elastic/eui/pull/3911))
+
+**Bug fixes**
+
+- Fixed bug in `EuiBasicTable` not fully expanding tall rows (height > 1000px) ([#3855](https://github.com/elastic/eui/pull/3855))
+- Added `regressionJob`, `outlierDetectionJob` and `classificationJob` icons to Machine Learning icon set, updated others. ([#3931](https://github.com/elastic/eui/pull/3931))
+
+## [`28.2.0`](https://github.com/elastic/eui/tree/v28.2.0)
+
+- Added `EuiSelectableTemplateSitewide` as wrapper of `EuiSelectable` for Elastic's global search component ([#3800](https://github.com/elastic/eui/pull/3800))
+- Updated styles of `EuiMark` to override browser default ([#3800](https://github.com/elastic/eui/pull/3800))
+- Updated `EuiHighlight` to use `EuiMark` as matching element wrapper ([#3800](https://github.com/elastic/eui/pull/3800))
+- Enhanced `EuiSelectable`'s `option` type to allow for a separate `searchableLabel` and any generic keys ([#3800](https://github.com/elastic/eui/pull/3800))
+- Added `listProps.onFocusBadge`, `loadingMessage`, `noMatchesMessage`, and `emptyMessage` props to `EuiSelectable` ([#3800](https://github.com/elastic/eui/pull/3800))
+- Added `bordered` prop to `EuiSelectableMessage` ([#3800](https://github.com/elastic/eui/pull/3800))
+
+**Bug fixes**
+
+- Fixed display of `EuiBadge` if only the `iconType` is passed ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accessibility error in `EuiSelectable` when the `list` isn't on the page ([#3800](https://github.com/elastic/eui/pull/3800))
+- Fixed accessibility error in `EuiPopover` when `ownFocus = false` ([#3800](https://github.com/elastic/eui/pull/3800))
+
+## [`28.1.0`](https://github.com/elastic/eui/tree/v28.1.0)
+
+- Added `isLoading` and `isLoadingMessage` props to `EuiAccordion` ([#3879](https://github.com/elastic/eui/pull/3879))
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
+
 **Bug fixes**
 
 - Fixed bug in `EuiCodeBlock` content overlapping with control buttons when `whiteSpace` was set to `"pre"` ([#3853](https://github.com/elastic/eui/pull/3853))
 - Fixed `EuiFocusTrap` not applying provided `style` prop ([#3916](https://github.com/elastic/eui/pull/3916))
+- Fixed bug in `EuiDataGrid` when a new pagination object would cause every cell to render ([#3919](https://github.com/elastic/eui/pull/3919))
 
 ## [`28.0.0`](https://github.com/elastic/eui/tree/v28.0.0)
 
@@ -22,6 +53,12 @@
 **Breaking changes**
 
 - Requires `@elastic/charts` version `20.0.0` and above for chart theming utils.
+
+## [`27.4.1`](https://github.com/elastic/eui/tree/v27.4.1)
+
+**Note: this release is a backport containing changes originally made in `28.1.0`**
+
+- Added `testenv` mock for `EuiFocusTrap` ([#3930](https://github.com/elastic/eui/pull/3930))
 
 ## [`27.4.0`](https://github.com/elastic/eui/tree/v27.4.0)
 

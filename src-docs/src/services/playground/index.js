@@ -5,3 +5,4 @@ export { mapOptions } from './mapOptions';
 export { iconValidator } from './iconValidator';
 export { createOptionalEnum } from './createOptionalEnum';
 export { dummyFunction } from './dummyFunction';
+export { simulateFunction } from './simulateFunction';
