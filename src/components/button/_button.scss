@@ -1,5 +1,5 @@
 // This file has lots of modifiers and is somewhat nesty by nature
-//sass-lint:disable nesting-depth
+// sass-lint:disable nesting-depth
 
 // Our base button
 .euiButton {
@@ -115,10 +115,6 @@
       &:focus-within {
         @include euiSlightShadowHover($shadowColor);
         background-color: transparentize($color, .9);
-
-        @if ($name == 'disabled') {
-          cursor: not-allowed;
-        }
       }
     }
   }

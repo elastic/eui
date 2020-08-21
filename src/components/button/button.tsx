@@ -55,19 +55,19 @@ export type ButtonColor =
 
 export type ButtonSize = 's' | 'm';
 
-const colorToClassNameMap: { [color in ButtonColor]: string } = {
-  primary: 'euiButton--primary',
-  secondary: 'euiButton--secondary',
-  warning: 'euiButton--warning',
-  danger: 'euiButton--danger',
-  ghost: 'euiButton--ghost',
-  text: 'euiButton--text',
+export const colorToClassNameMap: { [color in ButtonColor]: string } = {
+  primary: '--primary',
+  secondary: '--secondary',
+  warning: '--warning',
+  danger: '--danger',
+  ghost: '--ghost',
+  text: '--text',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
 
-const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
-  s: 'euiButton--small',
+export const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
+  s: '--small',
   m: null,
 };
 
@@ -114,7 +114,14 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
 }
 
 export interface EuiButtonDisplayProps extends EuiButtonProps {
+  /**
+   * Provide a valid element to render the element as
+   */
   element: 'a' | 'button' | 'span' | 'label';
+  /**
+   * Provide the component's base class name to build the class list on
+   */
+  baseClassName: string;
 }
 
 /**
@@ -126,6 +133,8 @@ export interface EuiButtonDisplayProps extends EuiButtonProps {
 const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
+      element = 'button',
+      baseClassName,
       children,
       className,
       iconType,
@@ -138,7 +147,6 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       contentProps,
       textProps,
       fullWidth,
-      element = 'button',
       minWidth,
       style,
       ...rest
@@ -146,17 +154,21 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
     ref
   ) => {
     const classes = classNames(
-      'euiButton',
-      color ? colorToClassNameMap[color] : null,
-      size ? sizeToClassNameMap[size] : null,
-      className,
-      {
-        'euiButton--fill': fill,
-        'euiButton--fullWidth': fullWidth,
-        'euiButton-isDisabled': isDisabled,
-      }
+      baseClassName,
+      color ? `${baseClassName}${colorToClassNameMap[color]}` : null,
+      size && sizeToClassNameMap[size]
+        ? `${baseClassName}${sizeToClassNameMap[size]}`
+        : null,
+      fill && `${baseClassName}--fill`,
+      fullWidth && `${baseClassName}--fullWidth`,
+      isDisabled && `${baseClassName}-isDisabled`,
+      className
     );
 
+    /**
+     * Not changing the content or text class names to match baseClassName yet,
+     * as it is a major breaking change.
+     */
     const contentClassNames = classNames(
       'euiButton__content',
       contentProps && contentProps.className
@@ -262,6 +274,7 @@ export const EuiButton: FunctionComponent<Props> = ({
   return (
     <EuiButtonDisplay
       element={element}
+      baseClassName="euiButton"
       ref={buttonRef}
       {...elementProps}
       {...relObj}

@@ -1,37 +1,135 @@
 .euiButtonGroupButton {
-  // Remove transforms from all states
-  transform: none !important;
-  animation: none !important;
-  // Also remove all individual styles that will be be applied to the group instead
-  // box-shadow: none !important;
-  border-radius: 0;
-  margin-left: -1px;
+  @include euiButtonBase;
+  @include euiFont;
+  @include euiFontSize;
 
-  &:focus-within {
-    text-decoration: underline;
+  border: $euiBorderThin;
+  transition: all $euiAnimSpeedNormal ease-in-out;
+
+  .euiButton__content {
+    padding: 0 ($euiSize - $euiSizeXS);
   }
 
-  // Only change the border color when enabled and selected
-  &:not(.euiButtonGroupButton--selected):not([class*='isDisabled']) {
-    border-color: $euiButtonToggleBorderColor;
+  .euiButton__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
-  &:not(.euiButtonGroupButton--selected) {
-    z-index: 0;
+  &:not(:first-child) {
+    margin-left: -1px;
   }
 
   &:first-child {
-    border-top-left-radius: $euiBorderRadius;
-    border-bottom-left-radius: $euiBorderRadius;
-    margin-left: 0;
+    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
   }
 
   &:last-child {
-    border-top-right-radius: $euiBorderRadius;
-    border-bottom-right-radius: $euiBorderRadius;
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+  }
+
+  &.euiButtonGroupButton--small {
+    height: $euiButtonHeightSmall;
+    line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
+  }
+
+  &.euiButtonGroupButton--compressed {
+    height: $euiFormControlCompressedHeight;
+    line-height: $euiFormControlCompressedHeight; // prevents descenders from getting cut off
+  }
+
+  &:not([class*='isDisabled']) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: transparentize($euiColorPrimary, .9);
+      text-decoration: underline;
+    }
+  }
+
+  &.euiButtonGroupButton-isDisabled {
+    @include euiButtonContentDisabled;
+    color: $euiButtonColorDisabledText;
+
+    &.euiButtonGroupButton-isSelected {
+      // Only increase the contrast of background color to text to 2.0 for disabled
+      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+      background-color: $euiButtonColorDisabled;
+      border-color: $euiButtonColorDisabled;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: $euiButtonColorDisabled;
+        border-color: $euiButtonColorDisabled;
+      }
+    }
   }
 }
 
-.euiButtonGroup__button--selected + .euiButtonGroup__button--selected {
+// Create button modifiers based upon the map.
+// sass-lint:disable nesting-depth
+@each $name, $color in $euiButtonTypes {
+  .euiButtonGroupButton--#{$name} {
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      color: $color;
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make the it the text color
+      color: $euiTextColor;
+    } @else {
+      // Other colors need to check their contrast against the page background color.
+      color: makeHighContrastColor($color, $euiPageBackgroundColor);
+    }
+
+    &.euiButtonGroupButton-isSelected {
+      background-color: $color;
+      border-color: $color;
+
+      // The function makes that hexes safe for theming
+      $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+
+      color: $fillTextColor;
+
+      &:not([class*='isDisabled']) {
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: darken($color, 5%);
+          border-color: darken($color, 5%);
+        }
+      }
+    }
+
+    &:not([class*='isDisabled']) {
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: transparentize($color, .9);
+      }
+    }
+  }
+}
+
+// Fix ghost/disabled look specifically
+.euiButtonGroupButton.euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost {
+  &,
+  &:hover,
+  &:focus,
+  &:focus-within {
+    color: $euiButtonColorGhostDisabled;
+    border-color: $euiButtonColorGhostDisabled;
+  }
+
+  &.euiButtonGroupButton-isSelected {
+    background-color: $euiButtonColorGhostDisabled;
+    color: makeHighContrastColor($euiButtonColorGhostDisabled, $euiButtonColorGhostDisabled, 2);
+  }
+}
+
+.euiButtonGroupButton-isSelected {
+  z-index: 0;
+}
+
+.euiButtonGroupButton-isSelected + .euiButtonGroupButton-isSelected {
   box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
 }

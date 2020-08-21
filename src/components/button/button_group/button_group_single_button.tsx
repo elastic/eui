@@ -48,15 +48,15 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   const badColorCombo = size === 'compressed' && color === 'ghost';
 
   const buttonClasses = classNames(
-    'euiButtonGroupButton',
     {
-      'euiButtonGroupButton--selected': isSelectedState,
+      'euiButtonGroupButton-isSelected': isSelectedState,
     },
     className
   );
 
   return (
     <EuiButtonDisplay
+      baseClassName="euiButtonGroupButton"
       htmlFor={id}
       // TODO: Not sure if this is the best way to handle disabled labels from incurring clicks
       element={isDisabled ? 'button' : 'label'}
@@ -71,7 +71,6 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}
-      minWidth={0}
       {...rest}>
       <input
         id={id}

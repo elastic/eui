@@ -19,7 +19,7 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import { EuiButton } from '../button';
+import { EuiButtonDisplay } from '../button';
 import {
   ButtonGroupOptionProps,
   EuiButtonMultiGroupOptionProps,
@@ -39,23 +39,27 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
   color,
   isIconOnly,
   onChange,
+  isDisabled,
   ...rest
 }) => {
   const isSelectedState = idToSelectedMap[id] || false;
   const badColorCombo = size === 'compressed' && color === 'ghost';
 
   const buttonClasses = classNames(
-    'euiButtonGroupButton',
     {
-      'euiButtonGroupButton--selected': isSelectedState,
+      'euiButtonGroupButton-isSelected': isSelectedState,
     },
     className
   );
 
   return (
-    <EuiButton
-      className={buttonClasses}
+    <EuiButtonDisplay
+      baseClassName="euiButtonGroupButton"
+      element={'button'}
       id={id}
+      className={buttonClasses}
+      disabled={isDisabled}
+      isDisabled={isDisabled}
       color={badColorCombo ? 'text' : color}
       fill={size !== 'compressed' && isSelectedState}
       aria-pressed={isSelectedState}
@@ -67,6 +71,6 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
       }}
       {...rest}>
       {label}
-    </EuiButton>
+    </EuiButtonDisplay>
   );
 };

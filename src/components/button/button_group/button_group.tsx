@@ -23,9 +23,15 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupMultiButton } from './button_group_multi_button';
 import { EuiButtonGroupSingleButton } from './button_group_single_button';
 import { EuiButtonGroupProps } from './types';
+import { colorToClassNameMap, sizeToClassNameMap } from '../button';
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   EuiButtonGroupProps;
+
+const groupSizeToClassNameMap = {
+  ...sizeToClassNameMap,
+  compressed: '--compressed',
+};
 
 export const EuiButtonGroup: FunctionComponent<Props> = ({
   className,
@@ -53,11 +59,11 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
   const classes = classNames(
     'euiButtonGroup',
-    `euiButtonGroup--${resolvedColor}`,
+    `euiButtonGroup${groupSizeToClassNameMap[buttonSize]}`,
+    `euiButtonGroup${colorToClassNameMap[resolvedColor]}`,
     {
       'euiButtonGroup--fullWidth': isFullWidth,
-      'euiButtonGroup--compressed': buttonSize === 'compressed',
-      'euiButtonGroup--disabled': isDisabled,
+      'euiButtonGroup--isDisabled': isDisabled,
     },
     className
   );

@@ -4,9 +4,15 @@ exports[`EuiButtonGroup is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
   <div
     aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--s testClass1 testClass2"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   />
 </fieldset>
 `;
@@ -15,87 +21,73 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--compressed"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -104,87 +96,73 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--m"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroupnull euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -193,87 +171,73 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -282,87 +246,73 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--danger euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--danger euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--danger euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -371,87 +321,73 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--ghost euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--ghost euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--ghost euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -460,87 +396,73 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--primary euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--primary euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--primary euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -549,87 +471,73 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--secondary testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--secondary euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--secondary euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--secondary euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -638,87 +546,73 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -727,87 +621,73 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--warning euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--warning euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--warning euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -816,88 +696,74 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiToggle--checked euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        checked=""
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButtonGroup__button--selected euiButton--fill"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            checked=""
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -906,93 +772,79 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonToggle--isDisabled euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--isDisabled testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        disabled=""
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButton-isDisabled"
-        disabled=""
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonToggle--isDisabled euiButtonGroup__toggle"
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        disabled=""
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButton-isDisabled"
-        disabled=""
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonToggle--isDisabled euiButtonGroup__toggle"
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        disabled=""
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButton-isDisabled"
-        disabled=""
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </button>
   </div>
 </fieldset>
 `;
@@ -1001,87 +853,73 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset euiButtonGroup__fieldset--fullWidth"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s euiButtonGroup--fullWidth"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -1090,267 +928,73 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
-  >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          />
-        </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          />
-        </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          />
-        </span>
-      </button>
-    </div>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props legend is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
   <legend
     class="euiScreenReaderOnly"
   >
-    legend
+    test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--s"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text euiScreenReaderOnly"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text euiScreenReaderOnly"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text euiScreenReaderOnly"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
         </span>
-      </button>
-    </div>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props name is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
-  >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        name="name"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
-        </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        name="name"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
-        </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        name="name"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
-        </span>
-      </button>
-    </div>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -1359,125 +1003,73 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
-        </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
-        </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-    >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButton__content"
-        >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
-        </span>
-      </button>
-    </div>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props options can pass down data-test-subj 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
+    test
+  </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--s"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        data-test-subj="test"
-        title="Option one"
-        type="radio"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            type="radio"
+          />
+          Option one
         </span>
-      </button>
-    </div>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button02"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </label>
   </div>
 </fieldset>
 `;
@@ -1486,89 +1078,64 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiToggle--checked euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <button
+      aria-pressed="true"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
+      id="button00"
+      style="min-width:0"
     >
-      <input
-        aria-label="Option one"
-        checked=""
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="checkbox"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButtonGroup__button--selected euiButton--fill"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiToggle--checked euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </button>
+    <button
+      aria-pressed="true"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
+      id="button01"
+      style="min-width:0"
     >
-      <input
-        aria-label="Option two"
-        checked=""
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="checkbox"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button euiButtonGroup__button--selected euiButton--fill"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button02"
+      style="min-width:0"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="checkbox"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </button>
   </div>
 </fieldset>
 `;
@@ -1577,87 +1144,64 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
-  <div
-    class="euiButtonGroup euiButtonGroup--s"
+  <legend
+    class="euiScreenReaderOnly"
   >
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button00"
+      style="min-width:0"
     >
-      <input
-        aria-label="Option one"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option one"
-        type="checkbox"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button00"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option one
-          </span>
+          Option one
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button01"
+      style="min-width:0"
     >
-      <input
-        aria-label="Option two"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option two"
-        type="checkbox"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button01"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option two
-          </span>
+          Option two
         </span>
-      </button>
-    </div>
-    <div
-      class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button02"
+      style="min-width:0"
     >
-      <input
-        aria-label="Option three"
-        class="euiToggle__input euiButtonToggle__input"
-        title="Option three"
-        type="checkbox"
-      />
-      <button
-        class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        id="button02"
-        tabindex="-1"
-        type="button"
+      <span
+        class="euiButtonContent euiButton__content"
       >
         <span
-          class="euiButtonContent euiButton__content"
+          class="euiButton__text"
         >
-          <span
-            class="euiButton__text"
-          >
-            Option three
-          </span>
+          Option three
         </span>
-      </button>
-    </div>
+      </span>
+    </button>
   </div>
 </fieldset>
 `;
