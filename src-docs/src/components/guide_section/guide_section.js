@@ -152,10 +152,75 @@ export class GuideSection extends Component {
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
+      props: null,
+      sortedComponents: [],
     };
 
     this.memoScroll = 0;
   }
+
+  componentDidMount() {
+    this.updateProps();
+  }
+
+  componentDidUpdate() {
+    if (!this.state.props) {
+      this.updateProps();
+    }
+  }
+
+  updateProps = () => {
+    const { props } = this.props;
+    const propsInfo = Object.keys(props).reduce((acc, value) => {
+      const docgenInfo = props[value].__docgenInfo;
+      if (docgenInfo) {
+        acc[value] = {
+          description: docgenInfo.description,
+          props: docgenInfo.props,
+        };
+        return acc;
+      }
+    }, {});
+    this.setState({
+      props: propsInfo,
+    });
+  };
+
+  onSort = componentName => {
+    const { sortedComponents, props } = this.state;
+    const sortedProps = props;
+    const sortedProp = {};
+    let componentsSorted = sortedComponents;
+    if (sortedComponents.includes(componentName)) {
+      Object.keys(sortedProps[componentName].props)
+        .reverse()
+        .forEach(key => {
+          sortedProp[key] = sortedProps[componentName].props[key];
+        });
+      sortedProps[componentName] = {
+        ...sortedProps[componentName],
+        props: sortedProp,
+      };
+      componentsSorted = componentsSorted.filter(
+        component => component !== componentName
+      );
+    } else {
+      Object.keys(sortedProps[componentName].props)
+        .sort()
+        .forEach(key => {
+          sortedProp[key] = sortedProps[componentName].props[key];
+        });
+      sortedProps[componentName] = {
+        ...sortedProps[componentName],
+        props: sortedProp,
+      };
+      componentsSorted = [...componentsSorted, componentName];
+    }
+    this.setState({
+      props: sortedProps,
+      sortedComponents: componentsSorted,
+    });
+  };
 
   onSelectedTabChanged = selectedTab => {
     const { name } = selectedTab;
@@ -282,20 +347,17 @@ export class GuideSection extends Component {
   }
 
   renderPropsForComponent = (componentName, component) => {
-    if (!component.__docgenInfo) {
+    if (!component) {
       return;
     }
 
-    const docgenInfo = Array.isArray(component.__docgenInfo)
-      ? component.__docgenInfo[0]
-      : component.__docgenInfo;
-    const { description, props } = docgenInfo;
+    const { description, props } = component;
 
     if (!props && !description) {
       return;
     }
 
-    const propNames = Object.keys(props).sort();
+    const propNames = Object.keys(props);
 
     const rows = propNames.map(propName => {
       const {
@@ -381,7 +443,12 @@ export class GuideSection extends Component {
       table = (
         <EuiTable compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell style={{ Width: '20%' }}>
+            <EuiTableHeaderCell
+              onSort={() => {
+                this.onSort(componentName);
+              }}
+              isSorted={this.state.sortedComponents.includes(componentName)}
+              style={{ Width: '20%' }}>
               Prop
             </EuiTableHeaderCell>
 
@@ -415,10 +482,12 @@ export class GuideSection extends Component {
   };
 
   renderProps() {
-    const { props } = this.props;
     return this.componentNames
       .map(componentName =>
-        this.renderPropsForComponent(componentName, props[componentName])
+        this.renderPropsForComponent(
+          componentName,
+          this.state.props[componentName]
+        )
       )
       .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
   }
