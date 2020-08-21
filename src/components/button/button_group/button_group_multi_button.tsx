@@ -65,7 +65,6 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
       aria-pressed={isSelectedState}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id)}
-      minWidth={0}
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}

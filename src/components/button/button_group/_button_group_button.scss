@@ -6,6 +6,11 @@
   border: $euiBorderThin;
   transition: all $euiAnimSpeedNormal ease-in-out;
 
+  // Allow button to shrink and truncate
+  min-width: 0;
+  flex-shrink: 1;
+  flex-grow: 0;
+
   .euiButton__content {
     padding: 0 ($euiSize - $euiSizeXS);
   }
@@ -117,6 +122,9 @@
   &:focus,
   &:focus-within {
     color: $euiButtonColorGhostDisabled;
+  }
+
+  .euiButtonGroup--isDisabled & {
     border-color: $euiButtonColorGhostDisabled;
   }
 

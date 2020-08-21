@@ -19,14 +19,16 @@
   @include euiSlightShadow;
   border-radius: $euiBorderRadius + 1px; // Simply for the box-shadow
 
-  text-decoration: none;
   max-width: 100%;
   display: flex;
   overflow: hidden;
   transition: all $euiAnimSpeedNormal ease-in-out;
 
-  &:hover,
-  &:active {
-    @include euiSlightShadowHover;
+  &:not(.euiButtonGroup--isDisabled) {
+    &:hover,
+    &:active,
+    &:focus-within {
+      @include euiSlightShadowHover;
+    }
   }
 }
