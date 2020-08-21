@@ -255,7 +255,7 @@ export const checkboxConfig = () => {
   propsToUse.label = {
     ...propsToUse.label,
     type: PropTypes.String,
-    value: 'label',
+    value: 'Label',
   };
 
   propsToUse.onChange = simulateFunction(propsToUse.onChange);
