@@ -181,6 +181,7 @@ export class GuideSection extends Component {
         acc[value] = {
           description: docgenInfo.description,
           props: docgenInfo.props,
+          extendedInterfaces: docgenInfo.extendedInterfaces,
         };
         return acc;
       }
