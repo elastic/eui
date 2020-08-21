@@ -85,7 +85,7 @@ export const codeEditorConfig = () => {
     custom: {
       ...propsToUse.theme.custom,
       helpText:
-        'Some available themes are cobalt, dawn, eclipse, github, monokai, solarozed_dark, solarized_light, terminal, xcode',
+        'Some available themes are cobalt, dawn, eclipse, github, iplastic, monokai, solarozed_dark, solarized_light, terminal, xcode',
     },
   };
   propsToUse.mode = {
