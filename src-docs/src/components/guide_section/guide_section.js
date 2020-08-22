@@ -156,75 +156,25 @@ export class GuideSection extends Component {
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
-      props: null,
       sortedComponents: [],
     };
 
     this.memoScroll = 0;
   }
 
-  componentDidMount() {
-    this.updateProps();
-  }
-
-  componentDidUpdate() {
-    if (!this.state.props) {
-      this.updateProps();
-    }
-  }
-
-  updateProps = () => {
-    const { props } = this.props;
-    const propsInfo = Object.keys(props).reduce((acc, value) => {
-      const docgenInfo = props[value].__docgenInfo;
-      if (docgenInfo) {
-        acc[value] = {
-          description: docgenInfo.description,
-          props: docgenInfo.props,
-          extendedInterfaces: docgenInfo.extendedInterfaces,
-        };
-        return acc;
-      }
-    }, {});
-    this.setState({
-      props: propsInfo,
-    });
-  };
-
   onSort = componentName => {
-    const { sortedComponents, props } = this.state;
-    const sortedProps = props;
-    const sortedProp = {};
-    let componentsSorted = sortedComponents;
-    if (sortedComponents.includes(componentName)) {
-      Object.keys(sortedProps[componentName].props)
-        .reverse()
-        .forEach(key => {
-          sortedProp[key] = sortedProps[componentName].props[key];
-        });
-      sortedProps[componentName] = {
-        ...sortedProps[componentName],
-        props: sortedProp,
-      };
-      componentsSorted = componentsSorted.filter(
-        component => component !== componentName
-      );
+    const { sortedComponents } = this.state;
+    if (!sortedComponents.includes(componentName)) {
+      this.setState({
+        sortedComponents: [...sortedComponents, componentName],
+      });
     } else {
-      Object.keys(sortedProps[componentName].props)
-        .sort()
-        .forEach(key => {
-          sortedProp[key] = sortedProps[componentName].props[key];
-        });
-      sortedProps[componentName] = {
-        ...sortedProps[componentName],
-        props: sortedProp,
-      };
-      componentsSorted = [...componentsSorted, componentName];
+      this.setState({
+        sortedComponents: sortedComponents.filter(
+          component => componentName !== component
+        ),
+      });
     }
-    this.setState({
-      props: sortedProps,
-      sortedComponents: componentsSorted,
-    });
   };
 
   onSelectedTabChanged = selectedTab => {
@@ -352,17 +302,25 @@ export class GuideSection extends Component {
   }
 
   renderPropsForComponent = (componentName, component) => {
-    if (!component) {
+    if (!component.__docgenInfo) {
       return;
     }
 
-    const { description, props, extendedInterfaces } = component;
+    const docgenInfo = Array.isArray(component.__docgenInfo)
+      ? component.__docgenInfo[0]
+      : component.__docgenInfo;
+    const { description, props, extendedInterfaces } = docgenInfo;
 
     if (!props && !description) {
       return;
     }
 
+    const { sortedComponents } = this.state;
+
     const propNames = Object.keys(props);
+    if (sortedComponents.includes(componentName)) {
+      propNames.sort();
+    }
 
     const rows = propNames.map(propName => {
       const {
@@ -515,7 +473,7 @@ export class GuideSection extends Component {
               onSort={() => {
                 this.onSort(componentName);
               }}
-              isSorted={this.state.sortedComponents.includes(componentName)}
+              isSorted={sortedComponents.includes(componentName)}
               style={{ Width: '20%' }}>
               Prop
             </EuiTableHeaderCell>
@@ -564,12 +522,10 @@ export class GuideSection extends Component {
   };
 
   renderProps() {
+    const { props } = this.props;
     return this.componentNames
       .map(componentName =>
-        this.renderPropsForComponent(
-          componentName,
-          this.state.props[componentName]
-        )
+        this.renderPropsForComponent(componentName, props[componentName])
       )
       .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
   }
