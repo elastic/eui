@@ -48,6 +48,20 @@ const columns = [
   },
   {
     id: 'account',
+    actions: {
+      showHide: { label: 'Custom hide label' },
+      showMoveLeft: false,
+      showMoveRight: false,
+      additional: [
+        {
+          label: 'Custom action',
+          onClick: () => alert('🎉'),
+          iconType: 'cheer',
+          size: 'xs',
+          color: 'text',
+        },
+      ],
+    },
   },
   {
     id: 'date',

@@ -19,6 +19,7 @@
 
 import { ComponentType, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
+import { EuiListGroupItemProps } from '../list_group';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -76,6 +77,19 @@ export interface EuiDataGridColumn {
    * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
    */
   displayAsText?: string;
+  /**
+   * Configuration of column actions.
+   */
+  actions?: false | EuiDataGridColumnActions;
+}
+
+export interface EuiDataGridColumnActions {
+  showHide?: boolean | EuiListGroupItemProps;
+  showMoveLeft?: boolean | EuiListGroupItemProps;
+  showMoveRight?: boolean | EuiListGroupItemProps;
+  showSortAsc?: boolean | EuiListGroupItemProps;
+  showSortDesc?: boolean | EuiListGroupItemProps;
+  additional?: EuiListGroupItemProps[];
 }
 
 export interface EuiDataGridColumnVisibility {

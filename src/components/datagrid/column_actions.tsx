@@ -1,0 +1,195 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
+import { EuiI18n } from '../i18n';
+import { EuiListGroupItemProps } from '../list_group';
+import React from 'react';
+
+export function getColumnActions(
+  column: EuiDataGridColumn,
+  columns: EuiDataGridColumn[],
+  setVisibleColumns: (columnId: string[]) => void,
+  setIsPopoverOpen: (value: boolean) => void,
+  sorting: EuiDataGridSorting | undefined,
+  switchColumnPos: (colFromId: string, colToId: string) => void
+) {
+  if (column.actions === false) {
+    return [];
+  }
+  const colIdx = columns.findIndex(col => col.id === column.id);
+  const sortingIdx = sorting
+    ? sorting.columns.findIndex(col => col.id === column.id)
+    : -1;
+  const sortBy = (direction: 'asc' | 'desc' = 'asc') => {
+    if (!sorting) {
+      return;
+    }
+
+    const newSorting =
+      sortingIdx >= 0
+        ? //replace existing entry
+          Object.values({
+            ...sorting.columns,
+            [sortingIdx]: {
+              id: column.id,
+              direction: direction,
+            },
+          })
+        : //append entry
+          [
+            ...sorting.columns,
+            {
+              id: column.id,
+              direction: direction,
+            },
+          ];
+
+    sorting.onSort(newSorting as EuiDataGridSorting['columns']);
+  };
+  const onClickHideColumn = () =>
+    setVisibleColumns(
+      columns.filter(col => col.id !== column.id).map(col => col.id)
+    );
+
+  const onClickSortAsc = () => {
+    setIsPopoverOpen(false);
+    sortBy('asc');
+  };
+
+  const onClickSortDesc = () => {
+    setIsPopoverOpen(false);
+    sortBy('desc');
+  };
+
+  const onClickMoveLeft = () => {
+    setIsPopoverOpen(false);
+    const targetCol = columns[colIdx - 1];
+    if (targetCol) {
+      switchColumnPos(column.id, targetCol.id);
+    }
+  };
+
+  const onClickMoveRight = () => {
+    setIsPopoverOpen(false);
+    const targetCol = columns[colIdx + 1];
+    if (targetCol) {
+      switchColumnPos(column.id, targetCol.id);
+    }
+  };
+
+  const result = [];
+  if (column.actions?.showHide !== false) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.hideColumn" default="Hide column" />
+      ),
+      onClick: onClickHideColumn,
+      iconType: 'eyeClosed',
+      size: 'xs',
+      color: 'text',
+    };
+    if (typeof column.actions?.showHide === 'object') {
+      result.push({ ...option, ...column.actions?.showHide });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showSortAsc !== false && sorting) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.sortAsc" default="Sort schema asc" />
+      ),
+      onClick: onClickSortAsc,
+      isDisabled: column.isSortable === false,
+      isActive:
+        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'asc',
+      iconType: 'sortUp',
+      size: 'xs',
+      color: 'text',
+    };
+    if (typeof column.actions?.showSortAsc === 'object') {
+      result.push({ ...option, ...column.actions?.showSortAsc });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showSortDesc !== false && sorting) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.sortDesc" default="Sort schema desc" />
+      ),
+      onClick: onClickSortDesc,
+      isDisabled: column.isSortable === false,
+      isActive:
+        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'desc',
+      iconType: 'sortDown',
+      size: 'xs',
+      color: 'text',
+    };
+    if (typeof column.actions?.showSortDesc === 'object') {
+      result.push({ ...option, ...column.actions?.showSortDesc });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showMoveLeft !== false) {
+    const option = {
+      label: <EuiI18n token="euiColumnActions.moveLeft" default="Move left" />,
+      iconType: 'sortLeft',
+      size: 'xs',
+      color: 'text',
+      onClick: onClickMoveLeft,
+      isDisabled: colIdx === 0,
+    };
+    if (typeof column.actions?.showMoveLeft === 'object') {
+      result.push({ ...option, ...column.actions?.showMoveLeft });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showMoveRight !== false) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.moveRight" default="Move right" />
+      ),
+      iconType: 'sortRight',
+      size: 'xs',
+      color: 'text',
+      onClick: onClickMoveRight,
+      isDisabled: colIdx === columns.length - 1,
+    };
+    if (typeof column.actions?.showMoveRight === 'object') {
+      result.push({ ...option, ...column.actions?.showMoveRight });
+    } else {
+      result.push(option);
+    }
+  }
+  if (column.actions?.additional) {
+    return [
+      ...result,
+      ...column.actions?.additional,
+    ] as EuiListGroupItemProps[];
+  }
+  return result as EuiListGroupItemProps[];
+}

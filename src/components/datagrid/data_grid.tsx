@@ -78,7 +78,6 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
-import { EuiListGroupItemProps } from '../list_group';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -104,10 +103,6 @@ type CommonGridProps = CommonProps &
      * An array of #EuiDataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
      */
     columnVisibility: EuiDataGridColumnVisibility;
-    /**
-     * An array of #EuiListGroupItemProps that can be used to overwrite the internally used columnOptions that provide functionality like moving columns left, right
-     */
-    columnOptions?: EuiListGroupItemProps[];
     /**
      * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
      */
@@ -691,7 +686,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     trailingControlColumns = emptyArrayDefault,
     columns,
     columnVisibility,
-    columnOptions,
     schemaDetectors,
     rowCount,
     renderCellValue,
@@ -1039,7 +1033,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                           }
                                           columns={orderedVisibleColumns}
                                           columnWidths={columnWidths}
-                                          columnOptions={columnOptions}
                                           defaultColumnWidth={
                                             defaultColumnWidth
                                           }
