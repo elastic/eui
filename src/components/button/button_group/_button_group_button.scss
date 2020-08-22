@@ -3,6 +3,7 @@
   @include euiFont;
   @include euiFontSize;
 
+  // sass-lint:disable-block indentation
   transition: background-color $euiAnimSpeedNormal ease-in-out,
               border-color $euiAnimSpeedNormal ease-in-out,
               color $euiAnimSpeedNormal ease-in-out;
