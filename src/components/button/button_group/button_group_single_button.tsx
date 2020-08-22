@@ -26,7 +26,7 @@ import {
 import { EuiButtonDisplay } from '../button';
 
 type Props = {
-  idSelected: string;
+  isSelected: boolean;
 } & ButtonGroupOptionProps &
   EuiButtonSingleGroupOptionProps;
 
@@ -36,20 +36,17 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   label,
   isDisabled,
   className,
-  idSelected,
+  isSelected,
   isIconOnly,
   size,
   name,
-  color,
   onChange,
   ...rest
 }) => {
-  const isSelectedState = id === idSelected;
-  const badColorCombo = size === 'compressed' && color === 'ghost';
-
   const buttonClasses = classNames(
     {
-      'euiButtonGroupButton-isSelected': isSelectedState,
+      'euiButtonGroupButton-isSelected': isSelected,
+      'euiButtonGroupButton-isIconOnly': isIconOnly,
     },
     className
   );
@@ -61,8 +58,7 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
       // TODO: Not sure if this is the best way to handle disabled labels from incurring clicks
       element={isDisabled ? 'button' : 'label'}
       className={buttonClasses}
-      color={badColorCombo ? 'text' : color}
-      fill={size !== 'compressed' && isSelectedState}
+      fill={size !== 'compressed' && isSelected}
       // TODO: Return to why both disabled types are needed
       isDisabled={isDisabled}
       disabled={isDisabled}
@@ -76,7 +72,7 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
         id={id}
         className="euiScreenReaderOnly"
         name={name}
-        checked={isSelectedState}
+        checked={isSelected}
         disabled={isDisabled}
         value={value}
         type="radio"

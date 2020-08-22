@@ -26,7 +26,7 @@ import {
 } from './types';
 
 type Props = {
-  idToSelectedMap: { [id: string]: boolean };
+  isSelected: boolean;
 } & ButtonGroupOptionProps &
   EuiButtonMultiGroupOptionProps;
 
@@ -34,20 +34,17 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
   className,
   id,
   label,
-  idToSelectedMap,
+  isSelected,
   size,
-  color,
   isIconOnly,
   onChange,
   isDisabled,
   ...rest
 }) => {
-  const isSelectedState = idToSelectedMap[id] || false;
-  const badColorCombo = size === 'compressed' && color === 'ghost';
-
   const buttonClasses = classNames(
     {
-      'euiButtonGroupButton-isSelected': isSelectedState,
+      'euiButtonGroupButton-isSelected': isSelected,
+      'euiButtonGroupButton-isIconOnly': isIconOnly,
     },
     className
   );
@@ -60,9 +57,8 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
       className={buttonClasses}
       disabled={isDisabled}
       isDisabled={isDisabled}
-      color={badColorCombo ? 'text' : color}
-      fill={size !== 'compressed' && isSelectedState}
-      aria-pressed={isSelectedState}
+      fill={size !== 'compressed' && isSelected}
+      aria-pressed={isSelected}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id)}
       textProps={{

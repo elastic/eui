@@ -31,4 +31,13 @@
       @include euiSlightShadowHover;
     }
   }
+
+  &--compressed {
+    box-shadow: none !important; // sass-lint:disable-line no-important
+    border-radius: $euiFormControlCompressedBorderRadius;
+    background-color: $euiFormBackgroundColor;
+    height: $euiFormControlCompressedHeight;
+    border: 1px solid $euiFormBorderColor;
+    overflow: visible;
+}
 }

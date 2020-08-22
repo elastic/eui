@@ -23,13 +23,14 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupMultiButton } from './button_group_multi_button';
 import { EuiButtonGroupSingleButton } from './button_group_single_button';
 import { EuiButtonGroupProps } from './types';
-import { colorToClassNameMap, sizeToClassNameMap } from '../button';
+import { colorToClassNameMap } from '../button';
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   EuiButtonGroupProps;
 
 const groupSizeToClassNameMap = {
-  ...sizeToClassNameMap,
+  s: '--small',
+  m: '--medium',
   compressed: '--compressed',
 };
 
@@ -85,7 +86,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               <EuiButtonGroupSingleButton
                 key={index}
                 {...option}
-                idSelected={idSelected}
+                isSelected={option.id === idSelected}
                 size={buttonSize}
                 isIconOnly={isIconOnly}
                 isDisabled={isDisabled || option.isDisabled}
@@ -99,7 +100,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             <EuiButtonGroupMultiButton
               key={index}
               {...option}
-              idToSelectedMap={idToSelectedMap}
+              isSelected={idToSelectedMap[option.id]}
               color={resolvedColor}
               size={buttonSize}
               isIconOnly={isIconOnly}
