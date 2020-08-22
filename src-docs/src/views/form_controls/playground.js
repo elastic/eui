@@ -328,14 +328,14 @@ const switchConfig = () => {
   propsToUse.label = {
     ...propsToUse.label,
     type: PropTypes.String,
-    value: 'playground_switch_label',
+    value: 'Label',
   };
 
   propsToUse.checked = {
     ...propsToUse.checked,
-    type: PropTypes.Boolean,
-    value: false,
+    value: true,
   };
+
   propsToUse.onChange = simulateFunction(propsToUse.onChange);
 
   return {
