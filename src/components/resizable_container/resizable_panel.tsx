@@ -25,12 +25,14 @@ import React, {
   useState,
   FunctionComponent,
   HTMLAttributes,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { useEuiResizablePanelContext } from './context';
 import { htmlIdGenerator } from '../../services';
+import { EuiButtonIcon } from '../button';
 
 interface EuiResizablePanelControls {
   isHorizontal: boolean;
@@ -75,6 +77,7 @@ export interface EuiResizablePanelProps
    * Custom CSS properties
    */
   style?: CSSProperties;
+  collapse?: boolean;
 }
 
 const generatePanelId = htmlIdGenerator('resizable-panel');
@@ -88,12 +91,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   initialSize,
   minSize = '0px',
   scrollable = true,
+  collapse = false,
   style = {},
   ...rest
 }) => {
   const [innerSize, setInnerSize] = useState(
     initialSize && !size ? initialSize : 0
   );
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const { registry } = useEuiResizablePanelContext();
   const divRef = useRef<HTMLDivElement>(null);
   const panelId = useRef(id || generatePanelId());
@@ -101,6 +106,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const classes = classNames(
     {
       euiResizablePanel: scrollable,
+    },
+    {
+      'euiResizablePanel--collapsible': isCollapsed,
+    },
+    {
+      'euiResizablePanel--expandable': !collapse,
     },
     className
   );
@@ -148,6 +159,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     };
   }, [initialSize, isHorizontal, minSize, registry, size]);
 
+  const onClickCollapse = () => {
+    setIsCollapsed(value => !value);
+  };
+
   return (
     <div
       className={classes}
@@ -155,6 +170,16 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={styles}
       {...rest}>
+      {collapse ? (
+        <div className="test">
+          <EuiButtonIcon
+            className="visEditor__collapsibleSidebarButton"
+            color="text"
+            iconType={isCollapsed ? 'menuRight' : 'menuLeft'}
+            onClick={onClickCollapse}
+          />
+        </div>
+      ) : null}
       {children}
     </div>
   );

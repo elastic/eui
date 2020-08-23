@@ -2,3 +2,26 @@
   @include euiScrollBar;
   overflow-y: auto;
 }
+
+.euiResizableContainer--horizontal {
+
+  .euiResizablePanel--collapsible {
+    min-width: 0 !important;
+    width: 24px !important;
+  }
+
+  .euiResizablePanel--collapsible > *:not(button) {
+    display: none;
+  }
+
+  .euiResizablePanel .test {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .euiResizablePanel--expandable {
+    flex-grow: 1;
+    padding-top: 24px !important;
+  }
+
+}

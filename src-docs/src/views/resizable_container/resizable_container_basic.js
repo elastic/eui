@@ -11,24 +11,46 @@ const text = (
 );
 
 export default () => (
-  <EuiResizableContainer style={{ height: '400px' }}>
-    {(EuiResizablePanel, EuiResizableButton) => (
-      <>
-        <EuiResizablePanel initialSize={50} minSize="30%">
-          <EuiText>
-            <p>{text}</p>
-            <a href="">Hello world</a>
-          </EuiText>
-        </EuiResizablePanel>
+  <>
+    <EuiResizableContainer style={{ height: '200px' }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel collapse initialSize={50} minSize="30%">
+            <EuiText>
+              <p>sidebar</p>
+              {/* <a href="">Hello world</a> */}
+            </EuiText>
+          </EuiResizablePanel>
 
-        <EuiResizableButton />
+          <EuiResizableButton />
 
-        <EuiResizablePanel initialSize={50} minSize="200px">
-          <EuiText>
-            <p>{text}</p>
-          </EuiText>
-        </EuiResizablePanel>
-      </>
-    )}
-  </EuiResizableContainer>
+          <EuiResizablePanel initialSize={50} minSize="200px">
+            <EuiText>
+              <p>content</p>
+            </EuiText>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+    <EuiResizableContainer style={{ height: '200px' }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={50} minSize="30%">
+            <EuiText>
+              <p>sidebar</p>
+              {/* <a href="">Hello world</a> */}
+            </EuiText>
+          </EuiResizablePanel>
+
+          <EuiResizableButton />
+
+          <EuiResizablePanel collapse initialSize={50} minSize="200px">
+            <EuiText>
+              <p>content</p>
+            </EuiText>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  </>
 );
