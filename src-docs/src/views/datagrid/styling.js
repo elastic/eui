@@ -57,6 +57,9 @@ const footerCellValues = {
   avatar: '4 accounts',
 };
 
+const renderFooterCellValue = ({ columnId }) =>
+  footerCellValues[columnId] || null;
+
 export default class DataGrid extends Component {
   constructor(props) {
     super(props);
@@ -673,9 +676,7 @@ export default class DataGrid extends Component {
           }}
           toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-          renderFooterCellValue={({ columnId }) =>
-            footerCellValues[columnId] || null
-          }
+          renderFooterCellValue={renderFooterCellValue}
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 10, 25],
