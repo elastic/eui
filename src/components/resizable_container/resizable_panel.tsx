@@ -25,7 +25,6 @@ import React, {
   useState,
   FunctionComponent,
   HTMLAttributes,
-  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -33,6 +32,15 @@ import { CommonProps } from '../common';
 import { useEuiResizablePanelContext } from './context';
 import { htmlIdGenerator } from '../../services';
 import { EuiButtonIcon } from '../button';
+import { EuiIcon, IconType } from '../icon';
+
+interface TogglingOptions {
+  // active: boolean;
+  // iconType: IconType;
+  notCollapsedIcon: IconType;
+  collapsedIcon: IconType;
+  side: string;
+}
 
 interface EuiResizablePanelControls {
   isHorizontal: boolean;
@@ -77,10 +85,17 @@ export interface EuiResizablePanelProps
    * Custom CSS properties
    */
   style?: CSSProperties;
-  collapse?: boolean;
+  // collapse?: boolean;
+  toggling?: boolean | TogglingOptions;
 }
 
 const generatePanelId = htmlIdGenerator('resizable-panel');
+
+const togglingDefault: TogglingOptions = {
+  notCollapsedIcon: 'menuRight',
+  collapsedIcon: 'menuLeft',
+  side: 'right',
+};
 
 export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   children,
@@ -91,8 +106,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   initialSize,
   minSize = '0px',
   scrollable = true,
-  collapse = false,
+  // collapse = false,
   style = {},
+  // toggle = false,
+  toggling = false,
   ...rest
 }) => {
   const [innerSize, setInnerSize] = useState(
@@ -111,7 +128,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       'euiResizablePanel--collapsible': isCollapsed,
     },
     {
-      'euiResizablePanel--expandable': !collapse,
+      'euiResizablePanel--expandable': !toggling,
+      // 'euiResizablePanel--expandable': !type.active,
     },
     className
   );
@@ -170,11 +188,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={styles}
       {...rest}>
-      {collapse ? (
+      {toggling ? (
         <div className="test">
           <EuiButtonIcon
             className="visEditor__collapsibleSidebarButton"
             color="text"
+            // iconType={
+            //   isCollapsed ? toggling.notCollapsedIcon : toggling.collapsedIcon
+            // }
             iconType={isCollapsed ? 'menuRight' : 'menuLeft'}
             onClick={onClickCollapse}
           />
