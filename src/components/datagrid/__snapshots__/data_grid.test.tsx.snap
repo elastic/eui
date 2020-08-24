@@ -305,7 +305,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -343,7 +343,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -898,7 +898,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -936,7 +936,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -1782,7 +1782,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -1822,7 +1822,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -2359,7 +2359,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"
@@ -2397,7 +2397,7 @@ Array [
                 </div>
                 <div
                   class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  id="undefined_popover"
+                  id="htmlId_popover"
                 >
                   <div
                     class="euiPopover__anchor"

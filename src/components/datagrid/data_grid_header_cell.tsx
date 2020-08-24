@@ -75,7 +75,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     'aria-describedby'?: AriaAttributes['aria-describedby'];
   } = {};
 
-  let screenReaderId;
+  const screenReaderId = htmlIdGenerator()();
   let sortString;
 
   if (sorting) {
@@ -96,7 +96,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       sortString = sorting.columns
         .map(col => `Sorted by ${col.id} ${col.direction}`)
         .join(' then ');
-      screenReaderId = htmlIdGenerator()();
       ariaProps['aria-describedby'] = screenReaderId;
     }
   }
@@ -311,7 +310,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             />
           }
           isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}>
+          closePopover={() => setIsPopoverOpen(false)}
+          ownFocus>
           <div>
             <EuiListGroup listItems={columnOptions} gutterSize="none" />
           </div>
