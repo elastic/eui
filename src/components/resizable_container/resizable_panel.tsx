@@ -181,6 +181,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     setIsCollapsed(value => !value);
   };
 
+  // Use the default object if they simply passed `true` for responsive
+  const responsiveObject =
+    typeof toggling === 'object' ? toggling : togglingDefault;
+
   return (
     <div
       className={classes}
@@ -193,10 +197,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           <EuiButtonIcon
             className="visEditor__collapsibleSidebarButton"
             color="text"
-            // iconType={
-            //   isCollapsed ? toggling.notCollapsedIcon : toggling.collapsedIcon
-            // }
-            iconType={isCollapsed ? 'menuRight' : 'menuLeft'}
+            iconType={
+              isCollapsed
+                ? responsiveObject.notCollapsedIcon
+                : responsiveObject.collapsedIcon
+            }
+            // iconType={isCollapsed ? 'menuRight' : 'menuLeft'}
             onClick={onClickCollapse}
           />
         </div>

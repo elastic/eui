@@ -20,12 +20,14 @@ import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizableResizerSize from './resizable_resizer_size';
+import ResizableContainerToggle from './resizable_container_toggle';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVericalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_container_three_panels');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizableResizerSizeSource = require('!!raw-loader!./resizable_resizer_size');
+const ResizableContainerToggleSource = require('!!raw-loader!./resizable_container_toggle');
 
 const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
 const ResizableContainerVericalHtml = renderToHtml(ResizableContainerVertical);
@@ -36,6 +38,7 @@ const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
 const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
+const ResizableContainerToggleHtml = renderToHtml(ResizableContainerToggle);
 
 const snippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton) => (
@@ -237,6 +240,34 @@ export const ResizableContainerExample = {
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableResizerSize />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizableContainerToggleSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizableContainerToggleHtml,
+        },
+      ],
+      title: 'Toggle resizable panel',
+      text: (
+        <div>
+          <p>
+            You can control the space between panels by modifying the{' '}
+            <EuiCode>size</EuiCode> prop of the{' '}
+            <strong>EuiResizableButton</strong> component. The available sizes
+            are <EuiCode>xl</EuiCode>, <EuiCode>l</EuiCode>,{' '}
+            <EuiCode>m</EuiCode>, and <EuiCode>s</EuiCode>. You should avoid
+            using different sizes within the same{' '}
+            <strong>EuiResizableContainer</strong>, as shown in the demo below.
+          </p>
+        </div>
+      ),
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
+      demo: <ResizableContainerToggle />,
     },
   ],
 };
