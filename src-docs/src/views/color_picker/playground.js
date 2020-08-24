@@ -29,6 +29,19 @@ const colorPickerConfig = () => {
     value: '#D36086',
   };
 
+  propsToUse.secondaryInputDisplay = {
+    ...propsToUse.secondaryInputDisplay,
+    custom: {
+      ...propsToUse.secondaryInputDisplay.custom,
+      checkDep: (val, state) => {
+        if (state.mode.value === 'secondaryInput' && !val) {
+          return 'When mode is set to secondaryInput, you must also provide secondaryInputDisplay';
+        }
+        return undefined;
+      },
+    },
+  };
+
   propsToUse.format = createOptionalEnum(propsToUse.format);
 
   propsToUse.onChange = simulateFunction(propsToUse.onChange);
