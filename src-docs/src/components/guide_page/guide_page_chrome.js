@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 
 import { Link } from 'react-router-dom';
 
@@ -23,19 +22,14 @@ import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
 
 const scrollTo = position => {
-  $('html, body').animate(
-    {
-      scrollTop: position,
-    },
-    250
-  );
+  window.scrollTo({ top: position, behavior: 'smooth' });
 };
 
 export function scrollToSelector(selector, attempts = 5) {
-  const element = $(selector);
+  const element = document.querySelector(selector);
 
-  if (element.length) {
-    scrollTo(element.offset().top - 20);
+  if (element) {
+    scrollTo(element.offsetTop - 20);
   } else if (attempts > 0) {
     setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
   }
@@ -80,12 +74,19 @@ export class GuidePageChrome extends Component {
   scrollNavSectionIntoViewSync = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    const selectedButton = $('.euiSideNavItemButton-isSelected');
-    if (selectedButton.length) {
-      const root = selectedButton.parents('.euiSideNavItem--root');
-      if (root.length) {
-        root.get(0).scrollIntoView();
+    const selectedButton = document.querySelector(
+      '.euiSideNavItemButton-isSelected'
+    );
+    if (selectedButton) {
+      let root = selectedButton.parentNode;
+
+      while (
+        !root.classList.contains('euiSideNavItem--root') &&
+        !root.classList.contains('guideSideNav')
+      ) {
+        root = root.parentNode;
       }
+      root.scrollIntoView();
     }
   };
 
@@ -110,25 +111,20 @@ export class GuidePageChrome extends Component {
   };
 
   onClickRoute = () => {
-    // timeout let's IE11 do its thing and update the url
-    // allowing react-router to navigate to the route
-    // otherwise IE11 somehow kills the navigation
-    setTimeout(() => {
-      if (this._isMounted)
-        this.setState(
-          {
-            search: '',
-            isSideNavOpenOnMobile: false,
-          },
-          this.scrollNavSectionIntoView
-        );
-    }, 0);
+    if (this._isMounted)
+      this.setState(
+        {
+          search: '',
+          isSideNavOpenOnMobile: false,
+        },
+        this.scrollNavSectionIntoView
+      );
 
     // To delay scroll to top when switched to a new page
     setTimeout(() => {
       if (document.body) document.body.scrollTop = 0;
       if (document.documentElement) document.documentElement.scrollTop = 0;
-    }, 1);
+    }, 0);
   };
 
   onButtonClick() {
