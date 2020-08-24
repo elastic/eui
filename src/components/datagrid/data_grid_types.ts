@@ -78,17 +78,35 @@ export interface EuiDataGridColumn {
    */
   displayAsText?: string;
   /**
-   * Configuration of column actions.
+   * Configuration of column actions. Can be used to disable or configure the actions displayed in the header column
    */
   actions?: false | EuiDataGridColumnActions;
 }
 
 export interface EuiDataGridColumnActions {
+  /**
+   * Configure the action to hide a column, provided EuiListGroupItemProps are merged
+   */
   showHide?: boolean | EuiListGroupItemProps;
+  /**
+   * Configure the action that switches the actual column with the column to the left side, provided EuiListGroupItemProps are merged
+   */
   showMoveLeft?: boolean | EuiListGroupItemProps;
+  /**
+   * Configure the action that switches the actual column with the column to the right side, provided EuiListGroupItemProps are merged
+   */
   showMoveRight?: boolean | EuiListGroupItemProps;
+  /**
+   * Configure the action to sort ascending by the actual column, provided EuiListGroupItemProps are merged
+   */
   showSortAsc?: boolean | EuiListGroupItemProps;
+  /**
+   * Configure the action to sort ascending by the actual column, provided EuiListGroupItemProps are merged
+   */
   showSortDesc?: boolean | EuiListGroupItemProps;
+  /**
+   * Append additional actions
+   */
   additional?: EuiListGroupItemProps[];
 }
 
