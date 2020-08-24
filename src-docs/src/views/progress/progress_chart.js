@@ -10,7 +10,7 @@ const data = [
   },
   { label: 'Another basic percent', value: '45' },
   { label: 'Custom valueText', value: '40', valueText: <span>4,005,678</span> },
-  { label: "Women's Accessories", value: '24' },
+  { label: "Women's Accessories", value: '24.0256' },
 ];
 
 export default () => (
