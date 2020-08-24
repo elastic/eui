@@ -64,6 +64,7 @@ module.exports = function({ types }) {
             'DragDropContextProps',
             'DraggableProps',
             'DroppableProps',
+            'RefAttributes',
           ];
 
           let docgenResults = [];

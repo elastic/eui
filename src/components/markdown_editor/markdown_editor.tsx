@@ -26,6 +26,7 @@ import React, {
   useState,
   useCallback,
   useRef,
+  forwardRef,
 } from 'react';
 
 import unified, { PluggableList, Processor } from 'unified';
@@ -141,7 +142,7 @@ function padWithNewlinesIfNeeded(textarea: HTMLTextAreaElement, text: string) {
   return text;
 }
 
-export const EuiMarkdownEditor = React.forwardRef<
+export const EuiMarkdownEditor = forwardRef<
   EuiMarkdownEditorRef,
   EuiMarkdownEditorProps
 >(
