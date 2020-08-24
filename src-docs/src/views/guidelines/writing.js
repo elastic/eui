@@ -336,7 +336,7 @@ export default () => (
       heading="Know when to use the ending period"
       description="Use periods at the end of help text and complete sentences 
       in body text. These are typically supplemental explanations and
-      instructions. Avoid periods in titles, headings, and sentence fragments.">
+      instructions. Avoid periods in titles and headings.">
       <GuideRuleExample
         type="do"
         text="Do. Use periods at the end of help text.">
