@@ -94,7 +94,7 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
             onCellFocus={onCellFocus}
             isFocused={focusedCellPositionInTheRow === i}
             interactiveCellId={interactiveCellId}
-            isExpandable={false}
+            isExpandable={true}
             className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
           />
         ))}
@@ -121,7 +121,7 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === columnPosition}
               interactiveCellId={interactiveCellId}
-              isExpandable={false}
+              isExpandable={true}
               className="euiDataGridFooterCell"
             />
           );
@@ -142,7 +142,7 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === colIndex}
               interactiveCellId={interactiveCellId}
-              isExpandable={false}
+              isExpandable={true}
               className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
             />
           );
