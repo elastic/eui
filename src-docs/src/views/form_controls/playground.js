@@ -256,7 +256,7 @@ export const checkboxConfig = () => {
   propsToUse.label = {
     ...propsToUse.label,
     type: PropTypes.String,
-    value: 'label',
+    value: 'Label',
   };
 
   propsToUse.onChange = simulateFunction(propsToUse.onChange);
@@ -295,7 +295,7 @@ export const radioConfig = () => {
   propsToUse.label = {
     ...propsToUse.label,
     type: PropTypes.String,
-    value: 'label',
+    value: 'Label',
   };
 
   propsToUse.onChange = simulateFunction(propsToUse.onChange);

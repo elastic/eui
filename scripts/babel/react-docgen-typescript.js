@@ -217,10 +217,14 @@ function filterProp(
     return true;
   }
 
-  // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
-  // in the interace in that case replace it with "string | number"
   if (prop.type.name === 'ReactText') {
+    // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
+    // in the interface in that case replace it with "string | number"
     prop.type.name = 'string | number';
+  } else if (prop.type.name === 'Primitive') {
+    // "Primitive" comes from src/services/sort/comparators.ts
+    // TypeScript sees its overlap with `boolean | number | string` and decides to name the type union
+    prop.type.name = 'boolean | number | string';
   }
 
   // if prop.type is ReactElement it will be expanded to show all the  supported

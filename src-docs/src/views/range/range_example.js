@@ -12,6 +12,8 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
+import { rangeConfig, dualRangeConfig } from './playground';
+
 import {
   EuiRangeLevels,
   LEVEL_COLORS,
@@ -424,4 +426,5 @@ export const RangeControlExample = {
       ],
     },
   ],
+  playground: [rangeConfig, dualRangeConfig],
 };

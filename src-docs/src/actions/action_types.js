@@ -1,10 +1,8 @@
-import keyMirror from 'keymirror';
-
-export default keyMirror({
+export default {
   // Example nav actions
-  REGISTER_SECTION: null,
-  UNREGISTER_SECTION: null,
+  REGISTER_SECTION: 'REGISTER_SECTION',
+  UNREGISTER_SECTION: 'UNREGISTER_SECTION',
 
   // Locale actions
-  TOGGLE_LOCALE: null,
-});
+  TOGGLE_LOCALE: 'TOGGLE_LOCALE',
+};
