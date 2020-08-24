@@ -156,7 +156,7 @@ export class GuideSection extends Component {
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
-      sortedComponents: [],
+      sortedComponents: {},
     };
 
     this.memoScroll = 0;
@@ -164,15 +164,20 @@ export class GuideSection extends Component {
 
   onSort = componentName => {
     const { sortedComponents } = this.state;
-    if (!sortedComponents.includes(componentName)) {
+    if (
+      !sortedComponents[componentName] ||
+      sortedComponents[componentName] === 'NONE'
+    ) {
       this.setState({
-        sortedComponents: [...sortedComponents, componentName],
+        sortedComponents: { ...sortedComponents, [componentName]: 'ASC' },
+      });
+    } else if (sortedComponents[componentName] === 'ASC') {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'DSC' },
       });
     } else {
       this.setState({
-        sortedComponents: sortedComponents.filter(
-          component => componentName !== component
-        ),
+        sortedComponents: { ...sortedComponents, [componentName]: 'NONE' },
       });
     }
   };
@@ -318,8 +323,17 @@ export class GuideSection extends Component {
     const { sortedComponents } = this.state;
 
     const propNames = Object.keys(props);
-    if (sortedComponents.includes(componentName)) {
-      propNames.sort();
+    if (
+      sortedComponents[componentName] &&
+      sortedComponents[componentName] !== 'NONE'
+    ) {
+      propNames.sort((a, b) => {
+        if (sortedComponents[componentName] === 'ASC') {
+          return a < b ? -1 : 1;
+        } else {
+          return a < b ? 1 : -1;
+        }
+      });
     }
 
     const rows = propNames.map(propName => {
@@ -473,7 +487,14 @@ export class GuideSection extends Component {
               onSort={() => {
                 this.onSort(componentName);
               }}
-              isSorted={sortedComponents.includes(componentName)}
+              isSorted={
+                sortedComponents[componentName] &&
+                sortedComponents[componentName] !== 'NONE'
+              }
+              isSortAscending={
+                sortedComponents[componentName] &&
+                sortedComponents[componentName] === 'ASC'
+              }
               style={{ Width: '20%' }}>
               Prop
             </EuiTableHeaderCell>
