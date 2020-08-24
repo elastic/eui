@@ -26,7 +26,7 @@ import {
 } from './types';
 
 type Props = {
-  isSelected: boolean;
+  isSelected?: boolean;
 } & ButtonGroupOptionProps &
   EuiButtonMultiGroupOptionProps;
 
@@ -51,11 +51,10 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
-      baseClassName="euiButtonGroupButton"
-      element={'button'}
       id={id}
+      element={'button'}
+      baseClassName="euiButtonGroupButton"
       className={buttonClasses}
-      disabled={isDisabled}
       isDisabled={isDisabled}
       fill={size !== 'compressed' && isSelected}
       aria-pressed={isSelected}

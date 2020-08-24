@@ -26,7 +26,8 @@ import {
 import { EuiButtonDisplay } from '../button';
 
 type Props = {
-  isSelected: boolean;
+  isSelected?: boolean;
+  name?: string;
 } & ButtonGroupOptionProps &
   EuiButtonSingleGroupOptionProps;
 
@@ -43,6 +44,13 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   onChange,
   ...rest
 }) => {
+  const element = isDisabled ? 'button' : 'label';
+
+  let elementProps = {};
+  if (element === 'label') {
+    elementProps = { ...elementProps, htmlFor: id };
+  }
+
   const buttonClasses = classNames(
     {
       'euiButtonGroupButton-isSelected': isSelected,
@@ -53,20 +61,17 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
+      element={element}
       baseClassName="euiButtonGroupButton"
-      htmlFor={id}
-      // TODO: Not sure if this is the best way to handle disabled labels from incurring clicks
-      element={isDisabled ? 'button' : 'label'}
       className={buttonClasses}
       fill={size !== 'compressed' && isSelected}
-      // TODO: Return to why both disabled types are needed
       isDisabled={isDisabled}
-      disabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id, value)}
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}
+      {...elementProps}
       {...rest}>
       <input
         id={id}

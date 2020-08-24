@@ -204,7 +204,6 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="This is a primary group"
-        name="primary"
         options={toggleButtonsMulti}
         idToSelectedMap={toggleIdToSelectedMap}
         onChange={id => onChangeMulti(id)}
@@ -242,7 +241,6 @@ export default () => {
       &nbsp;&nbsp;
       <EuiButtonGroup
         legend="Text style"
-        name="Text style"
         options={toggleButtonsIconsMulti}
         idToSelectedMap={toggleIconIdToSelectedMap}
         onChange={id => onChangeIconsMulti(id)}
@@ -273,7 +271,6 @@ export default () => {
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup
-          name="textStyleCompressed"
           legend="Text style"
           className="eui-displayInlineBlock"
           options={toggleButtonsIconsMulti}

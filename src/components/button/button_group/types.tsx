@@ -33,10 +33,6 @@ export type ButtonGroupOptionProps = {
 export type EuiButtonMultiGroupOptionProps = EuiButtonGroupOptionProps;
 export type EuiButtonSingleGroupOptionProps = EuiButtonGroupOptionProps & {
   /**
-   * The `name` attribute for radio inputs
-   */
-  name?: string;
-  /**
    * The value of the radio input.
    */
   value?: any;
@@ -100,6 +96,11 @@ export type EuiButtonGroupProps = CommonProps & {
     | {
         type: 'single';
         /**
+         * The `name` attribute for radio inputs;
+         * Required for keeping keyboard navigation contained within the group
+         */
+        name: string;
+        /**
          * An array of #EuiButtonSingleGroupOptionProps
          */
         options: EuiButtonSingleGroupOptionProps[];
@@ -131,5 +132,6 @@ export type EuiButtonGroupProps = CommonProps & {
          */
         onChange: (id: string) => void;
         idSelected?: never;
+        name?: never;
       }
   );

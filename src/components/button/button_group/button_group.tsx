@@ -22,7 +22,11 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupMultiButton } from './button_group_multi_button';
 import { EuiButtonGroupSingleButton } from './button_group_single_button';
-import { EuiButtonGroupProps } from './types';
+import {
+  EuiButtonGroupProps,
+  EuiButtonSingleGroupOptionProps,
+  EuiButtonMultiGroupOptionProps,
+} from './types';
 import { colorToClassNameMap } from '../button';
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
@@ -44,6 +48,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   isFullWidth = false,
   isIconOnly = false,
   legend,
+  name,
   onChange,
   options = [],
   type = 'single',
@@ -85,13 +90,14 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             return (
               <EuiButtonGroupSingleButton
                 key={index}
-                {...option}
+                {...(option as EuiButtonSingleGroupOptionProps)}
                 isSelected={option.id === idSelected}
                 size={buttonSize}
                 isIconOnly={isIconOnly}
                 isDisabled={isDisabled || option.isDisabled}
                 color={resolvedColor}
                 onChange={onChange}
+                name={name}
               />
             );
           }
@@ -99,7 +105,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
           return (
             <EuiButtonGroupMultiButton
               key={index}
-              {...option}
+              {...(option as EuiButtonMultiGroupOptionProps)}
               isSelected={idToSelectedMap[option.id]}
               color={resolvedColor}
               size={buttonSize}

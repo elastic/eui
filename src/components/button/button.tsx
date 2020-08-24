@@ -153,6 +153,8 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
     },
     ref
   ) => {
+    const buttonIsDisabled = isLoading || isDisabled;
+
     const classes = classNames(
       baseClassName,
       color ? `${baseClassName}${colorToClassNameMap[color]}` : null,
@@ -161,7 +163,7 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
         : null,
       fill && `${baseClassName}--fill`,
       fullWidth && `${baseClassName}--fullWidth`,
-      isDisabled && `${baseClassName}-isDisabled`,
+      buttonIsDisabled && `${baseClassName}-isDisabled`,
       className
     );
 
@@ -205,6 +207,7 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       {
         className: classes,
         style: calculatedStyle,
+        disabled: element === 'button' && buttonIsDisabled,
         ref,
         ...rest,
       },
