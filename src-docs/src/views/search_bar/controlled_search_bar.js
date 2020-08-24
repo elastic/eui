@@ -57,7 +57,7 @@ const loadTags = () => {
   });
 };
 
-const initialQuery = EuiSearchBar.Query.MATCH_ALL;
+const initialQuery = 'status:open';
 
 export const ControlledSearchBar = () => {
   const [query, setQuery] = useState(initialQuery);

@@ -70,6 +70,20 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
         />
       </span>
     </div>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <button
+        aria-label="Clear input"
+        class="euiFormControlLayoutClearButton"
+        type="button"
+      >
+        <div
+          class="euiFormControlLayoutClearButton__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
   </div>
 </div>
 `;
