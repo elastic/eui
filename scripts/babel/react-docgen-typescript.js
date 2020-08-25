@@ -26,8 +26,8 @@ const util = require('util');
 const { SyntaxKind } = require('typescript');
 
 const files = [
-  ...glob.sync('src/**/*.{ts,tsx}', { absolute: true }),
-  ...glob.sync('src-docs/**/*.{ts,tsx}', { absolute: true }),
+  ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
+  ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
 ];
 
 /**
@@ -64,6 +64,7 @@ module.exports = function({ types }) {
             'DragDropContextProps',
             'DraggableProps',
             'DroppableProps',
+            'RefAttributes',
           ];
 
           let docgenResults = [];
@@ -103,10 +104,10 @@ module.exports = function({ types }) {
           if (docgenResults.length !== 0) {
             docgenResults.forEach(function(docgenResult) {
               const exportName = docgenResult.displayName;
-              docgenResult.extends = componentExtends;
+              docgenResult.extendedInterfaces = componentExtends;
               path.node.body.push(
-                template.default.ast(`          
-              try{  
+                template.default.ast(`
+              try{
               ${exportName}.__docgenInfo = ${util.inspect(docgenResult, {
                   showHidden: false,
                   depth: null,
@@ -217,10 +218,14 @@ function filterProp(
     return true;
   }
 
-  // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
-  // in the interace in that case replace it with "string | number"
   if (prop.type.name === 'ReactText') {
+    // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
+    // in the interface in that case replace it with "string | number"
     prop.type.name = 'string | number';
+  } else if (prop.type.name === 'Primitive') {
+    // "Primitive" comes from src/services/sort/comparators.ts
+    // TypeScript sees its overlap with `boolean | number | string` and decides to name the type union
+    prop.type.name = 'boolean | number | string';
   }
 
   // if prop.type is ReactElement it will be expanded to show all the  supported
@@ -247,11 +252,8 @@ function filterProp(
   if (prop.parent) {
     //Check if props are extended from other node module
     if (whiteListedParent.includes(prop.parent.name)) return true;
-    if (
-      prop.parent.name === 'DOMAttributes' &&
-      !componentExtends.includes('DOMAttributes')
-    ) {
-      componentExtends.push('DOMAttributes');
+    if (!componentExtends.includes(prop.parent.name)) {
+      componentExtends.push(prop.parent.name);
     }
     if (prop.name.includes(whiteListedProps)) {
       return true;

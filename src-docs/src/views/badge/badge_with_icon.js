@@ -9,5 +9,7 @@ export default () => (
     </EuiBadge>
 
     <EuiBadge iconType="check">Default</EuiBadge>
+
+    <EuiBadge iconType="returnKey" />
   </div>
 );

@@ -258,7 +258,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       );
     } else {
       optionalIcon = (
-        <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
+        <EuiIcon
+          type={iconType}
+          size={children ? 's' : 'm'}
+          className="euiBadge__icon"
+        />
       );
     }
   }
@@ -268,6 +272,13 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       'When passing onClick to EuiBadge, you must also provide onClickAriaLabel'
     );
   }
+
+  const content = (
+    <span className="euiBadge__content">
+      {children && <span className="euiBadge__text">{children}</span>}
+      {optionalIcon}
+    </span>
+  );
 
   if (iconOnClick) {
     return onClick || href ? (
@@ -299,10 +310,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref}
             title={innerText}
             {...rest}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </span>
         )}
       </EuiInnerText>
@@ -320,10 +328,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             title={innerText}
             {...(relObj as HTMLAttributes<HTMLElement>)}
             {...(rest as HTMLAttributes<HTMLElement>)}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </Element>
         )}
       </EuiInnerText>
@@ -338,10 +343,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref}
             title={innerText}
             {...rest}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </span>
         )}
       </EuiInnerText>

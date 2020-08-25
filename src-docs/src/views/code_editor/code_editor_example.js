@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiCodeEditor } from '../../../../src/components';
 
+import { codeEditorConfig } from './playground';
+
 import CodeEditor from './code_editor';
 const codeEditorSource = require('!!raw-loader!./code_editor');
 const codeEditorHtml = renderToHtml(CodeEditor);
@@ -78,4 +80,5 @@ export const CodeEditorExample = {
       demo: <CustomMode />,
     },
   ],
+  playground: codeEditorConfig,
 };

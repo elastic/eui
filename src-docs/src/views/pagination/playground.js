@@ -1,8 +1,8 @@
-import { PropTypes } from 'react-view';
 import { EuiPagination, EuiText } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export const paginationConfig = () => {
@@ -11,17 +11,7 @@ export const paginationConfig = () => {
     : EuiPagination.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  propsToUse.onPageClick = {
-    ...propsToUse.onPageClick,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onPageClick.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
-
+  propsToUse.onPageClick = simulateFunction(propsToUse.onPageClick);
   return {
     config: {
       componentName: 'EuiPagination',
