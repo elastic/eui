@@ -43,7 +43,7 @@ exports[`EuiProgress has value 1`] = `
 exports[`EuiProgress has valueText and label 1`] = `
 Array [
   <div
-    class="euiProgress__data euiProgress__data--hasLabel euiProgress__data--secondary"
+    class="euiProgress__data euiProgress__data--secondary"
   >
     <span
       class="euiProgress__label"
