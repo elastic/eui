@@ -156,10 +156,31 @@ export class GuideSection extends Component {
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
+      sortedComponents: {},
     };
 
     this.memoScroll = 0;
   }
+
+  onSort = componentName => {
+    const { sortedComponents } = this.state;
+    if (
+      !sortedComponents[componentName] ||
+      sortedComponents[componentName] === 'NONE'
+    ) {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'ASC' },
+      });
+    } else if (sortedComponents[componentName] === 'ASC') {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'DSC' },
+      });
+    } else {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'NONE' },
+      });
+    }
+  };
 
   onSelectedTabChanged = selectedTab => {
     const { name } = selectedTab;
@@ -299,7 +320,21 @@ export class GuideSection extends Component {
       return;
     }
 
+    const { sortedComponents } = this.state;
+
     const propNames = Object.keys(props);
+    if (
+      sortedComponents[componentName] &&
+      sortedComponents[componentName] !== 'NONE'
+    ) {
+      propNames.sort((a, b) => {
+        if (sortedComponents[componentName] === 'ASC') {
+          return a < b ? -1 : 1;
+        } else {
+          return a < b ? 1 : -1;
+        }
+      });
+    }
 
     const rows = propNames.map(propName => {
       const {
@@ -448,7 +483,19 @@ export class GuideSection extends Component {
       table = (
         <EuiTable compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell style={{ Width: '20%' }}>
+            <EuiTableHeaderCell
+              onSort={() => {
+                this.onSort(componentName);
+              }}
+              isSorted={
+                sortedComponents[componentName] &&
+                sortedComponents[componentName] !== 'NONE'
+              }
+              isSortAscending={
+                sortedComponents[componentName] &&
+                sortedComponents[componentName] === 'ASC'
+              }
+              style={{ Width: '20%' }}>
               Prop
             </EuiTableHeaderCell>
 
