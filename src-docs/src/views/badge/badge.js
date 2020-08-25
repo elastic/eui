@@ -32,6 +32,8 @@ const customBadges = [
   '#0000FF',
 ];
 
+const statusBadges = ['secondary', 'warning', 'danger'];
+
 export default () => {
   const [isDisabled, setDisabled] = useState(false);
 
@@ -59,6 +61,18 @@ export default () => {
         gutterSize="xs"
         style={{ maxWidth: '300px' }}>
         {customBadges.map(badge => (
+          <EuiFlexItem grow={false} key={badge}>
+            <EuiBadge color={badge}>{badge}</EuiBadge>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h3>Health status</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+        {statusBadges.map(badge => (
           <EuiFlexItem grow={false} key={badge}>
             <EuiBadge color={badge}>{badge}</EuiBadge>
           </EuiFlexItem>
