@@ -1,8 +1,9 @@
-$leftSideRadius: $euiBorderRadius 0 0 $euiBorderRadius;
-$rightSideRadius: 0 $euiBorderRadius $euiBorderRadius 0;
-$leftSideRadiusSmall: $euiFormControlCompressedBorderRadius 0 0 $euiFormControlCompressedBorderRadius;
-$rightSideRadiusSmall: 0 $euiFormControlCompressedBorderRadius $euiFormControlCompressedBorderRadius 0;
-
+.euiFormControlLayout {
+  $leftSideRadius: $euiBorderRadius 0 0 $euiBorderRadius;
+  $rightSideRadius: 0 $euiBorderRadius $euiBorderRadius 0;
+  $leftSideRadiusSmall: $euiFormControlCompressedBorderRadius 0 0 $euiFormControlCompressedBorderRadius;
+  $rightSideRadiusSmall: 0 $euiFormControlCompressedBorderRadius $euiFormControlCompressedBorderRadius 0;
+}
 
 .euiFormControlLayout--group {
   border-radius: $euiBorderRadius;

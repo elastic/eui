@@ -216,7 +216,7 @@
   @include euiFormControlText;
 
   border: none;
-  border-radius: 0;
+  border-radius: $euiFormControlBorderRadius;
   padding: $euiFormControlPadding;
 
   @if ($includeStates) {
