@@ -163,6 +163,7 @@ $euiProgressColors: (
 .euiProgress__valueText {
   // Tabular numbers ensure the line up nicely when right-aligned
   font-feature-settings: 'tnum' 1;
+  margin-left: auto;
 }
 
 .euiProgress__data--l {
