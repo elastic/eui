@@ -28,6 +28,7 @@ import React, {
   KeyboardEvent,
   ReactChild,
   MutableRefObject,
+  FocusEvent,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -227,14 +228,27 @@ export class EuiDataGridCell extends Component<
     this.preventTabbing();
   };
 
-  onFocus = () => {
-    const { onCellFocus, colIndex, visibleRowIndex, isExpandable } = this.props;
-    onCellFocus([colIndex, visibleRowIndex]);
+  onFocus = (e: FocusEvent<HTMLDivElement>) => {
+    // only perform this logic when the event's originating element (e.target) is
+    // the wrapping element with the onFocus logic
+    // reasons:
+    //  * the outcome is only meaningful when the focus shifts to the wrapping element
+    //  * if the cell children include portalled content React will bubble the focus
+    //      event up, which can trigger the focus() call below, causing focus lock fighting
+    if (this.cellRef.current === e.target) {
+      const {
+        onCellFocus,
+        colIndex,
+        visibleRowIndex,
+        isExpandable,
+      } = this.props;
+      onCellFocus([colIndex, visibleRowIndex]);
 
-    const interactables = this.getInteractables();
-    if (interactables.length === 1 && isExpandable === false) {
-      interactables[0].focus();
-      this.setState({ disableCellTabIndex: true });
+      const interactables = this.getInteractables();
+      if (interactables.length === 1 && isExpandable === false) {
+        interactables[0].focus();
+        this.setState({ disableCellTabIndex: true });
+      }
     }
   };
 
