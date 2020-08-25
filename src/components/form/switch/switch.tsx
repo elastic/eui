@@ -104,7 +104,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     <div className={classes}>
       <button
         id={switchId}
-        aria-checked={checked}
+        aria-checked={checked || false}
         className="euiSwitch__button"
         role="switch"
         type={type}
