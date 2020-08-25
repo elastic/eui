@@ -4,11 +4,11 @@
 - Added build-specific babel configurations for docs and tests ([#3911](https://github.com/elastic/eui/pull/3911))
 - Updated browserslist configuration to remove IE accommodations ([#3911](https://github.com/elastic/eui/pull/3911))
 - Removed docgenInfo from non-docs production builds ([#3911](https://github.com/elastic/eui/pull/3911))
+- Added `regressionJob`, `outlierDetectionJob` and `classificationJob` icons to Machine Learning icon set, updated others. ([#3931](https://github.com/elastic/eui/pull/3931))
 
 **Bug fixes**
 
 - Fixed bug in `EuiBasicTable` not fully expanding tall rows (height > 1000px) ([#3855](https://github.com/elastic/eui/pull/3855))
-- Added `regressionJob`, `outlierDetectionJob` and `classificationJob` icons to Machine Learning icon set, updated others. ([#3931](https://github.com/elastic/eui/pull/3931))
 - Fixed bug in `EuiDataGrid` which sometimes prevented header cells from being focusabled ([#3943](https://github.com/elastic/eui/pull/3943))
 - Fixed bug in `EuiFieldSearch` where a default value would not include the clear button ([#3958](https://github.com/elastic/eui/pull/3958))
 - Fixed focus fighting bug when `EuiDataGrid` cell content manages its own popover ([#3951](https://github.com/elastic/eui/pull/3951))
