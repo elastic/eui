@@ -20,3 +20,5 @@
 export { EuiPagination } from './pagination';
 
 export { EuiPaginationButton } from './pagination_button';
+
+export { usePagination } from './use_pagination';

@@ -500,7 +500,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         <ul
                           className="euiPagination__list"
                         >
-                          <PaginationButton
+                          <Button
                             key="0"
                             pageIndex={0}
                           >
@@ -579,8 +579,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 </EuiI18n>
                               </EuiPaginationButton>
                             </li>
-                          </PaginationButton>
-                          <PaginationButton
+                          </Button>
+                          <Button
                             key="1"
                             pageIndex={1}
                           >
@@ -661,7 +661,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 </EuiI18n>
                               </EuiPaginationButton>
                             </li>
-                          </PaginationButton>
+                          </Button>
                         </ul>
                         <EuiI18n
                           default="Next page, {page}"

@@ -86,6 +86,18 @@ const compressedSnippet = `<EuiPagination
 />
 `;
 
+import CustomButton from './custom_button';
+const customButtonSource = require('!!raw-loader!./compressed');
+const customButtonHtml = renderToHtml(Compressed);
+const customButtonSnippet = `<EuiPagination
+aria-label="my pagination"
+pageCount={pageCount}
+activePage={activePage}
+onPageClick={goToPage}
+button = {MyButton}
+/>
+`;
+
 export const PaginationExample = {
   title: 'Pagination',
   sections: [
@@ -201,6 +213,22 @@ export const PaginationExample = {
       ),
       snippet: customizablePaginationSnippet,
       demo: <CustomizablePagination />,
+    },
+    {
+      title: 'Custom button',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: customButtonSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: customButtonHtml,
+        },
+      ],
+      text: <p>You can use a custom button instead of the default.</p>,
+      snippet: customButtonSnippet,
+      demo: <CustomButton />,
     },
   ],
   playground: paginationConfig,

@@ -258,7 +258,11 @@ export {
   EuiPageSideBar,
 } from './page';
 
-export { EuiPagination, EuiPaginationButton } from './pagination';
+export {
+  EuiPagination,
+  EuiPaginationButton,
+  usePagination,
+} from './pagination';
 
 export { EuiPanel } from './panel';
 
