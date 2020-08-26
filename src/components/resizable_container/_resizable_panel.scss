@@ -6,22 +6,16 @@
 .euiResizableContainer--horizontal {
 
   .euiResizablePanel--collapsible {
+    // sass-lint:disable-block no-important
     min-width: 0 !important;
-    width: 24px !important;
+    width: $euiSizeL !important;
   }
 
   .euiResizablePanel--collapsible > *:not(button) {
     display: none;
   }
 
-  .euiResizablePanel .test {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .euiResizablePanel--expandable {
+  .euiResizablePanel--willExpand {
     flex-grow: 1;
-    padding-top: 24px !important;
   }
-
 }

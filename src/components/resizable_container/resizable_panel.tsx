@@ -32,14 +32,13 @@ import { CommonProps } from '../common';
 import { useEuiResizablePanelContext } from './context';
 import { htmlIdGenerator } from '../../services';
 import { EuiButtonIcon } from '../button';
-import { EuiIcon, IconType } from '../icon';
+import { IconType } from '../icon';
+import { EuiI18n } from '../i18n';
 
-interface TogglingOptions {
-  // active: boolean;
-  // iconType: IconType;
+interface ToggleOptions {
   notCollapsedIcon: IconType;
   collapsedIcon: IconType;
-  side: string;
+  className?: string;
 }
 
 interface EuiResizablePanelControls {
@@ -85,16 +84,21 @@ export interface EuiResizablePanelProps
    * Custom CSS properties
    */
   style?: CSSProperties;
-  // collapse?: boolean;
-  toggling?: boolean | TogglingOptions;
+  /*
+   * Use this to add a toggle button to a `EuiResizablePanel`. If true, default button icons are used
+   */
+  toggle?: boolean | ToggleOptions;
+  /*
+   * Set a `EuiResizablePanel` to expand when an accompanying `EuiResizablePanel` has toggling set to true
+   */
+  willExpand?: boolean;
 }
 
 const generatePanelId = htmlIdGenerator('resizable-panel');
 
-const togglingDefault: TogglingOptions = {
-  notCollapsedIcon: 'menuRight',
-  collapsedIcon: 'menuLeft',
-  side: 'right',
+const toggleDefault: ToggleOptions = {
+  collapsedIcon: 'menuRight',
+  notCollapsedIcon: 'menuLeft',
 };
 
 export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
@@ -106,10 +110,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   initialSize,
   minSize = '0px',
   scrollable = true,
-  // collapse = false,
   style = {},
-  // toggle = false,
-  toggling = false,
+  toggle = false,
+  willExpand = false,
   ...rest
 }) => {
   const [innerSize, setInnerSize] = useState(
@@ -128,8 +131,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       'euiResizablePanel--collapsible': isCollapsed,
     },
     {
-      'euiResizablePanel--expandable': !toggling,
-      // 'euiResizablePanel--expandable': !type.active,
+      'euiResizablePanel--willExpand': willExpand,
     },
     className
   );
@@ -181,9 +183,11 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     setIsCollapsed(value => !value);
   };
 
-  // Use the default object if they simply passed `true` for responsive
-  const responsiveObject =
-    typeof toggling === 'object' ? toggling : togglingDefault;
+  // Use the default object if they simply passed `true` for toggling
+  const toggeObject =
+    typeof toggle === 'object'
+      ? { ...toggleDefault, ...toggle }
+      : toggleDefault;
 
   return (
     <div
@@ -192,20 +196,24 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={styles}
       {...rest}>
-      {toggling ? (
-        <div className="test">
-          <EuiButtonIcon
-            className="visEditor__collapsibleSidebarButton"
-            color="text"
-            iconType={
-              isCollapsed
-                ? responsiveObject.notCollapsedIcon
-                : responsiveObject.collapsedIcon
-            }
-            // iconType={isCollapsed ? 'menuRight' : 'menuLeft'}
-            onClick={onClickCollapse}
-          />
-        </div>
+      {isHorizontal && toggle ? (
+        <EuiI18n
+          token="euiResizablePanel.toggleButtonAriaLabel"
+          default="Press to toggle this panel">
+          {(toggleButtonAriaLabel: string) => (
+            <EuiButtonIcon
+              color="text"
+              className={toggeObject.className}
+              aria-label={toggleButtonAriaLabel}
+              iconType={
+                isCollapsed
+                  ? toggeObject.collapsedIcon
+                  : toggeObject.notCollapsedIcon
+              }
+              onClick={onClickCollapse}
+            />
+          )}
+        </EuiI18n>
       ) : null}
       {children}
     </div>

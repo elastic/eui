@@ -131,4 +131,24 @@ describe('EuiResizableContainer', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('can have toggleable panels', () => {
+    const component = render(
+      <EuiResizableContainer {...requiredProps}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel toggle initialSize={20}>
+              Sidebar
+            </EuiResizablePanel>
+            <EuiResizableButton size="s" />
+            <EuiResizablePanel willExpand initialSize={80}>
+              Sidebar content
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

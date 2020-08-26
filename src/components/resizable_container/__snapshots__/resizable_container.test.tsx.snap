@@ -158,6 +158,46 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
 </div>
 `;
 
+exports[`EuiResizableContainer can have toggleable panels 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel"
+    id="generated-id"
+    style="width:20%;height:100%;min-width:0px;min-height:0"
+  >
+    <button
+      aria-label="Press to toggle this panel"
+      class="euiButtonIcon euiButtonIcon--text"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="menuLeft"
+      />
+    </button>
+    Sidebar
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeSmall euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel euiResizablePanel--willExpand"
+    id="generated-id"
+    style="width:80%;height:100%;min-width:0px;min-height:0"
+  >
+    Sidebar content
+  </div>
+</div>
+`;
+
 exports[`EuiResizableContainer is rendered 1`] = `
 <div
   aria-label="aria-label"
