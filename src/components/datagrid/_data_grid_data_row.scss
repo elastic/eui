@@ -126,8 +126,7 @@
   overflow: hidden;
   visibility: hidden;
 
-  &-isActive,
-  &:focus {
+  &-isActive {
     width: inherit;
     visibility: visible;
     background: $euiColorPrimary;
