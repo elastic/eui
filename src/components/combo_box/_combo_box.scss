@@ -28,6 +28,7 @@
       $inputMinWidth: 14px;
 
       // Ensure the input doesn't drop to the next line when the EuiBadge has a very long text
+      // Overrides the default EuiBadge max-width that is 100%
       max-width: calc(100% - #{$euiSizeXS} - #{$inputMinWidth});
     }
 
