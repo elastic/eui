@@ -5,37 +5,49 @@ import {
   EuiListGroup,
   EuiListGroupItem,
   EuiPanel,
+  EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components';
 import { fake } from 'faker';
-
-const text = (
-  <>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-  </>
-);
 
 const texts = [];
 
 for (let i = 0; i < 4; i++) {
-  texts.push(<p>{fake('{{lorem.paragraphs}}')}</p>);
+  texts.push(<p>{fake('{{lorem.paragraph}}')}</p>);
 }
 
-console.log(texts);
-
 export default () => {
-  // const handleOnClick = () => {
-  //   alert('Item was clicked');
-  // };
+  const items = [
+    {
+      id: 1,
+      label: 'First item',
+      text: texts[0],
+    },
+    {
+      id: 2,
+      label: 'Second item',
+      text: texts[1],
+    },
+    {
+      id: 3,
+      label: 'Third item',
+      text: texts[2],
+    },
+    {
+      id: 4,
+      label: 'Forth item',
+      text: texts[3],
+    },
+  ];
 
-  const [item, setItem] = useState('First');
+  const [itemSelected, setItemSelected] = useState(items[0]);
 
   return (
-    <EuiResizableContainer style={{ height: '320px' }}>
+    <EuiResizableContainer style={{ minHeight: '320px' }}>
       {(EuiResizablePanel, EuiResizableButton) => (
         <>
           <EuiResizablePanel
             toggling={{
-              // active: true,
               notCollapsedIcon: 'menuRight',
               collapsedIcon: 'menuLeft',
             }}
@@ -43,24 +55,23 @@ export default () => {
             minSize="10%">
             <EuiListGroup flush={true}>
               <EuiListGroupItem
-                isActive
-                onClick={() => setItem('First')}
-                label="First item"
+                onClick={() => setItemSelected(items[0])}
+                label={items[0].label}
               />
 
               <EuiListGroupItem
-                onClick={() => setItem('Second')}
-                label="Second item"
+                onClick={() => setItemSelected(items[1])}
+                label={items[1].label}
               />
 
               <EuiListGroupItem
-                onClick={() => setItem('Third')}
-                label="Third item"
+                onClick={() => setItemSelected(items[2])}
+                label={items[2].label}
               />
 
               <EuiListGroupItem
-                onClick={() => setItem('Fourth')}
-                label="Fourth item"
+                onClick={() => setItemSelected(items[3])}
+                label={items[3].label}
               />
             </EuiListGroup>
           </EuiResizablePanel>
@@ -69,10 +80,11 @@ export default () => {
 
           <EuiResizablePanel initialSize={80} minSize="200px">
             <EuiPanel paddingSize="l" style={{ height: '280px' }}>
-              <EuiText>
-                <p>{item} item</p>
-              </EuiText>
-              <EuiText>{text}</EuiText>
+              <EuiTitle>
+                <p>{itemSelected.label}</p>
+              </EuiTitle>
+              <EuiSpacer />
+              <EuiText>{itemSelected.text}</EuiText>
             </EuiPanel>
           </EuiResizablePanel>
         </>
