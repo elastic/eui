@@ -155,7 +155,6 @@ export const EuiSuperSelectControl: <T extends string>(
           role="option"
           type="button"
           className={classes}
-          aria-haspopup="true"
           aria-labelledby={`${id} ${screenReaderId}`}
           aria-selected={true}
           {...rest}>

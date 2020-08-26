@@ -19,7 +19,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-label="aria-label"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
@@ -65,7 +64,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl--compressed"
@@ -109,7 +107,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl"
@@ -153,7 +150,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl"
@@ -197,7 +193,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
@@ -241,7 +236,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl-isInvalid"
@@ -285,7 +279,6 @@ Array [
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl-isLoading"
@@ -332,7 +325,6 @@ Array [
         Select an option: Option #1, is selected
       </span>
       <button
-        aria-haspopup="true"
         aria-labelledby="undefined generated-id"
         aria-selected="true"
         class="euiSuperSelectControl"

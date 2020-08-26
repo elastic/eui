@@ -24,7 +24,6 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           Select an option: , is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
@@ -76,7 +75,6 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
           Select an option: Plain text as a custom option, is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
@@ -135,7 +133,6 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           , is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
@@ -197,7 +194,6 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           , is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
@@ -259,7 +255,6 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           , is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
@@ -316,7 +311,6 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
           Select an option: Palette 1, is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
@@ -374,7 +368,6 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           , is selected
         </span>
         <button
-          aria-haspopup="true"
           aria-labelledby="undefined generated-id"
           aria-selected="true"
           class="euiSuperSelectControl euiSuperSelect--isOpen__button"
