@@ -1,0 +1,7 @@
+.euiMarkdownEditorPreview {
+  @include euiScrollBar;
+  height: 150px;
+  overflow-y: auto;
+  border: $euiBorderThin;
+  padding: $euiSizeM;
+}

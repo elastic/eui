@@ -14,6 +14,8 @@ import {
 
 import { EuiStepHorizontal } from '../../../../src/components/steps/step_horizontal';
 
+import { stepConfig } from './playground';
+
 import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
@@ -238,4 +240,5 @@ export const StepsExample = {
       props: { EuiStepsHorizontal, EuiStepHorizontal },
     },
   ],
+  playground: stepConfig,
 };

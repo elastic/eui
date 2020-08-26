@@ -12,7 +12,7 @@ import {
 
 const visColors = euiPaletteColorBlind();
 const visColorsBehindText = euiPaletteColorBlindBehindText();
-const options = [
+const optionsStatic = [
   {
     value: {
       size: 5,
@@ -88,6 +88,7 @@ const options = [
 ];
 
 export default () => {
+  const [options, setOptions] = useState(optionsStatic);
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
 
   const onChange = selectedOptions => {
@@ -117,10 +118,11 @@ export default () => {
       ) === -1
     ) {
       options.push(newOption);
+      setOptions([...options, newOption]);
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    setSelected(prevSelected => [...prevSelected, newOption]);
   };
 
   const renderOption = (option, searchValue, contentClassName) => {

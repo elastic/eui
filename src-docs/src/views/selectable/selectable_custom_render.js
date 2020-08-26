@@ -11,9 +11,12 @@ import { EuiSelectable } from '../../../../src/components/selectable';
 import { createDataStore } from '../tables/data_store';
 
 export default () => {
+  const [useCustomContent, setUseCustomContent] = useState(false);
+
   const countries = createDataStore().countries.map(country => {
     return {
       label: `${country.name}`,
+      searchableLabel: `${country.name} ${'I am secondary content, I am!'}`,
       prepend: country.flag,
       append: <EuiBadge>{country.code}</EuiBadge>,
     };
@@ -25,7 +28,6 @@ export default () => {
   });
 
   const [options, setOptions] = useState(countries);
-  const [useCustomContent, setUseCustomContent] = useState(false);
 
   const onChange = options => {
     setOptions(options);
@@ -41,7 +43,11 @@ export default () => {
         <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
         <br />
         <EuiTextColor color="subdued">
-          <small>I am secondary content, I am!</small>
+          <small>
+            <EuiHighlight search={searchValue}>
+              I am secondary content, I am!
+            </EuiHighlight>
+          </small>
         </EuiTextColor>
       </>
     );

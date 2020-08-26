@@ -1,25 +1,44 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const path = require('path');
-const { transform } = require('@babel/core');
+const core = require('@babel/core');
 const babelOptions = {
   babelrc: false,
-  presets: [
-    '@babel/typescript',
-  ],
-  plugins: [
-    './scripts/babel/proptypes-from-ts-props',
-  ],
+  presets: ['@babel/typescript'],
+  plugins: ['./scripts/babel/proptypes-from-ts-props'],
   filename: 'somefile.tsx',
 };
 const babelPlugin = require('./index');
 
+const transform = (input: string, options: object) => {
+  const result = core.transform(input, options);
+  result.code = result.code.replace(/[\r\n]+/g, '\n')
+  return result;
+}
+
 beforeEach(() => babelPlugin.clearImportCache());
 
 describe('proptypes-from-ts-props', () => {
-
   describe('proptype generation', () => {
-
     describe('basic generation', () => {
-
       it('imports PropTypes and creates an empty propTypes object on the component', () => {
         const result = transform(
           `
@@ -33,11 +52,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {};`);
       });
 
@@ -58,22 +75,18 @@ interface IFooProps {}
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 (function () {
   if (true) {
     const FooComponent = () => {
       return <div>Hello World</div>;
     };
-
     FooComponent.propTypes = {};
   }
 })();`);
       });
-
     });
 
     describe('primitive propTypes', () => {
-
       it('understands string props', () => {
         const result = transform(
           `
@@ -87,11 +100,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
@@ -110,11 +121,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.number.isRequired
 };`);
@@ -133,11 +142,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.bool.isRequired
 };`);
@@ -160,11 +167,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf([undefined]).isRequired,
   bar: PropTypes.oneOf([null]).isRequired,
@@ -187,11 +192,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.func.isRequired
 };`);
@@ -210,11 +213,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.number
 };`);
@@ -239,11 +240,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar1: PropTypes.string.isRequired,
   bar2: PropTypes.number,
@@ -269,11 +268,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf(["bar"]).isRequired,
   bazz: PropTypes.oneOf([5])
@@ -295,17 +292,14 @@ const FooComponent: React.SFC<Props> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {};`);
       });
     });
 
     describe('function propTypes', () => {
-
       it('understands function props on interfaces', () => {
         const result = transform(
           `
@@ -324,11 +318,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.func.isRequired,
   bar: PropTypes.func,
@@ -355,11 +347,9 @@ const FooComponent: React.SFC<FooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.func.isRequired,
   bar: PropTypes.func,
@@ -367,13 +357,10 @@ FooComponent.propTypes = {
   buzz: PropTypes.func
 };`);
       });
-
     });
 
     describe('enum / oneOf propTypes', () => {
-
       describe('union type', () => {
-
         it('understands a union of strings', () => {
           const result = transform(
             `
@@ -387,11 +374,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   flower: PropTypes.oneOf(["daisy", "daffodil", "dandelion"]).isRequired
 };`);
@@ -410,11 +395,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   prime: PropTypes.oneOf([2, 3, 5, 7, 11, 13]).isRequired
 };`);
@@ -433,11 +416,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   visible: PropTypes.oneOf([true, false]).isRequired
 };`);
@@ -456,11 +437,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bool: PropTypes.oneOf([true, false, "FileNotFound"]).isRequired
 };`);
@@ -479,20 +458,16 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.oneOf(["hello", "world"])
 };`);
         });
-
       });
 
       describe('enum', () => {
-
         it('understands enum of strings', () => {
           const result = transform(
             `
@@ -511,18 +486,14 @@ const FooComponent: React.SFC<IFooProps> = () => {
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 var Foo;
-
 (function (Foo) {
   Foo["bar"] = "BAR";
   Foo["baz"] = "BAZ";
 })(Foo || (Foo = {}));
-
 ;
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf(["BAR", "BAZ"]).isRequired
 };`);
@@ -546,18 +517,14 @@ const FooComponent: React.SFC<IFooProps> = () => {
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 var Foo;
-
 (function (Foo) {
   Foo[Foo["bar"] = 3] = "bar";
   Foo[Foo["baz"] = 54] = "baz";
 })(Foo || (Foo = {}));
-
 ;
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf([3, 54]).isRequired
 };`);
@@ -582,19 +549,15 @@ const FooComponent: React.SFC<IFooProps> = () => {
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 var Foo;
-
 (function (Foo) {
   Foo["bar"] = "BAR";
   Foo[Foo["baz"] = 5] = "baz";
   Foo[Foo["buzz"] = false] = "buzz";
 })(Foo || (Foo = {}));
-
 ;
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf(["BAR", 5, false]).isRequired
 };`);
@@ -618,27 +581,21 @@ const FooComponent: React.SFC<IFooProps> = () => {
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 var Foo;
-
 (function (Foo) {
   Foo["bar"] = "BAR";
   Foo["baz"] = "BAZ";
 })(Foo || (Foo = {}));
-
 ;
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf(["BAR", "BAZ"])
 };`);
         });
-
       });
 
       describe('keyof typeof', () => {
-
         it('understands keyof typeof', () => {
           const result = transform(
             `
@@ -660,22 +617,17 @@ const FooMap = {
   foo: 'bar',
   fizz: 'buzz'
 };
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf(["foo", "fizz"]).isRequired
 };`);
         });
-
       });
-
     });
 
     describe('object / shape propTypes', () => {
-
       it('understands an object of primitive values', () => {
         const result = transform(
           `
@@ -690,11 +642,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   person: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -719,11 +669,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     bar: PropTypes.shape({
@@ -736,13 +684,10 @@ FooComponent.propTypes = {
   }).isRequired
 };`);
       });
-
     });
 
     describe('React component & element propTypes', () => {
-
       describe('element propType', () => {
-
         it('understands React.Component', () => {
           const result = transform(
             `
@@ -756,11 +701,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -779,11 +722,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -802,11 +743,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -825,11 +764,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -848,11 +785,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -871,11 +806,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -894,11 +827,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -917,11 +848,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -939,20 +868,16 @@ const FooComponent: React.SFC<{foo: JSXElementConstructor<any>}> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.func.isRequired
 };`);
         });
-
       });
 
       describe('node propType', () => {
-
         it('understands React.ReactNode', () => {
           const result = transform(
             `
@@ -966,11 +891,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.node.isRequired
 };`);
@@ -989,20 +912,16 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.node.isRequired
 };`);
         });
-
       });
 
       describe('elementType propType', () => {
-
         it('understands React.ComponentType', () => {
           const result = transform(
             `
@@ -1016,11 +935,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.elementType.isRequired,
   bar: PropTypes.elementType.isRequired
@@ -1040,23 +957,18 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.elementType.isRequired,
   bar: PropTypes.elementType.isRequired
 };`);
         });
-
       });
-
     });
 
     describe('intersection types', () => {
-
       it('intersects multiple types together', () => {
         const result = transform(
           `
@@ -1072,11 +984,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -1100,11 +1010,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -1128,22 +1036,18 @@ const FooComponent: React.SFC<iBuzz> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   buzz: PropTypes.bool.isRequired,
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
 };`);
       });
-
     });
 
     describe('union types', () => {
-
       it('unions primitive types and values', () => {
         const result = transform(
           `
@@ -1157,11 +1061,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired
 };`);
@@ -1182,11 +1084,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   buzz: PropTypes.oneOfType([PropTypes.shape({
     foo: PropTypes.string.isRequired,
@@ -1214,11 +1114,9 @@ const FooComponent: React.SFC<ExclusiveUnion<IFooProps, IBarProps>> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   d: PropTypes.oneOfType([PropTypes.number.isRequired, PropTypes.string.isRequired]).isRequired,
   foo: PropTypes.oneOfType([PropTypes.string, PropTypes.string.isRequired]),
@@ -1244,11 +1142,9 @@ const FooComponent: React.SFC<Props> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
@@ -1273,11 +1169,9 @@ const FooComponent: React.SFC<ExclusiveUnion<IFooProps, IBarProps>> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   type: PropTypes.oneOfType([PropTypes.oneOf(["foo"]).isRequired, PropTypes.oneOf(["bar"]).isRequired]).isRequired,
   value: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired
@@ -1297,20 +1191,16 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.oneOf(["five", null, undefined]).isRequired
 };`);
       });
-
     });
 
     describe('array / arrayOf propTypes', () => {
-
       describe('Array<T>', () => {
         it('understands an Array of strings', () => {
           const result = transform(
@@ -1325,11 +1215,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };`);
@@ -1348,11 +1236,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 };`);
@@ -1371,11 +1257,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired
 };`);
@@ -1394,11 +1278,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired
 };`);
@@ -1417,11 +1299,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOf(["foo", "bar"]).isRequired).isRequired
 };`);
@@ -1440,11 +1320,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
 };`);
@@ -1463,11 +1341,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired)
 };`);
@@ -1487,11 +1363,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.shape({
     foo: PropTypes.string.isRequired,
@@ -1515,11 +1389,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };`);
@@ -1538,11 +1410,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 };`);
@@ -1561,11 +1431,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired
 };`);
@@ -1584,11 +1452,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired
 };`);
@@ -1608,11 +1474,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOf(["foo", "bar"]).isRequired).isRequired
 };`);
@@ -1631,11 +1495,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
 };`);
@@ -1657,13 +1519,11 @@ const Foo: React.SFC<Props> = ({ option }: Props) => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const Foo = ({
   option
 }) => {
   return <div>{option.type == 'a' ? option.value : option.valid}</div>;
 };
-
 Foo.propTypes = {
   option: PropTypes.oneOfType([PropTypes.shape({
     type: PropTypes.oneOf(["a"]).isRequired,
@@ -1688,11 +1548,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired)
 };`);
@@ -1712,11 +1570,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.shape({
     foo: PropTypes.string.isRequired,
@@ -1725,11 +1581,9 @@ FooComponent.propTypes = {
 };`);
         });
       });
-
     });
 
     describe('type and interface resolving', () => {
-
       it('understands inline definitions', () => {
         const result = transform(
           `
@@ -1742,11 +1596,9 @@ const FooComponent: React.SFC<{bar: string}> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
@@ -1765,11 +1617,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
@@ -1789,21 +1639,17 @@ const FooComponent: React.SFC<FooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
       });
 
       describe('external references', () => {
-
         describe('non-resolvable', () => {
-
-          it(`doesn't set propTypes if the whole type is un-resolvable`, () => {
+          it("doesn't set propTypes if the whole type is un-resolvable", () => {
             const result = transform(
               `
 import React from 'react';
@@ -1814,7 +1660,6 @@ const FooComponent: React.SFC<SomeThing> = () => {
             );
 
             expect(result.code).toBe(`import React from 'react';
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };`);
@@ -1832,11 +1677,9 @@ const FooComponent: React.SFC<{foo: Foo, bar?: Bar}> = () => {
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.any.isRequired,
   bar: PropTypes.any
@@ -1854,7 +1697,6 @@ const FooComponent: React.SFC<HTMLAttributes<HTMLDivElement>> = () => {
             );
 
             expect(result.code).toBe(`import React from 'react';
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };`);
@@ -1873,11 +1715,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   fizz: PropTypes.any.isRequired
 };`);
@@ -1897,11 +1737,9 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -1909,11 +1747,9 @@ FooComponent.propTypes = {
   }).isRequired
 };`);
           });
-
         });
 
         describe('local references', () => {
-
           it('resolves types from relative imports', () => {
             const result = transform(
               `
@@ -1931,27 +1767,26 @@ const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
-                        readFileSync: () => Buffer.from(`
+                        readFileSync: () =>
+                          Buffer.from(`
                           export interface CommonProps {
                             className?: string;
                             'aria-label'?: string;
                             'data-test-subj'?: string;
                           }
-                        `)
-                      }
-                    }
+                        `),
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.any.isRequired,
   bar: PropTypes.any,
@@ -1980,8 +1815,16 @@ const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => true }),
                         readFileSync: filepath => {
-                          if (filepath !== path.resolve(process.cwd(), `common${path.sep}index.ts`)) {
-                            throw new Error('Test case should only try to read file unknown/common/index.ts');
+                          if (
+                            filepath !==
+                            path.resolve(
+                              process.cwd(),
+                              `common${path.sep}index.ts`
+                            )
+                          ) {
+                            throw new Error(
+                              'Test case should only try to read file unknown/common/index.ts'
+                            );
                           }
 
                           return Buffer.from(`
@@ -1991,21 +1834,19 @@ const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
                               'data-test-subj'?: string;
                             }
                           `);
-                        }
-                      }
-                    }
+                        },
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.any.isRequired,
   bar: PropTypes.any,
@@ -2032,7 +1873,8 @@ const FooComponent: React.SFC<CommonProps & FooProps> = () => {
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
-                        readFileSync: () => Buffer.from(`
+                        readFileSync: () =>
+                          Buffer.from(`
                           interface FooProps {
                             foo: string
                           }
@@ -2041,21 +1883,19 @@ const FooComponent: React.SFC<CommonProps & FooProps> = () => {
                             'aria-label'?: string;
                             'data-test-subj'?: string;
                           }
-                        `)
-                      }
-                    }
+                        `),
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   className: PropTypes.string,
   "aria-label": PropTypes.string,
@@ -2081,7 +1921,10 @@ const FooComponent: React.SFC<CommonProps & FooProps> = () => {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
                         readFileSync: filepath => {
-                          if (filepath === path.resolve(process.cwd(), 'common.ts')) {
+                          if (
+                            filepath ===
+                            path.resolve(process.cwd(), 'common.ts')
+                          ) {
                             return Buffer.from(`
                               import { FooType } from './types.ts';
                               export interface CommonProps {
@@ -2091,26 +1934,26 @@ const FooComponent: React.SFC<CommonProps & FooProps> = () => {
                                 foo: FooType;
                               }
                             `);
-                          } else if (filepath === path.resolve(process.cwd(), 'types.ts')) {
+                          } else if (
+                            filepath === path.resolve(process.cwd(), 'types.ts')
+                          ) {
                             return Buffer.from(`
                               export type FooType = "Foo" | "Bar" | "Fizz";
                             `);
                           }
-                        }
-                      }
-                    }
+                        },
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   className: PropTypes.string,
   "aria-label": PropTypes.string,
@@ -2137,31 +1980,35 @@ const FooComponent: React.SFC<Foo> = () => {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
                         readFileSync: filepath => {
-                          if (filepath === path.resolve(process.cwd(), 'types', 'foo.ts')) {
+                          if (
+                            filepath ===
+                            path.resolve(process.cwd(), 'types', 'foo.ts')
+                          ) {
                             return Buffer.from(`
                               import { IFoo } from '../interfaces/foo.ts';
                               export type Foo = IFoo;
                             `);
-                          } else if (filepath === path.resolve(process.cwd(), 'interfaces', 'foo.ts')) {
+                          } else if (
+                            filepath ===
+                            path.resolve(process.cwd(), 'interfaces', 'foo.ts')
+                          ) {
                             return Buffer.from(`
                               export interface IFoo { bar: string }
                             `);
                           }
-                        }
-                      }
-                    }
+                        },
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
@@ -2184,28 +2031,26 @@ const FooComponent: React.SFC<{foo: keyof typeof commonKeys, bar?: commonKeyType
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
-                        readFileSync: () => Buffer.from(`
+                        readFileSync: () =>
+                          Buffer.from(`
                           export const commonKeys = {
                             s: 'small',
                             'l': 'large',
                           };
-
                           export type commonKeyTypes = keyof typeof commonKeys;
-                        `)
-                      }
-                    }
+                        `),
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.oneOf(["s", "l"]).isRequired,
   bar: PropTypes.oneOf(["s", "l"])
@@ -2242,31 +2087,28 @@ const FooComponent: React.SFC<{foo: Foo}> = () => {
                             `);
                           }
 
-                          throw new Error(`Test tried to import from ${filepath}`);
-                        }
-                      }
-                    }
+                          throw new Error(
+                            `Test tried to import from ${filepath}`
+                          );
+                        },
+                      },
+                    },
                   ],
-                ]
+                ],
               }
             );
 
             expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired
 };`);
           });
-
         });
-
       });
-
     });
 
     describe('indexed property access', () => {
@@ -2285,11 +2127,9 @@ const FooComponent: React.SFC<{bar: Foo['foo']}> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   bar: PropTypes.func.isRequired
 };`);
@@ -2297,7 +2137,6 @@ FooComponent.propTypes = {
     });
 
     describe('supported component declarations', () => {
-
       it('annotates React.SFC components', () => {
         const result = transform(
           `
@@ -2310,11 +2149,9 @@ const FooComponent: React.SFC<{foo: string, bar?: number}> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2333,11 +2170,9 @@ const FooComponent: SFC<{foo: string, bar?: number}> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2356,11 +2191,9 @@ const FooComponent: FunctionComponent<{foo: string, bar?: number}> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2380,11 +2213,9 @@ const FooComponent: FooType = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2403,11 +2234,9 @@ const FooComponent: React.FunctionComponent<{foo: string, bar?: number}> = () =>
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2428,14 +2257,11 @@ class FooComponent extends React.Component<{foo: string, bar?: number}> {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 class FooComponent extends React.Component {
   render() {
     return <div>Hello World</div>;
   }
-
 }
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2456,14 +2282,11 @@ class FooComponent extends React.PureComponent<{foo: string, bar?: number}> {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 class FooComponent extends React.PureComponent {
   render() {
     return <div>Hello World</div>;
   }
-
 }
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2484,14 +2307,11 @@ class FooComponent extends Component<{foo: string, bar?: number}> {
 
         expect(result.code).toBe(`import React, { Component } from 'react';
 import PropTypes from "prop-types";
-
 class FooComponent extends Component {
   render() {
     return <div>Hello World</div>;
   }
-
 }
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
@@ -2512,25 +2332,20 @@ class FooComponent extends PureComponent<{foo: string, bar?: number}> {
 
         expect(result.code).toBe(`import React, { PureComponent } from 'react';
 import PropTypes from "prop-types";
-
 class FooComponent extends PureComponent {
   render() {
     return <div>Hello World</div>;
   }
-
 }
-
 FooComponent.propTypes = {
   foo: PropTypes.string.isRequired,
   bar: PropTypes.number
 };`);
       });
-
     });
 
     describe('comments', () => {
-
-      it('copies comments from types to proptypes', () =>   {
+      it('copies comments from types to proptypes', () => {
         const result = transform(
           `
 import React, { SFC } from 'react';
@@ -2550,15 +2365,12 @@ const FooComponent: SFC<FooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   // this is the foo prop
   foo: PropTypes.string.isRequired,
-
   /**
      * this is the optional bar prop
      */
@@ -2566,7 +2378,7 @@ FooComponent.propTypes = {
 };`);
       });
 
-      it('copies comments from intersected types', () =>   {
+      it('copies comments from intersected types', () => {
         const result = transform(
           `
 import React, { SFC } from 'react';
@@ -2590,28 +2402,23 @@ const FooComponent: SFC<iFoo & iBar> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   /* bar's foo */
   // this is the foo prop
   foo: PropTypes.string.isRequired,
-
   /**
       * this is the optional bar prop
       */
   bar: PropTypes.number
 };`);
       });
-
     });
 
     describe('self-referencing types', () => {
-
-      it(`doesn't explode on self-referencing interfaces`, () => {
+      it("doesn't explode on self-referencing interfaces", () => {
         const result = transform(
           `
 import React, { SFC } from 'react';
@@ -2627,18 +2434,16 @@ const FooComponent: SFC<FooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.any.isRequired)
 };`);
       });
 
-      it(`doesn't explode on self-referencing types`, () => {
+      it("doesn't explode on self-referencing types", () => {
         const result = transform(
           `
 import React, { SFC } from 'react';
@@ -2654,17 +2459,14 @@ const FooComponent: SFC<FooProps> = () => {
 
         expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-
 const FooComponent = () => {
   return <div>Hello World</div>;
 };
-
 FooComponent.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.any.isRequired)
 };`);
       });
-
     });
 
     describe('forwardRef', () => {
@@ -2800,15 +2602,15 @@ export { Foo, A } from './foo';
                     }
 
                     throw new Error(`Test tried to import from ${filepath}`);
-                  }
-                }
-              }
+                  },
+                },
+              },
             ],
-          ]
+          ],
         }
       );
 
-      expect(result.code).toBe(`export { A } from './foo';`);
+      expect(result.code).toBe("export { A } from './foo';");
     });
 
     it('removes type exports from ExportNamedDeclaration when the imported name differs from the exported one', () => {
@@ -2834,15 +2636,15 @@ export { Foo as Bar, A as B } from './foo';
                     }
 
                     throw new Error(`Test tried to import from ${filepath}`);
-                  }
-                }
-              }
+                  },
+                },
+              },
             ],
-          ]
+          ],
         }
       );
 
-      expect(result.code).toBe(`export { A as B } from './foo';`);
+      expect(result.code).toBe("export { A as B } from './foo';");
     });
 
     it('removes type export statements', () => {
@@ -2865,9 +2667,8 @@ export { DraggableLocation, Draggable, DragDropContextProps } from 'react-beauti
       );
 
       expect(result.code).toBe(
-        `export { Draggable } from 'react-beautiful-dnd';`
+        "export { Draggable } from 'react-beautiful-dnd';"
       );
     });
   });
-
 });

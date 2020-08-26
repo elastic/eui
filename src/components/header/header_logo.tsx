@@ -35,6 +35,9 @@ export type EuiHeaderLogoProps = CommonProps &
     target?: string;
     iconType?: IconType;
     iconTitle?: string;
+    /**
+     * ReactNode to render as this component's content
+     */
     children?: ReactNode;
   };
 

@@ -24,6 +24,7 @@ import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiSelectableOptionCheckedType } from '../selectable_option';
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiBadge, EuiBadgeProps } from '../../badge';
 
 function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
@@ -55,6 +56,12 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     prepend?: React.ReactNode;
     append?: React.ReactNode;
     allowExclusions?: boolean;
+    /**
+     * When enabled by setting to either `true` or passing custom a custom badge,
+     * shows a hollow badge as an append (far right) when the item is focused.
+     * The default content when `true` is `↩ to select/deselect/include/exclude`
+     */
+    onFocusBadge?: boolean | EuiBadgeProps;
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -63,6 +70,7 @@ export class EuiSelectableListItem extends Component<
 > {
   static defaultProps = {
     showIcons: true,
+    onFocusBadge: true,
   };
 
   constructor(props: EuiSelectableListItemProps) {
@@ -73,13 +81,14 @@ export class EuiSelectableListItem extends Component<
     const {
       children,
       className,
-      disabled = false,
+      disabled,
       checked,
       isFocused,
       showIcons,
       prepend,
       append,
       allowExclusions,
+      onFocusBadge,
       ...rest
     } = this.props;
 
@@ -100,20 +109,6 @@ export class EuiSelectableListItem extends Component<
           color={color}
           type={icon}
         />
-      );
-    }
-
-    let prependNode: React.ReactNode;
-    if (prepend) {
-      prependNode = (
-        <span className="euiSelectableListItem__prepend">{prepend}</span>
-      );
-    }
-
-    let appendNode: React.ReactNode;
-    if (append) {
-      appendNode = (
-        <span className="euiSelectableListItem__append">{append}</span>
       );
     }
 
@@ -161,6 +156,55 @@ export class EuiSelectableListItem extends Component<
           </span>
         </EuiScreenReaderOnly>
       );
+    }
+
+    let prependNode: React.ReactNode;
+    if (prepend) {
+      prependNode = (
+        <span className="euiSelectableListItem__prepend">{prepend}</span>
+      );
+    }
+
+    let appendNode: React.ReactNode;
+    if (append || !!onFocusBadge) {
+      let onFocusBadgeNode: React.ReactNode;
+      const defaultOnFocusBadgeProps: EuiBadgeProps = {
+        'aria-hidden': true,
+        iconType: 'returnKey',
+        iconSide: 'left',
+        color: 'hollow',
+      };
+
+      if (onFocusBadge === true) {
+        onFocusBadgeNode = (
+          <EuiBadge
+            className="euiSelectableListItem__onFocusBadge"
+            {...defaultOnFocusBadgeProps}
+          />
+        );
+      } else if (!!onFocusBadge && onFocusBadge !== false) {
+        const { children, className, ...restBadgeProps } = onFocusBadge;
+        onFocusBadgeNode = (
+          <EuiBadge
+            className={classNames(
+              'euiSelectableListItem__onFocusBadge',
+              className
+            )}
+            {...defaultOnFocusBadgeProps}
+            {...(restBadgeProps as EuiBadgeProps)}>
+            {children}
+          </EuiBadge>
+        );
+      }
+
+      // Only display the append wrapper if append exists or isFocused
+      if (append || (isFocused && !disabled)) {
+        appendNode = (
+          <span className="euiSelectableListItem__append">
+            {append} {isFocused && !disabled ? onFocusBadgeNode : null}
+          </span>
+        );
+      }
     }
 
     return (

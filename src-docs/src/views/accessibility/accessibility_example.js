@@ -10,6 +10,7 @@ import {
   EuiLink,
   EuiKeyboardAccessible,
   EuiSkipLink,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 import KeyboardAccessible from './keyboard_accessible';
@@ -47,8 +48,6 @@ const skipLinkSnippet = [
 </EuiSkipLink>
 `,
 ];
-
-import { ScreenReaderOnlyDocsComponent } from './props';
 
 export const AccessibilityExample = {
   title: 'Accessibility',
@@ -117,7 +116,7 @@ export const AccessibilityExample = {
         </div>
       ),
       props: {
-        EuiScreenReaderOnly: ScreenReaderOnlyDocsComponent,
+        EuiScreenReaderOnly,
       },
       snippet: screenReaderOnlySnippet,
       demo: <ScreenReaderOnly />,

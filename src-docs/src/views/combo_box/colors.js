@@ -4,7 +4,7 @@ import { EuiComboBox } from '../../../../src/components';
 import { euiPaletteColorBlindBehindText } from '../../../../src/services';
 
 const visColorsBehindText = euiPaletteColorBlindBehindText();
-const options = [
+const optionsStatic = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -50,6 +50,7 @@ const options = [
 ];
 
 export default () => {
+  const [options, setOptions] = useState(optionsStatic);
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
 
   const onChange = selectedOptions => {
@@ -77,11 +78,11 @@ export default () => {
         option => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
-      options.push(newOption);
+      setOptions([...options, newOption]);
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    setSelected(prevSelected => [...prevSelected, newOption]);
   };
 
   return (

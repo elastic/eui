@@ -63,21 +63,21 @@ If you want access to the Sass variables, functions, and mixins in EUI then you'
 
 ```scss
 @import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/themes/eui/eui_global.scss';
+@import '@elastic/eui/src/themes/eui/eui_globals.scss';
 ```
 
 For the dark theme, import the dark colors file before the globals.
 
 ```scss
 @import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
-@import '@elastic/eui/src/themes/eui/eui_global.scss';
+@import '@elastic/eui/src/themes/eui/eui_globals.scss';
 ```
 
 If you want to use new, but in progress Amsterdam theme, you can import it similarly.
 
 ```scss
-@import '@elastic/eui/src/themes/eui_amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/eui_amsterdam/eui_amsterdam_global.scss';
+@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
+@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';
 ```
 
 

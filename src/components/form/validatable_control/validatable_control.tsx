@@ -43,6 +43,9 @@ function isMutableRef(
 
 export interface EuiValidatableControlProps {
   isInvalid?: boolean;
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElementWithRef;
 }
 
