@@ -93,14 +93,16 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   maskProps,
   ...rest
 }) => {
+  const innerWidth = typeof window === 'undefined' ? 1024 : window.innerWidth;
+
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    window.innerWidth >= dockedBreakpoint
+    innerWidth >= dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
   const functionToCallOnWindowResize = throttle(() => {
-    if (window.innerWidth < dockedBreakpoint) {
+    if (innerWidth < dockedBreakpoint) {
       setWindowIsLargeEnoughToDock(false);
     } else {
       setWindowIsLargeEnoughToDock(true);
@@ -110,19 +112,23 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   // Watch for docked status and appropriately add/remove body classes and resize handlers
   useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
+    if (typeof window === 'undefined') {
+      return () => {};
+    } else {
+      window.addEventListener('resize', functionToCallOnWindowResize);
 
-    if (navIsDocked) {
-      document.body.classList.add('euiBody--collapsibleNavIsDocked');
-    } else if (isOpen) {
-      document.body.classList.add('euiBody--collapsibleNavIsOpen');
+      if (navIsDocked) {
+        document.body.classList.add('euiBody--collapsibleNavIsDocked');
+      } else if (isOpen) {
+        document.body.classList.add('euiBody--collapsibleNavIsOpen');
+      }
+
+      return () => {
+        document.body.classList.remove('euiBody--collapsibleNavIsDocked');
+        document.body.classList.remove('euiBody--collapsibleNavIsOpen');
+        window.removeEventListener('resize', functionToCallOnWindowResize);
+      };
     }
-
-    return () => {
-      document.body.classList.remove('euiBody--collapsibleNavIsDocked');
-      document.body.classList.remove('euiBody--collapsibleNavIsOpen');
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
   }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
 
   const onKeyDown = (event: KeyboardEvent) => {

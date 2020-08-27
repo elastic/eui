@@ -187,11 +187,13 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   ...rest
 }) => {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(window.innerWidth)
+    getBreakpoint(typeof window === 'undefined' ? 1024 : window.innerWidth)
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    const newBreakpoint = getBreakpoint(window.innerWidth);
+    const newBreakpoint = getBreakpoint(
+      typeof window === 'undefined' ? 1024 : window.innerWidth
+    );
     if (newBreakpoint !== currentBreakpoint) {
       setCurrentBreakpoint(newBreakpoint);
     }
@@ -200,11 +202,15 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
   // Add window resize handlers
   useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', functionToCallOnWindowResize);
 
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
+      return () => {
+        window.removeEventListener('resize', functionToCallOnWindowResize);
+      };
+    } else {
+      return () => {};
+    }
   }, [responsive, functionToCallOnWindowResize]);
 
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {

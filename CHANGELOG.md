@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.3.0`.
+**Bug fixes**
+
+- Fix server-side rendering of `EuiBreadcrumbs` ([#3970](https://github.com/elastic/eui/pull/3970))
 
 ## [`28.3.0`](https://github.com/elastic/eui/tree/v28.3.0)
 
