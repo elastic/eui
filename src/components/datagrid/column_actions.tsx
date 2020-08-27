@@ -94,7 +94,7 @@ export function getColumnActions(
     }
   };
 
-  const result = [];
+  const result: EuiListGroupItemProps[] = [];
   if (column.actions?.showHide !== false) {
     const option = {
       label: (
@@ -104,7 +104,7 @@ export function getColumnActions(
       iconType: 'eyeClosed',
       size: 'xs',
       color: 'text',
-    };
+    } as EuiListGroupItemProps;
     if (typeof column.actions?.showHide === 'object') {
       result.push({ ...option, ...column.actions?.showHide });
     } else {
@@ -124,7 +124,7 @@ export function getColumnActions(
       iconType: 'sortUp',
       size: 'xs',
       color: 'text',
-    };
+    } as EuiListGroupItemProps;
     if (typeof column.actions?.showSortAsc === 'object') {
       result.push({ ...option, ...column.actions?.showSortAsc });
     } else {
@@ -144,7 +144,7 @@ export function getColumnActions(
       iconType: 'sortDown',
       size: 'xs',
       color: 'text',
-    };
+    } as EuiListGroupItemProps;
     if (typeof column.actions?.showSortDesc === 'object') {
       result.push({ ...option, ...column.actions?.showSortDesc });
     } else {
@@ -160,7 +160,7 @@ export function getColumnActions(
       color: 'text',
       onClick: onClickMoveLeft,
       isDisabled: colIdx === 0,
-    };
+    } as EuiListGroupItemProps;
     if (typeof column.actions?.showMoveLeft === 'object') {
       result.push({ ...option, ...column.actions?.showMoveLeft });
     } else {
@@ -178,7 +178,7 @@ export function getColumnActions(
       color: 'text',
       onClick: onClickMoveRight,
       isDisabled: colIdx === columns.length - 1,
-    };
+    } as EuiListGroupItemProps;
     if (typeof column.actions?.showMoveRight === 'object') {
       result.push({ ...option, ...column.actions?.showMoveRight });
     } else {
@@ -191,5 +191,5 @@ export function getColumnActions(
       ...column.actions?.additional,
     ] as EuiListGroupItemProps[];
   }
-  return result as EuiListGroupItemProps[];
+  return result;
 }
