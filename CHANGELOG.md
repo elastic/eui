@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `28.3.0`.
+
+## [`28.3.0`](https://github.com/elastic/eui/tree/v28.3.0)
+
 - Adjusted coloring of `EuiSideNav` to be more consistent across open states ([#3926](https://github.com/elastic/eui/pull/3926))
 - Added build-specific babel configurations for docs and tests ([#3911](https://github.com/elastic/eui/pull/3911))
 - Updated browserslist configuration to remove IE accommodations ([#3911](https://github.com/elastic/eui/pull/3911))
