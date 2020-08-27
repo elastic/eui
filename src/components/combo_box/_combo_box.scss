@@ -25,7 +25,7 @@
     @include euiFormControlLayoutPadding(1); /* 2 */
 
     .euiComboBoxPill {
-      $inputMinWidth: 14px;
+      $inputMinWidth: $euiSize;
 
       // Ensure the input doesn't drop to the next line when the EuiBadge has a very long text
       // Overrides the default EuiBadge max-width that is 100%
