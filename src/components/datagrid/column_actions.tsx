@@ -162,7 +162,7 @@ export function getColumnActions(
       isDisabled: colIdx === 0,
     } as EuiListGroupItemProps;
     if (typeof column.actions?.showMoveLeft === 'object') {
-      result.push({ ...option, ...column.actions?.showMoveLeft });
+      result.push({ ...option, ...column.actions.showMoveLeft });
     } else {
       result.push(option);
     }
@@ -180,7 +180,7 @@ export function getColumnActions(
       isDisabled: colIdx === columns.length - 1,
     } as EuiListGroupItemProps;
     if (typeof column.actions?.showMoveRight === 'object') {
-      result.push({ ...option, ...column.actions?.showMoveRight });
+      result.push({ ...option, ...column.actions.showMoveRight });
     } else {
       result.push(option);
     }
