@@ -303,7 +303,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       )}
       {columnOptions && columnOptions.length && (
         <EuiPopover
-          id={`${screenReaderId}_popover`}
           className="euiDataGridHeaderCell__popover"
           panelPaddingSize="none"
           anchorPosition="downRight"
