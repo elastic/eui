@@ -18,17 +18,17 @@
  */
 
 import React, {
+  cloneElement,
   FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
   ReactNode,
   useEffect,
   useState,
-  HTMLAttributes,
-  ReactElement,
-  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, keys, htmlIdGenerator } from '../../services';
+import { EuiWindowEvent, htmlIdGenerator, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { CommonProps } from '../common';
@@ -93,17 +93,15 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   maskProps,
   ...rest
 }) => {
-  const innerWidth =
-    typeof window === 'undefined' ? -Infinity : window.innerWidth;
-
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    innerWidth >= dockedBreakpoint
+    (typeof window === 'undefined' ? -Infinity : window.innerWidth) >=
+      dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
   const functionToCallOnWindowResize = throttle(() => {
-    if (innerWidth < dockedBreakpoint) {
+    if (window.innerWidth < dockedBreakpoint) {
       setWindowIsLargeEnoughToDock(false);
     } else {
       setWindowIsLargeEnoughToDock(true);
@@ -113,23 +111,19 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   // Watch for docked status and appropriately add/remove body classes and resize handlers
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return () => {};
-    } else {
-      window.addEventListener('resize', functionToCallOnWindowResize);
+    window.addEventListener('resize', functionToCallOnWindowResize);
 
-      if (navIsDocked) {
-        document.body.classList.add('euiBody--collapsibleNavIsDocked');
-      } else if (isOpen) {
-        document.body.classList.add('euiBody--collapsibleNavIsOpen');
-      }
-
-      return () => {
-        document.body.classList.remove('euiBody--collapsibleNavIsDocked');
-        document.body.classList.remove('euiBody--collapsibleNavIsOpen');
-        window.removeEventListener('resize', functionToCallOnWindowResize);
-      };
+    if (navIsDocked) {
+      document.body.classList.add('euiBody--collapsibleNavIsDocked');
+    } else if (isOpen) {
+      document.body.classList.add('euiBody--collapsibleNavIsOpen');
     }
+
+    return () => {
+      document.body.classList.remove('euiBody--collapsibleNavIsDocked');
+      document.body.classList.remove('euiBody--collapsibleNavIsOpen');
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
   }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
 
   const onKeyDown = (event: KeyboardEvent) => {

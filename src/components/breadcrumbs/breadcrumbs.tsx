@@ -22,8 +22,8 @@ import React, {
   FunctionComponent,
   MouseEventHandler,
   ReactNode,
-  useState,
   useEffect,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
@@ -34,7 +34,7 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { getBreakpoint, EuiBreakpointSize } from '../../services/breakpoint';
+import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
@@ -186,14 +186,12 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   max = 5,
   ...rest
 }) => {
-  const innerWidth =
-    typeof window === 'undefined' ? -Infinity : window.innerWidth;
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(innerWidth)
+    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    const newBreakpoint = getBreakpoint(innerWidth);
+    const newBreakpoint = getBreakpoint(window.innerWidth);
     if (newBreakpoint !== currentBreakpoint) {
       setCurrentBreakpoint(newBreakpoint);
     }
@@ -202,15 +200,11 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
   // Add window resize handlers
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', functionToCallOnWindowResize);
+    window.addEventListener('resize', functionToCallOnWindowResize);
 
-      return () => {
-        window.removeEventListener('resize', functionToCallOnWindowResize);
-      };
-    } else {
-      return () => {};
-    }
+    return () => {
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
   }, [responsive, functionToCallOnWindowResize]);
 
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
