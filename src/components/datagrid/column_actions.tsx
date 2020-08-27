@@ -34,6 +34,7 @@ export function getColumnActions(
     return [];
   }
   const colIdx = columns.findIndex(col => col.id === column.id);
+
   const sortingIdx = sorting
     ? sorting.columns.findIndex(col => col.id === column.id)
     : -1;
@@ -42,26 +43,36 @@ export function getColumnActions(
       return;
     }
 
-    const newSorting =
-      sortingIdx >= 0
-        ? //replace existing entry
-          Object.values({
-            ...sorting.columns,
-            [sortingIdx]: {
-              id: column.id,
-              direction: direction,
-            },
-          })
-        : //append entry
-          [
-            ...sorting.columns,
-            {
-              id: column.id,
-              direction: direction,
-            },
-          ];
-
-    sorting.onSort(newSorting as EuiDataGridSorting['columns']);
+    if (
+      sortingIdx >= 0 &&
+      sorting.columns[sortingIdx]?.direction === direction
+    ) {
+      // unsort if the same current and new direction are same
+      const newColumns = sorting.columns.filter(
+        (val, idx) => idx !== sortingIdx
+      );
+      sorting.onSort(newColumns);
+    } else if (sortingIdx >= 0) {
+      // replace existing sort
+      const newColumns = Object.values({
+        ...sorting.columns,
+        [sortingIdx]: {
+          id: column.id,
+          direction: direction,
+        },
+      });
+      sorting.onSort(newColumns as EuiDataGridSorting['columns']);
+    } else {
+      // add new sort
+      const newColumns = [
+        ...sorting.columns,
+        {
+          id: column.id,
+          direction: direction,
+        },
+      ];
+      sorting.onSort(newColumns as EuiDataGridSorting['columns']);
+    }
   };
   const onClickHideColumn = () =>
     setVisibleColumns(
@@ -119,8 +130,10 @@ export function getColumnActions(
       ),
       onClick: onClickSortAsc,
       isDisabled: column.isSortable === false,
-      isActive:
-        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'asc',
+      className:
+        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'asc'
+          ? 'euiDataGridHeader__action--selected'
+          : '',
       iconType: 'sortUp',
       size: 'xs',
       color: 'text',
@@ -139,8 +152,10 @@ export function getColumnActions(
       ),
       onClick: onClickSortDesc,
       isDisabled: column.isSortable === false,
-      isActive:
-        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'desc',
+      className:
+        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'desc'
+          ? 'euiDataGridHeader__action--selected'
+          : '',
       iconType: 'sortDown',
       size: 'xs',
       color: 'text',

@@ -56,6 +56,11 @@
   }
 }
 
+.euiDataGridHeader__action--selected {
+  // sass-lint:disable-block no-important
+  font-weight: $euiFontWeightBold !important;
+}
+
 // Header alternates
 // Often these need extra specificity because they need to gracefully clash with the border settings
 

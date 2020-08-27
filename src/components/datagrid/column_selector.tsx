@@ -294,12 +294,12 @@ export const useColumnSelector = (
   const switchColumnPos = (fromColId: string, toColId: string) => {
     const moveFromIdx = sortedColumns.indexOf(fromColId);
     const moveToIdx = sortedColumns.indexOf(toColId);
-
-    const nextSortedColumns = Object.values({
-      ...sortedColumns,
-      [moveFromIdx]: toColId,
-      [moveToIdx]: fromColId,
-    }) as string[];
+    if (moveFromIdx === -1 || moveToIdx === -1) {
+      return;
+    }
+    const nextSortedColumns = [...sortedColumns];
+    nextSortedColumns.splice(moveFromIdx, 1);
+    nextSortedColumns.splice(moveToIdx, 0, fromColId);
     setColumns(nextSortedColumns);
   };
 
