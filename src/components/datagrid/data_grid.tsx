@@ -633,17 +633,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       const [{ target }] = records;
 
       // find the wrapping header div
-      let headerRow = null;
-      let currentRow = target.parentElement;
-      while (!headerRow && currentRow) {
-        if (
-          currentRow &&
-          currentRow.getAttribute('data-test-subj') === 'dataGridHeader'
-        ) {
-          headerRow = currentRow;
-        } else {
-          currentRow = currentRow.parentElement;
-        }
+      let headerRow = target.parentElement;
+      while (
+        headerRow &&
+        (headerRow.getAttribute('data-test-subj') || '').indexOf(
+          'dataGridHeader'
+        ) === -1
+      ) {
+        headerRow = headerRow.parentElement;
       }
 
       if (headerRow) {
