@@ -269,7 +269,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     index,
   ]);
 
-  const columnOptions = getColumnActions(
+  const columnActions = getColumnActions(
     column,
     columns,
     setVisibleColumns,
@@ -277,6 +277,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     sorting,
     switchColumnPos
   );
+
+  const showColumnActions = columnActions && columnActions.length > 0;
 
   return (
     <div
@@ -301,7 +303,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           <div id={screenReaderId}>{sortString}</div>
         </EuiScreenReaderOnly>
       )}
-      {columnOptions && columnOptions.length && (
+      {showColumnActions && (
         <EuiPopover
           className="euiDataGridHeaderCell__popover"
           panelPaddingSize="none"
@@ -317,7 +319,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           closePopover={() => setIsPopoverOpen(false)}
           ownFocus>
           <div>
-            <EuiListGroup listItems={columnOptions} gutterSize="none" />
+            <EuiListGroup listItems={columnActions} gutterSize="none" />
           </div>
         </EuiPopover>
       )}

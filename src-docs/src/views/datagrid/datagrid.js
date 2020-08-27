@@ -79,6 +79,7 @@ const columns = [
     defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
+    actions: false,
   },
 ];
 
