@@ -180,7 +180,7 @@ export function getColumnActions(
       isDisabled: colIdx === columns.length - 1,
     };
     if (typeof column.actions?.showMoveRight === 'object') {
-      result.push({ ...option, ...column.actions?.showMoveRight });
+      result.push({ ...option, ...column.actions.showMoveRight });
     } else {
       result.push(option);
     }
