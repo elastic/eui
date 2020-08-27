@@ -93,7 +93,8 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   maskProps,
   ...rest
 }) => {
-  const innerWidth = typeof window === 'undefined' ? 1024 : window.innerWidth;
+  const innerWidth =
+    typeof window === 'undefined' ? Infinity : window.innerWidth;
 
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
