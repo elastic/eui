@@ -162,7 +162,7 @@ export function getColumnActions(
       isDisabled: colIdx === 0,
     };
     if (typeof column.actions?.showMoveLeft === 'object') {
-      result.push({ ...option, ...column.actions?.showMoveLeft });
+      result.push({ ...option, ...column.actions.showMoveLeft });
     } else {
       result.push(option);
     }
