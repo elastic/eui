@@ -86,6 +86,15 @@ export const useColumnSelector = (
 
   const [isOpen, setIsOpen] = useState(false);
 
+  function setColumns(nextColumns: string[]) {
+    setSortedColumns(nextColumns);
+
+    const nextVisibleColumns = nextColumns.filter(id =>
+      visibleColumnIds.has(id)
+    );
+    setVisibleColumns(nextVisibleColumns);
+  }
+
   function onDragEnd({
     source: { index: sourceIndex },
     destination,
@@ -96,12 +105,7 @@ export const useColumnSelector = (
       sourceIndex,
       destinationIndex
     );
-    setSortedColumns(nextSortedColumns);
-
-    const nextVisibleColumns = nextSortedColumns.filter(id =>
-      visibleColumnIds.has(id)
-    );
-    setVisibleColumns(nextVisibleColumns);
+    setColumns(nextSortedColumns);
   }
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
@@ -296,11 +300,7 @@ export const useColumnSelector = (
       [moveFromIdx]: toColId,
       [moveToIdx]: fromColId,
     }) as string[];
-    setSortedColumns(nextSortedColumns);
-    const nextVisibleColumns = nextSortedColumns.filter(columnId =>
-      visibleColumnIds.has(columnId)
-    );
-    setVisibleColumns(nextVisibleColumns);
+    setColumns(nextSortedColumns);
   };
 
   return [
