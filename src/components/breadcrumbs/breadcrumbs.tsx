@@ -187,7 +187,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   ...rest
 }) => {
   const innerWidth =
-    typeof window === 'undefined' ? Infinity : window.innerWidth;
+    typeof window === 'undefined' ? -Infinity : window.innerWidth;
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
     getBreakpoint(innerWidth)
   );
