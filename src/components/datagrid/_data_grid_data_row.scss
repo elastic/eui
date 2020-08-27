@@ -48,6 +48,7 @@
       display: flex;
       width: inherit;
       visibility: visible;
+      background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
     }
   }
 
@@ -129,7 +130,6 @@
   &-isActive {
     width: inherit;
     visibility: visible;
-    background: $euiColorPrimary;
   }
 }
 
