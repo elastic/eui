@@ -38,6 +38,7 @@ import tabbable from 'tabbable';
 import { EuiDataGridColumn } from './data_grid_types';
 import { EuiButtonIcon } from '../button/button_icon';
 import { getColumnActions } from './column_actions';
+import { useEuiI18n } from '../i18n';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
@@ -77,6 +78,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
   const screenReaderId = htmlIdGenerator()();
   let sortString;
+  const actionButtonAriaLabel = useEuiI18n(
+    'euiDataGridHeaderCell.headerActions',
+    'Header actions'
+  );
 
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -306,7 +311,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             <EuiButtonIcon
               onClick={() => setIsPopoverOpen(true)}
               iconType="arrowDown"
-              aria-label={'Header actions'}
+              aria-label={actionButtonAriaLabel}
             />
           }
           isOpen={isPopoverOpen}
