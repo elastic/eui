@@ -200,13 +200,25 @@ export class EuiAccordion extends Component<
       'euiAccordion__icon-isOpen': isOpen,
     });
 
-    let icon;
+    const iconWrapperClasses = classNames('euiAccordion__iconWrapper', {
+      euiAccordion__iconButton: extraAction && arrowDisplay === 'right',
+    });
+
+    let baseIcon;
     if (arrowDisplay !== 'none') {
-      icon = (
-        <span className="euiAccordion__iconWrapper">
-          <EuiIcon className={iconClasses} type="arrowRight" size="m" />
-        </span>
+      baseIcon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
+    }
+
+    let icon;
+    let iconButton;
+    if (extraAction && arrowDisplay === 'right') {
+      iconButton = (
+        <button className={iconWrapperClasses} onClick={this.onToggle}>
+          {baseIcon}
+        </button>
       );
+    } else {
+      icon = <span className={iconWrapperClasses}>{baseIcon}</span>;
     }
 
     let optionalAction = null;
@@ -260,6 +272,7 @@ export class EuiAccordion extends Component<
             </span>
           </button>
           {optionalAction}
+          {iconButton}
         </div>
 
         <div
