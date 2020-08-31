@@ -129,4 +129,65 @@ describe('EuiSelectable', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  describe('custom options', () => {
+    test('optional properties', () => {
+      type OptionalOption = EuiSelectableOption<{ value?: string }>;
+      const options: OptionalOption[] = [
+        {
+          label: 'Titan',
+          'data-test-subj': 'titanOption',
+          value: 'titan',
+        },
+        {
+          label: 'Enceladus',
+          value: 'enceladus',
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+        },
+      ];
+
+      const onChange = (options: OptionalOption[]) => {
+        jest.fn(() => options);
+      };
+
+      const component = render(
+        <EuiSelectable<OptionalOption> options={options} onChange={onChange} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('required properties', () => {
+      type ExtendedOption = EuiSelectableOption<{ value: string }>;
+      const options: ExtendedOption[] = [
+        {
+          label: 'Titan',
+          'data-test-subj': 'titanOption',
+          value: 'titan',
+        },
+        {
+          label: 'Enceladus',
+          value: 'enceladus',
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          value: 'pandora',
+        },
+      ];
+
+      const onChange = (options: ExtendedOption[]) => {
+        jest.fn(() => options);
+      };
+
+      const component = render(
+        <EuiSelectable<ExtendedOption> options={options} onChange={onChange} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
