@@ -24,6 +24,14 @@
     // to override the padding added above
     @include euiFormControlLayoutPadding(1); /* 2 */
 
+    .euiComboBoxPill {
+      $inputMinWidth: $euiSize;
+
+      // Ensure the input doesn't drop to the next line when the EuiBadge has a very long text
+      // Overrides the default EuiBadge max-width that is 100%
+      max-width: calc(100% - #{$euiSizeXS * .5} - #{$inputMinWidth});
+    }
+
     &:not(.euiComboBox__inputWrap--noWrap) {
       padding-top: $euiSizeXS;
       padding-bottom: $euiSizeXS;
@@ -95,6 +103,9 @@
       line-height: $euiFormControlCompressedHeight; /* 2 */
       padding-top: 0;
       padding-bottom: 0;
+
+      // sass-lint:disable-block mixins-before-declarations
+      @include euiFormControlLayoutPadding(1, $compressed: true); /* 2 */
 
       &.euiComboBox__inputWrap-isClearable {
         @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
