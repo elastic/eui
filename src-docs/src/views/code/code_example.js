@@ -24,9 +24,28 @@ import CodeBlockPre from './code_block_pre';
 const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
 const codeBlockPreHtml = renderToHtml(CodeBlockPre);
 
+import CodeBlockPrism from './code_prism';
+const codeBlockPrismSource = require('!!raw-loader!./code_prism');
+const codeBlockPrismHtml = renderToHtml(CodeBlockPrism);
+
 export const CodeExample = {
   title: 'Code',
   sections: [
+    {
+      title: 'Prism',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockPrismSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: codeBlockPrismHtml,
+        },
+      ],
+      text: <p>Prism</p>,
+      demo: <CodeBlockPrism />,
+    },
     {
       title: 'Inline',
       source: [

@@ -54,7 +54,12 @@ export { EuiCallOut } from './call_out';
 
 export { EuiCard, EuiCheckableCard } from './card';
 
-export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
+export {
+  EuiCode,
+  EuiCodeBlock,
+  EuiCodeBlockImpl,
+  EuiCodeBlockPrism,
+} from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
