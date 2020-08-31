@@ -11,7 +11,7 @@
     width: $euiSizeL !important;
   }
 
-  .euiResizablePanel--collapsible > *:not(button) {
+  .euiResizablePanel--collapsible > *:not(.euiResizablePanel__toggleButton) {
     display: none;
   }
 

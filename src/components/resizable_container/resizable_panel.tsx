@@ -183,11 +183,16 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     setIsCollapsed(value => !value);
   };
 
-  // Use the default object if they simply passed `true` for toggling
-  const toggeObject =
+  // Use the default object if they simply passed `true` for toggle
+  const toggleObject =
     typeof toggle === 'object'
       ? { ...toggleDefault, ...toggle }
       : toggleDefault;
+
+  const toggleButtonClasses = classNames(
+    'euiResizablePanel__toggleButton',
+    toggleObject && toggleObject.className
+  );
 
   return (
     <div
@@ -203,12 +208,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           {(toggleButtonAriaLabel: string) => (
             <EuiButtonIcon
               color="text"
-              className={toggeObject.className}
+              className={toggleButtonClasses}
               aria-label={toggleButtonAriaLabel}
               iconType={
                 isCollapsed
-                  ? toggeObject.collapsedIcon
-                  : toggeObject.notCollapsedIcon
+                  ? toggleObject.collapsedIcon
+                  : toggleObject.notCollapsedIcon
               }
               onClick={onClickCollapse}
             />

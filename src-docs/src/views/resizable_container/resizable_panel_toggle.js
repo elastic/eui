@@ -54,14 +54,14 @@ export default () => {
       <EuiResizableContainer style={{ minHeight: '320px' }}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
-            <EuiResizablePanel toggle={true} initialSize={20} minSize="10%">
-              <EuiListGroup flush={true}>{itemElements}</EuiListGroup>
+            <EuiResizablePanel toggle initialSize={20} minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
 
             <EuiResizableButton />
 
             <EuiResizablePanel willExpand initialSize={80} minSize="50px">
-              <EuiPanel paddingSize="l" style={{ height: '280px' }}>
+              <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
                 <EuiTitle>
                   <p>{itemSelected.label}</p>
                 </EuiTitle>

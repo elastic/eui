@@ -171,7 +171,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
   >
     <button
       aria-label="Press to toggle this panel"
-      class="euiButtonIcon euiButtonIcon--text"
+      class="euiButtonIcon euiButtonIcon--text euiResizablePanel__toggleButton"
       type="button"
     >
       <div
