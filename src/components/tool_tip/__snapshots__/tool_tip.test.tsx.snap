@@ -15,7 +15,6 @@ exports[`EuiToolTip shows tooltip on focus 1`] = `
   class="euiToolTipAnchor"
 >
   <button
-    aria-describedby="id"
     data-test-subj="trigger"
   >
     Trigger
