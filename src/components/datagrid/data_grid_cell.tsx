@@ -383,7 +383,7 @@ export class EuiDataGridCell extends Component<
         {(expandButtonTitle: string) => (
           <EuiButtonIcon
             className={buttonIconClasses}
-            color="text"
+            color="ghost"
             iconSize="s"
             iconType="expandMini"
             aria-hidden
