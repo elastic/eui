@@ -96,7 +96,7 @@ export interface EuiDataGridColumnWidths {
 export type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
 export type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
 export type EuiDataGridStyleHeader = 'shade' | 'underline';
-export type EuiDataGridStyleFooter = 'shade' | 'overline';
+export type EuiDataGridStyleFooter = 'shade' | 'overline' | 'striped';
 export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 

@@ -2,7 +2,7 @@
   display: inline-flex;
   min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
   z-index: 3; // Needs to sit above the content and focused cells
-  background: $euiColorLightestShade;
+  background: $euiColorEmptyShade;
   position: sticky; // In IE11 this does not work, but doesn't cause a break.
   top: 0;
 }
