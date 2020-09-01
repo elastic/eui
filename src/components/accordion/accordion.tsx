@@ -217,7 +217,7 @@ export class EuiAccordion extends Component<
           {baseIcon}
         </button>
       );
-    } else {
+    } else if (arrowDisplay !== 'none') {
       icon = <span className={iconWrapperClasses}>{baseIcon}</span>;
     }
 
