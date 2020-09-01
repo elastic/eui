@@ -3,7 +3,7 @@
 **Bug fixes**
 
 - Fixed bug in `EuiComboBox` where the input was dropping to the next line when a `EuiBadge` had a very long text ([#3968](https://github.com/elastic/eui/pull/3968))
-- Fix server-side rendering of `EuiBreadcrumbs` ([#3970](https://github.com/elastic/eui/pull/3970))
+- Fix server-side rendering of `EuiBreadcrumbs` and `EuiCollapsibleNav` ([#3970](https://github.com/elastic/eui/pull/3970))
 
 ## [`28.3.0`](https://github.com/elastic/eui/tree/v28.3.0)
 

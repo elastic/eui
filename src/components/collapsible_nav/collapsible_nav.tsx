@@ -95,7 +95,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    (typeof window === 'undefined' ? -Infinity : window.innerWidth) >=
+    (typeof window === 'undefined' ? Infinity : window.innerWidth) >=
       dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
