@@ -1,3 +1,23 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+
 const argparse = require('argparse');
 const chalk = require('chalk');
 const fs = require('fs');
@@ -85,28 +105,28 @@ if (args.dry_run) {
 
 function parseArguments() {
   const parser = new argparse.ArgumentParser({
-    addHelp: true,
+    add_help: true,
     description: 'Tag and publish a new version of EUI',
   });
 
-  parser.addArgument('--type', {
+  parser.add_argument('--type', {
     help: 'Version type; can be "major", "minor" or "patch"',
     choices: Object.values(humanReadableTypes),
   });
 
-  parser.addArgument('--dry-run', {
-    action: 'storeTrue',
-    defaultValue: false,
+  parser.add_argument('--dry-run', {
+    action: 'store_true',
+    default: false,
     help: 'Dry run mode; no changes are made',
   });
 
   const allSteps = ['test', 'build', 'version', 'tag', 'publish', 'docs'];
-  parser.addArgument('--steps', {
+  parser.add_argument('--steps', {
     help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
     defaultValue: allSteps.join(','),
   });
 
-  const args = parser.parseArgs();
+  const args = parser.parse_args();
 
   // validate --steps argument
   const steps = args.steps.split(',').map(step => step.trim());
