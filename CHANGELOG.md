@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed bug in `EuiComboBox` where the input was dropping to the next line when a `EuiBadge` had a very long text ([#3968](https://github.com/elastic/eui/pull/3968))
+- Fixed bug in `EuiAccordion` where the `arrowDisplay="right"` is ignored when `extraAction` is configured ([#3968](https://github.com/elastic/eui/pull/3971))
 
 ## [`28.3.0`](https://github.com/elastic/eui/tree/v28.3.0)
 
