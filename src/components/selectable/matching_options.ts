@@ -19,36 +19,36 @@
 
 import { EuiSelectableOption } from './selectable_option';
 
-const getSearchableLabel = (
-  option: EuiSelectableOption,
+const getSearchableLabel = <T>(
+  option: EuiSelectableOption<T>,
   normalize: boolean = true
 ): string => {
   const searchableLabel = option.searchableLabel || option.label;
   return normalize ? searchableLabel.trim().toLowerCase() : searchableLabel;
 };
 
-const getSelectedOptionForSearchValue = (
+const getSelectedOptionForSearchValue = <T>(
   searchValue: string,
-  selectedOptions: EuiSelectableOption[]
+  selectedOptions: Array<EuiSelectableOption<T>>
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    option => getSearchableLabel(option) === normalizedSearchValue
+    option => getSearchableLabel<T>(option) === normalizedSearchValue
   );
 };
 
-const collectMatchingOption = (
-  accumulator: EuiSelectableOption[],
-  option: EuiSelectableOption,
+const collectMatchingOption = <T>(
+  accumulator: Array<EuiSelectableOption<T>>,
+  option: EuiSelectableOption<T>,
   normalizedSearchValue: string,
   isPreFiltered?: boolean,
-  selectedOptions?: EuiSelectableOption[]
+  selectedOptions?: Array<EuiSelectableOption<T>>
 ) => {
   // Don't show options that have already been requested if
   // the selectedOptions list exists
   if (selectedOptions) {
-    const selectedOption = getSelectedOptionForSearchValue(
-      getSearchableLabel(option, false),
+    const selectedOption = getSelectedOptionForSearchValue<T>(
+      getSearchableLabel<T>(option, false),
       selectedOptions
     );
     if (selectedOption) {
@@ -68,17 +68,17 @@ const collectMatchingOption = (
     return;
   }
 
-  const normalizedOption = getSearchableLabel(option);
+  const normalizedOption = getSearchableLabel<T>(option);
   if (normalizedOption.includes(normalizedSearchValue)) {
     accumulator.push(option);
   }
 };
 
-export const getMatchingOptions = (
+export const getMatchingOptions = <T>(
   /**
    * All available options to match against
    */
-  options: EuiSelectableOption[],
+  options: Array<EuiSelectableOption<T>>,
   /**
    * String to match option.label || option.searchableLabel against
    */
@@ -91,13 +91,13 @@ export const getMatchingOptions = (
    * To exclude selected options from the search list,
    * pass the array of selected options
    */
-  selectedOptions?: EuiSelectableOption[]
+  selectedOptions?: Array<EuiSelectableOption<T>>
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
-  const matchingOptions: EuiSelectableOption[] = [];
+  const matchingOptions: Array<EuiSelectableOption<T>> = [];
 
   options.forEach(option => {
-    collectMatchingOption(
+    collectMatchingOption<T>(
       matchingOptions,
       option,
       normalizedSearchValue,
