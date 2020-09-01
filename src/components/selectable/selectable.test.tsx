@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount, render } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiSelectable } from './selectable';
 import { EuiSelectableOption } from './selectable_option';
@@ -153,11 +153,15 @@ describe('EuiSelectable', () => {
         jest.fn(() => options);
       };
 
-      const component = render(
-        <EuiSelectable<OptionalOption> options={options} onChange={onChange} />
+      const component = mount(
+        <EuiSelectable<OptionalOption> options={options} onChange={onChange}>
+          {list => list}
+        </EuiSelectable>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(
+        (component.find('EuiSelectableList').props() as any).visibleOptions
+      ).toEqual(options);
     });
 
     test('required properties', () => {
@@ -183,11 +187,17 @@ describe('EuiSelectable', () => {
         jest.fn(() => options);
       };
 
-      const component = render(
-        <EuiSelectable<ExtendedOption> options={options} onChange={onChange} />
+      const component = mount(
+        <EuiSelectable<ExtendedOption> options={options} onChange={onChange}>
+          {list => list}
+        </EuiSelectable>
       );
 
-      expect(component).toMatchSnapshot();
+      component.update();
+
+      expect(
+        (component.find('EuiSelectableList').props() as any).visibleOptions
+      ).toEqual(options);
     });
   });
 });

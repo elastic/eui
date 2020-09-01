@@ -1,17 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSelectable custom options optional properties 1`] = `
-<div
-  class="euiSelectable"
-/>
-`;
-
-exports[`EuiSelectable custom options required properties 1`] = `
-<div
-  class="euiSelectable"
-/>
-`;
-
 exports[`EuiSelectable is rendered 1`] = `
 <div
   class="euiSelectable testClass1 testClass2"
