@@ -5,7 +5,7 @@ import { EuiAccordion, EuiButton, EuiSpacer } from '../../../../src/components';
 export default () => (
   <>
     <EuiAccordion
-      id="accordionExtra"
+      id="accordionExtraWithLeftArrow"
       buttonContent="Click to open (Arrow on the left)"
       extraAction={<EuiButton size="s">Extra action!</EuiButton>}
       paddingSize="l">
@@ -15,7 +15,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiAccordion
-      id="accordionExtra"
+      id="accordionExtraWithRightArrow"
       arrowDisplay="right"
       buttonContent="Click to open (Arrow on the right)"
       extraAction={<EuiButton size="s">Extra action!</EuiButton>}
@@ -26,7 +26,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiAccordion
-      id="accordionExtra"
+      id="accordionExtraWithoutArrow"
       arrowDisplay="none"
       buttonContent="Click to open"
       extraAction={<EuiButton size="s">Extra action!</EuiButton>}
