@@ -212,7 +212,12 @@ export class EuiAccordion extends Component<
     let iconButton;
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
-        <button className={iconWrapperClasses} onClick={this.onToggle}>
+        <button
+          aria-controls={id}
+          aria-expanded={isOpen}
+          aria-label="Accordion Toggle Arrow"
+          className={iconWrapperClasses}
+          onClick={this.onToggle}>
           {baseIcon}
         </button>
       );
