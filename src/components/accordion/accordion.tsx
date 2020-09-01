@@ -72,7 +72,6 @@ export type EuiAccordionProps = CommonProps &
     paddingSize?: EuiAccordionSize;
     /**
      * Placement of the arrow indicator, or 'none' to hide it.
-     * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
      */
     arrowDisplay?: 'left' | 'right' | 'none';
     /**
