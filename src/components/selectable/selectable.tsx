@@ -51,7 +51,7 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
   Partial<OptionalEuiSelectableOptionsListProps>;
 
 // `searchProps` can only be specified when `searchable` is true
-type EuiSelectableSearchableProps = ExclusiveUnion<
+type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
     searchable: false;
   },
@@ -63,13 +63,13 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
     /**
      * Passes props down to the `EuiFieldSearch`
      */
-    searchProps?: Partial<EuiSelectableSearchProps>;
+    searchProps?: Partial<EuiSelectableSearchProps<T>>;
   }
 >;
 
-export type EuiSelectableProps = CommonProps &
+export type EuiSelectableProps<T = {}> = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> &
-  EuiSelectableSearchableProps & {
+  EuiSelectableSearchableProps<T> & {
     /**
      * Function that takes the `list` node and then
      * the `search` node (if `searchable` is applied)
@@ -78,16 +78,16 @@ export type EuiSelectableProps = CommonProps &
       list: ReactElement<
         typeof EuiSelectableMessage | typeof EuiSelectableList
       >,
-      search: ReactElement<EuiSelectableSearch> | undefined
+      search: ReactElement<EuiSelectableSearch<T>> | undefined
     ) => ReactNode;
     /**
      * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: Array<Exclude<EuiSelectableOption, 'id'>>;
+    options: Array<EuiSelectableOption<T>>;
     /**
      * Passes back the altered `options` array with selected options as
      */
-    onChange?: (options: EuiSelectableOption[]) => void;
+    onChange?: (options: Array<EuiSelectableOption<T>>) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -118,7 +118,7 @@ export type EuiSelectableProps = CommonProps &
      * Returns `(option, searchValue)`
      */
     renderOption?: (
-      option: EuiSelectableOption,
+      option: EuiSelectableOption<T>,
       searchValue: string
     ) => ReactNode;
     /**
@@ -138,16 +138,16 @@ export type EuiSelectableProps = CommonProps &
     emptyMessage?: ReactElement | string;
   };
 
-export interface EuiSelectableState {
+export interface EuiSelectableState<T> {
   activeOptionIndex?: number;
   searchValue: string;
-  visibleOptions: EuiSelectableOption[];
+  visibleOptions: Array<EuiSelectableOption<T>>;
   isFocused: boolean;
 }
 
-export class EuiSelectable extends Component<
-  EuiSelectableProps,
-  EuiSelectableState
+export class EuiSelectable<T = {}> extends Component<
+  EuiSelectableProps<T>,
+  EuiSelectableState<T>
 > {
   static defaultProps = {
     options: [],
@@ -155,16 +155,16 @@ export class EuiSelectable extends Component<
     searchable: false,
   };
 
-  private optionsListRef = createRef<EuiSelectableList>();
+  private optionsListRef = createRef<EuiSelectableList<T>>();
   rootId = htmlIdGenerator();
-  constructor(props: EuiSelectableProps) {
+  constructor(props: EuiSelectableProps<T>) {
     super(props);
 
     const { options, singleSelection } = props;
 
     const initialSearchValue = '';
 
-    const visibleOptions = getMatchingOptions(options, initialSearchValue);
+    const visibleOptions = getMatchingOptions<T>(options, initialSearchValue);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
     const selectedOptions = options.filter(option => option.checked);
@@ -183,14 +183,14 @@ export class EuiSelectable extends Component<
     };
   }
 
-  static getDerivedStateFromProps(
-    nextProps: EuiSelectableProps,
-    prevState: EuiSelectableState
+  static getDerivedStateFromProps<T>(
+    nextProps: EuiSelectableProps<T>,
+    prevState: EuiSelectableState<T>
   ) {
     const { options } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
-    const matchingOptions = getMatchingOptions(options, searchValue);
+    const matchingOptions = getMatchingOptions<T>(options, searchValue);
 
     const stateUpdate = { visibleOptions: matchingOptions, activeOptionIndex };
 
@@ -318,7 +318,7 @@ export class EuiSelectable extends Component<
   };
 
   onSearchChange = (
-    visibleOptions: EuiSelectableOption[],
+    visibleOptions: Array<EuiSelectableOption<T>>,
     searchValue: string
   ) => {
     this.setState(
@@ -342,9 +342,9 @@ export class EuiSelectable extends Component<
     });
   };
 
-  onOptionClick = (options: EuiSelectableOption[]) => {
+  onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
     this.setState(state => ({
-      visibleOptions: getMatchingOptions(options, state.searchValue),
+      visibleOptions: getMatchingOptions<T>(options, state.searchValue),
       activeOptionIndex: this.state.activeOptionIndex,
     }));
     if (this.props.onChange) {
@@ -492,7 +492,7 @@ export class EuiSelectable extends Component<
      */
     const getAccessibleName = (
       props:
-        | Partial<EuiSelectableSearchProps>
+        | Partial<EuiSelectableSearchProps<T>>
         | EuiSelectableOptionsListPropsWithDefaults
         | undefined,
       messageContentId?: string
@@ -534,7 +534,7 @@ export class EuiSelectable extends Component<
     const search = searchable ? (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
-          <EuiSelectableSearch
+          <EuiSelectableSearch<T>
             key="listSearch"
             options={options}
             onChange={this.onSearchChange}
@@ -565,7 +565,7 @@ export class EuiSelectable extends Component<
     ) : (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
-          <EuiSelectableList
+          <EuiSelectableList<T>
             key="list"
             options={options}
             visibleOptions={visibleOptions}
