@@ -18,17 +18,17 @@
  */
 
 import React, {
+  cloneElement,
   FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
   ReactNode,
   useEffect,
   useState,
-  HTMLAttributes,
-  ReactElement,
-  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, keys, htmlIdGenerator } from '../../services';
+import { EuiWindowEvent, htmlIdGenerator, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { CommonProps } from '../common';
@@ -95,7 +95,8 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    window.innerWidth >= dockedBreakpoint
+    (typeof window === 'undefined' ? Infinity : window.innerWidth) >=
+      dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
