@@ -26,6 +26,7 @@ import { EuiIcon } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiI18n } from '../i18n';
+import { htmlIdGenerator } from '../../services';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -210,12 +211,15 @@ export class EuiAccordion extends Component<
 
     let icon;
     let iconButton;
+    const iconButtonId = htmlIdGenerator()();
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
         <button
+          id={iconButtonId}
           aria-controls={id}
           aria-expanded={isOpen}
-          aria-label="Accordion Toggle Arrow"
+          aria-labelledby={iconButtonId}
+          tabIndex={-1}
           className={iconWrapperClasses}
           onClick={this.onToggle}>
           {baseIcon}
