@@ -44,7 +44,7 @@ export const BREAKPOINT_KEYS = keysOf(BREAKPOINTS);
  * that is less than or equal to the width
  *
  * @param {number} width Can either be the full window width or any width
- * @param {EuiBreakpoints} breakpoints An object with keys for sizing and values for minimu width
+ * @param {EuiBreakpoints} breakpoints An object with keys for sizing and values for minimum width
  * @returns {string | undefined} Name of the breakpoint key or `undefined` if a key doesn't exist
  */
 export function getBreakpoint(

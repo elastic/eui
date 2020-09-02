@@ -34,8 +34,9 @@ import {
   areEqual,
 } from 'react-window';
 
-interface ListChildComponentProps extends ReactWindowListChildComponentProps {
-  data: EuiSelectableOption[];
+interface ListChildComponentProps<T>
+  extends ReactWindowListChildComponentProps {
+  data: Array<EuiSelectableOption<T>>;
 }
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
@@ -73,15 +74,15 @@ export type EuiSelectableOptionsListProps = CommonProps &
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
   };
 
-export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
+export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   /**
    * All possible options
    */
-  options: EuiSelectableOption[];
+  options: Array<EuiSelectableOption<T>>;
   /**
    * Filtered options list (if applicable)
    */
-  visibleOptions?: EuiSelectableOption[];
+  visibleOptions?: Array<EuiSelectableOption<T>>;
   /**
    * Search value to highlight on the option render
    */
@@ -89,13 +90,13 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**
    * Returns the array of options with altered checked state
    */
-  onOptionClick: (options: EuiSelectableOption[]) => void;
+  onOptionClick: (options: Array<EuiSelectableOption<T>>) => void;
   /**
    * Custom render for the label portion of the option;
    * Takes (option, searchValue), returns ReactNode
    */
   renderOption?: (
-    option: EuiSelectableOption,
+    option: EuiSelectableOption<T>,
     searchValue: string
   ) => ReactNode;
   /**
@@ -115,7 +116,7 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   setActiveOptionIndex: (index: number, cb?: () => void) => void;
 };
 
-export class EuiSelectableList extends Component<EuiSelectableListProps> {
+export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
@@ -190,11 +191,11 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     }
   }
 
-  constructor(props: EuiSelectableListProps) {
+  constructor(props: EuiSelectableListProps<T>) {
     super(props);
   }
 
-  ListRow = memo(({ data, index, style }: ListChildComponentProps) => {
+  ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
     const {
       label,
@@ -215,6 +216,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
           role="presentation"
           className="euiSelectableList__groupLabel"
           style={style}
+          // @ts-ignore complex
           {...(optionRest as HTMLAttributes<HTMLLIElement>)}>
           {prepend}
           {label}
@@ -237,7 +239,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         ref={ref ? ref.bind(null, index) : undefined}
         isFocused={this.props.activeOptionIndex === index}
         title={searchableLabel || label}
-        showIcons={this.props.showIcons}
         checked={checked}
         disabled={disabled}
         prepend={prepend}
@@ -246,6 +247,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         aria-setsize={data.length - labelCount}
         onFocusBadge={this.props.onFocusBadge}
         allowExclusions={this.props.allowExclusions}
+        // @ts-ignore complex
         {...(optionRest as EuiSelectableListItemProps)}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
@@ -340,7 +342,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     );
   }
 
-  onAddOrRemoveOption = (option: EuiSelectableOption) => {
+  onAddOrRemoveOption = (option: EuiSelectableOption<T>) => {
     if (option.disabled) {
       return;
     }
@@ -361,7 +363,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     );
   };
 
-  private onAddOption = (addedOption: EuiSelectableOption) => {
+  private onAddOption = (addedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, options, singleSelection } = this.props;
 
     const updatedOptions = options.map(option => {
@@ -382,7 +384,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onRemoveOption = (removedOption: EuiSelectableOption) => {
+  private onRemoveOption = (removedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, singleSelection, options } = this.props;
 
     const updatedOptions = options.map(option => {
@@ -398,7 +400,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onExcludeOption = (excludedOption: EuiSelectableOption) => {
+  private onExcludeOption = (excludedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
 
