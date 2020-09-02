@@ -35,4 +35,10 @@ describe('EuiHeaderLink', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('can render as specific color', () => {
+    const component = render(<EuiHeaderLink color="danger" />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -317,13 +317,13 @@ export default ({ theme }) => {
               {
                 items: [
                   <EuiHeaderLinks>
-                    <EuiHeaderLink>Share</EuiHeaderLink>
-                    <EuiHeaderLink>Clone</EuiHeaderLink>
+                    <EuiHeaderLink color="primary">Share</EuiHeaderLink>
+                    <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                     <EuiButton
                       iconType="minimize"
                       style={{ minWidth: 80 }}
                       size="s"
-                      color="secondary"
+                      color="primary"
                       onClick={() => {
                         setFullScreen(false);
                         document.body.classList.remove(
