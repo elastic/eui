@@ -3,7 +3,7 @@
 // all components that use them must be updated.
 
 // This file uses RGBA literal values responsibly
-// This file uses off-pattern indedentation to be more readible
+// This file uses off-pattern indentation to be more readable
 
 // sass-lint:disable no-color-literals, no-color-keywords, indentation, quotes
 
@@ -37,7 +37,7 @@
   }
 }
 
-// Similar to shadow medium but wihtout the bottom depth. Useful for popovers
+// Similar to shadow medium but without the bottom depth. Useful for popovers
 // that drop UP rather than DOWN.
 @mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: 0) {
   box-shadow:

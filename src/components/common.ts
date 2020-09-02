@@ -94,7 +94,7 @@ export type ApplyClassComponentDefaults<
 https://github.com/Microsoft/TypeScript/issues/28339
 Problem: Pick and Omit do not distribute over union types, which manifests when
 optional values become required after a Pick or Omit operation. These
-Distributive forms correctly operate on union types, preseving optionality.
+Distributive forms correctly operate on union types, preserving optionality.
  */
 type UnionKeys<T> = T extends any ? keyof T : never;
 export type DistributivePick<T, K extends UnionKeys<T>> = T extends any
@@ -147,7 +147,7 @@ Externally, however, you could use the component as
 
 and no error would occur as the Spanlike type is satisfied and the type guard would prevent accessing button attributes.
 This prevents immediate feedback to the develop, and would actually lead to React warnings as the `value` prop would
-still propogate down to the span's props, which is invalid. The following two utility types provide a solution for
+still propagate down to the span's props, which is invalid. The following two utility types provide a solution for
 creating exclusive unions:
 
 React.FunctionComponent<ExclusiveUnion<Spanlike, Buttonlike>>
@@ -179,7 +179,7 @@ export type ExclusiveUnion<T, U> = T | U extends object // if there are any shar
  *
  * type AnchorLike = PropsForAnchor<BaseProps>
  * type ButtonLike = PropsForButton<BaseProps>
- * type ComponentProps = ExlcusiveUnion<AnchorLike, ButtonLike>
+ * type ComponentProps = ExclusiveUnion<AnchorLike, ButtonLike>
  * const Component: FunctionComponent<ComponentProps> ...
  */
 export type PropsForAnchor<T, P = {}> = T & {
@@ -227,8 +227,8 @@ export type RecursivePartial<T> = {
     ? Set<RecursivePartial<V>>
     : T[P] extends Map<infer K, infer V> // checks for Maps
     ? Map<K, RecursivePartial<V>>
-    : T[P] extends NonAny // checks for primative values
+    : T[P] extends NonAny // checks for primitive values
     ? T[P]
-    : RecursivePartial<T[P]>; // recurse for all non-array and non-primative values
+    : RecursivePartial<T[P]>; // recurse for all non-array and non-primitive values
 };
 type NonAny = number | boolean | string | symbol | null;

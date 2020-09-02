@@ -466,7 +466,7 @@ export class EuiBasicTable<T = any> extends Component<
       },
     };
     if (this.props.onChange) {
-      // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
+      // @ts-ignore complex relationship between pagination's existence and criteria, the code logic ensures this is correctly maintained
       this.props.onChange(criteria);
     }
   }

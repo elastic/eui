@@ -378,7 +378,7 @@ export class EuiInMemoryTable<T> extends Component<
 
     if (this.props.onTableChange) {
       this.props.onTableChange({
-        // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
+        // @ts-ignore complex relationship between pagination's existence and criteria, the code logic ensures this is correctly maintained
         page,
         sort: {
           field: reportedSortName,
@@ -599,7 +599,7 @@ export class EuiInMemoryTable<T> extends Component<
     const searchBar = this.renderSearchBar();
 
     const table = (
-      // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
+      // @ts-ignore complex relationship between pagination's existence and criteria, the code logic ensures this is correctly maintained
       <EuiBasicTable
         ref={this.tableRef}
         items={items}

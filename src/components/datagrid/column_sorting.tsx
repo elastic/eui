@@ -54,7 +54,7 @@ export const useColumnSorting = (
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-  // prune any non-existant/hidden columns from sorting
+  // prune any non-existent/hidden columns from sorting
   useEffect(() => {
     if (sorting) {
       const nextSortingColumns: EuiDataGridSorting['columns'] = [];

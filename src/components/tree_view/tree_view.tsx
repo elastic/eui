@@ -48,7 +48,7 @@ export interface Node {
   /** An icon to use on the left of the label
    */
   icon?: React.ReactElement;
-  /** Display a differnt icon when the item is expanded.
+  /** Display a different icon when the item is expanded.
   For instance, an open folder or a down arrow
   */
   iconWhenExpanded?: React.ReactElement;
@@ -95,7 +95,7 @@ export type CommonTreeProps = CommonProps &
     /** Set all items to open on initial load
      */
     expandByDefault?: boolean;
-    /** Display expansion arrows next to all itmes
+    /** Display expansion arrows next to all items
      * that contain children
      */
     showExpansionArrows?: boolean;
