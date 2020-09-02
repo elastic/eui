@@ -2,6 +2,10 @@
 
 - Added `fold` and `unfold` glyphs to `EuiIcon` ([#3994](https://github.com/elastic/eui/pull/3994))
 
+**Bug fixes**
+
+- Fix incorrect `euiCodeBlockNameColor` variable usage for `.hljs-name` in SCSS ([#3991](https://github.com/elastic/eui/pull/3991))
+
 ## [`28.3.1`](https://github.com/elastic/eui/tree/v28.3.1)
 
 **Bug fixes**
