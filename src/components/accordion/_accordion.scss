@@ -1,13 +1,3 @@
-@mixin iconHightlight {
-  @include euiFocusRing;
-  color: $euiColorPrimary;
-}
-
-@mixin iconMarginAlignRight {
-  margin-left: $euiSizeS;
-  margin-right: $euiSizeXS;
-}
-
 .euiAccordion__triggerWrapper {
   display: flex;
   align-items: center;
@@ -29,7 +19,7 @@
 
   &:focus {
     .euiAccordion__iconWrapper {
-      @include iconHightlight;
+      @include euiAccordionIconFocus;
     }
   }
 }
@@ -40,15 +30,14 @@
   justify-content: space-between;
 
   .euiAccordion__iconWrapper {
-    @include iconMarginAlignRight;
+    @include euiAccordionIconMargin(right);
   }
 }
 
 .euiAccordion__iconWrapper {
   @include size($euiSize);
+  @include euiAccordionIconMargin;
   border-radius: $euiBorderRadius;
-  margin-right: $euiSizeS;
-  margin-left: $euiSizeXS;
   flex-shrink: 0;
 
   // Nested to override EuiIcon
@@ -63,10 +52,10 @@
 }
 
 .euiAccordion__iconButton {
-  @include iconMarginAlignRight;
+  @include euiAccordionIconMargin(right);
 
   &:focus {
-    @include iconHightlight;
+    @include euiAccordionIconFocus;
   }
 }
 
