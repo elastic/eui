@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiColorPicker,
+  EuiColorPaletteDisplay,
   EuiColorPalettePicker,
   EuiColorStops,
   EuiSpacer,
@@ -31,7 +32,15 @@ const colorPickerSnippet = `<EuiColorPicker
 />
 `;
 
-import { ColorPalettePicker } from './color_palette_picker';
+import ColorPaletteDisplay from './color_palette_display';
+const colorPaletteDisplaySource = require('!!raw-loader!./color_palette_picker');
+const colorPaletteDisplayHtml = renderToHtml(ColorPaletteDisplay);
+const colorPaletteDisplaySnippet = `<EuiColorPaletteDisplay
+  palette={euiPaletteColorBlind()}
+/>
+`;
+
+import ColorPalettePicker from './color_palette_picker';
 const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
 const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
 const colorPalettePickerSnippet = `<EuiColorPalettePicker
@@ -328,6 +337,33 @@ export const ColorPickerExample = {
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
       demo: <ColorPicker />,
+    },
+    {
+      title: 'Color palette display',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Use <strong>EuiColorPaletteDisplay</strong> to display a palette.
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorPaletteDisplaySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorPaletteDisplayHtml,
+        },
+      ],
+      props: {
+        EuiColorPaletteDisplay,
+      },
+      snippet: colorPaletteDisplaySnippet,
+      demo: <ColorPaletteDisplay />,
     },
     {
       title: 'Color palette picker',

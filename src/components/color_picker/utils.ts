@@ -222,9 +222,7 @@ export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
 
     // if there's only one palette with stop
     if (palette.length === 1) {
-      return `linear-gradient(to right, ${paletteColorStop[0].color} 0%, ${
-        paletteColorStop[0].color
-      }\ ${Math.floor(paletteColorStop[0].stop * decimal)}%)`;
+      return `linear-gradient(to right, ${paletteColorStop[0].color} 0%, ${paletteColorStop[0].color}\ 100%)`;
     }
 
     for (let i = 0; i < intervals; i++) {
@@ -253,6 +251,11 @@ export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
 
     return fixedLinearGradient;
   } else {
+    // if there's only one palette
+    if (palette.length === 1) {
+      return `linear-gradient(to right, ${palette[0]} 0%, ${palette[0]}\ 100%)`;
+    }
+
     for (let i = 0; i < intervals; i++) {
       const initialColorStop = `${palette[0]} 0%, ${palette[0]}\ ${Math.floor(
         (100 * 1) / intervals

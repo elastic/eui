@@ -44,10 +44,6 @@ export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayPro
     type === 'fixed'
       ? getFixedLinearGradient(palette)
       : getLinearGradient(palette);
-  return (
-    <div
-      className="euiColorPalettePicker__itemGradient"
-      style={{ background }}
-    />
-  );
+
+  return <div className="euiColorPaletteDisplay" style={{ background }} />;
 };

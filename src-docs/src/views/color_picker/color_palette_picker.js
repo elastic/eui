@@ -4,17 +4,17 @@ import {
   euiPaletteForStatus,
   euiPaletteForTemperature,
 } from '../../../../src/services';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiCode } from '../../../../src/components/code';
+
 import {
+  EuiSwitch,
+  EuiSpacer,
+  EuiCode,
   EuiColorPalettePicker,
-  EuiColorPalettePickerPaletteProps,
-} from '../../../../src/components/color_picker/color_palette_picker';
-// @ts-ignore importing from a JS file
+} from '../../../../src/components/';
+
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const palettes: EuiColorPalettePickerPaletteProps[] = [
+const palettes = [
   {
     value: 'pallette_1',
     title: 'EUI color blind (fixed)',
@@ -80,13 +80,47 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     type: 'gradient',
   },
   {
+    value: 'pallette_6',
+    title: 'One color (fixed)',
+    palette: ['pink'],
+    type: 'fixed',
+  },
+  {
+    value: 'pallette_7',
+    title: 'One color (gradient)',
+    palette: ['pink'],
+    type: 'gradient',
+  },
+  {
+    value: 'pallette_8',
+    title: 'One color with one stop (fixed)',
+    palette: [
+      {
+        stop: 470,
+        color: 'pink',
+      },
+    ],
+    type: 'fixed',
+  },
+  {
+    value: 'pallette_9',
+    title: 'One color with one stop (gradient)',
+    palette: [
+      {
+        stop: 100,
+        color: 'pink',
+      },
+    ],
+    type: 'gradient',
+  },
+  {
     value: 'custom',
     title: 'Plain text as a custom option',
     type: 'text',
   },
 ];
 
-export const ColorPalettePicker = () => {
+export default () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
   const [pallette, setPallette] = useState('pallette_3');
 
