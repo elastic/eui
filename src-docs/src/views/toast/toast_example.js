@@ -6,20 +6,17 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
-  EuiButton,
   EuiCode,
   EuiToast,
   EuiGlobalToastList,
   EuiGlobalToastListItem,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiText,
   EuiSpacer,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
 import toastConfig from './playground';
 
-import ToastList, { addToast, removeAllToasts } from './toast_list';
+import ToastList from './toast_list';
 const toastListSource = require('!!raw-loader!./toast_list');
 const toastListHtml = renderToHtml(ToastList);
 const toastListSnippet = [
@@ -127,22 +124,9 @@ export const ToastExample = {
         EuiGlobalToastListItem,
       },
       demo: (
-        <div style={{ maxWidth: 320 }}>
-          <EuiFlexGroup gutterSize="s">
-            <EuiFlexItem>
-              <EuiButton onClick={addToast}>
-                Add toast to global toast list
-              </EuiButton>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiButton onClick={removeAllToasts} color="danger">
-                Remove all toasts
-              </EuiButton>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-
+        <>
           <ToastList />
-        </div>
+        </>
       ),
       snippet: toastListSnippet,
     },
