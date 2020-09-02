@@ -135,9 +135,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const disableInteractives = useCallback(() => {
     if (headerRef.current) {
       const tababbles = tabbable(headerRef.current);
-      if (tababbles.length > 2) {
+      if (tababbles.length > 1) {
         console.warn(
-          `EuiDataGridHeaderCell expects at most 2 tabbable element, ${tababbles.length} found instead`
+          `EuiDataGridHeaderCell expects at most 1 tabbable element, ${tababbles.length} found instead`
         );
       }
       for (let i = 0; i < tababbles.length; i++) {

@@ -117,7 +117,7 @@ export function getColumnActions(
       color: 'text',
     } as EuiListGroupItemProps;
     if (typeof column.actions?.showHide === 'object') {
-      result.push({ ...option, ...column.actions?.showHide });
+      result.push({ ...option, ...column.actions.showHide });
     } else {
       result.push(option);
     }
@@ -139,7 +139,7 @@ export function getColumnActions(
       color: 'text',
     } as EuiListGroupItemProps;
     if (typeof column.actions?.showSortAsc === 'object') {
-      result.push({ ...option, ...column.actions?.showSortAsc });
+      result.push({ ...option, ...column.actions.showSortAsc });
     } else {
       result.push(option);
     }
@@ -161,7 +161,7 @@ export function getColumnActions(
       color: 'text',
     } as EuiListGroupItemProps;
     if (typeof column.actions?.showSortDesc === 'object') {
-      result.push({ ...option, ...column.actions?.showSortDesc });
+      result.push({ ...option, ...column.actions.showSortDesc });
     } else {
       result.push(option);
     }
