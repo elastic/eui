@@ -7,13 +7,20 @@
   &:not(:focus-within) {
     color: transparentize($euiColorGhost, .3);
 
+    input {
+      // Increase contrast of placeholder text
+      @include euiPlaceholderPerBrowser {
+        color: transparentize($euiColorGhost, .6);
+      }
+
+      // Inherit color from form control layout
+      color: inherit;
+      background-color: transparent;
+    }
+
     .euiFormControlLayout__append {
       background-color: transparent;
       color: inherit;
     }
-  }
-
-  input:not(:focus) {
-    background-color: transparent;
   }
 }
