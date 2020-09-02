@@ -22,16 +22,5 @@ export default () => (
       paddingSize="l">
       <div>Opened content.</div>
     </EuiAccordion>
-
-    <EuiSpacer />
-
-    <EuiAccordion
-      id="accordionExtraWithoutArrow"
-      arrowDisplay="none"
-      buttonContent="Click to open"
-      extraAction={<EuiButton size="s">Extra action!</EuiButton>}
-      paddingSize="l">
-      <div>Opened content.</div>
-    </EuiAccordion>
   </>
 );
