@@ -60,10 +60,14 @@
 }
 
 .euiStep__content {
-  padding-block: $euiSize $euiSizeXL;
-  padding-inline: $euiSize;
-  margin-block: $euiSizeS;
-  margin-inline: 0;
+  padding-block-start: $euiSize;
+  padding-block-end: $euiSizeXL;
+  padding-inline-start: $euiSize;
+  padding-inline-end: $euiSize;
+  margin-block-start: $euiSizeS;
+  margin-block-end: $euiSizeS;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 
   // Align the content's contents with the title
   padding-inline-start: ($euiStepNumberSize / 2) + $euiStepNumberMargin;

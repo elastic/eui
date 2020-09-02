@@ -11,8 +11,10 @@
     #FF0094 100%
    );
   height: $euiSizeL;
-  margin-block: $euiSizeXS;
-  margin-inline: 0;
+  margin-block-start: $euiSizeXS;
+  margin-block-end: $euiSizeXS;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   position: relative;
 
 

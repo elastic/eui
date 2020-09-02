@@ -64,8 +64,10 @@
 .euiListGroupItem__text,
 .euiListGroupItem__button {
   line-height: $euiSizeL;
-  padding-block: $euiSizeXS;
-  padding-inline: $euiSizeS;
+  padding-block-start: $euiSizeXS;
+  padding-block-end: $euiSizeXS;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11

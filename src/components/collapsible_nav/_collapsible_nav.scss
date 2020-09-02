@@ -18,8 +18,10 @@
   right: 0;
   top: $euiSize;
   margin-inline-end: -27%;
-  padding-block: $euiSizeM;
-  padding-inline: 0;
+  padding-block-start: $euiSizeM;
+  padding-block-end: $euiSizeM;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
   line-height: 1;
   border-radius: $euiBorderRadius;
 

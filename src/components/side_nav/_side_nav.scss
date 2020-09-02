@@ -2,8 +2,10 @@
 .euiSideNav__mobileToggle {
   display: none;
   border-block-end: $euiBorderThin;
-  padding-block: $euiSize;
-  padding-inline: $euiSizeL;
+  padding-block-start: $euiSize;
+  padding-block-end: $euiSize;
+  padding-inline-start: $euiSizeL;
+  padding-inline-end: $euiSizeL;
   width: 100%;
   text-align: left;
 
@@ -67,7 +69,9 @@
     visibility: hidden;
     opacity: 0;
     max-height: 0;
-    margin-block: 0;
-    margin-inline: $euiSizeL;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: $euiSizeL;
+    margin-inline-end: $euiSizeL;
   }
 }

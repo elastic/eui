@@ -55,8 +55,10 @@
     font-family: $euiCodeFontFamily;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-block: $euiSizeXS;
-    padding-inline: $euiSizeS;
+    padding-block-start: $euiSizeXS;
+    padding-block-end: $euiSizeXS;
+    padding-inline-start: $euiSizeS;
+    padding-inline-end: $euiSizeS;
     color: $euiTextColor;
 
     &.euiSuggestItem__labelDisplay--expand {

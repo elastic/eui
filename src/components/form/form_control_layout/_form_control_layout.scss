@@ -45,8 +45,10 @@
 
     &.euiIcon,
     .euiIcon {
-      padding-block: 0;
-      padding-inline: $euiSizeS;
+      padding-block-start: 0;
+      padding-block-end: 0;
+      padding-inline-start: $euiSizeS;
+      padding-inline-end: $euiSizeS;
       width: $euiSizeXL;
       border-radius: 0;
       background-color: $euiFormInputGroupLabelBackground;
@@ -69,8 +71,10 @@
   }
 
   .euiButtonIcon {
-    padding-block: 0;
-    padding-inline: $euiSizeS;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeS;
+    padding-inline-end: $euiSizeS;
     width: $euiSizeXL;
     border-radius: 0;
     background-color: $euiFormInputGroupLabelBackground;
@@ -83,8 +87,10 @@
   .euiToolTipAnchor > .euiIcon {
     height: 100%;
     background-color: $euiFormInputGroupLabelBackground;
-    padding-block: 0;
-    padding-inline: $euiSizeS;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeS;
+    padding-inline-end: $euiSizeS;
     width: $euiSizeXL;
     border-radius: 0;
   }

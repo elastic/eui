@@ -7,8 +7,10 @@
   text-align: left; /* 1 */
   display: block;
   width: 100%;
-  padding-block: $euiSizeXS / 2;
-  padding-inline: 0;
+  padding-block-start: $euiSizeXS / 2;
+  padding-block-end: $euiSizeXS / 2;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
   color: $euiTextColor; /* 2 */
 
   &.euiSideNavItemButton--isClickable {

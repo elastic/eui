@@ -1,7 +1,9 @@
 .euiBetaBadge {
   display: inline-block;
-  padding-block: 0;
-  padding-inline: $euiSize;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSize;
+  padding-inline-end: $euiSize;
   border-radius: $euiSizeL;
   box-shadow: inset 0 0 0 1px $euiBorderColor;
   vertical-align: super; // if displayed inline with text

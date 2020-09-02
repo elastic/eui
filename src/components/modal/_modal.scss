@@ -39,8 +39,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: $euiSizeL;
-  padding-inline: $euiSize $euiSizeXXL;
+  padding-block-start: $euiSizeL;
+  padding-block-end: $euiSizeL;
+  padding-inline-start: $euiSize;
+  padding-inline-end: $euiSizeXXL;
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -58,16 +60,20 @@
 
   .euiModalBody__overflow {
     @include euiYScrollWithShadows;
-    padding-block: $euiSizeS;
-    padding-inline: $euiSizeL;
+    padding-block-start: $euiSizeS;
+    padding-block-end: $euiSizeS;
+    padding-inline-start: $euiSizeL;
+    padding-inline-end: $euiSizeL;
   }
 }
 
 .euiModalFooter {
   display: flex;
   justify-content: flex-end;
-  padding-block: $euiSize $euiSizeL;
-  padding-inline: $euiSizeL;
+  padding-block-start: $euiSize;
+  padding-block-end: $euiSizeL;
+  padding-inline-start: $euiSizeL;
+  padding-inline-end: $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0; // ensure the height of the footer is based off its contents and doesn't squish
 

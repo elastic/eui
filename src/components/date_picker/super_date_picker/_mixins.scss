@@ -2,8 +2,10 @@
   @include euiFormControlText;
   display: block;
   width: 100%;
-  padding-block: 0;
-  padding-inline: $euiSizeS;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   line-height: $euiFormControlLayoutGroupInputHeight;
   height: $euiFormControlLayoutGroupInputHeight;
   word-break: break-all;

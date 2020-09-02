@@ -33,7 +33,9 @@ $ruleMargins: (
 
 @each $name, $size in $ruleMargins {
   .euiHorizontalRule--#{$name} {
-    margin-block: $size;
-    margin-inline: 0;
+    margin-block-start: $size;
+    margin-block-end: $size;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
   }
 }

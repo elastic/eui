@@ -26,8 +26,10 @@
   align-items: baseline;
   color: $euiButtonColorDisabledText;
   font-size: $euiFontSizeS;
-  padding-block: 0;
-  padding-inline: $euiSizeS;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   height: $euiSizeL;
   padding-block-start: $euiSizeM / 2;
 }

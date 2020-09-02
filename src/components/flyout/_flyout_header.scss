@@ -1,7 +1,9 @@
 .euiFlyoutHeader {
   flex-grow: 0;
-  padding-block: $euiSizeL;
-  padding-inline: 0 $euiSizeXXL;
+  padding-block-start: $euiSizeL;
+  padding-block-end: $euiSizeL;
+  padding-inline-start: 0;
+  padding-inline-end: $euiSizeXXL;
 }
 
 .euiFlyoutHeader--hasBorder {

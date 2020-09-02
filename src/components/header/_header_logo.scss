@@ -7,8 +7,10 @@
   height: $euiHeaderChildSize;
   line-height: $euiHeaderChildSize;
   min-width: $euiHeaderChildSize + 1px;
-  padding-block: 0 $euiSizeM;
-  padding-inline: 0 ($euiSizeM + 1px);
+  padding-block-start: 0;
+  padding-block-end: $euiSizeM;
+  padding-inline-start: 0;
+  padding-inline-end: ($euiSizeM + 1px);
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
@@ -32,8 +34,10 @@
 
 @include euiBreakpoint('xs') {
   .euiHeaderLogo {
-    padding-block: 0;
-    padding-inline: $euiSizeM;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeM;
+    padding-inline-end: $euiSizeM;
   }
 
   .euiHeaderLogo__icon.euiIcon--xLarge {

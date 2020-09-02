@@ -147,13 +147,17 @@
     white-space: pre;
     color: $euiTextColor;
     font-size: 90%; /* 1 */
-    padding-block: 0;
-    padding-inline: $euiSizeS;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeS;
+    padding-inline-end: $euiSizeS;
     background: $euiCodeBlockBackgroundColor;
 
     .euiCodeBlock__pre {
-      padding-block: 0;
-      padding-inline: $euiSizeXS;
+      padding-block-start: 0;
+      padding-block-end: 0;
+      padding-inline-start: $euiSizeXS;
+      padding-inline-end: $euiSizeXS;
     }
 
     .euiCodeBlock__code {

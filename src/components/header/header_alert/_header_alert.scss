@@ -2,8 +2,10 @@
   min-width: 300px;
   position: relative;
   margin-block-end: $euiSizeL;
-  padding-block: 0 $euiSizeL;
-  padding-inline: $euiSizeS;
+  padding-block-start: 0;
+  padding-block-end: $euiSizeL;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   border-block-end: $euiBorderThin;
   border-block-start: none;
 

@@ -17,8 +17,10 @@
     @include euiFormControlStyle($includeStates: false, $includeSizes: true);
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto, $includeAlternates: true);
-    padding-block: $euiSizeXS;
-    padding-inline: $euiSizeS;
+    padding-block-start: $euiSizeXS;
+    padding-block-end: $euiSizeXS;
+    padding-inline-start: $euiSizeS;
+    padding-inline-end: $euiSizeS;
     display: flex; /* 1 */
 
     // sass-lint:disable-block mixins-before-declarations

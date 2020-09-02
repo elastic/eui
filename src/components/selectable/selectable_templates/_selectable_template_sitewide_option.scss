@@ -21,8 +21,10 @@
 
 .euiSelectableTemplateSitewide__optionMeta:not(:last-of-type)::after {
   content: '•';
-  margin-block: 0;
-  margin-inline: $euiSizeXS;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: $euiSizeXS;
+  margin-inline-end: $euiSizeXS;
   color: $euiTextSubduedColor;
 }
 

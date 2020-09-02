@@ -177,8 +177,10 @@
 
 .guideSass__overflowShadowsX {
   @include euiXScrollWithShadows;
-  padding-block: $euiSizeS 0;
-  padding-inline: $euiSizeS;
+  padding-block-start: $euiSizeS;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
 
   .guideSass__overflowShadowTextX {
     width: 150%;

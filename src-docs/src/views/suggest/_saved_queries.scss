@@ -13,8 +13,10 @@
 }
 
 .savedQueryManagement__text {
-  padding-block: $euiSizeM ($euiSizeM / 2);
-  padding-inline: $euiSizeM;
+  padding-block-start: $euiSizeM;
+  padding-block-end: ($euiSizeM / 2);
+  padding-inline-start: $euiSizeM;
+  padding-inline-end: $euiSizeM;
 }
 
 .savedQueryManagement__listWrapper {

@@ -14,8 +14,10 @@
 
   .euiComboBox--compressed &,
   .euiComboBox--compressed & + & /* 1 */ {
-    margin-block: ($euiSizeXS + 1px) 0;
-    margin-inline: 0 $euiSizeXS;
+    margin-block-start: ($euiSizeXS + 1px);
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: $euiSizeXS;
   }
 
   &--plainText {

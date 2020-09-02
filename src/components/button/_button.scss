@@ -10,8 +10,10 @@
   min-width: $euiButtonMinWidth;
 
   .euiButton__content {
-    padding-block: 0;
-    padding-inline: ($euiSize - $euiSizeXS);
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: ($euiSize - $euiSizeXS);
+    padding-inline-end: ($euiSize - $euiSizeXS);
   }
 
   .euiButton__text {

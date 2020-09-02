@@ -151,8 +151,10 @@ $browserDefaultFontSize: 16px;
 
   // 4. Blockquotes
   blockquote {
-    padding-block: 0;
-    padding-inline: 1em;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: 1em;
+    padding-inline-end: 1em;
     border-inline-start: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
   }
 
@@ -165,8 +167,10 @@ $browserDefaultFontSize: 16px;
     border: none;
     height: 1px;
     background-color: $euiMarkdownAlphaLightShade;
-    margin-block: $euiMarkdownSizeL;
-    margin-inline: 0;
+    margin-block-start: $euiMarkdownSizeL;
+    margin-block-end: $euiMarkdownSizeL;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
   }
 
   hr::before {
@@ -241,8 +245,10 @@ $browserDefaultFontSize: 16px;
   }
 
   .task-list-item input {
-    margin-block: 0 -1.6em;
-    margin-inline: .25em .2em;
+    margin-block-start: 0;
+    margin-block-end: -1.6em;
+    margin-inline-start: .25em;
+    margin-inline-end: .2em;
     vertical-align: middle;
   }
 
@@ -263,8 +269,10 @@ $browserDefaultFontSize: 16px;
 
   table th,
   table td {
-    padding-block: $euiMarkdownSizeXXS;
-    padding-inline: $euiMarkdownSizeXS;
+    padding-block-start: $euiMarkdownSizeXXS;
+    padding-block-end: $euiMarkdownSizeXXS;
+    padding-inline-start: $euiMarkdownSizeXS;
+    padding-inline-end: $euiMarkdownSizeXS;
     border-block-start: 1px solid $euiMarkdownAlphaLightShade;
     border-block-end: 1px solid $euiMarkdownAlphaLightShade;
 

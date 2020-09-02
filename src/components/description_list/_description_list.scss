@@ -177,10 +177,14 @@
       font-weight: $euiFontWeightRegular;
       background: $euiColorLightestShade;
       border: $euiBorderThin;
-      padding-block:  0;
-      padding-inline:  $euiSizeXS;
-      margin-block: 0;
-      margin-inline: $euiSizeXS;
+      padding-block-start:  0;
+      padding-block-end:  0;
+      padding-inline-start:  $euiSizeXS;
+      padding-inline-end:  $euiSizeXS;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: $euiSizeXS;
+      margin-inline-end: $euiSizeXS;
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {

@@ -17,8 +17,10 @@
   border: 1px solid $euiTooltipBackgroundColor;
   position: absolute;
   border-radius: $euiBorderRadius;
-  padding-block: ($euiSizeXS / 2);
-  padding-inline: $euiSizeS;
+  padding-block-start: ($euiSizeXS / 2);
+  padding-block-end: ($euiSizeXS / 2);
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
   max-width: 256px;

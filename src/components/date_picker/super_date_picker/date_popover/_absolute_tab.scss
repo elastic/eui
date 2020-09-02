@@ -1,4 +1,6 @@
 .euiSuperDatePicker__absoluteDateFormRow {
-  padding-block: 0 $euiSizeS;
-  padding-inline: $euiSizeS;
+  padding-block-start: 0;
+  padding-block-end: $euiSizeS;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
 }

@@ -9,8 +9,10 @@
   .euiTableHeaderMobile {
     display: flex;
     justify-content: flex-end;
-    padding-block: $euiTableCellContentPadding;
-    padding-inline: 0;
+    padding-block-start: $euiTableCellContentPadding;
+    padding-block-end: $euiTableCellContentPadding;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 
   .euiTableSortMobile {

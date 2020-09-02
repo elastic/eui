@@ -29,8 +29,10 @@
     border-radius: $euiBorderRadius;
 
     > span {
-      padding-block: 0;
-      padding-inline: $euiSizeXS;
+      padding-block-start: 0;
+      padding-block-end: 0;
+      padding-inline-start: $euiSizeXS;
+      padding-inline-end: $euiSizeXS;
     }
   }
 }

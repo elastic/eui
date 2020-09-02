@@ -92,8 +92,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guidePageContent {
   flex: 1 1 auto;
-  padding-block: $euiSize;
-  padding-inline: $euiSizeXL;
+  padding-block-start: $euiSize;
+  padding-block-end: $euiSize;
+  padding-inline-start: $euiSizeXL;
+  padding-inline-end: $euiSizeXL;
   min-height: 100vh;
   background-color: $euiColorEmptyShade;
   border-inline-start: $euiBorderThin;

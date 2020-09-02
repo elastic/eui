@@ -8,8 +8,10 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiPageHeader {
-    padding-block: $euiSize;
-    padding-inline: 0;
+    padding-block-start: $euiSize;
+    padding-block-end: $euiSize;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
     margin-block-end: 0;
   }
 

@@ -16,8 +16,10 @@
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
   .euiButtonEmpty__content {
-    padding-block: 0;
-    padding-inline: $euiSizeS;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeS;
+    padding-inline-end: $euiSizeS;
   }
 
   .euiButtonEmpty__text {

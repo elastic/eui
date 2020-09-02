@@ -89,8 +89,10 @@
 
   .euiFilePicker--large & {
     height: $euiFilePickerTallHeight; /* 4 */
-    padding-block: 0;
-    padding-inline: $euiSizeL;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeL;
+    padding-inline-end: $euiSizeL;
     display: flex;
     flex-direction: column;
     align-items: center;

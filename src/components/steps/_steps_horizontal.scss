@@ -21,8 +21,10 @@
 .euiStepHorizontal {
   flex-grow: 1; /* 2 */
   flex-basis: 0%; /* 2 */
-  padding-block: $euiSizeL $euiSize;
-  padding-inline: $euiSize;
+  padding-block-start: $euiSizeL;
+  padding-block-end: $euiSize;
+  padding-inline-start: $euiSize;
+  padding-inline-end: $euiSize;
   display: flex; /* 3 */
   flex-direction: column; /* 3 */
   align-items: center; /* 3 */

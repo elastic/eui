@@ -5,8 +5,10 @@
   font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize + 2px; /* 1 */
-  padding-block: 0;
-  padding-inline: $euiSizeS;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   display: inline-block;
   text-decoration: none;
   border-radius: $euiBorderRadius / 2;

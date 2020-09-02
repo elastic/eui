@@ -13,8 +13,10 @@
 
 .euiHeaderLogo {
   @include euiBreakpoint('xs') {
-    padding-block: 0;
-    padding-inline: $euiSizeXS;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: $euiSizeXS;
+    padding-inline-end: $euiSizeXS;
   }
 
   padding-inline-start: $euiSizeS;
@@ -49,8 +51,10 @@
     @include euiButtonDefaultStyle($euiTextColor);
     line-height: $euiSize;
     font-weight: $euiFontWeightMedium;
-    padding-block: $euiSizeXS;
-    padding-inline: $euiSize;
+    padding-block-start: $euiSizeXS;
+    padding-block-end: $euiSizeXS;
+    padding-inline-start: $euiSize;
+    padding-inline-end: $euiSize;
     clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%, $euiSizeS 50%);
 
     // If it's a link the easiest way to detect is via our .euiLink class since it can accept either href or onClick

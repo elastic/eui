@@ -57,8 +57,10 @@
   align-items: center;
   overflow-y: hidden; // Ensures the movement of buttons in :focus don't cause scrollbars
   overflow-x: auto;
-  padding-block: 0;
-  padding-inline: $euiSizeM;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeM;
+  padding-inline-end: $euiSizeM;
 }
 
 .euiControlBar__content {
@@ -129,8 +131,10 @@
 .euiControlBar__text {
   @include euiTextTruncate;
   @include euiFontSizeS;
-  padding-block: 0;
-  padding-inline: $euiSizeS;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeS;
+  padding-inline-end: $euiSizeS;
   color: $euiControlBarText;
 
   &:last-child {
@@ -142,8 +146,10 @@
   @include euiTextTruncate;
   @include euiFontSizeS;
   color: $euiControlBarText;
-  padding-block: 0;
-  padding-inline: $euiSize;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSize;
+  padding-inline-end: $euiSize;
   text-align: center;
   height: 100%;
 

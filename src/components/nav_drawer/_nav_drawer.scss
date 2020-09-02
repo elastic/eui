@@ -35,8 +35,10 @@
     z-index: $euiZHeader + 1;
 
     .euiListGroupItem__button {
-      padding-block: $euiSizeM;
-      padding-inline: $euiSize;
+      padding-block-start: $euiSizeM;
+      padding-block-end: $euiSizeM;
+      padding-inline-start: $euiSize;
+      padding-inline-end: $euiSize;
     }
 
     .navDrawerExpandButton-isCollapsed .euiListGroupItem__button {

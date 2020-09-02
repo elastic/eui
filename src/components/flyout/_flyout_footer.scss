@@ -1,6 +1,8 @@
 .euiFlyoutFooter {
   background: $euiColorLightestShade;
   flex-grow: 0;
-  padding-block: $euiSize;
-  padding-inline: $euiSizeL;
+  padding-block-start: $euiSize;
+  padding-block-end: $euiSize;
+  padding-inline-start: $euiSizeL;
+  padding-inline-end: $euiSizeL;
 }
