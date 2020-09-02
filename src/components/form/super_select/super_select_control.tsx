@@ -152,12 +152,10 @@ export const EuiSuperSelectControl: <T extends string>(
           </span>
         </EuiScreenReaderOnly>
         <button
-          role="option"
           type="button"
           className={classes}
           aria-haspopup="true"
           aria-labelledby={`${id} ${screenReaderId}`}
-          aria-selected={true}
           {...rest}>
           {selectedValue}
         </button>

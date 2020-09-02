@@ -16,7 +16,7 @@ module.exports = {
       },
       "useBuiltIns": process.env.NO_COREJS_POLYFILL ? false : "usage",
       "corejs": "2",
-      "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
+      "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES === 'false' ? false : process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
     "@babel/react"
