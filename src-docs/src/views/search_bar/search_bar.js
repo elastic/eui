@@ -118,6 +118,7 @@ export const SearchBar = () => {
         field: 'tag',
         name: 'Tag',
         multiSelect: 'or',
+        operator: 'exact',
         cache: 10000, // will cache the loaded tags for 10 sec
         options: () => loadTags(),
       },

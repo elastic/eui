@@ -222,6 +222,15 @@ export const propsInfo = {
           required: true,
           type: { name: '#FieldValueOption[] | () => #FieldValueOption[]' },
         },
+        filterWith: {
+          description:
+            'Specify how user input in the option dropdown will filter the available options.',
+          required: false,
+          defaultValue: { value: 'prefix' },
+          type: {
+            name: 'prefix | includes | (name, query, options) => boolean',
+          },
+        },
         cache: {
           description:
             'When set to a positive number, if `options` is a loading function, the loaded ' +
@@ -233,7 +242,7 @@ export const propsInfo = {
           description:
             'Indicates whether the user can filter by multiple values or by only a single one. ' +
             'When set to "and" the filter will create queries by `and`ing the selected values. ' +
-            'When set to "or" the filter will create quries by `or`ing the selected values',
+            'When set to "or" the filter will create queries by `or`ing the selected values',
           required: false,
           defaultValue: { value: 'true ("and")' },
           type: { name: 'boolean | "or" | "and"' },
@@ -265,6 +274,20 @@ export const propsInfo = {
             'A callback that defines whether this filter is currently available',
           required: false,
           type: { name: '() => boolean' },
+        },
+        autoClose: {
+          description:
+            'Should the dropdown close after the user selects a value. Ignored if multiSelect is true.',
+          required: false,
+          defaultValue: { value: 'true' },
+          type: { name: 'boolean' },
+        },
+        operator: {
+          description:
+            'What operator should be used when adding selection to the search bar.',
+          required: false,
+          defaultValue: { value: 'eq' },
+          type: { name: 'eq | exact | gt | gte | lt | lte' },
         },
       },
     },

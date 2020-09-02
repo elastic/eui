@@ -334,17 +334,17 @@ export default () => (
 
     <GuideRule
       heading="Know when to use the ending period"
-      description="Use periods at the end of complete sentences in body text.
-      These are typically supplemental explanations and instructions.  Avoid
-      periods in titles, headings, and sentence fragments.">
+      description="Use periods at the end of help text and complete sentences 
+      in body text. These are typically supplemental explanations and
+      instructions. Avoid periods in titles and headings.">
       <GuideRuleExample
         type="do"
-        text="Do. Use periods after sentences in help text.">
+        text="Do. Use periods at the end of help text.">
         <EuiFormRow
           label="Number"
           helpText={
             <span>
-              Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink>
+              Accepts 1–5. <EuiLink>Learn more.</EuiLink>
             </span>
           }>
           <EuiFieldNumber min={1} max={5} step={1} />

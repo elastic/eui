@@ -26,6 +26,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
+import { EuiInnerText } from '../inner_text';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
@@ -79,7 +80,7 @@ export type EuiProgressProps = CommonProps & {
 type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
-  ProgressHTMLAttributes<HTMLProgressElement> & {
+  Omit<ProgressHTMLAttributes<HTMLProgressElement>, 'max'> & {
     max?: number;
     /*
      * If true, will render the percentage, otherwise pass a custom node
@@ -131,9 +132,9 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     labelProps && labelProps.className
   );
 
-  let valueRender;
-  if (typeof valueText === 'boolean' && valueText) {
-    // valueText is a true boolean
+  let valueRender: ReactNode;
+  if (valueText === true) {
+    // valueText is true
     valueRender = (
       <EuiI18n
         token="euiProgress.valueText"
@@ -157,12 +158,29 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
         {label || valueText ? (
           <div className={dataClasses}>
             {label && (
-              <span {...labelProps} className={labelClasses}>
-                {label}
-              </span>
+              <EuiInnerText>
+                {(ref, innerText) => (
+                  <span
+                    title={innerText}
+                    ref={ref}
+                    {...labelProps}
+                    className={labelClasses}>
+                    {label}
+                  </span>
+                )}
+              </EuiInnerText>
             )}
             {valueRender && (
-              <span className="euiProgress__valueText">{valueRender}</span>
+              <EuiInnerText>
+                {(ref, innerText) => (
+                  <span
+                    title={innerText}
+                    ref={ref}
+                    className="euiProgress__valueText">
+                    {valueRender}
+                  </span>
+                )}
+              </EuiInnerText>
             )}
           </div>
         ) : (

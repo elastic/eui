@@ -22,7 +22,6 @@ import React, {
   HTMLAttributes,
   ReactNode,
   createRef,
-  Fragment,
   ReactElement,
   KeyboardEvent,
 } from 'react';
@@ -31,7 +30,8 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
-import { EuiLoadingChart } from '../loading';
+import { EuiLoadingSpinner } from '../loading';
+import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
 import { EuiI18n } from '../i18n';
@@ -51,7 +51,7 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
   Partial<OptionalEuiSelectableOptionsListProps>;
 
 // `searchProps` can only be specified when `searchable` is true
-type EuiSelectableSearchableProps = ExclusiveUnion<
+type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
     searchable: false;
   },
@@ -63,16 +63,13 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
     /**
      * Passes props down to the `EuiFieldSearch`
      */
-    searchProps?: Partial<EuiSelectableSearchProps>;
+    searchProps?: Partial<EuiSelectableSearchProps<T>>;
   }
 >;
 
-export type EuiSelectableProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'children' | 'onChange'
-> &
-  CommonProps &
-  EuiSelectableSearchableProps & {
+export type EuiSelectableProps<T = {}> = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> &
+  EuiSelectableSearchableProps<T> & {
     /**
      * Function that takes the `list` node and then
      * the `search` node (if `searchable` is applied)
@@ -81,16 +78,16 @@ export type EuiSelectableProps = Omit<
       list: ReactElement<
         typeof EuiSelectableMessage | typeof EuiSelectableList
       >,
-      search: ReactElement<EuiSelectableSearch> | undefined
+      search: ReactElement<EuiSelectableSearch<T>> | undefined
     ) => ReactNode;
     /**
      * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: Array<Exclude<EuiSelectableOption, 'id'>>;
+    options: Array<EuiSelectableOption<T>>;
     /**
      * Passes back the altered `options` array with selected options as
      */
-    onChange?: (options: EuiSelectableOption[]) => void;
+    onChange?: (options: Array<EuiSelectableOption<T>>) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -120,19 +117,37 @@ export type EuiSelectableProps = Omit<
      * Custom render function for each option.
      * Returns `(option, searchValue)`
      */
-    renderOption?: (option: EuiSelectableOption, searchValue: string) => {};
+    renderOption?: (
+      option: EuiSelectableOption<T>,
+      searchValue: string
+    ) => ReactNode;
+    /**
+     * Customize the loading message. Pass a string to simply change the text,
+     * or a node to replace the whole content.
+     */
+    loadingMessage?: ReactElement | string;
+    /**
+     * Customize the no matches message. Pass a string to simply change the text,
+     * or a node to replace the whole content.
+     */
+    noMatchesMessage?: ReactElement | string;
+    /**
+     * Customize the empty message. Pass a string to simply change the text,
+     * or a node to replace the whole content.
+     */
+    emptyMessage?: ReactElement | string;
   };
 
-export interface EuiSelectableState {
+export interface EuiSelectableState<T> {
   activeOptionIndex?: number;
   searchValue: string;
-  visibleOptions: EuiSelectableOption[];
+  visibleOptions: Array<EuiSelectableOption<T>>;
   isFocused: boolean;
 }
 
-export class EuiSelectable extends Component<
-  EuiSelectableProps,
-  EuiSelectableState
+export class EuiSelectable<T = {}> extends Component<
+  EuiSelectableProps<T>,
+  EuiSelectableState<T>
 > {
   static defaultProps = {
     options: [],
@@ -140,16 +155,16 @@ export class EuiSelectable extends Component<
     searchable: false,
   };
 
-  private optionsListRef = createRef<EuiSelectableList>();
+  private optionsListRef = createRef<EuiSelectableList<T>>();
   rootId = htmlIdGenerator();
-  constructor(props: EuiSelectableProps) {
+  constructor(props: EuiSelectableProps<T>) {
     super(props);
 
     const { options, singleSelection } = props;
 
     const initialSearchValue = '';
 
-    const visibleOptions = getMatchingOptions(options, initialSearchValue);
+    const visibleOptions = getMatchingOptions<T>(options, initialSearchValue);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
     const selectedOptions = options.filter(option => option.checked);
@@ -168,14 +183,14 @@ export class EuiSelectable extends Component<
     };
   }
 
-  static getDerivedStateFromProps(
-    nextProps: EuiSelectableProps,
-    prevState: EuiSelectableState
+  static getDerivedStateFromProps<T>(
+    nextProps: EuiSelectableProps<T>,
+    prevState: EuiSelectableState<T>
   ) {
     const { options } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
-    const matchingOptions = getMatchingOptions(options, searchValue);
+    const matchingOptions = getMatchingOptions<T>(options, searchValue);
 
     const stateUpdate = { visibleOptions: matchingOptions, activeOptionIndex };
 
@@ -303,7 +318,7 @@ export class EuiSelectable extends Component<
   };
 
   onSearchChange = (
-    visibleOptions: EuiSelectableOption[],
+    visibleOptions: Array<EuiSelectableOption<T>>,
     searchValue: string
   ) => {
     this.setState(
@@ -327,9 +342,9 @@ export class EuiSelectable extends Component<
     });
   };
 
-  onOptionClick = (options: EuiSelectableOption[]) => {
+  onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
     this.setState(state => ({
-      visibleOptions: getMatchingOptions(options, state.searchValue),
+      visibleOptions: getMatchingOptions<T>(options, state.searchValue),
       activeOptionIndex: this.state.activeOptionIndex,
     }));
     if (this.props.onChange) {
@@ -354,6 +369,9 @@ export class EuiSelectable extends Component<
       allowExclusions,
       'aria-label': ariaLabel,
       'aria-describedby': ariaDescribedby,
+      loadingMessage,
+      noMatchesMessage,
+      emptyMessage,
       ...rest
     } = this.props;
 
@@ -377,42 +395,6 @@ export class EuiSelectable extends Component<
       ...cleanedListProps
     } = listProps || unknownAccessibleName;
 
-    let messageContent: JSX.Element | undefined;
-
-    if (isLoading) {
-      messageContent = (
-        <Fragment>
-          <EuiLoadingChart size="m" mono />
-          <br />
-          <p>
-            <EuiI18n
-              token="euiSelectable.loadingOptions"
-              default="Loading options"
-            />
-          </p>
-        </Fragment>
-      );
-    } else if (searchValue && visibleOptions.length === 0) {
-      messageContent = (
-        <p>
-          <EuiI18n
-            token="euiSelectable.noMatchingOptions"
-            default="{searchValue} doesn't match any options"
-            values={{ searchValue: <strong>{searchValue}</strong> }}
-          />
-        </p>
-      );
-    } else if (!options.length) {
-      messageContent = (
-        <p>
-          <EuiI18n
-            token="euiSelectable.noAvailableOptions"
-            default="No options available"
-          />
-        </p>
-      );
-    }
-
     const classes = classNames(
       'euiSelectable',
       {
@@ -421,7 +403,8 @@ export class EuiSelectable extends Component<
       className
     );
 
-    const messageContentId = messageContent && this.rootId('messageContent');
+    /** Create Id's */
+    let messageContentId = this.rootId('messageContent');
     const listId = this.rootId('listbox');
     const makeOptionId = (index: number | undefined) => {
       if (typeof index === 'undefined') {
@@ -431,6 +414,74 @@ export class EuiSelectable extends Component<
       return `${listId}_option-${index}`;
     };
 
+    /** Create message content that replaces the list if no options are available (yet) */
+    let messageContent: ReactNode | undefined;
+    if (isLoading) {
+      if (loadingMessage === undefined || typeof loadingMessage === 'string') {
+        messageContent = (
+          <>
+            <EuiLoadingSpinner size="m" />
+            <EuiSpacer size="xs" />
+            <p>
+              {loadingMessage || (
+                <EuiI18n
+                  token="euiSelectable.loadingOptions"
+                  default="Loading options"
+                />
+              )}
+            </p>
+          </>
+        );
+      } else {
+        messageContent = React.cloneElement(loadingMessage, {
+          id: messageContentId,
+          ...loadingMessage.props,
+        });
+      }
+    } else if (searchValue && visibleOptions.length === 0) {
+      if (
+        noMatchesMessage === undefined ||
+        typeof noMatchesMessage === 'string'
+      ) {
+        messageContent = (
+          <p>
+            {noMatchesMessage || (
+              <EuiI18n
+                token="euiSelectable.noMatchingOptions"
+                default="{searchValue} doesn't match any options"
+                values={{ searchValue: <strong>{searchValue}</strong> }}
+              />
+            )}
+          </p>
+        );
+      } else {
+        messageContent = React.cloneElement(noMatchesMessage, {
+          id: messageContentId,
+          ...noMatchesMessage.props,
+        });
+      }
+    } else if (!options.length) {
+      if (emptyMessage === undefined || typeof emptyMessage === 'string') {
+        messageContent = (
+          <p>
+            {emptyMessage || (
+              <EuiI18n
+                token="euiSelectable.noAvailableOptions"
+                default="No options available"
+              />
+            )}
+          </p>
+        );
+      } else {
+        messageContent = React.cloneElement(emptyMessage, {
+          id: messageContentId,
+          ...emptyMessage.props,
+        });
+      }
+    } else {
+      messageContentId = '';
+    }
+
     /**
      * There are lots of ways to add an accessible name
      * Usually we want the same name for the input and the listbox (which is added by aria-label/describedby)
@@ -438,12 +489,10 @@ export class EuiSelectable extends Component<
      * This finds the correct name to use
      *
      * TODO: This doesn't handle being labelled (<label for="idOfInput">)
-     *
-     * @param props
      */
     const getAccessibleName = (
       props:
-        | Partial<EuiSelectableSearchProps>
+        | Partial<EuiSelectableSearchProps<T>>
         | EuiSelectableOptionsListPropsWithDefaults
         | undefined,
       messageContentId?: string
@@ -485,11 +534,11 @@ export class EuiSelectable extends Component<
     const search = searchable ? (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
-          <EuiSelectableSearch
+          <EuiSelectableSearch<T>
             key="listSearch"
             options={options}
             onChange={this.onSearchChange}
-            listId={listId}
+            listId={this.optionsListRef.current ? listId : undefined} // Only pass the listId if it exists on the page
             aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             {...(searchHasAccessibleName
@@ -508,13 +557,15 @@ export class EuiSelectable extends Component<
       Object.keys(listAccessibleName).length
     );
     const list = messageContent ? (
-      <EuiSelectableMessage key="listMessage" id={messageContentId}>
+      <EuiSelectableMessage
+        id={messageContentId}
+        bordered={listProps && listProps.bordered}>
         {messageContent}
       </EuiSelectableMessage>
     ) : (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
-          <EuiSelectableList
+          <EuiSelectableList<T>
             key="list"
             options={options}
             visibleOptions={visibleOptions}

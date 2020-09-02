@@ -21,7 +21,7 @@ import React, { Component } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { Query } from '../query';
-import { Clause, Value } from '../query/ast';
+import { Clause, OperatorType, Value } from '../query/ast';
 
 export interface FieldValueToggleFilterConfigType {
   type: 'field_value_toggle';
@@ -30,7 +30,7 @@ export interface FieldValueToggleFilterConfigType {
   name: string;
   negatedName?: string;
   available?: () => boolean;
-  operator?: 'eq' | 'exact' | 'gt' | 'gte' | 'lt' | 'lte';
+  operator?: OperatorType;
 }
 
 export interface FieldValueToggleFilterProps {

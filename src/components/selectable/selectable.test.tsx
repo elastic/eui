@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount, render } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiSelectable } from './selectable';
 import { EuiSelectableOption } from './selectable_option';
@@ -127,6 +127,77 @@ describe('EuiSelectable', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('custom options', () => {
+    test('optional properties', () => {
+      type OptionalOption = EuiSelectableOption<{ value?: string }>;
+      const options: OptionalOption[] = [
+        {
+          label: 'Titan',
+          'data-test-subj': 'titanOption',
+          value: 'titan',
+        },
+        {
+          label: 'Enceladus',
+          value: 'enceladus',
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+        },
+      ];
+
+      const onChange = (options: OptionalOption[]) => {
+        jest.fn(() => options);
+      };
+
+      const component = mount(
+        <EuiSelectable<OptionalOption> options={options} onChange={onChange}>
+          {list => list}
+        </EuiSelectable>
+      );
+
+      expect(
+        (component.find('EuiSelectableList').props() as any).visibleOptions
+      ).toEqual(options);
+    });
+
+    test('required properties', () => {
+      type ExtendedOption = EuiSelectableOption<{ value: string }>;
+      const options: ExtendedOption[] = [
+        {
+          label: 'Titan',
+          'data-test-subj': 'titanOption',
+          value: 'titan',
+        },
+        {
+          label: 'Enceladus',
+          value: 'enceladus',
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          value: 'pandora',
+        },
+      ];
+
+      const onChange = (options: ExtendedOption[]) => {
+        jest.fn(() => options);
+      };
+
+      const component = mount(
+        <EuiSelectable<ExtendedOption> options={options} onChange={onChange}>
+          {list => list}
+        </EuiSelectable>
+      );
+
+      component.update();
+
+      expect(
+        (component.find('EuiSelectableList').props() as any).visibleOptions
+      ).toEqual(options);
     });
   });
 });

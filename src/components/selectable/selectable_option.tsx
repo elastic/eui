@@ -17,17 +17,22 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
 
-export interface EuiSelectableOptionBase extends CommonProps {
+export type EuiSelectableOptionBase = CommonProps & {
   /**
    * Visible label of option.
    * Must be unique across items if `key` is not supplied
    */
   label: string;
+  /**
+   * Optionally change the searchable term by passing a different string other than the `label`.
+   * Best used when creating a custom `optionRender` to separate the label from metadata but allowing to search on both
+   */
+  searchableLabel?: string;
   /**
    * Must be unique across items.
    * Will be used to match options instead of `label`
@@ -54,19 +59,30 @@ export interface EuiSelectableOptionBase extends CommonProps {
    */
   append?: React.ReactNode;
   ref?: (optionIndex: number) => void;
-}
+  /**
+   * Disallow `id` from being set.
+   * Option item `id`s are coordinated at a higher level for a11y reasons.
+   */
+  id?: never;
+};
 
-export interface EuiSelectableGroupLabelOption
-  extends Omit<EuiSelectableOptionBase, 'isGroupLabel'>,
-    HTMLAttributes<HTMLDivElement> {
-  isGroupLabel: true;
-}
+type _EuiSelectableGroupLabelOption = Omit<
+  EuiSelectableOptionBase,
+  'isGroupLabel'
+> &
+  Exclude<HTMLAttributes<HTMLDivElement>, 'id'> & {
+    isGroupLabel: true;
+  };
 
-export interface EuiSelectableLIOption
-  extends EuiSelectableOptionBase,
-    ButtonHTMLAttributes<HTMLLIElement> {}
+export type EuiSelectableGroupLabelOption<T> = _EuiSelectableGroupLabelOption &
+  T;
 
-export type EuiSelectableOption = ExclusiveUnion<
-  EuiSelectableGroupLabelOption,
-  EuiSelectableLIOption
+type _EuiSelectableLIOption = EuiSelectableOptionBase &
+  Exclude<HTMLAttributes<HTMLLIElement>, 'id'>;
+
+export type EuiSelectableLIOption<T> = _EuiSelectableLIOption & T;
+
+export type EuiSelectableOption<T = {}> = ExclusiveUnion<
+  EuiSelectableGroupLabelOption<T>,
+  EuiSelectableLIOption<T>
 >;

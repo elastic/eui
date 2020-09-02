@@ -250,6 +250,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   font-weight: $euiFontWeightBold;
 }
 
+.euiSelectableTemplateSitewide__optionMeta--PINK {
+  font-weight: $euiFontWeightMedium;
+  color: $euiColorAccentText;
+}
+
 @import '../views/guidelines/index';
 @import 'guide_section/index';
 @import 'guide_rule/index';

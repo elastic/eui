@@ -22,6 +22,9 @@ import { ReactNode } from 'react';
 import { EuiObserver } from '../observer';
 
 interface Props {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (ref: (e: HTMLElement | null) => void) => ReactNode;
   onMutation: MutationCallback;
   observerOptions?: MutationObserverInit;

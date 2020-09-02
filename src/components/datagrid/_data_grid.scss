@@ -113,3 +113,7 @@
   padding: $euiSizeS;
   margin: -$euiSizeS; // Offset against the panel to make the scrollbar flush scrollbars
 }
+
+.euiDataGrid__focusWrap {
+  height: 100%;
+}

@@ -19,6 +19,7 @@
 
 import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
+import { EuiMark } from '../mark';
 
 interface EuiHighlightChunk {
   /**
@@ -37,6 +38,9 @@ interface EuiHighlightChunk {
 
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
+    /**
+     * string to highlight as this component's content
+     */
     children: string;
 
     /**
@@ -77,7 +81,7 @@ const highlight = (
           const { end, highlight, start } = chunk;
           const value = searchSubject.substr(start, end - start);
           if (highlight) {
-            return <strong key={start}>{value}</strong>;
+            return <EuiMark key={start}>{value}</EuiMark>;
           }
           return value;
         })}
@@ -108,7 +112,7 @@ const highlight = (
   return (
     <Fragment>
       {preMatch}
-      <strong>{match}</strong>
+      <EuiMark>{match}</EuiMark>
       {postMatch}
     </Fragment>
   );

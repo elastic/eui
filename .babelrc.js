@@ -9,7 +9,8 @@ module.exports = {
       "targets": {
         "browsers": [
           "last 2 versions",
-          "> 5%",
+          "not dead",
+          "not IE 11",
           "Safari 7" // for PhantomJS support
         ]
       },
@@ -25,12 +26,6 @@ module.exports = {
     "pegjs-inline-precompile",
     "./scripts/babel/proptypes-from-ts-props",
     "add-module-exports",
-    [
-      "react-docgen",
-      {
-        "resolver": "findAllExportedComponentDefinitions"
-      }
-    ],
     // stage 3
     "@babel/proposal-object-rest-spread",
     // stage 2
@@ -48,10 +43,4 @@ module.exports = {
       }
     ],
   ],
-
-  "env": {
-    "test": {
-      "plugins": ["dynamic-import-node"]
-    }
-  }
 };

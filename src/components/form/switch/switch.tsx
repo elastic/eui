@@ -39,7 +39,10 @@ export type EuiSwitchEvent = React.BaseSyntheticEvent<
 >;
 
 export type EuiSwitchProps = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
+  Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    'onChange' | 'type' | 'disabled'
+  > & {
     /**
      * Whether to render the render the text label
      */
@@ -52,6 +55,7 @@ export type EuiSwitchProps = CommonProps &
     onChange: (event: EuiSwitchEvent) => void;
     disabled?: boolean;
     compressed?: boolean;
+    type?: 'submit' | 'reset' | 'button';
   };
 
 export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
@@ -100,7 +104,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     <div className={classes}>
       <button
         id={switchId}
-        aria-checked={checked}
+        aria-checked={checked || false}
         className="euiSwitch__button"
         role="switch"
         type={type}
