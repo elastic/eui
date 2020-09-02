@@ -35,7 +35,7 @@ const plugins = [
   }),
   // run TypeScript during webpack build
   new ForkTsCheckerWebpackPlugin({
-    tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
     async: false, // makes errors more visible, but potentially less performant
   }),
 
