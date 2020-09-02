@@ -112,7 +112,7 @@ const chartDemoPlugin = {
         <EuiModalBody>
           <>
             <EuiForm>
-              <EuiFlexGroup gutterSize="s" style={{ width: 600 }}>
+              <EuiFlexGroup gutterSize="m" style={{ width: 600 }}>
                 <EuiFlexItem>
                   <EuiFormRow label="Palette">
                     <EuiColorPalettePicker
@@ -126,11 +126,6 @@ const chartDemoPlugin = {
                 <EuiFlexItem>
                   <EuiFormRow label="Categories">
                     <EuiRange
-                      style={{
-                        border: '8px solid #fbfcfd',
-                        background: '#fbfcfd',
-                        borderRadius: '2px',
-                      }}
                       value={categories}
                       onChange={onChange}
                       min={1}
