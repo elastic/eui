@@ -23,6 +23,10 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiAccordion } from './accordion';
 
+jest.mock('./../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
+
 let id = 0;
 const getId = () => `${id++}`;
 
