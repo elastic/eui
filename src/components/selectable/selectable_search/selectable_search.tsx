@@ -24,16 +24,19 @@ import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
 
-export type EuiSelectableSearchProps = Omit<EuiFieldSearchProps, 'onChange'> &
+export type EuiSelectableSearchProps<T> = Omit<
+  EuiFieldSearchProps,
+  'onChange'
+> &
   CommonProps & {
     /**
      * Passes back (matchingOptions, searchValue)
      */
     onChange: (
-      matchingOptions: EuiSelectableOption[],
+      matchingOptions: Array<EuiSelectableOption<T>>,
       searchValue: string
     ) => void;
-    options: EuiSelectableOption[];
+    options: Array<EuiSelectableOption<T>>;
     defaultValue: string;
     /**
      * The id of the visible list to create the appropriate aria controls
@@ -45,15 +48,15 @@ export interface EuiSelectableSearchState {
   searchValue: string;
 }
 
-export class EuiSelectableSearch extends Component<
-  EuiSelectableSearchProps,
+export class EuiSelectableSearch<T> extends Component<
+  EuiSelectableSearchProps<T>,
   EuiSelectableSearchState
 > {
   static defaultProps = {
     defaultValue: '',
   };
 
-  constructor(props: EuiSelectableSearchProps) {
+  constructor(props: EuiSelectableSearchProps<T>) {
     super(props);
 
     this.state = {
@@ -63,14 +66,20 @@ export class EuiSelectableSearch extends Component<
 
   componentDidMount() {
     const { searchValue } = this.state;
-    const matchingOptions = getMatchingOptions(this.props.options, searchValue);
+    const matchingOptions = getMatchingOptions<T>(
+      this.props.options,
+      searchValue
+    );
     this.props.onChange(matchingOptions, searchValue);
   }
 
   onSearchChange = (value: string) => {
     if (value !== this.state.searchValue) {
       this.setState({ searchValue: value }, () => {
-        const matchingOptions = getMatchingOptions(this.props.options, value);
+        const matchingOptions = getMatchingOptions<T>(
+          this.props.options,
+          value
+        );
         this.props.onChange(matchingOptions, value);
       });
     }
