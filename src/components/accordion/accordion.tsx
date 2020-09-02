@@ -211,14 +211,13 @@ export class EuiAccordion extends Component<
 
     let icon;
     let iconButton;
-    const iconButtonId = htmlIdGenerator()();
+    const buttonId = htmlIdGenerator()();
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
         <button
-          id={iconButtonId}
           aria-controls={id}
           aria-expanded={isOpen}
-          aria-labelledby={iconButtonId}
+          aria-labelledby={buttonId}
           tabIndex={-1}
           className={iconWrapperClasses}
           onClick={this.onToggle}>
@@ -265,6 +264,7 @@ export class EuiAccordion extends Component<
       <div className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
           <button
+            id={buttonId}
             aria-controls={id}
             aria-expanded={isOpen}
             onClick={this.onToggle}
