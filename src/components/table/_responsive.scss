@@ -41,7 +41,7 @@
       display: block;
       color: $euiColorDarkShade;
       padding: $euiSizeS;
-      padding-bottom: 0;
+      padding-block-end: 0;
       margin-bottom: -$euiSizeS; // pull up cell content closer
       min-height: $euiSizeL; // aligns contents of cells if header doesn't exist
 
@@ -68,7 +68,7 @@
       display: flex;
       flex-wrap: wrap;
       padding: $euiTableCellContentPadding;
-      margin-bottom: $euiTableCellContentPadding;
+      margin-block-end: $euiTableCellContentPadding;
 
       &:hover {
         background-color: transparent;
@@ -77,7 +77,7 @@
       &.euiTableRow-isExpandable,
       &.euiTableRow-hasActions {
         @include euiTableActionsBackgroundMobile;
-        padding-right: $euiSizeXXL;
+        padding-inline-end: $euiSizeXXL;
         position: relative;
       }
 
@@ -111,7 +111,7 @@
       }
 
       &.euiTableRow-isSelectable {
-        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding / 2);
+        padding-inline-start: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding / 2);
         position: relative;
 
         .euiTableRowCellCheckbox {
@@ -134,10 +134,10 @@
       &.euiTableRow-isExpandedRow {
         @include euiTableActionsBackgroundMobile;
         @include euiBottomShadowSmall;
-        margin-top: -$euiTableCellContentPadding * 2;
+        margin-block-start: -$euiTableCellContentPadding * 2;
         position: relative;
         z-index: 2; // on top of its parent/previous row
-        border-top: none;
+        border-block-start: none;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         padding-left: $euiSizeS; // override selectable as the padding is already applied via the contents
@@ -169,7 +169,7 @@
     // never show hidden items and always show hover items on mobile,
     .euiTableRow-hasActions .euiTableCellContent--showOnHover {
       > * {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
 
       .expandedItemActions__completelyHide {
@@ -179,8 +179,8 @@
       .euiTableCellContent__hoverItem {
         opacity: 1;
         filter: none;
-        margin-left: 0;
-        margin-bottom: $euiSizeS;
+        margin-inline-start: 0;
+        margin-block-end: $euiSizeS;
       }
     }
 

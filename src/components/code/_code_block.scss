@@ -35,7 +35,7 @@
   }
 
   .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
-    margin-top: $euiSizeXS;
+    margin-block-start: $euiSizeXS;
   }
 
   &.euiCodeBlock-isFullScreen {
@@ -72,11 +72,11 @@
   $controlsPadding: $euiSizeL + $euiSizeXS;
 
   &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-    padding-right: $controlsPadding;
+    padding-inline-end: $controlsPadding;
   }
 
   &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-    margin-right: $controlsPadding;
+    margin-inline-end: $controlsPadding;
   }
 
   // Small padding
@@ -91,11 +91,11 @@
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-      padding-right: $euiSizeS + $controlsPadding;
+      padding-inline-end: $euiSizeS + $controlsPadding;
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-      margin-right: $euiSizeS + $controlsPadding;
+      margin-inline-end: $euiSizeS + $controlsPadding;
     }
   }
 
@@ -111,11 +111,11 @@
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-      padding-right: $euiSize + $controlsPadding;
+      padding-inline-end: $euiSize + $controlsPadding;
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-      margin-right: $euiSize + $controlsPadding;
+      margin-inline-end: $euiSize + $controlsPadding;
     }
   }
 
@@ -131,11 +131,11 @@
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-      padding-right: $euiSizeL + $controlsPadding;
+      padding-inline-end: $euiSizeL + $controlsPadding;
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-      margin-right: $euiSizeL + $controlsPadding;
+      margin-inline-end: $euiSizeL + $controlsPadding;
     }
   }
 
@@ -147,11 +147,13 @@
     white-space: pre;
     color: $euiTextColor;
     font-size: 90%; /* 1 */
-    padding: 0 $euiSizeS;
+    padding-block: 0;
+    padding-inline: $euiSizeS;
     background: $euiCodeBlockBackgroundColor;
 
     .euiCodeBlock__pre {
-      padding: 0 $euiSizeXS;
+      padding-block: 0;
+      padding-inline: $euiSizeXS;
     }
 
     .euiCodeBlock__code {
@@ -249,8 +251,8 @@
 
   .hljs-addition,
   .hljs-deletion {
-    padding-left: $euiSizeXS;
-    margin-left: -$euiSizeXS;
+    padding-inline-start: $euiSizeXS;
+    margin-inline-start: -$euiSizeXS;
   }
 
   .hljs-addition {

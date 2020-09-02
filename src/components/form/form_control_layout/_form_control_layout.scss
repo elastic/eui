@@ -45,7 +45,8 @@
 
     &.euiIcon,
     .euiIcon {
-      padding: 0 $euiSizeS;
+      padding-block: 0;
+      padding-inline: $euiSizeS;
       width: $euiSizeXL;
       border-radius: 0;
       background-color: $euiFormInputGroupLabelBackground;
@@ -68,7 +69,8 @@
   }
 
   .euiButtonIcon {
-    padding: 0 $euiSizeS;
+    padding-block: 0;
+    padding-inline: $euiSizeS;
     width: $euiSizeXL;
     border-radius: 0;
     background-color: $euiFormInputGroupLabelBackground;
@@ -81,7 +83,8 @@
   .euiToolTipAnchor > .euiIcon {
     height: 100%;
     background-color: $euiFormInputGroupLabelBackground;
-    padding: 0 $euiSizeS;
+    padding-block: 0;
+    padding-inline: $euiSizeS;
     width: $euiSizeXL;
     border-radius: 0;
   }
@@ -105,7 +108,7 @@
 
     // If the next sibling is not the input, pull it closer to the text to reduce space
     + *:not(.euiFormControlLayout__childrenWrapper) {
-      margin-left: -$euiFormControlPadding;
+      margin-inline-start: -$euiFormControlPadding;
     }
   }
 
@@ -113,7 +116,7 @@
   > *:not(.euiFormControlLayout__childrenWrapper) {
     + .euiFormLabel,
     + .euiText {
-      margin-left: -$euiFormControlPadding;
+      margin-inline-start: -$euiFormControlPadding;
     }
   }
 
@@ -121,15 +124,15 @@
   // BORDERS on buttons only
 
   .euiButtonEmpty {
-    border-right: $euiFormInputGroupBorder;
+    border-inline-end: $euiFormInputGroupBorder;
   }
 
   // Any buttons after the children wrapper or inside any elements after the children wrapper
   // Need to swap border sides
   .euiFormControlLayout__childrenWrapper ~ .euiButtonEmpty,
   .euiFormControlLayout__childrenWrapper ~ * .euiButtonEmpty {
-    border-right: none;
-    border-left: $euiFormInputGroupBorder;
+    border-inline-end: none;
+    border-inline-start: $euiFormInputGroupBorder;
   }
 
   //
@@ -147,7 +150,7 @@
 
       // If the next sibling is not the input, pull it closer to the text to reduce space
       + *:not(.euiFormControlLayout__childrenWrapper) {
-        margin-left: -$euiFormControlCompressedPadding;
+        margin-inline-start: -$euiFormControlCompressedPadding;
       }
     }
 
@@ -155,7 +158,7 @@
     > *:not(.euiFormControlLayout__childrenWrapper) {
       + .euiFormLabel,
       + .euiText {
-        margin-left: -$euiFormControlCompressedPadding;
+        margin-inline-start: -$euiFormControlCompressedPadding;
       }
     }
   }

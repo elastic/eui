@@ -11,7 +11,8 @@
 .euiDataGridColumnSelector__columnList {
   @include euiYScrollWithShadows;
   max-height: 400px;
-  margin: 0 (-$euiSizeS);
+  margin-block: 0;
+  margin-inline: (-$euiSizeS);
 }
 
 .euiDataGridColumnSelector__itemLabel {
@@ -23,7 +24,7 @@
   // sass-lint:disable-block no-important
   transform: none !important;
   transition: none !important;
-  margin-top: -$euiSizeS;
+  margin-block-start: -$euiSizeS;
   // IE11 needs a min-width
   min-width: $euiSize * 12;
 }

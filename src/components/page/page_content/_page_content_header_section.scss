@@ -1,6 +1,6 @@
 .euiPageContentHeaderSection {
   & + & {
-    margin-left: $euiSizeXL;
+    margin-inline-start: $euiSizeXL;
   }
 }
 
@@ -9,8 +9,8 @@
   @each $modifier, $amount in $euiPanelPaddingModifiers {
     .euiPageContent[class*='#{$modifier}'] .euiPageContentHeader--responsive {
       .euiPageContentHeaderSection + .euiPageContentHeaderSection {
-        margin-left: 0;
-        margin-top: $amount / 2;
+        margin-inline-start: 0;
+        margin-block-start: $amount / 2;
       }
     }
   }

@@ -1,8 +1,9 @@
 // These mobile children are hidden in everything but mobile view.
 .euiSideNav__mobileToggle {
   display: none;
-  border-bottom: $euiBorderThin;
-  padding: $euiSize $euiSizeL;
+  border-block-end: $euiBorderThin;
+  padding-block: $euiSize;
+  padding-inline: $euiSizeL;
   width: 100%;
   text-align: left;
 
@@ -66,6 +67,7 @@
     visibility: hidden;
     opacity: 0;
     max-height: 0;
-    margin: 0 $euiSizeL;
+    margin-block: 0;
+    margin-inline: $euiSizeL;
   }
 }

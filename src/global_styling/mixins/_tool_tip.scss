@@ -18,9 +18,9 @@
 
 @mixin euiToolTipTitle {
   font-weight: $euiFontWeightBold;
-  border-bottom: solid 1px tintOrShade($euiColorFullShade, 35%, 80%);
-  padding-bottom: $euiSizeXS;
-  margin-bottom: $euiSizeXS;
+  border-block-end: solid 1px tintOrShade($euiColorFullShade, 35%, 80%);
+  padding-block-end: $euiSizeXS;
+  margin-block-end: $euiSizeXS;
 }
 
 @mixin euiToolTipAnimation($side: 'top') {

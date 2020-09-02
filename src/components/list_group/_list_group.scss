@@ -26,7 +26,7 @@
     padding: $gutterSize;
 
     .euiListGroupItem:not(:first-of-type) {
-      margin-top: $gutterSize;
+      margin-block-start: $gutterSize;
     }
   }
 }

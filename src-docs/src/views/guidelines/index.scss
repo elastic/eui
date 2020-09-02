@@ -3,7 +3,7 @@
 // -------------------------------------
 .guidelineColor__palette {
   padding: $euiSize;
-  padding-bottom: $euiSizeXL;
+  padding-block-end: $euiSizeXL;
 }
 
 .guidelineColor__swatch {
@@ -48,7 +48,7 @@
 // Sass guideline page
 // -------------------------------------
 .guideSass__swatchItem + .guideSass__swatchItem {
-  margin-top: $euiSize;
+  margin-block-start: $euiSize;
 }
 
 .guideSass__swatch {
@@ -79,11 +79,11 @@
 }
 
 .guideSass__levelRow {
-  padding-left: $euiSizeS;
+  padding-inline-start: $euiSizeS;
 }
 
 .guideSass__levelRow + .guideSass__levelRow {
-  margin-top: $euiSizeS;
+  margin-block-start: $euiSizeS;
 }
 
 .guideSass__level {
@@ -94,7 +94,7 @@
 }
 
 .guideSass__sizeRow + .guideSass__sizeRow {
-  margin-top: $euiSize;
+  margin-block-start: $euiSize;
 }
 
 .guideSass__size {
@@ -108,11 +108,11 @@
 }
 
 .guideSass__fontSizeExample + .guideSass__fontSizeExample {
-  margin-top: $euiSizeL;
+  margin-block-start: $euiSizeL;
 }
 
 .guideSass__fontSize {
-  margin-bottom: $euiSizeS;
+  margin-block-end: $euiSizeS;
 }
 
 .guideSass__fontSize--euiFontSizeXS {
@@ -149,7 +149,7 @@
   border-radius: $euiBorderRadius;
 
   & + .guideSass__shadow {
-    margin-top: $euiSizeXL;
+    margin-block-start: $euiSizeXL;
   }
 }
 
@@ -177,7 +177,8 @@
 
 .guideSass__overflowShadowsX {
   @include euiXScrollWithShadows;
-  padding: $euiSizeS $euiSizeS 0;
+  padding-block: $euiSizeS 0;
+  padding-inline: $euiSizeS;
 
   .guideSass__overflowShadowTextX {
     width: 150%;
@@ -225,13 +226,13 @@
 }
 
 .guideSass__animRow + .guideSass__animRow {
-  margin-top: $euiSizeL;
+  margin-block-start: $euiSizeL;
 }
 
 .guideSass__animParent {
   background: $euiColorLightestShade;
   height: $euiSize;
-  margin-top: $euiSizeS;
+  margin-block-start: $euiSizeS;
   position: relative;
 }
 
@@ -286,7 +287,7 @@
 
 .guideSass__themedBox {
   padding: $euiSize;
-  border-left: $euiBorderThick;
+  border-inline-start: $euiBorderThick;
 }
 
 // sass-lint:disable no-color-literals
@@ -309,7 +310,7 @@
   background: $backgroundColor;
   color: makeHighContrastColor($euiColorWarning, $backgroundColor);
   padding: $euiSize;
-  border-left: $euiBorderThick;
+  border-inline-start: $euiBorderThick;
   border-color: $euiColorWarning;
 
   .square {

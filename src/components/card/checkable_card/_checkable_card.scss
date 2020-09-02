@@ -39,7 +39,8 @@
   flex-grow: 1;
   font-size: $euiFontSize;
   line-height: $euiSizeL;
-  padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
+  padding-block: $euiSizeS $euiSize;
+  padding-inline: $euiSizeS;
   cursor: pointer;
 }
 
@@ -49,5 +50,6 @@
 }
 
 .euiCheckableCard__children {
-  padding:  0 $euiSizeS $euiSizeS $euiSize;
+  padding-block:  0 $euiSize;
+  padding-inline:  $euiSizeS;
 }

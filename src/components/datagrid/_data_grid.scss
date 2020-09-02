@@ -17,9 +17,9 @@
   background: $euiColorEmptyShade;
 
   .euiDataGrid__pagination {
-    padding-bottom: $euiSizeXS;
+    padding-block-end: $euiSizeXS;
     background: $euiColorLightestShade;
-    border-top: $euiBorderThin;
+    border-block-start: $euiBorderThin;
   }
 
   .euiDataGrid__verticalScroll .euiDataGridRow {
@@ -48,7 +48,7 @@
   flex-grow: 0;
 
   > * {
-    margin-left: $euiSizeXS / 2;
+    margin-inline-start: $euiSizeXS / 2;
   }
 }
 
@@ -75,16 +75,16 @@
 
 @include euiDataGridStyles(bordersHorizontal) {
   .euiDataGrid__controls {
-    border-right: none;
-    border-left: none;
-    border-top: none;
+    border-inline-end: none;
+    border-inline-start: none;
+    border-block-start: none;
     background: $euiColorEmptyShade;
   }
 }
 
 .euiDataGrid__pagination {
 
-  padding-top: $euiSizeXS;
+  padding-block-start: $euiSizeXS;
   flex-grow: 0;
 }
 

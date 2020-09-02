@@ -1,6 +1,6 @@
 .guideRule__title {
-  margin-top: $euiSizeXXL;
-  border-top: 1px solid $euiBorderColor;
-  padding-top: $euiSizeXXL;
-  margin-bottom: $euiSizeS;
+  margin-block-start: $euiSizeXXL;
+  border-block-start: 1px solid $euiBorderColor;
+  padding-block-start: $euiSizeXXL;
+  margin-block-end: $euiSizeS;
 }

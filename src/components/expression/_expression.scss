@@ -7,26 +7,27 @@
   @include euiFontSizeS;
   @include euiCodeFont;
 
-  border-bottom: $euiBorderWidthThick solid transparent;
+  border-block-end: $euiBorderWidthThick solid transparent;
   display: inline-block; /* 1 */
   text-align: left;
-  padding: ($euiSizeXS / 2) 0;
+  padding-block: ($euiSizeXS / 2);
+  padding-inline: 0;
   transition: all $euiAnimSpeedNormal ease-in-out;
   color: $euiTextColor;
 
   &:focus {
-    border-bottom-style: solid;
+    border-block-end-style: solid;
   }
 
   & + .euiExpression {
-    margin-left: $euiSizeS;
+    margin-inline-start: $euiSizeS;
   }
 
   &.euiExpression--columns {
     border-color: transparent;
     // Ensures there's no flash of the dashed style before turning solid for the active state
-    border-bottom-style: solid;
-    margin-bottom: $euiSizeXS;
+    border-block-end-style: solid;
+    margin-block-end: $euiSizeXS;
   }
 
   &.euiExpression--truncate {
@@ -48,20 +49,20 @@
 
 .euiExpression-isClickable {
   cursor: pointer;
-  border-bottom: $euiBorderEditable;
+  border-block-end: $euiBorderEditable;
 
   &:hover:not(:disabled) {
-    border-bottom-style: solid;
+    border-block-end-style: solid;
     transform: translateY(-1px);
   }
 }
 
 .euiExpression__icon {
-  margin-left: $euiSizeXS;
+  margin-inline-start: $euiSizeXS;
 }
 
 .euiExpression-isActive {
-  border-bottom-style: solid;
+  border-block-end-style: solid;
 }
 
 .euiExpression--columns {
@@ -86,7 +87,7 @@
 
   .euiExpression__description {
     text-align: right;
-    margin-right: $euiSizeS;
+    margin-inline-end: $euiSizeS;
     flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
   }
 
@@ -95,7 +96,7 @@
   }
 
   .euiExpression__icon {
-    margin-top: $euiSizeXS;
+    margin-block-start: $euiSizeXS;
   }
 }
 
@@ -106,7 +107,7 @@
     }
 
     &.euiExpression-isActive {
-      border-bottom-color: $color;
+      border-block-end-color: $color;
       border-color: $color;
     }
 

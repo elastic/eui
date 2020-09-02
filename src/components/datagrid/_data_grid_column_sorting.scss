@@ -11,7 +11,7 @@
   // sass-lint:disable-block no-important
   transform: none !important;
   transition: none !important;
-  margin-top: -$euiSizeS;
+  margin-block-start: -$euiSizeS;
   // IE11 needs a min-width
   min-width: $euiSize * 12;
 }
@@ -41,7 +41,7 @@
 }
 
 .euiDataGridColumnSorting__orderButtons {
-  padding-left: $euiSizeL;
+  padding-inline-start: $euiSizeL;
 
   .euiDataGridColumnSorting__order {
     min-width: 200px;

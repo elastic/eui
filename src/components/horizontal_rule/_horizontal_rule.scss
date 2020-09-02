@@ -11,14 +11,14 @@
 
   &.euiHorizontalRule--half {
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
   }
 
   &.euiHorizontalRule--quarter {
     width: 25%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
   }
 }
 
@@ -33,6 +33,7 @@ $ruleMargins: (
 
 @each $name, $size in $ruleMargins {
   .euiHorizontalRule--#{$name} {
-    margin: $size 0;
+    margin-block: $size;
+    margin-inline: 0;
   }
 }

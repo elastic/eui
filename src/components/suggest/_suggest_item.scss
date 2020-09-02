@@ -55,7 +55,8 @@
     font-family: $euiCodeFontFamily;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: $euiSizeXS $euiSizeS;
+    padding-block: $euiSizeXS;
+    padding-inline: $euiSizeS;
     color: $euiTextColor;
 
     &.euiSuggestItem__labelDisplay--expand {
@@ -73,11 +74,11 @@
   .euiSuggestItem__description {
     color: $euiColorDarkShade;
     flex-basis: auto;
-    padding-top: $euiSizeXS * .5;
+    padding-block-start: $euiSizeXS * .5;
 
     &:empty {
       flex-grow: 0;
-      margin-left: 0;
+      margin-inline-start: 0;
     }
   }
 }

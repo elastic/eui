@@ -5,8 +5,8 @@
 
 .guideRule__example {
   .guideRule__example__panel {
-    border-bottom: 2px solid;
-    margin-bottom: $euiSizeS;
+    border-block-end: 2px solid;
+    margin-block-end: $euiSizeS;
     flex-grow: 1; /* 1 */
 
     &:not(.euiPanel) {
@@ -15,7 +15,7 @@
   }
 
   pre {
-    margin-bottom: 0;
+    margin-block-end: 0;
     padding: 0;
   }
 
@@ -28,7 +28,7 @@
   // Coloring
   &.guideRule__example--do {
     .guideRule__example__panel {
-      border-bottom-color: $euiColorSuccess;
+      border-block-end-color: $euiColorSuccess;
     }
 
     .guideRule__caption {
@@ -38,7 +38,7 @@
 
   &.guideRule__example--dont {
     .guideRule__example__panel {
-      border-bottom-color: $euiColorDanger;
+      border-block-end-color: $euiColorDanger;
     }
 
     .guideRule__caption {

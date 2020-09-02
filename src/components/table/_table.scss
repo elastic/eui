@@ -36,7 +36,7 @@
   @include euiTableCell;
   @include euiTitle('xxs');
   font-weight: $euiFontWeightMedium;
-  border-top: none;
+  border-block-start: none;
 
   .euiTableHeaderButton {
     text-align: left;
@@ -68,7 +68,7 @@
 }
 
 .euiTableSortIcon {
-  margin-left: $euiSizeXS;
+  margin-inline-start: $euiSizeXS;
   flex-shrink: 0; // makes sure the icon doesn't change size because the text is long
 
   .euiTableHeaderButton-isSorted & {
@@ -78,7 +78,7 @@
 
 .euiTableHeaderCellCheckbox {
   @include euiTableCellCheckbox;
-  border-top: none;
+  border-block-start: none;
 }
 
 .euiTableRow {
@@ -92,7 +92,7 @@
     }
 
     &.euiTableRow-isSelectable .euiTableCellContent {
-      padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
+      padding-inline-start: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
     }
   }
 
@@ -127,7 +127,7 @@
 // Must come after .euiTableRowCell selector for border to be removed
 .euiTableFooterCell {
   background-color: $euiColorLightestShade;
-  border-bottom: none;
+  border-block-end: none;
 }
 
 /**
@@ -181,7 +181,7 @@
 
 .euiTableCellContent--showOnHover {
   > *:not(:first-child) {
-    margin-left: $euiSizeS;
+    margin-inline-start: $euiSizeS;
   }
 }
 

@@ -1,6 +1,6 @@
 .euiCollapsibleNavGroup {
   &:not(:first-child) {
-    border-top: $euiBorderThin;
+    border-block-start: $euiBorderThin;
   }
 
   // This class does not accept a custom classname
@@ -45,7 +45,7 @@
 }
 
 .euiCollapsibleNavGroup--withHeading .euiCollapsibleNavGroup__children {
-  padding-top: 0;
+  padding-block-start: 0;
 }
 
 @keyframes euiCollapsibleNavGroupDarkFocusRingAnimate {

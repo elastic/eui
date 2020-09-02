@@ -58,7 +58,7 @@ $euiToastTypes: (
 // Create button modifiers based upon the map.
 @each $name, $color in $euiToastTypes {
   .euiToast--#{$name} {
-    border-top: 2px solid $color;
+    border-block-start: 2px solid $color;
   }
 }
 
@@ -93,7 +93,7 @@ $euiToastTypes: (
 }
 
 .euiToastHeader--withBody {
-  margin-bottom: $euiSizeM;
+  margin-block-end: $euiSizeM;
 }
 
 /**

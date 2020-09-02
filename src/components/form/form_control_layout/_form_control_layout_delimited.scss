@@ -20,13 +20,13 @@
       height: 100%;
       padding-top: 0; // Fixes IE
       padding-bottom: 0; // Fixes IE
-      padding-left: $euiFormControlCompressedPadding;
-      padding-right: $euiFormControlCompressedPadding;
+      padding-inline-start: $euiFormControlCompressedPadding;
+      padding-inline-end: $euiFormControlCompressedPadding;
     }
 
     .euiFormControlLayoutIcons {
-      padding-left: $euiFormControlCompressedPadding;
-      padding-right: $euiFormControlCompressedPadding;
+      padding-inline-start: $euiFormControlCompressedPadding;
+      padding-inline-end: $euiFormControlCompressedPadding;
     }
   }
 
@@ -55,8 +55,8 @@
     // Absolutely positioning the icons doesn't work because they
     // overlay only one of controls making the layout unbalanced
     position: static; // Overrider absolute
-    padding-left: $euiFormControlPadding;
-    padding-right: $euiFormControlPadding;
+    padding-inline-start: $euiFormControlPadding;
+    padding-inline-end: $euiFormControlPadding;
     flex-shrink: 0; // Fixes IE
 
     &:not(.euiFormControlLayoutIcons--right) {
@@ -83,6 +83,6 @@
   background-color: transparent !important; // Override .euiFormControlLayout--group > .euiFormLabel
   line-height: 1 !important; // Override EuiText line-height
   flex: 0 0 auto;
-  padding-left: $euiFormControlPadding / 2;
-  padding-right: $euiFormControlPadding / 2;
+  padding-inline-start: $euiFormControlPadding / 2;
+  padding-inline-end: $euiFormControlPadding / 2;
 }

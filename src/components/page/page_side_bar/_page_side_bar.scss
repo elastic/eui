@@ -4,7 +4,7 @@
 .euiPageSideBar {
   min-width: $euiSize * 12; /* 1 */
   flex: 0 1 0%; /* 1 */
-  margin-right: $euiSizeL;
+  margin-inline-end: $euiSizeL;
 }
 
 @include euiBreakpoint('xs', 's') {

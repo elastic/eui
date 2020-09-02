@@ -7,7 +7,8 @@
   height: $euiHeaderChildSize;
   line-height: $euiHeaderChildSize;
   min-width: $euiHeaderChildSize + 1px;
-  padding: 0 ($euiSizeM + 1px) 0 $euiSizeM;
+  padding-block: 0 $euiSizeM;
+  padding-inline: 0 ($euiSizeM + 1px);
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
@@ -25,13 +26,14 @@
 
 .euiHeaderLogo__text {
   @include euiTitle('s');
-  padding-left: $euiSize;
+  padding-inline-start: $euiSize;
   font-weight: $euiFontWeightLight;
 }
 
 @include euiBreakpoint('xs') {
   .euiHeaderLogo {
-    padding: 0 $euiSizeM;
+    padding-block: 0;
+    padding-inline: $euiSizeM;
   }
 
   .euiHeaderLogo__icon.euiIcon--xLarge {

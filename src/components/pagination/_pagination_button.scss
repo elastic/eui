@@ -26,9 +26,10 @@
   align-items: baseline;
   color: $euiButtonColorDisabledText;
   font-size: $euiFontSizeS;
-  padding: 0 $euiSizeS;
+  padding-block: 0;
+  padding-inline: $euiSizeS;
   height: $euiSizeL;
-  padding-top: $euiSizeM / 2;
+  padding-block-start: $euiSizeM / 2;
 }
 
 @include euiBreakpoint('xs', 's') {

@@ -9,11 +9,12 @@
 }
 
 .savedQueriesInput {
-  padding-bottom: $euiSizeXL * 6;
+  padding-block-end: $euiSizeXL * 6;
 }
 
 .savedQueryManagement__text {
-  padding: $euiSizeM $euiSizeM ($euiSizeM / 2);
+  padding-block: $euiSizeM ($euiSizeM / 2);
+  padding-inline: $euiSizeM;
 }
 
 .savedQueryManagement__listWrapper {

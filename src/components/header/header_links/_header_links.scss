@@ -12,7 +12,8 @@
 
   > * {
     // Apply margins to any children
-    margin: 0 $euiSizeS;
+    margin-block: 0;
+    margin-inline: $euiSizeS;
   }
 }
 

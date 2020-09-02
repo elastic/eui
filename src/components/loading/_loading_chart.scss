@@ -9,8 +9,8 @@
   height: 100%;
   width: $euiSizeS;
   display: inline-block;
-  margin-bottom: -$euiSize;
-  margin-left: $euiSizeXS / 2;
+  margin-block-end: -$euiSize;
+  margin-inline-start: $euiSizeXS / 2;
   animation: euiLoadingChart 1s infinite;
 
   &:nth-child(1) {
@@ -58,8 +58,8 @@
 
   > span {
     width: $euiSizeXS / 2;
-    margin-left: $euiSizeXS / 2;
-    margin-bottom: $euiSizeS;
+    margin-inline-start: $euiSizeXS / 2;
+    margin-block-end: $euiSizeS;
   }
 }
 
@@ -68,8 +68,8 @@
 
   > span {
     width: $euiSizeXS;
-    margin-left: $euiSizeXS / 2;
-    margin-bottom: $euiSizeL / 2;
+    margin-inline-start: $euiSizeXS / 2;
+    margin-block-end: $euiSizeL / 2;
   }
 }
 
@@ -78,8 +78,8 @@
 
   > span {
     width: $euiSizeS;
-    margin-left: $euiSizeXS;
-    margin-bottom: $euiSizeXL / 2;
+    margin-inline-start: $euiSizeXS;
+    margin-block-end: $euiSizeXL / 2;
   }
 }
 

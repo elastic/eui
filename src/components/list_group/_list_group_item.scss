@@ -64,7 +64,8 @@
 .euiListGroupItem__text,
 .euiListGroupItem__button {
   line-height: $euiSizeL;
-  padding: $euiSizeXS $euiSizeS;
+  padding-block: $euiSizeXS;
+  padding-inline: $euiSizeS;
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
@@ -95,7 +96,7 @@
 
 .euiListGroupItem__extraAction {
   opacity: 0;
-  margin-right: $euiSizeS;
+  margin-inline-end: $euiSizeS;
   transition: opacity $euiAnimSpeedFast;
 
   .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
@@ -107,7 +108,7 @@
 }
 
 .euiListGroupItem__icon {
-  margin-right: $euiSizeM;
+  margin-inline-end: $euiSizeM;
   flex-grow: 0;
   flex-shrink: 0;
 }

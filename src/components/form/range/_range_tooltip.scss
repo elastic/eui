@@ -6,7 +6,7 @@
   top: 0;
   bottom: 0;
   width: calc(100% - #{$euiRangeThumbWidth});
-  margin-left: $euiRangeThumbWidth / 2;
+  margin-inline-start: $euiRangeThumbWidth / 2;
   pointer-events: none;
 }
 
@@ -17,7 +17,8 @@
   border: 1px solid $euiTooltipBackgroundColor;
   position: absolute;
   border-radius: $euiBorderRadius;
-  padding: ($euiSizeXS / 2) $euiSizeS;
+  padding-block: ($euiSizeXS / 2);
+  padding-inline: $euiSizeS;
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
   max-width: 256px;
@@ -49,7 +50,7 @@
 
   // Positions the arrow
   &.euiRangeTooltip__value--right {
-    margin-left: $euiSizeL;
+    margin-inline-start: $euiSizeL;
 
     &:before,
     &:after {
@@ -57,12 +58,12 @@
     }
 
     &::before {
-      margin-left: -1px;
+      margin-inline-start: -1px;
     }
   }
 
   &.euiRangeTooltip__value--left {
-    margin-right: $euiSizeL;
+    margin-inline-end: $euiSizeL;
 
     &:before,
     &:after {
@@ -71,7 +72,7 @@
     }
 
     &::before {
-      margin-right: -1px;
+      margin-inline-end: -1px;
     }
   }
 

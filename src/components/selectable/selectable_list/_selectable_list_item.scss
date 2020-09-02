@@ -7,7 +7,7 @@
   cursor: pointer;
 
   &:not(:last-of-type) {
-    border-bottom: $euiSelectableListItemBorder;
+    border-block-end: $euiSelectableListItemBorder;
   }
 
   &-isFocused:not([aria-disabled='true']),
@@ -35,12 +35,12 @@
 
 .euiSelectableListItem__icon,
 .euiSelectableListItem__prepend {
-  margin-right: $euiSizeM;
+  margin-inline-end: $euiSizeM;
   flex-shrink: 0;
 }
 
 .euiSelectableListItem__append {
-  margin-left: $euiSizeM;
+  margin-inline-start: $euiSizeM;
   flex-shrink: 0;
 }
 

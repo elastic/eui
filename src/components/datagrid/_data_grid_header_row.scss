@@ -58,17 +58,17 @@
 
 @include euiDataGridStyles(headerUnderline) {
   @include euiDataGridHeaderCell {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: $euiBorderThick;
-    border-bottom-color: $euiTextColor;
+    border-block-start: none;
+    border-inline-start: none;
+    border-inline-end: none;
+    border-block-end: $euiBorderThick;
+    border-block-end-color: $euiTextColor;
   }
 }
 
 @include euiDataGridStyles(bordersNone, headerUnderline) {
   @include euiDataGridHeaderCell {
-    border-bottom: $euiBorderThick;
+    border-block-end: $euiBorderThick;
     border-color: $euiTextColor;
   }
 }
@@ -81,20 +81,20 @@
 
 @include euiDataGridStyles(headerShade, bordersAll) {
   @include euiDataGridHeaderCell {
-    border-right: $euiBorderThin;
-    border-bottom: $euiBorderThin;
-    border-left: none;
+    border-inline-end: $euiBorderThin;
+    border-block-end: $euiBorderThin;
+    border-inline-start: none;
 
     &:first-of-type {
-      border-left: $euiBorderThin;
+      border-inline-start: $euiBorderThin;
     }
   }
 }
 
 @include euiDataGridStyles(headerShade, bordersHorizontal) {
   @include euiDataGridHeaderCell {
-    border-top: none;
-    border-bottom: $euiBorderThin;
+    border-block-start: none;
+    border-block-end: $euiBorderThin;
   }
 }
 
@@ -107,9 +107,9 @@
 
 @include euiDataGridStyles(borderhorizontal) {
   @include euiDataGridHeaderCell {
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    border-block-start: none;
+    border-inline-end: none;
+    border-inline-start: none;
   }
 }
 
@@ -141,12 +141,12 @@
 
 @include euiDataGridStyles(noControls, bordersAll) {
   @include euiDataGridHeaderCell {
-    border-top: $euiBorderThin;
+    border-block-start: $euiBorderThin;
   }
 }
 
 @include euiDataGridStyles(noControls, bordersHorizontal) {
   @include euiDataGridHeaderCell {
-    border-top: $euiBorderThin;
+    border-block-start: $euiBorderThin;
   }
 }

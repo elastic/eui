@@ -44,7 +44,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   bottom: 0;
 
   .guideSideNav__identity {
-    border-bottom: $euiBorderThin;
+    border-block-end: $euiBorderThin;
     padding: $euiSize;
   }
 
@@ -76,13 +76,13 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   .guideSideNav__newBadge {
-    margin-left: $euiSizeXS;
-    margin-right: $euiSizeXS;
+    margin-inline-start: $euiSizeXS;
+    margin-inline-end: $euiSizeXS;
   }
 
   // Shift the margin on the badge when selected and the dropdown arrow no longer shows
   .euiSideNavItemButton-isSelected .guideSideNav__newBadge {
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 }
 
@@ -92,12 +92,13 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guidePageContent {
   flex: 1 1 auto;
-  padding: $euiSize $euiSizeXL;
+  padding-block: $euiSize;
+  padding-inline: $euiSizeXL;
   min-height: 100vh;
   background-color: $euiColorEmptyShade;
-  border-left: $euiBorderThin;
+  border-inline-start: $euiBorderThin;
   max-width: 1000px;
-  margin-left: 240px;
+  margin-inline-start: 240px;
 }
 
 .guideDemo__highlightLayout {
@@ -148,7 +149,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   padding: $euiSizeS;
   color: $euiColorEmptyShade;
   font-size: $euiFontSizeS;
-  margin-top: $euiSizeS;
+  margin-block-start: $euiSizeS;
   line-height: 1.5;
   height: 64px;
 
@@ -183,7 +184,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
   svg,
   img {
-    margin-bottom: $euiSizeS;
+    margin-block-end: $euiSizeS;
   }
 }
 
@@ -222,7 +223,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: $euiSizeM / 2;
   background-color: currentColor;
   vertical-align: middle;
-  margin-right: $euiSizeS;
+  margin-inline-end: $euiSizeS;
 }
 
 .guideCharts__customLegendLine--thin {
@@ -299,7 +300,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   .guidePageContent {
-    margin-left: 0;
+    margin-inline-start: 0;
     width: 100%;
   }
 }

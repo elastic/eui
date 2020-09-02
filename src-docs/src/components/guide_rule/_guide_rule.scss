@@ -1,20 +1,20 @@
 .guideRule {
-  margin-top: $euiSizeXXL;
+  margin-block-start: $euiSizeXXL;
 
   + .guideRule {
-    margin-top: $euiSizeL;
+    margin-block-start: $euiSizeL;
 
     &.guideRule--hasDescription {
-      margin-top: $euiSizeXXL * 1.5;
+      margin-block-start: $euiSizeXXL * 1.5;
     }
 
     &.guideRule--hasHeading {
-      margin-top: $euiSizeXXL * 2;
+      margin-block-start: $euiSizeXXL * 2;
     }
   }
 
   .guideRule__title + &:not(.guideRule--hasHeading) {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 }
 

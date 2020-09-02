@@ -14,7 +14,7 @@
 // sass-lint:disable no-important
 .euiQuickSelectPopover__buttonText {
   // Override specificity from universal and sibling selectors
-  margin-right: $euiSizeXS !important;
+  margin-inline-end: $euiSizeXS !important;
 }
 
 .euiQuickSelectPopover__anchor {

@@ -75,16 +75,16 @@
     &.euiPopover__panelArrow--top {
       &:before {
         bottom: -$euiPopoverArrowSize + 2;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-top: $euiPopoverArrowSize solid $euiBorderColor;
+        border-inline-start: $euiPopoverArrowSize solid transparent;
+        border-inline-end: $euiPopoverArrowSize solid transparent;
+        border-block-start: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
         bottom: -$euiPopoverArrowSize + 3;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-top: $euiPopoverArrowSize solid $euiColorEmptyShade;
+        border-inline-start: $euiPopoverArrowSize solid transparent;
+        border-inline-end: $euiPopoverArrowSize solid transparent;
+        border-block-start: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
 
@@ -92,33 +92,33 @@
       &:before {
         left: -$euiPopoverArrowSize;
         top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid $euiBorderColor;
+        border-block-start: $euiPopoverArrowSize solid transparent;
+        border-block-end: $euiPopoverArrowSize solid transparent;
+        border-inline-end: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
         left: -$euiPopoverArrowSize + 1;
         top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid $euiColorEmptyShade;
+        border-block-start: $euiPopoverArrowSize solid transparent;
+        border-block-end: $euiPopoverArrowSize solid transparent;
+        border-inline-end: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
 
     &.euiPopover__panelArrow--bottom {
       &:before {
         top: -$euiPopoverArrowSize;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid $euiBorderColor;
+        border-inline-start: $euiPopoverArrowSize solid transparent;
+        border-inline-end: $euiPopoverArrowSize solid transparent;
+        border-block-end: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
         top: -$euiPopoverArrowSize + 1;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid $euiColorEmptyShade;
+        border-inline-start: $euiPopoverArrowSize solid transparent;
+        border-inline-end: $euiPopoverArrowSize solid transparent;
+        border-block-end: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
 
@@ -126,17 +126,17 @@
       &:before {
         right: -$euiPopoverArrowSize + 1;
         top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-left: $euiPopoverArrowSize solid $euiBorderColor;
+        border-block-start: $euiPopoverArrowSize solid transparent;
+        border-block-end: $euiPopoverArrowSize solid transparent;
+        border-inline-start: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
         right: -$euiPopoverArrowSize + 2;
         top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-left: $euiPopoverArrowSize solid $euiColorEmptyShade;
+        border-block-start: $euiPopoverArrowSize solid transparent;
+        border-block-end: $euiPopoverArrowSize solid transparent;
+        border-inline-start: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
   }
@@ -147,7 +147,7 @@
   }
 
   &.euiPopover__panel-isAttached.euiPopover__panel--bottom {
-    border-top-color: transparentize($euiBorderColor, .2);
+    border-block-start-color: transparentize($euiBorderColor, .2);
     border-top-right-radius: 0;
     border-top-left-radius: 0;
   }
@@ -155,7 +155,7 @@
   &.euiPopover__panel-isAttached.euiPopover__panel--top {
     @include euiBottomShadowFlat;
 
-    border-bottom-color: transparentize($euiBorderColor, .2);
+    border-block-end-color: transparentize($euiBorderColor, .2);
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }

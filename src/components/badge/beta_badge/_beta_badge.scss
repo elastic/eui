@@ -1,6 +1,7 @@
 .euiBetaBadge {
   display: inline-block;
-  padding: 0 $euiSize;
+  padding-block: 0;
+  padding-inline: $euiSize;
   border-radius: $euiSizeL;
   box-shadow: inset 0 0 0 1px $euiBorderColor;
   vertical-align: super; // if displayed inline with text
@@ -26,6 +27,6 @@
 
   .euiBetaBadge__icon {
     position: relative;
-    margin-top: -1px;
+    margin-block-start: -1px;
   }
 }

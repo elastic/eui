@@ -86,11 +86,11 @@
   // sass-lint:disable-block no-vendor-prefixes
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    margin-top: ((-$euiRangeTrackBorderWidth * 2 + $euiRangeTrackHeight) / 2) - ($euiRangeThumbHeight / 2);
+    margin-block-start: ((-$euiRangeTrackBorderWidth * 2 + $euiRangeTrackHeight) / 2) - ($euiRangeThumbHeight / 2);
   }
 
   &::-ms-thumb {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   &::-moz-focus-outer {

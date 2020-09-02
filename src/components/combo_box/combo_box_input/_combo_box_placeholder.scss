@@ -1,7 +1,8 @@
 .euiComboBoxPlaceholder {
   position: absolute;
   pointer-events: none;
-  padding: 0 $euiSizeXS;
+  padding-block: 0;
+  padding-inline: $euiSizeXS;
   line-height: $euiSizeXL;
   color: $euiColorMediumShade;
   margin-bottom: 0 !important; // sass-lint:disable-line no-important

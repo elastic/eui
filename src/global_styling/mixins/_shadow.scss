@@ -41,8 +41,8 @@
   // Never adjust borders if the border color is already on the dark side (dark theme)
   @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
     border-color: tint($color, 75%);
-    border-top-color: tint($color, 80%);
-    border-bottom-color: tint($color, 55%);
+    border-block-start-color: tint($color, 80%);
+    border-block-end-color: tint($color, 55%);
   }
 }
 
@@ -71,8 +71,8 @@
   // Never adjust borders if the border color is already on the dark side (dark theme)
   @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
     border-color: tint($color, 70%);
-    border-top-color: tint($color, 85%);
-    border-bottom-color: tint($color, 55%);
+    border-block-start-color: tint($color, 85%);
+    border-block-end-color: tint($color, 55%);
   }
 }
 

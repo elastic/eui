@@ -12,7 +12,8 @@
 }
 
 .euiAccordionForm__button {
-  padding: $euiSize $euiSize $euiSize 0;
+  padding-block: $euiSize 0;
+  padding-inline: $euiSize;
 
   &:hover {
     text-decoration: none;
@@ -24,11 +25,11 @@
 }
 
 .euiAccordionForm {
-  border-top: $euiBorderThin;
-  border-bottom: $euiBorderThin;
+  border-block-start: $euiBorderThin;
+  border-block-end: $euiBorderThin;
 
   & + .euiAccordionForm {
-    border-top: none;
+    border-block-start: none;
   }
 
   &:hover {

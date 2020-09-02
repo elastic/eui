@@ -1,7 +1,7 @@
 @mixin euiTableCell {
   vertical-align: middle;
-  border-top: $euiBorderThin;
-  border-bottom: $euiBorderThin;
+  border-block-start: $euiBorderThin;
+  border-block-end: $euiBorderThin;
   font-weight: inherit;
   text-align: inherit;
 }

@@ -24,7 +24,8 @@
   height: $euiSizeM;
 
   &.euiToken--rectangle {
-    padding: 0 $euiSizeXS;
+    padding-block: 0;
+    padding-inline: $euiSizeXS;
   }
 }
 
@@ -33,7 +34,8 @@
   height: $euiSize;
 
   &.euiToken--rectangle {
-    padding: 0 $euiSizeXS;
+    padding-block: 0;
+    padding-inline: $euiSizeXS;
   }
 }
 
@@ -42,7 +44,8 @@
   height: $euiSizeL;
 
   &.euiToken--rectangle {
-    padding: 0 $euiSizeS;
+    padding-block: 0;
+    padding-inline: $euiSizeS;
   }
 }
 
@@ -51,7 +54,8 @@
   height: $euiSizeXL;
 
   &.euiToken--rectangle {
-    padding: 0 ($euiSize * .5);
+    padding-block: 0;
+    padding-inline: ($euiSize * .5);
   }
 }
 

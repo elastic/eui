@@ -6,7 +6,7 @@
 
     ~ .euiRadio__label {
       display: inline-block;
-      padding-left: ($euiRadioSize * 1.5);
+      padding-inline-start: ($euiRadioSize * 1.5);
       line-height: $euiSizeL;
       font-size: $euiFontSizeS;
       position: relative;

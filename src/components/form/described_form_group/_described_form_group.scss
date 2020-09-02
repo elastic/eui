@@ -2,7 +2,7 @@
   max-width: $euiFormMaxWidth * 2;
 
   + * {
-    margin-top: $euiSizeL;
+    margin-block-start: $euiSizeL;
   }
 
   &.euiDescribedFormGroup--fullWidth {
@@ -10,7 +10,7 @@
   }
 
   .euiDescribedFormGroup__description {
-    padding-top: $euiSizeS;
+    padding-block-start: $euiSizeS;
   }
 
   .euiDescribedFormGroup__fields {
@@ -28,10 +28,10 @@
 
   @include euiBreakpoint('xs', 's') {
     .euiDescribedFormGroup__fields {
-      padding-top: 0;
+      padding-block-start: 0;
 
       > .euiFormRow--hasEmptyLabelSpace:first-child {
-        padding-top: 0;
+        padding-block-start: 0;
       }
     }
   }

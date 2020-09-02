@@ -1,7 +1,7 @@
 .euiFlexGrid {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 0;
+  margin-block-end: 0;
 
   > .euiFlexItem {
     flex-grow: 0;
@@ -92,8 +92,8 @@ $fractions: (
 @include euiBreakpoint('xs', 's') {
   .euiFlexGrid.euiFlexGrid--responsive {
     // sass-lint:disable-block no-important
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-inline-start: 0 !important;
+    margin-inline-end: 0 !important;
     column-count: 1 !important;
   }
 }

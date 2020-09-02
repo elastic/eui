@@ -53,7 +53,7 @@
 
   .euiFilePicker--large & {
     position: static;
-    margin-bottom: $euiSize;
+    margin-block-end: $euiSize;
   }
 }
 
@@ -67,9 +67,9 @@
   @include euiFormControlDefaultShadow;
   @include euiFormControlWithIcon; /* 2 */
   height: $euiFormControlHeight;
-  padding-top: $euiFormControlPadding;
-  padding-right: $euiFormControlPadding;
-  padding-bottom: $euiFormControlPadding;
+  padding-block-start: $euiFormControlPadding;
+  padding-inline-end: $euiFormControlPadding;
+  padding-block-end: $euiFormControlPadding;
   pointer-events: none; /* 1 */
   border-radius: $euiFormControlBorderRadius;
 
@@ -89,7 +89,8 @@
 
   .euiFilePicker--large & {
     height: $euiFilePickerTallHeight; /* 4 */
-    padding: 0 $euiSizeL;
+    padding-block: 0;
+    padding-inline: $euiSizeL;
     display: flex;
     flex-direction: column;
     align-items: center;

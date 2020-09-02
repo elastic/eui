@@ -13,7 +13,7 @@ $textColors: (
   @include euiLink;
 
   .euiLink__externalIcon {
-    margin-left: $euiSizeXS;
+    margin-inline-start: $euiSizeXS;
   }
 
   &.euiLink-disabled {

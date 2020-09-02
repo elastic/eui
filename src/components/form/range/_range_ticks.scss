@@ -11,7 +11,7 @@
   text-overflow: ellipsis;
   font-size: $euiFontSizeXS;
   position: relative;
-  padding-top: $euiSize;
+  padding-block-start: $euiSize;
 
   &::before {
     @include size($euiSizeXS);
@@ -48,6 +48,6 @@
   top: $euiSizeS - 2px;
 
   .euiRangeTick {
-    padding-top: $euiSize - 2px;
+    padding-block-start: $euiSize - 2px;
   }
 }

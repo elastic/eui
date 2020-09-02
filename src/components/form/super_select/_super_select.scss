@@ -19,7 +19,7 @@
 }
 
 .euiSuperSelect__popoverPanel[class*='bottom'] { /* 3 */
-  border-top-color: transparentize($euiBorderColor, .2);
+  border-block-start-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
   border-top-left-radius: 0; /* 2 */
 }
@@ -27,7 +27,7 @@
 .euiSuperSelect__popoverPanel[class*='top'] { /* 3 */
   @include euiBottomShadowFlat; /* 2 */
 
-  border-bottom-color: transparentize($euiBorderColor, .2);
+  border-block-end-color: transparentize($euiBorderColor, .2);
   border-bottom-right-radius: 0; /* 2 */
   border-bottom-left-radius: 0; /* 2 */
 }
@@ -48,5 +48,5 @@
 }
 
 .euiSuperSelect__item--hasDividers:not(:last-of-type) {
-  border-bottom: $euiBorderThin;
+  border-block-end: $euiBorderThin;
 }

@@ -11,6 +11,6 @@
   }
 
   &__itemTitle + &__itemGradient {
-    margin-top: $euiSizeXS;
+    margin-block-start: $euiSizeXS;
   }
 }

@@ -19,7 +19,7 @@
 }
 
 .euiButtonGroup__toggle {
-  margin-left: -1px;
+  margin-inline-start: -1px;
   z-index: 1;
 
   // DO NOT Transform
@@ -59,7 +59,7 @@
   }
 
   &:first-child {
-    margin-left: 0;
+    margin-inline-start: 0;
 
     .euiButtonGroup__button {
       border-top-left-radius: $euiBorderRadius;
@@ -112,8 +112,8 @@
     }
 
     .euiButton__content {
-      padding-left: $euiSizeS;
-      padding-right: $euiSizeS;
+      padding-inline-start: $euiSizeS;
+      padding-inline-end: $euiSizeS;
     }
   }
 

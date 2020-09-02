@@ -16,7 +16,7 @@
 
   > button,
   > span {
-    margin-right: $euiSizeXS;
+    margin-inline-end: $euiSizeXS;
     align-self: center;
   }
 
@@ -29,7 +29,8 @@
     border-radius: $euiBorderRadius;
 
     > span {
-      padding: 0 $euiSizeXS;
+      padding-block: 0;
+      padding-inline: $euiSizeXS;
     }
   }
 }

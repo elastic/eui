@@ -17,7 +17,8 @@
     @include euiFormControlStyle($includeStates: false, $includeSizes: true);
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto, $includeAlternates: true);
-    padding: $euiSizeXS $euiSizeS;
+    padding-block: $euiSizeXS;
+    padding-inline: $euiSizeS;
     display: flex; /* 1 */
 
     // sass-lint:disable-block mixins-before-declarations
@@ -33,9 +34,9 @@
     }
 
     &:not(.euiComboBox__inputWrap--noWrap) {
-      padding-top: $euiSizeXS;
-      padding-bottom: $euiSizeXS;
-      padding-left: $euiSizeXS;
+      padding-block-start: $euiSizeXS;
+      padding-block-end: $euiSizeXS;
+      padding-inline-start: $euiSizeXS;
       height: auto;  /* 3 */
       flex-wrap: wrap; /* 1 */
       align-content: flex-start;
@@ -109,8 +110,8 @@
   &.euiComboBox--compressed {
     .euiComboBox__inputWrap {
       line-height: $euiFormControlCompressedHeight; /* 2 */
-      padding-top: 0;
-      padding-bottom: 0;
+      padding-block-start: 0;
+      padding-block-end: 0;
 
       // sass-lint:disable-block mixins-before-declarations
       @include euiFormControlLayoutPadding(1, $compressed: true); /* 2 */

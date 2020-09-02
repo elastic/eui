@@ -2,10 +2,10 @@
   @include euiFormLabel;
 
   &:not(.euiFormLegend-isHidden) {
-    margin-bottom: $euiSizeS;
+    margin-block-end: $euiSizeS;
 
     &.euiFormLegend--compressed {
-      margin-bottom: $euiSizeXS;
+      margin-block-end: $euiSizeXS;
     }
   }
 }

@@ -16,7 +16,7 @@
   margin-bottom: $euiSizeXS; /* 1 */
 
   &:not(.euiBreadcrumb--last) {
-    margin-right: $euiBreadcrumbSpacing;
+    margin-inline-end: $euiBreadcrumbSpacing;
     color: $euiTextSubduedColor;
   }
 }
@@ -32,7 +32,7 @@
 .euiBreadcrumbSeparator {
   flex-shrink: 0;
   display: inline-block;
-  margin-right: $euiBreadcrumbSpacing;
+  margin-inline-end: $euiBreadcrumbSpacing;
   width: 1px;
   height: $euiSize;
   transform: translateY(-1px) rotate(15deg);

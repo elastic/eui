@@ -9,7 +9,7 @@
 
   + .euiFormRow,
   + .euiButton {
-    margin-top: $euiSize;
+    margin-block-start: $euiSize;
   }
 }
 
@@ -22,7 +22,7 @@
   // the following ensure that contents that aren't inherently the same height
   // as inputs will align to the vertical center
   min-height: $euiFormControlHeight;
-  padding-bottom: 0;
+  padding-block-end: 0;
   justify-content: center;
 }
 
@@ -30,7 +30,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: $euiSizeXS;
+  margin-block-end: $euiSizeXS;
 }
 
 .euiFormRow--horizontal {
@@ -47,8 +47,8 @@
     display: block;
     line-height: $euiFormControlCompressedHeight - 1px; // The 1px less helps the alignment of the text baseline
     width: calc(33% - #{$euiSizeS});
-    margin-right: $euiSizeS;
-    margin-bottom: 0;
+    margin-inline-end: $euiSizeS;
+    margin-block-end: 0;
   }
 
   .euiFormRow__fieldWrapper {
@@ -56,7 +56,7 @@
   }
 
   + .euiFormRow--horizontal {
-    margin-top: $euiSizeS;
+    margin-block-start: $euiSizeS;
   }
 
   + .euiFormRow--horizontal.euiFormRow--hasSwitch {

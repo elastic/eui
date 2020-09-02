@@ -5,7 +5,8 @@
   font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize + 2px; /* 1 */
-  padding: 0 $euiSizeS;
+  padding-block: 0;
+  padding-inline: $euiSizeS;
   display: inline-block;
   text-decoration: none;
   border-radius: $euiBorderRadius / 2;
@@ -31,7 +32,7 @@
   }
 
   + .euiBadge {
-    margin-left: $euiSizeXS;
+    margin-inline-start: $euiSizeXS;
   }
 
   .euiBadge__content {
@@ -64,7 +65,7 @@
   .euiBadge__iconButton {
     flex: 0 0 auto;
     font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
-    margin-left: $euiSizeXS;
+    margin-inline-start: $euiSizeXS;
 
     &:focus {
       background-color: transparentize($euiColorGhost, .2);
@@ -92,7 +93,7 @@
     flex: 0 0 auto;
 
     &:not(:only-child) {
-      margin-left: $euiSizeXS;
+      margin-inline-start: $euiSizeXS;
     }
   }
 
@@ -103,8 +104,8 @@
 
     .euiBadge__iconButton,
     .euiBadge__icon:not(:only-child) {
-      margin-right: $euiSizeXS;
-      margin-left: 0;
+      margin-inline-end: $euiSizeXS;
+      margin-inline-start: 0;
     }
   }
 }

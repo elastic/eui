@@ -2,10 +2,11 @@
   @include euiScrollBar;
   width: 0;
   height: 100%;
-  padding: $euiSizeM $euiSizeS;
+  padding-block: $euiSizeM;
+  padding-inline: $euiSizeS;
   overflow-y: auto;
   background-color: $euiNavDrawerBackgroundColor;
-  border-left: $euiBorderThin;
+  border-inline-start: $euiBorderThin;
   box-shadow: $euiNavDrawerSideShadow;
   visibility: hidden;
   opacity: 0;
@@ -22,11 +23,12 @@
   }
 
   .euiNavDrawerFlyout__title {
-    margin: 0 $euiSizeS $euiSizeXS;
+    margin-block: 0 $euiSizeXS;
+    margin-inline: $euiSizeS;
   }
 
   .euiNavDrawerFlyout__listGroup {
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 }

@@ -24,6 +24,6 @@
   @include euiTitle('xxxs');
   display: flex;
   align-items: center;
-  border-bottom: $euiSelectableListItemBorder;
+  border-block-end: $euiSelectableListItemBorder;
   padding: $euiSelectableListItemPadding;
 }

@@ -31,7 +31,7 @@
 .euiComboBoxOptionsList--bottom {
   // sass-lint:disable-block no-important
   border-radius: 0 0 $euiBorderRadius $euiBorderRadius !important;
-  border-top: none !important;
+  border-block-start: none !important;
 }
 
 .euiComboBoxOptionsList--top {

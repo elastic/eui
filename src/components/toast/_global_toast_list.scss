@@ -43,7 +43,7 @@
 }
 
 .euiGlobalToastListItem {
-  margin-bottom: $euiSize;
+  margin-block-end: $euiSize;
   animation: $euiAnimSpeedNormal euiShowToast $euiAnimSlightResistance;
   opacity: 1;
 
@@ -56,7 +56,7 @@
   }
 
   &:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   &.euiGlobalToastListItem-isDismissed {
@@ -83,8 +83,8 @@
    */
   .euiGlobalToastList:not(:empty) {
     left: 0;
-    padding-left: $euiSize;
-    padding-right: $euiSize;
+    padding-inline-start: $euiSize;
+    padding-inline-end: $euiSize;
     width: 100%; /* 1 */
   }
 }

@@ -98,7 +98,7 @@
 .euiKeyPadMenuItem__icon {
   transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
   transform: translateY(2px);
-  margin-bottom: $euiSizeM;
+  margin-block-end: $euiSizeM;
 }
 
 .euiKeyPadMenuItem__label {

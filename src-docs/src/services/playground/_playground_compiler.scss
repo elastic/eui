@@ -6,7 +6,8 @@
 }
 
 .playgroundCompiler__ghostBackground {
-  padding: 0 $euiSize;
+  padding-block: 0;
+  padding-inline: $euiSize;
 
   @if (lightness($euiTextColor) < 50) {
     background: $euiColorDarkestShade;

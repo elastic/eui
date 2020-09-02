@@ -3,13 +3,13 @@
 }
 
 .euiTourHeader {
-  border-bottom: none;
+  border-block-end: none;
   // Overriding default `EuiPopoverTitle` styles
   margin-bottom: $euiSizeS !important; // sass-lint:disable-line no-important
 
 
   .euiTourHeader__title { // nested for additional specificity to override EuiTitle styles
-    margin-top: 0;
+    margin-block-start: 0;
     text-transform: capitalize;
   }
 }
@@ -50,7 +50,7 @@
 
   .euiPopover__panelArrow.euiPopover__panelArrow--top {
     &:after {
-      border-top-color: $euiColorLightestShade;
+      border-block-start-color: $euiColorLightestShade;
     }
 
     .euiTour__beacon {

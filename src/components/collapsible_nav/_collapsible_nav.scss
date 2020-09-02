@@ -4,7 +4,7 @@
 
 .euiCollapsibleNav {
   @include euiFlyout;
-  border-left: none;
+  border-inline-start: none;
   right: auto;
   left: 0;
   width: $euiCollapsibleNavWidth;
@@ -17,8 +17,9 @@
   position: absolute;
   right: 0;
   top: $euiSize;
-  margin-right: -27%;
-  padding: $euiSizeM 0;
+  margin-inline-end: -27%;
+  padding-block: $euiSizeM;
+  padding-inline: 0;
   line-height: 1;
   border-radius: $euiBorderRadius;
 
@@ -54,7 +55,7 @@
 @include euiBreakpoint('xs') {
   // At tiny screens, reduce the close button to a simple `x`
   .euiCollapsibleNav__closeButton {
-    margin-right: -15%;
+    margin-inline-end: -15%;
 
     .euiCollapsibleNav__closeButtonText {
       // But be sure the text can still be read by a screen reader

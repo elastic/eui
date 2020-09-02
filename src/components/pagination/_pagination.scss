@@ -7,11 +7,11 @@
     align-items: center;
 
     > *:first-child {
-      margin-right: $euiSizeXS;
+      margin-inline-end: $euiSizeXS;
     }
 
     > *:last-child {
-      margin-left: $euiSizeXS;
+      margin-inline-start: $euiSizeXS;
     }
   }
 }

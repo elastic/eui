@@ -7,7 +7,7 @@
   // Adjust vertical spacing based on content padding prop
   @each $modifier, $amount in $euiPanelPaddingModifiers {
     .euiPageContent[class*='#{$modifier}'] & {
-      margin-bottom: $amount;
+      margin-block-end: $amount;
     }
   }
 }

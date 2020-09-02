@@ -7,7 +7,8 @@
   text-align: left; /* 1 */
   display: block;
   width: 100%;
-  padding: $euiSizeXS / 2 0;
+  padding-block: $euiSizeXS / 2;
+  padding-inline: 0;
   color: $euiTextColor; /* 2 */
 
   &.euiSideNavItemButton--isClickable {
@@ -41,7 +42,7 @@
 }
 
 .euiSideNavItemButton__icon {
-  margin-right: $euiSizeS;
+  margin-inline-end: $euiSizeS;
 }
 
 /**
@@ -78,14 +79,14 @@
 
 .euiSideNavItem--root {
   &.euiSideNavItem--rootIcon > .euiSideNavItem__items {
-    margin-left: $euiSizeL;
+    margin-inline-start: $euiSizeL;
   }
 
   /**
    * 1. Create padding around focus area without indenting the item itself.
    */
   & > .euiSideNavItemButton {
-    margin-bottom: $euiSizeS;
+    margin-block-end: $euiSizeS;
     padding: 0;
     padding-left: $euiSizeS; /* 1 */
     padding-right: $euiSizeS; /* 1 */
@@ -100,7 +101,7 @@
 
   & > .euiSideNavItem__items {
     position: static;
-    margin-left: 0;
+    margin-inline-start: 0;
 
     &:after {
       display: none;
@@ -108,7 +109,7 @@
   }
 
   & + & {
-    margin-top: $euiSizeXL;
+    margin-block-start: $euiSizeXL;
   }
 }
 
@@ -124,7 +125,7 @@
   }
 
   & > .euiSideNavItem__items {
-    margin-left: $euiSizeS;
+    margin-inline-start: $euiSizeS;
     width: 100%;
   }
 }
@@ -135,7 +136,7 @@
    */
   & > .euiSideNavItemButton {
     position: relative; /* 1 */
-    padding-left: $euiSizeS;
+    padding-inline-start: $euiSizeS;
     padding-right: $euiSizeS; /* 1 */
 
     &:after {
@@ -150,7 +151,7 @@
   }
 
   & > .euiSideNavItem__items {
-    margin-left: $euiSize;
+    margin-inline-start: $euiSize;
   }
 
   .euiSideNavItemButton__icon {

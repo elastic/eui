@@ -1,5 +1,5 @@
 .euiPageHeader {
-  margin-bottom: $euiSize;
+  margin-block-end: $euiSize;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,8 +8,9 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiPageHeader {
-    padding: $euiSize 0;
-    margin-bottom: 0;
+    padding-block: $euiSize;
+    padding-inline: 0;
+    margin-block-end: 0;
   }
 
   .euiPageHeader--responsive {

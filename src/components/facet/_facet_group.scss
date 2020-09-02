@@ -2,8 +2,8 @@
   .euiFacetGroup--#{$gutterName} {
     .euiFacetButton {
       // Split the margin between top and bottom
-      margin-top: $gutterSize / 2;
-      margin-bottom: $gutterSize / 2;
+      margin-block-start: $gutterSize / 2;
+      margin-block-end: $gutterSize / 2;
     }
 
     &.euiFacetGroup--horizontal {
@@ -12,10 +12,10 @@
       $gutterAdjustment: $euiSizeM + $gutterSize;
 
       // Collapse margin on the right side of the group to allow it to extend the full width
-      margin-left: -#{$gutterAdjustment};
+      margin-inline-start: -#{$gutterAdjustment};
 
       .euiFacetButton {
-        margin-left: $gutterAdjustment;
+        margin-inline-start: $gutterAdjustment;
         // Adjust the max-width so it fits within the allotted margin
         max-width: calc(100% - #{$gutterAdjustment});
       }

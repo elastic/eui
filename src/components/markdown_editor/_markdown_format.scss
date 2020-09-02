@@ -60,22 +60,22 @@ $browserDefaultFontSize: 16px;
 
   > div > *:first-child {
     // sass-lint:disable-block no-important
-    margin-top: 0 !important;
+    margin-block-start: 0 !important;
   }
 
   > div > * {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+    margin-block-start: 0;
+    margin-block-end: $euiMarkdownSize;
   }
 
   > div > *:last-child,
   .euiCheckbox {
     // sass-lint:disable-block no-important
-    margin-bottom: 0 !important;
+    margin-block-end: 0 !important;
   }
 
   .euiCheckbox + *:not(.euiCheckbox) {
-    margin-top: $euiMarkdownSize;
+    margin-block-start: $euiMarkdownSize;
   }
 
   p,
@@ -85,8 +85,8 @@ $browserDefaultFontSize: 16px;
   dl,
   pre,
   table {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+    margin-block-start: 0;
+    margin-block-end: $euiMarkdownSize;
     line-height: 1.5em;
   }
 
@@ -101,8 +101,8 @@ $browserDefaultFontSize: 16px;
   h4,
   h5,
   h6 {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSizeXS;
+    margin-block-start: 0;
+    margin-block-end: $euiMarkdownSizeXS;
   }
 
   h1 {
@@ -151,12 +151,13 @@ $browserDefaultFontSize: 16px;
 
   // 4. Blockquotes
   blockquote {
-    padding: 0 1em;
-    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
+    padding-block: 0;
+    padding-inline: 1em;
+    border-inline-start: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
   }
 
   &--reversed blockquote {
-    border-left-color: $euiMarkdownAlphaLightShadeReversed;
+    border-inline-start-color: $euiMarkdownAlphaLightShadeReversed;
   }
 
   // 5. Horizontal rules
@@ -164,7 +165,8 @@ $browserDefaultFontSize: 16px;
     border: none;
     height: 1px;
     background-color: $euiMarkdownAlphaLightShade;
-    margin: $euiMarkdownSizeL 0;
+    margin-block: $euiMarkdownSizeL;
+    margin-inline: 0;
   }
 
   hr::before {
@@ -181,9 +183,9 @@ $browserDefaultFontSize: 16px;
   // 6. Lists
   ul,
   ol {
-    padding-left: $euiMarkdownSizeL;
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+    padding-inline-start: $euiMarkdownSizeL;
+    margin-block-start: 0;
+    margin-block-end: $euiMarkdownSize;
   }
 
   ul {
@@ -211,23 +213,23 @@ $browserDefaultFontSize: 16px;
   }
 
   dd {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   ul ul,
   ul ol,
   ol ol,
   ol ul {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
   }
 
   li > p {
-    margin-bottom: $euiMarkdownSizeXS;
+    margin-block-end: $euiMarkdownSizeXS;
   }
 
   li + li {
-    margin-top: $euiMarkdownSizeXXS;
+    margin-block-start: $euiMarkdownSizeXXS;
   }
 
   .task-list-item {
@@ -235,11 +237,12 @@ $browserDefaultFontSize: 16px;
   }
 
   .task-list-item + .task-list-item {
-    margin-top: $euiMarkdownSizeXXS;
+    margin-block-start: $euiMarkdownSizeXXS;
   }
 
   .task-list-item input {
-    margin: 0 .2em .25em -1.6em;
+    margin-block: 0 -1.6em;
+    margin-inline: .25em .2em;
     vertical-align: middle;
   }
 
@@ -248,7 +251,7 @@ $browserDefaultFontSize: 16px;
     display: block;
     width: 100%;
     overflow: auto;
-    border-left: 1px solid $euiMarkdownAlphaLightShade;
+    border-inline-start: 1px solid $euiMarkdownAlphaLightShade;
     border-spacing: 0;
     border-collapse: collapse;
   }
@@ -260,17 +263,18 @@ $browserDefaultFontSize: 16px;
 
   table th,
   table td {
-    padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
-    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
+    padding-block: $euiMarkdownSizeXXS;
+    padding-inline: $euiMarkdownSizeXS;
+    border-block-start: 1px solid $euiMarkdownAlphaLightShade;
+    border-block-end: 1px solid $euiMarkdownAlphaLightShade;
 
     &:last-child {
-      border-right: 1px solid $euiMarkdownAlphaLightShade;
+      border-inline-end: 1px solid $euiMarkdownAlphaLightShade;
     }
   }
 
   table tr {
     background-color: transparent;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
+    border-block-start: 1px solid $euiMarkdownAlphaLightShade;
   }
 }

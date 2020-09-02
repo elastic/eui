@@ -6,7 +6,7 @@
   min-height: 150px;
   padding: $euiSizeM;
   border: $euiBorderThin;
-  border-bottom: none;
+  border-block-end: none;
   // Overrides the euiFormControlText line-height that is very small
   line-height: $euiLineHeight;
   resize: vertical;

@@ -2,7 +2,7 @@
 .euiSaturation {
   position: relative;
   width: 100%;
-  padding-bottom: 100%;
+  padding-block-end: 100%;
   border-radius: $euiBorderRadius / 2;
   touch-action: none; // prevent TouchMove events from scrolling page
   z-index: 3; // Required to be above the hue slider, which can overlap
@@ -30,8 +30,8 @@
     height: $euiColorPickerIndicatorSize;
     width: $euiColorPickerIndicatorSize;
     border-radius: 100%;
-    margin-top: $euiColorPickerIndicatorSize * -.5;
-    margin-left: $euiColorPickerIndicatorSize * -.5;
+    margin-block-start: $euiColorPickerIndicatorSize * -.5;
+    margin-inline-start: $euiColorPickerIndicatorSize * -.5;
     border: 1px solid $euiColorDarkestShade;
 
     &:before {

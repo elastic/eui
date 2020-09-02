@@ -7,8 +7,8 @@
   @include euiFontSizeS;
 
   padding: $euiDataGridCellPaddingM;
-  border-right: $euiDataGridVerticalBorder;
-  border-bottom: $euiBorderThin;
+  border-inline-end: $euiDataGridVerticalBorder;
+  border-block-end: $euiBorderThin;
   flex: 0 0 auto;
   background: $euiColorEmptyShade;
   position: relative;
@@ -22,22 +22,22 @@
   }
 
   &:first-of-type {
-    border-left: $euiBorderThin;
+    border-inline-start: $euiBorderThin;
   }
 
   &:last-of-type {
-    border-right-color: $euiBorderColor;
+    border-inline-end-color: $euiBorderColor;
   }
 
   &:focus {
     border: 1px solid transparent;
-    margin-top: -1px;
+    margin-block-start: -1px;
     box-shadow: 0 0 0 2px $euiFocusRingColor;
     border-radius: 1px;
     z-index: 2; // Needed so it sits above potential striping in the next row
 
     .euiDataGridRowCell__expandButton {
-      margin-left: $euiDataGridCellPaddingM;
+      margin-inline-start: $euiDataGridCellPaddingM;
     }
 
     .euiDataGridRowCell__expandButtonIcon {
@@ -49,7 +49,7 @@
 
   &:focus:not(:first-of-type) {
     // Needed because the focus state adds a border, which needs to be subtracted from padding
-    padding-left: $euiDataGridCellPaddingM - 1px;
+    padding-inline-start: $euiDataGridCellPaddingM - 1px;
   }
 
   &.euiDataGridRowCell--numeric {
@@ -106,7 +106,7 @@
 
   &-isActive,
   &:focus {
-    margin-left: $euiDataGridCellPaddingM;
+    margin-inline-start: $euiDataGridCellPaddingM;
   }
 }
 
@@ -160,8 +160,8 @@
 
 @include euiDataGridStyles(bordersHorizontal) {
   @include euiDataGridRowCell {
-    border-right-color: transparent;
-    border-left-color: transparent;
+    border-inline-end-color: transparent;
+    border-inline-start-color: transparent;
   }
 }
 
@@ -185,7 +185,7 @@
 
     &:focus:not(:first-of-type) {
       // Needed because the focus state adds a border, which needs to be subtracted from padding
-      padding-left: $euiDataGridCellPaddingS - 1px;
+      padding-inline-start: $euiDataGridCellPaddingS - 1px;
     }
   }
 }
@@ -196,7 +196,7 @@
 
     &:focus:not(:first-of-type) {
       // Needed because the focus state adds a border, which needs to be subtracted from padding
-      padding-left: $euiDataGridCellPaddingL - 1px;
+      padding-inline-start: $euiDataGridCellPaddingL - 1px;
     }
   }
 }

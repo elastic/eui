@@ -115,7 +115,7 @@
     padding: $paddingAmount;
 
     &.euiCard--isSelectable {
-      padding-bottom: $paddingAmount + $euiCardBottomNodeHeight;
+      padding-block-end: $paddingAmount + $euiCardBottomNodeHeight;
     }
 
     .euiCard__top {
@@ -163,17 +163,17 @@
   }
 
   .euiCard__icon {
-    margin-top: $euiCardSpacing / 2;
+    margin-block-start: $euiCardSpacing / 2;
   }
 }
 
 .euiCard__footer:not(:empty) {
   flex-grow: 0; /* 1 */
-  margin-top: $euiCardSpacing;
+  margin-block-start: $euiCardSpacing;
 }
 
 .euiCard--hasChildren .euiCard__description {
-  margin-bottom: $euiCardSpacing;
+  margin-block-end: $euiCardSpacing;
 }
 
 // Selectable cards don't work well without a border
@@ -195,14 +195,14 @@
 
 // If an icon or image exists, add some space
 .euiCard__top + .euiCard__content {
-  margin-top: $euiCardSpacing;
+  margin-block-start: $euiCardSpacing;
 }
 
 .euiCard__content {
   flex-grow: 1; /* 1 */
 
   .euiCard__description {
-    margin-top: $euiCardSpacing / 2;
+    margin-block-start: $euiCardSpacing / 2;
   }
 
   .euiCard__titleAnchor,
@@ -234,11 +234,11 @@
   .euiCard__top,
   .euiCard__content {
     width: auto; // Makes sure the top shrinks and the content grows
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   .euiCard__top .euiCard__icon {
-    margin-top: 0;
-    margin-right: $euiSize;
+    margin-block-start: 0;
+    margin-inline-end: $euiSize;
   }
 }

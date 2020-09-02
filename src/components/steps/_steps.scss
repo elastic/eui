@@ -26,10 +26,10 @@
 
     .euiStep__content {
       // Align the content's contents with the title
-      padding-left: ($euiStepNumberSmallSize / 2) + $euiStepNumberMargin;
+      padding-inline-start: ($euiStepNumberSmallSize / 2) + $euiStepNumberMargin;
 
       // Align content border to horizontal center of step number
-      margin-left: ($euiStepNumberSmallSize / 2);
+      margin-inline-start: ($euiStepNumberSmallSize / 2);
     }
   }
 }
@@ -40,7 +40,7 @@
 
 .euiStep__circle {
   flex-shrink: 0;
-  margin-right: $euiStepNumberMargin;
+  margin-inline-end: $euiStepNumberMargin;
   vertical-align: top; /* 1 */
 
   &[class*='complete'],
@@ -60,12 +60,14 @@
 }
 
 .euiStep__content {
-  padding: $euiSize $euiSize $euiSizeXL;
-  margin: $euiSizeS 0;
+  padding-block: $euiSize $euiSizeXL;
+  padding-inline: $euiSize;
+  margin-block: $euiSizeS;
+  margin-inline: 0;
 
   // Align the content's contents with the title
-  padding-left: ($euiStepNumberSize / 2) + $euiStepNumberMargin;
+  padding-inline-start: ($euiStepNumberSize / 2) + $euiStepNumberMargin;
 
   // Align content border to horizontal center of step number
-  margin-left: ($euiStepNumberSize / 2);
+  margin-inline-start: ($euiStepNumberSize / 2);
 }

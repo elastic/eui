@@ -2,7 +2,7 @@
   @include euiTitle('xxs');
   padding: $euiSizeM;
   text-transform: uppercase;
-  border-bottom: $euiBorderThin;
+  border-block-end: $euiBorderThin;
 
   // Subtract 1px from the border radius since it's inside another container that also has the border radius
   // -- makes for better rounded corners
@@ -13,7 +13,7 @@
 @mixin euiPopoverFooter {
   @include euiFontSizeS;
   padding: $euiSizeM;
-  border-top: $euiBorderThin;
+  border-block-start: $euiBorderThin;
 
   // Subtract 1px from the border radius since it's inside another container that also has the border radius
   // -- makes for better rounded corners

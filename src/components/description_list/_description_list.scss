@@ -6,11 +6,11 @@
     .euiDescriptionList__title {
       @include euiTitle('xs');
       line-height: $euiLineHeight;
-      margin-top: $euiSize;
+      margin-block-start: $euiSize;
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
-        margin-top: 0;
+        margin-block-start: 0;
       }
     }
 
@@ -69,26 +69,26 @@
     flex-wrap: wrap;
 
     > * {
-      margin-top: $euiSize;
+      margin-block-start: $euiSize;
     }
 
     // First two items don't have margin
     > *:first-child,
     > :nth-child(2) {
-      margin-top: 0;
+      margin-block-start: 0;
     }
 
     .euiDescriptionList__title {
       @include euiTitle('xs');
       line-height: $euiLineHeight;
       width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-right: $euiSizeS;
+      padding-inline-end: $euiSizeS;
     }
 
     .euiDescriptionList__description {
       @include euiFontSize;
       width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-left: $euiSizeS;
+      padding-inline-start: $euiSizeS;
     }
 
     // Align the title to smash against the description.
@@ -146,7 +146,7 @@
 
       .euiDescriptionList__description {
         @include euiFontSizeS;
-        margin-top: 0;
+        margin-block-start: 0;
       }
 
       &.euiDescriptionList--center {
@@ -177,12 +177,14 @@
       font-weight: $euiFontWeightRegular;
       background: $euiColorLightestShade;
       border: $euiBorderThin;
-      padding:  0 $euiSizeXS;
-      margin: 0 $euiSizeXS;
+      padding-block:  0;
+      padding-inline:  $euiSizeXS;
+      margin-block: 0;
+      margin-inline: $euiSizeXS;
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
     }
 

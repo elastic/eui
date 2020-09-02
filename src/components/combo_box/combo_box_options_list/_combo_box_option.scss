@@ -1,6 +1,7 @@
 .euiComboBoxOption {
   font-size: $euiFontSizeS;
-  padding: $euiSizeXS $euiSizeS $euiSizeXS #{$euiSizeM + $euiSizeXS};
+  padding-block: $euiSizeXS #{$euiSizeM + $euiSizeXS};
+  padding-inline: $euiSizeXS $euiSizeS;
   width: 100%;
   text-align: left;
   border: $euiBorderThin;
@@ -34,12 +35,12 @@
   .euiComboBoxOption__emptyStateText {
     flex: 1;
     text-align: left;
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   .euiComboBoxOption__enterBadge {
     align-self: flex-start;
-    margin-left: $euiSizeXS;
+    margin-inline-start: $euiSizeXS;
   }
 }
 

@@ -21,7 +21,7 @@
     height: 100%;
 
     &-hasFooter {
-      margin-bottom: $euiSizeXXL;
+      margin-block-end: $euiSizeXXL;
     }
   }
 
@@ -35,7 +35,8 @@
     z-index: $euiZHeader + 1;
 
     .euiListGroupItem__button {
-      padding: $euiSizeM $euiSize;
+      padding-block: $euiSizeM;
+      padding-inline: $euiSize;
     }
 
     .navDrawerExpandButton-isCollapsed .euiListGroupItem__button {
@@ -89,7 +90,7 @@
   height: 100%;
 
   .euiNavDrawerPage__pageBody {
-    margin-left: $euiNavDrawerWidthCollapsed;
+    margin-inline-start: $euiNavDrawerWidthCollapsed;
   }
 }
 
@@ -99,7 +100,7 @@
 
     &.euiNavDrawer-isExpanded .euiNavDrawerMenu {
       .euiListGroupItem__icon {
-        margin-right: $euiSizeM;
+        margin-inline-end: $euiSizeM;
       }
     }
 
@@ -111,7 +112,7 @@
     // No expand toggle on mobile
 
     .euiNavDrawerMenu-hasFooter {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     .euiNavDrawer__expandButton {
@@ -120,7 +121,7 @@
   }
 
   .euiNavDrawerPage .euiNavDrawerPage__pageBody {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 }
 

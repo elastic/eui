@@ -5,11 +5,11 @@
   }
 
   &--min {
-    margin-right: $euiSizeS;
+    margin-inline-end: $euiSizeS;
   }
 
   &--max {
-    margin-left: $euiSizeS;
+    margin-inline-start: $euiSizeS;
   }
 
   &--isDisabled {

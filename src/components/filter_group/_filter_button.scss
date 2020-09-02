@@ -3,7 +3,7 @@
   height: $euiFormControlHeight;
   width: auto;
   border: 1px solid $euiFormBorderColor;
-  border-right: none;
+  border-inline-end: none;
   font-size: $euiFontSizeS;
 
   &:disabled {
@@ -36,8 +36,8 @@
 }
 
 .euiFilterButton--withNext + .euiFilterButton {
-  margin-left: $euiSizeXS * -1;
-  border-left: none;
+  margin-inline-start: $euiSizeXS * -1;
+  border-inline-start: none;
 }
 
 .euiFilterButton-isSelected {
@@ -50,7 +50,7 @@
 }
 
 .euiFilterButton__notification {
-  margin-left: $euiSizeS;
+  margin-inline-start: $euiSizeS;
   vertical-align: text-bottom;
 }
 

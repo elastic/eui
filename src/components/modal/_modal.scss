@@ -39,7 +39,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $euiSizeL $euiSizeXXL $euiSize $euiSizeL;
+  padding-block: $euiSizeL;
+  padding-inline: $euiSize $euiSizeXXL;
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -57,30 +58,32 @@
 
   .euiModalBody__overflow {
     @include euiYScrollWithShadows;
-    padding: $euiSizeS $euiSizeL;
+    padding-block: $euiSizeS;
+    padding-inline: $euiSizeL;
   }
 }
 
 .euiModalFooter {
   display: flex;
   justify-content: flex-end;
-  padding: $euiSize $euiSizeL $euiSizeL;
+  padding-block: $euiSize $euiSizeL;
+  padding-inline: $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0; // ensure the height of the footer is based off its contents and doesn't squish
 
   > * + * {
-    margin-left: $euiSize;
+    margin-inline-start: $euiSize;
   }
 }
 
 // If a body doesn't exist, remove some extra padding from footer
 .euiModalHeader + .euiModalFooter {
-  padding-top: $euiSizeS;
+  padding-block-start: $euiSizeS;
 }
 
 // If a footer doesn't exist (body is the last element) add padding to the bottom
 .euiModalBody:last-of-type .euiModalBody__overflow {
-  padding-bottom: $euiSizeL;
+  padding-block-end: $euiSizeL;
 }
 
 
@@ -145,7 +148,7 @@
       flex: 1;
 
       + * {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
     }
   }
@@ -154,7 +157,7 @@
     width: 100vw;
 
     .euiModalBody__overflow {
-      padding-bottom: $euiSizeL;
+      padding-block-end: $euiSizeL;
     }
   }
 }

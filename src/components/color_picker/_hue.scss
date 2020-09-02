@@ -11,7 +11,8 @@
     #FF0094 100%
    );
   height: $euiSizeL;
-  margin: $euiSizeXS 0;
+  margin-block: $euiSizeXS;
+  margin-inline: 0;
   position: relative;
 
 
@@ -53,11 +54,11 @@
   // sass-lint:disable-block no-vendor-prefixes
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   &::-ms-thumb {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   &::-ms-track {

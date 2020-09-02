@@ -16,7 +16,7 @@
   flex-wrap: wrap;
 
   > div {
-    padding-right: $euiSizeXS;
+    padding-inline-end: $euiSizeXS;
   }
 }
 
@@ -30,8 +30,9 @@
   .euiCommentEvent__header {
     min-height: $euiSizeXXL;
     background-color: $euiColorLightestShade;
-    border-bottom: $euiBorderThin;
-    padding: $euiSizeXS $euiSizeS;
+    border-block-end: $euiBorderThin;
+    padding-block: $euiSizeXS;
+    padding-inline: $euiSizeS;
 
     /**
      * Fix for IE when using align-items:center in an item that has min-height
@@ -62,14 +63,15 @@
 .euiCommentEvent--update {
   .euiCommentEvent__header {
     justify-content: flex-start;
-    padding: $euiSizeXS 0;
+    padding-block: $euiSizeXS;
+    padding-inline: 0;
   }
 
   .euiCommentEvent__headerData {
-    padding-right: $euiSizeS;
+    padding-inline-end: $euiSizeS;
   }
 
   .euiCommentEvent__body {
-    padding-top: $euiSizeXS;
+    padding-block-start: $euiSizeXS;
   }
 }

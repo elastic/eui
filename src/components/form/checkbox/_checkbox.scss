@@ -6,7 +6,7 @@
 
     ~ .euiCheckbox__label {
       display: inline-block;
-      padding-left: ($euiCheckBoxSize * 1.5);
+      padding-inline-start: ($euiCheckBoxSize * 1.5);
       line-height: $euiSizeL;
       font-size: $euiFontSizeS;
       position: relative;

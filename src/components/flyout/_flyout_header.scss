@@ -1,9 +1,10 @@
 .euiFlyoutHeader {
   flex-grow: 0;
-  padding: $euiSizeL $euiSizeXXL 0 $euiSizeL;
+  padding-block: $euiSizeL;
+  padding-inline: 0 $euiSizeXXL;
 }
 
 .euiFlyoutHeader--hasBorder {
-  padding-bottom: $euiSizeL;
-  border-bottom: $euiBorderThin;
+  padding-block-end: $euiSizeL;
+  border-block-end: $euiBorderThin;
 }

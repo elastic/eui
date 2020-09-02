@@ -4,7 +4,7 @@
   background: $euiColorLightestShade;
   border: $euiBorderThin;
   border-color: $euiColorLightShade;
-  border-bottom: none;
+  border-block-end: none;
   padding: $euiSizeXS;
 
   &__buttons {
@@ -14,7 +14,7 @@
     align-items: center;
 
     > * {
-      margin-right: $euiSizeXS;
+      margin-inline-end: $euiSizeXS;
     }
   }
 
@@ -22,8 +22,8 @@
     content: '';
     height: $euiSizeL;
     display: block;
-    margin-left: $euiSizeXS;
-    padding-right: $euiSizeXS;
-    border-left: 1px solid $euiColorLightShade;
+    margin-inline-start: $euiSizeXS;
+    padding-inline-end: $euiSizeXS;
+    border-inline-start: 1px solid $euiColorLightShade;
   }
 }

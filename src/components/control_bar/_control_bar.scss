@@ -57,7 +57,8 @@
   align-items: center;
   overflow-y: hidden; // Ensures the movement of buttons in :focus don't cause scrollbars
   overflow-x: auto;
-  padding: 0 $euiSizeM;
+  padding-block: 0;
+  padding-inline: $euiSizeM;
 }
 
 .euiControlBar__content {
@@ -77,8 +78,8 @@
 
 .euiControlBar__icon {
   flex-shrink: 0;
-  margin-left: $euiSizeS;
-  margin-right: $euiSizeS;
+  margin-inline-start: $euiSizeS;
+  margin-inline-end: $euiSizeS;
 }
 
 .euiControlBar__buttonIcon {
@@ -90,7 +91,7 @@
 .euiControlBar__button {
   flex-shrink: 0;
   border-radius: $euiBorderRadius / 2;
-  margin-left: $euiSizeXS;
+  margin-inline-start: $euiSizeXS;
   font-size: $euiFontSizeS;
 
   &:enabled:hover {
@@ -99,7 +100,7 @@
   }
 
   &:last-child {
-    margin-right: $euiSizeXS;
+    margin-inline-end: $euiSizeXS;
   }
 }
 
@@ -128,11 +129,12 @@
 .euiControlBar__text {
   @include euiTextTruncate;
   @include euiFontSizeS;
-  padding: 0 $euiSizeS;
+  padding-block: 0;
+  padding-inline: $euiSizeS;
   color: $euiControlBarText;
 
   &:last-child {
-    padding-right: 0;
+    padding-inline-end: 0;
   }
 }
 
@@ -140,7 +142,8 @@
   @include euiTextTruncate;
   @include euiFontSizeS;
   color: $euiControlBarText;
-  padding: 0 $euiSize;
+  padding-block: 0;
+  padding-inline: $euiSize;
   text-align: center;
   height: 100%;
 

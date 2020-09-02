@@ -35,10 +35,10 @@
         @include euiBottomShadowMedium;
 
         @if (lightness($euiTextColor) < 50) {
-          border-bottom-color: transparentize($euiShadowColor, .5);
+          border-block-end-color: transparentize($euiShadowColor, .5);
         } @else {
           // Applied again here in case dark theme overrides light
-          border-bottom-color: $euiBorderColor;
+          border-block-end-color: $euiBorderColor;
         }
 
         &#{$selector}--isClickable:hover,

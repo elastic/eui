@@ -7,8 +7,10 @@
 
   @each $modifier, $amount in $euiPanelPaddingModifiers {
     .euiPopover__panel.euiPanel--#{$modifier} & {
-      padding: $euiSizeM $amount;
-      margin: ($amount * -1) ($amount * -1) $amount;
+      padding-block: $euiSizeM;
+      padding-inline: $amount;
+      margin-block: ($amount * -1) $amount;
+      margin-inline: ($amount * -1);
     }
   }
 

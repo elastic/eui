@@ -30,7 +30,8 @@
     min-width: 0;
 
     .euiButton__content {
-      padding: 0 $euiSizeS;
+      padding-block: 0;
+      padding-inline: $euiSizeS;
     }
 
     .euiButton__text:empty {

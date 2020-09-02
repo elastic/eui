@@ -11,7 +11,7 @@
   right: 0;
   top: 50%;
   height: $euiRangeThumbHeight;
-  margin-top: $euiRangeThumbHeight * -.5;
+  margin-block-start: $euiRangeThumbHeight * -.5;
 
   &:hover:not(.euiColorStops__addContainer-isDisabled) {
     cursor: pointer;
@@ -44,7 +44,7 @@
   top: 50%;
   width: $euiRangeThumbWidth;
   height: $euiRangeThumbHeight;
-  margin-top: $euiRangeThumbHeight * -.5;
+  margin-block-start: $euiRangeThumbHeight * -.5;
 }
 
 .euiColorStopPopover-hasFocus {
@@ -74,7 +74,7 @@
 .euiColorStopThumb.euiRangeThumb:not(:disabled) {
   // sass-lint:disable-block no-color-literals, indentation
   top: 0;
-  margin-top: 0;
+  margin-block-start: 0;
   pointer-events: auto;
   cursor: grab;
   border: solid ($euiSizeXS - 1px) $euiColorEmptyShade;

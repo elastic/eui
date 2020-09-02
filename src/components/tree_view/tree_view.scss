@@ -4,7 +4,7 @@
 }
 
 .euiTreeView .euiTreeView {
-  padding-left: $euiSizeL;
+  padding-inline-start: $euiSizeL;
 }
 
 .euiTreeView__node {
@@ -22,7 +22,7 @@
 .euiTreeView__nodeInner {
   @include euiTextTruncate;
 
-  padding-left: $euiSizeS;
+  padding-inline-start: $euiSizeS;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,12 +51,12 @@
 }
 
 .euiTreeView__iconWrapper {
-  margin-top: -($euiSizeXS / 2);
-  margin-right: $euiSizeS;
+  margin-block-start: -($euiSizeXS / 2);
+  margin-inline-end: $euiSizeS;
 
   // This helps tokens appear vertically centered
   .euiToken {
-    margin-top: $euiSizeXS / 2;
+    margin-block-start: $euiSizeXS / 2;
   }
 }
 
@@ -71,11 +71,12 @@
     }
 
     .euiTreeView__iconWrapper {
-      margin: 0 ($euiSizeS * .75) 0 0;
+      margin-block: 0;
+      margin-inline: 0 ($euiSizeS * .75);
     }
 
     .euiTreeView__nodeLabel {
-      margin-top: -1px;
+      margin-block-start: -1px;
     }
 
     .euiTreeView__iconPlaceholder {
@@ -91,30 +92,30 @@
 
 .euiTreeView--withArrows {
   .euiTreeView__expansionArrow {
-    margin-right: $euiSizeXS;
+    margin-inline-end: $euiSizeXS;
   }
 
   &.euiTreeView {
     .euiTreeView__nodeInner--withArrows {
       .euiTreeView__iconWrapper {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
     }
 
     .euiTreeView__iconWrapper {
-      margin-left: $euiSize + $euiSizeXS;
+      margin-inline-start: $euiSize + $euiSizeXS;
     }
   }
 
   &.euiTreeView--compressed {
     .euiTreeView__nodeInner--withArrows {
       .euiTreeView__iconWrapper {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
     }
 
     .euiTreeView__iconWrapper {
-      margin-left: $euiSize;
+      margin-inline-start: $euiSize;
     }
   }
 }

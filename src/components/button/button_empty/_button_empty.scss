@@ -16,7 +16,8 @@
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
   .euiButtonEmpty__content {
-    padding: 0 $euiSizeS;
+    padding-block: 0;
+    padding-inline: $euiSizeS;
   }
 
   .euiButtonEmpty__text {
@@ -85,21 +86,21 @@ $euiButtonEmptyTypes: (
 }
 
 .euiButtonEmpty--flushLeft {
-  margin-right: $euiSizeS;
+  margin-inline-end: $euiSizeS;
 
   .euiButtonEmpty__content {
-    border-left: none;
-    padding-left: 0;
-    padding-right: 0;
+    border-inline-start: none;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 }
 
 .euiButtonEmpty--flushRight {
-  margin-left: $euiSizeS;
+  margin-inline-start: $euiSizeS;
 
   .euiButtonEmpty__content {
-    border-right: none;
-    padding-left: 0;
-    padding-right: 0;
+    border-inline-end: none;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 }

@@ -1,10 +1,11 @@
 .euiHeaderAlert {
   min-width: 300px;
   position: relative;
-  margin-bottom: $euiSizeL;
-  padding: 0 $euiSizeS $euiSizeL;
-  border-bottom: $euiBorderThin;
-  border-top: none;
+  margin-block-end: $euiSizeL;
+  padding-block: 0 $euiSizeL;
+  padding-inline: $euiSizeS;
+  border-block-end: $euiBorderThin;
+  border-block-start: none;
 
   .euiHeaderAlert__dismiss {
     opacity: 0;
@@ -21,12 +22,12 @@
 
   .euiHeaderAlert__title {
     @include euiTitle('xs');
-    margin-bottom: $euiSizeS;
+    margin-block-end: $euiSizeS;
   }
 
   .euiHeaderAlert__text {
     @include euiFontSizeS;
-    margin-bottom: $euiSize;
+    margin-block-end: $euiSize;
   }
 
   .euiHeaderAlert__action {
