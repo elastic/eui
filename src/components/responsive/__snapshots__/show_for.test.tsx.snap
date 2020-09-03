@@ -1,73 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiShowFor block is rendered 1`] = `
-<span
-  class="eui-showFor--xs--block"
-/>
-`;
+exports[`EuiShowFor l is rendered 1`] = `null`;
 
-exports[`EuiShowFor flex is rendered 1`] = `
-<span
-  class="eui-showFor--xs--flex"
-/>
-`;
+exports[`EuiShowFor m is rendered 1`] = `null`;
 
-exports[`EuiShowFor inlineBlock is rendered 1`] = `
-<span
-  class="eui-showFor--xs--inlineBlock"
-/>
-`;
+exports[`EuiShowFor renders 1`] = `null`;
 
-exports[`EuiShowFor l is rendered 1`] = `
-<span
-  class="eui-showFor--l"
-/>
-`;
+exports[`EuiShowFor renders for multiple breakpoints 1`] = `null`;
 
-exports[`EuiShowFor m is rendered 1`] = `
-<span
-  class="eui-showFor--m"
-/>
-`;
+exports[`EuiShowFor s is rendered 1`] = `null`;
 
-exports[`EuiShowFor renders and copies classes 1`] = `
-<div
-  class="eui-showFor--xs"
->
-  Child
-</div>
-`;
+exports[`EuiShowFor xl is rendered 1`] = `null`;
 
-exports[`EuiShowFor renders for multiple breakpoints 1`] = `
-<span
-  class="eui-showFor--xs eui-showFor--l"
->
-  Child
-</span>
-`;
-
-exports[`EuiShowFor renders wraps children in a span 1`] = `
-<span
-  class="eui-showFor--xs"
->
-  Child
-</span>
-`;
-
-exports[`EuiShowFor s is rendered 1`] = `
-<span
-  class="eui-showFor--s"
-/>
-`;
-
-exports[`EuiShowFor xl is rendered 1`] = `
-<span
-  class="eui-showFor--xl"
-/>
-`;
-
-exports[`EuiShowFor xs is rendered 1`] = `
-<span
-  class="eui-showFor--xs"
-/>
-`;
+exports[`EuiShowFor xs is rendered 1`] = `null`;
