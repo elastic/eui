@@ -6,7 +6,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+    class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
       class="euiPopover__anchor"
@@ -52,7 +52,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+    class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
       class="euiPopover__anchor"
@@ -98,7 +98,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock customPopoverClass"
+    class="euiPopover euiPopover--anchorDownCenter customPopoverClass"
   >
     <div
       class="euiPopover__anchor"
@@ -144,7 +144,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+    class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
       class="euiPopover__anchor"

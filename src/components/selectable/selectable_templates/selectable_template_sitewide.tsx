@@ -22,6 +22,8 @@ import React, {
   ReactNode,
   useState,
   CSSProperties,
+  ReactElement,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 import { useCombinedRefs } from '../../../services';
@@ -36,6 +38,9 @@ import {
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
+import { EuiBreakpointSize, BREAKPOINTS } from '../../../services/breakpoint';
+import { throttle } from '../../color_picker/utils';
+import { EuiSpacer } from '../../spacer';
 
 export type EuiSelectableTemplateSitewideProps = Partial<
   Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
@@ -58,6 +63,15 @@ export type EuiSelectableTemplateSitewideProps = Partial<
    * Optionally provide a footer for the popover
    */
   popoverFooter?: ReactNode;
+  /**
+   * Optionally provide a separate button for toggling the display of the mobile version.
+   * If this is not provided, a mobile version will not be displayed.
+   */
+  mobileToggle?: ReactElement;
+  /**
+   * Change the default max breakpoint at which to switch from the mobile to desktop version
+   */
+  mobileBreakpointMax?: EuiBreakpointSize;
 };
 
 export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTemplateSitewideProps> = ({
@@ -70,8 +84,36 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   searchProps,
   listProps,
   isLoading,
+  mobileToggle,
+  mobileBreakpointMax = 's',
   ...rest
 }) => {
+  /**
+   * Breakpoint management
+   */
+  const [windowIsMobileSize, setWindowIsMobileSize] = useState(
+    typeof window !== 'undefined' &&
+      window.innerWidth <= BREAKPOINTS[mobileBreakpointMax]
+  );
+
+  const functionToCallOnWindowResize = throttle(() => {
+    const newWidthIsMobile =
+      window.innerWidth <= BREAKPOINTS[mobileBreakpointMax];
+    if (newWidthIsMobile !== windowIsMobileSize) {
+      setWindowIsMobileSize(newWidthIsMobile);
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  // Add window resize handlers
+  useEffect(() => {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
+  }, [mobileToggle, mobileBreakpointMax, functionToCallOnWindowResize]);
+
   /**
    * i18n text
    */
@@ -81,21 +123,21 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   );
 
   /**
-   * Internal states
-   */
-  const [inputHasFocus, setInputHasFocus] = useState(false);
-
-  /**
    * Popover helpers
    */
   const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
   const { closePopover: _closePopover, panelRef, width, ...popoverRest } = {
     ...popoverProps,
   };
 
   const closePopover = () => {
-    setInputHasFocus(false);
+    setPopoverIsOpen(false);
     _closePopover && _closePopover();
+  };
+
+  const togglePopover = () => {
+    setPopoverIsOpen(!popoverIsOpen);
   };
 
   // Width applied to the internal div
@@ -107,18 +149,18 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    */
   const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onFocus && searchProps.onFocus(e);
-    setInputHasFocus(true);
+    setPopoverIsOpen(true);
   };
 
   const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
     searchProps && searchProps.onInput && searchProps.onInput(e);
-    setInputHasFocus(true);
+    setPopoverIsOpen(true);
   };
 
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
-      setInputHasFocus(false);
+      setPopoverIsOpen(false);
     }
   };
 
@@ -164,6 +206,19 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     </EuiSelectableMessage>
   );
 
+  /**
+   * Mobile specific elements and prop changes.
+   * The mobile version basically moves the search input into the popover
+   * and uses the passed `mobileToggle` as the popover button.
+   */
+  let popoverButton: ReactElement;
+  if (mobileToggle && windowIsMobileSize) {
+    popoverButton = React.cloneElement(mobileToggle, {
+      ...mobileToggle.props,
+      onClick: togglePopover,
+    });
+  }
+
   return (
     <EuiSelectable
       isLoading={isLoading}
@@ -203,14 +258,22 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
       {(list, search) => (
         <EuiPopover
           panelPaddingSize="none"
-          display="block"
-          isOpen={inputHasFocus}
+          isOpen={popoverIsOpen}
+          ownFocus={!!popoverButton}
           {...popoverRest}
           panelRef={setPanelRef}
-          button={search}
+          button={popoverButton ? popoverButton : search}
           closePopover={closePopover}>
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
-            {popoverTitle && <EuiPopoverTitle>{popoverTitle}</EuiPopoverTitle>}
+            {popoverTitle || popoverButton ? (
+              <EuiPopoverTitle>
+                {popoverTitle}
+                {popoverTitle && search && <EuiSpacer />}
+                {search}
+              </EuiPopoverTitle>
+            ) : (
+              undefined
+            )}
             {list}
             {popoverFooter && (
               <EuiPopoverFooter>{popoverFooter}</EuiPopoverFooter>
