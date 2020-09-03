@@ -1813,6 +1813,86 @@ Array [
     });
   });
 
+  describe('render column actions', () => {
+    it('renders various column actions configurations', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'A', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', isSortable: true },
+            {
+              id: 'C',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                showSortAsc: false,
+                showSortDesc: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+            {
+              id: 'D',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+            {
+              id: 'E',
+              isSortable: true,
+              actions: {
+                showHide: { label: '1' },
+                showSortAsc: { label: '2' },
+                showSortDesc: { label: '3' },
+                showMoveLeft: { label: '4' },
+                showMoveRight: { label: '5' },
+                additional: [{ label: 'test' }],
+              },
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B', 'C', 'D', 'E'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      const buttonA = findTestSubject(
+        component,
+        'dataGridHeaderCellActionButton-A'
+      );
+      expect(buttonA.length).toBe(0);
+
+      for (const col of ['B', 'C', 'D', 'E']) {
+        const button = findTestSubject(
+          component,
+          `dataGridHeaderCellActionButton-${col}`
+        );
+        button.simulate('click');
+        component.update();
+        const actionGroup = findTestSubject(
+          component,
+          `dataGridHeaderCellActionGroup-${col}`
+        );
+        expect(actionGroup).toMatchSnapshot();
+      }
+    });
+  });
+
   describe('keyboard controls', () => {
     it('supports simple arrow navigation', () => {
       let pagination = {

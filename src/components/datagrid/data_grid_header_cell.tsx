@@ -313,13 +313,18 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               onClick={() => setIsPopoverOpen(true)}
               iconType="arrowDown"
               aria-label={actionButtonAriaLabel}
+              data-test-subj={`dataGridHeaderCellActionButton-${id}`}
             />
           }
           isOpen={isPopoverOpen}
           closePopover={() => setIsPopoverOpen(false)}
           ownFocus>
           <div>
-            <EuiListGroup listItems={columnActions} gutterSize="none" />
+            <EuiListGroup
+              listItems={columnActions}
+              gutterSize="none"
+              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+            />
           </div>
         </EuiPopover>
       )}
