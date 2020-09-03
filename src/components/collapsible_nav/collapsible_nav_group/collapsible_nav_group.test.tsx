@@ -23,6 +23,10 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiCollapsibleNavGroup, BACKGROUNDS } from './collapsible_nav_group';
 
+jest.mock('./../../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
+
 describe('EuiCollapsibleNavGroup', () => {
   test('is rendered', () => {
     const component = render(
