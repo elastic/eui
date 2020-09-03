@@ -77,22 +77,20 @@ export class EuiValidatableControl extends Component<
     this.updateValidity();
   }
 
-  setRef = (element: HTMLConstraintValidityElement) => {
-    this.control = element;
-
-    // Call the original ref, if any
-    const { ref } = this.props.children;
-    if (typeof ref === 'function') {
-      ref(element);
-    } else if (isMutableRef(ref)) {
-      ref.current = element;
-    }
-  };
-
   render() {
     const child = Children.only(this.props.children);
     return cloneElement(child, {
-      ref: this.setRef,
+      ref: (element: HTMLConstraintValidityElement) => {
+        this.control = element;
+
+        // Call the original ref, if any
+        const { ref } = this.props.children;
+        if (typeof ref === 'function') {
+          ref(element);
+        } else if (isMutableRef(ref)) {
+          ref.current = element;
+        }
+      },
     });
   }
 }
