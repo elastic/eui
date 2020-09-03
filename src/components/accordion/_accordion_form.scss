@@ -13,8 +13,8 @@
 
 .euiAccordionForm__button {
   padding-block-start: $euiSize;
-  padding-block-end: 0;
-  padding-inline-start: $euiSize;
+  padding-block-end: $euiSize;
+  padding-inline-start: 0;
   padding-inline-end: $euiSize;
 
   &:hover {

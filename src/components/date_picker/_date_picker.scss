@@ -154,8 +154,8 @@
 
 .react-datepicker__header__dropdown {
   padding-block-start: $euiSize;
-  padding-block-end: 0;
-  padding-inline-start: $euiSizeS;
+  padding-block-end: $euiSizeS;
+  padding-inline-start: 0;
   padding-inline-end: 0;
 }
 

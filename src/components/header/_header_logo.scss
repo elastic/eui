@@ -8,8 +8,8 @@
   line-height: $euiHeaderChildSize;
   min-width: $euiHeaderChildSize + 1px;
   padding-block-start: 0;
-  padding-block-end: $euiSizeM;
-  padding-inline-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: $euiSizeM;
   padding-inline-end: ($euiSizeM + 1px);
   display: inline-flex;
   align-items: center;

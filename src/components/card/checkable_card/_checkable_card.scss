@@ -40,8 +40,8 @@
   font-size: $euiFontSize;
   line-height: $euiSizeL;
   padding-block-start: $euiSizeS;
-  padding-block-end: $euiSize;
-  padding-inline-start: $euiSizeS;
+  padding-block-end: $euiSizeS;
+  padding-inline-start: $euiSize;
   padding-inline-end: $euiSizeS;
   cursor: pointer;
 }
@@ -53,7 +53,7 @@
 
 .euiCheckableCard__children {
   padding-block-start:  0;
-  padding-block-end:  $euiSize;
-  padding-inline-start:  $euiSizeS;
+  padding-block-end:  $euiSizeS;
+  padding-inline-start:  $euiSize;
   padding-inline-end:  $euiSizeS;
 }

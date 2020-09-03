@@ -1,8 +1,8 @@
 .euiComboBoxOption {
   font-size: $euiFontSizeS;
   padding-block-start: $euiSizeXS;
-  padding-block-end: #{$euiSizeM + $euiSizeXS};
-  padding-inline-start: $euiSizeXS;
+  padding-block-end: $euiSizeXS;
+  padding-inline-start: #{$euiSizeM + $euiSizeXS};
   padding-inline-end: $euiSizeS;
   width: 100%;
   text-align: left;
