@@ -85,7 +85,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   listProps,
   isLoading,
   mobileToggle,
-  mobileBreakpointMax = 's',
+  mobileBreakpointMax = 'm',
   ...rest
 }) => {
   /**

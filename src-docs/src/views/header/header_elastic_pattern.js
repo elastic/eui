@@ -238,6 +238,35 @@ export default ({ theme }) => {
     </EuiPopover>
   );
 
+  /**
+   * Sitewide search
+   */
+  const search = (
+    <EuiSelectableTemplateSitewide
+      options={[]}
+      searchProps={{
+        append: '⌘K',
+        compressed: true,
+      }}
+      mobileToggle={
+        <EuiHeaderSectionItemButton aria-label="Sitewide search">
+          <EuiIcon type="search" size="m" />
+        </EuiHeaderSectionItemButton>
+      }
+      emptyMessage={
+        <EuiSelectableMessage style={{ minHeight: 300 }}>
+          <p>
+            Please see the component page for{' '}
+            <Link to="/forms/selectable">
+              <strong>EuiSelectableTemplateSitewide</strong>
+            </Link>{' '}
+            on how to configure your sitewide search.
+          </p>
+        </EuiSelectableMessage>
+      }
+    />
+  );
+
   return (
     <>
       <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
@@ -255,35 +284,19 @@ export default ({ theme }) => {
                   <EuiHeaderLogo iconType="logoElastic" href="">
                     Elastic
                   </EuiHeaderLogo>,
-                ],
-                borders: 'none',
-              },
-              {
-                items: [
-                  <EuiSelectableTemplateSitewide
-                    options={[]}
-                    searchProps={{
-                      append: '⌘K',
-                      compressed: true,
-                    }}
-                    emptyMessage={
-                      <EuiSelectableMessage style={{ minHeight: 300 }}>
-                        <p>
-                          Please see the component page for{' '}
-                          <Link to="/forms/selectable">
-                            <strong>EuiSelectableTemplateSitewide</strong>
-                          </Link>{' '}
-                          on how to configure your sitewide search.
-                        </p>
-                      </EuiSelectableMessage>
-                    }
-                  />,
-                ],
-                borders: 'none',
-              },
-              {
-                items: [
                   deploymentMenu,
+                ],
+                borders: 'none',
+              },
+              {
+                items: [
+                  <EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>,
+                ],
+                borders: 'none',
+              },
+              {
+                items: [
+                  <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
                   <EuiHeaderSectionItemButton
                     aria-label="Notifications"
                     notification={'•'}
