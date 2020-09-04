@@ -16,6 +16,7 @@
 }
 
 .euiHeaderSectionItem__button {
+  position: relative; // For positioning the notification
   height: $euiHeaderChildSize;
   min-width: $euiHeaderChildSize;
   text-align: center;
@@ -56,6 +57,13 @@
   box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
 }
 
+.euiHeaderSectionItemButton__notification--dot {
+  right: 0;
+  top: 0;
+  box-shadow: none;
+  stroke: $euiHeaderBackgroundColor;
+}
+
 @include euiBreakpoint('xs') {
   .euiHeaderSectionItem,
   .euiHeaderSectionItem__button {
@@ -71,12 +79,18 @@
 
   // On small screens just show a small dot indicating there are notifications
   .euiHeaderNotification,
-  .euiHeaderSectionItemButton__notification {
+  .euiHeaderSectionItemButton__notification--badge {
     @include size($euiSizeS);
     top: 20%;
     min-width: 0;
     border-radius: $euiSizeS;
     color: $euiColorAccent;
     overflow: hidden;
+  }
+
+  // Using specificty to override the default icon size
+  .euiHeaderSectionItemButton__notification.euiHeaderSectionItemButton__notification--dot {
+    @include size($euiSize);
+    top: 9%;
   }
 }

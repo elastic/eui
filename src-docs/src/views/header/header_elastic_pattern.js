@@ -299,7 +299,7 @@ export default ({ theme }) => {
                   <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
                   <EuiHeaderSectionItemButton
                     aria-label="Notifications"
-                    notification={'•'}
+                    notification={true}
                     onClick={() =>
                       setIsAlertFlyoutVisible(!isAlertFlyoutVisible)
                     }>

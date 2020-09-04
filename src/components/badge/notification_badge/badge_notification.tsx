@@ -27,7 +27,7 @@ const colorToClassMap: { [color: string]: string | null } = {
 };
 
 export const COLORS: BadgeNotificationColor[] = keysOf(colorToClassMap);
-export type BadgeNotificationColor = keyof typeof colorToClassMap;
+export type BadgeNotificationColor = 'accent' | 'subdued';
 
 const sizeToClassNameMap = {
   s: null,

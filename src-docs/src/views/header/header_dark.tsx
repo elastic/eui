@@ -52,7 +52,7 @@ export default ({ theme }: { theme: any }) => (
           </EuiBadge>,
           <EuiHeaderSectionItemButton
             aria-label="Notifications"
-            notification={'•'}>
+            notification={'2'}>
             <EuiIcon type="cheer" size="m" />
           </EuiHeaderSectionItemButton>,
           <EuiHeaderSectionItemButton aria-label="Account menu">

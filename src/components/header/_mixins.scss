@@ -34,4 +34,9 @@
   .euiHeaderSectionItemButton__notification {
     box-shadow: 0 0 0 1px $backgroundColor;
   }
+
+  .euiHeaderSectionItemButton__notification--dot {
+    box-shadow: none;
+    stroke: $backgroundColor;
+  }
 }

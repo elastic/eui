@@ -120,7 +120,7 @@ export default ({ flyoutOrPopover = 'flyout' }) => {
         { showBadge } ? 'Updates available' : 'No updates'
       }`}
       onClick={() => showFlyout()}
-      notification={showBadge && '•'}>
+      notification={showBadge}>
       <EuiIcon type="cheer" size="m" />
     </EuiHeaderSectionItemButton>
   );
