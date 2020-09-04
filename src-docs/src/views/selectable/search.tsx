@@ -96,7 +96,8 @@ export default () => {
       popoverProps={{
         className: 'customPopoverClass',
       }}
-      mobileToggle={<EuiButton>Mobile toggle</EuiButton>}
+      popoverButton={<EuiButton>Mobile toggle</EuiButton>}
+      popoverButtonMaxBreakpoint="s"
       popoverFooter={
         <EuiText color="subdued" size="xs">
           <EuiFlexGroup

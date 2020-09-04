@@ -248,11 +248,12 @@ export default ({ theme }) => {
         append: '⌘K',
         compressed: true,
       }}
-      mobileToggle={
+      popoverButton={
         <EuiHeaderSectionItemButton aria-label="Sitewide search">
           <EuiIcon type="search" size="m" />
         </EuiHeaderSectionItemButton>
       }
+      popoverButtonMaxBreakpoint="s"
       emptyMessage={
         <EuiSelectableMessage style={{ minHeight: 300 }}>
           <p>

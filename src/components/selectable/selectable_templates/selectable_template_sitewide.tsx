@@ -38,7 +38,10 @@ import {
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
-import { EuiBreakpointSize, BREAKPOINTS } from '../../../services/breakpoint';
+import {
+  EuiBreakpointSize,
+  isWithinMaxBreakpoint,
+} from '../../../services/breakpoint';
 import { throttle } from '../../color_picker/utils';
 import { EuiSpacer } from '../../spacer';
 
@@ -64,14 +67,14 @@ export type EuiSelectableTemplateSitewideProps = Partial<
    */
   popoverFooter?: ReactNode;
   /**
-   * Optionally provide a separate button for toggling the display of the mobile version.
-   * If this is not provided, a mobile version will not be displayed.
+   * Optionally provide a separate button for toggling the display of the popover.
    */
-  mobileToggle?: ReactElement;
+  popoverButton?: ReactElement;
   /**
-   * Change the default max breakpoint at which to switch from the mobile to desktop version
+   * Pass a max breakpoint at which to show the `popoverButton`.
+   * If `undefined`, the `popoverButton` will always show (if provided)
    */
-  mobileBreakpointMax?: EuiBreakpointSize;
+  popoverButtonMaxBreakpoint?: EuiBreakpointSize;
 };
 
 export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTemplateSitewideProps> = ({
@@ -84,23 +87,28 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   searchProps,
   listProps,
   isLoading,
-  mobileToggle,
-  mobileBreakpointMax = 'm',
+  popoverButton,
+  popoverButtonMaxBreakpoint,
   ...rest
 }) => {
   /**
    * Breakpoint management
    */
-  const [windowIsMobileSize, setWindowIsMobileSize] = useState(
+  const [canShowPopoverButton, setCanShowPopoverButton] = useState(
     typeof window !== 'undefined' &&
-      window.innerWidth <= BREAKPOINTS[mobileBreakpointMax]
+      isWithinMaxBreakpoint(
+        window.innerWidth,
+        popoverButtonMaxBreakpoint || Infinity
+      )
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    const newWidthIsMobile =
-      window.innerWidth <= BREAKPOINTS[mobileBreakpointMax];
-    if (newWidthIsMobile !== windowIsMobileSize) {
-      setWindowIsMobileSize(newWidthIsMobile);
+    const newWidthIsWithinBreakpoint = isWithinMaxBreakpoint(
+      window.innerWidth,
+      popoverButtonMaxBreakpoint || Infinity
+    );
+    if (newWidthIsWithinBreakpoint !== canShowPopoverButton) {
+      setCanShowPopoverButton(newWidthIsWithinBreakpoint);
     }
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
@@ -112,7 +120,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     return () => {
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [mobileToggle, mobileBreakpointMax, functionToCallOnWindowResize]);
+  }, [popoverButton, popoverButtonMaxBreakpoint, functionToCallOnWindowResize]);
 
   /**
    * i18n text
@@ -207,14 +215,14 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   );
 
   /**
-   * Mobile specific elements and prop changes.
-   * The mobile version basically moves the search input into the popover
-   * and uses the passed `mobileToggle` as the popover button.
+   * Changes based on showing the `popoverButton` if provided.
+   * This will move the search input into the popover
+   * and use the passed `popoverButton` as the popover trigger.
    */
-  let popoverButton: ReactElement;
-  if (mobileToggle && windowIsMobileSize) {
-    popoverButton = React.cloneElement(mobileToggle, {
-      ...mobileToggle.props,
+  let popoverTrigger: ReactElement;
+  if (popoverButton && canShowPopoverButton) {
+    popoverTrigger = React.cloneElement(popoverButton, {
+      ...popoverButton.props,
       onClick: togglePopover,
     });
   }
@@ -259,13 +267,14 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
         <EuiPopover
           panelPaddingSize="none"
           isOpen={popoverIsOpen}
-          ownFocus={!!popoverButton}
+          ownFocus={!!popoverTrigger}
+          display={popoverTrigger ? 'inlineBlock' : 'block'}
           {...popoverRest}
           panelRef={setPanelRef}
-          button={popoverButton ? popoverButton : search}
+          button={popoverTrigger ? popoverTrigger : search}
           closePopover={closePopover}>
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
-            {popoverTitle || popoverButton ? (
+            {popoverTitle || popoverTrigger ? (
               <EuiPopoverTitle>
                 {popoverTitle}
                 {popoverTitle && search && <EuiSpacer />}
