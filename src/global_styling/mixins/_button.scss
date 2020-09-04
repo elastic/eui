@@ -72,8 +72,8 @@
     flex-direction: row-reverse;
 
     > * + * {
-      margin-left: 0; // 1, 2
-      margin-right: $euiSizeS; // 1, 2
+      margin-inline-start: 0; // 1, 2
+      margin-inline-end: $euiSizeS; // 1, 2
     }
   } @else {
     display: flex;
@@ -81,7 +81,7 @@
     align-items: center;
 
     > * + * {
-      margin-left: $euiSizeS; // 1
+      margin-inline-start: $euiSizeS; // 1
     }
   }
 }

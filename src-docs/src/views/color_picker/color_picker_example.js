@@ -18,6 +18,8 @@ import {
   EuiColorPalettePickerPaletteGradientProps,
 } from '!!prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
 
+import playgrounds from './playground';
+
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
 const colorPickerHtml = renderToHtml(ColorPicker);
@@ -648,4 +650,5 @@ export const ColorPickerExample = {
       demo: <KitchenSink />,
     },
   ],
+  playground: playgrounds,
 };

@@ -163,16 +163,6 @@ exports[`EuiToken props fill none is rendered 1`] = `
 </span>
 `;
 
-exports[`EuiToken props iconType as EuiTokenMapType __docgenInfo is rendered 1`] = `
-<span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
->
-  <div
-    data-euiicon-type="__docgenInfo"
-  />
-</span>
-`;
-
 exports[`EuiToken props iconType as EuiTokenMapType tokenAlias is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"

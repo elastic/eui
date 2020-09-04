@@ -19,8 +19,7 @@
 
   &:focus {
     .euiAccordion__iconWrapper {
-      @include euiFocusRing;
-      color: $euiColorPrimary;
+      @include euiAccordionIconFocus;
     }
   }
 }
@@ -31,16 +30,14 @@
   justify-content: space-between;
 
   .euiAccordion__iconWrapper {
-    margin-left: $euiSizeS;
-    margin-right: $euiSizeXS;
+    @include euiAccordionIconMargin(right);
   }
 }
 
 .euiAccordion__iconWrapper {
   @include size($euiSize);
+  @include euiAccordionIconMargin;
   border-radius: $euiBorderRadius;
-  margin-right: $euiSizeS;
-  margin-left: $euiSizeXS;
   flex-shrink: 0;
 
   // Nested to override EuiIcon
@@ -51,6 +48,14 @@
 
   .euiAccordion__icon-isOpen {
     transform: rotate(90deg);
+  }
+}
+
+.euiAccordion__iconButton {
+  @include euiAccordionIconMargin(right);
+
+  &:focus {
+    @include euiAccordionIconFocus;
   }
 }
 

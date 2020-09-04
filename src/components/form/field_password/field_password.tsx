@@ -38,7 +38,7 @@ import { useCombinedRefs } from '../../../services';
 
 export type EuiFieldPasswordProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'value'
+  'type' | 'value'
 > &
   CommonProps & {
     isInvalid?: boolean;

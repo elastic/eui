@@ -27,7 +27,7 @@ import { EuiLoadingChart } from '../../loading';
 import { EuiSpacer } from '../../spacer';
 import { EuiIcon } from '../../icon';
 import { Query } from '../query';
-import { Clause, Value } from '../query/ast';
+import { Clause, Operator, OperatorType, Value } from '../query/ast';
 
 export interface FieldValueOptionType {
   field?: string;
@@ -59,6 +59,7 @@ export interface FieldValueSelectionFilterConfigType {
   searchThreshold?: number;
   available?: () => boolean;
   autoClose?: boolean;
+  operator?: OperatorType;
 }
 
 export interface FieldValueSelectionFilterProps {
@@ -262,7 +263,7 @@ export class FieldValueSelectionFilter extends Component<
   ) {
     const multiSelect = this.resolveMultiSelect();
     const {
-      config: { autoClose = true },
+      config: { autoClose = true, operator = Operator.EQ },
     } = this.props;
 
     // we're closing popover only if the user can only select one item... if the
@@ -274,20 +275,20 @@ export class FieldValueSelectionFilter extends Component<
         ? this.props.query.removeSimpleFieldClauses(field)
         : this.props.query
             .removeSimpleFieldClauses(field)
-            .addSimpleFieldValue(field, value);
+            .addSimpleFieldValue(field, value, true, operator);
 
       this.props.onChange(query);
     } else {
       if (multiSelect === 'or') {
         const query = checked
           ? this.props.query.removeOrFieldValue(field, value)
-          : this.props.query.addOrFieldValue(field, value);
+          : this.props.query.addOrFieldValue(field, value, true, operator);
 
         this.props.onChange(query);
       } else {
         const query = checked
           ? this.props.query.removeSimpleFieldValue(field, value)
-          : this.props.query.addSimpleFieldValue(field, value);
+          : this.props.query.addSimpleFieldValue(field, value, true, operator);
 
         this.props.onChange(query);
       }

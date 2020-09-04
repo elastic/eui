@@ -27,10 +27,8 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
-          role="option"
           type="button"
         />
         <div
@@ -79,10 +77,8 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
-          role="option"
           type="button"
         >
           Plain text as a custom option
@@ -138,10 +134,8 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
-          role="option"
           type="button"
         >
           <div
@@ -200,10 +194,8 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
-          role="option"
           type="button"
         >
           <div
@@ -262,10 +254,8 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
-          role="option"
           type="button"
         >
           <div
@@ -319,10 +309,8 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
-          role="option"
           type="button"
         >
           Palette 1
@@ -376,10 +364,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
         <button
           aria-haspopup="true"
           aria-labelledby="undefined generated-id"
-          aria-selected="true"
           class="euiSuperSelectControl euiSuperSelect--isOpen__button"
           data-test-subj="colorPalettePicker"
-          role="option"
           type="button"
         >
           <div

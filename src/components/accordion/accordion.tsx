@@ -26,6 +26,7 @@ import { EuiIcon } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiI18n } from '../i18n';
+import { htmlIdGenerator } from '../../services';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -72,7 +73,6 @@ export type EuiAccordionProps = CommonProps &
     paddingSize?: EuiAccordionSize;
     /**
      * Placement of the arrow indicator, or 'none' to hide it.
-     * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
      */
     arrowDisplay?: 'left' | 'right' | 'none';
     /**
@@ -200,13 +200,32 @@ export class EuiAccordion extends Component<
       'euiAccordion__icon-isOpen': isOpen,
     });
 
-    let icon;
+    const iconWrapperClasses = classNames('euiAccordion__iconWrapper', {
+      euiAccordion__iconButton: extraAction && arrowDisplay === 'right',
+    });
+
+    let baseIcon;
     if (arrowDisplay !== 'none') {
-      icon = (
-        <span className="euiAccordion__iconWrapper">
-          <EuiIcon className={iconClasses} type="arrowRight" size="m" />
-        </span>
+      baseIcon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
+    }
+
+    let icon;
+    let iconButton;
+    const buttonId = htmlIdGenerator()();
+    if (extraAction && arrowDisplay === 'right') {
+      iconButton = (
+        <button
+          aria-controls={id}
+          aria-expanded={isOpen}
+          aria-labelledby={buttonId}
+          tabIndex={-1}
+          className={iconWrapperClasses}
+          onClick={this.onToggle}>
+          {baseIcon}
+        </button>
       );
+    } else if (arrowDisplay !== 'none') {
+      icon = <span className={iconWrapperClasses}>{baseIcon}</span>;
     }
 
     let optionalAction = null;
@@ -245,6 +264,7 @@ export class EuiAccordion extends Component<
       <div className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
           <button
+            id={buttonId}
             aria-controls={id}
             aria-expanded={isOpen}
             onClick={this.onToggle}
@@ -260,6 +280,7 @@ export class EuiAccordion extends Component<
             </span>
           </button>
           {optionalAction}
+          {iconButton}
         </div>
 
         <div
