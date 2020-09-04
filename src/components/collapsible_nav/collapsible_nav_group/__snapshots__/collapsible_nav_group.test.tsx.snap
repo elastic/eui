@@ -246,6 +246,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
       aria-controls="id"
       aria-expanded="false"
       class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__heading"
+      id="generated-id"
       type="button"
     >
       <span

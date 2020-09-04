@@ -100,7 +100,7 @@ export const ToastExample = {
     <EuiText>
       <p>
         Be sure to read the full{' '}
-        <Link to="/guidelines/toasts">toast usage guidelines</Link>.
+        <Link to="/guidelines/toast">toast usage guidelines</Link>.
       </p>
       <EuiSpacer />
     </EuiText>
