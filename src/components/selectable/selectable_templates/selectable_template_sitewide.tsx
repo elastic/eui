@@ -156,9 +156,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    * Search helpers
    */
   const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    searchProps && searchProps.onFocus && searchProps.onFocus(e);
     if (canShowPopoverButton) return;
 
-    searchProps && searchProps.onFocus && searchProps.onFocus(e);
     setPopoverIsOpen(true);
   };
 
@@ -168,9 +168,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   };
 
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (canShowPopoverButton) return;
 
-    searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       setPopoverIsOpen(false);
     }
