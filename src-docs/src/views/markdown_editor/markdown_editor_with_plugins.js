@@ -80,7 +80,7 @@ const chartDemoPlugin = {
           </li>
           <li>
             <strong>categories: </strong>
-            The number o categories per column
+            The number of categories per column
           </li>
         </ul>
       </EuiText>
@@ -268,7 +268,7 @@ Notice the toolbar above has a new chart button. Click it to add a chart.
 
 Once you finish it'll add some syntax that looks like the below.
 
-!{chart{"palette":2,"categories":5}}
+!{chart{"palette":"2","categories":5}}
 `;
 
 export default () => {
