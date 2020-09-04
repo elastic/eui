@@ -218,6 +218,14 @@ export const BadgeExample = {
             Badges can work as health status indicators in places where there
             are a lot of repeated statuses e.g. in tables.
           </p>
+          <p>
+            The status colors can be determined from the{' '}
+            <EuiCode>euiPaletteForStatus</EuiCode> in the{' '}
+            <Link to="/utilities/color-palettes">
+              <strong>Eui Color Palettes</strong>
+            </Link>
+            .
+          </p>
         </div>
       ),
       snippet: badgeHealthSnippet,
