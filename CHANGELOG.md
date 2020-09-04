@@ -4,6 +4,7 @@
 
 - Fixed bug in `EuiComboBox` where the input was dropping to the next line when a `EuiBadge` had a very long text ([#3968](https://github.com/elastic/eui/pull/3968))
 - Fixed type mismatch between `EuiSelectable` options extended via `EuiSelectableOption` and internal option types ([#3983](https://github.com/elastic/eui/pull/3983))
+-  Fixed bug in `ToastList` where the codesanbox example in the documentation missing two buttons ([#4004](https://github.com/elastic/eui/pull/4004)) 
 
 ## [`28.3.0`](https://github.com/elastic/eui/tree/v28.3.0)
 
