@@ -52,15 +52,17 @@
 .euiHeaderNotification,
 .euiHeaderSectionItemButton__notification {
   position: absolute;
+}
+
+.euiHeaderSectionItemButton__notification--badge {
   top: 9%;
   right: 9%;
   box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
 }
 
 .euiHeaderSectionItemButton__notification--dot {
-  right: 0;
   top: 0;
-  box-shadow: none;
+  right: 0;
   stroke: $euiHeaderBackgroundColor;
 }
 

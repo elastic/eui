@@ -29,6 +29,9 @@ import { throttle } from '../color_picker/utils';
 export type EuiShowForBreakpoints = EuiBreakpointSize;
 
 export interface EuiShowForProps {
+  /**
+   * Required otherwise nothing ever gets returned
+   */
   children: ReactNode;
   /**
    * List of all the responsive sizes to show the children for.

@@ -29,6 +29,9 @@ import { throttle } from '../color_picker/utils';
 export type EuiHideForBreakpoints = EuiBreakpointSize;
 
 export interface EuiHideForProps {
+  /**
+   * Required otherwise nothing ever gets returned
+   */
   children: ReactNode;
   /**
    * List of all the responsive sizes to hide the children for.

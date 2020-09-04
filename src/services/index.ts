@@ -35,7 +35,12 @@ export {
   CENTER_ALIGNMENT,
 } from './alignment';
 
-export { BREAKPOINTS, BREAKPOINT_KEYS, getBreakpoint } from './breakpoint';
+export {
+  BREAKPOINTS,
+  BREAKPOINT_KEYS,
+  getBreakpoint,
+  isWithinMaxBreakpoint,
+} from './breakpoint';
 
 export {
   isColorDark,
