@@ -17,5 +17,8 @@ export default () => (
     <EuiFlexItem grow={false}>
       <EuiBadge color="danger">Critical</EuiBadge>
     </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="default">Unknown</EuiBadge>
+    </EuiFlexItem>
   </EuiFlexGroup>
 );
