@@ -1912,7 +1912,11 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', actions: false },
+            { id: 'C', actions: false },
+          ]}
           columnVisibility={{
             visibleColumns: ['A', 'B', 'C'],
             setVisibleColumns: () => {},
@@ -2108,7 +2112,10 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', actions: false },
+          ]}
           columnVisibility={{
             visibleColumns: ['A', 'B'],
             setVisibleColumns: () => {},
