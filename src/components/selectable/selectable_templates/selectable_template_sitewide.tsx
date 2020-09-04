@@ -120,7 +120,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     return () => {
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [popoverButton, popoverButtonMaxBreakpoint, functionToCallOnWindowResize]);
+  }, [functionToCallOnWindowResize]);
 
   /**
    * i18n text
@@ -156,6 +156,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    * Search helpers
    */
   const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (canShowPopoverButton) return;
+
     searchProps && searchProps.onFocus && searchProps.onFocus(e);
     setPopoverIsOpen(true);
   };
@@ -166,6 +168,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   };
 
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (canShowPopoverButton) return;
+
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       setPopoverIsOpen(false);
@@ -224,6 +228,10 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     popoverTrigger = React.cloneElement(popoverButton, {
       ...popoverButton.props,
       onClick: togglePopover,
+      onKeyDown: (e: KeyboardEvent) => {
+        // Selectable preventsDefault on Enter which kills browser controls for pressing the button
+        e.stopPropagation();
+      },
     });
   }
 
