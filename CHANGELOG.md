@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fix incorrect `euiCodeBlockNameColor` variable usage for `.hljs-name` in SCSS ([#3991](https://github.com/elastic/eui/pull/3991))
+- Fixed bug in `EuiAccordion` where the `arrowDisplay="right"` is ignored when `extraAction` is configured ([#3971](https://github.com/elastic/eui/pull/3971))
 
 ## [`28.3.1`](https://github.com/elastic/eui/tree/v28.3.1)
 
