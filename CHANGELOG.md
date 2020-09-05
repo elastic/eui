@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `loading` icon to `EuiComboBox` input when `isLoading` is `true` ([#4015](https://github.com/elastic/eui/pull/4015))
 - Added `fold` and `unfold` glyphs to `EuiIcon` ([#3994](https://github.com/elastic/eui/pull/3994))
 
 **Bug fixes**
