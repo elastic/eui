@@ -4,6 +4,9 @@ import {
   EuiCode,
   EuiGlobalToastList,
   EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
 } from '../../../../src/components';
 
 let addToastHandler;
@@ -99,10 +102,24 @@ export default () => {
   };
 
   return (
-    <EuiGlobalToastList
-      toasts={toasts}
-      dismissToast={removeToast}
-      toastLifeTimeMs={6000}
-    />
+    <div style={{ maxWidth: 320 }}>
+      <EuiFlexGroup gutterSize="s">
+        <EuiFlexItem>
+          <EuiButton onClick={addToast}>
+            Add toast to global toast list
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiButton onClick={removeAllToasts} color="danger">
+            Remove all toasts
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={removeToast}
+        toastLifeTimeMs={6000}
+      />
+    </div>
   );
 };
