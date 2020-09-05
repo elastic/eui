@@ -1051,6 +1051,7 @@ export class EuiComboBox<T> extends Component<
           value={value}
           append={singleSelection ? append : undefined}
           prepend={singleSelection ? prepend : undefined}
+          isLoading={isLoading}
         />
         {optionsList}
       </div>
