@@ -1,6 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added health status documentation for `EuiBadge` ([#4006](https://github.com/elastic/eui/pull/4006)))
 - Added `fold` and `unfold` glyphs to `EuiIcon` ([#3994](https://github.com/elastic/eui/pull/3994))
 
 **Bug fixes**
