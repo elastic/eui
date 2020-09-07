@@ -48,6 +48,10 @@
     &.euiComboBox__inputWrap-isClearable {
       @include euiFormControlLayoutPadding(2); /* 2 */
     }
+
+    &.euiComboBox__inputWrap-isLoading {
+      @include euiFormControlLayoutPadding(3);
+    }
   }
 
   /**
