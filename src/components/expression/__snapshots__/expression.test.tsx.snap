@@ -276,6 +276,21 @@ exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 </span>
 `;
 
+exports[`EuiExpression render with only description 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--secondary"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+</button>
+`;
+
 exports[`EuiExpression renders 1`] = `
 <button
   aria-label="aria-label"
