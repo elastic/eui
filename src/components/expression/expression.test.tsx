@@ -38,6 +38,18 @@ describe('EuiExpression', () => {
     expect(render(component)).toMatchSnapshot();
   });
 
+  test('render with only description', () => {
+    const component = (
+      <EuiExpression
+        description="the answer is"
+        isActive={false}
+        onClick={() => {}}
+        {...requiredProps}
+      />
+    );
+    expect(render(component)).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('color', () => {
       COLORS.forEach(color => {

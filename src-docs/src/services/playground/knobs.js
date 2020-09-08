@@ -133,7 +133,8 @@ const Knob = ({
         <EuiFormRow
           isInvalid={error && error.length > 0}
           error={error}
-          fullWidth>
+          fullWidth
+          helpText={custom && custom.helpText}>
           <EuiFieldText
             placeholder={placeholder}
             aria-label={description}
@@ -266,7 +267,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
   return (
     <>
       {knobNames.map((name, idx) => {
-        let humanizedType = '';
+        let humanizedType;
 
         if (
           state[name].custom &&
@@ -275,8 +276,10 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
         )
           humanizedType = humanizeType(state[name].custom.origin.type);
 
-        const typeMarkup = (
-          <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+        const typeMarkup = humanizedType && (
+          <EuiCode>
+            <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+          </EuiCode>
         );
 
         let humanizedName = (
@@ -330,7 +333,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
               key={`type__${name}-${idx}`}
               header="Type"
               className="playgroundKnobs__rowCell">
-              <EuiCode>{typeMarkup}</EuiCode>
+              {typeMarkup}
             </EuiTableRowCell>
             <EuiTableRowCell
               key={`default__${name}-${idx}`}

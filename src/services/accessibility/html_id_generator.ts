@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import uuid from 'uuid';
+import { v1 as uuidv1 } from 'uuid';
 
 /**
  * This function returns a function to generate ids.
@@ -27,10 +27,10 @@ import uuid from 'uuid';
  * it should begin with an letter to be HTML4 compliant.
  */
 export function htmlIdGenerator(idPrefix: string = '') {
-  const staticUuid = uuid.v1();
+  const staticUuid = uuidv1();
   return (idSuffix: string = '') => {
     const prefix = `${idPrefix}${idPrefix !== '' ? '_' : 'i'}`;
     const suffix = idSuffix ? `_${idSuffix}` : '';
-    return `${prefix}${suffix ? staticUuid : uuid.v1()}${suffix}`;
+    return `${prefix}${suffix ? staticUuid : uuidv1()}${suffix}`;
   };
 }

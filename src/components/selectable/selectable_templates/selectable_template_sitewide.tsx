@@ -38,7 +38,7 @@ import {
 } from './selectable_template_sitewide_option';
 
 export type EuiSelectableTemplateSitewideProps = Partial<
-  Omit<EuiSelectableProps, 'options'>
+  Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
 > & {
   /**
    * Extends the typical EuiSelectable #Options with the addition of pre-composed elements
