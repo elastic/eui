@@ -83,7 +83,7 @@ $paddingSizes: (
   xl: $euiSizeXL,
 );
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $name, $size in $paddingSizes {
   .euiAccordion__padding--#{$name} {
     padding: $size;

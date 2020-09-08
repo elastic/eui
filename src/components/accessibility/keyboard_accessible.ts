@@ -33,7 +33,7 @@
  *     is pressed while the element is focused. This is necessary because some browsers do not trigger
  *    onclick events for such elements when activated via the keyboard.
  *   - If the item is meant to function as a button, the onkeyup event handler should also detect the
- *     Spacebar in addition to the Enter key, and the element should be given role="button".
+ *     Space bar in addition to the Enter key, and the element should be given role="button".
  *
  * Wrap any such elements that aren't natively keyboard accessible in this component to automatically
  * apply the above workaround to them.

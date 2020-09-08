@@ -57,7 +57,7 @@
     margin-right: -15%;
 
     .euiCollapsibleNav__closeButtonText {
-      // But be sure the text can still be read by a screenreader
+      // But be sure the text can still be read by a screen reader
       @include euiScreenReaderOnly;
     }
   }

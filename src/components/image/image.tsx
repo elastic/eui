@@ -59,7 +59,7 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
 
 interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
   /**
-   * Sepearate from the caption is a title on the alt tag itself.
+   * Separate from the caption is a title on the alt tag itself.
    * This one is required for accessibility.
    */
   alt: string;

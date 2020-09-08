@@ -151,7 +151,7 @@ export class EuiRange extends Component<EuiRangeProps> {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget
       // Instead, a prevention flag is set on mousedown, with a waiting period here.
-      // Mousedown is viable because in the popover case, it is inaccessable via keyboard (intentionally)
+      // Mousedown is viable because in the popover case, it is inaccessible via keyboard (intentionally)
       if (this.preventPopoverClose) {
         this.preventPopoverClose = false;
         return;
