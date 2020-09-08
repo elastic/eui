@@ -94,6 +94,27 @@ describe('EuiContextMenu', () => {
     expect(component).toMatchSnapshot();
   });
 
+  it('panel item can be a separator line', () => {
+    const component = render(
+      <EuiContextMenu
+        panels={[
+          {
+            id: 3,
+            title: 'Testing separator',
+            items: [
+              { name: 'Foo', key: 'foo' },
+              { isLine: true, name: 'separator' },
+              { name: 'Bar', key: 'bar' },
+            ],
+          },
+        ]}
+        initialPanelId={3}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('panels and initialPanelId', () => {
       it('renders the referenced panel', () => {
