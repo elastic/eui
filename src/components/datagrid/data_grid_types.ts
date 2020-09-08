@@ -78,7 +78,7 @@ export interface EuiDataGridColumn {
    */
   displayAsText?: string;
   /**
-   * Configuration of column actions. Can be used to disable or configure the actions displayed in the header column
+   * Configuration of column actions. Set to false to disable or use #EuiDataGridColumnActions to configure the actions displayed in the header cell of the column.
    */
   actions?: false | EuiDataGridColumnActions;
 }
