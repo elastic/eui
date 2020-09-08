@@ -85,28 +85,28 @@ if (args.dry_run) {
 
 function parseArguments() {
   const parser = new argparse.ArgumentParser({
-    addHelp: true,
+    add_help: true,
     description: 'Tag and publish a new version of EUI',
   });
 
-  parser.addArgument('--type', {
+  parser.add_argument('--type', {
     help: 'Version type; can be "major", "minor" or "patch"',
     choices: Object.values(humanReadableTypes),
   });
 
-  parser.addArgument('--dry-run', {
-    action: 'storeTrue',
-    defaultValue: false,
+  parser.add_argument('--dry-run', {
+    action: 'store_true',
+    default: false,
     help: 'Dry run mode; no changes are made',
   });
 
   const allSteps = ['test', 'build', 'version', 'tag', 'publish', 'docs'];
-  parser.addArgument('--steps', {
+  parser.add_argument('--steps', {
     help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
-    defaultValue: allSteps.join(','),
+    default: allSteps.join(','),
   });
 
-  const args = parser.parseArgs();
+  const args = parser.parse_args();
 
   // validate --steps argument
   const steps = args.steps.split(',').map(step => step.trim());
