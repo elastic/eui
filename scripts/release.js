@@ -1,7 +1,6 @@
 const argparse = require('argparse');
 const chalk = require('chalk');
 const fs = require('fs');
-const git = require('nodegit');
 const path = require('path');
 const prompt = require('prompt');
 let { execSync } = require('child_process');
@@ -128,6 +127,8 @@ async function ensureMasterBranch() {
     return;
   }
 
+  // delay importing nodegit because it can introduce environmental pains in a CI environment
+  const git = require('nodegit');
   const repo = await git.Repository.open(cwd);
   const currentBranch = await repo.getCurrentBranch();
   const currentBranchName = currentBranch.shorthand();
