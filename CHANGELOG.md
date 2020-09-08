@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `28.4.0`.
+
+## [`28.4.0`](https://github.com/elastic/eui/tree/v28.4.0)
+
 - Added `loading` icon to `EuiComboBox` input when `isLoading` is `true` ([#4015](https://github.com/elastic/eui/pull/4015))
 - Changed `value` prop in `EuiExpression` to not required ([#4014](https://github.com/elastic/eui/pull/4014))
 - Added `fold` and `unfold` glyphs to `EuiIcon` ([#3994](https://github.com/elastic/eui/pull/3994))
@@ -8,6 +12,10 @@
 
 - Fix incorrect `euiCodeBlockNameColor` variable usage for `.hljs-name` in SCSS ([#3991](https://github.com/elastic/eui/pull/3991))
 - Fixed bug in `EuiAccordion` where the `arrowDisplay="right"` is ignored when `extraAction` is configured ([#3971](https://github.com/elastic/eui/pull/3971))
+
+**Theme: Amsterdam**
+
+- Updated form control styles to use a uniform border-radius ([#3741](https://github.com/elastic/eui/pull/3741))
 
 ## [`28.3.1`](https://github.com/elastic/eui/tree/v28.3.1)
 

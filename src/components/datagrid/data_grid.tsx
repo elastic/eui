@@ -128,7 +128,7 @@ type CommonGridProps = CommonProps &
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
-     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
+     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When omitted, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
@@ -136,7 +136,7 @@ type CommonGridProps = CommonProps &
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
+     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
     /**
@@ -426,7 +426,7 @@ function useInMemoryValues(
     if (resetRunCount.current++ > 0) {
       // this has to delete "overflow" keys from the object instead of resetting to an empty one,
       // as the internal inmemoryrenderer component's useEffect which sets the values
-      // exectues before this outer, wrapping useEffect
+      // executes before this outer, wrapping useEffect
       const existingRowKeyCount = Object.keys(_inMemoryValues.current).length;
       for (let i = rowCount; i < existingRowKeyCount; i++) {
         delete _inMemoryValues.current[i];

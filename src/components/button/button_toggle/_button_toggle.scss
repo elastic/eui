@@ -63,7 +63,7 @@ $euiButtonToggleTypes: (
     }
 
     // Not using the full button class here as it's targeting a different component,
-    // instead we know what the modifier is, so just look for that somwhere in the classNames
+    // instead we know what the modifier is, so just look for that somewhere in the classNames
     &[class*='fill'] {
       @include euiButtonToggleStates {
         background-color: darken($color, 5%);

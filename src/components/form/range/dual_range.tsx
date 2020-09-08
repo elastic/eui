@@ -87,12 +87,12 @@ export interface EuiDualRangeProps
    */
   ticks?: EuiRangeTick[];
   /**
-   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopver`.
+   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopover`.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopver`.
+   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopover`.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
@@ -186,14 +186,14 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     upper: ValueMember,
     e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
   ) => {
-    // Lower thumb targeted or right-moving swap has occured
+    // Lower thumb targeted or right-moving swap has occurred
     if (
       Math.abs((lower as number) - (newVal as number)) <
       Math.abs((upper as number) - (newVal as number))
     ) {
       lower = newVal;
     }
-    // Upper thumb targeted or left-moving swap has occured
+    // Upper thumb targeted or left-moving swap has occurred
     else {
       upper = newVal;
     }
@@ -400,7 +400,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget
       // Instead, a prevention flag is set on mousedown, with a waiting period here.
-      // Mousedown is viable because in the popover case, it is inaccessable via keyboard (intentionally)
+      // Mousedown is viable because in the popover case, it is inaccessible via keyboard (intentionally)
       if (this.preventPopoverClose) {
         this.preventPopoverClose = false;
         return;
