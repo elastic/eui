@@ -7,7 +7,13 @@
   position: relative;
 
   &.euiFilePicker--large {
+    border-radius: $euiFormControlBorderRadius;
+    overflow: hidden;
     height: auto;
+  }
+
+  &.euiFilePicker--large.euiFilePicker--compressed {
+    border-radius: $euiFormControlCompressedBorderRadius;
   }
 }
 
@@ -65,6 +71,7 @@
   padding-right: $euiFormControlPadding;
   padding-bottom: $euiFormControlPadding;
   pointer-events: none; /* 1 */
+  border-radius: $euiFormControlBorderRadius;
 
   // sass-lint:disable-block indentation
   transition:
@@ -77,6 +84,7 @@
     @include euiFormControlStyleCompressed($includeStates: false);
     @include euiFormControlWithIcon($compressed: true); /* 2 */
     height: $euiFormControlCompressedHeight;
+    border-radius: $euiFormControlCompressedBorderRadius;
   }
 
   .euiFilePicker--large & {
