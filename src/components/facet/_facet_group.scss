@@ -16,7 +16,7 @@
 
       .euiFacetButton {
         margin-left: $gutterAdjustment;
-        // Adjust the max-width so it fits within the alloted margin
+        // Adjust the max-width so it fits within the allotted margin
         max-width: calc(100% - #{$gutterAdjustment});
       }
     }

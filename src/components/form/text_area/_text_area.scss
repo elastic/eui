@@ -17,7 +17,7 @@ $textareaResizing: (
   none: 'resizeNone',
 );
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $direction, $modifier in $textareaResizing {
   .euiTextArea--#{$modifier} {
     resize: #{$direction};

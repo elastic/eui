@@ -52,7 +52,7 @@
     clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%, $euiSizeS 50%);
 
     // If it's a link the easiest way to detect is via our .euiLink class since it can accept either href or onClick
-    // Also helps to add specificity for overrdiing hover state
+    // Also helps to add specificity for overriding hover state
     &.euiBreadcrumb--collapsed,
     &.euiLink {
       @include euiButtonDefaultStyle($euiColorPrimary);
