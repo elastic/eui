@@ -6,14 +6,7 @@ module.exports = {
 
   "presets": [
     ["@babel/env", {
-      "targets": {
-        "browsers": [
-          "last 2 versions",
-          "not dead",
-          "not IE 11",
-          "Safari 7" // for PhantomJS support
-        ]
-      },
+      // `targets` property set via `.browserslistrc`
       "useBuiltIns": process.env.NO_COREJS_POLYFILL ? false : "usage",
       "corejs": "2",
       "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES === 'false' ? false : process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
