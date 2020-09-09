@@ -46,10 +46,7 @@ chokidar
   .watch(['./src', './src-docs'], {
     ignoreInitial: true, // don't emit `add` event during file discovery
   })
-  .on('add', (...args) => {
-    console.log('add', ...args);
-    buildProgram();
-  })
+  .on('add', buildProgram)
   .on('change', buildProgram);
 
 module.exports = function({ types }) {
