@@ -25,8 +25,8 @@ import {
   Ref,
   FunctionComponent,
   useRef,
-  useMemo,
   useEffect,
+  useCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 
@@ -59,8 +59,8 @@ export const EuiValidatableControl: FunctionComponent<CommonProps &
   const child = Children.only(children);
   const childRef = child.ref;
 
-  const replacedRef = useMemo(
-    () => (element: HTMLConstraintValidityElement) => {
+  const replacedRef = useCallback(
+    (element: HTMLConstraintValidityElement) => {
       control.current = element;
 
       // Call the original ref, if any
