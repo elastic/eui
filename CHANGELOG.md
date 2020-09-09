@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `28.4.0`.
+**Bug fixes**
+
+- Fixed ref not being handled properly in `EuiValidatableControl` when used with [react-hook-form](https://react-hook-form.com/) ([#4001](https://github.com/elastic/eui/pull/4001))
 
 ## [`28.4.0`](https://github.com/elastic/eui/tree/v28.4.0)
 

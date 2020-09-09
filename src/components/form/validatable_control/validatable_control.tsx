@@ -20,10 +20,13 @@
 import {
   Children,
   cloneElement,
-  Component,
   MutableRefObject,
   ReactElement,
   Ref,
+  FunctionComponent,
+  useRef,
+  useEffect,
+  useCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 
@@ -49,50 +52,43 @@ export interface EuiValidatableControlProps {
   children: ReactElementWithRef;
 }
 
-export class EuiValidatableControl extends Component<
-  CommonProps & EuiValidatableControlProps
-> {
-  private control?: HTMLConstraintValidityElement;
+export const EuiValidatableControl: FunctionComponent<CommonProps &
+  EuiValidatableControlProps> = ({ isInvalid, children }) => {
+  const control = useRef<HTMLConstraintValidityElement | null>(null);
 
-  updateValidity() {
+  const child = Children.only(children);
+  const childRef = child.ref;
+
+  const replacedRef = useCallback(
+    (element: HTMLConstraintValidityElement) => {
+      control.current = element;
+
+      // Call the original ref, if any
+      if (typeof childRef === 'function') {
+        childRef(element);
+      } else if (isMutableRef(childRef)) {
+        childRef.current = element;
+      }
+    },
+    [childRef]
+  );
+
+  useEffect(() => {
     if (
-      this.control == null ||
-      typeof this.control.setCustomValidity !== 'function'
+      control.current === null ||
+      typeof control.current.setCustomValidity !== 'function'
     ) {
       return; // jsdom doesn't polyfill this for the server-side
     }
 
-    if (this.props.isInvalid) {
-      this.control.setCustomValidity('Invalid');
+    if (isInvalid) {
+      control.current.setCustomValidity('Invalid');
     } else {
-      this.control.setCustomValidity('');
+      control.current.setCustomValidity('');
     }
-  }
+  });
 
-  componentDidMount() {
-    this.updateValidity();
-  }
-
-  componentDidUpdate() {
-    this.updateValidity();
-  }
-
-  setRef = (element: HTMLConstraintValidityElement) => {
-    this.control = element;
-
-    // Call the original ref, if any
-    const { ref } = this.props.children;
-    if (typeof ref === 'function') {
-      ref(element);
-    } else if (isMutableRef(ref)) {
-      ref.current = element;
-    }
-  };
-
-  render() {
-    const child = Children.only(this.props.children);
-    return cloneElement(child, {
-      ref: this.setRef,
-    });
-  }
-}
+  return cloneElement(child, {
+    ref: replacedRef,
+  });
+};
