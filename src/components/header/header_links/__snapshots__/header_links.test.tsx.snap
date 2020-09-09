@@ -1,5 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiHeaderLinks gutterSize l is rendered 1`] = `
+<nav
+  aria-label="App navigation"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterL"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Open navigation menu"
+        class="euiHeaderSectionItem__button"
+        type="button"
+      >
+        <div
+          data-euiicon-type="apps"
+        />
+      </button>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiHeaderLinks gutterSize m is rendered 1`] = `
+<nav
+  aria-label="App navigation"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterM"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Open navigation menu"
+        class="euiHeaderSectionItem__button"
+        type="button"
+      >
+        <div
+          data-euiicon-type="apps"
+        />
+      </button>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiHeaderLinks gutterSize s is rendered 1`] = `
+<nav
+  aria-label="App navigation"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Open navigation menu"
+        class="euiHeaderSectionItem__button"
+        type="button"
+      >
+        <div
+          data-euiicon-type="apps"
+        />
+      </button>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
+<nav
+  aria-label="App navigation"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterXS"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Open navigation menu"
+        class="euiHeaderSectionItem__button"
+        type="button"
+      >
+        <div
+          data-euiicon-type="apps"
+        />
+      </button>
+    </div>
+  </div>
+</nav>
+`;
+
 exports[`EuiHeaderLinks is rendered 1`] = `
 <nav
   aria-label="aria-label"
@@ -7,7 +119,7 @@ exports[`EuiHeaderLinks is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiHeaderLinks__list"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
   />
   <div
     class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"

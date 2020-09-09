@@ -17,83 +17,97 @@
  * under the License.
  */
 
-import React, { Component } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import { EuiIcon } from '../../icon';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 import { EuiHeaderSectionItemButton } from '../header_section';
 
-interface State {
-  isOpen: boolean;
-}
+type EuiHeaderLinksGutterSize = 'xs' | 's' | 'm' | 'l';
 
-export class EuiHeaderLinks extends Component<CommonProps, State> {
-  state: State = {
-    isOpen: false,
+export type EuiHeaderLinksProps = CommonProps &
+  HTMLAttributes<HTMLElement> & {
+    gutterSize?: EuiHeaderLinksGutterSize;
   };
 
-  onMenuButtonClick = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+const gutterSizeToClassNameMap: {
+  [gutterSize in EuiHeaderLinksGutterSize]: string;
+} = {
+  xs: 'euiHeaderLinks__list--gutterXS',
+  s: 'euiHeaderLinks__list--gutterS',
+  m: 'euiHeaderLinks__list--gutterM',
+  l: 'euiHeaderLinks__list--gutterL',
+};
+export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
+
+export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
+  children,
+  className,
+  gutterSize = 's',
+  ...rest
+}) => {
+  const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
+
+  const onMenuButtonClick = () => {
+    setMobileMenuIsOpen(!mobileMenuIsOpen);
   };
 
-  closeMenu = () => {
-    this.setState({
-      isOpen: false,
-    });
+  const closeMenu = () => {
+    setMobileMenuIsOpen(false);
   };
 
-  componentDidMount() {
-    window.addEventListener('resize', this.closeMenu);
-  }
+  // componentDidMount() {
+  //   window.addEventListener('resize', this.closeMenu);
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.closeMenu);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener('resize', this.closeMenu);
+  // }
 
-  render() {
-    const { children, className, ...rest } = this.props;
+  const classes = classNames('euiHeaderLinks', className);
 
-    const classes = classNames('euiHeaderLinks', className);
+  const button = (
+    <EuiI18n
+      token="euiHeaderLinks.openNavigationMenu"
+      default="Open navigation menu">
+      {(openNavigationMenu: string) => (
+        <EuiHeaderSectionItemButton
+          aria-label={openNavigationMenu}
+          onClick={onMenuButtonClick}>
+          <EuiIcon type="apps" size="m" />
+        </EuiHeaderSectionItemButton>
+      )}
+    </EuiI18n>
+  );
 
-    const button = (
-      <EuiI18n
-        token="euiHeaderLinks.openNavigationMenu"
-        default="Open navigation menu">
-        {(openNavigationMenu: string) => (
-          <EuiHeaderSectionItemButton
-            aria-label={openNavigationMenu}
-            onClick={this.onMenuButtonClick}>
-            <EuiIcon type="apps" size="m" />
-          </EuiHeaderSectionItemButton>
-        )}
-      </EuiI18n>
-    );
+  return (
+    <EuiI18n token="euiHeaderLinks.appNavigation" default="App navigation">
+      {(appNavigation: string) => (
+        <nav className={classes} aria-label={appNavigation} {...rest}>
+          <div
+            className={classNames(
+              'euiHeaderLinks__list',
+              gutterSizeToClassNameMap[gutterSize]
+            )}>
+            {children}
+          </div>
 
-    return (
-      <EuiI18n token="euiHeaderLinks.appNavigation" default="App navigation">
-        {(appNavigation: string) => (
-          <nav className={classes} aria-label={appNavigation} {...rest}>
-            <div className="euiHeaderLinks__list">{children}</div>
-
-            <EuiPopover
-              className="euiHeaderLinks__mobile"
-              ownFocus
-              button={button}
-              isOpen={this.state.isOpen}
-              anchorPosition="downRight"
-              closePopover={this.closeMenu}
-              panelClassName="euiHeaderLinks__mobileList"
-              panelPaddingSize="none">
-              {children}
-            </EuiPopover>
-          </nav>
-        )}
-      </EuiI18n>
-    );
-  }
-}
+          <EuiPopover
+            className="euiHeaderLinks__mobile"
+            ownFocus
+            button={button}
+            isOpen={mobileMenuIsOpen}
+            anchorPosition="downRight"
+            closePopover={closeMenu}
+            panelClassName="euiHeaderLinks__mobileList"
+            panelPaddingSize="none">
+            {children}
+          </EuiPopover>
+        </nav>
+      )}
+    </EuiI18n>
+  );
+};

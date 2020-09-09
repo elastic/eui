@@ -21,12 +21,22 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 
-import { EuiHeaderLinks } from './header_links';
+import { EuiHeaderLinks, GUTTER_SIZES } from './header_links';
 
 describe('EuiHeaderLinks', () => {
   test('is rendered', () => {
     const component = render(<EuiHeaderLinks {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('gutterSize', () => {
+    GUTTER_SIZES.forEach(gutterSize => {
+      test(`${gutterSize} is rendered`, () => {
+        const component = render(<EuiHeaderLinks gutterSize={gutterSize} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });
