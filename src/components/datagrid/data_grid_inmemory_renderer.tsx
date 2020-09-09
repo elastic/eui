@@ -48,7 +48,7 @@ function getElementText(element: HTMLElement) {
   return 'innerText' in element
     ? element.innerText
     : // (this line left here to satisfy Prettier since a ts-ignore is used on the next line)
-      // @ts-ignore TypeScript thinks element.innerText always exists, however it doesn't in jest/jsdom enviornment
+      // @ts-ignore TypeScript thinks element.innerText always exists, however it doesn't in jest/jsdom environment
       element.textContent || undefined;
 }
 

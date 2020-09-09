@@ -71,6 +71,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   value?: string;
   prepend?: EuiFormControlLayoutProps['prepend'];
   append?: EuiFormControlLayoutProps['append'];
+  isLoading?: boolean;
 }
 
 interface EuiComboBoxInputState {
@@ -157,6 +158,7 @@ export class EuiComboBoxInput<T> extends Component<
       value,
       prepend,
       append,
+      isLoading,
     } = this.props;
 
     const singleSelection = Boolean(singleSelectionProp);
@@ -261,6 +263,7 @@ export class EuiComboBoxInput<T> extends Component<
       'euiComboBox__inputWrap--compressed': compressed,
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
+      'euiComboBox__inputWrap-isLoading': isLoading,
       'euiComboBox__inputWrap-isClearable': onClear,
       'euiComboBox__inputWrap--inGroup': prepend || append,
     });
@@ -269,6 +272,7 @@ export class EuiComboBoxInput<T> extends Component<
       <EuiFormControlLayout
         icon={icon}
         {...clickProps}
+        isLoading={isLoading}
         compressed={compressed}
         fullWidth={fullWidth}
         prepend={prepend}

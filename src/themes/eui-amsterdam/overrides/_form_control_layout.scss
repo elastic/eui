@@ -1,0 +1,78 @@
+.euiFormControlLayout--group {
+  $leftSideRadius: $euiFormControlBorderRadius 0 0 $euiFormControlBorderRadius;
+  $rightSideRadius: 0 $euiFormControlBorderRadius $euiFormControlBorderRadius 0;
+  $leftSideRadiusSmall: $euiFormControlCompressedBorderRadius 0 0 $euiFormControlCompressedBorderRadius;
+  $rightSideRadiusSmall: 0 $euiFormControlCompressedBorderRadius $euiFormControlCompressedBorderRadius 0;
+
+  border-radius: $euiFormControlBorderRadius;
+
+  .euiFormControlLayout__prepend:first-child {
+    border-radius: $leftSideRadius;
+
+    [class*='euiButton'] {
+      border-radius: $leftSideRadius;
+    }
+  }
+
+  .euiFormControlLayout__append:last-child {
+    border-radius: $rightSideRadius;
+
+    [class*='euiButton'] {
+      border-radius: $rightSideRadius;
+    }
+  }
+
+  .euiToolTipAnchor:first-child [class*='euiButton'] {
+    border-radius: $leftSideRadius;
+  }
+
+  .euiToolTipAnchor:last-child [class*='euiButton'] {
+    border-radius: $rightSideRadius;
+  }
+
+  .euiFormControlLayout__childrenWrapper:nth-child(2) [class*='euiField'],
+  .euiFormControlLayout__childrenWrapper:nth-child(3) [class*='euiField'] {
+    border-radius: 0;
+  }
+
+  .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
+    border-radius: $leftSideRadius;
+  }
+
+  .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
+    border-radius: $rightSideRadius;
+  }
+
+  &.euiFormControlLayout--compressed {
+    border-radius: $euiBorderRadiusSmall;
+
+    .euiFormControlLayout__prepend:first-child {
+      border-radius: $leftSideRadiusSmall;
+
+      [class*='euiButton'] {
+        border-radius: $leftSideRadiusSmall;
+      }
+    }
+
+    .euiFormControlLayout__append:last-child {
+      border-radius: $rightSideRadiusSmall;
+
+      [class*='euiButton'] {
+        border-radius: $rightSideRadiusSmall;
+      }
+    }
+
+    .euiFormControlLayout__childrenWrapper:nth-child(2) [class*='euiField'],
+    .euiFormControlLayout__childrenWrapper:nth-child(3) [class*='euiField'] {
+      border-radius: 0;
+    }
+
+    .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
+      border-radius: $leftSideRadiusSmall;
+    }
+
+    .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
+      border-radius: $rightSideRadiusSmall;
+    }
+  }
+}

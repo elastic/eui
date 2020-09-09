@@ -69,7 +69,7 @@ describe('chromaValid', () => {
     expect(chromaValid('#0')).toBe(false);
     expect(chromaValid('#00')).toBe(false);
     expect(chromaValid('#000')).toBe(true);
-    expect(chromaValid('#0000')).toBe(false);
+    expect(chromaValid('#0000')).toBe(true);
     expect(chromaValid('#00000')).toBe(false);
     expect(chromaValid('#000000')).toBe(true);
     expect(chromaValid('#0000000')).toBe(false);

@@ -33,7 +33,7 @@ import { EuiDatePickerProps } from './date_picker';
 
 export type EuiDatePickerRangeProps = CommonProps & {
   /**
-   * Including any children will replace all innerds with the provided children
+   * Including any children will replace all innards with the provided children
    */
   children?: ReactNode;
 

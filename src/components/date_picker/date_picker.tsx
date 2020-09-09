@@ -213,7 +213,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       this.props.fixedHeight ||
       // We force the month / year selection UI. No need to configure it
       this.props.dropdownMode ||
-      // Short month is uncessary. Our UI has plenty of room for full months
+      // Short month is unnecessary. Our UI has plenty of room for full months
       this.props.useShortMonthInDropdown ||
       // The today button is not needed. This should always be external to the calendar
       this.props.todayButton ||
