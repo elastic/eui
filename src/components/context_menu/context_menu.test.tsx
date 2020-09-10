@@ -103,7 +103,7 @@ describe('EuiContextMenu', () => {
             title: 'Testing separator',
             items: [
               { name: 'Foo', key: 'foo' },
-              { isLine: true, name: 'separator' },
+              { isSeparator: true },
               { name: 'Bar', key: 'bar' },
             ],
           },

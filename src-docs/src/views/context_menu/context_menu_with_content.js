@@ -60,8 +60,7 @@ export default () => {
           },
         },
         {
-          name: 'more-separator',
-          isLine: true,
+          isSeparator: true,
         },
         {
           name: 'See more',
