@@ -26,14 +26,22 @@ const BREAKPOINTS: EuiHideForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 
 describe('EuiHideFor', () => {
   test('renders', () => {
-    const component = render(<EuiHideFor sizes={['xs']}>Child</EuiHideFor>);
+    const component = render(
+      <EuiHideFor sizes={['xs']}>
+        <span>Child</span>
+      </EuiHideFor>
+    );
 
     expect(component).toMatchSnapshot();
   });
 
   BREAKPOINTS.forEach(size => {
     test(`${size} is rendered`, () => {
-      const component = render(<EuiHideFor sizes={[size]}>Child</EuiHideFor>);
+      const component = render(
+        <EuiHideFor sizes={[size]}>
+          <span>Child</span>
+        </EuiHideFor>
+      );
 
       expect(component).toMatchSnapshot();
     });
@@ -41,7 +49,9 @@ describe('EuiHideFor', () => {
 
   test('renders for multiple breakpoints', () => {
     const component = render(
-      <EuiHideFor sizes={['xs', 'l']}>Child</EuiHideFor>
+      <EuiHideFor sizes={['xs', 'l']}>
+        <span>Child</span>
+      </EuiHideFor>
     );
 
     expect(component).toMatchSnapshot();

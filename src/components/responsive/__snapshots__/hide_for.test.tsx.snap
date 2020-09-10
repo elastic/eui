@@ -2,14 +2,34 @@
 
 exports[`EuiHideFor l is rendered 1`] = `null`;
 
-exports[`EuiHideFor m is rendered 1`] = `null`;
+exports[`EuiHideFor m is rendered 1`] = `
+<span>
+  Child
+</span>
+`;
 
-exports[`EuiHideFor renders 1`] = `null`;
+exports[`EuiHideFor renders 1`] = `
+<span>
+  Child
+</span>
+`;
 
 exports[`EuiHideFor renders for multiple breakpoints 1`] = `null`;
 
-exports[`EuiHideFor s is rendered 1`] = `null`;
+exports[`EuiHideFor s is rendered 1`] = `
+<span>
+  Child
+</span>
+`;
 
-exports[`EuiHideFor xl is rendered 1`] = `null`;
+exports[`EuiHideFor xl is rendered 1`] = `
+<span>
+  Child
+</span>
+`;
 
-exports[`EuiHideFor xs is rendered 1`] = `null`;
+exports[`EuiHideFor xs is rendered 1`] = `
+<span>
+  Child
+</span>
+`;

@@ -30,14 +30,22 @@ describe('EuiShowFor', () => {
   afterAll(() => 1024); // reset to jsdom's default
 
   test('renders', () => {
-    const component = render(<EuiShowFor sizes={['xs']}>Child</EuiShowFor>);
+    const component = render(
+      <EuiShowFor sizes={['xs']}>
+        <span>Child</span>
+      </EuiShowFor>
+    );
 
     expect(component).toMatchSnapshot();
   });
 
   BREAKPOINTS.forEach(size => {
     test(`${size} is rendered`, () => {
-      const component = render(<EuiShowFor sizes={[size]}>Child</EuiShowFor>);
+      const component = render(
+        <EuiShowFor sizes={[size]}>
+          <span>Child</span>
+        </EuiShowFor>
+      );
 
       expect(component).toMatchSnapshot();
     });
@@ -45,7 +53,9 @@ describe('EuiShowFor', () => {
 
   test('renders for multiple breakpoints', () => {
     const component = render(
-      <EuiShowFor sizes={['xs', 'l']}>Child</EuiShowFor>
+      <EuiShowFor sizes={['xs', 'l']}>
+        <span>Child</span>
+      </EuiShowFor>
     );
 
     expect(component).toMatchSnapshot();

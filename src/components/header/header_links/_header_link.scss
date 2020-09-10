@@ -16,9 +16,4 @@
       justify-content: flex-start;
     }
   }
-
-  button:not(.euiHeaderLink),
-  a:not(.euiHeaderLink) {
-    margin: $euiSizeXS;
-  }
 }
