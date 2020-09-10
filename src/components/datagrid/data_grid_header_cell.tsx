@@ -312,6 +312,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             <EuiButtonIcon
               onClick={() => setIsPopoverOpen(true)}
               iconType="arrowDown"
+              size="s"
+              color="text"
               aria-label={actionButtonAriaLabel}
               data-test-subj={`dataGridHeaderCellActionButton-${id}`}
             />

@@ -936,7 +936,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                       type="button"
                     >
@@ -974,7 +974,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                       type="button"
                     >
@@ -1529,7 +1529,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                       type="button"
                     >
@@ -1567,7 +1567,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                       type="button"
                     >
@@ -2413,7 +2413,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                       type="button"
                     >
@@ -2453,7 +2453,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                       type="button"
                     >
@@ -2990,7 +2990,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                       type="button"
                     >
@@ -3028,7 +3028,7 @@ Array [
                   >
                     <button
                       aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--primary"
+                      class="euiButtonIcon euiButtonIcon--text"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                       type="button"
                     >
