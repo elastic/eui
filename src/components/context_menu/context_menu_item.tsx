@@ -33,7 +33,6 @@ import { EuiIcon } from '../icon';
 import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 
 import { getSecureRelForTarget } from '../../services';
-import { EuiHorizontalRule } from '../horizontal_rule';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
@@ -64,7 +63,6 @@ export interface EuiContextMenuItemProps extends CommonProps {
    * How to align icon with content of button
    */
   layoutAlign?: EuiContextMenuItemLayoutAlignment;
-  isLine?: boolean;
 }
 
 type Props = CommonProps &
@@ -100,14 +98,9 @@ export class EuiContextMenuItem extends Component<Props> {
       href,
       target,
       rel,
-      isLine,
       ...rest
     } = this.props;
     let iconInstance;
-
-    if (isLine) {
-      return <EuiHorizontalRule margin="none" />;
-    }
 
     if (icon) {
       switch (typeof icon) {
