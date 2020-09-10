@@ -97,7 +97,7 @@ export default () => {
         className: 'customPopoverClass',
       }}
       popoverButton={<EuiButton>Mobile toggle</EuiButton>}
-      popoverButtonMaxBreakpoint="s"
+      popoverButtonBreakpoints={['xs', 's']}
       popoverFooter={
         <EuiText color="subdued" size="xs">
           <EuiFlexGroup

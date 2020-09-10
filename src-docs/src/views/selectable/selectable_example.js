@@ -561,9 +561,9 @@ export const SelectableExample = {
           <p>
             This is a great way to handle reducing the size of the component for
             smaller screens. The component offers a helper prop called{' '}
-            <EuiCode>popoverButtonMaxBreakpoint</EuiCode> which will only use
-            the <EuiCode>popoverButton</EuiCode> if the window width is equal to
-            or smaller than the named breakpoint.
+            <EuiCode>popoverButtonBreakpoints</EuiCode> which will only render
+            the <EuiCode>popoverButton</EuiCode> if the window size matches
+            named breakpoint(s).
           </p>
         </Fragment>
       ),

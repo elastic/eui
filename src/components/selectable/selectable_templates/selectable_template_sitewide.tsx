@@ -40,7 +40,7 @@ import {
 } from './selectable_template_sitewide_option';
 import {
   EuiBreakpointSize,
-  isWithinMaxBreakpoint,
+  isWithinBreakpoints,
 } from '../../../services/breakpoint';
 import { throttle } from '../../color_picker/utils';
 import { EuiSpacer } from '../../spacer';
@@ -71,10 +71,10 @@ export type EuiSelectableTemplateSitewideProps = Partial<
    */
   popoverButton?: ReactElement;
   /**
-   * Pass a max breakpoint at which to show the `popoverButton`.
+   * Pass an array of named breakpoints for which to show the `popoverButton`.
    * If `undefined`, the `popoverButton` will always show (if provided)
    */
-  popoverButtonMaxBreakpoint?: EuiBreakpointSize;
+  popoverButtonBreakpoints?: EuiBreakpointSize[];
 };
 
 export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTemplateSitewideProps> = ({
@@ -88,25 +88,23 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   listProps,
   isLoading,
   popoverButton,
-  popoverButtonMaxBreakpoint,
+  popoverButtonBreakpoints,
   ...rest
 }) => {
   /**
    * Breakpoint management
    */
   const [canShowPopoverButton, setCanShowPopoverButton] = useState(
-    typeof window !== 'undefined' &&
-      isWithinMaxBreakpoint(
-        window.innerWidth,
-        popoverButtonMaxBreakpoint || Infinity
-      )
+    typeof window !== 'undefined' && popoverButtonBreakpoints
+      ? isWithinBreakpoints(window.innerWidth, popoverButtonBreakpoints)
+      : true
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    const newWidthIsWithinBreakpoint = isWithinMaxBreakpoint(
-      window.innerWidth,
-      popoverButtonMaxBreakpoint || Infinity
-    );
+    const newWidthIsWithinBreakpoint = popoverButtonBreakpoints
+      ? isWithinBreakpoints(window.innerWidth, popoverButtonBreakpoints)
+      : true;
+
     if (newWidthIsWithinBreakpoint !== canShowPopoverButton) {
       setCanShowPopoverButton(newWidthIsWithinBreakpoint);
     }

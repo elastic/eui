@@ -253,7 +253,7 @@ export default ({ theme }) => {
           <EuiIcon type="search" size="m" />
         </EuiHeaderSectionItemButton>
       }
-      popoverButtonMaxBreakpoint="s"
+      popoverButtonBreakpoints={['xs', 's']}
       emptyMessage={
         <EuiSelectableMessage style={{ minHeight: 300 }}>
           <p>

@@ -47,7 +47,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with popoverButtonMaxBreakpoint xs 1`] = `
+exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with popoverButtonBreakpoints xs 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
 >
@@ -111,7 +111,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popoverButtonMaxBreakpoint m 1`] = `
+exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popoverButtonBreakpoints m 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
 >

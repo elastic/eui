@@ -148,24 +148,24 @@ describe('EuiSelectableTemplateSitewide', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test('is rendered with popoverButtonMaxBreakpoint m', () => {
+      test('is rendered with popoverButtonBreakpoints m', () => {
         const component = render(
           <EuiSelectableTemplateSitewide
             options={options}
             popoverButton={<button>Button</button>}
-            popoverButtonMaxBreakpoint={'m'}
+            popoverButtonBreakpoints={['xs', 's', 'm']}
           />
         );
 
         expect(component).toMatchSnapshot();
       });
 
-      test('is not rendered with popoverButtonMaxBreakpoint xs', () => {
+      test('is not rendered with popoverButtonBreakpoints xs', () => {
         const component = render(
           <EuiSelectableTemplateSitewide
             options={options}
             popoverButton={<button>Button</button>}
-            popoverButtonMaxBreakpoint={'xs'}
+            popoverButtonBreakpoints={['xs']}
           />
         );
 
