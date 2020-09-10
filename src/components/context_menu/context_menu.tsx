@@ -35,7 +35,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
-import { EuiHorizontalRule } from '../horizontal_rule';
+import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
 
 export type EuiContextMenuPanelId = string | number;
 
@@ -48,7 +48,8 @@ export type EuiContextMenuPanelItemDescriptorEntry = Omit<
   panel?: EuiContextMenuPanelId;
 };
 
-export interface EuiContextMenuPanelItemSeparator {
+export interface EuiContextMenuPanelItemSeparator
+  extends EuiHorizontalRuleProps {
   isSeparator: true;
   key?: string;
 }
@@ -296,7 +297,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   renderItems(items: EuiContextMenuPanelItemDescriptor[] = []) {
     return items.map((item, index) => {
       if (isItemSeparator(item)) {
-        return <EuiHorizontalRule key={item.key || index} margin="none" />;
+        const { isSeparator: omit, key = index, ...rest } = item;
+        return <EuiHorizontalRule key={key} {...rest} />;
       }
 
       const {
