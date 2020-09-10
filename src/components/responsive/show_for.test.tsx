@@ -31,7 +31,7 @@ describe('EuiShowFor', () => {
 
   test('renders', () => {
     const component = render(
-      <EuiShowFor sizes={['xs']}>
+      <EuiShowFor sizes={['s']}>
         <span>Child</span>
       </EuiShowFor>
     );
@@ -53,7 +53,7 @@ describe('EuiShowFor', () => {
 
   test('renders for multiple breakpoints', () => {
     const component = render(
-      <EuiShowFor sizes={['xs', 'l']}>
+      <EuiShowFor sizes={['s', 'l']}>
         <span>Child</span>
       </EuiShowFor>
     );

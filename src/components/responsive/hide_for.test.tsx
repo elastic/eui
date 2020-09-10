@@ -25,9 +25,13 @@ import { EuiHideForBreakpoints, EuiHideFor } from './hide_for';
 const BREAKPOINTS: EuiHideForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 
 describe('EuiHideFor', () => {
+  // @ts-ignore innerWidth might be read only but we can still override it for the sake of testing
+  beforeAll(() => (window.innerWidth = 670));
+  afterAll(() => 1024); // reset to jsdom's default
+
   test('renders', () => {
     const component = render(
-      <EuiHideFor sizes={['xs']}>
+      <EuiHideFor sizes={['s']}>
         <span>Child</span>
       </EuiHideFor>
     );
@@ -49,7 +53,7 @@ describe('EuiHideFor', () => {
 
   test('renders for multiple breakpoints', () => {
     const component = render(
-      <EuiHideFor sizes={['xs', 'l']}>
+      <EuiHideFor sizes={['s', 'l']}>
         <span>Child</span>
       </EuiHideFor>
     );

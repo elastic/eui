@@ -4,9 +4,17 @@ exports[`EuiShowFor l is rendered 1`] = `null`;
 
 exports[`EuiShowFor m is rendered 1`] = `null`;
 
-exports[`EuiShowFor renders 1`] = `null`;
+exports[`EuiShowFor renders 1`] = `
+<span>
+  Child
+</span>
+`;
 
-exports[`EuiShowFor renders for multiple breakpoints 1`] = `null`;
+exports[`EuiShowFor renders for multiple breakpoints 1`] = `
+<span>
+  Child
+</span>
+`;
 
 exports[`EuiShowFor s is rendered 1`] = `
 <span>
