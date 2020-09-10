@@ -57,6 +57,7 @@ import {
 } from '../../services/popover';
 
 import { EuiI18n } from '../i18n';
+import { FocusOn } from 'react-focus-on';
 
 export type PopoverAnchorPosition =
   | 'upCenter'
@@ -709,6 +710,11 @@ export class EuiPopover extends Component<Props, State> {
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
+            onClickOutside={() => {
+              console.log('onOutsideClick');
+              closePopover();
+            }}
+            onEscapeKey={closePopover}
             disabled={!ownFocus}>
             <EuiPanel
               panelRef={this.panelRef}
@@ -741,20 +747,32 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     return (
-      <EuiOutsideClickDetector
-        isDisabled={!isOpen}
-        onOutsideClick={closePopover}>
-        <div
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          ref={popoverRef}
-          {...rest}>
-          <div className={anchorClasses} ref={this.buttonRef}>
-            {button instanceof HTMLElement ? null : button}
-          </div>
-          {panel}
+      <div
+        className={classes}
+        ref={popoverRef}
+        {...rest}>
+        <div className={anchorClasses} ref={this.buttonRef}>
+          {button instanceof HTMLElement ? null : button}
         </div>
-      </EuiOutsideClickDetector>
+        {panel}
+      </div>
     );
+
+    // return (
+    //   <EuiOutsideClickDetector
+    //     isDisabled={!isOpen}
+    //     onOutsideClick={closePopover}>
+    //     <div
+    //       className={classes}
+    //       onKeyDown={this.onKeyDown}
+    //       ref={popoverRef}
+    //       {...rest}>
+    //       <div className={anchorClasses} ref={this.buttonRef}>
+    //         {button instanceof HTMLElement ? null : button}
+    //       </div>
+    //       {panel}
+    //     </div>
+    //   </EuiOutsideClickDetector>
+    // );
   }
 }
