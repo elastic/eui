@@ -193,7 +193,7 @@ export class GuideSection extends Component {
       renderedCode = code;
 
       if (name === 'javascript') {
-        renderedCode = renderedCode
+        renderedCode = renderedCode.default
           .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
             "from '@elastic/eui/lib/services';"
@@ -643,7 +643,7 @@ export class GuideSection extends Component {
 
   renderCodeSandBoxButton() {
     return (
-      <CodeSandboxLink content={this.props.source[0].code}>
+      <CodeSandboxLink content={this.props.source[0].code.default}>
         <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
           Try out this demo on Code Sandbox
         </EuiButtonEmpty>
