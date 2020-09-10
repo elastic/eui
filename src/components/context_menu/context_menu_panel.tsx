@@ -32,6 +32,7 @@ import { EuiIcon } from '../icon';
 import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
+import { EuiContextMenuItem } from './context_menu_item';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -471,9 +472,11 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     const content =
       items && items.length
         ? items.map((MenuItem, index) =>
-            cloneElement(MenuItem, {
-              buttonRef: this.menuItemRef.bind(this, index),
-            })
+            MenuItem.type === EuiContextMenuItem
+              ? cloneElement(MenuItem, {
+                  buttonRef: this.menuItemRef.bind(this, index),
+                })
+              : MenuItem
           )
         : children;
 
