@@ -4,6 +4,7 @@
 
 **Bug fixes**
 
+- Fixed `EuiSuperDatePicker` got stuck in update mode if the value is not changed ([#4025](https://github.com/elastic/eui/pull/4025))
 - Fixed ref not being handled properly in `EuiValidatableControl` when used with [react-hook-form](https://react-hook-form.com/) ([#4001](https://github.com/elastic/eui/pull/4001))
 
 ## [`28.4.0`](https://github.com/elastic/eui/tree/v28.4.0)
