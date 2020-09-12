@@ -10,7 +10,7 @@
   @include euiFormControlIsLoading($isNextToIcon: true);
 
   display: block; /* 3 */
-  text-align: left;
+  text-align: start;
   line-height: $euiFormControlHeight; /* 2 */
   padding-top: 0; /* 2 */
   padding-bottom: 0; /* 2 */

@@ -5,7 +5,7 @@
 
 .euiAccordion__button {
   @include euiFontSize;
-  text-align: left;
+  text-align: start;
   width: 100%;
   flex-grow: 1;
   display: flex;

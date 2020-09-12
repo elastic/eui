@@ -155,7 +155,7 @@ $euiProgressColors: (
   + .euiProgress__valueText {
     padding-inline-start: $euiSizeXS;
     flex-grow: 1;
-    text-align: right;
+    text-align: end;
     flex-shrink: 0;
   }
 }

@@ -41,7 +41,7 @@
   @include euiSuperDatePickerText;
   display: flex;
   justify-content: space-between;
-  text-align: left;
+  text-align: start;
 
   &:not(:disabled):hover,
   &:focus {

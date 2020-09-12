@@ -2,7 +2,7 @@
   @include euiFontSizeS;
   display: inline-flex; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
-  text-align: left;
+  text-align: start;
   color: $euiTextColor;
   cursor: pointer;
 

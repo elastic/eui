@@ -4,7 +4,7 @@
  */
 .euiSideNavItemButton {
   @include euiFontSizeS;
-  text-align: left; /* 1 */
+  text-align: start; /* 1 */
   display: block;
   width: 100%;
   padding-block-start: $euiSizeXS / 2;

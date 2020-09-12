@@ -39,7 +39,7 @@
   border-block-start: none;
 
   .euiTableHeaderButton {
-    text-align: left;
+    text-align: start;
     font-weight: $euiFontWeightMedium;
   }
 
@@ -153,7 +153,7 @@
 
 .euiTableCellContent--alignRight {
   justify-content: flex-end;
-  text-align: right;
+  text-align: end;
 }
 
 .euiTableCellContent--alignCenter {

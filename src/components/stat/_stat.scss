@@ -28,7 +28,7 @@
   }
 
   &.euiStat--leftAligned {
-    text-align: left;
+    text-align: start;
     align-items: flex-start;
   }
 
@@ -38,7 +38,7 @@
   }
 
   &.euiStat--rightAligned {
-    text-align: right;
+    text-align: end;
     align-items: flex-end;
   }
 }

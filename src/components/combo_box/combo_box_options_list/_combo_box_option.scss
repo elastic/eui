@@ -5,7 +5,7 @@
   padding-inline-start: #{$euiSizeM + $euiSizeXS};
   padding-inline-end: $euiSizeS;
   width: 100%;
-  text-align: left;
+  text-align: start;
   border: $euiBorderThin;
   border-color: transparent;
   display: flex;
@@ -36,7 +36,7 @@
 
   .euiComboBoxOption__emptyStateText {
     flex: 1;
-    text-align: left;
+    text-align: start;
     margin-block-end: 0;
   }
 
@@ -51,5 +51,5 @@
   overflow: hidden;
   white-space: nowrap;
   flex: 1;
-  text-align: left;
+  text-align: start;
 }

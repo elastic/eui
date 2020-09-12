@@ -23,11 +23,11 @@
   }
 
   &.euiDataGridHeaderCell--numeric {
-    text-align: right;
+    text-align: end;
   }
 
   &.euiDataGridHeaderCell--currency {
-    text-align: right;
+    text-align: end;
   }
 
   &:focus {

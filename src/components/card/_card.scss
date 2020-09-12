@@ -76,11 +76,11 @@
   }
 
   &.euiCard--leftAligned {
-    text-align: left;
+    text-align: start;
     align-items: flex-start;
 
     .euiCard__titleButton {
-      text-align: left;
+      text-align: start;
     }
   }
 
@@ -90,11 +90,11 @@
   }
 
   &.euiCard--rightAligned {
-    text-align: right;
+    text-align: end;
     align-items: flex-end;
 
     .euiCard__titleButton {
-      text-align: right;
+      text-align: end;
     }
   }
 
@@ -220,7 +220,7 @@
 
 .euiCard.euiCard--horizontal {
   .euiCard__content {
-    text-align: left; /* 3 */
+    text-align: start; /* 3 */
   }
 }
 

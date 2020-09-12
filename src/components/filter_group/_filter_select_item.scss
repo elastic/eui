@@ -7,7 +7,7 @@
   padding-inline-end: $euiSizeM;
   display: block; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
-  text-align: left;
+  text-align: start;
   color: $euiTextColor;
   border-block-end: $euiBorderThin;
   border-color: darken($euiColorLightestShade, 2%);

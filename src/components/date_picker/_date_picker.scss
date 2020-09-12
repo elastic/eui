@@ -79,7 +79,7 @@
 
         .react-datepicker__time-list li.react-datepicker__time-list-item {
           font-size: $euiFontSizeS;
-          text-align: left;
+          text-align: start;
           padding-inline-start: $euiSizeXL + $euiSizeXS;
           padding-inline-end: $euiSizeXL + $euiSizeXS;
           color: $euiTextColor;
@@ -341,7 +341,7 @@
           padding-inline-start: $euiSizeS;
           padding-inline-end: $euiSizeS;
           margin-block-end: $euiSizeXS;
-          text-align: right;
+          text-align: end;
           color: $euiColorDarkShade;
           white-space: nowrap;
           // IE needs this to fix collapsing flex

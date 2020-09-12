@@ -9,7 +9,7 @@
 
   border-block-end: $euiBorderWidthThick solid transparent;
   display: inline-block; /* 1 */
-  text-align: left;
+  text-align: start;
   padding-block-start: ($euiSizeXS / 2);
   padding-block-end: ($euiSizeXS / 2);
   padding-inline-start: 0;
@@ -88,7 +88,7 @@
   }
 
   .euiExpression__description {
-    text-align: right;
+    text-align: end;
     margin-inline-end: $euiSizeS;
     flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
   }

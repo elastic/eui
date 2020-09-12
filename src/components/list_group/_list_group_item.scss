@@ -71,7 +71,7 @@
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
-  text-align: left;
+  text-align: start;
   max-inline-size: 100%;
   font-weight: inherit;
 

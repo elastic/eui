@@ -23,7 +23,7 @@
 
   .react-datepicker-popper .euiFieldText.euiDatePicker {
     // set any subsequent children in popper back to left align
-    text-align: left;
+    text-align: start;
   }
 
   &--inGroup {
