@@ -3,8 +3,8 @@
   @include euiRangeThumbStyle;
   content: '';
   position: absolute;
-  left: 0;
-  top: 50%;
+  inset-inline-start: 0;
+  inset-block-start: 50%;
   margin-block-start: -($euiRangeThumbHeight / 2);
   pointer-events: none;
 
@@ -13,6 +13,6 @@
   }
 
   &--hasTicks {
-    top: 25%;
+    inset-block-start: 25%;
   }
 }

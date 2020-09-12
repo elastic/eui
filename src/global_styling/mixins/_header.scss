@@ -9,7 +9,7 @@
     // When the EuiHeader is fixed, we need to account for it in the position of the flyout
     .euiFlyout,
     .euiCollapsibleNav {
-      top: $headerHeight;
+      inset-block-start: $headerHeight;
       height: calc(100% - #{$headerHeight});
     }
   }

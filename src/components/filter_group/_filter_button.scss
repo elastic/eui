@@ -57,5 +57,5 @@
 .euiFilterButton__textShift {
   @include euiTextShift;
   @include euiTextTruncate;
-  min-width: $euiSize * 3;
+  min-inline-size: $euiSize * 3;
 }

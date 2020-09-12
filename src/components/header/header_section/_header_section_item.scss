@@ -8,16 +8,16 @@
   &:after {
     position: absolute;
     content: '';
-    top: $euiSize;
-    bottom: 0;
+    inset-block-start: $euiSize;
+    inset-block-end: 0;
     background: $euiBorderColor;
-    left: 0;
+    inset-inline-start: 0;
   }
 }
 
 .euiHeaderSectionItem__button {
   height: $euiHeaderChildSize;
-  min-width: $euiHeaderChildSize;
+  min-inline-size: $euiHeaderChildSize;
   text-align: center;
   font-size: 0; // aligns icons better vertically
 
@@ -32,7 +32,7 @@
 
 .euiHeaderSectionItem--borderLeft {
   &:after {
-    left: 0;
+    inset-inline-start: 0;
     width: 1px;
   }
 }
@@ -40,8 +40,8 @@
 .euiHeaderSectionItem--borderRight {
   &:after {
     width: 1px;
-    left: auto;
-    right: 0;
+    inset-inline-start: auto;
+    inset-inline-end: 0;
   }
 }
 
@@ -51,15 +51,15 @@
 .euiHeaderNotification,
 .euiHeaderSectionItemButton__notification {
   position: absolute;
-  top: 9%;
-  right: 9%;
+  inset-block-start: 9%;
+  inset-inline-end: 9%;
   box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
 }
 
 @include euiBreakpoint('xs') {
   .euiHeaderSectionItem,
   .euiHeaderSectionItem__button {
-    min-width: $euiHeaderChildSize * .75;
+    min-inline-size: $euiHeaderChildSize * .75;
   }
 
   .euiHeaderSectionItem--borderLeft,
@@ -73,8 +73,8 @@
   .euiHeaderNotification,
   .euiHeaderSectionItemButton__notification {
     @include size($euiSizeS);
-    top: 20%;
-    min-width: 0;
+    inset-block-start: 20%;
+    min-inline-size: 0;
     border-radius: $euiSizeS;
     color: $euiColorAccent;
     overflow: hidden;

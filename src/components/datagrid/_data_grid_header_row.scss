@@ -4,7 +4,7 @@
   z-index: 3; // Needs to sit above the content and focused cells
   background: $euiColorLightestShade;
   position: sticky; // In IE11 this does not work, but doesn't cause a break.
-  top: 0;
+  inset-block-start: 0;
 }
 
 @include euiDataGridHeaderCell {
@@ -18,7 +18,7 @@
   display: flex;
 
   > * {
-    max-width: 100%;
+    max-inline-size: 100%;
     width: 100%;
   }
 

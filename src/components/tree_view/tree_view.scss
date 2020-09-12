@@ -8,14 +8,14 @@
 }
 
 .euiTreeView__node {
-  max-height: $euiSizeXL;
+  max-block-size: $euiSizeXL;
   overflow: hidden;
   cursor: pointer;
   line-height: $euiSizeXL;
 }
 
 .euiTreeView__node--expanded {
-  max-height: 100vh;
+  max-block-size: 100vh;
   overflow: auto;
 }
 
@@ -62,7 +62,7 @@
 
 .euiTreeView--compressed {
   .euiTreeView__node {
-    max-height: $euiSizeL;
+    max-block-size: $euiSizeL;
     line-height: $euiSizeL;
 
     .euiTreeView__nodeInner {
@@ -87,7 +87,7 @@
   }
 
   .euiTreeView__node--expanded {
-    max-height: 100vh;
+    max-block-size: 100vh;
     overflow: auto;
   }
 }

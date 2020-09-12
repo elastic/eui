@@ -85,13 +85,13 @@
   $includeAlternates: false
 ) {
   // Default
-  max-width: $euiFormMaxWidth;
+  max-inline-size: $euiFormMaxWidth;
   width: 100%;
   height: $height;
 
   @if ($includeAlternates) {
     &--fullWidth {
-      max-width: 100%;
+      max-inline-size: 100%;
     }
 
     &--compressed {

@@ -1,7 +1,7 @@
 .euiTabs {
   @include euiScrollBar;
   display: flex;
-  max-width: 100%;
+  max-inline-size: 100%;
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
   position: relative;
@@ -14,12 +14,12 @@
 
   &:not(.euiTabs--condensed)::before {
     background-color: $euiColorLightShade;
-    bottom: 0;
+    inset-block-end: 0;
     content: '';
     height: 1px;
-    left: 0;
+    inset-inline-start: 0;
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
   }
 }
 
@@ -46,12 +46,12 @@
 
     &::before {
       background-color: $euiColorLightShade;
-      bottom: 0;
+      inset-block-end: 0;
       content: '';
       height: 1px;
-      left: 0;
+      inset-inline-start: 0;
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
     }
   }
 
@@ -72,10 +72,10 @@
     &::after {
       animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
       background-color: $euiColorPrimary;
-      bottom: 0;
+      inset-block-end: 0;
       content: ' ';
       height: $euiBorderWidthThick;
-      left: 0;
+      inset-inline-start: 0;
       position: absolute;
       width: 100%;
     }

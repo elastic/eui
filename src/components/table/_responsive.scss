@@ -47,7 +47,7 @@
 
       // Remove min-height of cell header if it's the only cell
       .euiTableRowCell:only-child & {
-        min-height: 0;
+        min-block-size: 0;
       }
     }
 
@@ -83,11 +83,11 @@
 
       &.euiTableRow-isExpandable .euiTableRowCell--isExpander,
       &.euiTableRow-hasActions .euiTableRowCell--hasActions {
-        min-width: 0;
+        min-inline-size: 0;
         width: $euiSizeL;
         position: absolute;
         top: $euiTableCellContentPadding + (($euiTableCellContentPadding * $euiLineHeight) - $euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
-        right: $euiTableCellContentPadding;
+        inset-inline-end: $euiTableCellContentPadding;
 
         &::before {
           display: none; // Don't display table headers
@@ -105,7 +105,7 @@
 
       &.euiTableRow-hasActions.euiTableRow-isExpandable {
         .euiTableRowCell--isExpander {
-          top: auto;
+          inset-block-start: auto;
           bottom: $euiSize; // same as row padding-bottom
         }
       }
@@ -116,8 +116,8 @@
 
         .euiTableRowCellCheckbox {
           position: absolute;
-          left: $euiTableCellContentPadding / 2;
-          top: $euiSizeS;
+          inset-inline-start: $euiTableCellContentPadding / 2;
+          inset-block-start: $euiSizeS;
         }
       }
 
@@ -158,7 +158,7 @@
 
     .euiTableRowCell {
       display: block; /* IE requires block to grow and wrap. */
-      min-width: 50%;
+      min-inline-size: 50%;
       border: none;
     }
 

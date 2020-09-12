@@ -13,8 +13,8 @@
 
   &.euiSkipLink--fixed:focus {
     position: fixed;
-    top: $euiSizeXS;
-    left: $euiSizeXS;
+    inset-block-start: $euiSizeXS;
+    inset-inline-start: $euiSizeXS;
     z-index: $euiZHeader + 1;
   }
 }

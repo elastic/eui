@@ -9,7 +9,7 @@
 
     // Overwrite @hasBetaBadge max-width depending upon padding
     .euiPanel__betaBadgeWrapper {
-      max-width: calc(100% - #{$amount*2});
+      max-inline-size: calc(100% - #{$amount*2});
     }
   }
 }

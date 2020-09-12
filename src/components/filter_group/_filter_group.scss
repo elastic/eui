@@ -1,13 +1,13 @@
 .euiFilterGroup {
   display: inline-flex;
-  max-width: 100%;
+  max-inline-size: 100%;
   border-inline-end: 1px solid $euiFormBorderColor;
   box-shadow: 0 1px 2px -1px transparentize($euiShadowColor, .8), 0 3px 3px -2px transparentize($euiShadowColor, .8);
   overflow-x: auto;
 
   > * {
     flex: 1 1 auto;
-    min-width: $euiSize * 3;
+    min-inline-size: $euiSize * 3;
   }
 
   > .euiFilterButton--noGrow  {
@@ -15,11 +15,11 @@
   }
 
   > .euiFilterButton-hasNotification {
-    min-width: $euiSize * 6;
+    min-inline-size: $euiSize * 6;
   }
 
   > .euiFilterButton--hasIcon {
-    min-width: $euiSize * 8;
+    min-inline-size: $euiSize * 8;
   }
 
   // Force popover anchors to expand for now

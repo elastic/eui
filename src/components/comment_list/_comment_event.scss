@@ -28,7 +28,7 @@
   border: $euiBorderThin;
 
   .euiCommentEvent__header {
-    min-height: $euiSizeXXL;
+    min-block-size: $euiSizeXXL;
     background-color: $euiColorLightestShade;
     border-block-end: $euiBorderThin;
     padding-block-start: $euiSizeXS;
@@ -45,7 +45,7 @@
       &::after {
         content: '';
         // Calculates the minimum height based on full header's min-height minus the vertical padding
-        min-height: $euiSizeXXL - $euiSizeS;
+        min-block-size: $euiSizeXXL - $euiSizeS;
         font-size: 0;
         display: block;
       }

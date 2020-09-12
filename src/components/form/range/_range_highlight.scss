@@ -1,8 +1,8 @@
 .euiRangeHighlight {
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
-  top: calc(50% - #{($euiRangeHighlightHeight / 2)});
+  inset-block-start: calc(50% - #{($euiRangeHighlightHeight / 2)});
   overflow: hidden;
 
   &__progress {
@@ -16,10 +16,10 @@
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4) - ($euiRangeHighlightHeight / 2);
+    inset-block-start: ($euiFormControlHeight / 4) - ($euiRangeHighlightHeight / 2);
   }
 
   &--hasTicks.euiRangeHighlight--compressed {
-    top: ($euiFormControlCompressedHeight / 4) - ($euiRangeHighlightHeight / 2);
+    inset-block-start: ($euiFormControlCompressedHeight / 4) - ($euiRangeHighlightHeight / 2);
   }
 }

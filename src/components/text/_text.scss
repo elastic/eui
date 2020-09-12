@@ -154,17 +154,17 @@
       content: '';
       height: 2px;
       width: 50%;
-      right: 0;
+      inset-inline-end: 0;
       transform: translateX(-50%);
       background: $euiColorDarkShade;
     }
 
     &:before {
-      top: 0;
+      inset-block-start: 0;
     }
 
     &:after {
-      bottom: 0;
+      inset-block-end: 0;
     }
   }
 
@@ -216,10 +216,10 @@
   @include euiScaleText($euiFontSize);
 
   &.euiText--constrainedWidth {
-    max-width: $euiTextConstrainedMaxWidth;
+    max-inline-size: $euiTextConstrainedMaxWidth;
     // If the max-width is way too short of the width of the container,
     // at least make it 2/3 of its parent
-    min-width: 75%;
+    min-inline-size: 75%;
   }
 
   > :last-child,

@@ -1,7 +1,7 @@
 @include euiBreakpoint('m', 'l', 'xl') {
   .guideColorsPage__stickySlider {
     position: sticky;
-    top: 0;
+    inset-block-start: 0;
     z-index: $euiZLevel1;
   }
 }
@@ -11,5 +11,5 @@
   margin-block-end: $euiSizeXS / 2;
   border-radius: $euiBorderRadius;
   width: 100%;
-  max-width: 300px;
+  max-inline-size: 300px;
 }

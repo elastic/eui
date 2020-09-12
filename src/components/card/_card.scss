@@ -122,8 +122,8 @@
 
       .euiCard__image {
         width: calc(100% + (#{$paddingAmount} * 2));
-        left: $paddingAmount * -1;
-        top: $paddingAmount * -1;
+        inset-inline-start: $paddingAmount * -1;
+        inset-block-start: $paddingAmount * -1;
         margin-bottom: $paddingAmount * -1; // ensure the parent is only as tall as the image
 
         // IF both exist, position the icon centered on top of image
@@ -157,8 +157,8 @@
     // IF both exist, position the icon centered on top of image
     + .euiCard__icon {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
     }
   }
 

@@ -8,7 +8,7 @@
   line-height: $euiButtonHeight; // prevents descenders from getting cut off
   text-align: center;
   white-space: nowrap;
-  max-width: 100%;
+  max-inline-size: 100%;
   vertical-align: middle;
 }
 

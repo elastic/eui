@@ -1,11 +1,11 @@
 .euiButtonGroup {
-  max-width: 100%;
+  max-inline-size: 100%;
   display: flex;
 }
 
 .euiButtonGroup__fieldset {
   display: inline-block;
-  max-width: 100%;
+  max-inline-size: 100%;
 
   &--fullWidth {
     display: block;
@@ -81,10 +81,10 @@
 
   .euiButtonGroup__toggle {
     flex: 1;
-    min-width: 0;
+    min-inline-size: 0;
 
     .euiButtonGroup__button {
-      min-width: 0;
+      min-inline-size: 0;
     }
   }
 }
@@ -99,7 +99,7 @@
     // sass-lint:disable-block no-important
     box-shadow: none !important;
     font-size: $euiFontSizeS;
-    min-width: 0;
+    min-inline-size: 0;
     border: none;
     border-radius: $euiBorderRadius;
     // Offset the background color from the border by 2px
@@ -119,7 +119,7 @@
 
   .euiButtonGroup__toggle {
     flex: 1;
-    min-width: 0;
+    min-inline-size: 0;
   }
 
   .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,

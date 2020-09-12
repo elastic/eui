@@ -14,10 +14,10 @@
 
 .euiCodeEditorKeyboardHint {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inset-inline-start: 0;
   background: transparentize($euiColorGhost, .3);
   display: flex;
   flex-direction: column;

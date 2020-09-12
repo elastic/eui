@@ -2,7 +2,7 @@
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  min-height: $euiSwitchHeight;
+  min-block-size: $euiSwitchHeight;
 
   .euiSwitch__label {
     cursor: pointer;
@@ -52,15 +52,15 @@
 
       // When input is not checked, we shift around the positioning of the thumb and the icon
       .euiSwitch__thumb { // move the thumb left
-        left: 0;
+        inset-inline-start: 0;
       }
 
       .euiSwitch__icon { // move the icon right
-        right: -$euiSizeS;
+        inset-inline-end: -$euiSizeS;
 
         &.euiSwitch__icon--checked {
-          right: auto;
-          left: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
+          inset-inline-end: auto;
+          inset-inline-start: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
         }
       }
     }
@@ -82,25 +82,25 @@
 
     position: absolute;
     display: inline-block;
-    left: $euiSwitchWidth - $euiSwitchThumbSize;
+    inset-inline-start: $euiSwitchWidth - $euiSwitchThumbSize;
     transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
   .euiSwitch__track {
     position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
     overflow: hidden;
     border-radius: $euiSwitchHeight;
   }
 
   .euiSwitch__icon {
     position: absolute;
-    right: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
-    top: ($euiSwitchHeight - $euiSwitchIconHeight) / 2;
-    bottom: 0;
+    inset-inline-end: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
+    inset-block-start: ($euiSwitchHeight - $euiSwitchIconHeight) / 2;
+    inset-block-end: 0;
     width: $euiSwitchWidth - ($euiSwitchThumbSize / 2) + $euiSizeS;
     height: $euiSwitchIconHeight;
     transition: left $euiAnimSpeedNormal $euiAnimSlightBounce, right $euiAnimSpeedNormal $euiAnimSlightBounce;
@@ -108,8 +108,8 @@
   }
 
   .euiSwitch__icon--checked {
-    right: auto;
-    left: -$euiSizeS;
+    inset-inline-end: auto;
+    inset-inline-start: -$euiSizeS;
     fill: $euiColorEmptyShade;
   }
 
@@ -125,7 +125,7 @@
 
   // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
   &.euiSwitch--compressed {
-    min-height: $euiSwitchHeightCompressed;
+    min-block-size: $euiSwitchHeightCompressed;
 
     .euiSwitch__label {
       line-height: $euiSwitchHeightCompressed;
@@ -140,8 +140,8 @@
     .euiSwitch__thumb {
       @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeCompressed) - 2px);
 
-      left: ($euiSwitchWidthCompressed) - (($euiSwitchThumbSizeCompressed) - 2px) - 1px;
-      top: 1px;
+      inset-inline-start: ($euiSwitchWidthCompressed) - (($euiSwitchThumbSizeCompressed) - 2px) - 1px;
+      inset-block-start: 1px;
       transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
     }
 
@@ -152,7 +152,7 @@
 
   // Mini styling is similar to compressed, but even smaller. It's undocumented because it has very specific uses.
   &.euiSwitch--mini {
-    min-height: $euiSwitchHeightMini;
+    min-block-size: $euiSwitchHeightMini;
 
     .euiSwitch__label {
       line-height: $euiSwitchHeightMini;
@@ -168,8 +168,8 @@
     .euiSwitch__thumb {
       @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeMini) - 2px);
 
-      left: ($euiSwitchWidthMini) - (($euiSwitchThumbSizeMini) - 2px) - 1px;
-      top: 1px;
+      inset-inline-start: ($euiSwitchWidthMini) - (($euiSwitchThumbSizeMini) - 2px) - 1px;
+      inset-block-start: 1px;
       transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
     }
 
@@ -184,7 +184,7 @@
 
     .euiSwitch__button[aria-checked='false'] {
       .euiSwitch__thumb {
-        left: 1px;
+        inset-inline-start: 1px;
       }
     }
 

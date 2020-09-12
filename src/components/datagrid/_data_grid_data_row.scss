@@ -17,7 +17,7 @@
 
   // Hack to allow for all the focus guard stuff
   > * {
-    max-width: 100%;
+    max-inline-size: 100%;
     width: 100%;
   }
 
@@ -81,13 +81,13 @@
   @include euiScrollBar;
   overflow: auto;
   // sass-lint:disable-block no-important
-  max-width: 400px !important;
-  max-height: 400px !important;
+  max-inline-size: 400px !important;
+  max-block-size: 400px !important;
 }
 
 .euiDataGridRowCell__expand {
   width: 100%;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 .euiDataGridRowCell__expandFlex {
@@ -112,13 +112,13 @@
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;
-  min-height: $euiSizeM;
+  min-block-size: $euiSizeM;
   background: $euiColorPrimary;
   color: $euiColorGhost;
   border-radius: $euiBorderRadius / 2;
   padding: 0;
   width: 0;
-  min-width: 0;
+  min-inline-size: 0;
   overflow: hidden;
   visibility: hidden;
 

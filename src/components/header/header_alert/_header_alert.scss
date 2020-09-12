@@ -1,5 +1,5 @@
 .euiHeaderAlert {
-  min-width: 300px;
+  min-inline-size: 300px;
   position: relative;
   margin-block-end: $euiSizeL;
   padding-block-start: 0;
@@ -12,8 +12,8 @@
   .euiHeaderAlert__dismiss {
     opacity: 0;
     position: absolute;
-    right: $euiSize - 4px;
-    top: $euiSize - 4px;
+    inset-inline-end: $euiSize - 4px;
+    inset-block-start: $euiSize - 4px;
     transition: opacity $euiAnimSpeedNormal ease-in;
   }
 

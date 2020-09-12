@@ -50,19 +50,19 @@
   overflow: hidden;
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
-    max-width: $euiBreadcrumbTruncateWidth;
+    max-inline-size: $euiBreadcrumbTruncateWidth;
     overflow: hidden;
     text-overflow: ellipsis;
 
     &.euiBreadcrumb--last {
-      max-width: none;
+      max-inline-size: none;
     }
   }
 }
 
 .euiBreadcrumb--truncate {
   @include euiTextTruncate;
-  max-width: $euiBreadcrumbTruncateWidth;
+  max-inline-size: $euiBreadcrumbTruncateWidth;
   text-align: center;
   vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
 }

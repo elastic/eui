@@ -22,7 +22,7 @@
   &:before,
   &:after {
     content: '';
-    left: 0;
+    inset-inline-start: 0;
     position: absolute;
     height: $euiSizeS;
     background: $euiColorEmptyShade;
@@ -30,7 +30,7 @@
   }
 
   &:after {
-    bottom: 0;
+    inset-block-end: 0;
   }
 }
 

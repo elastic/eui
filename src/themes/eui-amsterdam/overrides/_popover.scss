@@ -9,13 +9,13 @@
 
     &.euiPopover__panelArrow--top {
       &:before {
-        bottom: -$euiPopoverArrowSize;
+        inset-block-end: -$euiPopoverArrowSize;
         border-block-start-color: $euiShadowColor;
         clip-path: polygon(#{-$arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation});
       }
 
       &:after {
-        bottom: -$euiPopoverArrowSize + 1;
+        inset-block-end: -$euiPopoverArrowSize + 1;
       }
     }
 
@@ -26,7 +26,7 @@
       }
 
       &:after {
-        left: -$euiPopoverArrowSize + 1;
+        inset-inline-start: -$euiPopoverArrowSize + 1;
       }
     }
 
@@ -37,19 +37,19 @@
       }
 
       &:after {
-        top: -$euiPopoverArrowSize + 1;
+        inset-block-start: -$euiPopoverArrowSize + 1;
       }
     }
 
     &.euiPopover__panelArrow--left {
       &:before {
-        right: -$euiPopoverArrowSize;
+        inset-inline-end: -$euiPopoverArrowSize;
         border-inline-start-color: $euiShadowColor;
         clip-path: polygon(0 #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, 0 #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
       }
 
       &:after {
-        right: -$euiPopoverArrowSize + 1;
+        inset-inline-end: -$euiPopoverArrowSize + 1;
       }
     }
   }

@@ -12,10 +12,10 @@
 
   &:after {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
     border-radius: $borderRadius;
     content: '';
     pointer-events: none;
@@ -74,8 +74,8 @@
 // Hiding elements offscreen to only be read by screen reader
 @mixin euiScreenReaderOnly {
   position: absolute;
-  left: -10000px;
-  top: auto;
+  inset-inline-start: -10000px;
+  inset-block-start: auto;
   width: 1px;
   height: 1px;
   overflow: hidden;

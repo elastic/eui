@@ -4,8 +4,8 @@
   width: $euiNavDrawerWidthCollapsed;
   height: calc(100% - #{$euiNavDrawerTopPosition});
   position: fixed;
-  left: 0;
-  top: $euiNavDrawerTopPosition;
+  inset-inline-start: 0;
+  inset-block-start: $euiNavDrawerTopPosition;
   overflow: hidden;
   z-index: $euiZHeader;
   background: $euiHeaderBackgroundColor;
@@ -29,7 +29,7 @@
     @include euiBottomShadowFlat;
     background-color: $euiColorEmptyShade;
     position: fixed;
-    bottom: 0;
+    inset-block-end: 0;
     width: $euiNavDrawerWidthCollapsed;
     transition: width $euiAnimSpeedExtraFast;
     z-index: $euiZHeader + 1;
@@ -42,7 +42,7 @@
     }
 
     .navDrawerExpandButton-isCollapsed .euiListGroupItem__button {
-      max-width: 100%;
+      max-inline-size: 100%;
     }
   }
 
@@ -64,7 +64,7 @@
       }
 
       .euiListGroup:not(.euiNavDrawer__expandButton) .euiListGroupItem__button {
-        max-width: $euiSizeXL;
+        max-inline-size: $euiSizeXL;
       }
 
       .euiListGroupItem__extraAction {

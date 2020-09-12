@@ -1,9 +1,9 @@
 .euiFormControlLayoutIcons {
   pointer-events: none;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: $euiFormControlPadding;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  inset-inline-start: $euiFormControlPadding;
   display: flex;
   align-items: center;
 
@@ -12,17 +12,17 @@
   }
 
   .euiFormControlLayout--compressed & {
-    left: $euiFormControlCompressedPadding;
+    inset-inline-start: $euiFormControlCompressedPadding;
   }
 }
 
 .euiFormControlLayoutIcons--right {
-  left: auto;
-  right: $euiFormControlPadding;
+  inset-inline-start: auto;
+  inset-inline-end: $euiFormControlPadding;
 
   .euiFormControlLayout--compressed & {
-    left: auto;
-    right: $euiFormControlCompressedPadding;
+    inset-inline-start: auto;
+    inset-inline-end: $euiFormControlCompressedPadding;
   }
 }
 

@@ -8,7 +8,7 @@
   display: inline-block;
   position: relative;
   vertical-align: middle;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 .euiPopover__anchor {
@@ -74,14 +74,14 @@
 
     &.euiPopover__panelArrow--top {
       &:before {
-        bottom: -$euiPopoverArrowSize + 2;
+        inset-block-end: -$euiPopoverArrowSize + 2;
         border-inline-start: $euiPopoverArrowSize solid transparent;
         border-inline-end: $euiPopoverArrowSize solid transparent;
         border-block-start: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        bottom: -$euiPopoverArrowSize + 3;
+        inset-block-end: -$euiPopoverArrowSize + 3;
         border-inline-start: $euiPopoverArrowSize solid transparent;
         border-inline-end: $euiPopoverArrowSize solid transparent;
         border-block-start: $euiPopoverArrowSize solid $euiColorEmptyShade;
@@ -90,16 +90,16 @@
 
     &.euiPopover__panelArrow--right {
       &:before {
-        left: -$euiPopoverArrowSize;
-        top: 50%;
+        inset-inline-start: -$euiPopoverArrowSize;
+        inset-block-start: 50%;
         border-block-start: $euiPopoverArrowSize solid transparent;
         border-block-end: $euiPopoverArrowSize solid transparent;
         border-inline-end: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        left: -$euiPopoverArrowSize + 1;
-        top: 50%;
+        inset-inline-start: -$euiPopoverArrowSize + 1;
+        inset-block-start: 50%;
         border-block-start: $euiPopoverArrowSize solid transparent;
         border-block-end: $euiPopoverArrowSize solid transparent;
         border-inline-end: $euiPopoverArrowSize solid $euiColorEmptyShade;
@@ -108,14 +108,14 @@
 
     &.euiPopover__panelArrow--bottom {
       &:before {
-        top: -$euiPopoverArrowSize;
+        inset-block-start: -$euiPopoverArrowSize;
         border-inline-start: $euiPopoverArrowSize solid transparent;
         border-inline-end: $euiPopoverArrowSize solid transparent;
         border-block-end: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        top: -$euiPopoverArrowSize + 1;
+        inset-block-start: -$euiPopoverArrowSize + 1;
         border-inline-start: $euiPopoverArrowSize solid transparent;
         border-inline-end: $euiPopoverArrowSize solid transparent;
         border-block-end: $euiPopoverArrowSize solid $euiColorEmptyShade;
@@ -124,16 +124,16 @@
 
     &.euiPopover__panelArrow--left {
       &:before {
-        right: -$euiPopoverArrowSize + 1;
-        top: 50%;
+        inset-inline-end: -$euiPopoverArrowSize + 1;
+        inset-block-start: 50%;
         border-block-start: $euiPopoverArrowSize solid transparent;
         border-block-end: $euiPopoverArrowSize solid transparent;
         border-inline-start: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        right: -$euiPopoverArrowSize + 2;
-        top: 50%;
+        inset-inline-end: -$euiPopoverArrowSize + 2;
+        inset-block-start: 50%;
         border-block-start: $euiPopoverArrowSize solid transparent;
         border-block-end: $euiPopoverArrowSize solid transparent;
         border-inline-start: $euiPopoverArrowSize solid $euiColorEmptyShade;

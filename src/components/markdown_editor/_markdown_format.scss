@@ -144,7 +144,7 @@ $browserDefaultFontSize: 16px;
 
   // 3. Images
   img {
-    max-width: 100%;
+    max-inline-size: 100%;
     box-sizing: content-box;
     border-style: none;
   }

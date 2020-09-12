@@ -72,11 +72,11 @@
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
   text-align: left;
-  max-width: 100%;
+  max-inline-size: 100%;
   font-weight: inherit;
 
   .euiListGroupItem-hasExtraAction & {
-    max-width: calc(100% - #{$euiSizeXL});
+    max-inline-size: calc(100% - #{$euiSizeXL});
   }
 
   @each $colorName, $color in $euiListGroupItemColorTypes {

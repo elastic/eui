@@ -5,8 +5,8 @@
   background-color: transparent;
   box-shadow: none;
   height: auto;
-  min-height: $euiSizeL;
-  min-width: $euiSizeL;
+  min-block-size: $euiSizeL;
+  min-inline-size: $euiSizeL;
   line-height: 0; // ensures the icon creates the line-height and so it's always vertically centered
   padding: $euiSizeXS;
   border-radius: $euiBorderRadius;

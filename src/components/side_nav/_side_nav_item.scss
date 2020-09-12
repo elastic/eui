@@ -71,11 +71,11 @@
   &:after { /* 1 */
     position: absolute;
     content: '';
-    top: 0;
-    bottom: $euiSizeM;
+    inset-block-start: 0;
+    inset-block-end: $euiSizeM;
     width: 1px;
     background: $euiBorderColor;
-    left: 0;
+    inset-inline-start: 0;
   }
 }
 
@@ -144,8 +144,8 @@
     &:after {
       position: absolute; /* 1 */
       content: '';
-      top: 50%;
-      left: 0;
+      inset-block-start: 50%;
+      inset-inline-start: 0;
       width: $euiSizeXS;
       height: 1px;
       background: $euiBorderColor;

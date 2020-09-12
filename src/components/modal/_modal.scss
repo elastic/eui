@@ -15,7 +15,7 @@
   background-color: $euiColorEmptyShade;
   border-radius: $euiBorderRadius;
   z-index: $euiZModal;
-  min-width: $euiFormMaxWidth;
+  min-inline-size: $euiFormMaxWidth;
   animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 
   .euiModal__flex { /* 1 */
@@ -28,11 +28,11 @@
 }
 
 .euiModal--maxWidth-default {
-  max-width: map-get($euiBreakpoints, 'm');
+  max-inline-size: map-get($euiBreakpoints, 'm');
 }
 
 .euiModal--confirmation {
-  min-width: $euiFormMaxWidth;
+  min-inline-size: $euiFormMaxWidth;
 }
 
 .euiModalHeader {
@@ -98,8 +98,8 @@
 .euiModal__closeIcon {
   background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
-  right: $euiSizeXS;
-  top: $euiSizeXS;
+  inset-inline-end: $euiSizeXS;
+  inset-block-start: $euiSizeXS;
   z-index: 3;
 }
 
@@ -121,22 +121,22 @@
     // sass-lint:disable-block no-important
     position: fixed;
     width: 100vw !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
+    max-inline-size: none !important;
+    min-inline-size: 0 !important;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    inset-block-start: 0;
     border-radius: 0;
     border: none;
 
     &.euiModal--confirmation {
       @include euiBottomShadowLarge($euiShadowColorLarge, $reverse: true);
-      top: auto;
+      inset-block-start: auto;
     }
 
     .euiModal__flex { /* 1 */
-      max-height: 100vh;
+      max-block-size: 100vh;
     }
   }
 

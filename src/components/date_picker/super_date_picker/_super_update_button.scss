@@ -1,11 +1,11 @@
 .euiSuperUpdateButton {
   // Just wide enough for all 3 states
-  min-width: $euiSuperDatePickerButtonWidth;
+  min-inline-size: $euiSuperDatePickerButtonWidth;
 }
 
 @include euiBreakpoint('xs', 's') {
   .euiSuperUpdateButton {
-    min-width: 0;
+    min-inline-size: 0;
 
     .euiSuperUpdateButton__text {
       display: none;

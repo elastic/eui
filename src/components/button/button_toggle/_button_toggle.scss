@@ -27,7 +27,7 @@
   }
 
   &.euiButtonToggle--isIconOnly {
-    min-width: 0;
+    min-inline-size: 0;
 
     .euiButton__content {
       padding-block-start: 0;

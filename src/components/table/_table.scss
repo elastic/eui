@@ -147,7 +147,7 @@
 
 .euiTableCellContent__text {
   @include euiTextBreakWord; /* 4 */
-  min-width: 0;
+  min-inline-size: 0;
   text-overflow: ellipsis;
 }
 
@@ -223,15 +223,15 @@
 
 @keyframes growExpandedRow {
   0% {
-    max-height: 0;
+    max-block-size: 0;
   }
 
   99% {
-    max-height: 100vh;
+    max-block-size: 100vh;
   }
 
   100% {
-    max-height: unset;
+    max-block-size: unset;
   }
 }
 

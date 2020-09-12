@@ -5,10 +5,10 @@
 
 @mixin euiAccordionIconMargin($align: left) {
   @if $align == left {
-    margin-left: $euiSizeXS;
-    margin-right: $euiSizeS;
+    margin-inline-start: $euiSizeXS;
+    margin-inline-end: $euiSizeS;
   } @else {
-    margin-left: $euiSizeS;
-    margin-right: $euiSizeXS;
+    margin-inline-start: $euiSizeS;
+    margin-inline-end: $euiSizeXS;
   }
 }

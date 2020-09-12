@@ -60,17 +60,17 @@
     position: absolute;
     width: 50%;
     height: 1px;
-    top: $euiSizeL + ($euiStepNumberSize / 2);
+    inset-block-start: $euiSizeL + ($euiStepNumberSize / 2);
     background-color: $euiColorLightShade;
     z-index: $euiZLevel0; /* 1 */
   }
 
   &::before {
-    left: 0;
+    inset-inline-start: 0;
   }
 
   &::after {
-    right: 0;
+    inset-inline-end: 0;
   }
 
   // Remove the respective lines if the first or last child
@@ -128,7 +128,7 @@
 
     &:before,
     &:after {
-      top: $euiSize + $euiStepNumberSize / 2;
+      inset-block-start: $euiSize + $euiStepNumberSize / 2;
     }
   }
 

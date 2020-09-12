@@ -34,7 +34,7 @@
   &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper,
   &[class*='--fullWidth'] input {
     width: 100%;
-    max-width: none;
+    max-inline-size: none;
   }
 
   // Target when the euiFormControlLayout is disabled without specifying the full class name in case it ever changes
@@ -74,7 +74,7 @@
   min-width: 0; // Fixes FF
 
   .euiFormControlLayoutDelimited[class*='--compressed'] & {
-    max-width: none;
+    max-inline-size: none;
   }
 }
 

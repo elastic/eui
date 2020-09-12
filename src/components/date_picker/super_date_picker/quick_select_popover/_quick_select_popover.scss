@@ -1,11 +1,11 @@
 .euiQuickSelectPopover__content {
   width: $euiFormMaxWidth;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 .euiQuickSelectPopover__section {
   @include euiScrollBar;
-  max-height: $euiSizeM * 11;
+  max-block-size: $euiSizeM * 11;
   overflow: hidden;
   overflow-y: auto;
   padding: $euiSizeXS 0; // Offset negative margin from flex items

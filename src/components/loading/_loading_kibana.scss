@@ -7,7 +7,7 @@
     position: absolute;
     content: '';
     width: 90%;
-    left: 5%;
+    inset-inline-start: 5%;
     border-radius: 50%;
     opacity: .2;
     z-index: 1;
@@ -37,7 +37,7 @@
   &:before,
   &:after {
     height: $euiSizeXS - 1; /* 1 */
-    bottom: -$euiSizeXS;
+    inset-block-end: -$euiSizeXS;
   }
 
   .euiLoadingKibana__icon {
@@ -55,7 +55,7 @@
   &:before,
   &:after {
     height: $euiSizeS - 2; /* 1 */
-    bottom: -$euiSizeS;
+    inset-block-end: -$euiSizeS;
   }
 
   .euiLoadingKibana__icon {
@@ -69,7 +69,7 @@
   &:before,
   &:after {
     height: $euiSizeS;
-    bottom: -$euiSizeM;
+    inset-block-end: -$euiSizeM;
   }
 
   .euiLoadingKibana__icon {

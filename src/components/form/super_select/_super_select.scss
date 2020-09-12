@@ -13,7 +13,7 @@
 
 .euiSuperSelect__listbox {
   @include euiScrollBar;
-  max-height: 300px;
+  max-block-size: 300px;
   overflow: hidden;
   overflow-y: auto;
 }

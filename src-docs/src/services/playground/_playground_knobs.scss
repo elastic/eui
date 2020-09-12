@@ -1,7 +1,7 @@
 $knobTableRowMinHeight: 42px;
 
 .playgroundKnobs__rowCell {
-  min-height: $knobTableRowMinHeight;
+  min-block-size: $knobTableRowMinHeight;
   display: block;
 }
 

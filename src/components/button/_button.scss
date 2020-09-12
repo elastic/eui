@@ -7,7 +7,7 @@
   @include euiSlightShadow;
 
   border-radius: $euiBorderRadius;
-  min-width: $euiButtonMinWidth;
+  min-inline-size: $euiButtonMinWidth;
 
   .euiButton__content {
     padding-block-start: 0;

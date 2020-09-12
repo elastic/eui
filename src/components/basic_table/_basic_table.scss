@@ -23,22 +23,22 @@
 
 @keyframes euiBasicTableLoading {
   from {
-    left: 0;
+    inset-inline-start: 0;
     width: 0;
   }
 
   20% {
-    left: 0;
+    inset-inline-start: 0;
     width: 40%;
   }
 
   80% {
-    left: 60%;
+    inset-inline-start: 60%;
     width: 40%;
   }
 
   100% {
-    left: 100%;
+    inset-inline-start: 100%;
     width: 0;
   }
 }

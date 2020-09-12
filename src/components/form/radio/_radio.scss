@@ -19,8 +19,8 @@
 
       display: inline-block;
       position: absolute;
-      left: 0;
-      top: (($euiSizeL - $euiRadioSize) / 2) - 1px;
+      inset-inline-start: 0;
+      inset-block-start: (($euiSizeL - $euiRadioSize) / 2) - 1px;
     }
 
     &:checked {
@@ -64,11 +64,11 @@
 
   &.euiRadio--inList,
   &.euiRadio--noLabel {
-    min-height: $euiRadioSize;
-    min-width: $euiRadioSize;
+    min-block-size: $euiRadioSize;
+    min-inline-size: $euiRadioSize;
 
     .euiRadio__circle {
-      top: 0;
+      inset-block-start: 0;
     }
 
     .euiRadio__input {

@@ -9,7 +9,7 @@
   align-items: stretch;
   position: fixed;
   z-index: $euiZToastList;
-  bottom: 0;
+  inset-block-end: 0;
   width: $euiToastWidth + ($euiSize * 5); /* 2 */
   max-height: 100vh; /* 1 */
   overflow-y: auto;
@@ -33,12 +33,12 @@
 }
 
 .euiGlobalToastList--right:not(:empty) {
-  right: 0;
+  inset-inline-end: 0;
   padding-left: $euiSize * 4; /* 2 */
 }
 
 .euiGlobalToastList--left:not(:empty) {
-  left: 0;
+  inset-inline-start: 0;
   padding-right: $euiSize * 4; /* 2 */
 }
 
@@ -82,7 +82,7 @@
    * 1. Mobile we make these 100%. Matching change happens on the item as well.
    */
   .euiGlobalToastList:not(:empty) {
-    left: 0;
+    inset-inline-start: 0;
     padding-inline-start: $euiSize;
     padding-inline-end: $euiSize;
     width: 100%; /* 1 */

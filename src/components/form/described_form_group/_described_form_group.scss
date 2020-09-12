@@ -1,12 +1,12 @@
 .euiDescribedFormGroup {
-  max-width: $euiFormMaxWidth * 2;
+  max-inline-size: $euiFormMaxWidth * 2;
 
   + * {
     margin-block-start: $euiSizeL;
   }
 
   &.euiDescribedFormGroup--fullWidth {
-    max-width: 100%;
+    max-inline-size: 100%;
   }
 
   .euiDescribedFormGroup__description {

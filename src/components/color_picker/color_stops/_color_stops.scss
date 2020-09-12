@@ -7,9 +7,9 @@
 .euiColorStops__addContainer {
   display: block;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  inset-block-start: 50%;
   height: $euiRangeThumbHeight;
   margin-block-start: $euiRangeThumbHeight * -.5;
 
@@ -26,7 +26,7 @@
   @include euiCustomControl($type: 'round');
   @include euiRangeThumbStyle;
   position: absolute;
-  top: 0;
+  inset-block-start: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbHeight;
   background-color: $euiColorLightestShade;
@@ -41,7 +41,7 @@
 
 .euiColorStopPopover.euiPopover {
   position: absolute;
-  top: 50%;
+  inset-block-start: 50%;
   width: $euiRangeThumbWidth;
   height: $euiRangeThumbHeight;
   margin-block-start: $euiRangeThumbHeight * -.5;
@@ -62,8 +62,8 @@
     content: '';
     display: block;
     position: absolute;
-    left: 0;
-    top: 0;
+    inset-inline-start: 0;
+    inset-block-start: 0;
     height: $euiRangeThumbHeight;
     width: $euiRangeThumbHeight;
     border-radius: $euiRangeThumbHeight;
@@ -73,7 +73,7 @@
 
 .euiColorStopThumb.euiRangeThumb:not(:disabled) {
   // sass-lint:disable-block no-color-literals, indentation
-  top: 0;
+  inset-block-start: 0;
   margin-block-start: 0;
   pointer-events: auto;
   cursor: grab;

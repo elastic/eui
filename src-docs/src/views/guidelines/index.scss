@@ -243,13 +243,13 @@
   height: $euiSize;
   background: $euiColorDarkestShade;
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
 }
 
 .guideSass__animRow:hover .guideSass__animChild {
   transition-property: left;
   transition-timing-function: linear;
-  left: calc(100% - #{$euiSize});
+  inset-inline-start: calc(100% - #{$euiSize});
 }
 
 .guideSass__animRow--euiAnimSpeedExtraFast:hover .guideSass__animChild {

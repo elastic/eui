@@ -13,7 +13,7 @@
   }
 
   .euiListGroupItem__icon {
-    max-width: $euiSize;
+    max-inline-size: $euiSize;
   }
 }
 
@@ -32,9 +32,9 @@
   border-radius: 50%;
 
   &:after {
-    top: -$euiSizeXS;
-    left: -$euiSizeXS;
-    right: -$euiSizeXS;
-    bottom: -$euiSizeXS;
+    inset-block-start: -$euiSizeXS;
+    inset-inline-start: -$euiSizeXS;
+    inset-inline-end: -$euiSizeXS;
+    inset-block-end: -$euiSizeXS;
   }
 }

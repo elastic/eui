@@ -3,14 +3,14 @@
 
   .euiStepNumber__icon {
     position: relative;
-    top: -2px;
+    inset-block-start: -2px;
   }
 
   &--small {
     @include createStepsNumber($euiStepNumberSmallSize, $euiFontSizeXS);
 
     .euiStepNumber__icon {
-      top: -1px;
+      inset-block-start: -1px;
     }
   }
 

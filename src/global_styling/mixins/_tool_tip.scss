@@ -4,7 +4,7 @@
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
   z-index: $euiZLevel9;
-  max-width: 256px;
+  max-inline-size: 256px;
   overflow-wrap: break-word;
 
   @if ($size == 's') {

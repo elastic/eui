@@ -15,7 +15,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .euiBody--headerIsFixed {
   .guideSideNav {
-    top: $euiHeaderHeightCompensation;
+    inset-block-start: $euiHeaderHeightCompensation;
   }
 }
 
@@ -23,7 +23,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
 
   .guideSideNav {
-    top: $euiHeaderHeightCompensation * 2;
+    inset-block-start: $euiHeaderHeightCompensation * 2;
   }
 
   .euiHeader:not(.euiHeader--fixed) {
@@ -40,8 +40,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideSideNav {
   width: $guideSideNavWidth;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  inset-block-start: 0;
+  inset-block-end: 0;
 
   .guideSideNav__identity {
     border-block-end: $euiBorderThin;
@@ -59,8 +59,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: $guideSideNavWidth;
     padding: $euiSize;
     position: absolute;
-    bottom: 0;
-    top: 132px;
+    inset-block-end: 0;
+    inset-block-start: 132px;
     overflow-y: auto;
   }
 }
@@ -96,16 +96,16 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   padding-block-end: $euiSize;
   padding-inline-start: $euiSizeXL;
   padding-inline-end: $euiSizeXL;
-  min-height: 100vh;
+  min-block-size: 100vh;
   background-color: $euiColorEmptyShade;
   border-inline-start: $euiBorderThin;
-  max-width: 1000px;
+  max-inline-size: 1000px;
   margin-inline-start: 240px;
 }
 
 .guideDemo__highlightLayout {
   .euiPageBody {
-    min-height: 460px;
+    min-block-size: 460px;
   }
 
   div {
@@ -214,8 +214,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   font-size: $euiFontSizeXS;
   position: absolute;
   width: 93px;
-  right: 0;
-  bottom: 0;
+  inset-inline-end: 0;
+  inset-block-end: 0;
   padding: $euiSizeXS;
 }
 
@@ -236,8 +236,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   position: fixed;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
+  inset-inline-start: 0;
+  inset-block-start: 0;
 }
 
 .euiDataGridRowCell--favoriteFranchise {
@@ -278,14 +278,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     // This is a temporary hack till we fix how classes pass into form controls
     .euiFormControlLayout,
     input[type='search'] {
-      max-width: 100%;
+      max-inline-size: 100%;
     }
 
     .guideSideNav__content {
       position: relative;
       width: auto;
-      top: auto;
-      bottom: auto;
+      inset-block-start: auto;
+      inset-block-end: auto;
       padding: 0;
       overflow-y: hidden;
     }

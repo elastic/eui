@@ -1,5 +1,5 @@
 .euiTour--minWidth-default {
-  min-width: $euiSizeL * 10;
+  min-inline-size: $euiSizeL * 10;
 }
 
 .euiTourHeader {
@@ -35,16 +35,16 @@
   .euiPopover__panelArrow.euiPopover__panelArrow--right {
     .euiTour__beacon {
       opacity: 1;
-      top: $euiPopoverArrowSize / 2;
-      left: -$euiPopoverArrowSize * 2;
+      inset-block-start: $euiPopoverArrowSize / 2;
+      inset-inline-start: -$euiPopoverArrowSize * 2;
     }
   }
 
   .euiPopover__panelArrow.euiPopover__panelArrow--left {
     .euiTour__beacon {
       opacity: 1;
-      top: $euiPopoverArrowSize / 2;
-      left: $euiPopoverArrowSize;
+      inset-block-start: $euiPopoverArrowSize / 2;
+      inset-inline-start: $euiPopoverArrowSize;
     }
   }
 
@@ -55,16 +55,16 @@
 
     .euiTour__beacon {
       opacity: 1;
-      top: $euiPopoverArrowSize;
-      left: $euiPopoverArrowSize / 2;
+      inset-block-start: $euiPopoverArrowSize;
+      inset-inline-start: $euiPopoverArrowSize / 2;
     }
   }
 
   .euiPopover__panelArrow.euiPopover__panelArrow--bottom {
     .euiTour__beacon {
       opacity: 1;
-      top: -$euiPopoverArrowSize * 2;
-      left: $euiPopoverArrowSize / 2;
+      inset-block-start: -$euiPopoverArrowSize * 2;
+      inset-inline-start: $euiPopoverArrowSize / 2;
     }
   }
 }

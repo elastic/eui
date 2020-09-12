@@ -2,9 +2,9 @@
   // Keeps tooltip (value) aligned to percentage of actual slider
   display: block;
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  inset-block-end: 0;
   width: calc(100% - #{$euiRangeThumbWidth});
   margin-inline-start: $euiRangeThumbWidth / 2;
   pointer-events: none;
@@ -23,8 +23,8 @@
   padding-inline-end: $euiSizeS;
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
-  max-width: 256px;
-  top: 50%;
+  max-inline-size: 256px;
+  inset-block-start: 50%;
   transition:
     box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
     transform $euiAnimSpeedNormal $euiAnimSlightResistance;
@@ -37,8 +37,8 @@
   &::before {
     content: '';
     position: absolute;
-    bottom: -$arrowSize / 2;
-    left: 50%;
+    inset-block-end: -$arrowSize / 2;
+    inset-inline-start: 50%;
     transform-origin: center;
     background-color: $euiTooltipBackgroundColor;
     width: $arrowSize;
@@ -56,7 +56,7 @@
 
     &:before,
     &:after {
-      left: $arrowMinusSize;
+      inset-inline-start: $arrowMinusSize;
     }
 
     &::before {
@@ -69,8 +69,8 @@
 
     &:before,
     &:after {
-      left: auto;
-      right: $arrowMinusSize;
+      inset-inline-start: auto;
+      inset-inline-end: $arrowMinusSize;
     }
 
     &::before {
@@ -84,16 +84,16 @@
 
     &:before,
     &:after {
-      bottom: 50%;
+      inset-block-end: 50%;
       transform: translateY(50%) rotateZ(45deg);
     }
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4);
+    inset-block-start: ($euiFormControlHeight / 4);
 
     .euiRangeTooltip--compressed & {
-      top: ($euiFormControlCompressedHeight / 4);
+      inset-block-start: ($euiFormControlCompressedHeight / 4);
     }
   }
 }

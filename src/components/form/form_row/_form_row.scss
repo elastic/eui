@@ -5,7 +5,7 @@
 .euiFormRow {
   display: flex; /* 1 */
   flex-direction: column; /* 1 */
-  max-width: $euiFormMaxWidth;
+  max-inline-size: $euiFormMaxWidth;
 
   + .euiFormRow,
   + .euiButton {
@@ -14,14 +14,14 @@
 }
 
 .euiFormRow--fullWidth {
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 .euiFormRow--hasEmptyLabelSpace {
   margin-top: ($euiFontSizeXS * $euiLineHeight) + $euiSizeXS; /* 2 */
   // the following ensure that contents that aren't inherently the same height
   // as inputs will align to the vertical center
-  min-height: $euiFormControlHeight;
+  min-block-size: $euiFormControlHeight;
   padding-block-end: 0;
   justify-content: center;
 }
@@ -67,7 +67,7 @@
     .euiFormRow__labelWrapper {
       line-height: $euiSwitchHeight - 1px; // The 1px less helps the alignment of the text baseline
       width: auto;
-      min-width: calc(33% - #{$euiSizeS});
+      min-inline-size: calc(33% - #{$euiSizeS});
     }
 
     .euiFormRow__fieldWrapper {
@@ -85,17 +85,17 @@
 }
 
 .euiFormRow__fieldWrapperDisplayOnly {
-  min-height: $euiFormControlHeight;
+  min-block-size: $euiFormControlHeight;
   display: flex;
   align-items: center;
 }
 
 .euiFormRow--compressed {
   &.euiFormRow--hasEmptyLabelSpace {
-    min-height: $euiFormControlCompressedHeight;
+    min-block-size: $euiFormControlCompressedHeight;
   }
 
   .euiFormRow__fieldWrapperDisplayOnly {
-    min-height: $euiFormControlCompressedHeight;
+    min-block-size: $euiFormControlCompressedHeight;
   }
 }

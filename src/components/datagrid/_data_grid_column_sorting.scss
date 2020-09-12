@@ -13,7 +13,7 @@
   transition: none !important;
   margin-block-start: -$euiSizeS;
   // IE11 needs a min-width
-  min-width: $euiSize * 12;
+  min-inline-size: $euiSize * 12;
 }
 
 .euiDataGridColumnSorting__button {
@@ -26,7 +26,7 @@
 
 .euiDataGridColumnSorting__fieldList {
   @include euiYScrollWithShadows;
-  max-height: 300px;
+  max-block-size: 300px;
 }
 
 .euiDataGridColumnSorting__field {
@@ -44,7 +44,7 @@
   padding-inline-start: $euiSizeL;
 
   .euiDataGridColumnSorting__order {
-    min-width: 200px;
+    min-inline-size: 200px;
     border: none;
 
     // Hack to overwrite some nested, unreachable component code with button groups

@@ -6,7 +6,7 @@
 // Main <figure> that wraps images.
 .euiImage {
   display: inline-block;
-  max-width: 100%;
+  max-inline-size: 100%;
   position: relative;
   min-height: 1px; /* 1 */
   line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
@@ -86,8 +86,8 @@
   visibility: hidden;
   fill-opacity: 0;
   position: absolute;
-  right: $euiSize;
-  top: $euiSize;
+  inset-inline-end: $euiSize;
+  inset-block-start: $euiSize;
   transition: fill-opacity $euiAnimSpeedSlow $euiAnimSlightResistance;
   cursor: pointer;
 }
@@ -95,8 +95,8 @@
 // The FullScreen image that optionally pops up on click.
 .euiImage-isFullScreen {
   position: relative;
-  max-height: 80vh;
-  max-width: 80vw;
+  max-block-size: 80vh;
+  max-inline-size: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
   &:hover {
@@ -111,13 +111,13 @@
 
   &__icon {
     position: absolute;
-    right: $euiSize;
-    top: $euiSize;
+    inset-inline-end: $euiSize;
+    inset-block-start: $euiSize;
   }
 
   &__img {
-    max-height: 80vh;
-    max-width: 80vw;
+    max-block-size: 80vh;
+    max-inline-size: 80vw;
     vertical-align: middle;
     cursor: pointer;
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;

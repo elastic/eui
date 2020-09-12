@@ -10,7 +10,7 @@
   }
 
   &--restrictWidth-default {
-    max-width: 1000px;
+    max-inline-size: 1000px;
   }
 
   @include euiBreakpoint('xs', 's') {

@@ -69,8 +69,8 @@
 
     .euiKeyPadMenuItem__betaBadgeWrapper {
       position: absolute;
-      top: $euiSizeXS;
-      right: $euiSizeS;
+      inset-block-start: $euiSizeXS;
+      inset-inline-end: $euiSizeS;
       z-index: 3;
 
       // sass-lint:disable-block nesting-depth

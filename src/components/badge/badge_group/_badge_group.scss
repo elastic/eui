@@ -5,7 +5,7 @@ $euiBadgeGroupGutterTypes: (
 
 .euiBadgeGroup__item {
   display: inline-block;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 // Gutter Sizes
@@ -17,7 +17,7 @@ $euiBadgeGroupGutterTypes: (
 
     & > .euiBadgeGroup__item {
       margin: $halfGutterSize;
-      max-width: calc(100% - #{$gutterSize});
+      max-inline-size: calc(100% - #{$gutterSize});
     }
   }
 }

@@ -1,8 +1,8 @@
   // Resizer straddles the column border and is an invisible hitzone for dragging
 .euiDataGridColumnResizer {
   position: absolute;
-  top: 0;
-  right: -$euiSizeS;
+  inset-block-start: 0;
+  inset-inline-end: -$euiSizeS;
   height: 100%;
   width: $euiSize;
   cursor: ew-resize;
@@ -13,9 +13,9 @@
   &:after {
     content: '';
     position: absolute;
-    left: $euiSizeS - 1px;
-    top: 0;
-    bottom: 0;
+    inset-inline-start: $euiSizeS - 1px;
+    inset-block-start: 0;
+    inset-block-end: 0;
     width: $euiDataGridColumnResizerWidth;
     background-color: $euiColorPrimary;
   }
@@ -37,11 +37,11 @@
   &:last-child {
 
     .euiDataGridColumnResizer {
-      right: 0;
+      inset-inline-end: 0;
 
       &:after {
-        left: auto;
-        right: 0;
+        inset-inline-start: auto;
+        inset-inline-end: 0;
       }
     }
   }

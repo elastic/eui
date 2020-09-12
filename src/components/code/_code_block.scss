@@ -1,5 +1,5 @@
 .euiCodeBlock {
-  max-width: 100%;
+  max-inline-size: 100%;
   display: block;
   position: relative;
   background: $euiCodeBlockBackgroundColor;
@@ -30,8 +30,8 @@
 
   .euiCodeBlock__controls {
     position: absolute;
-    top: 0;
-    right: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
   }
 
   .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
@@ -40,10 +40,10 @@
 
   &.euiCodeBlock-isFullScreen {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
 
     .euiCodeBlock__pre {
       // sass-lint:disable-block no-important
@@ -51,8 +51,8 @@
     }
 
     .euiCodeBlock__controls {
-      top: $euiSizeXS;
-      right: $euiSizeXS;
+      inset-block-start: $euiSizeXS;
+      inset-inline-end: $euiSizeXS;
     }
   }
 
@@ -86,8 +86,8 @@
     }
 
     .euiCodeBlock__controls {
-      top: $euiSizeS;
-      right: $euiSizeS;
+      inset-block-start: $euiSizeS;
+      inset-inline-end: $euiSizeS;
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
@@ -106,8 +106,8 @@
     }
 
     .euiCodeBlock__controls {
-      top: $euiSize;
-      right: $euiSize;
+      inset-block-start: $euiSize;
+      inset-inline-end: $euiSize;
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
@@ -126,8 +126,8 @@
     }
 
     .euiCodeBlock__controls {
-      top: $euiSizeL;
-      right: $euiSizeL;
+      inset-block-start: $euiSizeL;
+      inset-inline-end: $euiSizeL;
     }
 
     &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {

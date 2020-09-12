@@ -6,7 +6,7 @@
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize;
   height: $euiSize;
-  min-width: $euiSize;
+  min-inline-size: $euiSize;
   padding-inline-start: $euiSizeXS;
   padding-inline-end: $euiSizeXS;
   vertical-align: middle;
@@ -24,7 +24,7 @@
   $size: $euiSize + $euiSizeXS;
   line-height: $size;
   height: $size;
-  min-width: $euiSizeL;
+  min-inline-size: $euiSizeL;
 }
 
 .euiNotificationBadge--subdued {

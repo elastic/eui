@@ -1,6 +1,6 @@
 .euiRangeInput {
   width: auto;
-  min-width: $euiSize * 4;
+  min-inline-size: $euiSize * 4;
 
   .euiRange__popover & {
     // sass-lint:disable no-important

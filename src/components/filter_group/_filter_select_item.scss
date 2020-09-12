@@ -43,7 +43,7 @@
   @include euiScrollBar;
 
   overflow-y: auto;
-  max-height: $euiSize * 30;
+  max-block-size: $euiSize * 30;
 }
 
 .euiFilterSelect__note {

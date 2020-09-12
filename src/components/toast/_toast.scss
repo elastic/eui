@@ -20,8 +20,8 @@
   */
 .euiToast__closeButton {
   position: absolute;
-  top: $euiSize;
-  right: $euiSize;
+  inset-block-start: $euiSize;
+  inset-inline-end: $euiSize;
   line-height: 0; /* 1 */
   appearance: none;
   opacity: 0;

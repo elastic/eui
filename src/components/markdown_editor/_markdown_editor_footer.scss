@@ -24,7 +24,7 @@
   // So when we have an error this button appears smoothly 
   .euiMarkdownEditorFooter__uploadError {
     position: relative;
-    left: -1px;
+    inset-inline-start: -1px;
     line-height: 1;
     border-radius: $euiBorderRadius;
 

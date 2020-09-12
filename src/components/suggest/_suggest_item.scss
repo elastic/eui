@@ -51,7 +51,7 @@
 
   .euiSuggestItem__label {
     flex-basis: 50%;
-    min-width: 50%;
+    min-inline-size: 50%;
     font-family: $euiCodeFontFamily;
     overflow: hidden;
     text-overflow: ellipsis;

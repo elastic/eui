@@ -3,9 +3,9 @@
   background: tintOrShade($euiColorFullShade, 25%, 100%);
   color: $euiColorEmptyShade;
   position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inset-inline-start: 0;
   animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
   z-index: $euiZNavigation;
 

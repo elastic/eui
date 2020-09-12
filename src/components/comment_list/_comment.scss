@@ -2,7 +2,7 @@
   font-size: $euiFontSizeS;
   display: flex;
   padding-block-end: $euiSize;
-  min-height: $euiSize * 3.5;
+  min-block-size: $euiSize * 3.5;
 
   .euiCommentEvent {
     flex-grow: 1;
@@ -16,8 +16,8 @@
     &::before {
       content: '';
       position: absolute;
-      left: $euiSizeXXL / 2;
-      top: $euiSizeL;
+      inset-inline-start: $euiSizeXXL / 2;
+      inset-block-start: $euiSizeL;
       width: $euiSizeXS / 2;
       background-color: $euiColorLightShade;
       height: calc(100% + #{$euiSizeL});
