@@ -42,8 +42,8 @@
       color: $euiColorDarkShade;
       padding: $euiSizeS;
       padding-block-end: 0;
-      margin-bottom: -$euiSizeS; // pull up cell content closer
-      min-height: $euiSizeL; // aligns contents of cells if header doesn't exist
+      margin-block-end: -$euiSizeS; // pull up cell content closer
+      min-block-size: $euiSizeL; // aligns contents of cells if header doesn't exist
 
       // Remove min-height of cell header if it's the only cell
       .euiTableRowCell:only-child & {
@@ -86,7 +86,7 @@
         min-inline-size: 0;
         width: $euiSizeL;
         position: absolute;
-        top: $euiTableCellContentPadding + (($euiTableCellContentPadding * $euiLineHeight) - $euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
+        inset-block-start: $euiTableCellContentPadding + (($euiTableCellContentPadding * $euiLineHeight) - $euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
         inset-inline-end: $euiTableCellContentPadding;
 
         &::before {
@@ -106,7 +106,7 @@
       &.euiTableRow-hasActions.euiTableRow-isExpandable {
         .euiTableRowCell--isExpander {
           inset-block-start: auto;
-          bottom: $euiSize; // same as row padding-bottom
+          inset-block-end: $euiSize; // same as row padding-bottom
         }
       }
 
@@ -140,7 +140,7 @@
         border-block-start: none;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        padding-left: $euiSizeS; // override selectable as the padding is already applied via the contents
+        padding-inline-start: $euiSizeS; // override selectable as the padding is already applied via the contents
 
         &:hover {
           background-color: $euiColorEmptyShade; // keep white background to cover triggering row's border

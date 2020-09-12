@@ -27,5 +27,5 @@
 }
 
 .globalFilterBar__flexItem {
-  max-width: calc(100% - #{$euiSizeXS}); // Width minus margin around each flex itm
+  max-inline-size: calc(100% - #{$euiSizeXS}); // Width minus margin around each flex itm
 }

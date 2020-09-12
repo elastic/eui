@@ -224,7 +224,7 @@
 
   > :last-child,
   .euiTextColor > :last-child {
-    margin-bottom: 0 !important; // sass-lint:disable-line no-important
+    margin-block-end: 0 !important; // sass-lint:disable-line no-important
   }
 }
 

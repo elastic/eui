@@ -14,7 +14,7 @@
 
   .euiCallOutHeader__title {
     @include euiCallOutTitle;
-    margin-bottom: 0; // In case it's nested inside EuiText
+    margin-block-end: 0; // In case it's nested inside EuiText
   }
 }
 

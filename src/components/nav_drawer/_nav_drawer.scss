@@ -137,7 +137,7 @@
   .euiNavDrawer-isLocked {
     + .euiNavDrawerPage .euiNavDrawerPage__pageBody {
       // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
-      margin-left: $euiNavDrawerWidthExpanded !important; // sass-lint:disable-line no-important
+      margin-inline-start: $euiNavDrawerWidthExpanded !important; // sass-lint:disable-line no-important
       transition: margin $euiAnimSpeedFast $euiAnimSlightResistance;
     }
 

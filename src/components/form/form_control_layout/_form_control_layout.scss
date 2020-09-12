@@ -97,7 +97,7 @@
 
   > .euiFormControlLayout__prepend,
   > .euiFormControlLayout__append {
-    max-width: 50%; // Make sure max-width only applies to the outer most append/prepend element
+    max-inline-size: 50%; // Make sure max-width only applies to the outer most append/prepend element
   }
 
   // sass-lint:disable-block no-important

@@ -10,7 +10,7 @@
   .euiSaturation__lightness,
   .euiSaturation__saturation {
     position: absolute;
-    top: -1px; // hides a slight color inconsistency
+    inset-block-start: -1px; // hides a slight color inconsistency
     inset-block-end: 0;
     inset-inline-start: 0;
     inset-inline-end: 0;

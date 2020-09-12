@@ -38,7 +38,7 @@
   }
 
   .euiBadge__content {
-    min-height: $euiSize + ($euiBorderWidthThin * 2); // Ensure proper height in case of just displaying an icon
+    min-block-size: $euiSize + ($euiBorderWidthThin * 2); // Ensure proper height in case of just displaying an icon
     display: flex;
     align-items: center;
     overflow: hidden;

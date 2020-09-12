@@ -107,7 +107,7 @@
 
 @mixin euiTextTruncate {
   // sass-lint:disable-block no-important
-  max-width: 100%; // 1
+  max-inline-size: 100%; // 1
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;

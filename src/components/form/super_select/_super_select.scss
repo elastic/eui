@@ -7,7 +7,7 @@
 .euiSuperSelect {
   &:not(.euiSuperSelect--fullWidth) { /* 1 */
     // sass-lint:disable-block no-important
-    max-width: $euiFormMaxWidth !important; // override default popover styles
+    max-inline-size: $euiFormMaxWidth !important; // override default popover styles
   }
 }
 

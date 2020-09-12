@@ -10,7 +10,7 @@
 
   &.euiPageContent--horizontalCenter {
     width: auto;
-    max-width: 100%; // Fixes IE
+    max-inline-size: 100%; // Fixes IE
     margin-inline-start: auto;
     margin-inline-end: auto;
     flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes

@@ -27,8 +27,11 @@
 
 .savedQueryManagement__list {
   @include euiYScrollWithShadows;
-  max-height: inherit; // Fixes overflow for applied max-height
+  max-block-size: inherit; // Fixes overflow for applied max-height
   // Left/Right padding is calculated to match the left alignment of the
   // popover text and buttons
-  padding: ($euiSizeM / 2) $euiSizeXS !important; // sass-lint:disable-line no-important
+  padding-block-start: ($euiSizeM / 2) !important; // sass-lint:disable-line no-important
+  padding-block-end: ($euiSizeM / 2) !important; // sass-lint:disable-line no-important
+  padding-inline-start: $euiSizeXS !important; // sass-lint:disable-line no-important
+  padding-inline-end: $euiSizeXS !important; // sass-lint:disable-line no-important
 }

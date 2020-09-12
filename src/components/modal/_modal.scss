@@ -22,7 +22,7 @@
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    max-height: 75vh; // We overflow the modal body based off this
+    max-block-size: 75vh; // We overflow the modal body based off this
     overflow: hidden; // Ensure long, non-breaking text doesn't expand beyond the modal bounds
   }
 }
@@ -146,7 +146,10 @@
 
   .euiModalFooter {
     background: $euiColorLightestShade;
-    padding: $euiSizeM $euiSizeL !important; // sass-lint:disable-line no-important
+    padding-block-start: $euiSizeM !important; // sass-lint:disable-line no-important
+    padding-block-end: $euiSizeM !important; // sass-lint:disable-line no-important
+    padding-inline-start: $euiSizeL !important; // sass-lint:disable-line no-important
+    padding-inline-end: $euiSizeL !important; // sass-lint:disable-line no-important
     width: 100vw;
     justify-content: stretch;
 

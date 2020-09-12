@@ -94,7 +94,7 @@
   margin-block-start: $euiSizeS;
   font-weight: $euiFontWeightRegular;
   text-align: center;
-  max-width: 100%; // IE Fix for wrapping text
+  max-inline-size: 100%; // IE Fix for wrapping text
 
   .euiStepHorizontal-isDisabled & {
     color: $euiColorDarkShade;

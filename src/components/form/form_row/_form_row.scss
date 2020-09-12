@@ -40,7 +40,7 @@
   .euiFormRow__label {
     @include euiTextBreakWord;
     hyphens: auto;
-    max-width: 100%; // Fixes IE
+    max-inline-size: 100%; // Fixes IE
   }
 
   .euiFormRow__labelWrapper {
@@ -60,7 +60,7 @@
   }
 
   + .euiFormRow--horizontal.euiFormRow--hasSwitch {
-    margin-top: $euiSizeM; // More spacing since we reduced the height to match that of the switch
+    margin-block-start: $euiSizeM; // More spacing since we reduced the height to match that of the switch
   }
 
   &.euiFormRow--hasSwitch {
@@ -74,12 +74,12 @@
       width: auto;
 
       .euiSwitch--compressed {
-        margin-top: $euiSizeXS / 2; // Better vertical alignment of a compressed switch to the horizontal label
+        margin-block-start: $euiSizeXS / 2; // Better vertical alignment of a compressed switch to the horizontal label
       }
     }
 
     + .euiFormRow--horizontal {
-      margin-top: $euiSizeM; // More spacing since we reduced the height to match that of the switch
+      margin-block-start: $euiSizeM; // More spacing since we reduced the height to match that of the switch
     }
   }
 }

@@ -18,8 +18,8 @@
 
     .euiFormControlLayoutDelimited__input {
       height: 100%;
-      padding-top: 0; // Fixes IE
-      padding-bottom: 0; // Fixes IE
+      padding-block-start: 0; // Fixes IE
+      padding-block-end: 0; // Fixes IE
       padding-inline-start: $euiFormControlCompressedPadding;
       padding-inline-end: $euiFormControlCompressedPadding;
     }
@@ -71,7 +71,7 @@
   border-radius: 0 !important;
   text-align: center;
   height: 100%;
-  min-width: 0; // Fixes FF
+  min-inline-size: 0; // Fixes FF
 
   .euiFormControlLayoutDelimited[class*='--compressed'] & {
     max-inline-size: none;

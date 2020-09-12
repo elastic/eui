@@ -13,7 +13,7 @@
       inset-inline-start: 50%;
       transform: translateX(-50%);
       z-index: 3; // get above abs positioned image
-      min-width: 40%; // 1
+      min-inline-size: 40%; // 1
       max-inline-size: calc(100% - #{($spacing * 2)});
 
       .euiToolTipAnchor,

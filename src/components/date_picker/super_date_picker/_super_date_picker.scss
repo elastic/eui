@@ -65,7 +65,7 @@
 
 .euiSuperDatePicker__prettyFormatLink {
   color: $euiLinkColor;
-  padding-left: $euiSizeXS; // Adds some separation between date text and link
+  padding-inline-start: $euiSizeXS; // Adds some separation between date text and link
   flex-shrink: 0;
 }
 
@@ -78,6 +78,6 @@
 
   .euiSuperDatePicker__prettyFormatLink {
     flex-shrink: 1;
-    min-width: 3em; // Ensures at least "Show" is always visible
+    min-inline-size: 3em; // Ensures at least "Show" is always visible
   }
 }

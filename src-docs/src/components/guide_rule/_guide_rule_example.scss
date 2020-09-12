@@ -10,7 +10,7 @@
     flex-grow: 1; /* 1 */
 
     &:not(.euiPanel) {
-      padding-bottom: $euiSize; // only change the bottom padding if it's not an euiPanel
+      padding-block-end: $euiSize; // only change the bottom padding if it's not an euiPanel
     }
   }
 

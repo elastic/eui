@@ -44,7 +44,10 @@
   position: relative;
   height: $euiSizeL;
   width: calc(100% + 2px); // Allow for overlap
-  margin: 0 -1px; // Use ^ overlap to allow thumb to fully cover gradient ends
+  margin-block-start: 0; // Use ^ overlap to allow thumb to fully cover gradient ends
+  margin-block-end: 0;
+  margin-inline-start: -1px;
+  margin-inline-end: -1px;
   appearance: none;
   background: transparent;
   z-index: 2; // Needed to place the thumb above the :after pseudo border from .euiRange
