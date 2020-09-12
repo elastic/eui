@@ -12,18 +12,18 @@ export default () => {
   return (
     <EuiHeader>
       <EuiHeaderSectionItem border="right">
-        <EuiHeaderLogo href="#">Product</EuiHeaderLogo>
+        <EuiHeaderLogo href="">Product</EuiHeaderLogo>
       </EuiHeaderSectionItem>
 
       <EuiHeaderSectionItem>
         <EuiHeaderLinks aria-label="App navigation links example">
-          <EuiHeaderLink href="#" isActive>
+          <EuiHeaderLink href="" isActive>
             Docs
           </EuiHeaderLink>
 
-          <EuiHeaderLink href="#">Code</EuiHeaderLink>
+          <EuiHeaderLink href="">Code</EuiHeaderLink>
 
-          <EuiHeaderLink iconType="help" href="#">
+          <EuiHeaderLink iconType="help" href="">
             Help
           </EuiHeaderLink>
         </EuiHeaderLinks>

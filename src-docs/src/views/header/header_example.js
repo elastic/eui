@@ -90,16 +90,16 @@ const headerLinksSnippet = `<EuiHeader>
   <EuiHeaderSectionItem border="right">
     <EuiHeaderLogo
       iconType="iconName"
-      href="#"
+      href=""
     />
   </EuiHeaderSectionItem>
 
   <EuiHeaderLinks>
-    <EuiHeaderLink href="#" isActive>
+    <EuiHeaderLink href="" isActive>
       <!-- First link -->
     </EuiHeaderLink>
 
-    <EuiHeaderLink href="#">
+    <EuiHeaderLink href="">
       <!-- Second link -->
     </EuiHeaderLink>
   </EuiHeaderLinks>

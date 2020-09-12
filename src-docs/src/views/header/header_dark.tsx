@@ -29,13 +29,13 @@ export default ({ theme }: { theme: any }) => (
             Elastic
           </EuiHeaderLogo>,
           <EuiHeaderLinks aria-label="App navigation dark theme example">
-            <EuiHeaderLink href="#" isActive>
+            <EuiHeaderLink href="" isActive>
               Docs
             </EuiHeaderLink>
 
-            <EuiHeaderLink href="#">Code</EuiHeaderLink>
+            <EuiHeaderLink href="">Code</EuiHeaderLink>
 
-            <EuiHeaderLink iconType="help" href="#">
+            <EuiHeaderLink iconType="help" href="">
               Help
             </EuiHeaderLink>
           </EuiHeaderLinks>,

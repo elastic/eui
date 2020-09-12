@@ -30,7 +30,7 @@ export default ({ flyoutOrPopover = 'flyout' }) => {
     {
       title: 'Control access to features',
       text: 'Show or hide applications and features per space in Kibana.',
-      action: <EuiLink href="#">Learn about feature controls</EuiLink>,
+      action: <EuiLink href="">Learn about feature controls</EuiLink>,
       date: '1 May 2019',
       badge: <EuiBadge>7.1</EuiBadge>,
     },
@@ -53,7 +53,7 @@ export default ({ flyoutOrPopover = 'flyout' }) => {
       title: 'Enter dark mode',
       text:
         'Kibana now supports the easy-on-the-eyes theme across the entire UI.',
-      action: <EuiLink href="#">Go to Advanced Settings</EuiLink>,
+      action: <EuiLink href="">Go to Advanced Settings</EuiLink>,
       date: '10 April 2019',
       badge: <EuiBadge color="hollow">7.0</EuiBadge>,
     },

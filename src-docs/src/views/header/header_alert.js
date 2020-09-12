@@ -45,7 +45,7 @@ export default () => {
             <HeaderSpacesMenu />
           </EuiHeaderSectionItem>
           <EuiHeaderLinks>
-            <EuiHeaderLink href="#">Home</EuiHeaderLink>
+            <EuiHeaderLink href="">Home</EuiHeaderLink>
           </EuiHeaderLinks>
         </EuiHeaderSection>
 

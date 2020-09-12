@@ -16,11 +16,7 @@ import HeaderSpacesMenu from './header_spaces_menu';
 
 export default () => {
   const renderLogo = () => (
-    <EuiHeaderLogo
-      iconType="logoKibana"
-      href="#"
-      aria-label="Go to home page"
-    />
+    <EuiHeaderLogo iconType="logoKibana" href="" aria-label="Go to home page" />
   );
 
   const renderBreadcrumbs = () => {
