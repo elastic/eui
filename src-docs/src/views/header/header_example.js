@@ -227,11 +227,21 @@ export const HeaderExample = {
         },
       ],
       text: (
-        <p>
-          If you&rsquo;re using EUI in a one-off site or page, you can use{' '}
-          <strong>EuiHeaderLinks</strong>, &nbsp;
-          <strong>EuiHeaderLinks</strong> instead of breadcrumbs.
-        </p>
+        <>
+          <p>
+            If you&rsquo;re using EUI in a one-off site or page, you can use{' '}
+            <strong>EuiHeaderLinks</strong> and
+            <strong>EuiHeaderLink</strong> instead of breadcrumbs.
+          </p>
+          <p>
+            <strong>EuiHeaderLinks</strong> comes with responsive functionality
+            built-in which will convert the inline list of links to a popover
+            list triggered by a <strong>EuiHeaderSectionItemButton</strong>. You
+            can adjust at which breakpoints to switch to the popover display by
+            passing your own array of named breakpoints to{' '}
+            <EuiCode>popoverBreakpoints</EuiCode>.
+          </p>
+        </>
       ),
       props: {
         EuiHeaderLinks,

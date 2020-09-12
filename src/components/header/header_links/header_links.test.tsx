@@ -39,4 +39,21 @@ describe('EuiHeaderLinks', () => {
       });
     });
   });
+
+  describe('popover props', () => {
+    test('is rendered', () => {
+      const component = render(
+        <EuiHeaderLinks
+          popoverBreakpoints={['xs', 's', 'm', 'l', 'xl']}
+          popoverButtonProps={{
+            iconType: 'bolt',
+            className: 'customButtonClass',
+          }}
+          popoverProps={{ anchorClassName: 'customAnchorClass' }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

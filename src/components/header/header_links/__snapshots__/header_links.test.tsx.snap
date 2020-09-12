@@ -2,20 +2,20 @@
 
 exports[`EuiHeaderLinks gutterSize l is rendered 1`] = `
 <nav
-  aria-label="App navigation"
+  aria-label="App menu"
   class="euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterL"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterL eui-hideFor--xs eui-hideFor--s"
   />
   <div
-    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+    class="euiPopover euiPopover--anchorDownRight eui-showFor--xs eui-showFor--s"
   >
     <div
       class="euiPopover__anchor"
     >
       <button
-        aria-label="Open navigation menu"
+        aria-label="Open menu"
         class="euiHeaderSectionItem__button"
         type="button"
       >
@@ -30,20 +30,20 @@ exports[`EuiHeaderLinks gutterSize l is rendered 1`] = `
 
 exports[`EuiHeaderLinks gutterSize m is rendered 1`] = `
 <nav
-  aria-label="App navigation"
+  aria-label="App menu"
   class="euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterM"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterM eui-hideFor--xs eui-hideFor--s"
   />
   <div
-    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+    class="euiPopover euiPopover--anchorDownRight eui-showFor--xs eui-showFor--s"
   >
     <div
       class="euiPopover__anchor"
     >
       <button
-        aria-label="Open navigation menu"
+        aria-label="Open menu"
         class="euiHeaderSectionItem__button"
         type="button"
       >
@@ -58,20 +58,20 @@ exports[`EuiHeaderLinks gutterSize m is rendered 1`] = `
 
 exports[`EuiHeaderLinks gutterSize s is rendered 1`] = `
 <nav
-  aria-label="App navigation"
+  aria-label="App menu"
   class="euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS eui-hideFor--xs eui-hideFor--s"
   />
   <div
-    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+    class="euiPopover euiPopover--anchorDownRight eui-showFor--xs eui-showFor--s"
   >
     <div
       class="euiPopover__anchor"
     >
       <button
-        aria-label="Open navigation menu"
+        aria-label="Open menu"
         class="euiHeaderSectionItem__button"
         type="button"
       >
@@ -86,20 +86,20 @@ exports[`EuiHeaderLinks gutterSize s is rendered 1`] = `
 
 exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
 <nav
-  aria-label="App navigation"
+  aria-label="App menu"
   class="euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterXS"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterXS eui-hideFor--xs eui-hideFor--s"
   />
   <div
-    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+    class="euiPopover euiPopover--anchorDownRight eui-showFor--xs eui-showFor--s"
   >
     <div
       class="euiPopover__anchor"
     >
       <button
-        aria-label="Open navigation menu"
+        aria-label="Open menu"
         class="euiHeaderSectionItem__button"
         type="button"
       >
@@ -119,21 +119,49 @@ exports[`EuiHeaderLinks is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS eui-hideFor--xs eui-hideFor--s"
   />
   <div
-    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+    class="euiPopover euiPopover--anchorDownRight eui-showFor--xs eui-showFor--s"
   >
     <div
       class="euiPopover__anchor"
     >
       <button
-        aria-label="Open navigation menu"
+        aria-label="Open menu"
         class="euiHeaderSectionItem__button"
         type="button"
       >
         <div
           data-euiicon-type="apps"
+        />
+      </button>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiHeaderLinks popover props is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS eui-hideFor--xs eui-hideFor--s eui-hideFor--m eui-hideFor--l eui-hideFor--xl"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownRight eui-showFor--xs eui-showFor--s eui-showFor--m eui-showFor--l eui-showFor--xl"
+  >
+    <div
+      class="euiPopover__anchor customAnchorClass"
+    >
+      <button
+        aria-label="Open menu"
+        class="euiHeaderSectionItem__button customButtonClass"
+        type="button"
+      >
+        <div
+          data-euiicon-type="bolt"
         />
       </button>
     </div>
