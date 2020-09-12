@@ -213,8 +213,8 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
             {...rest}
           />
           {allowFullScreenIcon}
-          {isFullScreenActive && fullScreenDisplay}
         </button>
+        {isFullScreenActive && fullScreenDisplay}
         {optionalCaption}
       </figure>
     );
