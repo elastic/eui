@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed ref not being handled properly in `EuiValidatableControl` when used with [react-hook-form](https://react-hook-form.com/) ([#4001](https://github.com/elastic/eui/pull/4001))
+- Fixed `EuiImage` unable to deactivate the full screen mode using the close icon ([#4033](https://github.com/elastic/eui/pull/4033))
 
 ## [`28.4.0`](https://github.com/elastic/eui/tree/v28.4.0)
 
