@@ -63,7 +63,7 @@ export const EuiHideFor: FunctionComponent<EuiHideForProps> = ({
     return () => {
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [sizes, functionToCallOnWindowResize]);
+  }, [functionToCallOnWindowResize]);
 
   if (sizes.includes(currentBreakpoint as EuiBreakpointSize)) {
     return null;
