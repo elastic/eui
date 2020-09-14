@@ -298,7 +298,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     return items.map((item, index) => {
       if (isItemSeparator(item)) {
         const { isSeparator: omit, key = index, ...rest } = item;
-        return <EuiHorizontalRule key={key} {...rest} />;
+        return <EuiHorizontalRule key={key} margin="none" {...rest} />;
       }
 
       const {

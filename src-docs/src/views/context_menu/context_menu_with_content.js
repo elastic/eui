@@ -62,7 +62,6 @@ export default () => {
         {
           isSeparator: true,
           key: 'sep',
-          margin: 'none',
         },
         {
           name: 'See more',
