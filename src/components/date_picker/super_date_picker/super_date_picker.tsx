@@ -231,7 +231,9 @@ export class EuiSuperDatePicker extends Component<
       start,
       end,
       isInvalid,
-      hasChanged: true,
+      hasChanged: !(
+        this.state.prevProps.start === start && this.state.prevProps.end === end
+      ),
     });
 
     if (!this.props.showUpdateButton) {
