@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `.browserslistrc` for global browser support reference ([#4022](https://github.com/elastic/eui/pull/4022))
+- Added horizontal line separator to `EuiContextMenu` ([#4018](https://github.com/elastic/eui/pull/4018))
 
 **Bug fixes**
 
