@@ -51,7 +51,7 @@ export default ({ theme }: { theme: any }) => (
             Production logs
           </EuiBadge>,
           <EuiHeaderSectionItemButton
-            aria-label="Notifications"
+            aria-label="2 Notifications"
             notification={'2'}>
             <EuiIcon type="cheer" size="m" />
           </EuiHeaderSectionItemButton>,

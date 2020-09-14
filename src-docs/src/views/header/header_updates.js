@@ -117,7 +117,7 @@ export default ({ flyoutOrPopover = 'flyout' }) => {
       aria-expanded={isFlyoutVisible}
       aria-haspopup="true"
       aria-label={`News feed: ${
-        { showBadge } ? 'Updates available' : 'No updates'
+        showBadge ? 'Updates available' : 'No updates'
       }`}
       onClick={() => showFlyout()}
       notification={showBadge}>
