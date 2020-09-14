@@ -17,48 +17,57 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactElement } from 'react';
-import classNames from 'classnames';
-import { CommonProps } from '../common';
+import React, {
+  ReactNode,
+  FunctionComponent,
+  useState,
+  useEffect,
+} from 'react';
+import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
+import { throttle } from '../color_picker/utils';
 
-export type EuiHideForBreakpoints = 'xs' | 's' | 'm' | 'l' | 'xl';
+export type EuiHideForBreakpoints = EuiBreakpointSize;
 
 export interface EuiHideForProps {
-  children?: React.ReactNode;
   /**
-   * List of all the responsive sizes to show the children for.
-   * Options are `'xs' | 's' | 'm' | 'l' | 'xl'`
+   * Required otherwise nothing ever gets returned
+   */
+  children: ReactNode;
+  /**
+   * List of all the responsive sizes to hide the children for.
+   * Array of #EuiBreakpointSize
    */
   sizes: EuiHideForBreakpoints[];
 }
-
-const responsiveSizesToClassNameMap = {
-  xs: 'eui-hideFor--xs',
-  s: 'eui-hideFor--s',
-  m: 'eui-hideFor--m',
-  l: 'eui-hideFor--l',
-  xl: 'eui-hideFor--xl',
-};
 
 export const EuiHideFor: FunctionComponent<EuiHideForProps> = ({
   children,
   sizes,
 }) => {
-  const utilityClasses = sizes.map(function(item) {
-    return responsiveSizesToClassNameMap[item];
-  });
+  const [currentBreakpoint, setCurrentBreakpoint] = useState(
+    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
+  );
 
-  if (React.isValidElement(children)) {
-    return (
-      <React.Fragment>
-        {React.Children.map(children, (child: ReactElement<CommonProps>) =>
-          React.cloneElement(child, {
-            className: classNames(child.props.className, utilityClasses),
-          })
-        )}
-      </React.Fragment>
-    );
-  } else {
-    return <span className={classNames(utilityClasses)}>{children}</span>;
+  const functionToCallOnWindowResize = throttle(() => {
+    const newBreakpoint = getBreakpoint(window.innerWidth);
+    if (newBreakpoint !== currentBreakpoint) {
+      setCurrentBreakpoint(newBreakpoint);
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  // Add window resize handlers
+  useEffect(() => {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
+  }, [functionToCallOnWindowResize]);
+
+  if (sizes.includes(currentBreakpoint as EuiBreakpointSize)) {
+    return null;
   }
+
+  return <>{children}</>;
 };

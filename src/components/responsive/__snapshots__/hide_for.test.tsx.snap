@@ -1,55 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiHideFor l is rendered 1`] = `
-<span
-  class="eui-hideFor--l"
-/>
+<span>
+  Child
+</span>
 `;
 
 exports[`EuiHideFor m is rendered 1`] = `
-<span
-  class="eui-hideFor--m"
-/>
-`;
-
-exports[`EuiHideFor renders and copies classes 1`] = `
-<div
-  class="eui-hideFor--xs"
->
-  Child
-</div>
-`;
-
-exports[`EuiHideFor renders for multiple breakpoints 1`] = `
-<span
-  class="eui-hideFor--xs eui-hideFor--l"
->
+<span>
   Child
 </span>
 `;
 
-exports[`EuiHideFor renders wraps children in a span 1`] = `
-<span
-  class="eui-hideFor--xs"
->
-  Child
-</span>
-`;
+exports[`EuiHideFor renders 1`] = `null`;
 
-exports[`EuiHideFor s is rendered 1`] = `
-<span
-  class="eui-hideFor--s"
-/>
-`;
+exports[`EuiHideFor renders for multiple breakpoints 1`] = `null`;
+
+exports[`EuiHideFor s is rendered 1`] = `null`;
 
 exports[`EuiHideFor xl is rendered 1`] = `
-<span
-  class="eui-hideFor--xl"
-/>
+<span>
+  Child
+</span>
 `;
 
 exports[`EuiHideFor xs is rendered 1`] = `
-<span
-  class="eui-hideFor--xs"
-/>
+<span>
+  Child
+</span>
 `;

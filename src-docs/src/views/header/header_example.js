@@ -305,7 +305,6 @@ export const HeaderExample = {
       props: {
         EuiHeaderAlert,
       },
-      snippet: headerLinksSnippet,
       demo: <HeaderAlert />,
     },
     {

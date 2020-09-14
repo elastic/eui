@@ -47,6 +47,88 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with popoverButtonBreakpoints xs 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <div
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button>
+        Button
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popoverButtonBreakpoints m 1`] = `
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button>
+        Button
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
