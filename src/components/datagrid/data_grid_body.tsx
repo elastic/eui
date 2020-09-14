@@ -166,7 +166,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = props =>
           }
 
           const result = comparator(aValue, bValue, column.direction);
-          // only return if the columns are inequal, otherwise allow the next sort-by column to run
+          // only return if the columns are unequal, otherwise allow the next sort-by column to run
           if (result !== 0) return result;
         }
 

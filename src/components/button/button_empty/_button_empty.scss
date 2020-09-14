@@ -58,7 +58,7 @@ $euiButtonEmptyTypes: (
   text: $euiTextColor,
 );
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $name, $color in $euiButtonEmptyTypes {
   .euiButtonEmpty--#{$name} {
     @if ($name == 'ghost') {

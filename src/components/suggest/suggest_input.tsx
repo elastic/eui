@@ -137,7 +137,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = props =>
     <EuiFieldText
       value={value}
       fullWidth
-      append={appendArray}
+      append={appendArray.length ? appendArray : undefined}
       isLoading={status === 'loading' ? true : false}
       onChange={onFieldChange}
       {...rest}
@@ -145,15 +145,14 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = props =>
   );
 
   return (
-    <div className={classes}>
-      <EuiInputPopover
-        input={customInput}
-        isOpen={isPopoverOpen}
-        panelPaddingSize="none"
-        fullWidth
-        closePopover={closePopover}>
-        <div>{suggestions}</div>
-      </EuiInputPopover>
-    </div>
+    <EuiInputPopover
+      className={classes}
+      input={customInput}
+      isOpen={isPopoverOpen}
+      panelPaddingSize="none"
+      fullWidth
+      closePopover={closePopover}>
+      {suggestions}
+    </EuiInputPopover>
   );
 };

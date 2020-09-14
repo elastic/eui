@@ -238,6 +238,36 @@ export default ({ theme }) => {
     </EuiPopover>
   );
 
+  /**
+   * Sitewide search
+   */
+  const search = (
+    <EuiSelectableTemplateSitewide
+      options={[]}
+      searchProps={{
+        append: '⌘K',
+        compressed: true,
+      }}
+      popoverButton={
+        <EuiHeaderSectionItemButton aria-label="Sitewide search">
+          <EuiIcon type="search" size="m" />
+        </EuiHeaderSectionItemButton>
+      }
+      popoverButtonBreakpoints={['xs', 's']}
+      emptyMessage={
+        <EuiSelectableMessage style={{ minHeight: 300 }}>
+          <p>
+            Please see the component page for{' '}
+            <Link to="/forms/selectable">
+              <strong>EuiSelectableTemplateSitewide</strong>
+            </Link>{' '}
+            on how to configure your sitewide search.
+          </p>
+        </EuiSelectableMessage>
+      }
+    />
+  );
+
   return (
     <>
       <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
@@ -255,38 +285,22 @@ export default ({ theme }) => {
                   <EuiHeaderLogo iconType="logoElastic" href="">
                     Elastic
                   </EuiHeaderLogo>,
-                ],
-                borders: 'none',
-              },
-              {
-                items: [
-                  <EuiSelectableTemplateSitewide
-                    options={[]}
-                    searchProps={{
-                      append: '⌘K',
-                      compressed: true,
-                    }}
-                    emptyMessage={
-                      <EuiSelectableMessage style={{ minHeight: 300 }}>
-                        <p>
-                          Please see the component page for{' '}
-                          <Link to="/forms/selectable">
-                            <strong>EuiSelectableTemplateSitewide</strong>
-                          </Link>{' '}
-                          on how to configure your sitewide search.
-                        </p>
-                      </EuiSelectableMessage>
-                    }
-                  />,
-                ],
-                borders: 'none',
-              },
-              {
-                items: [
                   deploymentMenu,
+                ],
+                borders: 'none',
+              },
+              {
+                items: [
+                  <EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>,
+                ],
+                borders: 'none',
+              },
+              {
+                items: [
+                  <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
                   <EuiHeaderSectionItemButton
-                    aria-label="Notifications"
-                    notification={'•'}
+                    notification={true}
+                    aria-label="Notifictations: Updates available"
                     onClick={() =>
                       setIsAlertFlyoutVisible(!isAlertFlyoutVisible)
                     }>
@@ -317,13 +331,15 @@ export default ({ theme }) => {
               {
                 items: [
                   <EuiHeaderLinks>
-                    <EuiHeaderLink>Share</EuiHeaderLink>
-                    <EuiHeaderLink>Clone</EuiHeaderLink>
+                    <EuiHeaderLink color="primary">Share</EuiHeaderLink>
+                    <EuiHeaderLink color="primary" iconType="copy">
+                      Clone
+                    </EuiHeaderLink>
                     <EuiButton
                       iconType="minimize"
                       style={{ minWidth: 80 }}
                       size="s"
-                      color="secondary"
+                      color="primary"
                       onClick={() => {
                         setFullScreen(false);
                         document.body.classList.remove(

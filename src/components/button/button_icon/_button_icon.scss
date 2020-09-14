@@ -34,7 +34,7 @@
   }
 }
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $name, $color in $euiButtonIconTypes {
   .euiButtonIcon--#{$name} {
     color: $color;
