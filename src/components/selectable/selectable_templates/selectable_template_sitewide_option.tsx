@@ -74,12 +74,15 @@ export const euiSelectableTemplateSitewideFormatOptions = (
   options: EuiSelectableTemplateSitewideOption[]
 ) => {
   return options.map((item: EuiSelectableTemplateSitewideOption) => {
+    let title = item.label;
+    if (item.meta && item.meta.length) {
+      title += ` •${renderOptionMeta(item.meta, '', true)}`;
+    }
+
     return {
       key: item.label,
       label: item.label,
-      title: `${item.label}${item.meta &&
-        item.meta.length &&
-        ' • '}${renderOptionMeta(item.meta, '', true)}`,
+      title,
       ...item,
       className: classNames(
         'euiSelectableTemplateSitewide__listItem',

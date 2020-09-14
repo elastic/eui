@@ -1,48 +1,62 @@
 import React from 'react';
 
-import { EuiCode, EuiHideFor, EuiShowFor } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiHideFor,
+  EuiShowFor,
+  EuiText,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default () => (
-  <div>
+  <EuiText>
     <EuiHideFor sizes={['xs']}>
-      Hiding from <EuiCode>xs</EuiCode> screens only
+      <p>
+        Hiding from <EuiCode>xs</EuiCode> screens only
+      </p>
     </EuiHideFor>
-    <br />
     <EuiHideFor sizes={['xs', 's']}>
-      Hiding from <EuiCode>xs, s</EuiCode> screens
+      <p>
+        Hiding from <EuiCode>xs, s</EuiCode> screens
+      </p>
     </EuiHideFor>
-    <br />
     <EuiHideFor sizes={['xs', 's', 'm', 'l']}>
-      Hiding from <EuiCode>xs, s, m, l</EuiCode> screens
+      <p>
+        Hiding from <EuiCode>xs, s, m, l</EuiCode> screens
+      </p>
     </EuiHideFor>
-    <br />
     <EuiHideFor sizes={['xl']}>
-      Hiding from <EuiCode>xl</EuiCode> screens only
+      <p>
+        Hiding from <EuiCode>xl</EuiCode> screens only
+      </p>
     </EuiHideFor>
 
-    <br />
-    <br />
+    <EuiSpacer size="xxl" />
 
     <EuiShowFor sizes={['xs']}>
-      Showing for <EuiCode>xs</EuiCode> screens only
+      <p>
+        Showing for <EuiCode>xs</EuiCode> screens only
+      </p>
     </EuiShowFor>
-    <br />
     <EuiShowFor sizes={['xs', 's']}>
-      Showing for <EuiCode>xs, s</EuiCode> screens
+      <p>
+        Showing for <EuiCode>xs, s</EuiCode> screens
+      </p>
     </EuiShowFor>
-    <br />
     <EuiShowFor sizes={['xs', 's', 'm', 'l']}>
-      Showing for <EuiCode>xs, s, m, l</EuiCode> screens
+      <p>
+        Showing for <EuiCode>xs, s, m, l</EuiCode> screens
+      </p>
     </EuiShowFor>
-    <br />
     <EuiShowFor sizes={['xl']}>
-      Showing for <EuiCode>xl</EuiCode> screen only
+      <p>
+        Showing for <EuiCode>xl</EuiCode> screen only
+      </p>
     </EuiShowFor>
-    <EuiShowFor sizes={['m', 'l', 'xl']} display="block">
-      <div>
-        Showing for <EuiCode>m, l, xl</EuiCode> screen only as{' '}
-        <EuiCode>block</EuiCode>
-      </div>
+    <EuiShowFor sizes={['m', 'l', 'xl']}>
+      <p>
+        Showing for <EuiCode>m, l, xl</EuiCode> screen only
+      </p>
     </EuiShowFor>
-  </div>
+  </EuiText>
 );

@@ -525,7 +525,7 @@ export class GuideSection extends Component {
         wrap>
         <EuiFlexItem grow={false}>
           <EuiTitle size="s">
-            <h3>{componentName}</h3>
+            <h3 id={componentName}>{componentName}</h3>
           </EuiTitle>
         </EuiFlexItem>
         {extendedTypesElements.length > 0 && (

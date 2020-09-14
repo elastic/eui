@@ -13,7 +13,7 @@
 
 .euiHeaderLogo {
   @include euiBreakpoint('xs') {
-    padding: 0 $euiSizeXS;
+    padding-left: $euiSizeXS;
   }
 
   padding-left: $euiSizeS;

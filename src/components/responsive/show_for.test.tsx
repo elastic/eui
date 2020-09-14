@@ -19,32 +19,20 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
 
-import {
-  EuiShowForBreakpoints,
-  EuiShowForDisplay,
-  EuiShowFor,
-} from './show_for';
+import { EuiShowForBreakpoints, EuiShowFor } from './show_for';
 
 const BREAKPOINTS: EuiShowForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
-const DISPLAYS: EuiShowForDisplay[] = ['block', 'inlineBlock', 'flex'];
 
 describe('EuiShowFor', () => {
-  test('renders wraps children in a span', () => {
-    const component = render(
-      <EuiShowFor sizes={['xs']} {...requiredProps}>
-        Child
-      </EuiShowFor>
-    );
+  // @ts-ignore innerWidth might be read only but we can still override it for the sake of testing
+  beforeAll(() => (window.innerWidth = 670));
+  afterAll(() => 1024); // reset to jsdom's default
 
-    expect(component).toMatchSnapshot();
-  });
-
-  test('renders and copies classes', () => {
+  test('renders', () => {
     const component = render(
-      <EuiShowFor sizes={['xs']}>
-        <div>Child</div>
+      <EuiShowFor sizes={['s']}>
+        <span>Child</span>
       </EuiShowFor>
     );
 
@@ -53,7 +41,11 @@ describe('EuiShowFor', () => {
 
   BREAKPOINTS.forEach(size => {
     test(`${size} is rendered`, () => {
-      const component = render(<EuiShowFor sizes={[size]} />);
+      const component = render(
+        <EuiShowFor sizes={[size]}>
+          <span>Child</span>
+        </EuiShowFor>
+      );
 
       expect(component).toMatchSnapshot();
     });
@@ -61,17 +53,11 @@ describe('EuiShowFor', () => {
 
   test('renders for multiple breakpoints', () => {
     const component = render(
-      <EuiShowFor sizes={['xs', 'l']}>Child</EuiShowFor>
+      <EuiShowFor sizes={['s', 'l']}>
+        <span>Child</span>
+      </EuiShowFor>
     );
 
     expect(component).toMatchSnapshot();
-  });
-
-  DISPLAYS.forEach(display => {
-    test(`${display} is rendered`, () => {
-      const component = render(<EuiShowFor sizes={['xs']} display={display} />);
-
-      expect(component).toMatchSnapshot();
-    });
   });
 });

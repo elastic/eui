@@ -23,7 +23,7 @@ Array [
       },
     ],
     "prepend": undefined,
-    "title": "Basic data application •  Application",
+    "title": "Basic data application • Application",
     "url": "welcome-dashboards",
   },
   Object {
@@ -50,7 +50,7 @@ Array [
       size="l"
       type="user"
     />,
-    "title": "Platform with deployment highlighted •  Account, personal-databoard",
+    "title": "Platform with deployment highlighted • Account, personal-databoard",
   },
   Object {
     "append": undefined,
@@ -84,7 +84,7 @@ Array [
       type="alert"
     />,
     "searchableLabel": "Totally custom with pink metadata",
-    "title": "Other metas •  Article, Case, Text, I have a custom type",
+    "title": "Other metas • Article, Case, Text, I have a custom type",
   },
 ]
 `;
