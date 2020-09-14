@@ -8,8 +8,9 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiContextMenu,
-  EuiContextMenuPanel,
   EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiLink,
 } from '../../../../src/components';
 
 import ContextMenu from './context_menu';
@@ -121,6 +122,22 @@ export const ContextMenuExample = {
             that a specific context menu panel has a certain width, add{' '}
             <EuiCode language="ts">width: [number of pixels]</EuiCode> to the
             panel tree.
+          </p>
+          <p>
+            You can add separator lines through <EuiCode>items</EuiCode> prop if
+            you define items as{' '}
+            <EuiCode language="ts">{'{isSeparator: true}'}</EuiCode>. Separator
+            passes through rest of its fields as props to{' '}
+            <Link to="/layout/horizontal-rule">
+              <strong>EuiHorizontalRule</strong>
+            </Link>{' '}
+            component. Separators can also have a{' '}
+            <EuiLink
+              href="https://reactjs.org/docs/lists-and-keys.html#keys"
+              target="_blank">
+              <EuiCode>key</EuiCode> prop
+            </EuiLink>
+            , used by React for list rendering.
           </p>
         </div>
       ),
