@@ -135,7 +135,6 @@ export default () => {
             border: 'horizontal',
             rowHover: 'highlight',
             header: 'underline',
-            footer: 'overline',
           }}
         />
       </EuiFlexItem>

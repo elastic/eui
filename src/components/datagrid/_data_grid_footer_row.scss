@@ -12,7 +12,7 @@
     border-top: $euiBorderThick;
     // sass-lint:disable-block no-important
     border-top-color: $euiTextColor !important;
-    background: none !important;
+    background: $euiColorEmptyShade !important;
   }
 }
 
