@@ -124,10 +124,10 @@ export const ContextMenuExample = {
             panel tree.
           </p>
           <p>
-            You can add separator lines through <EuiCode>items</EuiCode> prop if
-            you define items as{' '}
-            <EuiCode language="ts">{'{isSeparator: true}'}</EuiCode>. Separator
-            passes through rest of its fields as props to{' '}
+            You can add separator lines in the <EuiCode>items</EuiCode> prop if
+            you define an items as{' '}
+            <EuiCode language="ts">{'{isSeparator: true}'}</EuiCode>. This will
+            pass the rest of its fields as props to a{' '}
             <Link to="/layout/horizontal-rule">
               <strong>EuiHorizontalRule</strong>
             </Link>{' '}
