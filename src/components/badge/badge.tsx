@@ -229,7 +229,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     relObj.href = href;
     relObj.target = target;
     relObj.rel = getSecureRelForTarget({ href, target, rel });
-  } else if (onClick) {
+  }
+  if (onClick) {
     relObj.onClick = onClick;
   }
 
