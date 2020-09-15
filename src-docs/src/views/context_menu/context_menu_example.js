@@ -10,7 +10,6 @@ import {
   EuiContextMenu,
   EuiContextMenuItem,
   EuiContextMenuPanel,
-  EuiLink,
 } from '../../../../src/components';
 
 import ContextMenu from './context_menu';
@@ -125,19 +124,13 @@ export const ContextMenuExample = {
           </p>
           <p>
             You can add separator lines in the <EuiCode>items</EuiCode> prop if
-            you define an items as{' '}
+            you define an item as{' '}
             <EuiCode language="ts">{'{isSeparator: true}'}</EuiCode>. This will
             pass the rest of its fields as props to a{' '}
             <Link to="/layout/horizontal-rule">
               <strong>EuiHorizontalRule</strong>
             </Link>{' '}
-            component. Separators can also have a{' '}
-            <EuiLink
-              href="https://reactjs.org/docs/lists-and-keys.html#keys"
-              target="_blank">
-              <EuiCode>key</EuiCode> prop
-            </EuiLink>
-            , used by React for list rendering.
+            component.
           </p>
         </div>
       ),
