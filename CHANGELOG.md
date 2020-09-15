@@ -5,6 +5,7 @@
 - Added `boolean` type to the `notification` prop of `EuiHeaderSectionItemButton` to show a simple dot ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `popoverButton` and `popoverButtonBreakpoints` props to `EuiSelectableTemplateSitewide` for responsive capabilities ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `isWithinMaxBreakpoint` service ([#4008](https://github.com/elastic/eui/pull/4008))
+- Added column header menu to `EuiDataGrid` ([#3087](https://github.com/elastic/eui/pull/3087))
 
 **Bug fixes**
 
@@ -24,7 +25,6 @@
 - Added `loading` icon to `EuiComboBox` input when `isLoading` is `true` ([#4015](https://github.com/elastic/eui/pull/4015))
 - Changed `value` prop in `EuiExpression` to not required ([#4014](https://github.com/elastic/eui/pull/4014))
 - Added `fold` and `unfold` glyphs to `EuiIcon` ([#3994](https://github.com/elastic/eui/pull/3994))
-- Added column header menu to `EuiDataGrid` ([#3087](https://github.com/elastic/eui/pull/3087))
 
 **Bug fixes**
 
