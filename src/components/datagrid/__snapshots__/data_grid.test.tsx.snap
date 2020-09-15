@@ -935,7 +935,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -971,7 +971,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -1524,7 +1524,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -1560,7 +1560,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -2404,7 +2404,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -2442,7 +2442,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -2977,7 +2977,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
@@ -3013,7 +3013,7 @@ Array [
                     class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiPopover__anchor euiDataGridHeaderCell__popoverAnchor"
                     >
                       <div
                         aria-label="Header actions"
