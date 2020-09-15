@@ -87,7 +87,7 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
     } = this.props;
 
     return (
-      // See `src/components/tool_tip/tool_tip.js` for explaination of below eslint-disable
+      // See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <EuiToolTip
         content={this.state.tooltipText}

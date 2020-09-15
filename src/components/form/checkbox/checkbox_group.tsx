@@ -38,7 +38,7 @@ export interface EuiCheckboxGroupIdToSelectedMap {
   [id: string]: boolean;
 }
 
-// Must omit inherit `onChange` properties or else TS complaines when applying to the EuiRadio
+// Must omit inherit `onChange` properties or else TS complains when applying to the EuiRadio
 type AsDivProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
 type WithLegendProps = Omit<EuiFormFieldsetProps, 'onChange'> & {
   /**

@@ -24,7 +24,7 @@
     height: 0;
   }
 
-  // The top and bottom padding give heighto to the list creating a dead-zone effect
+  // The top and bottom padding give height to the list creating a dead-zone effect
   // when there's no toasts in the list, meaning you can't click anything beneath it.
   // Only add the padding if there's content.
   &:not(:empty) {

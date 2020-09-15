@@ -25,7 +25,7 @@ $euiColorDarkShade: #69707D !default;
 $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
 
-// Every color below must be based mathmatically on the set above and in a particular order.
+// Every color below must be based mathematically on the set above and in a particular order.
 $euiTextColor: $euiColorDarkestShade !default;
 $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 $euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade) !default;
