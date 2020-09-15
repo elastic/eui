@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -54,9 +54,10 @@ export interface EuiContextMenuPanelItemSeparator
   key?: string;
 }
 
-export type EuiContextMenuPanelItemDescriptor =
-  | EuiContextMenuPanelItemDescriptorEntry
-  | EuiContextMenuPanelItemSeparator;
+export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
+  EuiContextMenuPanelItemDescriptorEntry,
+  EuiContextMenuPanelItemSeparator
+>;
 
 export interface EuiContextMenuPanelDescriptor {
   id: EuiContextMenuPanelId;
