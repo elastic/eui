@@ -40,6 +40,15 @@
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
 
+    .euiDataGridHeaderCell__button {
+      flex: 0 0 auto;
+      position: relative;
+      align-items: center;
+      display: flex;
+      text-align: left;
+      font-weight: $euiFontWeightBold;
+    }
+
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
       overflow: hidden;

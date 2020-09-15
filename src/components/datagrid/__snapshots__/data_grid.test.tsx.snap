@@ -923,31 +923,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  A
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                      type="button"
+                    A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -961,31 +959,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  B
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                      type="button"
+                    B
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
             <div
@@ -1516,31 +1512,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  A
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                      type="button"
+                    A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1554,31 +1548,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  B
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                      type="button"
+                    B
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
@@ -2400,31 +2392,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  Column A
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                      type="button"
+                    Column A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2438,33 +2428,31 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  <div>
-                    More Elements
-                  </div>
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                      type="button"
+                    <div>
+                      More Elements
+                    </div>
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
             <div
@@ -2977,31 +2965,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  A
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                      type="button"
+                    A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -3015,31 +3001,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  B
-                </div>
-                <div
-                  class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
                   <div
-                    class="euiPopover__anchor"
+                    class="euiDataGridHeaderCell__content"
                   >
-                    <button
-                      aria-label="Header actions"
-                      class="euiButtonIcon euiButtonIcon--text"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                      type="button"
+                    B
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
                     >
                       <div
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
+                        aria-label="Header actions"
+                        color="text"
                         data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
             <div
