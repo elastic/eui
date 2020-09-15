@@ -311,7 +311,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           <div className="euiDataGridHeaderCell__content">{display || id}</div>
           <EuiPopover
             className="euiDataGridHeaderCell__popover"
-            anchorClassName="euiDataGridHeaderCell__popoverAnchor"
             panelPaddingSize="none"
             anchorPosition="downRight"
             button={
