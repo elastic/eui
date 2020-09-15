@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `29.0.0`.
+
+## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
+
 - Added `.browserslistrc` for global browser support reference ([#4022](https://github.com/elastic/eui/pull/4022))
 - Added ability to specify `color` of `EuiHeaderLink` ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `boolean` type to the `notification` prop of `EuiHeaderSectionItemButton` to show a simple dot ([#4008](https://github.com/elastic/eui/pull/4008))
