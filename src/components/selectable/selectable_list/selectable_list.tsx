@@ -238,6 +238,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         onClick={() => this.onAddOrRemoveOption(option)}
         ref={ref ? ref.bind(null, index) : undefined}
         isFocused={this.props.activeOptionIndex === index}
+        showIcons={this.props.showIcons}
         title={searchableLabel || label}
         checked={checked}
         disabled={disabled}

@@ -21,10 +21,12 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
-import { IconType } from '../../icon';
 
 export type EuiHeaderLinkProps = EuiButtonEmptyProps & {
-  iconType?: IconType;
+  /**
+   * Simple prop to update color based on active state.
+   * Can be overridden with `color`
+   */
   isActive?: boolean;
 };
 
@@ -42,9 +44,9 @@ export const EuiHeaderLink: FunctionComponent<EuiHeaderLinkProps> = ({
   );
 
   const props = {
+    color: isActive ? 'primary' : 'text',
     ...rest,
     className: classes,
-    color: isActive ? 'primary' : 'text',
   };
 
   return <EuiButtonEmpty {...(props as EuiButtonEmptyProps)} />;

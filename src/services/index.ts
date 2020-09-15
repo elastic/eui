@@ -36,6 +36,13 @@ export {
 } from './alignment';
 
 export {
+  BREAKPOINTS,
+  BREAKPOINT_KEYS,
+  getBreakpoint,
+  isWithinMaxBreakpoint,
+} from './breakpoint';
+
+export {
   isColorDark,
   isValidHex,
   calculateContrast,

@@ -25,13 +25,15 @@ import {
   EuiNotificationBadgeProps,
   EuiNotificationBadge,
 } from '../../badge/notification_badge/badge_notification';
+import { EuiIcon } from '../../icon';
 
-type Props = CommonProps &
+export type EuiHeaderSectionItemButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     /**
-     * Inserts the node into a EuiBadgeNotification and places it appropriately against the button
+     * Inserts the node into a EuiBadgeNotification and places it appropriately against the button.
+     * Or pass `true` to render a simple dot
      */
-    notification?: EuiNotificationBadgeProps['children'];
+    notification?: EuiNotificationBadgeProps['children'] | boolean;
     /**
      * Changes the color of the notification background
      */
@@ -42,23 +44,41 @@ export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
 
 export const EuiHeaderSectionItemButton = React.forwardRef<
   EuiHeaderSectionItemButtonRef,
-  PropsWithChildren<Props>
+  PropsWithChildren<EuiHeaderSectionItemButtonProps>
 >(
   (
-    { onClick, children, className, notification, notificationColor, ...rest },
+    {
+      onClick,
+      children,
+      className,
+      notification,
+      notificationColor = 'accent',
+      ...rest
+    },
     ref
   ) => {
     const classes = classNames('euiHeaderSectionItem__button', className);
 
     let notificationBadge;
     if (notification) {
-      notificationBadge = (
-        <EuiNotificationBadge
-          className="euiHeaderSectionItemButton__notification"
-          color={notificationColor}>
-          {notification}
-        </EuiNotificationBadge>
-      );
+      if (notification === true) {
+        notificationBadge = (
+          <EuiIcon
+            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+            color={notificationColor}
+            type="dot"
+            size="l"
+          />
+        );
+      } else {
+        notificationBadge = (
+          <EuiNotificationBadge
+            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+            color={notificationColor}>
+            {notification}
+          </EuiNotificationBadge>
+        );
+      }
     }
 
     return (
