@@ -12,7 +12,7 @@ export default () => {
   return (
     <EuiHeader>
       <EuiHeaderSectionItem border="right">
-        <EuiHeaderLogo href="">Product</EuiHeaderLogo>
+        <EuiHeaderLogo>Elastic</EuiHeaderLogo>
       </EuiHeaderSectionItem>
 
       <EuiHeaderSectionItem>

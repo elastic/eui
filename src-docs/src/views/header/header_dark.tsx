@@ -22,12 +22,7 @@ export default ({ theme }: { theme: any }) => (
     sections={[
       {
         items: [
-          <EuiHeaderLogo
-            iconType="logoElastic"
-            href="/"
-            aria-label="Goes to home">
-            Elastic
-          </EuiHeaderLogo>,
+          <EuiHeaderLogo>Elastic</EuiHeaderLogo>,
           <EuiHeaderLinks aria-label="App navigation dark theme example">
             <EuiHeaderLink href="" isActive>
               Docs

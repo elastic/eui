@@ -266,12 +266,13 @@ export const HeaderExample = {
         <p>
           To make site-wide navigation more prominent,{' '}
           <strong>EuiHeader</strong> supports reversing the colors to dark theme
-          with <EuiCode language="js">{'theme="dark"'}</EuiCode>.{' '}
-          <strong>However</strong>, it only supports a limited set of children
-          that will also shift their theme. These components include{' '}
-          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong> and{' '}
-          <strong>EuiHeaderSectionItemButton</strong>. Any other content may not
-          render correctly without custom configurations.
+          with <EuiCode language="js">{'theme="dark"'}</EuiCode>. However, it
+          only supports a <strong>limited set of children</strong> that will
+          also shift their theme. These components include{' '}
+          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong>{' '}
+          <strong>EuiHeaderSectionItemButton</strong> and{' '}
+          <strong>EuiSelectableTemplateSitewide</strong>. Any other content may
+          not render correctly without custom configurations.
         </p>
       ),
       snippet: '<EuiHeader theme="dark" />',

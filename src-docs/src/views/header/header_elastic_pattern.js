@@ -332,9 +332,7 @@ export default ({ theme }) => {
                 items: [
                   <EuiHeaderLinks>
                     <EuiHeaderLink color="primary">Share</EuiHeaderLink>
-                    <EuiHeaderLink color="primary" iconType="copy">
-                      Clone
-                    </EuiHeaderLink>
+                    <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                     <EuiButton
                       iconType="minimize"
                       style={{ minWidth: 80 }}
