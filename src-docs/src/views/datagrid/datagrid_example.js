@@ -20,6 +20,7 @@ const dataGridHtml = renderToHtml(DataGrid);
 
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
@@ -353,6 +354,7 @@ export const DataGridExample = {
       props: {
         EuiDataGrid,
         EuiDataGridColumn,
+        EuiDataGridColumnCellAction,
         EuiDataGridColumnVisibility,
         EuiDataGridControlColumn,
         EuiDataGridInMemory,

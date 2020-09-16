@@ -45,12 +45,21 @@
       width: $euiSizeM;
       background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
     }
+
+    .euiDataGridRowCell__actionButtonIcon {
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
   }
 
   // Only add the transition effect on hover, so that it is instantaneous on focus
   // Long delays on hover to mitigate the accordion effect
   &:hover {
     .euiDataGridRowCell__expandButtonIcon {
+      transition: margin $euiAnimSpeedFast 1000ms, width $euiAnimSpeedFast 1000ms;
+    }
+
+    .euiDataGridRowCell__actionButtonIcon {
       transition: margin $euiAnimSpeedFast 1000ms, width $euiAnimSpeedFast 1000ms;
     }
   }
@@ -127,6 +136,17 @@
     margin-left: $euiDataGridCellPaddingM;
     width: $euiSizeM;
   }
+}
+
+.euiDataGridRowCell__actionButtonIcon {
+  height: $euiSizeM;
+  min-height: $euiSizeM;
+  border-radius: $euiBorderRadius / 2;
+  padding: 0;
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  transition: none; // Have to take out the generic transition so it is instaneous on focus
 }
 
 // Row highlights

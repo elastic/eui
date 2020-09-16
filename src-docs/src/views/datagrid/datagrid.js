@@ -17,12 +17,58 @@ import {
   EuiButtonIcon,
   EuiSpacer,
 } from '../../../../src/components/';
+import { EuiButton } from '../../../../src/components/button';
+
+const raw_data = [];
+
+for (let i = 1; i < 100; i++) {
+  const email = fake('{{internet.email}}');
+  const name = fake('{{name.lastName}}, {{name.firstName}}');
+  const suffix = fake('{{name.suffix}}');
+  raw_data.push({
+    name: {
+      formatted: `${name} ${suffix}`,
+      raw: name,
+    },
+    email: {
+      formatted: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
+      raw: email,
+    },
+    location: (
+      <Fragment>
+        {`${fake('{{address.city}}')}, `}
+        <EuiLink href="https://google.com">
+          {fake('{{address.country}}')}
+        </EuiLink>
+      </Fragment>
+    ),
+    date: fake('{{date.past}}'),
+    account: fake('{{finance.account}}'),
+    amount: fake('${{commerce.price}}'),
+    phone: fake('{{phone.phoneNumber}}'),
+    version: fake('{{system.semver}}'),
+  });
+}
 
 const columns = [
   {
     id: 'name',
     displayAsText: 'Name',
     defaultSortDirection: 'asc',
+    valueActions: [
+      {
+        label: 'Say hi',
+        iconType: 'heart',
+        callback: (rowIndex, columnId) =>
+          alert(`Hi ${raw_data[rowIndex][columnId].raw}!`),
+      },
+      {
+        label: 'Say bye',
+        iconType: 'moon',
+        callback: (rowIndex, columnId) =>
+          alert(`Bye ${raw_data[rowIndex][columnId].raw}!`),
+      },
+    ],
   },
   {
     id: 'email',
@@ -42,12 +88,36 @@ const columns = [
         </EuiFlexItem>
       </EuiFlexGroup>
     ),
+    valueActions: [
+      {
+        label: 'Send email',
+        iconType: 'email',
+        callback: (rowIndex, columnId) =>
+          alert(raw_data[rowIndex][columnId].raw),
+      },
+    ],
   },
   {
     id: 'location',
   },
   {
     id: 'account',
+    valueActions: [
+      {
+        label: 'Send money',
+        iconType: 'faceHappy',
+        callback: (rowIndex, columnId) =>
+          alert(`Sent money to ${raw_data[rowIndex][columnId]}`),
+        inPopoverButton: (rowIndex, columnId) => (
+          <EuiButton
+            onClick={() => alert('done')}
+            iconType="faceHappy"
+            aria-label={`Send money to ${raw_data[rowIndex][columnId]}`}>
+            Send money
+          </EuiButton>
+        ),
+      },
+    ],
   },
   {
     id: 'date',
@@ -67,28 +137,6 @@ const columns = [
     isResizable: false,
   },
 ];
-
-const raw_data = [];
-
-for (let i = 1; i < 100; i++) {
-  raw_data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
-    location: (
-      <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </Fragment>
-    ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{commerce.price}}'),
-    phone: fake('{{phone.phoneNumber}}'),
-    version: fake('{{system.semver}}'),
-  });
-}
 
 const trailingControlColumns = [
   {
@@ -198,8 +246,14 @@ export default () => {
         }
       }, [rowIndex, columnId, setCellProps]);
 
+      function getFormatted() {
+        return raw_data[rowIndex][columnId].formatted
+          ? raw_data[rowIndex][columnId].formatted
+          : raw_data[rowIndex][columnId];
+      }
+
       return raw_data.hasOwnProperty(rowIndex)
-        ? raw_data[rowIndex][columnId]
+        ? getFormatted(rowIndex, columnId)
         : null;
     };
   }, []);

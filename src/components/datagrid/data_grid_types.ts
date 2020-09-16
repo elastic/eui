@@ -19,6 +19,7 @@
 
 import { ComponentType, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
+import { EuiIconType } from '../icon/icon';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -76,6 +77,35 @@ export interface EuiDataGridColumn {
    * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
    */
   displayAsText?: string;
+  /**
+   * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
+   */
+  valueActions?: EuiDataGridColumnCellAction[];
+}
+
+export interface EuiDataGridColumnCellAction {
+  /**
+   * Should contain functionality about the action that can be triggered
+   */
+  label: string;
+  /**
+   * In case there's a different aria label needed
+   */
+  ariaLabel?: string;
+  /**
+   * Icon to display on hover / focus of the cell
+   */
+  iconType: EuiIconType;
+  /**
+   * Function triggered on click / keypress, passing the raw value of the cell as first argument
+   * @param value
+   */
+  callback: (rowIndex: number, columnId: string) => void;
+  /**
+   * Button for displaying in the expanded cells popover.
+   * Required for keyboard accessibility
+   */
+  inPopoverButton?: (rowIndex: number, columnId: string) => ReactNode;
 }
 
 export interface EuiDataGridColumnVisibility {
