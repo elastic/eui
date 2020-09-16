@@ -2,11 +2,19 @@
   font-weight: $euiFontWeightBold;
 }
 
+@include euiDataGridStyles(stickyFooter) {
+  .euiDataGridFooter {
+    position: sticky;
+    bottom: 0;
+  }
+}
+
 @include euiDataGridStyles(footerOverline) {
   @include euiDataGridFooterCell {
     border-top: $euiBorderThick;
     // sass-lint:disable-block no-important
     border-top-color: $euiTextColor !important;
+    background: $euiColorEmptyShade !important;
   }
 }
 

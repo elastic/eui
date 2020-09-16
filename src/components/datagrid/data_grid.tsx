@@ -177,6 +177,7 @@ const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
 const footerToClassMap: { [footer in EuiDataGridStyleFooter]: string } = {
   shade: 'euiDataGrid--footerShade',
   overline: 'euiDataGrid--footerOverline',
+  striped: '',
 };
 
 const rowHoverToClassMap: {
@@ -808,6 +809,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     cellPaddingsToClassMap[gridStyles.cellPadding!],
     {
       'euiDataGrid--stripes': gridStyles.stripes!,
+    },
+    {
+      'euiDataGrid--stickyFooter': gridStyles.footer && gridStyles.stickyFooter,
     },
     {
       'euiDataGrid--fullScreen': isFullScreen,

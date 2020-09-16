@@ -72,7 +72,11 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
     visibleRowIndex = rowIndex,
     ...rest
   }) => {
-    const classes = classnames('euiDataGridRow', className);
+    const classes = classnames(
+      'euiDataGridRow',
+      'euiDataGridFooter',
+      className
+    );
     const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
     return (

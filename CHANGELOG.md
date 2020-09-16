@@ -4,6 +4,7 @@
 - Added build-specific babel configurations for docs and tests ([#3911](https://github.com/elastic/eui/pull/3911))
 - Updated browserslist configuration to remove IE accommodations ([#3911](https://github.com/elastic/eui/pull/3911))
 - Removed docgenInfo from non-docs production builds ([#3911](https://github.com/elastic/eui/pull/3911))
+- Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
 
 **Bug fixes**
 

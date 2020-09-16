@@ -96,7 +96,7 @@ export interface EuiDataGridColumnWidths {
 export type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
 export type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
 export type EuiDataGridStyleHeader = 'shade' | 'underline';
-export type EuiDataGridStyleFooter = 'shade' | 'overline';
+export type EuiDataGridStyleFooter = 'shade' | 'overline' | 'striped';
 export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
@@ -129,6 +129,10 @@ export interface EuiDataGridStyle {
    * Defines the padding with the row and column cells
    */
   cellPadding?: EuiDataGridStyleCellPaddings;
+  /**
+   * If set to true, the footer row will be sticky
+   */
+  stickyFooter?: boolean;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {

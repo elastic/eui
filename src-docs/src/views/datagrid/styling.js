@@ -11,6 +11,7 @@ import {
   EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiCallOut,
 } from '../../../../src/components/';
 
 const columns = [
@@ -36,7 +37,7 @@ const columns = [
 
 const data = [];
 
-for (let i = 1; i < 5; i++) {
+for (let i = 1; i < 6; i++) {
   data.push({
     avatar: (
       <EuiAvatar
@@ -54,7 +55,7 @@ for (let i = 1; i < 5; i++) {
 }
 
 const footerCellValues = {
-  avatar: '4 accounts',
+  avatar: '5 accounts',
 };
 
 const renderFooterCellValue = ({ columnId }) =>
@@ -149,6 +150,10 @@ export default class DataGrid extends Component {
       {
         id: 'overline',
         label: 'Overline',
+      },
+      {
+        id: 'striped',
+        label: 'Striped',
       },
     ];
 
@@ -454,7 +459,7 @@ export default class DataGrid extends Component {
               isOpen={this.state.isPopoverOpen}
               anchorPosition="rightUp"
               closePopover={this.closePopover.bind(this)}>
-              <div style={{ width: 300 }}>
+              <div style={{ width: 380 }}>
                 <EuiFormRow label="Border" display="columnCompressed">
                   <EuiButtonGroup
                     isFullWidth
@@ -654,6 +659,17 @@ export default class DataGrid extends Component {
             </EuiPopover>
           </EuiFlexItem>
         </EuiFlexGroup>
+
+        {this.state.footerSelected === 'striped' ? (
+          <>
+            <EuiSpacer />
+
+            <EuiCallOut
+              size="s"
+              title="A striped footer will be shaded depending on whether it is an even or an odd row considering the rest of the rows in the datagrid. Needs to be used with stripes={true}."
+            />
+          </>
+        ) : null}
 
         <EuiSpacer />
 
