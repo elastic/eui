@@ -45,10 +45,6 @@ export default () => {
           <EuiHeaderSectionItem border="right">
             <EuiHeaderLogo>Elastic</EuiHeaderLogo>
           </EuiHeaderSectionItem>
-          {/* TODO: How to say "none"
-          <EuiHeaderLinks popoverBreakpoints={}>
-            <EuiHeaderLink href="">Home</EuiHeaderLink>
-          </EuiHeaderLinks> */}
         </EuiHeaderSection>
 
         <EuiHeaderSection side="right">

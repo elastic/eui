@@ -60,4 +60,24 @@ describe('EuiHideFor', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('renders for "none"', () => {
+    const component = render(
+      <EuiHideFor sizes={'none'}>
+        <span>Child</span>
+      </EuiHideFor>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('never renders for "all"', () => {
+    const component = render(
+      <EuiHideFor sizes={'all'}>
+        <span>Child</span>
+      </EuiHideFor>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

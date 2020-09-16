@@ -50,7 +50,7 @@ export type EuiHeaderLinksProps = CommonProps &
     /**
      * A list of named breakpoints at which to show the popover version
      */
-    popoverBreakpoints?: EuiBreakpointSize[];
+    popoverBreakpoints?: EuiBreakpointSize[] | 'all' | 'none';
     /**
      * Extend the functionality of the EuiPopover.button which is a EuiHeaderSectionItemButton.
      * With the addition of `iconType` to change the display icon which defaults to `apps`

@@ -55,5 +55,11 @@ describe('EuiHeaderLinks', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('is never rendered with "none"', () => {
+      const component = render(<EuiHeaderLinks popoverBreakpoints={'none'} />);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
