@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -35,10 +35,11 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
+import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
 
 export type EuiContextMenuPanelId = string | number;
 
-export type EuiContextMenuPanelItemDescriptor = Omit<
+export type EuiContextMenuPanelItemDescriptorEntry = Omit<
   EuiContextMenuItemProps,
   'hasPanel'
 > & {
@@ -46,6 +47,17 @@ export type EuiContextMenuPanelItemDescriptor = Omit<
   key?: string;
   panel?: EuiContextMenuPanelId;
 };
+
+export interface EuiContextMenuPanelItemSeparator
+  extends EuiHorizontalRuleProps {
+  isSeparator: true;
+  key?: string;
+}
+
+export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
+  EuiContextMenuPanelItemDescriptorEntry,
+  EuiContextMenuPanelItemSeparator
+>;
 
 export interface EuiContextMenuPanelDescriptor {
   id: EuiContextMenuPanelId;
@@ -60,6 +72,11 @@ export type EuiContextMenuProps = CommonProps &
     panels?: EuiContextMenuPanelDescriptor[];
     initialPanelId?: EuiContextMenuPanelId;
   };
+
+const isItemSeparator = (
+  item: EuiContextMenuPanelItemDescriptor
+): item is EuiContextMenuPanelItemSeparator =>
+  (item as EuiContextMenuPanelItemSeparator).isSeparator === true;
 
 function mapIdsToPanels(panels: EuiContextMenuPanelDescriptor[]) {
   const map: { [id: string]: EuiContextMenuPanelDescriptor } = {};
@@ -77,6 +94,7 @@ function mapIdsToPreviousPanels(panels: EuiContextMenuPanelDescriptor[]) {
   panels.forEach(panel => {
     if (Array.isArray(panel.items)) {
       panel.items.forEach(item => {
+        if (isItemSeparator(item)) return;
         const isCloseable = item.panel !== undefined;
         if (isCloseable) {
           idToPreviousPanelIdMap[item.panel!] = panel.id;
@@ -98,6 +116,7 @@ function mapPanelItemsToPanels(panels: EuiContextMenuPanelDescriptor[]) {
 
     if (panel.items) {
       panel.items.forEach((item, index) => {
+        if (isItemSeparator(item)) return;
         if (item.panel) {
           idAndItemIndexToPanelIdMap[panel.id][index] = item.panel;
         }
@@ -227,7 +246,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       // Set focus on the item which shows the panel we're leaving.
       const previousPanel = this.state.idToPanelMap[previousPanelId];
       const focusedItemIndex = previousPanel.items!.findIndex(
-        item => item.panel === this.state.incomingPanelId
+        item =>
+          !isItemSeparator(item) && item.panel === this.state.incomingPanelId
       );
 
       if (focusedItemIndex !== -1) {
@@ -277,6 +297,11 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
   renderItems(items: EuiContextMenuPanelItemDescriptor[] = []) {
     return items.map((item, index) => {
+      if (isItemSeparator(item)) {
+        const { isSeparator: omit, key = index, ...rest } = item;
+        return <EuiHorizontalRule key={key} margin="none" {...rest} />;
+      }
+
       const {
         panel,
         name,

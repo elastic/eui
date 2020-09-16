@@ -9,6 +9,7 @@ No public interface changes since `29.0.0`.
 - Added `boolean` type to the `notification` prop of `EuiHeaderSectionItemButton` to show a simple dot ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `popoverButton` and `popoverButtonBreakpoints` props to `EuiSelectableTemplateSitewide` for responsive capabilities ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `isWithinMaxBreakpoint` service ([#4008](https://github.com/elastic/eui/pull/4008))
+- Added horizontal line separator to `EuiContextMenu` ([#4018](https://github.com/elastic/eui/pull/4018))
 
 **Bug fixes**
 
