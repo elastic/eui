@@ -24,7 +24,7 @@ function employCache(loaders) {
 const webpackConfig = {
   mode: isProduction ? 'production' : 'development',
 
-  devtool: isProduction ? 'source-map' : 'cheap-source-map',
+  devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
     bundle: './index.js',
