@@ -2,8 +2,6 @@
 
 - Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
 
-No public interface changes since `29.0.0`.
-
 ## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
 
 - Added `.browserslistrc` for global browser support reference ([#4022](https://github.com/elastic/eui/pull/4022))

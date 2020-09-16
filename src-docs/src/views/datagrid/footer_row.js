@@ -101,7 +101,7 @@ export default () => {
   );
 
   // Footer row
-  const [showFooterRow, setShowFooterRow] = useState(false);
+  const [showFooterRow, setShowFooterRow] = useState(true);
 
   return (
     <EuiFlexGroup direction="column">
