@@ -129,6 +129,10 @@ export interface EuiDataGridStyle {
    * Defines the padding with the row and column cells
    */
   cellPadding?: EuiDataGridStyleCellPaddings;
+  /**
+   * If set to true, the footer row will be sticky
+   */
+  stickyFooter?: boolean;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {

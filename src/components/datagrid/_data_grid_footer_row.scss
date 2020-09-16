@@ -2,9 +2,11 @@
   font-weight: $euiFontWeightBold;
 }
 
-.euiDataGridFooter {
-  position: sticky;
-  bottom: 0;
+@include euiDataGridStyles(stickyFooter) {
+  .euiDataGridFooter {
+    position: sticky;
+    bottom: 0;
+  }
 }
 
 @include euiDataGridStyles(footerOverline) {

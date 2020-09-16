@@ -811,6 +811,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       'euiDataGrid--stripes': gridStyles.stripes!,
     },
     {
+      'euiDataGrid--stickyFooter': gridStyles.footer && gridStyles.stickyFooter,
+    },
+    {
       'euiDataGrid--fullScreen': isFullScreen,
     },
     {
