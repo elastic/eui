@@ -50,7 +50,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
   // the pointing device (mouse, finger, stylus, etc.).
   // A click event's target can be imprecise, as the value will be
   // the closest common ancestor of the press (mousedown, touchstart)
-  // and relase (mouseup, touchend) events (often <body />) if
+  // and release (mouseup, touchend) events (often <body />) if
   // the the target of each event differs.
   // We need the actual event targets to make the correct decisions
   // about user intention. So, consider the down/start and up/end

@@ -8,8 +8,8 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiContextMenu,
-  EuiContextMenuPanel,
   EuiContextMenuItem,
+  EuiContextMenuPanel,
 } from '../../../../src/components';
 
 import ContextMenu from './context_menu';
@@ -121,6 +121,16 @@ export const ContextMenuExample = {
             that a specific context menu panel has a certain width, add{' '}
             <EuiCode language="ts">width: [number of pixels]</EuiCode> to the
             panel tree.
+          </p>
+          <p>
+            You can add separator lines in the <EuiCode>items</EuiCode> prop if
+            you define an item as{' '}
+            <EuiCode language="ts">{'{isSeparator: true}'}</EuiCode>. This will
+            pass the rest of its fields as props to a{' '}
+            <Link to="/layout/horizontal-rule">
+              <strong>EuiHorizontalRule</strong>
+            </Link>{' '}
+            component.
           </p>
         </div>
       ),

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { renderToHtml } from '../../services';
-import sizes from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_responsive.scss';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -12,6 +11,9 @@ import {
   EuiCodeBlock,
 } from '../../../../src/components';
 
+import { BREAKPOINTS, BREAKPOINT_KEYS } from '../../../../src/services';
+import { EuiBreakpointSize } from '!!prop-loader!../../../../src/services/breakpoint';
+
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
@@ -19,17 +21,16 @@ const responsiveSnippet = [
   `<EuiHideFor sizes={['xs', 's']}>
   <!-- Content to hide from xs and s screens -->
 </EuiHideFor>`,
-  `<EuiShowFor sizes={['l', 'xl']} display="block">
-  <!-- <div>Content only showing for l and xl screens and displaying in block</div> -->
+  `<EuiShowFor sizes={['l', 'xl']}>
+  <!-- <div>Content only showing for l and xl screens</div> -->
 </EuiShowFor>`,
 ];
 
 function renderSizes(size, index) {
-  let code = `'${size}': ${sizes.euiBreakpoints[size]}px`;
+  let code = `'${size}': ${BREAKPOINTS[size]}px`;
 
-  if (index < sizes.euiBreakpointKeys.length - 1) {
-    code += ` (to ${sizes.euiBreakpoints[sizes.euiBreakpointKeys[index + 1]] -
-      1}px)`;
+  if (index > 0) {
+    code += ` (to ${BREAKPOINTS[BREAKPOINT_KEYS[index - 1]] - 1}px)`;
   } else {
     code += ' +';
   }
@@ -55,27 +56,28 @@ export const ResponsiveExample = {
       text: (
         <div>
           <p>
-            Pass an array of named breakpoints to either the{' '}
-            <strong>EuiShowFor</strong> or <strong>EuiHideFor</strong>{' '}
-            components to make them responsive.
+            These components will either render or not render their children
+            based on the current window width. Pass an array of named
+            breakpoints to the <EuiCode>sizes</EuiCode> prop to either show or
+            hide their children respectively.
           </p>
 
           <p>
-            The sizing correlates with our{' '}
-            <EuiCode language="scss">$euiBreakpoints</EuiCode> SASS map. The
-            named breakpoint starts at the pixel value provided and ends before
-            the next one.
+            The sizing options correlate with the keys in the{' '}
+            <EuiCode language="ts">EuiBreakpoints</EuiCode> type. The named
+            breakpoint starts at the pixel value provided and ends before the
+            next one.
           </p>
 
           <EuiCodeBlock language="scss" paddingSize="s">
-            {sizes.euiBreakpointKeys.map(function(size, index) {
+            {BREAKPOINT_KEYS.map(function(size, index) {
               return renderSizes(size, index);
             })}
           </EuiCodeBlock>
         </div>
       ),
       snippet: responsiveSnippet,
-      props: { EuiShowFor, EuiHideFor },
+      props: { EuiShowFor, EuiHideFor, EuiBreakpointSize },
       demo: <Responsive />,
     },
   ],

@@ -21,7 +21,7 @@ import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 
-const colorToClassMap: { [color: string]: string | null } = {
+const colorToClassMap = {
   accent: null,
   subdued: 'euiNotificationBadge--subdued',
 };

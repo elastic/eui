@@ -135,7 +135,7 @@ type CommonGridProps = CommonProps &
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
-     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
+     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When omitted, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
@@ -143,7 +143,7 @@ type CommonGridProps = CommonProps &
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
+     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
     /**
@@ -439,7 +439,7 @@ function useInMemoryValues(
     if (resetRunCount.current++ > 0) {
       // this has to delete "overflow" keys from the object instead of resetting to an empty one,
       // as the internal inmemoryrenderer component's useEffect which sets the values
-      // exectues before this outer, wrapping useEffect
+      // executes before this outer, wrapping useEffect
       const existingRowKeyCount = Object.keys(_inMemoryValues.current).length;
       for (let i = rowCount; i < existingRowKeyCount; i++) {
         delete _inMemoryValues.current[i];
@@ -639,7 +639,24 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     headerIsInteractive
   );
 
-  const handleHeaderChange = useCallback<MutationCallback>(
+  const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
+    headerRow => {
+      const tabbables = tabbable(headerRow);
+      const managed = headerRow.querySelectorAll('[data-euigrid-tab-managed]');
+      const hasInteractives = tabbables.length > 0 || managed.length > 0;
+      if (hasInteractives !== headerIsInteractive) {
+        setHeaderIsInteractive(hasInteractives);
+
+        // if the focus is on the header, and the header is no longer interactive
+        // move the focus down to the first row
+        if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
+          setFocusedCell([focusedCell[0], 0]);
+        }
+      }
+    },
+    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+  );
+  const handleHeaderMutation = useCallback<MutationCallback>(
     records => {
       const [{ target }] = records;
 
@@ -647,35 +664,16 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       let headerRow = target.parentElement;
       while (
         headerRow &&
-        (headerRow.getAttribute('data-test-subj') || '').indexOf(
-          'dataGridHeader'
-        ) === -1
+        (headerRow.getAttribute('data-test-subj') || '')
+          .split(/\s+/)
+          .indexOf('dataGridHeader') === -1
       ) {
         headerRow = headerRow.parentElement;
       }
 
-      if (headerRow) {
-        const tabbables = tabbable(headerRow);
-        const managed = headerRow.querySelectorAll(
-          '[data-euigrid-tab-managed]'
-        );
-        const hasInteractives = tabbables.length > 0 || managed.length > 0;
-        if (hasInteractives !== headerIsInteractive) {
-          setHeaderIsInteractive(hasInteractives);
-
-          // if the focus is on the header, and the header is no longer interactive
-          // move the focus down to the first row
-          if (
-            hasInteractives === false &&
-            focusedCell &&
-            focusedCell[1] === -1
-          ) {
-            setFocusedCell([focusedCell[0], 0]);
-          }
-        }
-      }
+      if (headerRow) handleHeaderChange(headerRow);
     },
-    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+    [handleHeaderChange]
   );
 
   const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -787,17 +785,28 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     orderedVisibleColumns
   );
 
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (contentRef) {
+      const headerElement = contentRef.querySelector(
+        '[data-test-subj~=dataGridHeader]'
+      );
+      if (headerElement) {
+        handleHeaderChange(headerElement as HTMLElement);
+      }
+    }
+  }, [contentRef, handleHeaderChange]);
 
   // Because of a weird Chrome bug with position:sticky css items and focus, we force scrolling to the top
   // if the item is in the first row. This prevents the cell from ever being under the sticky header.
   useEffect(() => {
     if (focusedCell !== undefined && focusedCell[1] === 0) {
-      if (contentRef.current != null) {
-        contentRef.current.scrollTop = 0;
+      if (contentRef != null) {
+        contentRef.scrollTop = 0;
       }
     }
-  }, [focusedCell]);
+  }, [focusedCell, contentRef]);
 
   const classes = classNames(
     'euiDataGrid',
@@ -1029,7 +1038,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                     />
                                   ) : null}
                                   <div
-                                    ref={contentRef}
+                                    ref={setContentRef}
                                     data-test-subj="dataGridWrapper"
                                     className="euiDataGrid__content"
                                     role="grid"
@@ -1041,7 +1050,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                         subtree: true,
                                         childList: true,
                                       }}
-                                      onMutation={handleHeaderChange}>
+                                      onMutation={handleHeaderMutation}>
                                       {ref => (
                                         <EuiDataGridHeaderRow
                                           ref={ref}

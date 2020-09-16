@@ -22,10 +22,7 @@ const getProp = prop => {
       newProp.type = PropTypes.Enum;
       newProp.required = prop.required;
       if (prop.defaultValue) {
-        newProp.defaultValue = prop.defaultValue.value.substring(
-          1,
-          prop.defaultValue.value.length - 1
-        );
+        newProp.defaultValue = prop.defaultValue.value;
       }
       newProp.value = undefined;
       newProp.options = {};

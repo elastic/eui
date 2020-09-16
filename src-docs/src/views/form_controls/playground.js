@@ -12,6 +12,7 @@ import {
   EuiTextArea,
   EuiCheckbox,
   EuiRadio,
+  EuiSwitch,
 } from '../../../../src/components/';
 import { PropTypes } from 'react-view';
 
@@ -318,6 +319,44 @@ export const radioConfig = () => {
   };
 };
 
+const switchConfig = () => {
+  const docgenInfo = Array.isArray(EuiSwitch.__docgenInfo)
+    ? EuiSwitch.__docgenInfo[0]
+    : EuiSwitch.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.label = {
+    ...propsToUse.label,
+    type: PropTypes.String,
+    value: 'Label',
+  };
+
+  propsToUse.checked = {
+    ...propsToUse.checked,
+    value: true,
+  };
+
+  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+
+  return {
+    config: {
+      componentName: 'EuiSwitch',
+      props: propsToUse,
+      scope: {
+        EuiSwitch,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiSwitch'],
+        },
+      },
+      customProps: {
+        onChange: dummyFunction,
+      },
+    },
+  };
+};
+
 export default [
   fieldTextConfig,
   fieldSearchConfig,
@@ -326,4 +365,5 @@ export default [
   textAreaConfig,
   checkboxConfig,
   radioConfig,
+  switchConfig,
 ];

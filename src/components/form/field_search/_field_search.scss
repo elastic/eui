@@ -24,4 +24,8 @@
   &.euiFieldSearch--compressed {
     @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
   }
+
+  &.euiFieldSearch-isClearable {
+    @include euiFormControlLayoutPadding(1)
+  }
 }

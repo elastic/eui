@@ -65,7 +65,10 @@ const webpackConfig = {
       {
         test: /\.scss$/,
         loaders: employCache([
-          'style-loader/useable',
+          {
+            loader: 'style-loader',
+            options: { injectType: 'lazySingletonStyleTag' },
+          },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -74,7 +77,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: employCache(['style-loader/useable', 'css-loader']),
+        loaders: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
@@ -108,7 +111,7 @@ const webpackConfig = {
 
     // run TypeScript during webpack build
     // new ForkTsCheckerWebpackPlugin({
-    //   tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    //   typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
     //   async: false, // makes errors more visible, but potentially less performant
     // }),
   ],

@@ -47,7 +47,7 @@ export class CustomItemAction<T> extends Component<
     // may trigger while this component is unmounted. An alternative
     // (at least the workarounds suggested by react is to unregister
     // the onFocus/onBlur listeners from the action controls... this
-    // unfortunately will lead to unecessarily complex code... so we'll
+    // unfortunately will lead to unnecessarily complex code... so we'll
     // stick to this approach for now)
     this.mounted = false;
   }
