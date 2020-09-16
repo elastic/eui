@@ -11,7 +11,9 @@ import {
 export default () => (
   <EuiText>
     <EuiHideFor sizes={'none'}>
-      <p>Hiding from none of the screen sizes</p>
+      <p>
+        Hiding from <EuiCode>{'"none"'}</EuiCode> of the screen sizes
+      </p>
     </EuiHideFor>
     <EuiHideFor sizes={['xs']}>
       <p>
@@ -37,7 +39,9 @@ export default () => (
     <EuiSpacer size="xxl" />
 
     <EuiShowFor sizes={'all'}>
-      <p>Showing for all of the screen sizes</p>
+      <p>
+        Showing for <EuiCode>{'"all"'}</EuiCode> of the screen sizes
+      </p>
     </EuiShowFor>
     <EuiShowFor sizes={['xs']}>
       <p>

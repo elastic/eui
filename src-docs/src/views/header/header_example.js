@@ -229,9 +229,9 @@ export const HeaderExample = {
       text: (
         <>
           <p>
-            If you&rsquo;re using EUI in a one-off site or page, you can use{' '}
-            <strong>EuiHeaderLinks</strong> and
-            <strong>EuiHeaderLink</strong> instead of breadcrumbs.
+            <strong>EuiHeaderLinks</strong> and <strong>EuiHeaderLink</strong>{' '}
+            supply the ability to inline a list of navigational or menu style
+            links.
           </p>
           <p>
             <strong>EuiHeaderLinks</strong> comes with responsive functionality
