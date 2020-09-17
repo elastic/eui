@@ -421,14 +421,18 @@ exports[`EuiDataGrid render column actions renders various column actions config
   <EuiListGroupItem
     key="title-0"
     label="test"
+    onClick={[Function]}
     showToolTip={false}
     wrapText={false}
   >
     <li
-      className="euiListGroupItem euiListGroupItem--medium"
+      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
     >
-      <span
-        className="euiListGroupItem__text"
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
       >
         <span
           className="euiListGroupItem__label"
@@ -436,7 +440,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         >
           test
         </span>
-      </span>
+      </button>
     </li>
   </EuiListGroupItem>
 </ul>
@@ -548,14 +552,18 @@ exports[`EuiDataGrid render column actions renders various column actions config
   <EuiListGroupItem
     key="title-2"
     label="test"
+    onClick={[Function]}
     showToolTip={false}
     wrapText={false}
   >
     <li
-      className="euiListGroupItem euiListGroupItem--medium"
+      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
     >
-      <span
-        className="euiListGroupItem__text"
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
       >
         <span
           className="euiListGroupItem__label"
@@ -563,7 +571,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         >
           test
         </span>
-      </span>
+      </button>
     </li>
   </EuiListGroupItem>
 </ul>
@@ -768,14 +776,18 @@ exports[`EuiDataGrid render column actions renders various column actions config
   <EuiListGroupItem
     key="title-5"
     label="test"
+    onClick={[Function]}
     showToolTip={false}
     wrapText={false}
   >
     <li
-      className="euiListGroupItem euiListGroupItem--medium"
+      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
     >
-      <span
-        className="euiListGroupItem__text"
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
       >
         <span
           className="euiListGroupItem__label"
@@ -783,7 +795,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         >
           test
         </span>
-      </span>
+      </button>
     </li>
   </EuiListGroupItem>
 </ul>

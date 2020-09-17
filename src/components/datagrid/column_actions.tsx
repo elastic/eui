@@ -16,11 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+import React from 'react';
 import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
 import { EuiI18n } from '../i18n';
 import { EuiListGroupItemProps } from '../list_group';
-import React from 'react';
 
 export function getColumnActions(
   column: EuiDataGridColumn,
@@ -200,11 +199,24 @@ export function getColumnActions(
       result.push(option);
     }
   }
-  if (column.actions?.additional) {
-    return [
-      ...result,
-      ...column.actions?.additional,
-    ] as EuiListGroupItemProps[];
-  }
-  return result;
+  const allActions = column.actions?.additional
+    ? [...result, ...column.actions?.additional]
+    : result;
+
+  //wrap EuiListGroupItem onClick function to close the popover and prevet bubbling up
+
+  return allActions.map(action => {
+    return {
+      ...action,
+      ...{
+        onClick: (ev: React.MouseEvent<HTMLButtonElement>) => {
+          ev.stopPropagation();
+          setIsPopoverOpen(false);
+          if (action && action.onClick) {
+            action.onClick(ev as any);
+          }
+        },
+      },
+    };
+  }) as EuiListGroupItemProps[];
 }
