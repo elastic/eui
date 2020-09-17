@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `29.0.0`.
+- Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
 
 ## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
 

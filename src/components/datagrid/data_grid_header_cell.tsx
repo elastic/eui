@@ -55,7 +55,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     setColumnWidth,
     sorting,
     focusedCell,
-    setFocusedCell,
+    onCellFocus: setFocusedCell,
     headerIsInteractive,
     className,
   } = props;

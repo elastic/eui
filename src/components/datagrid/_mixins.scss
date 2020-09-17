@@ -13,9 +13,12 @@ $euiDataGridStyles: (
   'rowHoverHighlight'
   'headerShade'
   'headerUnderline'
+  'footerShade'
+  'footerOverline'
   'fontSizeSmall'
   'fontSizeLarge'
   'noControls'
+  'stickyFooter'
 );
 
 // All this does is take some of the above and make a sibling selector
@@ -49,6 +52,12 @@ $euiDataGridStyles: (
 
 @mixin euiDataGridRowCell {
   .euiDataGridRowCell {
+    @content;
+  }
+}
+
+@mixin euiDataGridFooterCell {
+  .euiDataGridRowCell.euiDataGridFooterCell {
     @content;
   }
 }
