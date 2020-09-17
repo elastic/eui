@@ -210,8 +210,8 @@ export const ComboBoxExample = {
           have duplicate values, though. This is because the label is the only
           thing the combo box is concerned about, since this is what the user
           sees and what is matched against when the user searches. You can pass
-          an unique <EuiCode>id</EuiCode>{' '}
-          to an option if you require duplicate labels. See the example below.
+          an unique <EuiCode>id</EuiCode> to an option if you require duplicate
+          labels. See the example below.
         </p>
       </EuiCallOut>
 
