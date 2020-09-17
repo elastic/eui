@@ -304,7 +304,12 @@ export const HeaderExample = {
             <Link to="/utilities/portal">
               <strong>EuiPortal</strong>
             </Link>
-            .
+            . When using an{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            in conjunction with a <strong>fixed</strong> header, be sure to add
+            the <EuiCode>repositionOnScroll</EuiCode> prop to the popover.
           </p>
           <p>
             The example below shows how to incorporate{' '}
