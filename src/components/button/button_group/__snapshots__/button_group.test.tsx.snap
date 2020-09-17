@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiButtonGroup is rendered 1`] = `
+exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
@@ -10,816 +10,40 @@ exports[`EuiButtonGroup is rendered 1`] = `
     test
   </legend>
   <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  />
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroupnull euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props color danger is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props color ghost is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props color primary is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props color secondary is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--secondary testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props color text is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props color warning is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props idSelected is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            checked=""
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--isDisabled testClass1 testClass2"
-    data-test-subj="test subject string"
+    class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
-      disabled=""
-      for="button00"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button00"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button00"
-            type="radio"
-          />
           Option one
         </span>
       </span>
     </button>
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
-      disabled=""
-      for="button01"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button01"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button01"
-            type="radio"
-          />
           Option two
         </span>
       </span>
@@ -827,11 +51,97 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
     <button
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
-      for="button02"
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props buttonSize compressed is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
@@ -839,6 +149,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
             class="euiScreenReaderOnly"
             disabled=""
             id="button02"
+            name="test"
             type="radio"
           />
           Option three
@@ -849,7 +160,1451 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
 </fieldset>
 `;
 
-exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
+exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--medium euiButtonGroup--text"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--medium euiButtonGroup--text"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color primary is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--secondary"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color secondary is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--secondary"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color warning is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--isDisabled"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--isDisabled"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset euiButtonGroup__fieldset--fullWidth"
 >
@@ -859,9 +1614,78 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
     test
   </legend>
   <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth testClass1 testClass2"
-    data-test-subj="test subject string"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset euiButtonGroup__fieldset--fullWidth"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth"
   >
     <label
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
@@ -870,12 +1694,17 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
           <input
             class="euiScreenReaderOnly"
             id="button00"
+            name="test"
             type="radio"
           />
           Option one
@@ -889,42 +1718,53 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
           <input
             class="euiScreenReaderOnly"
             id="button01"
+            name="test"
             type="radio"
           />
           Option two
         </span>
       </span>
     </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
           <input
             class="euiScreenReaderOnly"
+            disabled=""
             id="button02"
+            name="test"
             type="radio"
           />
           Option three
         </span>
       </span>
-    </label>
+    </button>
   </div>
 </fieldset>
 `;
 
-exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
+exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
@@ -934,23 +1774,187 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
     test
   </legend>
   <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
+  >
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
+      id="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiScreenReaderOnly"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
+      id="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiScreenReaderOnly"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled euiButtonGroupButton-isIconOnly"
+      disabled=""
+      id="button02"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiScreenReaderOnly"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
       for="button00"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text euiScreenReaderOnly"
         >
           <input
             class="euiScreenReaderOnly"
             id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiScreenReaderOnly"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled euiButtonGroupButton-isIconOnly"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiScreenReaderOnly"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props selection idSelected is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            checked=""
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
             type="radio"
           />
           Option one
@@ -964,42 +1968,53 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
-          class="euiButton__text euiScreenReaderOnly"
+          class="euiButton__text"
         >
           <input
             class="euiScreenReaderOnly"
             id="button01"
+            name="test"
             type="radio"
           />
           Option two
         </span>
       </span>
     </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
-          class="euiButton__text euiScreenReaderOnly"
+          class="euiButton__text"
         >
           <input
             class="euiScreenReaderOnly"
+            disabled=""
             id="button02"
+            name="test"
             type="radio"
           />
           Option three
         </span>
       </span>
-    </label>
+    </button>
   </div>
 </fieldset>
 `;
 
-exports[`EuiButtonGroup props options are rendered 1`] = `
+exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for multi 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
@@ -1009,94 +2024,20 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
     test
   </legend>
   <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button00"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button00"
-            type="radio"
-          />
-          Option one
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button01"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button01"
-            type="radio"
-          />
-          Option two
-        </span>
-      </span>
-    </label>
-    <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
-      for="button02"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          <input
-            class="euiScreenReaderOnly"
-            id="button02"
-            type="radio"
-          />
-          Option three
-        </span>
-      </span>
-    </label>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    aria-label="aria-label"
-    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
-    data-test-subj="test subject string"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <button
       aria-pressed="true"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
       id="button00"
-      style="min-width:0"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
@@ -1108,11 +2049,14 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
       aria-pressed="true"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
       id="button01"
-      style="min-width:0"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
@@ -1121,14 +2065,17 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
       </span>
     </button>
     <button
-      aria-pressed="false"
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
       id="button02"
-      style="min-width:0"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
@@ -1140,7 +2087,7 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
 </fieldset>
 `;
 
-exports[`EuiButtonGroup props type of multi is rendered 1`] = `
+exports[`EuiButtonGroup type multi is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
 >
@@ -1155,14 +2102,16 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <button
-      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button00"
-      style="min-width:0"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
@@ -1171,14 +2120,16 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
       </span>
     </button>
     <button
-      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button01"
-      style="min-width:0"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
@@ -1187,17 +2138,111 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
       </span>
     </button>
     <button
-      aria-pressed="false"
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
       id="button02"
-      style="min-width:0"
     >
       <span
         class="euiButtonContent euiButton__content"
       >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
         <span
           class="euiButton__text"
         >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup type single is rendered 1`] = `
+<fieldset
+  class="euiButtonGroup__fieldset"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button00"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button00"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      for="button01"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            id="button01"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      disabled=""
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <div
+          class="euiButtonContent__icon"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            disabled=""
+            id="button02"
+            name="test"
+            type="radio"
+          />
           Option three
         </span>
       </span>
