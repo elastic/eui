@@ -26,7 +26,6 @@ import React, {
   useEffect,
 } from 'react';
 import classNames from 'classnames';
-import { useCombinedRefs } from '../../../services';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
@@ -44,6 +43,7 @@ import {
 } from '../../../services/breakpoint';
 import { throttle } from '../../color_picker/utils';
 import { EuiSpacer } from '../../spacer';
+import { EuiOutsideClickDetector } from '../../outside_click_detector';
 
 export type EuiSelectableTemplateSitewideProps = Partial<
   Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
@@ -131,7 +131,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   /**
    * Popover helpers
    */
-  const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
   const { closePopover: _closePopover, panelRef, width, ...popoverRest } = {
     ...popoverProps,
@@ -148,7 +147,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
 
   // Width applied to the internal div
   const popoverWidth: CSSProperties['width'] = width || 600;
-  const setPanelRef = useCombinedRefs([setPopoverRef, panelRef]);
 
   /**
    * Search helpers
@@ -163,15 +161,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
     searchProps && searchProps.onInput && searchProps.onInput(e);
     setPopoverIsOpen(true);
-  };
-
-  const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    searchProps && searchProps.onBlur && searchProps.onBlur(e);
-    if (canShowPopoverButton) return;
-
-    if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
-      setPopoverIsOpen(false);
-    }
   };
 
   /**
@@ -234,68 +223,69 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   }
 
   return (
-    <EuiSelectable
-      isLoading={isLoading}
-      options={formattedOptions}
-      renderOption={euiSelectableTemplateSitewideRenderOptions}
-      singleSelection={true}
-      searchProps={{
-        placeholder: searchPlaceholder,
-        isClearable: true,
-        ...searchProps,
-        onFocus: searchOnFocus,
-        onBlur: searchOnBlur,
-        onInput: onSearchInput,
-        className: searchClasses,
-      }}
-      listProps={{
-        rowHeight: 68,
-        showIcons: false,
-        onFocusBadge: {
-          iconSide: 'right',
-          children: (
-            <EuiI18n
-              token="euiSelectableTemplateSitewide.onFocusBadgeGoTo"
-              default="Go to"
-            />
-          ),
-        },
-        ...listProps,
-        className: listClasses,
-      }}
-      loadingMessage={loadingMessage}
-      emptyMessage={emptyMessage}
-      noMatchesMessage={emptyMessage}
-      {...rest}
-      className={classes}
-      searchable>
-      {(list, search) => (
-        <EuiPopover
-          panelPaddingSize="none"
-          isOpen={popoverIsOpen}
-          ownFocus={!!popoverTrigger}
-          display={popoverTrigger ? 'inlineBlock' : 'block'}
-          {...popoverRest}
-          panelRef={setPanelRef}
-          button={popoverTrigger ? popoverTrigger : search}
-          closePopover={closePopover}>
-          <div style={{ width: popoverWidth, maxWidth: '100%' }}>
-            {popoverTitle || popoverTrigger ? (
-              <EuiPopoverTitle>
-                {popoverTitle}
-                {popoverTitle && search && <EuiSpacer />}
-                {search}
-              </EuiPopoverTitle>
-            ) : (
-              undefined
-            )}
-            {list}
-            {popoverFooter && (
-              <EuiPopoverFooter>{popoverFooter}</EuiPopoverFooter>
-            )}
-          </div>
-        </EuiPopover>
-      )}
-    </EuiSelectable>
+    <EuiOutsideClickDetector onOutsideClick={() => setPopoverIsOpen(false)}>
+      <EuiSelectable
+        isLoading={isLoading}
+        options={formattedOptions}
+        renderOption={euiSelectableTemplateSitewideRenderOptions}
+        singleSelection={true}
+        searchProps={{
+          placeholder: searchPlaceholder,
+          isClearable: true,
+          ...searchProps,
+          onFocus: searchOnFocus,
+          onInput: onSearchInput,
+          className: searchClasses,
+        }}
+        listProps={{
+          rowHeight: 68,
+          showIcons: false,
+          onFocusBadge: {
+            iconSide: 'right',
+            children: (
+              <EuiI18n
+                token="euiSelectableTemplateSitewide.onFocusBadgeGoTo"
+                default="Go to"
+              />
+            ),
+          },
+          ...listProps,
+          className: listClasses,
+        }}
+        loadingMessage={loadingMessage}
+        emptyMessage={emptyMessage}
+        noMatchesMessage={emptyMessage}
+        {...rest}
+        className={classes}
+        searchable>
+        {(list, search) => (
+          <EuiPopover
+            panelPaddingSize="none"
+            isOpen={popoverIsOpen}
+            ownFocus={!!popoverTrigger}
+            display={popoverTrigger ? 'inlineBlock' : 'block'}
+            {...popoverRest}
+            panelRef={panelRef}
+            button={popoverTrigger ? popoverTrigger : search}
+            closePopover={closePopover}>
+            <div style={{ width: popoverWidth, maxWidth: '100%' }}>
+              {popoverTitle || popoverTrigger ? (
+                <EuiPopoverTitle>
+                  {popoverTitle}
+                  {popoverTitle && search && <EuiSpacer />}
+                  {search}
+                </EuiPopoverTitle>
+              ) : (
+                undefined
+              )}
+              {list}
+              {popoverFooter && (
+                <EuiPopoverFooter>{popoverFooter}</EuiPopoverFooter>
+              )}
+            </div>
+          </EuiPopover>
+        )}
+      </EuiSelectable>
+    </EuiOutsideClickDetector>
   );
 };
