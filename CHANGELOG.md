@@ -10,6 +10,7 @@
 - Added `popoverButton` and `popoverButtonBreakpoints` props to `EuiSelectableTemplateSitewide` for responsive capabilities ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `isWithinMaxBreakpoint` service ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added horizontal line separator to `EuiContextMenu` ([#4018](https://github.com/elastic/eui/pull/4018))
+- Added controlled pagination props to `EuiInMemoryTablee` ([#4038](https://github.com/elastic/eui/pull/4038))
 
 **Bug fixes**
 
