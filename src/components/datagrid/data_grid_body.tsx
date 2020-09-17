@@ -39,6 +39,7 @@ import {
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
 } from './data_grid_schema';
+import { EuiDataGridFooterRow } from './data_grid_footer_row';
 
 export interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
@@ -53,6 +54,7 @@ export interface EuiDataGridBodyProps {
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
+  renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   inMemory?: EuiDataGridInMemory;
   inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
@@ -105,6 +107,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = props =>
     onCellFocus,
     rowCount,
     renderCellValue,
+    renderFooterCellValue,
     inMemory,
     inMemoryValues,
     interactiveCellId,
@@ -190,7 +193,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = props =>
   );
 
   const rows = useMemo(() => {
-    return visibleRowIndices.map((rowIndex, i) => {
+    const rowsToRender = visibleRowIndices.map((rowIndex, i) => {
       rowIndex = rowMap.hasOwnProperty(rowIndex) ? rowMap[rowIndex] : rowIndex;
       return (
         <EuiDataGridDataRow
@@ -213,6 +216,33 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = props =>
         />
       );
     });
+
+    if (renderFooterCellValue) {
+      rowsToRender.push(
+        <EuiDataGridFooterRow
+          key="footerRow"
+          leadingControlColumns={leadingControlColumns}
+          trailingControlColumns={trailingControlColumns}
+          columns={columns}
+          schema={schema}
+          popoverContents={mergedPopoverContents}
+          columnWidths={columnWidths}
+          defaultColumnWidth={defaultColumnWidth}
+          focusedCellPositionInTheRow={
+            focusedCell != null && visibleRowIndices.length === focusedCell[1]
+              ? focusedCell[0]
+              : null
+          }
+          onCellFocus={onCellFocus}
+          renderCellValue={renderFooterCellValue}
+          rowIndex={visibleRowIndices.length}
+          visibleRowIndex={visibleRowIndices.length}
+          interactiveCellId={interactiveCellId}
+        />
+      );
+    }
+
+    return rowsToRender;
   }, [
     visibleRowIndices,
     rowMap,
@@ -226,6 +256,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = props =>
     focusedCell,
     onCellFocus,
     renderCellValue,
+    renderFooterCellValue,
     interactiveCellId,
   ]);
 

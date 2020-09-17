@@ -25,7 +25,9 @@ import { CommonProps } from '../common';
 export type EuiHorizontalRuleSize = keyof typeof sizeToClassNameMap;
 export type EuiHorizontalRuleMargin = keyof typeof marginToClassNameMap;
 
-export interface EuiHorizontalRuleProps {
+export interface EuiHorizontalRuleProps
+  extends CommonProps,
+    HTMLAttributes<HTMLHRElement> {
   /**
    * Defines the width of the HR.
    */
@@ -53,9 +55,7 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const EuiHorizontalRule: FunctionComponent<CommonProps &
-  HTMLAttributes<HTMLHRElement> &
-  EuiHorizontalRuleProps> = ({
+export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   className,
   size = 'full',
   margin = 'l',

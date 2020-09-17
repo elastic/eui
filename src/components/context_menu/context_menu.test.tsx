@@ -94,6 +94,51 @@ describe('EuiContextMenu', () => {
     expect(component).toMatchSnapshot();
   });
 
+  it('panel item can be a separator line', () => {
+    const component = render(
+      <EuiContextMenu
+        panels={[
+          {
+            id: 3,
+            title: 'Testing separator',
+            items: [
+              { name: 'Foo', key: 'foo' },
+              { isSeparator: true },
+              { name: 'Bar', key: 'bar' },
+            ],
+          },
+        ]}
+        initialPanelId={3}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('can pass-through horizontal rule props', () => {
+    const component = render(
+      <EuiContextMenu
+        panels={[
+          {
+            id: 3,
+            title: 'Testing separator',
+            items: [
+              {
+                isSeparator: true,
+                key: 'separator',
+                margin: 's',
+                size: 'half',
+              },
+            ],
+          },
+        ]}
+        initialPanelId={3}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('panels and initialPanelId', () => {
       it('renders the referenced panel', () => {
