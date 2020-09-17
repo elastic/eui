@@ -1,9 +1,7 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,8 +14,11 @@ import {
   EuiCallOut,
   EuiText,
 } from '../../../../src/components';
+
+import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
+
 import Guidelines from './guidelines';
-import buttonConfig from './playground';
+import Playground from './playground';
 
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
@@ -358,7 +359,7 @@ export const ButtonExample = {
       ),
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,
-      props: { EuiButtonGroup },
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
     },
     {
       title: 'Ghost',
@@ -390,5 +391,5 @@ export const ButtonExample = {
     },
   ],
   guidelines: <Guidelines />,
-  playground: buttonConfig,
+  playground: Playground,
 };

@@ -19,19 +19,39 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import {
-  ButtonGroupOptionProps,
-  EuiButtonSingleGroupOptionProps,
-} from './types';
 import { EuiButtonDisplay } from '../button';
+import {
+  EuiButtonGroupOptionProps,
+  EuiButtonGroupProps,
+} from './button_group';
 
-type Props = {
+type Props = EuiButtonGroupOptionProps & {
+  /**
+   * Styles the selected button to look selected (usually with `fill`)
+   */
   isSelected?: boolean;
+  /**
+   * Name of the whole group for 'single'.
+   */
   name?: string;
-} & ButtonGroupOptionProps &
-  EuiButtonSingleGroupOptionProps;
+  /**
+   * The value of the radio input for 'single'.
+   */
+  value?: string;
+  /**
+   * Element to display based on single or multi
+   */
+  type: 'button' | 'label';
+  /**
+   * Props to inherit from the group
+   */
+  color: EuiButtonGroupProps['color'];
+  size: EuiButtonGroupProps['buttonSize'];
+  isIconOnly: EuiButtonGroupProps['isIconOnly'];
+  onChange: EuiButtonGroupProps['onChange'];
+};
 
-export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
+export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   className,
   id,
   isDisabled,
@@ -42,13 +62,39 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
   onChange,
   size,
   value,
+  type = 'button',
   ...rest
 }) => {
-  const element = isDisabled ? 'button' : 'label';
+  // Force element to be a button if disabled
+  const element = isDisabled ? 'button' : type;
 
   let elementProps = {};
+  let singleInput;
   if (element === 'label') {
-    elementProps = { ...elementProps, htmlFor: id };
+    elementProps = {
+      ...elementProps,
+      htmlFor: id,
+      onClick: () => onChange(id, value)
+    };
+    singleInput = (
+      <input
+        id={id}
+        className="euiScreenReaderOnly"
+        name={name}
+        checked={isSelected}
+        disabled={isDisabled}
+        value={value}
+        type="radio"
+        onChange={() => onChange(id, value)}
+      />
+    );
+  } else {
+    elementProps = {
+      ...elementProps,
+      id,
+      'aria-pressed': isSelected,
+      onClick: () => onChange(id),
+    }
   }
 
   const buttonClasses = classNames(
@@ -66,23 +112,13 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
       element={element}
       fill={size !== 'compressed' && isSelected}
       isDisabled={isDisabled}
-      onClick={() => onChange(id, value)}
       size={size === 'compressed' ? 's' : size}
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}
       {...elementProps}
       {...rest}>
-      <input
-        id={id}
-        className="euiScreenReaderOnly"
-        name={name}
-        checked={isSelected}
-        disabled={isDisabled}
-        value={value}
-        type="radio"
-        onChange={() => onChange(id, value)}
-      />
+      {singleInput}
       {label}
     </EuiButtonDisplay>
   );

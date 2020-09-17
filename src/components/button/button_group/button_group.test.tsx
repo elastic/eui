@@ -21,8 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps as commonProps } from '../../../test';
 
-import { EuiButtonGroup } from './button_group';
-import { EuiButtonGroupProps } from './types';
+import { EuiButtonGroup, EuiButtonGroupProps } from './button_group';
 import { COLORS } from '../button';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
@@ -36,6 +35,7 @@ const options = [
     id: 'button00',
     label: 'Option one',
     iconType: 'bolt',
+    ...commonProps,
   },
   {
     id: 'button01',

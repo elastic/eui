@@ -41,7 +41,13 @@ export type EuiButtonContentType = HTMLAttributes<HTMLSpanElement>;
  * This component is simply a helper component for reuse within other button components
  */
 export interface EuiButtonContentProps extends CommonProps {
+  /**
+   * Any `type` accepted by EuiIcon
+   */
   iconType?: IconType;
+  /**
+   * Can only be one side `left` or `right`
+   */
   iconSide?: ButtonContentIconSide;
   isLoading?: boolean;
   /**

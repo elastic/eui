@@ -18,14 +18,101 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiButtonGroupMultiButton } from './button_group_multi_button';
-import {
-  EuiButtonGroupProps,
-  EuiButtonSingleGroupOptionProps,
-} from './types';
-import { colorToClassNameMap } from '../button';
+import { EuiButtonGroupButton } from './button_group_button';
+import { colorToClassNameMap, ButtonColor } from '../button';
+import { EuiButtonContentProps } from '../button_content';
+import { CommonProps } from 'src/components/common';
+
+export interface EuiButtonGroupOptionProps extends EuiButtonContentProps, CommonProps {
+  /**
+   * Each option must have a unique `id` for maintaining selection
+   */
+  id: string;
+  /**
+   * Each option must have a `label` even for icons which will be applied as the `aria-label`
+   */
+  label: ReactNode;
+  isDisabled?: boolean;
+  /**
+   * The value of the radio input.
+   */
+  value?: any;
+};
+
+export type EuiButtonGroupProps = CommonProps & {
+  /**
+   * Typical sizing is `s`. Medium `m` size should be reserved for major features.
+   * `compressed` is meant to be used alongside and within compressed forms.
+   */
+  buttonSize?: 's' | 'm' | 'compressed';
+  isDisabled?: boolean;
+  /**
+   * Expands the whole group to the full width of the container.
+   * Each button gets equal widths no matter the content
+   */
+  isFullWidth?: boolean;
+  /**
+   * Hides the label to only show the `iconType` provided by the `option`
+   */
+  isIconOnly?: boolean;
+
+  /**
+   * A hidden group title (required for accessibility)
+   */
+  legend: string;
+  /**
+   * Compressed styles don't support `ghost` color (Color will be changed to "text")
+   */
+  color?: ButtonColor;
+  /**
+   * Actual type is `'single' | 'multi'`.
+   * Determines how the selection of the group should be handled.
+   * With `'single'` only one option can be selected at a time (similar to radio group).
+   * With `'multi'` multiple options selected (similar to checkbox group).
+   */
+  type?: 'single' | 'multi';
+
+  /**
+   * An array of #EuiButtonGroupOptionProps
+   */
+  options: EuiButtonGroupOptionProps[];
+} & (
+    | {
+      type: 'single';
+      /**
+       * The `name` attribute for radio inputs;
+       * Required for keeping keyboard navigation contained within the group
+       */
+      name: string;
+      /**
+       * Styles the selected option to look selected (usually with `fill`)
+       * Only used in `type='single'`.
+       */
+      idSelected: string;
+      /**
+       * Returns the `id` of the clicked option and the `value`
+       * (`value` only in `type='single'`)
+       */
+      onChange: (id: string, value?: any) => void;
+      idToSelectedMap?: never;
+    }
+    | {
+      type: 'multi';
+      /**
+       * A map of `id`s as keys with the selected boolean values.
+       * Only used in `type='multi'`.
+       */
+      idToSelectedMap?: { [id: string]: boolean };
+      /**
+       * Returns the `id` of the clicked option
+       */
+      onChange: (id: string) => void;
+      idSelected?: never;
+      name?: never;
+    }
+  );
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   EuiButtonGroupProps;
@@ -87,11 +174,11 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
       <div className={classes} {...rest}>
         {options.map((option, index) => {
           return (
-            <EuiButtonGroupMultiButton
+            <EuiButtonGroupButton
               key={index}
               name={name}
               isDisabled={isDisabled}
-              {...(option as EuiButtonSingleGroupOptionProps)}
+              {...(option as EuiButtonGroupOptionProps)}
               type={typeIsSingle ? 'label' : 'button'}
               isSelected={typeIsSingle ? option.id === idSelected : idToSelectedMap[option.id]}
               color={resolvedColor}

@@ -13,7 +13,9 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
     class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -84,7 +86,9 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
     class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -132,8 +136,10 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -145,13 +151,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -173,7 +172,9 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--medium euiButtonGroup--text"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -244,7 +245,9 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--medium euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -292,8 +295,10 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -305,13 +310,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -333,7 +331,9 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -404,7 +404,9 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -452,8 +454,10 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -465,13 +469,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -493,7 +490,9 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -564,7 +563,9 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -612,8 +613,10 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -625,13 +628,6 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -653,7 +649,9 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -724,7 +722,9 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -772,8 +772,10 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -785,13 +787,6 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -813,7 +808,9 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -884,7 +881,9 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -932,8 +931,10 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -945,13 +946,6 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -973,7 +967,9 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--secondary"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -1044,7 +1040,9 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--secondary"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -1092,8 +1090,10 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1105,13 +1105,6 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -1133,7 +1126,9 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -1204,7 +1199,9 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -1252,8 +1249,10 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1265,13 +1264,6 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -1293,7 +1285,9 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -1364,7 +1358,9 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -1412,8 +1408,10 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1425,13 +1423,6 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -1453,7 +1444,9 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--isDisabled"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled testClass1 testClass2"
+      data-test-subj="test subject string"
       disabled=""
       id="button00"
     >
@@ -1526,8 +1519,12 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--isDisabled"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      aria-label="aria-label"
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled testClass1 testClass2"
+      data-test-subj="test subject string"
       disabled=""
+      id="button00"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1539,20 +1536,15 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button00"
-            name="test"
-            type="radio"
-          />
           Option one
         </span>
       </span>
     </button>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button01"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1564,20 +1556,15 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button01"
-            name="test"
-            type="radio"
-          />
           Option two
         </span>
       </span>
     </button>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1589,13 +1576,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -1617,7 +1597,9 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -1688,7 +1670,9 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -1736,8 +1720,10 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1749,13 +1735,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -1777,7 +1756,9 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -1848,7 +1829,9 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -1896,8 +1879,10 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled euiButtonGroupButton-isIconOnly"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1909,13 +1894,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
         <span
           class="euiButton__text euiScreenReaderOnly"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -1937,7 +1915,9 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -1986,8 +1966,10 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1999,13 +1981,6 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
@@ -2027,8 +2002,10 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
     class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
   >
     <button
+      aria-label="aria-label"
       aria-pressed="true"
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -2102,7 +2079,9 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       id="button00"
     >
       <span
@@ -2175,7 +2154,9 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <label
-      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
       for="button00"
     >
       <span
@@ -2223,8 +2204,10 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       </span>
     </label>
     <button
+      aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
+      id="button02"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2236,13 +2219,6 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
         <span
           class="euiButton__text"
         >
-          <input
-            class="euiScreenReaderOnly"
-            disabled=""
-            id="button02"
-            name="test"
-            type="radio"
-          />
           Option three
         </span>
       </span>
