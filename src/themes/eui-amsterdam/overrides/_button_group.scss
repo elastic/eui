@@ -1,4 +1,4 @@
-.euiButtonGroup {
+.euiButtonGroup__buttons {
   box-shadow: none !important; // sass-lint:disable-line no-important
 }
 
@@ -37,8 +37,13 @@
   }
 }
 
-.euiButtonGroup--small {
+.euiButtonGroup--small .euiButtonGroup__buttons {
   // Use a moderately smaller radius on small buttons
   // so that they don't appear completely rounded
   border-radius: $euiBorderRadius * .667;
+}
+
+.euiButtonGroup--compressed .euiButtonGroupButton {
+  // Add 1 to the border radius to account for the background-clip
+  border-radius: $euiFormControlCompressedBorderRadius + 1;
 }

@@ -1,43 +1,55 @@
-.euiButtonGroup__fieldset {
+.euiButtonGroup {
   display: inline-block;
   max-width: 100%;
-
-  &--fullWidth {
-    display: block;
-  }
 }
 
 .euiButtonGroup--fullWidth {
-  width: 100%;
+  display: block;
 
-  .euiButtonGroupButton {
-    flex: 1;
+  .euiButtonGroup__buttons {
+    width: 100%;
+
+    .euiButtonGroupButton {
+      flex: 1;
+    }
   }
 }
 
-.euiButtonGroup {
+.euiButtonGroup__buttons {
   @include euiSlightShadow;
   border-radius: $euiBorderRadius + 1px; // Simply for the box-shadow
-
   max-width: 100%;
   display: flex;
   overflow: hidden;
   transition: all $euiAnimSpeedNormal ease-in-out;
 
-  &:not(.euiButtonGroup--isDisabled) {
-    &:hover,
-    &:active,
-    &:focus-within {
-      @include euiSlightShadowHover;
-    }
+  &:hover,
+  &:active,
+  &:focus-within {
+    @include euiSlightShadowHover;
   }
+}
 
-  &--compressed {
+.euiButtonGroup--isDisabled .euiButtonGroup__buttons {
+  &:hover,
+  &:active,
+  &:focus-within {
+    box-shadow: none !important; // sass-lint:disable-line no-important
+  }
+}
+
+.euiButtonGroup--compressed {
+  .euiButtonGroup__buttons {
     box-shadow: none !important; // sass-lint:disable-line no-important
     border-radius: $euiFormControlCompressedBorderRadius;
     background-color: $euiFormBackgroundColor;
     height: $euiFormControlCompressedHeight;
     border: 1px solid $euiFormBorderColor;
     overflow: visible;
+  }
+
+  .euiButtonGroupButton {
+    // Add 2 to the border radius to account for the background-clip
+    border-radius: $euiFormControlCompressedBorderRadius + 2;
   }
 }

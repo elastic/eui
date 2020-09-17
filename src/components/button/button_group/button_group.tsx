@@ -114,7 +114,7 @@ export type EuiButtonGroupProps = CommonProps & {
     }
   );
 
-type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
+type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> &
   EuiButtonGroupProps;
 
 const groupSizeToClassNameMap = {
@@ -159,19 +159,15 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
     className
   );
 
-  const fieldsetClasses = classNames('euiButtonGroup__fieldset', {
-    'euiButtonGroup__fieldset--fullWidth': isFullWidth,
-  });
-
   const typeIsSingle = type === 'single';
 
   return (
-    <fieldset className={fieldsetClasses}>
+    <fieldset className={classes} {...rest} disabled={isDisabled}>
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
 
-      <div className={classes} {...rest}>
+      <div className="euiButtonGroup__buttons">
         {options.map((option, index) => {
           return (
             <EuiButtonGroupButton

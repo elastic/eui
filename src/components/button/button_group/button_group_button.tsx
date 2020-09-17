@@ -27,6 +27,10 @@ import {
 
 type Props = EuiButtonGroupOptionProps & {
   /**
+   * Element to display based on single or multi
+   */
+  type: 'button' | 'label';
+  /**
    * Styles the selected button to look selected (usually with `fill`)
    */
   isSelected?: boolean;
@@ -38,10 +42,6 @@ type Props = EuiButtonGroupOptionProps & {
    * The value of the radio input for 'single'.
    */
   value?: string;
-  /**
-   * Element to display based on single or multi
-   */
-  type: 'button' | 'label';
   /**
    * Props to inherit from the group
    */
@@ -56,7 +56,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   id,
   isDisabled,
   isIconOnly,
-  isSelected,
+  isSelected = false,
   label,
   name,
   onChange,
