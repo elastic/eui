@@ -203,13 +203,15 @@ export const ComboBoxExample = {
 
       <EuiSpacer />
 
-      <EuiCallOut title="No duplicate option labels allowed" color="warning">
+      <EuiCallOut title="Duplicate labels require an id" color="warning">
         <p>
-          The combo box will have errors if any of the options you pass to it
-          share the same label property. It&rsquo;s OK if options have duplicate
-          values, though. This is because the label is the only thing the combo
-          box is concerned about, since this is what the user sees and what is
-          matched against when the user searches.
+          The combo box will have errors by default if any of the options you
+          pass to it share the same label property. It&rsquo;s OK if options
+          have duplicate values, though. This is because the label is the only
+          thing the combo box is concerned about, since this is what the user
+          sees and what is matched against when the user searches. You can pass
+          an unique <EuiCode>id</EuiCode>{' '}
+          to an option if you require duplicate labels. See the example below.
         </p>
       </EuiCallOut>
 
