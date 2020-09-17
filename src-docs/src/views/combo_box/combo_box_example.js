@@ -183,6 +183,10 @@ const startingWithSnippet = `<EuiComboBox
   isClearable={true}
 />`;
 
+import DuplicateOptions from './combo_box_duplicates';
+const duplicateOptionsSource = require('!!raw-loader!./combo_box_duplicates');
+const duplicateOptionsHtml = renderToHtml(DuplicateOptions);
+
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
@@ -566,6 +570,28 @@ export const ComboBoxExample = {
       props: { EuiComboBox },
       snippet: startingWithSnippet,
       demo: <StartingWith />,
+    },
+    {
+      title: 'Duplicate labels',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: duplicateOptionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: duplicateOptionsHtml,
+        },
+      ],
+      text: (
+        <p>
+          If you want to use options with a duplicate label (which in general is
+          not recommended), you need to set a unique{' '}
+          <EuiCode language="js">id</EuiCode> for each option.
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <DuplicateOptions />,
     },
   ],
 };

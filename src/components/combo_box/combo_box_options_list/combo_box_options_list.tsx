@@ -213,7 +213,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
-    const { isGroupLabelOption, label, value, ...rest } = option;
+    const { id, isGroupLabelOption, label, value, ...rest } = option;
     const {
       singleSelection,
       selectedOptions,
@@ -227,7 +227,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     if (isGroupLabelOption) {
       return (
-        <div key={label.toLowerCase()} style={style}>
+        <div key={id ?? label.toLowerCase()} style={style}>
           <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
         </div>
       );
@@ -249,7 +249,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     return (
       <EuiFilterSelectItem
         style={style}
-        key={option.label.toLowerCase()}
+        key={option.id ?? option.label.toLowerCase()}
         onClick={() => {
           if (onOptionClick) {
             onOptionClick(option);

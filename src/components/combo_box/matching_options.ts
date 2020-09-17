@@ -40,11 +40,14 @@ export const flattenOptionGroups = <T>(
 
 export const getSelectedOptionForSearchValue = <T>(
   searchValue: string,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
+  optionId?: string
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    option => option.label.toLowerCase() === normalizedSearchValue
+    option =>
+      option.label.toLowerCase() === normalizedSearchValue &&
+      (!optionId || option.id === optionId)
   );
 };
 
@@ -59,7 +62,8 @@ const collectMatchingOption = <T>(
   // Only show options which haven't yet been selected unless requested.
   const selectedOption = getSelectedOptionForSearchValue(
     option.label,
-    selectedOptions
+    selectedOptions,
+    option.id
   );
   if (selectedOption && !showPrevSelected) {
     return false;
@@ -108,7 +112,11 @@ export const getMatchingOptions = <T>(
       });
       if (matchingOptionsForGroup.length > 0) {
         // Add option for group label
-        matchingOptions.push({ label: option.label, isGroupLabelOption: true });
+        matchingOptions.push({
+          id: option.id,
+          label: option.label,
+          isGroupLabelOption: true,
+        });
         // Add matching options for group
         matchingOptions.push(...matchingOptionsForGroup);
       }

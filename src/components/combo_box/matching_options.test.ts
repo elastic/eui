@@ -175,6 +175,41 @@ const testCases: GetMatchingOptionsTestCase[] = [
     ],
     sortMatchesBy: 'none',
   },
+  {
+    options: [{ label: 'Titan' }, { label: 'Titan' }],
+    selectedOptions: [
+      {
+        label: 'Titan',
+      },
+    ],
+    searchValue: 'titan',
+    isPreFiltered: true,
+    showPrevSelected: false,
+    expected: [
+      // Duplicate options without an id will be treated as the same option
+    ],
+    sortMatchesBy: 'none',
+  },
+  {
+    options: [
+      { label: 'Titan', id: 'titan1' },
+      { label: 'Titan', id: 'titan2' },
+    ],
+    selectedOptions: [
+      {
+        label: 'Titan',
+        id: 'titan2',
+      },
+    ],
+    searchValue: 'titan',
+    isPreFiltered: true,
+    showPrevSelected: false,
+    expected: [
+      // Duplicate options with an id will be treated as different items
+      { label: 'Titan', id: 'titan1' },
+    ],
+    sortMatchesBy: 'none',
+  },
 ];
 
 describe('getMatchingOptions', () => {

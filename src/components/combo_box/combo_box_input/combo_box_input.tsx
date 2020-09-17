@@ -170,7 +170,7 @@ export class EuiComboBoxInput<T> extends Component<
 
     const pills = selectedOptions
       ? selectedOptions.map(option => {
-          const { label, color, onClick, ...rest } = option;
+          const { id, label, color, onClick, ...rest } = option;
           const pillOnClose =
             isDisabled || singleSelection || onClick
               ? undefined
@@ -179,7 +179,7 @@ export class EuiComboBoxInput<T> extends Component<
             <EuiComboBoxPill
               option={option}
               onClose={pillOnClose}
-              key={label.toLowerCase()}
+              key={id ?? label.toLowerCase()}
               color={color}
               onClick={onClick}
               onClickAriaLabel={onClick ? 'Change' : undefined}
