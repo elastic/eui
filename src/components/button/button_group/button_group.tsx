@@ -21,11 +21,9 @@ import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupMultiButton } from './button_group_multi_button';
-import { EuiButtonGroupSingleButton } from './button_group_single_button';
 import {
   EuiButtonGroupProps,
   EuiButtonSingleGroupOptionProps,
-  EuiButtonMultiGroupOptionProps,
 } from './types';
 import { colorToClassNameMap } from '../button';
 
@@ -78,6 +76,8 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
     'euiButtonGroup__fieldset--fullWidth': isFullWidth,
   });
 
+  const typeIsSingle = type === 'single';
+
   return (
     <fieldset className={fieldsetClasses}>
       <EuiScreenReaderOnly>
@@ -86,31 +86,17 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
       <div className={classes} {...rest}>
         {options.map((option, index) => {
-          if (type === 'single') {
-            return (
-              <EuiButtonGroupSingleButton
-                key={index}
-                {...(option as EuiButtonSingleGroupOptionProps)}
-                isSelected={option.id === idSelected}
-                size={buttonSize}
-                isIconOnly={isIconOnly}
-                isDisabled={isDisabled || option.isDisabled}
-                color={resolvedColor}
-                onChange={onChange}
-                name={name}
-              />
-            );
-          }
-
           return (
             <EuiButtonGroupMultiButton
               key={index}
-              {...(option as EuiButtonMultiGroupOptionProps)}
-              isSelected={idToSelectedMap[option.id]}
+              name={name}
+              isDisabled={isDisabled}
+              {...(option as EuiButtonSingleGroupOptionProps)}
+              type={typeIsSingle ? 'label' : 'button'}
+              isSelected={typeIsSingle ? option.id === idSelected : idToSelectedMap[option.id]}
               color={resolvedColor}
               size={buttonSize}
               isIconOnly={isIconOnly}
-              isDisabled={isDisabled || option.isDisabled}
               onChange={onChange}
             />
           );

@@ -23,6 +23,7 @@ import { IconType } from '../../icon';
 import { ButtonColor } from '../button';
 import { ButtonContentIconSide } from '../button_content';
 
+/** INTERNAL */
 export type ButtonGroupOptionProps = {
   color: EuiButtonGroupProps['color'];
   size: EuiButtonGroupProps['buttonSize'];

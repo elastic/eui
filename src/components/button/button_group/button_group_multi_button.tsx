@@ -26,21 +26,71 @@ import {
 } from './types';
 
 type Props = {
+  /**
+   * Styles the selected button to look selected (usually with `fill`)
+   */
   isSelected?: boolean;
+  /**
+   * Name of the whole group for 'single'.
+   */
+  name?: string;
+  /**
+   * The value of the radio input for 'single'.
+   */
+  value?: string;
+  /**
+   * Element to display based on single or multi
+   */
+  type: 'button' | 'label';
 } & ButtonGroupOptionProps &
   EuiButtonMultiGroupOptionProps;
 
 export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
   className,
   id,
-  label,
-  isSelected,
-  size,
-  isIconOnly,
-  onChange,
   isDisabled,
+  isIconOnly,
+  isSelected,
+  label,
+  name,
+  onChange,
+  size,
+  value,
+  type = 'button',
   ...rest
 }) => {
+  // Force element to be a button if disabled
+  const element = isDisabled ? 'button' : type;
+
+  let elementProps = {};
+  let singleInput;
+  if (element === 'label') {
+    elementProps = {
+      ...elementProps,
+      htmlFor: id,
+      onClick: () => onChange(id, value)
+    };
+    singleInput = (
+      <input
+        id={id}
+        className="euiScreenReaderOnly"
+        name={name}
+        checked={isSelected}
+        disabled={isDisabled}
+        value={value}
+        type="radio"
+        onChange={() => onChange(id, value)}
+      />
+    );
+  } else {
+    elementProps = {
+      ...elementProps,
+      id,
+      'aria-pressed': isSelected,
+      onClick: () => onChange(id),
+    }
+  }
+
   const buttonClasses = classNames(
     {
       'euiButtonGroupButton-isSelected': isSelected,
@@ -51,19 +101,18 @@ export const EuiButtonGroupMultiButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
-      id={id}
-      element={'button'}
       baseClassName="euiButtonGroupButton"
       className={buttonClasses}
-      isDisabled={isDisabled}
+      element={element}
       fill={size !== 'compressed' && isSelected}
-      aria-pressed={isSelected}
+      isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
-      onClick={() => onChange(id)}
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}
+      {...elementProps}
       {...rest}>
+      {singleInput}
       {label}
     </EuiButtonDisplay>
   );

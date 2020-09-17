@@ -22,6 +22,7 @@ import React, {
   Ref,
   ButtonHTMLAttributes,
   CSSProperties,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -78,6 +79,7 @@ export const SIZES = keysOf(sizeToClassNameMap);
  * `iconType`, `iconSide`, and `textProps`
  */
 export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
+  // children?: ReactNode;
   /**
    * Make button a solid color for prominence
    */
@@ -113,7 +115,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
   style?: CSSProperties;
 }
 
-export interface EuiButtonDisplayProps extends EuiButtonProps {
+export type EuiButtonDisplayProps = EuiButtonProps & HTMLAttributes<HTMLElement> & {
   /**
    * Provide a valid element to render the element as
    */

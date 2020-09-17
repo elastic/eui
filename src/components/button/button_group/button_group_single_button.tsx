@@ -32,16 +32,16 @@ type Props = {
   EuiButtonSingleGroupOptionProps;
 
 export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
-  id,
-  value,
-  label,
-  isDisabled,
   className,
-  isSelected,
+  id,
+  isDisabled,
   isIconOnly,
-  size,
+  isSelected,
+  label,
   name,
   onChange,
+  size,
+  value,
   ...rest
 }) => {
   const element = isDisabled ? 'button' : 'label';
@@ -61,13 +61,13 @@ export const EuiButtonGroupSingleButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
-      element={element}
       baseClassName="euiButtonGroupButton"
       className={buttonClasses}
+      element={element}
       fill={size !== 'compressed' && isSelected}
       isDisabled={isDisabled}
-      size={size === 'compressed' ? 's' : size}
       onClick={() => onChange(id, value)}
+      size={size === 'compressed' ? 's' : size}
       textProps={{
         className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
       }}
