@@ -79,17 +79,14 @@ export function getColumnActions(
     );
 
   const onClickSortAsc = () => {
-    setIsPopoverOpen(false);
     sortBy('asc');
   };
 
   const onClickSortDesc = () => {
-    setIsPopoverOpen(false);
     sortBy('desc');
   };
 
   const onClickMoveLeft = () => {
-    setIsPopoverOpen(false);
     const targetCol = columns[colIdx - 1];
     if (targetCol) {
       switchColumnPos(column.id, targetCol.id);
@@ -97,7 +94,6 @@ export function getColumnActions(
   };
 
   const onClickMoveRight = () => {
-    setIsPopoverOpen(false);
     const targetCol = columns[colIdx + 1];
     if (targetCol) {
       switchColumnPos(column.id, targetCol.id);
