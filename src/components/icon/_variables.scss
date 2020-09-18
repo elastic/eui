@@ -4,12 +4,12 @@ $euiIconLoadingOpacity: .05;
 $euiIconColors: (
   text: $euiTextColor,
   subdued: $euiTextSubduedColor,
-  primary: makeGraphicContrastColor($euiColorPrimary),
-  secondary: makeGraphicContrastColor($euiColorSecondary),
-  success: makeGraphicContrastColor($euiColorSuccess),
-  accent: makeGraphicContrastColor($euiColorAccent),
-  warning: makeGraphicContrastColor($euiColorWarning),
-  danger: makeGraphicContrastColor($euiColorDanger),
+  primary: $euiColorPrimaryText,
+  secondary: $euiColorSecondaryText,
+  success: $euiColorSuccessText,
+  accent: $euiColorAccentText,
+  warning: $euiColorWarningText,
+  danger: $euiColorDangerText,
   ghost: $euiColorGhost,
 );
 

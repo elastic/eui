@@ -2,3 +2,9 @@
   @include euiFontSizeS;
   display: inline-block;
 }
+
+@each $name, $color in $euiHealthColors {
+  .euiHealth--#{$name} {
+    color: $color;
+  }
+}

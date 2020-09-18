@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiHealth } from './health';
+export { EuiHealth, HealthColor, COLORS as HEALTH_COLORS } from './health';

@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
-- Improved contrast for `EuiIcon` named colors ([#4049](https://github.com/elastic/eui/pull/4049))
+- Improved contrast for `EuiHealth` named colors ([#4049](https://github.com/elastic/eui/pull/4049))
 
 ## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
 
