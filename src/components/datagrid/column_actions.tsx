@@ -213,7 +213,7 @@ export function getColumnActions(
           ev.stopPropagation();
           setIsPopoverOpen(false);
           if (action && action.onClick) {
-            action.onClick(ev as any);
+            action.onClick(ev);
           }
         },
       },
