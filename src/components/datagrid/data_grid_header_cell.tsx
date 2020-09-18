@@ -324,7 +324,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             }
             isOpen={isPopoverOpen}
             closePopover={() => setIsPopoverOpen(false)}
-            ownFocus>
+            ownFocus={isFocused}>
             <div>
               <EuiListGroup
                 listItems={columnActions}
