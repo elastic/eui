@@ -96,7 +96,7 @@ export default () => {
     ];
 
     return {
-      id: toastId++,
+      id: `toast${toastId++}`,
       ...toasts[Math.floor(Math.random() * toasts.length)],
     };
   };
