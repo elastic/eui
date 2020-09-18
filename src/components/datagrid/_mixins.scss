@@ -50,6 +50,13 @@ $euiDataGridStyles: (
   }
 }
 
+@mixin euiDataGridCellFocus {
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 2px $euiFocusRingColor;
+  border-radius: 1px;
+  z-index: 2; // Needed so it sits above potential striping in the next row
+}
+
 @mixin euiDataGridRowCell {
   .euiDataGridRowCell {
     @content;

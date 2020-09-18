@@ -26,28 +26,26 @@ const columns = [
   },
   {
     id: 'email',
-    display: (
-      // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs" responsive={false}>
-        <EuiFlexItem className="eui-textTruncate">
-          <div className="eui-textTruncate">email</div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            aria-label="Column header email"
-            iconType="gear"
-            color="text"
-            onClick={() => alert('Email Icon Clicked!')}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    ),
   },
   {
     id: 'location',
   },
   {
     id: 'account',
+    actions: {
+      showHide: { label: 'Custom hide label' },
+      showMoveLeft: false,
+      showMoveRight: false,
+      additional: [
+        {
+          label: 'Custom action',
+          onClick: () => alert('🎉'),
+          iconType: 'cheer',
+          size: 'xs',
+          color: 'text',
+        },
+      ],
+    },
   },
   {
     id: 'date',
@@ -65,6 +63,7 @@ const columns = [
     defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
+    actions: false,
   },
 ];
 
