@@ -26,6 +26,9 @@ const util = require('util');
 const { SyntaxKind } = require('typescript');
 const chokidar = require('chokidar');
 
+const { NODE_ENV, CI } = process.env;
+const isDevelopment = NODE_ENV !== 'production' && CI == null;
+
 /**
  * To support extended props from tsx files.
  */
@@ -42,12 +45,14 @@ function buildProgram() {
 }
 buildProgram();
 
-chokidar
-  .watch(['./src', './src-docs'], {
-    ignoreInitial: true, // don't emit `add` event during file discovery
-  })
-  .on('add', buildProgram)
-  .on('change', buildProgram);
+if (isDevelopment) {
+  chokidar
+    .watch(['./src', './src-docs'], {
+      ignoreInitial: true, // don't emit `add` event during file discovery
+    })
+    .on('add', buildProgram)
+    .on('change', buildProgram);
+}
 
 module.exports = function({ types }) {
   return {
