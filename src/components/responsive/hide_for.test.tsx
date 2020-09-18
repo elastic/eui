@@ -19,27 +19,20 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
 
 import { EuiHideForBreakpoints, EuiHideFor } from './hide_for';
 
 const BREAKPOINTS: EuiHideForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 
 describe('EuiHideFor', () => {
-  test('renders wraps children in a span', () => {
-    const component = render(
-      <EuiHideFor sizes={['xs']} {...requiredProps}>
-        Child
-      </EuiHideFor>
-    );
+  // @ts-ignore innerWidth might be read only but we can still override it for the sake of testing
+  beforeAll(() => (window.innerWidth = 670));
+  afterAll(() => 1024); // reset to jsdom's default
 
-    expect(component).toMatchSnapshot();
-  });
-
-  test('renders and copies classes', () => {
+  test('renders', () => {
     const component = render(
-      <EuiHideFor sizes={['xs']}>
-        <div>Child</div>
+      <EuiHideFor sizes={['s']}>
+        <span>Child</span>
       </EuiHideFor>
     );
 
@@ -49,7 +42,9 @@ describe('EuiHideFor', () => {
   BREAKPOINTS.forEach(size => {
     test(`${size} is rendered`, () => {
       const component = render(
-        <EuiHideFor sizes={[size]} {...requiredProps} />
+        <EuiHideFor sizes={[size]}>
+          <span>Child</span>
+        </EuiHideFor>
       );
 
       expect(component).toMatchSnapshot();
@@ -58,7 +53,9 @@ describe('EuiHideFor', () => {
 
   test('renders for multiple breakpoints', () => {
     const component = render(
-      <EuiHideFor sizes={['xs', 'l']}>Child</EuiHideFor>
+      <EuiHideFor sizes={['s', 'l']}>
+        <span>Child</span>
+      </EuiHideFor>
     );
 
     expect(component).toMatchSnapshot();

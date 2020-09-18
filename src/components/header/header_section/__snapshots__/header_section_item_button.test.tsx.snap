@@ -20,16 +20,29 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
 </button>
 `;
 
-exports[`EuiHeaderSectionItemButton renders notification children 1`] = `
+exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 <button
   class="euiHeaderSectionItem__button"
   type="button"
 >
   <span
-    class="euiNotificationBadge euiHeaderSectionItemButton__notification"
+    class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
   >
     1
   </span>
+</button>
+`;
+
+exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
+<button
+  class="euiHeaderSectionItem__button"
+  type="button"
+>
+  <div
+    class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+    color="accent"
+    data-euiicon-type="dot"
+  />
 </button>
 `;
 
@@ -39,7 +52,7 @@ exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
   type="button"
 >
   <span
-    class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification"
+    class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
   >
     1
   </span>

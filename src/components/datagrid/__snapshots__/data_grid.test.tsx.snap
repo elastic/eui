@@ -181,7 +181,7 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
@@ -719,7 +719,7 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
@@ -1581,7 +1581,7 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"
@@ -2118,7 +2118,7 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
     >
       <div
         class="euiDataGrid__controls"

@@ -216,7 +216,7 @@
   @include euiFormControlText;
 
   border: none;
-  border-radius: 0;
+  border-radius: $euiFormControlBorderRadius;
   padding: $euiFormControlPadding;
 
   @if ($includeStates) {
@@ -301,7 +301,7 @@
   @if $type == 'round' {
     border-radius: $size;
   } @else if $type == 'square' {
-    border-radius: $euiBorderRadius;
+    border-radius: $euiCheckboxBorderRadius;
   }
   // sass-lint:disable-block indentation
   transition: background-color $euiAnimSpeedFast ease-in,

@@ -21,7 +21,8 @@ import { EuiSpacer } from '../../../../src/components';
  * 6. We pass the files and dependencies as params to CS through a POST call.
  * */
 
-const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles');
+const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles')
+  .default;
 
 /* 1 */
 export const CodeSandboxLink = ({ children, content }) => {

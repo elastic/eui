@@ -24,7 +24,7 @@ import { useDependentState } from './useDependentState';
 describe('useDependentState', () => {
   it('sets the base state', () => {
     // this is a huge abuse of closure scope
-    // but allows for jest's built in mock expect'ing
+    // but allows for jest's built in mock expecting
     let sourceValue = 2;
     const doubler = jest.fn(() => {
       return sourceValue * 2;

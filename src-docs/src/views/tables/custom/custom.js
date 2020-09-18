@@ -58,7 +58,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 28 2016',
         magnitude: 1,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+        health: <EuiBadge color="secondary">Healthy</EuiBadge>,
       },
       {
         id: 1,
@@ -70,7 +70,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 01 2016',
         magnitude: 1,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+        health: <EuiBadge color="secondary">Healthy</EuiBadge>,
       },
       {
         id: 2,
@@ -83,11 +83,11 @@ export default class extends Component {
         type: 'user',
         dateCreated: (
           <span>
-            Tue Dec 01 2016 &nbsp; <EuiBadge color="secondary">New!</EuiBadge>
+            Tue Dec 01 2016 &nbsp; <EuiBadge color="accent">New!</EuiBadge>
           </span>
         ),
         magnitude: 10,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+        health: <EuiBadge color="warning">Warning</EuiBadge>,
       },
       {
         id: 3,
@@ -104,7 +104,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 16 2016',
         magnitude: 100,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+        health: <EuiBadge color="secondary">Healthy</EuiBadge>,
       },
       {
         id: 4,
@@ -115,7 +115,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 13 2016',
         magnitude: 1000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+        health: <EuiBadge color="warning">Warning</EuiBadge>,
       },
       {
         id: 5,
@@ -126,7 +126,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+        health: <EuiBadge color="secondary">Healthy</EuiBadge>,
       },
       {
         id: 6,
@@ -137,7 +137,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="danger">Danger</EuiHealth>,
+        health: <EuiBadge color="danger">Danger</EuiBadge>,
       },
       {
         id: 7,
@@ -148,7 +148,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+        health: <EuiBadge color="warning">Warning</EuiBadge>,
       },
       {
         id: 8,
@@ -159,7 +159,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+        health: <EuiBadge color="warning">Warning</EuiBadge>,
       },
       {
         id: 9,
@@ -170,7 +170,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+        health: <EuiBadge color="secondary">Healthy</EuiBadge>,
       },
       {
         id: 10,
@@ -181,7 +181,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="danger">Danger</EuiHealth>,
+        health: <EuiBadge color="danger">Danger</EuiBadge>,
       },
       {
         id: 11,
@@ -192,7 +192,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+        health: <EuiBadge color="warning">Warning</EuiBadge>,
       },
       {
         id: 12,
@@ -203,7 +203,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+        health: <EuiHealth color="secondary">Healthy</EuiHealth>,
       },
       {
         id: 13,
@@ -214,7 +214,7 @@ export default class extends Component {
         type: 'user',
         dateCreated: 'Tue Dec 11 2016',
         magnitude: 10000,
-        health: <EuiHealth color="danger">Danger</EuiHealth>,
+        health: <EuiBadge color="danger">Danger</EuiBadge>,
       },
     ];
 

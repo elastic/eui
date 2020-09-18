@@ -100,7 +100,6 @@ export class EuiContextMenuItem extends Component<Props> {
       rel,
       ...rest
     } = this.props;
-
     let iconInstance;
 
     if (icon) {

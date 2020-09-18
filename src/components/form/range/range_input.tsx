@@ -48,7 +48,7 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
 }) => {
   // Chrome will properly size the input based on the max value, but FF & IE do not.
   // Calculate the width of the input based on highest number of characters.
-  // Add 2 to accomodate for input stepper
+  // Add 2 to accommodate for input stepper
   const widthStyle = autoSize
     ? { width: `${digitTolerance / 1.25 + 2}em` }
     : undefined;

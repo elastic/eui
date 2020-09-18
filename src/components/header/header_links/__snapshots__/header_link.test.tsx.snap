@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiHeaderLink can render as specific color 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--danger euiHeaderLink"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiHeaderLink is rendered 1`] = `
 <button
   aria-label="aria-label"
