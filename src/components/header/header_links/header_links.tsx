@@ -22,6 +22,7 @@ import React, {
   FunctionComponent,
   useState,
   useEffect,
+  MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
@@ -87,7 +88,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
-  const onMenuButtonClick = (e: any) => {
+  const onMenuButtonClick: MouseEventHandler<HTMLButtonElement> = e => {
     _onClick && _onClick(e);
     setMobileMenuIsOpen(!mobileMenuIsOpen);
   };
