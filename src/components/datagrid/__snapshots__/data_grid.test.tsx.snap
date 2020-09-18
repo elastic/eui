@@ -164,6 +164,643 @@ exports[`EuiDataGrid pagination renders 1`] = `
 </div>
 `;
 
+exports[`EuiDataGrid render column actions renders various column actions configurations 1`] = `
+<ul
+  className="euiListGroup euiListGroup-maxWidthDefault"
+  data-test-subj="dataGridHeaderCellActionGroup-B"
+>
+  <EuiListGroupItem
+    color="text"
+    iconType="eyeClosed"
+    key="title-0"
+    label={
+      <EuiI18n
+        default="Hide column"
+        token="euiColumnActions.hideColumn"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="eyeClosed"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="eyeClosed"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Hide column"
+        >
+          <EuiI18n
+            default="Hide column"
+            token="euiColumnActions.hideColumn"
+          >
+            Hide column
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    className=""
+    color="text"
+    iconType="sortUp"
+    isDisabled={false}
+    key="title-1"
+    label={
+      <EuiI18n
+        default="Sort schema asc"
+        token="euiColumnActions.sortAsc"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortUp"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortUp"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Sort schema asc"
+        >
+          <EuiI18n
+            default="Sort schema asc"
+            token="euiColumnActions.sortAsc"
+          >
+            Sort schema asc
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    className=""
+    color="text"
+    iconType="sortDown"
+    isDisabled={false}
+    key="title-2"
+    label={
+      <EuiI18n
+        default="Sort schema desc"
+        token="euiColumnActions.sortDesc"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortDown"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortDown"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Sort schema desc"
+        >
+          <EuiI18n
+            default="Sort schema desc"
+            token="euiColumnActions.sortDesc"
+          >
+            Sort schema desc
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    color="text"
+    iconType="sortLeft"
+    isDisabled={false}
+    key="title-3"
+    label={
+      <EuiI18n
+        default="Move left"
+        token="euiColumnActions.moveLeft"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortLeft"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortLeft"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Move left"
+        >
+          <EuiI18n
+            default="Move left"
+            token="euiColumnActions.moveLeft"
+          >
+            Move left
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    color="text"
+    iconType="sortRight"
+    isDisabled={false}
+    key="title-4"
+    label={
+      <EuiI18n
+        default="Move right"
+        token="euiColumnActions.moveRight"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortRight"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortRight"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Move right"
+        >
+          <EuiI18n
+            default="Move right"
+            token="euiColumnActions.moveRight"
+          >
+            Move right
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+</ul>
+`;
+
+exports[`EuiDataGrid render column actions renders various column actions configurations 2`] = `
+<ul
+  className="euiListGroup euiListGroup-maxWidthDefault"
+  data-test-subj="dataGridHeaderCellActionGroup-C"
+>
+  <EuiListGroupItem
+    key="title-0"
+    label="test"
+    onClick={[Function]}
+    showToolTip={false}
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="euiListGroupItem__label"
+          title="test"
+        >
+          test
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+</ul>
+`;
+
+exports[`EuiDataGrid render column actions renders various column actions configurations 3`] = `
+<ul
+  className="euiListGroup euiListGroup-maxWidthDefault"
+  data-test-subj="dataGridHeaderCellActionGroup-D"
+>
+  <EuiListGroupItem
+    className=""
+    color="text"
+    iconType="sortUp"
+    isDisabled={false}
+    key="title-0"
+    label={
+      <EuiI18n
+        default="Sort schema asc"
+        token="euiColumnActions.sortAsc"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortUp"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortUp"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Sort schema asc"
+        >
+          <EuiI18n
+            default="Sort schema asc"
+            token="euiColumnActions.sortAsc"
+          >
+            Sort schema asc
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    className=""
+    color="text"
+    iconType="sortDown"
+    isDisabled={false}
+    key="title-1"
+    label={
+      <EuiI18n
+        default="Sort schema desc"
+        token="euiColumnActions.sortDesc"
+      />
+    }
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortDown"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortDown"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="Sort schema desc"
+        >
+          <EuiI18n
+            default="Sort schema desc"
+            token="euiColumnActions.sortDesc"
+          >
+            Sort schema desc
+          </EuiI18n>
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    key="title-2"
+    label="test"
+    onClick={[Function]}
+    showToolTip={false}
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="euiListGroupItem__label"
+          title="test"
+        >
+          test
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+</ul>
+`;
+
+exports[`EuiDataGrid render column actions renders various column actions configurations 4`] = `
+<ul
+  className="euiListGroup euiListGroup-maxWidthDefault"
+  data-test-subj="dataGridHeaderCellActionGroup-E"
+>
+  <EuiListGroupItem
+    color="text"
+    iconType="eyeClosed"
+    key="title-0"
+    label="1"
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="eyeClosed"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="eyeClosed"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="1"
+        >
+          1
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    className=""
+    color="text"
+    iconType="sortUp"
+    isDisabled={false}
+    key="title-1"
+    label="2"
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortUp"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortUp"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="2"
+        >
+          2
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    className=""
+    color="text"
+    iconType="sortDown"
+    isDisabled={false}
+    key="title-2"
+    label="3"
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortDown"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortDown"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="3"
+        >
+          3
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    color="text"
+    iconType="sortLeft"
+    isDisabled={false}
+    key="title-3"
+    label="4"
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortLeft"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortLeft"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="4"
+        >
+          4
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    color="text"
+    iconType="sortRight"
+    isDisabled={true}
+    key="title-4"
+    label="5"
+    onClick={[Function]}
+    showToolTip={false}
+    size="xs"
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isDisabled euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      >
+        <EuiIcon
+          className="euiListGroupItem__icon"
+          type="sortRight"
+        >
+          <div
+            className="euiListGroupItem__icon"
+            data-euiicon-type="sortRight"
+          />
+        </EuiIcon>
+        <span
+          className="euiListGroupItem__label"
+          title="5"
+        >
+          5
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+  <EuiListGroupItem
+    key="title-5"
+    label="test"
+    onClick={[Function]}
+    showToolTip={false}
+    wrapText={false}
+  >
+    <li
+      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    >
+      <button
+        className="euiListGroupItem__button"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="euiListGroupItem__label"
+          title="test"
+        >
+          test
+        </span>
+      </button>
+    </li>
+  </EuiListGroupItem>
+</ul>
+`;
+
 exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
 Array [
   <div
@@ -298,11 +935,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  A
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -316,11 +971,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  B
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    B
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
             <div
@@ -851,11 +1524,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  A
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -869,11 +1560,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  B
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    B
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
@@ -1695,11 +2404,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  Column A
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    Column A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1713,13 +2440,31 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  <div>
-                    More Elements
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    <div>
+                      More Elements
+                    </div>
                   </div>
-                </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
             <div
@@ -2232,11 +2977,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  A
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    A
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2250,11 +3013,29 @@ Array [
                   data-test-subj="dataGridColumnResizer"
                   style="margin-right:0px"
                 />
-                <div
-                  class="euiDataGridHeaderCell__content"
+                <button
+                  class="euiDataGridHeaderCell__button"
                 >
-                  B
-                </div>
+                  <div
+                    class="euiDataGridHeaderCell__content"
+                  >
+                    B
+                  </div>
+                  <div
+                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                  >
+                    <div
+                      class="euiPopover__anchor"
+                    >
+                      <div
+                        aria-label="Header actions"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
             <div
