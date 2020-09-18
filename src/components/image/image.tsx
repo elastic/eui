@@ -159,7 +159,9 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   );
 
   const fullScreenDisplay = (
-    <EuiOverlayMask onClick={closeFullScreen}>
+    <EuiOverlayMask
+      data-test-subj="fullScreenOverlayMask"
+      onClick={closeFullScreen}>
       <EuiFocusTrap clickOutsideDisables={true}>
         <figure
           className="euiImage euiImage-isFullScreen"
@@ -172,6 +174,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
               { alt }
             )}
             className="euiImage__button"
+            data-test-subj="deactivateFullScreenButton"
             onClick={closeFullScreen}
             onKeyDown={onKeyDown}>
             <img
@@ -204,6 +207,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           type="button"
           aria-label={fullscreenLabel}
           className="euiImage__button"
+          data-test-subj="activateFullScreenButton"
           onClick={openFullScreen}>
           <img
             src={url}
@@ -213,8 +217,8 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
             {...rest}
           />
           {allowFullScreenIcon}
-          {isFullScreenActive && fullScreenDisplay}
         </button>
+        {isFullScreenActive && fullScreenDisplay}
         {optionalCaption}
       </figure>
     );
