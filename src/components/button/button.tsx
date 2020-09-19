@@ -115,16 +115,17 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
   style?: CSSProperties;
 }
 
-export type EuiButtonDisplayProps = EuiButtonProps & HTMLAttributes<HTMLElement> & {
-  /**
-   * Provide a valid element to render the element as
-   */
-  element: 'a' | 'button' | 'span' | 'label';
-  /**
-   * Provide the component's base class name to build the class list on
-   */
-  baseClassName: string;
-}
+export type EuiButtonDisplayProps = EuiButtonProps &
+  HTMLAttributes<HTMLElement> & {
+    /**
+     * Provide a valid element to render the element as
+     */
+    element: 'a' | 'button' | 'span' | 'label';
+    /**
+     * Provide the component's base class name to build the class list on
+     */
+    baseClassName: string;
+  };
 
 /**
  * *INTERNAL ONLY*

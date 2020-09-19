@@ -51,6 +51,10 @@
   }
 }
 
+.euiButtonGroupButton__textShift {
+  @include euiTextShift;
+}
+
 /**
  * Medium and Small sizing (regular button style)
  */

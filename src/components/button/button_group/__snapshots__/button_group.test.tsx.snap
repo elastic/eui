@@ -27,7 +27,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -46,7 +46,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -66,7 +66,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -102,7 +102,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -126,7 +126,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -152,7 +152,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -189,7 +189,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -208,7 +208,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -228,7 +228,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -264,7 +264,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -288,7 +288,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -314,7 +314,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -351,7 +351,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -370,7 +370,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -390,7 +390,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -426,7 +426,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -450,7 +450,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -476,7 +476,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -513,7 +513,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -532,7 +532,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -552,7 +552,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -588,7 +588,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -612,7 +612,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -638,7 +638,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -675,7 +675,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -694,7 +694,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -714,7 +714,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -750,7 +750,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -774,7 +774,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -800,7 +800,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -837,7 +837,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -856,7 +856,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -876,7 +876,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -912,7 +912,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -936,7 +936,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -962,7 +962,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -999,7 +999,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -1018,7 +1018,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -1038,7 +1038,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1074,7 +1074,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1098,7 +1098,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1124,7 +1124,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1161,7 +1161,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -1180,7 +1180,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -1200,7 +1200,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1236,7 +1236,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1260,7 +1260,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1286,7 +1286,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1323,7 +1323,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -1342,7 +1342,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -1362,7 +1362,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1398,7 +1398,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1422,7 +1422,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1448,7 +1448,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1487,7 +1487,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -1507,7 +1507,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -1527,7 +1527,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1566,7 +1566,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -1586,7 +1586,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -1606,7 +1606,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1643,7 +1643,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -1662,7 +1662,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -1682,7 +1682,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1718,7 +1718,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1742,7 +1742,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -1768,7 +1768,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -1966,7 +1966,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             checked=""
@@ -1991,7 +1991,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -2017,7 +2017,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -2054,7 +2054,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -2073,7 +2073,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -2093,7 +2093,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -2132,7 +2132,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option one
         </span>
@@ -2151,7 +2151,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option two
         </span>
@@ -2171,7 +2171,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>
@@ -2209,7 +2209,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -2233,7 +2233,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           <input
             class="euiScreenReaderOnly"
@@ -2259,7 +2259,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="euiButton__text"
+          class="euiButton__text euiButtonGroupButton__textShift"
         >
           Option three
         </span>

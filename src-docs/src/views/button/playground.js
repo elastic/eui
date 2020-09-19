@@ -4,7 +4,6 @@ import {
   propUtilityForPlayground,
   iconValidator,
 } from '../../services/playground';
-import { number } from 'prop-types';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiButton.__docgenInfo)

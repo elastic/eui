@@ -20,10 +20,8 @@
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
 import { EuiButtonDisplay } from '../button';
-import {
-  EuiButtonGroupOptionProps,
-  EuiButtonGroupProps,
-} from './button_group';
+import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
+import { useInnerText } from '../../inner_text';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -74,7 +72,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     elementProps = {
       ...elementProps,
       htmlFor: id,
-      onClick: () => onChange(id, value)
+      onClick: () => onChange(id, value),
     };
     singleInput = (
       <input
@@ -94,7 +92,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       id,
       'aria-pressed': isSelected,
       onClick: () => onChange(id),
-    }
+    };
   }
 
   const buttonClasses = classNames(
@@ -105,6 +103,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     className
   );
 
+  const [buttonTextRef, innerText] = useInnerText();
+
   return (
     <EuiButtonDisplay
       baseClassName="euiButtonGroupButton"
@@ -114,7 +114,12 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       textProps={{
-        className: isIconOnly ? 'euiScreenReaderOnly' : undefined,
+        className: isIconOnly
+          ? 'euiScreenReaderOnly'
+          : 'euiButtonGroupButton__textShift',
+        ref: buttonTextRef,
+        'data-text': innerText,
+        title: innerText,
       }}
       {...elementProps}
       {...rest}>

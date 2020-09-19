@@ -43,6 +43,6 @@ export { EuiButtonToggle, EuiButtonToggleProps } from './button_toggle';
 
 export {
   EuiButtonGroup,
-  EuiButtonGroupOption,
+  EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';

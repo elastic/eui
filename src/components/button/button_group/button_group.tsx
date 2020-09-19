@@ -23,9 +23,11 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupButton } from './button_group_button';
 import { colorToClassNameMap, ButtonColor } from '../button';
 import { EuiButtonContentProps } from '../button_content';
-import { CommonProps } from 'src/components/common';
+import { CommonProps } from '../../common';
 
-export interface EuiButtonGroupOptionProps extends EuiButtonContentProps, CommonProps {
+export interface EuiButtonGroupOptionProps
+  extends EuiButtonContentProps,
+    CommonProps {
   /**
    * Each option must have a unique `id` for maintaining selection
    */
@@ -39,7 +41,7 @@ export interface EuiButtonGroupOptionProps extends EuiButtonContentProps, Common
    * The value of the radio input.
    */
   value?: any;
-};
+}
 
 export type EuiButtonGroupProps = CommonProps & {
   /**
@@ -80,38 +82,38 @@ export type EuiButtonGroupProps = CommonProps & {
   options: EuiButtonGroupOptionProps[];
 } & (
     | {
-      type: 'single';
-      /**
-       * The `name` attribute for radio inputs;
-       * Required for keeping keyboard navigation contained within the group
-       */
-      name: string;
-      /**
-       * Styles the selected option to look selected (usually with `fill`)
-       * Only used in `type='single'`.
-       */
-      idSelected: string;
-      /**
-       * Returns the `id` of the clicked option and the `value`
-       * (`value` only in `type='single'`)
-       */
-      onChange: (id: string, value?: any) => void;
-      idToSelectedMap?: never;
-    }
+        // type: 'single';
+        /**
+         * The `name` attribute for radio inputs;
+         * Required for keeping keyboard navigation contained within the group
+         */
+        name: string;
+        /**
+         * Styles the selected option to look selected (usually with `fill`)
+         * Only used in `type='single'`.
+         */
+        idSelected: string;
+        /**
+         * Returns the `id` of the clicked option and the `value`
+         * (`value` only in `type='single'`)
+         */
+        onChange: (id: string, value?: any) => void;
+        idToSelectedMap?: never;
+      }
     | {
-      type: 'multi';
-      /**
-       * A map of `id`s as keys with the selected boolean values.
-       * Only used in `type='multi'`.
-       */
-      idToSelectedMap?: { [id: string]: boolean };
-      /**
-       * Returns the `id` of the clicked option
-       */
-      onChange: (id: string) => void;
-      idSelected?: never;
-      name?: never;
-    }
+        type: 'multi';
+        /**
+         * A map of `id`s as keys with the selected boolean values.
+         * Only used in `type='multi'`.
+         */
+        idToSelectedMap?: { [id: string]: boolean };
+        /**
+         * Returns the `id` of the clicked option
+         */
+        onChange: (id: string) => void;
+        idSelected?: never;
+        name?: never;
+      }
   );
 
 type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> &
@@ -176,7 +178,11 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
               type={typeIsSingle ? 'label' : 'button'}
-              isSelected={typeIsSingle ? option.id === idSelected : idToSelectedMap[option.id]}
+              isSelected={
+                typeIsSingle
+                  ? option.id === idSelected
+                  : idToSelectedMap[option.id]
+              }
               color={resolvedColor}
               size={buttonSize}
               isIconOnly={isIconOnly}
