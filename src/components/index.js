@@ -336,8 +336,6 @@ export { EuiTitle } from './title';
 
 export { EuiGlobalToastList, EuiGlobalToastListItem, EuiToast } from './toast';
 
-export { EuiToggle } from './toggle';
-
 export { EuiIconTip, EuiToolTip } from './tool_tip';
 
 export { EuiHideFor, EuiShowFor } from './responsive';
