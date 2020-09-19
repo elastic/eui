@@ -1,31 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiButtonToggle is rendered 1`] = `
-<div
-  class="euiToggle euiButtonToggle__wrapper"
+exports[`EuiButtonToggle extends button props like color 1`] = `
+<button
+  aria-label="aria-label"
+  aria-pressed="false"
+  class="euiButton euiButton--danger testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
 >
-  <input
-    aria-label="Label me"
-    class="euiToggle__input euiButtonToggle__input"
-    data-test-subj="test subject string"
-    title="Label me"
-    type="checkbox"
-  />
-  <button
-    aria-label="aria-label"
-    class="euiButton euiButton--primary euiButtonToggle testClass1 testClass2"
-    tabindex="-1"
-    type="button"
+  <span
+    class="euiButtonContent euiButton__content"
   >
     <span
-      class="euiButtonContent euiButton__content"
+      class="euiButton__text"
     >
-      <span
-        class="euiButton__text"
-      >
-        Label me
-      </span>
+      Toggle
     </span>
-  </button>
-</div>
+  </span>
+</button>
+`;
+
+exports[`EuiButtonToggle is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  aria-pressed="false"
+  class="euiButton euiButton--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    >
+      Toggle
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiButtonToggle isSelected is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  aria-pressed="true"
+  class="euiButton euiButton--primary euiButton--fill testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    >
+      Toggle
+    </span>
+  </span>
+</button>
 `;

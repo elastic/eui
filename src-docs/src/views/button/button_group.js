@@ -4,10 +4,10 @@ import {
   EuiButtonGroup,
   EuiSpacer,
   EuiTitle,
+  EuiPanel,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
-import { EuiPanel } from '../../../../src/components/panel/panel';
 
 const idPrefix = htmlIdGenerator()();
 const idPrefix2 = htmlIdGenerator()();

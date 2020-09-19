@@ -13,7 +13,7 @@ import {
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
 
-  const onToggle0Change = (e) => {
+  const onToggle0Change = e => {
     setToggle0On(e.target.checked);
   };
 
@@ -74,7 +74,7 @@ export default () => {
           <EuiButtonToggle
             color="ghost"
             label="Toggle Me"
-            fill={toggle0On}
+            isSelected={toggle0On}
             onChange={onToggle0Change}
           />
         </EuiFlexItem>

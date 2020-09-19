@@ -28,12 +28,10 @@ export default () => {
           </EuiTitle>
           <EuiSpacer />
           <EuiButtonToggle
-            label={`Docked: ${navIsDocked ? 'on' : 'off'}`}
-            fill={navIsDocked}
-            onChange={() => {
+            isSelected={navIsDocked}
+            onClick={() => {
               setNavIsDocked(!navIsDocked);
-            }}
-          />
+            }}>{`Docked: ${navIsDocked ? 'on' : 'off'}`}</EuiButtonToggle>
         </div>
       </EuiCollapsibleNav>
 

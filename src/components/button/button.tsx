@@ -222,14 +222,14 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
 EuiButtonDisplay.displayName = 'EuiButtonDisplay';
 export { EuiButtonDisplay };
 
-type EuiButtonPropsForAnchor = PropsForAnchor<
+export type EuiButtonPropsForAnchor = PropsForAnchor<
   EuiButtonProps,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
 
-type EuiButtonPropsForButton = PropsForButton<
+export type EuiButtonPropsForButton = PropsForButton<
   EuiButtonProps,
   {
     buttonRef?: Ref<HTMLButtonElement>;

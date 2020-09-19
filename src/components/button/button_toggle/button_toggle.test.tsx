@@ -26,7 +26,27 @@ import { EuiButtonToggle } from './button_toggle';
 describe('EuiButtonToggle', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonToggle {...requiredProps} label="Label me" />
+      <EuiButtonToggle {...requiredProps}>Toggle</EuiButtonToggle>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('isSelected is rendered', () => {
+    const component = render(
+      <EuiButtonToggle {...requiredProps} isSelected={true}>
+        Toggle
+      </EuiButtonToggle>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('extends button props like color', () => {
+    const component = render(
+      <EuiButtonToggle {...requiredProps} color="danger">
+        Toggle
+      </EuiButtonToggle>
     );
 
     expect(component).toMatchSnapshot();
