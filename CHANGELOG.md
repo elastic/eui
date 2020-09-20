@@ -5,7 +5,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiTextColor` playground error due to `color` prop not captured by the documentation generator ([#4058](https://github.com/elastic/eui/pull/4058))
+- Fixed `EuiTextColor` playground error due to `color` prop not getting captured by the documentation generator ([#4058](https://github.com/elastic/eui/pull/4058))
 
 ## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
 
