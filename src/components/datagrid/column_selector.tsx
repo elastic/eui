@@ -61,7 +61,12 @@ export const useColumnSelector = (
   columnVisibility: EuiDataGridColumnVisibility,
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
   displayValues: { [key: string]: string }
-): [ReactElement, EuiDataGridColumn[]] => {
+): [
+  ReactElement,
+  EuiDataGridColumn[],
+  (columns: string[]) => void,
+  (colFrom: string, colTo: string) => void
+] => {
   const allowColumnHiding = getShowColumnSelectorValue(
     showColumnSelector,
     'allowHide'
@@ -81,6 +86,15 @@ export const useColumnSelector = (
 
   const [isOpen, setIsOpen] = useState(false);
 
+  function setColumns(nextColumns: string[]) {
+    setSortedColumns(nextColumns);
+
+    const nextVisibleColumns = nextColumns.filter(id =>
+      visibleColumnIds.has(id)
+    );
+    setVisibleColumns(nextVisibleColumns);
+  }
+
   function onDragEnd({
     source: { index: sourceIndex },
     destination,
@@ -91,12 +105,7 @@ export const useColumnSelector = (
       sourceIndex,
       destinationIndex
     );
-    setSortedColumns(nextSortedColumns);
-
-    const nextVisibleColumns = nextSortedColumns.filter(id =>
-      visibleColumnIds.has(id)
-    );
-    setVisibleColumns(nextVisibleColumns);
+    setColumns(nextSortedColumns);
   }
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
@@ -279,6 +288,25 @@ export const useColumnSelector = (
         .filter(column => column != null),
     [availableColumns, visibleColumns]
   );
+  /**
+   * Used for moving columns left/right, available in the headers actions menu
+   */
+  const switchColumnPos = (fromColId: string, toColId: string) => {
+    const moveFromIdx = sortedColumns.indexOf(fromColId);
+    const moveToIdx = sortedColumns.indexOf(toColId);
+    if (moveFromIdx === -1 || moveToIdx === -1) {
+      return;
+    }
+    const nextSortedColumns = [...sortedColumns];
+    nextSortedColumns.splice(moveFromIdx, 1);
+    nextSortedColumns.splice(moveToIdx, 0, fromColId);
+    setColumns(nextSortedColumns);
+  };
 
-  return [columnSelector, orderedVisibleColumns];
+  return [
+    columnSelector,
+    orderedVisibleColumns,
+    setVisibleColumns,
+    switchColumnPos,
+  ];
 };
