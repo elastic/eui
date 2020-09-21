@@ -3,6 +3,10 @@
 - Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
 - Added column header menu to `EuiDataGrid` ([#3087](https://github.com/elastic/eui/pull/3087))
 
+**Bug fixes**
+
+- Fixed `EuiTextColor` playground error due to `color` prop not getting captured by the documentation generator ([#4058](https://github.com/elastic/eui/pull/4058))
+
 ## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
 
 - Added `.browserslistrc` for global browser support reference ([#4022](https://github.com/elastic/eui/pull/4022))
