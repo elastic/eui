@@ -19,6 +19,6 @@
 
 
 jest.mock('./../../../src/components/icon', () => {
-  const { EuiIcon } = jest.requireActual('./../../../src/components/icon/icon.testenv');
+  const { EuiIcon } = require('./../../../src/components/icon/icon.testenv');
   return { EuiIcon }
 });
