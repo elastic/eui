@@ -31,14 +31,19 @@ import classnames from 'classnames';
 import { EuiDataGridHeaderRowPropsSpecificProps } from './data_grid_header_row';
 import { keys } from '../../services';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { EuiPopover } from '../popover';
+import { EuiListGroup } from '../list_group';
 import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
 import { EuiDataGridColumn } from './data_grid_types';
+import { getColumnActions } from './column_actions';
+import { useEuiI18n } from '../i18n';
+import { EuiIcon } from '../icon';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'columns' | 'leadingControlColumns'
+    'leadingControlColumns'
   > {
   column: EuiDataGridColumn;
   index: number;
@@ -49,10 +54,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const {
     column,
     index,
+    columns,
     columnWidths,
     schema,
     defaultColumnWidth,
     setColumnWidth,
+    setVisibleColumns,
+    switchColumnPos,
     sorting,
     focusedCell,
     onCellFocus: setFocusedCell,
@@ -68,8 +76,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     'aria-describedby'?: AriaAttributes['aria-describedby'];
   } = {};
 
-  let screenReaderId;
+  const screenReaderId = htmlIdGenerator()();
   let sortString;
+  const actionButtonAriaLabel = useEuiI18n(
+    'euiDataGridHeaderCell.headerActions',
+    'Header actions'
+  );
 
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -89,7 +101,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       sortString = sorting.columns
         .map(col => `Sorted by ${col.id} ${col.direction}`)
         .join(' then ');
-      screenReaderId = htmlIdGenerator()();
       ariaProps['aria-describedby'] = screenReaderId;
     }
   }
@@ -108,6 +119,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const isFocused =
     focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const enableInteractives = useCallback(() => {
     if (headerRef.current) {
@@ -167,7 +179,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       // focusin bubbles while focus does not, and this needs to react to children gaining focus
       function onFocusIn(e: FocusEvent) {
-        if (headerIsInteractive === false) {
+        if (!headerIsInteractive) {
           // header is not interactive, avoid focusing
           requestAnimationFrame(() => headerRef.current!.blur());
           e.preventDefault();
@@ -199,7 +211,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         // wait for the next element to receive focus, then update interactives' state
         requestAnimationFrame(() => {
           if (headerRef.current) {
-            if (headerRef.current.contains(document.activeElement) === false) {
+            if (!headerRef.current.contains(document.activeElement)) {
               setIsCellEntered(false);
             }
           }
@@ -257,6 +269,17 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     index,
   ]);
 
+  const columnActions = getColumnActions(
+    column,
+    columns,
+    setVisibleColumns,
+    setIsPopoverOpen,
+    sorting,
+    switchColumnPos
+  );
+
+  const showColumnActions = columnActions && columnActions.length > 0;
+
   return (
     <div
       role="columnheader"
@@ -274,11 +297,43 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         />
       ) : null}
 
-      <div className="euiDataGridHeaderCell__content">{display || id}</div>
       {sorting && sorting.columns.length >= 2 && (
         <EuiScreenReaderOnly>
           <div id={screenReaderId}>{sortString}</div>
         </EuiScreenReaderOnly>
+      )}
+      {!showColumnActions ? (
+        <div className="euiDataGridHeaderCell__content">{display || id}</div>
+      ) : (
+        <button
+          className="euiDataGridHeaderCell__button"
+          onClick={() => setIsPopoverOpen(true)}>
+          <div className="euiDataGridHeaderCell__content">{display || id}</div>
+          <EuiPopover
+            className="euiDataGridHeaderCell__popover"
+            panelPaddingSize="none"
+            anchorPosition="downRight"
+            button={
+              <EuiIcon
+                type="arrowDown"
+                size="s"
+                color="text"
+                aria-label={actionButtonAriaLabel}
+                data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+              />
+            }
+            isOpen={isPopoverOpen}
+            closePopover={() => setIsPopoverOpen(false)}
+            ownFocus={isFocused}>
+            <div>
+              <EuiListGroup
+                listItems={columnActions}
+                gutterSize="none"
+                data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+              />
+            </div>
+          </EuiPopover>
+        </button>
       )}
     </div>
   );
