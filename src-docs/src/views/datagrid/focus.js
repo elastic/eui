@@ -97,6 +97,7 @@ export default () => {
           </EuiFlexGroup>
         ),
         isExpandable: false,
+        actions: false,
       },
       {
         id: 'no-interactives is expandable',
@@ -115,6 +116,7 @@ export default () => {
             </EuiFlexItem>
           </EuiFlexGroup>
         ),
+        actions: false,
       },
       {
         id: 'one-interactive not expandable',
@@ -134,6 +136,7 @@ export default () => {
           </EuiFlexGroup>
         ),
         isExpandable: false,
+        actions: false,
       },
       {
         id: 'one-interactives is expandable',
@@ -153,6 +156,7 @@ export default () => {
             </EuiFlexItem>
           </EuiFlexGroup>
         ),
+        actions: false,
       },
       {
         id: 'two-interactives not expandable',
@@ -173,6 +177,7 @@ export default () => {
           </EuiFlexGroup>
         ),
         isExpandable: false,
+        actions: false,
       },
       {
         id: 'two-interactives is expandable',
@@ -192,6 +197,7 @@ export default () => {
             </EuiFlexItem>
           </EuiFlexGroup>
         ),
+        actions: false,
       },
     ],
     [areHeadersInteractive]

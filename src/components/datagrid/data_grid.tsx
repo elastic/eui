@@ -65,7 +65,10 @@ import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiResizeObserver } from '../observer/resize_observer';
+import {
+  EuiResizeObserver,
+  useResizeObserver,
+} from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   useMergedSchema,
@@ -76,7 +79,6 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
-import { useResizeObserver } from '../observer/resize_observer/resize_observer';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -762,7 +764,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     {}
   );
 
-  const [columnSelector, orderedVisibleColumns] = useColumnSelector(
+  const [
+    columnSelector,
+    orderedVisibleColumns,
+    setVisibleColumns,
+    switchColumnPos,
+  ] = useColumnSelector(
     columns,
     columnVisibility,
     checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector'),
@@ -1056,6 +1063,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                           ref={ref}
                                           {...commonGridProps}
                                           setColumnWidth={setColumnWidth}
+                                          setVisibleColumns={setVisibleColumns}
+                                          switchColumnPos={switchColumnPos}
+                                          schema={mergedSchema}
+                                          sorting={sorting}
                                           headerIsInteractive={
                                             headerIsInteractive
                                           }
