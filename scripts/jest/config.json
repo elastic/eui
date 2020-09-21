@@ -15,14 +15,14 @@
   ],
   "moduleNameMapper": {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/scripts/jest/mocks/file_mock.js",
-    "\\.(css|less|scss)$": "<rootDir>/scripts/jest/mocks/style_mock.js",
-    "/icon$": "<rootDir>/scripts/jest/mocks/icon_mock.js"
+    "\\.(css|less|scss)$": "<rootDir>/scripts/jest/mocks/style_mock.js"
   },
   "setupFiles": [
     "<rootDir>/scripts/jest/setup/enzyme.js",
     "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
   ],
   "setupFilesAfterEnv": [
+    "<rootDir>/scripts/jest/setup/mocks.js",
     "<rootDir>/scripts/jest/setup/polyfills.js",
     "<rootDir>/scripts/jest/setup/unmount_enzyme.js"
   ],
