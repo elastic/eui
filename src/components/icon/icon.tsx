@@ -197,7 +197,6 @@ const typeToPathMap = {
   logsApp: 'app_logs',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
-  logoAPM: 'logo_apm',
   logoAppSearch: 'logo_app_search',
   logoAWS: 'logo_aws',
   logoAWSMono: 'logo_aws_mono',
