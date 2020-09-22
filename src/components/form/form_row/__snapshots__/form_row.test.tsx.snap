@@ -219,7 +219,7 @@ exports[`EuiFormRow is rendered 1`] = `
 
 exports[`EuiFormRow props compressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed"
+  class="euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -346,7 +346,7 @@ exports[`EuiFormRow props displayOnly is rendered 1`] = `
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+    class="euiFormRow__fieldWrapper"
   >
     <span
       id="generated-id"

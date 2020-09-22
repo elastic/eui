@@ -194,7 +194,7 @@ describe('EuiFormRow', () => {
 
     test('displayOnly is rendered', () => {
       const component = render(
-        <EuiFormRow displayOnly>
+        <EuiFormRow>
           <span>just some text</span>
         </EuiFormRow>
       );
@@ -205,7 +205,7 @@ describe('EuiFormRow', () => {
     describe('compressed', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiFormRow compressed>
+          <EuiFormRow>
             <input />
           </EuiFormRow>
         );
