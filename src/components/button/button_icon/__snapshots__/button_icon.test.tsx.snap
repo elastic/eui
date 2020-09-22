@@ -25,14 +25,6 @@ exports[`EuiButtonIcon props color danger is rendered 1`] = `
 />
 `;
 
-exports[`EuiButtonIcon props color disabled is rendered 1`] = `
-<button
-  aria-label="button"
-  class="euiButtonIcon euiButtonIcon--disabled"
-  type="button"
-/>
-`;
-
 exports[`EuiButtonIcon props color ghost is rendered 1`] = `
 <button
   aria-label="button"

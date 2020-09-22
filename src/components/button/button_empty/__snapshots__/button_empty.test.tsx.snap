@@ -34,21 +34,6 @@ exports[`EuiButtonEmpty props color danger is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButtonEmpty props color disabled is rendered 1`] = `
-<button
-  class="euiButtonEmpty euiButtonEmpty--disabled"
-  type="button"
->
-  <span
-    class="euiButtonContent euiButtonEmpty__content"
-  >
-    <span
-      class="euiButtonEmpty__text"
-    />
-  </span>
-</button>
-`;
-
 exports[`EuiButtonEmpty props color ghost is rendered 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--ghost"
