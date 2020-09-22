@@ -1,0 +1,17 @@
+.euiTabs {
+  background-color: $euiColorLightestShade;
+  border-radius: $euiBorderRadius;
+  padding: 0 .75rem;
+
+  // Unsets the bottom border on tab groups
+  &:not(.euiTabs--condensed)::before {
+    height: .25rem;
+    background-color: $euiColoEmptyShade;
+  }
+}
+
+.euiTab {
+  &:focus {
+    background-color: transparentize($color: $euiColorLightShade, $amount: .7);
+  }
+}
