@@ -24,4 +24,7 @@ export {
   EuiHeaderSectionItemProps,
 } from './header_section_item';
 
-export { EuiHeaderSectionItemButton } from './header_section_item_button';
+export {
+  EuiHeaderSectionItemButton,
+  EuiHeaderSectionItemButtonProps,
+} from './header_section_item_button';
