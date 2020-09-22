@@ -399,7 +399,7 @@ export class EuiDataGridCell extends Component<
 
     const expandButton = (
       <EuiI18n
-        key={'expand'}
+        key={'expan'}
         token="euiDataGridCell.expandButtonTitle"
         default="Click or hit enter to interact with cell content">
         {(expandButtonTitle: string) => (

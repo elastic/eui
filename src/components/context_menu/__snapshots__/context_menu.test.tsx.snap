@@ -1,11 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <div
+      class="euiPopoverTitle"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        Testing separator
+      </span>
+    </div>
+    <div>
+      <div>
+        <hr
+          class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiContextMenu is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiContextMenu testClass1 testClass2"
   data-test-subj="test subject string"
 />
+`;
+
+exports[`EuiContextMenu panel item can be a separator line 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <div
+      class="euiPopoverTitle"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        Testing separator
+      </span>
+    </div>
+    <div>
+      <div>
+        <button
+          class="euiContextMenuItem"
+          type="button"
+        >
+          <span
+            class="euiContextMenu__itemLayout"
+          >
+            <span
+              class="euiContextMenuItem__text"
+            >
+              Foo
+            </span>
+          </span>
+        </button>
+        <hr
+          class="euiHorizontalRule euiHorizontalRule--full"
+        />
+        <button
+          class="euiContextMenuItem"
+          type="button"
+        >
+          <span
+            class="euiContextMenu__itemLayout"
+          >
+            <span
+              class="euiContextMenuItem__text"
+            >
+              Bar
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiContextMenu panel item can contain JSX 1`] = `

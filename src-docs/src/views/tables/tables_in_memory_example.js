@@ -5,6 +5,7 @@ import {
   searchExternalSection as inMemorySearchExternalSection,
   searchCallbackSection as inMemorySearchCallbackSection,
   customSortingSection as inMemoryCustomSortingSection,
+  controlledPaginationSection as inMemoryControlledPaginationSection,
 } from './in_memory';
 
 export const TableInMemoryExample = {
@@ -16,5 +17,6 @@ export const TableInMemoryExample = {
     inMemorySearchCallbackSection,
     inMemorySearchExternalSection,
     inMemoryCustomSortingSection,
+    inMemoryControlledPaginationSection,
   ],
 };

@@ -102,6 +102,20 @@ const columns = [
   },
   {
     id: 'account',
+    actions: {
+      showHide: { label: 'Custom hide label' },
+      showMoveLeft: false,
+      showMoveRight: false,
+      additional: [
+        {
+          label: 'Custom action',
+          onClick: () => alert('🎉'),
+          iconType: 'cheer',
+          size: 'xs',
+          color: 'text',
+        },
+      ],
+    },
     valueActions: [
       {
         label: 'Send money',
@@ -135,6 +149,7 @@ const columns = [
     defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
+    actions: false,
   },
 ];
 

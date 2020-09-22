@@ -11,6 +11,7 @@ import {
   EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiCallOut,
 } from '../../../../src/components/';
 
 const columns = [
@@ -36,7 +37,7 @@ const columns = [
 
 const data = [];
 
-for (let i = 1; i < 5; i++) {
+for (let i = 1; i < 6; i++) {
   data.push({
     avatar: (
       <EuiAvatar
@@ -52,6 +53,13 @@ for (let i = 1; i < 5; i++) {
     account: fake('{{finance.account}}'),
   });
 }
+
+const footerCellValues = {
+  avatar: '5 accounts',
+};
+
+const renderFooterCellValue = ({ columnId }) =>
+  footerCellValues[columnId] || null;
 
 export default class DataGrid extends Component {
   constructor(props) {
@@ -131,6 +139,21 @@ export default class DataGrid extends Component {
       {
         id: 'underline',
         label: 'Underline',
+      },
+    ];
+
+    this.footerOptions = [
+      {
+        id: 'shade',
+        label: 'Shade',
+      },
+      {
+        id: 'overline',
+        label: 'Overline',
+      },
+      {
+        id: 'striped',
+        label: 'Striped',
       },
     ];
 
@@ -231,6 +254,7 @@ export default class DataGrid extends Component {
       isPopoverOpen: false,
       isToolbarPopoverOpen: false,
       headerSelected: 'underline',
+      footerSelected: 'overline',
       showSortSelector: true,
       showStyleSelector: true,
       showColumnSelector: true,
@@ -282,6 +306,12 @@ export default class DataGrid extends Component {
   onHeaderChange = optionId => {
     this.setState({
       headerSelected: optionId,
+    });
+  };
+
+  onFooterChange = optionId => {
+    this.setState({
+      footerSelected: optionId,
     });
   };
 
@@ -429,7 +459,7 @@ export default class DataGrid extends Component {
               isOpen={this.state.isPopoverOpen}
               anchorPosition="rightUp"
               closePopover={this.closePopover.bind(this)}>
-              <div style={{ width: 300 }}>
+              <div style={{ width: 380 }}>
                 <EuiFormRow label="Border" display="columnCompressed">
                   <EuiButtonGroup
                     isFullWidth
@@ -493,6 +523,17 @@ export default class DataGrid extends Component {
                     options={this.headerOptions}
                     idSelected={this.state.headerSelected}
                     onChange={this.onHeaderChange}
+                  />
+                </EuiFormRow>
+
+                <EuiFormRow label="Footer" display="columnCompressed">
+                  <EuiButtonGroup
+                    isFullWidth
+                    buttonSize="compressed"
+                    legend="Footer"
+                    options={this.footerOptions}
+                    idSelected={this.state.footerSelected}
+                    onChange={this.onFooterChange}
                   />
                 </EuiFormRow>
               </div>
@@ -619,6 +660,17 @@ export default class DataGrid extends Component {
           </EuiFlexItem>
         </EuiFlexGroup>
 
+        {this.state.footerSelected === 'striped' ? (
+          <>
+            <EuiSpacer />
+
+            <EuiCallOut
+              size="s"
+              title="A striped footer will be shaded depending on whether it is an even or an odd row considering the rest of the rows in the datagrid. Needs to be used with stripes={true}."
+            />
+          </>
+        ) : null}
+
         <EuiSpacer />
 
         <EuiDataGrid
@@ -636,9 +688,11 @@ export default class DataGrid extends Component {
             stripes: this.state.stripesSelected,
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
+            footer: this.state.footerSelected,
           }}
           toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          renderFooterCellValue={renderFooterCellValue}
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 10, 25],
