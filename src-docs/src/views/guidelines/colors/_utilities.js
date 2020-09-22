@@ -8,7 +8,7 @@ import { EuiIcon } from '../../../../../src/components/icon';
 
 export const coreColors = [
   'euiColorPrimary',
-  'euiColorSecondary',
+  'euiColorSuccess',
   'euiColorAccent',
   'euiColorWarning',
   'euiColorDanger',
@@ -16,7 +16,7 @@ export const coreColors = [
 
 export const coreTextVariants = [
   'euiColorPrimaryText',
-  'euiColorSecondaryText',
+  'euiColorSuccessText',
   'euiColorAccentText',
   'euiColorWarningText',
   'euiColorDangerText',

@@ -106,12 +106,11 @@ export default ({ selectedTheme }) => {
         <EuiSpacer size="xxl" />
 
         <ColorSection
-          color={'euiColorSecondary'}
+          color={'euiColorSuccess'}
           minimumContrast={contrastValue}
           showTextVariants={showTextVariants}>
           <p>
-            Also known as <EuiCode>euiColorSuccess</EuiCode>. Use this for
-            success graphics and <strong>additive</strong> actions.
+            Use this for success graphics and <strong>additive</strong> actions.
           </p>
         </ColorSection>
 
