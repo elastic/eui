@@ -397,29 +397,6 @@ export class EuiDataGridCell extends Component<
       'euiDataGridRowCell__expandButton-isActive': this.state.popoverIsOpen,
     });
 
-    const expandButton = (
-      <EuiI18n
-        key={'expan'}
-        token="euiDataGridCell.expandButtonTitle"
-        default="Click or hit enter to interact with cell content">
-        {(expandButtonTitle: string) => (
-          <EuiButtonIcon
-            className={buttonIconClasses}
-            color="ghost"
-            iconSize="s"
-            iconType="expandMini"
-            aria-hidden
-            onClick={() =>
-              this.setState(({ popoverIsOpen }) => ({
-                popoverIsOpen: !popoverIsOpen,
-              }))
-            }
-            title={expandButtonTitle}
-          />
-        )}
-      </EuiI18n>
-    );
-
     const screenReaderPosition = (
       <EuiScreenReaderOnly>
         <p>
@@ -467,8 +444,30 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (isExpandable) {
-      const buttons =
+    if (isExpandable || (column && column.valueActions)) {
+      const expandButton = (
+        <EuiI18n
+          key={'expand'}
+          token="euiDataGridCell.expandButtonTitle"
+          default="Click or hit enter to interact with cell content">
+          {(expandButtonTitle: string) => (
+            <EuiButtonIcon
+              className={buttonIconClasses}
+              color="ghost"
+              iconSize="s"
+              iconType="expandMini"
+              aria-hidden
+              onClick={() =>
+                this.setState(({ popoverIsOpen }) => ({
+                  popoverIsOpen: !popoverIsOpen,
+                }))
+              }
+              title={expandButtonTitle}
+            />
+          )}
+        </EuiI18n>
+      );
+      const additionalButtons =
         column && Array.isArray(column.valueActions)
           ? column.valueActions.map((action, idx) => (
               <EuiButtonIcon
@@ -481,7 +480,7 @@ export class EuiDataGridCell extends Component<
               />
             ))
           : [];
-      buttons.push(expandButton);
+      const buttons = [...additionalButtons, expandButton];
       anchorContent = (
         <div className="euiDataGridRowCell__expandFlex">
           <EuiMutationObserver
@@ -508,7 +507,7 @@ export class EuiDataGridCell extends Component<
     }
 
     let innerContent = anchorContent;
-    if (isExpandable) {
+    if (isExpandable || (column && column.valueActions)) {
       const CellElement = rest.renderCellValue as JSXElementConstructor<
         EuiDataGridCellValueElementProps
       >;
@@ -518,7 +517,7 @@ export class EuiDataGridCell extends Component<
           <EuiFlexGroup gutterSize="none">
             {column.valueActions.map((action, idx) => (
               <EuiFlexItem key={idx}>
-                {action.inPopoverButton ? (
+                {typeof action.inPopoverButton === 'function' ? (
                   action.inPopoverButton(rowIndex, column.id)
                 ) : (
                   <EuiButtonEmpty

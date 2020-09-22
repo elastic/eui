@@ -129,8 +129,7 @@ export interface EuiDataGridColumnCellAction {
    */
   iconType: EuiIconType;
   /**
-   * Function triggered on click / keypress, passing the raw value of the cell as first argument
-   * @param value
+   * Function triggered on click / keypress
    */
   callback: (rowIndex: number, columnId: string) => void;
   /**
