@@ -20,6 +20,7 @@ import themeDark from './theme_dark.scss';
 import themeAmsterdamLight from './theme_amsterdam_light.scss';
 import themeAmsterdamDark from './theme_amsterdam_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
+import ScrollToHash from './components/scroll_to_hash';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
@@ -50,6 +51,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider>
       <Router history={history}>
+        <ScrollToHash />
         <Switch>
           {routes.map(
             ({ name, path, sections, isNew, component, from, to }, i) => {
