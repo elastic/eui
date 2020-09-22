@@ -588,8 +588,9 @@ export const ComboBoxExample = {
       text: (
         <p>
           If you want to use options with a duplicate label (which in general is
-          not recommended), you need to set a unique{' '}
-          <EuiCode language="js">id</EuiCode> for each option.
+          not recommended since the user has no way to distinguish those
+          options), you need to set a unique <EuiCode language="js">id</EuiCode>{' '}
+          for each option.
         </p>
       ),
       props: { EuiComboBox },
