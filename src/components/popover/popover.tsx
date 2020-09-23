@@ -621,6 +621,7 @@ export class EuiPopover extends Component<Props, State> {
       display,
       onTrapDeactivation,
       buffer,
+      container,
       ...rest
     } = this.props;
 

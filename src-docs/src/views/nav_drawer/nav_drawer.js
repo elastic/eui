@@ -1,33 +1,31 @@
 import React, { Fragment, useState, useRef } from 'react';
 
 import {
-  EuiPage,
-  EuiPageBody,
-  EuiPageHeader,
-  EuiPageHeaderSection,
-  EuiPageContent,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiPageContentBody,
+  EuiAvatar,
+  EuiButton,
+  EuiFocusTrap,
   EuiHeader,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderLogo,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
-  EuiHeaderBreadcrumbs,
-  EuiHeaderLogo,
+  EuiHorizontalRule,
   EuiIcon,
   EuiImage,
-  EuiTitle,
-  EuiNavDrawerGroup,
   EuiNavDrawer,
-  EuiHorizontalRule,
+  EuiNavDrawerGroup,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
   EuiShowFor,
-  EuiFocusTrap,
-  EuiButton,
+  EuiTitle,
 } from '../../../../src/components';
-
-import HeaderUserMenu from '../header/header_user_menu';
-import HeaderSpacesMenu from '../header/header_spaces_menu';
 
 export default () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -466,7 +464,9 @@ export default () => {
                 {renderLogo()}
               </EuiHeaderSectionItem>
               <EuiHeaderSectionItem border="right">
-                <HeaderSpacesMenu />
+                <EuiHeaderSectionItemButton aria-label="Spaces menu">
+                  <EuiAvatar type="space" name="Sales Team" size="s" />
+                </EuiHeaderSectionItemButton>
               </EuiHeaderSectionItem>
             </EuiHeaderSection>
 
@@ -474,7 +474,9 @@ export default () => {
 
             <EuiHeaderSection side="right">
               <EuiHeaderSectionItem>
-                <HeaderUserMenu />
+                <EuiHeaderSectionItemButton aria-label="Account menu">
+                  <EuiAvatar name="John Username" size="s" />
+                </EuiHeaderSectionItemButton>
               </EuiHeaderSectionItem>
             </EuiHeaderSection>
           </EuiHeader>

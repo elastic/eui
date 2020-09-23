@@ -37,7 +37,7 @@ export interface EuiHideForProps {
    * List of all the responsive sizes to hide the children for.
    * Array of #EuiBreakpointSize
    */
-  sizes: EuiHideForBreakpoints[];
+  sizes: EuiHideForBreakpoints[] | 'all' | 'none';
 }
 
 export const EuiHideFor: FunctionComponent<EuiHideForProps> = ({
@@ -65,7 +65,10 @@ export const EuiHideFor: FunctionComponent<EuiHideForProps> = ({
     };
   }, [functionToCallOnWindowResize]);
 
-  if (sizes.includes(currentBreakpoint as EuiBreakpointSize)) {
+  if (
+    sizes === 'all' ||
+    sizes.includes(currentBreakpoint as EuiBreakpointSize)
+  ) {
     return null;
   }
 

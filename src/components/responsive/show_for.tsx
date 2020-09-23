@@ -37,7 +37,7 @@ export interface EuiShowForProps {
    * List of all the responsive sizes to show the children for.
    * Array of #EuiBreakpointSize
    */
-  sizes: EuiShowForBreakpoints[];
+  sizes: EuiShowForBreakpoints[] | 'all' | 'none';
 }
 
 export const EuiShowFor: FunctionComponent<EuiShowForProps> = ({
@@ -65,7 +65,10 @@ export const EuiShowFor: FunctionComponent<EuiShowForProps> = ({
     };
   }, [sizes, functionToCallOnWindowResize]);
 
-  if (sizes.includes(currentBreakpoint as EuiBreakpointSize)) {
+  if (
+    sizes === 'all' ||
+    sizes.includes(currentBreakpoint as EuiBreakpointSize)
+  ) {
     return <>{children}</>;
   }
 

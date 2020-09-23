@@ -12,7 +12,7 @@ export default () => {
 
   const sections = [
     {
-      items: [<EuiHeaderLogo iconType="logoKibana">Kibana</EuiHeaderLogo>],
+      items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
       borders: 'right',
     },
   ];

@@ -22,22 +22,11 @@ export default ({ theme }: { theme: any }) => (
     sections={[
       {
         items: [
-          <EuiHeaderLogo
-            iconType="logoElastic"
-            href="/"
-            aria-label="Goes to home">
-            Elastic
-          </EuiHeaderLogo>,
+          <EuiHeaderLogo>Elastic</EuiHeaderLogo>,
           <EuiHeaderLinks aria-label="App navigation dark theme example">
-            <EuiHeaderLink href="#" isActive>
-              Docs
-            </EuiHeaderLink>
-
-            <EuiHeaderLink href="#">Code</EuiHeaderLink>
-
-            <EuiHeaderLink iconType="help" href="#">
-              Help
-            </EuiHeaderLink>
+            <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+            <EuiHeaderLink>Code</EuiHeaderLink>
+            <EuiHeaderLink iconType="help"> Help</EuiHeaderLink>
           </EuiHeaderLinks>,
         ],
         borders: 'right',

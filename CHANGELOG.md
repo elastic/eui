@@ -1,8 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `29.1.0`.
+
+## [`29.1.0`](https://github.com/elastic/eui/tree/v29.1.0)
+
 - Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
 - Improved contrast for `EuiHealth` and `EuiButtonIcon` named colors ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added column header menu to `EuiDataGrid` ([#3087](https://github.com/elastic/eui/pull/3087))
+- Added horizontal line separator to `EuiContextMenu` ([#4018](https://github.com/elastic/eui/pull/4018))
+- Added controlled pagination props to `EuiInMemoryTablee` ([#4038](https://github.com/elastic/eui/pull/4038))
+- Added `gutterSize`, `popoverBreakpoints`, `popoverButtonProps`, and `popoverProps` props to `EuiHeaderLinks` ([#4046](https://github.com/elastic/eui/pull/4046))
+- Added `'all'` and `'none'` options to the `sizes` prop of `EuiHideFor` and `EuiShowFor` ([#4046](https://github.com/elastic/eui/pull/4046))
 
 **Bug fixes**
 
@@ -15,8 +23,6 @@
 - Added `boolean` type to the `notification` prop of `EuiHeaderSectionItemButton` to show a simple dot ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `popoverButton` and `popoverButtonBreakpoints` props to `EuiSelectableTemplateSitewide` for responsive capabilities ([#4008](https://github.com/elastic/eui/pull/4008))
 - Added `isWithinMaxBreakpoint` service ([#4008](https://github.com/elastic/eui/pull/4008))
-- Added horizontal line separator to `EuiContextMenu` ([#4018](https://github.com/elastic/eui/pull/4018))
-- Added controlled pagination props to `EuiInMemoryTablee` ([#4038](https://github.com/elastic/eui/pull/4038))
 
 **Bug fixes**
 
