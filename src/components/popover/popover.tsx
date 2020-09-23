@@ -40,8 +40,6 @@ import {
   htmlIdGenerator,
 } from '../../services';
 
-import { EuiOutsideClickDetector } from '../outside_click_detector';
-
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiPanel, PanelPaddingSize } from '../panel';
@@ -57,7 +55,6 @@ import {
 } from '../../services/popover';
 
 import { EuiI18n } from '../i18n';
-import { FocusOn } from 'react-focus-on';
 
 export type PopoverAnchorPosition =
   | 'upCenter'
@@ -706,16 +703,15 @@ export class EuiPopover extends Component<Props, State> {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
+            returnFocus={this.state.isOpenStable} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
-            onClickOutside={() => {
-              console.log('onOutsideClick');
-              closePopover();
-            }}
+            onClickOutside={closePopover}
             onEscapeKey={closePopover}
-            disabled={!ownFocus}>
+            disabled={
+              !ownFocus || !this.state.isOpenStable || this.state.isClosing
+            }>
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
@@ -747,32 +743,12 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     return (
-      <div
-        className={classes}
-        ref={popoverRef}
-        {...rest}>
+      <div className={classes} ref={popoverRef} {...rest}>
         <div className={anchorClasses} ref={this.buttonRef}>
           {button instanceof HTMLElement ? null : button}
         </div>
         {panel}
       </div>
     );
-
-    // return (
-    //   <EuiOutsideClickDetector
-    //     isDisabled={!isOpen}
-    //     onOutsideClick={closePopover}>
-    //     <div
-    //       className={classes}
-    //       onKeyDown={this.onKeyDown}
-    //       ref={popoverRef}
-    //       {...rest}>
-    //       <div className={anchorClasses} ref={this.buttonRef}>
-    //         {button instanceof HTMLElement ? null : button}
-    //       </div>
-    //       {panel}
-    //     </div>
-    //   </EuiOutsideClickDetector>
-    // );
   }
 }
