@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `29.1.0`.
+**Theme: Amsterdam**
+
+- Removed `border-radius` from `EuiCallout` ([#4066](https://github.com/elastic/eui/pull/4066))
 
 ## [`29.1.0`](https://github.com/elastic/eui/tree/v29.1.0)
 
@@ -14,10 +16,6 @@ No public interface changes since `29.1.0`.
 **Bug fixes**
 
 - Fixed `EuiTextColor` playground error due to `color` prop not getting captured by the documentation generator ([#4058](https://github.com/elastic/eui/pull/4058))
-
-**Theme: Amsterdam**
-
-- Removed `border-radius` from `EuiCallout` ([#4066](https://github.com/elastic/eui/pull/4066))
 
 ## [`29.0.0`](https://github.com/elastic/eui/tree/v29.0.0)
 
