@@ -26,7 +26,7 @@ import {
 const iconColors = [
   'default',
   'primary',
-  'secondary',
+  'success',
   'accent',
   'warning',
   'danger',
