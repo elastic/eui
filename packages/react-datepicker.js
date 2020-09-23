@@ -232,13 +232,6 @@ function extend() {
     return target
 }
 
-var immutable$1 = /*#__PURE__*/Object.freeze({
-  default: immutable,
-  __moduleExports: immutable
-});
-
-var xtend = ( immutable$1 && immutable ) || immutable$1;
-
 var listeningFocusTrap = null;
 
 function focusTrap(element, userOptions) {
@@ -246,7 +239,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = xtend(
+  var config = immutable(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -4299,11 +4292,6 @@ var _ctx = function (fn, that, length) {
   };
 };
 
-var _ctx$1 = /*#__PURE__*/Object.freeze({
-  default: _ctx,
-  __moduleExports: _ctx
-});
-
 var _isObject = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
@@ -4384,8 +4372,6 @@ var _hide = _descriptors ? function (object, key, value) {
   return object;
 };
 
-var require$$0 = ( _ctx$1 && _ctx ) || _ctx$1;
-
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -4409,7 +4395,7 @@ var $export = function (type, name, source) {
     // prevent global pollution for namespaces
     exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
     // bind timers to global for call from export context
-    : IS_BIND && own ? require$$0(out, _global)
+    : IS_BIND && own ? _ctx(out, _global)
     // wrap global constructors for prevent change them in library
     : IS_WRAP && target[key] == out ? (function (C) {
       var F = function (a, b, c) {
@@ -4424,7 +4410,7 @@ var $export = function (type, name, source) {
       F[PROTOTYPE] = C[PROTOTYPE];
       return F;
     // make static versions for prototype methods
-    })(out) : IS_PROTO && typeof out == 'function' ? require$$0(Function.call, out) : out;
+    })(out) : IS_PROTO && typeof out == 'function' ? _ctx(Function.call, out) : out;
     // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
     if (IS_PROTO) {
       (exports.virtual || (exports.virtual = {}))[key] = out;
@@ -4455,18 +4441,11 @@ var _cof = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
-var _cof$1 = /*#__PURE__*/Object.freeze({
-  default: _cof,
-  __moduleExports: _cof
-});
-
-var cof = ( _cof$1 && _cof ) || _cof$1;
-
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 
 // eslint-disable-next-line no-prototype-builtins
 var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-  return cof(it) == 'String' ? it.split('') : Object(it);
+  return _cof(it) == 'String' ? it.split('') : Object(it);
 };
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -4561,30 +4540,18 @@ var _objectKeysInternal = function (object, names) {
   return result;
 };
 
-var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
-  default: _objectKeysInternal,
-  __moduleExports: _objectKeysInternal
-});
-
 // IE 8- don't enum bug keys
 var _enumBugKeys = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
-
-var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 var _objectKeys = Object.keys || function keys(O) {
-  return $keys(O, _enumBugKeys);
+  return _objectKeysInternal(O, _enumBugKeys);
 };
-
-var _objectKeys$1 = /*#__PURE__*/Object.freeze({
-  default: _objectKeys,
-  __moduleExports: _objectKeys
-});
 
 var f$1 = Object.getOwnPropertySymbols;
 
@@ -4603,8 +4570,6 @@ var _objectPie = {
 var _toObject = function (it) {
   return Object(_defined(it));
 };
-
-var getKeys = ( _objectKeys$1 && _objectKeys ) || _objectKeys$1;
 
 // 19.1.2.1 Object.assign(target, source, ...)
 
@@ -4632,7 +4597,7 @@ var _objectAssign = !$assign || _fails(function () {
   var isEnum = _objectPie.f;
   while (aLen > index) {
     var S = _iobject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
     var length = keys.length;
     var j = 0;
     var key;
@@ -4640,17 +4605,10 @@ var _objectAssign = !$assign || _fails(function () {
   } return T;
 } : $assign;
 
-var _objectAssign$1 = /*#__PURE__*/Object.freeze({
-  default: _objectAssign,
-  __moduleExports: _objectAssign
-});
-
-var require$$0$1 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
-
 // 19.1.3.1 Object.assign(target, source)
 
 
-_export(_export.S + _export.F, 'Object', { assign: require$$0$1 });
+_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 var assign = _core.Object.assign;
 
@@ -4722,7 +4680,7 @@ var _redefine = _hide;
 
 var _objectDps = _descriptors ? Object.defineProperties : function defineProperties(O, Properties) {
   _anObject(O);
-  var keys = getKeys(Properties);
+  var keys = _objectKeys(Properties);
   var length = keys.length;
   var i = 0;
   var P;
@@ -5019,7 +4977,7 @@ var _wksDefine = function (name) {
 
 
 var _enumKeys = function (it) {
-  var result = getKeys(it);
+  var result = _objectKeys(it);
   var getSymbols = _objectGops.f;
   if (getSymbols) {
     var symbols = getSymbols(it);
@@ -5033,7 +4991,7 @@ var _enumKeys = function (it) {
 // 7.2.2 IsArray(argument)
 
 var _isArray = Array.isArray || function isArray(arg) {
-  return cof(arg) == 'Array';
+  return _cof(arg) == 'Array';
 };
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
@@ -5041,7 +4999,7 @@ var _isArray = Array.isArray || function isArray(arg) {
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
 var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return $keys(O, hiddenKeys);
+  return _objectKeysInternal(O, hiddenKeys);
 };
 
 var _objectGopn = {
@@ -5254,7 +5212,7 @@ for (var es6Symbols = (
   'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
 ).split(','), j = 0; es6Symbols.length > j;)_wks(es6Symbols[j++]);
 
-for (var wellKnownSymbols = getKeys(_wks.store), k = 0; wellKnownSymbols.length > k;) _wksDefine(wellKnownSymbols[k++]);
+for (var wellKnownSymbols = _objectKeys(_wks.store), k = 0; wellKnownSymbols.length > k;) _wksDefine(wellKnownSymbols[k++]);
 
 _export(_export.S + _export.F * !USE_NATIVE, 'Symbol', {
   // 19.4.2.1 Symbol.for(key)
@@ -5391,7 +5349,7 @@ var _setProto = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = require$$0(Function.call, _objectGopd.f(Object.prototype, '__proto__').set, 2);
+        set = _ctx(Function.call, _objectGopd.f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -5405,9 +5363,16 @@ var _setProto = {
   check: check
 };
 
+var _setProto$1 = /*#__PURE__*/Object.freeze({
+  default: _setProto,
+  __moduleExports: _setProto
+});
+
+var require$$0 = ( _setProto$1 && _setProto ) || _setProto$1;
+
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
@@ -5416,18 +5381,13 @@ var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: setPrototypeOf
 });
 
-var require$$0$2 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
+var require$$0$1 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
 
 var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
+module.exports = { "default": require$$0$1, __esModule: true };
 });
 
-var setPrototypeOf$3 = unwrapExports(setPrototypeOf$2);
-
-var setPrototypeOf$4 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf$3,
-  __moduleExports: setPrototypeOf$2
-});
+unwrapExports(setPrototypeOf$2);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5443,15 +5403,13 @@ module.exports = { "default": create, __esModule: true };
 
 unwrapExports(create$1);
 
-var _setPrototypeOf = ( setPrototypeOf$4 && setPrototypeOf$3 ) || setPrototypeOf$4;
-
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
 
 
 
@@ -8037,13 +7995,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
-var emptyFunction$1 = /*#__PURE__*/Object.freeze({
-  default: emptyFunction_1,
-  __moduleExports: emptyFunction_1
-});
-
-var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
-
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -8051,7 +8002,7 @@ var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction$2;
+var warning = emptyFunction_1;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -8095,7 +8046,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
+var warning$1 = /*#__PURE__*/Object.freeze({
+  default: warning_1,
+  __moduleExports: warning_1
+});
+
 var _gud = ( gud$1 && gud ) || gud$1;
+
+var _warning = ( warning$1 && warning_1 ) || warning$1;
 
 var implementation = createCommonjsModule(function (module, exports) {
 
@@ -8115,7 +8073,7 @@ var _gud2 = _interopRequireDefault(_gud);
 
 
 
-var _warning2 = _interopRequireDefault(warning_1);
+var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8295,7 +8253,14 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-unwrapExports(implementation);
+var implementation$1 = unwrapExports(implementation);
+
+var implementation$2 = /*#__PURE__*/Object.freeze({
+  default: implementation$1,
+  __moduleExports: implementation
+});
+
+var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8307,7 +8272,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(implementation);
+var _implementation2 = _interopRequireDefault(_implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8544,10 +8509,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$1 = function() {};
+var warning$2 = function() {};
 
 if (__DEV__) {
-  warning$1 = function(condition, format, args) {
+  warning$2 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8585,7 +8550,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$1;
+var warning_1$1 = warning$2;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);

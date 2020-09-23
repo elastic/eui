@@ -688,16 +688,96 @@
     "filepath": "src/components/control_bar/control_bar.tsx"
   },
   {
+    "token": "euiColumnActions.hideColumn",
+    "defString": "Hide column",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 107,
+        "column": 8
+      },
+      "end": {
+        "line": 107,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/datagrid/column_actions.tsx"
+  },
+  {
+    "token": "euiColumnActions.sortAsc",
+    "defString": "Sort schema asc",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 124,
+        "column": 8
+      },
+      "end": {
+        "line": 124,
+        "column": 78
+      }
+    },
+    "filepath": "src/components/datagrid/column_actions.tsx"
+  },
+  {
+    "token": "euiColumnActions.sortDesc",
+    "defString": "Sort schema desc",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 146,
+        "column": 8
+      },
+      "end": {
+        "line": 146,
+        "column": 80
+      }
+    },
+    "filepath": "src/components/datagrid/column_actions.tsx"
+  },
+  {
+    "token": "euiColumnActions.moveLeft",
+    "defString": "Move left",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 167,
+        "column": 13
+      },
+      "end": {
+        "line": 167,
+        "column": 78
+      }
+    },
+    "filepath": "src/components/datagrid/column_actions.tsx"
+  },
+  {
+    "token": "euiColumnActions.moveRight",
+    "defString": "Move right",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 184,
+        "column": 8
+      },
+      "end": {
+        "line": 184,
+        "column": 75
+      }
+    },
+    "filepath": "src/components/datagrid/column_actions.tsx"
+  },
+  {
     "token": "euiColumnSelector.button",
     "defString": "Columns",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 117,
+        "line": 126,
         "column": 4
       },
       "end": {
-        "line": 117,
+        "line": 126,
         "column": 66
       }
     },
@@ -709,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 122,
+        "line": 131,
         "column": 6
       },
       "end": {
-        "line": 126,
+        "line": 135,
         "column": 8
       }
     },
@@ -725,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 130,
+        "line": 139,
         "column": 6
       },
       "end": {
-        "line": 134,
+        "line": 143,
         "column": 8
       }
     },
@@ -741,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 250,
+        "line": 259,
         "column": 16
       },
       "end": {
-        "line": 253,
+        "line": 262,
         "column": 18
       }
     },
@@ -757,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 261,
+        "line": 270,
         "column": 16
       },
       "end": {
-        "line": 261,
+        "line": 270,
         "column": 80
       }
     },
@@ -926,6 +1006,22 @@
       }
     },
     "filepath": "src/components/datagrid/data_grid_cell.tsx"
+  },
+  {
+    "token": "euiDataGridHeaderCell.headerActions",
+    "defString": "Header actions",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 81,
+        "column": 32
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/data_grid_header_cell.tsx"
   },
   {
     "token": "euiDataGridSchema.booleanSortTextAsc",
@@ -1093,11 +1189,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 236,
+        "line": 251,
         "column": 4
       },
       "end": {
-        "line": 239,
+        "line": 254,
         "column": 46
       }
     },
@@ -1109,11 +1205,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 242,
+        "line": 257,
         "column": 10
       },
       "end": {
-        "line": 244,
+        "line": 259,
         "column": 52
       }
     },
@@ -1125,11 +1221,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 914,
+        "line": 951,
         "column": 4
       },
       "end": {
-        "line": 923,
+        "line": 960,
         "column": 9
       }
     },
@@ -1141,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 926,
+        "line": 963,
         "column": 10
       },
       "end": {
-        "line": 934,
+        "line": 971,
         "column": 15
       }
     },
@@ -1157,11 +1253,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1084,
+        "line": 1102,
         "column": 28
       },
       "end": {
-        "line": 1087,
+        "line": 1105,
         "column": 30
       }
     },
@@ -1173,11 +1269,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 91,
+        "line": 93,
         "column": 10
       },
       "end": {
-        "line": 91,
+        "line": 93,
         "column": 75
       }
     },
@@ -1665,32 +1761,32 @@
   },
   {
     "token": "euiHeaderLinks.openNavigationMenu",
-    "defString": "Open navigation menu",
+    "defString": "Open menu",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 64,
-        "column": 6
+        "line": 110,
+        "column": 4
       },
       "end": {
-        "line": 66,
-        "column": 39
+        "line": 110,
+        "column": 75
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
   },
   {
     "token": "euiHeaderLinks.appNavigation",
-    "defString": "App navigation",
+    "defString": "App menu",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 78,
-        "column": 6
+        "line": 123,
+        "column": 4
       },
       "end": {
-        "line": 78,
-        "column": 77
+        "line": 123,
+        "column": 69
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
@@ -2069,11 +2165,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 675,
+        "line": 676,
         "column": 14
       },
       "end": {
-        "line": 678,
+        "line": 679,
         "column": 16
       }
     },
