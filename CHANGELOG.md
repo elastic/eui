@@ -11,6 +11,7 @@ No public interface changes since `29.2.0`.
 
 - Removed `border-radius` from `EuiCallout` ([#4066](https://github.com/elastic/eui/pull/4066))
 - Updated styles for `EuiToast` ([#4076](https://github.com/elastic/eui/pull/4076))
+- Fixed `line-height` on `EuiTitle` ([#4079](https://github.com/elastic/eui/pull/4079))
 
 ## [`29.1.0`](https://github.com/elastic/eui/tree/v29.1.0)
 
