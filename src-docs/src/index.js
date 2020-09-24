@@ -56,11 +56,25 @@ ReactDOM.render(
           {routes.map(
             ({ name, path, sections, isNew, component, from, to }, i) => {
               const mainComponent = () => (
-                <Route key={i} path={`/${path}`}>
-                  <AppContainer currentRoute={{ name, path, sections, isNew }}>
-                    {createElement(component, {})}
-                  </AppContainer>
-                </Route>
+                <Route
+                  key={i}
+                  path={`/${path}`}
+                  render={props => {
+                    const { location } = props;
+                    // prevents encoded urls with a section id to fail
+                    if (location.pathname.includes('%23')) {
+                      const url = decodeURIComponent(location.pathname);
+                      return <Redirect push to={url} />;
+                    } else {
+                      return (
+                        <AppContainer
+                          currentRoute={{ name, path, sections, isNew }}>
+                          {createElement(component, {})}
+                        </AppContainer>
+                      );
+                    }
+                  }}
+                />
               );
 
               if (from)
