@@ -19,45 +19,21 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
-import { EuiIcon } from '../icon';
+import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-
-const colorToClassMap = {
-  default: null,
-  primary: 'euiHealth--primary',
-  secondary: 'euiHealth--secondary',
-  success: 'euiHealth--success',
-  accent: 'euiHealth--accent',
-  warning: 'euiHealth--warning',
-  danger: 'euiHealth--danger',
-  text: 'euiHealth--text',
-  subdued: 'euiHealth--subdued',
-  ghost: 'euiHealth--ghost',
-};
-
-export const COLORS: NamedColor[] = keysOf(colorToClassMap);
-
-type NamedColor = keyof typeof colorToClassMap;
-
-// We accept arbitrary color strings, which are impossible to type.
-export type HealthColor = string | NamedColor;
 
 type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     /**
      * Sets the color of the dot icon.
-     * It accepts one of EUI's color palette: `default`, `primary`, `secondary`, `success`, `accent`, `warning`, `danger`, `text`,
+     * It accepts any `IconColor`: `default`, `primary`, `secondary`, `success`, `accent`, `warning`, `danger`, `text`,
      * `subdued` or `ghost`; or any valid CSS color value as a `string`
      */
-    color?: HealthColor;
+    color?: IconColor;
   };
-
-function isNamedColor(name: string): name is NamedColor {
-  return colorToClassMap.hasOwnProperty(name);
-}
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   children,
@@ -65,23 +41,13 @@ export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   color,
   ...rest
 }) => {
-  let healthColor: any = null;
-
-  if (color) {
-    if (isNamedColor(color)) {
-      healthColor = { className: colorToClassMap[color] };
-    } else {
-      healthColor = { color: color };
-    }
-  }
-
   const classes = classNames('euiHealth', className);
 
   return (
     <div className={classes} {...rest}>
       <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
-          <EuiIcon type="dot" {...healthColor} />
+          <EuiIcon type="dot" color={color} />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>{children}</EuiFlexItem>
       </EuiFlexGroup>
