@@ -3,6 +3,10 @@
 - Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
 
+**Theme: Amsterdam**
+
+- Removed `border-radius` from `EuiCallout` ([#4066](https://github.com/elastic/eui/pull/4066))
+
 ## [`29.1.0`](https://github.com/elastic/eui/tree/v29.1.0)
 
 - Added footer row to `EuiDataGrid` via the `renderFooterCellValue` prop ([#3770](https://github.com/elastic/eui/pull/3770))
