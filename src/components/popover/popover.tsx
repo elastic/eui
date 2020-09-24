@@ -743,7 +743,11 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     return (
-      <div className={classes} ref={popoverRef} {...rest}>
+      <div
+        className={classes}
+        ref={popoverRef}
+        onKeyDown={this.onKeyDown}
+        {...rest}>
         <div className={anchorClasses} ref={this.buttonRef}>
           {button instanceof HTMLElement ? null : button}
         </div>
