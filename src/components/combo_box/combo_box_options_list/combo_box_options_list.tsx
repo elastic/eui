@@ -450,9 +450,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
       matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisibleOptions * rowHeight;
 
+    // bounded by max-height of euiComboBoxOptionsList__rowWrap
+    const boundedHeight = height > 200 ? 200 : height;
+
     const optionsList = (
       <FixedSizeList
-        height={height}
+        height={boundedHeight}
         onScroll={onScroll}
         itemCount={matchingOptions.length}
         itemSize={rowHeight}
