@@ -5,8 +5,8 @@
 
   // Unsets the bottom border on tab groups
   &:not(.euiTabs--condensed)::before {
-    height: .25rem;
-    background-color: $euiColoEmptyShade;
+    // height: .25rem;
+    background-color: $euiColorLightestShade;
   }
 }
 
