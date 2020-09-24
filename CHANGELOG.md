@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Improved contrast for `EuiHealth`, `EuiIcon` and `EuiButtonIcon` named colors ([#4049](https://github.com/elastic/eui/pull/4049))
+- Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
 
 ## [`29.1.0`](https://github.com/elastic/eui/tree/v29.1.0)
