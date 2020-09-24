@@ -323,6 +323,9 @@ export class EuiDataGridCell extends Component<
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
+        if (this.state.popoverIsOpen) {
+          return;
+        }
         switch (event.key) {
           case keys.ENTER:
           case keys.F2:
@@ -477,6 +480,7 @@ export class EuiDataGridCell extends Component<
                 iconSize="s"
                 iconType={action.iconType}
                 onClick={() => action.callback(rowIndex, column.id)}
+                onKeyPress={() => console.log('test')}
               />
             ))
           : [];
