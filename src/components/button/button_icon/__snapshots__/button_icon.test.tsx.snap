@@ -9,6 +9,14 @@ exports[`EuiButtonIcon is rendered 1`] = `
 />
 `;
 
+exports[`EuiButtonIcon props color accent is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--accent"
+  type="button"
+/>
+`;
+
 exports[`EuiButtonIcon props color danger is rendered 1`] = `
 <button
   aria-label="button"
