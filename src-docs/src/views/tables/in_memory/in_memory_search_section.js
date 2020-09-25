@@ -24,12 +24,13 @@ export const searchSection = {
   text: (
     <div>
       <p>
-        The example shows how to configure <strong>EuiInMemoryTable</strong> to
-        display a search bar.
-        You can read more about search bar{' '}
+        The example shows how to configure <strong>EuiInMemoryTable </strong>
+        to display a search bar by passing the search prop. You can read more
+        about the search bar&apos;s properties and its syntax{' '}
         <Link to="/forms/search-bar">
           <strong>here</strong>
-        </Link>{' '}.
+        </Link>{' '}
+        .
       </p>
     </div>
   ),
