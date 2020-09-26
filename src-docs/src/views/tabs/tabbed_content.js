@@ -93,9 +93,7 @@ export default () => {
       tabs={tabs}
       initialSelectedTab={tabs[1]}
       autoFocus="selected"
-      onTabClick={tab => {
-        console.log('clicked tab', tab);
-      }}
+      onTabClick={tab => {}}
     />
   );
 };
