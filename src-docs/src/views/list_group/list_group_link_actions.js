@@ -34,7 +34,7 @@ export default () => {
         id="link1"
         iconType="bullseye"
         label="EUI button link"
-        onClick={() => window.alert('Button clicked')}
+        onClick={() => {}}
         isActive
         extraAction={{
           color: 'subdued',
@@ -49,7 +49,7 @@ export default () => {
       <EuiListGroupItem
         id="link2"
         iconType="beaker"
-        onClick={() => window.alert('Button clicked')}
+        onClick={() => {}}
         label="EUI button link"
         extraAction={{
           color: 'subdued',
@@ -63,7 +63,7 @@ export default () => {
 
       <EuiListGroupItem
         id="link3"
-        onClick={() => window.alert('Button clicked')}
+        onClick={() => {}}
         iconType="broom"
         label="EUI button link"
         extraAction={{
@@ -84,7 +84,7 @@ export default () => {
         label="EUI button link"
         extraAction={{
           color: 'subdued',
-          onClick: () => window.alert('Action clicked'),
+          onClick: () => {},
           iconType: 'starEmpty',
           iconSize: 's',
           'aria-label': 'Favorite link4',
