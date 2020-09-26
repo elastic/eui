@@ -58,9 +58,7 @@ export default () => {
     setStatus(radios.find(x => x.id === optionId).value);
   };
 
-  const onItemClick = item => {
-    alert(`Item [${item.label}] was clicked`);
-  };
+  const onItemClick = item => {};
 
   return (
     <div>

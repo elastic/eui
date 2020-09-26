@@ -101,13 +101,9 @@ export default () => {
     setValue(val);
   };
 
-  const onItemClick = item => {
-    alert(`Item [${item.label}] was clicked`);
-  };
+  const onItemClick = item => {};
 
-  const onTimeChange = () => {
-    alert('Time changed');
-  };
+  const onTimeChange = dateRange => {};
 
   const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
 
