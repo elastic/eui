@@ -128,9 +128,7 @@ export default () => {
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}
-          onColumnResize={eventData => {
-            console.log(eventData);
-          }}
+          onColumnResize={eventData => {}}
           gridStyle={{
             border: 'horizontal',
             rowHover: 'highlight',
