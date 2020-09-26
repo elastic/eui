@@ -56,7 +56,6 @@ export default () => {
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();
-            window.alert('Show fullscreen');
           },
         },
         {
