@@ -401,7 +401,6 @@ export default () => {
         href: '#',
         onClick: e => {
           e.preventDefault();
-          console.log('You clicked management');
         },
         'data-test-subj': 'breadcrumbsAnimals',
         className: 'customClass',
@@ -411,7 +410,6 @@ export default () => {
         href: '#',
         onClick: e => {
           e.preventDefault();
-          console.log('You clicked truncation test');
         },
       },
       {
@@ -419,7 +417,6 @@ export default () => {
         href: '#',
         onClick: e => {
           e.preventDefault();
-          console.log('You clicked hidden');
         },
       },
       {
@@ -427,7 +424,6 @@ export default () => {
         href: '#',
         onClick: e => {
           e.preventDefault();
-          console.log('You clicked users');
         },
       },
       {
