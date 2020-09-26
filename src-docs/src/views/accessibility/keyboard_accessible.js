@@ -12,35 +12,27 @@ export default () => (
   <div>
     <EuiText>
       <EuiKeyboardAccessible>
-        <div onClick={() => window.alert('Div clicked')}>Click this div</div>
+        <div onClick={() => {}}>Click this div</div>
       </EuiKeyboardAccessible>
 
       <EuiKeyboardAccessible>
-        <a
-          className="euiLink"
-          onClick={() => window.alert('Anchor tag clicked')}>
+        <a className="euiLink" onClick={() => {}}>
           Click this anchor tag
         </a>
       </EuiKeyboardAccessible>
 
       <EuiKeyboardAccessible>
-        <CustomComponent
-          onClick={() => window.alert('Custom component clicked')}>
+        <CustomComponent onClick={() => {}}>
           Click this custom component
         </CustomComponent>
       </EuiKeyboardAccessible>
 
       <EuiKeyboardAccessible>
-        <div
-          onClick={() => window.alert('Outer EuiKeyboardAccessible clicked')}>
+        <div onClick={() => {}}>
           This EuiKeyboardAccessible contains another
           EuiKeyboardAccessible&nbsp;
           <EuiKeyboardAccessible>
-            <a
-              className="euiLink"
-              onClick={() =>
-                window.alert('Inner EuiKeyboardAccessible clicked')
-              }>
+            <a className="euiLink" onClick={() => {}}>
               Clicking this inner one should call both onClick handlers
             </a>
           </EuiKeyboardAccessible>
