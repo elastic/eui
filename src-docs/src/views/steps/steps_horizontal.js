@@ -6,21 +6,21 @@ const horizontalSteps = [
   {
     title: 'Completed step 1',
     isComplete: true,
-    onClick: () => window.alert('Step 1 clicked'),
+    onClick: () => {},
   },
   {
     title: 'Selected step 2',
     isSelected: true,
-    onClick: () => window.alert('Step 2 clicked'),
+    onClick: () => {},
   },
   {
     title: 'Incomplete step 3 which will wrap to the next line',
-    onClick: () => window.alert('Step 3 clicked'),
+    onClick: () => {},
   },
   {
     title: 'Disabled step 4',
     disabled: true,
-    onClick: () => window.alert('Step 4 clicked'),
+    onClick: () => {},
   },
 ];
 
