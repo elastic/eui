@@ -41,7 +41,7 @@ export default () => {
             index={idx}
             draggableId={id}
             disableInteractiveElementBlocking>
-            <EuiButton fullWidth onClick={() => alert(`${content} clicked!`)}>
+            <EuiButton fullWidth onClick={() => {}}>
               {content}
             </EuiButton>
           </EuiDraggable>
