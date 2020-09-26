@@ -26,9 +26,7 @@ export default () => {
         enableSnippets: true,
         enableLiveAutocompletion: true,
       }}
-      onBlur={() => {
-        console.log('blur');
-      }} // eslint-disable-line no-console
+      onBlur={() => {}} // eslint-disable-line no-console
       aria-label="Code Editor"
     />
   );
