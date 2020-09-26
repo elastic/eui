@@ -116,7 +116,6 @@ export const Categorical = () => {
         setChartType('LineSeries');
         break;
       default:
-        console.warn("Couldn't find the right chart type");
         break;
     }
   };
