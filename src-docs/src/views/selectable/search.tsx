@@ -76,7 +76,6 @@ export default () => {
   const onChange = (updatedOptions: EuiSelectableTemplateSitewideOption[]) => {
     const clickedItem = updatedOptions.find(option => option.checked === 'on');
     if (!clickedItem) return;
-    if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };
 
   return (
