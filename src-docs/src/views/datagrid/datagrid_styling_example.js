@@ -3,7 +3,12 @@ import React, { Fragment } from 'react';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiDataGrid, EuiCode, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiDataGrid,
+  EuiCode,
+  EuiCodeBlock,
+  EuiListGroupItem,
+} from '../../../../src/components';
 
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
@@ -18,11 +23,15 @@ const dataGridControlsSource = require('!!raw-loader!./additional_controls');
 const dataGridControlsHtml = renderToHtml(DataGridControls);
 
 import DataGridColumnWidths from './column_widths';
+import DataGridColumnActions from './column_actions';
 const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
 const dataGridColumnWidthsHtml = renderToHtml(DataGridColumnWidths);
+const dataGridColumnActionsSource = require('!!raw-loader!./column_actions');
+const dataGridColumnActionsHtml = renderToHtml(DataGridColumnActions);
 
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnActions,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
@@ -123,7 +132,7 @@ const widthsSnippet = `<EuiDataGrid
 `;
 
 export const DataGridStylingExample = {
-  title: 'Data grid styling and toolbar',
+  title: 'Data grid styling and control',
   sections: [
     {
       source: [
@@ -259,6 +268,48 @@ export const DataGridStylingExample = {
         EuiDataGridColumn,
       },
       demo: <DataGridColumnWidths />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridColumnActionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridColumnActionsHtml,
+        },
+      ],
+      title: 'Column actions',
+      text: (
+        <Fragment>
+          <p>
+            By default, columns provide actions for sorting, moving and hiding.
+            These can be extended with custom actions. You can customize the
+            actions by setting the <EuiCode>actions</EuiCode> value of{' '}
+            <strong>EuiDataGridColumn</strong>. Setting it to{' '}
+            <EuiCode>false</EuiCode> removes the action menu displayed. You can
+            configure it by passing an object of type{' '}
+            <strong>EuiDataGridColumnAction</strong>. This allows you a hide,
+            configure the existing actions and add new ones.
+          </p>
+          <p>
+            Below, the first column provides no action, the second doesn&apos;t
+            provide the ability to hide the columns, the 3rd provides an
+            additional action, the 4th overwrites the hide action with a custom
+            label and icon.
+          </p>
+        </Fragment>
+      ),
+      components: { DataGridColumnActions },
+      snippet: widthsSnippet,
+      props: {
+        EuiDataGrid,
+        EuiDataGridColumn,
+        EuiDataGridColumnActions,
+        EuiListGroupItem,
+      },
+      demo: <DataGridColumnActions />,
     },
   ],
 };

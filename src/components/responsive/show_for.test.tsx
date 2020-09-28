@@ -60,4 +60,24 @@ describe('EuiShowFor', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('renders for "all"', () => {
+    const component = render(
+      <EuiShowFor sizes={'all'}>
+        <span>Child</span>
+      </EuiShowFor>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('never renders for "none"', () => {
+    const component = render(
+      <EuiShowFor sizes={'none'}>
+        <span>Child</span>
+      </EuiShowFor>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

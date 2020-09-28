@@ -11,6 +11,7 @@ const dataGridSchemaHtml = renderToHtml(DataGridSchema);
 
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnActions,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
@@ -89,6 +90,7 @@ export const DataGridSchemaExample = {
         EuiDataGrid,
         EuiDataGridInMemory,
         EuiDataGridColumn,
+        EuiDataGridColumnActions,
         EuiDataGridColumnVisibility,
         EuiDataGridPaginationProps,
         EuiDataGridSorting,

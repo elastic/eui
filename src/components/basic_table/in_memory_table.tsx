@@ -58,10 +58,12 @@ function isEuiSearchBarProps<T>(
 type Search = boolean | EuiSearchBarProps;
 
 interface PaginationOptions {
-  initialPageIndex?: number;
-  initialPageSize?: number;
   pageSizeOptions?: number[];
   hidePerPageOptions?: boolean;
+  initialPageIndex?: number;
+  initialPageSize?: number;
+  pageIndex?: number;
+  pageSize?: number;
 }
 
 type Pagination = boolean | PaginationOptions;
@@ -149,11 +151,22 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
   }
 
   const {
-    initialPageIndex = 0,
-    initialPageSize,
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
     hidePerPageOptions,
   } = pagination as PaginationOptions;
+
+  const defaultPageSize = pageSizeOptions
+    ? pageSizeOptions[0]
+    : paginationBarDefaults.pageSizeOptions[0];
+
+  const initialPageIndex =
+    pagination === true
+      ? 0
+      : pagination.pageIndex || pagination.initialPageIndex || 0;
+  const initialPageSize =
+    pagination === true
+      ? defaultPageSize
+      : pagination.pageSize || pagination.initialPageSize || defaultPageSize;
 
   if (
     !hidePerPageOptions &&
@@ -165,13 +178,9 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
     );
   }
 
-  const defaultPageSize = pageSizeOptions
-    ? pageSizeOptions[0]
-    : paginationBarDefaults.pageSizeOptions[0];
-
   return {
     pageIndex: initialPageIndex,
-    pageSize: initialPageSize || defaultPageSize,
+    pageSize: initialPageSize,
     pageSizeOptions,
     hidePerPageOptions,
   };
@@ -247,19 +256,52 @@ export class EuiInMemoryTable<T> extends Component<
     prevState: State<T>
   ) {
     let updatedPrevState = prevState;
-    let componentShouldUpdate = false;
     if (nextProps.items !== prevState.prevProps.items) {
       // We have new items because an external search has completed, so reset pagination state.
-      componentShouldUpdate = true;
+
+      let nextPageIndex = 0;
+      if (
+        nextProps.pagination != null &&
+        typeof nextProps.pagination !== 'boolean'
+      ) {
+        nextPageIndex = nextProps.pagination.pageIndex || 0;
+      }
+
       updatedPrevState = {
         ...updatedPrevState,
         prevProps: {
           ...updatedPrevState.prevProps,
           items: nextProps.items,
         },
-        pageIndex: 0,
+        pageIndex: nextPageIndex,
       };
     }
+
+    // apply changes to controlled pagination
+    if (
+      nextProps.pagination != null &&
+      typeof nextProps.pagination !== 'boolean'
+    ) {
+      if (
+        nextProps.pagination.pageSize != null &&
+        nextProps.pagination.pageSize !== updatedPrevState.pageIndex
+      ) {
+        updatedPrevState = {
+          ...updatedPrevState,
+          pageSize: nextProps.pagination.pageSize,
+        };
+      }
+      if (
+        nextProps.pagination.pageIndex != null &&
+        nextProps.pagination.pageIndex !== updatedPrevState.pageIndex
+      ) {
+        updatedPrevState = {
+          ...updatedPrevState,
+          pageIndex: nextProps.pagination.pageIndex,
+        };
+      }
+    }
+
     const { sortName, sortDirection } = getInitialSorting(
       nextProps.columns,
       nextProps.sorting
@@ -268,7 +310,6 @@ export class EuiInMemoryTable<T> extends Component<
       sortName !== prevState.prevProps.sortName ||
       sortDirection !== prevState.prevProps.sortDirection
     ) {
-      componentShouldUpdate = true;
       updatedPrevState = {
         ...updatedPrevState,
         sortName,
@@ -284,7 +325,6 @@ export class EuiInMemoryTable<T> extends Component<
       : '';
 
     if (nextQuery !== prevQuery) {
-      componentShouldUpdate = true;
       updatedPrevState = {
         ...updatedPrevState,
         prevProps: {
@@ -294,7 +334,7 @@ export class EuiInMemoryTable<T> extends Component<
         query: getQueryFromSearch(nextProps.search, false),
       };
     }
-    if (componentShouldUpdate) {
+    if (updatedPrevState !== prevState) {
       return updatedPrevState;
     }
     return null;
@@ -340,10 +380,18 @@ export class EuiInMemoryTable<T> extends Component<
   }
 
   onTableChange = ({ page, sort }: Criteria<T>) => {
-    const { index: pageIndex, size: pageSize } = (page || {}) as {
+    let { index: pageIndex, size: pageSize } = (page || {}) as {
       index: number;
       size: number;
     };
+
+    // don't apply pagination changes that are otherwise controlled
+    // `page` is left unchanged as it goes to the consumer's `onTableChange` callback, allowing the app to respond
+    const { pagination } = this.props;
+    if (pagination != null && typeof pagination !== 'boolean') {
+      if (pagination.pageSize != null) pageSize = pagination.pageSize;
+      if (pagination.pageIndex != null) pageIndex = pagination.pageIndex;
+    }
 
     let { field: sortName, direction: sortDirection } = (sort || {}) as {
       field: keyof T;

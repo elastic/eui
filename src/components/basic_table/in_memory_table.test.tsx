@@ -1001,4 +1001,219 @@ describe('EuiInMemoryTable', () => {
       });
     });
   });
+
+  describe('controlled pagination', () => {
+    it('respects pageIndex', () => {
+      const pagination = {
+        initialPageIndex: 2,
+        pageIndex: 1,
+        pageSizeOptions: [2],
+      };
+      const items = [
+        { index: 0 },
+        { index: 1 },
+        { index: 2 },
+        { index: 3 },
+        { index: 4 },
+        { index: 5 },
+      ];
+      const columns = [
+        {
+          field: 'index',
+          name: 'Index',
+        },
+      ];
+      const onTableChange = jest.fn();
+      const component = mount(
+        <EuiInMemoryTable
+          items={items}
+          columns={columns}
+          pagination={pagination}
+          onTableChange={onTableChange}
+        />
+      );
+
+      // ensure table is on 2nd page (pageIndex=1)
+      expect(
+        component.find('button[data-test-subj="pagination-button-1"][disabled]')
+          .length
+      ).toBe(1);
+      expect(
+        component
+          .find('td')
+          .at(0)
+          .text()
+      ).toBe('Index2');
+      expect(
+        component
+          .find('td')
+          .at(1)
+          .text()
+      ).toBe('Index3');
+
+      // click the first pagination button
+      component
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-0"]')
+        .simulate('click');
+      expect(onTableChange).toHaveBeenCalledTimes(1);
+      expect(onTableChange).toHaveBeenCalledWith({
+        sort: {},
+        page: {
+          index: 0,
+          size: 2,
+        },
+      });
+
+      // ensure table is still on the 2nd page (pageIndex=1)
+      expect(
+        component.find('button[data-test-subj="pagination-button-1"][disabled]')
+          .length
+      ).toBe(1);
+      expect(
+        component
+          .find('td')
+          .at(0)
+          .text()
+      ).toBe('Index2');
+      expect(
+        component
+          .find('td')
+          .at(1)
+          .text()
+      ).toBe('Index3');
+
+      // re-render with an updated `pageIndex` value
+      pagination.pageIndex = 2;
+      component.setProps({ pagination });
+
+      // ensure table is on 3rd page (pageIndex=2)
+      expect(
+        component.find('button[data-test-subj="pagination-button-2"][disabled]')
+          .length
+      ).toBe(1);
+      expect(
+        component
+          .find('td')
+          .at(0)
+          .text()
+      ).toBe('Index4');
+      expect(
+        component
+          .find('td')
+          .at(1)
+          .text()
+      ).toBe('Index5');
+    });
+
+    it('respects pageSize', () => {
+      const pagination = {
+        pageSize: 2,
+        initialPageSize: 4,
+        pageSizeOptions: [1, 2, 4],
+      };
+      const items = [
+        { index: 0 },
+        { index: 1 },
+        { index: 2 },
+        { index: 3 },
+        { index: 4 },
+        { index: 5 },
+      ];
+      const columns = [
+        {
+          field: 'index',
+          name: 'Index',
+        },
+      ];
+      const onTableChange = jest.fn();
+      const component = mount(
+        <EuiInMemoryTable
+          items={items}
+          columns={columns}
+          pagination={pagination}
+          onTableChange={onTableChange}
+        />
+      );
+
+      // check that the first 2 items rendered
+      expect(component.find('td').length).toBe(2);
+      expect(
+        component
+          .find('td')
+          .at(0)
+          .text()
+      ).toBe('Index0');
+      expect(
+        component
+          .find('td')
+          .at(1)
+          .text()
+      ).toBe('Index1');
+
+      // change the page size
+      component
+        .find('button[data-test-subj="tablePaginationPopoverButton"]')
+        .simulate('click');
+      component.update();
+      component
+        .find('button[data-test-subj="tablePagination-4-rows"]')
+        .simulate('click');
+
+      // check callback
+      expect(onTableChange).toHaveBeenCalledTimes(1);
+      expect(onTableChange).toHaveBeenCalledWith({
+        sort: {},
+        page: {
+          index: 0,
+          size: 4,
+        },
+      });
+
+      // verify still only rendering the first 2 rows
+      expect(component.find('td').length).toBe(2);
+      expect(
+        component
+          .find('td')
+          .at(0)
+          .text()
+      ).toBe('Index0');
+      expect(
+        component
+          .find('td')
+          .at(1)
+          .text()
+      ).toBe('Index1');
+
+      // update the controlled page size
+      pagination.pageSize = 4;
+      component.setProps({ pagination });
+
+      // verify it now renders 4 rows
+      expect(component.find('td').length).toBe(4);
+      expect(
+        component
+          .find('td')
+          .at(0)
+          .text()
+      ).toBe('Index0');
+      expect(
+        component
+          .find('td')
+          .at(1)
+          .text()
+      ).toBe('Index1');
+      expect(
+        component
+          .find('td')
+          .at(2)
+          .text()
+      ).toBe('Index2');
+      expect(
+        component
+          .find('td')
+          .at(3)
+          .text()
+      ).toBe('Index3');
+    });
+  });
 });

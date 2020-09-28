@@ -31,20 +31,44 @@
   }
 
   &:focus {
-    border: 1px solid transparent;
-    box-shadow: 0 0 0 2px $euiFocusRingColor;
-    border-radius: 1px;
-    z-index: 2; // Needed so the focus ring sits above the other row below it.
+    @include euiDataGridCellFocus;
   }
 
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
+
+    &:focus-within {
+      @include euiDataGridCellFocus;
+    }
+
+    .euiDataGridHeaderCell__button {
+      flex: 0 0 auto;
+      position: relative;
+      align-items: center;
+      display: flex;
+      text-align: left;
+      font-weight: $euiFontWeightBold;
+    }
+
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
       overflow: hidden;
       white-space: nowrap;
+      flex-grow: 1;
+    }
+
+    .euiDataGridHeaderCell__popover {
+      flex-grow: 0;
+      flex-basis: auto;
+      width: auto;
+      padding-left: $euiSizeXS;
     }
   }
+}
+
+.euiDataGridHeader__action--selected {
+  // sass-lint:disable-block no-important
+  font-weight: $euiFontWeightBold !important;
 }
 
 // Header alternates

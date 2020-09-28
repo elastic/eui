@@ -12,7 +12,15 @@ exports[`EuiHideFor m is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiHideFor never renders for "all" 1`] = `null`;
+
 exports[`EuiHideFor renders 1`] = `null`;
+
+exports[`EuiHideFor renders for "none" 1`] = `
+<span>
+  Child
+</span>
+`;
 
 exports[`EuiHideFor renders for multiple breakpoints 1`] = `null`;
 

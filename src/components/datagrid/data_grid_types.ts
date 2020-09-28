@@ -19,6 +19,7 @@
 
 import { ComponentType, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
+import { EuiListGroupItemProps } from '../list_group';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -76,6 +77,37 @@ export interface EuiDataGridColumn {
    * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
    */
   displayAsText?: string;
+  /**
+   * Configuration of column actions. Set to false to disable or use #EuiDataGridColumnActions to configure the actions displayed in the header cell of the column.
+   */
+  actions?: false | EuiDataGridColumnActions;
+}
+
+export interface EuiDataGridColumnActions {
+  /**
+   * Show/hide/configure the action to hide a column, provided EuiListGroupItemProps are merged
+   */
+  showHide?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action that switches the actual column with the column to the left side, provided EuiListGroupItemProps are merged
+   */
+  showMoveLeft?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action that switches the actual column with the column to the right side, provided EuiListGroupItemProps are merged
+   */
+  showMoveRight?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to sort ascending by the actual column, provided EuiListGroupItemProps are merged
+   */
+  showSortAsc?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to sort descending by the actual column, provided EuiListGroupItemProps are merged
+   */
+  showSortDesc?: boolean | EuiListGroupItemProps;
+  /**
+   * Append additional actions
+   */
+  additional?: EuiListGroupItemProps[];
 }
 
 export interface EuiDataGridColumnVisibility {
