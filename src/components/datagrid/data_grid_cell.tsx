@@ -474,6 +474,7 @@ export class EuiDataGridCell extends Component<
         column && Array.isArray(column.valueActions)
           ? column.valueActions.map((action, idx) => (
               <EuiButtonIcon
+                data-test-subj={action.dataTestSubj}
                 key={idx}
                 aria-label={action.label}
                 className="euiDataGridRowCell__actionButtonIcon"
@@ -518,13 +519,18 @@ export class EuiDataGridCell extends Component<
 
       const buttons =
         column && column.valueActions ? (
-          <EuiFlexGroup gutterSize="none">
+          <EuiFlexGroup gutterSize="s">
             {column.valueActions.map((action, idx) => (
               <EuiFlexItem key={idx}>
                 {typeof action.inPopoverButton === 'function' ? (
                   action.inPopoverButton(rowIndex, column.id)
                 ) : (
                   <EuiButtonEmpty
+                    data-test-subj={
+                      action.dataTestSubj
+                        ? `${action.dataTestSubj}Popover`
+                        : undefined
+                    }
                     aria-label={action.ariaLabel || action.label}
                     size="s"
                     iconType={action.iconType}
@@ -568,7 +574,7 @@ export class EuiDataGridCell extends Component<
               }
             }}
             onTrapDeactivation={this.updateFocus}>
-            {popoverContent}
+            {this.state.popoverIsOpen ? popoverContent : null}
           </EuiPopover>
         </div>
       );

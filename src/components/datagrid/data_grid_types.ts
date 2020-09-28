@@ -117,6 +117,10 @@ export interface EuiDataGridColumnActions {
 
 export interface EuiDataGridColumnCellAction {
   /**
+   * data-test-subject that can be used for testing
+   */
+  dataTestSubj?: string;
+  /**
    * Should contain functionality about the action that can be triggered
    */
   label: string;
