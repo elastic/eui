@@ -19,16 +19,16 @@
 
 import React, {
   Component,
-  FunctionComponent,
-  JSXElementConstructor,
-  memo,
-  ReactNode,
   createRef,
-  HTMLAttributes,
-  KeyboardEvent,
-  ReactChild,
-  MutableRefObject,
   FocusEvent,
+  FunctionComponent,
+  HTMLAttributes,
+  JSXElementConstructor,
+  KeyboardEvent,
+  memo,
+  MutableRefObject,
+  ReactChild,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -36,7 +36,7 @@ import { EuiPopover, EuiPopoverFooter } from '../popover';
 import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
-import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiButtonEmpty } from '../button';
 import {
   EuiDataGridColumn,
   EuiDataGridPopoverContent,
@@ -46,6 +46,7 @@ import { DataGridContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -388,18 +389,6 @@ export class EuiDataGridCell extends Component<
       isDetails: false,
     };
 
-    const buttonIconClasses = classNames(
-      'euiDataGridRowCell__expandButtonIcon',
-      {
-        'euiDataGridRowCell__expandButtonIcon-isActive': this.state
-          .popoverIsOpen,
-      }
-    );
-
-    const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
-      'euiDataGridRowCell__expandButton-isActive': this.state.popoverIsOpen,
-    });
-
     const screenReaderPosition = (
       <EuiScreenReaderOnly>
         <p>
@@ -448,44 +437,6 @@ export class EuiDataGridCell extends Component<
     );
 
     if (isExpandable || (column && column.cellActions)) {
-      const expandButton = (
-        <EuiI18n
-          key={'expand'}
-          token="euiDataGridCell.expandButtonTitle"
-          default="Click or hit enter to interact with cell content">
-          {(expandButtonTitle: string) => (
-            <EuiButtonIcon
-              className={buttonIconClasses}
-              color="ghost"
-              iconSize="s"
-              iconType="expandMini"
-              aria-hidden
-              onClick={() =>
-                this.setState(({ popoverIsOpen }) => ({
-                  popoverIsOpen: !popoverIsOpen,
-                }))
-              }
-              title={expandButtonTitle}
-            />
-          )}
-        </EuiI18n>
-      );
-      const additionalButtons =
-        column && Array.isArray(column.cellActions)
-          ? column.cellActions.map((action, idx) => (
-              <EuiButtonIcon
-                data-test-subj={action.dataTestSubj}
-                key={idx}
-                aria-label={action.label}
-                className="euiDataGridRowCell__actionButtonIcon"
-                iconSize="s"
-                iconType={action.iconType}
-                onClick={() => action.callback(rowIndex, column.id)}
-                onKeyPress={() => console.log('test')}
-              />
-            ))
-          : [];
-      const buttons = [...additionalButtons, expandButton];
       anchorContent = (
         <div className="euiDataGridRowCell__expandFlex">
           <EuiMutationObserver
@@ -506,7 +457,16 @@ export class EuiDataGridCell extends Component<
               );
             }}
           </EuiMutationObserver>
-          <div className={buttonClasses}>{buttons}</div>
+          <EuiDataGridCellButtons
+            rowIndex={rowIndex}
+            column={column}
+            popoverIsOpen={this.state.popoverIsOpen}
+            onExpandClick={() => {
+              this.setState(({ popoverIsOpen }) => ({
+                popoverIsOpen: !popoverIsOpen,
+              }));
+            }}
+          />
         </div>
       );
     }
