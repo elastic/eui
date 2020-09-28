@@ -55,7 +55,7 @@ const columns = [
     id: 'name',
     displayAsText: 'Name',
     defaultSortDirection: 'asc',
-    valueActions: [
+    cellActions: [
       {
         label: 'Say hi',
         iconType: 'heart',
@@ -72,7 +72,7 @@ const columns = [
   },
   {
     id: 'email',
-    valueActions: [
+    cellActions: [
       {
         label: 'Send email',
         iconType: 'email',
@@ -100,7 +100,7 @@ const columns = [
         },
       ],
     },
-    valueActions: [
+    cellActions: [
       {
         label: 'Send money',
         iconType: 'faceHappy',

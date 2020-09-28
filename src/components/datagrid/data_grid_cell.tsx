@@ -447,7 +447,7 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (isExpandable || (column && column.valueActions)) {
+    if (isExpandable || (column && column.cellActions)) {
       const expandButton = (
         <EuiI18n
           key={'expand'}
@@ -471,8 +471,8 @@ export class EuiDataGridCell extends Component<
         </EuiI18n>
       );
       const additionalButtons =
-        column && Array.isArray(column.valueActions)
-          ? column.valueActions.map((action, idx) => (
+        column && Array.isArray(column.cellActions)
+          ? column.cellActions.map((action, idx) => (
               <EuiButtonIcon
                 data-test-subj={action.dataTestSubj}
                 key={idx}
@@ -512,15 +512,15 @@ export class EuiDataGridCell extends Component<
     }
 
     let innerContent = anchorContent;
-    if (isExpandable || (column && column.valueActions)) {
+    if (isExpandable || (column && column.cellActions)) {
       const CellElement = rest.renderCellValue as JSXElementConstructor<
         EuiDataGridCellValueElementProps
       >;
 
       const buttons =
-        column && column.valueActions ? (
+        column && column.cellActions ? (
           <EuiFlexGroup gutterSize="s">
-            {column.valueActions.map((action, idx) => (
+            {column?.cellActions.map((action, idx) => (
               <EuiFlexItem key={idx}>
                 {typeof action.inPopoverButton === 'function' ? (
                   action.inPopoverButton(rowIndex, column.id)

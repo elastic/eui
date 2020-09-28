@@ -85,7 +85,7 @@ export interface EuiDataGridColumn {
   /**
    * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
    */
-  valueActions?: EuiDataGridColumnCellAction[];
+  cellActions?: EuiDataGridColumnCellAction[];
 }
 
 export interface EuiDataGridColumnActions {

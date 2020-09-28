@@ -1909,7 +1909,7 @@ Array [
             {
               id: 'A',
               isSortable: true,
-              valueActions: [
+              cellActions: [
                 {
                   iconType: 'alert',
                   label: 'test1',
