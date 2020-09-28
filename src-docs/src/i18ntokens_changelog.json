@@ -1,5 +1,50 @@
 [
   {
+    "version": "29.1.0",
+    "changes": [
+      {
+        "token": "euiHeaderLinks.openNavigationMenu",
+        "changeType": "modified",
+        "value": "Open menu"
+      },
+      {
+        "token": "euiHeaderLinks.appNavigation",
+        "changeType": "modified",
+        "value": "App menu"
+      },
+      {
+        "token": "euiColumnActions.hideColumn",
+        "changeType": "added",
+        "value": "Hide column"
+      },
+      {
+        "token": "euiColumnActions.sortAsc",
+        "changeType": "added",
+        "value": "Sort schema asc"
+      },
+      {
+        "token": "euiColumnActions.sortDesc",
+        "changeType": "added",
+        "value": "Sort schema desc"
+      },
+      {
+        "token": "euiColumnActions.moveLeft",
+        "changeType": "added",
+        "value": "Move left"
+      },
+      {
+        "token": "euiColumnActions.moveRight",
+        "changeType": "added",
+        "value": "Move right"
+      },
+      {
+        "token": "euiDataGridHeaderCell.headerActions",
+        "changeType": "added",
+        "value": "Header actions"
+      }
+    ]
+  },
+  {
     "version": "28.2.0",
     "changes": [
       {

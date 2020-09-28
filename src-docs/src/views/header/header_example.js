@@ -90,16 +90,16 @@ const headerLinksSnippet = `<EuiHeader>
   <EuiHeaderSectionItem border="right">
     <EuiHeaderLogo
       iconType="iconName"
-      href="#"
+      href=""
     />
   </EuiHeaderSectionItem>
 
   <EuiHeaderLinks>
-    <EuiHeaderLink href="#" isActive>
+    <EuiHeaderLink href="" isActive>
       <!-- First link -->
     </EuiHeaderLink>
 
-    <EuiHeaderLink href="#">
+    <EuiHeaderLink href="">
       <!-- Second link -->
     </EuiHeaderLink>
   </EuiHeaderLinks>
@@ -227,11 +227,21 @@ export const HeaderExample = {
         },
       ],
       text: (
-        <p>
-          If you&rsquo;re using EUI in a one-off site or page, you can use{' '}
-          <strong>EuiHeaderLinks</strong>, &nbsp;
-          <strong>EuiHeaderLinks</strong> instead of breadcrumbs.
-        </p>
+        <>
+          <p>
+            <strong>EuiHeaderLinks</strong> and <strong>EuiHeaderLink</strong>{' '}
+            supply the ability to inline a list of navigational or menu style
+            links.
+          </p>
+          <p>
+            <strong>EuiHeaderLinks</strong> comes with responsive functionality
+            built-in which will convert the inline list of links to a popover
+            list triggered by a <strong>EuiHeaderSectionItemButton</strong>. You
+            can adjust at which breakpoints to switch to the popover display by
+            passing your own array of named breakpoints to{' '}
+            <EuiCode>popoverBreakpoints</EuiCode>.
+          </p>
+        </>
       ),
       props: {
         EuiHeaderLinks,
@@ -256,12 +266,13 @@ export const HeaderExample = {
         <p>
           To make site-wide navigation more prominent,{' '}
           <strong>EuiHeader</strong> supports reversing the colors to dark theme
-          with <EuiCode language="js">{'theme="dark"'}</EuiCode>.{' '}
-          <strong>However</strong>, it only supports a limited set of children
-          that will also shift their theme. These components include{' '}
-          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong> and{' '}
-          <strong>EuiHeaderSectionItemButton</strong>. Any other content may not
-          render correctly without custom configurations.
+          with <EuiCode language="js">{'theme="dark"'}</EuiCode>. However, it
+          only supports a <strong>limited set of children</strong> that will
+          also shift their theme. These components include{' '}
+          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong>{' '}
+          <strong>EuiHeaderSectionItemButton</strong> and{' '}
+          <strong>EuiSelectableTemplateSitewide</strong>. Any other content may
+          not render correctly without custom configurations.
         </p>
       ),
       snippet: '<EuiHeader theme="dark" />',
@@ -293,7 +304,12 @@ export const HeaderExample = {
             <Link to="/utilities/portal">
               <strong>EuiPortal</strong>
             </Link>
-            .
+            . When using an{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            in conjunction with a <strong>fixed</strong> header, be sure to add
+            the <EuiCode>repositionOnScroll</EuiCode> prop to the popover.
           </p>
           <p>
             The example below shows how to incorporate{' '}

@@ -11,6 +11,8 @@
 
 import React from 'react';
 
+import classNames from 'classnames';
+
 import {
   EuiFlexGrid,
   EuiFlexItem,
@@ -24,7 +26,7 @@ import {
 const iconColors = [
   'default',
   'primary',
-  'secondary',
+  'success',
   'accent',
   'warning',
   'danger',
@@ -44,9 +46,14 @@ export default () => (
           className="guideDemo__icon"
           key={iconColor}
           style={{ width: '340px' }}>
-          <EuiPanel>
+          <EuiPanel
+            className={classNames({
+              guideDemo__ghostBackground: iconColor === 'ghost',
+            })}>
             <EuiIcon type="brush" color={iconColor} />
-            <EuiText size="s">
+            <EuiText
+              size="s"
+              color={iconColor === 'ghost' ? 'ghost' : 'default'}>
               <p>{iconColor}</p>
             </EuiText>
           </EuiPanel>

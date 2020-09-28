@@ -1,9 +1,3 @@
-@import '../../link/mixins';
-
-.euiHeaderLink {
-  @include euiLink;
-}
-
 .euiHeaderLinks__mobileList {
   .euiHeaderLink {
     display: block;
