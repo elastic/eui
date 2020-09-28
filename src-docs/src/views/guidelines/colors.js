@@ -106,18 +106,6 @@ export default ({ selectedTheme }) => {
         <EuiSpacer size="xxl" />
 
         <ColorSection
-          color={'euiColorSuccess'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
-          <p>
-            Use this for success graphics and <strong>additive</strong> actions.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
           color={'euiColorAccent'}
           minimumContrast={contrastValue}
           showTextVariants={showTextVariants}>
@@ -133,12 +121,12 @@ export default ({ selectedTheme }) => {
         <EuiSpacer size="xxl" />
 
         <ColorSection
-          color={'euiColorDanger'}
+          color={'euiColorSuccess'}
           minimumContrast={contrastValue}
           showTextVariants={showTextVariants}>
           <p>
-            Use this for negative graphics like errors and{' '}
-            <strong>destructive</strong> actions.
+            Also known as <EuiCode>euiColorSecondary</EuiCode>. Use this for
+            success graphics and <strong>additive</strong> actions.
           </p>
         </ColorSection>
 
@@ -152,6 +140,19 @@ export default ({ selectedTheme }) => {
           <p>
             Use this for warnings and actions that have a{' '}
             <strong>potential</strong> to be destructive.
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorDanger'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Use this for negative graphics like errors and{' '}
+            <strong>destructive</strong> actions.
           </p>
         </ColorSection>
 
