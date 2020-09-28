@@ -24,14 +24,18 @@ const dataGridControlsHtml = renderToHtml(DataGridControls);
 
 import DataGridColumnWidths from './column_widths';
 import DataGridColumnActions from './column_actions';
+import DataGridColumnCellActions from './column_cell_actions';
 const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
 const dataGridColumnWidthsHtml = renderToHtml(DataGridColumnWidths);
 const dataGridColumnActionsSource = require('!!raw-loader!./column_actions');
 const dataGridColumnActionsHtml = renderToHtml(DataGridColumnActions);
+const dataGridColumnCellActionsSource = require('!!raw-loader!./column_cell_actions');
+const dataGridColumnCellActionsHtml = renderToHtml(DataGridColumnActions);
 
 import {
   EuiDataGridColumn,
   EuiDataGridColumnActions,
+  EuiDataGridColumnCellAction,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
@@ -302,7 +306,6 @@ export const DataGridStylingExample = {
         </Fragment>
       ),
       components: { DataGridColumnActions },
-      snippet: widthsSnippet,
       props: {
         EuiDataGrid,
         EuiDataGridColumn,
@@ -310,6 +313,43 @@ export const DataGridStylingExample = {
         EuiListGroupItem,
       },
       demo: <DataGridColumnActions />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridColumnCellActionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridColumnCellActionsHtml,
+        },
+      ],
+      title: 'Column cell actions',
+      text: (
+        <Fragment>
+          <p>
+            Additionally to make a cell expandable you can add more custom
+            actions by by setting the <EuiCode>cellActions</EuiCode> value of{' '}
+            <strong>EuiDataGridColumn</strong>. You can configure it by passing
+            an array of objects of type{' '}
+            <strong>EuiDataGridColumnCellAction</strong>. The icons of these
+            actions are displayed on mouse over, and are also part of the
+            Popover when you&apos;re expanding the cell content. Note that once
+            you&apos;ve defined the `cellAction` property, the cell&apos;s
+            automatically expandable.
+          </p>
+        </Fragment>
+      ),
+      components: { DataGridColumnCellActions },
+      props: {
+        EuiDataGrid,
+        EuiDataGridColumn,
+        EuiDataGridColumnActions,
+        EuiDataGridColumnCellAction,
+        EuiListGroupItem,
+      },
+      demo: <DataGridColumnCellActions />,
     },
   ],
 };
