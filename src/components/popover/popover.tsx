@@ -19,6 +19,7 @@
 
 import React, {
   Component,
+  KeyboardEvent,
   CSSProperties,
   HTMLAttributes,
   ReactNode,
@@ -55,6 +56,7 @@ import {
 } from '../../services/popover';
 
 import { EuiI18n } from '../i18n';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 export type PopoverAnchorPosition =
   | 'upCenter'
@@ -352,11 +354,15 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onEscapeKey = (event: Event) => {
-    if ((event as KeyboardEvent).key === cascadingMenuKeys.ESCAPE) {
-      if (this.state.isOpenStable || this.state.isOpening) {
-        this.props.closePopover();
-      }
+  onEscapeKey = () => {
+    if (this.state.isOpenStable || this.state.isOpening) {
+      this.props.closePopover();
+    }
+  };
+
+  onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === cascadingMenuKeys.ESCAPE) {
+      this.onEscapeKey();
     }
   };
 
@@ -748,13 +754,32 @@ export class EuiPopover extends Component<Props, State> {
       );
     }
 
-    return (
-      <div className={classes} ref={popoverRef} {...rest}>
-        <div className={anchorClasses} ref={this.buttonRef}>
-          {button instanceof HTMLElement ? null : button}
+    // react-focus-on and relataed do not register outside click detection
+    // when disabled, so we still need to conditionally check for that ourselves
+    if (ownFocus) {
+      return (
+        <div className={classes} ref={popoverRef} {...rest}>
+          <div className={anchorClasses} ref={this.buttonRef}>
+            {button instanceof HTMLElement ? null : button}
+          </div>
+          {panel}
         </div>
-        {panel}
-      </div>
-    );
+      );
+    } else {
+      return (
+        <EuiOutsideClickDetector onOutsideClick={closePopover}>
+          <div
+            className={classes}
+            ref={popoverRef}
+            onKeyDown={this.onKeyDown}
+            {...rest}>
+            <div className={anchorClasses} ref={this.buttonRef}>
+              {button instanceof HTMLElement ? null : button}
+            </div>
+            {panel}
+          </div>
+        </EuiOutsideClickDetector>
+      );
+    }
   }
 }
