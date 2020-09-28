@@ -8,7 +8,6 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiLink,
-  EuiCallOut,
   EuiCode,
   EuiComboBox,
   EuiSpacer,
@@ -186,6 +185,14 @@ const startingWithSnippet = `<EuiComboBox
 import DuplicateOptions from './combo_box_duplicates';
 const duplicateOptionsSource = require('!!raw-loader!./combo_box_duplicates');
 const duplicateOptionsHtml = renderToHtml(DuplicateOptions);
+const duplicateOptionsSnippet = `const options = [{
+  label: 'Label',
+  id: 'label1',
+},
+{
+  label: 'Label',
+  id: 'Label2',
+}]`;
 
 export const ComboBoxExample = {
   title: 'Combo box',
@@ -200,20 +207,6 @@ export const ComboBoxExample = {
           predetermined list.
         </p>
       </EuiText>
-
-      <EuiSpacer />
-
-      <EuiCallOut title="Duplicate labels require an id" color="warning">
-        <p>
-          The combo box will have errors by default if any of the options you
-          pass to it share the same label property. It&rsquo;s OK if options
-          have duplicate values, though. This is because the label is the only
-          thing the combo box is concerned about, since this is what the user
-          sees and what is matched against when the user searches. You can pass
-          an unique <EuiCode>id</EuiCode> to an option if you require duplicate
-          labels. See the example below.
-        </p>
-      </EuiCallOut>
 
       <EuiSpacer size="l" />
     </Fragment>
@@ -587,14 +580,15 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          In general, it is not recommended to use duplicate labels on the options
-          because the user has no way to distinguish between them. If you need 
-          duplicate labels, you will need to add a unique{' '}
+          In general, it is not recommended to use duplicate labels on the
+          options because the user has no way to distinguish between them. If
+          you need duplicate labels, you will need to add a unique{' '}
           <EuiCode language="js">id</EuiCode> for each option.
         </p>
       ),
       props: { EuiComboBox },
       demo: <DuplicateOptions />,
+      snippet: duplicateOptionsSnippet,
     },
   ],
 };

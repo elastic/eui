@@ -56,7 +56,6 @@ export default () => {
   };
 
   return (
-    /* DisplayToggles wrapper for Docs only */
     <EuiComboBox
       placeholder="Select or create options"
       options={options}
