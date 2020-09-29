@@ -354,15 +354,15 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onEscapeKey = () => {
-    if (this.state.isOpenStable || this.state.isOpening) {
+  closePopover = () => {
+    if (this.props.isOpen) {
       this.props.closePopover();
     }
   };
 
   onKeyDown = (event: KeyboardEvent) => {
     if (event.key === cascadingMenuKeys.ESCAPE) {
-      this.onEscapeKey();
+      this.closePopover();
     }
   };
 
@@ -370,7 +370,7 @@ export class EuiPopover extends Component<Props, State> {
     // only close the popover if the event source isn't the anchor button
     // otherwise, it is up to the anchor to toggle the popover's open status
     if (this.button && this.button.contains(event.target as Node) === false) {
-      this.props.closePopover();
+      this.closePopover();
     }
   };
 
@@ -720,7 +720,7 @@ export class EuiPopover extends Component<Props, State> {
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             onClickOutside={this.onClickOutside}
-            onEscapeKey={this.onEscapeKey}
+            onEscapeKey={this.closePopover}
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }>
@@ -767,7 +767,7 @@ export class EuiPopover extends Component<Props, State> {
       );
     } else {
       return (
-        <EuiOutsideClickDetector onOutsideClick={closePopover}>
+        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
           <div
             className={classes}
             ref={popoverRef}
