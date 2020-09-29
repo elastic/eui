@@ -14,7 +14,7 @@ $euiFontSizeL:     ceil($euiFontSize * 1.57); // 22px // h3
 $euiFontSizeXL:   floor($euiFontSize * 1.93); // 27px // h2
 $euiFontSizeXXL:  floor($euiFontSize * 2.43); // 34px // h1
 
-// Use 8px incrememnts for base gridline
+// Use 8px increments for base gridline
 @function lineHeightFromBaseline($multiplier: 3) {
   @return convertToRem(($euiSize/2)*$multiplier);
 }
