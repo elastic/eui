@@ -1,7 +1,8 @@
 # Derived from the zenato/puppeteer Docker image
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
-FROM node:10
+# >=10.18 required
+FROM node:10.22.1
 
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4
