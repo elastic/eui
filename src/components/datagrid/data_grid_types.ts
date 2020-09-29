@@ -118,7 +118,7 @@ export interface EuiDataGridColumnActions {
 
 export interface EuiDataGridColumnCellAction extends CommonProps {
   /**
-   * Should contain functionality about the action that can be triggered
+   * Label that's displayed in the popover, also used as aria-label if not defined
    */
   label: string;
   /**

@@ -2,6 +2,7 @@
 
 - Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
+- Added cell actions to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
 
 **Theme: Amsterdam**
 
@@ -142,7 +143,7 @@
 
 **Bug fixes**
 
-- Improved `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/pull/3726))
+- Improve `EuiDataGrid` Chrome rendering performance in full screen ([#3726](https://github.com/elastic/eui/issues/3726))
 - Removed `@elastic/eui/src-docs` entries from published _eui.d.ts_ ([#3856](https://github.com/elastic/eui/pull/3856))
 
 ## [`27.3.1`](https://github.com/elastic/eui/tree/v27.3.1)
