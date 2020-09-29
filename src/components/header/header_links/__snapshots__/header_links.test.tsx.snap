@@ -1,5 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiHeaderLinks gutterSize l is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterL"
+  />
+</nav>
+`;
+
+exports[`EuiHeaderLinks gutterSize m is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterM"
+  />
+</nav>
+`;
+
+exports[`EuiHeaderLinks gutterSize s is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+  />
+</nav>
+`;
+
+exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterXS"
+  />
+</nav>
+`;
+
 exports[`EuiHeaderLinks is rendered 1`] = `
 <nav
   aria-label="aria-label"
@@ -7,21 +51,40 @@ exports[`EuiHeaderLinks is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiHeaderLinks__list"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
   />
+</nav>
+`;
+
+exports[`EuiHeaderLinks popover props is never rendered with "none" 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
   <div
-    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+  />
+</nav>
+`;
+
+exports[`EuiHeaderLinks popover props is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownRight"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover__anchor customAnchorClass"
     >
       <button
-        aria-label="Open navigation menu"
-        class="euiHeaderSectionItem__button"
+        aria-label="Open menu"
+        class="euiHeaderSectionItem__button customButtonClass"
         type="button"
       >
         <div
-          data-euiicon-type="apps"
+          data-euiicon-type="bolt"
         />
       </button>
     </div>

@@ -175,7 +175,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   @if (lightness($euiTextColor) < 50) {
     background: $euiColorDarkestShade;
   }
-  padding: $euiSizeL;
 }
 
 .guideDemo__icon {

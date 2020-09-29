@@ -4,7 +4,11 @@ import { EuiHealth, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiHealth color="subdued">Unknown</EuiHealth>
+    <EuiHealth color="subdued">Inactive</EuiHealth>
+
+    <EuiSpacer />
+
+    <EuiHealth color="primary">Active</EuiHealth>
 
     <EuiSpacer />
 
