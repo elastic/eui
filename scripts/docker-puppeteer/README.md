@@ -36,7 +36,7 @@ docker build [--no-cache] [--tag your_tag] .
 * Use the `--no-cache` option if attempting the upgrade environment installations, like `node.js`, for instance.
 * Use the `--tag` option to give the image a reference name. Helpful if you plan on running the image locally (see next step).
 
-### Testing a new image locally
+### Test a new image locally
 
 To run the [`test-docker`](../test-docker.js) script with the new image locally, you'll need to replace the image name line in the `docker run ...` command (`docker.elastic.co/eui/puppeteer:latest`) with the new image ID or tag name (if set during the build with `--tag`).
 
