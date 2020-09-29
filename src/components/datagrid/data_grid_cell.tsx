@@ -32,11 +32,9 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
-import { EuiPopover, EuiPopoverFooter } from '../popover';
 import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
-import { EuiButtonEmpty } from '../button';
 import {
   EuiDataGridColumn,
   EuiDataGridPopoverContent,
@@ -45,8 +43,8 @@ import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
+import { EuiDataGridCellPopover } from './data_grid_cell_popover';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -473,69 +471,21 @@ export class EuiDataGridCell extends Component<
 
     let innerContent = anchorContent;
     if (isExpandable || (column && column.cellActions)) {
-      const CellElement = rest.renderCellValue as JSXElementConstructor<
-        EuiDataGridCellValueElementProps
-      >;
-
-      const buttons =
-        column && column.cellActions ? (
-          <EuiFlexGroup gutterSize="s">
-            {column.cellActions.map((action, idx) => (
-              <EuiFlexItem key={idx}>
-                {typeof action.inPopoverButton === 'function' ? (
-                  action.inPopoverButton(rowIndex, column.id)
-                ) : (
-                  <EuiButtonEmpty
-                    data-test-subj={
-                      action['data-test-subj']
-                        ? `${action['data-test-subj']}Popover`
-                        : undefined
-                    }
-                    aria-label={action['aria-label'] || action.label}
-                    size="s"
-                    iconType={action.iconType}
-                    onClick={() => action.callback(rowIndex, column.id)}>
-                    {action.label}
-                  </EuiButtonEmpty>
-                )}
-              </EuiFlexItem>
-            ))}
-          </EuiFlexGroup>
-        ) : null;
-
-      const popoverContent = (
-        <>
-          <PopoverContent cellContentsElement={this.cellContentsRef!}>
-            <CellElement {...cellContentProps} isDetails={true} />
-          </PopoverContent>
-          {buttons && <EuiPopoverFooter>{buttons}</EuiPopoverFooter>}
-        </>
-      );
-
       innerContent = (
         <div className="euiDataGridRowCell__content">
-          <EuiPopover
-            hasArrow={false}
-            anchorClassName="euiDataGridRowCell__expand"
-            button={anchorContent}
-            isOpen={this.state.popoverIsOpen}
-            panelRef={ref => (this.popoverPanelRef.current = ref)}
-            ownFocus
-            panelClassName="euiDataGridRowCell__popover"
-            panelPaddingSize="s"
-            zIndex={8001}
-            display="block"
+          <EuiDataGridCellPopover
+            anchorContent={anchorContent}
+            cellContentProps={cellContentProps}
+            cellContentsRef={this.cellContentsRef}
             closePopover={() => this.setState({ popoverIsOpen: false })}
-            onKeyDown={event => {
-              if (event.key === keys.F2 || event.key === keys.ESCAPE) {
-                event.preventDefault();
-                event.stopPropagation();
-                this.setState({ popoverIsOpen: false });
-              }
-            }}
-            onTrapDeactivation={this.updateFocus}>
-            {this.state.popoverIsOpen ? popoverContent : null}
-          </EuiPopover>
+            column={column}
+            panelRefFn={ref => (this.popoverPanelRef.current = ref)}
+            popoverIsOpen={this.state.popoverIsOpen}
+            rowIndex={rowIndex}
+            updateFocus={this.updateFocus}
+            renderCellValue={rest.renderCellValue}
+            popoverContent={PopoverContent}
+          />
         </div>
       );
     }
