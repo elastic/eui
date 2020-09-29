@@ -480,18 +480,18 @@ export class EuiDataGridCell extends Component<
       const buttons =
         column && column.cellActions ? (
           <EuiFlexGroup gutterSize="s">
-            {column?.cellActions.map((action, idx) => (
+            {column.cellActions.map((action, idx) => (
               <EuiFlexItem key={idx}>
                 {typeof action.inPopoverButton === 'function' ? (
                   action.inPopoverButton(rowIndex, column.id)
                 ) : (
                   <EuiButtonEmpty
                     data-test-subj={
-                      action.dataTestSubj
-                        ? `${action.dataTestSubj}Popover`
+                      action['data-test-subj']
+                        ? `${action['data-test-subj']}Popover`
                         : undefined
                     }
-                    aria-label={action.ariaLabel || action.label}
+                    aria-label={action['aria-label'] || action.label}
                     size="s"
                     iconType={action.iconType}
                     onClick={() => action.callback(rowIndex, column.id)}>

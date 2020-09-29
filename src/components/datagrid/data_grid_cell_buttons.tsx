@@ -61,10 +61,13 @@ export const EuiDataGridCellButtons = ({
     column && Array.isArray(column.cellActions)
       ? column.cellActions.map((action, idx) => (
           <EuiButtonIcon
-            data-test-subj={action.dataTestSubj}
+            data-test-subj={action['data-test-subj']}
             key={idx}
-            aria-label={action.label}
-            className="euiDataGridRowCell__actionButtonIcon"
+            aria-label={action['aria-label'] || action.label}
+            className={classNames(
+              'euiDataGridRowCell__actionButtonIcon',
+              action.className
+            )}
             iconSize="s"
             iconType={action.iconType}
             onClick={() => action.callback(rowIndex, column.id)}

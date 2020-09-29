@@ -21,6 +21,7 @@ import { ComponentType, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiIconType } from '../icon/icon';
+import { CommonProps } from '../common';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -55,7 +56,7 @@ export interface EuiDataGridColumn {
    */
   schema?: string;
   /**
-   * Defaults to true. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
+   * Defaults to true, always true if cellActions are defined. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
   /**
@@ -83,7 +84,7 @@ export interface EuiDataGridColumn {
    */
   actions?: false | EuiDataGridColumnActions;
   /**
-   * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
+   * Additional actions of type #EuiDataGridColumnGridAction displayed as icon on hover / focus, and in the expanded view of the cell containing the value
    */
   cellActions?: EuiDataGridColumnCellAction[];
 }
@@ -115,19 +116,11 @@ export interface EuiDataGridColumnActions {
   additional?: EuiListGroupItemProps[];
 }
 
-export interface EuiDataGridColumnCellAction {
-  /**
-   * data-test-subject that can be used for testing
-   */
-  dataTestSubj?: string;
+export interface EuiDataGridColumnCellAction extends CommonProps {
   /**
    * Should contain functionality about the action that can be triggered
    */
   label: string;
-  /**
-   * In case there's a different aria label needed
-   */
-  ariaLabel?: string;
   /**
    * Icon to display on hover / focus of the cell
    */

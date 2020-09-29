@@ -1913,22 +1913,22 @@ Array [
                 {
                   iconType: 'alert',
                   label: 'test1',
-                  ariaLabel: 'test1 aria label',
+                  'aria-label': 'test1 aria label',
                   callback: alertFn,
-                  dataTestSubj: 'alertAction',
+                  'data-test-subj': 'alertAction',
                 },
                 {
                   iconType: 'faceHappy',
                   label: 'test2',
-                  ariaLabel: 'test2 aria label',
+                  'aria-label': 'test2 aria label',
                   callback: happyFn,
-                  dataTestSubj: 'happyAction',
+                  'data-test-subj': 'happyAction',
                   inPopoverButton: (rowIndex, columnId) => (
                     <EuiButton
                       data-test-subj="happyActionCustomBtn"
                       onClick={() => happyFn(rowIndex, columnId)}
                       iconType="faceHappy"
-                      aria-label="test2 aria label">
+                      aria-label="happy aria label">
                       {`test2 ${rowIndex} ${columnId}`}
                     </EuiButton>
                   ),

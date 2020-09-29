@@ -27,7 +27,9 @@ const columns = [
         iconType: 'heart',
         label: 'Send love letter',
         callback: (rowIndex, colIndex) =>
-          alert(`Love letter sent to row ${rowIndex} col ${colIndex}`),
+          alert(
+            `Love letter sent to row "${rowIndex + 1}" column "${colIndex}"`
+          ),
       },
     ],
   },
@@ -39,10 +41,15 @@ const columns = [
         iconType: 'cheer',
         label: 'Cheer the city',
         callback: (rowIndex, columnId) =>
-          alert(`Cheer row ${rowIndex} column ${columnId}`),
+          alert(`Cheers sent to row "${rowIndex + 1}" column "${columnId}"`),
         inPopoverButton: (rowIndex, columnId) => (
           <EuiButton
-            onClick={() => alert(`Cheer row ${rowIndex} column ${columnId}`)}>
+            onClick={() =>
+              alert(
+                `Cheers sent in Popover to row "${rowIndex +
+                  1}" column "${columnId}"`
+              )
+            }>
             Cheer
           </EuiButton>
         ),
@@ -51,6 +58,20 @@ const columns = [
   },
   {
     id: 'country',
+    cellActions: [
+      {
+        iconType: 'heart',
+        label: 'Hug the city',
+        callback: (rowIndex, colIndex) =>
+          alert(`City hugged in "${rowIndex + 1}" column "${colIndex}"`),
+      },
+      {
+        iconType: 'brush',
+        label: 'Brush the city',
+        callback: (rowIndex, colIndex) =>
+          alert(`City brushed in "${rowIndex + 1}" column "${colIndex}"`),
+      },
+    ],
   },
   {
     id: 'account',
