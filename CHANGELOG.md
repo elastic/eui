@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `29.2.0`.
+
+## [`29.2.0`](https://github.com/elastic/eui/tree/v29.2.0)
+
 - Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
 
