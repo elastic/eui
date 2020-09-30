@@ -1,5 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `both` option to `flush` prop of `EuiButtonEmpty` ([#4084](https://github.com/elastic/eui/pull/4084))
+
+**Bug fixes**
+
+- Fixed `EuiRange` and `EuiDualRange` display of internal spacer ([#4084](https://github.com/elastic/eui/pull/4084))
+- Fixed `EuiFieldSearch` padding for the different states ([#4084](https://github.com/elastic/eui/pull/4084))
+- Fixed `EuiCheckableCard` disabled but checked styles ([#4084](https://github.com/elastic/eui/pull/4084))
+
 **Theme: Amsterdam**
 
 - Fixed `line-height` on `EuiTitle` ([#4079](https://github.com/elastic/eui/pull/4079))
