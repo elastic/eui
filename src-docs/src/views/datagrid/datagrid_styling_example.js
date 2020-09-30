@@ -330,7 +330,7 @@ export const DataGridStylingExample = {
         <Fragment>
           <p>
             Additionally to make a cell expandable you can add more custom
-            actions by by setting the <EuiCode>cellActions</EuiCode> value of{' '}
+            actions by setting the <EuiCode>cellActions</EuiCode> value of{' '}
             <strong>EuiDataGridColumn</strong>. You can configure it by passing
             an array of objects of type{' '}
             <strong>EuiDataGridColumnCellAction</strong>. The icons of these
