@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `29.2.0`.
+**Theme: Amsterdam**
+
+- Fixed `line-height` on `EuiTitle` ([#4079](https://github.com/elastic/eui/pull/4079))
 
 ## [`29.2.0`](https://github.com/elastic/eui/tree/v29.2.0)
 
