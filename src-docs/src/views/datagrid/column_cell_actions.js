@@ -61,7 +61,7 @@ const columns = [
     cellActions: [
       {
         iconType: 'heart',
-        label: 'Hug the city',
+        label: 'Love this city',
         callback: (rowIndex, colIndex) =>
           alert(`City hugged in "${rowIndex + 1}" column "${colIndex}"`),
       },
