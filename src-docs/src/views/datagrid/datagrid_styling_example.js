@@ -50,11 +50,11 @@ const gridSnippet = `<EuiDataGrid
   ]}
   // This can work as a shape.
   toolbarVisibility={{
-    showStyleSelector: false
-    showSortSelector: false
-    showFullScreenSelector: false
+    showStyleSelector: false,
+    showSortSelector: false,
+    showFullScreenSelector: false,
     // showColumnSelector also takes an object, check the prop docs.
-    showColumnSelector: false
+    showColumnSelector: false,
     additionalControls: (
       <Fragment>
         <EuiButtonEmpty
@@ -329,21 +329,22 @@ export const DataGridStylingExample = {
       text: (
         <Fragment>
           <p>
-            On top of making a cell expandable, you can add more custom
-            actions by setting the <EuiCode>cellActions</EuiCode> value of{' '}
+            On top of making a cell expandable, you can add more custom actions
+            by setting the <EuiCode>cellActions</EuiCode> value of{' '}
             <strong>EuiDataGridColumn</strong>. You can configure it by passing
             an array of objects of type{' '}
             <strong>EuiDataGridColumnCellAction</strong>. The icons of these
             actions are displayed on mouse over, and are also part of the
             popover when you&apos;re expanding the cell content. Note that once
-            you&apos;ve defined the <EuiCode>cellAction</EuiCode> property, the cell&apos;s
-            automatically expandable.
+            you&apos;ve defined the <EuiCode>cellAction</EuiCode> property, the
+            cell&apos;s automatically expandable.
           </p>
           <p>
             Below, the <EuiCode>email</EuiCode> column provides 1 additional
-            <EuiCode>cellAction</EuiCode>, the <EuiCode>city</EuiCode> column provides 1 additional
-            action with a custom button in the popover and the
-            <EuiCode>country</EuiCode> column provides 2 additional <EuiCode>cellAction</EuiCode>s.
+            <EuiCode>cellAction</EuiCode>, the <EuiCode>city</EuiCode> column
+            provides 1 additional action with a custom button in the popover and
+            the <EuiCode>country</EuiCode> column provides 2 additional
+            <EuiCode>cellAction</EuiCode>s.
           </p>
         </Fragment>
       ),
