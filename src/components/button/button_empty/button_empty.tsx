@@ -64,6 +64,7 @@ export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
 const flushTypeToClassNameMap = {
   left: 'euiButtonEmpty--flushLeft',
   right: 'euiButtonEmpty--flushRight',
+  both: 'euiButtonEmpty--flushBoth',
 };
 
 export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
@@ -79,7 +80,7 @@ interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
   color?: EuiButtonEmptyColor;
   size?: EuiButtonEmptySizes;
   /**
-   * Ensure the text of the button sits flush to the left or right side of its container
+   * Ensure the text of the button sits flush to the left, right, or both sides of its container
    */
   flush?: keyof typeof flushTypeToClassNameMap;
   /**
