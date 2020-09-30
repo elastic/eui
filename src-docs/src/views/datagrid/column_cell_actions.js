@@ -67,7 +67,7 @@ const columns = [
       },
       {
         iconType: 'brush',
-        label: 'Brush the city',
+        label: 'Paint this city',
         callback: (rowIndex, colIndex) =>
           alert(`City brushed in "${rowIndex + 1}" column "${colIndex}"`),
       },
