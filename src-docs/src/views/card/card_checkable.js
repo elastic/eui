@@ -74,7 +74,7 @@ export default () => {
           label="Option three (disabled)"
           name={radioName}
           value="radio3"
-          checked={radio === 'radio3'}
+          checked={true}
           onChange={() => setRadio('radio3')}
           disabled
         />
