@@ -343,7 +343,7 @@ export const DataGridStylingExample = {
             Below, the <EuiCode>email</EuiCode> column provides 1 additional
             <EuiCode>cellAction</EuiCode>, the <EuiCode>city</EuiCode> column provides 1 additional
             action with a custom button in the popover and the
-            <EuiCode>country</EuiCode> column provides 1 additional actions
+            <EuiCode>country</EuiCode> column provides 2 additional <EuiCode>cellAction</EuiCode>s.
           </p>
         </Fragment>
       ),
