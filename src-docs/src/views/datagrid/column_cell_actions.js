@@ -63,7 +63,7 @@ const columns = [
         iconType: 'heart',
         label: 'Love this city',
         callback: (rowIndex, colIndex) =>
-          alert(`City hugged in "${rowIndex + 1}" column "${colIndex}"`),
+          alert(`Love sent from row ${rowIndex + 1}, column "${colIndex}"`),
       },
       {
         iconType: 'brush',
