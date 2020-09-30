@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `29.3.0`.
+
+## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
+
 - Added `both` option to `flush` prop of `EuiButtonEmpty` ([#4084](https://github.com/elastic/eui/pull/4084))
 
 **Bug fixes**
