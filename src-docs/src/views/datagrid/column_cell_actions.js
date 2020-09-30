@@ -25,7 +25,7 @@ const columns = [
     cellActions: [
       {
         iconType: 'heart',
-        label: 'Send love letter',
+        label: 'Send love',
         callback: (rowIndex, colIndex) =>
           alert(
             `Love letter sent to row "${rowIndex + 1}" column "${colIndex}"`
