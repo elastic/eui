@@ -69,7 +69,7 @@ const columns = [
         iconType: 'brush',
         label: 'Paint this city',
         callback: (rowIndex, colIndex) =>
-          alert(`Paint sent from ${rowIndex + 1}, column "${colIndex}"`),
+          alert(`Paint sent from row ${rowIndex + 1}, column "${colIndex}"`),
       },
     ],
   },
