@@ -3,6 +3,7 @@
 exports[`EuiSuperUpdateButton is rendered 1`] = `
 <EuiToolTip
   delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiButton
@@ -36,6 +37,7 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
     />
   }
   delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiButton
@@ -63,6 +65,7 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
 exports[`EuiSuperUpdateButton isLoading 1`] = `
 <EuiToolTip
   delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiButton
@@ -96,6 +99,7 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
     />
   }
   delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiButton
@@ -123,6 +127,7 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
 exports[`EuiSuperUpdateButton showTooltip 1`] = `
 <EuiToolTip
   delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiButton
