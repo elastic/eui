@@ -21,8 +21,8 @@ import React, {
   CSSProperties,
   ReactNode,
   useEffect,
+  useMemo,
   useRef,
-  useState,
   FunctionComponent,
   HTMLAttributes,
 } from 'react';
@@ -34,6 +34,7 @@ import { htmlIdGenerator } from '../../services';
 import { EuiButtonIcon } from '../button';
 import { IconType } from '../icon';
 import { EuiI18n } from '../i18n';
+import { EuiResizablePanelController } from './types';
 
 interface ToggleOptions {
   notCollapsedIcon: IconType;
@@ -43,6 +44,12 @@ interface ToggleOptions {
 
 interface EuiResizablePanelControls {
   isHorizontal: boolean;
+  register: (panel: EuiResizablePanelController) => void;
+  deregister: (panelId: EuiResizablePanelController['id']) => void;
+  onToggleCollapsed: (
+    shouldCollapse: boolean,
+    panelId: EuiResizablePanelController['id']
+  ) => void;
 }
 
 export interface EuiResizablePanelProps
@@ -88,10 +95,6 @@ export interface EuiResizablePanelProps
    * Use this to add a toggle button to a `EuiResizablePanel`. If true, default button icons are used
    */
   toggle?: boolean | ToggleOptions;
-  /*
-   * Set a `EuiResizablePanel` to expand when an accompanying `EuiResizablePanel` has toggling set to true
-   */
-  willExpand?: boolean;
 }
 
 const generatePanelId = htmlIdGenerator('resizable-panel');
@@ -112,16 +115,28 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   scrollable = true,
   style = {},
   toggle = false,
-  willExpand = false,
+  register,
+  deregister,
+  onToggleCollapsed,
   ...rest
 }) => {
-  const [innerSize, setInnerSize] = useState(
-    initialSize && !size ? initialSize : 0
-  );
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const { registry } = useEuiResizablePanelContext();
+  const {
+    registry: { panels } = { panels: {} },
+  } = useEuiResizablePanelContext();
   const divRef = useRef<HTMLDivElement>(null);
   const panelId = useRef(id || generatePanelId());
+  const innerSize = useMemo(
+    () =>
+      (panels[panelId.current] && panels[panelId.current].size) ??
+      (initialSize || 0),
+    [panels, initialSize]
+  );
+
+  const isCollapsed = useMemo(
+    () =>
+      (panels[panelId.current] && panels[panelId.current].isCollapsed) || false,
+    [panels]
+  );
 
   const classes = classNames(
     {
@@ -129,9 +144,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     },
     {
       'euiResizablePanel--collapsible': isCollapsed,
-    },
-    {
-      'euiResizablePanel--willExpand': willExpand,
     },
     className
   );
@@ -158,29 +170,34 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   };
 
   useEffect(() => {
+    if (!register || !deregister) return;
     const id = panelId.current;
-    registry &&
-      registry.registerPanel({
-        id,
-        setSize(panelSize) {
-          if (initialSize && !size) {
-            setInnerSize(panelSize);
-          }
-        },
-        getSizePx() {
-          return isHorizontal
-            ? divRef.current!.getBoundingClientRect().width
-            : divRef.current!.getBoundingClientRect().height;
-        },
-        minSize,
-      });
+    const initsize = size ?? (initialSize || 0);
+    register({
+      id,
+      size: initsize,
+      prevSize: initsize,
+      // setSize(panelSize: number) {
+      //   if (initialSize && !size) {
+      //     setInnerSize(panelSize);
+      //   }
+      // },
+      getSizePx() {
+        return isHorizontal
+          ? divRef.current!.getBoundingClientRect().width
+          : divRef.current!.getBoundingClientRect().height;
+      },
+      minSize,
+      isCollapsed: false,
+    });
     return () => {
-      registry && registry.deregisterPanel(id);
+      deregister(id);
     };
-  }, [initialSize, isHorizontal, minSize, registry, size]);
+  }, [initialSize, isHorizontal, minSize, size, register, deregister]);
 
   const onClickCollapse = () => {
-    setIsCollapsed(value => !value);
+    const shouldCollapse = !isCollapsed;
+    onToggleCollapsed && onToggleCollapsed(shouldCollapse, panelId.current);
   };
 
   // Use the default object if they simply passed `true` for toggle

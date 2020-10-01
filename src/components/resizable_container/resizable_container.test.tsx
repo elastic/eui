@@ -141,7 +141,7 @@ describe('EuiResizableContainer', () => {
               Sidebar
             </EuiResizablePanel>
             <EuiResizableButton size="s" />
-            <EuiResizablePanel willExpand initialSize={80}>
+            <EuiResizablePanel initialSize={80}>
               Sidebar content
             </EuiResizablePanel>
           </>

@@ -8,14 +8,10 @@
   .euiResizablePanel--collapsible {
     // sass-lint:disable-block no-important
     min-width: 0 !important;
-    width: $euiSizeL !important;
+    // width: $euiSizeL !important;
   }
 
   .euiResizablePanel--collapsible > *:not(.euiResizablePanel__toggleButton) {
-    display: none;
-  }
-
-  .euiResizablePanel--willExpand {
-    flex-grow: 1;
+    visibility: hidden;
   }
 }
