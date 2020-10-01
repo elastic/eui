@@ -14,7 +14,7 @@
 }
 
 /**
- * 1. Calculating the minimum width based on the screen takover breakpoint
+ * 1. Calculating the minimum width based on the screen takeover breakpoint
  */
 $flyoutSizes: (
   'small': (
@@ -59,7 +59,7 @@ $flyoutSizes: (
 }
 
 /**
- * 1. Only small flyouts should NOT takover the entire screen
+ * 1. Only small flyouts should NOT takeover the entire screen
  * 2. If a custom maxWidth is set, we need to override it.
  */
 @include euiBreakpoint('xs', 's') {

@@ -60,6 +60,10 @@ export default () => {
           },
         },
         {
+          isSeparator: true,
+          key: 'sep',
+        },
+        {
           name: 'See more',
           icon: 'plusInCircle',
           panel: {

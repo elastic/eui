@@ -26,13 +26,14 @@ import {
   EuiButtonEmpty,
   EuiForm,
   EuiFormRow,
-  EuiSelect,
+  EuiColorPalettePicker,
   EuiRange,
   EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 import {
-  euiPaletteColorBlind,
   euiPaletteComplimentary,
   euiPaletteCool,
   euiPaletteForStatus,
@@ -44,7 +45,6 @@ import {
 } from '../../../../src/services/color';
 
 const paletteData = {
-  euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplimentary,
@@ -58,13 +58,13 @@ const paletteData = {
 const paletteNames = Object.keys(paletteData);
 
 const dg = new DataGenerator();
-const data = dg.generateGroupedSeries(20, 5);
+const generateData = categories => dg.generateGroupedSeries(10, categories);
 
 const chartDemoPlugin = {
   name: 'chartDemoPlugin',
   button: {
     label: 'Chart',
-    iconType: 'visArea',
+    iconType: 'visBarVerticalStacked',
   },
   helpText: (
     <div>
@@ -76,64 +76,69 @@ const chartDemoPlugin = {
         <p>Where options can contain:</p>
         <ul>
           <li>
-            <strong>palette: </strong>A number between 1-9 for each palette.
+            <strong>palette: </strong>A number between 1-8 for each palette.
           </li>
           <li>
-            <strong>height: </strong>
-            The height of the chart
+            <strong>categories: </strong>
+            The number of categories per column
           </li>
         </ul>
       </EuiText>
     </div>
   ),
   editor: function ChartEditor({ node, onSave, onCancel }) {
-    const [palette, setPalette] = useState((node && node.palette) || 4);
-    const [height, setHeight] = useState((node && node.height) || 300);
+    const [palette, setPalette] = useState((node && node.palette) || '1');
+    const [categories, setCategories] = useState(5);
+
+    const onChange = e => {
+      setCategories(parseInt(e.target.value));
+    };
+
+    const palettes = paletteNames.map((paletteName, index) => {
+      return {
+        value: String(index + 1),
+        title: paletteName,
+        palette: paletteData[paletteNames[index]](categories),
+        type: 'fixed',
+      };
+    });
 
     return (
       <>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Chart data</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>Add chart</EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>
           <>
             <EuiForm>
-              <EuiFormRow label="Palette">
-                <EuiSelect
-                  options={[
-                    { value: 4, text: 'red' },
-                    { value: 5, text: 'green' },
-                  ]}
-                  value={palette}
-                  onChange={e =>
-                    setPalette(parseInt(e.currentTarget.value, 10))
-                  }
-                />
-              </EuiFormRow>
-
-              <EuiFormRow label="Height">
-                <EuiRange
-                  value={height}
-                  min={100}
-                  max={500}
-                  step={10}
-                  showValue
-                  valueAppend="px"
-                  onChange={e => setHeight(parseInt(e.currentTarget.value, 10))}
-                />
-              </EuiFormRow>
+              <EuiFlexGroup gutterSize="m" style={{ width: 600 }}>
+                <EuiFlexItem>
+                  <EuiFormRow label="Palette">
+                    <EuiColorPalettePicker
+                      palettes={palettes}
+                      onChange={setPalette}
+                      value={palette}
+                      compressed
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiFormRow label="Categories">
+                    <EuiRange
+                      value={categories}
+                      onChange={onChange}
+                      min={1}
+                      max={10}
+                      compressed
+                      showValue
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </EuiForm>
-            <div
-              style={{
-                width: 600,
-                maxWidth: '100%',
-                height: 500,
-                alignItems: 'center',
-                display: 'flex',
-              }}>
-              <ChartMarkdownRenderer palette={palette} height={height} />
-            </div>
+            <EuiSpacer />
+            <ChartMarkdownRenderer palette={palette} categories={categories} />
           </>
         </EuiModalBody>
 
@@ -142,7 +147,7 @@ const chartDemoPlugin = {
 
           <EuiButton
             onClick={() =>
-              onSave(`!{chart${JSON.stringify({ palette, height })}}`, {
+              onSave(`!{chart${JSON.stringify({ palette, categories })}}`, {
                 block: true,
               })
             }
@@ -211,6 +216,7 @@ function ChartMarkdownParser() {
     }
 
     match += '}';
+
     return eat(match)({
       type: 'chartDemoPlugin',
       ...configuration,
@@ -221,14 +227,15 @@ function ChartMarkdownParser() {
   methods.splice(methods.indexOf('text'), 0, 'chart');
 }
 
-const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
+// receives the configuration from the parser and renders
+const ChartMarkdownRenderer = ({ palette, categories }) => {
   const customColors = {
     colors: {
-      vizColors: paletteData[paletteNames[palette]](5),
+      vizColors: paletteData[paletteNames[palette - 1]](categories),
     },
   };
   return (
-    <Chart size={{ height }}>
+    <Chart size={{ height: 320 }}>
       <Settings
         theme={[customColors, EUI_CHARTS_THEME_LIGHT]}
         showLegend={false}
@@ -237,7 +244,7 @@ const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
       <BarSeries
         id="status"
         name="Status"
-        data={data}
+        data={generateData(categories)}
         xAccessor={'x'}
         yAccessors={['y']}
         splitSeriesAccessors={['g']}
@@ -261,7 +268,7 @@ Notice the toolbar above has a new chart button. Click it to add a chart.
 
 Once you finish it'll add some syntax that looks like the below.
 
-!{chart{"palette":4,"height":300}}
+!{chart{"palette":"2","categories":5}}
 `;
 
 export default () => {

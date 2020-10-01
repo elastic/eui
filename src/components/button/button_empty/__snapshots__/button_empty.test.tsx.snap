@@ -113,6 +113,21 @@ exports[`EuiButtonEmpty props contentProps is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButtonEmpty props flush both is rendered 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--flushBoth"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButtonEmpty props flush left is rendered 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--flushLeft"

@@ -1,4 +1,4 @@
-@import '../../src/global_styling/mixins/helpers';
+@import '../../../src/global_styling/mixins/helpers';
 
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
@@ -175,7 +175,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   @if (lightness($euiTextColor) < 50) {
     background: $euiColorDarkestShade;
   }
-  padding: $euiSizeL;
 }
 
 .guideDemo__icon {

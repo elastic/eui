@@ -464,7 +464,7 @@ test('add new thumb via click', () => {
   const wrapper = findTestSubject(colorStops, 'euiColorStopsAdd');
   wrapper.simulate('click', { pageX: 45, pageY: 0 });
   expect(onChange).toBeCalled();
-  // This is a very odd expecation.
+  // This is a very odd expectation.
   // But we can't get actual page positions in this environment (no getBoundingClientRect)
   // So we'll expect the _correct_ color and _incorrect_ stop value (NaN),
   // with the `isInvalid` arg _correctly_ true as a result.

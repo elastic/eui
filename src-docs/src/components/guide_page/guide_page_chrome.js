@@ -96,20 +96,6 @@ export class GuidePageChrome extends Component {
     }, 250);
   };
 
-  onClickLink = id => {
-    // Scroll to element.
-    scrollToSelector(`#${id}`);
-
-    if (this._isMounted)
-      this.setState(
-        {
-          search: '',
-          isSideNavOpenOnMobile: false,
-        },
-        this.scrollNavSectionIntoView
-      );
-  };
-
   onClickRoute = () => {
     if (this._isMounted)
       this.setState(
@@ -119,12 +105,6 @@ export class GuidePageChrome extends Component {
         },
         this.scrollNavSectionIntoView
       );
-
-    // To delay scroll to top when switched to a new page
-    setTimeout(() => {
-      if (document.body) document.body.scrollTop = 0;
-      if (document.documentElement) document.documentElement.scrollTop = 0;
-    }, 0);
   };
 
   onButtonClick() {
@@ -229,8 +209,7 @@ export class GuidePageChrome extends Component {
       return {
         id: `subSection-${id}`,
         name,
-        href,
-        onClick: this.onClickLink.bind(this, id),
+        href: href.concat(`#${id}`),
       };
     });
   };

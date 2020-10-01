@@ -76,6 +76,18 @@ const badgeButtonSnippet = [
 </EuiBadge>`,
 ];
 
+import BadgeHealth from './badge_health';
+const badgeHealthSource = require('!!raw-loader!./badge_health');
+const badgeHealthHtml = renderToHtml(BadgeHealth);
+const badgeHealthSnippet = [
+  `<EuiBadge color="secondary">Healthy</EuiBadge>
+`,
+  `<EuiBadge color="warning">Warning</EuiBadge>
+`,
+  `<EuiBadge color="danger">Critical</EuiBadge>
+`,
+];
+
 import BadgeHref from './badge_href';
 const badgeHrefSource = require('!!raw-loader!./badge_href');
 const badgeHrefHtml = renderToHtml(BadgeHref);
@@ -187,6 +199,29 @@ export const BadgeExample = {
       ),
       snippet: badgeButtonSnippet,
       demo: <BadgeButton />,
+    },
+    {
+      title: 'Badge for health status',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeHealthSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeHealthHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Badges can work as health status indicators in places where there
+            are a lot of repeated statuses, e.g. in tables.
+          </p>
+        </div>
+      ),
+      snippet: badgeHealthSnippet,
+      demo: <BadgeHealth />,
     },
     {
       title: 'Badge with href',

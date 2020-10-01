@@ -5,17 +5,15 @@
   overflow: hidden; // Hides background color inside panel rounded corners
 
   &:not(.euiCheckableCard-isDisabled) {
+    &.euiCheckableCard-isChecked {
+      border-color: $euiColorPrimary;
+    }
+
     &:focus-within {
       @include euiFocusRing;
     }
   }
 }
-
-.euiCheckableCard-isChecked {
-  border-color: $euiColorPrimary;
-}
-
-
 
 .euiCheckableCard__row {
   display: flex;

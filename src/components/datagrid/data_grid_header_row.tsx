@@ -40,9 +40,11 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   schema: EuiDataGridSchema;
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
+  setVisibleColumns: (columnId: string[]) => void;
+  switchColumnPos: (colFromId: string, colToId: string) => void;
   sorting?: EuiDataGridSorting;
   focusedCell?: EuiDataGridFocusedCell;
-  setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
+  onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
 }
 
@@ -63,9 +65,11 @@ const EuiDataGridHeaderRow = forwardRef<
     defaultColumnWidth,
     className,
     setColumnWidth,
+    setVisibleColumns,
+    switchColumnPos,
     sorting,
     focusedCell,
-    setFocusedCell,
+    onCellFocus: setFocusedCell,
     headerIsInteractive,
     'data-test-subj': _dataTestSubj,
     ...rest
@@ -96,12 +100,15 @@ const EuiDataGridHeaderRow = forwardRef<
         <EuiDataGridHeaderCell
           key={column.id}
           column={column}
+          columns={columns}
           index={index + leadingControlColumns.length}
           columnWidths={columnWidths}
           focusedCell={focusedCell}
-          setFocusedCell={setFocusedCell}
+          onCellFocus={setFocusedCell}
           schema={schema}
           setColumnWidth={setColumnWidth}
+          setVisibleColumns={setVisibleColumns}
+          switchColumnPos={switchColumnPos}
           defaultColumnWidth={defaultColumnWidth}
           sorting={sorting}
           headerIsInteractive={headerIsInteractive}

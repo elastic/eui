@@ -6,6 +6,7 @@ import { EuiSelectableTemplateSitewide } from '../../../../src/components/select
 import { EuiSelectableTemplateSitewideOption } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
+import { EuiButton } from '../../../../src/components/button';
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
@@ -95,6 +96,8 @@ export default () => {
       popoverProps={{
         className: 'customPopoverClass',
       }}
+      popoverButton={<EuiButton>Mobile toggle</EuiButton>}
+      popoverButtonBreakpoints={['xs', 's']}
       popoverFooter={
         <EuiText color="subdued" size="xs">
           <EuiFlexGroup
