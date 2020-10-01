@@ -60,7 +60,7 @@ export default () => {
 
             <EuiResizableButton />
 
-            <EuiResizablePanel willExpand initialSize={80} minSize="50px">
+            <EuiResizablePanel initialSize={80} minSize="50px">
               <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
                 <EuiTitle>
                   <p>{itemSelected.label}</p>
@@ -68,6 +68,96 @@ export default () => {
                 <EuiSpacer />
                 <EuiText>{itemSelected.text}</EuiText>
               </EuiPanel>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+      <EuiSpacer />
+      <EuiResizableContainer style={{ minHeight: '320px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize={80} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel toggle initialSize={20} minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+      <EuiSpacer />
+      <EuiResizableContainer style={{ minHeight: '320px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel toggle initialSize={20} minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel initialSize={60} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel toggle initialSize={20} minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+      <EuiSpacer />
+      <EuiResizableContainer style={{ minHeight: '320px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel toggle initialSize={20} minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel toggle initialSize={30} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel toggle initialSize={30} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel toggle initialSize={20} minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
           </>
         )}

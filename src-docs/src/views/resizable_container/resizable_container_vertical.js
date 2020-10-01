@@ -17,7 +17,7 @@ export default () => (
       <>
         <EuiResizablePanel initialSize={60} minSize="40%">
           <EuiText>
-            <p>{text}</p>
+            <div>{text}</div>
           </EuiText>
         </EuiResizablePanel>
 
@@ -25,7 +25,7 @@ export default () => (
 
         <EuiResizablePanel initialSize={40} minSize="10%">
           <EuiText>
-            <p>{text}</p>
+            <div>{text}</div>
           </EuiText>
         </EuiResizablePanel>
       </>
