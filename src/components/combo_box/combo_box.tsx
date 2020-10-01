@@ -730,10 +730,11 @@ export class EuiComboBox<T> extends Component<
       Boolean(this.props.singleSelection) &&
       this.props.selectedOptions.length === 1
     ) {
+      const selectedOptionIndex = this.state.matchingOptions.findIndex(
+        option => option.label === this.props.selectedOptions[0].label
+      );
       this.setState({
-        activeOptionIndex: this.state.matchingOptions.indexOf(
-          this.props.selectedOptions[0]
-        ),
+        activeOptionIndex: selectedOptionIndex,
       });
     } else {
       this.clearActiveOption();

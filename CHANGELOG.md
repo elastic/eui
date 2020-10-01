@@ -21,6 +21,11 @@ No public interface changes since `29.3.0`.
 - Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
 
+**Bug fixes**
+
+- Fixed `EuiComboBox` `rowHeight` prop causing the height of the option list to be miscalculated ([#4072](https://github.com/elastic/eui/pull/4072))
+- Fixed `EuiComboBox` not focusing on the selected option if `selectedOptions` was set without reference to `options` ([#4072](https://github.com/elastic/eui/pull/4072))
+
 **Theme: Amsterdam**
 
 - Removed `border-radius` from `EuiCallout` ([#4066](https://github.com/elastic/eui/pull/4066))
