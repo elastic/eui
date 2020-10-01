@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `29.3.0`.
+**Bug fixes**
+
+- Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
+
 
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
