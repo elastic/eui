@@ -365,21 +365,6 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  focusSelectedOption = () => {
-    // If singleSelection is on and an option has been selected, set that option as active
-    if (
-      Boolean(this.props.singleSelection) &&
-      this.props.selectedOptions.length === 1
-    ) {
-      const selectedOptionIndex = this.state.matchingOptions.findIndex(
-        option => option.label === this.props.selectedOptions[0].label
-      );
-      this.setState({
-        activeOptionIndex: selectedOptionIndex,
-      });
-    }
-  };
-
   incrementActiveOptionIndex = (amount: number) => {
     // If there are no options available, do nothing.
     if (!this.state.matchingOptions.length) {
@@ -545,7 +530,6 @@ export class EuiComboBox<T> extends Component<
     }
 
     this.openList();
-    this.focusSelectedOption();
 
     this.setState({ hasFocus: true });
   };
@@ -611,7 +595,6 @@ export class EuiComboBox<T> extends Component<
           this.incrementActiveOptionIndex(-1);
         } else {
           this.openList();
-          this.focusSelectedOption();
         }
         break;
 
@@ -622,7 +605,6 @@ export class EuiComboBox<T> extends Component<
           this.incrementActiveOptionIndex(1);
         } else {
           this.openList();
-          this.focusSelectedOption();
         }
         break;
 
@@ -744,7 +726,17 @@ export class EuiComboBox<T> extends Component<
     }
 
     // If the user does this from a state in which an option has focus, then we need to reset it or clear it.
-    if (!Boolean(this.props.singleSelection)) {
+    if (
+      Boolean(this.props.singleSelection) &&
+      this.props.selectedOptions.length === 1
+    ) {
+      const selectedOptionIndex = this.state.matchingOptions.findIndex(
+        option => option.label === this.props.selectedOptions[0].label
+      );
+      this.setState({
+        activeOptionIndex: selectedOptionIndex,
+      });
+    } else {
       this.clearActiveOption();
     }
   };
