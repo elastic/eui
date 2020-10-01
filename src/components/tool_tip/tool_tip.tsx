@@ -47,6 +47,13 @@ const positionsToClassNameMap: { [key in ToolTipPositions]: string } = {
 
 export const POSITIONS = keysOf(positionsToClassNameMap);
 
+const displayToClassNameMap = {
+  inlineBlock: undefined,
+  block: 'euiPopover--displayBlock',
+};
+
+export const DISPLAY = Object.keys(displayToClassNameMap);
+
 export type ToolTipDelay = 'regular' | 'long';
 
 const delayToMsMap: { [key in ToolTipDelay]: number } = {
@@ -94,6 +101,10 @@ export interface Props {
    */
   delay: ToolTipDelay;
   /**
+   * CSS display type for the tooltip
+   */
+  display?: keyof typeof displayToClassNameMap;
+  /**
    * An optional title for your tooltip.
    */
   title?: ReactNode;
@@ -138,6 +149,7 @@ export class EuiToolTip extends Component<Props, State> {
   static defaultProps: Partial<Props> = {
     position: 'top',
     delay: 'regular',
+    display: 'inlineBlock',
   };
 
   clearAnimationTimeout = () => {
@@ -286,6 +298,7 @@ export class EuiToolTip extends Component<Props, State> {
       content,
       title,
       delay,
+      display,
       ...rest
     } = this.props;
 
@@ -294,6 +307,7 @@ export class EuiToolTip extends Component<Props, State> {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
+      display ? displayToClassNameMap[display] : null,
       className
     );
 
