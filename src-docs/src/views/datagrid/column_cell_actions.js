@@ -27,9 +27,7 @@ const columns = [
         iconType: 'heart',
         label: 'Send love',
         callback: (rowIndex, colIndex) =>
-          alert(
-            `Love sent from row ${rowIndex + 1}, column "${colIndex}"`
-          ),
+          alert(`Love sent from row ${rowIndex + 1}, column "${colIndex}"`),
       },
     ],
   },
