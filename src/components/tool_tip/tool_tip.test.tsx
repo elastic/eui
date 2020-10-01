@@ -54,4 +54,18 @@ describe('EuiToolTip', () => {
     await sleep(260); // wait for showToolTip setTimout
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    describe('display block', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiToolTip display="block" {...requiredProps}>
+            <button>Trigger</button>
+          </EuiToolTip>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
 });

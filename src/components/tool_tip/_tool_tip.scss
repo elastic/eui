@@ -55,6 +55,14 @@
   }
 }
 
+.euiToolTip--displayBlock {
+  display: block;
+
+  .euiToolTipAnchor {
+    display: block;
+  }
+}
+
 .euiToolTipAnchor {
   display: inline-block;
 

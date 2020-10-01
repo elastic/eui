@@ -101,7 +101,7 @@ export interface Props {
    */
   delay: ToolTipDelay;
   /**
-   * CSS display type for the tooltip
+   * CSS display type for both the tooltip and anchor
    */
   display?: keyof typeof displayToClassNameMap;
   /**

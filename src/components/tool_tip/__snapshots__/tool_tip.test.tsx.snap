@@ -10,6 +10,16 @@ exports[`EuiToolTip is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiToolTip props display block is rendered 1`] = `
+<span
+  class="euiToolTipAnchor"
+>
+  <button>
+    Trigger
+  </button>
+</span>
+`;
+
 exports[`EuiToolTip shows tooltip on focus 1`] = `
 <span
   class="euiToolTipAnchor"
