@@ -41,7 +41,7 @@ const columns = [
         iconType: 'cheer',
         label: 'Cheer the city',
         callback: (rowIndex, columnId) =>
-          alert(`Cheers sent to row "${rowIndex + 1}" column "${columnId}"`),
+          alert(`Cheers sent from row ${rowIndex + 1}, column "${columnId}"`),
         inPopoverButton: (rowIndex, columnId) => (
           <EuiButton
             onClick={() =>
