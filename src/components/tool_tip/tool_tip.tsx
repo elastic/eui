@@ -49,7 +49,7 @@ export const POSITIONS = keysOf(positionsToClassNameMap);
 
 const displayToClassNameMap = {
   inlineBlock: undefined,
-  block: 'euiPopover--displayBlock',
+  block: 'euiToolTip--displayBlock',
 };
 
 export const DISPLAY = Object.keys(displayToClassNameMap);
