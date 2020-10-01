@@ -712,10 +712,14 @@ export class EuiPopover extends Component<Props, State> {
         `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
+      const returnFocus = this.state.isOpenStable
+        ? { preventScroll: true }
+        : false;
+
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={this.state.isOpenStable} // Ignore temporary state of indecisive focus
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
