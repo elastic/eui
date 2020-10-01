@@ -22,7 +22,6 @@ import { KeyboardEvent, MouseEvent, TouchEvent } from 'react';
 export interface EuiResizablePanelController {
   id: string;
   size: number;
-  // setSize: (panelSize: number) => void;
   getSizePx: () => number;
   minSize: string;
   isCollapsed: boolean;

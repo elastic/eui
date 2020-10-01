@@ -177,11 +177,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       id,
       size: initsize,
       prevSize: initsize,
-      // setSize(panelSize: number) {
-      //   if (initialSize && !size) {
-      //     setInnerSize(panelSize);
-      //   }
-      // },
+      // TODO: Maybe just store the ref instead?
       getSizePx() {
         return isHorizontal
           ? divRef.current!.getBoundingClientRect().width

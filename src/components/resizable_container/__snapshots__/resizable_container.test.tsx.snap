@@ -17,6 +17,7 @@ exports[`EuiResizableContainer can adjust button spacing 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeSmall euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
@@ -46,6 +47,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
@@ -75,6 +77,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     aria-label="Press up or down to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--vertical"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
@@ -104,6 +107,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
@@ -117,6 +121,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
@@ -146,6 +151,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
@@ -186,10 +192,11 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeSmall euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--willExpand"
+    class="euiResizablePanel"
     id="generated-id"
     style="width:80%;height:100%;min-width:0px;min-height:0"
   >
@@ -215,6 +222,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
     aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
+    id="generated-id"
     type="button"
   />
   <div
