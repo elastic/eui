@@ -60,7 +60,7 @@ exports[`EuiControlBar is rendered 1`] = `
     <div
       class="euiControlBar__divider"
     />
-    <div
+    <span
       aria-label="Sample Icon"
       class="euiControlBar__icon"
       color="danger"
@@ -197,7 +197,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               <div
                 class="euiControlBar__divider"
               />
-              <div
+              <span
                 aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
@@ -353,7 +353,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               key="sample_icon4"
               type="alert"
             >
-              <div
+              <span
                 aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
@@ -512,7 +512,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               <div
                 class="euiControlBar__divider"
               />
-              <div
+              <span
                 aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
@@ -668,7 +668,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               key="sample_icon4"
               type="alert"
             >
-              <div
+              <span
                 aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
@@ -826,7 +826,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               <div
                 class="euiControlBar__divider"
               />
-              <div
+              <span
                 aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
@@ -982,7 +982,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               key="sample_icon4"
               type="alert"
             >
-              <div
+              <span
                 aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
@@ -1209,7 +1209,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
           key="sample_icon4"
           type="alert"
         >
-          <div
+          <span
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
@@ -1352,7 +1352,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               <div
                 class="euiControlBar__divider"
               />
-              <div
+              <span
                 aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
@@ -1508,7 +1508,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               key="sample_icon4"
               type="alert"
             >
-              <div
+              <span
                 aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
@@ -1666,7 +1666,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               <div
                 class="euiControlBar__divider"
               />
-              <div
+              <span
                 aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
@@ -1827,7 +1827,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               key="sample_icon4"
               type="alert"
             >
-              <div
+              <span
                 aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
@@ -1990,7 +1990,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
               <div
                 class="euiControlBar__divider"
               />
-              <div
+              <span
                 aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
@@ -2146,7 +2146,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
               key="sample_icon4"
               type="alert"
             >
-              <div
+              <span
                 aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"

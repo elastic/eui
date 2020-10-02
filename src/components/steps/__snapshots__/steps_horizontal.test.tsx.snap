@@ -23,7 +23,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     <div
       class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
     >
-      <div
+      <span
         aria-label="complete"
         class="euiStepNumber__icon"
         data-euiicon-type="check"

@@ -31,7 +31,7 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
-    <div
+    <span
       class="euiImage__icon"
       color="ghost"
       data-euiicon-type="fullScreen"
