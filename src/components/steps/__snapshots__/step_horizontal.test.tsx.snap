@@ -44,7 +44,7 @@ exports[`EuiStepHorizontal props isComplete 1`] = `
   <div
     class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
   >
-    <div
+    <span
       aria-label="complete"
       class="euiStepNumber__icon"
       data-euiicon-type="check"
@@ -98,7 +98,7 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
   <div
     class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
   >
-    <div
+    <span
       aria-label="complete"
       class="euiStepNumber__icon"
       data-euiicon-type="check"
@@ -127,7 +127,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
   <div
     class="euiStepNumber euiStepNumber--danger euiStepHorizontal__number"
   >
-    <div
+    <span
       aria-label="has errors"
       class="euiStepNumber__icon"
       data-euiicon-type="cross"
@@ -206,7 +206,7 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
   <div
     class="euiStepNumber euiStepNumber--warning euiStepHorizontal__number"
   >
-    <div
+    <span
       aria-label="has warnings"
       class="euiStepNumber__icon"
       data-euiicon-type="alert"

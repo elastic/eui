@@ -6,7 +6,7 @@ exports[`EuiTourStepIndicator can be complete 1`] = `
   class="euiTourStepIndicator euiTourStepIndicator--complete testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     aria-label="complete"
     class="euiStepNumber__icon"
     color="subdued"
@@ -21,7 +21,7 @@ exports[`EuiTourStepIndicator can be incomplete 1`] = `
   class="euiTourStepIndicator euiTourStepIndicator--incomplete testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     aria-label="incomplete"
     class="euiStepNumber__icon"
     color="subdued"
@@ -36,7 +36,7 @@ exports[`EuiTourStepIndicator is rendered 1`] = `
   class="euiTourStepIndicator euiTourStepIndicator--active testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     aria-current="step"
     aria-label="active"
     class="euiStepNumber__icon"

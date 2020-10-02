@@ -183,7 +183,7 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
   <span
     class="euiButtonContent euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -204,7 +204,7 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
   <span
     class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -225,7 +225,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
   <span
     class="euiButtonContent euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />

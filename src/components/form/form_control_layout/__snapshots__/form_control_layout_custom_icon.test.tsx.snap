@@ -6,7 +6,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
   data-test-subj="customIcon"
   type="button"
 >
-  <div
+  <span
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
     data-euiicon-type="alert"
@@ -19,7 +19,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as span 1`] = `
   class="euiFormControlLayoutCustomIcon customClass"
   data-test-subj="customIcon"
 >
-  <div
+  <span
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
     data-euiicon-type="alert"

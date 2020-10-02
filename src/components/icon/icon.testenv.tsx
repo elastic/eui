@@ -20,7 +20,7 @@
 import React, { ComponentType } from 'react';
 
 export const EuiIcon = ({ type, ...rest }: any) => (
-  <div
+  <span
     data-euiicon-type={
       typeof type === 'string' ? type : type.displayName || type.name
     }
