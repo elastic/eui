@@ -44,8 +44,10 @@ interface ToggleOptions {
 
 interface EuiResizablePanelControls {
   isHorizontal: boolean;
-  register: (panel: EuiResizablePanelController) => void;
-  deregister: (panelId: EuiResizablePanelController['id']) => void;
+  registration: {
+    register: (panel: EuiResizablePanelController) => void;
+    deregister: (panelId: EuiResizablePanelController['id']) => void;
+  };
   onToggleCollapsed: (
     shouldCollapse: boolean,
     panelId: EuiResizablePanelController['id']
@@ -115,8 +117,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   scrollable = true,
   style = {},
   toggle = false,
-  register,
-  deregister,
+  registration,
   onToggleCollapsed,
   ...rest
 }) => {
@@ -170,10 +171,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   };
 
   useEffect(() => {
-    if (!register || !deregister) return;
+    if (!registration) return;
     const id = panelId.current;
     const initsize = size ?? (initialSize || 0);
-    register({
+    registration.register({
       id,
       size: initsize,
       prevSize: initsize,
@@ -187,9 +188,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       isCollapsed: false,
     });
     return () => {
-      deregister(id);
+      registration.deregister(id);
     };
-  }, [initialSize, isHorizontal, minSize, size, register, deregister]);
+  }, [initialSize, isHorizontal, minSize, size, registration]);
 
   const onClickCollapse = () => {
     const shouldCollapse = !isCollapsed;
@@ -214,7 +215,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={styles}
       {...rest}>
-      {isHorizontal && toggle ? (
+      {toggle ? (
         <EuiI18n
           token="euiResizablePanel.toggleButtonAriaLabel"
           default="Press to toggle this panel">

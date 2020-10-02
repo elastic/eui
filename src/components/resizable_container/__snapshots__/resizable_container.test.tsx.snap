@@ -180,7 +180,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
       class="euiButtonIcon euiButtonIcon--text euiResizablePanel__toggleButton"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="menuLeft"

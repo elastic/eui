@@ -43,8 +43,10 @@ interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
   onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
-  register: (resizer: EuiResizableButtonController) => void;
-  deregister: (resizerId: EuiResizableButtonController['id']) => void;
+  registration: {
+    register: (resizer: EuiResizableButtonController) => void;
+    deregister: (resizerId: EuiResizableButtonController['id']) => void;
+  };
   isHorizontal: boolean;
 }
 
@@ -77,8 +79,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   className,
   size = 'm',
   id,
-  register,
-  deregister,
+  registration,
   disabled,
   ...rest
 }) => {
@@ -105,20 +106,19 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   const previousRef = useRef<HTMLElement>();
   const onRef = useCallback(
     (ref: HTMLElement | null) => {
-      if (!register || !deregister) return;
+      if (!registration) return;
       const id = resizerId.current;
       if (ref) {
         previousRef.current = ref;
-        register({ id, ref, isDisabled: disabled || false });
-        // console.log('Resizer: ', ref);
+        registration.register({ id, ref, isDisabled: disabled || false });
       } else {
         if (previousRef.current != null) {
-          deregister(id);
+          registration.deregister(id);
           previousRef.current = undefined;
         }
       }
     },
-    [register, deregister, disabled]
+    [registration, disabled]
   );
 
   const setFocus = (e: MouseEvent<HTMLButtonElement>) =>

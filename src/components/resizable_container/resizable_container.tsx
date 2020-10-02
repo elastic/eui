@@ -167,8 +167,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       onMouseDown,
       onTouchStart: onMouseDown,
       isHorizontal,
-      register: actions.registerResizer,
-      deregister: actions.deregisterResizer,
+      registration: {
+        register: actions.registerResizer,
+        deregister: actions.deregisterResizer,
+      },
     }),
     [isHorizontal]
   );
@@ -176,8 +178,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   const EuiResizablePanel = useCallback(
     euiResizablePanelWithControls({
       isHorizontal,
-      register: actions.registerPanel,
-      deregister: actions.deregisterPanel,
+      registration: {
+        register: actions.registerPanel,
+        deregister: actions.deregisterPanel,
+      },
       onToggleCollapsed: (shouldCollapse: boolean, panelId: string) =>
         actions.panelToggle({ shouldCollapse, panelId }),
     }),

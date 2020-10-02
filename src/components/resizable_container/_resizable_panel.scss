@@ -3,15 +3,22 @@
   overflow-y: auto;
 }
 
+.euiResizablePanel--collapsible > *:not(.euiResizablePanel__toggleButton) {
+  visibility: hidden;
+}
+
 .euiResizableContainer--horizontal {
 
   .euiResizablePanel--collapsible {
     // sass-lint:disable-block no-important
     min-width: 0 !important;
-    // width: $euiSizeL !important;
   }
+}
 
-  .euiResizablePanel--collapsible > *:not(.euiResizablePanel__toggleButton) {
-    visibility: hidden;
+.euiResizableContainer--vertical {
+
+  .euiResizablePanel--collapsible {
+    // sass-lint:disable-block no-important
+    min-height: 0 !important;
   }
 }
