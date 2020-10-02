@@ -43,6 +43,7 @@ const treeViewSnippet = [
       id: 'item_two',
     }
   ]}
+  aria-label="Sample Tree View"
 />`,
 ];
 

@@ -1,22 +1,32 @@
+/**
+ * This demo has been simplified to showcase just the buttons within sections.
+ * See the main example for all the menu items.
+ */
+
 import React from 'react';
 
 import {
   EuiHeader,
-  EuiFieldSearch,
   EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+  EuiAvatar,
 } from '../../../../src/components';
-
-import HeaderAppMenu from './header_app_menu';
-import HeaderUserMenu from './header_user_menu';
-import HeaderSpacesMenu from './header_spaces_menu';
 
 export default () => {
   const renderLogo = (
     <EuiHeaderLogo
-      iconType="logoKibana"
+      iconType="logoElastic"
       href="#"
+      onClick={e => e.preventDefault()}
       aria-label="Go to home page"
     />
+  );
+
+  const renderSpaces = (
+    <EuiHeaderSectionItemButton aria-label="Spaces menu">
+      <EuiAvatar type="space" name="Sales Team" size="s" />
+    </EuiHeaderSectionItemButton>
   );
 
   const breadcrumbs = [
@@ -25,25 +35,6 @@ export default () => {
       href: '#',
       onClick: e => {
         e.preventDefault();
-        console.log('You clicked management');
-      },
-      'data-test-subj': 'breadcrumbsAnimals',
-      className: 'customClass',
-    },
-    {
-      text: 'Truncation test is here for a really long item',
-      href: '#',
-      onClick: e => {
-        e.preventDefault();
-        console.log('You clicked truncation test');
-      },
-    },
-    {
-      text: 'hidden',
-      href: '#',
-      onClick: e => {
-        e.preventDefault();
-        console.log('You clicked hidden');
       },
     },
     {
@@ -51,7 +42,6 @@ export default () => {
       href: '#',
       onClick: e => {
         e.preventDefault();
-        console.log('You clicked users');
       },
     },
     {
@@ -60,16 +50,27 @@ export default () => {
   ];
 
   const renderSearch = (
-    <EuiFieldSearch
-      placeholder="Search for anything"
-      aria-label="Search for anything"
-      compressed
-    />
+    <EuiHeaderSectionItemButton aria-label="Sitewide search">
+      <EuiIcon type="search" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
+  const renderUser = (
+    <EuiHeaderSectionItemButton aria-label="Account menu">
+      <EuiAvatar name="John Username" size="s" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const renderApps = (
+    <EuiHeaderSectionItemButton
+      aria-label="Apps menu with 1 new app"
+      notification="1">
+      <EuiIcon type="apps" size="m" />
+    </EuiHeaderSectionItemButton>
   );
 
   const sections = [
     {
-      items: [renderLogo, <HeaderSpacesMenu />],
+      items: [renderLogo, renderSpaces],
       borders: 'right',
       breadcrumbs: breadcrumbs,
       breadcrumbProps: {
@@ -77,11 +78,7 @@ export default () => {
       },
     },
     {
-      items: [renderSearch, <div style={{ width: 8 }} />],
-      borders: 'none',
-    },
-    {
-      items: [<HeaderUserMenu />, <HeaderAppMenu />],
+      items: [renderSearch, renderUser, renderApps],
     },
   ];
 

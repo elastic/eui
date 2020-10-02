@@ -9,6 +9,7 @@ import {
 const colors = [
   'primary',
   'text',
+  'accent',
   'subdued',
   'success',
   'warning',

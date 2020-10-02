@@ -65,6 +65,22 @@ describe('EuiFieldSearch', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('isClearable', () => {
+      test('is accepted', () => {
+        const component = render(<EuiFieldSearch isClearable />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered when a value exists', () => {
+        const component = render(
+          <EuiFieldSearch isClearable defaultValue="Hello" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     test('prepend is rendered', () => {
       const component = render(<EuiFieldSearch prepend="Prepend" />);
 
