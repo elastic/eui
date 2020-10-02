@@ -7,7 +7,7 @@ exports[`EuiFormControlLayoutClearButton is rendered 1`] = `
   data-test-subj="clearButton"
   type="button"
 >
-  <div
+  <span
     class="euiFormControlLayoutClearButton__icon"
     data-euiicon-type="cross"
   />

@@ -28,7 +28,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
   <span
     class="euiFacetButton__content"
   >
-    <div
+    <span
       class="euiFacetButton__icon"
       data-euiicon-type="dot"
     />
