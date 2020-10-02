@@ -24,7 +24,7 @@ import { requiredProps } from '../../../test/required_props';
 import { EuiFieldText } from './field_text';
 
 jest.mock('../form_control_layout', () => {
-  const formControlLayout = require.requireActual('../form_control_layout');
+  const formControlLayout = jest.requireActual('../form_control_layout');
   return {
     ...formControlLayout,
     EuiFormControlLayout: 'eui-form-control-layout',

@@ -43,3 +43,7 @@ All error messages follow this same structure:
 * The `nodePath` is the only thing that doesn't come directly from axe and is an attempt to lead you to the element that's triggering an error. (See `printResult()` in `scripts/a11y-testing.js` to see exactly how it's generated.)
 
 The **set** of failures for each page will be denoted by a line with the URL of the page being tested.
+
+## Testing environment
+
+This testing suite runs in a Docker container built and maintained by the EUI team and published to the Elastic Container Registry. Any environment-related failures should be investigated starting with the Docker directory located at [`scripts/docker-puppeteer/`](../scripts/docker-puppeteer/README.md).

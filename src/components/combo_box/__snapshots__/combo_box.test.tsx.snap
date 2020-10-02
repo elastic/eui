@@ -317,7 +317,7 @@ exports[`props options list is rendered 1`] = `
       class="euiComboBoxOptionsList__rowWrap"
     >
       <div
-        style="position: relative; height: 200px; width: 0px; overflow: auto; direction: ltr;"
+        style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
       >
         <div
           id="htmlid_listbox"
