@@ -307,7 +307,7 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
     >
       Content
     </span>
-    <div
+    <span
       class="euiBadge__icon"
       data-euiicon-type="user"
     />
@@ -328,7 +328,7 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
     >
       Content
     </span>
-    <div
+    <span
       class="euiBadge__icon"
       data-euiicon-type="user"
     />
@@ -349,7 +349,7 @@ exports[`EuiBadge props iconType is rendered 1`] = `
     >
       Content
     </span>
-    <div
+    <span
       class="euiBadge__icon"
       data-euiicon-type="user"
     />

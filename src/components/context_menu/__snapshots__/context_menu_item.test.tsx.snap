@@ -46,7 +46,7 @@ exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
     <span
       class="euiContextMenuItem__text"
     />
-    <div
+    <span
       class="euiContextMenu__arrow"
       data-euiicon-type="arrowRight"
     />

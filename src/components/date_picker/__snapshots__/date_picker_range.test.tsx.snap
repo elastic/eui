@@ -36,7 +36,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
             <span
               class="euiFormControlLayoutCustomIcon"
             >
-              <div
+              <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
                 data-euiicon-type="calendar"

@@ -21,7 +21,7 @@ exports[`EuiTablePagination is rendered 1`] = `
           <span
             class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="arrowDown"
             />
@@ -49,7 +49,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         data-test-subj="pagination-button-previous"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowLeft"
@@ -168,7 +168,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         data-test-subj="pagination-button-next"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowRight"
@@ -200,7 +200,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         data-test-subj="pagination-button-previous"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowLeft"
@@ -319,7 +319,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         data-test-subj="pagination-button-next"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowRight"

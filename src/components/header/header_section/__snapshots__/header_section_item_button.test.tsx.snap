@@ -38,7 +38,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
   class="euiHeaderSectionItem__button"
   type="button"
 >
-  <div
+  <span
     class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
     color="accent"
     data-euiicon-type="dot"
