@@ -45,7 +45,7 @@ exports[`EuiComboBox is rendered 1`] = `
           data-test-subj="comboBoxToggleListButton"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -299,7 +299,7 @@ exports[`props options list is rendered 1`] = `
           data-test-subj="comboBoxToggleListButton"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"

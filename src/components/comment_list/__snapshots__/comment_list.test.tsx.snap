@@ -18,7 +18,7 @@ exports[`EuiCommentList is rendered 1`] = `
         <div
           class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
         >
-          <div
+          <span
             data-euiicon-type="user"
           />
         </div>

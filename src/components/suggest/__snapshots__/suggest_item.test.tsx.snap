@@ -9,7 +9,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint1"
   >
-    <div
+    <span
       data-euiicon-type="search"
     />
   </span>
@@ -31,7 +31,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
-    <div
+    <span
       data-euiicon-type="kqlValue"
     />
   </span>
@@ -53,7 +53,7 @@ exports[`props labelDisplay as expand is rendered 1`] = `
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
-    <div
+    <span
       data-euiicon-type="kqlValue"
     />
   </span>

@@ -71,7 +71,7 @@ exports[`EuiStep props status complete is rendered 1`] = `
       aria-label="Step 1"
       class="euiStepNumber euiStepNumber--complete euiStep__circle"
     >
-      <div
+      <span
         aria-label="complete"
         class="euiStepNumber__icon"
         data-euiicon-type="check"
@@ -104,7 +104,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
       aria-label="Step 1"
       class="euiStepNumber euiStepNumber--danger euiStep__circle"
     >
-      <div
+      <span
         aria-label="has errors"
         class="euiStepNumber__icon"
         data-euiicon-type="cross"
@@ -193,7 +193,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
       aria-label="Step 1"
       class="euiStepNumber euiStepNumber--warning euiStep__circle"
     >
-      <div
+      <span
         aria-label="has warnings"
         class="euiStepNumber__icon"
         data-euiicon-type="alert"

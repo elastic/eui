@@ -19,7 +19,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorBold"
@@ -34,7 +34,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorItalic"
@@ -52,7 +52,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorUnorderedList"
@@ -67,7 +67,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorOrderedList"
@@ -82,7 +82,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="MarkdownCheckmark"
@@ -100,7 +100,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="quote"
@@ -115,7 +115,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorCodeBlock"
@@ -130,7 +130,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorLink"
@@ -148,7 +148,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="editorComment"
@@ -163,7 +163,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       <span
         class="euiButtonContent euiButtonEmpty__content"
       >
-        <div
+        <span
           class="euiButtonContent__icon"
           data-euiicon-type="eye"
         />
@@ -199,7 +199,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text euiMarkdownEditorFooter__help"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="MarkdownLogo"

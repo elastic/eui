@@ -12,7 +12,7 @@ exports[`EuiPagination is rendered 1`] = `
     data-test-subj="pagination-button-previous"
     type="button"
   >
-    <div
+    <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
       data-euiicon-type="arrowLeft"
@@ -49,7 +49,7 @@ exports[`EuiPagination is rendered 1`] = `
     data-test-subj="pagination-button-next"
     type="button"
   >
-    <div
+    <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
       data-euiicon-type="arrowRight"

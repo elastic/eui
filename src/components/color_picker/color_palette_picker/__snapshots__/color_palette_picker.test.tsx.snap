@@ -37,7 +37,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -89,7 +89,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -149,7 +149,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -209,7 +209,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -269,7 +269,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -321,7 +321,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -378,7 +378,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"

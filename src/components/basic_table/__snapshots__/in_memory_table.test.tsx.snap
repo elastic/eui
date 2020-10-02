@@ -406,7 +406,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                       size="m"
                                       type="arrowDown"
                                     >
-                                      <div
+                                      <span
                                         className="euiButtonContent__icon"
                                         data-euiicon-type="arrowDown"
                                         size="m"
@@ -486,7 +486,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   size="m"
                                   type="arrowLeft"
                                 >
-                                  <div
+                                  <span
                                     aria-hidden="true"
                                     className="euiButtonIcon__icon"
                                     data-euiicon-type="arrowLeft"
@@ -698,7 +698,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   size="m"
                                   type="arrowRight"
                                 >
-                                  <div
+                                  <span
                                     aria-hidden="true"
                                     className="euiButtonIcon__icon"
                                     data-euiicon-type="arrowRight"

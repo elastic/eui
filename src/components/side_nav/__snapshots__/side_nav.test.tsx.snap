@@ -16,7 +16,7 @@ exports[`EuiSideNav is rendered 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -43,7 +43,7 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -70,7 +70,7 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -97,7 +97,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -157,7 +157,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
               >
                 C
               </span>
-              <div
+              <span
                 color="subdued"
                 data-euiicon-type="arrowDown"
               />
@@ -184,7 +184,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -309,7 +309,7 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -378,7 +378,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
@@ -440,7 +440,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
               >
                 C
               </span>
-              <div
+              <span
                 color="subdued"
                 data-euiicon-type="arrowDown"
               />
@@ -467,7 +467,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
       <span
         class="euiSideNav__mobileTitle"
       />
-      <div
+      <span
         aria-hidden="true"
         class="euiSideNav__mobileIcon"
         data-euiicon-type="apps"
