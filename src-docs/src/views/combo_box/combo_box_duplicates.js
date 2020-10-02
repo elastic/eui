@@ -5,11 +5,11 @@ import { EuiComboBox } from '../../../../src/components';
 const optionsStatic = [
   {
     label: 'Titan',
-    id: 'titan1',
+    key: 'titan1',
   },
   {
     label: 'Titan',
-    id: 'titan2',
+    key: 'titan2',
   },
   {
     label: 'Enceladus is disabled',
@@ -17,7 +17,7 @@ const optionsStatic = [
   },
   {
     label: 'Titan',
-    id: 'titan3',
+    key: 'titan3',
   },
   {
     label: 'Dione',

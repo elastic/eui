@@ -187,11 +187,11 @@ const duplicateOptionsSource = require('!!raw-loader!./combo_box_duplicates');
 const duplicateOptionsHtml = renderToHtml(DuplicateOptions);
 const duplicateOptionsSnippet = `const options = [{
   label: 'Label',
-  id: 'label1',
+  key: 'label1',
 },
 {
   label: 'Label',
-  id: 'Label2',
+  key: 'Label2',
 }]`;
 
 export const ComboBoxExample = {
@@ -583,7 +583,7 @@ export const ComboBoxExample = {
           In general, it is not recommended to use duplicate labels on the
           options because the user has no way to distinguish between them. If
           you need duplicate labels, you will need to add a unique{' '}
-          <EuiCode language="js">id</EuiCode> for each option.
+          <EuiCode language="js">key</EuiCode> for each option.
         </p>
       ),
       props: { EuiComboBox },

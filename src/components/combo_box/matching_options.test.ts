@@ -186,27 +186,27 @@ const testCases: GetMatchingOptionsTestCase[] = [
     isPreFiltered: true,
     showPrevSelected: false,
     expected: [
-      // Duplicate options without an id will be treated as the same option
+      // Duplicate options without an key will be treated as the same option
     ],
     sortMatchesBy: 'none',
   },
   {
     options: [
-      { label: 'Titan', id: 'titan1' },
-      { label: 'Titan', id: 'titan2' },
+      { label: 'Titan', key: 'titan1' },
+      { label: 'Titan', key: 'titan2' },
     ],
     selectedOptions: [
       {
         label: 'Titan',
-        id: 'titan2',
+        key: 'titan2',
       },
     ],
     searchValue: 'titan',
     isPreFiltered: true,
     showPrevSelected: false,
     expected: [
-      // Duplicate options with an id will be treated as different items
-      { label: 'Titan', id: 'titan1' },
+      // Duplicate options with an key will be treated as different items
+      { label: 'Titan', key: 'titan1' },
     ],
     sortMatchesBy: 'none',
   },
