@@ -92,7 +92,9 @@ type InMemoryTableProps<T> = Omit<
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
   };
-  // Insert a node between searchbar and table components.
+  /**
+   * Insert a component between searchbar and table components.
+   */
   childrenBetween?: ReactNode;
 };
 
