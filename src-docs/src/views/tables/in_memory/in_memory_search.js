@@ -149,7 +149,7 @@ export const Table = () => {
         search={search}
         pagination={true}
         sorting={true}
-        childrenBetween={contentBetween && <EuiText>Content Between</EuiText>}
+        childrenBetween={contentBetween && <EuiText>Content between</EuiText>}
       />
     </Fragment>
   );
