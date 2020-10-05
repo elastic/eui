@@ -334,17 +334,16 @@ export const DataGridStylingExample = {
             <strong>EuiDataGridColumn</strong>. You can configure it by passing
             an array of objects of type{' '}
             <strong>EuiDataGridColumnCellAction</strong>. The icons of these
-            actions are displayed on mouse over, and are also part of the
-            popover when you&apos;re expanding the cell content. Note that once
-            you&apos;ve defined the <EuiCode>cellAction</EuiCode> property, the
-            cell&apos;s automatically expandable.
+            actions are displayed on mouse over, and also appear in the popover
+            when the cell is expanded. Note that once you&apos;ve defined the{' '}
+            <EuiCode>cellAction</EuiCode> property, the cell&apos;s
+            automatically expandable.
           </p>
           <p>
-            Below, the <EuiCode>email</EuiCode> column provides 1 additional
-            <EuiCode>cellAction</EuiCode>, the <EuiCode>city</EuiCode> column
-            provides 1 additional action with a custom button in the popover and
-            the <EuiCode>country</EuiCode> column provides 2 additional
-            <EuiCode>cellAction</EuiCode>s.
+            Below, the email and city columns provide 1{' '}
+            <EuiCode>cellAction</EuiCode> each, while the country column
+            provides 2 <EuiCode>cellAction</EuiCode>s. The city column shows
+            custom popover content using <EuiCode>inPopoverButton</EuiCode>.
           </p>
         </Fragment>
       ),
