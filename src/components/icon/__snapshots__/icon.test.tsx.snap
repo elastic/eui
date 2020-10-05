@@ -6191,8 +6191,6 @@ exports[`EuiIcon props type minus is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <rect
-    fill="#343741"
-    fill-rule="evenodd"
     height="1"
     rx="0.5"
     width="9"

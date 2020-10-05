@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconCloudSunny = ({ title, titleId, ...props }) => (
   <svg

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconMinus = ({ title, titleId, ...props }) => (
   <svg
@@ -9,15 +9,7 @@ const EuiIconMinus = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <rect
-      width={9}
-      height={1}
-      x={3}
-      y={7}
-      fill="#343741"
-      fillRule="evenodd"
-      rx={0.5}
-    />
+    <rect width={9} height={1} x={3} y={7} rx={0.5} />
   </svg>
 );
 
