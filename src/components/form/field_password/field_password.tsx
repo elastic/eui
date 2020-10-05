@@ -70,7 +70,7 @@ export type EuiFieldPasswordProps = Omit<
     /**
      * Additional props to apply to the dual toggle. Extends EuiButtonIcon
      */
-    dualToggleProps?: EuiButtonIconProps;
+    dualToggleProps?: Omit<EuiButtonIconProps, 'iconType'>;
   };
 
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
