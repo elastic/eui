@@ -13,7 +13,7 @@ export default () => {
   const [showProgress, setShowProgress] = useState(false);
 
   let timer;
-  const progress = value => {
+  const progress = (value) => {
     if (value > 100) {
       setValue(100);
     } else {

@@ -48,7 +48,7 @@ describe('EuiStepNumber', () => {
     });
 
     describe('status', () => {
-      STATUS.forEach(status => {
+      STATUS.forEach((status) => {
         test(`${status} is rendered`, () => {
           const component = render(
             <EuiStepNumber number={1} status={status} />

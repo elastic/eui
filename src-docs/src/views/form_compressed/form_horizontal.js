@@ -16,7 +16,7 @@ export default () => {
   const [comboBoxSelectionOptions, setComboBoxSelectionOptions] = useState([]);
   const [value, setValue] = useState('20');
 
-  const onRangeChange = e => {
+  const onRangeChange = (e) => {
     setValue(e.target.value);
   };
 
@@ -57,7 +57,7 @@ export default () => {
           ]}
           compressed
           selectedOptions={comboBoxSelectionOptions}
-          onChange={comboBoxSelectionOptions =>
+          onChange={(comboBoxSelectionOptions) =>
             setComboBoxSelectionOptions(comboBoxSelectionOptions)
           }
         />

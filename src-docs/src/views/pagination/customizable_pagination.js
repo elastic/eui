@@ -16,10 +16,11 @@ export default () => {
 
   const PAGE_COUNT = 10;
 
-  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
-  const goToPage = pageNumber => setActivePage(pageNumber);
+  const goToPage = (pageNumber) => setActivePage(pageNumber);
 
   const button = (
     <EuiButtonEmpty

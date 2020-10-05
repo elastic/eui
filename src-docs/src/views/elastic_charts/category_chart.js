@@ -38,25 +38,25 @@ export const CategoryChart = () => {
   const [formatted, setFormatted] = useState(false);
   const [chartType, setChartType] = useState('BarSeries');
 
-  const onMultiChange = multiObject => {
+  const onMultiChange = (multiObject) => {
     const { multi, stacked } = multiObject;
     setMulti(multi);
     setStacked(stacked);
   };
 
-  const onRotatedChange = e => {
+  const onRotatedChange = (e) => {
     setRotated(e.target.checked);
   };
 
-  const onOrderedChange = e => {
+  const onOrderedChange = (e) => {
     setOrdered(e.target.checked);
   };
 
-  const onFormatChange = e => {
+  const onFormatChange = (e) => {
     setFormatted(e.target.checked);
   };
 
-  const onChartTypeChange = chartType => {
+  const onChartTypeChange = (chartType) => {
     setChartType(chartType);
   };
 
@@ -109,7 +109,7 @@ export const CategoryChart = () => {
           id="left-axis"
           position={rotated ? 'bottom' : 'left'}
           tickFormat={
-            formatted ? d => `${round(Number(d) / 1000, 2)}k` : undefined
+            formatted ? (d) => `${round(Number(d) / 1000, 2)}k` : undefined
           }
         />
       </Chart>
@@ -204,7 +204,7 @@ export const CategoryChart = () => {
     ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
   />
 </Chart>`}>
-          {copy => (
+          {(copy) => (
             <EuiButton fill onClick={copy} iconType="copyClipboard">
               Copy code of current configuration
             </EuiButton>

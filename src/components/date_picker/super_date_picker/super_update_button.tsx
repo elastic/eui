@@ -76,7 +76,7 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
     }
   }
 
-  setTootipRef: Ref<EuiToolTip> = node => {
+  setTootipRef: Ref<EuiToolTip> = (node) => {
     this.tooltip = node;
   };
 

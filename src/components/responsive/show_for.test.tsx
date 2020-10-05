@@ -39,7 +39,7 @@ describe('EuiShowFor', () => {
     expect(component).toMatchSnapshot();
   });
 
-  BREAKPOINTS.forEach(size => {
+  BREAKPOINTS.forEach((size) => {
     test(`${size} is rendered`, () => {
       const component = render(
         <EuiShowFor sizes={[size]}>

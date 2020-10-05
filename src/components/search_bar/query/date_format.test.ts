@@ -54,7 +54,7 @@ describe('date format', () => {
       '12 January 18 22:33:44',
       '12 Jan 18 22:33:44',
       '12 Jan 2018 22:33:44',
-    ].forEach(time => {
+    ].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(2018);
@@ -73,7 +73,7 @@ describe('date format', () => {
       '12 January 18 22:33',
       '12 Jan 18 22:33',
       '12 Jan 2018 22:33',
-    ].forEach(time => {
+    ].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(2018);
@@ -87,7 +87,7 @@ describe('date format', () => {
   });
 
   test('parse - time', () => {
-    ['22:33', '10:33 PM', '10:33 pm'].forEach(time => {
+    ['22:33', '10:33 PM', '10:33 pm'].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(now.year());
@@ -99,7 +99,7 @@ describe('date format', () => {
       expect(dateGranularity(parsed)).toBeUndefined();
     });
 
-    ['04:33', '4:33', '4:33 AM', '4:33 am'].forEach(time => {
+    ['04:33', '4:33', '4:33 AM', '4:33 am'].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(now.year());
@@ -126,7 +126,7 @@ describe('date format', () => {
       '2nd January 2018',
       '02 January 18',
       '02 January 2018',
-    ].forEach(time => {
+    ].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(2018);
@@ -139,7 +139,7 @@ describe('date format', () => {
     });
 
     const sunday = moment(now).subtract(now.day(), 'days');
-    ['Sun', 'Sunday'].forEach(time => {
+    ['Sun', 'Sunday'].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(sunday.year());
@@ -187,9 +187,7 @@ describe('date format', () => {
 
   test('parse - week granularity', () => {
     const weekNumber = random.integer({ min: 0, max: 50 });
-    const week = moment(now)
-      .week(weekNumber)
-      .startOf('week');
+    const week = moment(now).week(weekNumber).startOf('week');
     let parsed = dateFormat.parse(`Week ${weekNumber}`);
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(week.year());
@@ -211,9 +209,7 @@ describe('date format', () => {
     expect(parsed.seconds()).toBe(0);
     expect(dateGranularity(parsed)).toBe(Granularity.WEEK);
 
-    const nextWeek = moment(now)
-      .add(1, 'week')
-      .startOf('week');
+    const nextWeek = moment(now).add(1, 'week').startOf('week');
     parsed = dateFormat.parse('next week');
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(nextWeek.year());
@@ -224,9 +220,7 @@ describe('date format', () => {
     expect(parsed.seconds()).toBe(0);
     expect(dateGranularity(parsed)).toBe(Granularity.WEEK);
 
-    const lastWeek = moment(now)
-      .subtract(1, 'week')
-      .startOf('week');
+    const lastWeek = moment(now).subtract(1, 'week').startOf('week');
     parsed = dateFormat.parse('last week');
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(lastWeek.year());
@@ -239,7 +233,7 @@ describe('date format', () => {
   });
 
   test('parse - month granularity', () => {
-    ['Feb', 'February'].forEach(date => {
+    ['Feb', 'February'].forEach((date) => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(now.year());
@@ -251,7 +245,7 @@ describe('date format', () => {
       expect(dateGranularity(parsed)).toBe(Granularity.MONTH);
     });
 
-    ['Feb 17', 'February 17', 'Feb 2017', 'February 2017'].forEach(date => {
+    ['Feb 17', 'February 17', 'Feb 2017', 'February 2017'].forEach((date) => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(2017);
@@ -264,7 +258,7 @@ describe('date format', () => {
     });
 
     const january = moment(now).subtract(now.month(), 'month');
-    ['Jan', 'January'].forEach(time => {
+    ['Jan', 'January'].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(january.year());
@@ -315,7 +309,7 @@ describe('date format', () => {
     [
       year.toString(),
       year % 100 < 10 ? `0${year % 100}` : (year % 100).toString(), // YY format (padding with 0s)
-    ].forEach(date => {
+    ].forEach((date) => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(year);

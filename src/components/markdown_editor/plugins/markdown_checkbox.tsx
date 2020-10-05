@@ -76,9 +76,11 @@ const CheckboxParser: Plugin = function CheckboxParser() {
   methods.splice(methods.indexOf('list'), 0, 'checkbox'); // Run it just before default `list` plugin to inject our own idea of checkboxes.
 };
 
-const CheckboxMarkdownRenderer: FunctionComponent<CheckboxNodeDetails & {
-  position: EuiMarkdownAstNodePosition;
-}> = ({ position, lead, label, isChecked, children }) => {
+const CheckboxMarkdownRenderer: FunctionComponent<
+  CheckboxNodeDetails & {
+    position: EuiMarkdownAstNodePosition;
+  }
+> = ({ position, lead, label, isChecked, children }) => {
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (
     <EuiCheckbox

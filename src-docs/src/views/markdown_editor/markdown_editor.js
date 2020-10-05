@@ -21,10 +21,10 @@ The editor also ships with some built in plugins. For example it can handle chec
 const dropHandlers = [
   {
     supportedFiles: ['.jpg', '.jpeg'],
-    accepts: itemType => itemType === 'image/jpeg',
-    getFormattingForItem: item => {
+    accepts: (itemType) => itemType === 'image/jpeg',
+    getFormattingForItem: (item) => {
       // fake an upload
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           const url = URL.createObjectURL(item);
           resolve({

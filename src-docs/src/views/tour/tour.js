@@ -87,7 +87,7 @@ export default () => {
     });
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setQueryValue(e.target.value);
 
     if (state.currentTourStep < 2) {

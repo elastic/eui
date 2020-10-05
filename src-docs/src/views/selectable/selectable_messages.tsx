@@ -15,13 +15,13 @@ export default () => {
     <Fragment>
       <EuiSwitch
         label="Custom message"
-        onChange={e => setUseCustomMessage(e.target.checked)}
+        onChange={(e) => setUseCustomMessage(e.target.checked)}
         checked={useCustomMessage}
       />
       &emsp;
       <EuiSwitch
         label="Show loading"
-        onChange={e => setIsLoading(e.target.checked)}
+        onChange={(e) => setIsLoading(e.target.checked)}
         checked={isLoading}
       />
       <EuiSpacer />
@@ -33,7 +33,7 @@ export default () => {
         isLoading={isLoading}
         loadingMessage={useCustomMessage ? loadingMessage : undefined}
         emptyMessage={useCustomMessage ? emptyMessage : undefined}>
-        {list => list}
+        {(list) => list}
       </EuiSelectable>
     </Fragment>
   );

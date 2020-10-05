@@ -13,7 +13,7 @@ import {
 export default () => {
   const [isLoading, setLoading] = useState(false);
 
-  const onToggleChange = e => {
+  const onToggleChange = (e) => {
     setLoading(e.target.checked);
   };
 

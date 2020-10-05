@@ -46,12 +46,12 @@ export default () => {
                   count: 319,
                 },
               ]}
-              valueAccessor={d => d.count}
+              valueAccessor={(d) => d.count}
               layers={[
                 {
-                  groupByRollup: d => d.status,
+                  groupByRollup: (d) => d.status,
                   shape: {
-                    fillColor: d =>
+                    fillColor: (d) =>
                       euiChartTheme.theme.colors.vizColors[d.sortIndex],
                   },
                 },
@@ -85,13 +85,13 @@ export default () => {
                   percent: 8.7,
                 },
               ]}
-              valueAccessor={d => Number(d.percent)}
+              valueAccessor={(d) => Number(d.percent)}
               valueFormatter={() => ''}
               layers={[
                 {
-                  groupByRollup: d => d.language,
+                  groupByRollup: (d) => d.language,
                   shape: {
-                    fillColor: d =>
+                    fillColor: (d) =>
                       euiChartTheme.theme.colors.vizColors[d.sortIndex],
                   },
                 },

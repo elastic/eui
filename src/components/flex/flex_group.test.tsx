@@ -49,7 +49,7 @@ describe('EuiFlexGroup', () => {
 
   describe('props', () => {
     describe('responsive', () => {
-      [true, false].forEach(value => {
+      [true, false].forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGroup responsive={value} />);
 
@@ -59,7 +59,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('gutterSize', () => {
-      GUTTER_SIZES.forEach(value => {
+      GUTTER_SIZES.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGroup gutterSize={value} />);
 
@@ -69,7 +69,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('alignItems', () => {
-      ALIGN_ITEMS.forEach(value => {
+      ALIGN_ITEMS.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGroup alignItems={value} />);
 
@@ -79,7 +79,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('justifyContent', () => {
-      JUSTIFY_CONTENTS.forEach(value => {
+      JUSTIFY_CONTENTS.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGroup justifyContent={value} />);
 
@@ -89,7 +89,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('direction', () => {
-      DIRECTIONS.forEach(value => {
+      DIRECTIONS.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGroup direction={value} />);
 
@@ -99,7 +99,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('component', () => {
-      ['div', 'span'].forEach(value => {
+      ['div', 'span'].forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(
             <EuiFlexGroup component={value as 'div' | 'span'} />
@@ -109,7 +109,7 @@ describe('EuiFlexGroup', () => {
         });
       });
 
-      ['h2'].forEach(value => {
+      ['h2'].forEach((value) => {
         test(`${value} is not rendered`, () => {
           expect(() =>
             render(
@@ -122,7 +122,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('wrap', () => {
-      [true, false].forEach(value => {
+      [true, false].forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGroup wrap={value} />);
 

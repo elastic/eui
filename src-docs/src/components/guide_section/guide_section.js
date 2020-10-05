@@ -29,9 +29,9 @@ import { cleanEuiImports } from '../../services';
 
 import { extendedTypesInfo } from './guide_section_extends';
 
-export const markup = text => {
+export const markup = (text) => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split('\n').map(token => {
+  return text.split('\n').map((token) => {
     const values = token.split(regex).map((token, index) => {
       if (!token) {
         return '';
@@ -54,7 +54,7 @@ export const markup = text => {
       if (token.includes('\n')) {
         return token
           .split('\n')
-          .map(item => [item, <br key={`markup-${index}`} />]);
+          .map((item) => [item, <br key={`markup-${index}`} />]);
       }
       return token;
     });
@@ -62,7 +62,7 @@ export const markup = text => {
   });
 };
 
-export const humanizeType = type => {
+export const humanizeType = (type) => {
   if (!type) {
     return '';
   }
@@ -162,7 +162,7 @@ export class GuideSection extends Component {
     this.memoScroll = 0;
   }
 
-  onSort = componentName => {
+  onSort = (componentName) => {
     const { sortedComponents } = this.state;
     if (
       !sortedComponents[componentName] ||
@@ -182,13 +182,13 @@ export class GuideSection extends Component {
     }
   };
 
-  onSelectedTabChanged = selectedTab => {
+  onSelectedTabChanged = (selectedTab) => {
     const { name } = selectedTab;
     let renderedCode = null;
 
     if (name === 'html' || name === 'javascript') {
       const { code } = this.props.source.find(
-        sourceObject => sourceObject.type === name
+        (sourceObject) => sourceObject.type === name
       );
       renderedCode = code;
 
@@ -255,7 +255,7 @@ export class GuideSection extends Component {
   };
 
   renderTabs() {
-    return this.tabs.map(tab => (
+    return this.tabs.map((tab) => (
       <EuiTab
         onClick={() => this.onSelectedTabChanged(tab)}
         isSelected={tab === this.state.selectedTab}
@@ -336,7 +336,7 @@ export class GuideSection extends Component {
       });
     }
 
-    const rows = propNames.map(propName => {
+    const rows = propNames.map((propName) => {
       const {
         description: propDescription = '',
         required,
@@ -448,7 +448,7 @@ export class GuideSection extends Component {
     });
 
     const extendedTypes = extendedInterfaces
-      ? extendedInterfaces.filter(type => !!extendedTypesInfo[type])
+      ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
       : [];
     // if there is an HTMLAttributes type present among others, remove HTMLAttributes
     if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
@@ -545,7 +545,7 @@ export class GuideSection extends Component {
   renderProps() {
     const { props } = this.props;
     return this.componentNames
-      .map(componentName =>
+      .map((componentName) =>
         this.renderPropsForComponent(componentName, props[componentName])
       )
       .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
