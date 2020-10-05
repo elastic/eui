@@ -10,6 +10,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
+  EuiCode,
 } from '../../../../../src/components';
 
 /*
@@ -149,7 +150,14 @@ export const Table = () => {
         search={search}
         pagination={true}
         sorting={true}
-        childrenBetween={contentBetween && <EuiText>Content between</EuiText>}
+        childrenBetween={
+          contentBetween && (
+            <EuiText>
+              You can inject custom content between the search bar and the table
+              using <EuiCode>childrenBetween</EuiCode>.
+            </EuiText>
+          )
+        }
       />
     </Fragment>
   );

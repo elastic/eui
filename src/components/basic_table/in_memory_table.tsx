@@ -93,7 +93,7 @@ type InMemoryTableProps<T> = Omit<
     explain?: boolean;
   };
   /**
-   * Insert a component between searchbar and table components.
+   * Insert content between the search bar and table components.
    */
   childrenBetween?: ReactNode;
 };
