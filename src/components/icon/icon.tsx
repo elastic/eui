@@ -134,6 +134,7 @@ const typeToPathMap = {
   email: 'email',
   empty: 'empty',
   emsApp: 'app_ems',
+  eql: 'eql',
   exit: 'exit',
   expand: 'expand',
   expandMini: 'expandMini',
