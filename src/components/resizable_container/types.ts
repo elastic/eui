@@ -24,8 +24,9 @@ export interface EuiResizablePanelController {
   size: number;
   getSizePx: () => number;
   minSize: string;
-  isCollapsed: boolean;
+  isCollapsed: boolean | string;
   prevSize: number;
+  position: 'first' | 'middle' | 'last';
 }
 
 export interface EuiResizableButtonController {
@@ -88,7 +89,7 @@ export interface ActionToggle {
   type: 'EUI_RESIZABLE_TOGGLE';
   payload: {
     panelId: string;
-    shouldCollapse: boolean;
+    options: any;
   };
 }
 
@@ -157,6 +158,6 @@ export interface EuiResizableContainerActions {
     nextPanelId,
     direction,
   }: ActionKeyMove['payload']) => void;
-  panelToggle: ({ panelId, shouldCollapse }: ActionToggle['payload']) => void;
+  panelToggle: ({ panelId, options }: ActionToggle['payload']) => void;
   resize: (resetTour?: boolean) => void;
 }

@@ -280,32 +280,54 @@ export const useContainerCallbacks = ({
       }
 
       case 'EUI_RESIZABLE_TOGGLE': {
-        const { shouldCollapse, panelId: currentPanelId } = action.payload;
+        const { options, panelId: currentPanelId } = action.payload;
         const containerSize = getContainerSize() - state.resizersSize;
+        const currentPanel = state.panels[currentPanelId];
+        const shouldCollapse = !currentPanel.isCollapsed;
         const panelElement = document.getElementById(currentPanelId);
+        const prevResizer = panelElement!.previousElementSibling;
+        const prevPanel = prevResizer
+          ? prevResizer.previousElementSibling
+          : null;
+        const nextResizer = panelElement!.nextElementSibling;
+        const nextPanel = nextResizer ? nextResizer.nextElementSibling : null;
         const disabledResizers: string[] = [];
 
         if (shouldCollapse) {
-          if (panelElement!.previousElementSibling) {
-            disabledResizers.push(panelElement!.previousElementSibling.id);
+          if (prevResizer) {
+            disabledResizers.push(prevResizer.id);
           }
-          if (panelElement!.nextElementSibling) {
-            disabledResizers.push(panelElement!.nextElementSibling.id);
+          if (nextResizer) {
+            disabledResizers.push(nextResizer.id);
           }
         }
 
-        const currentPanel = state.panels[currentPanelId];
-        const otherPanels = {
-          ...Object.keys(state.panels).reduce(
-            (out: EuiResizableContainerState['panels'], id) => {
-              if (!state.panels[id].isCollapsed && id !== currentPanelId) {
-                out[id] = state.panels[id];
-              }
-              return out;
-            },
-            {}
-          ),
-        };
+        // const otherPanels = {
+        //   ...Object.keys(state.panels).reduce(
+        //     (out: EuiResizableContainerState['panels'], id) => {
+        //       if (!state.panels[id].isCollapsed && id !== currentPanelId) {
+        //         out[id] = state.panels[id];
+        //       }
+        //       return out;
+        //     },
+        //     {}
+        //   ),
+        // };
+        const otherPanels: EuiResizableContainerRegistry['panels'] = {};
+        if (
+          prevPanel &&
+          !state.panels[prevPanel.id].isCollapsed &&
+          (options.direction === 'right' || options.direction === 'both')
+        ) {
+          otherPanels[prevPanel.id] = state.panels[prevPanel.id];
+        }
+        if (
+          nextPanel &&
+          !state.panels[nextPanel.id].isCollapsed &&
+          (options.direction === 'left' || options.direction === 'both')
+        ) {
+          otherPanels[nextPanel.id] = state.panels[nextPanel.id];
+        }
         const otherPanelsKeys = Object.keys(otherPanels);
         const siblings = otherPanelsKeys.length;
         const newPanelSize = shouldCollapse
@@ -332,7 +354,7 @@ export const useContainerCallbacks = ({
             [currentPanelId]: {
               ...state.panels[currentPanelId],
               size: newPanelSize,
-              isCollapsed: shouldCollapse,
+              isCollapsed: shouldCollapse ? options.direction : false,
               prevSize: shouldCollapse ? currentPanel.size : newPanelSize,
             },
           },
@@ -433,10 +455,10 @@ export const useContainerCallbacks = ({
         type: 'EUI_RESIZABLE_KEY_MOVE',
         payload: { prevPanelId, nextPanelId, direction },
       }),
-    panelToggle: ({ panelId, shouldCollapse }: ActionToggle['payload']) =>
+    panelToggle: ({ panelId, options }: ActionToggle['payload']) =>
       dispatch({
         type: 'EUI_RESIZABLE_TOGGLE',
-        payload: { panelId, shouldCollapse },
+        payload: { panelId, options },
       }),
     resize: () => dispatch({ type: 'EUI_RESIZABLE_RESIZE', payload: {} }),
   };

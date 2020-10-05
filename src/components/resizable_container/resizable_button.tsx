@@ -99,6 +99,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     {
       'euiResizableButton--vertical': !isHorizontal,
       'euiResizableButton--horizontal': isHorizontal,
+      'euiResizableButton--disabled': disabled,
     },
     className
   );

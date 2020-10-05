@@ -182,8 +182,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         register: actions.registerPanel,
         deregister: actions.deregisterPanel,
       },
-      onToggleCollapsed: (shouldCollapse: boolean, panelId: string) =>
-        actions.panelToggle({ shouldCollapse, panelId }),
+      onToggleCollapsed: (panelId: string, options: any) =>
+        actions.panelToggle({ options, panelId }),
     }),
     [isHorizontal]
   );

@@ -49,8 +49,8 @@ interface EuiResizablePanelControls {
     deregister: (panelId: EuiResizablePanelController['id']) => void;
   };
   onToggleCollapsed: (
-    shouldCollapse: boolean,
-    panelId: EuiResizablePanelController['id']
+    panelId: EuiResizablePanelController['id'],
+    options: any
   ) => void;
 }
 
@@ -99,12 +99,22 @@ export interface EuiResizablePanelProps
   toggle?: boolean | ToggleOptions;
 }
 
-const generatePanelId = htmlIdGenerator('resizable-panel');
-
 const toggleDefault: ToggleOptions = {
   collapsedIcon: 'menuRight',
   notCollapsedIcon: 'menuLeft',
 };
+
+const getPosition = (ref: HTMLDivElement) => {
+  let position: 'first' | 'middle' | 'last' = 'middle';
+  if (ref.matches(':first-of-type')) {
+    position = 'first';
+  } else if (ref.matches(':last-of-type')) {
+    position = 'last';
+  }
+  return position;
+};
+
+const generatePanelId = htmlIdGenerator('resizable-panel');
 
 export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   children,
@@ -132,10 +142,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       (initialSize || 0),
     [panels, initialSize]
   );
-
   const isCollapsed = useMemo(
     () =>
       (panels[panelId.current] && panels[panelId.current].isCollapsed) || false,
+    [panels]
+  );
+  const position = useMemo(
+    () =>
+      (panels[panelId.current] && panels[panelId.current].position) || 'middle',
     [panels]
   );
 
@@ -144,8 +158,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       euiResizablePanel: scrollable,
     },
     {
-      'euiResizablePanel--collapsible': isCollapsed,
+      'euiResizablePanel--collapsible': toggle,
+      'euiResizablePanel--collapsed': isCollapsed,
     },
+    `euiResizablePanel--${position}`,
     className
   );
 
@@ -154,12 +170,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   if (size) {
     dimensions = {
       width: isHorizontal ? `${size}%` : '100%',
-      height: isHorizontal ? '100%' : `${size}%`,
+      height: isHorizontal ? 'auto' : `${size}%`,
     };
   } else {
     dimensions = {
       width: isHorizontal ? `${innerSize}%` : '100%',
-      height: isHorizontal ? '100%' : `${innerSize}%`,
+      height: isHorizontal ? 'auto' : `${innerSize}%`,
     };
   }
 
@@ -186,15 +202,18 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       },
       minSize,
       isCollapsed: false,
+      position: getPosition(divRef.current!),
     });
     return () => {
       registration.deregister(id);
     };
   }, [initialSize, isHorizontal, minSize, size, registration]);
 
-  const onClickCollapse = () => {
-    const shouldCollapse = !isCollapsed;
-    onToggleCollapsed && onToggleCollapsed(shouldCollapse, panelId.current);
+  const onClickCollapse = (direction: any) => {
+    onToggleCollapsed &&
+      onToggleCollapsed(panelId.current, {
+        direction,
+      });
   };
 
   // Use the default object if they simply passed `true` for toggle
@@ -215,26 +234,57 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={styles}
       {...rest}>
-      {toggle ? (
+      {toggle &&
+      (position === 'last' || position === 'middle') &&
+      isCollapsed !== 'left' ? (
         <EuiI18n
           token="euiResizablePanel.toggleButtonAriaLabel"
           default="Press to toggle this panel">
           {(toggleButtonAriaLabel: string) => (
             <EuiButtonIcon
               color="text"
-              className={toggleButtonClasses}
+              className={classNames(
+                toggleButtonClasses,
+                'euiResizablePanel__toggleButton--left'
+              )}
+              aria-label={toggleButtonAriaLabel}
+              iconType={
+                isCollapsed
+                  ? toggleObject.notCollapsedIcon
+                  : toggleObject.collapsedIcon
+              }
+              // TODO: Directionality
+              onClick={() => onClickCollapse('right')}
+            />
+          )}
+        </EuiI18n>
+      ) : null}
+      <div className="euiResizablePanel__content">{children}</div>
+      {toggle &&
+      (position === 'first' || position === 'middle') &&
+      isCollapsed !== 'right' ? (
+        <EuiI18n
+          token="euiResizablePanel.toggleButtonAriaLabel"
+          default="Press to toggle this panel">
+          {(toggleButtonAriaLabel: string) => (
+            <EuiButtonIcon
+              color="text"
+              className={classNames(
+                toggleButtonClasses,
+                'euiResizablePanel__toggleButton--right'
+              )}
               aria-label={toggleButtonAriaLabel}
               iconType={
                 isCollapsed
                   ? toggleObject.collapsedIcon
                   : toggleObject.notCollapsedIcon
               }
-              onClick={onClickCollapse}
+              // TODO: Directionality
+              onClick={() => onClickCollapse('left')}
             />
           )}
         </EuiI18n>
       ) : null}
-      {children}
     </div>
   );
 };

@@ -1,23 +1,88 @@
 .euiResizablePanel {
+  position: relative;
+  overflow-x: visible;
+}
+
+.euiResizablePanel__content {
   @include euiScrollBar;
+  height: 100%;
   overflow-y: auto;
 }
 
-.euiResizablePanel--collapsible > *:not(.euiResizablePanel__toggleButton) {
-  visibility: hidden;
+.euiResizablePanel--collapsed {
+  
+  .euiResizablePanel__content{
+    @include euiScreenReaderOnly;
+  }
 }
 
 .euiResizableContainer--horizontal {
-
-  .euiResizablePanel--collapsible {
+  
+  .euiResizablePanel--collapsed {
     // sass-lint:disable-block no-important
     min-width: 0 !important;
+  }
+
+  .euiResizablePanel__toggleButton {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 1;
+  }
+
+  .euiResizablePanel {
+
+    &.euiResizablePanel--middle {
+      .euiResizablePanel__toggleButton--right {
+        top: 40%;
+      }
+
+      .euiResizablePanel__toggleButton--left {
+        top: 60%;
+      }
+    }
+
+    .euiResizablePanel__toggleButton {
+      transition: left 0s;
+      transition: right 0s;
+      left: 50%;
+      right: auto;
+    }
+
+    &.euiResizablePanel--first,
+    &.euiResizablePanel--middle {
+      .euiResizablePanel__toggleButton--right {
+        left: 100%;
+        margin-left: -4px;
+      }
+
+      &.euiResizablePanel--collapsed {
+        .euiResizablePanel__toggleButton--right {
+          left: 6px;
+        }
+      }
+    }
+
+    &.euiResizablePanel--last,
+    &.euiResizablePanel--middle {
+      .euiResizablePanel__toggleButton--left {
+        left: auto;
+        right: 100%;
+        margin-right: -4px;
+      }
+
+      &.euiResizablePanel--collapsed {
+        .euiResizablePanel__toggleButton--left {
+          right: 6px;
+        }
+      }
+    }
   }
 }
 
 .euiResizableContainer--vertical {
 
-  .euiResizablePanel--collapsible {
+  .euiResizablePanel--collapsed {
     // sass-lint:disable-block no-important
     min-height: 0 !important;
   }
