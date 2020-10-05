@@ -683,7 +683,7 @@ export class EuiInMemoryTable<T> extends Component<
     return (
       <div>
         {searchBar}
-        {childrenBetween && <EuiSpacer size="l" />}
+        {childrenBetween != null ? <EuiSpacer size="l" /> : null}
         {childrenBetween}
         <EuiSpacer size="l" />
         {table}
