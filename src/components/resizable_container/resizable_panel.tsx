@@ -132,10 +132,11 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   ...rest
 }) => {
   const {
-    registry: { panels } = { panels: {} },
+    registry: { panels, resizerHasFocus } = { panels: {} },
   } = useEuiResizablePanelContext();
   const divRef = useRef<HTMLDivElement>(null);
   const panelId = useRef(id || generatePanelId());
+  const resizerIds = useRef<string[]>([]);
   const innerSize = useMemo(
     () =>
       (panels[panelId.current] && panels[panelId.current].size) ??
@@ -152,6 +153,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       (panels[panelId.current] && panels[panelId.current].position) || 'middle',
     [panels]
   );
+
+  const focusedResizer = useMemo(() => resizerHasFocus, [resizerHasFocus]);
 
   const classes = classNames(
     {
@@ -190,6 +193,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     if (!registration) return;
     const id = panelId.current;
     const initsize = size ?? (initialSize || 0);
+    resizerIds.current = [
+      divRef.current!.previousElementSibling
+        ? divRef.current!.previousElementSibling.id
+        : '',
+      divRef.current!.nextElementSibling
+        ? divRef.current!.nextElementSibling!.id
+        : '',
+    ];
     registration.register({
       id,
       size: initsize,
@@ -227,6 +238,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     toggleObject && toggleObject.className
   );
 
+  // console.log(focusedResizer, resizerIds.current);
+
   return (
     <div
       className={classes}
@@ -236,6 +249,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       {...rest}>
       {toggle &&
       (position === 'last' || position === 'middle') &&
+      (focusedResizer === resizerIds.current[0] || isCollapsed) &&
       isCollapsed !== 'left' ? (
         <EuiI18n
           token="euiResizablePanel.toggleButtonAriaLabel"
@@ -262,6 +276,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       <div className="euiResizablePanel__content">{children}</div>
       {toggle &&
       (position === 'first' || position === 'middle') &&
+      (focusedResizer === resizerIds.current[1] || isCollapsed) &&
       isCollapsed !== 'right' ? (
         <EuiI18n
           token="euiResizablePanel.toggleButtonAriaLabel"

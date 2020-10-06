@@ -349,6 +349,7 @@ export const useContainerCallbacks = ({
 
         return {
           ...state,
+          resizerHasFocus: null,
           panels: {
             ...state.panels,
             [currentPanelId]: {
@@ -372,6 +373,19 @@ export const useContainerCallbacks = ({
           },
         };
       }
+      case 'EUI_RESIZABLE_BUTTON_FOCUS': {
+        const { resizerId } = action.payload;
+        return {
+          ...state,
+          resizerHasFocus: resizerId,
+        };
+      }
+      case 'EUI_RESIZABLE_BUTTON_BLUR': {
+        return {
+          ...state,
+          resizerHasFocus: null,
+        };
+      }
       // TODO: Implement more generic version of
       // 'EUI_RESIZABLE_DRAG_MOVE' to expose to consumers
       case 'EUI_RESIZABLE_RESIZE': {
@@ -382,6 +396,7 @@ export const useContainerCallbacks = ({
       case 'EUI_RESIZABLE_RESET': {
         return {
           ...initialState,
+          resizerHasFocus: state.resizerHasFocus,
           panels: state.panels,
           resizers: state.resizers,
         };
@@ -459,6 +474,15 @@ export const useContainerCallbacks = ({
       dispatch({
         type: 'EUI_RESIZABLE_TOGGLE',
         payload: { panelId, options },
+      }),
+    resizerFocus: (resizerId: ActionFocus['payload']) =>
+      dispatch({
+        type: 'EUI_RESIZABLE_BUTTON_FOCUS',
+        payload: { resizerId },
+      }),
+    resizerBlur: () =>
+      dispatch({
+        type: 'EUI_RESIZABLE_BUTTON_BLUR',
       }),
     resize: () => dispatch({ type: 'EUI_RESIZABLE_RESIZE', payload: {} }),
   };

@@ -81,6 +81,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   id,
   registration,
   disabled,
+  onFocus,
+  onBlur,
   ...rest
 }) => {
   const resizerId = useRef(id || generatePanelId());
@@ -125,6 +127,15 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
     e.currentTarget.focus();
 
+  const handleBlur = (e: FocusEvent) => {
+    if (
+      e.relatedTarget &&
+      e.relatedTarget.classList.contains('euiResizablePanel__toggleButton')
+    )
+      return;
+    onBlur && onBlur(e);
+  };
+
   return (
     <EuiI18n
       tokens={[
@@ -146,6 +157,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           data-test-subj="splitPanelResizer"
           type="button"
           onClick={setFocus}
+          onFocus={() => onFocus && onFocus(resizerId.current)}
+          onBlur={handleBlur}
           disabled={isDisabled}
           {...rest}
         />

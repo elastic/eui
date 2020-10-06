@@ -166,6 +166,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       onKeyDown,
       onMouseDown,
       onTouchStart: onMouseDown,
+      onFocus: actions.resizerFocus,
+      onBlur: actions.resizerBlur,
       isHorizontal,
       registration: {
         register: actions.registerResizer,
@@ -193,6 +195,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       registry={{
         panels: reducerState.panels,
         resizers: reducerState.resizers,
+        resizerHasFocus: reducerState.resizerHasFocus,
       }}>
       <div
         className={classes}
