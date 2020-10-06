@@ -667,6 +667,41 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('with search and component between search and table', () => {
+    const props: EuiInMemoryTableProps<BasicItem> = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+          sortable: true,
+        },
+        {
+          name: 'Actions',
+          actions: [
+            {
+              name: 'Edit',
+              description: 'edit',
+              onClick: () => undefined,
+            },
+          ],
+        },
+      ],
+      search: true,
+      childrenBetween: <div>Children Between</div>,
+    };
+    const component = shallow(<EuiInMemoryTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with pagination, selection, sorting and configured search', () => {
     const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,

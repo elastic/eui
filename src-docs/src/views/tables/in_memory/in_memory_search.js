@@ -9,6 +9,8 @@ import {
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiText,
+  EuiCode,
 } from '../../../../../src/components';
 
 /*
@@ -38,6 +40,7 @@ const store = createDataStore();
 export const Table = () => {
   const [incremental, setIncremental] = useState(false);
   const [filters, setFilters] = useState(false);
+  const [contentBetween, setContentBetween] = useState(false);
 
   const columns = [
     {
@@ -132,6 +135,13 @@ export const Table = () => {
             onChange={() => setFilters(!filters)}
           />
         </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Content between"
+            checked={contentBetween}
+            onChange={() => setContentBetween(!contentBetween)}
+          />
+        </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="l" />
       <EuiInMemoryTable
@@ -140,6 +150,14 @@ export const Table = () => {
         search={search}
         pagination={true}
         sorting={true}
+        childrenBetween={
+          contentBetween && (
+            <EuiText>
+              You can inject custom content between the search bar and the table
+              using <EuiCode>childrenBetween</EuiCode>.
+            </EuiText>
+          )
+        }
       />
     </Fragment>
   );
