@@ -25,7 +25,7 @@ exports[`EuiSuggestInput is rendered 1`] = `
         <span
           class="euiToolTipAnchor"
         >
-          <div
+          <span
             class="euiSuggestInput__statusIcon"
             color="accent"
             data-euiicon-type="dot"

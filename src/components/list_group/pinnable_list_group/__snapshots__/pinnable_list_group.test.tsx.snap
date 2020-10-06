@@ -12,7 +12,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     <span
       class="euiListGroupItem__text"
     >
-      <div
+      <span
         class="euiListGroupItem__icon"
         data-euiicon-type="stop"
       />
@@ -29,7 +29,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       title="Pin Label with iconType to the top"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -54,7 +54,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="bell"
@@ -82,7 +82,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       title="Pin Active link to the top"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -109,7 +109,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       title="Unpin Button with onClick to the top"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -137,7 +137,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       title="Pin Link with href to the top"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -175,7 +175,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     <span
       class="euiListGroupItem__text"
     >
-      <div
+      <span
         class="euiListGroupItem__icon"
         data-euiicon-type="stop"
       />
@@ -192,7 +192,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       title="Pin item"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -217,7 +217,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="bell"
@@ -245,7 +245,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       title="Pin item"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -272,7 +272,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       title="Unpin item"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"
@@ -300,7 +300,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       title="Pin item"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="pinFilled"

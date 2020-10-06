@@ -152,7 +152,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -191,7 +191,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -222,7 +222,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -247,7 +247,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2a
             </span>
-            <div
+            <span
               class="euiContextMenu__arrow"
               data-euiicon-type="arrowRight"
             />
@@ -265,7 +265,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2b
             </span>
-            <div
+            <span
               class="euiContextMenu__arrow"
               data-euiicon-type="arrowRight"
             />
@@ -283,7 +283,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2c
             </span>
-            <div
+            <span
               class="euiContextMenu__arrow"
               data-euiicon-type="arrowRight"
             />
@@ -311,7 +311,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />

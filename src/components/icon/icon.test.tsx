@@ -35,7 +35,7 @@ import { PropsOf } from '../common';
 import { icon as EuiIconVideoPlayer } from './assets/videoPlayer.js';
 
 jest.mock('./icon', () => {
-  return require.requireActual('./icon');
+  return jest.requireActual('./icon');
 });
 
 beforeEach(() => clearIconComponentCache());

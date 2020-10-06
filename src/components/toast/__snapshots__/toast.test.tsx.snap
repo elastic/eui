@@ -195,7 +195,7 @@ exports[`EuiToast Props iconType is rendered 1`] = `
           size="m"
           type="user"
         >
-          <div
+          <span
             aria-hidden="true"
             className="euiToastHeader__icon"
             data-euiicon-type="user"

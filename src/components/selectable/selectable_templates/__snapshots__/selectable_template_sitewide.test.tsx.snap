@@ -33,7 +33,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
             <span
               class="euiFormControlLayoutCustomIcon"
             >
-              <div
+              <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
                 data-euiicon-type="search"
@@ -79,7 +79,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with 
             <span
               class="euiFormControlLayoutCustomIcon"
             >
-              <div
+              <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
                 data-euiicon-type="search"
@@ -161,7 +161,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
             <span
               class="euiFormControlLayoutCustomIcon"
             >
-              <div
+              <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
                 data-euiicon-type="search"
@@ -207,7 +207,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
             <span
               class="euiFormControlLayoutCustomIcon"
             >
-              <div
+              <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
                 data-euiicon-type="search"
@@ -253,7 +253,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
             <span
               class="euiFormControlLayoutCustomIcon"
             >
-              <div
+              <span
                 aria-hidden="true"
                 class="euiFormControlLayoutCustomIcon__icon"
                 data-euiicon-type="search"

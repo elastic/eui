@@ -60,7 +60,7 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
-        <div
+        <span
           data-euiicon-type="bolt"
           data-test-subj="DTS"
         />
@@ -97,7 +97,7 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
-        <div
+        <span
           data-euiicon-type="bolt"
         />
       </div>
@@ -133,7 +133,7 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
-        <div
+        <span
           data-euiicon-type="bolt"
         />
       </div>
@@ -252,7 +252,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
