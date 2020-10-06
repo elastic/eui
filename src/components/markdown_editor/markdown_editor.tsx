@@ -240,7 +240,7 @@ export const EuiMarkdownEditor = forwardRef<
       const getCursorNode = () => {
         const { selectionStart } = textareaRef.current!;
 
-        let node: EuiMarkdownAstNode = parsed.contents;
+        let node: EuiMarkdownAstNode = parsed.result ?? parsed.contents;
 
         outer: while (true) {
           if (node.children) {
@@ -276,7 +276,7 @@ export const EuiMarkdownEditor = forwardRef<
     useEffect(() => {
       if (onParse) {
         const messages = parsed ? parsed.messages : [];
-        const ast = parsed ? parsed.contents : null;
+        const ast = parsed ? parsed.result ?? parsed.contents : null;
         onParse(parseError, { messages, ast });
       }
     }, [onParse, parsed, parseError]);
