@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `29.4.0`.
+
+## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
+
 - Added `childrenBetween` prop to `EuiInMemoryTable` to add content between search bar and table ([#4103](https://github.com/elastic/eui/pull/4103))
 - Added `max-width: 100%` to `EuiKeyPadMenu` to allow it to shrink when its container is smaller than its fixed width ([ #4092](https://github.com/elastic/eui/pull/4092))
 - Added `key` to `EuiComboBoxOptionOption` to allow duplicate labels ([#4048](https://github.com/elastic/eui/pull/4048))
