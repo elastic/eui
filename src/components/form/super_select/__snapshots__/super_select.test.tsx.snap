@@ -37,7 +37,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -87,7 +87,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -136,7 +136,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -192,7 +192,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
               <span
                 class="euiContextMenu__itemLayout"
               >
-                <div
+                <span
                   class="euiContextMenu__icon"
                   data-euiicon-type="empty"
                 />
@@ -213,7 +213,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
               <span
                 class="euiContextMenu__itemLayout"
               >
-                <div
+                <span
                   class="euiContextMenu__icon"
                   data-euiicon-type="empty"
                 />
@@ -274,7 +274,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -329,7 +329,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -385,7 +385,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -443,7 +443,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
               <span
                 class="euiContextMenu__itemLayout"
               >
-                <div
+                <span
                   class="euiContextMenu__icon"
                   data-euiicon-type="check"
                 />
@@ -465,7 +465,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
               <span
                 class="euiContextMenu__itemLayout"
               >
-                <div
+                <span
                   class="euiContextMenu__icon"
                   data-euiicon-type="empty"
                 />
@@ -525,7 +525,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -581,7 +581,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
               <span
                 class="euiContextMenu__itemLayout"
               >
-                <div
+                <span
                   class="euiContextMenu__icon"
                   data-euiicon-type="empty"
                 />
@@ -602,7 +602,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
               <span
                 class="euiContextMenu__itemLayout"
               >
-                <div
+                <span
                   class="euiContextMenu__icon"
                   data-euiicon-type="empty"
                 />
@@ -661,7 +661,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"
@@ -711,7 +711,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <div
+            <span
               aria-hidden="true"
               class="euiFormControlLayoutCustomIcon__icon"
               data-euiicon-type="arrowDown"

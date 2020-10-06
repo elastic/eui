@@ -4,12 +4,11 @@ import {
   EuiHeader,
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
-} from '../../../../src/components/header';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiAvatar } from '../../../../src/components/avatar';
-// @ts-ignore importing from a JS file
-import HeaderUpdates from './header_updates';
+  EuiSwitch,
+  EuiSpacer,
+  EuiAvatar,
+  EuiIcon,
+} from '../../../../src/components';
 
 export default () => {
   const [isFixed, setIsFixed] = useState(false);
@@ -18,6 +17,9 @@ export default () => {
     {
       text: 'Management',
       href: '#',
+      onClick: e => {
+        e.preventDefault();
+      },
     },
     {
       text: 'Users',
@@ -71,9 +73,11 @@ export default () => {
           },
           {
             items: [
-              <HeaderUpdates
-                flyoutOrPopover={isFixed ? 'flyout' : 'popover'}
-              />,
+              <EuiHeaderSectionItemButton
+                aria-label="News feed: Updates available"
+                notification={true}>
+                <EuiIcon type="cheer" size="m" />
+              </EuiHeaderSectionItemButton>,
             ],
             borders: 'none',
           },

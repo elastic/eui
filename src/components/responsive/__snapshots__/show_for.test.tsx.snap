@@ -4,7 +4,15 @@ exports[`EuiShowFor l is rendered 1`] = `null`;
 
 exports[`EuiShowFor m is rendered 1`] = `null`;
 
+exports[`EuiShowFor never renders for "none" 1`] = `null`;
+
 exports[`EuiShowFor renders 1`] = `
+<span>
+  Child
+</span>
+`;
+
+exports[`EuiShowFor renders for "all" 1`] = `
 <span>
   Child
 </span>

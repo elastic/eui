@@ -1,40 +1,16 @@
 .euiHeaderLinks {
   display: flex;
-  justify-content: space-between;
-  position: relative;
 }
 
 .euiHeaderLinks__list {
   white-space: nowrap;
-  overflow: hidden;
   display: flex;
   align-items: center;
+}
 
-  > * {
+@each $name, $gutterSize in $euiHeaderLinksGutterSizes {
+  .euiHeaderLinks__list--#{$name} > * {
     // Apply margins to any children
-    margin: 0 $euiSizeS;
-  }
-}
-
-.euiHeaderLinks__mobile {
-  // sass-lint:disable-block no-important
-  display: none !important; // override popover inline-block
-}
-
-@include euiBreakpoint('m', 'l', 'xl') {
-  // sass-lint:disable-block no-important
-  .euiHeaderLinks__mobileList {
-    display: none !important;
-  }
-}
-
-@include euiBreakpoint('xs', 's') {
-  // sass-lint:disable-block no-important
-  .euiHeaderLinks__mobile {
-    display: block !important;
-  }
-
-  .euiHeaderLinks__list {
-    display: none;
+    margin: 0 $gutterSize;
   }
 }

@@ -9,7 +9,7 @@ exports[`EuiLoadingKibana is rendered 1`] = `
   <span
     class="euiLoadingKibana__icon"
   >
-    <div
+    <span
       data-euiicon-type="logoKibana"
     />
   </span>
@@ -23,7 +23,7 @@ exports[`EuiLoadingKibana size l is rendered 1`] = `
   <span
     class="euiLoadingKibana__icon"
   >
-    <div
+    <span
       data-euiicon-type="logoKibana"
     />
   </span>
@@ -37,7 +37,7 @@ exports[`EuiLoadingKibana size m is rendered 1`] = `
   <span
     class="euiLoadingKibana__icon"
   >
-    <div
+    <span
       data-euiicon-type="logoKibana"
     />
   </span>
@@ -51,7 +51,7 @@ exports[`EuiLoadingKibana size xl is rendered 1`] = `
   <span
     class="euiLoadingKibana__icon"
   >
-    <div
+    <span
       data-euiicon-type="logoKibana"
     />
   </span>

@@ -146,6 +146,7 @@ export default ({ theme }) => {
     <EuiPopover
       id="guideHeaderUserMenuExample"
       ownFocus
+      repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
           aria-controls="guideHeaderUserMenuExample"
@@ -181,6 +182,7 @@ export default ({ theme }) => {
     <EuiPopover
       id="guideHeaderSpacesMenuExample"
       ownFocus
+      repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
           aria-controls="guideHeaderSpacesMenuExample"
@@ -216,6 +218,7 @@ export default ({ theme }) => {
     <EuiPopover
       id="guideHeaderDeploymentMenuExample"
       ownFocus
+      repositionOnScroll
       button={
         <EuiBadge
           color={theme.euiColorDarkestShade.rgba}
@@ -254,6 +257,9 @@ export default ({ theme }) => {
         </EuiHeaderSectionItemButton>
       }
       popoverButtonBreakpoints={['xs', 's']}
+      popoverProps={{
+        repositionOnScroll: true, // Necessary when placing search in a fixed component
+      }}
       emptyMessage={
         <EuiSelectableMessage style={{ minHeight: 300 }}>
           <p>
@@ -300,7 +306,7 @@ export default ({ theme }) => {
                   <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
                   <EuiHeaderSectionItemButton
                     notification={true}
-                    aria-label="Notifictations: Updates available"
+                    aria-label="Notifications: Updates available"
                     onClick={() =>
                       setIsAlertFlyoutVisible(!isAlertFlyoutVisible)
                     }>
@@ -330,11 +336,12 @@ export default ({ theme }) => {
               },
               {
                 items: [
-                  <EuiHeaderLinks>
+                  <EuiHeaderLinks
+                    popoverProps={{
+                      repositionOnScroll: true, // Necessary when placing search in a fixed component
+                    }}>
                     <EuiHeaderLink color="primary">Share</EuiHeaderLink>
-                    <EuiHeaderLink color="primary" iconType="copy">
-                      Clone
-                    </EuiHeaderLink>
+                    <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                     <EuiButton
                       iconType="minimize"
                       style={{ minWidth: 80 }}
