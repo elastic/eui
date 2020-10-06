@@ -1,29 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconEql = ({ title, titleId, ...props }) => (
   <svg
-    width={26}
-    height={24}
-    viewBox="0 0 26 24"
+    viewBox="0 0 16 14"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M10 1.5a8.5 8.5 0 104.425 15.759l.336-.205 5.446 5.446h3.086l-6.891-6.89.275-.35A8.5 8.5 0 0010 1.5zM.5 10a9.5 9.5 0 1117.23 5.523l7.977 7.977h-5.914l-5.189-5.189A9.5 9.5 0 01.5 10z"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M16 10a6 6 0 11-12 0 6 6 0 0112 0zm-6 5a5 5 0 100-10 5 5 0 000 10z"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M8.5 9.066v1.868l1.5.9 1.5-.9V9.066l-1.5-.9-1.5.9zM10 7L7.5 8.5v3L10 13l2.5-1.5v-3L10 7z"
-    />
+    <g data-name="Layer 2">
+      <g data-name="Layer 1">
+        <path d="M6 1a4.99 4.99 0 014.265 7.597l-.41.672.557.557L13.586 13h-2.192L9.16 10.765l-.487-.487-.63.282A4.999 4.999 0 116 1m0-1a6 6 0 102.452 11.472L10.98 14H16l-4.881-4.881A5.99 5.99 0 006 0z" />
+        <path d="M5.991 3a3 3 0 11-3 3 3.003 3.003 0 013-3m0-1a4 4 0 104 4 4 4 0 00-4-4z" />
+        <path d="M5.991 5.155l.733.422v.846l-.733.422-.732-.422v-.846l.732-.422m0-1.155L4.26 5v2l1.732 1 1.733-1V5L5.992 4z" />
+      </g>
+    </g>
   </svg>
 );
 

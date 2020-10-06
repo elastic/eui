@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
 - Added `max-width: 100%` to `EuiKeyPadMenu` to allow it to shrink when its container is smaller than its fixed width ([ #4092](https://github.com/elastic/eui/pull/4092))
 - Changed `EuiIcon` test mock to render as `span` instead of `div` ([#4099](https://github.com/elastic/eui/pull/4099))
 - Added `scripts/docker-puppeteer` as the new home for test-related Docker images ([#4062](https://github.com/elastic/eui/pull/4062))
