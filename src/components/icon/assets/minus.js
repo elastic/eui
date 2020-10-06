@@ -9,7 +9,7 @@ const EuiIconMinus = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <rect width={9} height={1} x={3} y={7} rx={0.5} />
+    <rect width={10} height={1.5} x={3} y={7.25} rx={0.5} />
   </svg>
 );
 

@@ -6191,11 +6191,11 @@ exports[`EuiIcon props type minus is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <rect
-    height="1"
+    height="1.5"
     rx="0.5"
-    width="9"
+    width="10"
     x="3"
-    y="7"
+    y="7.25"
   />
 </svg>
 `;
@@ -6633,7 +6633,7 @@ exports[`EuiIcon props type plus is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M7.5 3a.5.5 0 01.5.5V7h3.5a.5.5 0 110 1H8v3.5a.5.5 0 11-1 0V8H3.5a.5.5 0 010-1H7V3.5a.5.5 0 01.5-.5z"
+    d="M8.25 3a.5.5 0 01.5.5v3.75h3.75a.5.5 0 01.5.5v.5a.5.5 0 01-.5.5H8.75v3.75a.5.5 0 01-.5.5h-.5a.5.5 0 01-.5-.5V8.75H3.5a.5.5 0 01-.5-.5v-.5a.5.5 0 01.5-.5h3.75V3.5a.5.5 0 01.5-.5h.5z"
   />
 </svg>
 `;
