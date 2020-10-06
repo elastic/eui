@@ -1,12 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Changed `iconType` prop to be `required` in `EuiButtonIcon` ([#4106](https://github.com/elastic/eui/pull/4106))
 - Added `max-width: 100%` to `EuiKeyPadMenu` to allow it to shrink when its container is smaller than its fixed width ([ #4092](https://github.com/elastic/eui/pull/4092))
 - Changed `EuiIcon` test mock to render as `span` instead of `div` ([#4099](https://github.com/elastic/eui/pull/4099))
 - Added `scripts/docker-puppeteer` as the new home for test-related Docker images ([#4062](https://github.com/elastic/eui/pull/4062))
 
 **Bug fixes**
 
+- Changed `iconType` prop to be `required` in `EuiButtonIcon` ([#4106](https://github.com/elastic/eui/pull/4106))
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
 
 
