@@ -126,12 +126,12 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
     const visibilityToggle = (
       <EuiButtonIcon
-        {...dualToggleProps}
         iconType={isVisible ? 'eyeClosed' : 'eye'}
-        onClick={() => handleToggle(isVisible)}
         aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
         title={isVisible ? maskPasswordLabel : showPasswordLabel}
         disabled={rest.disabled}
+        {...dualToggleProps}
+        onClick={() => handleToggle(isVisible)}
       />
     );
     appends = [...appends, visibilityToggle];
