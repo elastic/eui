@@ -731,7 +731,9 @@ export class EuiComboBox<T> extends Component<
       this.props.selectedOptions.length === 1
     ) {
       const selectedOptionIndex = this.state.matchingOptions.findIndex(
-        option => option.label === this.props.selectedOptions[0].label
+        option =>
+          option.label === this.props.selectedOptions[0].label &&
+          option.key === this.props.selectedOptions[0].key
       );
       this.setState({
         activeOptionIndex: selectedOptionIndex,
