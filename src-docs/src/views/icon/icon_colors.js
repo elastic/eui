@@ -109,7 +109,7 @@ export default () => (
           <EuiIcon type="createAdvancedJob" color="#DA8B45" size="xl" />
           <EuiText size="s">
             <p>
-              <strong>Special:</strong> the custom color makes{' '}
+              <strong>Special:</strong> a custom color makes{' '}
               <strong>App</strong> icons fully that color
             </p>
           </EuiText>

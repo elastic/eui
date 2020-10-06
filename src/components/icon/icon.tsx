@@ -691,7 +691,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       optionalColorClass,
       {
         'euiIcon--app': isAppIcon,
-        'euiIcon-isCustomColor': optionalCustomStyles,
+        'euiIcon--customColor': optionalCustomStyles,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },
