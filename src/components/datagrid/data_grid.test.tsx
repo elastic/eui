@@ -1923,7 +1923,7 @@ Array [
                   'aria-label': 'test2 aria label',
                   callback: happyFn,
                   'data-test-subj': 'happyAction',
-                  inPopoverButton: (rowIndex, columnId) => (
+                  inPopoverButton: ({ rowIndex, columnId }) => (
                     <EuiButton
                       data-test-subj="happyActionCustomBtn"
                       onClick={() => happyFn(rowIndex, columnId)}

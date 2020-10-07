@@ -106,7 +106,7 @@ const columns = [
         iconType: 'faceHappy',
         callback: (rowIndex, columnId) =>
           alert(`Sent money to ${raw_data[rowIndex][columnId]}`),
-        inPopoverButton: (rowIndex, columnId) => (
+        inPopoverButton: ({ rowIndex, columnId }) => (
           <EuiButton
             onClick={() => alert('done')}
             iconType="faceHappy"

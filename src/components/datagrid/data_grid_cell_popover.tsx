@@ -91,7 +91,10 @@ export function EuiDataGridCellPopover({
                 {column.cellActions.map((action, idx) => (
                   <EuiFlexItem key={idx}>
                     {typeof action.inPopoverButton === 'function' ? (
-                      action.inPopoverButton(rowIndex, column.id)
+                      React.createElement(action.inPopoverButton, {
+                        rowIndex,
+                        columnId: column.id,
+                      })
                     ) : (
                       <EuiButtonEmpty
                         data-test-subj={

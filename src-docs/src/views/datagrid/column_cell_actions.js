@@ -40,7 +40,7 @@ const columns = [
         label: 'Cheer the city',
         callback: (rowIndex, columnId) =>
           alert(`Cheers sent from row ${rowIndex + 1}, column "${columnId}"`),
-        inPopoverButton: (rowIndex, columnId) => (
+        inPopoverButton: ({ rowIndex, columnId }) => (
           <EuiButton
             onClick={() =>
               alert(

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, FunctionComponent, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiIconType } from '../icon/icon';
@@ -132,7 +132,7 @@ export interface EuiDataGridColumnCellAction extends CommonProps {
   /**
    * Button for displaying in the expanded cells popover, if omitted a button will be generated from `label`, `iconType`, and `callback`
    */
-  inPopoverButton?: (rowIndex: number, columnId: string) => ReactNode;
+  inPopoverButton?: FunctionComponent<{ rowIndex: number; columnId: string }>;
 }
 
 export interface EuiDataGridColumnVisibility {
