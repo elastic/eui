@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconFaceNeutral = ({ title, titleId, ...props }) => (
   <svg

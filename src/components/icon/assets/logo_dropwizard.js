@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconLogoDropwizard = ({ title, titleId, ...props }) => (
   <svg
