@@ -77,7 +77,6 @@ describe('EuiMarkdownEditor', () => {
 
     const event = { target: { value: 'sometext' } };
 
-    component.find('button[aria-label="Bold"]').simulate('click');
     component.find('EuiMarkdownEditorTextArea').simulate('change', event);
     expect(testProps.onChange).toHaveBeenCalledTimes(1);
     expect(testProps.onChange).toHaveBeenLastCalledWith(event.target.value);
