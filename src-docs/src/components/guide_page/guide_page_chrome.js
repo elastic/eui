@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
-
 import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
+  EuiLink,
   EuiSideNav,
   EuiSpacer,
   EuiText,
@@ -142,14 +141,17 @@ export class GuidePageChrome extends Component {
             responsive={false}
             wrap>
             <EuiFlexItem grow={false}>
-              <Link to="/" className="guideLogo" aria-label="Go to home page">
+              <EuiLink
+                to="/"
+                className="guideLogo"
+                aria-label="Go to home page">
                 <EuiIcon type="logoElastic" size="l" />
-              </Link>
+              </EuiLink>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <Link to="/" aria-label="Go to home page" className="euiLink">
+              <EuiLink to="/" aria-label="Go to home page" className="euiLink">
                 <strong>Elastic UI</strong>
-              </Link>
+              </EuiLink>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiFlexItem>
