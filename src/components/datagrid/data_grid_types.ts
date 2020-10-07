@@ -130,8 +130,7 @@ export interface EuiDataGridColumnCellAction extends CommonProps {
    */
   callback: (rowIndex: number, columnId: string) => void;
   /**
-   * Button for displaying in the expanded cells popover.
-   * Required for keyboard accessibility
+   * Button for displaying in the expanded cells popover, if omitted a button will be generated from `label`, `iconType`, and `callback`
    */
   inPopoverButton?: (rowIndex: number, columnId: string) => ReactNode;
 }
