@@ -138,7 +138,7 @@ export class EuiAccordion extends Component<
         this.props.onToggle(forceState === 'open' ? false : true);
     } else {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           isOpen: !prevState.isOpen,
         }),
         () => {
@@ -285,14 +285,14 @@ export class EuiAccordion extends Component<
 
         <div
           className="euiAccordion__childWrapper"
-          ref={node => {
+          ref={(node) => {
             this.childWrapper = node;
           }}
           id={id}>
           <EuiResizeObserver onResize={this.setChildContentHeight}>
-            {resizeRef => (
+            {(resizeRef) => (
               <div
-                ref={ref => {
+                ref={(ref) => {
                   this.setChildContentRef(ref);
                   resizeRef(ref);
                 }}>

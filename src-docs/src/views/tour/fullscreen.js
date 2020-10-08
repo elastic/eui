@@ -67,14 +67,14 @@ export default () => {
     reducerState,
   ] = useEuiTour(demoTourSteps, tourConfig);
 
-  const onSelectColor = color => {
+  const onSelectColor = (color) => {
     setColor(color);
     if (reducerState.currentTourStep === 2) {
       actions.goToStep(3);
     }
   };
 
-  const onTabClick = id => {
+  const onTabClick = (id) => {
     if (id === 'stat' && reducerState.currentTourStep === 3) {
       actions.goToStep(4);
     }
@@ -174,7 +174,7 @@ export default () => {
 
   return (
     <GuideFullScreen onOpen={onReset}>
-      {setIsFullScreen => (
+      {(setIsFullScreen) => (
         <React.Fragment>
           <EuiPage className="guideFullScreenOverlay" style={{ zIndex: 9000 }}>
             <EuiPageBody>

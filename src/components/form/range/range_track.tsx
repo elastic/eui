@@ -93,7 +93,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     if (customTicks) {
       // If custom values were passed, use those for the sequence
       // But make sure they align with the possible sequence
-      ticks = customTicks.map(tick => {
+      ticks = customTicks.map((tick) => {
         return this.validateValueIsInStep(tick.value);
       });
     } else {
@@ -102,7 +102,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       const interval = tickInterval || step;
       const tickSequence = this.calculateSequence(min, max, interval);
 
-      ticks = tickSequence.map(tick => {
+      ticks = tickSequence.map((tick) => {
         return this.validateValueIsInStep(tick);
       });
     }

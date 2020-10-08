@@ -77,7 +77,7 @@ const highlight = (
     const chunks = getHightlightWords(searchSubject, searchValue, isStrict);
     return (
       <Fragment>
-        {chunks.map(chunk => {
+        {chunks.map((chunk) => {
           const { end, highlight, start } = chunk;
           const value = searchSubject.substr(start, end - start);
           if (highlight) {
@@ -153,7 +153,7 @@ const fillInChunks = (
     append(0, totalLength, false);
   } else {
     let lastIndex = 0;
-    chunksToHighlight.forEach(chunk => {
+    chunksToHighlight.forEach((chunk) => {
       append(lastIndex, chunk.start, false);
       append(chunk.start, chunk.end, true);
       lastIndex = chunk.end;

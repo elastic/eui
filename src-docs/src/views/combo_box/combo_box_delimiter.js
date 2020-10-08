@@ -42,7 +42,7 @@ export default () => {
   const [options, setOptions] = useState(staticOptions);
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
@@ -60,7 +60,7 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
       setOptions([...options, newOption]);
@@ -69,7 +69,7 @@ export default () => {
     // Select the option.
     // Use the previousState parameter (prevSelected) from the setState
     // instance (setSelected) to ensure looped calls do not override each other
-    setSelected(prevSelected => [...prevSelected, newOption]);
+    setSelected((prevSelected) => [...prevSelected, newOption]);
   };
 
   return (

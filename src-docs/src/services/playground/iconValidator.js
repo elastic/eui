@@ -11,7 +11,7 @@ export const iconValidator = (prop = { custom: {} }) => {
     type: PropTypes.String,
     custom: {
       ...prop.custom,
-      validator: val => iconOptions[val],
+      validator: (val) => iconOptions[val],
     },
   };
   return newProp;

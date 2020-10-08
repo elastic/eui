@@ -353,7 +353,7 @@ describe('EuiPopover', () => {
 
       const activeAnimationFrames = new Map<number, number>();
       let nextAnimationFrameId = 0;
-      window.requestAnimationFrame = fn => {
+      window.requestAnimationFrame = (fn) => {
         const animationFrameId = nextAnimationFrameId++;
         activeAnimationFrames.set(animationFrameId, setTimeout(fn));
         return animationFrameId;

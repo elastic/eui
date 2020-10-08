@@ -49,7 +49,7 @@ export const Table = () => {
     setPageSize(pageSize);
   };
 
-  const renderStatus = online => {
+  const renderStatus = (online) => {
     const color = online ? 'success' : 'danger';
     const label = online ? 'Online' : 'Offline';
     return <EuiHealth color={color}>{label}</EuiHealth>;
@@ -98,7 +98,7 @@ export const Table = () => {
     {
       field: 'github',
       name: 'Github',
-      render: username => (
+      render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -108,12 +108,12 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
     },
     {
       field: 'nationality',
       name: 'Nationality',
-      render: countryCode => {
+      render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       },
@@ -122,7 +122,7 @@ export const Table = () => {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: online => renderStatus(online),
+      render: (online) => renderStatus(online),
     },
   ];
 

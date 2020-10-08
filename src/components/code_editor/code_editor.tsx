@@ -154,7 +154,7 @@ export class EuiCodeEditor extends Component<
     }
   };
 
-  onKeyDownHint: KeyboardEventHandler<HTMLDivElement> = event => {
+  onKeyDownHint: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === keys.ENTER) {
       event.preventDefault();
       this.startEditing();
@@ -202,7 +202,7 @@ export class EuiCodeEditor extends Component<
     if (el) {
       const textarea = el.querySelector('textarea');
       if (textarea)
-        keysOf(textareaProps).forEach(key => {
+        keysOf(textareaProps).forEach((key) => {
           if (textareaProps[key])
             textarea.setAttribute(`${key}`, textareaProps[key]!.toString());
         });
@@ -261,7 +261,7 @@ export class EuiCodeEditor extends Component<
       <div
         className={promptClasses}
         id={this.idGenerator('codeEditor')}
-        ref={hint => {
+        ref={(hint) => {
           this.editorHint = hint;
         }}
         tabIndex={0}

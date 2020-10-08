@@ -7,7 +7,7 @@ import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import Knobs from './knobs';
 
 export default ({ config, setGhostBackground, playgroundClassName }) => {
-  const getSnippet = code => {
+  const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
 
@@ -37,7 +37,7 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
       const { state } = params.knobProps;
       if (setGhostBackground) {
         let needGhostTheme = false;
-        Object.keys(setGhostBackground).forEach(name => {
+        Object.keys(setGhostBackground).forEach((name) => {
           if (state[name].value === setGhostBackground[name])
             needGhostTheme = true;
         });

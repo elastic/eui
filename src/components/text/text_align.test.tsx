@@ -31,7 +31,7 @@ describe('EuiTextAlign', () => {
   });
 
   describe('direction prop', () => {
-    ALIGNMENTS.forEach(direction => {
+    ALIGNMENTS.forEach((direction) => {
       test(`${direction} is rendered`, () => {
         const component = render(<EuiTextAlign textAlign={direction} />);
 

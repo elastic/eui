@@ -25,7 +25,7 @@ export type EuiPalette = string[];
 
 const flatten = (arr: any[]) => [].concat(...arr);
 
-const euiPalette = function(
+const euiPalette = function (
   colors: string[],
   steps: number,
   diverge: boolean = false,
@@ -89,20 +89,16 @@ export const euiPaletteColorBlind = ({
 
   if (sortBy === 'natural') {
     // Sort the colors based on the color wheel, but shifting the values based on sortShift
-    base = [...base].sort(function(a, b) {
+    base = [...base].sort(function (a, b) {
       return (
-        chroma(a)
-          .set('hsl.h', sortShift)
-          .hsl()[0] -
-        chroma(b)
-          .set('hsl.h', sortShift)
-          .hsl()[0]
+        chroma(a).set('hsl.h', sortShift).hsl()[0] -
+        chroma(b).set('hsl.h', sortShift).hsl()[0]
       );
     });
   }
 
   if (rotations > 1) {
-    const palettes = base.map(color => {
+    const palettes = base.map((color) => {
       // Create the darkest and lightest versions of each color using black and white
       const palette = colorPalette(['black', color, 'white'], 5, false, true);
       // Then removing the extremes
@@ -123,7 +119,7 @@ export const euiPaletteColorBlind = ({
       colors = flatten(palettes);
     } else {
       for (let i = 0; i < rotations; i++) {
-        const rotation = palettes.map(palette => palette[i]);
+        const rotation = palettes.map((palette) => palette[i]);
         colors.push(...rotation);
       }
     }
@@ -142,19 +138,17 @@ export const euiPaletteColorBlindBehindText = (
   paletteProps: EuiPaletteColorBlindProps = {}
 ) => {
   const originalPalette = euiPaletteColorBlind(paletteProps);
-  const newPalette = originalPalette.map(color =>
-    chroma(color)
-      .brighten(0.5)
-      .hex()
+  const newPalette = originalPalette.map((color) =>
+    chroma(color).brighten(0.5).hex()
   );
   return newPalette;
 };
 
-export const euiPaletteForLightBackground = function(): EuiPalette {
+export const euiPaletteForLightBackground = function (): EuiPalette {
   return ['#006BB4', '#017D73', '#F5A700', '#BD271E', '#DD0A73'];
 };
 
-export const euiPaletteForDarkBackground = function(): EuiPalette {
+export const euiPaletteForDarkBackground = function (): EuiPalette {
   return ['#1BA9F5', '#7DE2D1', '#F990C0', '#F66', '#FFCE7A'];
 };
 
@@ -164,7 +158,7 @@ const lightNegativeColor: HEX = euiPaletteColorBlind()[9];
 const coolArray: HEX[] = [euiPaletteColorBlind()[1], '#6092C0'];
 const warmArray: HEX[] = [euiPaletteColorBlind()[7], euiPaletteColorBlind()[9]];
 
-export const euiPaletteForStatus = function(steps: number): EuiPalette {
+export const euiPaletteForStatus = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [euiPaletteColorBlind()[0]];
   }
@@ -192,7 +186,7 @@ export const euiPaletteForStatus = function(steps: number): EuiPalette {
   );
 };
 
-export const euiPaletteForTemperature = function(steps: number): EuiPalette {
+export const euiPaletteForTemperature = function (steps: number): EuiPalette {
   const cools = colorPalette([...coolArray.slice().reverse(), '#EBEFF5'], 3);
   const warms = colorPalette(['#F4F3DB', ...warmArray], 3);
 
@@ -205,7 +199,7 @@ export const euiPaletteForTemperature = function(steps: number): EuiPalette {
   return euiPalette([...cools, ...warms], steps, true);
 };
 
-export const euiPaletteComplimentary = function(steps: number): EuiPalette {
+export const euiPaletteComplimentary = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [euiPaletteColorBlind()[1]];
   }
@@ -217,7 +211,7 @@ export const euiPaletteComplimentary = function(steps: number): EuiPalette {
   );
 };
 
-export const euiPaletteNegative = function(steps: number): EuiPalette {
+export const euiPaletteNegative = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [lightNegativeColor];
   }
@@ -225,7 +219,7 @@ export const euiPaletteNegative = function(steps: number): EuiPalette {
   return euiPalette(['white', negativeColor], steps);
 };
 
-export const euiPalettePositive = function(steps: number): EuiPalette {
+export const euiPalettePositive = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [euiPaletteColorBlind()[0]];
   }
@@ -233,7 +227,7 @@ export const euiPalettePositive = function(steps: number): EuiPalette {
   return euiPalette(['white', positiveColor], steps);
 };
 
-export const euiPaletteCool = function(steps: number): EuiPalette {
+export const euiPaletteCool = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [coolArray[1]];
   }
@@ -241,7 +235,7 @@ export const euiPaletteCool = function(steps: number): EuiPalette {
   return euiPalette(['white', ...coolArray], steps);
 };
 
-export const euiPaletteWarm = function(steps: number): EuiPalette {
+export const euiPaletteWarm = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [lightNegativeColor];
   }
@@ -249,7 +243,7 @@ export const euiPaletteWarm = function(steps: number): EuiPalette {
   return euiPalette(['#FBFBDC', ...warmArray], steps);
 };
 
-export const euiPaletteGray = function(steps: number): EuiPalette {
+export const euiPaletteGray = function (steps: number): EuiPalette {
   if (steps === 1) {
     return ['#98a2b3'];
   }

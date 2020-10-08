@@ -51,7 +51,7 @@ export function useInnerText(
   );
 
   useEffect(() => {
-    const observer = new MutationObserver(mutationsList => {
+    const observer = new MutationObserver((mutationsList) => {
       if (mutationsList.length) updateInnerText(ref);
     });
 

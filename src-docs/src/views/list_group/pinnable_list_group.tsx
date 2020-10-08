@@ -13,7 +13,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
   {
     label: 'Pinned button with onClick',
     pinned: true,
-    onClick: e => {
+    onClick: (e) => {
       console.log('Pinned button clicked', e);
     },
   },
@@ -44,7 +44,7 @@ export default () => (
   <>
     <EuiPinnableListGroup
       listItems={someListItems}
-      onPinClick={item => {
+      onPinClick={(item) => {
         console.warn('Clicked: ', item);
       }}
       maxWidth="none"

@@ -42,7 +42,7 @@ export default () => {
     setIsSwitchChecked(!isSwitchChecked);
   };
 
-  const onCheckboxChange = optionId => {
+  const onCheckboxChange = (optionId) => {
     const newCheckboxIdToSelectedMap = {
       ...checkboxIdToSelectedMap,
       ...{

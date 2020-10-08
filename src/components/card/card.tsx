@@ -316,7 +316,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaId}Description`}
         {...selectable}
-        buttonRef={node => {
+        buttonRef={(node) => {
           link = node;
         }}
       />
@@ -338,7 +338,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         target={target}
         aria-describedby={`${ariaId}Description`}
         rel={getSecureRelForTarget({ href, target, rel })}
-        ref={node => {
+        ref={(node) => {
           link = node;
         }}>
         {title}
@@ -351,7 +351,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
-        ref={node => {
+        ref={(node) => {
           link = node;
         }}>
         {title}

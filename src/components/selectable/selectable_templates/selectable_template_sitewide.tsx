@@ -286,9 +286,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
                 {popoverTitle && search && <EuiSpacer />}
                 {search}
               </EuiPopoverTitle>
-            ) : (
-              undefined
-            )}
+            ) : undefined}
             {list}
             {popoverFooter && (
               <EuiPopoverFooter>{popoverFooter}</EuiPopoverFooter>

@@ -167,7 +167,7 @@ export class EuiSelectable<T = {}> extends Component<
     const visibleOptions = getMatchingOptions<T>(options, initialSearchValue);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
-    const selectedOptions = options.filter(option => option.checked);
+    const selectedOptions = options.filter((option) => option.checked);
     let activeOptionIndex;
     if (singleSelection && selectedOptions.length === 1) {
       if (visibleOptions.includes(selectedOptions[0])) {
@@ -214,7 +214,7 @@ export class EuiSelectable<T = {}> extends Component<
     }
 
     const firstSelected = this.state.visibleOptions.findIndex(
-      option => option.checked && !option.disabled && !option.isGroupLabel
+      (option) => option.checked && !option.disabled && !option.isGroupLabel
     );
 
     if (firstSelected > -1) {
@@ -222,7 +222,7 @@ export class EuiSelectable<T = {}> extends Component<
     } else {
       this.setState({
         activeOptionIndex: this.state.visibleOptions.findIndex(
-          option => !option.disabled && !option.isGroupLabel
+          (option) => !option.disabled && !option.isGroupLabel
         ),
         isFocused: true,
       });
@@ -343,7 +343,7 @@ export class EuiSelectable<T = {}> extends Component<
   };
 
   onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
-    this.setState(state => ({
+    this.setState((state) => ({
       visibleOptions: getMatchingOptions<T>(options, state.searchValue),
       activeOptionIndex: this.state.activeOptionIndex,
     }));
@@ -548,9 +548,7 @@ export class EuiSelectable<T = {}> extends Component<
           />
         )}
       </EuiI18n>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const listAccessibleName = getAccessibleName(listProps);
     const listHasAccessibleName = Boolean(

@@ -40,7 +40,7 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
   },
 ];
 const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
-  link => {
+  (link) => {
     return {
       ...link,
       href: '#/navigation/collapsible-nav',
@@ -121,7 +121,7 @@ export default () => {
     links: EuiPinnableListGroupItemProps[],
     showPinned = false
   ): EuiPinnableListGroupItemProps[] {
-    return links.map(link => {
+    return links.map((link) => {
       const { pinned, ...rest } = link;
       return {
         pinned: showPinned ? pinned : false,
@@ -252,7 +252,7 @@ export default () => {
 
   return (
     <GuideFullScreen>
-      {setIsFullScreen => (
+      {(setIsFullScreen) => (
         <React.Fragment>
           <EuiHeader
             position="fixed"

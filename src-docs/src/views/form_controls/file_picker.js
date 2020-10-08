@@ -14,7 +14,7 @@ export default () => {
   const [files, setFiles] = useState({});
   const [large, setLarge] = useState(true);
 
-  const onChange = files => {
+  const onChange = (files) => {
     setFiles(files);
   };
 
@@ -48,7 +48,7 @@ export default () => {
                 compressed
                 label={'large'}
                 checked={large}
-                onChange={e => {
+                onChange={(e) => {
                   setLarge(e.target.checked);
                 }}
               />,
@@ -57,7 +57,7 @@ export default () => {
               id="asdf2"
               multiple
               initialPromptText="Select or drag and drop multiple files"
-              onChange={files => {
+              onChange={(files) => {
                 onChange(files);
               }}
               display={large ? 'large' : 'default'}

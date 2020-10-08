@@ -10,14 +10,14 @@ export const GlobalFilterBar = ({ filters, className, ...rest }) => {
   const classes = classNames('globalFilterBar', className);
 
   const pinnedFilters = filters
-    .filter(filter => filter.isPinned)
-    .map(filter => {
+    .filter((filter) => filter.isPinned)
+    .map((filter) => {
       return <GlobalFilterItem key={filter.id} {...filter} />;
     });
 
   const unpinnedFilters = filters
-    .filter(filter => !filter.isPinned)
-    .map(filter => {
+    .filter((filter) => !filter.isPinned)
+    .map((filter) => {
       return <GlobalFilterItem key={filter.id} {...filter} />;
     });
 

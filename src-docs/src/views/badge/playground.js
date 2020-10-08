@@ -42,7 +42,7 @@ export const badgeConfig = () => {
     value: 'Badge content',
     hidden: true,
     custom: {
-      sanitize: val => {
+      sanitize: (val) => {
         return val.replace(/<(?:"[^"]"['"]|'[^']'['"]|[^'">])+>/g, '');
       },
     },

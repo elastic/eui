@@ -11,7 +11,7 @@ import {
 export default () => {
   const [startDate, setStartDate] = useState(moment());
 
-  const handleChange = date => {
+  const handleChange = (date) => {
     setStartDate(date);
   };
 
