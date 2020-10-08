@@ -93,7 +93,7 @@ export class EuiTablePagination extends Component<Props, State> {
       </EuiButtonEmpty>
     );
 
-    const items = itemsPerPageOptions.map(itemsPerPageOption => (
+    const items = itemsPerPageOptions.map((itemsPerPageOption) => (
       <EuiContextMenuItem
         key={itemsPerPageOption}
         icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}

@@ -118,6 +118,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     onPanelWidthChange,
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
       onKeyDown,
@@ -129,6 +130,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     [onKeyDown, onMouseDown, isHorizontal, registryRef]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizablePanel = useCallback(
     euiResizablePanelWithControls({
       isHorizontal,

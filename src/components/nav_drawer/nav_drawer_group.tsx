@@ -65,7 +65,7 @@ export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
   // Alter listItems object with prop flyoutMenu and extra props
   const newListItems = !(listItems && !!listItems.length)
     ? undefined
-    : listItems.map(item => {
+    : listItems.map((item) => {
         // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
         const { flyoutMenu, ...itemProps } = item;
         if (flyoutMenu && flyoutMenuButtonClick) {
@@ -76,7 +76,7 @@ export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
           };
           itemProps['aria-expanded'] = false;
         } else {
-          itemProps.onClick = event => {
+          itemProps.onClick = (event) => {
             if (item.onClick) {
               item.onClick(event);
             }

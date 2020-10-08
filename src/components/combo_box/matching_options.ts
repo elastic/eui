@@ -45,7 +45,7 @@ export const getSelectedOptionForSearchValue = <T>(
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    option =>
+    (option) =>
       option.label.toLowerCase() === normalizedSearchValue &&
       (!optionKey || option.key === optionKey)
   );
@@ -97,7 +97,7 @@ export const getMatchingOptions = <T>(
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
-  options.forEach(option => {
+  options.forEach((option) => {
     if (option.options) {
       const matchingOptionsForGroup: Array<EuiComboBoxOptionOption<T>> = [];
       option.options.forEach((groupOption: EuiComboBoxOptionOption<T>) => {
@@ -138,7 +138,7 @@ export const getMatchingOptions = <T>(
       others: Array<EuiComboBoxOptionOption<T>>;
     } = { startWith: [], others: [] };
 
-    matchingOptions.forEach(object => {
+    matchingOptions.forEach((object) => {
       if (object.label.toLowerCase().startsWith(normalizedSearchValue)) {
         refObj.startWith.push(object);
       } else {

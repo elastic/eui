@@ -37,7 +37,7 @@ export default () => {
       <EuiSwitch
         label={'Make header fixed position and put alerts in flyout'}
         checked={position === 'fixed'}
-        onChange={e => setPosition(e.target.checked ? 'fixed' : 'static')}
+        onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
       />
       <EuiSpacer />
       <EuiHeader position={position}>

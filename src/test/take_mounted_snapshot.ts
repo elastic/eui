@@ -44,7 +44,7 @@ export const takeMountedSnapshot = (
   const snapshot = template.content.firstChild;
   if (opts.hasArrayOutput) {
     const snapshotArray: ChildNode[] = [];
-    template.content.childNodes.forEach(el => {
+    template.content.childNodes.forEach((el) => {
       snapshotArray.push(el);
     });
     return snapshotArray;

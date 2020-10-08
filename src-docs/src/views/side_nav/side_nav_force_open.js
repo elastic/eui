@@ -10,7 +10,7 @@ export default () => {
     setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
   };
 
-  const selectItem = name => {
+  const selectItem = (name) => {
     setSelectedItem(name);
   };
 

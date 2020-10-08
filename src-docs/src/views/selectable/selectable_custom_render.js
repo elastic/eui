@@ -13,7 +13,7 @@ import { createDataStore } from '../tables/data_store';
 export default () => {
   const [useCustomContent, setUseCustomContent] = useState(false);
 
-  const countries = createDataStore().countries.map(country => {
+  const countries = createDataStore().countries.map((country) => {
     return {
       label: `${country.name}`,
       searchableLabel: `${country.name} ${'I am secondary content, I am!'}`,
@@ -29,11 +29,11 @@ export default () => {
 
   const [options, setOptions] = useState(countries);
 
-  const onChange = options => {
+  const onChange = (options) => {
     setOptions(options);
   };
 
-  const onCustom = e => {
+  const onCustom = (e) => {
     setUseCustomContent(e.currentTarget.checked);
   };
 

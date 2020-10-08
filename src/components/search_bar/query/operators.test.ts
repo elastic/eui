@@ -147,7 +147,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gt(value, hourBeforeValue)).toBe(false);
       expect(gt(value, dayBeforeValue)).toBe(true);
     });
@@ -170,7 +170,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gt(value, hourBeforeValue)).toBe(false);
       expect(gt(value, dayBeforeValue)).toBe(false);
       expect(gt(value, weekBeforeValue)).toBe(true);
@@ -198,7 +198,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gt(value, hourBeforeValue)).toBe(false);
       expect(gt(value, dayBeforeValue)).toBe(false);
       expect(gt(value, weekBeforeValue)).toBe(false);
@@ -231,7 +231,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gt(value, hourBeforeValue)).toBe(false);
       expect(gt(value, dayBeforeValue)).toBe(false);
       expect(gt(value, weekBeforeValue)).toBe(false);
@@ -270,7 +270,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gte(value, hourBeforeValue)).toBe(true);
       expect(gte(value, dayBeforeValue)).toBe(true);
     });
@@ -293,7 +293,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gte(value, hourBeforeValue)).toBe(true);
       expect(gte(value, dayBeforeValue)).toBe(true);
       expect(gte(value, weekBeforeValue)).toBe(true);
@@ -321,7 +321,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gte(value, hourBeforeValue)).toBe(true);
       expect(gte(value, dayBeforeValue)).toBe(true);
       expect(gte(value, weekBeforeValue)).toBe(true);
@@ -354,7 +354,7 @@ describe('operators', () => {
     const hourBefore = earlierMoment(date, 1, 'hours');
     const hourBeforeValue = dateValue(hourBefore, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(gte(value, hourBeforeValue)).toBe(true);
       expect(gte(value, dayBeforeValue)).toBe(true);
       expect(gte(value, weekBeforeValue)).toBe(true);
@@ -393,7 +393,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lt(value, hourLaterValue)).toBe(false);
       expect(lt(value, dayLaterValue)).toBe(true);
     });
@@ -416,7 +416,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lt(value, hourLaterValue)).toBe(false);
       expect(lt(value, dayLaterValue)).toBe(false);
       expect(lt(value, weekLaterValue)).toBe(true);
@@ -444,7 +444,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lt(value, hourLaterValue)).toBe(false);
       expect(lt(value, dayLaterValue)).toBe(false);
       expect(lt(value, weekLaterValue)).toBe(false);
@@ -477,7 +477,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lt(value, hourLaterValue)).toBe(false);
       expect(lt(value, dayLaterValue)).toBe(false);
       expect(lt(value, weekLaterValue)).toBe(false);
@@ -516,7 +516,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lte(value, hourLaterValue)).toBe(true);
       expect(lte(value, dayLaterValue)).toBe(true);
     });
@@ -539,7 +539,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lte(value, hourLaterValue)).toBe(true);
       expect(lte(value, dayLaterValue)).toBe(true);
       expect(lte(value, weekLaterValue)).toBe(true);
@@ -567,7 +567,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lte(value, hourLaterValue)).toBe(true);
       expect(lte(value, dayLaterValue)).toBe(true);
       expect(lte(value, weekLaterValue)).toBe(true);
@@ -600,7 +600,7 @@ describe('operators', () => {
     const hourLater = laterMoment(date, 1, 'hours');
     const hourLaterValue = dateValue(hourLater, granularity);
 
-    [date, date.valueOf(), date.format()].forEach(value => {
+    [date, date.valueOf(), date.format()].forEach((value) => {
       expect(lte(value, hourLaterValue)).toBe(true);
       expect(lte(value, dayLaterValue)).toBe(true);
       expect(lte(value, weekLaterValue)).toBe(true);

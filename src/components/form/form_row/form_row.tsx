@@ -289,7 +289,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     }
 
     if (optionalErrors) {
-      optionalErrors.forEach(error => describingIds.push(error.props.id));
+      optionalErrors.forEach((error) => describingIds.push(error.props.id));
     }
 
     if (describingIds.length > 0) {

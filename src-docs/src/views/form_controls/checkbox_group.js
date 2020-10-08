@@ -28,7 +28,7 @@ export default () => {
     [`${idPrefix}1`]: true,
   });
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     const newCheckboxIdToSelectedMap = {
       ...checkboxIdToSelectedMap,
       ...{
@@ -48,7 +48,7 @@ export default () => {
       <EuiCheckboxGroup
         options={checkboxes}
         idToSelectedMap={checkboxIdToSelectedMap}
-        onChange={id => onChange(id)}
+        onChange={(id) => onChange(id)}
       />
     </DisplayToggles>
   );

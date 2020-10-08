@@ -95,7 +95,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'disabled'}
                     checked={this.state.disabled}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'disabled')
                     }
                   />
@@ -107,7 +107,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'readOnly'}
                     checked={this.state.readOnly}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'readOnly')
                     }
                   />
@@ -119,7 +119,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'loading'}
                     checked={this.state.loading}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'loading')
                     }
                   />
@@ -131,7 +131,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'invalid'}
                     checked={this.state.invalid}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'invalid')
                     }
                   />
@@ -143,7 +143,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'fullWidth'}
                     checked={this.state.fullWidth}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'fullWidth')
                     }
                   />
@@ -164,7 +164,7 @@ export class DisplayToggles extends Component {
                       </span>
                     }
                     checked={this.state.compressed}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'compressed')
                     }
                   />
@@ -176,7 +176,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'prepend'}
                     checked={this.state.prepend}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'prepend')
                     }
                   />
@@ -188,7 +188,7 @@ export class DisplayToggles extends Component {
                     compressed
                     label={'append'}
                     checked={this.state.append}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.updateProperty(e.target.checked, 'append')
                     }
                   />

@@ -119,7 +119,7 @@ export const EuiMarkdownEditorToolbar: FunctionComponent<EuiMarkdownEditorToolba
   return (
     <div className="euiMarkdownEditorToolbar">
       <div className="euiMarkdownEditorToolbar__buttons">
-        {boldItalicButtons.map(item => (
+        {boldItalicButtons.map((item) => (
           <EuiToolTip key={item.id} content={item.label} delay="long">
             <EuiButtonIcon
               color="text"
@@ -131,7 +131,7 @@ export const EuiMarkdownEditorToolbar: FunctionComponent<EuiMarkdownEditorToolba
           </EuiToolTip>
         ))}
         <span className="euiMarkdownEditorToolbar__divider" />
-        {listButtons.map(item => (
+        {listButtons.map((item) => (
           <EuiToolTip key={item.id} content={item.label} delay="long">
             <EuiButtonIcon
               color="text"
@@ -143,7 +143,7 @@ export const EuiMarkdownEditorToolbar: FunctionComponent<EuiMarkdownEditorToolba
           </EuiToolTip>
         ))}
         <span className="euiMarkdownEditorToolbar__divider" />
-        {quoteCodeLinkButtons.map(item => (
+        {quoteCodeLinkButtons.map((item) => (
           <EuiToolTip key={item.id} content={item.label} delay="long">
             <EuiButtonIcon
               color="text"

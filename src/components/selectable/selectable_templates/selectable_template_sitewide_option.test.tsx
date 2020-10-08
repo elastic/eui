@@ -93,7 +93,7 @@ describe('EuiSelectableTemplateSitewideOptions', () => {
   });
 
   test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions()', () => {
-    options.forEach(option => {
+    options.forEach((option) => {
       const component = euiSelectableTemplateSitewideRenderOptions(option, '');
 
       expect(component).toMatchSnapshot();
@@ -101,7 +101,7 @@ describe('EuiSelectableTemplateSitewideOptions', () => {
   });
 
   test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text', () => {
-    options.forEach(option => {
+    options.forEach((option) => {
       const component = euiSelectableTemplateSitewideRenderOptions(
         option,
         'data'

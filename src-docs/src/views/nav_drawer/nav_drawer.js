@@ -43,7 +43,7 @@ export default () => {
     iconSize: 's',
   };
 
-  const pinExtraActionFn = val => {
+  const pinExtraActionFn = (val) => {
     pinExtraAction['aria-label'] = `Pin ${val} to top`;
     return pinExtraAction;
   };
@@ -377,7 +377,8 @@ export default () => {
     },
   ];
 
-  const toggleFullScreen = () => setIsFullScreen(isFullScreen => !isFullScreen);
+  const toggleFullScreen = () =>
+    setIsFullScreen((isFullScreen) => !isFullScreen);
 
   const renderLogo = () => (
     <EuiHeaderLogo
@@ -399,7 +400,7 @@ export default () => {
       {
         text: 'Management',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
           console.log('You clicked management');
         },
@@ -409,7 +410,7 @@ export default () => {
       {
         text: 'Truncation test is here for a really long item',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
           console.log('You clicked truncation test');
         },
@@ -417,7 +418,7 @@ export default () => {
       {
         text: 'hidden',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
           console.log('You clicked hidden');
         },
@@ -425,7 +426,7 @@ export default () => {
       {
         text: 'Users',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
           console.log('You clicked users');
         },

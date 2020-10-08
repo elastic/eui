@@ -67,14 +67,14 @@ export function colorPalette(
 
     const numColorsHalf = Math.ceil(hexStart.length / 2);
 
-    const colorsLeft = hexStart.filter(function(item, index) {
+    const colorsLeft = hexStart.filter(function (item, index) {
       if (index < numColorsHalf) {
         return true; // keep it
       }
     });
     const colorsRight = hexStart
       .reverse()
-      .filter(function(item, index) {
+      .filter(function (item, index) {
         if (index < numColorsHalf) {
           return true; // keep it
         }
@@ -91,11 +91,7 @@ export function colorPalette(
     }
 
     if (!categorical) {
-      return chroma
-        .bezier(colors)
-        .scale()
-        .correctLightness()
-        .colors(steps);
+      return chroma.bezier(colors).scale().correctLightness().colors(steps);
     } else {
       return chroma.scale(colors).colors(steps);
     }

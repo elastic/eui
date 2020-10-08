@@ -18,7 +18,7 @@ for (let i = 1; i < 5000; i++) {
 export default () => {
   const [selectedOptions, setSelected] = useState([]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 

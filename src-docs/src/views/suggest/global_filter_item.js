@@ -13,7 +13,7 @@ function flattenPanelTree(tree, array = []) {
   array.push(tree);
 
   if (tree.items) {
-    tree.items.forEach(item => {
+    tree.items.forEach((item) => {
       if (item.panel) {
         flattenPanelTree(item.panel, array);
         item.panel = item.panel.id;
@@ -24,7 +24,7 @@ function flattenPanelTree(tree, array = []) {
   return array;
 }
 
-export const GlobalFilterItem = props => {
+export const GlobalFilterItem = (props) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const togglePopover = () => {
     setIsPopoverOpen(!isPopoverOpen);
@@ -34,7 +34,7 @@ export const GlobalFilterItem = props => {
     setIsPopoverOpen(false);
   };
 
-  const deleteFilter = e => {
+  const deleteFilter = (e) => {
     window.alert('Filter would have been deleted.');
     // Make sure it doesn't also trigger the onclick for the whole badge
     e.stopPropagation();

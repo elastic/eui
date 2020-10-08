@@ -35,7 +35,7 @@ export default () => {
       <EuiSwitch
         label="Fix link to top of screen"
         checked={isFixed}
-        onChange={e => setFixed(e.target.checked)}
+        onChange={(e) => setFixed(e.target.checked)}
       />
       <EuiSpacer />
       <EuiSkipLink
