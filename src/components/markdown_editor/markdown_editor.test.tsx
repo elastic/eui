@@ -56,11 +56,7 @@ describe('EuiMarkdownEditor', () => {
         .matchesElement(<h2>Hello world</h2>)
     );
     expect(
-      component
-        .find('.euiMarkdownFormat')
-        .childAt(0)
-        .childAt(0)
-        .text()
+      component.find('.euiMarkdownFormat').childAt(0).childAt(0).text()
     ).toBe('Hello world');
   });
 
