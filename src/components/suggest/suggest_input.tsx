@@ -79,7 +79,9 @@ const statusMap: StatusMap = {
   loading: {},
 };
 
-export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = props => {
+export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
+  props
+) => {
   const [value, setValue] = useState<string>('');
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 

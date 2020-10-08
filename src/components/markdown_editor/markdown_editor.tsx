@@ -195,9 +195,7 @@ export const EuiMarkdownEditor = forwardRef<
       function identityCompiler(this: Processor) {
         this.Compiler = Compiler;
       }
-      return unified()
-        .use(parsingPluginList)
-        .use(identityCompiler);
+      return unified().use(parsingPluginList).use(identityCompiler);
     }, [parsingPluginList]);
 
     const [parsed, parseError] = useMemo<
@@ -345,7 +343,7 @@ export const EuiMarkdownEditor = forwardRef<
                 ref={textareaRef}
                 height={height}
                 id={editorId}
-                onChange={e => onChange(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
                 value={value}
                 onFocus={() => setHasUnacceptedItems(false)}
                 {...{

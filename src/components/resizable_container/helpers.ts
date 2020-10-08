@@ -336,7 +336,7 @@ export const useContainerCallbacks = ({
         const delta = shouldCollapse
           ? (currentPanel.size - newPanelSize) / siblings
           : ((newPanelSize - currentPanel.size) / siblings) * -1;
-        otherPanelsKeys.forEach(panelId => {
+        otherPanelsKeys.forEach((panelId) => {
           // TODO: Configurable redistrubution
           otherPanels[panelId].size = otherPanels[panelId].size + delta;
         });

@@ -41,7 +41,7 @@ const iconColors = [
 export default () => (
   <div>
     <EuiFlexGrid columns={4}>
-      {iconColors.map(iconColor => (
+      {iconColors.map((iconColor) => (
         <EuiFlexItem
           className="guideDemo__icon"
           key={iconColor}

@@ -12,11 +12,11 @@ export default () => {
   const [minimumDelay, setDelay] = useState(3000);
   const [render, setRender] = useState(false);
 
-  const onChangeMinimumDelay = event => {
+  const onChangeMinimumDelay = (event) => {
     setDelay(parseInt(event.target.value, 10));
   };
 
-  const onChangeHide = event => {
+  const onChangeHide = (event) => {
     setRender(event.target.checked);
   };
 

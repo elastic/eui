@@ -12,11 +12,11 @@ export default () => {
   const [minimumDuration, setDuration] = useState(3000);
   const [hide, setHide] = useState(false);
 
-  const onChangeMinimumDuration = event => {
+  const onChangeMinimumDuration = (event) => {
     setDuration(parseInt(event.target.value, 10));
   };
 
-  const onChangeHide = event => {
+  const onChangeHide = (event) => {
     setHide(event.target.checked);
   };
 

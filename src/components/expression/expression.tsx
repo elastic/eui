@@ -158,9 +158,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
       type="alert"
       color={calculatedColor}
     />
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   return (
     <Component className={classes} onClick={onClick} {...rest}>

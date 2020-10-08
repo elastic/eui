@@ -13,15 +13,15 @@ export default () => {
   const toggle3On = true;
   const [toggle4On, setToggle4On] = useState(true);
 
-  const onToggle0Change = e => {
+  const onToggle0Change = (e) => {
     setToggle0On(e.target.checked);
   };
 
-  const onToggle1Change = e => {
+  const onToggle1Change = (e) => {
     setToggle1On(e.target.checked);
   };
 
-  const onToggle4Change = e => {
+  const onToggle4Change = (e) => {
     setToggle4On(e.target.checked);
   };
 

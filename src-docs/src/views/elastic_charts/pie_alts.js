@@ -67,7 +67,7 @@ export default () => {
     data = _.orderBy(DATASET, 'issueType', 'asc');
 
     if (ordered) {
-      const totals = _.mapValues(_.groupBy(DATASET, 'vizType'), groups =>
+      const totals = _.mapValues(_.groupBy(DATASET, 'vizType'), (groups) =>
         _.sumBy(groups, 'count')
       );
 
@@ -79,7 +79,7 @@ export default () => {
     }
   }
 
-  const tickFormat = tick => {
+  const tickFormat = (tick) => {
     if (formatted) {
       return `${Number(tick * 100).toFixed(0)}%`;
     } else if (!grouped && String(tick).length > 1) {
@@ -201,7 +201,7 @@ export default () => {
               <EuiSwitch
                 label="Use percentage data"
                 checked={formattedData}
-                onChange={e => setFormattedData(e.target.checked)}
+                onChange={(e) => setFormattedData(e.target.checked)}
               />
             )}
           </ChartCard>
@@ -215,19 +215,19 @@ export default () => {
             <EuiSwitch
               label="Stacked bar chart"
               checked={stacked}
-              onChange={e => setStacked(e.target.checked)}
+              onChange={(e) => setStacked(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Group 'Other' slices"
               checked={grouped}
-              onChange={e => setGrouped(e.target.checked)}
+              onChange={(e) => setGrouped(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Show as percentages"
               checked={formatted}
-              onChange={e => setFormatted(e.target.checked)}
+              onChange={(e) => setFormatted(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -239,13 +239,13 @@ export default () => {
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
-              onChange={e => setOrdered(e.target.checked)}
+              onChange={(e) => setOrdered(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Rotate 90deg"
               checked={rotated}
-              onChange={e => setRotated(e.target.checked)}
+              onChange={(e) => setRotated(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -302,7 +302,7 @@ export default () => {
     }
   />
 </Chart>`}>
-          {copy => (
+          {(copy) => (
             <EuiButton
               disabled={isMisleadingChart || isBadChart}
               fill

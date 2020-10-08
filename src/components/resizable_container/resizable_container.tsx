@@ -161,6 +161,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     actions.reset();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
       onKeyDown,
@@ -177,6 +178,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     [isHorizontal]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizablePanel = useCallback(
     euiResizablePanelWithControls({
       isHorizontal,
@@ -206,8 +208,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         onTouchMove={onMouseMove}
         onTouchEnd={onMouseUp}
         {...rest}>
-        {// TODO: Maybe just a subset of actions?
-        children(EuiResizablePanel, EuiResizableButton, actions)}
+        {
+          // TODO: Maybe just a subset of actions?
+          children(EuiResizablePanel, EuiResizableButton, actions)
+        }
       </div>
     </EuiResizablePanelContextProvider>
   );

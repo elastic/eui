@@ -54,7 +54,7 @@ export const formatAuto = (value: any): string => {
 
   if (isArray(value)) {
     return Array.isArray(value)
-      ? value.map(item => formatAuto(item)).join(', ')
+      ? value.map((item) => formatAuto(item)).join(', ')
       : formatAuto(value);
   }
 

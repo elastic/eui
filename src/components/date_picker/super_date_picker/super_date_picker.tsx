@@ -297,7 +297,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   onStartDatePopoverToggle = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { isStartDatePopoverOpen: !prevState.isStartDatePopoverOpen };
     });
   };
@@ -307,7 +307,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   onEndDatePopoverToggle = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { isEndDatePopoverOpen: !prevState.isEndDatePopoverOpen };
     });
   };

@@ -144,7 +144,7 @@ const SelectionHeaderCell = () => {
       aria-label="Select all rows"
       indeterminate={isIndeterminate}
       checked={selectedRows.size > 0}
-      onChange={e => {
+      onChange={(e) => {
         if (isIndeterminate) {
           // clear selection
           updateSelectedRows({ action: 'clear' });
@@ -172,7 +172,7 @@ const SelectionRowCell = ({ rowIndex }) => {
         id={`${rowIndex}`}
         aria-label={`Select row ${rowIndex}, ${data[rowIndex].name}`}
         checked={isChecked}
-        onChange={e => {
+        onChange={(e) => {
           if (e.target.checked) {
             updateSelectedRows({ action: 'add', rowIndex });
           } else {
@@ -184,7 +184,7 @@ const SelectionRowCell = ({ rowIndex }) => {
   );
 };
 
-const FlyoutRowCell = rowIndex => {
+const FlyoutRowCell = (rowIndex) => {
   let flyout;
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
   if (isFlyoutOpen) {
@@ -315,11 +315,11 @@ export default function DataGrid() {
     pageSize: 15,
   });
   const setPageIndex = useCallback(
-    pageIndex => setPagination({ ...pagination, pageIndex }),
+    (pageIndex) => setPagination({ ...pagination, pageIndex }),
     [pagination, setPagination]
   );
   const setPageSize = useCallback(
-    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    (pageSize) => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
     [pagination, setPagination]
   );
 

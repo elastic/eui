@@ -29,7 +29,7 @@ export default () => {
   const [refreshInterval, setRefreshInterval] = useState();
 
   const onTimeChange = ({ start, end }) => {
-    const recentlyUsedRange = recentlyUsedRanges.filter(recentlyUsedRange => {
+    const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
       const isDuplicate =
         recentlyUsedRange.start === start && recentlyUsedRange.end === end;
       return !isDuplicate;
@@ -47,7 +47,7 @@ export default () => {
   };
 
   const onRefresh = ({ start, end, refreshInterval }) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, 100);
     }).then(() => {
       console.log(start, end, refreshInterval);

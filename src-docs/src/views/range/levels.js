@@ -26,11 +26,11 @@ export default () => {
     },
   ];
 
-  const onChange = e => {
+  const onChange = (e) => {
     setvalue(e.target.value);
   };
 
-  const onDualChange = value => {
+  const onDualChange = (value) => {
     setDualValue(value);
   };
 
@@ -39,7 +39,7 @@ export default () => {
       <EuiRange
         id={htmlIdGenerator()()}
         value={value}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         showTicks
         tickInterval={20}
         levels={levels}
@@ -54,7 +54,7 @@ export default () => {
       <EuiDualRange
         id={htmlIdGenerator()()}
         value={dualValue}
-        onChange={value => onDualChange(value)}
+        onChange={(value) => onDualChange(value)}
         showTicks
         ticks={[
           { label: '20kb', value: 20 },

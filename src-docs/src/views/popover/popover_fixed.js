@@ -7,9 +7,10 @@ export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const toggleExample = () =>
-    setIsExampleShown(isExampleShown => !isExampleShown);
+    setIsExampleShown((isExampleShown) => !isExampleShown);
 
-  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (

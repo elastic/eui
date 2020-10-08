@@ -72,7 +72,7 @@ export class EuiQuickSelectPopover extends Component<
   };
 
   togglePopover = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isOpen: !prevState.isOpen,
     }));
   };

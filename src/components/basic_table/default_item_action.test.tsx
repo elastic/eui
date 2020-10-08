@@ -74,7 +74,7 @@ describe('DefaultItemAction', () => {
 
   test('render - name', () => {
     const action: EmptyButtonAction<Item> = {
-      name: item => <span>{item.id}</span>,
+      name: (item) => <span>{item.id}</span>,
       description: 'action 1',
       type: 'button',
       onClick: () => {},

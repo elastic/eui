@@ -18,7 +18,7 @@ export default () => {
     <EuiHeaderLogo
       iconType="logoElastic"
       href="#"
-      onClick={e => e.preventDefault()}
+      onClick={(e) => e.preventDefault()}
       aria-label="Go to home page"
     />
   );
@@ -33,14 +33,14 @@ export default () => {
     {
       text: 'Management',
       href: '#',
-      onClick: e => {
+      onClick: (e) => {
         e.preventDefault();
       },
     },
     {
       text: 'Users',
       href: '#',
-      onClick: e => {
+      onClick: (e) => {
         e.preventDefault();
       },
     },

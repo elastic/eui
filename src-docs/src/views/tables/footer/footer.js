@@ -55,12 +55,12 @@ export const Table = () => {
     setSortDirection(sortDirection);
   };
 
-  const onSelectionChange = selectedItems => {
+  const onSelectionChange = (selectedItems) => {
     setSelectedItems(selectedItems);
   };
 
   const onClickDelete = () => {
-    store.deleteUsers(...selectedItems.map(user => user.id));
+    store.deleteUsers(...selectedItems.map((user) => user.id));
 
     setSelectedItems([]);
   };
@@ -77,7 +77,7 @@ export const Table = () => {
     );
   };
 
-  const renderStatus = online => {
+  const renderStatus = (online) => {
     const color = online ? 'success' : 'danger';
     const label = online ? 'Online' : 'Offline';
     return <EuiHealth color={color}>{label}</EuiHealth>;
@@ -133,7 +133,7 @@ export const Table = () => {
       footer: ({ items }) => (
         <span>{uniqBy(items, 'github').length} users</span>
       ),
-      render: username => (
+      render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -143,7 +143,7 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
       sortable: true,
     },
     {
@@ -152,7 +152,7 @@ export const Table = () => {
       footer: ({ items }) => (
         <span>{uniqBy(items, 'nationality').length} countries</span>
       ),
-      render: countryCode => {
+      render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       },
@@ -161,10 +161,10 @@ export const Table = () => {
       field: 'online',
       name: 'Online',
       footer: ({ items }) => (
-        <span>{items.filter(i => !!i.online).length} online</span>
+        <span>{items.filter((i) => !!i.online).length} online</span>
       ),
       dataType: 'boolean',
-      render: online => renderStatus(online),
+      render: (online) => renderStatus(online),
       sortable: true,
       hideForMobile: true,
     },
@@ -185,8 +185,8 @@ export const Table = () => {
   };
 
   const selection = {
-    selectable: user => user.online,
-    selectableMessage: selectable =>
+    selectable: (user) => user.online,
+    selectableMessage: (selectable) =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
   };

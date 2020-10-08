@@ -45,7 +45,7 @@ const timeTenseOptions = [
   { value: LAST, text: 'Last' },
   { value: NEXT, text: 'Next' },
 ];
-const timeUnitsOptions = keysOf(timeUnits).map(key => {
+const timeUnitsOptions = keysOf(timeUnits).map((key) => {
   return { value: key, text: `${timeUnits[key]}s` };
 });
 
@@ -89,20 +89,20 @@ export class EuiQuickSelect extends Component<
 
   generateId = htmlIdGenerator();
 
-  onTimeTenseChange: ChangeEventHandler<HTMLSelectElement> = event => {
+  onTimeTenseChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     this.setState({
       timeTense: event.target.value,
     });
   };
 
-  onTimeValueChange: ChangeEventHandler<HTMLInputElement> = event => {
+  onTimeValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseInt(event.target.value, 10);
     this.setState({
       timeValue: isNaN(sanitizedValue) ? 0 : sanitizedValue,
     });
   };
 
-  onTimeUnitsChange: ChangeEventHandler<HTMLSelectElement> = event => {
+  onTimeUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     this.setState({
       timeUnits: event.target.value as TimeUnitId,
     });
@@ -149,9 +149,7 @@ export class EuiQuickSelect extends Component<
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      start: moment(max)
-        .add(1, 'ms')
-        .toISOString(),
+      start: moment(max).add(1, 'ms').toISOString(),
       end: moment(max)
         .add(diff + 1, 'ms')
         .toISOString(),
@@ -166,9 +164,7 @@ export class EuiQuickSelect extends Component<
       start: moment(min)
         .subtract(diff + 1, 'ms')
         .toISOString(),
-      end: moment(min)
-        .subtract(1, 'ms')
-        .toISOString(),
+      end: moment(min).subtract(1, 'ms').toISOString(),
       keepPopoverOpen: true,
     });
   };

@@ -74,14 +74,14 @@ export default () => {
     });
   };
 
-  const changeExample2 = e => {
+  const changeExample2 = (e) => {
     setExample2({
       value: e.target.value,
       isOpen: false,
     });
   };
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
     const indices = selectedOptions.map((s, index) => {
       return (

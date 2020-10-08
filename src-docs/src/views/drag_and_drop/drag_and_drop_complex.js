@@ -13,7 +13,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 const makeId = htmlIdGenerator();
 
 const makeList = (number, start = 1) =>
-  Array.from({ length: number }, (v, k) => k + start).map(el => {
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
     return {
       content: `Item ${el}`,
       id: makeId(),
@@ -77,7 +77,7 @@ export default () => {
             style={{ flex: '1 0 50%' }}
             disableInteractiveElementBlocking // Allows button to be drag handle
           >
-            {provided => (
+            {(provided) => (
               <EuiPanel paddingSize="s">
                 <EuiButtonIcon
                   iconType="grab"

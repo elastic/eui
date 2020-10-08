@@ -68,7 +68,7 @@ const valueOption = [
   },
 ];
 
-const GlobalFilterForm = props => {
+const GlobalFilterForm = (props) => {
   const [fieldOptions, setFieldOptions] = useState(fieldOption);
   const [operandOptions, setOperandOptions] = useState(operatorOption);
   const [valueOptions, setValueOptions] = useState(valueOption);
@@ -84,43 +84,43 @@ const GlobalFilterForm = props => {
   const [useCustomLabel, setUseCoustomLabel] = useState(false);
   const [customLabel, setCustomLabel] = useState('');
 
-  const onFieldChange = selectedOptions => {
+  const onFieldChange = (selectedOptions) => {
     // We should only get back either 0 or 1 options.
     setSelectedField(selectedOptions);
   };
 
-  const onOperandChange = selectedOptions => {
+  const onOperandChange = (selectedOptions) => {
     // We should only get back either 0 or 1 options.
     setSelectedOperand(selectedOptions);
   };
 
-  const onValuesChange = selectedOptions => {
+  const onValuesChange = (selectedOptions) => {
     setSelectedValues(selectedOptions);
   };
 
-  const onCustomLabelSwitchChange = e => {
+  const onCustomLabelSwitchChange = (e) => {
     setCustomLabel(e.target.checked);
   };
 
-  const onFieldSearchChange = searchValue => {
+  const onFieldSearchChange = (searchValue) => {
     setFieldOptions(
-      fieldOption.filter(option =>
+      fieldOption.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   };
 
-  const onOperandSearchChange = searchValue => {
+  const onOperandSearchChange = (searchValue) => {
     setOperandOptions(
-      operatorOption.filter(option =>
+      operatorOption.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   };
 
-  const onValuesSearchChange = searchValue => {
+  const onValuesSearchChange = (searchValue) => {
     setValueOptions(
-      valueOption.filter(option =>
+      valueOption.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
@@ -134,7 +134,7 @@ const GlobalFilterForm = props => {
     setCustomLabel(null);
   };
 
-  const onCustomLabelChange = value => {
+  const onCustomLabelChange = (value) => {
     console.log(value);
     // setCustomLabel()
   };

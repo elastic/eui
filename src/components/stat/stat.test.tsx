@@ -57,7 +57,7 @@ describe('EuiStat', () => {
       expect(component).toMatchSnapshot();
     });
 
-    ALIGNMENTS.forEach(alignment => {
+    ALIGNMENTS.forEach((alignment) => {
       test(`${alignment} is rendered`, () => {
         const component = render(
           <EuiStat
@@ -71,7 +71,7 @@ describe('EuiStat', () => {
       });
     });
 
-    COLORS.forEach(color => {
+    COLORS.forEach((color) => {
       test(`${color} is rendered`, () => {
         const component = render(
           <EuiStat title="title" description="description" titleColor={color} />
@@ -114,7 +114,7 @@ describe('EuiStat', () => {
       expect(component).toMatchSnapshot();
     });
 
-    TITLE_SIZES.forEach(size => {
+    TITLE_SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
         const component = render(
           <EuiStat title="title" description="description" titleSize={size} />

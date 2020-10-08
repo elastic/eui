@@ -52,7 +52,7 @@ export function getBreakpoint(
   breakpoints: EuiBreakpoints = BREAKPOINTS
 ): EuiBreakpointSize | undefined {
   // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
-  return keysOf(BREAKPOINTS).find(key => breakpoints[key] <= width);
+  return keysOf(BREAKPOINTS).find((key) => breakpoints[key] <= width);
 }
 
 /**

@@ -21,7 +21,7 @@ import { Timer } from './timer';
 
 describe('Timer', () => {
   describe('constructor', () => {
-    test('counts down until time elapses and calls callback', done => {
+    test('counts down until time elapses and calls callback', (done) => {
       const callbackSpy = jest.fn();
       new Timer(callbackSpy, 5);
 
@@ -33,7 +33,7 @@ describe('Timer', () => {
   });
 
   describe('pause', () => {
-    test('stops timer', done => {
+    test('stops timer', (done) => {
       const callbackSpy = jest.fn();
       const timer = new Timer(callbackSpy, 5);
       timer.pause();
@@ -46,7 +46,7 @@ describe('Timer', () => {
   });
 
   describe('resume', () => {
-    test('starts timer again', done => {
+    test('starts timer again', (done) => {
       const callbackSpy = jest.fn();
       const timer = new Timer(callbackSpy, 5);
       timer.pause();
@@ -60,7 +60,7 @@ describe('Timer', () => {
   });
 
   describe('clear', () => {
-    test('prevents timer from being called', done => {
+    test('prevents timer from being called', (done) => {
       const callbackSpy = jest.fn();
       const timer = new Timer(callbackSpy, 5);
       timer.clear();

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconStarMinusFilled = ({ title, titleId, ...props }) => (
   <svg

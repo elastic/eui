@@ -23,7 +23,7 @@ const iconSizes = ['s', 'm', 'l', 'xl', 'xxl', 'original'];
 
 export default () => (
   <EuiFlexGrid columns={4}>
-    {iconSizes.map(iconSize => (
+    {iconSizes.map((iconSize) => (
       <EuiFlexItem
         className="guideDemo__icon"
         key={iconSize}
