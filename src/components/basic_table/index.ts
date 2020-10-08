@@ -31,4 +31,11 @@ export {
   EuiTableActionsColumnType,
   EuiTableSelectionType,
   EuiTableSortingType,
+  EuiTableCriteria,
+  EuiTableCriteriaWithPagination,
 } from './table_types';
+export { Pagination as EuiTablePaginationProps } from './pagination_bar';
+export {
+  DefaultItemActionBase as EuiTableDefaultItemActionBase,
+  CustomItemAction as EuiTableCustomItemAction,
+} from './action_types';
