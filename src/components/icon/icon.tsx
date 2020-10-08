@@ -676,6 +676,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         optionalColorClass = colorToClassMap[color];
       } else {
         optionalCustomStyles = { color: color };
+        optionalColorClass = 'euiIcon--customColor';
       }
     }
 
@@ -691,7 +692,6 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       optionalColorClass,
       {
         'euiIcon--app': isAppIcon,
-        'euiIcon--customColor': optionalCustomStyles,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },
