@@ -57,12 +57,17 @@ export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
-    pageSize =>
-      setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
     [setPagination]
   );
   const onChangePage = useCallback(
-    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );
 
@@ -109,7 +114,7 @@ export default () => {
         <EuiSwitch
           label="Show footer row"
           checked={showFooterRow}
-          onChange={e => setShowFooterRow(e.target.checked)}
+          onChange={(e) => setShowFooterRow(e.target.checked)}
         />
       </EuiFlexItem>
       <EuiFlexItem>
@@ -128,7 +133,7 @@ export default () => {
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}
-          onColumnResize={eventData => {
+          onColumnResize={(eventData) => {
             console.log(eventData);
           }}
           gridStyle={{

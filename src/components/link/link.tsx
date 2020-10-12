@@ -113,9 +113,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
           />
         )}
       </EuiI18n>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     if (href === undefined) {
       const buttonProps = {

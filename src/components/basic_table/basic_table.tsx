@@ -407,7 +407,7 @@ export class EuiBasicTable<T = any> extends Component<
       'keydown',
       'keyup',
       'keypress',
-    ].forEach(event => {
+    ].forEach((event) => {
       tbody.addEventListener(event, listener, true);
       this.cleanups.push(() => {
         tbody.removeEventListener(event, listener, true);
@@ -416,7 +416,7 @@ export class EuiBasicTable<T = any> extends Component<
   };
 
   private removeLoadingListeners = () => {
-    this.cleanups.forEach(cleanup => cleanup());
+    this.cleanups.forEach((cleanup) => cleanup());
     this.cleanups.length = 0;
   };
 
@@ -573,9 +573,7 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
         </EuiFlexGroup>
       </EuiTableHeaderMobile>
-    ) : (
-      undefined
-    );
+    ) : undefined;
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
@@ -1081,9 +1079,7 @@ export class EuiBasicTable<T = any> extends Component<
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const { rowProps: rowPropsCallback } = this.props;
     const rowProps = getRowProps(item, rowPropsCallback as RowPropsCallback<T>);
@@ -1171,7 +1167,7 @@ export class EuiBasicTable<T = any> extends Component<
     );
     if (actualActions.length > 2) {
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = actualActions.filter(o => o.isPrimary);
+      const primaryActions = actualActions.filter((o) => o.isPrimary);
       actualActions = primaryActions.slice(0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we

@@ -32,10 +32,10 @@ export function getColumnActions(
   if (column.actions === false) {
     return [];
   }
-  const colIdx = columns.findIndex(col => col.id === column.id);
+  const colIdx = columns.findIndex((col) => col.id === column.id);
 
   const sortingIdx = sorting
-    ? sorting.columns.findIndex(col => col.id === column.id)
+    ? sorting.columns.findIndex((col) => col.id === column.id)
     : -1;
   const sortBy = (direction: 'asc' | 'desc' = 'asc') => {
     if (!sorting) {
@@ -75,7 +75,7 @@ export function getColumnActions(
   };
   const onClickHideColumn = () =>
     setVisibleColumns(
-      columns.filter(col => col.id !== column.id).map(col => col.id)
+      columns.filter((col) => col.id !== column.id).map((col) => col.id)
     );
 
   const onClickSortAsc = () => {
@@ -201,7 +201,7 @@ export function getColumnActions(
 
   //wrap EuiListGroupItem onClick function to close the popover and prevet bubbling up
 
-  return allActions.map(action => {
+  return allActions.map((action) => {
     return {
       ...action,
       ...{

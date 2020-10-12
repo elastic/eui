@@ -36,7 +36,9 @@ export interface EuiDataGridControlHeaderRowProps {
   className?: string;
 }
 
-export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = props => {
+export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = (
+  props
+) => {
   const {
     controlColumn,
     index,

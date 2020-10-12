@@ -130,7 +130,7 @@ describe('EuiBadge', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         it(`${color} is rendered`, () => {
           const component = render(<EuiBadge color={color}>Content</EuiBadge>);
 
@@ -154,7 +154,7 @@ describe('EuiBadge', () => {
     });
 
     describe('iconSide', () => {
-      ICON_SIDES.forEach(iconSide => {
+      ICON_SIDES.forEach((iconSide) => {
         it(`${iconSide} is rendered`, () => {
           const component = render(
             <EuiBadge iconType="user" iconSide={iconSide}>
@@ -176,7 +176,7 @@ describe('EuiBadge', () => {
         expect(component).toMatchSnapshot();
       });
 
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         it(`is rendered with ${color}`, () => {
           const component = render(
             <EuiBadge style={style} color={color}>

@@ -26,7 +26,7 @@ export default () => {
   ];
   const [value, setValue] = useState(options[1].value);
 
-  const onChange = value => {
+  const onChange = (value) => {
     setValue(value);
   };
 
@@ -36,7 +36,7 @@ export default () => {
       <EuiSuperSelect
         options={options}
         valueOfSelected={value}
-        onChange={value => onChange(value)}
+        onChange={(value) => onChange(value)}
       />
     </DisplayToggles>
   );

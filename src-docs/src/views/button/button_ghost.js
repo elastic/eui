@@ -13,7 +13,7 @@ import {
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
 
-  const onToggle0Change = e => {
+  const onToggle0Change = (e) => {
     setToggle0On(e.target.checked);
   };
 

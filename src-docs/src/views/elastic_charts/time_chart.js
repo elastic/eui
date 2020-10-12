@@ -41,13 +41,13 @@ export const TimeChart = () => {
   const [stacked, setStacked] = useState(false);
   const [chartType, setChartType] = useState('BarSeries');
 
-  const onMultiChange = multiObject => {
+  const onMultiChange = (multiObject) => {
     const { multi, stacked } = multiObject;
     setMulti(multi);
     setStacked(stacked);
   };
 
-  const onChartTypeChange = chartType => {
+  const onChartTypeChange = (chartType) => {
     setChartType(chartType);
   };
 
@@ -177,7 +177,7 @@ export const TimeChart = () => {
     showGridLines
   />
 </Chart>`}>
-          {copy => (
+          {(copy) => (
             <EuiButton
               fill
               onClick={copy}

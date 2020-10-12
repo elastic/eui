@@ -264,7 +264,7 @@ function wordSelectionEnd(text: string, i: number, multiline: boolean): number {
 }
 
 const MAX_TRIES = 10;
-const TRY_TIMEOUT = 10 /*ms*/;
+const TRY_TIMEOUT = 10; /*ms*/
 // modified from https://github.com/github/markdown-toolbar-element/blob/main/src/index.ts
 export function insertText(
   textarea: HTMLTextAreaElement,
@@ -532,16 +532,16 @@ function multilineStyle(textarea: HTMLTextAreaElement, arg: StyleArgs) {
   let selectionEnd = textarea.selectionEnd;
   const lines = text.split('\n');
   const undoStyle = lines.every(
-    line => line.startsWith(prefix) && line.endsWith(suffix)
+    (line) => line.startsWith(prefix) && line.endsWith(suffix)
   );
 
   if (undoStyle) {
     text = lines
-      .map(line => line.slice(prefix.length, line.length - suffix.length))
+      .map((line) => line.slice(prefix.length, line.length - suffix.length))
       .join('\n');
     selectionEnd = selectionStart + text.length;
   } else {
-    text = lines.map(line => prefix + line + suffix).join('\n');
+    text = lines.map((line) => prefix + line + suffix).join('\n');
     if (surroundWithNewlines) {
       const {
         newlinesToAppend,
@@ -579,10 +579,12 @@ function orderedList(textarea: HTMLTextAreaElement): SelectionRange {
     textToUnstyle = textarea.value.slice(startOfLine, endOfLine);
   }
   const linesToUnstyle = textToUnstyle.split('\n');
-  const undoStyling = linesToUnstyle.every(line => orderedListRegex.test(line));
+  const undoStyling = linesToUnstyle.every((line) =>
+    orderedListRegex.test(line)
+  );
 
   if (undoStyling) {
-    lines = linesToUnstyle.map(line => line.replace(orderedListRegex, ''));
+    lines = linesToUnstyle.map((line) => line.replace(orderedListRegex, ''));
     text = lines.join('\n');
     if (noInitialSelection && startOfLine && endOfLine) {
       const lengthDiff = linesToUnstyle[0].length - lines[0].length;
@@ -591,7 +593,7 @@ function orderedList(textarea: HTMLTextAreaElement): SelectionRange {
       textarea.selectionEnd = endOfLine;
     }
   } else {
-    lines = (function() {
+    lines = (function () {
       let i;
       let len;
       let index;

@@ -38,10 +38,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   processingPluginList = defaultProcessingPlugins,
 }) => {
   const processor = useMemo(
-    () =>
-      unified()
-        .use(parsingPluginList)
-        .use(processingPluginList),
+    () => unified().use(parsingPluginList).use(processingPluginList),
     [parsingPluginList, processingPluginList]
   );
   const result = useMemo(() => {

@@ -192,7 +192,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
   };
 
-  listRefCallback: RefCallback<HTMLDivElement> = ref => {
+  listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.props.listRef(ref);
     this.listRefInstance = ref;
   };
@@ -442,9 +442,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       <EuiText size="xs" className="euiComboBoxOptionsList__empty">
         {emptyStateContent}
       </EuiText>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;

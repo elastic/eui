@@ -7,7 +7,7 @@ export default () => (
     <EuiAccordion
       id="accordion8"
       buttonContent="I have an `onToggle` callback"
-      onToggle={isOpen =>
+      onToggle={(isOpen) =>
         console.log(`EuiAccordion is now ${isOpen ? 'open' : 'closed'}`)
       }
       paddingSize="l">

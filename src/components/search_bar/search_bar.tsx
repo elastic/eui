@@ -201,7 +201,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     }
 
     if (Array.isArray(tools)) {
-      return tools.map(tool => (
+      return tools.map((tool) => (
         <EuiFlexItem grow={false} key={tool.key == null ? undefined : tool.key}>
           {tool}
         </EuiFlexItem>
@@ -222,9 +222,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const toolsLeftEl = this.renderTools(toolsLeft);
 
-    const filtersBar = !filters ? (
-      undefined
-    ) : (
+    const filtersBar = !filters ? undefined : (
       <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
         <EuiSearchFilters
           filters={filters}

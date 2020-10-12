@@ -93,7 +93,7 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
       const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
         return (
           Array.from(el.attributes)
-            .map(el => el.name)
+            .map((el) => el.name)
             .indexOf('data-focus-guard') < 0
         );
       });
@@ -120,7 +120,7 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
       ownFocus={false}
       button={
         <EuiResizeObserver onResize={onResize}>
-          {resizeRef => <div ref={resizeRef}>{input}</div>}
+          {(resizeRef) => <div ref={resizeRef}>{input}</div>}
         </EuiResizeObserver>
       }
       buttonRef={inputRef}

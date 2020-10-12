@@ -88,7 +88,7 @@ export class EuiAbsoluteTab extends Component<
     });
   };
 
-  handleTextChange: ChangeEventHandler<HTMLInputElement> = event => {
+  handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { onChange } = this.props;
     const valueAsMoment = moment(
       event.target.value,
