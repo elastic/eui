@@ -34,5 +34,5 @@ export {
   EuiTableSelectionType,
   EuiTableSortingType,
 } from './table_types';
-export { Pagination as EuiTablePaginationProps } from './pagination_bar';
+export { Pagination } from './pagination_bar';
 export { DefaultItemAction, CustomItemAction } from './action_types';

@@ -3,12 +3,12 @@ import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 import { EuiCode } from '../../../../../src/components';
 import { Table } from './basic';
-import { EuiBasicTable } from '../../../../../src/components/basic_table/basic_table';
+import { EuiBasicTable } from '../../../../../src/components/basic_table';
 import {
   Criteria,
   CriteriaWithPagination,
 } from '!!prop-loader!../../../../../src/components/basic_table/basic_table';
-import { Pagination as EuiTablePaginationProps } from '!!prop-loader!../../../../../src/components/basic_table/pagination_bar';
+import { Pagination } from '!!prop-loader!../../../../../src/components/basic_table/pagination_bar';
 import {
   EuiTableFieldDataColumnType,
   EuiTableComputedColumnType,
@@ -100,7 +100,7 @@ export const section = {
     EuiBasicTable,
     Criteria,
     CriteriaWithPagination,
-    EuiTablePaginationProps,
+    Pagination,
     EuiTableSortingType,
     EuiTableSelectionType,
     EuiTableFieldDataColumnType,

@@ -20,9 +20,9 @@
 import React, { Component, ReactNode } from 'react';
 import {
   EuiBasicTable,
+  Criteria,
   EuiBasicTableProps,
   EuiBasicTableColumn,
-  Criteria,
   CriteriaWithPagination,
 } from './basic_table';
 import {
