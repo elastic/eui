@@ -36,6 +36,6 @@ export {
 } from './table_types';
 export { Pagination as EuiTablePaginationProps } from './pagination_bar';
 export {
-  DefaultItemActionBase as EuiTableDefaultItemActionBase,
+  DefaultItemAction as EuiTableDefaultItemAction,
   CustomItemAction as EuiTableCustomItemAction,
 } from './action_types';

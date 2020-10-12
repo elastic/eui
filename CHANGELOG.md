@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
+- Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
 
 ## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
 
