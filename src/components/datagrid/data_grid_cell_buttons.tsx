@@ -63,7 +63,8 @@ export const EuiDataGridCellButtons = ({
           <EuiButtonIcon
             data-test-subj={action['data-test-subj']}
             key={idx}
-            aria-label={action['aria-label'] || action.label}
+            title={action['aria-label'] || action.label}
+            aria-hidden
             className={classNames(
               'euiDataGridRowCell__actionButtonIcon',
               action.className
