@@ -22,13 +22,13 @@ import {
   EuiBasicTable,
   EuiBasicTableProps,
   EuiBasicTableColumn,
+  Criteria,
+  CriteriaWithPagination,
 } from './basic_table';
 import {
   EuiTableFieldDataColumnType,
   EuiTableDataType,
   EuiTableSortingType,
-  EuiTableCriteria,
-  EuiTableCriteriaWithPagination,
 } from './table_types';
 import { PropertySort } from '../../services';
 import {
@@ -86,7 +86,7 @@ type InMemoryTableProps<T> = Omit<
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
   allowNeutralSort?: boolean;
-  onTableChange?: (nextValues: EuiTableCriteria<T>) => void;
+  onTableChange?: (nextValues: Criteria<T>) => void;
   executeQueryOptions?: {
     defaultFields?: string[];
     isClauseMatcher?: (...args: any) => boolean;
@@ -103,7 +103,7 @@ type InMemoryTablePropsWithPagination<T> = Omit<
   'pagination' | 'onTableChange'
 > & {
   pagination: Pagination;
-  onTableChange?: (nextValues: EuiTableCriteriaWithPagination<T>) => void;
+  onTableChange?: (nextValues: CriteriaWithPagination<T>) => void;
 };
 
 export type EuiInMemoryTableProps<T> = CommonProps &
@@ -383,7 +383,7 @@ export class EuiInMemoryTable<T> extends Component<
     }
   }
 
-  onTableChange = ({ page, sort }: EuiTableCriteria<T>) => {
+  onTableChange = ({ page, sort }: Criteria<T>) => {
     let { index: pageIndex, size: pageSize } = (page || {}) as {
       index: number;
       size: number;

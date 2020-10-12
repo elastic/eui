@@ -80,8 +80,6 @@ import {
   EuiTableSelectionType,
   EuiTableSortingType,
   ItemIdResolved,
-  EuiTableCriteria,
-  EuiTableCriteriaWithPagination,
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
@@ -178,6 +176,33 @@ export type EuiBasicTableColumn<T> =
   | EuiTableComputedColumnType<T>
   | EuiTableActionsColumnType<T>;
 
+export interface Criteria<T> {
+  /**
+   * If the shown items represents a page (slice) into a bigger set, this describes this page
+   */
+  page?: {
+    index: number;
+    size: number;
+  };
+  /**
+   * If the shown items are sorted, this describes the sort criteria
+   */
+  sort?: {
+    field: keyof T;
+    direction: Direction;
+  };
+}
+
+export interface CriteriaWithPagination<T> extends Criteria<T> {
+  /**
+   * If the shown items represents a page (slice) into a bigger set, this describes this page
+   */
+  page: {
+    index: number;
+    size: number;
+  };
+}
+
 type CellPropsCallback<T> = (item: T, column: EuiBasicTableColumn<T>) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
@@ -226,9 +251,9 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
    */
   noItemsMessage?: ReactNode;
   /**
-   * Called whenever pagination or sorting changes (this property is required when either pagination or sorting is configured). See #EuiTableCriteria or #EuiTableCriteriaWithPagination
+   * Called whenever pagination or sorting changes (this property is required when either pagination or sorting is configured). See #Criteria or #CriteriaWithPagination
    */
-  onChange?: (criteria: EuiTableCriteria<T>) => void;
+  onChange?: (criteria: Criteria<T>) => void;
   /**
    * Configures #Pagination
    */
@@ -264,7 +289,7 @@ type BasicTableWithPaginationProps<T> = Omit<
   'pagination' | 'onChange'
 > & {
   pagination: Pagination;
-  onChange?: (criteria: EuiTableCriteriaWithPagination<T>) => void;
+  onChange?: (criteria: CriteriaWithPagination<T>) => void;
 };
 
 export type EuiBasicTableProps<T> = CommonProps &
@@ -420,8 +445,8 @@ export class EuiBasicTable<T = any> extends Component<
     this.cleanups.length = 0;
   };
 
-  buildCriteria(props: EuiBasicTableProps<T>): EuiTableCriteria<T> {
-    const criteria: EuiTableCriteria<T> = {};
+  buildCriteria(props: EuiBasicTableProps<T>): Criteria<T> {
+    const criteria: Criteria<T> = {};
     if (hasPagination(props)) {
       criteria.page = {
         index: props.pagination.pageIndex,
@@ -451,7 +476,7 @@ export class EuiBasicTable<T = any> extends Component<
   onPageSizeChange(size: number) {
     this.clearSelection();
     const currentCriteria = this.buildCriteria(this.props);
-    const criteria: EuiTableCriteriaWithPagination<T> = {
+    const criteria: CriteriaWithPagination<T> = {
       ...currentCriteria,
       page: {
         index: 0, // when page size changes, we take the user back to the first page
@@ -466,7 +491,7 @@ export class EuiBasicTable<T = any> extends Component<
   onPageChange(index: number) {
     this.clearSelection();
     const currentCriteria = this.buildCriteria(this.props);
-    const criteria: EuiTableCriteriaWithPagination<T> = {
+    const criteria: CriteriaWithPagination<T> = {
       ...currentCriteria,
       page: {
         ...currentCriteria.page!,
@@ -491,7 +516,7 @@ export class EuiBasicTable<T = any> extends Component<
     ) {
       direction = SortDirection.reverse(currentCriteria.sort.direction);
     }
-    const criteria: EuiTableCriteria<T> = {
+    const criteria: Criteria<T> = {
       ...currentCriteria,
       // resetting the page if the criteria has one
       page: !currentCriteria.page

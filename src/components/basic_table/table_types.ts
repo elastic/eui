@@ -180,30 +180,3 @@ export interface EuiTableSelectionType<T> {
   selectableMessage?: (selectable: boolean, item: T) => string;
   initialSelected?: T[];
 }
-
-export interface EuiTableCriteria<T> {
-  /**
-   * If the shown items represents a page (slice) into a bigger set, this describes this page
-   */
-  page?: {
-    index: number;
-    size: number;
-  };
-  /**
-   * If the shown items are sorted, this describes the sort criteria
-   */
-  sort?: {
-    field: keyof T;
-    direction: Direction;
-  };
-}
-
-export interface EuiTableCriteriaWithPagination<T> extends EuiTableCriteria<T> {
-  /**
-   * If the shown items represents a page (slice) into a bigger set, this describes this page
-   */
-  page: {
-    index: number;
-    size: number;
-  };
-}

@@ -6,8 +6,10 @@ import { Table } from './basic';
 import { EuiBasicTable } from '../../../../../src/components/basic_table/basic_table';
 import { Pagination as EuiTablePaginationProps } from '!!prop-loader!../../../../../src/components/basic_table/pagination_bar';
 import {
-  EuiTableCriteria,
-  EuiTableCriteriaWithPagination,
+  Criteria,
+  CriteriaWithPagination,
+} from '!!prop-loader!../../../../../src/components/basic_table/basic_table';
+import {
   EuiTableFieldDataColumnType,
   EuiTableComputedColumnType,
   EuiTableActionsColumnType,
@@ -15,8 +17,8 @@ import {
   EuiTableSortingType,
 } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
 import {
-  DefaultItemAction as EuiTableDefaultItemAction,
-  CustomItemAction as EuiTableCustomItemAction,
+  DefaultItemAction,
+  CustomItemAction,
 } from '!!prop-loader!../../../../../src/components/basic_table/action_types';
 
 const source = require('!!raw-loader!./basic');
@@ -96,16 +98,16 @@ export const section = {
   ),
   props: {
     EuiBasicTable,
-    EuiTableCriteria,
-    EuiTableCriteriaWithPagination,
+    Criteria,
+    CriteriaWithPagination,
     EuiTablePaginationProps,
     EuiTableSortingType,
     EuiTableSelectionType,
     EuiTableFieldDataColumnType,
     EuiTableComputedColumnType,
     EuiTableActionsColumnType,
-    EuiTableDefaultItemAction,
-    EuiTableCustomItemAction,
+    DefaultItemAction,
+    CustomItemAction,
   },
   demo: <Table />,
 };
