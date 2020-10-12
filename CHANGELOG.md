@@ -255,6 +255,14 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
+  
+## [`26.3.4`](https://github.com/elastic/eui/tree/v26.3.4)
+
+**Note: this release is a backport containing changes originally made in `27.2.0`**
+
+**Bug fixes**
+
+- Fixed errors in `EuiSuperDatePicker` related to invalid and `null` date formatting ([#3750](https://github.com/elastic/eui/pull/3750))
 
 ## [`26.3.3`](https://github.com/elastic/eui/tree/v26.3.3)
 
