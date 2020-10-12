@@ -45,7 +45,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   const result = useMemo(() => {
     try {
       const processed = processor.processSync(children);
-      // `.result` is untentionally `unknown` (https://github.com/vfile/vfile/pull/53)
+      // `.result` is intentionally `unknown` (https://github.com/vfile/vfile/pull/53)
       // cast to something expected.
       return (processed.result as VFileContents) ?? processed.contents;
     } catch (e) {
