@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `26.3.4`.
+
+## [`26.3.4`](https://github.com/elastic/eui/tree/v26.3.4)
+
 **Bug fixes**
 
 - Fixed errors in `EuiSuperDatePicker` related to invalid and `null` date formatting ([#3750](https://github.com/elastic/eui/pull/3750))
