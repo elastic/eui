@@ -129,7 +129,7 @@ export interface EuiTableComputedColumnType<T>
 
 export interface EuiTableActionsColumnType<T> {
   /**
-   * An array of actions to associate per item.
+   * An array of one of the objects: #DefaultItemAction or #CustomItemAction
    */
   actions: Array<Action<T>>;
   /**
