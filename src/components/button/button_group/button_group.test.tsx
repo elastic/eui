@@ -86,7 +86,7 @@ describe('EuiButtonGroup', () => {
 
   describe('button props', () => {
     describe('buttonSize', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered for single`, () => {
           const component = render(
             <EuiButtonGroup {...requiredSingleProps} buttonSize={size} />
@@ -156,7 +156,7 @@ describe('EuiButtonGroup', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered for single`, () => {
           const component = render(
             <EuiButtonGroup {...requiredSingleProps} color={color} />

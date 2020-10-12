@@ -59,7 +59,6 @@ export type EuiButtonGroupProps = CommonProps & {
    * Hides the label to only show the `iconType` provided by the `option`
    */
   isIconOnly?: boolean;
-
   /**
    * A hidden group title (required for accessibility)
    */
@@ -75,14 +74,16 @@ export type EuiButtonGroupProps = CommonProps & {
    * With `'multi'` multiple options selected (similar to checkbox group).
    */
   type?: 'single' | 'multi';
-
   /**
    * An array of #EuiButtonGroupOptionProps
    */
   options: EuiButtonGroupOptionProps[];
 } & (
     | {
-        // type: 'single';
+        /**
+         * Default for `type` is single so it can also be excluded
+         */
+        type?: 'single';
         /**
          * The `name` attribute for radio inputs;
          * Required for keeping keyboard navigation contained within the group
@@ -90,12 +91,11 @@ export type EuiButtonGroupProps = CommonProps & {
         name: string;
         /**
          * Styles the selected option to look selected (usually with `fill`)
-         * Only used in `type='single'`.
+         * Required by and only used in `type='single'`.
          */
         idSelected: string;
         /**
-         * Returns the `id` of the clicked option and the `value`
-         * (`value` only in `type='single'`)
+         * Single: Returns the `id` of the clicked option and the `value`
          */
         onChange: (id: string, value?: any) => void;
         idToSelectedMap?: never;
@@ -104,11 +104,11 @@ export type EuiButtonGroupProps = CommonProps & {
         type: 'multi';
         /**
          * A map of `id`s as keys with the selected boolean values.
-         * Only used in `type='multi'`.
+         * Required by and only used in `type='multi'`.
          */
         idToSelectedMap?: { [id: string]: boolean };
         /**
-         * Returns the `id` of the clicked option
+         * Multi: Returns the `id` of the clicked option
          */
         onChange: (id: string) => void;
         idSelected?: never;

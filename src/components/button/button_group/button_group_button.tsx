@@ -41,11 +41,20 @@ type Props = EuiButtonGroupOptionProps & {
    */
   value?: string;
   /**
-   * Props to inherit from the group
+   * Inherit from EuiButtonGroup
    */
   color: EuiButtonGroupProps['color'];
+  /**
+   * Inherit from EuiButtonGroup
+   */
   size: EuiButtonGroupProps['buttonSize'];
+  /**
+   * Inherit from EuiButtonGroup
+   */
   isIconOnly: EuiButtonGroupProps['isIconOnly'];
+  /**
+   * Inherit from EuiButtonGroup
+   */
   onChange: EuiButtonGroupProps['onChange'];
 };
 
@@ -103,6 +112,11 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     className
   );
 
+  /**
+   * Because the selected buttons also increase their text weight to 'bold',
+   * we don't want the whole button size to shift when selected, so we determine
+   * the base width of the button via the `euiTextShift()` method in SASS.
+   */
   const [buttonTextRef, innerText] = useInnerText();
 
   return (
