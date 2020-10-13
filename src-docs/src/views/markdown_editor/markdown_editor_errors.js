@@ -6,7 +6,7 @@ import {
   EuiMarkdownEditor,
   EuiSpacer,
   EuiCodeBlock,
-  EuiButtonToggle,
+  EuiButton,
   EuiFormErrorText,
 } from '../../../../src/components';
 
@@ -53,13 +53,13 @@ export default () => {
       </EuiFormErrorText>
 
       <div className="eui-textRight">
-        <EuiButtonToggle
+        <EuiButton
           size="s"
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
           onClick={() => setIsAstShowing(!isAstShowing)}
-          isSelected={isAstShowing}>
+          fill={isAstShowing}>
           {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
-        </EuiButtonToggle>
+        </EuiButton>
       </div>
 
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}

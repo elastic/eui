@@ -10,7 +10,6 @@ import {
   EuiButtonIcon,
   EuiCode,
   EuiButtonGroup,
-  EuiSpacer,
   EuiCallOut,
   EuiText,
   EuiButtonToggle,
@@ -324,16 +323,6 @@ export const ButtonExample = {
       ],
       text: (
         <>
-          <EuiCallOut
-            color="warning"
-            title={
-              <span>
-                <strong>EuiButtonToggle</strong> has drastically reduced in
-                functionality. See below for details.
-              </span>
-            }
-          />
-          <EuiSpacer size="m" />
           <p>
             You can create a toggle style button with any button type like the
             standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
