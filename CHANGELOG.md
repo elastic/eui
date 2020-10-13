@@ -6,6 +6,9 @@
 
 - Fixed custom color render of `EuiIcon` app (two-tone) icons ([#4104](https://github.com/elastic/eui/pull/4104))
 
+**Theme: Amsterdam**
+
+- Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
 
 ## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
 
