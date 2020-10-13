@@ -19,12 +19,14 @@
 import React, { JSXElementConstructor, ReactNode, RefCallback } from 'react';
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumnCellActionProps,
   EuiDataGridPopoverContent,
 } from './data_grid_types';
 import { EuiPopover, EuiPopoverFooter } from '../popover';
 import { keys } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiButtonEmpty } from '../button/button_empty';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 import { EuiDataGridCellValueElementProps } from './data_grid_cell';
 
 interface EuiDataGridCellPopoverProps {
@@ -88,29 +90,25 @@ export function EuiDataGridCellPopover({
           {column && column.cellActions && column.cellActions.length ? (
             <EuiPopoverFooter>
               <EuiFlexGroup gutterSize="s">
-                {column.cellActions.map((action, idx) => (
-                  <EuiFlexItem key={idx}>
-                    {typeof action.inPopoverButton === 'function' ? (
-                      React.createElement(action.inPopoverButton, {
-                        rowIndex,
-                        columnId: column.id,
-                      })
-                    ) : (
-                      <EuiButtonEmpty
-                        data-test-subj={
-                          action['data-test-subj']
-                            ? `${action['data-test-subj']}Popover`
-                            : undefined
-                        }
-                        aria-label={action['aria-label'] || action.label}
-                        size="s"
-                        iconType={action.iconType}
-                        onClick={() => action.callback(rowIndex, column.id)}>
-                        {action.label}
-                      </EuiButtonEmpty>
-                    )}
-                  </EuiFlexItem>
-                ))}
+                {column.cellActions.map(
+                  (Action: EuiDataGridColumnCellAction) => {
+                    const CellButtonElement = Action as JSXElementConstructor<
+                      EuiDataGridColumnCellActionProps
+                    >;
+                    return (
+                      <EuiFlexItem>
+                        <CellButtonElement
+                          rowIndex={rowIndex}
+                          columnId={column.id}
+                          Component={(props: EuiButtonEmptyProps) => (
+                            <EuiButtonEmpty {...props} size="s" />
+                          )}
+                          isExpanded={true}
+                        />
+                      </EuiFlexItem>
+                    );
+                  }
+                )}
               </EuiFlexGroup>
             </EuiPopoverFooter>
           ) : null}

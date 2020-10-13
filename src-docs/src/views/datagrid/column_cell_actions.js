@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiAvatar } from '../../../../src/components/';
-import { EuiButton } from '../../../../src/components/button';
 
 const columns = [
   {
@@ -23,11 +22,18 @@ const columns = [
     id: 'email',
     isSortable: true,
     cellActions: [
-      {
-        iconType: 'heart',
-        label: 'Send love',
-        callback: (rowIndex, colIndex) =>
-          alert(`Love sent from row ${rowIndex + 1}, column "${colIndex}"`),
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Love sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="heart"
+            aria-label={`Send love to ${row}, column "${columnId}" `}>
+            Send love
+          </Component>
+        );
       },
     ],
   },
@@ -35,39 +41,54 @@ const columns = [
     id: 'city',
     isSortable: true,
     cellActions: [
-      {
-        iconType: 'cheer',
-        label: 'Cheer the city',
-        callback: (rowIndex, columnId) =>
-          alert(`Cheers sent from row ${rowIndex + 1}, column "${columnId}"`),
-        inPopoverButton: ({ rowIndex, columnId }) => (
-          <EuiButton
-            onClick={() =>
-              alert(
-                `Cheers sent in Popover to row "${rowIndex +
-                  1}" column "${columnId}"`
-              )
-            }>
+      ({ rowIndex, columnId, Component, isExpanded }) => {
+        const row = ++rowIndex;
+        const message = isExpanded
+          ? `Cheers sent in Popover to row "${rowIndex +
+              1}" column "${columnId}"`
+          : `Cheers sent from row ${row}, column "${columnId}"`;
+
+        return (
+          <Component
+            onClick={() => alert(message)}
+            iconType="cheer"
+            aria-label={message}>
             Cheer
-          </EuiButton>
-        ),
+          </Component>
+        );
       },
     ],
   },
   {
     id: 'country',
     cellActions: [
-      {
-        iconType: 'heart',
-        label: 'Love this city',
-        callback: (rowIndex, colIndex) =>
-          alert(`Love sent from row ${rowIndex + 1}, column "${colIndex}"`),
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        const label = `Send love to country at row ${row}, column "${columnId}"`;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Love sent to country at row ${row}, column "${columnId}"`)
+            }
+            iconType="heart"
+            aria-label={label}>
+            Love this city
+          </Component>
+        );
       },
-      {
-        iconType: 'brush',
-        label: 'Paint this city',
-        callback: (rowIndex, colIndex) =>
-          alert(`Paint sent from row ${rowIndex + 1}, column "${colIndex}"`),
+      ({ rowIndex, columnId, Component }) => {
+        const row = rowIndex++;
+        const label = `Paint country at row ${row}, column "${columnId}"`;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Paint sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="brush"
+            aria-label={label}>
+            Paint this city
+          </Component>
+        );
       },
     ],
   },

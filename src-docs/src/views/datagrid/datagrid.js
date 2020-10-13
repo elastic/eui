@@ -4,6 +4,8 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  createContext,
+  useContext,
 } from 'react';
 import { fake } from 'faker';
 
@@ -17,7 +19,7 @@ import {
   EuiButtonIcon,
   EuiSpacer,
 } from '../../../../src/components/';
-import { EuiButton } from '../../../../src/components/button';
+const DataContext = createContext();
 
 const raw_data = [];
 
@@ -56,28 +58,43 @@ const columns = [
     displayAsText: 'Name',
     defaultSortDirection: 'asc',
     cellActions: [
-      {
-        label: 'Say hi',
-        iconType: 'heart',
-        callback: (rowIndex, columnId) =>
-          alert(`Hi ${raw_data[rowIndex][columnId].raw}!`),
+      ({ rowIndex, columnId, Component }) => {
+        const data = useContext(DataContext);
+        return (
+          <Component
+            onClick={() => alert(`Hi ${data[rowIndex][columnId].raw}`)}
+            iconType="heart"
+            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}>
+            Say hi
+          </Component>
+        );
       },
-      {
-        label: 'Say bye',
-        iconType: 'moon',
-        callback: (rowIndex, columnId) =>
-          alert(`Bye ${raw_data[rowIndex][columnId].raw}!`),
+      ({ rowIndex, columnId, Component }) => {
+        const data = useContext(DataContext);
+        return (
+          <Component
+            onClick={() => alert(`Bye ${data[rowIndex][columnId].raw}`)}
+            iconType="moon"
+            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}>
+            Say bye
+          </Component>
+        );
       },
     ],
   },
   {
     id: 'email',
     cellActions: [
-      {
-        label: 'Send email',
-        iconType: 'email',
-        callback: (rowIndex, columnId) =>
-          alert(raw_data[rowIndex][columnId].raw),
+      ({ rowIndex, columnId, Component }) => {
+        const data = useContext(DataContext);
+        return (
+          <Component
+            onClick={() => alert(data[rowIndex][columnId].raw)}
+            iconType="email"
+            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}>
+            Send email
+          </Component>
+        );
       },
     ],
   },
@@ -101,19 +118,23 @@ const columns = [
       ],
     },
     cellActions: [
-      {
-        label: 'Send money',
-        iconType: 'faceHappy',
-        callback: (rowIndex, columnId) =>
-          alert(`Sent money to ${raw_data[rowIndex][columnId]}`),
-        inPopoverButton: ({ rowIndex, columnId }) => (
-          <EuiButton
-            onClick={() => alert('done')}
+      ({ rowIndex, columnId, Component, isExpanded }) => {
+        const data = useContext(DataContext);
+        const onClick = isExpanded
+          ? () =>
+              alert(`Sent money to ${data[rowIndex][columnId]} when expanded`)
+          : () =>
+              alert(
+                `Sent money to ${data[rowIndex][columnId]} when not expanded`
+              );
+        return (
+          <Component
+            onClick={onClick}
             iconType="faceHappy"
-            aria-label={`Send money to ${raw_data[rowIndex][columnId]}`}>
+            aria-label={`Send money to ${data[rowIndex][columnId]}`}>
             Send money
-          </EuiButton>
-        ),
+          </Component>
+        );
       },
     ],
   },
@@ -229,11 +250,12 @@ export default () => {
 
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId, setCellProps }) => {
+      const data = useContext(DataContext);
       useEffect(() => {
         if (columnId === 'amount') {
-          if (raw_data.hasOwnProperty(rowIndex)) {
+          if (data.hasOwnProperty(rowIndex)) {
             const numeric = parseFloat(
-              raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
+              data[rowIndex][columnId].match(/\d+\.\d+/)[0],
               10
             );
             setCellProps({
@@ -243,39 +265,41 @@ export default () => {
             });
           }
         }
-      }, [rowIndex, columnId, setCellProps]);
+      }, [rowIndex, columnId, setCellProps, data]);
 
       function getFormatted() {
-        return raw_data[rowIndex][columnId].formatted
-          ? raw_data[rowIndex][columnId].formatted
-          : raw_data[rowIndex][columnId];
+        return data[rowIndex][columnId].formatted
+          ? data[rowIndex][columnId].formatted
+          : data[rowIndex][columnId];
       }
 
-      return raw_data.hasOwnProperty(rowIndex)
+      return data.hasOwnProperty(rowIndex)
         ? getFormatted(rowIndex, columnId)
         : null;
     };
   }, []);
 
   return (
-    <EuiDataGrid
-      aria-label="Data grid demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      trailingControlColumns={trailingControlColumns}
-      rowCount={raw_data.length}
-      renderCellValue={renderCellValue}
-      inMemory={{ level: 'sorting' }}
-      sorting={{ columns: sortingColumns, onSort }}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [10, 50, 100],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-      onColumnResize={eventData => {
-        console.log(eventData);
-      }}
-    />
+    <DataContext.Provider value={raw_data}>
+      <EuiDataGrid
+        aria-label="Data grid demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        trailingControlColumns={trailingControlColumns}
+        rowCount={raw_data.length}
+        renderCellValue={renderCellValue}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [10, 50, 100],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+        onColumnResize={eventData => {
+          console.log(eventData);
+        }}
+      />
+    </DataContext.Provider>
   );
 };

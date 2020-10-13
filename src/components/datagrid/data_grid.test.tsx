@@ -29,7 +29,6 @@ import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
 import cheerio from 'cheerio';
-import { EuiButton } from '../button';
 
 jest.mock('../../services/accessibility/html_id_generator', () => ({
   htmlIdGenerator: () => () => 'htmlId',
@@ -1910,28 +1909,31 @@ Array [
               id: 'A',
               isSortable: true,
               cellActions: [
-                {
-                  iconType: 'alert',
-                  label: 'test1',
-                  'aria-label': 'test1 aria label',
-                  callback: alertFn,
-                  'data-test-subj': 'alertAction',
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => alertFn(rowIndex, columnId)}
+                      iconType="alert"
+                      aria-label="test1 aria label"
+                      data-test-subj={
+                        isExpanded ? 'alertActionPopover' : 'alertAction'
+                      }>
+                      test1
+                    </Component>
+                  );
                 },
-                {
-                  iconType: 'faceHappy',
-                  label: 'test2',
-                  'aria-label': 'test2 aria label',
-                  callback: happyFn,
-                  'data-test-subj': 'happyAction',
-                  inPopoverButton: ({ rowIndex, columnId }) => (
-                    <EuiButton
-                      data-test-subj="happyActionCustomBtn"
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
                       onClick={() => happyFn(rowIndex, columnId)}
                       iconType="faceHappy"
-                      aria-label="happy aria label">
-                      {`test2 ${rowIndex} ${columnId}`}
-                    </EuiButton>
-                  ),
+                      aria-label="test2 aria label"
+                      data-test-subj={
+                        isExpanded ? 'faceHappyPopover' : 'faceHappyAction'
+                      }>
+                      test2
+                    </Component>
+                  );
                 },
               ],
             },

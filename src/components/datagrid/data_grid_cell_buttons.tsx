@@ -16,11 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React from 'react';
-import { EuiDataGridColumn } from './data_grid_types';
+import React, { JSXElementConstructor } from 'react';
+import {
+  EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumnCellActionProps,
+} from './data_grid_types';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
-import { EuiButtonIcon } from '../button/button_icon';
+import { EuiButtonIcon, EuiButtonIconProps } from '../button/button_icon';
 
 export const EuiDataGridCellButtons = ({
   popoverIsOpen,
@@ -57,23 +61,30 @@ export const EuiDataGridCellButtons = ({
       )}
     </EuiI18n>
   );
+  const ButtonComponent = (props: EuiButtonIconProps) => (
+    <EuiButtonIcon
+      {...props}
+      aria-hidden
+      className="euiDataGridRowCell__actionButtonIcon"
+      iconSize="s"
+    />
+  );
   const additionalButtons =
     column && Array.isArray(column.cellActions)
-      ? column.cellActions.map((action, idx) => (
-          <EuiButtonIcon
-            data-test-subj={action['data-test-subj']}
-            key={idx}
-            title={action['aria-label'] || action.label}
-            aria-hidden
-            className={classNames(
-              'euiDataGridRowCell__actionButtonIcon',
-              action.className
-            )}
-            iconSize="s"
-            iconType={action.iconType}
-            onClick={() => action.callback(rowIndex, column.id)}
-          />
-        ))
+      ? column.cellActions.map((Action: EuiDataGridColumnCellAction) => {
+          // React is more permissible than the TS types indicate
+          const CellButtonElement = Action as JSXElementConstructor<
+            EuiDataGridColumnCellActionProps
+          >;
+          return (
+            <CellButtonElement
+              rowIndex={rowIndex}
+              columnId={column.id}
+              Component={ButtonComponent}
+              isExpanded={false}
+            />
+          );
+        })
       : [];
   return (
     <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>

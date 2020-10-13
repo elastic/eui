@@ -17,11 +17,10 @@
  * under the License.
  */
 
-import { ComponentType, FunctionComponent, ReactNode } from 'react';
+import { ComponentType, JSXElementConstructor, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiListGroupItemProps } from '../list_group';
-import { EuiIconType } from '../icon/icon';
-import { CommonProps } from '../common';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -84,10 +83,14 @@ export interface EuiDataGridColumn {
    */
   actions?: false | EuiDataGridColumnActions;
   /**
-   * Additional actions of type #EuiDataGridColumnGridAction displayed as icon on hover / focus, and in the expanded view of the cell containing the value
+   * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
    */
   cellActions?: EuiDataGridColumnCellAction[];
 }
+
+export type EuiDataGridColumnCellAction =
+  | JSXElementConstructor<EuiDataGridColumnCellActionProps>
+  | ((props: EuiDataGridColumnCellActionProps) => ReactNode);
 
 export interface EuiDataGridColumnActions {
   /**
@@ -116,23 +119,24 @@ export interface EuiDataGridColumnActions {
   additional?: EuiListGroupItemProps[];
 }
 
-export interface EuiDataGridColumnCellAction extends CommonProps {
+export interface EuiDataGridColumnCellActionProps {
   /**
-   * Label that's displayed in the popover, also used as aria-label if not defined
+   * The index of the row that contains cell's data
    */
-  label: string;
+  rowIndex: number;
   /**
-   * Icon to display on hover / focus of the cell
+   * The id of the column that contains the cell's data
    */
-  iconType: EuiIconType;
+  columnId: string;
   /**
-   * Function triggered on click / keypress
+   * React component representing the action displayed in the cell
    */
-  callback: (rowIndex: number, columnId: string) => void;
+  // Component: ComponentType<EuiButtonEmptyProps | EuiButtonProps>;
+  Component: typeof EuiButtonEmpty | typeof EuiButtonIcon;
   /**
-   * Button for displaying in the expanded cells popover, if omitted a button will be generated from `label`, `iconType`, and `callback`
+   * Determines whether the cell's action is displayed expanded (in the Popover)
    */
-  inPopoverButton?: FunctionComponent<{ rowIndex: number; columnId: string }>;
+  isExpanded: boolean;
 }
 
 export interface EuiDataGridColumnVisibility {
