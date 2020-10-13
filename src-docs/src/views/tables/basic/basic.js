@@ -40,7 +40,7 @@ export const Table = () => {
       sortable: true,
       'data-test-subj': 'firstNameCell',
       mobileOptions: {
-        render: item => (
+        render: (item) => (
           <span>
             {item.firstName}{' '}
             <EuiLink href="#" target="_blank">
@@ -58,7 +58,7 @@ export const Table = () => {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      render: name => (
+      render: (name) => (
         <EuiLink href="#" target="_blank">
           {name}
         </EuiLink>
@@ -75,12 +75,12 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
     },
     {
       field: 'nationality',
       name: 'Nationality',
-      render: countryCode => {
+      render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       },
@@ -89,7 +89,7 @@ export const Table = () => {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: online => {
+      render: (online) => {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
         return <EuiHealth color={color}>{label}</EuiHealth>;
@@ -99,7 +99,7 @@ export const Table = () => {
 
   const items = store.users.filter((user, index) => index < 10);
 
-  const getRowProps = item => {
+  const getRowProps = (item) => {
     const { id } = item;
     return {
       'data-test-subj': `row-${id}`,

@@ -44,7 +44,7 @@ const columns = [
     truncateText: true,
     'data-test-subj': 'firstNameCell',
     mobileOptions: {
-      render: item => (
+      render: (item) => (
         <span>
           {item.firstName}{' '}
           <EuiLink href="#" target="_blank">
@@ -61,7 +61,7 @@ const columns = [
   {
     field: 'lastName',
     name: 'Last Name',
-    render: name => (
+    render: (name) => (
       <EuiLink href="#" target="_blank">
         {name}
       </EuiLink>
@@ -85,7 +85,7 @@ const customColumns = [
     'data-test-subj': 'firstNameCell',
     width: '20%',
     mobileOptions: {
-      render: item => (
+      render: (item) => (
         <span>
           {item.firstName}{' '}
           <EuiLink href="#" target="_blank">
@@ -102,7 +102,7 @@ const customColumns = [
   {
     field: 'lastName',
     name: 'Last Name',
-    render: name => (
+    render: (name) => (
       <EuiLink href="#" target="_blank">
         {name}
       </EuiLink>
@@ -119,7 +119,7 @@ const customColumns = [
 
 const items = store.users.filter((user, index) => index < 10);
 
-const getRowProps = item => {
+const getRowProps = (item) => {
   const { id } = item;
   return {
     'data-test-subj': `row-${id}`,
@@ -162,9 +162,9 @@ export const Table = () => {
   const [layout, setLayout] = useState('fixed');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     setToggleIdSelected(optionId);
-    setLayout(toggleButtons.find(x => x.id === optionId).value);
+    setLayout(toggleButtons.find((x) => x.id === optionId).value);
   };
 
   let callOutText;

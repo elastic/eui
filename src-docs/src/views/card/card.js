@@ -9,7 +9,7 @@ import {
 
 const icons = ['Beats', 'Cloud', 'Logging', 'Kibana'];
 
-const cardNodes = icons.map(function(item, index) {
+const cardNodes = icons.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard

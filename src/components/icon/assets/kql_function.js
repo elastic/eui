@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconKqlFunction = ({ title, titleId, ...props }) => (
   <svg

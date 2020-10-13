@@ -199,7 +199,7 @@ const emitFieldClause = (
   }
   const matchOp = emitMatch(match);
   const clauses = value
-    .map(v => emitFieldSingleValueClause(field, v, operator))
+    .map((v) => emitFieldSingleValueClause(field, v, operator))
     .join(' OR ');
   return `${matchOp}(${clauses})`;
 };
@@ -224,7 +224,7 @@ const emitIsClause = (clause: IsClause, isGroupMember: boolean): string => {
 
 const emitGroupClause = (clause: GroupClause): string => {
   const { value } = clause;
-  const formattedValues = value.map(clause => {
+  const formattedValues = value.map((clause) => {
     return emitClause(clause, true);
   });
   return `+(${formattedValues.join(' ')})`;
@@ -251,5 +251,5 @@ export const astToEsQueryString = (ast: _AST) => {
     return '*';
   }
 
-  return ast.clauses.map(clause => emitClause(clause)).join(' ');
+  return ast.clauses.map((clause) => emitClause(clause)).join(' ');
 };

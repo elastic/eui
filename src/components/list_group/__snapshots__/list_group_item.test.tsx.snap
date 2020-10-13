@@ -121,7 +121,7 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
     class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
     type="button"
   >
-    <div
+    <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
       data-euiicon-type="empty"
@@ -212,7 +212,7 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
   <span
     class="euiListGroupItem__text"
   >
-    <div
+    <span
       class="euiListGroupItem__icon"
       data-euiicon-type="empty"
     />
@@ -407,7 +407,7 @@ exports[`EuiListGroupItem throws a warning if both iconType and icon are provide
   <span
     class="euiListGroupItem__text"
   >
-    <div
+    <span
       class="euiListGroupItem__icon"
       data-euiicon-type="empty"
     />

@@ -328,7 +328,7 @@ export class EuiSuperSelect<T extends string> extends Component<
           onClick={() => this.itemClicked(value)}
           onKeyDown={this.onItemKeyDown}
           layoutAlign={itemLayoutAlign}
-          buttonRef={node => this.setItemNode(node, index)}
+          buttonRef={(node) => this.setItemNode(node, index)}
           role="option"
           id={value}
           aria-selected={valueOfSelected === value}

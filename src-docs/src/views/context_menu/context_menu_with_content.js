@@ -15,7 +15,7 @@ function flattenPanelTree(tree, array = []) {
   array.push(tree);
 
   if (tree.items) {
-    tree.items.forEach(item => {
+    tree.items.forEach((item) => {
       if (item.panel) {
         flattenPanelTree(item.panel, array);
         item.panel = item.panel.id;
@@ -46,7 +46,7 @@ export default () => {
     setDynamicPopover(false);
   };
 
-  const createPanelTree = Content => {
+  const createPanelTree = (Content) => {
     return flattenPanelTree({
       id: 0,
       title: 'View options',

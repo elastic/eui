@@ -116,12 +116,12 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
           .map<string>(({ id, children }) =>
             children ? id : ((null as unknown) as string)
           )
-          .filter(x => x != null)
+          .filter((x) => x != null)
       : this.props.items
           .map<string>(({ id, children, isExpanded }) =>
             children && isExpanded ? id : ((null as unknown) as string)
           )
-          .filter(x => x != null),
+          .filter((x) => x != null),
     activeItem: '',
     treeID: this.context || treeIdGenerator(),
     expandChildNodes: this.props.expandByDefault || false,
@@ -156,7 +156,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
       });
     } else {
       // if the node isn't part of openItems[] then add it
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         openItems: [...prevState.openItems, node.id],
         activeItem: node.id,
       }));
@@ -322,7 +322,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                             id={buttonId}
                             aria-controls={`euiNestedTreeView-${this.state.treeID}`}
                             aria-expanded={this.isNodeOpen(node)}
-                            ref={ref => this.setButtonRef(ref, index)}
+                            ref={(ref) => this.setButtonRef(ref, index)}
                             data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
                             onKeyDown={(event: React.KeyboardEvent) =>
                               this.onKeyDown(event, node)

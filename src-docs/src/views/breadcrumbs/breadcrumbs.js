@@ -15,7 +15,7 @@ export default () => {
     {
       text: 'Animals',
       href: '#',
-      onClick: e => {
+      onClick: (e) => {
         e.preventDefault();
       },
       'data-test-subj': 'breadcrumbsAnimals',
@@ -26,7 +26,7 @@ export default () => {
     {
       text: 'Boa constrictor',
       href: '#',
-      onClick: e => {
+      onClick: (e) => {
         e.preventDefault();
       },
     },

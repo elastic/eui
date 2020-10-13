@@ -52,7 +52,7 @@ describe('EuiCallOut', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiCallOut color={color} />);
 
@@ -62,7 +62,7 @@ describe('EuiCallOut', () => {
     });
 
     describe('heading', () => {
-      HEADINGS.forEach(heading => {
+      HEADINGS.forEach((heading) => {
         test(`${heading} is rendered`, () => {
           const component = render(<EuiCallOut heading={heading} />);
 

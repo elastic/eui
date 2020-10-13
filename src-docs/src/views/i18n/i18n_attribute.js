@@ -39,7 +39,7 @@ export default () => {
         <h3>EuiI18n used as a render prop</h3>
       </EuiTitle>
       <EuiI18n token="euiI18nAttribute.placeholderName" default="John Doe">
-        {placeholderName => (
+        {(placeholderName) => (
           <EuiFormRow
             label={
               <>

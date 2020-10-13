@@ -253,6 +253,7 @@ export const ButtonExample = {
           the other content in the container.
         </p>
       ),
+      props: { EuiButtonEmpty },
       snippet: buttonOptionFlushSnippet,
       demo: <ButtonOptionFlush />,
     },

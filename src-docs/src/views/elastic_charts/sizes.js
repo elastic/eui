@@ -56,25 +56,25 @@ export class Sizes extends Component {
     this.changePropsBasedOnWidth(100);
   };
 
-  onStackedChange = e => {
+  onStackedChange = (e) => {
     this.setState({
       stacked: e.target.checked,
     });
   };
 
-  onMultiChange = multiObject => {
+  onMultiChange = (multiObject) => {
     this.setState({
       ...multiObject,
     });
   };
 
-  onChartTypeChange = optionId => {
+  onChartTypeChange = (optionId) => {
     this.setState({
       toggleIdSelected: optionId,
     });
   };
 
-  onWidthChartsChange = e => {
+  onWidthChartsChange = (e) => {
     this.setState({
       width: e.target.value,
     });
@@ -82,7 +82,7 @@ export class Sizes extends Component {
     this.changePropsBasedOnWidth(e.target.value);
   };
 
-  changePropsBasedOnWidth = width => {
+  changePropsBasedOnWidth = (width) => {
     const data1 = TIME_DATA.slice();
     const data2 = TIME_DATA_2.slice();
     let tooltipProps;
@@ -99,7 +99,7 @@ export class Sizes extends Component {
     }
 
     if (width < this.mediumSize) {
-      const headerFormatter = tooltipData => {
+      const headerFormatter = (tooltipData) => {
         return `${formatDate(
           tooltipData.value,
           dateFormatAliases.shortDateTime
@@ -341,7 +341,7 @@ export class Sizes extends Component {
     style={${JSON.stringify(yAxisStyle)}}
   />
 </Chart>`}>
-            {copy => (
+            {(copy) => (
               <EuiButton
                 fill
                 onClick={copy}

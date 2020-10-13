@@ -76,19 +76,19 @@ export const Categorical = () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const onNumChartsChange = e => {
+  const onNumChartsChange = (e) => {
     updateCorrectChart(Number(e.target.value), colorType);
     setNumCharts(e.target.value);
   };
 
-  const onColorTypeChange = optionId => {
+  const onColorTypeChange = (optionId) => {
     const colorType = colorTypeRadios.find(({ id }) => id === optionId).label;
     updateCorrectChart(Number(numCharts), colorType);
     setColorType(colorType);
     setColorTypeIdSelected(optionId);
   };
 
-  const onGroupChange = e => {
+  const onGroupChange = (e) => {
     const colorType = e.target.checked
       ? 'Grouped'
       : colorTypeRadios.find(({ id }) => id === colorTypeIdSelected).label;
@@ -120,9 +120,9 @@ export const Categorical = () => {
     }
   };
 
-  const createCategoryChart = numCharts => {
+  const createCategoryChart = (numCharts) => {
     const dg = new DataGenerator();
-    const data = dg.generateGroupedSeries(20, numCharts).map(item => {
+    const data = dg.generateGroupedSeries(20, numCharts).map((item) => {
       item.g = `Categorical ${item.g.toUpperCase()}`;
       return item;
     });
@@ -134,12 +134,12 @@ export const Categorical = () => {
     setChartType('LineSeries');
   };
 
-  const createQuantityChart = numCharts => {
+  const createQuantityChart = (numCharts) => {
     const vizColors = euiPalettePositive(numCharts);
 
     // convert series labels to percentages
     const dg = new DataGenerator();
-    const data = dg.generateGroupedSeries(20, numCharts).map(item => {
+    const data = dg.generateGroupedSeries(20, numCharts).map((item) => {
       const increment = 100 / numCharts;
       const index = item.g.charCodeAt(0) - 97;
       const lower = Math.floor(increment * index);
@@ -158,7 +158,7 @@ export const Categorical = () => {
     setChartType('BarSeries');
   };
 
-  const createTrendChart = numCharts => {
+  const createTrendChart = (numCharts) => {
     const vizColors = euiPaletteForStatus(numCharts);
 
     // convert series labels to better/worse
@@ -166,7 +166,7 @@ export const Categorical = () => {
     const numOfHalf = Math.floor(numCharts / 2);
 
     const dg = new DataGenerator();
-    const data = dg.generateGroupedSeries(20, numCharts).map(item => {
+    const data = dg.generateGroupedSeries(20, numCharts).map((item) => {
       const index = item.g.charCodeAt(0) - 97;
       let howManyErs;
       if (oddSeries && index === numOfHalf) {
@@ -193,7 +193,7 @@ export const Categorical = () => {
     setChartType('BarSeries');
   };
 
-  const createHighlightChart = numCharts => {
+  const createHighlightChart = (numCharts) => {
     const vizColors = euiPaletteGray(numCharts);
     vizColors[vizColors.length - 1] = highlightColor;
 
@@ -228,9 +228,7 @@ export const Categorical = () => {
           compared to others
         </h4>
       </EuiTitle>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
   const customTheme = vizColors
     ? [
@@ -267,7 +265,7 @@ export const Categorical = () => {
     ChartType = CHART_COMPONENTS.LineSeries;
 
     for (let index = 0; index < 4; index++) {
-      const data = dg.generateGroupedSeries(20, 1).map(item => {
+      const data = dg.generateGroupedSeries(20, 1).map((item) => {
         item.y += index * 5;
         return item;
       });
@@ -433,7 +431,7 @@ export const Categorical = () => {
     showGridLines
   />
 </Chart>`}>
-          {copy => (
+          {(copy) => (
             <EuiButton
               fill
               onClick={copy}

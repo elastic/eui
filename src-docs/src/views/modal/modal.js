@@ -28,7 +28,7 @@ export default () => {
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
 
   const onSwitchChange = () =>
-    setIsSwitchChecked(isSwitchChecked => !isSwitchChecked);
+    setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
 
   const closeModal = () => setIsModalVisible(false);
 
@@ -103,7 +103,7 @@ export default () => {
         <EuiSuperSelect
           options={superSelectOptions}
           valueOfSelected={superSelectvalue}
-          onChange={value => onSuperSelectChange(value)}
+          onChange={(value) => onSuperSelectChange(value)}
           itemLayoutAlign="top"
           hasDividers
         />
@@ -117,7 +117,7 @@ export default () => {
     </EuiForm>
   );
 
-  const onSuperSelectChange = value => {
+  const onSuperSelectChange = (value) => {
     setSuperSelectValue(value);
   };
 

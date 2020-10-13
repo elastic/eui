@@ -71,7 +71,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
     for (let i = 0; i < rowCount; i++) {
       cells.push(
         columns
-          .map(column => {
+          .map((column) => {
             const skipThisColumn =
               inMemory.skipColumns &&
               inMemory.skipColumns.indexOf(column.id) !== -1;
@@ -99,7 +99,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
               </div>
             );
           })
-          .filter(cell => cell != null)
+          .filter((cell) => cell != null)
       );
     }
 
@@ -107,7 +107,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
   }, [rowCount, columns, inMemory.skipColumns, renderCellValue]);
 
   const onMutation = useCallback<MutationCallback>(
-    records => {
+    (records) => {
       recordLoop: for (let i = 0; i < records.length; i++) {
         const record = records[i];
         let target: Node | null = record.target;
@@ -156,7 +156,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
         attributes: true,
         childList: true,
       }}>
-      {ref => <div ref={ref}>{cells}</div>}
+      {(ref) => <div ref={ref}>{cells}</div>}
     </EuiMutationObserver>,
     (documentFragment as unknown) as Element
   );

@@ -10,7 +10,7 @@ import {
 const icons = ['dashboard', 'monitoring', 'watches'];
 const badges = [null, 'Beta', 'Lab'];
 
-const cardNodes = icons.map(function(item, index) {
+const cardNodes = icons.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard

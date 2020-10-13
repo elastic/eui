@@ -16,6 +16,22 @@ const basicSnippet = [
 `,
 ];
 
+import I18nInterpolation from './i18n_interpolation';
+const i18nInterpolationSource = require('!!raw-loader!./i18n_interpolation');
+const i18nInterpolationHtml = renderToHtml(I18nInterpolation);
+const interpolationSnippet = [
+  `useEuiI18n('filename.greeting', 'Hello, {planet}', { planet: 'world' })
+`,
+  `<EuiI18n
+  token="filename.greeting"
+  default="Hello, {planet}"
+  values={{
+    planet: 'world'
+  }}
+/>
+`,
+];
+
 import I18nAttribute from './i18n_attribute';
 const i18nAttributeSource = require('!!raw-loader!./i18n_attribute');
 const i18nAttributeHtml = renderToHtml(I18nAttribute);
@@ -89,6 +105,34 @@ export const I18nExample = {
       ),
       snippet: basicSnippet,
       demo: <I18nBasic />,
+    },
+    {
+      title: 'Interpolation',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: i18nInterpolationSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: i18nInterpolationHtml,
+        },
+      ],
+      text: (
+        <p>
+          <strong>useEuiI18n</strong> and <strong>EuiI18n</strong> support
+          variable interpolation. In a translation like{' '}
+          <EuiCode>{'Signed in as {name} ({email})'}</EuiCode>, two values can
+          be interpolated (<EuiCode>name</EuiCode> and <EuiCode>email</EuiCode>
+          ). These values can be specified by passing a{' '}
+          <EuiCode>values</EuiCode> prop to <strong>EuiI18n</strong>, or by
+          passing an object of values as the third argument to{' '}
+          <strong>useEuiI18n</strong>. Interpolation values can be passed as a
+          string, number, or a React Component.
+        </p>
+      ),
+      snippet: interpolationSnippet,
+      demo: <I18nInterpolation />,
     },
     {
       title: 'Using localized values in attributes',

@@ -155,7 +155,7 @@ describe('EuiSelectable', () => {
 
       const component = mount(
         <EuiSelectable<OptionalOption> options={options} onChange={onChange}>
-          {list => list}
+          {(list) => list}
         </EuiSelectable>
       );
 
@@ -189,7 +189,7 @@ describe('EuiSelectable', () => {
 
       const component = mount(
         <EuiSelectable<ExtendedOption> options={options} onChange={onChange}>
-          {list => list}
+          {(list) => list}
         </EuiSelectable>
       );
 

@@ -28,13 +28,13 @@ const types = ['dashboard', 'visualization', 'watch'];
 
 const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
 
-const items = times(10, id => {
+const items = times(10, (id) => {
   return {
     id,
     status: random.oneOf(['open', 'closed']),
     type: random.oneOf(types),
     tag: random.setOf(
-      tags.map(tag => tag.name),
+      tags.map((tag) => tag.name),
       { min: 0, max: 3 }
     ),
     active: random.boolean(),
@@ -46,10 +46,10 @@ const items = times(10, id => {
 });
 
 const loadTags = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
-        tags.map(tag => ({
+        tags.map((tag) => ({
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         }))
@@ -153,11 +153,11 @@ export const SearchBar = () => {
         },
         tag: {
           type: 'string',
-          validate: value => {
-            if (value !== '' && !tags.some(tag => tag.name === value)) {
+          validate: (value) => {
+            if (value !== '' && !tags.some((tag) => tag.name === value)) {
               throw new Error(
                 `unknown tag (possible values: ${tags
-                  .map(tag => tag.name)
+                  .map((tag) => tag.name)
                   .join(',')})`
               );
             }
@@ -205,7 +205,7 @@ export const SearchBar = () => {
       {
         name: 'Open',
         field: 'status',
-        render: status => (status === 'open' ? 'Yes' : 'No'),
+        render: (status) => (status === 'open' ? 'Yes' : 'No'),
       },
       {
         name: 'Active',
@@ -223,7 +223,7 @@ export const SearchBar = () => {
       {
         name: 'Stats',
         width: '150px',
-        render: item => {
+        render: (item) => {
           return (
             <div>
               <div>{`${item.stars} Stars`}</div>

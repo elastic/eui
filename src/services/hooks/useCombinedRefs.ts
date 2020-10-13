@@ -31,7 +31,7 @@ export const useCombinedRefs = <T>(
 ) => {
   return useCallback(
     (node: T) =>
-      refs.forEach(ref => {
+      refs.forEach((ref) => {
         if (!ref) return;
 
         if (typeof ref === 'function') {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconPin = ({ title, titleId, ...props }) => (
   <svg

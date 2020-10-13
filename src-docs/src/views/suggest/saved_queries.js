@@ -97,11 +97,11 @@ export default () => {
     setHide(false);
   };
 
-  const getInputValue = val => {
+  const getInputValue = (val) => {
     setValue(val);
   };
 
-  const onItemClick = item => {};
+  const onItemClick = (item) => {};
 
   const onTimeChange = dateRange => {};
 

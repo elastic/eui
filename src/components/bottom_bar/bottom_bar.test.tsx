@@ -27,7 +27,7 @@ import { EuiBottomBar, paddingSizeToClassNameMap } from './bottom_bar';
 
 // @ts-ignore TODO: Temporary hack which we can remove once react-test-renderer supports portals.
 // More info at https://github.com/facebook/react/issues/11565.
-ReactDOM.createPortal = node => node;
+ReactDOM.createPortal = (node) => node;
 
 describe('EuiBottomBar', () => {
   test('is rendered', () => {
@@ -40,7 +40,7 @@ describe('EuiBottomBar', () => {
 
   describe('props', () => {
     describe('paddingSize', () => {
-      keysOf(paddingSizeToClassNameMap).forEach(paddingSize => {
+      keysOf(paddingSizeToClassNameMap).forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
           const component = render(<EuiBottomBar paddingSize={paddingSize} />);
 

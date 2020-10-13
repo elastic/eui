@@ -37,7 +37,7 @@ describe('EuiToken', () => {
 
   describe('props', () => {
     describe('iconType as EuiTokenMapType', () => {
-      tokenTypes.forEach(type => {
+      tokenTypes.forEach((type) => {
         test(`${type} is rendered`, () => {
           const component = render(<EuiToken iconType={type} />);
 
@@ -47,7 +47,7 @@ describe('EuiToken', () => {
     });
 
     describe('shape', () => {
-      SHAPES.forEach(shape => {
+      SHAPES.forEach((shape) => {
         test(`${shape} is rendered`, () => {
           const component = render(<EuiToken iconType="dot" shape={shape} />);
 
@@ -57,7 +57,7 @@ describe('EuiToken', () => {
     });
 
     describe('color', () => {
-      tokenColors.forEach(color => {
+      tokenColors.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiToken iconType="dot" color={color} />);
 
@@ -73,7 +73,7 @@ describe('EuiToken', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(tokenSize => {
+      SIZES.forEach((tokenSize) => {
         test(`${tokenSize} is rendered`, () => {
           const component = render(
             <EuiToken iconType="dot" size={tokenSize} />
@@ -85,7 +85,7 @@ describe('EuiToken', () => {
     });
 
     describe('fill', () => {
-      FILLS.forEach(fill => {
+      FILLS.forEach((fill) => {
         test(`${fill} is rendered`, () => {
           const component = render(<EuiToken iconType="dot" fill={fill} />);
 

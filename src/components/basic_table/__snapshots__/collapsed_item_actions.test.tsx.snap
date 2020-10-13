@@ -17,7 +17,7 @@ exports[`CollapsedItemActions render 1`] = `
         data-test-subj="euiCollapsedItemActionsButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="boxesHorizontal"

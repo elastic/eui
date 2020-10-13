@@ -8,7 +8,7 @@ import {
 
 const badges = [null, 'Beta', 'Lab'];
 
-const panelNodes = badges.map(function(item, index) {
+const panelNodes = badges.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiPanel

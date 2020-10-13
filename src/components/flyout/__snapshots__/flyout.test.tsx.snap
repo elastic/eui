@@ -28,7 +28,7 @@ exports[`EuiFlyout is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -71,7 +71,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -143,7 +143,7 @@ exports[`EuiFlyout props max width can be set to a custom number 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -186,7 +186,7 @@ exports[`EuiFlyout props max width can be set to a custom value and measurement 
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -228,7 +228,7 @@ exports[`EuiFlyout props max width can be set to a default 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -272,7 +272,7 @@ Array [
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="cross"
@@ -317,7 +317,7 @@ Array [
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
             data-euiicon-type="cross"
@@ -360,7 +360,7 @@ exports[`EuiFlyout props size l is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -402,7 +402,7 @@ exports[`EuiFlyout props size m is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -444,7 +444,7 @@ exports[`EuiFlyout props size s is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"

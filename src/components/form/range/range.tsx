@@ -310,7 +310,7 @@ export class EuiRange extends Component<EuiRangeProps> {
             {max}
           </EuiRangeLabel>
         )}
-        {!showInputOnly && (
+        {showInput && !showInputOnly && (
           <>
             <div className="euiRange__horizontalSpacer" />
             {theInput}
@@ -329,9 +329,7 @@ export class EuiRange extends Component<EuiRangeProps> {
         disableFocusTrap={true}>
         {theRange}
       </EuiInputPopover>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     return thePopover ? thePopover : theRange;
   }

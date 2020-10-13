@@ -55,7 +55,7 @@ export default () => {
     <>
       <EuiPinnableListGroup
         listItems={itemList}
-        onPinClick={selectedItem => {
+        onPinClick={(selectedItem) => {
           if (selectedItem.hasOwnProperty('pinned')) {
             const newItemList = itemList.map(item => {
               if (item.id === selectedItem.id) {

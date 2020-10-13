@@ -20,7 +20,7 @@ const customPalettes = [
 export default () => {
   const [length, setLength] = useState(10);
 
-  const onLengthChange = e => {
+  const onLengthChange = (e) => {
     setLength(e.currentTarget.value);
   };
 
@@ -46,7 +46,7 @@ export default () => {
               className="guideColorPalette__swatchHolder"
               gutterSize="none"
               responsive={false}>
-              {colorPalette(palette, Number(length), i > 1).map(hexCode => (
+              {colorPalette(palette, Number(length), i > 1).map((hexCode) => (
                 <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>

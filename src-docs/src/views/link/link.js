@@ -26,7 +26,7 @@ export default () => (
       Here is an example of a{' '}
       <EuiLink
         href="https://github.com/elastic/eui"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
         }}>
         link

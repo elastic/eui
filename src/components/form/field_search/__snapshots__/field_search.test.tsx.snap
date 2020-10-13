@@ -33,7 +33,7 @@ exports[`EuiFieldSearch props append is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldText--inGroup euiFieldSearch-isClearable"
+      class="euiFieldSearch euiFieldText--inGroup"
       type="search"
     />
   </eui-validatable-control>
@@ -49,8 +49,42 @@ exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable"
+      class="euiFieldSearch euiFieldSearch--fullWidth"
       type="search"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldSearch props isClearable is accepted 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  icon="search"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldSearch"
+      type="search"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldSearch props isClearable is rendered when a value exists 1`] = `
+<eui-form-control-layout
+  clear="[object Object]"
+  compressed="false"
+  fullwidth="false"
+  icon="search"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldSearch euiFieldSearch-isClearable"
+      type="search"
+      value="Hello"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -67,7 +101,7 @@ exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
     isinvalid="true"
   >
     <input
-      class="euiFieldSearch euiFieldSearch-isClearable"
+      class="euiFieldSearch"
       type="search"
     />
   </eui-validatable-control>
@@ -83,7 +117,7 @@ exports[`EuiFieldSearch props isLoading is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldSearch-isLoading euiFieldSearch-isClearable"
+      class="euiFieldSearch euiFieldSearch-isLoading"
       type="search"
     />
   </eui-validatable-control>
@@ -100,7 +134,7 @@ exports[`EuiFieldSearch props prepend is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldText--inGroup euiFieldSearch-isClearable"
+      class="euiFieldSearch euiFieldText--inGroup"
       type="search"
     />
   </eui-validatable-control>

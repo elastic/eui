@@ -431,7 +431,7 @@ function useInMemoryValues(
     const nextInMemoryValues = _inMemoryValues.current;
     nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
     nextInMemoryValues[rowIndex][columnId] = value;
-    setInMemoryValuesVersion(version => version + 1);
+    setInMemoryValuesVersion((version) => version + 1);
   }, []);
 
   // if `inMemory.level` or `rowCount` changes reset the values
@@ -446,7 +446,7 @@ function useInMemoryValues(
       for (let i = rowCount; i < existingRowKeyCount; i++) {
         delete _inMemoryValues.current[i];
       }
-      setInMemoryValuesVersion(version => version + 1);
+      setInMemoryValuesVersion((version) => version + 1);
     }
   }, [inMemoryLevel, rowCount]);
 
@@ -584,7 +584,7 @@ const useFocus = (
           }
         : {
             tabIndex: 0,
-            onFocus: e => {
+            onFocus: (e) => {
               // if e.target (the source element of the `focus event`
               // matches e.currentTarget (always the div with this onFocus listener)
               // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
@@ -626,7 +626,7 @@ function checkOrDefaultToolBarDiplayOptions<
 }
 
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
-export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
+export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
@@ -635,14 +635,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
-  const setContainerRef = useCallback(ref => _setContainerRef(ref), []);
+  const setContainerRef = useCallback((ref) => _setContainerRef(ref), []);
 
   const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
     headerIsInteractive
   );
 
   const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
-    headerRow => {
+    (headerRow) => {
       const tabbables = tabbable(headerRow);
       const managed = headerRow.querySelectorAll('[data-euigrid-tab-managed]');
       const hasInteractives = tabbables.length > 0 || managed.length > 0;
@@ -659,7 +659,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
   );
   const handleHeaderMutation = useCallback<MutationCallback>(
-    records => {
+    (records) => {
       const [{ target }] = records;
 
       // find the wrapping header div
@@ -712,7 +712,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   // enables/disables grid controls based on available width
   const onResize = useOnResize(
-    nextHasRoomForGridControls => {
+    (nextHasRoomForGridControls) => {
       if (nextHasRoomForGridControls !== hasRoomForGridControls) {
         setHasRoomForGridControls(nextHasRoomForGridControls);
       }
@@ -1013,7 +1013,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                             </div>
                           ) : null}
                           <EuiResizeObserver onResize={onResize}>
-                            {resizeRef => (
+                            {(resizeRef) => (
                               <div
                                 onKeyDown={createKeyDownHandler(
                                   props,
@@ -1058,7 +1058,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                         childList: true,
                                       }}
                                       onMutation={handleHeaderMutation}>
-                                      {ref => (
+                                      {(ref) => (
                                         <EuiDataGridHeaderRow
                                           ref={ref}
                                           {...commonGridProps}

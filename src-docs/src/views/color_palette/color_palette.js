@@ -47,7 +47,7 @@ const customPalettes = [
 
 export default () => (
   <Fragment>
-    {customPalettes.map(palette => (
+    {customPalettes.map((palette) => (
       <Fragment key={palette.title}>
         <EuiTitle size="xxs">
           <h3>{palette.title}</h3>
@@ -61,7 +61,7 @@ export default () => (
               alignItems="flexStart"
               responsive={false}
               wrap>
-              {palette.palette.map(hexCode => (
+              {palette.palette.map((hexCode) => (
                 <ColorPaletteFlexItem
                   className="guideColorPalette__swatch--notRound"
                   hexCode={hexCode}
