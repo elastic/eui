@@ -101,7 +101,7 @@ describe('EuiTabbedContent', () => {
     });
 
     describe('autoFocus', () => {
-      AUTOFOCUS.forEach(focusType => {
+      AUTOFOCUS.forEach((focusType) => {
         test(`${focusType} is rendered`, () => {
           const component = render(
             <EuiTabbedContent autoFocus={focusType} tabs={tabs} />
@@ -128,10 +128,7 @@ describe('EuiTabbedContent', () => {
       ];
       const component = mount(<EuiTabbedContent tabs={tabs} />);
 
-      component
-        .find('EuiTab[id="kibana"] button')
-        .first()
-        .simulate('click');
+      component.find('EuiTab[id="kibana"] button').first().simulate('click');
 
       component.setProps({
         tabs: [

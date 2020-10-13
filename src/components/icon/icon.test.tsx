@@ -45,7 +45,7 @@ const prettyHtml = cheerio.load('');
 function testIcon(props: PropsOf<EuiIcon>) {
   return () => {
     expect.assertions(1);
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const onIconLoad = () => {
         component.update();
         expect(prettyHtml(component.html())).toMatchSnapshot();
@@ -83,13 +83,13 @@ describe('EuiIcon', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test('${size} is rendered', testIcon({ type: 'search', size }));
       });
     });
 
     describe('type', () => {
-      TYPES.forEach(type => {
+      TYPES.forEach((type) => {
         test(`${type} is rendered`, testIcon({ type }));
       });
     });
@@ -101,7 +101,7 @@ describe('EuiIcon', () => {
         '#885522',
         'rgb(100, 150, 200)',
         'hsla(270, 60%, 70%, 0.9)',
-      ].forEach(color => {
+      ].forEach((color) => {
         it(`${color} is rendered`, testIcon({ type: 'search', color }));
       });
     });

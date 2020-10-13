@@ -5,7 +5,7 @@ import { EuiSwitch, EuiStat, EuiSpacer } from '../../../../src/components';
 export default () => {
   const [isLoading, setLoading] = useState(true);
 
-  const onToggleChange = e => {
+  const onToggleChange = (e) => {
     setLoading(e.target.checked);
   };
 

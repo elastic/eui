@@ -7,7 +7,7 @@ import { EuiDatePicker, EuiFormRow } from '../../../../src/components';
 export default () => {
   const [startDate, setStartDate] = useState(null);
 
-  const handleChange = date => {
+  const handleChange = (date) => {
     setStartDate(date);
   };
 

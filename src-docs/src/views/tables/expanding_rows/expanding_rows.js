@@ -55,12 +55,12 @@ export const Table = () => {
     setSortDirection(sortDirection);
   };
 
-  const onSelectionChange = selectedItems => {
+  const onSelectionChange = (selectedItems) => {
     setSelectedItems(selectedItems);
   };
 
   const onClickDelete = () => {
-    store.deleteUsers(...selectedItems.map(user => user.id));
+    store.deleteUsers(...selectedItems.map((user) => user.id));
 
     setSelectedItems([]);
   };
@@ -76,7 +76,7 @@ export const Table = () => {
     );
   };
 
-  const toggleDetails = item => {
+  const toggleDetails = (item) => {
     const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
     if (itemIdToExpandedRowMapValues[item.id]) {
       delete itemIdToExpandedRowMapValues[item.id];
@@ -118,7 +118,7 @@ export const Table = () => {
       sortable: true,
       truncateText: true,
       mobileOptions: {
-        render: item => (
+        render: (item) => (
           <span>
             {item.firstName} {item.lastName}
           </span>
@@ -141,7 +141,7 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       schema: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
       sortable: true,
     },
     {
@@ -160,7 +160,7 @@ export const Table = () => {
       align: RIGHT_ALIGNMENT,
       width: '40px',
       isExpander: true,
-      render: item => (
+      render: (item) => (
         <EuiButtonIcon
           onClick={() => toggleDetails(item)}
           aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
@@ -185,8 +185,8 @@ export const Table = () => {
   };
 
   const selection = {
-    selectable: user => user.online,
-    selectableMessage: selectable =>
+    selectable: (user) => user.online,
+    selectableMessage: (selectable) =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
   };

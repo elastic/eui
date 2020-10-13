@@ -47,7 +47,7 @@ export class AppView extends Component {
 
     const i18n = {
       mappingFunc: mappingFuncs[locale],
-      formatNumber: value => new Intl.NumberFormat(locale).format(value),
+      formatNumber: (value) => new Intl.NumberFormat(locale).format(value),
       locale,
     };
 
@@ -65,7 +65,7 @@ export class AppView extends Component {
           <div className="guidePageContent">
             <EuiContext i18n={i18n}>
               <ThemeContext.Consumer>
-                {context => {
+                {(context) => {
                   return React.cloneElement(children, {
                     selectedTheme: context.theme,
                     title: currentRoute.name,
@@ -83,7 +83,7 @@ export class AppView extends Component {
     return <div className="guide">{this.renderContent()}</div>;
   }
 
-  onKeydown = event => {
+  onKeydown = (event) => {
     if (event.target !== document.body) {
       return;
     }

@@ -41,7 +41,7 @@ export default () => {
 
   const [value, setValue] = useState(20);
 
-  const onRangeChange = e => {
+  const onRangeChange = (e) => {
     setValue(e.target.value);
   };
 
@@ -49,7 +49,7 @@ export default () => {
     setIsSwitchChecked(!isSwitchChecked);
   };
 
-  const onCheckboxChange = optionId => {
+  const onCheckboxChange = (optionId) => {
     const newCheckboxIdToSelectedMap = {
       ...checkboxIdToSelectedMap,
       ...{
@@ -91,7 +91,7 @@ export default () => {
           ]}
           compressed
           selectedOptions={comboBoxSelectionOptions}
-          onChange={comboBoxSelectionOptions =>
+          onChange={(comboBoxSelectionOptions) =>
             setComboBoxSelectionOptions(comboBoxSelectionOptions)
           }
         />

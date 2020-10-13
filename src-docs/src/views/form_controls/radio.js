@@ -7,7 +7,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 export default () => {
   const [checked, setChecked] = useState(false);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setChecked(e.target.checked);
   };
 
@@ -17,7 +17,7 @@ export default () => {
         id={htmlIdGenerator()()}
         label="I am a radio"
         checked={checked}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
       />
 
       <EuiSpacer size="m" />
@@ -26,7 +26,7 @@ export default () => {
         id={htmlIdGenerator()()}
         label="I am a disabled radio"
         checked={checked}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         disabled
       />
 
@@ -36,7 +36,7 @@ export default () => {
         id={htmlIdGenerator()()}
         label="I am a compressed radio"
         checked={checked}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         compressed
       />
     </Fragment>

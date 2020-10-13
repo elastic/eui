@@ -19,7 +19,7 @@ const colors = [
 
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
-    {colors.map(color => (
+    {colors.map((color) => (
       <EuiFlexItem key={color} grow={false}>
         <EuiButtonIcon
           color={color}

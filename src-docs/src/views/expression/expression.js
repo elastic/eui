@@ -60,14 +60,14 @@ export default () => {
     });
   };
 
-  const changeExample1 = event => {
+  const changeExample1 = (event) => {
     setExample1({
       ...example1,
       value: event.target.value,
     });
   };
 
-  const changeExample2Value = e => {
+  const changeExample2Value = (e) => {
     const sanitizedValue = parseInt(e.target.value, 10);
     setExample2({
       ...example2,
@@ -75,7 +75,7 @@ export default () => {
     });
   };
 
-  const changeExample2Description = event => {
+  const changeExample2Description = (event) => {
     setExample2({
       ...example2,
       description: event.target.value,

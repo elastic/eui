@@ -34,9 +34,9 @@ export interface EuiLoadingKibanaProps {
   size?: keyof typeof sizeToClassNameMap;
 }
 
-export const EuiLoadingKibana: FunctionComponent<CommonProps &
-  HTMLAttributes<HTMLDivElement> &
-  EuiLoadingKibanaProps> = ({ size = 'm', className, ...rest }) => {
+export const EuiLoadingKibana: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingKibanaProps
+> = ({ size = 'm', className, ...rest }) => {
   const classes = classNames(
     'euiLoadingKibana',
     sizeToClassNameMap[size],

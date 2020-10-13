@@ -32,7 +32,7 @@ export default () => {
    */
   const recents = searchData.slice(0, 5);
   const recentsWithIcon: EuiSelectableTemplateSitewideOption[] = recents.map(
-    recent => {
+    (recent) => {
       return {
         ...recent,
         icon: {
@@ -74,7 +74,9 @@ export default () => {
    * Do something with the selection based on the found option with `checked: on`
    */
   const onChange = (updatedOptions: EuiSelectableTemplateSitewideOption[]) => {
-    const clickedItem = updatedOptions.find(option => option.checked === 'on');
+    const clickedItem = updatedOptions.find(
+      (option) => option.checked === 'on'
+    );
     if (!clickedItem) return;
     if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };

@@ -717,7 +717,7 @@ export class EuiPopover extends Component<Props, State> {
                   subtree: true, // watch all child elements
                 }}
                 onMutation={this.onMutation}>
-                {mutationRef => <div ref={mutationRef}>{children}</div>}
+                {(mutationRef) => <div ref={mutationRef}>{children}</div>}
               </EuiMutationObserver>
             </EuiPanel>
           </EuiFocusTrap>

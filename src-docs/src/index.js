@@ -55,7 +55,7 @@ ReactDOM.render(
                 <Route
                   key={i}
                   path={`/${path}`}
-                  render={props => {
+                  render={(props) => {
                     const { location } = props;
                     // prevents encoded urls with a section id to fail
                     if (location.pathname.includes('%23')) {

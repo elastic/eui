@@ -23,19 +23,19 @@ export default () => {
       <EuiSwitch
         label="compressed"
         checked={isCompressed}
-        onChange={e => setCompressed(e.target.checked)}
+        onChange={(e) => setCompressed(e.target.checked)}
       />
       &emsp;
       <EuiSwitch
         label="disabled"
         checked={isDisabled}
-        onChange={e => setDisabled(e.target.checked)}
+        onChange={(e) => setDisabled(e.target.checked)}
       />
       &emsp;
       <EuiSwitch
         label="readOnly"
         checked={isReadOnly}
-        onChange={e => setReadOnly(e.target.checked)}
+        onChange={(e) => setReadOnly(e.target.checked)}
       />
       <EuiSpacer />
       <EuiFieldText

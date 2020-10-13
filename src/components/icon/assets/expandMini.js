@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconExpandMini = ({ title, titleId, ...props }) => (
   <svg

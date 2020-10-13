@@ -27,6 +27,7 @@ export type EuiComboBoxOptionOption<
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> & {
     isGroupLabelOption?: boolean;
     label: string;
+    key?: string;
     options?: Array<EuiComboBoxOptionOption<T>>;
     value?: T;
   };

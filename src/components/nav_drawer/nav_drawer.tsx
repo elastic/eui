@@ -280,7 +280,7 @@ export class EuiNavDrawer extends Component<
     this.collapseFlyout(false);
   };
 
-  handleDrawerMenuClick: MouseEventHandler<HTMLDivElement> = event => {
+  handleDrawerMenuClick: MouseEventHandler<HTMLDivElement> = (event) => {
     // walk up e.target until either:
     // 1. a[href] - close the menu
     // 2. document.body - do nothing
@@ -304,7 +304,7 @@ export class EuiNavDrawer extends Component<
     // Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
     // Filter out falsy items
     const filteredChildren = React.Children.toArray(children);
-    return React.Children.map(filteredChildren, child => {
+    return React.Children.map(filteredChildren, (child) => {
       if (isValidElement(child)) {
         // Allow for Fragments by recursive modification
         if (child.type === React.Fragment) {

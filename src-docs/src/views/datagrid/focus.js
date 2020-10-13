@@ -58,7 +58,7 @@ for (let i = 0; i < 10; i++) {
   ]);
 }
 
-const renderHeaderIcon = areHeadersInteractive =>
+const renderHeaderIcon = (areHeadersInteractive) =>
   areHeadersInteractive ? (
     <EuiFlexItem grow={false}>
       <EuiButtonIcon
@@ -72,7 +72,7 @@ const renderHeaderIcon = areHeadersInteractive =>
 export default () => {
   const [areHeadersInteractive, setAreHeadersInteractive] = useState(false);
   const switchInteractiveHeaders = useCallback(
-    e => setAreHeadersInteractive(e.target.checked),
+    (e) => setAreHeadersInteractive(e.target.checked),
     [setAreHeadersInteractive]
   );
 
@@ -225,11 +225,12 @@ export default () => {
     pageSizeOptions: [4],
   });
   const onChangeItemsPerPage = useCallback(
-    pageSize => setPagination(pagination => ({ ...pagination, pageSize })),
+    (pageSize) => setPagination((pagination) => ({ ...pagination, pageSize })),
     [setPagination]
   );
   const onChangePage = useCallback(
-    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );
 

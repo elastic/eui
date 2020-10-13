@@ -6179,6 +6179,27 @@ exports[`EuiIcon props type minimize is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type minus is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect
+    height="1.5"
+    rx="0.5"
+    width="10"
+    x="3"
+    y="7.25"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type minusInCircle is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -6596,6 +6617,23 @@ exports[`EuiIcon props type play is rendered 1`] = `
 >
   <path
     d="M4.608 3.063C4.345 2.895 4 3.089 4 3.418v9.167c0 .329.345.523.608.356l7.2-4.584a.426.426 0 000-.711l-7.2-4.583zm.538-.844l7.2 4.583a1.426 1.426 0 010 2.399l-7.2 4.583C4.21 14.38 3 13.696 3 12.585V3.418C3 2.307 4.21 1.624 5.146 2.22z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type plus is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.25 3a.5.5 0 01.5.5v3.75h3.75a.5.5 0 01.5.5v.5a.5.5 0 01-.5.5H8.75v3.75a.5.5 0 01-.5.5h-.5a.5.5 0 01-.5-.5V8.75H3.5a.5.5 0 01-.5-.5v-.5a.5.5 0 01.5-.5h3.75V3.5a.5.5 0 01.5-.5h.5z"
   />
 </svg>
 `;

@@ -1,14 +1,14 @@
 // See `/wiki/react-router.md`
-const isModifiedEvent = event =>
+const isModifiedEvent = (event) =>
   !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
-const isLeftClickEvent = event => event.button === 0;
+const isLeftClickEvent = (event) => event.button === 0;
 
 const resolveToLocation = (to, router) =>
   typeof to === 'function' ? to(router.location) : to;
 
 let router;
-export const registerRouter = reactRouter => {
+export const registerRouter = (reactRouter) => {
   router = reactRouter;
 };
 
@@ -16,7 +16,7 @@ export const registerRouter = reactRouter => {
  * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/v3/modules/Link.js.
  */
-export const getRouterLinkProps = to => {
+export const getRouterLinkProps = (to) => {
   const location = resolveToLocation(to, router);
 
   const href = router.history.createHref({
@@ -25,7 +25,7 @@ export const getRouterLinkProps = to => {
     hash: '',
   });
 
-  const onClick = event => {
+  const onClick = (event) => {
     if (event.defaultPrevented) {
       return;
     }

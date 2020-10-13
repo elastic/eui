@@ -63,7 +63,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
 
     return (
       <EuiFieldSearch
-        inputRef={input => (this.inputElement = input)}
+        inputRef={(input) => (this.inputElement = input)}
         fullWidth
         defaultValue={query}
         incremental={incremental}

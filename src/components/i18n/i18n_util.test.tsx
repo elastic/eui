@@ -57,7 +57,7 @@ describe('i18n_util', () => {
           processStringToChildren(
             'Hello, {name}',
             { greeting: 'Hello', name: 'John' },
-            value => value.toUpperCase()
+            (value) => value.toUpperCase()
           )
         ).toEqual('HELLO, JOHN');
       });

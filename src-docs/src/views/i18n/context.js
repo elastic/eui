@@ -62,7 +62,7 @@ export default () => {
 
   const i18n = {
     mapping: mappings[language],
-    formatNumber: value => new Intl.NumberFormat(language).format(value),
+    formatNumber: (value) => new Intl.NumberFormat(language).format(value),
   };
 
   return (

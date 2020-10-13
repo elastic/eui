@@ -38,7 +38,7 @@ describe('EuiFlexItem', () => {
   });
 
   describe('grow', () => {
-    GROW_SIZES.concat([true, false]).forEach(value => {
+    GROW_SIZES.concat([true, false]).forEach((value) => {
       test(`${value} is rendered`, () => {
         const component = render(<EuiFlexItem grow={value} />);
 

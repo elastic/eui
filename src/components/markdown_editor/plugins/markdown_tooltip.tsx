@@ -132,9 +132,11 @@ const TooltipParser: Plugin = function TooltipParser() {
   methods.splice(methods.indexOf('text'), 0, 'tooltip');
 };
 
-const tooltipMarkdownRenderer: FunctionComponent<TooltipNodeDetails & {
-  position: EuiMarkdownAstNodePosition;
-}> = ({ content, children }) => {
+const tooltipMarkdownRenderer: FunctionComponent<
+  TooltipNodeDetails & {
+    position: EuiMarkdownAstNodePosition;
+  }
+> = ({ content, children }) => {
   return (
     <span>
       <EuiToolTip content={content}>
