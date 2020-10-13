@@ -2,6 +2,11 @@
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
 
+**Bug fixes**
+
+- Fixed custom color render of `EuiIcon` app (two-tone) icons ([#4104](https://github.com/elastic/eui/pull/4104))
+
+
 ## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
 
 - Added `childrenBetween` prop to `EuiInMemoryTable` to add content between search bar and table ([#4103](https://github.com/elastic/eui/pull/4103))
@@ -13,7 +18,6 @@
 **Bug fixes**
 
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
-
 
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
@@ -255,7 +259,7 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
-  
+
 ## [`26.3.4`](https://github.com/elastic/eui/tree/v26.3.4)
 
 **Note: this release is a backport containing changes originally made in `27.2.0`**
