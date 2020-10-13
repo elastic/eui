@@ -7,7 +7,7 @@ export default () => {
   const [isClearable, setIsClearable] = useState(true);
   const [value, setValue] = useState('');
 
-  const onChange = e => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
 
@@ -21,7 +21,7 @@ export default () => {
           compressed
           label={'clearable'}
           checked={isClearable}
-          onChange={e => {
+          onChange={(e) => {
             setIsClearable(e.target.checked);
           }}
         />,
@@ -29,7 +29,7 @@ export default () => {
       <EuiFieldSearch
         placeholder="Search this"
         value={value}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         isClearable={isClearable}
         aria-label="Use aria labels when no actual label is in use"
       />

@@ -118,7 +118,7 @@ export const parseColor = (input?: string | null) => {
     const rgb = input
       .trim()
       .split(',')
-      .filter(n => n !== '')
+      .filter((n) => n !== '')
       .map(Number);
     parsed = rgb.length > 2 && rgb.length < 5 ? rgb : HEX_FALLBACK;
   } else {

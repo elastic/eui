@@ -126,7 +126,7 @@ export function calculatePopoverPosition(
   const positionToBoundsMap: { [position: string]: EuiPopoverBoundingBox } = {};
   const positionToVisibleAreaMap: { [positon: string]: number } = {};
 
-  positions.forEach(position => {
+  positions.forEach((position) => {
     const bounds = positionToPositionerMap[position](
       anchorBounds,
       popoverWidth,

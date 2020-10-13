@@ -205,9 +205,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
               </EuiInnerText>
             )}
           </div>
-        ) : (
-          undefined
-        )}
+        ) : undefined}
         <progress
           className={classes}
           max={max}

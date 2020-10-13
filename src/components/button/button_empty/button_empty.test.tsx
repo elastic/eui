@@ -71,7 +71,7 @@ describe('EuiButtonEmpty', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiButtonEmpty color={color} />);
 
@@ -81,7 +81,7 @@ describe('EuiButtonEmpty', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiButtonEmpty size={size} />);
 
@@ -91,7 +91,7 @@ describe('EuiButtonEmpty', () => {
     });
 
     describe('iconSide', () => {
-      ICON_SIDES.forEach(iconSide => {
+      ICON_SIDES.forEach((iconSide) => {
         test(`${iconSide} is rendered`, () => {
           const component = render(
             <EuiButtonEmpty iconType="user" iconSide={iconSide}>
@@ -105,7 +105,7 @@ describe('EuiButtonEmpty', () => {
     });
 
     describe('flush', () => {
-      FLUSH_TYPES.forEach(flushType => {
+      FLUSH_TYPES.forEach((flushType) => {
         test(`${flushType} is rendered`, () => {
           const component = render(<EuiButtonEmpty flush={flushType} />);
 

@@ -103,7 +103,7 @@ export const ContrastSlider = ({
             max={7}
             step={0.5}
             value={value}
-            onChange={e => {
+            onChange={(e) => {
               setValue(e.currentTarget.value);
               onChange(e.currentTarget.value, checked);
             }}
@@ -124,7 +124,7 @@ export const ContrastSlider = ({
             <EuiSwitch
               label="Show text variant"
               checked={showTextVariants}
-              onChange={e => {
+              onChange={(e) => {
                 setChecked(e.target.checked);
                 onChange(value, e.target.checked);
               }}

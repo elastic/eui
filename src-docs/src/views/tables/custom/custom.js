@@ -222,17 +222,17 @@ export default class extends Component {
       [
         {
           name: 'title',
-          getValue: item => item.title.toLowerCase(),
+          getValue: (item) => item.title.toLowerCase(),
           isAscending: true,
         },
         {
           name: 'dateCreated',
-          getValue: item => item.dateCreated.toLowerCase(),
+          getValue: (item) => item.dateCreated.toLowerCase(),
           isAscending: true,
         },
         {
           name: 'magnitude',
-          getValue: item => item.magnitude.toLowerCase(),
+          getValue: (item) => item.magnitude.toLowerCase(),
           isAscending: true,
         },
       ],
@@ -251,7 +251,7 @@ export default class extends Component {
         label: '',
         alignment: LEFT_ALIGNMENT,
         width: '24px',
-        cellProvider: cell => <EuiIcon type={cell} size="m" />,
+        cellProvider: (cell) => <EuiIcon type={cell} size="m" />,
         mobileOptions: {
           show: false,
         },
@@ -332,7 +332,7 @@ export default class extends Component {
     this.state.lastItemIndex = this.pager.getLastItemIndex();
   }
 
-  onChangeItemsPerPage = itemsPerPage => {
+  onChangeItemsPerPage = (itemsPerPage) => {
     this.pager.setItemsPerPage(itemsPerPage);
     this.setState({
       itemsPerPage,
@@ -341,7 +341,7 @@ export default class extends Component {
     });
   };
 
-  onChangePage = pageIndex => {
+  onChangePage = (pageIndex) => {
     this.pager.goToPageIndex(pageIndex);
     this.setState({
       firstItemIndex: this.pager.getFirstItemIndex(),
@@ -349,7 +349,7 @@ export default class extends Component {
     });
   };
 
-  onSort = prop => {
+  onSort = (prop) => {
     this.sortableProperties.sortOn(prop);
 
     this.setState({
@@ -357,8 +357,8 @@ export default class extends Component {
     });
   };
 
-  toggleItem = itemId => {
-    this.setState(previousState => {
+  toggleItem = (itemId) => {
+    this.setState((previousState) => {
       const newItemIdToSelectedMap = {
         ...previousState.itemIdToSelectedMap,
         [itemId]: !previousState.itemIdToSelectedMap[itemId],
@@ -374,7 +374,7 @@ export default class extends Component {
     const allSelected = this.areAllItemsSelected();
     const newItemIdToSelectedMap = {};
     this.items.forEach(
-      item => (newItemIdToSelectedMap[item.id] = !allSelected)
+      (item) => (newItemIdToSelectedMap[item.id] = !allSelected)
     );
 
     this.setState({
@@ -382,27 +382,27 @@ export default class extends Component {
     });
   };
 
-  isItemSelected = itemId => {
+  isItemSelected = (itemId) => {
     return this.state.itemIdToSelectedMap[itemId];
   };
 
   areAllItemsSelected = () => {
     const indexOfUnselectedItem = this.items.findIndex(
-      item => !this.isItemSelected(item.id)
+      (item) => !this.isItemSelected(item.id)
     );
     return indexOfUnselectedItem === -1;
   };
 
   areAnyRowsSelected = () => {
     return (
-      Object.keys(this.state.itemIdToSelectedMap).findIndex(id => {
+      Object.keys(this.state.itemIdToSelectedMap).findIndex((id) => {
         return this.state.itemIdToSelectedMap[id];
       }) !== -1
     );
   };
 
-  togglePopover = itemId => {
-    this.setState(previousState => {
+  togglePopover = (itemId) => {
+    this.setState((previousState) => {
       const newItemIdToOpenActionsPopoverMap = {
         ...previousState.itemIdToOpenActionsPopoverMap,
         [itemId]: !previousState.itemIdToOpenActionsPopoverMap[itemId],
@@ -414,10 +414,10 @@ export default class extends Component {
     });
   };
 
-  closePopover = itemId => {
+  closePopover = (itemId) => {
     // only update the state if this item's popover is open
     if (this.isPopoverOpen(itemId)) {
-      this.setState(previousState => {
+      this.setState((previousState) => {
         const newItemIdToOpenActionsPopoverMap = {
           ...previousState.itemIdToOpenActionsPopoverMap,
           [itemId]: false,
@@ -430,11 +430,11 @@ export default class extends Component {
     }
   };
 
-  isPopoverOpen = itemId => {
+  isPopoverOpen = (itemId) => {
     return this.state.itemIdToOpenActionsPopoverMap[itemId];
   };
 
-  renderSelectAll = mobile => {
+  renderSelectAll = (mobile) => {
     return (
       <EuiCheckbox
         id="selectAllCheckbox"
@@ -448,7 +448,7 @@ export default class extends Component {
 
   getTableMobileSortItems() {
     const items = [];
-    this.columns.forEach(column => {
+    this.columns.forEach((column) => {
       if (column.isCheckbox || !column.isSortable) {
         return;
       }
@@ -496,8 +496,8 @@ export default class extends Component {
   }
 
   renderRows() {
-    const renderRow = item => {
-      const cells = this.columns.map(column => {
+    const renderRow = (item) => {
+      const cells = this.columns.map((column) => {
         const cell = item[column.id];
 
         let child;
@@ -641,7 +641,7 @@ export default class extends Component {
       totalItemCount: this.pager.getTotalPages(),
     };
 
-    this.columns.forEach(column => {
+    this.columns.forEach((column) => {
       const footer = this.getColumnFooter(column, { items, pagination });
       if (column.mobileOptions && column.mobileOptions.only) {
         return; // exclude columns that only exist for mobile headers

@@ -77,7 +77,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const component = mount(<EuiFlyout onClose={() => {}} size={size} />);
 

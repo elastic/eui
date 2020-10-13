@@ -470,7 +470,7 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState(state => ({
+    this.setState((state) => ({
       prevProps: {
         ...state.prevProps,
         search,

@@ -43,11 +43,11 @@ export default () => {
   const [isLoading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   let searchTimeout;
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
-  const onSearchChange = useCallback(searchValue => {
+  const onSearchChange = useCallback((searchValue) => {
     setLoading(true);
     setOptions([]);
 
@@ -58,7 +58,7 @@ export default () => {
       // Simulate a remotely-executed search.
       setLoading(false);
       setOptions(
-        allOptions.filter(option =>
+        allOptions.filter((option) =>
           option.label.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
@@ -79,7 +79,7 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.value.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.value.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
       // Simulate creating this option on the server.
@@ -88,7 +88,7 @@ export default () => {
     }
 
     // Select the option.
-    setSelected(prevSelected => [...prevSelected, newOption]);
+    setSelected((prevSelected) => [...prevSelected, newOption]);
   };
 
   useEffect(() => {

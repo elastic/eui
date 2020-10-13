@@ -31,7 +31,7 @@ describe('EuiLoadingKibana', () => {
   });
 
   describe('size', () => {
-    SIZES.forEach(size => {
+    SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
         const component = render(<EuiLoadingKibana size={size} />);
 

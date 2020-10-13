@@ -52,8 +52,9 @@ export interface EuiValidatableControlProps {
   children: ReactElementWithRef;
 }
 
-export const EuiValidatableControl: FunctionComponent<CommonProps &
-  EuiValidatableControlProps> = ({ isInvalid, children }) => {
+export const EuiValidatableControl: FunctionComponent<
+  CommonProps & EuiValidatableControlProps
+> = ({ isInvalid, children }) => {
   const control = useRef<HTMLConstraintValidityElement | null>(null);
 
   const child = Children.only(children);

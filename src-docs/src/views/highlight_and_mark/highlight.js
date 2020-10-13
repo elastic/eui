@@ -12,10 +12,10 @@ export function Highlight() {
   const [searchValue, setSearchValue] = useState('jumped over');
   const [isHighlightAll, setHighlightAll] = useState(false);
 
-  const onSearchChange = e => {
+  const onSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
-  const changeHighlightAll = e => {
+  const changeHighlightAll = (e) => {
     setHighlightAll(e.target.checked);
   };
 
@@ -24,7 +24,7 @@ export function Highlight() {
       <EuiFormRow label="Enter text to highlight substrings within a string">
         <EuiFieldSearch
           value={searchValue}
-          onChange={e => {
+          onChange={(e) => {
             onSearchChange(e);
           }}
         />
@@ -34,7 +34,7 @@ export function Highlight() {
       <EuiSwitch
         label="Highlight all"
         checked={isHighlightAll}
-        onChange={e => changeHighlightAll(e)}
+        onChange={(e) => changeHighlightAll(e)}
       />
       <EuiSpacer size="m" />
       <EuiHighlight search={searchValue} highlightAll={isHighlightAll}>

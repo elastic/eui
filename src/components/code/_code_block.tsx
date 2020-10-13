@@ -216,7 +216,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
           <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
             {(copyButton: string) => (
               <EuiCopy textToCopy={textToCopy}>
-                {copy => (
+                {(copy) => (
                   <EuiButtonIcon
                     size="s"
                     onClick={copy}

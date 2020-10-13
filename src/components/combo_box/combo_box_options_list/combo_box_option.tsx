@@ -54,7 +54,7 @@ export class EuiComboBoxOption<T> extends Component<EuiComboBoxOptionProps<T>> {
     onClick(option);
   };
 
-  onKeyDown: KeyboardEventHandler<HTMLButtonElement> = event => {
+  onKeyDown: KeyboardEventHandler<HTMLButtonElement> = (event) => {
     if (event.key === keys.ENTER || event.key === keys.SPACE) {
       event.preventDefault();
       event.stopPropagation();

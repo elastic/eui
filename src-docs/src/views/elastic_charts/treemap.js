@@ -45,10 +45,10 @@ export default () => {
             <Partition
               id="sunburst"
               data={GITHUB_DATASET_MOD}
-              valueAccessor={d => d.count}
+              valueAccessor={(d) => d.count}
               layers={[
                 {
-                  groupByRollup: d => d.total,
+                  groupByRollup: (d) => d.total,
                   shape: {
                     fillColor: isDarkTheme
                       ? EUI_CHARTS_THEME_DARK.partition.sectorLineStroke
@@ -57,15 +57,15 @@ export default () => {
                   hideInLegend: true,
                 },
                 {
-                  groupByRollup: d => d.vizType,
+                  groupByRollup: (d) => d.vizType,
                   shape: {
-                    fillColor: d => groupedPalette[d.sortIndex * 3],
+                    fillColor: (d) => groupedPalette[d.sortIndex * 3],
                   },
                 },
                 {
-                  groupByRollup: d => d.issueType,
+                  groupByRollup: (d) => d.issueType,
                   shape: {
-                    fillColor: d =>
+                    fillColor: (d) =>
                       groupedPalette[d.parent.sortIndex * 3 + d.sortIndex + 1],
                   },
                 },
@@ -91,14 +91,14 @@ export default () => {
             <Partition
               id="treemap"
               data={GITHUB_DATASET_MOD}
-              valueAccessor={d => d.count}
+              valueAccessor={(d) => d.count}
               valueGetter="percent"
               topGroove={0}
               layers={[
                 {
-                  groupByRollup: d => d.vizType,
+                  groupByRollup: (d) => d.vizType,
                   shape: {
-                    fillColor: d => groupedPalette[d.sortIndex * 3],
+                    fillColor: (d) => groupedPalette[d.sortIndex * 3],
                   },
                   fillLabel: {
                     valueFormatter: () => '',
@@ -106,9 +106,9 @@ export default () => {
                   },
                 },
                 {
-                  groupByRollup: d => d.issueType,
+                  groupByRollup: (d) => d.issueType,
                   shape: {
-                    fillColor: d =>
+                    fillColor: (d) =>
                       groupedPalette[d.parent.sortIndex * 3 + d.sortIndex],
                   },
                 },

@@ -5,19 +5,19 @@ import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 export default () => {
   const [emptyColorStops, setEmptyColorStops] = useState([]);
 
-  const handleEmptyChange = colorStops => {
+  const handleEmptyChange = (colorStops) => {
     setEmptyColorStops(colorStops);
   };
 
   const [emptyColorStops2, setEmptyColorStops2] = useState([]);
 
-  const handleEmptyChange2 = colorStops => {
+  const handleEmptyChange2 = (colorStops) => {
     setEmptyColorStops2(colorStops);
   };
 
   const [emptyColorStops3, setEmptyColorStops3] = useState([]);
 
-  const handleEmptyChange3 = colorStops => {
+  const handleEmptyChange3 = (colorStops) => {
     setEmptyColorStops3(colorStops);
   };
 
@@ -25,7 +25,7 @@ export default () => {
     { stop: 10, color: '#D36086' },
   ]);
 
-  const handleSingleChange = colorStops => {
+  const handleSingleChange = (colorStops) => {
     setSingleColorStops(colorStops);
   };
 
@@ -33,7 +33,7 @@ export default () => {
     { stop: 10, color: '#D36086' },
   ]);
 
-  const handleSingleChange2 = colorStops => {
+  const handleSingleChange2 = (colorStops) => {
     setSingleColorStops2(colorStops);
   };
 
@@ -41,7 +41,7 @@ export default () => {
     { stop: 10, color: '#D36086' },
   ]);
 
-  const handleSingleChange3 = colorStops => {
+  const handleSingleChange3 = (colorStops) => {
     setSingleColorStops3(colorStops);
   };
 

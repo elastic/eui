@@ -108,7 +108,7 @@ export const EuiSuperSelectControl: <T extends string>(
 
   let selectedValue;
   if (value) {
-    const selectedOption = options.find(option => option.value === value);
+    const selectedOption = options.find((option) => option.value === value);
     selectedValue = selectedOption
       ? selectedOption.inputDisplay
       : selectedValue;

@@ -184,7 +184,7 @@ export class EuiFieldSearch extends Component<
   };
 
   componentWillUnmount() {
-    this.cleanups.forEach(cleanup => cleanup());
+    this.cleanups.forEach((cleanup) => cleanup());
   }
 
   setRef = (inputElement: HTMLInputElement | null) => {
@@ -271,7 +271,7 @@ export class EuiFieldSearch extends Component<
             name={name}
             placeholder={placeholder}
             className={classes}
-            onKeyUp={e => this.onKeyUp(e, incremental, onSearch)}
+            onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
             ref={this.setRef}
             {...rest}
           />

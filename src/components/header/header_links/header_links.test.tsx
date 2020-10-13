@@ -31,7 +31,7 @@ describe('EuiHeaderLinks', () => {
   });
 
   describe('gutterSize', () => {
-    GUTTER_SIZES.forEach(gutterSize => {
+    GUTTER_SIZES.forEach((gutterSize) => {
       test(`${gutterSize} is rendered`, () => {
         const component = render(<EuiHeaderLinks gutterSize={gutterSize} />);
 
