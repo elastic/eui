@@ -49,7 +49,7 @@ export default () => (
     <EuiFlexItem>
       <EuiFlexGroup>
         <EuiFlexItem>
-          {mainColors.map(value => (
+          {mainColors.map((value) => (
             <>
               <EuiProgress
                 label={value}
