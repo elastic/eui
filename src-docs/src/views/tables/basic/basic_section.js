@@ -16,10 +16,8 @@ import {
   EuiTableSelectionType,
   EuiTableSortingType,
 } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
-import {
-  DefaultItemAction,
-  CustomItemAction,
-} from '!!prop-loader!../../../../../src/components/basic_table/action_types';
+import { CustomItemAction } from '!!prop-loader!../../../../../src/components/basic_table/action_types';
+import { DefaultItemActionProps as DefaultItemAction } from './props';
 
 const source = require('!!raw-loader!./basic');
 const html = renderToHtml(Table);
