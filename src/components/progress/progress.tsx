@@ -44,9 +44,20 @@ export type EuiProgressSize = keyof typeof sizeToClassNameMap;
 const colorToClassNameMap = {
   primary: 'euiProgress--primary',
   secondary: 'euiProgress--secondary',
+  success: 'euiProgress--success',
+  warning: 'euiProgress--warning',
   danger: 'euiProgress--danger',
   subdued: 'euiProgress--subdued',
   accent: 'euiProgress--accent',
+  tint1: 'euiProgress--tint1',
+  tint2: 'euiProgress--tint2',
+  tint3: 'euiProgress--tint3',
+  tint4: 'euiProgress--tint4',
+  tint5: 'euiProgress--tint5',
+  tint6: 'euiProgress--tint6',
+  tint7: 'euiProgress--tint7',
+  tint8: 'euiProgress--tint8',
+  tint9: 'euiProgress--tint9',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -56,9 +67,20 @@ export type EuiProgressColor = keyof typeof colorToClassNameMap;
 const dataColorToClassNameMap = {
   primary: 'euiProgress__data--primary',
   secondary: 'euiProgress__data--secondary',
+  success: 'euiProgress__data--success',
+  warning: 'euiProgress__data--warning',
   danger: 'euiProgress__data--danger',
   subdued: 'euiProgress__data--subdued',
   accent: 'euiProgress__data--accent',
+  tint1: 'euiProgress__data--tint1',
+  tint2: 'euiProgress__data--tint2',
+  tint3: 'euiProgress__data--tint3',
+  tint4: 'euiProgress__data--tint4',
+  tint5: 'euiProgress__data--tint5',
+  tint6: 'euiProgress__data--tint6',
+  tint7: 'euiProgress__data--tint7',
+  tint8: 'euiProgress__data--tint8',
+  tint9: 'euiProgress__data--tint9',
 };
 
 const positionsToClassNameMap = {

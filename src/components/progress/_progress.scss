@@ -89,15 +89,25 @@ $euiProgressSizes: (
   }
 }
 
-// Progress bars come in different colors.
-$euiProgressColors: (
-  primary: $euiColorPrimary,
-  secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  accent: $euiColorAccent,
-  subdued: $euiTextSubduedColor,
-);
+// // Progress bars come in different colors.
+// $euiProgressColors: (
+//   primary: $euiColorPrimary,
+//   secondary: $euiColorSecondary,
+//   warning: $euiColorWarning,
+//   danger: $euiColorDanger,
+//   accent: $euiColorAccent,
+//   subdued: $euiTextSubduedColor,
+//   tint0: $euiColorVis0,
+//   tint1: $euiColorVis1,
+//   tint2: $euiColorVis2,
+//   tint3: $euiColorVis3,
+//   tint4: $euiColorVis4,
+//   tint5: $euiColorVis5,
+//   tint6: $euiColorVis6,
+//   tint7: $euiColorVis7,
+//   tint8: $euiColorVis8,
+//   tint9: $euiColorVis9,
+// );
 
 @each $name, $color in $euiProgressColors {
   .euiProgress--#{$name} {
