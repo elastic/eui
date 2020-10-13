@@ -296,13 +296,13 @@ export default () => {
       <EuiSpacer size="s" />
       <div className="eui-textRight">
         <EuiButtonToggle
-          label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
           size="s"
           isEmpty
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
-          onChange={() => setIsAstShowing(!isAstShowing)}
-          isSelected={isAstShowing}
-        />
+          onClick={() => setIsAstShowing(!isAstShowing)}
+          isSelected={isAstShowing}>
+          {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+        </EuiButtonToggle>
       </div>
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
 

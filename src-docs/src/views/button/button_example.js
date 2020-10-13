@@ -95,13 +95,13 @@ const buttonToggleSnippet = [
   `<EuiButton
   aria-pressed={toggleOn}
   fill={toggleOn}
-  onChange={onToggleChange}
+  onClick={onToggleChange}
 >
   <!-- Button text -->
 </EuiButton>`,
   `<EuiButtonToggle
   isSelected={toggleOn}
-  onChange={onToggleChange}
+  onClick={onToggleChange}
 >
   <!-- Button text -->
 </EuiButtonToggle>`,
