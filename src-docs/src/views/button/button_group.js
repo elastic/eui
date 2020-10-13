@@ -192,7 +192,6 @@ export default () => {
     <Fragment>
       <EuiButtonGroup
         legend="This is a basic group"
-        name="basic"
         options={toggleButtons}
         idSelected={toggleIdSelected}
         onChange={(id) => onChange(id)}
@@ -217,7 +216,6 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="This is a disabled group"
-        name="disabledGroup"
         options={toggleButtonsDisabled}
         idSelected={toggleIdDisabled}
         onChange={(id) => onChangeDisabled(id)}
@@ -232,7 +230,6 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="Text align"
-        name="textAlign"
         options={toggleButtonsIcons}
         idSelected={toggleIconIdSelected}
         onChange={(id) => onChangeIcons(id)}

@@ -24,6 +24,7 @@ import { EuiButtonGroupButton } from './button_group_button';
 import { colorToClassNameMap, ButtonColor } from '../button';
 import { EuiButtonContentProps } from '../button_content';
 import { CommonProps } from '../../common';
+import { htmlIdGenerator } from '../../../services';
 
 export interface EuiButtonGroupOptionProps
   extends EuiButtonContentProps,
@@ -86,9 +87,9 @@ export type EuiButtonGroupProps = CommonProps & {
         type?: 'single';
         /**
          * The `name` attribute for radio inputs;
-         * Required for keeping keyboard navigation contained within the group
+         * Defaults to a random string
          */
-        name: string;
+        name?: string;
         /**
          * Styles the selected option to look selected (usually with `fill`)
          * Required by and only used in `type='single'`.
@@ -162,6 +163,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   );
 
   const typeIsSingle = type === 'single';
+  const nameIfSingle = name || htmlIdGenerator()();
 
   return (
     <fieldset className={classes} {...rest} disabled={isDisabled}>
@@ -174,7 +176,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
           return (
             <EuiButtonGroupButton
               key={index}
-              name={name}
+              name={nameIfSingle}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
               type={typeIsSingle ? 'label' : 'button'}
