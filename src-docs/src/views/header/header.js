@@ -32,7 +32,7 @@ export default () => {
     <EuiHeaderLogo
       iconType="logoElastic"
       href="#"
-      onClick={e => e.preventDefault()}
+      onClick={(e) => e.preventDefault()}
       aria-label="Go to home page"
     />
   );
@@ -42,7 +42,7 @@ export default () => {
       {
         text: 'Management',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
         },
         'data-test-subj': 'breadcrumbsAnimals',
@@ -51,21 +51,21 @@ export default () => {
       {
         text: 'Truncation test is here for a really long item',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
         },
       },
       {
         text: 'Hidden',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
         },
       },
       {
         text: 'Users',
         href: '#',
-        onClick: e => {
+        onClick: (e) => {
           e.preventDefault();
         },
       },
@@ -246,7 +246,7 @@ const HeaderSpacesMenu = () => {
 
   const [spaces, setSpaces] = useState(spacesValues);
   const [selectedSpace, setSelectedSpace] = useState(
-    spaces.filter(option => option.checked)[0]
+    spaces.filter((option) => option.checked)[0]
   );
   const [isOpen, setIsOpen] = useState(false);
 
@@ -262,9 +262,9 @@ const HeaderSpacesMenu = () => {
     setIsOpen(false);
   };
 
-  const onChange = options => {
+  const onChange = (options) => {
     setSpaces(options);
-    setSelectedSpace(options.filter(option => option.checked)[0]);
+    setSelectedSpace(options.filter((option) => option.checked)[0]);
     setIsOpen(false);
   };
 

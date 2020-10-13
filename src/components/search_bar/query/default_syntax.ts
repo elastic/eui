@@ -360,7 +360,7 @@ const resolveFieldValue = (
     // I don't know if this cast is valid. This function is called recursively and
     // doesn't apply any kind of flat-map.
     return valueExpression.map(
-      exp => resolveFieldValue(field, exp, ctx) as Value
+      (exp) => resolveFieldValue(field, exp, ctx) as Value
     );
   }
   const { location } = valueExpression;
@@ -525,7 +525,7 @@ export const defaultSyntax: Syntax = Object.freeze({
           return `${text} ${prefix}${escapeValue(
             clause.field
           )}${op}(${clause.value
-            .map(val => printValue(val, printFieldValueOptions))
+            .map((val) => printValue(val, printFieldValueOptions))
             .join(' or ')})`; // eslint-disable-line max-len
         }
         return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(
@@ -538,7 +538,7 @@ export const defaultSyntax: Syntax = Object.freeze({
         return `${text} ${prefix}${printValue(clause.value, options)}`;
       case AST.Group.TYPE:
         return `(${clause.value
-          .map(clause =>
+          .map((clause) =>
             defaultSyntax.printClause(clause, text, options).trim()
           )
           .join(' OR ')})`;

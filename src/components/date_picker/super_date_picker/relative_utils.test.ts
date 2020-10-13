@@ -66,11 +66,7 @@ describe('parseRelativeParts', () => {
 
   describe('absolute', () => {
     it('should parse now', () => {
-      const out = parseRelativeParts(
-        moment()
-          .toDate()
-          .toISOString()
-      );
+      const out = parseRelativeParts(moment().toDate().toISOString());
       expect(out).toEqual({
         count: 0,
         unit: 's',
@@ -80,10 +76,7 @@ describe('parseRelativeParts', () => {
 
     it('should parse 3 months ago', () => {
       const out = parseRelativeParts(
-        moment()
-          .subtract(3, 'M')
-          .toDate()
-          .toISOString()
+        moment().subtract(3, 'M').toDate().toISOString()
       );
       expect(out).toEqual({
         count: 3,
@@ -94,10 +87,7 @@ describe('parseRelativeParts', () => {
 
     it('should parse 15 minutes ago', () => {
       const out = parseRelativeParts(
-        moment()
-          .subtract(15, 'm')
-          .toDate()
-          .toISOString()
+        moment().subtract(15, 'm').toDate().toISOString()
       );
       expect(out).toEqual({
         count: 15,
@@ -108,10 +98,7 @@ describe('parseRelativeParts', () => {
 
     it('should parse 2 hours from now', () => {
       const out = parseRelativeParts(
-        moment()
-          .add(2, 'h')
-          .toDate()
-          .toISOString()
+        moment().add(2, 'h').toDate().toISOString()
       );
       expect(out).toEqual({
         count: 2,

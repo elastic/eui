@@ -74,7 +74,7 @@ for (let i = 1; i < 5; i++) {
   });
 }
 
-const Franchise = props => {
+const Franchise = (props) => {
   return (
     <div>
       <EuiTitle size="s">
@@ -121,7 +121,7 @@ export default class DataGridSchema extends Component {
     };
   }
 
-  setSorting = sortingColumns => {
+  setSorting = (sortingColumns) => {
     const data = [...this.state.data].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
         const column = sortingColumns[i];
@@ -138,17 +138,17 @@ export default class DataGridSchema extends Component {
     this.setState({ data, sortingColumns });
   };
 
-  setPageIndex = pageIndex =>
+  setPageIndex = (pageIndex) =>
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageIndex },
     }));
 
-  setPageSize = pageSize =>
+  setPageSize = (pageSize) =>
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageSize, pageIndex: 0 },
     }));
 
-  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+  setVisibleColumns = (visibleColumns) => this.setState({ visibleColumns });
 
   dummyIcon = () => (
     <EuiButtonIcon
@@ -214,7 +214,7 @@ export default class DataGridSchema extends Component {
             const stringContents = cellContentsElement.textContent;
 
             // extract the groups-of-three digits that are right-aligned
-            return stringContents.replace(/((\d{3})+)$/, match =>
+            return stringContents.replace(/((\d{3})+)$/, (match) =>
               // then replace each group of xyz digits with ,xyz
               match.replace(/(\d{3})/g, ',$1')
             );

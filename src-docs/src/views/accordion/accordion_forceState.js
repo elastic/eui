@@ -24,12 +24,12 @@ export default () => {
     },
   ];
 
-  const onChange = id => {
+  const onChange = (id) => {
     setTrigger(id === toggleButtons[0].id ? 'open' : 'closed');
     setID(id);
   };
 
-  const onToggle = isOpen => {
+  const onToggle = (isOpen) => {
     const newState = isOpen ? 'open' : 'closed';
     setTrigger(newState);
     setID(`${idPrefix}--${newState}`);

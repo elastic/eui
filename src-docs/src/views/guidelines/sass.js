@@ -366,7 +366,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
             <EuiSpacer />
 
-            {euiSizes.map(function(size, index) {
+            {euiSizes.map(function (size, index) {
               return renderSize(size, index);
             })}
 
@@ -378,7 +378,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
             <EuiSpacer />
 
-            {euiLevels.map(function(level, index) {
+            {euiLevels.map(function (level, index) {
               return renderLevel(level, index);
             })}
           </div>
@@ -390,7 +390,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiSpacer />
 
-          {euiColors.map(function(color, index) {
+          {euiColors.map(function (color, index) {
             return renderPaletteColor(palette, color, index);
           })}
         </EuiFlexItem>
@@ -631,7 +631,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
           </EuiTitle>
 
           <EuiSpacer />
-          {euiFontSizes.map(function(size, index) {
+          {euiFontSizes.map(function (size, index) {
             return renderFontSize(size, index);
           })}
         </EuiFlexItem>
@@ -643,7 +643,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
             <EuiSpacer />
 
-            {euiTextColors.map(function(color, index) {
+            {euiTextColors.map(function (color, index) {
               return renderPaletteColor(palette, color, index);
             })}
 
@@ -693,7 +693,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiSpacer />
 
       <EuiFlexGrid columns={3}>
-        {euiBorders.map(function(border, index) {
+        {euiBorders.map(function (border, index) {
           return renderBorder(border, index);
         })}
       </EuiFlexGrid>
@@ -739,7 +739,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiSpacer />
 
-          {euiShadows.map(function(shadow, index) {
+          {euiShadows.map(function (shadow, index) {
             return renderShadow(shadow, index);
           })}
 
@@ -905,7 +905,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
             <EuiSpacer />
 
-            {euiBreakPoints.map(function(size, index) {
+            {euiBreakPoints.map(function (size, index) {
               return renderBreakpoint(size, index);
             })}
           </div>
@@ -982,7 +982,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiSpacer />
 
-          {euiAnimationSpeeds.map(function(speed, index) {
+          {euiAnimationSpeeds.map(function (speed, index) {
             return renderAnimationSpeed(speed, index);
           })}
         </EuiFlexItem>
@@ -993,7 +993,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiSpacer />
 
-          {euiAnimationTimings.map(function(speed, index) {
+          {euiAnimationTimings.map(function (speed, index) {
             return renderAnimationTiming(speed, index);
           })}
         </EuiFlexItem>

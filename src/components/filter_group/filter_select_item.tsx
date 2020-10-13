@@ -101,7 +101,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
 
     return (
       <button
-        ref={ref => (this.buttonRef = ref)}
+        ref={(ref) => (this.buttonRef = ref)}
         role="option"
         type="button"
         aria-selected={isFocused}

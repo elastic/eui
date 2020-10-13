@@ -84,7 +84,7 @@ export const I18nTokens = {
                 field: 'changeType',
                 name: 'Change',
                 width: '100px',
-                render: changeType => (
+                render: (changeType) => (
                   <EuiText color="subdued" size="xs">
                     {changeType}
                   </EuiText>

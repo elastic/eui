@@ -217,7 +217,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                     name={name}
                     className="euiFilePicker__input"
                     onChange={() => this.handleChange(filesSelected)}
-                    ref={input => {
+                    ref={(input) => {
                       this.fileInput = input;
                     }}
                     onDragOver={this.showDrop}

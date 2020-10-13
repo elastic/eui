@@ -70,7 +70,7 @@ export const ResponsiveExample = {
           </p>
 
           <EuiCodeBlock language="scss" paddingSize="s">
-            {BREAKPOINT_KEYS.map(function(size, index) {
+            {BREAKPOINT_KEYS.map(function (size, index) {
               return renderSizes(size, index);
             })}
           </EuiCodeBlock>

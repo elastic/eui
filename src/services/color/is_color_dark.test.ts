@@ -40,13 +40,13 @@ describe('isColorDark', () => {
     [230, 194, 32],
   ];
 
-  DARK_COLORS.forEach(color => {
+  DARK_COLORS.forEach((color) => {
     it(`should return true for dark color rgb(${color.join(', ')})`, () => {
       expect(isColorDark(color[0], color[1], color[2])).toBe(true);
     });
   });
 
-  LIGHT_COLORS.forEach(color => {
+  LIGHT_COLORS.forEach((color) => {
     it(`should return false for light color rgb(${color.join(', ')})`, () => {
       expect(isColorDark(color[0], color[1], color[2])).toBe(false);
     });

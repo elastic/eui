@@ -272,6 +272,7 @@ const typeToPathMap = {
   metricbeatApp: 'app_metricbeat',
   metricsApp: 'app_metrics',
   minimize: 'minimize',
+  minus: 'minus',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
@@ -295,6 +296,7 @@ const typeToPathMap = {
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
   play: 'play',
+  plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',
   popout: 'popout',
@@ -675,7 +677,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (isNamedColor(color)) {
         optionalColorClass = colorToClassMap[color];
       } else {
-        optionalCustomStyles = { fill: color };
+        optionalCustomStyles = { color: color };
+        optionalColorClass = 'euiIcon--customColor';
       }
     }
 

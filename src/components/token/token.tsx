@@ -18,7 +18,7 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import { defaults } from 'lodash';
+import defaults from 'lodash/defaults';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { isColorDark, hexToRgb } from '../../services';
