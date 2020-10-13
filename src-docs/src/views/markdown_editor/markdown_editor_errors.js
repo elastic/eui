@@ -55,7 +55,6 @@ export default () => {
       <div className="eui-textRight">
         <EuiButtonToggle
           size="s"
-          isEmpty
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
           onClick={() => setIsAstShowing(!isAstShowing)}
           isSelected={isAstShowing}>
