@@ -189,6 +189,17 @@ export const ProgressExample = {
             <Link to="/guidelines/colors">Color guidelines</Link> page.
           </p>
           <p>Additionally, you can pass a color name or a hex value.</p>
+          <EuiCallOut
+            title="Note about using custom colors"
+            iconType="iInCircle">
+            <p>
+              Usually, we calculate a high contrast color for{' '}
+              <EuiCode>valueText</EuiCode>
+              based on <EuiCode>color</EuiCode>. This is not possible when using
+              a custom color. In such cases, <EuiCode>valueText</EuiCode> will
+              just use the custom color.
+            </p>
+          </EuiCallOut>
         </div>
       ),
       demo: <ProgressColors />,
