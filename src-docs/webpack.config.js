@@ -136,11 +136,11 @@ function getPortSync(options) {
   let error = null;
 
   getPort(options)
-    .then(port => {
+    .then((port) => {
       isDone = true;
       freeport = port;
     })
-    .catch(err => {
+    .catch((err) => {
       isDone = true;
       error = err;
     });

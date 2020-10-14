@@ -93,14 +93,14 @@ export class EuiComboBoxInput<T> extends Component<
     });
   };
 
-  onFocus: FocusEventHandler<HTMLInputElement> = event => {
+  onFocus: FocusEventHandler<HTMLInputElement> = (event) => {
     this.props.onFocus(event);
     this.setState({
       hasFocus: true,
     });
   };
 
-  onBlur: FocusEventHandler<HTMLInputElement> = event => {
+  onBlur: FocusEventHandler<HTMLInputElement> = (event) => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -119,7 +119,7 @@ export class EuiComboBoxInput<T> extends Component<
     }
   }
 
-  inputOnChange: ChangeEventHandler<HTMLInputElement> = event => {
+  inputOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { onChange, searchValue } = this.props;
     if (onChange) {
       onChange(event.target.value as typeof searchValue);
@@ -169,8 +169,8 @@ export class EuiComboBoxInput<T> extends Component<
       false;
 
     const pills = selectedOptions
-      ? selectedOptions.map(option => {
-          const { label, color, onClick, ...rest } = option;
+      ? selectedOptions.map((option) => {
+          const { key, label, color, onClick, ...rest } = option;
           const pillOnClose =
             isDisabled || singleSelection || onClick
               ? undefined
@@ -179,7 +179,7 @@ export class EuiComboBoxInput<T> extends Component<
             <EuiComboBoxPill
               option={option}
               onClose={pillOnClose}
-              key={label.toLowerCase()}
+              key={key ?? label.toLowerCase()}
               color={color}
               onClick={onClick}
               onClickAriaLabel={onClick ? 'Change' : undefined}

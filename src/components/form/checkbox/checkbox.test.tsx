@@ -62,7 +62,7 @@ describe('EuiCheckbox', () => {
     });
 
     describe('type', () => {
-      TYPES.forEach(value => {
+      TYPES.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(
             <EuiCheckbox {...checkboxRequiredProps} type={value} />

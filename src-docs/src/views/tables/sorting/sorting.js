@@ -65,7 +65,7 @@ export const Table = () => {
       sortable: true,
       truncateText: true,
       mobileOptions: {
-        render: item => (
+        render: (item) => (
           <span>
             {item.firstName} {item.lastName}
           </span>
@@ -101,7 +101,7 @@ export const Table = () => {
         </EuiToolTip>
       ),
       sortable: true,
-      render: username => (
+      render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -123,7 +123,7 @@ export const Table = () => {
         </EuiToolTip>
       ),
       schema: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
       sortable: true,
     },
     {
@@ -142,7 +142,7 @@ export const Table = () => {
         </EuiToolTip>
       ),
       sortable: true,
-      render: countryCode => {
+      render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       },
@@ -164,7 +164,7 @@ export const Table = () => {
       ),
       schema: 'boolean',
       sortable: true,
-      render: online => {
+      render: (online) => {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
         return <EuiHealth color={color}>{label}</EuiHealth>;

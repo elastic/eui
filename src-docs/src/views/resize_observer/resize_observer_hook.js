@@ -17,11 +17,11 @@ export const ResizeObserverHookExample = () => {
   const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
 
   const togglePaddingSize = () => {
-    setPaddingSize(paddingSize => (paddingSize === 's' ? 'l' : 's'));
+    setPaddingSize((paddingSize) => (paddingSize === 's' ? 'l' : 's'));
   };
 
   const addItem = () => {
-    setItems(items => [...items, `Item ${items.length + 1}`]);
+    setItems((items) => [...items, `Item ${items.length + 1}`]);
   };
 
   const resizeRef = useRef();
@@ -57,7 +57,7 @@ export const ResizeObserverHookExample = () => {
       <div className="eui-displayInlineBlock" ref={resizeRef}>
         <EuiPanel className="eui-displayInlineBlock" paddingSize={paddingSize}>
           <ul>
-            {items.map(item => (
+            {items.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>

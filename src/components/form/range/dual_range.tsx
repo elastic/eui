@@ -491,9 +491,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const maxInput = !!showInput ? (
       <EuiRangeInput
@@ -524,9 +522,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const classes = classNames('euiDualRange', className);
     const theRange = (
@@ -663,9 +659,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onPanelResize={this.onResize}>
         {theRange}
       </EuiInputPopover>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     return thePopover || theRange;
   }

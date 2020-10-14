@@ -17,7 +17,7 @@ export default () => {
     {
       text: 'Management',
       href: '#',
-      onClick: e => {
+      onClick: (e) => {
         e.preventDefault();
       },
     },
@@ -91,7 +91,7 @@ export default () => {
       <EuiSwitch
         label={'Make header fixed position'}
         checked={isFixed}
-        onChange={e => setIsFixed(e.target.checked)}
+        onChange={(e) => setIsFixed(e.target.checked)}
       />
       <EuiSpacer />
       {headers}

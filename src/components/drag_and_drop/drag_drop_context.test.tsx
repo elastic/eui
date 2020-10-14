@@ -60,7 +60,7 @@ describe('EuiDragDropContext', () => {
         const component = mount(
           <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
             <EuiDragDropContextContext.Consumer>
-              {value => (
+              {(value) => (
                 <div data-test-subj="child">
                   {value.hasOwnProperty('isDraggingType') ? 'true' : 'false'}
                 </div>

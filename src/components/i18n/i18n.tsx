@@ -121,7 +121,7 @@ const EuiI18n = <
   props: EuiI18nProps<T, DEFAULT, DEFAULTS>
 ) => (
   <EuiI18nConsumer>
-    {i18nConfig => {
+    {(i18nConfig) => {
       const { mapping, mappingFunc } = i18nConfig;
       if (isI18nTokensShape(props)) {
         return props.children(

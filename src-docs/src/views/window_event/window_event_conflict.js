@@ -13,13 +13,13 @@ import { keys } from '../../../../src/services';
 
 import { ModalExample } from './modal_example_container';
 
-const ConflictModal = props => {
+const ConflictModal = (props) => {
   const [inputValue, setInputValue] = useState('');
 
-  const updateInputValue = e => {
+  const updateInputValue = (e) => {
     setInputValue(e.target.value);
   };
-  const clearInputValueOnEscape = event => {
+  const clearInputValueOnEscape = (event) => {
     if (event.key === keys.ESCAPE) {
       setInputValue('');
       event.stopPropagation();

@@ -75,7 +75,7 @@ const panel0 = {
 const panels = [panel0, panel1, panel2, panel3];
 
 export const tick = (ms = 0) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 

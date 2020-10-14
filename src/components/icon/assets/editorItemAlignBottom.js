@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconEditorItemAlignBottom = ({ title, titleId, ...props }) => (
   <svg

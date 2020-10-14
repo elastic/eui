@@ -47,7 +47,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
   {
     label: 'Button with onClick',
     pinned: true,
-    onClick: e => {
+    onClick: (e) => {
       console.log('Visualize clicked', e);
     },
   },

@@ -56,7 +56,7 @@ export const Table = () => {
     setSortDirection(sortDirection);
   };
 
-  const onSelectionChange = selectedItems => {
+  const onSelectionChange = (selectedItems) => {
     setSelectedItems(selectedItems);
   };
 
@@ -68,12 +68,12 @@ export const Table = () => {
     setIsResponsive(!isResponsive);
   };
 
-  const deleteUser = user => {
+  const deleteUser = (user) => {
     store.deleteUsers(user.id);
     setSelectedItems([]);
   };
 
-  const cloneUser = user => {
+  const cloneUser = (user) => {
     store.cloneUser(user.id);
     setSelectedItems([]);
   };
@@ -111,7 +111,7 @@ export const Table = () => {
       sortable: true,
       mobileOptions: {
         render: customHeader
-          ? item => (
+          ? (item) => (
               <span>
                 {item.firstName} {item.lastName}
               </span>
@@ -134,7 +134,7 @@ export const Table = () => {
     {
       field: 'github',
       name: 'Github',
-      render: username => (
+      render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -144,13 +144,13 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
       sortable: true,
     },
     {
       field: 'nationality',
       name: 'Nationality',
-      render: countryCode => {
+      render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       },
@@ -159,7 +159,7 @@ export const Table = () => {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: online => {
+      render: (online) => {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
         return <EuiHealth color={color}>{label}</EuiHealth>;
@@ -187,8 +187,8 @@ export const Table = () => {
   };
 
   const selection = {
-    selectable: user => user.online,
-    selectableMessage: selectable =>
+    selectable: (user) => user.online,
+    selectableMessage: (selectable) =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
   };

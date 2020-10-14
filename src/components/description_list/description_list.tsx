@@ -84,9 +84,9 @@ const textStylesToClassNameMap = {
 
 export const TEXT_STYLES = keysOf(textStylesToClassNameMap);
 
-export const EuiDescriptionList: FunctionComponent<CommonProps &
-  HTMLAttributes<HTMLDListElement> &
-  EuiDescriptionListProps> = ({
+export const EuiDescriptionList: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
+> = ({
   align = 'left',
   children,
   className,

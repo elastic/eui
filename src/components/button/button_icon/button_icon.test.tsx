@@ -67,7 +67,7 @@ describe('EuiButtonIcon', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiButtonIcon iconType="user" aria-label="button" color={color} />

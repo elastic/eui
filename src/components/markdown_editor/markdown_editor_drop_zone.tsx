@@ -63,7 +63,9 @@ const getUnacceptedItems = (
   return unacceptedItems;
 };
 
-export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = props => {
+export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = (
+  props
+) => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
   const [isDraggingError, toggleDraggingError] = React.useState(false);
@@ -90,7 +92,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     noClick: true,
     noKeyboard: true,
     // multiple: false,
-    onDragOver: e => {
+    onDragOver: (e) => {
       let result: boolean;
 
       if (e.dataTransfer) {
@@ -113,7 +115,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
       }
       return result;
     },
-    onDragEnter: e => {
+    onDragEnter: (e) => {
       let result: boolean;
 
       if (e.dataTransfer) {
@@ -139,7 +141,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     onDragLeave: () => {
       toggleDragging(false);
     },
-    onDrop: acceptedFiles => {
+    onDrop: (acceptedFiles) => {
       const fileHandlers: EuiMarkdownDropHandler[] = [];
 
       // verify all files being dropped are supported
@@ -172,7 +174,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
       }
 
       Promise.all(resolved)
-        .then(results => {
+        .then((results) => {
           results.forEach(({ text, config }) => insertText(text, config));
         })
         .catch(() => {})

@@ -8,7 +8,7 @@ let buttonRef = null;
 export const PortalInsert = () => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
 
-  const setButtonRef = node => (buttonRef = node);
+  const setButtonRef = (node) => (buttonRef = node);
 
   const togglePortal = () => {
     setIsPortalVisible(!isPortalVisible);

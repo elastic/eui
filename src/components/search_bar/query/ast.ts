@@ -263,7 +263,7 @@ const valuesEqual = (v1: any, v2: any) => {
 };
 
 const arrayIncludesValue = (array: any[], value: any) => {
-  return array.some(item => valuesEqual(item, value));
+  return array.some((item) => valuesEqual(item, value));
 };
 
 /**
@@ -305,7 +305,7 @@ export class _AST {
     this._clauses = clauses;
     this._indexedClauses = { field: {}, is: {}, term: [], group: [] };
 
-    clauses.forEach(clause => {
+    clauses.forEach((clause) => {
       switch (clause.type) {
         case Field.TYPE:
           if (!this._indexedClauses.field[clause.field]) {
@@ -343,7 +343,7 @@ export class _AST {
 
   getTermClause(value: Value) {
     const clauses = this.getTermClauses();
-    return clauses.find(clause => valuesEqual(clause.value, value));
+    return clauses.find((clause) => valuesEqual(clause.value, value));
   }
 
   getFieldNames() {
@@ -367,7 +367,9 @@ export class _AST {
   }
 
   hasOrFieldClause(field: string, value?: Value) {
-    const clause = this.getFieldClause(field, clause => isArray(clause.value));
+    const clause = this.getFieldClause(field, (clause) =>
+      isArray(clause.value)
+    );
     if (!clause) {
       return false;
     }
@@ -379,7 +381,7 @@ export class _AST {
   getOrFieldClause(field: string, value?: Value) {
     return this.getFieldClause(
       field,
-      clause =>
+      (clause) =>
         isArray(clause.value) &&
         (isNil(value) || arrayIncludesValue(clause.value, value))
     );
@@ -399,7 +401,7 @@ export class _AST {
       return new _AST([...this._clauses, newClause]);
     }
 
-    const clauses = this._clauses.map(clause => {
+    const clauses = this._clauses.map((clause) => {
       if (clause === existingClause) {
         (clause.value as Value[]).push(value);
       }
@@ -419,7 +421,7 @@ export class _AST {
         return clauses;
       }
       const filteredValue = (clause.value as Value[]).filter(
-        val => !valuesEqual(val, value)
+        (val) => !valuesEqual(val, value)
       );
       if (filteredValue.length === 0) {
         return clauses;
@@ -434,7 +436,7 @@ export class _AST {
   }
 
   removeOrFieldClauses(field: string) {
-    const clauses = this._clauses.filter(clause => {
+    const clauses = this._clauses.filter((clause) => {
       return (
         !Field.isInstance(clause) ||
         clause.field !== field ||
@@ -445,7 +447,10 @@ export class _AST {
   }
 
   hasSimpleFieldClause(field: string, value?: Value) {
-    const clause = this.getFieldClause(field, clause => !isArray(clause.value));
+    const clause = this.getFieldClause(
+      field,
+      (clause) => !isArray(clause.value)
+    );
     if (!clause) {
       return false;
     }
@@ -455,7 +460,7 @@ export class _AST {
   getSimpleFieldClause(field: string, value?: Value) {
     return this.getFieldClause(
       field,
-      clause =>
+      (clause) =>
         !isArray(clause.value) &&
         (isNil(value) || valuesEqual(clause.value, value))
     );
@@ -478,12 +483,12 @@ export class _AST {
     if (!existingClause) {
       return new _AST([...this._clauses]);
     }
-    const clauses = this._clauses.filter(clause => clause !== existingClause);
+    const clauses = this._clauses.filter((clause) => clause !== existingClause);
     return new _AST(clauses);
   }
 
   removeSimpleFieldClauses(field: string) {
-    const clauses = this._clauses.filter(clause => {
+    const clauses = this._clauses.filter((clause) => {
       return (
         !Field.isInstance(clause) ||
         clause.field !== field ||
@@ -504,7 +509,7 @@ export class _AST {
   removeIsClause(flag: string) {
     return new _AST(
       this._clauses.filter(
-        clause => !Is.isInstance(clause) || clause.flag !== flag
+        (clause) => !Is.isInstance(clause) || clause.flag !== flag
       )
     );
   }

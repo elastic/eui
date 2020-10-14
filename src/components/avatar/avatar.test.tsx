@@ -48,7 +48,7 @@ describe('EuiAvatar', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const component = render(<EuiAvatar name="name" size={size} />);
 

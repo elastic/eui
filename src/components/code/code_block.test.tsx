@@ -87,7 +87,7 @@ describe('EuiCodeBlock', () => {
     });
 
     describe('fontSize', () => {
-      FONT_SIZES.forEach(fontSize => {
+      FONT_SIZES.forEach((fontSize) => {
         test(`${fontSize} is rendered`, () => {
           const component = mount(
             <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
@@ -99,7 +99,7 @@ describe('EuiCodeBlock', () => {
     });
 
     describe('paddingSize', () => {
-      PADDING_SIZES.forEach(paddingSize => {
+      PADDING_SIZES.forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
           const component = mount(
             <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
@@ -112,7 +112,7 @@ describe('EuiCodeBlock', () => {
   });
 
   describe('dynamic content', () => {
-    it('updates DOM when input changes', done => {
+    it('updates DOM when input changes', (done) => {
       expect.assertions(2);
 
       function takeSnapshot() {

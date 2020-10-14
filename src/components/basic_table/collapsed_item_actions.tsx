@@ -56,7 +56,7 @@ export class CollapsedItemActions<T> extends Component<
   state = { popoverOpen: false };
 
   togglePopover = () => {
-    this.setState(prevState => ({ popoverOpen: !prevState.popoverOpen }));
+    this.setState((prevState) => ({ popoverOpen: !prevState.popoverOpen }));
   };
 
   closePopover = () => {

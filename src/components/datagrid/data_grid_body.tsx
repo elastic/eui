@@ -62,11 +62,9 @@ export interface EuiDataGridBodyProps {
   sorting?: EuiDataGridSorting;
 }
 
-const defaultComparator: NonNullable<EuiDataGridSchemaDetector['comparator']> = (
-  a,
-  b,
-  direction
-) => {
+const defaultComparator: NonNullable<
+  EuiDataGridSchemaDetector['comparator']
+> = (a, b, direction) => {
   if (a < b) return direction === 'asc' ? -1 : 1;
   if (a > b) return direction === 'asc' ? 1 : -1;
   return 0;
@@ -93,7 +91,9 @@ const providedPopoverContents: EuiDataGridPopoverContents = {
   },
 };
 
-export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = props => {
+export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
+  props
+) => {
   const {
     columnWidths,
     defaultColumnWidth,

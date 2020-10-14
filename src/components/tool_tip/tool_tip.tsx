@@ -314,7 +314,7 @@ export class EuiToolTip extends Component<Props, State> {
             {...rest}>
             <div style={arrowStyles} className="euiToolTip__arrow" />
             <EuiResizeObserver onResize={this.positionToolTip}>
-              {resizeRef => <div ref={resizeRef}>{content}</div>}
+              {(resizeRef) => <div ref={resizeRef}>{content}</div>}
             </EuiResizeObserver>
           </EuiToolTipPopover>
         </EuiPortal>
@@ -324,11 +324,11 @@ export class EuiToolTip extends Component<Props, State> {
     const anchor = (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <span
-        ref={anchor => (this.anchor = anchor)}
+        ref={(anchor) => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}
-        onKeyUp={event => {
+        onKeyUp={(event) => {
           this.onKeyUp(event);
         }}>
         {/**

@@ -35,10 +35,10 @@ export const CorePalette = ({ theme, colors }) => {
           }
           afterMessage={<small>Color name copied!</small>}
           textToCopy={color}>
-          {copy => (
+          {(copy) => (
             <button
               className="eui-isFocusable"
-              onClick={e => {
+              onClick={(e) => {
                 e.shiftKey ? scrollToSelector(`#${color}`) : copy();
               }}>
               <EuiIcon
@@ -63,7 +63,7 @@ export const CorePalette = ({ theme, colors }) => {
       gutterSize="s"
       wrap
       responsive={false}>
-      {colors.map(function(color, index) {
+      {colors.map(function (color, index) {
         return renderPaletteColor(palette, color, index);
       })}
     </EuiFlexGroup>

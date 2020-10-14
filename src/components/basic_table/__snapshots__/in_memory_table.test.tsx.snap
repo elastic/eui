@@ -2148,3 +2148,66 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
   />
 </div>
 `;
+
+exports[`EuiInMemoryTable with search and component between search and table 1`] = `
+<div>
+  <EuiSearchBar
+    onChange={[Function]}
+  />
+  <EuiSpacer
+    size="l"
+  />
+  <div>
+    Children Between
+  </div>
+  <EuiSpacer
+    size="l"
+  />
+  <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+          "sortable": true,
+        },
+        Object {
+          "actions": Array [
+            Object {
+              "description": "edit",
+              "name": "Edit",
+              "onClick": [Function],
+            },
+          ],
+          "name": "Actions",
+        },
+      ]
+    }
+    data-test-subj="test subject string"
+    itemId="id"
+    items={
+      Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+        Object {
+          "id": "2",
+          "name": "name2",
+        },
+        Object {
+          "id": "3",
+          "name": "name3",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    responsive={true}
+    tableLayout="fixed"
+  />
+</div>
+`;

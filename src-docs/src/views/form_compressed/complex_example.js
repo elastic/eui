@@ -86,23 +86,23 @@ export default () => {
     setGranularityToggleButtonsIdSelected,
   ] = useState(`${idPrefix}4`);
 
-  const onPopoverSliderValueChange = e => {
+  const onPopoverSliderValueChange = (e) => {
     setPopoverSliderValues(e.target.value);
   };
 
-  const onColorChange = value => {
+  const onColorChange = (value) => {
     setColor(value);
   };
 
-  const onRangeChange = e => {
+  const onRangeChange = (e) => {
     setOpacityValue(e.target.value);
   };
 
-  const onDualChange = value => {
+  const onDualChange = (value) => {
     setDualValue(value);
   };
 
-  const onTypeStyleChange = optionId => {
+  const onTypeStyleChange = (optionId) => {
     const newTypeStyleToggleButtonsIdToSelectedMap = {
       ...typeStyleToggleButtonsIdToSelectedMap,
       ...{
@@ -115,7 +115,7 @@ export default () => {
     );
   };
 
-  const onGranularityChange = optionId => {
+  const onGranularityChange = (optionId) => {
     setGranularityToggleButtonsIdSelected(optionId);
   };
 

@@ -35,9 +35,9 @@ export interface EuiLoadingElasticProps {
   size?: keyof typeof sizeToClassNameMap;
 }
 
-export const EuiLoadingElastic: FunctionComponent<CommonProps &
-  HTMLAttributes<HTMLDivElement> &
-  EuiLoadingElasticProps> = ({ size = 'm', className, ...rest }) => {
+export const EuiLoadingElastic: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps
+> = ({ size = 'm', className, ...rest }) => {
   const classes = classNames(
     'euiLoadingElastic',
     sizeToClassNameMap[size],

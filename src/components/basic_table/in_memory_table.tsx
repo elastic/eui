@@ -92,6 +92,10 @@ type InMemoryTableProps<T> = Omit<
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
   };
+  /**
+   * Insert content between the search bar and table components.
+   */
+  childrenBetween?: ReactNode;
 };
 
 type InMemoryTablePropsWithPagination<T> = Omit<
@@ -466,7 +470,7 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState(state => ({
+    this.setState((state) => ({
       prevProps: {
         ...state.prevProps,
         search,
@@ -604,6 +608,7 @@ export class EuiInMemoryTable<T> extends Component<
       onTableChange,
       executeQueryOptions,
       allowNeutralSort,
+      childrenBetween,
       ...rest
     } = this.props;
 
@@ -678,6 +683,8 @@ export class EuiInMemoryTable<T> extends Component<
     return (
       <div>
         {searchBar}
+        {childrenBetween != null ? <EuiSpacer size="l" /> : null}
+        {childrenBetween}
         <EuiSpacer size="l" />
         {table}
       </div>

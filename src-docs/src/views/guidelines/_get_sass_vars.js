@@ -3,7 +3,7 @@ import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_
 import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
 import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
 
-export const getSassVars = theme => {
+export const getSassVars = (theme) => {
   let palette;
   switch (theme) {
     case 'amsterdam-dark':

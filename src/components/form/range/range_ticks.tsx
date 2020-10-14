@@ -47,10 +47,12 @@ export type EuiRangeTicksProps = Omit<
   onChange?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const EuiTickValue: FunctionComponent<EuiRangeTicksProps & {
-  tickValue: any;
-  percentageWidth: number;
-}> = ({
+const EuiTickValue: FunctionComponent<
+  EuiRangeTicksProps & {
+    tickValue: any;
+    percentageWidth: number;
+  }
+> = ({
   disabled,
   ticks,
   min,
@@ -63,7 +65,7 @@ const EuiTickValue: FunctionComponent<EuiRangeTicksProps & {
   const tickStyle: { left?: string; width?: string } = {};
   let customTick;
   if (ticks) {
-    customTick = ticks.find(o => o.value === tickValue);
+    customTick = ticks.find((o) => o.value === tickValue);
 
     if (customTick) {
       tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
@@ -97,7 +99,7 @@ const EuiTickValue: FunctionComponent<EuiRangeTicksProps & {
   );
 };
 
-export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = props => {
+export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   const { ticks, tickSequence, max, min, interval = 1, compressed } = props;
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
@@ -114,7 +116,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = props => {
 
   return (
     <div className={classes} style={ticksStyle}>
-      {tickSequence.map(tickValue => (
+      {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}
           {...props}
