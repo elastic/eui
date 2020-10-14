@@ -16,6 +16,16 @@
   }
 }
 
+.euiResizablePanel--collapsible {
+  
+  &:not(.euiResizablePanel--collapsed) {
+
+    .euiResizablePanel__toggleButton:not(:focus):not(:active):not(.euiResizablePanel__toggleButton--focused) {
+      @include euiScreenReaderOnly;
+    }
+  }
+}
+
 .euiResizableContainer--horizontal {
   
   .euiResizablePanel--collapsed {
@@ -28,19 +38,20 @@
     top: 50%;
     margin-top: -12px;
     z-index: 1;
+    background-color: $euiColorLightestShade;
   }
 
   .euiResizablePanel {
 
-    &.euiResizablePanel--middle {
-      .euiResizablePanel__toggleButton--right {
-        top: 40%;
-      }
+    // &.euiResizablePanel--middle {
+    //   .euiResizablePanel__toggleButton--right {
+    //     top: 40%;
+    //   }
 
-      .euiResizablePanel__toggleButton--left {
-        top: 60%;
-      }
-    }
+    //   .euiResizablePanel__toggleButton--left {
+    //     top: 60%;
+    //   }
+    // }
 
     .euiResizablePanel__toggleButton {
       transition: left 0s;

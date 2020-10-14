@@ -96,7 +96,8 @@ export interface EuiResizablePanelProps
   /*
    * Use this to add a toggle button to a `EuiResizablePanel`. If true, default button icons are used
    */
-  toggle?: boolean | ToggleOptions;
+  // toggle?: boolean | ToggleOptions;
+  mode?: 'default' | 'collapsible' | 'main';
 }
 
 const toggleDefault: ToggleOptions = {
@@ -126,13 +127,16 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   minSize = '0px',
   scrollable = true,
   style = {},
-  toggle = false,
+  mode = 'default',
   registration,
   onToggleCollapsed,
   ...rest
 }) => {
   const {
-    registry: { panels, resizerHasFocus } = { panels: {} },
+    registry: { panels, resizerHasFocus } = {
+      panels: {},
+      resizerHasFocus: null,
+    },
   } = useEuiResizablePanelContext();
   const divRef = useRef<HTMLDivElement>(null);
   const panelId = useRef(id || generatePanelId());
@@ -153,6 +157,27 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       (panels[panelId.current] && panels[panelId.current].position) || 'middle',
     [panels]
   );
+  const isCollapsible = mode === 'collapsible';
+  const direction = useMemo(() => {
+    let direction = null;
+    if (position === 'middle' && isCollapsible) {
+      const ids = Object.keys(panels);
+      const index = ids.indexOf(panelId.current);
+      const prevPanelMode = panels[ids[index - 1]] ? panels[ids[index - 1]].mode : null;
+      const nextPanelMode = panels[ids[index + 1]] ? panels[ids[index + 1]].mode : null ;
+      // Intentional, preferential order
+      if (prevPanelMode === 'main') {
+        direction = 'right';
+      } else if (nextPanelMode === 'main') {
+        direction = 'left';
+      } else if ( prevPanelMode === 'default') {
+        direction = 'right';
+      } else if ( nextPanelMode === 'default') {
+        direction = 'left';
+      }
+    }
+    return direction
+  }, [isCollapsible, position, panels]);
 
   const focusedResizer = useMemo(() => resizerHasFocus, [resizerHasFocus]);
 
@@ -161,8 +186,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       euiResizablePanel: scrollable,
     },
     {
-      'euiResizablePanel--collapsible': toggle,
-      'euiResizablePanel--collapsed': isCollapsed,
+      'euiResizablePanel--collapsible': isCollapsible,
+      'euiResizablePanel--collapsed': isCollapsed
     },
     `euiResizablePanel--${position}`,
     className
@@ -212,13 +237,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           : divRef.current!.getBoundingClientRect().height;
       },
       minSize,
+      mode,
       isCollapsed: false,
       position: getPosition(divRef.current!),
     });
     return () => {
       registration.deregister(id);
     };
-  }, [initialSize, isHorizontal, minSize, size, registration]);
+  }, [initialSize, isHorizontal, minSize, size, registration, isCollapsible]);
 
   const onClickCollapse = (direction: any) => {
     onToggleCollapsed &&
@@ -229,16 +255,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   // Use the default object if they simply passed `true` for toggle
   const toggleObject =
-    typeof toggle === 'object'
-      ? { ...toggleDefault, ...toggle }
-      : toggleDefault;
+    typeof mode === 'object' ? { ...toggleDefault, mode } : toggleDefault;
 
   const toggleButtonClasses = classNames(
     'euiResizablePanel__toggleButton',
     toggleObject && toggleObject.className
   );
-
-  // console.log(focusedResizer, resizerIds.current);
 
   return (
     <div
@@ -247,10 +269,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={styles}
       {...rest}>
-      {toggle &&
-      (position === 'last' || position === 'middle') &&
-      (focusedResizer === resizerIds.current[0] || isCollapsed) &&
-      isCollapsed !== 'left' ? (
+      {isCollapsible &&
+      (position === 'last' ||
+        (position === 'middle' && direction === 'right')) ? (
         <EuiI18n
           token="euiResizablePanel.toggleButtonAriaLabel"
           default="Press to toggle this panel">
@@ -259,7 +280,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
               color="text"
               className={classNames(
                 toggleButtonClasses,
-                'euiResizablePanel__toggleButton--left'
+                'euiResizablePanel__toggleButton--left',
+                {'euiResizablePanel__toggleButton--focused': focusedResizer === resizerIds.current[0]}
               )}
               aria-label={toggleButtonAriaLabel}
               iconType={
@@ -267,17 +289,15 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
                   ? toggleObject.notCollapsedIcon
                   : toggleObject.collapsedIcon
               }
-              // TODO: Directionality
               onClick={() => onClickCollapse('right')}
             />
           )}
         </EuiI18n>
       ) : null}
       <div className="euiResizablePanel__content">{children}</div>
-      {toggle &&
-      (position === 'first' || position === 'middle') &&
-      (focusedResizer === resizerIds.current[1] || isCollapsed) &&
-      isCollapsed !== 'right' ? (
+      {isCollapsible &&
+      (position === 'first' ||
+        (position === 'middle' && direction === 'left')) ? (
         <EuiI18n
           token="euiResizablePanel.toggleButtonAriaLabel"
           default="Press to toggle this panel">
@@ -286,7 +306,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
               color="text"
               className={classNames(
                 toggleButtonClasses,
-                'euiResizablePanel__toggleButton--right'
+                'euiResizablePanel__toggleButton--right',
+                {'euiResizablePanel__toggleButton--focused': focusedResizer === resizerIds.current[1]}
               )}
               aria-label={toggleButtonAriaLabel}
               iconType={
@@ -294,7 +315,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
                   ? toggleObject.collapsedIcon
                   : toggleObject.notCollapsedIcon
               }
-              // TODO: Directionality
               onClick={() => onClickCollapse('left')}
             />
           )}

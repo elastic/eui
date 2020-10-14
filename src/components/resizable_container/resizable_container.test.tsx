@@ -137,11 +137,11 @@ describe('EuiResizableContainer', () => {
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
-            <EuiResizablePanel toggle initialSize={20}>
+            <EuiResizablePanel mode="collapsible" initialSize={20}>
               Sidebar
             </EuiResizablePanel>
             <EuiResizableButton size="s" />
-            <EuiResizablePanel initialSize={80}>
+            <EuiResizablePanel mode="main" initialSize={80}>
               Sidebar content
             </EuiResizablePanel>
           </>

@@ -24,7 +24,8 @@ export interface EuiResizablePanelController {
   size: number;
   getSizePx: () => number;
   minSize: string;
-  isCollapsed: boolean | string;
+  collapsible: boolean;
+  isCollapsed: boolean;
   prevSize: number;
   position: 'first' | 'middle' | 'last';
 }
@@ -38,6 +39,7 @@ export interface EuiResizableButtonController {
 export interface EuiResizableContainerRegistry {
   panels: { [key: string]: EuiResizablePanelController };
   resizers: { [key: string]: EuiResizableButtonController };
+  resizerHasFocus: EuiResizableContainerState['resizerHasFocus'];
 }
 
 export type EuiResizableButtonMouseEvent =
@@ -55,6 +57,7 @@ export interface EuiResizableContainerState {
   isHorizontal?: boolean;
   panels: EuiResizableContainerRegistry['panels'];
   resizers: EuiResizableContainerRegistry['resizers'];
+  resizerHasFocus: string | null;
 }
 
 interface ActionReset {
@@ -120,6 +123,17 @@ interface ActionDeregisterResizer {
     resizerId: EuiResizableButtonController['id'];
   };
 }
+
+export interface ActionFocus {
+  type: 'EUI_RESIZABLE_BUTTON_FOCUS';
+  payload: {
+    resizerId: EuiResizableButtonController['id'];
+  };
+}
+
+interface ActionBlur {
+  type: 'EUI_RESIZABLE_BUTTON_BLUR';
+}
 interface ActionOnChange {
   type: 'EUI_RESIZABLE_ONCHANGE';
 }
@@ -135,6 +149,8 @@ export type EuiResizableContainerAction =
   | ActionKeyMove
   | ActionResize
   | ActionToggle
+  | ActionFocus
+  | ActionBlur
   | ActionOnChange;
 
 export interface EuiResizableContainerActions {
@@ -158,6 +174,8 @@ export interface EuiResizableContainerActions {
     nextPanelId,
     direction,
   }: ActionKeyMove['payload']) => void;
+  resizerFocus: (resizerId: ActionFocus['payload']['resizerId']) => void;
+  resizerBlur: () => void;
   panelToggle: ({ panelId, options }: ActionToggle['payload']) => void;
   resize: (resetTour?: boolean) => void;
 }

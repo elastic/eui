@@ -43,6 +43,8 @@ interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
   onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
+  onFocus: (id: string) => void;
+  onBlur: () => void;
   registration: {
     register: (resizer: EuiResizableButtonController) => void;
     deregister: (resizerId: EuiResizableButtonController['id']) => void;
@@ -127,13 +129,15 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
     e.currentTarget.focus();
 
-  const handleBlur = (e: FocusEvent) => {
+  const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
     if (
       e.relatedTarget &&
-      e.relatedTarget.classList.contains('euiResizablePanel__toggleButton')
+      (e.relatedTarget as HTMLElement).classList.contains(
+        'euiResizablePanel__toggleButton'
+      )
     )
       return;
-    onBlur && onBlur(e);
+    onBlur && onBlur();
   };
 
   return (

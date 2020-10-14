@@ -19,6 +19,7 @@
 
 import React, {
   ReactNode,
+  ReactElement,
   useRef,
   useCallback,
   CSSProperties,
@@ -84,6 +85,7 @@ const initialState: EuiResizableContainerState = {
   resizersSize: 0,
   panels: {},
   resizers: {},
+  resizerHasFocus: null,
 };
 
 export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps> = ({
@@ -161,7 +163,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     actions.reset();
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
       onKeyDown,
@@ -178,7 +179,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     [isHorizontal]
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizablePanel = useCallback(
     euiResizablePanelWithControls({
       isHorizontal,
@@ -191,6 +191,26 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     }),
     [isHorizontal]
   );
+
+  const render = () => {
+    const content = children(EuiResizablePanel, EuiResizableButton, actions);
+    const modes = React.isValidElement(content)
+      ? content.props.children.map(
+          (el: ReactElement) => el.props.mode || 'default'
+        )
+      : null;
+    if (
+      modes &&
+      (['collapsible', 'main'].every((i) => modes.includes(i)) ||
+        modes.every((i?: string) => i === 'default'))
+    ) {
+      return content;
+    } else {
+      throw new Error(
+        'Both `collapsible` and `main` mode panels are required.'
+      );
+    }
+  };
 
   return (
     <EuiResizablePanelContextProvider
@@ -210,7 +230,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         {...rest}>
         {
           // TODO: Maybe just a subset of actions?
-          children(EuiResizablePanel, EuiResizableButton, actions)
+          render()
         }
       </div>
     </EuiResizablePanelContextProvider>

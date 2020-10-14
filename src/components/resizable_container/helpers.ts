@@ -18,6 +18,7 @@
  */
 
 import {
+  useMemo,
   useEffect,
   useReducer,
   MouseEvent as ReactMouseEvent,
@@ -36,6 +37,7 @@ import {
   ActionDragMove,
   ActionKeyMove,
   ActionToggle,
+  ActionFocus,
 } from './types';
 
 interface Params {
@@ -122,6 +124,7 @@ export const useContainerCallbacks = ({
     switch (action.type) {
       case 'EUI_RESIZABLE_PANEL_REGISTER': {
         const { panel } = action.payload;
+        // console.log('Panel: ', panel.id)
         return {
           ...state,
           panels: {
@@ -149,6 +152,7 @@ export const useContainerCallbacks = ({
       }
       case 'EUI_RESIZABLE_BUTTON_REGISTER': {
         const { resizer } = action.payload;
+        // console.log('Resizer: ', resizer.id)
         return {
           ...state,
           resizers: {
@@ -317,14 +321,14 @@ export const useContainerCallbacks = ({
         if (
           prevPanel &&
           !state.panels[prevPanel.id].isCollapsed &&
-          (options.direction === 'right' || options.direction === 'both')
+          options.direction === 'right'
         ) {
           otherPanels[prevPanel.id] = state.panels[prevPanel.id];
         }
         if (
           nextPanel &&
           !state.panels[nextPanel.id].isCollapsed &&
-          (options.direction === 'left' || options.direction === 'both')
+          options.direction === 'left'
         ) {
           otherPanels[nextPanel.id] = state.panels[nextPanel.id];
         }
@@ -355,7 +359,7 @@ export const useContainerCallbacks = ({
             [currentPanelId]: {
               ...state.panels[currentPanelId],
               size: newPanelSize,
-              isCollapsed: shouldCollapse ? options.direction : false,
+              isCollapsed: shouldCollapse,
               prevSize: shouldCollapse ? currentPanel.size : newPanelSize,
             },
           },
@@ -411,7 +415,22 @@ export const useContainerCallbacks = ({
     }
   }
 
+  // const useFromReducer = (state: any) => {
+  //   // console.log(state);
+  //   const panels = state.panels;
+  //   const panelSizes = sizesOnly(panels);
+  //   const resizers = state.resizers;
+  //   return useMemo(() => {
+  //     return {
+  //       resizers,
+  //       panels,
+  //       panelSizes,
+  //     };
+  //   }, [panels, panelSizes, resizers]);
+  // };
+
   const [reducerState, dispatch] = useReducer(reducer, initialState);
+  // const { panels, resizers, panelSizes } = useFromReducer(state);
 
   // TODO: Not sure I like this. Left the alternate effect approach in, commented
   useEffect(() => {
@@ -475,7 +494,7 @@ export const useContainerCallbacks = ({
         type: 'EUI_RESIZABLE_TOGGLE',
         payload: { panelId, options },
       }),
-    resizerFocus: (resizerId: ActionFocus['payload']) =>
+    resizerFocus: (resizerId: ActionFocus['payload']['resizerId']) =>
       dispatch({
         type: 'EUI_RESIZABLE_BUTTON_FOCUS',
         payload: { resizerId },
