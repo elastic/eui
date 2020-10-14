@@ -13,10 +13,18 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 1"
         class="euiStepNumber euiStep__circle"
       >
-        1
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 1
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          1
+        </p>
       </div>
       <h2
         class="euiTitle euiTitle--small euiStep__title"
@@ -39,10 +47,18 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 2"
         class="euiStepNumber euiStep__circle"
       >
-        2
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 2
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          2
+        </p>
       </div>
       <h2
         class="euiTitle euiTitle--small euiStep__title"
@@ -65,7 +81,6 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Incomplete Step 3"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
       />
       <h2
@@ -98,10 +113,18 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 1"
         class="euiStepNumber euiStep__circle"
       >
-        1
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 1
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          1
+        </p>
       </div>
       <p
         class="euiTitle euiTitle--small euiStep__title"
@@ -124,10 +147,18 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 2"
         class="euiStepNumber euiStep__circle"
       >
-        2
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 2
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          2
+        </p>
       </div>
       <p
         class="euiTitle euiTitle--small euiStep__title"
@@ -150,7 +181,6 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Incomplete Step 3"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
       />
       <p
@@ -183,10 +213,18 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 10"
         class="euiStepNumber euiStep__circle"
       >
-        10
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 10
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          10
+        </p>
       </div>
       <p
         class="euiTitle euiTitle--small euiStep__title"
@@ -209,10 +247,18 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 11"
         class="euiStepNumber euiStep__circle"
       >
-        11
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 11
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          11
+        </p>
       </div>
       <p
         class="euiTitle euiTitle--small euiStep__title"
@@ -235,7 +281,6 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Incomplete Step 12"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
       />
       <p
@@ -268,10 +313,18 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 1"
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
-        1
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 1
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          1
+        </p>
       </div>
       <p
         class="euiTitle euiTitle--xsmall euiStep__title"
@@ -294,10 +347,18 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Step 2"
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
-        2
+        <p
+          class="euiScreenReaderOnly"
+        >
+          Step 2
+        </p>
+        <p
+          aria-hidden="true"
+        >
+          2
+        </p>
       </div>
       <p
         class="euiTitle euiTitle--xsmall euiStep__title"
@@ -320,7 +381,6 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="Incomplete Step 3"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle euiStepNumber--small"
       />
       <p

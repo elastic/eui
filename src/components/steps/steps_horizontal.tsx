@@ -27,7 +27,7 @@ type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProps, 'step'>;
 
 export interface EuiStepsHorizontalProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+    HTMLAttributes<HTMLOListElement> {
   /**
    * An array of `EuiStepHorizontal` objects excluding the `step` prop
    */
@@ -48,8 +48,8 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   const classes = classNames('euiStepsHorizontal', className);
 
   return (
-    <div role="tablist" className={classes} {...rest}>
+    <ol className={classes} {...rest}>
       {renderHorizontalSteps(steps)}
-    </div>
+    </ol>
   );
 };

@@ -30,6 +30,7 @@
   position: relative;
 
   // focus & hover state
+  &:focus-within:not(.euiStepHorizontal-isDisabled),
   &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
     .euiStepHorizontal__number {

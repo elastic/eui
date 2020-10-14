@@ -17,15 +17,20 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-
-import { EuiIcon } from '../icon';
-
-import { EuiStepProps } from './step';
-
-import { EuiI18n } from '../i18n';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, keysOf } from '../common';
+import { EuiIcon } from '../icon';
+import { EuiStepProps } from './step';
+import {
+  useI18nCompleteStep,
+  useI18nDisabledStep,
+  useI18nErrorsStep,
+  useI18nIncompleteStep,
+  useI18nStep,
+  useI18nWarningStep,
+} from './step_strings';
 
 const statusToClassNameMap = {
   complete: 'euiStepNumber--complete',
@@ -70,12 +75,17 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   titleSize,
   ...rest
 }) => {
+  const step = useI18nStep(number);
+  const complete = useI18nCompleteStep(number);
+  const warning = useI18nWarningStep(number);
+  const errors = useI18nErrorsStep(number);
+  const incomplete = useI18nIncompleteStep(number);
+  const disabled = useI18nDisabledStep(number);
+
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,
-    {
-      'euiStepNumber-isHollow': isHollow,
-    },
+    { 'euiStepNumber-isHollow': isHollow },
     className
   );
 
@@ -84,45 +94,44 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   let numberOrIcon;
   if (status === 'complete') {
     numberOrIcon = (
-      <EuiI18n token="euiStepNumber.isComplete" default="complete">
-        {(isComplete: string) => (
-          <EuiIcon
-            type="check"
-            className="euiStepNumber__icon"
-            size={iconSize}
-            aria-label={isComplete}
-          />
-        )}
-      </EuiI18n>
+      <EuiIcon
+        type="check"
+        className="euiStepNumber__icon"
+        size={iconSize}
+        aria-label={complete}
+      />
     );
   } else if (status === 'warning') {
     numberOrIcon = (
-      <EuiI18n token="euiStepNumber.hasWarnings" default="has warnings">
-        {(hasWarnings: string) => (
-          <EuiIcon
-            type="alert"
-            className="euiStepNumber__icon"
-            size={iconSize}
-            aria-label={hasWarnings}
-          />
-        )}
-      </EuiI18n>
+      <EuiIcon
+        type="alert"
+        className="euiStepNumber__icon"
+        size={iconSize}
+        aria-label={warning}
+      />
     );
   } else if (status === 'danger') {
     numberOrIcon = (
-      <EuiI18n token="euiStepNumber.hasErrors" default="has errors">
-        {(hasErrors: string) => (
-          <EuiIcon
-            type="cross"
-            className="euiStepNumber__icon"
-            size={iconSize}
-            aria-label={hasErrors}
-          />
-        )}
-      </EuiI18n>
+      <EuiIcon
+        type="cross"
+        className="euiStepNumber__icon"
+        size={iconSize}
+        aria-label={errors}
+      />
     );
   } else if (!isHollow) {
-    numberOrIcon = number;
+    let screenReaderText = step as string;
+    if (status === 'incomplete') screenReaderText = incomplete;
+    else if (status === 'disabled') screenReaderText = disabled;
+
+    numberOrIcon = (
+      <>
+        <EuiScreenReaderOnly>
+          <p>{screenReaderText}</p>
+        </EuiScreenReaderOnly>
+        <p aria-hidden="true">{number}</p>
+      </>
+    );
   }
 
   return (

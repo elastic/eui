@@ -79,7 +79,7 @@ describe('EuiStepHorizontal', () => {
     });
 
     describe('onClick', () => {
-      test('is called when clicked', () => {
+      test.skip('is called when clicked', () => {
         const onClickHandler = jest.fn();
 
         const component = mount(

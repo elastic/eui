@@ -5,14 +5,32 @@ exports[`EuiStepNumber is rendered 1`] = `
   aria-label="aria-label"
   class="euiStepNumber testClass1 testClass2"
   data-test-subj="test subject string"
-/>
+>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Step 
+  </p>
+  <p
+    aria-hidden="true"
+  />
+</div>
 `;
 
 exports[`EuiStepNumber props has titleSize is rendered 1`] = `
 <div
   class="euiStepNumber"
 >
-  1
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Step 1
+  </p>
+  <p
+    aria-hidden="true"
+  >
+    1
+  </p>
 </div>
 `;
 
@@ -27,7 +45,7 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
   class="euiStepNumber euiStepNumber--complete"
 >
   <span
-    aria-label="complete"
+    aria-label="Step 1 is complete"
     class="euiStepNumber__icon"
     data-euiicon-type="check"
   />
@@ -39,7 +57,7 @@ exports[`EuiStepNumber props status danger is rendered 1`] = `
   class="euiStepNumber euiStepNumber--danger"
 >
   <span
-    aria-label="has errors"
+    aria-label="Step 1 has errors"
     class="euiStepNumber__icon"
     data-euiicon-type="cross"
   />
@@ -50,7 +68,16 @@ exports[`EuiStepNumber props status disabled is rendered 1`] = `
 <div
   class="euiStepNumber euiStepNumber--disabled"
 >
-  1
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Step 1 is disabled
+  </p>
+  <p
+    aria-hidden="true"
+  >
+    1
+  </p>
 </div>
 `;
 
@@ -58,7 +85,16 @@ exports[`EuiStepNumber props status incomplete is rendered 1`] = `
 <div
   class="euiStepNumber euiStepNumber--incomplete"
 >
-  1
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Step 1 is incomplete
+  </p>
+  <p
+    aria-hidden="true"
+  >
+    1
+  </p>
 </div>
 `;
 
@@ -67,7 +103,7 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
   class="euiStepNumber euiStepNumber--warning"
 >
   <span
-    aria-label="has warnings"
+    aria-label="Step 1 has warnings"
     class="euiStepNumber__icon"
     data-euiicon-type="alert"
   />

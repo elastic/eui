@@ -17,22 +17,25 @@
  * under the License.
  */
 
+import classNames from 'classnames';
 import React, {
+  createRef,
   FunctionComponent,
   HTMLAttributes,
   MouseEventHandler,
 } from 'react';
 import { CommonProps } from '../common';
-import classNames from 'classnames';
-
-import { EuiI18n } from '../i18n';
-import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
-
-import { EuiStepStatus, EuiStepNumber } from './step_number';
+import { EuiStepNumber, EuiStepStatus } from './step_number';
+import {
+  useI18nCompleteStep,
+  useI18nDisabledStep,
+  useI18nStep,
+  useI18nWarningStep,
+} from './step_strings';
 
 export interface EuiStepHorizontalProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+    Omit<HTMLAttributes<HTMLLIElement>, 'onClick'> {
   /**
    * Is the current step
    */
@@ -41,7 +44,7 @@ export interface EuiStepHorizontalProps
    * Is a previous step that has been completed
    */
   isComplete?: boolean;
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   /**
    * The number of the step in the list of steps
@@ -66,6 +69,13 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   status,
   ...rest
 }) => {
+  const buttonRef = createRef<HTMLButtonElement>();
+  const defaultButton = useI18nStep(step);
+  const completeButton = useI18nCompleteStep(step);
+  const disabledButton = useI18nDisabledStep(step);
+  const incompleteButton = useI18nCompleteStep(step);
+  const warningButton = useI18nWarningStep(step);
+
   const classes = classNames('euiStepHorizontal', className, {
     'euiStepHorizontal-isSelected': isSelected,
     'euiStepHorizontal-isComplete': isComplete,
@@ -73,70 +83,48 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     'euiStepHorizontal-isDisabled': disabled,
   });
 
-  if (disabled) {
+  let stepTitle = defaultButton as string;
+
+  if (disabled || status === 'disabled') {
     status = 'disabled';
-  } else if (isComplete) {
+    stepTitle = disabledButton;
+  } else if (isComplete || status === 'complete') {
     status = 'complete';
+    stepTitle = completeButton;
   } else if (isSelected) {
+    if (status === 'warning') stepTitle = warningButton;
     status = status;
-  } else if (!status) {
+  } else if (!status || status === 'incomplete') {
     status = 'incomplete';
+    stepTitle = incompleteButton;
   }
 
-  const onStepClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const onStepClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
     if (disabled) return;
     onClick(event);
   };
 
+  const ariaProps = isSelected ? { 'aria-current': 'step' as const } : {};
+
   return (
-    <EuiI18n
-      token="euiStepHorizontal.buttonTitle"
-      default={({
-        step,
-        title,
-        disabled,
-        isComplete,
-      }: Pick<
-        EuiStepHorizontalProps,
-        'step' | 'title' | 'disabled' | 'isComplete'
-      >) => {
-        let titleAppendix = '';
-        if (disabled) {
-          titleAppendix = ' is disabled';
-        } else if (isComplete) {
-          titleAppendix = ' is complete';
-        }
+    <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+      className={classes}
+      title={stepTitle}
+      onClick={() => buttonRef.current?.click()}
+      {...ariaProps}
+      {...rest}>
+      <button ref={buttonRef} onClick={onStepClick} disabled={disabled}>
+        <EuiStepNumber
+          className="euiStepHorizontal__number"
+          status={status}
+          number={step}
+        />
+      </button>
 
-        return `Step ${step}: ${title}${titleAppendix}`;
-      }}
-      values={{ step, title, disabled, isComplete }}>
-      {(buttonTitle: string) => (
-        <EuiKeyboardAccessible>
-          <div
-            role="tab"
-            aria-selected={!!isSelected}
-            aria-disabled={!!disabled}
-            className={classes}
-            onClick={onStepClick}
-            tabIndex={disabled ? -1 : 0}
-            title={buttonTitle}
-            {...rest}>
-            <EuiScreenReaderOnly>
-              <div>
-                <EuiI18n token="euiStepHorizontal.step" default="Step" />
-              </div>
-            </EuiScreenReaderOnly>
-
-            <EuiStepNumber
-              className="euiStepHorizontal__number"
-              status={status}
-              number={step}
-            />
-
-            <div className="euiStepHorizontal__title">{title}</div>
-          </div>
-        </EuiKeyboardAccessible>
-      )}
-    </EuiI18n>
+      <p className="euiStepHorizontal__title">{title}</p>
+    </li>
   );
 };
