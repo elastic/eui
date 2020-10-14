@@ -55,6 +55,18 @@
   }
 }
 
+/**
+ * Title specific overrides
+ */
+
 .euiPopoverTitle {
   text-transform: none;
+  padding: 0;
+
+  // Allow the panel padding to actually modify the title as well
+  @each $modifier, $amount in $euiPanelPaddingModifiers {
+    .euiPopover__panel.euiPanel--#{$modifier} & {
+      padding: $amount;
+    }
+  }
 }

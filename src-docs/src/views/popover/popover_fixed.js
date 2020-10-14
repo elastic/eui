@@ -18,7 +18,7 @@ export default () => {
       iconType="arrowDown"
       iconSide="right"
       onClick={onButtonClick}
-      style={{ background: 'white' }}>
+      fill>
       Show fixed popover
     </EuiButton>
   );

@@ -50,7 +50,7 @@ export default () => {
           panelPaddingSize="s">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>Popover content</p>
             </EuiText>
           </div>
@@ -73,7 +73,7 @@ export default () => {
           anchorPosition="upCenter">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>Popover content</p>
             </EuiText>
           </div>
@@ -97,7 +97,7 @@ export default () => {
           panelPaddingSize="l">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>Popover content</p>
             </EuiText>
           </div>
@@ -119,9 +119,9 @@ export default () => {
           closePopover={closePopover3}
           anchorPosition="upCenter"
           panelPaddingSize="none">
-          <EuiPopoverTitle>As the title, I keep my padding</EuiPopoverTitle>
+          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>Popover content</p>
             </EuiText>
           </div>

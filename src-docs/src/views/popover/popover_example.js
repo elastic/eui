@@ -277,10 +277,8 @@ export const PopoverExample = {
       text: (
         <div>
           <p>
-            When using popover titles, you can still propogate the padding size
-            by using <EuiCode>panelPaddingSize</EuiCode>. This will only affect
-            the horizontal padding of the title and the overall padding of the
-            content.
+            When using popover titles, the <EuiCode>panelPaddingSize</EuiCode>{' '}
+            will propogate to the title.
           </p>
         </div>
       ),
