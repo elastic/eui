@@ -53,7 +53,7 @@ export default () => (
     <EuiFlexItem>{vizBars}</EuiFlexItem>
     <EuiFlexItem>
       <EuiProgress
-        valueText="prueba"
+        valueText="valueText"
         label="#32CD32"
         color="#32CD32"
         value={80}
@@ -62,7 +62,7 @@ export default () => (
       />
       <EuiSpacer size="s" />
       <EuiProgress
-        valueText="prueba"
+        valueText="valueText"
         label="mediumslateblue"
         color="mediumslateblue"
         value={80}

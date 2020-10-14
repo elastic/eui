@@ -238,6 +238,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                   <span
                     title={innerText}
                     ref={ref}
+                    style={optionalCustomStyles}
                     className="euiProgress__valueText">
                     {valueRender}
                   </span>

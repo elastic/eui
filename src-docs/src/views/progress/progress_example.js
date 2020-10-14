@@ -188,7 +188,7 @@ export const ProgressExample = {
             more about color usage, go to the{' '}
             <Link to="/guidelines/colors">Color guidelines</Link> page.
           </p>
-          <p>Additionally, you can pass a color name or hex value.</p>
+          <p>Additionally, you can pass a color name or a hex value.</p>
         </div>
       ),
       demo: <ProgressColors />,

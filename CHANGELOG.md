@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
-- Added colors `tint1` through `tint9`, `warning` and `success` to `EuiProgress` ([#4130](https://github.com/elastic/eui/pull/4130))
+- Added support for hex codes and colors `tint1` through `tint9`, `warning` and `success` to `EuiProgress` ([#4130](https://github.com/elastic/eui/pull/4130))
 
 ## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
 
