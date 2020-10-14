@@ -49,16 +49,16 @@ export type ProgressColor =
   | 'danger'
   | 'subdued'
   | 'accent'
-  | 'tint0'
-  | 'tint1'
-  | 'tint2'
-  | 'tint3'
-  | 'tint4'
-  | 'tint5'
-  | 'tint6'
-  | 'tint7'
-  | 'tint8'
-  | 'tint9';
+  | 'vis0'
+  | 'vis1'
+  | 'vis2'
+  | 'vis3'
+  | 'vis4'
+  | 'vis5'
+  | 'vis6'
+  | 'vis7'
+  | 'vis8'
+  | 'vis9';
 
 const colorToClassNameMap = {
   primary: 'euiProgress--primary',
@@ -68,16 +68,16 @@ const colorToClassNameMap = {
   danger: 'euiProgress--danger',
   subdued: 'euiProgress--subdued',
   accent: 'euiProgress--accent',
-  tint0: 'euiProgress--tint0',
-  tint1: 'euiProgress--tint1',
-  tint2: 'euiProgress--tint2',
-  tint3: 'euiProgress--tint3',
-  tint4: 'euiProgress--tint4',
-  tint5: 'euiProgress--tint5',
-  tint6: 'euiProgress--tint6',
-  tint7: 'euiProgress--tint7',
-  tint8: 'euiProgress--tint8',
-  tint9: 'euiProgress--tint9',
+  vis0: 'euiProgress--vis0',
+  vis1: 'euiProgress--vis1',
+  vis2: 'euiProgress--vis2',
+  vis3: 'euiProgress--vis3',
+  vis4: 'euiProgress--vis4',
+  vis5: 'euiProgress--vis5',
+  vis6: 'euiProgress--vis6',
+  vis7: 'euiProgress--vis7',
+  vis8: 'euiProgress--vis8',
+  vis9: 'euiProgress--vis9',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -98,16 +98,16 @@ const dataColorToClassNameMap: { [color in ProgressColor]: string } = {
   danger: 'euiProgress__data--danger',
   subdued: 'euiProgress__data--subdued',
   accent: 'euiProgress__data--accent',
-  tint0: 'euiProgress__data--tint0',
-  tint1: 'euiProgress__data--tint1',
-  tint2: 'euiProgress__data--tint2',
-  tint3: 'euiProgress__data--tint3',
-  tint4: 'euiProgress__data--tint4',
-  tint5: 'euiProgress__data--tint5',
-  tint6: 'euiProgress__data--tint6',
-  tint7: 'euiProgress__data--tint7',
-  tint8: 'euiProgress__data--tint8',
-  tint9: 'euiProgress__data--tint9',
+  vis0: 'euiProgress__data--vis0',
+  vis1: 'euiProgress__data--vis1',
+  vis2: 'euiProgress__data--vis2',
+  vis3: 'euiProgress__data--vis3',
+  vis4: 'euiProgress__data--vis4',
+  vis5: 'euiProgress__data--vis5',
+  vis6: 'euiProgress__data--vis6',
+  vis7: 'euiProgress__data--vis7',
+  vis8: 'euiProgress__data--vis8',
+  vis9: 'euiProgress__data--vis9',
 };
 
 const positionsToClassNameMap = {
@@ -122,6 +122,9 @@ export type EuiProgressPosition = keyof typeof positionsToClassNameMap;
 
 export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
+  /**
+   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   */
   color?: EuiProgressColor | string;
   position?: EuiProgressPosition;
 };

@@ -22,11 +22,11 @@ for (let i = 0; i < 10; i++) {
   vizBars.push(
     <>
       <EuiProgress
-        label={`tint${i}`}
-        valueText={`tint${i}`}
+        label={`vis${i}`}
+        valueText={`vis${i}`}
         value={80}
         max={100}
-        color={`tint${i}`}
+        color={`vis${i}`}
         size="m"
       />
       <EuiSpacer size="s" />

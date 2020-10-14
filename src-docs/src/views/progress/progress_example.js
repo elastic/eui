@@ -183,10 +183,10 @@ export const ProgressExample = {
           <p>
             <strong>EuiProgress</strong> supports a few options for{' '}
             <EuiCode>color</EuiCode>. You can pass any value from our basic
-            color set or from our visualization palette (
-            <EuiCode>tint0</EuiCode> through <EuiCode>tint9</EuiCode>). To learn
-            more about color usage, go to the{' '}
-            <Link to="/guidelines/colors">Color guidelines</Link> page.
+            color set or from our visualization palette (<EuiCode>vis0</EuiCode>{' '}
+            through <EuiCode>vis9</EuiCode>). To learn more about color usage,
+            go to the <Link to="/guidelines/colors">Color guidelines</Link>{' '}
+            page.
           </p>
           <p>Additionally, you can pass a color name or a hex value.</p>
           <EuiCallOut
