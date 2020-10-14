@@ -44,8 +44,7 @@ const columns = [
       ({ rowIndex, columnId, Component, isExpanded }) => {
         const row = ++rowIndex;
         const message = isExpanded
-          ? `Cheers sent in Popover to row "${rowIndex +
-              1}" column "${columnId}"`
+          ? `Cheers sent in Popover to row "${row}" column "${columnId}"`
           : `Cheers sent from row ${row}, column "${columnId}"`;
 
         return (
@@ -124,11 +123,11 @@ export default () => {
   );
 
   const setPageIndex = useCallback(
-    pageIndex => setPagination({ ...pagination, pageIndex }),
+    (pageIndex) => setPagination({ ...pagination, pageIndex }),
     [pagination, setPagination]
   );
   const setPageSize = useCallback(
-    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    (pageSize) => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
     [pagination, setPagination]
   );
 

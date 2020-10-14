@@ -89,7 +89,7 @@ export const useColumnSelector = (
   function setColumns(nextColumns: string[]) {
     setSortedColumns(nextColumns);
 
-    const nextVisibleColumns = nextColumns.filter(id =>
+    const nextVisibleColumns = nextColumns.filter((id) =>
       visibleColumnIds.has(id)
     );
     setVisibleColumns(nextVisibleColumns);
@@ -117,7 +117,7 @@ export const useColumnSelector = (
   });
 
   const filteredColumns = sortedColumns.filter(
-    id => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
+    (id) => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
@@ -201,8 +201,10 @@ export const useColumnSelector = (
                     isDragDisabled={!isDragEnabled}>
                     {(provided, state) => (
                       <div
-                        className={`euiDataGridColumnSelector__item ${state.isDragging &&
-                          'euiDataGridColumnSelector__item-isDragging'}`}>
+                        className={`euiDataGridColumnSelector__item ${
+                          state.isDragging &&
+                          'euiDataGridColumnSelector__item-isDragging'
+                        }`}>
                         <EuiFlexGroup gutterSize="m" alignItems="center">
                           <EuiFlexItem>
                             {allowColumnHiding ? (
@@ -212,12 +214,12 @@ export const useColumnSelector = (
                                 checked={visibleColumnIds.has(id)}
                                 compressed
                                 className="euiSwitch--mini"
-                                onChange={event => {
+                                onChange={(event) => {
                                   const {
                                     target: { checked },
                                   } = event;
                                   const nextVisibleColumns = sortedColumns.filter(
-                                    columnId =>
+                                    (columnId) =>
                                       checked
                                         ? visibleColumnIds.has(columnId) ||
                                           id === columnId
@@ -280,12 +282,12 @@ export const useColumnSelector = (
     () =>
       visibleColumns
         .map<EuiDataGridColumn>(
-          columnId =>
+          (columnId) =>
             availableColumns.find(
               ({ id }) => id === columnId
             ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
         )
-        .filter(column => column != null),
+        .filter((column) => column != null),
     [availableColumns, visibleColumns]
   );
   /**

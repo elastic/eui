@@ -107,10 +107,12 @@ export type EuiDataGridCellValueProps = Omit<
   'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus' | 'popoverContent'
 >;
 
-const EuiDataGridCellContent: FunctionComponent<EuiDataGridCellValueProps & {
-  setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-  isExpanded: boolean;
-}> = memo(props => {
+const EuiDataGridCellContent: FunctionComponent<
+  EuiDataGridCellValueProps & {
+    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
+    isExpanded: boolean;
+  }
+> = memo((props) => {
   const { renderCellValue, ...rest } = props;
 
   // React is more permissible than the TS types indicate
@@ -415,7 +417,7 @@ export class EuiDataGridCell extends Component<
           <EuiMutationObserver
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
-            {mutationRef => {
+            {(mutationRef) => {
               return (
                 <div
                   ref={mutationRef}
@@ -440,7 +442,7 @@ export class EuiDataGridCell extends Component<
           <EuiMutationObserver
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
-            {mutationRef => {
+            {(mutationRef) => {
               return (
                 <div
                   ref={mutationRef}
@@ -479,7 +481,7 @@ export class EuiDataGridCell extends Component<
             cellContentsRef={this.cellContentsRef}
             closePopover={() => this.setState({ popoverIsOpen: false })}
             column={column}
-            panelRefFn={ref => (this.popoverPanelRef.current = ref)}
+            panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
             popoverIsOpen={this.state.popoverIsOpen}
             rowIndex={rowIndex}
             updateFocus={this.updateFocus}

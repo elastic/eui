@@ -30,7 +30,7 @@ export default class extends Component<CustomActionsProps, CustomActionsState> {
   };
 
   togglePopover = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isPopoverOpen: !prevState.isPopoverOpen,
     }));
   };

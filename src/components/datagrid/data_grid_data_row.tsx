@@ -54,7 +54,7 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
 };
 
 const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
-  props => {
+  (props) => {
     const {
       leadingControlColumns,
       trailingControlColumns,

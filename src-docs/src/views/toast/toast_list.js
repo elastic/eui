@@ -29,8 +29,8 @@ export default () => {
     setToasts(toasts.concat(toast));
   };
 
-  const removeToast = removedToast => {
-    setToasts(toasts.filter(toast => toast.id !== removedToast.id));
+  const removeToast = (removedToast) => {
+    setToasts(toasts.filter((toast) => toast.id !== removedToast.id));
   };
 
   removeAllToastsHandler = () => {

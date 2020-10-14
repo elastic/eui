@@ -27,7 +27,7 @@ export default () => {
   const [options, setOptions] = useState(optionsStatic);
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
@@ -45,7 +45,7 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
       setOptions([...options, newOption]);

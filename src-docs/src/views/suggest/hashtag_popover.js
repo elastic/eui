@@ -14,7 +14,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export default props => {
+export default (props) => {
   const [isPopoverOpen, setPopover] = useState(false);
 
   const togglePopover = () => {
@@ -81,9 +81,7 @@ export default props => {
               </EuiFlexItem>
             </EuiFlexGroup>
           </EuiPopoverFooter>
-        ) : (
-          undefined
-        )}
+        ) : undefined}
       </div>
     </EuiPopover>
   );

@@ -142,7 +142,7 @@ describe('EuiConfirmModal', () => {
   });
 
   describe('defaultFocusedButton', () => {
-    test('is cancel', done => {
+    test('is cancel', (done) => {
       const component = mount(
         <EuiConfirmModal
           onCancel={onCancel}
@@ -164,7 +164,7 @@ describe('EuiConfirmModal', () => {
       });
     });
 
-    test('is confirm', done => {
+    test('is confirm', (done) => {
       const component = mount(
         <EuiConfirmModal
           onCancel={onCancel}

@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 import { PropTypes } from 'react-view';
 
-const getProp = prop => {
+const getProp = (prop) => {
   const newProp = {};
   if (prop.description) newProp.description = prop.description;
   newProp.custom = { origin: prop };
@@ -63,7 +63,7 @@ const getProp = prop => {
   return newProp;
 };
 
-const propUtilityForPlayground = props => {
+const propUtilityForPlayground = (props) => {
   const modifiedProps = {};
 
   for (const key in props) {

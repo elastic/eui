@@ -88,7 +88,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
-  const onMenuButtonClick: MouseEventHandler<HTMLButtonElement> = e => {
+  const onMenuButtonClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     _onClick && _onClick(e);
     setMobileMenuIsOpen(!mobileMenuIsOpen);
   };

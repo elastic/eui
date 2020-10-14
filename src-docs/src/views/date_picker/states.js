@@ -10,7 +10,7 @@ import { DisplayToggles } from '../form_controls/display_toggles';
 export default () => {
   const [startDate, setStartDate] = useState(null);
 
-  const handleChange = date => {
+  const handleChange = (date) => {
     setStartDate(date);
   };
 

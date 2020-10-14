@@ -5,7 +5,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 
 import { EuiWrappingPopover } from '../../../../src/components';
 
-const PopoverApp = props => {
+const PopoverApp = (props) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   useEffect(() => {
@@ -13,7 +13,8 @@ const PopoverApp = props => {
     return () => props.anchor.removeEventListener('click', onButtonClick);
   }, [props.anchor]);
 
-  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
   return (

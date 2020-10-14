@@ -88,7 +88,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (!overlayMaskNode.current) return;
-    keysOf(rest).forEach(key => {
+    keysOf(rest).forEach((key) => {
       if (typeof rest[key] !== 'string') {
         throw new Error(
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
@@ -110,7 +110,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   useEffect(() => {
     if (!overlayMaskNode.current || !onClick) return;
     const portalTarget = overlayMaskNode.current;
-    overlayMaskNode.current.addEventListener('click', e => {
+    overlayMaskNode.current.addEventListener('click', (e) => {
       if (e.target === overlayMaskNode.current) {
         onClick();
       }

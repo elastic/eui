@@ -100,7 +100,7 @@ export class EuiBottomBar extends Component<Props> {
                 landmarkHeading ? landmarkHeading : screenReaderHeading
               }
               className={classes}
-              ref={node => {
+              ref={(node) => {
                 this.bar = node;
               }}
               {...rest}>

@@ -33,9 +33,9 @@ export default () => {
   const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     setToggleIdSelected(optionId);
-    setLabel(toggleButtons.find(x => x.id === optionId).label);
+    setLabel(toggleButtons.find((x) => x.id === optionId).label);
   };
 
   let isLoadingMessage;

@@ -71,7 +71,7 @@ export default () => {
           setQueryValue('');
         };
 
-        const onChange = e => {
+        const onChange = (e) => {
           setQueryValue(e.target.value);
 
           if (reducerState.currentTourStep < 2) {

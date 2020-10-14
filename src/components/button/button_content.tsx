@@ -50,8 +50,9 @@ export interface EuiButtonContentProps extends CommonProps {
   textProps?: HTMLAttributes<HTMLSpanElement> & CommonProps;
 }
 
-export const EuiButtonContent: FunctionComponent<EuiButtonContentType &
-  EuiButtonContentProps> = ({
+export const EuiButtonContent: FunctionComponent<
+  EuiButtonContentType & EuiButtonContentProps
+> = ({
   children,
   textProps,
   isLoading = false,

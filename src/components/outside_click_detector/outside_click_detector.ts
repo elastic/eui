@@ -129,7 +129,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
   };
 
   onChildMouseDown = (event: ReactMouseEvent<any, EuiEvent>) => {
-    this.onChildClick(event, e => {
+    this.onChildClick(event, (e) => {
       this.capturedDownIds = e.nativeEvent.euiGeneratedBy;
       if (this.props.onMouseDown) this.props.onMouseDown(e);
       if (this.props.onTouchStart) this.props.onTouchStart(e);
@@ -137,7 +137,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
   };
 
   onChildMouseUp = (event: ReactMouseEvent<any, EuiEvent>) => {
-    this.onChildClick(event, e => {
+    this.onChildClick(event, (e) => {
       if (this.props.onMouseUp) this.props.onMouseUp(e);
       if (this.props.onTouchEnd) this.props.onTouchEnd(e);
     });

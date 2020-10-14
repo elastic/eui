@@ -43,7 +43,7 @@ describe('EuiToast', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = <EuiToast color={color} title="test title" />;
           expect(mount(component)).toMatchSnapshot();

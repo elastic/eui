@@ -23,7 +23,7 @@ import { requiredProps } from '../../test';
 import { EuiLink, COLORS } from './link';
 
 describe('EuiLink', () => {
-  COLORS.forEach(color => {
+  COLORS.forEach((color) => {
     test(`${color} is rendered`, () => {
       const component = render(<EuiLink color={color} />);
       expect(component).toMatchSnapshot();

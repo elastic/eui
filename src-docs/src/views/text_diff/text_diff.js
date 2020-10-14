@@ -23,11 +23,11 @@ export default () => {
   });
 
   useEffect(() => {
-    textDiffObject.forEach(el => {
+    textDiffObject.forEach((el) => {
       if (el[0] === 1) {
-        setIns(add => add + 1);
+        setIns((add) => add + 1);
       } else if (el[0] === -1) {
-        setDel(sub => sub + 1);
+        setDel((sub) => sub + 1);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

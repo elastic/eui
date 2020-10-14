@@ -36,7 +36,7 @@ describe('EuiLoadingChart', () => {
     expect(component).toMatchSnapshot();
   });
   describe('size', () => {
-    SIZES.forEach(size => {
+    SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
         const component = render(<EuiLoadingChart size={size} />);
 

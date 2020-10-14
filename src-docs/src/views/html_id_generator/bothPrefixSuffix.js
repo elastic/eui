@@ -16,13 +16,13 @@ export const PrefixSufix = () => {
   const [suffix, setSuffix] = useState('Id');
   const [customId, setCustomId] = useState(htmlIdGenerator('Some')('Id'));
 
-  const onPrefixChange = e => {
+  const onPrefixChange = (e) => {
     const prefix = e.target.value;
     setPrefix(prefix);
     setCustomId(htmlIdGenerator(prefix)(suffix));
   };
 
-  const onSuffixChange = e => {
+  const onSuffixChange = (e) => {
     const suffix = e.target.value;
     setSuffix(suffix);
     setCustomId(htmlIdGenerator(prefix)(suffix));

@@ -96,7 +96,7 @@ export class SortableProperties<T> {
    */
   getSortablePropertyByName(propertyName: string) {
     return this.sortableProperties.find(
-      property => property.name === propertyName
+      (property) => property.name === propertyName
     );
   }
 

@@ -83,14 +83,14 @@ export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
     className
   );
 
-  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === keys.ESCAPE) {
       handleClose();
     } else if (event.key === keys.TAB) {
       let tabs = tabbables;
       if (!tabs && menuElementRef.current) {
         tabs = tabbable(menuElementRef.current).filter(
-          element => element.tagName !== 'DIV'
+          (element) => element.tagName !== 'DIV'
         );
         setTabbables(tabs);
       }
