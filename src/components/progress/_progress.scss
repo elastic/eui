@@ -89,6 +89,22 @@ $euiProgressSizes: (
   }
 }
 
+.euiProgress--native.euiProgress--customColor {
+  &::-webkit-progress-value {
+    background-color: currentColor;
+  }
+
+  &::-moz-progress-bar {
+    background-color: currentColor;
+  }
+}
+
+.euiProgress--indeterminate.euiProgress--customColor {
+  &:before {
+    background-color: currentColor;
+  }
+}
+
 @each $name, $color in $euiProgressColors {
   .euiProgress--#{$name} {
     &.euiProgress--native {
