@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import {
   EuiButton,
   EuiButtonIcon,
-  EuiButtonToggle,
   EuiSpacer,
   EuiTitle,
 } from '../../../../src/components';
@@ -22,7 +21,7 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButton
         onClick={() => {
-          setToggle0On(!toggle0On);
+          setToggle0On((isOn) => !isOn);
         }}>
         {toggle0On ? 'Hey there good lookin' : 'Toggle me'}
       </EuiButton>
@@ -32,7 +31,7 @@ export default () => {
         aria-label={toggle1On ? 'Play' : 'Pause'}
         iconType={toggle1On ? 'play' : 'pause'}
         onClick={() => {
-          setToggle1On(!toggle1On);
+          setToggle1On((isOn) => !isOn);
         }}
       />
       <EuiSpacer size="m" />
@@ -40,14 +39,15 @@ export default () => {
         <h3>Changing visual appearance</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiButtonToggle
+      <EuiButton
         isSelected={toggle2On}
-        iconType={toggle2On ? 'starPlusEmpty' : 'starFilledSpace'}
+        fill={toggle2On}
+        iconType={toggle2On ? 'starFilledSpace' : 'starPlusEmpty'}
         onClick={() => {
-          setToggle2On(!toggle2On);
+          setToggle2On((isOn) => !isOn);
         }}>
         Toggle me
-      </EuiButtonToggle>
+      </EuiButton>
       &emsp;
       <EuiButtonIcon
         aria-label="Autosave"
@@ -56,7 +56,7 @@ export default () => {
         aria-pressed={toggle3On}
         color={toggle3On ? 'primary' : 'subdued'}
         onClick={() => {
-          setToggle3On(!toggle3On);
+          setToggle3On((isOn) => !isOn);
         }}
       />
     </>

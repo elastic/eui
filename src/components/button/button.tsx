@@ -98,6 +98,11 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   isDisabled?: boolean;
   /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
+  /**
    * Extends the button to 100% width
    */
   fullWidth?: boolean;
@@ -148,6 +153,7 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
       fill = false,
       isDisabled,
       isLoading,
+      isSelected,
       contentProps,
       textProps,
       fullWidth,
@@ -212,6 +218,7 @@ const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
         className: classes,
         style: calculatedStyle,
         disabled: element === 'button' && buttonIsDisabled,
+        'aria-pressed': element === 'button' ? isSelected : undefined,
         ref,
         ...rest,
       },

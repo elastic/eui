@@ -12,7 +12,6 @@ import {
   EuiButtonGroup,
   EuiCallOut,
   EuiText,
-  EuiButtonToggle,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -98,12 +97,13 @@ const buttonToggleSnippet = [
 >
   <!-- Button text -->
 </EuiButton>`,
-  `<EuiButtonToggle
+  `<EuiButton
   isSelected={toggleOn}
+  fill={toggleOn}
   onClick={onToggleChange}
 >
   <!-- Button text -->
-</EuiButtonToggle>`,
+</EuiButton>`,
 ];
 
 import ButtonGroup from './button_group';
@@ -328,31 +328,38 @@ export const ButtonExample = {
             standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
             , or <strong>EuiButtonIcon</strong>. Use state management to handle
             the visual differences for on and off. Though there are two
-            situations to consider.
+            <strong>exclusive</strong> situations to consider.
           </p>
           <ul>
             <li>
-              If your button changes its <strong>content</strong>, the text
-              and/or icon, then there is no additional accessibility concern.
+              If your button changes its readable <strong>text</strong>, via
+              children or <EuiCode>aria-label</EuiCode>, then there is no
+              additional accessibility concern.
             </li>
             <li>
               If your button only changes the <strong>visual</strong>{' '}
               appearance, you must add <EuiCode>aria-pressed</EuiCode> passing a
-              boolean for the on and off states.
+              boolean for the on and off states. <strong>EuiButton</strong>{' '}
+              provides a helper prop for this called{' '}
+              <EuiCode>isSelected</EuiCode>.
             </li>
           </ul>
-          <p>
-            You can use <strong>EuiButtonToggle</strong> for the second
-            situation and provide a boolean to <EuiCode>isSelected</EuiCode>. It
-            is simply a helping wrapper of <strong>EuiButton</strong> to provide
-            the <EuiCode>fill</EuiCode> and <EuiCode>aria-pressed</EuiCode>{' '}
-            props based on <EuiCode>isSelected</EuiCode>.
-          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <span>
+                Do not add <EuiCode>aria-pressed</EuiCode> or{' '}
+                <EuiCode>isSelected</EuiCode> if you also change the readable
+                text.
+              </span>
+            }
+          />
         </>
       ),
       demo: <ButtonToggle />,
       snippet: buttonToggleSnippet,
-      props: { EuiButtonToggle },
+      props: { EuiButton, EuiButtonIcon },
     },
     {
       title: 'Button groups',

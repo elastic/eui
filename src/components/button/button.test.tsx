@@ -68,6 +68,20 @@ describe('EuiButton', () => {
       });
     });
 
+    describe('isSelected', () => {
+      it('is rendered as true', () => {
+        const component = render(<EuiButton isSelected />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered as false', () => {
+        const component = render(<EuiButton isSelected={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('fullWidth', () => {
       it('is rendered', () => {
         const component = render(<EuiButton fullWidth />);
