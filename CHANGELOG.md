@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
+- Added `cellActions` to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
 
 **Bug fixes**
 
@@ -37,7 +38,6 @@
 
 - Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
-- Added `cellActions` to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
 
 **Bug fixes**
 
