@@ -31,7 +31,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       class="euiToastHeader euiToastHeader--withBody"
       data-test-subj="euiToastHeader"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiToastHeader__icon"
         data-euiicon-type="check"
@@ -48,7 +48,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       data-test-subj="toastCloseButton"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         data-euiicon-type="cross"
       />
@@ -74,7 +74,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       class="euiToastHeader euiToastHeader--withBody"
       data-test-subj="euiToastHeader"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiToastHeader__icon"
         data-euiicon-type="alert"
@@ -91,7 +91,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       data-test-subj="toastCloseButton"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         data-euiicon-type="cross"
       />
@@ -126,7 +126,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       class="euiToastHeader euiToastHeader--withBody"
       data-test-subj="euiToastHeader"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiToastHeader__icon"
         data-euiicon-type="check"
@@ -143,7 +143,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       data-test-subj="toastCloseButton"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         data-euiicon-type="cross"
       />
@@ -169,7 +169,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       class="euiToastHeader euiToastHeader--withBody"
       data-test-subj="euiToastHeader"
     >
-      <div
+      <span
         aria-hidden="true"
         class="euiToastHeader__icon"
         data-euiicon-type="alert"
@@ -186,7 +186,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       data-test-subj="toastCloseButton"
       type="button"
     >
-      <div
+      <span
         aria-hidden="true"
         data-euiicon-type="cross"
       />

@@ -60,7 +60,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -114,7 +114,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -170,7 +170,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -220,7 +220,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -270,7 +270,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -318,7 +318,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
         <span
           class="euiButtonContent euiButtonEmpty__content"
         >
-          <div
+          <span
             class="euiButtonContent__icon"
             data-euiicon-type="cross"
           />
@@ -367,7 +367,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
@@ -422,7 +422,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />

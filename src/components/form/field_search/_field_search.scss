@@ -21,11 +21,31 @@
     display: none; /* 2 */
   }
 
-  &.euiFieldSearch--compressed {
-    @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
-  }
-
   &.euiFieldSearch-isClearable {
     @include euiFormControlLayoutPadding(1)
+  }
+
+  &.euiFieldSearch-isLoading {
+    @include euiFormControlLayoutPadding(1);
+  }
+
+  &.euiFieldSearch-isLoading.euiFieldSearch-isClearable {
+    @include euiFormControlLayoutPadding(2);
+  }
+
+  &.euiFieldSearch--compressed {
+    @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
+
+    &.euiFieldSearch-isClearable {
+      @include euiFormControlLayoutPadding(1, $compressed: true);
+    }
+
+    &.euiFieldSearch-isLoading {
+      @include euiFormControlLayoutPadding(1, $compressed: true);
+    }
+
+    &.euiFieldSearch-isLoading.euiFieldSearch-isClearable {
+      @include euiFormControlLayoutPadding(2, $compressed: true);
+    }
   }
 }

@@ -49,6 +49,24 @@
   }
 }
 
+
+.euiButtonEmpty--flushLeft,
+.euiButtonEmpty--flushRight,
+.euiButtonEmpty--flushBoth {
+  .euiButtonEmpty__content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.euiButtonEmpty--flushLeft {
+  margin-right: $euiSizeS;
+}
+
+.euiButtonEmpty--flushRight {
+  margin-left: $euiSizeS;
+}
+
 // Modifier naming and colors.
 $euiButtonEmptyTypes: (
   primary: $euiColorPrimary,
@@ -84,22 +102,3 @@ $euiButtonEmptyTypes: (
   }
 }
 
-.euiButtonEmpty--flushLeft {
-  margin-right: $euiSizeS;
-
-  .euiButtonEmpty__content {
-    border-left: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-.euiButtonEmpty--flushRight {
-  margin-left: $euiSizeS;
-
-  .euiButtonEmpty__content {
-    border-right: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}

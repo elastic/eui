@@ -136,7 +136,7 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
   >
     42
   </span>
-  <div
+  <span
     class="euiExpression__icon"
     color="danger"
     data-euiicon-type="alert"
@@ -214,7 +214,7 @@ exports[`EuiExpression props isInvalid renders error state 1`] = `
   >
     42
   </span>
-  <div
+  <span
     class="euiExpression__icon"
     color="danger"
     data-euiicon-type="alert"

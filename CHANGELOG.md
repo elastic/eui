@@ -1,8 +1,44 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
+
+## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
+
+- Added `childrenBetween` prop to `EuiInMemoryTable` to add content between search bar and table ([#4103](https://github.com/elastic/eui/pull/4103))
+- Added `max-width: 100%` to `EuiKeyPadMenu` to allow it to shrink when its container is smaller than its fixed width ([ #4092](https://github.com/elastic/eui/pull/4092))
+- Added `key` to `EuiComboBoxOptionOption` to allow duplicate labels ([#4048](https://github.com/elastic/eui/pull/4048))
+- Changed `EuiIcon` test mock to render as `span` instead of `div` ([#4099](https://github.com/elastic/eui/pull/4099))
+- Added `scripts/docker-puppeteer` as the new home for test-related Docker images ([#4062](https://github.com/elastic/eui/pull/4062))
+
+**Bug fixes**
+
+- Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
+
+
+## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
+
+- Added `both` option to `flush` prop of `EuiButtonEmpty` ([#4084](https://github.com/elastic/eui/pull/4084))
+
+**Bug fixes**
+
+- Fixed `EuiRange` and `EuiDualRange` display of internal spacer ([#4084](https://github.com/elastic/eui/pull/4084))
+- Fixed `EuiFieldSearch` padding for the different states ([#4084](https://github.com/elastic/eui/pull/4084))
+- Fixed `EuiCheckableCard` disabled but checked styles ([#4084](https://github.com/elastic/eui/pull/4084))
+
+**Theme: Amsterdam**
+
+- Fixed `line-height` on `EuiTitle` ([#4079](https://github.com/elastic/eui/pull/4079))
+
+## [`29.2.0`](https://github.com/elastic/eui/tree/v29.2.0)
+
 - Improved contrast for `EuiIcon` and `EuiButtonIcon` named colors. This affects `EuiHealth` which uses the `EuiIcon` colors. ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added color `accent` to `EuiButtonIcon` ([#4049](https://github.com/elastic/eui/pull/4049))
 - Added `cellActions` to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` `rowHeight` prop causing the height of the option list to be miscalculated ([#4072](https://github.com/elastic/eui/pull/4072))
+- Fixed `EuiComboBox` not focusing on the selected option if `selectedOptions` was set without reference to `options` ([#4072](https://github.com/elastic/eui/pull/4072))
 
 **Theme: Amsterdam**
 

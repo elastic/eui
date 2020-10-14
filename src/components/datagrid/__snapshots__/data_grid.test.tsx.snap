@@ -61,7 +61,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           <span
             class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="arrowDown"
             />
@@ -90,7 +90,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         href="#htmlId"
         rel="noreferrer"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowLeft"
@@ -153,7 +153,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         disabled=""
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowRight"
@@ -197,7 +197,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="eyeClosed"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="eyeClosed"
           />
@@ -246,7 +246,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortUp"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortUp"
           />
@@ -295,7 +295,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortDown"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortDown"
           />
@@ -343,7 +343,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortLeft"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortLeft"
           />
@@ -391,7 +391,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortRight"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortRight"
           />
@@ -481,7 +481,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortUp"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortUp"
           />
@@ -530,7 +530,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortDown"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortDown"
           />
@@ -605,7 +605,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="eyeClosed"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="eyeClosed"
           />
@@ -644,7 +644,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortUp"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortUp"
           />
@@ -683,7 +683,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortDown"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortDown"
           />
@@ -721,7 +721,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortLeft"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortLeft"
           />
@@ -759,7 +759,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
           className="euiListGroupItem__icon"
           type="sortRight"
         >
-          <div
+          <span
             className="euiListGroupItem__icon"
             data-euiicon-type="sortRight"
           />
@@ -842,7 +842,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
@@ -870,7 +870,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
@@ -891,7 +891,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
@@ -949,7 +949,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -985,7 +985,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -1046,7 +1046,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1103,7 +1103,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1166,7 +1166,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1223,7 +1223,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1286,7 +1286,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1343,7 +1343,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1416,7 +1416,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
@@ -1444,7 +1444,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
@@ -1465,7 +1465,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
@@ -1538,7 +1538,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -1574,7 +1574,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -1699,7 +1699,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1756,7 +1756,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1917,7 +1917,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -1974,7 +1974,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2135,7 +2135,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2192,7 +2192,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2311,7 +2311,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
@@ -2339,7 +2339,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
@@ -2360,7 +2360,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
@@ -2418,7 +2418,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -2456,7 +2456,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -2517,7 +2517,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2574,7 +2574,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2637,7 +2637,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2694,7 +2694,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2757,7 +2757,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2814,7 +2814,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -2884,7 +2884,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="listAdd"
                 />
@@ -2912,7 +2912,7 @@ Array [
               <span
                 class="euiButtonContent euiButtonEmpty__content"
               >
-                <div
+                <span
                   class="euiButtonContent__icon"
                   data-euiicon-type="tableDensityExpanded"
                 />
@@ -2933,7 +2933,7 @@ Array [
           <span
             class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
+            <span
               class="euiButtonContent__icon"
               data-euiicon-type="fullScreen"
             />
@@ -2991,7 +2991,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -3027,7 +3027,7 @@ Array [
                     <div
                       class="euiPopover__anchor"
                     >
-                      <div
+                      <span
                         aria-label="Header actions"
                         color="text"
                         data-euiicon-type="arrowDown"
@@ -3088,7 +3088,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -3145,7 +3145,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -3208,7 +3208,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -3265,7 +3265,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -3328,7 +3328,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"
@@ -3385,7 +3385,7 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <div
+                            <span
                               aria-hidden="true"
                               class="euiButtonIcon__icon"
                               data-euiicon-type="expandMini"

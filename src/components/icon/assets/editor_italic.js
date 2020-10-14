@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconEditorItalic = ({ title, titleId, ...props }) => (
   <svg

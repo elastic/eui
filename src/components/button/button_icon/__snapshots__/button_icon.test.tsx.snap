@@ -97,7 +97,7 @@ exports[`EuiButtonIcon props iconType is rendered 1`] = `
   class="euiButtonIcon euiButtonIcon--primary"
   type="button"
 >
-  <div
+  <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
     data-euiicon-type="user"

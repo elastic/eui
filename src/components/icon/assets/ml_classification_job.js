@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconMlClassificationJob = ({ title, titleId, ...props }) => (
   <svg
