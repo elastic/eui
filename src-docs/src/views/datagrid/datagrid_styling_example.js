@@ -36,6 +36,7 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnActions,
   EuiDataGridColumnCellAction,
+  EuiDataGridColumnCellActionProps,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
@@ -330,10 +331,12 @@ export const DataGridStylingExample = {
         <Fragment>
           <p>
             On top of making a cell expandable, you can add more custom actions
-            by setting the <EuiCode>cellActions</EuiCode> value of{' '}
-            <strong>EuiDataGridColumn</strong>. You can configure it by passing
-            an array of objects of type{' '}
-            <strong>EuiDataGridColumnCellAction</strong>. The icons of these
+            by setting <EuiCode>cellActions</EuiCode>. This contains functions
+            called to render additional buttons in the cell and in the popover
+            when expanded. Behind the scenes those are treated as a React
+            components allowing hooks, context, and other React concepts to be
+            used. The functions receives an argument of type
+            <code>EuiDataGridColumnCellActionProps</code>. The icons of these
             actions are displayed on mouse over, and also appear in the popover
             when the cell is expanded. Note that once you&apos;ve defined the{' '}
             <EuiCode>cellAction</EuiCode> property, the cell&apos;s
@@ -343,7 +346,8 @@ export const DataGridStylingExample = {
             Below, the email and city columns provide 1{' '}
             <EuiCode>cellAction</EuiCode> each, while the country column
             provides 2 <EuiCode>cellAction</EuiCode>s. The city column shows
-            custom popover content using <EuiCode>inPopoverButton</EuiCode>.
+            another action with different alert when it&apos;s clicked in the
+            popover.
           </p>
         </Fragment>
       ),
@@ -353,6 +357,7 @@ export const DataGridStylingExample = {
         EuiDataGridColumn,
         EuiDataGridColumnActions,
         EuiDataGridColumnCellAction,
+        EuiDataGridColumnCellActionProps,
         EuiListGroupItem,
       },
       demo: <DataGridColumnCellActions />,
