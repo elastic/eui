@@ -3,7 +3,7 @@
 The goal is for the entirety of the EUI docs site to be run through [axe](https://www.deque.com/axe/).
 As of [#2569](https://github.com/elastic/eui/pull/2569), all of the Guidelines pages are tested and the plumbing is in place to add the rest.
 
-## What is Axe?
+## What is axe?
 
 axe is an "[accessibility engine for automated Web UI testing](https://github.com/dequelabs/axe-core)".
 Automated tests cover ~30% of accessibility requirements but, ~60% of accessibility bugs are caught by automated tests.
