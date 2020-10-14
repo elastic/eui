@@ -91,12 +91,12 @@ export function EuiDataGridCellPopover({
             <EuiPopoverFooter>
               <EuiFlexGroup gutterSize="s">
                 {column.cellActions.map(
-                  (Action: EuiDataGridColumnCellAction) => {
+                  (Action: EuiDataGridColumnCellAction, idx: number) => {
                     const CellButtonElement = Action as JSXElementConstructor<
                       EuiDataGridColumnCellActionProps
                     >;
                     return (
-                      <EuiFlexItem>
+                      <EuiFlexItem key={idx}>
                         <CellButtonElement
                           rowIndex={rowIndex}
                           columnId={column.id}

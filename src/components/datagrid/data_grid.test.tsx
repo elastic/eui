@@ -1929,7 +1929,7 @@ Array [
                       iconType="faceHappy"
                       aria-label="test2 aria label"
                       data-test-subj={
-                        isExpanded ? 'faceHappyPopover' : 'faceHappyAction'
+                        isExpanded ? 'happyActionPopover' : 'happyAction'
                       }>
                       test2
                     </Component>
@@ -1967,7 +1967,7 @@ Array [
 
       findTestSubject(component, 'alertActionPopover').simulate('click');
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyActionCustomBtn').simulate('click');
+      findTestSubject(component, 'happyActionPopover').simulate('click');
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
     });
   });

@@ -71,20 +71,23 @@ export const EuiDataGridCellButtons = ({
   );
   const additionalButtons =
     column && Array.isArray(column.cellActions)
-      ? column.cellActions.map((Action: EuiDataGridColumnCellAction) => {
-          // React is more permissible than the TS types indicate
-          const CellButtonElement = Action as JSXElementConstructor<
-            EuiDataGridColumnCellActionProps
-          >;
-          return (
-            <CellButtonElement
-              rowIndex={rowIndex}
-              columnId={column.id}
-              Component={ButtonComponent}
-              isExpanded={false}
-            />
-          );
-        })
+      ? column.cellActions.map(
+          (Action: EuiDataGridColumnCellAction, idx: number) => {
+            // React is more permissible than the TS types indicate
+            const CellButtonElement = Action as JSXElementConstructor<
+              EuiDataGridColumnCellActionProps
+            >;
+            return (
+              <CellButtonElement
+                key={idx}
+                rowIndex={rowIndex}
+                columnId={column.id}
+                Component={ButtonComponent}
+                isExpanded={false}
+              />
+            );
+          }
+        )
       : [];
   return (
     <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>
