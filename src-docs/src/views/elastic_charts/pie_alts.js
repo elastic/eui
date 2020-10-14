@@ -1,6 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, Fragment, useContext } from 'react';
-import _ from 'lodash';
+import groupBy from 'lodash/groupBy';
+import mapValues from 'lodash/mapValues';
+import orderBy from 'lodash/orderBy';
+import sortBy from 'lodash/sortBy';
+import sumBy from 'lodash/sumBy';
 
 import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis, BarSeries } from '@elastic/charts';
@@ -58,21 +62,21 @@ export default () => {
   let usesRainData;
   if (formatted && formattedData) {
     data = ordered
-      ? _.orderBy(DAYS_OF_RAIN, ['precipitation', 'days'], ['desc', 'asc'])
+      ? orderBy(DAYS_OF_RAIN, ['precipitation', 'days'], ['desc', 'asc'])
       : DAYS_OF_RAIN;
     usesRainData = true;
     color = euiPaletteForTemperature(3);
   } else {
     const DATASET = grouped ? GITHUB_DATASET_MOD : GITHUB_DATASET;
-    data = _.orderBy(DATASET, 'issueType', 'asc');
+    data = orderBy(DATASET, 'issueType', 'asc');
 
     if (ordered) {
-      const totals = _.mapValues(_.groupBy(DATASET, 'vizType'), (groups) =>
-        _.sumBy(groups, 'count')
+      const totals = mapValues(groupBy(DATASET, 'vizType'), (groups) =>
+        sumBy(groups, 'count')
       );
 
-      data = _.orderBy(DATASET, 'issueType', 'desc');
-      const sortedData = _.sortBy(data, [
+      data = orderBy(DATASET, 'issueType', 'desc');
+      const sortedData = sortBy(data, [
         ({ vizType }) => totals[vizType],
       ]).reverse();
       data = sortedData;

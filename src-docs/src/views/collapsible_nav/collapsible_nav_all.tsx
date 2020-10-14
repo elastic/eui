@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
 
 import {
   EuiCollapsibleNav,
@@ -97,7 +98,7 @@ export default () => {
   >(JSON.parse(String(localStorage.getItem('pinnedItems'))) || []);
 
   const addPin = (item: any) => {
-    if (!item || _.find(pinnedItems, { label: item.label })) {
+    if (!item || find(pinnedItems, { label: item.label })) {
       return;
     }
     item.pinned = true;
@@ -107,7 +108,7 @@ export default () => {
   };
 
   const removePin = (item: any) => {
-    const pinIndex = _.findIndex(pinnedItems, { label: item.label });
+    const pinIndex = findIndex(pinnedItems, { label: item.label });
     if (pinIndex > -1) {
       item.pinned = false;
       const newPinnedItems = pinnedItems;
