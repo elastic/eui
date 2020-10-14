@@ -98,11 +98,6 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   isDisabled?: boolean;
   /**
-   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
-   * *Only use when the readable text does not change between states.*
-   */
-  isSelected?: boolean;
-  /**
    * Extends the button to 100% width
    */
   fullWidth?: boolean;
@@ -131,6 +126,10 @@ export type EuiButtonDisplayProps = EuiButtonProps &
      * Provide the component's base class name to build the class list on
      */
     baseClassName: string;
+    /**
+     * Inherited from PropsForButton
+     */
+    isSelected?: boolean;
   };
 
 /**

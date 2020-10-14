@@ -303,6 +303,38 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButtonEmpty props isSelected is rendered as false 1`] = `
+<button
+  aria-pressed="false"
+  class="euiButtonEmpty euiButtonEmpty--primary"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButtonEmpty props isSelected is rendered as true 1`] = `
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiButtonEmpty--primary"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButtonEmpty props size l is rendered 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--large"

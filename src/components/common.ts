@@ -190,6 +190,11 @@ export type PropsForAnchor<T, P = {}> = T & {
 
 export type PropsForButton<T, P = {}> = T & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement> &
   P;
 

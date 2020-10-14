@@ -200,3 +200,33 @@ exports[`EuiButtonIcon props isDisabled renders a button even when href is defin
   />
 </button>
 `;
+
+exports[`EuiButtonIcon props isSelected is rendered as false 1`] = `
+<button
+  aria-label="button"
+  aria-pressed="false"
+  class="euiButtonIcon euiButtonIcon--primary"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props isSelected is rendered as true 1`] = `
+<button
+  aria-label="button"
+  aria-pressed="true"
+  class="euiButtonIcon euiButtonIcon--primary"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;

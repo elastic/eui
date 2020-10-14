@@ -129,6 +129,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   buttonRef,
   contentProps,
   textProps,
+  isSelected,
   ...rest
 }) => {
   // If in the loading state, force disabled to true
@@ -192,6 +193,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       className={classes}
       type={type}
       ref={buttonRef}
+      aria-pressed={isSelected}
       {...(rest as EuiButtonEmptyPropsForButton)}>
       {innerNode}
     </button>
