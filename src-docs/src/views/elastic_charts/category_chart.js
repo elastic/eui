@@ -1,5 +1,6 @@
 import React, { useState, Fragment, useContext } from 'react';
-import { orderBy, round } from 'lodash';
+import orderBy from 'lodash/orderBy';
+import round from 'lodash/round';
 
 import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis } from '@elastic/charts';
