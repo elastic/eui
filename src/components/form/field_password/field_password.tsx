@@ -138,7 +138,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
         title={isVisible ? maskPasswordLabel : showPasswordLabel}
         disabled={rest.disabled}
         {...dualToggleProps}
-        onClick={e => handleToggle(e, isVisible)}
+        onClick={(e) => handleToggle(e, isVisible)}
       />
     );
     appends = [...appends, visibilityToggle];
