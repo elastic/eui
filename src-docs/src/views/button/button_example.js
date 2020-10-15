@@ -327,7 +327,7 @@ export const ButtonExample = {
             You can create a toggle style button with any button type like the
             standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
             , or <strong>EuiButtonIcon</strong>. Use state management to handle
-            the visual differences for on and off. Though there are two
+            the visual differences for on and off. Though there are two{' '}
             <strong>exclusive</strong> situations to consider.
           </p>
           <ol>
