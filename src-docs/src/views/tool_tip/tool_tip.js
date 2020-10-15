@@ -56,6 +56,19 @@ export default () => (
 
     <EuiSpacer />
 
+    <p>
+      <EuiToolTip
+        position="top"
+        content="Here is some tooltip text"
+        display="block">
+        <EuiLink href="#">
+          I am a block level tooltip, applied to the span anchor
+        </EuiLink>
+      </EuiToolTip>
+    </p>
+
+    <EuiSpacer />
+
     <EuiToolTip position="right" content="Works on anything">
       <EuiFieldText
         placeholder="Hover over me"
