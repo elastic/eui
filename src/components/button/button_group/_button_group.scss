@@ -146,7 +146,7 @@
   }
 
   .euiButtonToggle__input:disabled + .euiButtonGroup__button--selected {
-    // important is needed to handle the amsterdam theme
+    // important is needed to override the amsterdam theme
     // sass-lint:disable-block no-important
     color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2) !important;
     background-color: $euiButtonColorDisabled !important;
