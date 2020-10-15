@@ -50,7 +50,7 @@ export type EuiButtonIconColor =
   | 'warning';
 
 export interface EuiButtonIconProps extends CommonProps {
-  iconType?: IconType;
+  iconType: IconType;
   color?: EuiButtonIconColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
