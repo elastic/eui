@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
+- Improved `EuiButtonGroup` focus and selected states when `compressed` is true ([#4111](https://github.com/elastic/eui/pull/4111))
 
 **Bug fixes**
 

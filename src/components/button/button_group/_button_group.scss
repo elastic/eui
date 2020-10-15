@@ -122,17 +122,26 @@
     min-width: 0;
   }
 
-  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,
-  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
-    background-color: transparentize($euiFormInputGroupLabelBackground, .5);
-  }
-
-  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
-    outline: 2px solid $euiFocusRingColor;
-  }
-
   .euiButtonGroup__button--selected {
     font-weight: $euiFontWeightSemiBold;
-    background-color: $euiFormInputGroupLabelBackground;
+    color: $euiColorLightestShade;
+    background-color: $euiColorDarkShade;
+  }
+
+  .euiButtonToggle__input:enabled {
+    &:hover + .euiButtonGroup__button {
+      color: $euiTextColor;
+      background-color: transparentize($euiColorDarkShade, .9);
+    }
+
+    &:hover + .euiButtonGroup__button--selected,
+    &:focus + .euiButtonGroup__button {
+      color: $euiColorLightestShade;
+      background-color: darken($euiColorDarkShade, 5%);
+    }
+
+    &:focus + .euiButtonGroup__button {
+      outline: 2px solid $euiFocusRingColor;
+    }
   }
 }
