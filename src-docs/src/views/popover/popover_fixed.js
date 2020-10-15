@@ -25,7 +25,7 @@ export default () => {
 
   return (
     <React.Fragment>
-      <EuiButton onClick={toggleExample}>Toggle Example</EuiButton>
+      <EuiButton onClick={toggleExample}>Toggle example</EuiButton>
       {isExampleShown && (
         <EuiPopover
           ownFocus
