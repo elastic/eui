@@ -57,6 +57,11 @@ export interface EuiButtonIconProps extends CommonProps {
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
 }
 
 type EuiButtonIconPropsForAnchor = {
