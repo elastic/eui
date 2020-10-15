@@ -81,7 +81,7 @@ const colorToClassNameMap = {
   vis9: 'euiProgress--vis9',
 };
 
-export const COLORS = Object.keys(colorToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
 
 type NamedColor = keyof typeof colorToClassNameMap;
 
@@ -117,7 +117,7 @@ const positionsToClassNameMap = {
   static: '',
 };
 
-export const POSITIONS = Object.keys(positionsToClassNameMap);
+export const POSITIONS = keysOf(positionsToClassNameMap);
 
 export type EuiProgressPosition = keyof typeof positionsToClassNameMap;
 
