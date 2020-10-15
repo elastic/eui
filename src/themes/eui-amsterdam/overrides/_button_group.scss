@@ -5,7 +5,8 @@
     }
   }
 
-  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button {
+  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,
+  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
     background-color: $euiColorDarkShade;
     color: $euiColorLightestShade;
   }
