@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added display prop to `EuiTooltip` for common display block needs([4148](https://github.com/elastic/eui/pull/4148))
+
 **Theme: Amsterdam**
 
 - Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
