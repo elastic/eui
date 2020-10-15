@@ -89,6 +89,8 @@ export const AccessibilityExample = {
               such, we don&apos;t recommend it&apos;s continued use.
             </p>
           </EuiCallOut>
+        
+          <EuiSpacer />
 
           <p>
             You can make interactive elements keyboard-accessible with the{' '}
