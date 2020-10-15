@@ -19,32 +19,32 @@
 
 import React, { createContext, useContext } from 'react';
 import { EuiResizableContainerRegistry } from './types';
-interface ContextProps {
+interface ContainerContextProps {
   registry?: EuiResizableContainerRegistry;
 }
 
-const EuiResizablePanelContext = createContext<ContextProps>({});
+const EuiResizableContainerContext = createContext<ContainerContextProps>({});
 
-interface ContextProviderProps extends Required<ContextProps> {
+interface ContextProviderProps extends Required<ContainerContextProps> {
   /**
    * ReactNode to render as this component's content
    */
   children: any;
 }
 
-export function EuiResizablePanelContextProvider({
+export function EuiResizableContainerContextProvider({
   children,
   registry,
 }: ContextProviderProps) {
   return (
-    <EuiResizablePanelContext.Provider value={{ registry }}>
+    <EuiResizableContainerContext.Provider value={{ registry }}>
       {children}
-    </EuiResizablePanelContext.Provider>
+    </EuiResizableContainerContext.Provider>
   );
 }
 
-export const useEuiResizablePanelContext = () => {
-  const context = useContext(EuiResizablePanelContext);
+export const useEuiResizableContainerContext = () => {
+  const context = useContext(EuiResizableContainerContext);
   if (!context.registry) {
     throw new Error(
       'useEuiResizablePanelContext must be used within a <EuiResizablePanelContextProvider />'

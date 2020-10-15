@@ -305,18 +305,6 @@ export const useContainerCallbacks = ({
             disabledResizers.push(nextResizer.id);
           }
         }
-
-        // const otherPanels = {
-        //   ...Object.keys(state.panels).reduce(
-        //     (out: EuiResizableContainerState['panels'], id) => {
-        //       if (!state.panels[id].isCollapsed && id !== currentPanelId) {
-        //         out[id] = state.panels[id];
-        //       }
-        //       return out;
-        //     },
-        //     {}
-        //   ),
-        // };
         const otherPanels: EuiResizableContainerRegistry['panels'] = {};
         if (
           prevPanel &&
@@ -335,13 +323,12 @@ export const useContainerCallbacks = ({
         const otherPanelsKeys = Object.keys(otherPanels);
         const siblings = otherPanelsKeys.length;
         const newPanelSize = shouldCollapse
-          ? Math.ceil(pxToPercent(24, containerSize)) // Based on the button size
+          ? Math.ceil(pxToPercent(4, containerSize)) // Based on the button size
           : currentPanel.prevSize;
         const delta = shouldCollapse
           ? (currentPanel.size - newPanelSize) / siblings
           : ((newPanelSize - currentPanel.size) / siblings) * -1;
         otherPanelsKeys.forEach((panelId) => {
-          // TODO: Configurable redistrubution
           otherPanels[panelId].size = otherPanels[panelId].size + delta;
         });
         // if (onPanelWidthChange) {
@@ -415,22 +402,7 @@ export const useContainerCallbacks = ({
     }
   }
 
-  // const useFromReducer = (state: any) => {
-  //   // console.log(state);
-  //   const panels = state.panels;
-  //   const panelSizes = sizesOnly(panels);
-  //   const resizers = state.resizers;
-  //   return useMemo(() => {
-  //     return {
-  //       resizers,
-  //       panels,
-  //       panelSizes,
-  //     };
-  //   }, [panels, panelSizes, resizers]);
-  // };
-
   const [reducerState, dispatch] = useReducer(reducer, initialState);
-  // const { panels, resizers, panelSizes } = useFromReducer(state);
 
   // TODO: Not sure I like this. Left the alternate effect approach in, commented
   useEffect(() => {
@@ -440,71 +412,73 @@ export const useContainerCallbacks = ({
     });
   }, [reducerState.panels, onPanelWidthChange]);
 
-  const actions: EuiResizableContainerActions = {
-    reset: () => dispatch({ type: 'EUI_RESIZABLE_RESET' }),
-    registerPanel: (panel: EuiResizablePanelController) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_PANEL_REGISTER',
-        payload: { panel },
-      }),
-    deregisterPanel: (panelId: EuiResizablePanelController['id']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_PANEL_DEREGISTER',
-        payload: { panelId },
-      }),
-    registerResizer: (resizer: EuiResizableButtonController) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_BUTTON_REGISTER',
-        payload: { resizer },
-      }),
-    deregisterResizer: (resizerId: EuiResizableButtonController['id']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_BUTTON_DEREGISTER',
-        payload: { resizerId },
-      }),
-    dragStart: ({
-      prevPanelId,
-      nextPanelId,
-      position,
-    }: ActionDragStart['payload']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_DRAG_START',
-        payload: { position, prevPanelId, nextPanelId },
-      }),
-    dragMove: ({
-      prevPanelId,
-      nextPanelId,
-      position,
-    }: ActionDragMove['payload']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_DRAG_MOVE',
-        payload: { position, prevPanelId, nextPanelId },
-      }),
-    keyMove: ({
-      prevPanelId,
-      nextPanelId,
-      direction,
-    }: ActionKeyMove['payload']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_KEY_MOVE',
-        payload: { prevPanelId, nextPanelId, direction },
-      }),
-    panelToggle: ({ panelId, options }: ActionToggle['payload']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_TOGGLE',
-        payload: { panelId, options },
-      }),
-    resizerFocus: (resizerId: ActionFocus['payload']['resizerId']) =>
-      dispatch({
-        type: 'EUI_RESIZABLE_BUTTON_FOCUS',
-        payload: { resizerId },
-      }),
-    resizerBlur: () =>
-      dispatch({
-        type: 'EUI_RESIZABLE_BUTTON_BLUR',
-      }),
-    resize: () => dispatch({ type: 'EUI_RESIZABLE_RESIZE', payload: {} }),
-  };
+  const actions: EuiResizableContainerActions = useMemo(() => {
+    return {
+      reset: () => dispatch({ type: 'EUI_RESIZABLE_RESET' }),
+      registerPanel: (panel: EuiResizablePanelController) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_PANEL_REGISTER',
+          payload: { panel },
+        }),
+      deregisterPanel: (panelId: EuiResizablePanelController['id']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_PANEL_DEREGISTER',
+          payload: { panelId },
+        }),
+      registerResizer: (resizer: EuiResizableButtonController) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_BUTTON_REGISTER',
+          payload: { resizer },
+        }),
+      deregisterResizer: (resizerId: EuiResizableButtonController['id']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_BUTTON_DEREGISTER',
+          payload: { resizerId },
+        }),
+      dragStart: ({
+        prevPanelId,
+        nextPanelId,
+        position,
+      }: ActionDragStart['payload']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_DRAG_START',
+          payload: { position, prevPanelId, nextPanelId },
+        }),
+      dragMove: ({
+        prevPanelId,
+        nextPanelId,
+        position,
+      }: ActionDragMove['payload']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_DRAG_MOVE',
+          payload: { position, prevPanelId, nextPanelId },
+        }),
+      keyMove: ({
+        prevPanelId,
+        nextPanelId,
+        direction,
+      }: ActionKeyMove['payload']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_KEY_MOVE',
+          payload: { prevPanelId, nextPanelId, direction },
+        }),
+      panelToggle: ({ panelId, options }: ActionToggle['payload']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_TOGGLE',
+          payload: { panelId, options },
+        }),
+      resizerFocus: (resizerId: ActionFocus['payload']['resizerId']) =>
+        dispatch({
+          type: 'EUI_RESIZABLE_BUTTON_FOCUS',
+          payload: { resizerId },
+        }),
+      resizerBlur: () =>
+        dispatch({
+          type: 'EUI_RESIZABLE_BUTTON_BLUR',
+        }),
+      resize: () => dispatch({ type: 'EUI_RESIZABLE_RESIZE', payload: {} }),
+    };
+  }, []);
 
   return [actions, reducerState];
 };

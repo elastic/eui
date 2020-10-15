@@ -24,7 +24,7 @@ export interface EuiResizablePanelController {
   size: number;
   getSizePx: () => number;
   minSize: string;
-  collapsible: boolean;
+  mode?: 'collapsible' | 'main';
   isCollapsed: boolean;
   prevSize: number;
   position: 'first' | 'middle' | 'last';

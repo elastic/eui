@@ -30,7 +30,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
 import { htmlIdGenerator } from '../../services';
-import { useEuiResizablePanelContext } from './context';
+import { useEuiResizableContainerContext } from './context';
 import {
   EuiResizableButtonController,
   EuiResizableButtonMouseEvent,
@@ -90,7 +90,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   const resizerId = useRef(id || generatePanelId());
   const {
     registry: { resizers } = { resizers: {} },
-  } = useEuiResizablePanelContext();
+  } = useEuiResizableContainerContext();
   const isDisabled = useMemo(
     () =>
       disabled ||
@@ -178,3 +178,10 @@ export function euiResizableButtonWithControls(
     <EuiResizableButton {...controls} {...props} />
   );
 }
+
+// export const useEuiResizableButton = (controls: EuiResizableButtonControls) =>
+//   useMemo(() => {
+//     return (props: CommonProps) => (
+//       <EuiResizableButton {...controls} {...props} />
+//     );
+//   }, [controls]);

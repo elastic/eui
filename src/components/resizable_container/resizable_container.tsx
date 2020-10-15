@@ -26,18 +26,24 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ComponentType,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { keys } from '../../services';
-import { EuiResizablePanelContextProvider } from './context';
+import {
+  EuiResizableContainerContextProvider,
+  // EuiResizablePanelContextProvider,
+} from './context';
 import {
   EuiResizableButtonProps,
+  // useEuiResizableButton,
   euiResizableButtonWithControls,
 } from './resizable_button';
 import {
   EuiResizablePanelProps,
+  // EuiResizablePanel,
   euiResizablePanelWithControls,
 } from './resizable_panel';
 import { useContainerCallbacks, getPosition } from './helpers';
@@ -95,6 +101,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   onPanelWidthChange,
   ...rest
 }) => {
+  // const actions = useRef<EuiResizableContainerActions>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isHorizontal = direction === containerDirections.horizontal;
 
@@ -113,56 +120,70 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     onPanelWidthChange,
   });
 
-  const onMouseDown = (event: EuiResizableButtonMouseEvent) => {
-    const currentTarget = event.currentTarget;
-    const prevPanelId = currentTarget.previousElementSibling!.id;
-    const nextPanelId = currentTarget.nextElementSibling!.id;
-    const position = getPosition(event, isHorizontal);
-    actions.dragStart({ position, prevPanelId, nextPanelId });
-  };
+  useEffect(() => {
+    console.log(actions);
+  }, [actions]);
 
-  const onMouseMove = (event: React.MouseEvent | React.TouchEvent) => {
-    if (!reducerState.prevPanelId || !reducerState.nextPanelId) return;
-    const position = getPosition(event, isHorizontal);
-    actions.dragMove({
-      position,
-      prevPanelId: reducerState.prevPanelId,
-      nextPanelId: reducerState.nextPanelId,
-    });
-  };
+  const onMouseDown = useCallback(
+    (event: EuiResizableButtonMouseEvent) => {
+      const currentTarget = event.currentTarget;
+      const prevPanelId = currentTarget.previousElementSibling!.id;
+      const nextPanelId = currentTarget.nextElementSibling!.id;
+      const position = getPosition(event, isHorizontal);
+      actions.dragStart({ position, prevPanelId, nextPanelId });
+    },
+    [actions, isHorizontal]
+  );
 
-  const onKeyDown = (event: EuiResizableButtonKeyDownEvent) => {
-    const { key, currentTarget } = event;
-    const shouldResizeHorizontalPanel =
-      isHorizontal && (key === keys.ARROW_LEFT || key === keys.ARROW_RIGHT);
-    const shouldResizeVerticalPanel =
-      !isHorizontal && (key === keys.ARROW_UP || key === keys.ARROW_DOWN);
-    const prevPanelId = currentTarget.previousElementSibling!.id;
-    const nextPanelId = currentTarget.nextElementSibling!.id;
-    let direction;
-    if (key === keys.ARROW_DOWN || key === keys.ARROW_RIGHT) {
-      direction = 'forward';
-    }
-    if (key === keys.ARROW_UP || key === keys.ARROW_LEFT) {
-      direction = 'backward';
-    }
+  const onMouseMove = useCallback(
+    (event: React.MouseEvent | React.TouchEvent) => {
+      if (!reducerState.prevPanelId || !reducerState.nextPanelId) return;
+      const position = getPosition(event, isHorizontal);
+      actions.dragMove({
+        position,
+        prevPanelId: reducerState.prevPanelId,
+        nextPanelId: reducerState.nextPanelId,
+      });
+    },
+    [actions, isHorizontal, reducerState.prevPanelId, reducerState.nextPanelId]
+  );
 
-    if (
-      direction === 'forward' ||
-      (direction === 'backward' &&
-        (shouldResizeHorizontalPanel || shouldResizeVerticalPanel) &&
-        prevPanelId &&
-        nextPanelId)
-    ) {
-      event.preventDefault();
-      actions.keyMove({ direction, prevPanelId, nextPanelId });
-    }
-  };
+  const onKeyDown = useCallback(
+    (event: EuiResizableButtonKeyDownEvent) => {
+      const { key, currentTarget } = event;
+      const shouldResizeHorizontalPanel =
+        isHorizontal && (key === keys.ARROW_LEFT || key === keys.ARROW_RIGHT);
+      const shouldResizeVerticalPanel =
+        !isHorizontal && (key === keys.ARROW_UP || key === keys.ARROW_DOWN);
+      const prevPanelId = currentTarget.previousElementSibling!.id;
+      const nextPanelId = currentTarget.nextElementSibling!.id;
+      let direction;
+      if (key === keys.ARROW_DOWN || key === keys.ARROW_RIGHT) {
+        direction = 'forward';
+      }
+      if (key === keys.ARROW_UP || key === keys.ARROW_LEFT) {
+        direction = 'backward';
+      }
 
-  const onMouseUp = () => {
+      if (
+        direction === 'forward' ||
+        (direction === 'backward' &&
+          (shouldResizeHorizontalPanel || shouldResizeVerticalPanel) &&
+          prevPanelId &&
+          nextPanelId)
+      ) {
+        event.preventDefault();
+        actions.keyMove({ direction, prevPanelId, nextPanelId });
+      }
+    },
+    [actions, isHorizontal]
+  );
+
+  const onMouseUp = useCallback(() => {
     actions.reset();
-  };
+  }, [actions]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
       onKeyDown,
@@ -176,9 +197,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         deregister: actions.deregisterResizer,
       },
     }),
-    [isHorizontal]
+    [actions, isHorizontal]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizablePanel = useCallback(
     euiResizablePanelWithControls({
       isHorizontal,
@@ -189,7 +211,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       onToggleCollapsed: (panelId: string, options: any) =>
         actions.panelToggle({ options, panelId }),
     }),
-    [isHorizontal]
+    [actions, isHorizontal]
   );
 
   const render = () => {
@@ -213,12 +235,22 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   };
 
   return (
-    <EuiResizablePanelContextProvider
+    <EuiResizableContainerContextProvider
       registry={{
         panels: reducerState.panels,
         resizers: reducerState.resizers,
         resizerHasFocus: reducerState.resizerHasFocus,
       }}>
+      {/* <EuiResizablePanelContextProvider
+        registry={{
+          isHorizontal,
+          registration: {
+            register: actions.registerPanel,
+            deregister: actions.deregisterPanel,
+          },
+          onToggleCollapsed: (panelId: string, options: any) =>
+            actions.panelToggle({ options, panelId }),
+        }}> */}
       <div
         className={classes}
         ref={containerRef}
@@ -233,6 +265,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
           render()
         }
       </div>
-    </EuiResizablePanelContextProvider>
+      {/* </EuiResizablePanelContextProvider> */}
+    </EuiResizableContainerContextProvider>
   );
 };

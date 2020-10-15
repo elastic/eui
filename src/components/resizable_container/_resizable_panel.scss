@@ -10,16 +10,13 @@
 }
 
 .euiResizablePanel--collapsed {
-  
-  .euiResizablePanel__content{
+  .euiResizablePanel__content {
     @include euiScreenReaderOnly;
   }
 }
 
 .euiResizablePanel--collapsible {
-  
   &:not(.euiResizablePanel--collapsed) {
-
     .euiResizablePanel__toggleButton:not(:focus):not(:active):not(.euiResizablePanel__toggleButton--focused) {
       @include euiScreenReaderOnly;
     }
@@ -27,7 +24,6 @@
 }
 
 .euiResizableContainer--horizontal {
-  
   .euiResizablePanel--collapsed {
     // sass-lint:disable-block no-important
     min-width: 0 !important;
@@ -43,19 +39,8 @@
 
   .euiResizablePanel {
 
-    // &.euiResizablePanel--middle {
-    //   .euiResizablePanel__toggleButton--right {
-    //     top: 40%;
-    //   }
-
-    //   .euiResizablePanel__toggleButton--left {
-    //     top: 60%;
-    //   }
-    // }
-
     .euiResizablePanel__toggleButton {
-      transition: left 0s;
-      transition: right 0s;
+      transition: left 0s, right 0s;
       left: 50%;
       right: auto;
     }
@@ -66,12 +51,6 @@
         left: 100%;
         margin-left: -4px;
       }
-
-      &.euiResizablePanel--collapsed {
-        .euiResizablePanel__toggleButton--right {
-          left: 6px;
-        }
-      }
     }
 
     &.euiResizablePanel--last,
@@ -80,12 +59,6 @@
         left: auto;
         right: 100%;
         margin-right: -4px;
-      }
-
-      &.euiResizablePanel--collapsed {
-        .euiResizablePanel__toggleButton--left {
-          right: 6px;
-        }
       }
     }
   }
