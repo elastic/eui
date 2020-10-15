@@ -22,7 +22,7 @@ $euiFontSizeXXL:  floor($euiFontSize * 2.43); // 34px // h1
 $euiTitles: (
   'xxxs': (
     'font-size': $euiFontSizeXS,
-    'line-height': lineHeightFromBaseline(3),
+    'line-height': lineHeightFromBaseline(2),
     'font-weight': $euiFontWeightBold,
   ),
   'xxs': (
@@ -42,12 +42,12 @@ $euiTitles: (
   ),
   'm': (
     'font-size': $euiFontSizeXL,
-    'line-height': lineHeightFromBaseline(5),
+    'line-height': lineHeightFromBaseline(4),
     'font-weight': $euiFontWeightBold,
   ),
   'l': (
     'font-size': $euiFontSizeXXL,
-    'line-height': lineHeightFromBaseline(6),
+    'line-height': lineHeightFromBaseline(5),
     'font-weight': $euiFontWeightBold,
   ),
 );
