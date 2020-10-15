@@ -1,7 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Theme: Amsterdam**
+
+- Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
+
+## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
+
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
 - Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
+
+**Bug fixes**
+
+- Fixed custom color render of `EuiIcon` app (two-tone) icons ([#4104](https://github.com/elastic/eui/pull/4104))
+- Changed `iconType` prop to be `required` in `EuiButtonIcon` ([#4106](https://github.com/elastic/eui/pull/4106))
 
 ## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
 
@@ -14,7 +25,6 @@
 **Bug fixes**
 
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
-
 
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
@@ -256,7 +266,7 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
-  
+
 ## [`26.3.4`](https://github.com/elastic/eui/tree/v26.3.4)
 
 **Note: this release is a backport containing changes originally made in `27.2.0`**
