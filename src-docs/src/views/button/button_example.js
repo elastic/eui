@@ -91,14 +91,14 @@ const buttonToggleSnippet = [
 </EuiButton>
 `,
   `<EuiButton
-  aria-pressed={toggleOn}
+  isSelected={toggleOn}
   fill={toggleOn}
   onClick={onToggleChange}
->
+  >
   <!-- Button text -->
 </EuiButton>`,
   `<EuiButton
-  isSelected={toggleOn}
+  aria-pressed={toggleOn}
   fill={toggleOn}
   onClick={onToggleChange}
 >
@@ -330,7 +330,7 @@ export const ButtonExample = {
             the visual differences for on and off. Though there are two
             <strong>exclusive</strong> situations to consider.
           </p>
-          <ul>
+          <ol>
             <li>
               If your button changes its readable <strong>text</strong>, via
               children or <EuiCode>aria-label</EuiCode>, then there is no
@@ -339,11 +339,10 @@ export const ButtonExample = {
             <li>
               If your button only changes the <strong>visual</strong>{' '}
               appearance, you must add <EuiCode>aria-pressed</EuiCode> passing a
-              boolean for the on and off states. <strong>EuiButton</strong>{' '}
-              provides a helper prop for this called{' '}
-              <EuiCode>isSelected</EuiCode>.
+              boolean for the on and off states. All EUI button types provide a
+              helper prop for this called <EuiCode>isSelected</EuiCode>.
             </li>
-          </ul>
+          </ol>
           <EuiCallOut
             iconType="accessibility"
             color="warning"
