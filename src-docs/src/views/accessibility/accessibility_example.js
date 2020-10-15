@@ -89,7 +89,7 @@ export const AccessibilityExample = {
               such, we don&apos;t recommend it&apos;s continued use.
             </p>
           </EuiCallOut>
-        
+
           <EuiSpacer />
 
           <p>
