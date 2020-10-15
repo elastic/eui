@@ -44,7 +44,7 @@ const progressColorsHtml = renderToHtml(ProgressColors);
 const progressColorsSnippet = `<EuiProgress
   value={20}
   max={100} 
-  color="tint4"
+  color="vis4"
 />`;
 
 import ProgressChart from './progress_chart';
@@ -188,10 +188,14 @@ export const ProgressExample = {
             go to the <Link to="/guidelines/colors">Color guidelines</Link>{' '}
             page.
           </p>
-          <p>Additionally, you can pass a color name or a hex value.</p>
+          <p>
+            Additionally, you can pass any valid color string like a hex value
+            or named color.
+          </p>
           <EuiCallOut
             title="Note about using custom colors"
-            iconType="iInCircle">
+            iconType="accessibility"
+            color="warning">
             <p>
               Usually, we calculate a high contrast color for{' '}
               <EuiCode>valueText</EuiCode>

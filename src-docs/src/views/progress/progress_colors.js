@@ -23,7 +23,7 @@ for (let i = 0; i < 10; i++) {
     <>
       <EuiProgress
         label={`vis${i}`}
-        valueText={`vis${i}`}
+        valueText={true}
         value={80}
         max={100}
         color={`vis${i}`}
@@ -41,7 +41,7 @@ export default () => (
         <>
           <EuiProgress
             label={value}
-            valueText={value}
+            valueText={true}
             value={80}
             max={100}
             color={value}
@@ -54,7 +54,7 @@ export default () => (
     <EuiFlexItem>{vizBars}</EuiFlexItem>
     <EuiFlexItem>
       <EuiProgress
-        valueText="#32CD32"
+        valueText={true}
         label="#32CD32"
         color="#32CD32"
         value={80}
@@ -63,7 +63,7 @@ export default () => (
       />
       <EuiSpacer size="s" />
       <EuiProgress
-        valueText="mediumslateblue"
+        valueText={true}
         label="mediumslateblue"
         color="mediumslateblue"
         value={80}

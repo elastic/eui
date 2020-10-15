@@ -23,11 +23,12 @@ import React, {
   ProgressHTMLAttributes,
   ReactNode,
   Fragment,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { isNil } from '../../services/predicate';
 
 const sizeToClassNameMap = {
@@ -37,7 +38,7 @@ const sizeToClassNameMap = {
   l: 'euiProgress--l',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiProgressSize = keyof typeof sizeToClassNameMap;
 
@@ -123,9 +124,9 @@ export type EuiProgressPosition = keyof typeof positionsToClassNameMap;
 export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
   /**
-   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   * One of EUI's color palette, vis colors or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
    */
-  color?: EuiProgressColor | string;
+  color?: EuiProgressColor | CSSProperties['color'];
   position?: EuiProgressPosition;
 };
 
@@ -190,7 +191,6 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
       'euiProgress__data--l': size === 'l',
     },
     dataColorClass
-    // dataColorToClassNameMap[color]
   );
   const labelClasses = classNames(
     'euiProgress__label',

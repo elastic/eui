@@ -89,21 +89,21 @@ $euiProgressSizes: (
   }
 }
 
-.euiProgress--native.euiProgress--customColor {
-  &::-webkit-progress-value {
-    background-color: currentColor;
-  }
+// .euiProgress--native.euiProgress--customColor {
+//   &::-webkit-progress-value {
+//     background-color: currentColor;
+//   }
 
-  &::-moz-progress-bar {
-    background-color: currentColor;
-  }
-}
+//   &::-moz-progress-bar {
+//     background-color: currentColor;
+//   }
+// }
 
-.euiProgress--indeterminate.euiProgress--customColor {
-  &:before {
-    background-color: currentColor;
-  }
-}
+// .euiProgress--indeterminate.euiProgress--customColor {
+//   &:before {
+//     background-color: currentColor;
+//   }
+// }
 
 @each $name, $color in $euiProgressColors {
   .euiProgress--#{$name} {
@@ -124,9 +124,11 @@ $euiProgressSizes: (
     }
   }
 
-  .euiProgress__data--#{$name} {
-    .euiProgress__valueText {
-      color: makeHighContrastColor($color);
+  @if ($name != 'customColor') {
+    .euiProgress__data--#{$name} {
+      .euiProgress__valueText {
+        color: makeHighContrastColor($color);
+      }
     }
   }
 }
