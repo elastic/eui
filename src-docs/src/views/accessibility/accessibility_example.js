@@ -79,13 +79,6 @@ export const AccessibilityExample = {
 
           <EuiSpacer />
 
-          <p>
-            You can make interactive elements keyboard-accessible with the{' '}
-            <strong>EuiKeyboardAccessible</strong> component. This is necessary
-            for non-button elements and <EuiCode>a</EuiCode> tags without{' '}
-            <EuiCode>href</EuiCode> attributes.
-          </p>
-
           <EuiCallOut
             color="warning"
             iconType="accessibility"
@@ -96,6 +89,13 @@ export const AccessibilityExample = {
               such, we don&apos;t recommend it&apos;s continued use.
             </p>
           </EuiCallOut>
+
+          <p>
+            You can make interactive elements keyboard-accessible with the{' '}
+            <strong>EuiKeyboardAccessible</strong> component. This is necessary
+            for non-button elements and <EuiCode>a</EuiCode> tags without{' '}
+            <EuiCode>href</EuiCode> attributes.
+          </p>
         </>
       ),
       props: { EuiKeyboardAccessible },

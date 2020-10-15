@@ -1,256 +1,235 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiStepHorizontal is rendered 1`] = `
-<li
+<button
   aria-label="aria-label"
   class="euiStepHorizontal testClass1 testClass2 euiStepHorizontal-isIncomplete"
   data-test-subj="test subject string"
-  title="Step 1 is complete"
+  title="Step 1 is incomplete"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  <span
+    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Step 1 is incomplete
-      </p>
-      <p
-        aria-hidden="true"
-      >
-        1
-      </p>
-    </div>
-  </button>
-  <p
+      Step 1 is incomplete
+    </span>
+    <span
+      aria-hidden="true"
+    >
+      1
+    </span>
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props isComplete 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isComplete"
   title="Step 1 is complete"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
-    >
-      <span
-        aria-label="Step 1 is complete"
-        class="euiStepNumber__icon"
-        data-euiicon-type="check"
-      />
-    </div>
-  </button>
-  <p
+  <span
+    class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
+  >
+    <span
+      aria-label="Step 1 is complete"
+      class="euiStepNumber__icon"
+      data-euiicon-type="check"
+    />
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props isSelected 1`] = `
-<li
-  aria-current="step"
+<button
   class="euiStepHorizontal euiStepHorizontal-isSelected"
   title="Step 1"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepHorizontal__number"
+  <span
+    class="euiStepNumber euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Step 1
-      </p>
-      <p
-        aria-hidden="true"
-      >
-        1
-      </p>
-    </div>
-  </button>
-  <p
+      Step 1
+    </span>
+    <span
+      aria-hidden="true"
+    >
+      1
+    </span>
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
   title="Step 1 is complete"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
-    >
-      <span
-        aria-label="Step 1 is complete"
-        class="euiStepNumber__icon"
-        data-euiicon-type="check"
-      />
-    </div>
-  </button>
-  <p
+  <span
+    class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
+  >
+    <span
+      aria-label="Step 1 is complete"
+      class="euiStepNumber__icon"
+      data-euiicon-type="check"
+    />
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props status danger is rendered 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
   title="Step 1"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--danger euiStepHorizontal__number"
-    >
-      <span
-        aria-label="Step 1 has errors"
-        class="euiStepNumber__icon"
-        data-euiicon-type="cross"
-      />
-    </div>
-  </button>
-  <p
+  <span
+    class="euiStepNumber euiStepNumber--danger euiStepHorizontal__number"
+  >
+    <span
+      aria-label="Step 1 has errors"
+      class="euiStepNumber__icon"
+      data-euiicon-type="cross"
+    />
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
   title="Step 1 is disabled"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
+  <span
+    class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Step 1 is disabled
-      </p>
-      <p
-        aria-hidden="true"
-      >
-        1
-      </p>
-    </div>
-  </button>
-  <p
+      Step 1 is disabled
+    </span>
+    <span
+      aria-hidden="true"
+    >
+      1
+    </span>
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 1 is complete"
+  title="Step 1 is incomplete"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  <span
+    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Step 1 is incomplete
-      </p>
-      <p
-        aria-hidden="true"
-      >
-        1
-      </p>
-    </div>
-  </button>
-  <p
+      Step 1 is incomplete
+    </span>
+    <span
+      aria-hidden="true"
+    >
+      1
+    </span>
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 1"
+  title="Step 1 has warnings"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--warning euiStepHorizontal__number"
-    >
-      <span
-        aria-label="Step 1 has warnings"
-        class="euiStepNumber__icon"
-        data-euiicon-type="alert"
-      />
-    </div>
-  </button>
-  <p
+  <span
+    class="euiStepNumber euiStepNumber--warning euiStepHorizontal__number"
+  >
+    <span
+      aria-label="Step 1 has warnings"
+      class="euiStepNumber__icon"
+      data-euiicon-type="alert"
+    />
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props step 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 5 is complete"
+  title="Step 5 is incomplete"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  <span
+    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Step 5 is incomplete
-      </p>
-      <p
-        aria-hidden="true"
-      >
-        5
-      </p>
-    </div>
-  </button>
-  <p
+      Step 5 is incomplete
+    </span>
+    <span
+      aria-hidden="true"
+    >
+      5
+    </span>
+  </span>
+  <span
     class="euiStepHorizontal__title"
   />
-</li>
+</button>
 `;
 
 exports[`EuiStepHorizontal props title 1`] = `
-<li
+<button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 1 is complete"
+  title="Step 1 is incomplete"
 >
-  <button>
-    <div
-      class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  <span
+    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Step 1 is incomplete
-      </p>
-      <p
-        aria-hidden="true"
-      >
-        1
-      </p>
-    </div>
-  </button>
-  <p
+      Step 1 is incomplete
+    </span>
+    <span
+      aria-hidden="true"
+    >
+      1
+    </span>
+  </span>
+  <span
     class="euiStepHorizontal__title"
   >
     First step
-  </p>
-</li>
+  </span>
+</button>
 `;

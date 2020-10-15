@@ -75,12 +75,12 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   titleSize,
   ...rest
 }) => {
-  const step = useI18nStep(number);
-  const complete = useI18nCompleteStep(number);
-  const warning = useI18nWarningStep(number);
-  const errors = useI18nErrorsStep(number);
-  const incomplete = useI18nIncompleteStep(number);
-  const disabled = useI18nDisabledStep(number);
+  const stepAriaLabel = useI18nStep(number);
+  const completeAriaLabel = useI18nCompleteStep(number);
+  const warningAriaLabel = useI18nWarningStep(number);
+  const errorsAriaLabel = useI18nErrorsStep(number);
+  const incompleteAriaLabel = useI18nIncompleteStep(number);
+  const disabledAriaLabel = useI18nDisabledStep(number);
 
   const classes = classNames(
     'euiStepNumber',
@@ -90,15 +90,26 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   );
 
   const iconSize = titleSize === 'xs' ? 's' : 'm';
+  let screenReaderText = stepAriaLabel as string;
+  if (status === 'incomplete') screenReaderText = incompleteAriaLabel;
+  else if (status === 'disabled') screenReaderText = disabledAriaLabel;
 
-  let numberOrIcon;
+  let numberOrIcon = (
+    <>
+      <EuiScreenReaderOnly>
+        <span>{screenReaderText}</span>
+      </EuiScreenReaderOnly>
+      {!isHollow && <span aria-hidden="true">{number}</span>}
+    </>
+  );
+
   if (status === 'complete') {
     numberOrIcon = (
       <EuiIcon
         type="check"
         className="euiStepNumber__icon"
         size={iconSize}
-        aria-label={complete}
+        aria-label={completeAriaLabel}
       />
     );
   } else if (status === 'warning') {
@@ -107,7 +118,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         type="alert"
         className="euiStepNumber__icon"
         size={iconSize}
-        aria-label={warning}
+        aria-label={warningAriaLabel}
       />
     );
   } else if (status === 'danger') {
@@ -116,27 +127,14 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         type="cross"
         className="euiStepNumber__icon"
         size={iconSize}
-        aria-label={errors}
+        aria-label={errorsAriaLabel}
       />
-    );
-  } else if (!isHollow) {
-    let screenReaderText = step as string;
-    if (status === 'incomplete') screenReaderText = incomplete;
-    else if (status === 'disabled') screenReaderText = disabled;
-
-    numberOrIcon = (
-      <>
-        <EuiScreenReaderOnly>
-          <p>{screenReaderText}</p>
-        </EuiScreenReaderOnly>
-        <p aria-hidden="true">{number}</p>
-      </>
     );
   }
 
   return (
-    <div className={classes} {...rest}>
+    <span className={classes} {...rest}>
       {numberOrIcon}
-    </div>
+    </span>
   );
 };

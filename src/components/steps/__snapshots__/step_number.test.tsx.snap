@@ -1,47 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiStepNumber is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiStepNumber testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <p
+  <span
     class="euiScreenReaderOnly"
   >
     Step 
-  </p>
-  <p
+  </span>
+  <span
     aria-hidden="true"
   />
-</div>
+</span>
 `;
 
 exports[`EuiStepNumber props has titleSize is rendered 1`] = `
-<div
+<span
   class="euiStepNumber"
 >
-  <p
+  <span
     class="euiScreenReaderOnly"
   >
     Step 1
-  </p>
-  <p
+  </span>
+  <span
     aria-hidden="true"
   >
     1
-  </p>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props isHollow is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber-isHollow"
-/>
+>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 1
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props status complete is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--complete"
 >
   <span
@@ -49,11 +55,11 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
     class="euiStepNumber__icon"
     data-euiicon-type="check"
   />
-</div>
+</span>
 `;
 
 exports[`EuiStepNumber props status danger is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--danger"
 >
   <span
@@ -61,45 +67,45 @@ exports[`EuiStepNumber props status danger is rendered 1`] = `
     class="euiStepNumber__icon"
     data-euiicon-type="cross"
   />
-</div>
+</span>
 `;
 
 exports[`EuiStepNumber props status disabled is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--disabled"
 >
-  <p
+  <span
     class="euiScreenReaderOnly"
   >
     Step 1 is disabled
-  </p>
-  <p
+  </span>
+  <span
     aria-hidden="true"
   >
     1
-  </p>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props status incomplete is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--incomplete"
 >
-  <p
+  <span
     class="euiScreenReaderOnly"
   >
     Step 1 is incomplete
-  </p>
-  <p
+  </span>
+  <span
     aria-hidden="true"
   >
     1
-  </p>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props status warning is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--warning"
 >
   <span
@@ -107,5 +113,5 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
     class="euiStepNumber__icon"
     data-euiicon-type="alert"
   />
-</div>
+</span>
 `;

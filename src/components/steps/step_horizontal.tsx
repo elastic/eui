@@ -19,9 +19,8 @@
 
 import classNames from 'classnames';
 import React, {
-  createRef,
   FunctionComponent,
-  HTMLAttributes,
+  MouseEvent as ReactMouseEvent,
   MouseEventHandler,
 } from 'react';
 import { CommonProps } from '../common';
@@ -29,13 +28,12 @@ import { EuiStepNumber, EuiStepStatus } from './step_number';
 import {
   useI18nCompleteStep,
   useI18nDisabledStep,
+  useI18nIncompleteStep,
   useI18nStep,
   useI18nWarningStep,
 } from './step_strings';
 
-export interface EuiStepHorizontalProps
-  extends CommonProps,
-    Omit<HTMLAttributes<HTMLLIElement>, 'onClick'> {
+export interface EuiStepHorizontalProps extends CommonProps {
   /**
    * Is the current step
    */
@@ -69,12 +67,11 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   status,
   ...rest
 }) => {
-  const buttonRef = createRef<HTMLButtonElement>();
-  const defaultButton = useI18nStep(step);
-  const completeButton = useI18nCompleteStep(step);
-  const disabledButton = useI18nDisabledStep(step);
-  const incompleteButton = useI18nCompleteStep(step);
-  const warningButton = useI18nWarningStep(step);
+  const buttonTitle = useI18nStep(step);
+  const completeTitle = useI18nCompleteStep(step);
+  const disabledTitle = useI18nDisabledStep(step);
+  const incompleteTitle = useI18nIncompleteStep(step);
+  const warningTitle = useI18nWarningStep(step);
 
   const classes = classNames('euiStepHorizontal', className, {
     'euiStepHorizontal-isSelected': isSelected,
@@ -83,48 +80,37 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     'euiStepHorizontal-isDisabled': disabled,
   });
 
-  let stepTitle = defaultButton as string;
+  if (disabled) status = 'disabled';
+  else if (isComplete) status = 'complete';
+  else if (isSelected) status = status;
+  else if (!status) status = 'incomplete';
 
-  if (disabled || status === 'disabled') {
-    status = 'disabled';
-    stepTitle = disabledButton;
-  } else if (isComplete || status === 'complete') {
-    status = 'complete';
-    stepTitle = completeButton;
-  } else if (isSelected) {
-    if (status === 'warning') stepTitle = warningButton;
-    status = status;
-  } else if (!status || status === 'incomplete') {
-    status = 'incomplete';
-    stepTitle = incompleteButton;
-  }
+  let stepTitle = buttonTitle as string;
+  if (status === 'disabled') stepTitle = disabledTitle;
+  if (status === 'complete') stepTitle = completeTitle;
+  if (status === 'incomplete') stepTitle = incompleteTitle;
+  if (status === 'warning') stepTitle = warningTitle;
 
   const onStepClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    event.stopPropagation();
-    if (disabled) return;
-    onClick(event);
+    if (!disabled) onClick(event);
   };
 
-  const ariaProps = isSelected ? { 'aria-current': 'step' as const } : {};
-
   return (
-    <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+    <button
       className={classes}
       title={stepTitle}
-      onClick={() => buttonRef.current?.click()}
-      {...ariaProps}
+      onClick={onStepClick}
+      disabled={disabled}
       {...rest}>
-      <button ref={buttonRef} onClick={onStepClick} disabled={disabled}>
-        <EuiStepNumber
-          className="euiStepHorizontal__number"
-          status={status}
-          number={step}
-        />
-      </button>
+      <EuiStepNumber
+        className="euiStepHorizontal__number"
+        status={status}
+        number={step}
+      />
 
-      <p className="euiStepHorizontal__title">{title}</p>
-    </li>
+      <span className="euiStepHorizontal__title">{title}</span>
+    </button>
   );
 };

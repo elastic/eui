@@ -13,8 +13,15 @@
 .euiStepsHorizontal {
   display: flex;
   align-items: stretch;
-  flex-grow: 1;
   background: transparentize($euiColorLightestShade, .5);
+}
+
+.euiStepHorizontal__item {
+  // Remove the respective lines if the first or last child
+  &:first-of-type > .euiStepHorizontal::before,
+  &:last-of-type > .euiStepHorizontal::after {
+    display: none;
+  }
 }
 
 // Button containing item
@@ -30,7 +37,6 @@
   position: relative;
 
   // focus & hover state
-  &:focus-within:not(.euiStepHorizontal-isDisabled),
   &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
     .euiStepHorizontal__number {
@@ -70,15 +76,6 @@
   &::after {
     right: 0;
   }
-
-  // Remove the respective lines if the first or last child
-  &:first-of-type::before {
-    display: none;
-  }
-
-  &:last-of-type::after {
-    display: none;
-  }
 }
 
 .euiStepHorizontal__number {
@@ -92,7 +89,6 @@
   margin-top: $euiSizeS;
   font-weight: $euiFontWeightRegular;
   text-align: center;
-  max-width: 100%; // IE Fix for wrapping text
 
   .euiStepHorizontal-isDisabled & {
     color: $euiColorDarkShade;
