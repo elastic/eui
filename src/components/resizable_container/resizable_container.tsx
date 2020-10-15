@@ -26,7 +26,6 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ComponentType,
-  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
@@ -101,7 +100,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   onPanelWidthChange,
   ...rest
 }) => {
-  // const actions = useRef<EuiResizableContainerActions>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isHorizontal = direction === containerDirections.horizontal;
 
@@ -119,10 +117,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     containerRef,
     onPanelWidthChange,
   });
-
-  useEffect(() => {
-    console.log(actions);
-  }, [actions]);
 
   const onMouseDown = useCallback(
     (event: EuiResizableButtonMouseEvent) => {
@@ -215,6 +209,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   );
 
   const render = () => {
+    // TODO: Maybe just a subset of actions?
     const content = children(EuiResizablePanel, EuiResizableButton, actions);
     const modes = React.isValidElement(content)
       ? content.props.children.map(
@@ -241,16 +236,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         resizers: reducerState.resizers,
         resizerHasFocus: reducerState.resizerHasFocus,
       }}>
-      {/* <EuiResizablePanelContextProvider
-        registry={{
-          isHorizontal,
-          registration: {
-            register: actions.registerPanel,
-            deregister: actions.deregisterPanel,
-          },
-          onToggleCollapsed: (panelId: string, options: any) =>
-            actions.panelToggle({ options, panelId }),
-        }}> */}
       <div
         className={classes}
         ref={containerRef}
@@ -260,12 +245,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         onTouchMove={onMouseMove}
         onTouchEnd={onMouseUp}
         {...rest}>
-        {
-          // TODO: Maybe just a subset of actions?
-          render()
-        }
+        {render()}
       </div>
-      {/* </EuiResizablePanelContextProvider> */}
     </EuiResizableContainerContextProvider>
   );
 };
