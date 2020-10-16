@@ -17,148 +17,178 @@
  * under the License.
  */
 
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { ToggleType } from '../../toggle';
-
-import { EuiButtonToggle } from '../button_toggle';
+import { EuiButtonGroupButton } from './button_group_button';
+import { colorToClassNameMap, ButtonColor } from '../button';
+import { EuiButtonContentProps } from '../button_content';
 import { CommonProps } from '../../common';
+import { htmlIdGenerator } from '../../../services';
 
-import { ButtonColor } from '../button';
-import { ButtonContentIconSide } from '../button_content';
-import { IconType } from '../../icon';
-
-export interface EuiButtonGroupIdToSelectedMap {
-  [id: string]: boolean;
-}
-
-export type GroupButtonSize = 's' | 'm' | 'compressed';
-
-export interface EuiButtonGroupOption extends CommonProps {
+export interface EuiButtonGroupOptionProps
+  extends EuiButtonContentProps,
+    CommonProps {
+  /**
+   * Each option must have a unique `id` for maintaining selection
+   */
   id: string;
+  /**
+   * Each option must have a `label` even for icons which will be applied as the `aria-label`
+   */
   label: ReactNode;
-  name?: string;
   isDisabled?: boolean;
+  /**
+   * The value of the radio input.
+   */
   value?: any;
-  iconSide?: ButtonContentIconSide;
-  iconType?: IconType;
 }
 
-export interface EuiButtonGroupProps extends CommonProps {
-  options?: EuiButtonGroupOption[];
-  onChange: (id: string, value?: any) => void;
+export type EuiButtonGroupProps = CommonProps & {
   /**
    * Typical sizing is `s`. Medium `m` size should be reserved for major features.
    * `compressed` is meant to be used alongside and within compressed forms.
    */
-  buttonSize?: GroupButtonSize;
+  buttonSize?: 's' | 'm' | 'compressed';
   isDisabled?: boolean;
+  /**
+   * Expands the whole group to the full width of the container.
+   * Each button gets equal widths no matter the content
+   */
   isFullWidth?: boolean;
+  /**
+   * Hides the label to only show the `iconType` provided by the `option`
+   */
   isIconOnly?: boolean;
-  idSelected?: string;
-  legend?: string;
+  /**
+   * A hidden group title (required for accessibility)
+   */
+  legend: string;
+  /**
+   * Compressed styles don't support `ghost` color (Color will be changed to "text")
+   */
   color?: ButtonColor;
-  name?: string;
-  type?: ToggleType;
-  idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
-}
+  /**
+   * Actual type is `'single' | 'multi'`.
+   * Determines how the selection of the group should be handled.
+   * With `'single'` only one option can be selected at a time (similar to radio group).
+   * With `'multi'` multiple options selected (similar to checkbox group).
+   */
+  type?: 'single' | 'multi';
+  /**
+   * An array of #EuiButtonGroupOptionProps
+   */
+  options: EuiButtonGroupOptionProps[];
+} & (
+    | {
+        /**
+         * Default for `type` is single so it can also be excluded
+         */
+        type?: 'single';
+        /**
+         * The `name` attribute for radio inputs;
+         * Defaults to a random string
+         */
+        name?: string;
+        /**
+         * Styles the selected option to look selected (usually with `fill`)
+         * Required by and only used in `type='single'`.
+         */
+        idSelected: string;
+        /**
+         * Single: Returns the `id` of the clicked option and the `value`
+         */
+        onChange: (id: string, value?: any) => void;
+        idToSelectedMap?: never;
+      }
+    | {
+        type: 'multi';
+        /**
+         * A map of `id`s as keys with the selected boolean values.
+         * Required by and only used in `type='multi'`.
+         */
+        idToSelectedMap?: { [id: string]: boolean };
+        /**
+         * Multi: Returns the `id` of the clicked option
+         */
+        onChange: (id: string) => void;
+        idSelected?: never;
+        name?: never;
+      }
+  );
 
-type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
+type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> &
   EuiButtonGroupProps;
+
+const groupSizeToClassNameMap = {
+  s: '--small',
+  m: '--medium',
+  compressed: '--compressed',
+};
 
 export const EuiButtonGroup: FunctionComponent<Props> = ({
   className,
   buttonSize = 's',
   color = 'text',
-  idSelected,
+  idSelected = '',
   idToSelectedMap = {},
-  isDisabled,
-  isFullWidth,
-  isIconOnly,
-  name,
+  isDisabled = false,
+  isFullWidth = false,
+  isIconOnly = false,
   legend,
+  name,
   onChange,
   options = [],
   type = 'single',
-  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
+  // Compressed style can't support `ghost` color because it's more like a form field than a button
+  const badColorCombo = buttonSize === 'compressed' && color === 'ghost';
+  const resolvedColor = badColorCombo ? 'text' : color;
+  if (badColorCombo) {
+    console.warn(
+      'EuiButtonGroup of compressed size does not support the ghost color. It will render as text instead.'
+    );
+  }
+
   const classes = classNames(
     'euiButtonGroup',
-    [`euiButtonGroup--${buttonSize}`],
+    `euiButtonGroup${groupSizeToClassNameMap[buttonSize]}`,
+    `euiButtonGroup${colorToClassNameMap[resolvedColor]}`,
     {
       'euiButtonGroup--fullWidth': isFullWidth,
+      'euiButtonGroup--isDisabled': isDisabled,
     },
     className
   );
 
-  const fieldsetClasses = classNames('euiButtonGroup__fieldset', {
-    'euiButtonGroup__fieldset--fullWidth': isFullWidth,
-  });
+  const typeIsSingle = type === 'single';
+  const nameIfSingle = name || htmlIdGenerator()();
 
-  let legendNode;
-  if (legend) {
-    legendNode = (
+  return (
+    <fieldset className={classes} {...rest} disabled={isDisabled}>
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
-    );
-  }
 
-  return (
-    <fieldset className={fieldsetClasses}>
-      {legendNode}
-
-      <div className={classes} {...rest}>
+      <div className="euiButtonGroup__buttons">
         {options.map((option, index) => {
-          const {
-            id,
-            name: optionName,
-            value,
-            isDisabled: optionDisabled,
-            className,
-            ...rest
-          } = option;
-
-          let isSelectedState;
-          if (type === 'multi') {
-            isSelectedState = idToSelectedMap[id] || false;
-          } else {
-            isSelectedState = id === idSelected;
-          }
-
-          let fill;
-          if (buttonSize !== 'compressed') {
-            fill = isSelectedState;
-          }
-          const buttonClasses = classNames(
-            'euiButtonGroup__button',
-            {
-              'euiButtonGroup__button--selected': isSelectedState,
-            },
-            className
-          );
-
           return (
-            <EuiButtonToggle
-              className={buttonClasses}
-              toggleClassName="euiButtonGroup__toggle"
-              id={id}
+            <EuiButtonGroupButton
               key={index}
-              value={value}
-              color={color}
-              fill={fill}
-              isDisabled={optionDisabled || isDisabled}
+              name={nameIfSingle}
+              isDisabled={isDisabled}
+              {...(option as EuiButtonGroupOptionProps)}
+              type={typeIsSingle ? 'label' : 'button'}
+              isSelected={
+                typeIsSingle
+                  ? option.id === idSelected
+                  : idToSelectedMap[option.id]
+              }
+              color={resolvedColor}
+              size={buttonSize}
               isIconOnly={isIconOnly}
-              isSelected={isSelectedState}
-              name={optionName || name}
-              onChange={() => onChange(id, value)}
-              size={buttonSize === 'compressed' ? 's' : buttonSize}
-              type={type}
-              data-test-subj={dataTestSubj}
-              {...rest}
+              onChange={onChange}
             />
           );
         })}

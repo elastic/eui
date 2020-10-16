@@ -85,6 +85,11 @@ interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
    * Force disables the button and changes the icon to a loading spinner
    */
   isLoading?: boolean;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
   href?: string;
   target?: string;
   rel?: string;
@@ -123,6 +128,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   buttonRef,
   contentProps,
   textProps,
+  isSelected,
   ...rest
 }) => {
   // If in the loading state, force disabled to true
@@ -186,6 +192,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       className={classes}
       type={type}
       ref={buttonRef}
+      aria-pressed={isSelected}
       {...(rest as EuiButtonEmptyPropsForButton)}>
       {innerNode}
     </button>

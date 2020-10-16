@@ -32,7 +32,7 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
+import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import { useCombinedRefs } from '../../../services';
 
@@ -70,7 +70,7 @@ export type EuiFieldPasswordProps = Omit<
     /**
      * Additional props to apply to the dual toggle. Extends EuiButtonIcon
      */
-    dualToggleProps?: EuiButtonIconProps;
+    dualToggleProps?: Partial<EuiButtonIconPropsForButton>;
   };
 
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
@@ -108,10 +108,17 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   const [inputRef, _setInputRef] = useState<HTMLInputElement | null>(null);
   const setInputRef = useCombinedRefs([_setInputRef, _inputRef]);
 
-  const handleToggle = (isVisible: boolean) => {
+  const handleToggle = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    isVisible: boolean
+  ) => {
     setInputType(isVisible ? 'password' : 'text');
     if (inputRef) {
       inputRef.focus();
+    }
+
+    if (dualToggleProps && dualToggleProps.onClick) {
+      dualToggleProps.onClick(event);
     }
   };
 
@@ -126,12 +133,12 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
     const visibilityToggle = (
       <EuiButtonIcon
-        {...dualToggleProps}
         iconType={isVisible ? 'eyeClosed' : 'eye'}
-        onClick={() => handleToggle(isVisible)}
         aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
         title={isVisible ? maskPasswordLabel : showPasswordLabel}
         disabled={rest.disabled}
+        {...dualToggleProps}
+        onClick={(e) => handleToggle(e, isVisible)}
       />
     );
     appends = [...appends, visibilityToggle];
