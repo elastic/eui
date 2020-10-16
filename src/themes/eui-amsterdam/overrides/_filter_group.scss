@@ -1,3 +1,21 @@
+.euiFilterGroup {
+  border: none;
+  border-radius: $euiFormControlBorderRadius;
+  background-color: $euiFormBackgroundColor;
+  box-shadow: inset 0 0 0 1px $euiFormBorderColor;
+
+  // First of type doesn't always work because it could be wrapped in a popover
+  // or wrapped to next line, but will work 90% of the time and hardly noticeble
+  // when it doesn't.
+  > .euiFilterButton:first-of-type {
+    border-left-width: 0;
+  }
+}
+
 .euiFilterButton {
   border-radius: 0;
+  background-color: transparent;
+  border-width: 0 0 0 1px;
+  // Box shadow simulates bottom border when stacked
+  box-shadow: 0 1px 0 0 $euiFormBorderColor;
 }
