@@ -11,7 +11,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       class="euiStepHorizontal euiStepHorizontal-isComplete"
-      title="Step 1 is complete"
+      title="Step 1: Completed Step 1 is complete"
     >
       <span
         class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
@@ -35,7 +35,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       class="euiStepHorizontal euiStepHorizontal-isSelected"
-      title="Step 2"
+      title="Step 2: Selected Step 2"
     >
       <span
         class="euiStepNumber euiStepHorizontal__number"
@@ -63,7 +63,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-      title="Step 3 is incomplete"
+      title="Step 3: Incomplete Step 3 is incomplete"
     >
       <span
         class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
@@ -92,7 +92,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     <button
       class="euiStepHorizontal euiStepHorizontal-isIncomplete euiStepHorizontal-isDisabled"
       disabled=""
-      title="Step 4 is disabled"
+      title="Step 4: Disabled Step 4 is disabled"
     >
       <span
         class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"

@@ -75,12 +75,12 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   titleSize,
   ...rest
 }) => {
-  const stepAriaLabel = useI18nStep(number);
-  const completeAriaLabel = useI18nCompleteStep(number);
-  const warningAriaLabel = useI18nWarningStep(number);
-  const errorsAriaLabel = useI18nErrorsStep(number);
-  const incompleteAriaLabel = useI18nIncompleteStep(number);
-  const disabledAriaLabel = useI18nDisabledStep(number);
+  const stepAriaLabel = useI18nStep({ number });
+  const completeAriaLabel = useI18nCompleteStep({ number });
+  const warningAriaLabel = useI18nWarningStep({ number });
+  const errorsAriaLabel = useI18nErrorsStep({ number });
+  const incompleteAriaLabel = useI18nIncompleteStep({ number });
+  const disabledAriaLabel = useI18nDisabledStep({ number });
 
   const classes = classNames(
     'euiStepNumber',
@@ -90,7 +90,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   );
 
   const iconSize = titleSize === 'xs' ? 's' : 'm';
-  let screenReaderText = stepAriaLabel as string;
+  let screenReaderText = stepAriaLabel;
   if (status === 'incomplete') screenReaderText = incompleteAriaLabel;
   else if (status === 'disabled') screenReaderText = disabledAriaLabel;
 

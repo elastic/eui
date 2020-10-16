@@ -67,11 +67,11 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   status,
   ...rest
 }) => {
-  const buttonTitle = useI18nStep(step);
-  const completeTitle = useI18nCompleteStep(step);
-  const disabledTitle = useI18nDisabledStep(step);
-  const incompleteTitle = useI18nIncompleteStep(step);
-  const warningTitle = useI18nWarningStep(step);
+  const buttonTitle = useI18nStep({ number: step, title });
+  const completeTitle = useI18nCompleteStep({ number: step, title });
+  const disabledTitle = useI18nDisabledStep({ number: step, title });
+  const incompleteTitle = useI18nIncompleteStep({ number: step, title });
+  const warningTitle = useI18nWarningStep({ number: step, title });
 
   const classes = classNames('euiStepHorizontal', className, {
     'euiStepHorizontal-isSelected': isSelected,
@@ -85,7 +85,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   else if (isSelected) status = status;
   else if (!status) status = 'incomplete';
 
-  let stepTitle = buttonTitle as string;
+  let stepTitle = buttonTitle;
   if (status === 'disabled') stepTitle = disabledTitle;
   if (status === 'complete') stepTitle = completeTitle;
   if (status === 'incomplete') stepTitle = incompleteTitle;

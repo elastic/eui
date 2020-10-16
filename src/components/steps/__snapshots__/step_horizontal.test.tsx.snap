@@ -210,7 +210,7 @@ exports[`EuiStepHorizontal props step 1`] = `
 exports[`EuiStepHorizontal props title 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 1 is incomplete"
+  title="Step 1: First step is incomplete"
 >
   <span
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"

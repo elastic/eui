@@ -19,30 +19,114 @@
 
 import { useEuiI18n } from '../i18n';
 
-export const useI18nStep = (number?: number) =>
-  useEuiI18n('euiStepStrings.step', 'Step {number}', { number });
+type Props = { number?: number; title?: string };
 
-export const useI18nCompleteStep = (number?: number) =>
-  useEuiI18n('euiStepStrings.complete', 'Step {number} is complete', {
+export const useI18nStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n('euiStepStrings.step', 'Step {number}: {title}', {
     number,
+    title,
   });
 
-export const useI18nWarningStep = (number?: number) =>
-  useEuiI18n('euiStepStrings.warning', 'Step {number} has warnings', {
-    number,
-  });
+  const simpleString = useEuiI18n(
+    'euiStepStrings.simpleStep',
+    'Step {number}',
+    { number }
+  );
 
-export const useI18nErrorsStep = (number?: number) =>
-  useEuiI18n('euiStepStrings.errors', 'Step {number} has errors', {
-    number,
-  });
+  return title ? string : simpleString;
+};
 
-export const useI18nIncompleteStep = (number?: number) =>
-  useEuiI18n('euiStepStrings.incomplete', 'Step {number} is incomplete', {
-    number,
-  });
+export const useI18nCompleteStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.complete',
+    'Step {number}: {title} is complete',
+    {
+      number,
+      title,
+    }
+  );
 
-export const useI18nDisabledStep = (number?: number) =>
-  useEuiI18n('euiStepStrings.disabled', 'Step {number} is disabled', {
-    number,
-  });
+  const simpleString = useEuiI18n(
+    'euiStepStrings.simpleComplete',
+    'Step {number} is complete',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};
+
+export const useI18nWarningStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.warning',
+    'Step {number}: {title} has warnings',
+    {
+      number,
+      title,
+    }
+  );
+
+  const simpleString = useEuiI18n(
+    'euiStepStrings.warning',
+    'Step {number} has warnings',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};
+
+export const useI18nErrorsStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.errors',
+    'Step {number}: {title} has errors',
+    {
+      number,
+      title,
+    }
+  );
+
+  const simpleString = useEuiI18n(
+    'euiStepStrings.simpleErrors',
+    'Step {number} has errors',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};
+
+export const useI18nIncompleteStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.incomplete',
+    'Step {number}: {title} is incomplete',
+    {
+      number,
+      title,
+    }
+  );
+
+  const simpleString = useEuiI18n(
+    'euiStepStrings.incomplete',
+    'Step {number} is incomplete',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};
+
+export const useI18nDisabledStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.disabled',
+    'Step {number}: {title} is disabled',
+    {
+      number,
+      title,
+    }
+  );
+
+  const simpleString = useEuiI18n(
+    'euiStepStrings.disabled',
+    'Step {number} is disabled',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};
