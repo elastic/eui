@@ -12,9 +12,9 @@ export const LinkWrapper = ({ children }) => {
   const history = useHistory();
 
   useEffect(() => {
-    const onClick = e => {
+    const onClick = (e) => {
       // don't prevent open-in-new-tab actions
-      if (e.metaKey === true) return;
+      if (e.metaKey === true || e.ctrlKey === true) return;
 
       // look for an anchor ancestor
       const anchor = getParentAnchor(e.target);

@@ -141,15 +141,12 @@ export class GuidePageChrome extends Component {
             responsive={false}
             wrap>
             <EuiFlexItem grow={false}>
-              <EuiLink
-                to="/"
-                className="guideLogo"
-                aria-label="Go to home page">
+              <EuiLink href="#/" className="guideLogo" aria-label="EUI home">
                 <EuiIcon type="logoElastic" size="l" />
               </EuiLink>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiLink to="/" aria-label="Go to home page" className="euiLink">
+              <EuiLink href="#/" aria-label="EUI home" className="euiLink">
                 <strong>Elastic UI</strong>
               </EuiLink>
             </EuiFlexItem>
