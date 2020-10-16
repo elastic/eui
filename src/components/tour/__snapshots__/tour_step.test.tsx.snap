@@ -3,7 +3,7 @@
 exports[`EuiTourStep can be closed 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
+  class="euiPopover euiPopover--anchorLeftUp"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -20,7 +20,7 @@ exports[`EuiTourStep can be closed 1`] = `
 exports[`EuiTourStep can override the footer action 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
+  class="euiPopover euiPopover--anchorLeftUp"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -37,7 +37,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
 exports[`EuiTourStep can set a minWidth 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
+  class="euiPopover euiPopover--anchorLeftUp"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -54,7 +54,7 @@ exports[`EuiTourStep can set a minWidth 1`] = `
 exports[`EuiTourStep can turn off the beacon 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
+  class="euiPopover euiPopover--anchorLeftUp"
   data-test-subj="test subject string"
   offset="0"
 >
@@ -71,7 +71,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
 exports[`EuiTourStep is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
+  class="euiPopover euiPopover--anchorLeftUp"
   data-test-subj="test subject string"
   offset="10"
 >

@@ -65,8 +65,7 @@ export default () => {
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        panelPaddingSize="none"
-        withTitle>
+        panelPaddingSize="none">
         <EuiPopoverTitle paddingSize="s">
           <EuiFieldSearch compressed />
         </EuiPopoverTitle>

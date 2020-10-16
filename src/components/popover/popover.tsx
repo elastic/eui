@@ -152,7 +152,6 @@ export interface EuiPopoverProps {
    * scrolls, this supports having fixed-position popover anchors.
    */
   repositionOnScroll?: boolean;
-  withTitle?: boolean;
   /**
    * By default, popover content inherits the z-index of the anchor
    * component; pass `zIndex` to override
@@ -622,7 +621,6 @@ export class EuiPopover extends Component<Props, State> {
       insert,
       isOpen,
       ownFocus,
-      withTitle,
       children,
       className,
       closePopover,
@@ -652,7 +650,6 @@ export class EuiPopover extends Component<Props, State> {
       display ? displayToClassNameMap[display] : null,
       {
         'euiPopover-isOpen': this.state.isOpening,
-        'euiPopover--withTitle': withTitle,
       },
       className
     );
@@ -663,7 +660,6 @@ export class EuiPopover extends Component<Props, State> {
       'euiPopover__panel',
       `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
-      { 'euiPopover__panel-withTitle': withTitle },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName

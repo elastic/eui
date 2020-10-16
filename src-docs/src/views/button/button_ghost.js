@@ -6,15 +6,14 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonToggle,
   EuiPanel,
 } from '../../../../src/components';
 
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
 
-  const onToggle0Change = (e) => {
-    setToggle0On(e.target.checked);
+  const onToggle0Change = () => {
+    setToggle0On((isOn) => !isOn);
   };
 
   return (
@@ -71,12 +70,13 @@ export default () => {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButtonToggle
+          <EuiButton
             color="ghost"
-            label="Toggle Me"
+            isSelected={toggle0On}
             fill={toggle0On}
-            onChange={onToggle0Change}
-          />
+            onClick={onToggle0Change}>
+            Toggle me
+          </EuiButton>
         </EuiFlexItem>
       </EuiFlexGroup>
     </EuiPanel>
