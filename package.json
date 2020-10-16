@@ -152,6 +152,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "expose-gc": "^1.0.0",
     "faker": "^4.1.0",
     "file-loader": "^6.1.0",
     "findup": "^0.1.5",
