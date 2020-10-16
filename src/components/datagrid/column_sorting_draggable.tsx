@@ -162,6 +162,8 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
                 {(toggleLegend: ReactChild) => (
                   <EuiButtonGroup
                     legend={`${toggleLegend} ${id}`}
+                    name={id}
+                    isFullWidth
                     options={toggleOptions}
                     data-test-subj={`-${direction}`}
                     buttonSize="compressed"

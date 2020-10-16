@@ -1,138 +1,55 @@
 .euiButtonGroup {
-  max-width: 100%;
-  display: flex;
-}
-
-.euiButtonGroup__fieldset {
   display: inline-block;
   max-width: 100%;
-
-  &--fullWidth {
-    display: block;
-  }
 }
 
 .euiButtonGroup--fullWidth {
-  .euiButtonGroup__toggle {
-    flex: 1;
-  }
-}
+  display: block;
 
-.euiButtonGroup__toggle {
-  margin-left: -1px;
-  z-index: 1;
-
-  // DO NOT Transform
-  // sass-lint:disable-block no-important
-  transition: none !important;
-  transform: none !important;
-  animation: none !important;
-
-  &[class*='checked'] {
-    z-index: 2; // Raise it above the simply bordered versions for crisper lines
-
-    // add a slight divider if two selected items are next to each other
-    + [class*='checked'] {
-      box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
-    }
-  }
-
-  .euiButtonGroup__button {
-    border-radius: 0;
+  .euiButtonGroup__buttons {
     width: 100%;
 
-    // DO NOT Transform
-    // sass-lint:disable-block no-important
-    transition: none !important;
-    transform: none !important;
-    animation: none !important;
-
-    // always the same border color unless it's selected
-    &:not([class*='fill']) {
-      border-color: $euiButtonToggleBorderColor;
-    }
-
-    // don't colorize the shadows
-    &:enabled {
-      @include euiSlightShadow;
+    .euiButtonGroupButton {
+      flex: 1;
     }
   }
-
-  &:first-child {
-    margin-left: 0;
-
-    .euiButtonGroup__button {
-      border-top-left-radius: $euiBorderRadius;
-      border-bottom-left-radius: $euiBorderRadius;
-    }
-  }
-
-  &:last-child .euiButtonGroup__button {
-    border-top-right-radius: $euiBorderRadius;
-    border-bottom-right-radius: $euiBorderRadius;
-  }
-
 }
 
-@include euiBreakpoint('xs', 's') {
-  .euiButtonGroup__fieldset {
-    display: block;
+.euiButtonGroup__buttons {
+  @include euiSlightShadow;
+  border-radius: $euiBorderRadius + 1px; // Simply for the box-shadow
+  max-width: 100%;
+  display: flex;
+  overflow: hidden;
+  transition: all $euiAnimSpeedNormal ease-in-out;
+
+  &:hover,
+  &:active,
+  &:focus-within {
+    @include euiSlightShadowHover;
   }
+}
 
-  .euiButtonGroup__toggle {
-    flex: 1;
-    min-width: 0;
-
-    .euiButtonGroup__button {
-      min-width: 0;
-    }
+.euiButtonGroup--isDisabled .euiButtonGroup__buttons {
+  &:hover,
+  &:active,
+  &:focus-within {
+    box-shadow: none !important; // sass-lint:disable-line no-important
   }
 }
 
 .euiButtonGroup--compressed {
-  border: 1px solid $euiFormBorderColor;
-  border-radius: $euiFormControlCompressedBorderRadius;
-  background-color: $euiFormBackgroundColor;
-
-  .euiButtonGroup__button {
-    height: $euiFormControlCompressedHeight - 2px;
-    // sass-lint:disable-block no-important
-    box-shadow: none !important;
-    font-size: $euiFontSizeS;
-    min-width: 0;
-    border: none;
-    border-radius: $euiBorderRadius;
-    // Offset the background color from the border by 2px
-    // by clipping background to before the padding starts
-    padding: 2px;
-    background-clip: content-box;
-
-    &:not(.euiButtonGroup__button--selected):not(:disabled) {
-      color: $euiColorDarkShade;
-    }
-
-    .euiButton__content {
-      padding-left: $euiSizeS;
-      padding-right: $euiSizeS;
-    }
+  .euiButtonGroup__buttons {
+    box-shadow: none !important; // sass-lint:disable-line no-important
+    border-radius: $euiFormControlCompressedBorderRadius;
+    background-color: $euiFormBackgroundColor;
+    height: $euiFormControlCompressedHeight;
+    border: 1px solid $euiFormBorderColor;
+    overflow: visible;
   }
 
-  .euiButtonGroup__toggle {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,
-  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
-    background-color: transparentize($euiFormInputGroupLabelBackground, .5);
-  }
-
-  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
-    outline: 2px solid $euiFocusRingColor;
-  }
-
-  .euiButtonGroup__button--selected {
-    font-weight: $euiFontWeightSemiBold;
-    background-color: $euiFormInputGroupLabelBackground;
+  .euiButtonGroupButton {
+    // Add 2 to the border radius to account for the background-clip
+    border-radius: $euiFormControlCompressedBorderRadius + 2;
   }
 }
