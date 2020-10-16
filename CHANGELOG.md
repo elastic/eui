@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
+
 **Theme: Amsterdam**
 
 - Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
@@ -7,7 +9,6 @@
 ## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
-- Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
 
 **Bug fixes**
 
