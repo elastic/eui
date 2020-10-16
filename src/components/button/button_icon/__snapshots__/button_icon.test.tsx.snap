@@ -6,7 +6,13 @@ exports[`EuiButtonIcon is rendered 1`] = `
   class="euiButtonIcon euiButtonIcon--primary testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color accent is rendered 1`] = `
@@ -14,7 +20,13 @@ exports[`EuiButtonIcon props color accent is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--accent"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color danger is rendered 1`] = `
@@ -22,7 +34,13 @@ exports[`EuiButtonIcon props color danger is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--danger"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color disabled is rendered 1`] = `
@@ -30,7 +48,13 @@ exports[`EuiButtonIcon props color disabled is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--disabled"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color ghost is rendered 1`] = `
@@ -38,7 +62,13 @@ exports[`EuiButtonIcon props color ghost is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--ghost"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color primary is rendered 1`] = `
@@ -46,7 +76,13 @@ exports[`EuiButtonIcon props color primary is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--primary"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color subdued is rendered 1`] = `
@@ -54,7 +90,13 @@ exports[`EuiButtonIcon props color subdued is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--subdued"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color success is rendered 1`] = `
@@ -62,7 +104,13 @@ exports[`EuiButtonIcon props color success is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--success"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color text is rendered 1`] = `
@@ -70,7 +118,13 @@ exports[`EuiButtonIcon props color text is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--text"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props color warning is rendered 1`] = `
@@ -78,7 +132,13 @@ exports[`EuiButtonIcon props color warning is rendered 1`] = `
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--warning"
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props href secures the rel attribute when the target is _blank 1`] = `
@@ -88,7 +148,13 @@ exports[`EuiButtonIcon props href secures the rel attribute when the target is _
   href="#"
   rel="noopener noreferrer"
   target="_blank"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</a>
 `;
 
 exports[`EuiButtonIcon props iconType is rendered 1`] = `
@@ -111,7 +177,13 @@ exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
   class="euiButtonIcon euiButtonIcon--primary"
   disabled=""
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
 
 exports[`EuiButtonIcon props isDisabled renders a button even when href is defined 1`] = `
@@ -120,5 +192,11 @@ exports[`EuiButtonIcon props isDisabled renders a button even when href is defin
   class="euiButtonIcon euiButtonIcon--primary"
   disabled=""
   type="button"
-/>
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
 `;
