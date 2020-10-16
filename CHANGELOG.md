@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated types associated with `EuiMarkdownEditor` plugin dependencies ([4124](https://github.com/elastic/eui/pull/4124))
+- Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
 
 **Theme: Amsterdam**
 
@@ -9,7 +10,6 @@
 ## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
-- Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
 
 **Bug fixes**
 
