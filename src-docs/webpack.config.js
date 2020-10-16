@@ -15,7 +15,15 @@ const bypassCache = NODE_ENV === 'puppeteer';
 
 function employCache(loaders) {
   if (isDevelopment && !bypassCache) {
-    return ['cache-loader'].concat(loaders);
+    return [
+      {
+        loader: 'cache-loader',
+        options: {
+          cacheDirectory: path.join(__dirname, '..', '.cache-loader'),
+        },
+      },
+      ...loaders,
+    ];
   }
 
   return loaders;
@@ -54,7 +62,7 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: employCache([
+        loader: employCache([
           {
             loader: 'babel-loader',
             options: { babelrc: false, ...babelConfig },
@@ -64,7 +72,7 @@ const webpackConfig = {
       },
       {
         test: /\.scss$/,
-        loaders: employCache([
+        loader: employCache([
           {
             loader: 'style-loader',
             options: { injectType: 'lazySingletonStyleTag' },
@@ -77,20 +85,24 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: employCache(['style-loader', 'css-loader']),
+        loader: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
-        loader: 'file-loader',
+        loader: employCache(['file-loader']),
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8000, // Convert images < 8kb to base64 strings
-          name: 'images/[hash]-[name].[ext]',
-        },
+        loader: employCache([
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8000, // Convert images < 8kb to base64 strings
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ]),
       },
     ],
   },
