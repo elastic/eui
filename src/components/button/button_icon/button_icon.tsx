@@ -41,7 +41,6 @@ import { ButtonSize } from '../button';
 export type EuiButtonIconColor =
   | 'accent'
   | 'danger'
-  | 'disabled'
   | 'ghost'
   | 'primary'
   | 'subdued'
@@ -90,7 +89,6 @@ type Props = ExclusiveUnion<
 const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
   accent: 'euiButtonIcon--accent',
   danger: 'euiButtonIcon--danger',
-  disabled: 'euiButtonIcon--disabled',
   ghost: 'euiButtonIcon--ghost',
   primary: 'euiButtonIcon--primary',
   subdued: 'euiButtonIcon--subdued',

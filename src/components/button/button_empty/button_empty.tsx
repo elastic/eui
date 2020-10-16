@@ -34,17 +34,11 @@ import {
   EuiButtonContentType,
 } from '../button_content';
 
-export type EuiButtonEmptyColor =
-  | 'primary'
-  | 'danger'
-  | 'disabled'
-  | 'text'
-  | 'ghost';
+export type EuiButtonEmptyColor = 'primary' | 'danger' | 'text' | 'ghost';
 
 const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
-  disabled: 'euiButtonEmpty--disabled',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
 };
