@@ -235,12 +235,6 @@ export {
 
 export { EuiMutationObserver } from './observer/mutation_observer';
 
-export {
-  EuiNavDrawer,
-  EuiNavDrawerGroup,
-  EuiNavDrawerFlyout,
-} from './nav_drawer';
-
 export { EuiOutsideClickDetector } from './outside_click_detector';
 
 export { EuiOverlayMask } from './overlay_mask';
