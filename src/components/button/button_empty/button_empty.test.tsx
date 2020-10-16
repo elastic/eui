@@ -62,6 +62,20 @@ describe('EuiButtonEmpty', () => {
       });
     });
 
+    describe('isSelected', () => {
+      it('is rendered as true', () => {
+        const component = render(<EuiButtonEmpty isSelected />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered as false', () => {
+        const component = render(<EuiButtonEmpty isSelected={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('iconType', () => {
       it('is rendered', () => {
         const component = render(<EuiButtonEmpty iconType="user" />);

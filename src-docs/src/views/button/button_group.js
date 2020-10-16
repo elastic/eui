@@ -4,10 +4,10 @@ import {
   EuiButtonGroup,
   EuiSpacer,
   EuiTitle,
+  EuiPanel,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
-import { EuiPanel } from '../../../../src/components/panel/panel';
 
 const idPrefix = htmlIdGenerator()();
 const idPrefix2 = htmlIdGenerator()();
@@ -89,6 +89,7 @@ export default () => {
       id: `${idPrefix3}2`,
       label: 'Align right',
       iconType: 'editorAlignRight',
+      isDisabled: true,
     },
   ];
 
@@ -104,6 +105,7 @@ export default () => {
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
+      isDisabled: true,
     },
     {
       id: `${idPrefix3}5`,
@@ -201,7 +203,6 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="This is a primary group"
-        name="primary"
         options={toggleButtonsMulti}
         idToSelectedMap={toggleIdToSelectedMap}
         onChange={(id) => onChangeMulti(id)}
@@ -215,7 +216,6 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="This is a disabled group"
-        name="disabledGroup"
         options={toggleButtonsDisabled}
         idSelected={toggleIdDisabled}
         onChange={(id) => onChangeDisabled(id)}
@@ -230,7 +230,6 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="Text align"
-        name="textAlign"
         options={toggleButtonsIcons}
         idSelected={toggleIconIdSelected}
         onChange={(id) => onChangeIcons(id)}
@@ -269,7 +268,6 @@ export default () => {
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup
-          name="textStyleCompressed"
           legend="Text style"
           className="eui-displayInlineBlock"
           options={toggleButtonsIconsMulti}
