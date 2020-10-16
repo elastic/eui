@@ -99,7 +99,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     elementProps = {
       ...elementProps,
       id,
-      'aria-pressed': isSelected,
+      isSelected,
       onClick: () => onChange(id),
     };
   }
