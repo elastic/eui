@@ -11,7 +11,7 @@
   // focus states should come after all default styles
   @include euiButtonFocus;
 
-  &:hover:not(:disabled),
+  &:hover:not([class*='isDisabled']),
   &:focus {
     text-decoration: underline;
   }
@@ -28,7 +28,7 @@
   // But still use transparency
   background-color: transparentize($color, $transparency);
 
-  &:enabled {
+  &:not([class*='isDisabled']) {
     &:hover,
     &:focus {
       background-color: transparentize($color, lightOrDarkTheme(.9, .65));

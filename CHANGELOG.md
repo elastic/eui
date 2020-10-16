@@ -1,5 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
+- Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([4056](https://github.com/elastic/eui/pull/4056))
+- Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
+
+**Breaking changes**
+
+- Removed `EuiToggle` and `EuiButtonToggle` in favor of `aria-pressed` ([4056](https://github.com/elastic/eui/pull/4056))
+- Updated `legend` and `idSelected` props of `EuiButtonGroup` to be required ([4056](https://github.com/elastic/eui/pull/4056))
+
 **Theme: Amsterdam**
 
 - Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
