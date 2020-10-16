@@ -78,6 +78,28 @@ describe('EuiButtonIcon', () => {
       });
     });
 
+    describe('isSelected', () => {
+      it('is rendered as true', () => {
+        const component = render(
+          <EuiButtonIcon iconType="user" aria-label="button" isSelected />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered as false', () => {
+        const component = render(
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="button"
+            isSelected={false}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('href', () => {
       it('secures the rel attribute when the target is _blank', () => {
         const component = render(
