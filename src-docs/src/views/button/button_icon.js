@@ -14,7 +14,6 @@ const colors = [
   'success',
   'warning',
   'danger',
-  'disabled',
 ];
 
 export default () => (
@@ -26,9 +25,16 @@ export default () => (
           onClick={() => window.alert('Button clicked')}
           iconType="arrowRight"
           aria-label="Next"
-          disabled={color === 'disabled' ? true : false}
         />
       </EuiFlexItem>
     ))}
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        onClick={() => window.alert('Button clicked')}
+        iconType="arrowRight"
+        aria-label="Next"
+        disabled
+      />
+    </EuiFlexItem>
   </EuiFlexGroup>
 );

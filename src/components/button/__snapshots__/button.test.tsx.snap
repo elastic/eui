@@ -303,6 +303,54 @@ exports[`EuiButton props isLoading is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props isSelected is rendered as false 1`] = `
+<button
+  aria-pressed="false"
+  class="euiButton euiButton--primary"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButton props isSelected is rendered as true 1`] = `
+<button
+  aria-pressed="true"
+  class="euiButton euiButton--primary"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButton props minWidth is rendered 1`] = `
+<button
+  class="euiButton euiButton--primary"
+  style="min-width:0"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButton props size m is rendered 1`] = `
 <button
   class="euiButton euiButton--primary"

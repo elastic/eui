@@ -141,7 +141,6 @@ export default () => {
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       panelPaddingSize="none"
-      withTitle
       anchorPosition="downLeft">
       <EuiContextMenu initialPanelId={0} panels={panels} />
     </EuiPopover>
