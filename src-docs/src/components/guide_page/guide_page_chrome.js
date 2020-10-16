@@ -5,8 +5,7 @@ import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
-  EuiLink,
+  EuiButtonEmpty,
   EuiSideNav,
   EuiSpacer,
   EuiText,
@@ -135,22 +134,13 @@ export class GuidePageChrome extends Component {
         responsive={false}
         wrap>
         <EuiFlexItem grow={false}>
-          <EuiFlexGroup
-            alignItems="center"
-            gutterSize="s"
-            responsive={false}
-            wrap>
-            <EuiFlexItem grow={false}>
-              <EuiLink href="#/" className="guideLogo" aria-label="EUI home">
-                <EuiIcon type="logoElastic" size="l" />
-              </EuiLink>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiLink href="#/" aria-label="EUI home" className="euiLink">
-                <strong>Elastic UI</strong>
-              </EuiLink>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <EuiButtonEmpty
+            href="#/"
+            aria-label="EUI home"
+            iconType="logoElastic"
+            size="l">
+            <strong>Elastic UI</strong>
+          </EuiButtonEmpty>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
