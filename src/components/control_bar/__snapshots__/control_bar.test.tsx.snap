@@ -300,6 +300,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               size="s"
             >
               <EuiButtonDisplay
+                baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
@@ -312,6 +313,11 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
                   onClick={[Function]}
+                  style={
+                    Object {
+                      "minWidth": undefined,
+                    }
+                  }
                   type="button"
                 >
                   <EuiButtonContent
@@ -615,6 +621,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               size="s"
             >
               <EuiButtonDisplay
+                baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
@@ -627,6 +634,11 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
                   onClick={[Function]}
+                  style={
+                    Object {
+                      "minWidth": undefined,
+                    }
+                  }
                   type="button"
                 >
                   <EuiButtonContent
@@ -929,6 +941,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               size="s"
             >
               <EuiButtonDisplay
+                baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
@@ -941,6 +954,11 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
                   onClick={[Function]}
+                  style={
+                    Object {
+                      "minWidth": undefined,
+                    }
+                  }
                   type="button"
                 >
                   <EuiButtonContent
@@ -1156,6 +1174,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
           size="s"
         >
           <EuiButtonDisplay
+            baseClassName="euiButton"
             className="euiControlBar__button"
             color="ghost"
             data-test-subj="dts"
@@ -1168,6 +1187,11 @@ exports[`EuiControlBar props position is rendered 1`] = `
               className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
               data-test-subj="dts"
               onClick={[Function]}
+              style={
+                Object {
+                  "minWidth": undefined,
+                }
+              }
               type="button"
             >
               <EuiButtonContent
@@ -1455,6 +1479,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               size="s"
             >
               <EuiButtonDisplay
+                baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
@@ -1467,6 +1492,11 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
                   onClick={[Function]}
+                  style={
+                    Object {
+                      "minWidth": undefined,
+                    }
+                  }
                   type="button"
                 >
                   <EuiButtonContent
@@ -1774,6 +1804,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               size="s"
             >
               <EuiButtonDisplay
+                baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
@@ -1786,6 +1817,11 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
                   onClick={[Function]}
+                  style={
+                    Object {
+                      "minWidth": undefined,
+                    }
+                  }
                   type="button"
                 >
                   <EuiButtonContent
@@ -2093,6 +2129,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
               size="s"
             >
               <EuiButtonDisplay
+                baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
@@ -2105,6 +2142,11 @@ exports[`EuiControlBar props size is rendered 1`] = `
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
                   onClick={[Function]}
+                  style={
+                    Object {
+                      "minWidth": undefined,
+                    }
+                  }
                   type="button"
                 >
                   <EuiButtonContent

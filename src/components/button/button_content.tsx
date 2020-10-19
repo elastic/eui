@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { EuiLoadingSpinner } from '../loading';
@@ -41,13 +41,23 @@ export type EuiButtonContentType = HTMLAttributes<HTMLSpanElement>;
  * This component is simply a helper component for reuse within other button components
  */
 export interface EuiButtonContentProps extends CommonProps {
+  /**
+   * Any `type` accepted by EuiIcon
+   */
   iconType?: IconType;
+  /**
+   * Can only be one side `left` or `right`
+   */
   iconSide?: ButtonContentIconSide;
   isLoading?: boolean;
   /**
    * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
    */
-  textProps?: HTMLAttributes<HTMLSpanElement> & CommonProps;
+  textProps?: HTMLAttributes<HTMLSpanElement> &
+    CommonProps & {
+      ref?: Ref<HTMLSpanElement>;
+      'data-text'?: string;
+    };
 }
 
 export const EuiButtonContent: FunctionComponent<

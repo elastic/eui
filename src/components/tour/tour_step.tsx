@@ -217,7 +217,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       panelStyle={newStyle || style}
       offset={hasBeacon ? 10 : 0}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
-      withTitle
       {...rest}>
       <EuiPopoverTitle className="euiTourHeader">
         <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
