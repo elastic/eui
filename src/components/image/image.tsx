@@ -200,13 +200,24 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     'Open full screen {alt} image',
     { alt }
   );
+
+  // we want to ensure the button gets the container width
+  // only when the size is not original
+  const allowFullScreenButtonClasses = classNames(
+    'euiImage__button',
+    {
+      'euiImage__button--fullWidth': size !== 'original',
+    },
+    className
+  );
+
   if (allowFullScreen) {
     return (
       <figure className={classes} aria-label={optionalCaptionText}>
         <button
           type="button"
           aria-label={fullscreenLabel}
-          className="euiImage__button"
+          className={allowFullScreenButtonClasses}
           data-test-subj="activateFullScreenButton"
           onClick={openFullScreen}>
           <img

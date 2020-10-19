@@ -31,6 +31,12 @@
       visibility: visible;
       fill-opacity: 1;
     }
+
+    // gets the full width of the parent container 
+    // to ensure the nested image can get the same width
+    &--fullWidth {
+      width: 100%;
+    }
   }
 
   &.euiImage--allowFullScreen {
