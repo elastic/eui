@@ -46,7 +46,6 @@ export {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
-  EuiButtonToggle,
   EuiButtonGroup,
 } from './button';
 
@@ -236,12 +235,6 @@ export {
 
 export { EuiMutationObserver } from './observer/mutation_observer';
 
-export {
-  EuiNavDrawer,
-  EuiNavDrawerGroup,
-  EuiNavDrawerFlyout,
-} from './nav_drawer';
-
 export { EuiOutsideClickDetector } from './outside_click_detector';
 
 export { EuiOverlayMask } from './overlay_mask';
@@ -335,8 +328,6 @@ export { useEuiTextDiff } from './text_diff';
 export { EuiTitle } from './title';
 
 export { EuiGlobalToastList, EuiGlobalToastListItem, EuiToast } from './toast';
-
-export { EuiToggle } from './toggle';
 
 export { EuiIconTip, EuiToolTip } from './tool_tip';
 

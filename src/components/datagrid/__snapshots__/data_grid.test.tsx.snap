@@ -48,7 +48,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
     class="euiFlexItem euiFlexItem--flexGrowZero"
   >
     <div
-      class="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
+      class="euiPopover euiPopover--anchorUpRight"
     >
       <div
         class="euiPopover__anchor"
