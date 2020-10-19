@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `29.3.0`.
+**Note: this release is a backport containing changes originally made in `30.0.0`**
+
+**Bug fixes**
+
+- Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
 
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
