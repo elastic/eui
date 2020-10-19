@@ -9,12 +9,20 @@ exports[`EuiStep is rendered 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStep__circle"
     >
-      1
-    </div>
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 1
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        1
+      </span>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -38,12 +46,20 @@ exports[`EuiStep props headingElement 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStep__circle"
     >
-      1
-    </div>
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 1
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        1
+      </span>
+    </span>
     <h3
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -67,16 +83,15 @@ exports[`EuiStep props status complete is rendered 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStepNumber--complete euiStep__circle"
     >
       <span
-        aria-label="complete"
+        aria-label="Step 1 is complete"
         class="euiStepNumber__icon"
         data-euiicon-type="check"
       />
-    </div>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -100,16 +115,15 @@ exports[`EuiStep props status danger is rendered 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStepNumber--danger euiStep__circle"
     >
       <span
-        aria-label="has errors"
+        aria-label="Step 1 has errors"
         class="euiStepNumber__icon"
         data-euiicon-type="cross"
       />
-    </div>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -133,12 +147,20 @@ exports[`EuiStep props status disabled is rendered 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStepNumber--disabled euiStep__circle"
     >
-      1
-    </div>
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 1 is disabled
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        1
+      </span>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -162,10 +184,15 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Incomplete Step 1"
+    <span
       class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
-    />
+    >
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 1 is incomplete
+      </span>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -189,16 +216,15 @@ exports[`EuiStep props status warning is rendered 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStepNumber--warning euiStep__circle"
     >
       <span
-        aria-label="has warnings"
+        aria-label="Step 1 has warnings"
         class="euiStepNumber__icon"
         data-euiicon-type="alert"
       />
-    </div>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -222,12 +248,20 @@ exports[`EuiStep props step 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 5"
+    <span
       class="euiStepNumber euiStep__circle"
     >
-      5
-    </div>
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 5
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        5
+      </span>
+    </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
     >
@@ -251,12 +285,20 @@ exports[`EuiStep props titleSize 1`] = `
   <div
     class="euiStep__titleWrapper"
   >
-    <div
-      aria-label="Step 1"
+    <span
       class="euiStepNumber euiStep__circle euiStepNumber--small"
     >
-      1
-    </div>
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 1
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        1
+      </span>
+    </span>
     <p
       class="euiTitle euiTitle--xsmall euiStep__title"
     >

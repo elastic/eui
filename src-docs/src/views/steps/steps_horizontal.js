@@ -24,8 +24,4 @@ const horizontalSteps = [
   },
 ];
 
-export default () => (
-  <div>
-    <EuiStepsHorizontal steps={horizontalSteps} />
-  </div>
-);
+export default () => <EuiStepsHorizontal steps={horizontalSteps} />;
