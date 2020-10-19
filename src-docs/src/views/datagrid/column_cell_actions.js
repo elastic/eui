@@ -63,7 +63,7 @@ const columns = [
     cellActions: [
       ({ rowIndex, columnId, Component }) => {
         const row = ++rowIndex;
-        const label = `Send love to country at row ${row}, column "${columnId}"`;
+        const label = `Love sent from row ${row}, column "${columnId}"`;
         return (
           <Component
             onClick={() =>
