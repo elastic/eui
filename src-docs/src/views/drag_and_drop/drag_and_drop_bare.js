@@ -18,9 +18,11 @@ const makeList = (number, start = 1) =>
 
 export default () => {
   const [list] = useState(makeList(3));
+
   const onDragEnd = ({ source, destination }) => {
     console.log(source, destination);
   };
+
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiDroppable droppableId="DROPPABLE_AREA_BARE">

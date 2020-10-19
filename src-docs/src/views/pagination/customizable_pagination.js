@@ -13,6 +13,7 @@ import {
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [activePage, setActivePage] = useState(0);
+  const [rowSize, setRowSize] = useState(50);
 
   const PAGE_COUNT = 10;
 
@@ -22,6 +23,10 @@ export default () => {
 
   const goToPage = (pageNumber) => setActivePage(pageNumber);
 
+  const getIconType = (size) => {
+    return size === rowSize ? 'check' : 'empty';
+  };
+
   const button = (
     <EuiButtonEmpty
       size="s"
@@ -29,44 +34,44 @@ export default () => {
       iconType="arrowDown"
       iconSide="right"
       onClick={onButtonClick}>
-      Rows per page: 50
+      Rows per page: {rowSize}
     </EuiButtonEmpty>
   );
 
   const items = [
     <EuiContextMenuItem
       key="10 rows"
-      icon="empty"
+      icon={getIconType(10)}
       onClick={() => {
         closePopover();
-        window.alert('10 rows');
+        setRowSize(10);
       }}>
       10 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
       key="20 rows"
-      icon="empty"
+      icon={getIconType(20)}
       onClick={() => {
         closePopover();
-        window.alert('20 rows');
+        setRowSize(20);
       }}>
       20 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
       key="50 rows"
-      icon="check"
+      icon={getIconType(50)}
       onClick={() => {
         closePopover();
-        window.alert('50 rows');
+        setRowSize(50);
       }}>
       50 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
       key="100 rows"
-      icon="empty"
+      icon={getIconType(100)}
       onClick={() => {
         closePopover();
-        window.alert('100 rows');
+        setRowSize(100);
       }}>
       100 rows
     </EuiContextMenuItem>,

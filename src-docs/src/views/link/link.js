@@ -19,18 +19,15 @@ export default () => (
       has the <EuiCode>external</EuiCode> prop set to true.
     </p>
     <p>
-      This link is actually a{' '}
-      <EuiLink onClick={() => window.alert('Button clicked')}>button</EuiLink>{' '}
-      with an onClick handler.
+      This link is actually a <EuiLink onClick={() => {}}>button</EuiLink> with
+      an onClick handler.
     </p>
     <p>
       Here is an example of a{' '}
       <EuiLink
         href="https://github.com/elastic/eui"
         onClick={(e) => {
-          if (!window.confirm('Are you sure you want to see the eui repo?')) {
-            e.preventDefault();
-          }
+          e.preventDefault();
         }}>
         link
       </EuiLink>{' '}
