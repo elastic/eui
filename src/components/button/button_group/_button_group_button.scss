@@ -179,36 +179,31 @@
     }
 
     &.euiButtonGroupButton-isSelected {
+      color: $euiColorLightestShade;
       font-weight: $euiFontWeightSemiBold;
-      background-color: $euiFormInputGroupLabelBackground;
+      background-color: $euiColorDarkShade;
+
+      // sass-lint:disable-block no-important
+      &.euiButtonGroupButton-isDisabled {
+        color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2) !important;
+        background-color: $euiButtonColorDisabled !important;
+      }
+
+      &:hover {
+        background-color: darken($euiColorDarkShade, 5%);
+      }
     }
 
     &:not([class*='isDisabled']) {
-      color: $euiColorDarkShade;
-
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: transparentize($euiFormInputGroupLabelBackground, .5);
+      &:hover {
+        background-color: transparentize($euiColorDarkShade, .9);
       }
 
       &:focus,
       &:focus-within {
+        color: $euiColorLightestShade;
         outline: 2px solid $euiFocusRingColor;
-      }
-    }
-  }
-
-  @each $name, $color in $euiButtonTypes {
-    .euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
-      &.euiButtonGroupButton-isSelected {
-        @if ($name == 'text') {
-          // The default color is lighter than the normal text color, make the it the text color
-          color: $euiTextColor;
-        } @else {
-          // Other colors need to check their contrast against the page background color.
-          color: makeHighContrastColor($color, $euiPageBackgroundColor);
-        }
+        background-color: darken($euiColorDarkShade, 5%);
       }
     }
   }
