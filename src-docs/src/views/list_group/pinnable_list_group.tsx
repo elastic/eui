@@ -40,7 +40,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
     },
   },
   {
-    id: '4',
+    id: '5',
     label: 'Item with pinnability turned off',
     pinnable: false,
   },
