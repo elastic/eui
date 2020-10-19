@@ -62,7 +62,7 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loader: employCache([
+        loaders: employCache([
           {
             loader: 'babel-loader',
             options: { babelrc: false, ...babelConfig },
@@ -72,7 +72,7 @@ const webpackConfig = {
       },
       {
         test: /\.scss$/,
-        loader: employCache([
+        loaders: employCache([
           {
             loader: 'style-loader',
             options: { injectType: 'lazySingletonStyleTag' },
@@ -85,24 +85,20 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loader: employCache(['style-loader', 'css-loader']),
+        loaders: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
-        loader: employCache(['file-loader']),
+        loader: 'file-loader',
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        loader: employCache([
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8000, // Convert images < 8kb to base64 strings
-              name: 'images/[hash]-[name].[ext]',
-            },
-          },
-        ]),
+        loader: 'url-loader',
+        options: {
+          limit: 8000, // Convert images < 8kb to base64 strings
+          name: 'images/[hash]-[name].[ext]',
+        },
       },
     ],
   },
