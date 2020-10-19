@@ -20,6 +20,11 @@ export default () => {
     hidden: true,
   };
 
+  propsToUse.minWidth = {
+    ...propsToUse.minWidth,
+    type: PropTypes.Number,
+  };
+
   const setGhostBackground = {
     color: 'ghost',
   };

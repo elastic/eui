@@ -27,13 +27,28 @@ type IconFunction<T> = (item: T) => EuiIconType;
 type ButtonColor = EuiButtonIconColor | EuiButtonEmptyColor;
 type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
-interface DefaultItemActionBase<T> {
+export interface DefaultItemActionBase<T> {
+  /**
+   * The display name of the action (will be the button caption)
+   */
   name: ReactNode | ((item: T) => ReactNode);
+  /**
+   * Describes the action (will be the button title)
+   */
   description: string;
+  /**
+   * A handler function to execute the action
+   */
   onClick?: (item: T) => void;
   href?: string;
   target?: string;
+  /**
+   * A callback function that determines whether the action is available
+   */
   available?: (item: T) => boolean;
+  /**
+   * A callback function that determines whether the action is enabled
+   */
   enabled?: (item: T) => boolean;
   isPrimary?: boolean;
   'data-test-subj'?: string;
@@ -41,6 +56,9 @@ interface DefaultItemActionBase<T> {
 
 export interface DefaultItemEmptyButtonAction<T>
   extends DefaultItemActionBase<T> {
+  /**
+   * The type of action
+   */
   type?: 'button';
   color?: EuiButtonEmptyColor | EuiButtonIconColorFunction<T>;
 }
@@ -48,7 +66,13 @@ export interface DefaultItemEmptyButtonAction<T>
 export interface DefaultItemIconButtonAction<T>
   extends DefaultItemActionBase<T> {
   type: 'icon';
+  /**
+   * Associates an icon with the button
+   */
   icon: EuiIconType | IconFunction<T>;
+  /**
+   * Defines the color of the button
+   */
   color?: EuiButtonIconColor | EuiButtonIconColorFunction<T>;
 }
 
@@ -58,8 +82,17 @@ export type DefaultItemAction<T> = ExclusiveUnion<
 >;
 
 export interface CustomItemAction<T> {
+  /**
+   * The function that renders the action. Note that the returned node is expected to have `onFocus` and `onBlur` functions
+   */
   render: (item: T, enabled: boolean) => ReactElement;
+  /**
+   * A callback that defines whether the action is available
+   */
   available?: (item: T) => boolean;
+  /**
+   * A callback that defines whether the action is enabled
+   */
   enabled?: (item: T) => boolean;
   isPrimary?: boolean;
 }
