@@ -55,14 +55,6 @@
   }
 }
 
-.euiToolTip--displayBlock {
-  display: block;
-
-  .euiToolTipAnchor {
-    display: block;
-  }
-}
-
 .euiToolTipAnchor {
   display: inline-block;
 
@@ -73,6 +65,10 @@
   *[disabled] {
     pointer-events: none;
   }
+}
+
+.euiToolTipAnchor--displayBlock {
+  display: block;
 }
 
 // Keyframes to animate in the tooltip.

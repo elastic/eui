@@ -2,7 +2,7 @@
 
 - Added `max-width: 100%` to `EuiKeyPadMenu` to allow it to shrink when its container is smaller than its fixed width ([ #4092](https://github.com/elastic/eui/pull/4092))
 
-- Added `display` prop to `EuiTooltip` to be a means of quick customization for handling display values of `block` or `inline` for the tooltip and anchor; instead of manually adding a class into the prop anchorClassName. ([#4096](https://github.com/elastic/eui/pull/4096))
+- Added `display` prop to `EuiTooltip` ([#4096](https://github.com/elastic/eui/pull/4096))
 
 **Bug fixes**
 

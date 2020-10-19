@@ -49,7 +49,7 @@ export const POSITIONS = keysOf(positionsToClassNameMap);
 
 const displayToClassNameMap = {
   inlineBlock: undefined,
-  block: 'euiToolTip--displayBlock',
+  block: 'euiToolTipAnchor--displayBlock',
 };
 
 export const DISPLAY = Object.keys(displayToClassNameMap);
@@ -101,7 +101,7 @@ export interface Props {
    */
   delay: ToolTipDelay;
   /**
-   * CSS display type for both the tooltip and anchor
+   * CSS display type for the tooltip anchor
    */
   display?: keyof typeof displayToClassNameMap;
   /**
@@ -307,11 +307,14 @@ export class EuiToolTip extends Component<Props, State> {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
-      display ? displayToClassNameMap[display] : null,
       className
     );
 
-    const anchorClasses = classNames('euiToolTipAnchor', anchorClassName);
+    const anchorClasses = classNames(
+      'euiToolTipAnchor',
+      display ? displayToClassNameMap[display] : null,
+      anchorClassName
+    );
 
     let tooltip;
     if (visible && (content || title)) {

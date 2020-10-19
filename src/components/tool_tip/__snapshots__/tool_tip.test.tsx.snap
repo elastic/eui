@@ -12,7 +12,7 @@ exports[`EuiToolTip is rendered 1`] = `
 
 exports[`EuiToolTip props display block is rendered 1`] = `
 <span
-  class="euiToolTipAnchor"
+  class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
 >
   <button>
     Trigger
