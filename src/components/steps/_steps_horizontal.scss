@@ -13,14 +13,22 @@
 .euiStepsHorizontal {
   display: flex;
   align-items: stretch;
-  flex-grow: 1;
   background: transparentize($euiColorLightestShade, .5);
+}
+
+.euiStepHorizontal__item {
+  flex-grow: 1; /* 2 */
+  flex-basis: 0%; /* 2 */
+
+  // Remove the respective lines if the first or last child
+  &:first-of-type > .euiStepHorizontal::before,
+  &:last-of-type > .euiStepHorizontal::after {
+    display: none;
+  }
 }
 
 // Button containing item
 .euiStepHorizontal {
-  flex-grow: 1; /* 2 */
-  flex-basis: 0%; /* 2 */
   padding: $euiSizeL $euiSize $euiSize;
   display: flex; /* 3 */
   flex-direction: column; /* 3 */
@@ -28,6 +36,7 @@
   justify-content: flex-start; /* 3 */
   cursor: pointer;
   position: relative;
+  width: 100%;
 
   // focus & hover state
   &:focus:not(.euiStepHorizontal-isDisabled),
@@ -69,15 +78,6 @@
   &::after {
     right: 0;
   }
-
-  // Remove the respective lines if the first or last child
-  &:first-of-type::before {
-    display: none;
-  }
-
-  &:last-of-type::after {
-    display: none;
-  }
 }
 
 .euiStepHorizontal__number {
@@ -91,7 +91,6 @@
   margin-top: $euiSizeS;
   font-weight: $euiFontWeightRegular;
   text-align: center;
-  max-width: 100%; // IE Fix for wrapping text
 
   .euiStepHorizontal-isDisabled & {
     color: $euiColorDarkShade;
@@ -123,8 +122,8 @@
     // reduce top padding and shift lines
     padding-top: $euiSize;
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       top: $euiSize + $euiStepNumberSize / 2;
     }
   }

@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Deprecated `EuiKeyboardAccessible` ([4135]https://github.com/elastic/eui/pull/4135)
+- Refactored `EuiStep`, `EuiHorizontalSteps`, and `EuiCodeEditor` for better accessibility ([4135]https://github.com/elastic/eui/pull/4135)
 - Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
 - Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([4056](https://github.com/elastic/eui/pull/4056))
 - Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
