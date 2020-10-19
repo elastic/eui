@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { PluggableList } from 'unified';
+import { PluggableList, Plugin } from 'unified';
 import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
 import * as MarkdownTooltip from './markdown_tooltip';
@@ -28,8 +28,8 @@ import { EuiCodeBlock, EuiCode } from '../../code';
 import markdown from 'remark-parse';
 import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
-import { RemarkRehypeHandler } from '../markdown_types';
 import all from 'mdast-util-to-hast/lib/all';
+import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
@@ -41,15 +41,9 @@ export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
 
-const unknownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position!, node.type, node, all(h, node));
+const unknownHandler: Handler = (h, node) => {
+  return h(node, node.type, node, all(h, node));
 };
-
-interface Remark2RehypeOptions {
-  allowDangerousHtml: boolean;
-  handlers: { [key: string]: RemarkRehypeHandler };
-  [key: string]: any;
-}
 
 interface Rehype2ReactOptions {
   components: { [key: string]: React.ComponentType<any> };
@@ -57,7 +51,7 @@ interface Rehype2ReactOptions {
 }
 
 export const getDefaultEuiMarkdownProcessingPlugins = (): [
-  [typeof remark2rehype, Remark2RehypeOptions], // first is well known
+  [Plugin, Remark2RehypeOptions], // first is well known
   [typeof rehype2react, Rehype2ReactOptions], // second is well known
   ...PluggableList // any additional are generic
 ] => [
