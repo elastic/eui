@@ -76,7 +76,7 @@ const columns = [
         );
       },
       ({ rowIndex, columnId, Component }) => {
-        const row = rowIndex++;
+        const row = ++rowIndex;
         const label = `Paint country at row ${row}, column "${columnId}"`;
         return (
           <Component
