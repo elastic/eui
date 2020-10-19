@@ -163,8 +163,8 @@
  */
 
 .euiButtonGroup--compressed {
-  $darkenBg: darken($euiColorDarkShade, 5%);
-  $lightenBg: lighten($euiColorDarkShade, 5%);
+  $darkHighlightBg: darken($euiColorDarkShade, 5%);
+  $lightHighlightBg: lighten($euiColorDarkShade, 5%);
 
   .euiButtonGroupButton {
     height: $euiFormControlCompressedHeight - 2px;
@@ -192,7 +192,7 @@
       }
 
       &:not([class*='isDisabled']):hover {
-        background-color: lightOrDarkTheme($darkenBg, $lightenBg);
+        background-color: lightOrDarkTheme($darkHighlightBg, $lightHighlightBg);
       }
     }
 
@@ -205,7 +205,7 @@
       &:focus-within {
         color: $euiColorLightestShade;
         outline: 2px solid $euiFocusRingColor;
-        background-color: lightOrDarkTheme($darkenBg, $lightenBg);
+        background-color: lightOrDarkTheme($darkHighlightBg, $lightHighlightBg);
       }
     }
   }
