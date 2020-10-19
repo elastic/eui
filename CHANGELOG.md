@@ -5,6 +5,8 @@
 - Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
 - Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
 - Improved `EuiButtonGroup` focus, hover, selected and disabled states when `compressed` is true ([#4142](https://github.com/elastic/eui/pull/4142))
+- Updated types associated with `EuiMarkdownEditor` plugin dependencies ([4124](https://github.com/elastic/eui/pull/4124))
+- Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
 
 **Breaking changes**
 
