@@ -1,9 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
 - Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
 - Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([4056](https://github.com/elastic/eui/pull/4056))
 - Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
+
+**Bug fixes**
+- Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
 
 **Breaking changes**
 
