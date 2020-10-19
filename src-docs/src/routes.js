@@ -144,8 +144,6 @@ import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
 
-import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
-
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
@@ -203,8 +201,6 @@ import { TitleExample } from './views/title/title_example';
 import { ToastExample } from './views/toast/toast_example';
 
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
-
-import { ToggleExample } from './views/toggle/toggle_example';
 
 import { TourExample } from './views/tour/tour_example';
 
@@ -337,7 +333,6 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      NavDrawerExample,
       PageExample,
       PanelExample,
       PopoverExample,
@@ -468,7 +463,6 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
-      ToggleExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
   },

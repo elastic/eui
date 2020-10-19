@@ -104,7 +104,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen
@@ -121,7 +120,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen={false}

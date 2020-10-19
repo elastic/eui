@@ -1,6 +1,31 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
+- Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([4056](https://github.com/elastic/eui/pull/4056))
+- Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
+
+**Breaking changes**
+
+- Removed `EuiToggle` and `EuiButtonToggle` in favor of `aria-pressed` ([4056](https://github.com/elastic/eui/pull/4056))
+- Updated `legend` and `idSelected` props of `EuiButtonGroup` to be required ([4056](https://github.com/elastic/eui/pull/4056))
+- Removed `logoAPM` in favor of `logoObservability` ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `.euiHeaderNotification` CSS class ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiNavDrawer` in favor of `EuiCollapsibleNav` ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `compressed` and `displayOnly` props from `EuiFormRow` in favor of the `display` prop ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiPopover`'s `withTitle` prop ([4065](https://github.com/elastic/eui/pull/4065))
+
+**Theme: Amsterdam**
+
+- Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
+
+## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
+
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
+
+**Bug fixes**
+
+- Fixed custom color render of `EuiIcon` app (two-tone) icons ([#4104](https://github.com/elastic/eui/pull/4104))
+- Changed `iconType` prop to be `required` in `EuiButtonIcon` ([#4106](https://github.com/elastic/eui/pull/4106))
 
 ## [`29.4.0`](https://github.com/elastic/eui/tree/v29.4.0)
 
@@ -13,7 +38,6 @@
 **Bug fixes**
 
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
-
 
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
@@ -255,7 +279,7 @@
   - Added `listId` to `EuiSelectableSearch`
   - `options` passed into `EuiSelectable` cannot have an `id`
   - Requires an `onChange` to be passed into `EuiSelectableSearch`
-  
+
 ## [`26.3.4`](https://github.com/elastic/eui/tree/v26.3.4)
 
 **Note: this release is a backport containing changes originally made in `27.2.0`**

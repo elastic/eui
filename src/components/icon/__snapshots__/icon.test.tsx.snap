@@ -21,11 +21,11 @@ exports[`EuiIcon is rendered 1`] = `
 exports[`EuiIcon props color #885522 is rendered 1`] = `
 <svg
   aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
   focusable="false"
   height="16"
   role="img"
-  style="fill: #885522;"
+  style="color: rgb(136, 85, 34);"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
@@ -39,11 +39,11 @@ exports[`EuiIcon props color #885522 is rendered 1`] = `
 exports[`EuiIcon props color #fde is rendered 1`] = `
 <svg
   aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
   focusable="false"
   height="16"
   role="img"
-  style="fill: #fde;"
+  style="color: rgb(255, 221, 238);"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
@@ -125,11 +125,11 @@ exports[`EuiIcon props color ghost is rendered 1`] = `
 exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
 <svg
   aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
   focusable="false"
   height="16"
   role="img"
-  style="fill: hsla(270, 60%, 70%, 0.9);"
+  style="color: hsla(270, 60%, 70%, 0.9);"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
@@ -160,11 +160,11 @@ exports[`EuiIcon props color primary is rendered 1`] = `
 exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
 <svg
   aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
   focusable="false"
   height="16"
   role="img"
-  style="fill: rgb(100, 150, 200);"
+  style="color: rgb(100, 150, 200);"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
@@ -3325,32 +3325,6 @@ exports[`EuiIcon props type lockOpen is rendered 1`] = `
 >
   <path
     d="M11.143 5c.473 0 .857.448.857 1v9c0 .552-.384 1-.857 1H.857C.384 16 0 15.552 0 15V6c0-.552.384-1 .857-1H8v-.8C8 1.88 9.79 0 12 0s4 1.88 4 4.2V5h-1v-.64C15 2.504 13.657 1 12 1S9 2.504 9 4.36V5h2.143zM1 15h10V6H1v9zm5.998-3.706L7.5 12.5h-3l.502-1.206A1.644 1.644 0 014.5 10.1c0-.883.672-1.6 1.5-1.6s1.5.717 1.5 1.6c0 .475-.194.901-.502 1.194z"
-  />
-</svg>
-`;
-
-exports[`EuiIcon props type logoAPM is rendered 1`] = `
-<svg
-  aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  focusable="false"
-  height="32"
-  role="img"
-  viewBox="0 0 32 32"
-  width="32"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M10 32H7.238C3.793 32 1 28.865 1 24.998V15h9v17z"
-    fill="#F04E98"
-  />
-  <path
-    class="euiIcon__fillNegative"
-    d="M10 32h9V8h-9z"
-  />
-  <path
-    d="M31 32h-9V0l1.973.024C27.866.072 31 3.731 31 8.228V32z"
-    fill="#07C"
   />
 </svg>
 `;
