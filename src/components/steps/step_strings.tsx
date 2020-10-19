@@ -66,7 +66,7 @@ export const useI18nWarningStep = ({ number, title }: Props): string => {
   );
 
   const simpleString = useEuiI18n(
-    'euiStepStrings.warning',
+    'euiStepStrings.simpleWarning',
     'Step {number} has warnings',
     { number }
   );
@@ -104,7 +104,7 @@ export const useI18nIncompleteStep = ({ number, title }: Props): string => {
   );
 
   const simpleString = useEuiI18n(
-    'euiStepStrings.incomplete',
+    'euiStepStrings.simpleIncomplete',
     'Step {number} is incomplete',
     { number }
   );
@@ -123,7 +123,7 @@ export const useI18nDisabledStep = ({ number, title }: Props): string => {
   );
 
   const simpleString = useEuiI18n(
-    'euiStepStrings.disabled',
+    'euiStepStrings.simpleDisabled',
     'Step {number} is disabled',
     { number }
   );
