@@ -198,10 +198,9 @@ export const ProgressExample = {
             color="warning">
             <p>
               Usually, we calculate a high contrast color for{' '}
-              <EuiCode>valueText</EuiCode>{' '}
-              based on <EuiCode>color</EuiCode>. This is not possible when using
-              a custom color. In such cases, <EuiCode>valueText</EuiCode> will
-              just use the custom color.
+              <EuiCode>valueText</EuiCode> based on <EuiCode>color</EuiCode>.
+              This is not possible when using a custom color. In such cases,{' '}
+              <EuiCode>valueText</EuiCode> will just use the custom color.
             </p>
           </EuiCallOut>
         </div>
