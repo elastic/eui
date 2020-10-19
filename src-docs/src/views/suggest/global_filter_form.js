@@ -99,7 +99,6 @@ const GlobalFilterForm = (props) => {
   };
 
   const onCustomLabelSwitchChange = (e) => {
-    resetForm();
     setUseCustomLabel(e.target.checked);
   };
 
@@ -147,7 +146,6 @@ const GlobalFilterForm = (props) => {
         <EuiFlexItem style={{ maxWidth: '188px' }}>
           <EuiFormRow label="Field">
             <EuiComboBox
-              isDisabled={useCustomLabel}
               placeholder={
                 selectedOperand.length < 1 ? 'Start here' : 'Select a field'
               }
