@@ -19,15 +19,21 @@
 
 import { KeyboardEvent, MouseEvent, TouchEvent } from 'react';
 
+export type PanelModeType = 'collapsible' | 'main';
+
+export type PanelPosition = 'first' | 'middle' | 'last';
+
+export type PanelDirection = 'left' | 'right';
+
 export interface EuiResizablePanelController {
   id: string;
   size: number;
   getSizePx: () => number;
   minSize: string;
-  mode?: 'collapsible' | 'main';
+  mode?: PanelModeType;
   isCollapsed: boolean;
   prevSize: number;
-  position: 'first' | 'middle' | 'last';
+  position: PanelPosition;
 }
 
 export interface EuiResizableButtonController {
@@ -58,6 +64,10 @@ export interface EuiResizableContainerState {
   panels: EuiResizableContainerRegistry['panels'];
   resizers: EuiResizableContainerRegistry['resizers'];
   resizerHasFocus: string | null;
+}
+
+export interface ActionToggleOptions {
+  direction: PanelDirection;
 }
 
 interface ActionReset {
@@ -92,7 +102,7 @@ export interface ActionToggle {
   type: 'EUI_RESIZABLE_TOGGLE';
   payload: {
     panelId: string;
-    options: any;
+    options: ActionToggleOptions;
   };
 }
 
@@ -176,6 +186,6 @@ export interface EuiResizableContainerActions {
   }: ActionKeyMove['payload']) => void;
   resizerFocus: (resizerId: ActionFocus['payload']['resizerId']) => void;
   resizerBlur: () => void;
-  panelToggle: ({ panelId, options }: ActionToggle['payload']) => void;
+  togglePanel: ({ panelId, options }: ActionToggle['payload']) => void;
   resize: (resetTour?: boolean) => void;
 }

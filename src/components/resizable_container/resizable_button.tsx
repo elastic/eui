@@ -178,10 +178,3 @@ export function euiResizableButtonWithControls(
     <EuiResizableButton {...controls} {...props} />
   );
 }
-
-// export const useEuiResizableButton = (controls: EuiResizableButtonControls) =>
-//   useMemo(() => {
-//     return (props: CommonProps) => (
-//       <EuiResizableButton {...controls} {...props} />
-//     );
-//   }, [controls]);

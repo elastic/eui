@@ -177,6 +177,13 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     actions.reset();
   }, [actions]);
 
+  const onToggleCollapsed = useCallback(
+    (panelId: string, options: any) => {
+      actions.togglePanel({ options, panelId });
+    },
+    [actions]
+  );
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
@@ -202,24 +209,24 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         register: actions.registerPanel,
         deregister: actions.deregisterPanel,
       },
-      onToggleCollapsed: (panelId: string, options: any) =>
-        actions.panelToggle({ options, panelId }),
+      onToggleCollapsed,
     }),
     [actions, isHorizontal]
   );
 
   const render = () => {
     // TODO: Maybe just a subset of actions?
+    const DEFAULT = 'default';
     const content = children(EuiResizablePanel, EuiResizableButton, actions);
     const modes = React.isValidElement(content)
       ? content.props.children.map(
-          (el: ReactElement) => el.props.mode || 'default'
+          (el: ReactElement) => el.props.mode || DEFAULT
         )
       : null;
     if (
       modes &&
       (['collapsible', 'main'].every((i) => modes.includes(i)) ||
-        modes.every((i?: string) => i === 'default'))
+        modes.every((i?: string) => i === DEFAULT))
     ) {
       return content;
     } else {

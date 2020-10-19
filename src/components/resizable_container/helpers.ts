@@ -124,7 +124,6 @@ export const useContainerCallbacks = ({
     switch (action.type) {
       case 'EUI_RESIZABLE_PANEL_REGISTER': {
         const { panel } = action.payload;
-        // console.log('Panel: ', panel.id)
         return {
           ...state,
           panels: {
@@ -152,7 +151,6 @@ export const useContainerCallbacks = ({
       }
       case 'EUI_RESIZABLE_BUTTON_REGISTER': {
         const { resizer } = action.payload;
-        // console.log('Resizer: ', resizer.id)
         return {
           ...state,
           resizers: {
@@ -462,7 +460,7 @@ export const useContainerCallbacks = ({
           type: 'EUI_RESIZABLE_KEY_MOVE',
           payload: { prevPanelId, nextPanelId, direction },
         }),
-      panelToggle: ({ panelId, options }: ActionToggle['payload']) =>
+      togglePanel: ({ panelId, options }: ActionToggle['payload']) =>
         dispatch({
           type: 'EUI_RESIZABLE_TOGGLE',
           payload: { panelId, options },
