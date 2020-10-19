@@ -31,7 +31,8 @@ export default () => (
       </EuiKeyboardAccessible>
 
       <EuiKeyboardAccessible>
-        <div onClick={() => window.alert('Div clicked')}>
+        <div
+          onClick={() => window.alert('Outer EuiKeyboardAccessible clicked')}>
           This EuiKeyboardAccessible contains another
           EuiKeyboardAccessible&nbsp;
           <EuiKeyboardAccessible>
