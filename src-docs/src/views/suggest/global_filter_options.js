@@ -102,8 +102,7 @@ export default () => {
         />
       }
       anchorPosition="downCenter"
-      panelPaddingSize="none"
-      withTitle>
+      panelPaddingSize="none">
       <EuiPopoverTitle>Change all filters</EuiPopoverTitle>
       <EuiContextMenu initialPanelId={0} panels={flattenPanelTree(panelTree)} />
     </EuiPopover>

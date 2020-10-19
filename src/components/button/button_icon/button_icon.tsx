@@ -41,7 +41,6 @@ import { ButtonSize } from '../button';
 export type EuiButtonIconColor =
   | 'accent'
   | 'danger'
-  | 'disabled'
   | 'ghost'
   | 'primary'
   | 'subdued'
@@ -57,6 +56,11 @@ export interface EuiButtonIconProps extends CommonProps {
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
 }
 
 type EuiButtonIconPropsForAnchor = {
@@ -85,7 +89,6 @@ type Props = ExclusiveUnion<
 const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
   accent: 'euiButtonIcon--accent',
   danger: 'euiButtonIcon--danger',
-  disabled: 'euiButtonIcon--disabled',
   ghost: 'euiButtonIcon--ghost',
   primary: 'euiButtonIcon--primary',
   subdued: 'euiButtonIcon--subdued',
@@ -107,6 +110,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   target,
   rel,
   buttonRef,
+  isSelected,
   ...rest
 }) => {
   const ariaHidden = rest['aria-hidden'];
@@ -163,6 +167,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}
+      aria-pressed={isSelected}
       type={type as typeof buttonType}
       ref={buttonRef as Ref<HTMLButtonElement>}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
