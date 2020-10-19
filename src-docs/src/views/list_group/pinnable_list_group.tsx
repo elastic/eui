@@ -57,7 +57,7 @@ export default () => {
         listItems={itemList}
         onPinClick={(selectedItem) => {
           if (selectedItem.hasOwnProperty('pinned')) {
-            const newItemList = itemList.map(item => {
+            const newItemList = itemList.map((item) => {
               if (item.id === selectedItem.id) {
                 return {
                   ...item,

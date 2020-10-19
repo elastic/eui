@@ -19,7 +19,7 @@ export default () => {
     setPopover(false);
   };
 
-  const getIconType = size => {
+  const getIconType = (size) => {
     return size === rowSize ? 'check' : 'empty';
   };
 

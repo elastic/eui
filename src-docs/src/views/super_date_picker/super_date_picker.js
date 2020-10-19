@@ -38,6 +38,8 @@ export default () => {
   const onRefresh = ({ start, end, refreshInterval }) => {
     return new Promise((resolve) => {
       setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
     });
   };
 

@@ -101,9 +101,13 @@ export default () => {
     setValue(val);
   };
 
-  const onItemClick = (item) => {};
+  const onItemClick = (item) => {
+    console.log(item);
+  };
 
-  const onTimeChange = dateRange => {};
+  const onTimeChange = (dateRange) => {
+    console.log(dateRange);
+  };
 
   const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
 

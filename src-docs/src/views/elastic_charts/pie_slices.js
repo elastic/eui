@@ -100,6 +100,8 @@ export default () => {
     } else if (sliceOrderLabel.includes('natural')) {
       setSliceOrderConfig({});
       setSliceOrderConfigText('');
+    } else {
+      console.warn("Couldn't find the right slice order type");
     }
     setSliceOrderIdSelected(optionId);
   };

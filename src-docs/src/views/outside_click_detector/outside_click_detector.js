@@ -4,38 +4,20 @@ import {
   EuiButton,
   EuiOutsideClickDetector,
   EuiSpacer,
-  EuiCallOut,
 } from '../../../../src/components';
-
-let timer = null;
 
 export default () => {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [showCallOut, setShowCallOut] = useState(false);
 
   const toggleDisabled = () => {
     setIsDisabled(!isDisabled);
-  };
-
-  const outsideClickHandler = () => {
-    if (timer !== null) {
-      clearTimeout(timer);
-      timer = null;
-    }
-
-    timer = setTimeout(() => {
-      setShowCallOut(false);
-      timer = null;
-    }, 500);
-
-    setShowCallOut(true);
   };
 
   return (
     <div>
       <EuiOutsideClickDetector
         onOutsideClick={() => {
-          outsideClickHandler();
+          window.alert('Clicked outside');
         }}
         isDisabled={isDisabled}>
         <p>
@@ -50,14 +32,6 @@ export default () => {
       <EuiButton onClick={toggleDisabled}>
         {isDisabled ? 'Enable' : 'Disable'} the detector
       </EuiButton>
-
-      <EuiSpacer size="l" />
-
-      {showCallOut ? (
-        <div>
-          <EuiCallOut title="Clicking outside" color="danger" />
-        </div>
-      ) : null}
     </div>
   );
 };

@@ -58,7 +58,9 @@ export default () => {
     setStatus(radios.find((x) => x.id === optionId).value);
   };
 
-  const onItemClick = (item) => {};
+  const onItemClick = (item) => {
+    console.log(item);
+  };
 
   return (
     <div>

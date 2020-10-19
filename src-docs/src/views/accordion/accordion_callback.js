@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { EuiAccordion, EuiText, EuiCode } from '../../../../src/components';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiCode,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +18,7 @@ export default () => {
           <EuiCode>{isOpen ? 'open' : 'closed'}</EuiCode>.
         </p>
       </EuiText>
+      <EuiSpacer />
       <EuiAccordion
         id="accordion8"
         buttonContent="I have an `onToggle` callback"

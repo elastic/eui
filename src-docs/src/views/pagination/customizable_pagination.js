@@ -23,7 +23,7 @@ export default () => {
 
   const goToPage = (pageNumber) => setActivePage(pageNumber);
 
-  const getIconType = size => {
+  const getIconType = (size) => {
     return size === rowSize ? 'check' : 'empty';
   };
 

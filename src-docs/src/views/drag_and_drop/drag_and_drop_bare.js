@@ -19,8 +19,12 @@ const makeList = (number, start = 1) =>
 export default () => {
   const [list] = useState(makeList(3));
 
+  const onDragEnd = ({ source, destination }) => {
+    console.log(source, destination);
+  };
+
   return (
-    <EuiDragDropContext onDragEnd={() => {}}>
+    <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiDroppable droppableId="DROPPABLE_AREA_BARE">
         {list.map(({ content, id }, idx) => (
           <EuiDraggable key={id} index={idx} draggableId={id}>
