@@ -1,26 +1,18 @@
-import React, { createElement } from 'react';
+import React, { createElement, Fragment } from 'react';
 
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
 
+import { playgroundCreator } from './services/playground';
+
 // Guidelines
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ButtonGuidelines from './views/guidelines/button';
-
-import FormGuidelines from './views/guidelines/forms';
-
 import ColorGuidelines from './views/guidelines/colors';
 
-import ModalGuidelines from './views/guidelines/modals';
-
 import { SassGuidelines } from './views/guidelines/sass';
-
-import TextScales from './views/text_scaling/text_scaling_sandbox';
-
-import { ToastGuidelines } from './views/guidelines/toasts';
 
 import WritingGuidelines from './views/guidelines/writing';
 
@@ -82,6 +74,7 @@ import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example'
 import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
+import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -141,11 +134,15 @@ import { ListGroupExample } from './views/list_group/list_group_example';
 
 import { LoadingExample } from './views/loading/loading_example';
 
+import { MarkdownEditorExample } from './views/markdown_editor/mardown_editor_example';
+
+import { MarkdownFormatExample } from './views/markdown_editor/mardown_format_example';
+
+import { MarkdownPluginExample } from './views/markdown_editor/markdown_plugin_example';
+
 import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
-
-import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
@@ -205,8 +202,6 @@ import { ToastExample } from './views/toast/toast_example';
 
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
-import { ToggleExample } from './views/toggle/toggle_example';
-
 import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
@@ -232,7 +227,7 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
  */
-const slugify = str => {
+const slugify = (str) => {
   const parts = str
     .toLowerCase()
     .replace(/[-]+/g, ' ')
@@ -249,21 +244,52 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta, isNew } = example;
-  sections.forEach(section => {
+  const isPlaygroundUnsupported =
+    // Check for IE11
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined' &&
+    !!window.MSInputMethodContext &&
+    !!document.documentMode;
+
+  const {
+    title,
+    intro,
+    sections,
+    beta,
+    isNew,
+    playground,
+    guidelines,
+  } = example;
+  sections.forEach((section) => {
     section.id = slugify(section.title || title);
   });
 
-  const renderedSections = sections.map(section =>
+  const renderedSections = sections.map((section) =>
     createElement(GuideSection, {
       key: section.title || title,
       ...section,
     })
   );
 
+  let playgroundComponent;
+  if (isPlaygroundUnsupported) {
+    playgroundComponent = null;
+  } else if (playground) {
+    if (Array.isArray(playground)) {
+      playgroundComponent = playground.map((elm, idx) => {
+        return <Fragment key={idx}>{playgroundCreator(elm())}</Fragment>;
+      });
+    } else playgroundComponent = playgroundCreator(playground());
+  }
+
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
+      <GuidePage
+        title={title}
+        intro={intro}
+        isBeta={beta}
+        playground={playgroundComponent}
+        guidelines={guidelines}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -274,6 +300,7 @@ const createExample = (example, customTitle) => {
     component,
     sections,
     isNew,
+    hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
@@ -283,32 +310,12 @@ const navigation = [
     items: [
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
-        name: 'Buttons',
-        component: ButtonGuidelines,
-      },
-      {
         name: 'Colors',
         component: ColorGuidelines,
       },
       {
-        name: 'Forms',
-        component: FormGuidelines,
-      },
-      {
-        name: 'Modals',
-        component: ModalGuidelines,
-      },
-      {
         name: 'Sass',
         component: SassGuidelines,
-      },
-      {
-        name: 'Text scales',
-        component: TextScales,
-      },
-      {
-        name: 'Toasts',
-        component: ToastGuidelines,
       },
       {
         name: 'Writing',
@@ -326,13 +333,12 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      NavDrawerExample,
       PageExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
       SpacerExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Navigation',
@@ -350,7 +356,7 @@ const navigation = [
       SideNavExample,
       StepsExample,
       TabsExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Tabular content',
@@ -361,9 +367,10 @@ const navigation = [
       DataGridFocusExample,
       DataGridStylingExample,
       DataGridControlColumnsExample,
+      DataGridFooterRowExample,
       TableExample,
       TableInMemoryExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Display',
@@ -373,7 +380,6 @@ const navigation = [
       BadgeExample,
       CallOutExample,
       CardExample,
-      CodeExample,
       CommentListExample,
       DescriptionListExample,
       DragAndDropExample,
@@ -391,7 +397,7 @@ const navigation = [
       ToastExample,
       ToolTipExample,
       TourExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Forms',
@@ -403,7 +409,6 @@ const navigation = [
       SuperSelectExample,
       ComboBoxExample,
       ColorPickerExample,
-      CodeEditorExample,
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
@@ -412,7 +417,17 @@ const navigation = [
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Editors & syntax',
+    items: [
+      MarkdownFormatExample,
+      MarkdownEditorExample,
+      MarkdownPluginExample,
+      CodeEditorExample,
+      CodeExample,
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Elastic Charts',
@@ -422,7 +437,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Utilities',
@@ -448,9 +463,8 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
-      ToggleExample,
       WindowEventExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Package',
@@ -459,11 +473,20 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, ...rest }) => ({
-    name: itemName,
-    path: `${slugify(name)}/${slugify(itemName)}`,
-    ...rest,
-  })),
+  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
+    const item = {
+      name: itemName,
+      path: `${slugify(name)}/${slugify(itemName)}`,
+      ...rest,
+    };
+
+    if (hasGuidelines) {
+      item.from = `guidelines/${slugify(itemName)}`;
+      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+    }
+
+    return item;
+  }),
   ...rest,
 }));
 
@@ -475,10 +498,10 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 export default {
   navigation,
 
-  getRouteForPath: path => {
+  getRouteForPath: (path) => {
     // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
     const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
-    return allRoutes.find(route => normalizedPath === route.path);
+    return allRoutes.find((route) => normalizedPath === route.path);
   },
 
   getAppRoutes: function getAppRoutes() {
@@ -486,7 +509,7 @@ export default {
   },
 
   getPreviousRoute: function getPreviousRoute(routeName) {
-    const index = allRoutes.findIndex(item => {
+    const index = allRoutes.findIndex((item) => {
       return item.name === routeName;
     });
 
@@ -494,7 +517,7 @@ export default {
   },
 
   getNextRoute: function getNextRoute(routeName) {
-    const index = allRoutes.findIndex(item => {
+    const index = allRoutes.findIndex((item) => {
       return item.name === routeName;
     });
 

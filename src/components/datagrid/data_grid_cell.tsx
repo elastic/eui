@@ -28,6 +28,7 @@ import React, {
   KeyboardEvent,
   ReactChild,
   MutableRefObject,
+  FocusEvent,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -107,7 +108,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     isExpanded: boolean;
   }
-> = memo(props => {
+> = memo((props) => {
   const { renderCellValue, ...rest } = props;
 
   // React is more permissible than the TS types indicate
@@ -229,14 +230,27 @@ export class EuiDataGridCell extends Component<
     this.preventTabbing();
   };
 
-  onFocus = () => {
-    const { onCellFocus, colIndex, visibleRowIndex, isExpandable } = this.props;
-    onCellFocus([colIndex, visibleRowIndex]);
+  onFocus = (e: FocusEvent<HTMLDivElement>) => {
+    // only perform this logic when the event's originating element (e.target) is
+    // the wrapping element with the onFocus logic
+    // reasons:
+    //  * the outcome is only meaningful when the focus shifts to the wrapping element
+    //  * if the cell children include portalled content React will bubble the focus
+    //      event up, which can trigger the focus() call below, causing focus lock fighting
+    if (this.cellRef.current === e.target) {
+      const {
+        onCellFocus,
+        colIndex,
+        visibleRowIndex,
+        isExpandable,
+      } = this.props;
+      onCellFocus([colIndex, visibleRowIndex]);
 
-    const interactables = this.getInteractables();
-    if (interactables.length === 1 && isExpandable === false) {
-      interactables[0].focus();
-      this.setState({ disableCellTabIndex: true });
+      const interactables = this.getInteractables();
+      if (interactables.length === 1 && isExpandable === false) {
+        interactables[0].focus();
+        this.setState({ disableCellTabIndex: true });
+      }
     }
   };
 
@@ -428,7 +442,7 @@ export class EuiDataGridCell extends Component<
           <EuiMutationObserver
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
-            {mutationRef => {
+            {(mutationRef) => {
               return (
                 <div
                   ref={mutationRef}
@@ -453,7 +467,7 @@ export class EuiDataGridCell extends Component<
           <EuiMutationObserver
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
-            {mutationRef => {
+            {(mutationRef) => {
               return (
                 <div
                   ref={mutationRef}
@@ -487,16 +501,17 @@ export class EuiDataGridCell extends Component<
       innerContent = (
         <div className="euiDataGridRowCell__content">
           <EuiPopover
+            hasArrow={false}
             anchorClassName="euiDataGridRowCell__expand"
             button={anchorContent}
             isOpen={this.state.popoverIsOpen}
-            panelRef={ref => (this.popoverPanelRef.current = ref)}
+            panelRef={(ref) => (this.popoverPanelRef.current = ref)}
             ownFocus
             panelClassName="euiDataGridRowCell__popover"
             zIndex={8001}
             display="block"
             closePopover={() => this.setState({ popoverIsOpen: false })}
-            onKeyDown={event => {
+            onKeyDown={(event) => {
               if (event.key === keys.F2 || event.key === keys.ESCAPE) {
                 event.preventDefault();
                 event.stopPropagation();

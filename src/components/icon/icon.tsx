@@ -42,10 +42,12 @@ const typeToPathMap = {
   advancedSettingsApp: 'app_advanced_settings',
   aggregate: 'aggregate',
   alert: 'alert',
+  analyzeEvent: 'analyze_event',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
   apps: 'apps',
+  appSearchApp: 'app_app_search',
   arrowDown: 'arrow_down',
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
@@ -69,6 +71,7 @@ const typeToPathMap = {
   check: 'check',
   checkInCircleFilled: 'checkInCircleFilled',
   cheer: 'cheer',
+  classificationJob: 'ml_classification_job',
   clock: 'clock',
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
@@ -143,6 +146,7 @@ const typeToPathMap = {
   filebeatApp: 'app_filebeat',
   filter: 'filter',
   flag: 'flag',
+  fold: 'fold',
   folderCheck: 'folder_check',
   folderClosed: 'folder_closed',
   folderExclamation: 'folder_exclamation',
@@ -193,7 +197,6 @@ const typeToPathMap = {
   logsApp: 'app_logs',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
-  logoAPM: 'logo_apm',
   logoAppSearch: 'logo_app_search',
   logoAWS: 'logo_aws',
   logoAWSMono: 'logo_aws_mono',
@@ -268,6 +271,7 @@ const typeToPathMap = {
   metricbeatApp: 'app_metricbeat',
   metricsApp: 'app_metrics',
   minimize: 'minimize',
+  minus: 'minus',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
@@ -278,6 +282,7 @@ const typeToPathMap = {
   number: 'number',
   offline: 'offline',
   online: 'online',
+  outlierDetectionJob: 'ml_outlier_detection_job',
   package: 'package',
   packetbeatApp: 'app_packetbeat',
   pageSelect: 'pageSelect',
@@ -290,6 +295,7 @@ const typeToPathMap = {
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
   play: 'play',
+  plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',
   popout: 'popout',
@@ -298,8 +304,10 @@ const typeToPathMap = {
   quote: 'quote',
   recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
+  regressionJob: 'ml_regression_job',
   reporter: 'reporter',
   reportingApp: 'app_reporting',
+  returnKey: 'return_key',
   save: 'save',
   savedObjectsApp: 'app_saved_objects',
   scale: 'scale',
@@ -350,6 +358,8 @@ const typeToPathMap = {
   trash: 'trash',
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
+  unfold: 'unfold',
+  unlink: 'unlink',
   user: 'user',
   users: 'users',
   usersRolesApp: 'app_users_roles',
@@ -376,6 +386,7 @@ const typeToPathMap = {
   visVega: 'vis_vega',
   visVisualBuilder: 'vis_visual_builder',
   watchesApp: 'app_watches',
+  workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
   tokenClass: 'tokens/tokenClass',
@@ -665,7 +676,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (isNamedColor(color)) {
         optionalColorClass = colorToClassMap[color];
       } else {
-        optionalCustomStyles = { fill: color };
+        optionalCustomStyles = { color: color };
+        optionalColorClass = 'euiIcon--customColor';
       }
     }
 
@@ -704,7 +716,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           src={icon}
           className={classes}
           tabIndex={tabIndex}
-          {...rest as HTMLAttributes<HTMLImageElement>}
+          {...(rest as HTMLAttributes<HTMLImageElement>)}
         />
       );
     } else {

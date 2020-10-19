@@ -36,12 +36,18 @@ export type EuiHeaderSectionItemProps = CommonProps & {
    * Not supported in Amsterdam theme.
    */
   border?: Border;
+  /**
+   * ReactNode to render as this component's content
+   */
   children?: ReactNode;
 };
 
-export const EuiHeaderSectionItem: FunctionComponent<
-  EuiHeaderSectionItemProps
-> = ({ border = 'left', children, className, ...rest }) => {
+export const EuiHeaderSectionItem: FunctionComponent<EuiHeaderSectionItemProps> = ({
+  border = 'left',
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiHeaderSectionItem',
     borderToClassNameMap[border],

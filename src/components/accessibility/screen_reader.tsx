@@ -21,6 +21,9 @@ import { cloneElement, ReactElement, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiScreenReaderOnlyProps {
+  /**
+   * ReactElement to render as this component's content
+   */
   children: ReactElement<any>;
 
   /**
@@ -29,9 +32,10 @@ export interface EuiScreenReaderOnlyProps {
   showOnFocus?: boolean;
 }
 
-export const EuiScreenReaderOnly: FunctionComponent<
-  EuiScreenReaderOnlyProps
-> = ({ children, showOnFocus }) => {
+export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = ({
+  children,
+  showOnFocus,
+}) => {
   const classes = classNames(
     {
       euiScreenReaderOnly: !showOnFocus,

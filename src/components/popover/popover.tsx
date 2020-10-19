@@ -30,7 +30,7 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
-import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
+import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
   cascadingMenuKeys,
@@ -131,8 +131,6 @@ export interface EuiPopoverProps {
    * scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll?: boolean;
 
-  withTitle?: boolean;
-
   /** By default, popover content inherits the z-index of the anchor
    * component; pass zIndex to override */
   zIndex?: number;
@@ -140,7 +138,7 @@ export interface EuiPopoverProps {
   /**
    * Function callback for when the focus trap is deactivated
    */
-  onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+  onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
 
   /**
    * Distance away from the anchor that the popover will render.
@@ -162,7 +160,7 @@ export interface EuiPopoverProps {
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
 const anchorPositionToPopoverPositionMap: {
-  [position in AnchorPosition]: EuiPopoverPosition
+  [position in AnchorPosition]: EuiPopoverPosition;
 } = {
   up: 'top',
   right: 'right',
@@ -603,7 +601,6 @@ export class EuiPopover extends Component<Props, State> {
       insert,
       isOpen,
       ownFocus,
-      withTitle,
       children,
       className,
       closePopover,
@@ -621,6 +618,7 @@ export class EuiPopover extends Component<Props, State> {
       display,
       onTrapDeactivation,
       buffer,
+      container,
       ...rest
     } = this.props;
 
@@ -632,7 +630,6 @@ export class EuiPopover extends Component<Props, State> {
       display ? displayToClassNameMap[display] : null,
       {
         'euiPopover-isOpen': this.state.isOpening,
-        'euiPopover--withTitle': withTitle,
       },
       className
     );
@@ -643,7 +640,6 @@ export class EuiPopover extends Component<Props, State> {
       'euiPopover__panel',
       `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
-      { 'euiPopover__panel-withTitle': withTitle },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName
@@ -654,6 +650,7 @@ export class EuiPopover extends Component<Props, State> {
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
       let tabIndex;
       let initialFocus;
+      let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
       if (ownFocus) {
@@ -667,6 +664,7 @@ export class EuiPopover extends Component<Props, State> {
 
       let focusTrapScreenReaderText;
       if (ownFocus) {
+        ariaDescribedby = descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
             <p id={descriptionId}>
@@ -700,7 +698,7 @@ export class EuiPopover extends Component<Props, State> {
               aria-live={ariaLive}
               role="dialog"
               aria-modal="true"
-              aria-describedby={descriptionId}
+              aria-describedby={ariaDescribedby}
               style={this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
@@ -714,7 +712,7 @@ export class EuiPopover extends Component<Props, State> {
                   subtree: true, // watch all child elements
                 }}
                 onMutation={this.onMutation}>
-                {mutationRef => <div ref={mutationRef}>{children}</div>}
+                {(mutationRef) => <div ref={mutationRef}>{children}</div>}
               </EuiMutationObserver>
             </EuiPanel>
           </EuiFocusTrap>

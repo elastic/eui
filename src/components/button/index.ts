@@ -21,7 +21,6 @@ export {
   COLORS,
   ButtonColor,
   ButtonSize,
-  ButtonIconSide,
   EuiButton,
   EuiButtonProps,
 } from './button';
@@ -40,10 +39,8 @@ export {
   EuiButtonIconPropsForButton,
 } from './button_icon';
 
-export { EuiButtonToggle, EuiButtonToggleProps } from './button_toggle';
-
 export {
   EuiButtonGroup,
-  EuiButtonGroupOption,
+  EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';

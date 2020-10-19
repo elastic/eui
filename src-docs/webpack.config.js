@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const babelConfig = require('./.babelrc.js');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const getPort = require('get-port');
@@ -12,9 +13,17 @@ const isDevelopment = NODE_ENV !== 'production' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const bypassCache = NODE_ENV === 'puppeteer';
 
-function useCache(loaders) {
+function employCache(loaders) {
   if (isDevelopment && !bypassCache) {
-    return ['cache-loader'].concat(loaders);
+    return [
+      {
+        loader: 'cache-loader',
+        options: {
+          cacheDirectory: path.join(__dirname, '..', '.cache-loader'),
+        },
+      },
+      ...loaders,
+    ];
   }
 
   return loaders;
@@ -40,17 +49,34 @@ const webpackConfig = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
 
+  resolveLoader: {
+    alias: {
+      'prop-loader': path.resolve(
+        __dirname,
+        '../scripts/loaders/prop-loader.js'
+      ),
+    },
+  },
+
   module: {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: useCache(['babel-loader']), // eslint-disable-line react-hooks/rules-of-hooks
+        loaders: employCache([
+          {
+            loader: 'babel-loader',
+            options: { babelrc: false, ...babelConfig },
+          },
+        ]),
         exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
       },
       {
         test: /\.scss$/,
-        loaders: useCache([ // eslint-disable-line react-hooks/rules-of-hooks, prettier/prettier
-          'style-loader/useable',
+        loaders: employCache([
+          {
+            loader: 'style-loader',
+            options: { injectType: 'lazySingletonStyleTag' },
+          },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -59,7 +85,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: useCache(['style-loader/useable', 'css-loader']), // eslint-disable-line react-hooks/rules-of-hooks
+        loaders: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
@@ -93,7 +119,7 @@ const webpackConfig = {
 
     // run TypeScript during webpack build
     // new ForkTsCheckerWebpackPlugin({
-    //   tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    //   typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
     //   async: false, // makes errors more visible, but potentially less performant
     // }),
   ],
@@ -106,6 +132,9 @@ const webpackConfig = {
     disableHostCheck: true,
     historyApiFallback: true,
   },
+  node: {
+    fs: 'empty',
+  },
 };
 
 // Inspired by `get-port-sync`, but propogates options
@@ -115,11 +144,11 @@ function getPortSync(options) {
   let error = null;
 
   getPort(options)
-    .then(port => {
+    .then((port) => {
       isDone = true;
       freeport = port;
     })
-    .catch(err => {
+    .catch((err) => {
       isDone = true;
       error = err;
     });

@@ -4,12 +4,12 @@ exports[`EuiFlyout is rendered 1`] = `
 <div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
   />
   <div
@@ -28,7 +28,7 @@ exports[`EuiFlyout is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -38,135 +38,7 @@ exports[`EuiFlyout is rendered 1`] = `
   </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="0"
-  />
-</div>
-`;
-
-exports[`EuiFlyout max width can be set to a custom number 1`] = `
-<div>
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="1"
-  />
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="euiFlyout euiFlyout--medium"
-      role="dialog"
-      style="max-width:1024px"
-      tabindex="0"
-    >
-      <button
-        aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
-        data-test-subj="euiFlyoutCloseButton"
-        type="button"
-      >
-        <div
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          data-euiicon-type="cross"
-        />
-      </button>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="0"
-  />
-</div>
-`;
-
-exports[`EuiFlyout max width can be set to a custom value and measurement 1`] = `
-<div>
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="1"
-  />
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="euiFlyout euiFlyout--medium"
-      role="dialog"
-      style="max-width:24rem"
-      tabindex="0"
-    >
-      <button
-        aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
-        data-test-subj="euiFlyoutCloseButton"
-        type="button"
-      >
-        <div
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          data-euiicon-type="cross"
-        />
-      </button>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="0"
-  />
-</div>
-`;
-
-exports[`EuiFlyout max width can be set to a default 1`] = `
-<div>
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="1"
-  />
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="euiFlyout euiFlyout--medium euiFlyout--maxWidth-default"
-      role="dialog"
-      tabindex="0"
-    >
-      <button
-        aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
-        data-test-subj="euiFlyoutCloseButton"
-        type="button"
-      >
-        <div
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          data-euiicon-type="cross"
-        />
-      </button>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
 </div>
@@ -176,12 +48,12 @@ exports[`EuiFlyout props accepts div props 1`] = `
 <div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
   />
   <div
@@ -199,7 +71,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -209,7 +81,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
   </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
 </div>
@@ -219,12 +91,12 @@ exports[`EuiFlyout props close button is not rendered 1`] = `
 <div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
   />
   <div
@@ -238,22 +110,240 @@ exports[`EuiFlyout props close button is not rendered 1`] = `
   </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
 </div>
 `;
 
-exports[`EuiFlyout size l is rendered 1`] = `
+exports[`EuiFlyout props max width can be set to a custom number 1`] = `
 <div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="1"
+  />
+  <div
+    data-focus-lock-disabled="false"
+  >
+    <div
+      class="euiFlyout euiFlyout--medium"
+      role="dialog"
+      style="max-width: 1024px;"
+      tabindex="0"
+    >
+      <button
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
+        data-test-subj="euiFlyoutCloseButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+</div>
+`;
+
+exports[`EuiFlyout props max width can be set to a custom value and measurement 1`] = `
+<div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="1"
+  />
+  <div
+    data-focus-lock-disabled="false"
+  >
+    <div
+      class="euiFlyout euiFlyout--medium"
+      role="dialog"
+      style="max-width: 24rem;"
+      tabindex="0"
+    >
+      <button
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
+        data-test-subj="euiFlyoutCloseButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+</div>
+`;
+
+exports[`EuiFlyout props max width can be set to a default 1`] = `
+<div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="1"
+  />
+  <div
+    data-focus-lock-disabled="false"
+  >
+    <div
+      class="euiFlyout euiFlyout--medium euiFlyout--maxWidth-default"
+      role="dialog"
+      tabindex="0"
+    >
+      <button
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
+        data-test-subj="euiFlyoutCloseButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+</div>
+`;
+
+exports[`EuiFlyout props ownFocus can alter mask props with maskProps without throwing error 1`] = `
+Array [
+  <div />,
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        class="euiFlyout euiFlyout--medium"
+        role="dialog"
+        tabindex="0"
+      >
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>,
+]
+`;
+
+exports[`EuiFlyout props ownFocus is rendered 1`] = `
+Array [
+  <div />,
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        class="euiFlyout euiFlyout--medium"
+        role="dialog"
+        tabindex="0"
+      >
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>,
+]
+`;
+
+exports[`EuiFlyout props size l is rendered 1`] = `
+<div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
   />
   <div
@@ -270,7 +360,7 @@ exports[`EuiFlyout size l is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -280,22 +370,22 @@ exports[`EuiFlyout size l is rendered 1`] = `
   </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
 </div>
 `;
 
-exports[`EuiFlyout size m is rendered 1`] = `
+exports[`EuiFlyout props size m is rendered 1`] = `
 <div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
   />
   <div
@@ -312,7 +402,7 @@ exports[`EuiFlyout size m is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -322,22 +412,22 @@ exports[`EuiFlyout size m is rendered 1`] = `
   </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
 </div>
 `;
 
-exports[`EuiFlyout size s is rendered 1`] = `
+exports[`EuiFlyout props size s is rendered 1`] = `
 <div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
   />
   <div
@@ -354,7 +444,7 @@ exports[`EuiFlyout size s is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
@@ -364,7 +454,7 @@ exports[`EuiFlyout size s is rendered 1`] = `
   </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />
 </div>

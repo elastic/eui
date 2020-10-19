@@ -26,15 +26,16 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import chroma from 'chroma-js';
+import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import {
   euiPaletteColorBlindBehindText,
-  isValidHex,
   getSecureRelForTarget,
+  isColorDark,
 } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
+import { chromaValid, parseColor } from '../color_picker/utils';
 
 type IconSide = 'left' | 'right';
 
@@ -54,7 +55,7 @@ type WithAnchorProps = {
   href: string;
   target?: string;
   rel?: string;
-} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color'>;
+} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color' | 'onClick'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
 
@@ -228,7 +229,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     relObj.href = href;
     relObj.target = target;
     relObj.rel = getSecureRelForTarget({ href, target, rel });
-  } else if (onClick) {
+  }
+  if (onClick) {
     relObj.onClick = onClick;
   }
 
@@ -257,7 +259,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       );
     } else {
       optionalIcon = (
-        <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
+        <EuiIcon
+          type={iconType}
+          size={children ? 's' : 'm'}
+          className="euiBadge__icon"
+        />
       );
     }
   }
@@ -267,6 +273,13 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       'When passing onClick to EuiBadge, you must also provide onClickAriaLabel'
     );
   }
+
+  const content = (
+    <span className="euiBadge__content">
+      {children && <span className="euiBadge__text">{children}</span>}
+      {optionalIcon}
+    </span>
+  );
 
   if (iconOnClick) {
     return onClick || href ? (
@@ -280,8 +293,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
                 aria-label={onClickAriaLabel}
                 ref={ref}
                 title={innerText}
-                {...relObj as HTMLAttributes<HTMLElement>}
-                {...rest as HTMLAttributes<HTMLElement>}>
+                {...(relObj as HTMLAttributes<HTMLElement>)}
+                {...(rest as HTMLAttributes<HTMLElement>)}>
                 {children}
               </Element>
             )}
@@ -298,10 +311,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref}
             title={innerText}
             {...rest}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </span>
         )}
       </EuiInnerText>
@@ -317,12 +327,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             style={optionalCustomStyles}
             ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
             title={innerText}
-            {...relObj as HTMLAttributes<HTMLElement>}
-            {...rest as HTMLAttributes<HTMLElement>}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {...(relObj as HTMLAttributes<HTMLElement>)}
+            {...(rest as HTMLAttributes<HTMLElement>)}>
+            {content}
           </Element>
         )}
       </EuiInnerText>
@@ -337,10 +344,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref}
             title={innerText}
             {...rest}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </span>
         )}
       </EuiInnerText>
@@ -354,24 +358,23 @@ function getColorContrast(textColor: string, color: string) {
 }
 
 function setTextColor(bgColor: string) {
-  const textColor =
-    getColorContrast(colorInk, bgColor) > getColorContrast(colorGhost, bgColor)
-      ? colorInk
-      : colorGhost;
+  const textColor = isColorDark(...chroma(bgColor).rgb())
+    ? colorGhost
+    : colorInk;
 
   return textColor;
 }
 
 function checkValidColor(color: null | IconColor | string) {
-  if (
-    color != null &&
-    !isValidHex(color) &&
-    !COLORS.includes(color) &&
-    color !== 'hollow'
-  ) {
+  const colorExists = !!color;
+  const isNamedColor = (color && COLORS.includes(color)) || color === 'hollow';
+  const isValidColorString = color && chromaValid(parseColor(color) || '');
+
+  if (!colorExists && !isNamedColor && !isValidColorString) {
     console.warn(
       'EuiBadge expects a valid color. This can either be a three or six ' +
-        `character hex value, hollow, or one of the following: ${COLORS}`
+        `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +
+        `Instead got ${color}.`
     );
   }
 }

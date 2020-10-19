@@ -231,7 +231,9 @@ export class EuiSuperDatePicker extends Component<
       start,
       end,
       isInvalid,
-      hasChanged: true,
+      hasChanged: !(
+        this.state.prevProps.start === start && this.state.prevProps.end === end
+      ),
     });
 
     if (!this.props.showUpdateButton) {
@@ -295,7 +297,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   onStartDatePopoverToggle = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { isStartDatePopoverOpen: !prevState.isStartDatePopoverOpen };
     });
   };
@@ -305,7 +307,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   onEndDatePopoverToggle = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { isEndDatePopoverOpen: !prevState.isEndDatePopoverOpen };
     });
   };

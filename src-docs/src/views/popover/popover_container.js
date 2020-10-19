@@ -13,7 +13,7 @@ export default () => {
   const [panelRef, setPanelRef] = useState(null);
 
   const onButtonClick = () =>
-    setIsPopoverOpen(isPopoverOpen1 => !isPopoverOpen1);
+    setIsPopoverOpen((isPopoverOpen1) => !isPopoverOpen1);
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
@@ -29,6 +29,7 @@ export default () => {
   return (
     <EuiPanel panelRef={setPanelRef}>
       <EuiPopover
+        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}

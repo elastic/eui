@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import 'brace/mode/text';
-
 import { EuiCodeEditor } from '../../../../src/components';
+import 'brace/mode/text';
+import 'brace/theme/github';
 
 const TextMode = window.ace.acequire('ace/mode/text').Mode;
 class MyCustomAceMode extends TextMode {
@@ -12,7 +12,7 @@ class MyCustomAceMode extends TextMode {
 export default () => {
   const [value, updateValue] = useState('');
 
-  const onChange = value => {
+  const onChange = (value) => {
     updateValue(value);
   };
 

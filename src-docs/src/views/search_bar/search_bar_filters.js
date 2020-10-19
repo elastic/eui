@@ -43,12 +43,15 @@ const types = ['dashboard', 'visualization', 'watch'];
 
 const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
 
-const items = times(10, id => {
+const items = times(10, (id) => {
   return {
     id,
     status: random.oneOf(['open', 'closed']),
     type: random.oneOf(types),
-    tag: random.setOf(tags.map(tag => tag.name), { min: 0, max: 3 }),
+    tag: random.setOf(
+      tags.map((tag) => tag.name),
+      { min: 0, max: 3 }
+    ),
     active: random.boolean(),
     owner: random.oneOf(users),
     followers: random.integer({ min: 0, max: 20 }),
@@ -79,7 +82,7 @@ export const SearchBarFilters = () => {
         field: 'tag',
         name: 'Tag ("prefix" filter, default)',
         multiSelect: 'or',
-        options: tags.map(tag => ({
+        options: tags.map((tag) => ({
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
@@ -90,7 +93,7 @@ export const SearchBarFilters = () => {
         name: 'Tag ("includes" filter)',
         filterWith: 'includes',
         multiSelect: 'or',
-        options: tags.map(tag => ({
+        options: tags.map((tag) => ({
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
@@ -101,7 +104,7 @@ export const SearchBarFilters = () => {
         name: 'Tag (custom filter)',
         filterWith: () => Math.random() > 0.5,
         multiSelect: 'or',
-        options: tags.map(tag => ({
+        options: tags.map((tag) => ({
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
@@ -137,11 +140,11 @@ export const SearchBarFilters = () => {
         },
         tag: {
           type: 'string',
-          validate: value => {
-            if (!tags.some(tag => tag.name === value)) {
+          validate: (value) => {
+            if (!tags.some((tag) => tag.name === value)) {
               throw new Error(
                 `unknown tag (possible values: ${tags
-                  .map(tag => tag.name)
+                  .map((tag) => tag.name)
                   .join(',')})`
               );
             }
@@ -189,7 +192,7 @@ export const SearchBarFilters = () => {
       {
         name: 'Open',
         field: 'status',
-        render: status => (status === 'open' ? 'Yes' : 'No'),
+        render: (status) => (status === 'open' ? 'Yes' : 'No'),
       },
       {
         name: 'Active',
@@ -207,7 +210,7 @@ export const SearchBarFilters = () => {
       {
         name: 'Stats',
         width: '150px',
-        render: item => {
+        render: (item) => {
           return (
             <div>
               <div>{`${item.stars} Stars`}</div>

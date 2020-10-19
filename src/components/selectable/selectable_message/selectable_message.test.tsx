@@ -29,4 +29,10 @@ describe('EuiSelectableMessage', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('bordered is rendered', () => {
+    const component = render(<EuiSelectableMessage bordered={true} />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -123,7 +123,7 @@ export const ElasticChartsPieExample = {
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiFlexGroup responsive={false} wrap>
-        {introCards.map(card => (
+        {introCards.map((card) => (
           <EuiFlexItem key={card.title} style={{ minWidth: 170 }}>
             <EuiCard
               layout="horizontal"

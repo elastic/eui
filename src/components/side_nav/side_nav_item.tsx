@@ -53,7 +53,7 @@ type ExcludeEuiSideNavItemProps<T> = Pick<
   Exclude<keyof T, keyof SideNavItemProps | 'renderItem'>
 >;
 type OmitEuiSideNavItemProps<T> = {
-  [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K]
+  [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K];
 };
 
 interface GuaranteedRenderItemProps {
@@ -62,6 +62,9 @@ interface GuaranteedRenderItemProps {
   rel?: string;
   onClick?: ItemProps['onClick'];
   className: string;
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
 }
 export type RenderItem<T> = (

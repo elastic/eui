@@ -30,6 +30,8 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import playgrounds from './playground';
+
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
 const fieldSearchHtml = renderToHtml(FieldSearch);
@@ -72,6 +74,7 @@ const fieldPasswordSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
+  type="dual"
 />`,
 ];
 
@@ -86,7 +89,7 @@ const textAreaSnippet = [
 />`,
 ];
 
-import { FilePicker } from './file_picker';
+import FilePicker from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
 const filePickerSnippet = [
@@ -631,4 +634,5 @@ export const FormControlsExample = {
       demo: <FormControlLayoutRange />,
     },
   ],
+  playground: playgrounds,
 };

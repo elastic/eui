@@ -11,7 +11,7 @@ import {
 export default () => {
   const [startDate, setStartDate] = useState(moment());
 
-  const handleChange = date => {
+  const handleChange = (date) => {
     setStartDate(date);
   };
 
@@ -49,15 +49,9 @@ export default () => {
           dateFormat="hh:mm a"
           timeFormat="hh:mm a"
           injectTimes={[
-            moment()
-              .hours(0)
-              .minutes(1),
-            moment()
-              .hours(0)
-              .minutes(5),
-            moment()
-              .hours(23)
-              .minutes(59),
+            moment().hours(0).minutes(1),
+            moment().hours(0).minutes(5),
+            moment().hours(23).minutes(59),
           ]}
         />
       </EuiFormRow>

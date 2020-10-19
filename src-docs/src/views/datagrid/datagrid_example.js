@@ -19,19 +19,21 @@ const dataGridSource = require('!!raw-loader!./datagrid');
 const dataGridHtml = renderToHtml(DataGrid);
 
 import {
-  DataGridColumn,
-  DataGridPagination,
-  DataGridSorting,
-  DataGridInMemory,
-  DataGridStyle,
-  DataGridCellValueElement,
-  DataGridSchemaDetector,
-  DataGridToolbarVisibilityOptions,
-  DataGridColumnVisibility,
-  DataGridPopoverContent,
-  DataGridControlColumn,
-  DataGridToolBarVisibilityColumnSelectorOptions,
-} from './props';
+  EuiDataGridColumn,
+  EuiDataGridPaginationProps,
+  EuiDataGridSorting,
+  EuiDataGridInMemory,
+  EuiDataGridStyle,
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridColumnVisibility,
+  EuiDataGridColumnActions,
+  EuiDataGridPopoverContentProps,
+  EuiDataGridControlColumn,
+  EuiDataGridToolBarVisibilityColumnSelectorOptions,
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+
+import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 const gridSnippet = `
   <EuiDataGrid
@@ -40,9 +42,13 @@ const gridSnippet = `
     // Required. There are 200 total records.
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
-    // The second column B won't allow clicking in to see the content in a popup.
-    // The first column defines a starting width of 150px and prevents the user from resizing it
-    columns={[{ id: 'A', initialWidth: 150, isResizable: false }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
+    // The second column B won't allow clicking in to see the content in a popup and doesn't show move actions in column header cell
+    // The first column defines a starting width of 150px, prevents the user from resizing it and no actions are displayed
+    columns={[
+        { id: 'A', initialWidth: 150, isResizable: false, actions: false },
+        { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
+        { id: 'C', schema: 'franchise'}
+    ]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
@@ -351,18 +357,19 @@ export const DataGridExample = {
       components: { DataGrid },
       props: {
         EuiDataGrid,
-        EuiDataGridColumn: DataGridColumn,
-        EuiDataGridColumnVisibility: DataGridColumnVisibility,
-        EuiDataGridControlColumn: DataGridControlColumn,
-        EuiDataGridInMemory: DataGridInMemory,
-        EuiDataGridPagination: DataGridPagination,
-        EuiDataGridSorting: DataGridSorting,
-        EuiDataGridCellValueElement: DataGridCellValueElement,
-        EuiDataGridSchemaDetector: DataGridSchemaDetector,
-        EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
-        EuiDataGridToolBarVisibilityColumnSelectorOptions: DataGridToolBarVisibilityColumnSelectorOptions,
-        EuiDataGridPopoverContent: DataGridPopoverContent,
+        EuiDataGridColumn,
+        EuiDataGridColumnVisibility,
+        EuiDataGridColumnActions,
+        EuiDataGridControlColumn,
+        EuiDataGridInMemory,
+        EuiDataGridPaginationProps,
+        EuiDataGridSorting,
+        EuiDataGridCellValueElementProps,
+        EuiDataGridSchemaDetector,
+        EuiDataGridStyle,
+        EuiDataGridToolBarVisibilityOptions,
+        EuiDataGridToolBarVisibilityColumnSelectorOptions,
+        EuiDataGridPopoverContentProps,
       },
       demo: (
         <Fragment>

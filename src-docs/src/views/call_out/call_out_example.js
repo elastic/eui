@@ -10,6 +10,7 @@ import {
   EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
+import callOutConfig from './playground';
 
 import Info from './info';
 const infoSource = require('!!raw-loader!./info');
@@ -178,4 +179,5 @@ export const CallOutExample = {
       demo: <Danger />,
     },
   ],
+  playground: callOutConfig,
 };

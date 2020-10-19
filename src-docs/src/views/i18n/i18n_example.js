@@ -9,18 +9,67 @@ import { EuiCode, EuiI18n, EuiContext } from '../../../../src/components';
 import I18nBasic from './i18n_basic';
 const i18nBasicSource = require('!!raw-loader!./i18n_basic');
 const i18nBasicHtml = renderToHtml(I18nBasic);
+const basicSnippet = [
+  `useEuiI18n('filename.token', 'default value')
+`,
+  `<EuiI18n token="filename.token" default="default value" />
+`,
+];
 
-import I18nRenderProp from './i18n_renderprop';
-const i18nRenderPropSource = require('!!raw-loader!./i18n_renderprop');
-const i18nRenderPropHtml = renderToHtml(I18nRenderProp);
+import I18nInterpolation from './i18n_interpolation';
+const i18nInterpolationSource = require('!!raw-loader!./i18n_interpolation');
+const i18nInterpolationHtml = renderToHtml(I18nInterpolation);
+const interpolationSnippet = [
+  `useEuiI18n('filename.greeting', 'Hello, {planet}', { planet: 'world' })
+`,
+  `<EuiI18n
+  token="filename.greeting"
+  default="Hello, {planet}"
+  values={{
+    planet: 'world'
+  }}
+/>
+`,
+];
+
+import I18nAttribute from './i18n_attribute';
+const i18nAttributeSource = require('!!raw-loader!./i18n_attribute');
+const i18nAttributeHtml = renderToHtml(I18nAttribute);
+const attributeSnippet = [
+  `<p aria-label={useEuiI18n('filename.token', 'default value')}><!-- Text here--></p>
+`,
+  `<EuiI18n token="filename.token" default="default value">
+  {token => <p aria-label={token}><!-- Text here--></p>}
+</EuiI18n>
+`,
+];
 
 import I18nMulti from './i18n_multi';
 const I18nMultiSource = require('!!raw-loader!./i18n_multi');
 const I18nMultiHtml = renderToHtml(I18nMulti);
+const multiValueSnippet = [
+  `const [label, text] = useEuiI18n(
+  ['filename.label', 'filename.text'],
+  ['Default Label', 'Default Text']
+);
+  
+return <p aria-label={label}>{text}</p>;
+`,
+  `<EuiI18n
+  tokens={['filename.label', 'filename.secontext']}
+  defaults={['Default Label', 'Default Text']}>
+  {([label, text]) => <p aria-label={label}>{text}</p>}
+</EuiI18n>
+`,
+];
 
 import I18nNumber from './i18n_number';
 const I18nNumberSource = require('!!raw-loader!./i18n_number');
 const I18nNumberHtml = renderToHtml(I18nNumber);
+const numberSnippet = [
+  `Formatted count of users: <EuiI18nNumber value={5000000} />
+`,
+];
 
 import Context from './context';
 const contextSource = require('!!raw-loader!./context');
@@ -44,37 +93,69 @@ export const I18nExample = {
       ],
       text: (
         <p>
-          <strong>EuiI18n</strong> allows localizing string and numeric values
-          for internationalization. At its simplest, the component takes{' '}
-          <EuiCode>token</EuiCode> and <EuiCode>default</EuiCode> props.&nbsp;
-          <EuiCode>token</EuiCode> provides a reference to use when looking for
-          a localized value to render and <EuiCode>default</EuiCode> provides
-          the untranslated value.
+          <strong>useEuiI18n</strong> and <strong>EuiI18n</strong> allows
+          localizing string and numeric values for internationalization. There
+          are two provided ways to use this: a React hook and a render prop
+          component. In their simplest form, these take a{' '}
+          <EuiCode>token</EuiCode> and a <EuiCode>default</EuiCode> value.{' '}
+          <EuiCode>token</EuiCode> provides a reference to use when mapping to a
+          localized value and <EuiCode>default</EuiCode> provides the
+          untranslated value when no mapping is available.
         </p>
       ),
+      snippet: basicSnippet,
       demo: <I18nBasic />,
-      props: { EuiI18n },
     },
     {
-      title: 'As a render prop',
+      title: 'Interpolation',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: i18nRenderPropSource,
+          code: i18nInterpolationSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: i18nRenderPropHtml,
+          code: i18nInterpolationHtml,
+        },
+      ],
+      text: (
+        <p>
+          <strong>useEuiI18n</strong> and <strong>EuiI18n</strong> support
+          variable interpolation. In a translation like{' '}
+          <EuiCode>{'Signed in as {name} ({email})'}</EuiCode>, two values can
+          be interpolated (<EuiCode>name</EuiCode> and <EuiCode>email</EuiCode>
+          ). These values can be specified by passing a{' '}
+          <EuiCode>values</EuiCode> prop to <strong>EuiI18n</strong>, or by
+          passing an object of values as the third argument to{' '}
+          <strong>useEuiI18n</strong>. Interpolation values can be passed as a
+          string, number, or a React Component.
+        </p>
+      ),
+      snippet: interpolationSnippet,
+      demo: <I18nInterpolation />,
+    },
+    {
+      title: 'Using localized values in attributes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: i18nAttributeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: i18nAttributeHtml,
         },
       ],
       text: (
         <p>
           Some times a localized value is needed for a prop instead of rendering
-          directly to the DOM. In these cases <strong>EuiI18n</strong> can be
-          passed a render prop child which is called with the localized value.
+          directly to the DOM. In these cases <strong>useEuiI18n</strong> can be
+          called inline, or <strong>EuiI18n</strong> can be used as a render
+          prop child which is called with the localized value.
         </p>
       ),
-      demo: <I18nRenderProp />,
+      snippet: attributeSnippet,
+      demo: <I18nAttribute />,
     },
     {
       title: 'Multi-value lookup',
@@ -91,12 +172,14 @@ export const I18nExample = {
       text: (
         <p>
           If many localized values are needed in a small area, multiple tokens
-          can be retrieved in a single render prop. In this case the{' '}
-          <EuiCode>token</EuiCode>/<EuiCode>default</EuiCode> props are replaced
-          by the pluralized <EuiCode>tokens</EuiCode>/
-          <EuiCode>defaults</EuiCode>.
+          can be retrieved from the hook or via a single render prop. In this
+          case the <EuiCode>token</EuiCode>/<EuiCode>default</EuiCode> props are
+          replaced by the pluralized <EuiCode>tokens</EuiCode>/
+          <EuiCode>defaults</EuiCode>. Value injection is not supported when
+          processing more than one token.
         </p>
       ),
+      snippet: multiValueSnippet,
       demo: <I18nMulti />,
     },
     {
@@ -120,6 +203,7 @@ export const I18nExample = {
           render prop.
         </p>
       ),
+      snippet: numberSnippet,
       demo: <I18nNumber />,
     },
     {

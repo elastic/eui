@@ -18,13 +18,13 @@ for (let i = 1; i < 5000; i++) {
 export default () => {
   const [selectedOptions, setSelected] = useState([]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
   return (
     <EuiComboBox
-      placeholder="Select or create options"
+      placeholder="Select one or more options"
       options={options}
       selectedOptions={selectedOptions}
       onChange={onChange}

@@ -18,19 +18,19 @@
  */
 
 import React, {
+  cloneElement,
   FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
   ReactNode,
   useEffect,
   useState,
-  HTMLAttributes,
-  ReactElement,
-  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, keys, htmlIdGenerator } from '../../services';
+import { EuiWindowEvent, htmlIdGenerator, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiOverlayMask } from '../overlay_mask';
+import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
@@ -38,6 +38,9 @@ import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
+    /**
+     * ReactNode to render as this component's content
+     */
     children?: ReactNode;
     /**
      * Keeps navigation flyout visible and push `<body>` content via padding
@@ -69,6 +72,10 @@ export type EuiCollapsibleNavProps = CommonProps &
      */
     closeButtonProps?: EuiButtonEmptyProps;
     onClose?: () => void;
+    /**
+     * Adjustments to the EuiOverlayMask
+     */
+    maskProps?: EuiOverlayMaskProps;
   };
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
@@ -83,11 +90,13 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   closeButtonProps,
   onClose,
   id,
+  maskProps,
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    window.innerWidth >= dockedBreakpoint
+    (typeof window === 'undefined' ? Infinity : window.innerWidth) >=
+      dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
@@ -141,7 +150,13 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   let optionalOverlay;
   if (!navIsDocked) {
-    optionalOverlay = <EuiOverlayMask onClick={collapse} />;
+    optionalOverlay = (
+      <EuiOverlayMask
+        onClick={collapse}
+        headerZindexLocation="below"
+        {...maskProps}
+      />
+    );
   }
 
   // Show a trigger button if one was passed but

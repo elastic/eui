@@ -19,38 +19,50 @@ import {
   EuiTitle,
   EuiLink,
   EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../codesandbox';
 
 import { cleanEuiImports } from '../../services';
 
-function markup(text) {
-  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split(regex).map((token, index) => {
-    if (!token) {
-      return '';
-    }
-    if (token.startsWith('#')) {
-      const id = token.substring(1);
-      const onClick = () => {
-        document.getElementById(id).scrollIntoView();
-      };
-      return (
-        <EuiLink key={`markup-${index}`} onClick={onClick}>
-          {id}
-        </EuiLink>
-      );
-    }
-    if (token.startsWith('`')) {
-      const code = token.substring(1, token.length - 1);
-      return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-    }
-    return token;
-  });
-}
+import { extendedTypesInfo } from './guide_section_extends';
 
-const humanizeType = type => {
+export const markup = (text) => {
+  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
+  return text.split('\n').map((token) => {
+    const values = token.split(regex).map((token, index) => {
+      if (!token) {
+        return '';
+      }
+      if (token.startsWith('#')) {
+        const id = token.substring(1);
+        const onClick = () => {
+          document.getElementById(id).scrollIntoView();
+        };
+        return (
+          <EuiLink key={`markup-${index}`} onClick={onClick}>
+            {id}
+          </EuiLink>
+        );
+      }
+      if (token.startsWith('`')) {
+        const code = token.substring(1, token.length - 1);
+        return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
+      }
+      if (token.includes('\n')) {
+        return token
+          .split('\n')
+          .map((item) => [item, <br key={`markup-${index}`} />]);
+      }
+      return token;
+    });
+    return [...values, <br key="lineBreak" />];
+  });
+};
+
+export const humanizeType = (type) => {
   if (!type) {
     return '';
   }
@@ -144,23 +156,44 @@ export class GuideSection extends Component {
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
+      sortedComponents: {},
     };
 
     this.memoScroll = 0;
   }
 
-  onSelectedTabChanged = selectedTab => {
+  onSort = (componentName) => {
+    const { sortedComponents } = this.state;
+    if (
+      !sortedComponents[componentName] ||
+      sortedComponents[componentName] === 'NONE'
+    ) {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'ASC' },
+      });
+    } else if (sortedComponents[componentName] === 'ASC') {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'DSC' },
+      });
+    } else {
+      this.setState({
+        sortedComponents: { ...sortedComponents, [componentName]: 'NONE' },
+      });
+    }
+  };
+
+  onSelectedTabChanged = (selectedTab) => {
     const { name } = selectedTab;
     let renderedCode = null;
 
     if (name === 'html' || name === 'javascript') {
       const { code } = this.props.source.find(
-        sourceObject => sourceObject.type === name
+        (sourceObject) => sourceObject.type === name
       );
       renderedCode = code;
 
       if (name === 'javascript') {
-        renderedCode = renderedCode
+        renderedCode = renderedCode.default
           .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
             "from '@elastic/eui/lib/services';"
@@ -222,7 +255,7 @@ export class GuideSection extends Component {
   };
 
   renderTabs() {
-    return this.tabs.map(tab => (
+    return this.tabs.map((tab) => (
       <EuiTab
         onClick={() => this.onSelectedTabChanged(tab)}
         isSelected={tab === this.state.selectedTab}
@@ -281,21 +314,41 @@ export class GuideSection extends Component {
     const docgenInfo = Array.isArray(component.__docgenInfo)
       ? component.__docgenInfo[0]
       : component.__docgenInfo;
-    const { description, props } = docgenInfo;
+    const { description, props, extendedInterfaces } = docgenInfo;
 
     if (!props && !description) {
       return;
     }
 
-    const propNames = Object.keys(props);
+    const { sortedComponents } = this.state;
 
-    const rows = propNames.map(propName => {
+    const propNames = Object.keys(props);
+    if (
+      sortedComponents[componentName] &&
+      sortedComponents[componentName] !== 'NONE'
+    ) {
+      propNames.sort((a, b) => {
+        if (sortedComponents[componentName] === 'ASC') {
+          return a < b ? -1 : 1;
+        } else {
+          return a < b ? 1 : -1;
+        }
+      });
+    }
+
+    const rows = propNames.map((propName) => {
       const {
         description: propDescription = '',
         required,
         defaultValue,
         type,
       } = props[propName];
+
+      const codeBlockProps = {
+        className: 'guideSection__tableCodeBlock',
+        paddingSize: 'none',
+        language: 'ts',
+      };
 
       let humanizedName = (
         <strong className="eui-textBreakNormal">{propName}</strong>
@@ -312,6 +365,11 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
+      const functionMatches = [
+        ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
+      ];
+      const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
+
       const typeMarkup = (
         <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
       );
@@ -319,21 +377,58 @@ export class GuideSection extends Component {
       let defaultValueMarkup = '';
       if (defaultValue) {
         defaultValueMarkup = [
-          <EuiCode key={`defaultValue-${propName}`}>
-            <span className="eui-textBreakNormal">{defaultValue.value}</span>
-          </EuiCode>,
+          <EuiCodeBlock {...codeBlockProps} key={`defaultValue-${propName}`}>
+            {defaultValue.value}
+          </EuiCodeBlock>,
         ];
         if (defaultValue.comment) {
           defaultValueMarkup.push(`(${defaultValue.comment})`);
         }
       }
+
+      let defaultTypeCell = (
+        <EuiTableRowCell key="type" header="Type" textOnly={false}>
+          <EuiCodeBlock {...codeBlockProps}>{typeMarkup}</EuiCodeBlock>
+        </EuiTableRowCell>
+      );
+      if (functionMatches.length > 0) {
+        const elements = [];
+        let j = 0;
+        for (let i = 0; i < types.length; i++) {
+          if (functionMatches[j]) {
+            elements.push(
+              <Fragment key={`type-${i}`}>
+                {types[i]} <br />
+              </Fragment>
+            );
+            elements.push(
+              <Fragment key={`function-${i}`}>
+                {functionMatches[j][0]} <br />
+              </Fragment>
+            );
+            j++;
+          } else {
+            elements.push(
+              <Fragment key={`type-${i}`}>
+                {types[i]} <br />
+              </Fragment>
+            );
+          }
+        }
+        defaultTypeCell = (
+          <EuiTableRowCell key="type" header="Type" textOnly={false}>
+            <EuiCodeBlock whiteSpace="pre" {...codeBlockProps}>
+              {elements}
+            </EuiCodeBlock>
+          </EuiTableRowCell>
+        );
+      }
+
       const cells = [
         <EuiTableRowCell key="name" header="Prop">
           {humanizedName}
         </EuiTableRowCell>,
-        <EuiTableRowCell key="type" header="Type">
-          <EuiCode>{typeMarkup}</EuiCode>
-        </EuiTableRowCell>,
+        defaultTypeCell,
         <EuiTableRowCell
           key="defaultValue"
           header="Default"
@@ -352,7 +447,22 @@ export class GuideSection extends Component {
       return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
     });
 
-    const title = <span id={componentName}>{componentName}</span>;
+    const extendedTypes = extendedInterfaces
+      ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
+      : [];
+    // if there is an HTMLAttributes type present among others, remove HTMLAttributes
+    if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
+      const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
+      extendedTypes.splice(htmlAttributesIndex, 1);
+    }
+    const extendedTypesElements = extendedTypes.map((type, index) => (
+      <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
+        <EuiLink href={extendedTypesInfo[type].url}>
+          {extendedTypesInfo[type].name}
+        </EuiLink>
+        {index + 1 < extendedTypes.length && ', '}
+      </Fragment>
+    ));
 
     let descriptionElement;
 
@@ -373,7 +483,19 @@ export class GuideSection extends Component {
       table = (
         <EuiTable compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell style={{ Width: '20%' }}>
+            <EuiTableHeaderCell
+              onSort={() => {
+                this.onSort(componentName);
+              }}
+              isSorted={
+                sortedComponents[componentName] &&
+                sortedComponents[componentName] !== 'NONE'
+              }
+              isSortAscending={
+                sortedComponents[componentName] &&
+                sortedComponents[componentName] === 'ASC'
+              }
+              style={{ Width: '20%' }}>
               Prop
             </EuiTableHeaderCell>
 
@@ -397,9 +519,23 @@ export class GuideSection extends Component {
 
     return [
       <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}>
-        <h3>{title}</h3>
-      </EuiTitle>,
+      <EuiFlexGroup
+        key={`propsName-${componentName}`}
+        alignItems="baseline"
+        wrap>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="s">
+            <h3 id={componentName}>{componentName}</h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        {extendedTypesElements.length > 0 && (
+          <EuiFlexItem>
+            <EuiText size="s">
+              <p>[ extends {extendedTypesElements} ]</p>
+            </EuiText>
+          </EuiFlexItem>
+        )}
+      </EuiFlexGroup>,
       <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
       descriptionElement,
       table,
@@ -409,7 +545,7 @@ export class GuideSection extends Component {
   renderProps() {
     const { props } = this.props;
     return this.componentNames
-      .map(componentName =>
+      .map((componentName) =>
         this.renderPropsForComponent(componentName, props[componentName])
       )
       .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
@@ -507,7 +643,7 @@ export class GuideSection extends Component {
 
   renderCodeSandBoxButton() {
     return (
-      <CodeSandboxLink content={this.props.source[0].code}>
+      <CodeSandboxLink content={this.props.source[0].code.default}>
         <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
           Try out this demo on Code Sandbox
         </EuiButtonEmpty>

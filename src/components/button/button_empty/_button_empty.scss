@@ -16,7 +16,6 @@
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
   .euiButtonEmpty__content {
-    @include euiButtonContent;
     padding: 0 $euiSizeS;
   }
 
@@ -34,24 +33,10 @@
     font-size: $euiFontSizeS;
   }
 
-  &.euiButtonEmpty--iconRight {
-    .euiButtonEmpty__content {
-      @include euiButtonContent($isReverse: true);
-    }
-  }
-
   &:disabled {
+    @include euiButtonContentDisabled;
+
     color: $euiButtonColorDisabledText;
-    pointer-events: none;
-
-    .euiButtonEmpty__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiButtonEmpty__icon {
-      fill: currentColor;
-    }
 
     &:focus {
       background-color: transparent;
@@ -64,6 +49,24 @@
   }
 }
 
+
+.euiButtonEmpty--flushLeft,
+.euiButtonEmpty--flushRight,
+.euiButtonEmpty--flushBoth {
+  .euiButtonEmpty__content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.euiButtonEmpty--flushLeft {
+  margin-right: $euiSizeS;
+}
+
+.euiButtonEmpty--flushRight {
+  margin-left: $euiSizeS;
+}
+
 // Modifier naming and colors.
 $euiButtonEmptyTypes: (
   primary: $euiColorPrimary,
@@ -73,7 +76,7 @@ $euiButtonEmptyTypes: (
   text: $euiTextColor,
 );
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $name, $color in $euiButtonEmptyTypes {
   .euiButtonEmpty--#{$name} {
     @if ($name == 'ghost') {
@@ -99,22 +102,3 @@ $euiButtonEmptyTypes: (
   }
 }
 
-.euiButtonEmpty--flushLeft {
-  margin-right: $euiSizeS;
-
-  .euiButtonEmpty__content {
-    border-left: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-.euiButtonEmpty--flushRight {
-  margin-left: $euiSizeS;
-
-  .euiButtonEmpty__content {
-    border-right: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}

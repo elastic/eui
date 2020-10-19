@@ -36,7 +36,7 @@ export interface EuiRadioGroupOption
 
 export type EuiRadioGroupChangeCallback = (id: string, value?: string) => void;
 
-// Must omit inherit `onChange` properties or else TS complaines when applying to the EuiRadio
+// Must omit inherit `onChange` properties or else TS complains when applying to the EuiRadio
 type AsDivProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
 type WithLegendProps = Omit<EuiFormFieldsetProps, 'onChange'> & {
   /**
@@ -103,14 +103,14 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
       <EuiFormFieldset
         className={className}
         legend={legend}
-        {...rest as EuiFormFieldsetProps}>
+        {...(rest as EuiFormFieldsetProps)}>
         {radios}
       </EuiFormFieldset>
     );
   }
 
   return (
-    <div className={className} {...rest as HTMLAttributes<HTMLDivElement>}>
+    <div className={className} {...(rest as HTMLAttributes<HTMLDivElement>)}>
       {radios}
     </div>
   );

@@ -40,11 +40,14 @@ export const flattenOptionGroups = <T>(
 
 export const getSelectedOptionForSearchValue = <T>(
   searchValue: string,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
+  optionKey?: string
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    option => option.label.toLowerCase() === normalizedSearchValue
+    (option) =>
+      option.label.toLowerCase() === normalizedSearchValue &&
+      (!optionKey || option.key === optionKey)
   );
 };
 
@@ -59,7 +62,8 @@ const collectMatchingOption = <T>(
   // Only show options which haven't yet been selected unless requested.
   const selectedOption = getSelectedOptionForSearchValue(
     option.label,
-    selectedOptions
+    selectedOptions,
+    option.key
   );
   if (selectedOption && !showPrevSelected) {
     return false;
@@ -87,12 +91,13 @@ export const getMatchingOptions = <T>(
   selectedOptions: Array<EuiComboBoxOptionOption<T>>,
   searchValue: string,
   isPreFiltered: boolean,
-  showPrevSelected: boolean
+  showPrevSelected: boolean,
+  sortMatchesBy: string
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
-  options.forEach(option => {
+  options.forEach((option) => {
     if (option.options) {
       const matchingOptionsForGroup: Array<EuiComboBoxOptionOption<T>> = [];
       option.options.forEach((groupOption: EuiComboBoxOptionOption<T>) => {
@@ -107,7 +112,11 @@ export const getMatchingOptions = <T>(
       });
       if (matchingOptionsForGroup.length > 0) {
         // Add option for group label
-        matchingOptions.push({ label: option.label, isGroupLabelOption: true });
+        matchingOptions.push({
+          key: option.key,
+          label: option.label,
+          isGroupLabelOption: true,
+        });
         // Add matching options for group
         matchingOptions.push(...matchingOptionsForGroup);
       }
@@ -122,5 +131,22 @@ export const getMatchingOptions = <T>(
       );
     }
   });
+
+  if (sortMatchesBy === 'startsWith') {
+    const refObj: {
+      startWith: Array<EuiComboBoxOptionOption<T>>;
+      others: Array<EuiComboBoxOptionOption<T>>;
+    } = { startWith: [], others: [] };
+
+    matchingOptions.forEach((object) => {
+      if (object.label.toLowerCase().startsWith(normalizedSearchValue)) {
+        refObj.startWith.push(object);
+      } else {
+        refObj.others.push(object);
+      }
+    });
+    return [...refObj.startWith, ...refObj.others];
+  }
+
   return matchingOptions;
 };

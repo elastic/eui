@@ -13,11 +13,11 @@ export default () => {
   const [value, setValue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
 
-  const onDualChange = value => {
+  const onDualChange = (value) => {
     setDualValue(value);
   };
 
@@ -64,7 +64,10 @@ export default () => {
         value={dualValue}
         onChange={onDualChange}
         showTicks
-        ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+        ticks={[
+          { label: '20kb', value: 20 },
+          { label: '100kb', value: 100 },
+        ]}
         showInput
         aria-label="An example of EuiDualRange with ticks"
       />

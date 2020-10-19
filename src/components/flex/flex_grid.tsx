@@ -26,6 +26,9 @@ export type FlexGridColumns = 0 | 1 | 2 | 3 | 4;
 export type FlexGridDirection = keyof typeof directionToClassNameMap;
 
 export interface EuiFlexGridProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children?: ReactNode;
   /**
    * Number of columns `1-4`, pass `0` for normal display
@@ -79,9 +82,9 @@ const columnsToClassNameMap = {
   4: 'euiFlexGrid--fourths',
 };
 
-export const COLUMNS = Object.keys(columnsToClassNameMap).map(
-  (columns: string) => parseInt(columns, 10)
-) as FlexGridColumns[];
+export const COLUMNS = Object.keys(
+  columnsToClassNameMap
+).map((columns: string) => parseInt(columns, 10)) as FlexGridColumns[];
 
 export const EuiFlexGrid: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps

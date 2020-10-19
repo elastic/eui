@@ -66,11 +66,14 @@ export interface EuiContextMenuItemProps extends CommonProps {
 }
 
 type Props = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> &
+  Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    'type' | 'onClick' | 'disabled'
+  > &
   EuiContextMenuItemProps;
 
 const layoutAlignToClassNames: {
-  [align in EuiContextMenuItemLayoutAlignment]: string | null
+  [align in EuiContextMenuItemLayoutAlignment]: string | null;
 } = {
   center: null,
   top: 'euiContextMenu__itemLayout--top',
@@ -97,7 +100,6 @@ export class EuiContextMenuItem extends Component<Props> {
       rel,
       ...rest
     } = this.props;
-
     let iconInstance;
 
     if (icon) {
@@ -154,7 +156,7 @@ export class EuiContextMenuItem extends Component<Props> {
           target={target}
           rel={secureRel}
           ref={buttonRef as Ref<HTMLAnchorElement>}
-          {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
+          {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
           {buttonInner}
         </a>
       );

@@ -98,7 +98,7 @@ export const useEuiTour = (
       dispatch({ type: 'EUI_TOUR_GOTO', payload: { step, isTourActive } }),
   };
 
-  const steps = stepsArray.map(step => ({
+  const steps = stepsArray.map((step) => ({
     ...step,
     isStepOpen: state.currentTourStep === step.step && state.isTourActive,
     minWidth: state.tourPopoverWidth,

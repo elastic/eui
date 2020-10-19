@@ -28,7 +28,7 @@ type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
 // Exported for testing
 export const paddingSizeToClassNameMap: {
-  [value in BottomBarPaddingSize]: string | null
+  [value in BottomBarPaddingSize]: string | null;
 } = {
   none: null,
   s: 'euiBottomBar--paddingSmall',
@@ -118,7 +118,7 @@ export class EuiBottomBar extends Component<Props> {
                 landmarkHeading ? landmarkHeading : screenReaderHeading
               }
               className={classes}
-              ref={node => {
+              ref={(node) => {
                 this.bar = node;
               }}
               {...rest}>

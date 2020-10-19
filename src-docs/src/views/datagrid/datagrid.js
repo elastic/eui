@@ -26,28 +26,26 @@ const columns = [
   },
   {
     id: 'email',
-    display: (
-      // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs" responsive={false}>
-        <EuiFlexItem className="eui-textTruncate">
-          <div className="eui-textTruncate">email</div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            aria-label="Column header email"
-            iconType="gear"
-            color="text"
-            onClick={() => alert('Email Icon Clicked!')}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    ),
   },
   {
     id: 'location',
   },
   {
     id: 'account',
+    actions: {
+      showHide: { label: 'Custom hide label' },
+      showMoveLeft: false,
+      showMoveRight: false,
+      additional: [
+        {
+          label: 'Custom action',
+          onClick: () => alert('🎉'),
+          iconType: 'cheer',
+          size: 'xs',
+          color: 'text',
+        },
+      ],
+    },
   },
   {
     id: 'date',
@@ -65,6 +63,7 @@ const columns = [
     defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
+    actions: false,
   },
 ];
 
@@ -157,19 +156,24 @@ export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
-    pageSize =>
-      setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
     [setPagination]
   );
   const onChangePage = useCallback(
-    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );
 
   // ** Sorting config
   const [sortingColumns, setSortingColumns] = useState([]);
   const onSort = useCallback(
-    sortingColumns => {
+    (sortingColumns) => {
       setSortingColumns(sortingColumns);
     },
     [setSortingColumns]
@@ -220,7 +224,7 @@ export default () => {
         onChangeItemsPerPage: onChangeItemsPerPage,
         onChangePage: onChangePage,
       }}
-      onColumnResize={eventData => {
+      onColumnResize={(eventData) => {
         console.log(eventData);
       }}
     />

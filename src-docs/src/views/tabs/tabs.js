@@ -44,14 +44,14 @@ const tabs = [
 export default () => {
   const [selectedTabId, setSelectedTabId] = useState('cobalt');
 
-  const onSelectedTabChanged = id => {
+  const onSelectedTabChanged = (id) => {
     setSelectedTabId(id);
   };
 
   const renderTabs = () => {
     return tabs.map((tab, index) => (
       <EuiTab
-        {...tab.href && { href: tab.href, target: '_blank' }}
+        {...(tab.href && { href: tab.href, target: '_blank' })}
         onClick={() => onSelectedTabChanged(tab.id)}
         isSelected={tab.id === selectedTabId}
         disabled={tab.disabled}

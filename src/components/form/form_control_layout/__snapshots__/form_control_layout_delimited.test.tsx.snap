@@ -50,7 +50,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       <div
         class="euiTextColor euiTextColor--subdued"
       >
-        <div
+        <span
           data-euiicon-type="alert"
         />
       </div>

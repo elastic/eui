@@ -27,7 +27,7 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [superSelectvalue, setSuperSeelctValue] = useState('option_one');
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
   const [isExpressionOpen, setIsExpressionOpen] = useState(false);
 
   const tabs = [
@@ -47,9 +47,10 @@ export default () => {
 
   const closePopover = () => setIsPopoverOpen(false);
 
-  const togglePopover = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const togglePopover = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
 
-  const onSelectedTabChanged = id => setSelectedTabId(id);
+  const onSelectedTabChanged = (id) => setSelectedTabId(id);
 
   const renderTabs = tabs.map((tab, index) => (
     <EuiTab
@@ -105,8 +106,8 @@ export default () => {
     },
   ];
 
-  const onSuperSelectChange = value => {
-    setSuperSeelctValue(value);
+  const onSuperSelectChange = (value) => {
+    setSuperSelectValue(value);
   };
 
   const flyoutContent = (
@@ -178,6 +179,7 @@ export default () => {
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
+        ownFocus
         onClose={closeFlyout}
         hideCloseButton
         aria-labelledby="flyoutComplicatedTitle">
@@ -214,7 +216,7 @@ export default () => {
               <EuiSuperSelect
                 options={superSelectOptions}
                 valueOfSelected={superSelectvalue}
-                onChange={value => onSuperSelectChange(value)}
+                onChange={(value) => onSuperSelectChange(value)}
                 itemLayoutAlign="top"
                 hasDividers
               />

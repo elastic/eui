@@ -80,9 +80,14 @@ export interface EuiPinnableListGroupProps
   unpinTitle?: (item: EuiPinnableListGroupItemProps) => string;
 }
 
-export const EuiPinnableListGroup: FunctionComponent<
-  EuiPinnableListGroupProps
-> = ({ className, listItems, pinTitle, unpinTitle, onPinClick, ...rest }) => {
+export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> = ({
+  className,
+  listItems,
+  pinTitle,
+  unpinTitle,
+  onPinClick,
+  ...rest
+}) => {
   const classes = classNames('euiPinnableListGroup', className);
 
   // Alter listItems object with extra props
@@ -90,7 +95,7 @@ export const EuiPinnableListGroup: FunctionComponent<
     pinExtraActionLabel: string,
     pinnedExtraActionLabel: string
   ) =>
-    listItems.map(item => {
+    listItems.map((item) => {
       const { pinned, pinnable = true, ...itemProps } = item;
       // Make some declarations of props for the nav implementation
       itemProps.className = classNames(

@@ -57,12 +57,15 @@ const colorToClassNameMap: { [color in Color]: string } = {
 export const COLORS = Object.keys(colorToClassNameMap) as Color[];
 
 export type EuiListGroupItemProps = CommonProps &
-  ExclusiveUnion<
+  Omit<
     ExclusiveUnion<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
+      ExclusiveUnion<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
+      >,
+      HTMLAttributes<HTMLSpanElement>
     >,
-    HTMLAttributes<HTMLSpanElement>
+    'onClick' | 'color' | 'target' | 'rel'
   > & {
     /**
      * Size of the label text
@@ -241,7 +244,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         target={target}
         rel={secureRel}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
-        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {iconNode}
         {labelContent}
       </a>
@@ -254,7 +257,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         disabled={isDisabled}
         onClick={onClick}
         ref={buttonRef}
-        {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+        {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
         {iconNode}
         {labelContent}
       </button>

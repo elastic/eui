@@ -47,16 +47,12 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
   validateValueIsInStep = (value: number) => {
     if (value < this.props.min) {
       throw new Error(
-        `The value of ${value} is lower than the min value of ${
-          this.props.min
-        }.`
+        `The value of ${value} is lower than the min value of ${this.props.min}.`
       );
     }
     if (value > this.props.max) {
       throw new Error(
-        `The value of ${value} is higher than the max value of ${
-          this.props.max
-        }.`
+        `The value of ${value} is higher than the max value of ${this.props.max}.`
       );
     }
     // Error out if the value doesn't line up with the sequence of steps
@@ -67,9 +63,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       )
     ) {
       throw new Error(
-        `The value of ${value} is not included in the possible sequence provided by the step of ${
-          this.props.step
-        }.`
+        `The value of ${value} is not included in the possible sequence provided by the step of ${this.props.step}.`
       );
     }
     // Return the value if nothing fails
@@ -99,7 +93,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     if (customTicks) {
       // If custom values were passed, use those for the sequence
       // But make sure they align with the possible sequence
-      ticks = customTicks.map(tick => {
+      ticks = customTicks.map((tick) => {
         return this.validateValueIsInStep(tick.value);
       });
     } else {
@@ -108,7 +102,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       const interval = tickInterval || step;
       const tickSequence = this.calculateSequence(min, max, interval);
 
-      ticks = tickSequence.map(tick => {
+      ticks = tickSequence.map((tick) => {
         return this.validateValueIsInStep(tick);
       });
     }
@@ -116,9 +110,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     // Error out if there are too many ticks to render
     if (ticks.length > 20) {
       throw new Error(
-        `The number of ticks to render is too high (${
-          ticks.length
-        }), reduce the interval.`
+        `The number of ticks to render is too high (${ticks.length}), reduce the interval.`
       );
     }
 

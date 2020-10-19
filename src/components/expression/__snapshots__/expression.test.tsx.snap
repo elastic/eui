@@ -136,7 +136,7 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
   >
     42
   </span>
-  <div
+  <span
     class="euiExpression__icon"
     color="danger"
     data-euiicon-type="alert"
@@ -214,7 +214,7 @@ exports[`EuiExpression props isInvalid renders error state 1`] = `
   >
     42
   </span>
-  <div
+  <span
     class="euiExpression__icon"
     color="danger"
     data-euiicon-type="alert"
@@ -274,6 +274,21 @@ exports[`EuiExpression props uppercase true renders uppercase 1`] = `
     42
   </span>
 </span>
+`;
+
+exports[`EuiExpression render with only description 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--secondary"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+</button>
 `;
 
 exports[`EuiExpression renders 1`] = `

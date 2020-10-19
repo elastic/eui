@@ -13,10 +13,12 @@ import {
   EuiText,
 } from '../../../../src/components';
 import {
-  EuiColorPalettePickerPaletteText,
-  EuiColorPalettePickerPaletteFixed,
-  EuiColorPalettePickerPaletteGradient,
-} from './props';
+  EuiColorPalettePickerPaletteTextProps,
+  EuiColorPalettePickerPaletteFixedProps,
+  EuiColorPalettePickerPaletteGradientProps,
+} from '!!prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
+
+import playgrounds from './playground';
 
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -168,6 +170,17 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
       I'm a Badge
     </EuiBadge>
   }
+/>
+`;
+
+import Empty from './empty_state';
+const emptySource = require('!!raw-loader!./empty_state');
+const emptyHtml = renderToHtml(CustomButton);
+const emptySnippet = `<EuiColorPicker
+  onChange={handleChange}
+  color={chosenColor}
+  placeholder="Auto"
+  isClearable={true}
 />
 `;
 
@@ -347,9 +360,9 @@ export const ColorPickerExample = {
       ],
       props: {
         EuiColorPalettePicker,
-        EuiColorPalettePickerPaletteText,
-        EuiColorPalettePickerPaletteFixed,
-        EuiColorPalettePickerPaletteGradient,
+        EuiColorPalettePickerPaletteTextProps,
+        EuiColorPalettePickerPaletteFixedProps,
+        EuiColorPalettePickerPaletteGradientProps,
       },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
@@ -552,6 +565,32 @@ export const ColorPickerExample = {
       demo: <CustomButton />,
     },
     {
+      title: 'Empty state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: emptySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: emptyHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            For instances where an &quot;empty&quot; color picker has meaning
+            other than transparent color value, use the{' '}
+            <EuiCode>placeholder</EuiCode> prop to provide context. Removing
+            color selection and returning to the default state can be made
+            easier by setting <EuiCode>isClearable=true</EuiCode>.
+          </p>
+        </>
+      ),
+      snippet: emptySnippet,
+      demo: <Empty />,
+    },
+    {
       title: 'Inline',
       source: [
         {
@@ -611,4 +650,5 @@ export const ColorPickerExample = {
       demo: <KitchenSink />,
     },
   ],
+  playground: playgrounds,
 };

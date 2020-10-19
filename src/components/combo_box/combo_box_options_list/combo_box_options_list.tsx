@@ -24,9 +24,12 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import { List, ListProps } from 'react-virtualized'; // eslint-disable-line import/named
+import {
+  FixedSizeList,
+  ListProps,
+  ListChildComponentProps,
+} from 'react-window';
 
-import { EuiCode } from '../../../components/code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
@@ -48,9 +51,10 @@ import {
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';
+import { EuiBadge } from '../../badge/';
 
 const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string
+  [position in EuiComboBoxOptionsListPosition]: string;
 } = {
   top: 'euiComboBoxOptionsList--top',
   bottom: 'euiComboBoxOptionsList--bottom',
@@ -63,6 +67,11 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
+    /**
+     * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
+     * It won't show if there's no onCreateOption.
+     */
+    customOptionText?: string;
     fullWidth?: boolean;
     getSelectedOptionForSearchValue?: (
       searchValue: string,
@@ -71,7 +80,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     isLoading?: boolean;
     listRef: RefCallback<HTMLDivElement>;
     matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-    onCloseList: () => void;
+    onCloseList: (event: Event) => void;
     onCreateOption?: (
       searchValue: string,
       options: Array<EuiComboBoxOptionOption<T>>
@@ -99,14 +108,25 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     zIndex?: number;
   };
 
+const hitEnterBadge = (
+  <EuiBadge
+    className="euiComboBoxOption__enterBadge"
+    color="hollow"
+    iconType="returnKey"
+    aria-hidden="true"
+  />
+);
+
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
 > {
   listRefInstance: RefInstance<HTMLDivElement> = null;
+  listRef: FixedSizeList | null = null;
+  listBoxRef: HTMLUListElement | null = null;
 
   static defaultProps = {
     'data-test-subj': '',
-    rowHeight: 27, // row height of default option renderer
+    rowHeight: 29, // row height of default option renderer
   };
 
   updatePosition = () => {
@@ -146,6 +166,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
     ) {
       this.updatePosition();
     }
+
+    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
+      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
+    }
   }
 
   componentWillUnmount() {
@@ -164,13 +188,100 @@ export class EuiComboBoxOptionsList<T> extends Component<
       event.target &&
       this.listRefInstance.contains(event.target as Node) === false
     ) {
-      this.props.onCloseList();
+      this.props.onCloseList(event);
     }
   };
 
-  listRefCallback: RefCallback<HTMLDivElement> = ref => {
+  listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.props.listRef(ref);
     this.listRefInstance = ref;
+  };
+
+  setListRef = (ref: FixedSizeList | null) => {
+    this.listRef = ref;
+  };
+
+  setListBoxRef = (ref: HTMLUListElement | null) => {
+    this.listBoxRef = ref;
+
+    if (ref) {
+      ref.setAttribute('id', this.props.rootId('listbox'));
+      ref.setAttribute('role', 'listBox');
+      ref.setAttribute('tabIndex', '0');
+    }
+  };
+
+  ListRow = ({ data, index, style }: ListChildComponentProps) => {
+    const option = data[index];
+    const { key, isGroupLabelOption, label, value, ...rest } = option;
+    const {
+      singleSelection,
+      selectedOptions,
+      onOptionClick,
+      optionRef,
+      activeOptionIndex,
+      renderOption,
+      searchValue,
+      rootId,
+    } = this.props;
+
+    if (isGroupLabelOption) {
+      return (
+        <div key={key ?? label.toLowerCase()} style={style}>
+          <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
+        </div>
+      );
+    }
+
+    let checked: FilterChecked | undefined = undefined;
+    if (
+      singleSelection &&
+      selectedOptions.length &&
+      selectedOptions[0].label === label
+    ) {
+      checked = 'on';
+    }
+
+    const optionIsFocused = activeOptionIndex === index;
+    const optionIsDisabled =
+      option.hasOwnProperty('disabled') && option.disabled === true;
+
+    return (
+      <EuiFilterSelectItem
+        style={style}
+        key={option.key ?? option.label.toLowerCase()}
+        onClick={() => {
+          if (onOptionClick) {
+            onOptionClick(option);
+          }
+        }}
+        ref={optionRef.bind(this, index)}
+        isFocused={optionIsFocused}
+        checked={checked}
+        showIcons={singleSelection ? true : false}
+        id={rootId(`_option-${index}`)}
+        title={label}
+        {...rest}>
+        <span className="euiComboBoxOption__contentWrapper">
+          {renderOption ? (
+            <span className={OPTION_CONTENT_CLASSNAME}>
+              {renderOption(
+                option,
+                searchValue,
+                'euiComboBoxOption__renderOption'
+              )}
+            </span>
+          ) : (
+            <EuiHighlight
+              search={searchValue}
+              className={OPTION_CONTENT_CLASSNAME}>
+              {label}
+            </EuiHighlight>
+          )}
+          {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
+        </span>
+      </EuiFilterSelectItem>
+    );
   };
 
   render() {
@@ -178,6 +289,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       'data-test-subj': dataTestSubj,
       activeOptionIndex,
       areAllOptionsSelected,
+      customOptionText,
       fullWidth,
       getSelectedOptionForSearchValue,
       isLoading,
@@ -224,59 +336,87 @@ export class EuiComboBoxOptionsList<T> extends Component<
       );
     } else if (searchValue && matchingOptions && matchingOptions.length === 0) {
       if (onCreateOption && getSelectedOptionForSearchValue) {
-        const selectedOptionForValue = getSelectedOptionForSearchValue(
-          searchValue,
-          selectedOptions
-        );
-        if (selectedOptionForValue) {
-          // Disallow duplicate custom options.
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.alreadyAdded"
-                default="{label} has already been added"
-                values={{
-                  label: <strong>{selectedOptionForValue.label}</strong>,
-                }}
-              />
-            </p>
-          );
-        } else {
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.createCustomOption"
-                default="Hit {key} to add {searchValue} as a custom option"
-                values={{
-                  key: <EuiCode>ENTER</EuiCode>,
-                  searchValue: <strong>{searchValue}</strong>,
-                }}
-              />
-            </p>
-          );
-        }
-      } else {
         if (delimiter && searchValue.includes(delimiter)) {
           emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.delimiterMessage"
-                default="Hit enter to add each item separated by {delimiter}"
-                values={{ delimiter: <strong>{delimiter}</strong> }}
-              />
-            </p>
+            <div className="euiComboBoxOption__contentWrapper">
+              <p className="euiComboBoxOption__emptyStateText">
+                <EuiI18n
+                  token="euiComboBoxOptionsList.delimiterMessage"
+                  default="Add each item separated by {delimiter}"
+                  values={{ delimiter: <strong>{delimiter}</strong> }}
+                />
+              </p>
+              {hitEnterBadge}
+            </div>
           );
         } else {
-          emptyStateContent = (
-            <p>
-              <EuiI18n
-                token="euiComboBoxOptionsList.noMatchingOptions"
-                default="{searchValue} doesn't match any options"
-                values={{ searchValue: <strong>{searchValue}</strong> }}
-              />
-            </p>
+          const selectedOptionForValue = getSelectedOptionForSearchValue(
+            searchValue,
+            selectedOptions
           );
+          if (selectedOptionForValue) {
+            // Disallow duplicate custom options.
+            emptyStateContent = (
+              <p>
+                <EuiI18n
+                  token="euiComboBoxOptionsList.alreadyAdded"
+                  default="{label} has already been added"
+                  values={{
+                    label: <strong>{selectedOptionForValue.label}</strong>,
+                  }}
+                />
+              </p>
+            );
+          } else {
+            const highlightSearchValue = (
+              text: string,
+              searchValue: string
+            ) => {
+              const reg = new RegExp(/(\{searchValue})/, 'gi');
+              const parts = text.split(reg);
+              return (
+                <p className="euiComboBoxOption__emptyStateText">
+                  {parts.map((part, idx) =>
+                    part.match(reg) ? (
+                      <strong key={idx}>{searchValue}</strong>
+                    ) : (
+                      part
+                    )
+                  )}
+                </p>
+              );
+            };
+
+            emptyStateContent = (
+              <div className="euiComboBoxOption__contentWrapper">
+                {customOptionText ? (
+                  highlightSearchValue(customOptionText, searchValue)
+                ) : (
+                  <p className="euiComboBoxOption__emptyStateText">
+                    <EuiI18n
+                      token="euiComboBoxOptionsList.createCustomOption"
+                      default="Add {searchValue} as a custom option"
+                      values={{
+                        searchValue: <strong>{searchValue}</strong>,
+                      }}
+                    />
+                  </p>
+                )}
+                {hitEnterBadge}
+              </div>
+            );
+          }
         }
+      } else {
+        emptyStateContent = (
+          <p>
+            <EuiI18n
+              token="euiComboBoxOptionsList.noMatchingOptions"
+              default="{searchValue} doesn't match any options"
+              values={{ searchValue: <strong>{searchValue}</strong> }}
+            />
+          </p>
+        );
       }
     } else if (!options.length) {
       emptyStateContent = (
@@ -302,74 +442,27 @@ export class EuiComboBoxOptionsList<T> extends Component<
       <EuiText size="xs" className="euiComboBoxOptionsList__empty">
         {emptyStateContent}
       </EuiText>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisibleOptions * rowHeight;
 
+    // bounded by max-height of euiComboBoxOptionsList__rowWrap
+    const boundedHeight = height > 200 ? 200 : height;
+
     const optionsList = (
-      <List
-        height={height}
-        id={rootId('listbox')}
+      <FixedSizeList
+        height={boundedHeight}
         onScroll={onScroll}
-        rowRenderer={({ key, index, style }) => {
-          const option = matchingOptions[index];
-          const { isGroupLabelOption, label, value, ...rest } = option;
-
-          if (isGroupLabelOption) {
-            return (
-              <div key={key} style={style}>
-                <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
-              </div>
-            );
-          }
-
-          let checked: FilterChecked | undefined = undefined;
-          if (
-            singleSelection &&
-            selectedOptions.length &&
-            selectedOptions[0].label === label
-          ) {
-            checked = 'on';
-          }
-
-          return (
-            <EuiFilterSelectItem
-              style={style}
-              key={option.label.toLowerCase()}
-              onClick={() => {
-                if (onOptionClick) {
-                  onOptionClick(option);
-                }
-              }}
-              ref={optionRef.bind(this, index)}
-              isFocused={activeOptionIndex === index}
-              checked={checked}
-              showIcons={singleSelection ? true : false}
-              id={rootId(`_option-${index}`)}
-              title={label}
-              {...rest}>
-              {renderOption ? (
-                renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)
-              ) : (
-                <EuiHighlight
-                  search={searchValue}
-                  className={OPTION_CONTENT_CLASSNAME}>
-                  {label}
-                </EuiHighlight>
-              )}
-            </EuiFilterSelectItem>
-          );
-        }}
-        role="listbox"
-        rowCount={matchingOptions.length}
-        rowHeight={rowHeight}
-        scrollToIndex={scrollToIndex}
-        width={width}
-      />
+        itemCount={matchingOptions.length}
+        itemSize={rowHeight}
+        itemData={matchingOptions}
+        ref={this.setListRef}
+        innerRef={this.setListBoxRef}
+        width={width}>
+        {this.ListRow}
+      </FixedSizeList>
     );
 
     const classes = classNames(

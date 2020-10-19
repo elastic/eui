@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiBadge,
@@ -11,10 +11,12 @@ import { EuiSelectable } from '../../../../src/components/selectable';
 import { createDataStore } from '../tables/data_store';
 
 export default () => {
-  const countries = createDataStore().countries.map(country => {
+  const [useCustomContent, setUseCustomContent] = useState(false);
+
+  const countries = createDataStore().countries.map((country) => {
     return {
-      id: country.code,
       label: `${country.name}`,
+      searchableLabel: `${country.name} ${'I am secondary content, I am!'}`,
       prepend: country.flag,
       append: <EuiBadge>{country.code}</EuiBadge>,
     };
@@ -26,25 +28,28 @@ export default () => {
   });
 
   const [options, setOptions] = useState(countries);
-  const [useCustomContent, setUseCustomContent] = useState(countries);
 
-  const onChange = options => {
+  const onChange = (options) => {
     setOptions(options);
   };
 
-  const onCustom = e => {
+  const onCustom = (e) => {
     setUseCustomContent(e.currentTarget.checked);
   };
 
   const renderCountryOption = (option, searchValue) => {
     return (
-      <Fragment>
+      <>
         <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
         <br />
         <EuiTextColor color="subdued">
-          <small>I am secondary content, I am!</small>
+          <small>
+            <EuiHighlight search={searchValue}>
+              I am secondary content, I am!
+            </EuiHighlight>
+          </small>
         </EuiTextColor>
-      </Fragment>
+      </>
     );
   };
 
@@ -61,9 +66,9 @@ export default () => {
   }
 
   return (
-    <Fragment>
+    <>
       <EuiSwitch
-        label="Custom content with no icons"
+        label="Custom content"
         checked={useCustomContent}
         onChange={onCustom}
       />
@@ -71,17 +76,18 @@ export default () => {
       <EuiSpacer />
 
       <EuiSelectable
+        aria-label="Selectable example with custom list items"
         searchable
         options={options}
         onChange={onChange}
         {...customProps}>
         {(list, search) => (
-          <Fragment>
+          <>
             {search}
             {list}
-          </Fragment>
+          </>
         )}
       </EuiSelectable>
-    </Fragment>
+    </>
   );
 };

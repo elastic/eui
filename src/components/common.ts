@@ -94,7 +94,7 @@ export type ApplyClassComponentDefaults<
 https://github.com/Microsoft/TypeScript/issues/28339
 Problem: Pick and Omit do not distribute over union types, which manifests when
 optional values become required after a Pick or Omit operation. These
-Distributive forms correctly operate on union types, preseving optionality.
+Distributive forms correctly operate on union types, preserving optionality.
  */
 type UnionKeys<T> = T extends any ? keyof T : never;
 export type DistributivePick<T, K extends UnionKeys<T>> = T extends any
@@ -147,7 +147,7 @@ Externally, however, you could use the component as
 
 and no error would occur as the Spanlike type is satisfied and the type guard would prevent accessing button attributes.
 This prevents immediate feedback to the develop, and would actually lead to React warnings as the `value` prop would
-still propogate down to the span's props, which is invalid. The following two utility types provide a solution for
+still propagate down to the span's props, which is invalid. The following two utility types provide a solution for
 creating exclusive unions:
 
 React.FunctionComponent<ExclusiveUnion<Spanlike, Buttonlike>>
@@ -160,13 +160,13 @@ React.FunctionComponent<ExclusiveUnion<Spanlike, Buttonlike>>
  * returns { 'four': never, 'five': never }
  */
 export type DisambiguateSet<T, U> = {
-  [P in Exclude<keyof T, keyof U>]?: never
+  [P in Exclude<keyof T, keyof U>]?: never;
 };
 
 /**
  * Allow either T or U, preventing any additional keys of the other type from being present
  */
-export type ExclusiveUnion<T, U> = (T | U) extends object // if there are any shared keys between T and U
+export type ExclusiveUnion<T, U> = T | U extends object // if there are any shared keys between T and U
   ? (DisambiguateSet<T, U> & U) | (DisambiguateSet<U, T> & T) // otherwise the TS union is already unique
   : T | U;
 
@@ -179,27 +179,56 @@ export type ExclusiveUnion<T, U> = (T | U) extends object // if there are any sh
  *
  * type AnchorLike = PropsForAnchor<BaseProps>
  * type ButtonLike = PropsForButton<BaseProps>
- * type ComponentProps = ExlcusiveUnion<AnchorLike, ButtonLike>
+ * type ComponentProps = ExclusiveUnion<AnchorLike, ButtonLike>
  * const Component: FunctionComponent<ComponentProps> ...
  */
-export type PropsForAnchor<T, P = {}> = T &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-  } & P;
+export type PropsForAnchor<T, P = {}> = T & {
+  href?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+} & AnchorHTMLAttributes<HTMLAnchorElement> &
+  P;
 
-export type PropsForButton<T, P = {}> = T &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-  } & P;
+export type PropsForButton<T, P = {}> = T & {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement> &
+  P;
 
 /**
- * Makes all recursive keys optional
+ * Replaces all properties on any type as optional, includes nested types
+ *
+ * @example
+ * ```ts
+ * interface Person {
+ *  name: string;
+ *  age?: number;
+ *  spouse: Person;
+ *  children: Person[];
+ * }
+ * type PartialPerson = RecursivePartial<Person>;
+ * // results in
+ * interface PartialPerson {
+ *  name?: string;
+ *  age?: number;
+ *  spouse?: RecursivePartial<Person>;
+ *  children?: RecursivePartial<Person>[]
+ * }
+ * ```
  */
 export type RecursivePartial<T> = {
-  [P in keyof T]?: T[P] extends Array<infer U>
+  [P in keyof T]?: T[P] extends NonAny[] // checks for nested any[]
+    ? T[P]
+    : T[P] extends readonly NonAny[] // checks for nested ReadonlyArray<any>
+    ? T[P]
+    : T[P] extends Array<infer U>
     ? Array<RecursivePartial<U>>
-    : T[P] extends object
-    ? RecursivePartial<T[P]>
-    : T[P]
+    : T[P] extends ReadonlyArray<infer U> // eslint-disable-line @typescript-eslint/array-type
+    ? ReadonlyArray<RecursivePartial<U>> // eslint-disable-line @typescript-eslint/array-type
+    : T[P] extends Set<infer V> // checks for Sets
+    ? Set<RecursivePartial<V>>
+    : T[P] extends Map<infer K, infer V> // checks for Maps
+    ? Map<K, RecursivePartial<V>>
+    : T[P] extends NonAny // checks for primitive values
+    ? T[P]
+    : RecursivePartial<T[P]>; // recurse for all non-array and non-primitive values
 };
+type NonAny = number | boolean | string | symbol | null;

@@ -30,7 +30,7 @@ import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
 
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
 import { EuiFocusTrap } from '../focus_trap';
 
@@ -59,7 +59,7 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
 
 interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
   /**
-   * Sepearate from the caption is a title on the alt tag itself.
+   * Separate from the caption is a title on the alt tag itself.
    * This one is required for accessibility.
    */
   alt: string;
@@ -159,67 +159,66 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   );
 
   const fullScreenDisplay = (
-    <EuiOverlayMask onClick={closeFullScreen}>
+    <EuiOverlayMask
+      data-test-subj="fullScreenOverlayMask"
+      onClick={closeFullScreen}>
       <EuiFocusTrap clickOutsideDisables={true}>
         <figure
           className="euiImage euiImage-isFullScreen"
           aria-label={optionalCaptionText}>
-          <EuiI18n
-            token="euiImage.closeImage"
-            values={{ alt }}
-            default="Close full screen {alt} image">
-            {(closeImage: string) => (
-              <button
-                type="button"
-                aria-label={closeImage}
-                className="euiImage__button"
-                onClick={closeFullScreen}
-                onKeyDown={onKeyDown}>
-                <img
-                  src={url}
-                  alt={alt}
-                  className="euiImage-isFullScreen__img"
-                  {...rest}
-                />
-                <EuiIcon
-                  type="cross"
-                  color={fullScreenIconColorMap[fullScreenIconColor]}
-                  className="euiImage-isFullScreen__icon"
-                />
-              </button>
+          <button
+            type="button"
+            aria-label={useEuiI18n(
+              'euiImage.closeImage',
+              'Close full screen {alt} image',
+              { alt }
             )}
-          </EuiI18n>
+            className="euiImage__button"
+            data-test-subj="deactivateFullScreenButton"
+            onClick={closeFullScreen}
+            onKeyDown={onKeyDown}>
+            <img
+              src={url}
+              alt={alt}
+              className="euiImage-isFullScreen__img"
+              {...rest}
+            />
+            <EuiIcon
+              type="cross"
+              color={fullScreenIconColorMap[fullScreenIconColor]}
+              className="euiImage-isFullScreen__icon"
+            />
+          </button>
           {optionalCaption}
         </figure>
       </EuiFocusTrap>
     </EuiOverlayMask>
   );
 
+  const fullscreenLabel = useEuiI18n(
+    'euiImage.openImage',
+    'Open full screen {alt} image',
+    { alt }
+  );
   if (allowFullScreen) {
     return (
       <figure className={classes} aria-label={optionalCaptionText}>
-        <EuiI18n
-          token="euiImage.openImage"
-          values={{ alt }}
-          default="Open full screen {alt} image">
-          {(openImage: string) => (
-            <button
-              type="button"
-              aria-label={openImage}
-              className="euiImage__button"
-              onClick={openFullScreen}>
-              <img
-                src={url}
-                alt={alt}
-                className="euiImage__img"
-                style={customStyle}
-                {...rest}
-              />
-              {allowFullScreenIcon}
-              {isFullScreenActive && fullScreenDisplay}
-            </button>
-          )}
-        </EuiI18n>
+        <button
+          type="button"
+          aria-label={fullscreenLabel}
+          className="euiImage__button"
+          data-test-subj="activateFullScreenButton"
+          onClick={openFullScreen}>
+          <img
+            src={url}
+            alt={alt}
+            className="euiImage__img"
+            style={customStyle}
+            {...rest}
+          />
+          {allowFullScreenIcon}
+        </button>
+        {isFullScreenActive && fullScreenDisplay}
         {optionalCaption}
       </figure>
     );

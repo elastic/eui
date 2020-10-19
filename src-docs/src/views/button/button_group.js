@@ -4,10 +4,10 @@ import {
   EuiButtonGroup,
   EuiSpacer,
   EuiTitle,
+  EuiPanel,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
-import { EuiPanel } from '../../../../src/components/panel/panel';
 
 const idPrefix = htmlIdGenerator()();
 const idPrefix2 = htmlIdGenerator()();
@@ -89,6 +89,7 @@ export default () => {
       id: `${idPrefix3}2`,
       label: 'Align right',
       iconType: 'editorAlignRight',
+      isDisabled: true,
     },
   ];
 
@@ -104,6 +105,7 @@ export default () => {
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
+      isDisabled: true,
     },
     {
       id: `${idPrefix3}5`,
@@ -138,15 +140,15 @@ export default () => {
     `${idPrefix2}4`
   );
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     setToggleIdSelected(optionId);
   };
 
-  const onChangeDisabled = optionId => {
+  const onChangeDisabled = (optionId) => {
     setToggleIdDisabled(optionId);
   };
 
-  const onChangeMulti = optionId => {
+  const onChangeMulti = (optionId) => {
     const newToggleIdToSelectedMap = {
       ...toggleIdToSelectedMap,
       ...{
@@ -156,15 +158,15 @@ export default () => {
     setToggleIdToSelectedMap(newToggleIdToSelectedMap);
   };
 
-  const onChangeIcons = optionId => {
+  const onChangeIcons = (optionId) => {
     setToggleIconIdSelected(optionId);
   };
 
-  const onChangeCompressed = optionId => {
+  const onChangeCompressed = (optionId) => {
     setToggleCompressedIdSelected(optionId);
   };
 
-  const onChangeIconsMulti = optionId => {
+  const onChangeIconsMulti = (optionId) => {
     const newToggleIconIdToSelectedMap = {
       ...toggleIconIdToSelectedMap,
       ...{
@@ -175,7 +177,7 @@ export default () => {
     setToggleIconIdToSelectedMap(newToggleIconIdToSelectedMap);
   };
 
-  const onChangeIconsMultiIcons = optionId => {
+  const onChangeIconsMultiIcons = (optionId) => {
     const newToggleIconIdToSelectedMapIcon = {
       ...toggleIconIdToSelectedMapIcon,
       ...{
@@ -192,7 +194,7 @@ export default () => {
         legend="This is a basic group"
         options={toggleButtons}
         idSelected={toggleIdSelected}
-        onChange={id => onChange(id)}
+        onChange={(id) => onChange(id)}
       />
       <EuiSpacer size="m" />
       <EuiTitle size="xxs">
@@ -201,10 +203,9 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="This is a primary group"
-        name="primary"
         options={toggleButtonsMulti}
         idToSelectedMap={toggleIdToSelectedMap}
-        onChange={id => onChangeMulti(id)}
+        onChange={(id) => onChangeMulti(id)}
         color="primary"
         type="multi"
       />
@@ -215,10 +216,9 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="This is a disabled group"
-        name="disabledGroup"
         options={toggleButtonsDisabled}
         idSelected={toggleIdDisabled}
-        onChange={id => onChangeDisabled(id)}
+        onChange={(id) => onChangeDisabled(id)}
         buttonSize="m"
         isDisabled
         isFullWidth
@@ -230,10 +230,9 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="Text align"
-        name="textAlign"
         options={toggleButtonsIcons}
         idSelected={toggleIconIdSelected}
-        onChange={id => onChangeIcons(id)}
+        onChange={(id) => onChangeIcons(id)}
         isIconOnly
       />
       &nbsp;&nbsp;
@@ -241,7 +240,7 @@ export default () => {
         legend="Text style"
         options={toggleButtonsIconsMulti}
         idToSelectedMap={toggleIconIdToSelectedMap}
-        onChange={id => onChangeIconsMulti(id)}
+        onChange={(id) => onChangeIconsMulti(id)}
         type="multi"
         isIconOnly
       />
@@ -259,7 +258,7 @@ export default () => {
           legend="This is a basic group"
           options={toggleButtonsCompressed}
           idSelected={toggleCompressedIdSelected}
-          onChange={id => onChangeCompressed(id)}
+          onChange={(id) => onChangeCompressed(id)}
           buttonSize="compressed"
           isFullWidth
         />
@@ -269,12 +268,11 @@ export default () => {
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup
-          name="textStyleCompressed"
           legend="Text style"
           className="eui-displayInlineBlock"
           options={toggleButtonsIconsMulti}
           idToSelectedMap={toggleIconIdToSelectedMapIcon}
-          onChange={id => onChangeIconsMultiIcons(id)}
+          onChange={(id) => onChangeIconsMultiIcons(id)}
           type="multi"
           buttonSize="compressed"
           isIconOnly

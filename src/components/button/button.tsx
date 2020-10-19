@@ -19,9 +19,11 @@
 
 import React, {
   FunctionComponent,
-  HTMLAttributes,
   Ref,
   ButtonHTMLAttributes,
+  CSSProperties,
+  HTMLAttributes,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
@@ -32,13 +34,14 @@ import {
   PropsForButton,
   keysOf,
 } from '../common';
-import { EuiLoadingSpinner } from '../loading';
 
 import { getSecureRelForTarget } from '../../services';
 
-import { IconType, EuiIcon } from '../icon';
-
-export type ButtonIconSide = 'left' | 'right';
+import {
+  EuiButtonContentProps,
+  EuiButtonContentType,
+  EuiButtonContent,
+} from './button_content';
 
 export type ButtonColor =
   | 'primary'
@@ -54,61 +57,187 @@ export type ButtonColor =
 
 export type ButtonSize = 's' | 'm';
 
-const colorToClassNameMap: { [color in ButtonColor]: string } = {
-  primary: 'euiButton--primary',
-  secondary: 'euiButton--secondary',
-  warning: 'euiButton--warning',
-  danger: 'euiButton--danger',
-  ghost: 'euiButton--ghost',
-  text: 'euiButton--text',
+export const colorToClassNameMap: { [color in ButtonColor]: string } = {
+  primary: '--primary',
+  secondary: '--secondary',
+  warning: '--warning',
+  danger: '--danger',
+  ghost: '--ghost',
+  text: '--text',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
 
-const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
-  s: 'euiButton--small',
+export const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
+  s: '--small',
   m: null,
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-const iconSideToClassNameMap: { [side in ButtonIconSide]: string | null } = {
-  left: null,
-  right: 'euiButton--iconRight',
-};
-
-export const ICON_SIDES = keysOf(iconSideToClassNameMap);
-
-export interface EuiButtonProps extends CommonProps {
-  iconType?: IconType;
-  iconSide?: ButtonIconSide;
+/**
+ * Extends EuiButtonContentProps which provides
+ * `iconType`, `iconSide`, and `textProps`
+ */
+export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
+  children?: ReactNode;
+  /**
+   * Make button a solid color for prominence
+   */
   fill?: boolean;
   /**
-   * `text` color is set for deprecation
+   * Any of our named colors. `text` color is set for deprecation
    */
   color?: ButtonColor;
+  /**
+   * Use size `s` in confined spaces
+   */
   size?: ButtonSize;
-  isLoading?: boolean;
+  /**
+   * `disabled` is also allowed
+   */
   isDisabled?: boolean;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
+  /**
+   * Extends the button to 100% width
+   */
   fullWidth?: boolean;
+  /**
+   * Override the default minimum width
+   */
+  minWidth?: CSSProperties['minWidth'];
+  /**
+   * Force disables the button and changes the icon to a loading spinner
+   */
+  isLoading?: boolean;
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: HTMLAttributes<HTMLSpanElement>;
-  /**
-   * Object of props passed to the <span/> wrapping the component's {children}
-   */
-  textProps?: HTMLAttributes<HTMLSpanElement>;
+  contentProps?: EuiButtonContentType;
+  style?: CSSProperties;
 }
 
-type EuiButtonPropsForAnchor = PropsForAnchor<
+export type EuiButtonDisplayProps = EuiButtonProps &
+  HTMLAttributes<HTMLElement> & {
+    /**
+     * Provide a valid element to render the element as
+     */
+    element: 'a' | 'button' | 'span' | 'label';
+    /**
+     * Provide the component's base class name to build the class list on
+     */
+    baseClassName: string;
+  };
+
+/**
+ * *INTERNAL ONLY*
+ * Component for displaying any element as a button
+ * EuiButton is largely responsible for providing relevant props
+ * and the logic for element-specific attributes
+ */
+const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
+  (
+    {
+      element = 'button',
+      baseClassName,
+      children,
+      className,
+      iconType,
+      iconSide = 'left',
+      color = 'primary',
+      size = 'm',
+      fill = false,
+      isDisabled,
+      isLoading,
+      isSelected,
+      contentProps,
+      textProps,
+      fullWidth,
+      minWidth,
+      style,
+      ...rest
+    },
+    ref
+  ) => {
+    const buttonIsDisabled = isLoading || isDisabled;
+
+    const classes = classNames(
+      baseClassName,
+      color ? `${baseClassName}${colorToClassNameMap[color]}` : null,
+      size && sizeToClassNameMap[size]
+        ? `${baseClassName}${sizeToClassNameMap[size]}`
+        : null,
+      fill && `${baseClassName}--fill`,
+      fullWidth && `${baseClassName}--fullWidth`,
+      buttonIsDisabled && `${baseClassName}-isDisabled`,
+      className
+    );
+
+    /**
+     * Not changing the content or text class names to match baseClassName yet,
+     * as it is a major breaking change.
+     */
+    const contentClassNames = classNames(
+      'euiButton__content',
+      contentProps && contentProps.className
+    );
+
+    const textClassNames = classNames(
+      'euiButton__text',
+      textProps && textProps.className
+    );
+
+    const innerNode = (
+      <EuiButtonContent
+        isLoading={isLoading}
+        iconType={iconType}
+        iconSide={iconSide}
+        textProps={{ ...textProps, className: textClassNames }}
+        {...contentProps}
+        // className has to come last to override contentProps.className
+        className={contentClassNames}>
+        {children}
+      </EuiButtonContent>
+    );
+
+    let calculatedStyle: CSSProperties | undefined = style;
+    if (minWidth !== undefined || minWidth !== null) {
+      calculatedStyle = {
+        ...calculatedStyle,
+        minWidth,
+      };
+    }
+
+    return React.createElement(
+      element,
+      {
+        className: classes,
+        style: calculatedStyle,
+        disabled: element === 'button' && buttonIsDisabled,
+        'aria-pressed': element === 'button' ? isSelected : undefined,
+        ref,
+        ...rest,
+      },
+      innerNode
+    );
+  }
+);
+
+EuiButtonDisplay.displayName = 'EuiButtonDisplay';
+export { EuiButtonDisplay };
+
+export type EuiButtonPropsForAnchor = PropsForAnchor<
   EuiButtonProps,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
 
-type EuiButtonPropsForButton = PropsForButton<
+export type EuiButtonPropsForButton = PropsForButton<
   EuiButtonProps,
   {
     buttonRef?: Ref<HTMLButtonElement>;
@@ -121,78 +250,25 @@ export type Props = ExclusiveUnion<
 >;
 
 export const EuiButton: FunctionComponent<Props> = ({
-  children,
-  className,
-  iconType,
-  iconSide = 'left',
-  color = 'primary',
-  size = 'm',
-  fill = false,
   isDisabled,
-  isLoading,
+  disabled,
   href,
   target,
   rel,
   type = 'button',
   buttonRef,
-  contentProps,
-  textProps,
-  fullWidth,
   ...rest
 }) => {
-  // If in the loading state, force disabled to true
-  isDisabled = isLoading ? true : isDisabled;
+  const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
+  const element = href && !isDisabled ? 'a' : 'button';
 
-  const classes = classNames(
-    'euiButton',
-    color ? colorToClassNameMap[color] : null,
-    size ? sizeToClassNameMap[size] : null,
-    iconSide ? iconSideToClassNameMap[iconSide] : null,
-    className,
-    {
-      'euiButton--fill': fill,
-      'euiButton--fullWidth': fullWidth,
-    }
-  );
-
-  const contentClassNames = classNames(
-    'euiButton__content',
-    contentProps && contentProps.className
-  );
-
-  const textClassNames = classNames(
-    'euiButton__text',
-    textProps && textProps.className
-  );
-
-  // Add an icon to the button if one exists.
-  let buttonIcon;
-
-  if (isLoading) {
-    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
-  } else if (iconType) {
-    buttonIcon = (
-      <EuiIcon
-        className="euiButton__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
-    );
+  let elementProps = {};
+  // Props for all elements
+  elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
+  // Element-specific attributes
+  if (element === 'button') {
+    elementProps = { ...elementProps, disabled: buttonIsDisabled };
   }
-
-  const innerNode = (
-    <span {...contentProps} className={contentClassNames}>
-      {buttonIcon}
-      <span {...textProps} className={textClassNames}>
-        {children}
-      </span>
-    </span>
-  );
-
-  // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
-  // this is a button and piggyback off its disabled styles.
-  const Element = href && !isDisabled ? 'a' : 'button';
 
   const relObj: {
     rel?: string;
@@ -201,7 +277,7 @@ export const EuiButton: FunctionComponent<Props> = ({
     target?: string;
   } = {};
 
-  if (href && !isDisabled) {
+  if (href && !buttonIsDisabled) {
     relObj.href = href;
     relObj.rel = getSecureRelForTarget({ href, target, rel });
     relObj.target = target;
@@ -210,13 +286,13 @@ export const EuiButton: FunctionComponent<Props> = ({
   }
 
   return (
-    <Element
-      className={classes}
-      disabled={isDisabled}
+    <EuiButtonDisplay
+      element={element}
+      baseClassName="euiButton"
+      ref={buttonRef}
+      {...elementProps}
       {...relObj}
-      ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
-      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}>
-      {innerNode}
-    </Element>
+      {...rest}
+    />
   );
 };

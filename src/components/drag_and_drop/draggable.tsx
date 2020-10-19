@@ -42,6 +42,9 @@ export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
 export interface EuiDraggableProps
   extends CommonProps,
     Omit<DraggableProps, 'children'> {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElement | DraggableProps['children'];
   className?: string;
   /**
@@ -118,12 +121,11 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                 ),
               })}
             </div>
-            {cloneItems &&
-              (snapshot.isDragging && (
-                <div className={classNames(classes, 'euiDraggable--clone')}>
-                  {DraggableElement}
-                </div>
-              ))}
+            {cloneItems && snapshot.isDragging && (
+              <div className={classNames(classes, 'euiDraggable--clone')}>
+                {DraggableElement}
+              </div>
+            )}
           </Fragment>
         );
       }}

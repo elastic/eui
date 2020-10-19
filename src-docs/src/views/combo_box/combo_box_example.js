@@ -8,7 +8,6 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiLink,
-  EuiCallOut,
   EuiCode,
   EuiComboBox,
   EuiSpacer,
@@ -83,14 +82,27 @@ const singleSelectionSnippet = `<EuiComboBox
   options={options}
   selectedOptions={selectedOptions}
   onChange={onChange}
-  isClearable={false}
+/>`;
+
+import SingleSelectionCustomOptions from './single_selection_custom_options';
+const singleSelectionCustomOptionsSource = require('!!raw-loader!./single_selection_custom_options');
+const singleSelectionCustomOptionsHtml = renderToHtml(
+  SingleSelectionCustomOptions
+);
+const singleSelectionCustomOptionsSnippet = `<EuiComboBox
+  placeholder="Select a single option"
+  singleSelection={{ asPlainText: true }}
+  options={options}
+  selectedOptions={selectedOptions}
+  onCreateOption={onCreateOption}
+  onChange={onChange}
 />`;
 
 import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
 const disallowCustomOptionsSnippet = `<EuiComboBox
-  placeholder="Select from a list of options"
+  placeholder="Select one or more options"
   options={options}
   onChange={onChange}
   onSearchChange={onSearchChange}
@@ -127,7 +139,7 @@ import Virtualized from './virtualized';
 const virtualizedSource = require('!!raw-loader!./virtualized');
 const virtualizedHtml = renderToHtml(Virtualized);
 const virtualizedSnippet = `<EuiComboBox
-  placeholder="Select or create options"
+  placeholder="Select one or more options"
   options={options}
   selectedOptions={selectedOptions}
   onChange={onChange}
@@ -170,6 +182,18 @@ const startingWithSnippet = `<EuiComboBox
   isClearable={true}
 />`;
 
+import DuplicateOptions from './combo_box_duplicates';
+const duplicateOptionsSource = require('!!raw-loader!./combo_box_duplicates');
+const duplicateOptionsHtml = renderToHtml(DuplicateOptions);
+const duplicateOptionsSnippet = `const options = [{
+  label: 'Label',
+  key: 'label1',
+},
+{
+  label: 'Label',
+  key: 'Label2',
+}]`;
+
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
@@ -183,18 +207,6 @@ export const ComboBoxExample = {
           predetermined list.
         </p>
       </EuiText>
-
-      <EuiSpacer />
-
-      <EuiCallOut title="No duplicate option labels allowed" color="warning">
-        <p>
-          The combo box will have errors if any of the options you pass to it
-          share the same label property. It&rsquo;s OK if options have duplicate
-          values, though. This is because the label is the only thing the combo
-          box is concerned about, since this is what the user sees and what is
-          matched against when the user searches.
-        </p>
-      </EuiCallOut>
 
       <EuiSpacer size="l" />
     </Fragment>
@@ -252,8 +264,8 @@ export const ComboBoxExample = {
       text: (
         <p>
           <strong>EuiComboBoxList</strong> uses{' '}
-          <EuiLink href="https://github.com/bvaughn/react-virtualized">
-            react-virtualized
+          <EuiLink href="https://github.com/bvaughn/react-window">
+            react-window
           </EuiLink>{' '}
           to only render visible options to be super fast no matter how many
           options there are.
@@ -406,6 +418,38 @@ export const ComboBoxExample = {
       demo: <SingleSelection />,
     },
     {
+      title: 'Single selection with custom options',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: singleSelectionCustomOptionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: singleSelectionCustomOptionsHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            You can allow the user to select a single option and also allow the
+            creation of custom options. To do that, use the{' '}
+            <EuiCode>singleSelection</EuiCode> in conjunction with the{' '}
+            <EuiCode>onCreateOption</EuiCode> prop.
+          </p>
+          <p>
+            <strong>Note:</strong> Creating custom options might not be obvious
+            to the user, so provide help text explaining that this option is
+            available. You can also customize the custom option text by passing
+            a text to <EuiCode>customOptionText</EuiCode> prop.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiComboBox },
+      snippet: singleSelectionCustomOptionsSnippet,
+      demo: <SingleSelectionCustomOptions />,
+    },
+    {
       title: 'Disallowing custom options',
       source: [
         {
@@ -521,6 +565,30 @@ export const ComboBoxExample = {
       props: { EuiComboBox },
       snippet: startingWithSnippet,
       demo: <StartingWith />,
+    },
+    {
+      title: 'Duplicate labels',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: duplicateOptionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: duplicateOptionsHtml,
+        },
+      ],
+      text: (
+        <p>
+          In general, it is not recommended to use duplicate labels on the
+          options because the user has no way to distinguish between them. If
+          you need duplicate labels, you will need to add a unique{' '}
+          <EuiCode language="js">key</EuiCode> for each option.
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <DuplicateOptions />,
+      snippet: duplicateOptionsSnippet,
     },
   ],
 };

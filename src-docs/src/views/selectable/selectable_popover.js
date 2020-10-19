@@ -18,7 +18,7 @@ import { Options } from './data';
 import { createDataStore } from '../tables/data_store';
 
 export default () => {
-  const countriesStore = createDataStore().countries.map(country => {
+  const countriesStore = createDataStore().countries.map((country) => {
     return {
       id: country.code,
       label: `${country.name}`,
@@ -40,11 +40,11 @@ export default () => {
     setIsPopoverOpen(false);
   };
 
-  const onChange = options => {
+  const onChange = (options) => {
     setOptions(options);
   };
 
-  const onFlyoutChange = options => {
+  const onFlyoutChange = (options) => {
     setCountries(options);
   };
 
@@ -99,6 +99,7 @@ export default () => {
       {isFlyoutVisible && (
         <EuiFlyout ownFocus onClose={closeFlyout} aria-labelledby="flyoutTitle">
           <EuiSelectable
+            aria-label="Popover example"
             searchable
             options={countries}
             onChange={onFlyoutChange}
@@ -135,11 +136,12 @@ export default () => {
       <EuiSpacer />
 
       <EuiSelectable
+        aria-label="Bordered selectable example"
         options={options}
         onChange={() => {}}
         style={{ width: 300 }}
         listProps={{ bordered: true }}>
-        {list => list}
+        {(list) => list}
       </EuiSelectable>
     </Fragment>
   );

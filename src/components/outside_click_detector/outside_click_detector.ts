@@ -32,6 +32,9 @@ export interface EuiEvent extends Event {
 }
 
 interface Props {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElement<any>;
   onOutsideClick: (event: EuiEvent) => void;
   isDisabled?: boolean;
@@ -47,7 +50,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
   // the pointing device (mouse, finger, stylus, etc.).
   // A click event's target can be imprecise, as the value will be
   // the closest common ancestor of the press (mousedown, touchstart)
-  // and relase (mouseup, touchend) events (often <body />) if
+  // and release (mouseup, touchend) events (often <body />) if
   // the the target of each event differs.
   // We need the actual event targets to make the correct decisions
   // about user intention. So, consider the down/start and up/end
@@ -126,7 +129,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
   };
 
   onChildMouseDown = (event: ReactMouseEvent<any, EuiEvent>) => {
-    this.onChildClick(event, e => {
+    this.onChildClick(event, (e) => {
       this.capturedDownIds = e.nativeEvent.euiGeneratedBy;
       if (this.props.onMouseDown) this.props.onMouseDown(e);
       if (this.props.onTouchStart) this.props.onTouchStart(e);
@@ -134,7 +137,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
   };
 
   onChildMouseUp = (event: ReactMouseEvent<any, EuiEvent>) => {
-    this.onChildClick(event, e => {
+    this.onChildClick(event, (e) => {
       if (this.props.onMouseUp) this.props.onMouseUp(e);
       if (this.props.onTouchEnd) this.props.onTouchEnd(e);
     });

@@ -6,12 +6,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -24,7 +24,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -37,12 +37,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -58,11 +58,10 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
-              aria-hidden="true"
-              class="euiButtonEmpty__icon"
+            <span
+              class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -76,7 +75,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -91,12 +90,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -113,11 +112,10 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
-              aria-hidden="true"
-              class="euiButtonEmpty__icon"
+            <span
+              class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -131,7 +129,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -150,12 +148,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -170,11 +168,10 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
-              aria-hidden="true"
-              class="euiButtonEmpty__icon"
+            <span
+              class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -188,7 +185,57 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>,
+]
+`;
+
+exports[`EuiCollapsibleNav props can alter mask props with maskProps without throwing error 1`] = `
+Array [
+  <div />,
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <nav
+        class="euiCollapsibleNav"
+        id="id"
+      >
+        <button
+          class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
+          type="button"
+        >
+          <span
+            class="euiButtonContent euiButtonEmpty__content"
+          >
+            <span
+              class="euiButtonContent__icon"
+              data-euiicon-type="cross"
+            />
+            <span
+              class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
+            >
+              close
+            </span>
+          </span>
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -201,12 +248,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -221,11 +268,10 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
-              aria-hidden="true"
-              class="euiButtonEmpty__icon"
+            <span
+              class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -239,7 +285,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -270,11 +316,10 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
         type="button"
       >
         <span
-          class="euiButtonEmpty__content"
+          class="euiButtonContent euiButtonEmpty__content"
         >
-          <div
-            aria-hidden="true"
-            class="euiButtonEmpty__icon"
+          <span
+            class="euiButtonContent__icon"
             data-euiicon-type="cross"
           />
           <span
@@ -300,12 +345,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="1"
     />
     <div
@@ -320,11 +365,10 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
-              aria-hidden="true"
-              class="euiButtonEmpty__icon"
+            <span
+              class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -338,7 +382,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
   </div>,
@@ -356,12 +400,12 @@ Array [
   <div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="-1"
     />
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="-1"
     />
     <div
@@ -376,11 +420,10 @@ Array [
           type="button"
         >
           <span
-            class="euiButtonEmpty__content"
+            class="euiButtonContent euiButtonEmpty__content"
           >
-            <div
-              aria-hidden="true"
-              class="euiButtonEmpty__icon"
+            <span
+              class="euiButtonContent__icon"
               data-euiicon-type="cross"
             />
             <span
@@ -394,7 +437,7 @@ Array [
     </div>
     <div
       data-focus-guard="true"
-      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="-1"
     />
   </div>,

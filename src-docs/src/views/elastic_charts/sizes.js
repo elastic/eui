@@ -56,25 +56,25 @@ export class Sizes extends Component {
     this.changePropsBasedOnWidth(100);
   };
 
-  onStackedChange = e => {
+  onStackedChange = (e) => {
     this.setState({
       stacked: e.target.checked,
     });
   };
 
-  onMultiChange = multiObject => {
+  onMultiChange = (multiObject) => {
     this.setState({
       ...multiObject,
     });
   };
 
-  onChartTypeChange = optionId => {
+  onChartTypeChange = (optionId) => {
     this.setState({
       toggleIdSelected: optionId,
     });
   };
 
-  onWidthChartsChange = e => {
+  onWidthChartsChange = (e) => {
     this.setState({
       width: e.target.value,
     });
@@ -82,14 +82,15 @@ export class Sizes extends Component {
     this.changePropsBasedOnWidth(e.target.value);
   };
 
-  changePropsBasedOnWidth = width => {
+  changePropsBasedOnWidth = (width) => {
     const data1 = TIME_DATA.slice();
     const data2 = TIME_DATA_2.slice();
     let tooltipProps;
     let legendPosition = 'right';
+    const xAxisFormatter = timeFormatter(niceTimeFormatByDay(1));
     let xAxisTitle = `${formatDate(data1[0][0], dateFormatAliases.date)}`;
-    let xAxisFormatter = timeFormatter(niceTimeFormatByDay(1));
-    let yAxisFormatter;
+    let xAxisStyle;
+    let yAxisStyle;
     let changeDescription =
       'At full width, you should be able to display all the details you need; axes, tick labels and titles, and legends.';
 
@@ -98,7 +99,7 @@ export class Sizes extends Component {
     }
 
     if (width < this.mediumSize) {
-      const headerFormatter = tooltipData => {
+      const headerFormatter = (tooltipData) => {
         return `${formatDate(
           tooltipData.value,
           dateFormatAliases.shortDateTime
@@ -113,7 +114,7 @@ export class Sizes extends Component {
         data1[0][0]
       ).format('H:mm')} - ${moment(data1[data1.length - 1][0]).format('H:mm')}`;
 
-      xAxisFormatter = () => {};
+      xAxisStyle = { tickLabel: { visible: false } };
 
       changeDescription =
         'When the panel becomes narrower that the axes tick labels begin to get clustered, consider moving the axes range to the axes title.';
@@ -132,7 +133,7 @@ export class Sizes extends Component {
     }
 
     if (width < this.xsmallSize) {
-      yAxisFormatter = () => {};
+      yAxisStyle = { tickLabel: { visible: false } };
 
       changeDescription =
         'At severely narrow panels, consider the key indicators of your data and call these out with annotations instead of displaying all values of all axes.';
@@ -145,7 +146,8 @@ export class Sizes extends Component {
       tooltipProps,
       xAxisTitle,
       xAxisFormatter,
-      yAxisFormatter,
+      xAxisStyle,
+      yAxisStyle,
       changeDescription,
     });
   };
@@ -161,7 +163,8 @@ export class Sizes extends Component {
       legendPosition,
       xAxisTitle,
       xAxisFormatter,
-      yAxisFormatter,
+      xAxisStyle,
+      yAxisStyle,
       changeDescription,
     } = this.state;
 
@@ -230,13 +233,10 @@ export class Sizes extends Component {
                 tickFormat={xAxisFormatter}
                 id="bottom-axis"
                 position="bottom"
+                showGridLines={false}
+                style={xAxisStyle}
               />
-              <Axis
-                id="left-axis"
-                position="left"
-                showGridLines
-                tickFormat={yAxisFormatter}
-              />
+              <Axis id="left-axis" position="left" style={yAxisStyle} />
             </Chart>
           </EuiPageContent>
         </EuiPage>
@@ -328,23 +328,20 @@ export class Sizes extends Component {
       : ''
   }
   <Axis
-    title={'${xAxisTitle}'}
-    tickFormat={${
-      width < this.mediumSize
-        ? '() => {}'
-        : 'timeFormatter(niceTimeFormatByDay(1))'
-    }}
     id="bottom-axis"
     position="bottom"
+    title={'${xAxisTitle}'}
+    tickFormat={timeFormatter(niceTimeFormatByDay(1))}
+    showGridLines={false}
+    style={${JSON.stringify(xAxisStyle)}}
   />
   <Axis
     id="left-axis"
     position="left"
-    showGridLines
-    ${width < this.xsmallSize ? 'tickFormat={() => {}}' : ''}
+    style={${JSON.stringify(yAxisStyle)}}
   />
 </Chart>`}>
-            {copy => (
+            {(copy) => (
               <EuiButton
                 fill
                 onClick={copy}

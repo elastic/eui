@@ -7,7 +7,7 @@ import { EuiDatePicker } from '../../../../src/components';
 export default () => {
   const [startDate, setStartDate] = useState(moment());
 
-  const handleChange = date => {
+  const handleChange = (date) => {
     setStartDate(date);
   };
 

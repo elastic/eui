@@ -18,9 +18,13 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 
-import { findTestSubject, requiredProps } from '../../test';
+import {
+  findTestSubject,
+  requiredProps,
+  takeMountedSnapshot,
+} from '../../test';
 import { keys } from '../../services';
 
 import {
@@ -39,7 +43,7 @@ beforeEach(() => {
 
 describe('EuiConfirmModal', () => {
   test('renders EuiConfirmModal', () => {
-    const component = render(
+    const component = mount(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -50,11 +54,13 @@ describe('EuiConfirmModal', () => {
         This is a confirmation modal example
       </EuiConfirmModal>
     );
-    expect(component).toMatchSnapshot();
+    expect(
+      takeMountedSnapshot(component, { hasArrayOutput: true })
+    ).toMatchSnapshot();
   });
 
   test('renders EuiConfirmModal without EuiModalBody, if empty', () => {
-    const component = render(
+    const component = mount(
       <EuiConfirmModal
         title="A confirmation modal"
         onCancel={() => {}}
@@ -64,7 +70,9 @@ describe('EuiConfirmModal', () => {
         {...requiredProps}
       />
     );
-    expect(component).toMatchSnapshot();
+    expect(
+      takeMountedSnapshot(component, { hasArrayOutput: true })
+    ).toMatchSnapshot();
   });
 
   test('onConfirm', () => {
@@ -134,7 +142,7 @@ describe('EuiConfirmModal', () => {
   });
 
   describe('defaultFocusedButton', () => {
-    test('is cancel', done => {
+    test('is cancel', (done) => {
       const component = mount(
         <EuiConfirmModal
           onCancel={onCancel}
@@ -156,7 +164,7 @@ describe('EuiConfirmModal', () => {
       });
     });
 
-    test('is confirm', done => {
+    test('is confirm', (done) => {
       const component = mount(
         <EuiConfirmModal
           onCancel={onCancel}

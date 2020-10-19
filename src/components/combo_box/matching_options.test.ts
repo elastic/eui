@@ -108,6 +108,7 @@ interface GetMatchingOptionsTestCase {
   searchValue: string;
   selectedOptions: EuiComboBoxOptionOption[];
   showPrevSelected: boolean;
+  sortMatchesBy: string;
 }
 
 const testCases: GetMatchingOptionsTestCase[] = [
@@ -123,6 +124,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
     isPreFiltered: false,
     showPrevSelected: false,
     expected: [],
+    sortMatchesBy: 'none',
   },
   {
     options,
@@ -139,6 +141,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       { 'data-test-subj': 'titanOption', label: 'Titan' },
       { label: 'Mimas' },
     ],
+    sortMatchesBy: 'none',
   },
   {
     options,
@@ -152,6 +155,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
     isPreFiltered: false,
     showPrevSelected: true,
     expected: [{ 'data-test-subj': 'saturnOption', label: 'Saturn' }],
+    sortMatchesBy: 'none',
   },
   {
     options,
@@ -169,6 +173,42 @@ const testCases: GetMatchingOptionsTestCase[] = [
       { 'data-test-subj': 'saturnOption', label: 'Saturn' },
       { label: 'Mimas' },
     ],
+    sortMatchesBy: 'none',
+  },
+  {
+    options: [{ label: 'Titan' }, { label: 'Titan' }],
+    selectedOptions: [
+      {
+        label: 'Titan',
+      },
+    ],
+    searchValue: 'titan',
+    isPreFiltered: true,
+    showPrevSelected: false,
+    expected: [
+      // Duplicate options without an key will be treated as the same option
+    ],
+    sortMatchesBy: 'none',
+  },
+  {
+    options: [
+      { label: 'Titan', key: 'titan1' },
+      { label: 'Titan', key: 'titan2' },
+    ],
+    selectedOptions: [
+      {
+        label: 'Titan',
+        key: 'titan2',
+      },
+    ],
+    searchValue: 'titan',
+    isPreFiltered: true,
+    showPrevSelected: false,
+    expected: [
+      // Duplicate options with an key will be treated as different items
+      { label: 'Titan', key: 'titan1' },
+    ],
+    sortMatchesBy: 'none',
   },
 ];
 
@@ -182,7 +222,8 @@ describe('getMatchingOptions', () => {
           testCase.selectedOptions,
           testCase.searchValue,
           testCase.isPreFiltered,
-          testCase.showPrevSelected
+          testCase.showPrevSelected,
+          testCase.sortMatchesBy
         )
       ).toMatchObject(testCase.expected);
     }

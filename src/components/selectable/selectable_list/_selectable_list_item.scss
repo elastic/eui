@@ -1,40 +1,34 @@
 .euiSelectableListItem {
   @include euiFontSizeS;
-  padding: $euiSelectableListItemPadding;
-  display: block; // Necessary to make sure it doesn't force the whole popover to be too wide
+  display: inline-flex; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
   text-align: left;
   color: $euiTextColor;
+  cursor: pointer;
 
   &:not(:last-of-type) {
     border-bottom: $euiSelectableListItemBorder;
   }
 
-  &:hover,
-  &:focus {
+  &-isFocused:not([aria-disabled='true']),
+  &:hover:not([aria-disabled='true']) {
+    color: $euiColorPrimary;
+    background-color: $euiFocusBackgroundColor;
+
     .euiSelectableListItem__text {
       text-decoration: underline;
     }
   }
 
-  &:focus,
-  &-isFocused {
-    cursor: pointer;
-    color: $euiColorPrimary;
-    background-color: $euiFocusBackgroundColor;
-  }
-
-  &[disabled] {
+  &[aria-disabled='true'] {
     color: $euiColorMediumShade;
     cursor: not-allowed;
-
-    &:hover {
-      text-decoration: none;
-    }
   }
 }
 
 .euiSelectableListItem__content {
+  padding: $euiSelectableListItemPadding;
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -42,13 +36,15 @@
 .euiSelectableListItem__icon,
 .euiSelectableListItem__prepend {
   margin-right: $euiSizeM;
+  flex-shrink: 0;
 }
 
 .euiSelectableListItem__append {
   margin-left: $euiSizeM;
+  flex-shrink: 0;
 }
 
 .euiSelectableListItem__text {
   @include euiTextTruncate;
-  flex-grow: 1; // Pushed appended content to the far right
+  flex-grow: 1; // Pushes appended content to the far right
 }

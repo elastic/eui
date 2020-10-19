@@ -46,9 +46,7 @@ export interface EuiDataGridColumnSortingDraggableProps {
   display: string;
 }
 
-export const EuiDataGridColumnSortingDraggable: FunctionComponent<
-  EuiDataGridColumnSortingDraggableProps
-> = ({
+export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
   id,
   display,
   direction,
@@ -99,8 +97,9 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
     <EuiDraggable draggableId={id} index={index} {...rest}>
       {(provided, state) => (
         <div
-          className={`euiDataGridColumnSorting__item ${state.isDragging &&
-            'euiDataGridColumnSorting__item-isDragging'}`}>
+          className={`euiDataGridColumnSorting__item ${
+            state.isDragging && 'euiDataGridColumnSorting__item-isDragging'
+          }`}>
           <EuiScreenReaderOnly>
             <p>
               <EuiI18n
@@ -163,6 +162,8 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 {(toggleLegend: ReactChild) => (
                   <EuiButtonGroup
                     legend={`${toggleLegend} ${id}`}
+                    name={id}
+                    isFullWidth
                     options={toggleOptions}
                     data-test-subj={`-${direction}`}
                     buttonSize="compressed"

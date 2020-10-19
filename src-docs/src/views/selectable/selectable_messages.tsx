@@ -1,9 +1,6 @@
 import React, { useState, Fragment } from 'react';
 
-import {
-  EuiSelectable,
-  EuiSelectableMessage,
-} from '../../../../src/components/selectable';
+import { EuiSelectable } from '../../../../src/components/selectable';
 import { EuiSwitch } from '../../../../src/components/form/switch';
 import { EuiSpacer } from '../../../../src/components/spacer';
 
@@ -11,27 +8,32 @@ export default () => {
   const [useCustomMessage, setUseCustomMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const customMessage = (
-    <EuiSelectableMessage>You have no spice</EuiSelectableMessage>
-  );
+  const emptyMessage = 'You have no spice';
+  const loadingMessage = "Hey, I'm loading here!";
 
   return (
     <Fragment>
       <EuiSwitch
         label="Custom message"
-        onChange={e => setUseCustomMessage(e.target.checked)}
-        checked={!isLoading && useCustomMessage}
-        disabled={isLoading}
+        onChange={(e) => setUseCustomMessage(e.target.checked)}
+        checked={useCustomMessage}
       />
       &emsp;
       <EuiSwitch
         label="Show loading"
-        onChange={e => setIsLoading(e.target.checked)}
+        onChange={(e) => setIsLoading(e.target.checked)}
         checked={isLoading}
       />
       <EuiSpacer />
-      <EuiSelectable options={[]} style={{ width: 200 }} isLoading={isLoading}>
-        {list => (useCustomMessage && !isLoading ? customMessage : list)}
+      <EuiSelectable
+        aria-label="Messaging example"
+        options={[]}
+        style={{ width: 300 }}
+        listProps={{ bordered: true }}
+        isLoading={isLoading}
+        loadingMessage={useCustomMessage ? loadingMessage : undefined}
+        emptyMessage={useCustomMessage ? emptyMessage : undefined}>
+        {(list) => list}
       </EuiSelectable>
     </Fragment>
   );

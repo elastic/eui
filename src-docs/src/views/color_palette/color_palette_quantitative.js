@@ -35,7 +35,7 @@ const paletteNames = Object.keys(paletteData);
 export default () => {
   const [length, setLength] = useState(5);
 
-  const onLengthChange = e => {
+  const onLengthChange = (e) => {
     setLength(e.currentTarget.value);
   };
 
@@ -54,14 +54,14 @@ export default () => {
 
       <EuiSpacer />
 
-      {paletteNames.map(paletteName => (
+      {paletteNames.map((paletteName) => (
         <EuiFlexGroup alignItems="center" key={paletteName}>
           <EuiFlexItem grow={false}>
             <EuiFlexGroup
               className="guideColorPalette__swatchHolder"
               gutterSize="none"
               responsive={false}>
-              {paletteData[paletteName](Number(length)).map(hexCode => (
+              {paletteData[paletteName](Number(length)).map((hexCode) => (
                 <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>

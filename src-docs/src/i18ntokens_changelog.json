@@ -1,5 +1,200 @@
 [
   {
+    "version": "29.1.0",
+    "changes": [
+      {
+        "token": "euiHeaderLinks.openNavigationMenu",
+        "changeType": "modified",
+        "value": "Open menu"
+      },
+      {
+        "token": "euiHeaderLinks.appNavigation",
+        "changeType": "modified",
+        "value": "App menu"
+      },
+      {
+        "token": "euiColumnActions.hideColumn",
+        "changeType": "added",
+        "value": "Hide column"
+      },
+      {
+        "token": "euiColumnActions.sortAsc",
+        "changeType": "added",
+        "value": "Sort schema asc"
+      },
+      {
+        "token": "euiColumnActions.sortDesc",
+        "changeType": "added",
+        "value": "Sort schema desc"
+      },
+      {
+        "token": "euiColumnActions.moveLeft",
+        "changeType": "added",
+        "value": "Move left"
+      },
+      {
+        "token": "euiColumnActions.moveRight",
+        "changeType": "added",
+        "value": "Move right"
+      },
+      {
+        "token": "euiDataGridHeaderCell.headerActions",
+        "changeType": "added",
+        "value": "Header actions"
+      }
+    ]
+  },
+  {
+    "version": "28.2.0",
+    "changes": [
+      {
+        "token": "euiSelectableTemplateSitewide.loadingResults",
+        "changeType": "added",
+        "value": "Loading results"
+      },
+      {
+        "token": "euiSelectableTemplateSitewide.noResults",
+        "changeType": "added",
+        "value": "No results available"
+      },
+      {
+        "token": "euiSelectableTemplateSitewide.onFocusBadgeGoTo",
+        "changeType": "added",
+        "value": "Go to"
+      }
+    ]
+  },
+  {
+    "version": "28.1.0",
+    "changes": [
+      {
+        "token": "euiAccordion.isLoading",
+        "changeType": "added",
+        "value": "Loading"
+      }
+    ]
+  },
+  {
+    "version": "28.0.0",
+    "changes": [
+      {
+        "token": "euiMarkdownEditorFooter.uploadingFiles",
+        "changeType": "added",
+        "value": "Click to upload files"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.openUploadModal",
+        "changeType": "added",
+        "value": "Open upload files modal"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.unsupportedFileType",
+        "changeType": "added",
+        "value": "File type not supported"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.supportedFileTypes",
+        "changeType": "added",
+        "value": "Supported files: {supportedFileTypes}"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.showSyntaxErrors",
+        "changeType": "added",
+        "value": "Show errors"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.showMarkdownHelp",
+        "changeType": "added",
+        "value": "Show markdown help"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.errorsTitle",
+        "changeType": "added",
+        "value": "Errors"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxTitle",
+        "changeType": "added",
+        "value": "Syntax help"
+      },
+      {
+        "token": "euiMarkdownEditorToolbar.editor",
+        "changeType": "added",
+        "value": "Editor"
+      },
+      {
+        "token": "euiMarkdownEditorToolbar.previewMarkdown",
+        "changeType": "added",
+        "value": "Preview"
+      }
+    ]
+  },
+  {
+    "version": "27.3.0",
+    "changes": [
+      {
+        "token": "euiComboBoxOptionsList.createCustomOption",
+        "changeType": "modified",
+        "value": "Add {searchValue} as a custom option"
+      },
+      {
+        "token": "euiComboBoxOptionsList.delimiterMessage",
+        "changeType": "modified",
+        "value": "Add each item separated by {delimiter}"
+      }
+    ]
+  },
+  {
+    "version": "27.2.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "modified",
+        "value": "To exclude this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "modified",
+        "value": "To deselect this option, press enter."
+      }
+    ]
+  },
+  {
+    "version": "27.0.0",
+    "changes": [
+      {
+        "token": "euiProgress.valueText",
+        "changeType": "added",
+        "value": "{value}%"
+      },
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "added",
+        "value": "Included option."
+      },
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "added",
+        "value": "To exclude this option, press enter or space."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOption",
+        "changeType": "added",
+        "value": "Excluded option."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "added",
+        "value": "To deselect this option, press enter or space."
+      },
+      {
+        "token": "euiSelectable.placeholderName",
+        "changeType": "added",
+        "value": "Filter options"
+      }
+    ]
+  },
+  {
     "version": "26.0.0",
     "changes": [
       {

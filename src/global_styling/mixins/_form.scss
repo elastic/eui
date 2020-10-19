@@ -68,8 +68,11 @@
 @mixin euiFormControlText {
   @include euiFont;
   font-size: $euiFontSizeS;
-  line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
+
+  @include internetExplorerOnly {
+    line-height: 1em; // fixes text alignment in IE
+  }
 
   // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
@@ -213,7 +216,7 @@
   @include euiFormControlText;
 
   border: none;
-  border-radius: 0;
+  border-radius: $euiFormControlBorderRadius;
   padding: $euiFormControlPadding;
 
   @if ($includeStates) {
@@ -298,7 +301,7 @@
   @if $type == 'round' {
     border-radius: $size;
   } @else if $type == 'square' {
-    border-radius: $euiBorderRadius;
+    border-radius: $euiCheckboxBorderRadius;
   }
   // sass-lint:disable-block indentation
   transition: background-color $euiAnimSpeedFast ease-in,

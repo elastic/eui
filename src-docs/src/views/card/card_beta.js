@@ -10,7 +10,7 @@ import {
 const icons = ['dashboard', 'monitoring', 'watches'];
 const badges = [null, 'Beta', 'Lab'];
 
-const cardNodes = icons.map(function(item, index) {
+const cardNodes = icons.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard
@@ -29,4 +29,4 @@ const cardNodes = icons.map(function(item, index) {
   );
 });
 
-export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;
+export default () => <EuiFlexGroup gutterSize="l">{cardNodes} </EuiFlexGroup>;

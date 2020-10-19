@@ -17,12 +17,12 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <span
-    aria-current="false"
-    class="euiBreadcrumb"
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
   >
     Reptiles
-  </span>
+  </button>
   <div
     class="euiBreadcrumbSeparator"
   />

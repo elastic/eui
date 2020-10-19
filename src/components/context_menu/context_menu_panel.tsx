@@ -32,6 +32,7 @@ import { EuiIcon } from '../icon';
 import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
+import { EuiContextMenuItem } from './context_menu_item';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -59,7 +60,7 @@ export interface EuiContextMenuPanelProps {
 type Props = CommonProps &
   Omit<
     HTMLAttributes<HTMLDivElement>,
-    'onKeyDown' | 'tabIndex' | 'onAnimationEnd'
+    'onKeyDown' | 'tabIndex' | 'onAnimationEnd' | 'title'
   > &
   EuiContextMenuPanelProps;
 
@@ -79,7 +80,6 @@ interface State {
     items: Props['items'];
   };
   menuItems: HTMLElement[];
-  isTransitioning: boolean;
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
@@ -104,7 +104,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         items: this.props.items,
       },
       menuItems: [],
-      isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
       currentHeight: undefined,
     };
@@ -226,7 +225,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
-      if (this.state.isTransitioning) {
+      if (this.props.transitionType) {
         return;
       }
 
@@ -261,10 +260,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   }
 
   onTransitionComplete = () => {
-    this.setState({
-      isTransitioning: false,
-    });
-
     if (this.props.onTransitionComplete) {
       this.props.onTransitionComplete();
     }
@@ -293,11 +288,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       nextState.prevProps = { items: nextProps.items };
     }
 
-    if (nextProps.transitionType) {
-      needsUpdate = true;
-      nextState.isTransitioning = true;
-    }
-
     if (needsUpdate) {
       return nextState;
     }
@@ -312,7 +302,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     // Create fingerprint of all item's watched properties
     if (items.length && watchedItemProps && watchedItemProps.length) {
       return JSON.stringify(
-        items.map(item => {
+        items.map((item) => {
           // Create object of item properties and values
           const props: any = {
             key: item.key,
@@ -349,7 +339,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       return true;
     }
 
-    if (nextState.isTransitioning !== this.state.isTransitioning) {
+    if (nextProps.transitionType !== this.props.transitionType) {
       return true;
     }
 
@@ -443,7 +433,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
             className="euiContextMenuPanelTitle"
             type="button"
             onClick={onClose}
-            ref={node => {
+            ref={(node) => {
               this.backButton = node;
             }}
             data-test-subj="contextMenuPanelTitleButton">
@@ -470,8 +460,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     const classes = classNames(
       'euiContextMenuPanel',
       className,
-      this.state.isTransitioning &&
-        transitionDirection &&
+      transitionDirection &&
         transitionType &&
         transitionDirectionAndTypeToClassNameMap[transitionDirection]
         ? transitionDirectionAndTypeToClassNameMap[transitionDirection][
@@ -483,9 +472,11 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     const content =
       items && items.length
         ? items.map((MenuItem, index) =>
-            cloneElement(MenuItem, {
-              buttonRef: this.menuItemRef.bind(this, index),
-            })
+            MenuItem.type === EuiContextMenuItem
+              ? cloneElement(MenuItem, {
+                  buttonRef: this.menuItemRef.bind(this, index),
+                })
+              : MenuItem
           )
         : children;
 
@@ -501,7 +492,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
         <div ref={this.contentRef}>
           <EuiResizeObserver onResize={() => this.updateHeight()}>
-            {resizeRef => <div ref={resizeRef}>{content}</div>}
+            {(resizeRef) => <div ref={resizeRef}>{content}</div>}
           </EuiResizeObserver>
         </div>
       </div>

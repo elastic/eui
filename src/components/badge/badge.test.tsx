@@ -130,17 +130,31 @@ describe('EuiBadge', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         it(`${color} is rendered`, () => {
           const component = render(<EuiBadge color={color}>Content</EuiBadge>);
 
           expect(component).toMatchSnapshot();
         });
       });
+
+      it('accepts rgba', () => {
+        const component = render(
+          <EuiBadge color="rgba(255,255,255,1)">Content</EuiBadge>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('accepts hex', () => {
+        const component = render(<EuiBadge color="#333">Content</EuiBadge>);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('iconSide', () => {
-      ICON_SIDES.forEach(iconSide => {
+      ICON_SIDES.forEach((iconSide) => {
         it(`${iconSide} is rendered`, () => {
           const component = render(
             <EuiBadge iconType="user" iconSide={iconSide}>
@@ -162,7 +176,7 @@ describe('EuiBadge', () => {
         expect(component).toMatchSnapshot();
       });
 
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         it(`is rendered with ${color}`, () => {
           const component = render(
             <EuiBadge style={style} color={color}>

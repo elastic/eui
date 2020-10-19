@@ -79,9 +79,9 @@ const statusMap: StatusMap = {
   loading: {},
 };
 
-export const EuiSuggestInput: FunctionComponent<
-  EuiSuggestInputProps
-> = props => {
+export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
+  props
+) => {
   const [value, setValue] = useState<string>('');
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
@@ -139,7 +139,7 @@ export const EuiSuggestInput: FunctionComponent<
     <EuiFieldText
       value={value}
       fullWidth
-      append={appendArray}
+      append={appendArray.length ? appendArray : undefined}
       isLoading={status === 'loading' ? true : false}
       onChange={onFieldChange}
       {...rest}
@@ -147,15 +147,14 @@ export const EuiSuggestInput: FunctionComponent<
   );
 
   return (
-    <div className={classes}>
-      <EuiInputPopover
-        input={customInput}
-        isOpen={isPopoverOpen}
-        panelPaddingSize="none"
-        fullWidth
-        closePopover={closePopover}>
-        <div>{suggestions}</div>
-      </EuiInputPopover>
-    </div>
+    <EuiInputPopover
+      className={classes}
+      input={customInput}
+      isOpen={isPopoverOpen}
+      panelPaddingSize="none"
+      fullWidth
+      closePopover={closePopover}>
+      {suggestions}
+    </EuiInputPopover>
   );
 };

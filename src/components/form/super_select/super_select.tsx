@@ -101,6 +101,14 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
   private popoverRef: HTMLDivElement | null = null;
+  private buttonRef: HTMLElement | null = null;
+  private setButtonRef = (popoverButtonRef: HTMLDivElement | null) => {
+    if (popoverButtonRef) {
+      this.buttonRef = popoverButtonRef.querySelector('button')!;
+    } else {
+      this.buttonRef = null;
+    }
+  };
   private _isMounted: boolean = false;
 
   state = {
@@ -177,6 +185,9 @@ export class EuiSuperSelect<T extends string> extends Component<
     });
     if (this.props.onChange) {
       this.props.onChange(value);
+    }
+    if (this.buttonRef) {
+      this.buttonRef.focus();
     }
   };
 
@@ -317,7 +328,7 @@ export class EuiSuperSelect<T extends string> extends Component<
           onClick={() => this.itemClicked(value)}
           onKeyDown={this.onItemKeyDown}
           layoutAlign={itemLayoutAlign}
-          buttonRef={node => this.setItemNode(node, index)}
+          buttonRef={(node) => this.setItemNode(node, index)}
           role="option"
           id={value}
           aria-selected={valueOfSelected === value}
@@ -339,7 +350,9 @@ export class EuiSuperSelect<T extends string> extends Component<
         anchorPosition="downCenter"
         ownFocus={false}
         popoverRef={this.setPopoverRef}
-        hasArrow={false}>
+        buttonRef={this.setButtonRef}
+        hasArrow={false}
+        buffer={0}>
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n

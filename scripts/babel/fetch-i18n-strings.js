@@ -18,6 +18,36 @@ function getCodeForExpression(expressionNode) {
   ])).code;
 }
 
+function handleHookPath(path) {
+  const symbols = [];
+
+  const arguments = path.node.arguments;
+
+  if (arguments[0].type !== 'StringLiteral') return symbols;
+
+  const token = arguments[0].value;
+  const defStringNode = arguments[1];
+  let defString;
+  let highlighting;
+
+  if (defStringNode.type === 'StringLiteral') {
+    defString = defStringNode.value;
+    highlighting = 'string';
+  } else if (defStringNode.type === 'ArrowFunctionExpression') {
+    defString = getCodeForExpression(defStringNode);
+    highlighting = 'code';
+  }
+
+  symbols.push({
+    token,
+    defString,
+    highlighting,
+    loc: path.node.loc,
+  });
+
+  return symbols;
+}
+
 function handleJSXPath(path) {
   const symbols = [];
 
@@ -76,7 +106,17 @@ function traverseFile(filepath) {
             );
           }
         }
-      }
+      },
+      CallExpression(path) {
+        if (path.node.callee && path.node.callee.type === 'Identifier' && path.node.callee.name === 'useEuiI18n') {
+          const symbols = handleHookPath(path);
+          for (let i = 0; i < symbols.length; i++) {
+            tokenMappings.push(
+              { ...symbols[i], filepath: relative(rootDir, filepath) }
+            );
+          }
+        }
+      },
     }
   );
 }
@@ -85,7 +125,7 @@ const files = glob.sync(
   '**/*.@(js|ts|tsx)',
   { cwd: srcDir, realpath: true },
 ).filter(filepath => {
-  if (filepath.endsWith('index.d.ts')) return false;
+  if (filepath.endsWith('.d.ts')) return false;
   if (filepath.endsWith('test.ts')) return false;
   if (filepath.endsWith('test.tsx')) return false;
   if (filepath.endsWith('test.js')) return false;

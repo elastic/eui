@@ -93,7 +93,7 @@ export class EuiTablePagination extends Component<Props, State> {
       </EuiButtonEmpty>
     );
 
-    const items = itemsPerPageOptions.map(itemsPerPageOption => (
+    const items = itemsPerPageOptions.map((itemsPerPageOption) => (
       <EuiContextMenuItem
         key={itemsPerPageOption}
         icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
@@ -116,7 +116,6 @@ export class EuiTablePagination extends Component<Props, State> {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="upRight">
         <EuiContextMenuPanel items={items} />
       </EuiPopover>

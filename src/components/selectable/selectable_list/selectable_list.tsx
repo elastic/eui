@@ -17,20 +17,27 @@
  * under the License.
  */
 
-import React, { Component, HTMLAttributes, ReactNode } from 'react';
+import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-// eslint-disable-next-line import/named
-import { List, AutoSizer, ListProps } from 'react-virtualized';
-import { htmlIdGenerator } from '../../../services';
 import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
 } from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
 import { EuiSelectableOption } from '../selectable_option';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import {
+  FixedSizeList,
+  ListProps,
+  ListChildComponentProps as ReactWindowListChildComponentProps,
+  areEqual,
+} from 'react-window';
 
-export type EuiSelectableSingleOptionProps = 'always' | boolean;
+interface ListChildComponentProps<T>
+  extends ReactWindowListChildComponentProps {
+  data: Array<EuiSelectableOption<T>>;
+}
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = CommonProps &
@@ -49,27 +56,33 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * Show the check/cross selection indicator icons
      */
     showIcons?: boolean;
-    singleSelection?: EuiSelectableSingleOptionProps;
+    singleSelection?: 'always' | boolean;
     /**
-     * Any props to send specifically to the react-virtualized `List`
+     * Any props to send specifically to the react-window `FixedSizeList`
      */
-    virtualizedProps?: ListProps;
+    windowProps?: Partial<ListProps>;
     /**
      * Adds a border around the list to indicate the bounds;
      * Useful when the list scrolls, otherwise use your own container
      */
     bordered?: boolean;
+    /**
+     * When enabled by setting to either `true` or passing custom text,
+     * shows a hollow badge as an append (far right) when the item is focused.
+     * The default content when `true` is `↩ to select/deselect/include/exclude`
+     */
+    onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
   };
 
-export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
+export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   /**
    * All possible options
    */
-  options: EuiSelectableOption[];
+  options: Array<EuiSelectableOption<T>>;
   /**
    * Filtered options list (if applicable)
    */
-  visibleOptions?: EuiSelectableOption[];
+  visibleOptions?: Array<EuiSelectableOption<T>>;
   /**
    * Search value to highlight on the option render
    */
@@ -77,13 +90,13 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**
    * Returns the array of options with altered checked state
    */
-  onOptionClick: (options: EuiSelectableOption[]) => void;
+  onOptionClick: (options: Array<EuiSelectableOption<T>>) => void;
   /**
    * Custom render for the label portion of the option;
    * Takes (option, searchValue), returns ReactNode
    */
   renderOption?: (
-    option: EuiSelectableOption,
+    option: EuiSelectableOption<T>,
     searchValue: string
   ) => ReactNode;
   /**
@@ -97,20 +110,154 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
    * and not just on and undefined
    */
   allowExclusions?: boolean;
-  rootId?: (appendix?: string) => string;
+  searchable?: boolean;
+  makeOptionId: (index: number | undefined) => string;
+  listId: string;
+  setActiveOptionIndex: (index: number, cb?: () => void) => void;
 };
 
-export class EuiSelectableList extends Component<EuiSelectableListProps> {
+export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
   };
 
-  rootId = this.props.rootId || htmlIdGenerator();
+  listRef: FixedSizeList | null = null;
+  listBoxRef: HTMLUListElement | null = null;
 
-  constructor(props: EuiSelectableListProps) {
+  setListRef = (ref: FixedSizeList | null) => {
+    this.listRef = ref;
+
+    if (ref && this.props.activeOptionIndex) {
+      ref.scrollToItem(this.props.activeOptionIndex, 'auto');
+    }
+  };
+
+  removeScrollableTabStop = (ref: HTMLDivElement | null) => {
+    // Firefox adds a tab stop for scrollable containers
+    // We handle this inside so need to stop firefox from doing its thing
+    if (ref) {
+      ref.setAttribute('tabindex', '-1');
+    }
+  };
+
+  setListBoxRef = (ref: HTMLUListElement | null) => {
+    this.listBoxRef = ref;
+    const {
+      listId,
+      searchable,
+      singleSelection,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
+      'aria-describedby': ariaDescribedby,
+    } = this.props;
+
+    if (ref) {
+      ref.setAttribute('id', listId);
+      ref.setAttribute('role', 'listbox');
+
+      if (searchable !== true) {
+        ref.setAttribute('tabindex', '0');
+
+        if (singleSelection !== 'always' && singleSelection !== true) {
+          ref.setAttribute('aria-multiselectable', 'true');
+        }
+      }
+
+      if (typeof ariaLabel === 'string') {
+        ref.setAttribute('aria-label', ariaLabel);
+      } else if (typeof ariaLabelledby === 'string') {
+        ref.setAttribute('aria-labelledby', ariaLabelledby);
+      }
+
+      if (typeof ariaDescribedby === 'string') {
+        ref.setAttribute('aria-labelledby', ariaDescribedby);
+      }
+    }
+  };
+
+  componentDidUpdate() {
+    const { activeOptionIndex } = this.props;
+
+    if (this.listBoxRef && this.props.searchable !== true) {
+      this.listBoxRef.setAttribute(
+        'aria-activedescendant',
+        `${this.props.makeOptionId(activeOptionIndex)}`
+      );
+    }
+
+    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
+      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
+    }
+  }
+
+  constructor(props: EuiSelectableListProps<T>) {
     super(props);
   }
+
+  ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
+    const option = data[index];
+    const {
+      label,
+      isGroupLabel,
+      checked,
+      disabled,
+      prepend,
+      append,
+      ref,
+      key,
+      searchableLabel,
+      ...optionRest
+    } = option;
+
+    if (isGroupLabel) {
+      return (
+        <li
+          role="presentation"
+          className="euiSelectableList__groupLabel"
+          style={style}
+          // @ts-ignore complex
+          {...(optionRest as HTMLAttributes<HTMLLIElement>)}>
+          {prepend}
+          {label}
+          {append}
+        </li>
+      );
+    }
+
+    const labelCount = data.filter((option) => option.isGroupLabel).length;
+
+    return (
+      <EuiSelectableListItem
+        id={this.props.makeOptionId(index)}
+        style={style}
+        key={key || label.toLowerCase()}
+        onMouseDown={() => {
+          this.props.setActiveOptionIndex(index);
+        }}
+        onClick={() => this.onAddOrRemoveOption(option)}
+        ref={ref ? ref.bind(null, index) : undefined}
+        isFocused={this.props.activeOptionIndex === index}
+        showIcons={this.props.showIcons}
+        title={searchableLabel || label}
+        checked={checked}
+        disabled={disabled}
+        prepend={prepend}
+        append={append}
+        aria-posinset={index + 1 - labelCount}
+        aria-setsize={data.length - labelCount}
+        onFocusBadge={this.props.onFocusBadge}
+        allowExclusions={this.props.allowExclusions}
+        // @ts-ignore complex
+        {...(optionRest as EuiSelectableListItemProps)}>
+        {this.props.renderOption ? (
+          this.props.renderOption(option, this.props.searchValue)
+        ) : (
+          <EuiHighlight search={this.props.searchValue}>{label}</EuiHighlight>
+        )}
+      </EuiSelectableListItem>
+    );
+  }, areEqual);
 
   render() {
     const {
@@ -120,15 +267,22 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       onOptionClick,
       renderOption,
       height: forcedHeight,
-      virtualizedProps,
+      windowProps,
       rowHeight,
       activeOptionIndex,
-      rootId,
+      makeOptionId,
       showIcons,
       singleSelection,
       visibleOptions,
       allowExclusions,
       bordered,
+      searchable,
+      onFocusBadge,
+      listId,
+      setActiveOptionIndex,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
+      'aria-describedby': ariaDescribedby,
       ...rest
     } = this.props;
 
@@ -168,92 +322,52 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       <div className={classes} {...rest}>
         <AutoSizer disableHeight={!heightIsFull}>
           {({ width, height }) => (
-            <List
-              id={this.rootId('listbox')}
+            <FixedSizeList
+              ref={this.setListRef}
+              outerRef={this.removeScrollableTabStop}
               className="euiSelectableList__list"
-              role="listbox"
+              data-skip-axe="scrollable-region-focusable"
               width={width}
               height={calculatedHeight || height}
-              rowCount={optionArray.length}
-              rowHeight={rowHeight}
-              scrollToIndex={activeOptionIndex}
-              {...virtualizedProps}
-              rowRenderer={({ key: rowKey, index, style }) => {
-                const option = optionArray[index];
-                const {
-                  label,
-                  isGroupLabel,
-                  checked,
-                  disabled,
-                  prepend,
-                  append,
-                  ref,
-                  key,
-                  ...optionRest
-                } = option;
-                if (isGroupLabel) {
-                  return (
-                    <div
-                      className="euiSelectableList__groupLabel"
-                      key={rowKey}
-                      style={style}
-                      {...optionRest as HTMLAttributes<HTMLDivElement>}>
-                      {prepend}
-                      {label}
-                      {append}
-                    </div>
-                  );
-                }
-                return (
-                  <EuiSelectableListItem
-                    id={this.rootId(`_option-${index}`)}
-                    style={style}
-                    key={key || option.label.toLowerCase()}
-                    onClick={() => this.onAddOrRemoveOption(option)}
-                    ref={ref ? ref.bind(null, index) : undefined}
-                    isFocused={activeOptionIndex === index}
-                    title={label}
-                    showIcons={showIcons}
-                    checked={checked}
-                    disabled={disabled}
-                    prepend={prepend}
-                    append={append}
-                    {...optionRest as EuiSelectableListItemProps}>
-                    {renderOption ? (
-                      renderOption(option, searchValue)
-                    ) : (
-                      <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-                    )}
-                  </EuiSelectableListItem>
-                );
-              }}
-            />
+              itemCount={optionArray.length}
+              itemData={optionArray}
+              itemSize={rowHeight}
+              innerElementType="ul"
+              innerRef={this.setListBoxRef}
+              {...windowProps}>
+              {this.ListRow}
+            </FixedSizeList>
           )}
         </AutoSizer>
       </div>
     );
   }
 
-  onAddOrRemoveOption = (option: EuiSelectableOption) => {
+  onAddOrRemoveOption = (option: EuiSelectableOption<T>) => {
     if (option.disabled) {
       return;
     }
 
-    const { allowExclusions } = this.props;
+    const { allowExclusions, options, visibleOptions = options } = this.props;
 
-    if (option.checked === 'on' && allowExclusions) {
-      this.onExcludeOption(option);
-    } else if (option.checked === 'on' || option.checked === 'off') {
-      this.onRemoveOption(option);
-    } else {
-      this.onAddOption(option);
-    }
+    this.props.setActiveOptionIndex(
+      visibleOptions.findIndex(({ label }) => label === option.label),
+      () => {
+        if (option.checked === 'on' && allowExclusions) {
+          this.onExcludeOption(option);
+        } else if (option.checked === 'on' || option.checked === 'off') {
+          this.onRemoveOption(option);
+        } else {
+          this.onAddOption(option);
+        }
+      }
+    );
   };
 
-  private onAddOption = (addedOption: EuiSelectableOption) => {
+  private onAddOption = (addedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, options, singleSelection } = this.props;
 
-    const updatedOptions = options.map(option => {
+    const updatedOptions = options.map((option) => {
       // if singleSelection is enabled, uncheck any selected option(s)
       const updatedOption = { ...option };
       if (singleSelection) {
@@ -271,10 +385,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onRemoveOption = (removedOption: EuiSelectableOption) => {
+  private onRemoveOption = (removedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, singleSelection, options } = this.props;
 
-    const updatedOptions = options.map(option => {
+    const updatedOptions = options.map((option) => {
       const updatedOption = { ...option };
 
       if (option === removedOption && singleSelection !== 'always') {
@@ -287,11 +401,11 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onExcludeOption = (excludedOption: EuiSelectableOption) => {
+  private onExcludeOption = (excludedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
 
-    const updatedOptions = options.map(option => {
+    const updatedOptions = options.map((option) => {
       const updatedOption = { ...option };
 
       if (option === excludedOption) {

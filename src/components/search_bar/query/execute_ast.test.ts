@@ -181,27 +181,39 @@ describe('execute ast', () => {
   });
 
   test('is clause - applied', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.must('open')]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john');
   });
 
   test('is clause - not applied', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.mustNot('open')]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
   });
 
   test('is clause - applied - missing field', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.must('closed')]), items);
     expect(result).toHaveLength(0);
   });
 
   test('is clause - not applied - missing field', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.mustNot('closed')]), items);
     expect(result).toHaveLength(2);
   });
@@ -254,7 +266,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(3);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('bar');
     expect(names).toContain('foo bar');
@@ -269,7 +281,7 @@ describe('execute ast', () => {
     ];
     const result = executeAst(AST.create([AST.Field.must.gt('age', 5)]), items);
     expect(result).toHaveLength(3);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('foo');
     expect(names).toContain('bar');
     expect(names).toContain('foo bar');
@@ -287,7 +299,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(4);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('foo');
     expect(names).toContain('bar');
@@ -303,7 +315,7 @@ describe('execute ast', () => {
     ];
     const result = executeAst(AST.create([AST.Field.must.lt('age', 7)]), items);
     expect(result).toHaveLength(2);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('foo');
   });
@@ -320,7 +332,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(2);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('foo');
   });
@@ -337,7 +349,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(2);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('foo');
     expect(names).toContain('foo bar');
   });
@@ -357,7 +369,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(1);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('foo');
   });
 
@@ -379,7 +391,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(2);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('foo bar');
   });
@@ -401,7 +413,7 @@ describe('execute ast', () => {
       items
     );
     expect(result).toHaveLength(1);
-    const names = result.map(item => item.name);
+    const names = result.map((item) => item.name);
     expect(names).toContain('bar');
   });
 

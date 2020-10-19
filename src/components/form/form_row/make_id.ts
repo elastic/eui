@@ -23,9 +23,7 @@ function makeId(): string {
   console.log(
     'WARNING: makeId is deprecated. Use htmlIdGenerator from @elastic/eui instead.'
   );
-  return Math.random()
-    .toString(36)
-    .slice(-8);
+  return Math.random().toString(36).slice(-8);
 }
 
 export default makeId;

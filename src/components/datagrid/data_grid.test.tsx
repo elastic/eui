@@ -178,10 +178,9 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter
-    .find('button[className*="euiButtonGroup__button--selected"]')
-    .closest('EuiToggle')
-    .find('input[className*="euiButtonToggle__input"]');
+  const activeSort = columnSorter.find(
+    'label[className*="euiButtonGroupButton-isSelected"]'
+  );
 
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
@@ -266,10 +265,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `input[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `label[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    sortButton.simulate('change', [undefined, direction]);
+    sortButton.find('input').simulate('change', [undefined, direction]);
   }
 
   closeColumnSorter(datagrid);
@@ -543,7 +542,7 @@ describe('EuiDataGrid', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell').map(cell => {
+        component.find('.euiDataGridRowCell').map((cell) => {
           const props = cell.props();
           delete props.children;
           return props;
@@ -790,7 +789,7 @@ Array [
 
         const gridCellClassNames = component
           .find('[className*="euiDataGridRowCell--"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
   "euiDataGridRowCell euiDataGridRowCell--numeric",
@@ -828,7 +827,7 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
   "euiDataGridRowCell euiDataGridRowCell--numeric",
@@ -860,7 +859,7 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
   "euiDataGridRowCell euiDataGridRowCell--numeric",
@@ -884,7 +883,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
-            columns={Object.keys(values).map(id => ({ id }))}
+            columns={Object.keys(values).map((id) => ({ id }))}
             columnVisibility={{
               visibleColumns: Object.keys(values),
               setVisibleColumns: () => {},
@@ -897,7 +896,7 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
   "euiDataGridRowCell euiDataGridRowCell--numeric",
@@ -919,7 +918,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
-            columns={Object.keys(values).map(id => ({ id }))}
+            columns={Object.keys(values).map((id) => ({ id }))}
             columnVisibility={{
               visibleColumns: Object.keys(values),
               setVisibleColumns: () => {},
@@ -946,7 +945,7 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
   "euiDataGridRowCell euiDataGridRowCell--numeric",
@@ -1036,7 +1035,7 @@ Array [
               pageIndex: 0,
               pageSize: 3,
               pageSizeOptions: [3, 6, 10],
-              onChangePage: jest.fn(pageIndex => {
+              onChangePage: jest.fn((pageIndex) => {
                 const pagination = component.props().pagination;
                 component.setProps({
                   pagination: { ...pagination, pageIndex },
@@ -1097,7 +1096,7 @@ Array [
               pageIndex: 0,
               pageSize: 3,
               pageSizeOptions: [3, 6, 10],
-              onChangePage: jest.fn(pageIndex => {
+              onChangePage: jest.fn((pageIndex) => {
                 const pagination = component.props().pagination;
                 component.setProps({
                   pagination: { ...pagination, pageIndex },
@@ -1162,7 +1161,7 @@ Array [
             pageSize: 3,
             pageSizeOptions: [3, 6, 10],
             onChangePage: jest.fn(),
-            onChangeItemsPerPage: jest.fn(pageSize => {
+            onChangeItemsPerPage: jest.fn((pageSize) => {
               const pagination = component.props().pagination;
               component.setProps({
                 pagination: { ...pagination, pageSize },
@@ -1182,9 +1181,9 @@ Array [
       findTestSubject(component, 'tablePaginationPopoverButton').simulate(
         'click'
       );
-      const rowButtons: NodeListOf<
-        HTMLButtonElement
-      > = document.body.querySelectorAll('.euiContextMenuItem');
+      const rowButtons: NodeListOf<HTMLButtonElement> = document.body.querySelectorAll(
+        '.euiContextMenuItem'
+      );
       expect(
         Array.prototype.map.call(
           rowButtons,
@@ -1276,7 +1275,7 @@ Array [
             }}
             rowCount={3}
             renderCellValue={() => 'value'}
-            onColumnResize={args => onColumnResizeCallback(args)}
+            onColumnResize={(args) => onColumnResizeCallback(args)}
           />
         );
 
@@ -1435,7 +1434,7 @@ Array [
 
   describe('column sorting', () => {
     it('calls the onSort callback', () => {
-      const onSort = jest.fn(columns => {
+      const onSort = jest.fn((columns) => {
         component.setProps({ sorting: { columns, onSort } });
         component.update();
       });
@@ -1540,7 +1539,7 @@ Array [
       });
 
       it('sorts in response to user interaction', () => {
-        const onSort = jest.fn(columns => {
+        const onSort = jest.fn((columns) => {
           component.setProps({ sorting: { columns, onSort } });
           component.update();
         });
@@ -1597,7 +1596,7 @@ Array [
       });
 
       it('sorts with all digit groups in numerical-like', () => {
-        const onSort = jest.fn(columns => {
+        const onSort = jest.fn((columns) => {
           component.setProps({ sorting: { columns, onSort } });
           component.update();
         });
@@ -1737,7 +1736,7 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSelector__item')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSelector(component);
 
@@ -1755,7 +1754,7 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSelector__item')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSelector(component);
     });
@@ -1786,7 +1785,7 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSorting__field')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
@@ -1806,10 +1805,90 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSorting__field')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
+    });
+  });
+
+  describe('render column actions', () => {
+    it('renders various column actions configurations', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'A', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', isSortable: true },
+            {
+              id: 'C',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                showSortAsc: false,
+                showSortDesc: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+            {
+              id: 'D',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+            {
+              id: 'E',
+              isSortable: true,
+              actions: {
+                showHide: { label: '1' },
+                showSortAsc: { label: '2' },
+                showSortDesc: { label: '3' },
+                showMoveLeft: { label: '4' },
+                showMoveRight: { label: '5' },
+                additional: [{ label: 'test' }],
+              },
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B', 'C', 'D', 'E'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      const buttonA = findTestSubject(
+        component,
+        'dataGridHeaderCellActionButton-A'
+      );
+      expect(buttonA.length).toBe(0);
+
+      for (const col of ['B', 'C', 'D', 'E']) {
+        const button = findTestSubject(
+          component,
+          `dataGridHeaderCellActionButton-${col}`
+        );
+        button.simulate('click');
+        component.update();
+        const actionGroup = findTestSubject(
+          component,
+          `dataGridHeaderCellActionGroup-${col}`
+        );
+        expect(actionGroup).toMatchSnapshot();
+      }
     });
   });
 
@@ -1832,7 +1911,11 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', actions: false },
+            { id: 'C', actions: false },
+          ]}
           columnVisibility={{
             visibleColumns: ['A', 'B', 'C'],
             setVisibleColumns: () => {},
@@ -2028,7 +2111,10 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', actions: false },
+          ]}
           columnVisibility={{
             visibleColumns: ['A', 'B'],
             setVisibleColumns: () => {},
@@ -2053,9 +2139,7 @@ Array [
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, A');
 
-      findTestSubject(component, 'dataGridRowCell')
-        .at(3)
-        .simulate('focus');
+      findTestSubject(component, 'dataGridRowCell').at(3).simulate('focus');
 
       focusableCell = getFocusableCell(component);
       expect(focusableCell.length).toEqual(1);

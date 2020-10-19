@@ -28,19 +28,19 @@ interface Bird {
 describe('SortProperties', () => {
   const name: SortableProperty<Bird> = {
     name: 'name',
-    getValue: bird => bird.name,
+    getValue: (bird) => bird.name,
     isAscending: true,
   };
 
   const size: SortableProperty<Bird> = {
     name: 'size',
-    getValue: bird => bird.size,
+    getValue: (bird) => bird.size,
     isAscending: false,
   };
 
   const color: SortableProperty<Bird> = {
     name: 'color',
-    getValue: bird => bird.color,
+    getValue: (bird) => bird.color,
     isAscending: true,
   };
 

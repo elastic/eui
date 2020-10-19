@@ -116,13 +116,46 @@ function compileBundle() {
   });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
+  execSync('NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src/webpack.config.js', {
     stdio: 'inherit',
     env: {
       ...process.env,
       BABEL_MODULES: false,
     },
   });
+
+  console.log('Building test utils .d.ts files...');
+  dtsGenerator({
+    prefix: '',
+    out: 'lib/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+    },
+    resolveModuleImport({ currentModuleId, importedModuleId }) {
+   		if (currentModuleId === 'index') {
+  			return `@elastic/eui/lib/test/${importedModuleId.replace('./', '')}`;
+  		}
+			return null;
+	  }
+  });
+  dtsGenerator({
+    prefix: '',
+    out: 'es/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+    },
+    resolveModuleImport({ currentModuleId, importedModuleId }) {
+   		if (currentModuleId === 'index') {
+          return `@elastic/eui/es/test/${importedModuleId.replace('./', '')}`;
+  		}
+			return null;
+	  }
+  });
+  console.log(chalk.green('✔ Finished test utils files'));
 
   console.log('Building chart theme module...');
   execSync(
@@ -132,7 +165,7 @@ function compileBundle() {
     }
   );
   dtsGenerator({
-    name: '@elastic/eui/dist/eui_charts_theme',
+    prefix: '',
     out: 'dist/eui_charts_theme.d.ts',
     baseDir: path.resolve(__dirname, '..', 'src/themes/charts/'),
     files: ['themes.ts'],

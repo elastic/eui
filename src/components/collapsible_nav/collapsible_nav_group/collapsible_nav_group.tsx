@@ -43,6 +43,9 @@ export const BACKGROUNDS = Object.keys(
 ) as Background[];
 
 export interface EuiCollapsibleNavGroupInterface extends CommonProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children?: ReactNode;
   /**
    * Sits left of the `title` and only when `title` is present
@@ -70,7 +73,7 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
   /**
-   * Title sizing equivelant to EuiTitle, but only `s` and smaller
+   * Title sizing equivalent to EuiTitle, but only `s` and smaller
    */
   titleSize?: Exclude<EuiTitleProps['size'], 'l' | 'm'>;
 }
@@ -110,9 +113,7 @@ export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
   GroupAsDiv
 >;
 
-export const EuiCollapsibleNavGroup: FunctionComponent<
-  EuiCollapsibleNavGroupProps
-> = ({
+export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupProps> = ({
   className,
   children,
   id,
@@ -168,9 +169,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
         </EuiTitle>
       </EuiFlexItem>
     </EuiFlexGroup>
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   if (isCollapsible && title) {
     return (

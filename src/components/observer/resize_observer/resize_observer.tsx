@@ -21,6 +21,9 @@ import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { EuiObserver, Observer } from '../observer';
 
 interface Props {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (ref: (e: HTMLElement | null) => void) => ReactNode;
   onResize: (dimensions: { height: number; width: number }) => void;
 }
@@ -107,7 +110,7 @@ export const useResizeObserver = (
   // new state (and trigger a re-render) when the new dimensions actually differ
   const _currentDimensions = useRef(size);
   const setSize = useCallback(
-    dimensions => {
+    (dimensions) => {
       const doesWidthMatter = dimension !== 'height';
       const doesHeightMatter = dimension !== 'width';
       if (

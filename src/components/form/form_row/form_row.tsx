@@ -76,6 +76,9 @@ type EuiFormRowCommonProps = CommonProps & {
    * Escape hatch to not render duplicate labels if the child also renders a label
    */
   hasChildLabel?: boolean;
+  /**
+   * ReactElement to render as this component's content
+   */
   children: ReactElement;
   label?: ReactNode;
   /**
@@ -88,17 +91,6 @@ type EuiFormRowCommonProps = CommonProps & {
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
   helpText?: ReactNode;
-  /**
-   * **DEPRECATED: use `display: rowCompressed` instead.**
-   * When `true`, tightens up the spacing.
-   */
-  compressed?: boolean;
-  /**
-   * **DEPRECATED: use `display: center` instead.**
-   * Vertically centers non-input style content so it aligns
-   * better with input style content.
-   */
-  displayOnly?: boolean;
 };
 
 type LabelProps = {
@@ -139,8 +131,14 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       onChildFocus(...args);
     }
 
-    this.setState({
-      isFocused: true,
+    this.setState(({ isFocused }) => {
+      if (!isFocused) {
+        return {
+          isFocused: true,
+        };
+      } else {
+        return null;
+      }
     });
   };
 
@@ -169,9 +167,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       fullWidth,
       className,
       describedByIds,
-      compressed,
       display,
-      displayOnly,
       hasChildLabel,
       id: propsId,
       ...rest
@@ -179,35 +175,13 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     const { id } = this.state;
 
-    /**
-     * Remove when `compressed` is deprecated
-     */
-    let shimDisplay: EuiFormRowDisplayKeys;
-    if (compressed && display === 'row') {
-      shimDisplay = 'rowCompressed';
-    } else {
-      /**
-       * Safe use of ! as prop default is 'row'
-       */
-      shimDisplay = display!;
-    }
-
-    /**
-     * Remove when `displayOnly` is deprecated
-     */
-    if (compressed && displayOnly) {
-      shimDisplay = 'centerCompressed';
-    } else if (displayOnly && display === 'row') {
-      shimDisplay = 'center';
-    }
-
     const classes = classNames(
       'euiFormRow',
       {
         'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
         'euiFormRow--fullWidth': fullWidth,
       },
-      displayToClassNameMap[shimDisplay],
+      displayToClassNameMap[display!], // Safe use of ! as default prop is 'row'
       className
     );
 
@@ -280,7 +254,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     }
 
     if (optionalErrors) {
-      optionalErrors.forEach(error => describingIds.push(error.props.id));
+      optionalErrors.forEach((error) => describingIds.push(error.props.id));
     }
 
     if (describingIds.length > 0) {
@@ -299,7 +273,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
         /**
          * Safe use of ! as default prop is 'row'
          */
-        displayOnly || display!.startsWith('center'),
+        display!.startsWith('center'),
     });
 
     const sharedProps = {
@@ -321,11 +295,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...rest as HTMLAttributes<HTMLFieldSetElement>}>
+        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
         {contents}
       </fieldset>
     ) : (
-      <div {...sharedProps} {...rest as HTMLAttributes<HTMLDivElement>}>
+      <div {...sharedProps} {...(rest as HTMLAttributes<HTMLDivElement>)}>
         {contents}
       </div>
     );

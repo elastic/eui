@@ -48,7 +48,7 @@ export interface Node {
   /** An icon to use on the left of the label
    */
   icon?: React.ReactElement;
-  /** Display a differnt icon when the item is expanded.
+  /** Display a different icon when the item is expanded.
   For instance, an open folder or a down arrow
   */
   iconWhenExpanded?: React.ReactElement;
@@ -71,7 +71,7 @@ export interface Node {
 export type EuiTreeViewDisplayOptions = 'default' | 'compressed';
 
 const displayToClassNameMap: {
-  [option in EuiTreeViewDisplayOptions]: string | null
+  [option in EuiTreeViewDisplayOptions]: string | null;
 } = {
   default: null,
   compressed: 'euiTreeView--compressed',
@@ -95,7 +95,7 @@ export type CommonTreeProps = CommonProps &
     /** Set all items to open on initial load
      */
     expandByDefault?: boolean;
-    /** Display expansion arrows next to all itmes
+    /** Display expansion arrows next to all items
      * that contain children
      */
     showExpansionArrows?: boolean;
@@ -116,12 +116,12 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
           .map<string>(({ id, children }) =>
             children ? id : ((null as unknown) as string)
           )
-          .filter(x => x != null)
+          .filter((x) => x != null)
       : this.props.items
           .map<string>(({ id, children, isExpanded }) =>
             children && isExpanded ? id : ((null as unknown) as string)
           )
-          .filter(x => x != null),
+          .filter((x) => x != null),
     activeItem: '',
     treeID: this.context || treeIdGenerator(),
     expandChildNodes: this.props.expandByDefault || false,
@@ -156,7 +156,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
       });
     } else {
       // if the node isn't part of openItems[] then add it
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         openItems: [...prevState.openItems, node.id],
         activeItem: node.id,
       }));
@@ -295,9 +295,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                           'aria-label': ariaLabel,
                         }
                       : {
-                          'aria-labelledby': `${buttonId} ${
-                            rest['aria-labelledby']
-                          }`,
+                          'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
                         };
 
                     const nodeClasses = classNames(
@@ -322,14 +320,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                         <li className={nodeClasses}>
                           <button
                             id={buttonId}
-                            aria-controls={`euiNestedTreeView-${
-                              this.state.treeID
-                            }`}
+                            aria-controls={`euiNestedTreeView-${this.state.treeID}`}
                             aria-expanded={this.isNodeOpen(node)}
-                            ref={ref => this.setButtonRef(ref, index)}
-                            data-test-subj={`euiTreeViewButton-${
-                              this.state.treeID
-                            }`}
+                            ref={(ref) => this.setButtonRef(ref, index)}
+                            data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
                             onKeyDown={(event: React.KeyboardEvent) =>
                               this.onKeyDown(event, node)
                             }

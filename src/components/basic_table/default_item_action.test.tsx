@@ -25,6 +25,13 @@ import {
   DefaultItemIconButtonAction as IconButtonAction,
 } from './action_types';
 
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => {
+    return () => 'random_id';
+  },
+}));
+
 interface Item {
   id: string;
 }
@@ -65,9 +72,27 @@ describe('DefaultItemAction', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('render - name', () => {
+    const action: EmptyButtonAction<Item> = {
+      name: (item) => <span>{item.id}</span>,
+      description: 'action 1',
+      type: 'button',
+      onClick: () => {},
+    };
+    const props = {
+      action,
+      enabled: true,
+      item: { id: 'xyz' },
+    };
+
+    const component = shallow(<DefaultItemAction {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('render - icon', () => {
     const action: IconButtonAction<Item> = {
-      name: 'action1',
+      name: <span>action1</span>,
       description: 'action 1',
       type: 'icon',
       icon: 'trash',

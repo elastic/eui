@@ -46,7 +46,6 @@ export {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
-  EuiButtonToggle,
   EuiButtonGroup,
 } from './button';
 
@@ -194,7 +193,7 @@ export { EuiImage } from './image';
 
 export { useInnerText, EuiInnerText, useRenderToText } from './inner_text';
 
-export { EuiI18n, EuiI18nNumber } from './i18n';
+export { EuiI18n, EuiI18nNumber, useEuiI18n } from './i18n';
 
 export {
   EuiLoadingKibana,
@@ -214,6 +213,13 @@ export {
   EuiPinnableListGroup,
 } from './list_group';
 
+export {
+  EuiMarkdownEditor,
+  EuiMarkdownContext,
+  EuiMarkdownFormat,
+  getDefaultEuiMarkdownParsingPlugins,
+  getDefaultEuiMarkdownProcessingPlugins,
+} from './markdown_editor';
 export { EuiMark } from './mark';
 
 export {
@@ -228,12 +234,6 @@ export {
 } from './modal';
 
 export { EuiMutationObserver } from './observer/mutation_observer';
-
-export {
-  EuiNavDrawer,
-  EuiNavDrawerGroup,
-  EuiNavDrawerFlyout,
-} from './nav_drawer';
 
 export { EuiOutsideClickDetector } from './outside_click_detector';
 
@@ -282,6 +282,7 @@ export {
   EuiSelectableListItem,
   EuiSelectableMessage,
   EuiSelectableSearch,
+  EuiSelectableTemplateSitewide,
 } from './selectable';
 
 export { EuiSideNav } from './side_nav';
@@ -327,8 +328,6 @@ export { useEuiTextDiff } from './text_diff';
 export { EuiTitle } from './title';
 
 export { EuiGlobalToastList, EuiGlobalToastListItem, EuiToast } from './toast';
-
-export { EuiToggle } from './toggle';
 
 export { EuiIconTip, EuiToolTip } from './tool_tip';
 

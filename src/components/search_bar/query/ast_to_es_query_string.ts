@@ -48,6 +48,13 @@ const emitMatch = (match: MatchType | undefined) => {
   return AST.Match.isMust(match) ? '+' : '-';
 };
 
+const escapeValue = (value: Value) => {
+  if (typeof value === 'string') {
+    return value.replace(/([\\"])/g, '\\$1');
+  }
+  return value;
+};
+
 const emitFieldDateLikeClause = (
   field: string,
   value: moment.Moment | Date,
@@ -139,9 +146,9 @@ const emitFieldStringClause = (
 ) => {
   const matchOp = emitMatch(match);
   if (value.match(/\s/)) {
-    return `${matchOp}${field}:"${value}"`;
+    return `${matchOp}${field}:"${escapeValue(value)}"`;
   }
-  return `${matchOp}${field}:${value}`;
+  return `${matchOp}${field}:${escapeValue(value)}`;
 };
 
 const emitFieldBooleanClause = (
@@ -192,7 +199,7 @@ const emitFieldClause = (
   }
   const matchOp = emitMatch(match);
   const clauses = value
-    .map(v => emitFieldSingleValueClause(field, v, operator))
+    .map((v) => emitFieldSingleValueClause(field, v, operator))
     .join(' OR ');
   return `${matchOp}(${clauses})`;
 };
@@ -205,7 +212,7 @@ const emitTermClause = (clause: TermClause, isGroupMember: boolean): string => {
   }
 
   const matchOp = emitMatch(match);
-  return `${matchOp}${value}`;
+  return `${matchOp}${escapeValue(value)}`;
 };
 
 const emitIsClause = (clause: IsClause, isGroupMember: boolean): string => {
@@ -217,7 +224,7 @@ const emitIsClause = (clause: IsClause, isGroupMember: boolean): string => {
 
 const emitGroupClause = (clause: GroupClause): string => {
   const { value } = clause;
-  const formattedValues = value.map(clause => {
+  const formattedValues = value.map((clause) => {
     return emitClause(clause, true);
   });
   return `+(${formattedValues.join(' ')})`;
@@ -244,5 +251,5 @@ export const astToEsQueryString = (ast: _AST) => {
     return '*';
   }
 
-  return ast.clauses.map(clause => emitClause(clause)).join(' ');
+  return ast.clauses.map((clause) => emitClause(clause)).join(' ');
 };

@@ -48,7 +48,7 @@ export interface EuiDescriptionListProps {
    */
   textStyle?: EuiDescriptionListTextStyle;
   /**
-   * How each item should be layed out
+   * How each item should be laid out
    */
   type?: EuiDescriptionListType;
   /**

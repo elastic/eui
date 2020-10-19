@@ -10,16 +10,18 @@ const dataGridSchemaSource = require('!!raw-loader!./schema');
 const dataGridSchemaHtml = renderToHtml(DataGridSchema);
 
 import {
-  DataGridColumn,
-  DataGridPagination,
-  DataGridSorting,
-  DataGridInMemory,
-  DataGridStyle,
-  DataGridCellValueElement,
-  DataGridSchemaDetector,
-  DataGridToolbarVisibilityOptions,
-  DataGridColumnVisibility,
-} from './props';
+  EuiDataGridColumn,
+  EuiDataGridColumnActions,
+  EuiDataGridPaginationProps,
+  EuiDataGridSorting,
+  EuiDataGridInMemory,
+  EuiDataGridStyle,
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridColumnVisibility,
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+
+import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 export const DataGridSchemaExample = {
   title: 'Data grid schemas and popovers',
@@ -86,15 +88,16 @@ export const DataGridSchemaExample = {
       components: { DataGridSchema },
       props: {
         EuiDataGrid,
-        EuiDataGridColumn: DataGridColumn,
-        EuiDataGridColumnVisibility: DataGridColumnVisibility,
-        EuiDataGridInMemory: DataGridInMemory,
-        EuiDataGridPagination: DataGridPagination,
-        EuiDataGridSorting: DataGridSorting,
-        EuiDataGridCellValueElement: DataGridCellValueElement,
-        EuiDataGridSchemaDetector: DataGridSchemaDetector,
-        EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
+        EuiDataGridInMemory,
+        EuiDataGridColumn,
+        EuiDataGridColumnActions,
+        EuiDataGridColumnVisibility,
+        EuiDataGridPaginationProps,
+        EuiDataGridSorting,
+        EuiDataGridCellValueElementProps,
+        EuiDataGridSchemaDetector,
+        EuiDataGridStyle,
+        EuiDataGridToolBarVisibilityOptions,
       },
       demo: <DataGridSchema />,
     },

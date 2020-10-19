@@ -42,7 +42,7 @@ export default () => {
   const [error, setError] = useState(undefined);
   const [inputRef, setInputRef] = useState(undefined);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
     setError(undefined);
   };
@@ -67,7 +67,7 @@ export default () => {
   return (
     <EuiFormRow error={error} isInvalid={error !== undefined}>
       <EuiComboBox
-        placeholder="Select from a list of options"
+        placeholder="Select one or more options"
         options={options}
         selectedOptions={selectedOptions}
         inputRef={setInputRef}

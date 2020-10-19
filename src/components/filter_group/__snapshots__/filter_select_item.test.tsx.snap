@@ -14,11 +14,11 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
-      <div
+      <span
         data-euiicon-type="empty"
       />
     </div>
-    <div
+    <span
       class="euiFlexItem euiFilterSelectItem__content"
     />
   </span>

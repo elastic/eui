@@ -34,7 +34,7 @@ export const getSecureRelForTarget = ({
 }) => {
   const isElasticHref = !!href && isDomainSecure(href);
   const relParts = !!rel
-    ? rel.split(' ').filter(part => !!part.length && part !== 'noreferrer')
+    ? rel.split(' ').filter((part) => !!part.length && part !== 'noreferrer')
     : [];
 
   if (!isElasticHref) {
@@ -45,8 +45,5 @@ export const getSecureRelForTarget = ({
     relParts.push('noopener');
   }
 
-  return relParts
-    .sort()
-    .join(' ')
-    .trim();
+  return relParts.sort().join(' ').trim();
 };

@@ -72,7 +72,7 @@ export class EuiRelativeTab extends Component<
 
   generateId = htmlIdGenerator();
 
-  onCountChange: ChangeEventHandler<HTMLInputElement> = event => {
+  onCountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseInt(event.target.value, 10);
     this.setState(
       {
@@ -82,7 +82,7 @@ export class EuiRelativeTab extends Component<
     );
   };
 
-  onUnitChange: ChangeEventHandler<HTMLSelectElement> = event => {
+  onUnitChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     this.setState(
       {
         unit: event.target.value,

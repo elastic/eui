@@ -47,9 +47,11 @@ interface EuiCheckableCardAsCheckboxProps
   checkableType: 'checkbox';
 }
 
-export type EuiCheckableCardProps = EuiCheckableCardBaseProps &
-  (EuiCheckableCardAsCheckboxProps | EuiCheckableCardAsRadioProps);
-
+export type EuiCheckableCardProps = Omit<
+  EuiCheckableCardAsCheckboxProps | EuiCheckableCardAsRadioProps,
+  'label' | 'id'
+> &
+  EuiCheckableCardBaseProps;
 export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   children,
   className,
@@ -75,7 +77,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       <EuiRadio
         checked={checked}
         disabled={disabled}
-        {...rest as EuiRadioProps}
+        {...(rest as EuiRadioProps)}
       />
     );
   } else {

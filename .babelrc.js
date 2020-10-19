@@ -6,16 +6,10 @@ module.exports = {
 
   "presets": [
     ["@babel/env", {
-      "targets": {
-        "browsers": [
-          "last 2 versions",
-          "> 5%",
-          "Safari 7" // for PhantomJS support
-        ]
-      },
+      // `targets` property set via `.browserslistrc`
       "useBuiltIns": process.env.NO_COREJS_POLYFILL ? false : "usage",
-      "corejs": "2",
-      "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
+      "corejs": 3,
+      "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES === 'false' ? false : process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
     "@babel/react"
@@ -25,12 +19,6 @@ module.exports = {
     "pegjs-inline-precompile",
     "./scripts/babel/proptypes-from-ts-props",
     "add-module-exports",
-    [
-      "react-docgen",
-      {
-        "resolver": "findAllExportedComponentDefinitions"
-      }
-    ],
     // stage 3
     "@babel/proposal-object-rest-spread",
     // stage 2
@@ -48,10 +36,4 @@ module.exports = {
       }
     ],
   ],
-
-  "env": {
-    "test": {
-      "plugins": ["dynamic-import-node"]
-    }
-  }
 };

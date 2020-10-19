@@ -21,7 +21,8 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiButton, COLORS, SIZES, ICON_SIDES } from './button';
+import { EuiButton, COLORS, SIZES } from './button';
+import { ICON_SIDES } from './button_content';
 
 describe('EuiButton', () => {
   test('is rendered', () => {
@@ -51,6 +52,12 @@ describe('EuiButton', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      it('renders if passed as disabled', () => {
+        const component = render(<EuiButton disabled />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('isLoading', () => {
@@ -61,9 +68,31 @@ describe('EuiButton', () => {
       });
     });
 
+    describe('isSelected', () => {
+      it('is rendered as true', () => {
+        const component = render(<EuiButton isSelected />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered as false', () => {
+        const component = render(<EuiButton isSelected={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('fullWidth', () => {
       it('is rendered', () => {
         const component = render(<EuiButton fullWidth />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('minWidth', () => {
+      it('is rendered', () => {
+        const component = render(<EuiButton minWidth={0} />);
 
         expect(component).toMatchSnapshot();
       });
@@ -78,7 +107,7 @@ describe('EuiButton', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiButton color={color} />);
 
@@ -88,7 +117,7 @@ describe('EuiButton', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiButton size={size} />);
 
@@ -98,7 +127,7 @@ describe('EuiButton', () => {
     });
 
     describe('iconSide', () => {
-      ICON_SIDES.forEach(iconSide => {
+      ICON_SIDES.forEach((iconSide) => {
         test(`${iconSide} is rendered`, () => {
           const component = render(
             <EuiButton iconType="user" iconSide={iconSide}>
@@ -133,6 +162,22 @@ describe('EuiButton', () => {
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
+    });
+
+    test('contentProps is rendered', () => {
+      const component = render(
+        <EuiButton contentProps={requiredProps}>Content</EuiButton>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('textProps is rendered', () => {
+      const component = render(
+        <EuiButton textProps={requiredProps}>Content</EuiButton>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

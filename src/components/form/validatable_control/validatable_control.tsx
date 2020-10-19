@@ -17,7 +17,17 @@
  * under the License.
  */
 
-import { Children, cloneElement, Component, ReactElement } from 'react';
+import {
+  Children,
+  cloneElement,
+  MutableRefObject,
+  ReactElement,
+  Ref,
+  FunctionComponent,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 import { CommonProps } from '../../common';
 
 export interface HTMLConstraintValidityElement extends Element {
@@ -25,56 +35,61 @@ export interface HTMLConstraintValidityElement extends Element {
 }
 
 export interface ReactElementWithRef extends ReactElement {
-  ref?: (element: HTMLConstraintValidityElement) => void;
+  ref?: Ref<HTMLConstraintValidityElement>;
+}
+
+function isMutableRef(
+  ref?: Ref<HTMLConstraintValidityElement>
+): ref is MutableRefObject<HTMLConstraintValidityElement> {
+  return ref != null && ref.hasOwnProperty('current');
 }
 
 export interface EuiValidatableControlProps {
   isInvalid?: boolean;
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElementWithRef;
 }
 
-export class EuiValidatableControl extends Component<
+export const EuiValidatableControl: FunctionComponent<
   CommonProps & EuiValidatableControlProps
-> {
-  private control?: HTMLConstraintValidityElement;
+> = ({ isInvalid, children }) => {
+  const control = useRef<HTMLConstraintValidityElement | null>(null);
 
-  updateValidity() {
+  const child = Children.only(children);
+  const childRef = child.ref;
+
+  const replacedRef = useCallback(
+    (element: HTMLConstraintValidityElement) => {
+      control.current = element;
+
+      // Call the original ref, if any
+      if (typeof childRef === 'function') {
+        childRef(element);
+      } else if (isMutableRef(childRef)) {
+        childRef.current = element;
+      }
+    },
+    [childRef]
+  );
+
+  useEffect(() => {
     if (
-      this.control == null ||
-      typeof this.control.setCustomValidity !== 'function'
+      control.current === null ||
+      typeof control.current.setCustomValidity !== 'function'
     ) {
       return; // jsdom doesn't polyfill this for the server-side
     }
 
-    if (this.props.isInvalid) {
-      this.control.setCustomValidity('Invalid');
+    if (isInvalid) {
+      control.current.setCustomValidity('Invalid');
     } else {
-      this.control.setCustomValidity('');
+      control.current.setCustomValidity('');
     }
-  }
+  });
 
-  componentDidMount() {
-    this.updateValidity();
-  }
-
-  componentDidUpdate() {
-    this.updateValidity();
-  }
-
-  setRef = (element: HTMLConstraintValidityElement) => {
-    this.control = element;
-
-    // Call the original ref, if any
-    const { ref } = this.props.children;
-    if (typeof ref === 'function') {
-      ref(element);
-    }
-  };
-
-  render() {
-    const child = Children.only(this.props.children);
-    return cloneElement(child, {
-      ref: this.setRef,
-    });
-  }
-}
+  return cloneElement(child, {
+    ref: replacedRef,
+  });
+};

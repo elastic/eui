@@ -1,4 +1,4 @@
-@import '../../src/global_styling/mixins/helpers';
+@import '../../../src/global_styling/mixins/helpers';
 
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
@@ -24,6 +24,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
   .guideSideNav {
     top: $euiHeaderHeightCompensation * 2;
+  }
+
+  .euiHeader:not(.euiHeader--fixed) {
+    // Force headers below the full screen.
+    // This shouldn't be necessary in consuming applications because headers should always be at the top of the page
+    z-index: 0;
   }
 }
 
@@ -169,7 +175,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   @if (lightness($euiTextColor) < 50) {
     background: $euiColorDarkestShade;
   }
-  padding: $euiSizeL;
 }
 
 .guideDemo__icon {
@@ -242,6 +247,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .euiTreeView__nodeInnerExample {
   color: $euiColorDanger;
   font-weight: $euiFontWeightBold;
+}
+
+.euiSelectableTemplateSitewide__optionMeta--PINK {
+  font-weight: $euiFontWeightMedium;
+  color: $euiColorAccentText;
 }
 
 @import '../views/guidelines/index';

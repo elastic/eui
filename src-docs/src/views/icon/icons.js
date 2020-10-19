@@ -24,6 +24,7 @@ export const iconTypes = [
   'accessibility',
   'aggregate',
   'alert',
+  'analyzeEvent',
   'annotation',
   'apmTrace',
   'apps',
@@ -81,6 +82,7 @@ export const iconTypes = [
   'faceSad',
   'filter',
   'flag',
+  'fold',
   'folderCheck',
   'folderClosed',
   'folderExclamation',
@@ -135,6 +137,7 @@ export const iconTypes = [
   'menuLeft',
   'menuRight',
   'minimize',
+  'minus',
   'minusInCircle',
   'minusInCircleFilled',
   'moon',
@@ -153,6 +156,7 @@ export const iconTypes = [
   'pin',
   'pinFilled',
   'play',
+  'plus',
   'plusInCircle',
   'plusInCircleFilled',
   'popout',
@@ -161,6 +165,7 @@ export const iconTypes = [
   'quote',
   'refresh',
   'reporter',
+  'returnKey',
   'save',
   'scale',
   'search',
@@ -200,6 +205,8 @@ export const iconTypes = [
   'timeline',
   'training',
   'trash',
+  'unfold',
+  'unlink',
   'user',
   'users',
   'vector',
@@ -228,13 +235,13 @@ export const iconTypes = [
 
 export default () => (
   <EuiFlexGrid columns={4}>
-    {iconTypes.map(iconType => (
+    {iconTypes.map((iconType) => (
       <EuiFlexItem
         className="guideDemo__icon"
         key={iconType}
         style={{ width: '200px' }}>
         <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`}>
-          {copy => (
+          {(copy) => (
             <EuiPanel onClick={copy} className="eui-textCenter">
               <EuiIcon type={iconType} />
               <EuiText size="s">

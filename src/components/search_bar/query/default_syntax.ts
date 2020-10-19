@@ -26,7 +26,7 @@ import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unre
 
 const parser = peg`
 {
-  const { AST, Exp, unescapeValue, resolveFieldValue } = options;
+  const { AST, Exp, unescapeValue, unescapePhraseValue, resolveFieldValue } = options;
   const ctx = Object.assign({ error }, options );
 }
 
@@ -158,13 +158,14 @@ containsValue
 
 phrase
   = '"' space? phrase:(
-  	(phraseWord+)? (space phraseWord+)* { return unescapeValue(text()); }
+  	(phraseWord+)? (space phraseWord+)* { return unescapePhraseValue(text()); }
   ) space? '"' { return Exp.string(phrase, location()); }
 
 phraseWord
-  = orWord
-  / word
-  / [()] // adding parens directly to "wordChar" makes it too aggresive as it consumes the closing paren
+  // not a backslash, quote, or space
+  = [^\\\\" ]+
+  // escaped character
+  / '\\\\' (.)
 
 word
   = wordChar+ {
@@ -278,6 +279,14 @@ const escapeValue = (value: string) => {
   return value.replace(/([:\-\\()])/g, '\\$1');
 };
 
+const unescapePhraseValue = (value: string) => {
+  return value.replace(/\\(.)/g, '$1');
+};
+
+const escapePhraseValue = (value: string) => {
+  return value.replace(/([\\"])/g, '\\$1');
+};
+
 const escapeFieldValue = (value: string) => {
   return value.replace(/(\\)/g, '\\$1');
 };
@@ -334,9 +343,7 @@ const validateFieldValue = (
       schemaField.validate(value);
     } catch (e) {
       error(
-        `Invalid value \`${expression}\` set for field \`${field}\` - ${
-          e.message
-        }`,
+        `Invalid value \`${expression}\` set for field \`${field}\` - ${e.message}`,
         location
       );
     }
@@ -353,7 +360,7 @@ const resolveFieldValue = (
     // I don't know if this cast is valid. This function is called recursively and
     // doesn't apply any kind of flat-map.
     return valueExpression.map(
-      exp => resolveFieldValue(field, exp, ctx) as Value
+      (exp) => resolveFieldValue(field, exp, ctx) as Value
     );
   }
   const { location } = valueExpression;
@@ -454,10 +461,11 @@ const printValue = (value: Value, options: ParseOptions) => {
     return value.toString();
   }
 
-  const escapeFn = options.escapeValue || escapeValue;
   if (value.length === 0 || value.match(/\s/) || value.toLowerCase() === 'or') {
-    return `"${escapeFn(value)}"`;
+    return `"${escapePhraseValue(value)}"`;
   }
+
+  const escapeFn = options.escapeValue || escapeValue;
   return escapeFn(value);
 };
 
@@ -495,6 +503,7 @@ export const defaultSyntax: Syntax = Object.freeze({
       AST,
       Exp,
       unescapeValue,
+      unescapePhraseValue,
       parseDate,
       resolveFieldValue,
       validateFlag,
@@ -516,7 +525,7 @@ export const defaultSyntax: Syntax = Object.freeze({
           return `${text} ${prefix}${escapeValue(
             clause.field
           )}${op}(${clause.value
-            .map(val => printValue(val, printFieldValueOptions))
+            .map((val) => printValue(val, printFieldValueOptions))
             .join(' or ')})`; // eslint-disable-line max-len
         }
         return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(
@@ -529,7 +538,7 @@ export const defaultSyntax: Syntax = Object.freeze({
         return `${text} ${prefix}${printValue(clause.value, options)}`;
       case AST.Group.TYPE:
         return `(${clause.value
-          .map(clause =>
+          .map((clause) =>
             defaultSyntax.printClause(clause, text, options).trim()
           )
           .join(' OR ')})`;

@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-    require('autoprefixer')({ browsers: ['last 2 versions'] }),
+    require('autoprefixer')(), // `browsers` property set via `.browserslistrc`
     require('postcss-inline-svg')({ relative: true, path: __dirname }),
   ],
 };

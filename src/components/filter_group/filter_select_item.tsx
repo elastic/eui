@@ -101,7 +101,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
 
     return (
       <button
-        ref={ref => (this.buttonRef = ref)}
+        ref={(ref) => (this.buttonRef = ref)}
         role="option"
         type="button"
         aria-selected={isFocused}
@@ -115,7 +115,9 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
           component="span"
           responsive={false}>
           {iconNode}
-          <EuiFlexItem className="euiFilterSelectItem__content">
+          <EuiFlexItem
+            className="euiFilterSelectItem__content"
+            component="span">
             {children}
           </EuiFlexItem>
         </EuiFlexGroup>

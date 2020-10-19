@@ -38,15 +38,16 @@ const soundGroup = {
   ],
 };
 
-const allOptions = [colorGroup, soundGroup];
+const allOptionsStatic = [colorGroup, soundGroup];
 
 export default () => {
+  const [allOptions, setAllOptions] = useState(allOptionsStatic);
   const [selectedOptions, setSelected] = useState([
     colorGroup.options[2],
     soundGroup.options[3],
   ]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
@@ -68,16 +69,27 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
       if (allOptions[allOptions.length - 1].label !== 'Custom') {
-        allOptions.push({
-          label: 'Custom',
-          options: [],
-        });
+        setAllOptions([
+          ...allOptions,
+          {
+            label: 'Custom',
+            options: [],
+          },
+        ]);
       }
-      allOptions[allOptions.length - 1].options.push(newOption);
+      const [colors, sounds, custom] = allOptions;
+      setAllOptions([
+        colors,
+        sounds,
+        {
+          ...custom,
+          options: [...custom.options, newOption],
+        },
+      ]);
     }
 
     // Select the option.

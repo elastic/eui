@@ -67,7 +67,7 @@ describe('EuiStepHorizontal', () => {
     });
 
     describe('status', () => {
-      STATUS.forEach(status => {
+      STATUS.forEach((status) => {
         test(`${status} is rendered`, () => {
           const component = render(
             <EuiStepHorizontal status={status} onClick={() => {}} />

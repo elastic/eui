@@ -93,7 +93,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
         totalPages={pageCount}
         onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
         pageIndex={pageIndex}
-        {...hasControl && { 'aria-controls': ariaControls }}
+        {...(hasControl && { 'aria-controls': ariaControls })}
         hideOnMobile
       />
     );
@@ -255,7 +255,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       <PaginationButton pageIndex={activePage} inList={false} />
     );
     const lastPageButtonCompressed = (
-      <PaginationButton pageIndex={pageCount} inList={false} />
+      <PaginationButton pageIndex={pageCount - 1} inList={false} />
     );
     return (
       <nav className={classes} {...rest}>

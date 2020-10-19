@@ -24,6 +24,7 @@ const iconTypes = [
   'addDataApp',
   'advancedSettingsApp',
   'apmApp',
+  'appSearchApp',
   'auditbeatApp',
   'canvasApp',
   'codeApp',
@@ -65,17 +66,18 @@ const iconTypes = [
   'usersRolesApp',
   'visualizeApp',
   'watchesApp',
+  'workplaceSearchApp',
 ];
 
 export default () => (
   <EuiFlexGrid columns={4}>
-    {iconTypes.map(iconType => (
+    {iconTypes.map((iconType) => (
       <EuiFlexItem
         className="guideDemo__icon"
         key={iconType}
         style={{ width: '200px' }}>
         <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`}>
-          {copy => (
+          {(copy) => (
             <EuiPanel onClick={copy} className="eui-textCenter">
               <EuiIcon type={iconType} size="xl" />
               <EuiText size="s">

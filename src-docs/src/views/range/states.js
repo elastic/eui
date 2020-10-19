@@ -21,11 +21,11 @@ export default () => {
     },
   ];
 
-  const onChange = e => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
 
-  const onDualChange = value => {
+  const onDualChange = (value) => {
     setDualValue(value);
   };
 
@@ -57,7 +57,10 @@ export default () => {
           showLabels
           showInput
           showTicks
-          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+          ticks={[
+            { label: '20kb', value: 20 },
+            { label: '100kb', value: 100 },
+          ]}
           levels={levels}
           aria-label="An example of EuiRange"
         />

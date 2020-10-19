@@ -17,11 +17,14 @@
  * under the License.
  */
 
-import React, { Component, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
+import React, { Component, LiHTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
-import { EuiIcon, IconType, IconColor } from '../../icon';
+import { EuiI18n } from '../../i18n';
+import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiSelectableOptionCheckedType } from '../selectable_option';
+import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiBadge, EuiBadgeProps } from '../../badge';
 
 function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
@@ -34,9 +37,7 @@ function resolveIconAndColor(
     : { icon: 'cross', color: 'text' };
 }
 
-export type EuiSelectableListItemProps = ButtonHTMLAttributes<
-  HTMLButtonElement
-> &
+export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
     children?: React.ReactNode;
     /**
@@ -54,6 +55,13 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
     disabled?: boolean;
     prepend?: React.ReactNode;
     append?: React.ReactNode;
+    allowExclusions?: boolean;
+    /**
+     * When enabled by setting to either `true` or passing custom a custom badge,
+     * shows a hollow badge as an append (far right) when the item is focused.
+     * The default content when `true` is `↩ to select/deselect/include/exclude`
+     */
+    onFocusBadge?: boolean | EuiBadgeProps;
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -62,6 +70,7 @@ export class EuiSelectableListItem extends Component<
 > {
   static defaultProps = {
     showIcons: true,
+    onFocusBadge: true,
   };
 
   constructor(props: EuiSelectableListItemProps) {
@@ -78,6 +87,8 @@ export class EuiSelectableListItem extends Component<
       showIcons,
       prepend,
       append,
+      allowExclusions,
+      onFocusBadge,
       ...rest
     } = this.props;
 
@@ -89,15 +100,61 @@ export class EuiSelectableListItem extends Component<
       className
     );
 
-    let buttonIcon: React.ReactNode;
+    let optionIcon: React.ReactNode;
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
-      buttonIcon = (
+      optionIcon = (
         <EuiIcon
           className="euiSelectableListItem__icon"
           color={color}
           type={icon}
         />
+      );
+    }
+
+    let state: React.ReactNode;
+    let instruction: React.ReactNode;
+    if (allowExclusions && checked === 'on') {
+      state = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.includedOption"
+              default="Included option."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+      instruction = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.includedOptionInstructions"
+              default="To exclude this option, press enter."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+    } else if (allowExclusions && checked === 'off') {
+      state = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.excludedOption"
+              default="Excluded option."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+      instruction = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.excludedOptionInstructions"
+              default="To deselect this option, press enter."
+            />
+          </span>
+        </EuiScreenReaderOnly>
       );
     }
 
@@ -109,28 +166,66 @@ export class EuiSelectableListItem extends Component<
     }
 
     let appendNode: React.ReactNode;
-    if (append) {
-      appendNode = (
-        <span className="euiSelectableListItem__append">{append}</span>
-      );
+    if (append || !!onFocusBadge) {
+      let onFocusBadgeNode: React.ReactNode;
+      const defaultOnFocusBadgeProps: EuiBadgeProps = {
+        'aria-hidden': true,
+        iconType: 'returnKey',
+        iconSide: 'left',
+        color: 'hollow',
+      };
+
+      if (onFocusBadge === true) {
+        onFocusBadgeNode = (
+          <EuiBadge
+            className="euiSelectableListItem__onFocusBadge"
+            {...defaultOnFocusBadgeProps}
+          />
+        );
+      } else if (!!onFocusBadge && onFocusBadge !== false) {
+        const { children, className, ...restBadgeProps } = onFocusBadge;
+        onFocusBadgeNode = (
+          <EuiBadge
+            className={classNames(
+              'euiSelectableListItem__onFocusBadge',
+              className
+            )}
+            {...defaultOnFocusBadgeProps}
+            {...(restBadgeProps as EuiBadgeProps)}>
+            {children}
+          </EuiBadge>
+        );
+      }
+
+      // Only display the append wrapper if append exists or isFocused
+      if (append || (isFocused && !disabled)) {
+        appendNode = (
+          <span className="euiSelectableListItem__append">
+            {append} {isFocused && !disabled ? onFocusBadgeNode : null}
+          </span>
+        );
+      }
     }
 
     return (
-      <button
+      <li
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         role="option"
-        type="button"
-        aria-selected={isFocused}
+        aria-selected={!disabled && typeof checked === 'string'}
         className={classes}
-        disabled={disabled}
         aria-disabled={disabled}
         {...rest}>
         <span className="euiSelectableListItem__content">
-          {buttonIcon}
+          {optionIcon}
           {prependNode}
-          <span className="euiSelectableListItem__text">{children}</span>
+          <span className="euiSelectableListItem__text">
+            {state}
+            {children}
+            {instruction}
+          </span>
           {appendNode}
         </span>
-      </button>
+      </li>
     );
   }
 }

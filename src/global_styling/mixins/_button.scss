@@ -16,7 +16,7 @@
 @mixin euiButtonFocus {
   transition: all $euiAnimSpeedNormal ease-in-out;
 
-  &:hover:not(:disabled) {
+  &:hover:not([class*='isDisabled']) {
     transform: translateY(-1px);
   }
 
@@ -24,7 +24,7 @@
     animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
-  &:active:not(:disabled) {
+  &:active:not([class*='isDisabled']) {
     transform: translateY(1px);
   }
 }
@@ -43,7 +43,7 @@
   // focus states should come after all default styles
   @include euiButtonFocus;
 
-  &:hover:not(:disabled),
+  &:hover:not([class*='isDisabled']),
   &:focus {
     text-decoration: underline;
   }
@@ -63,8 +63,8 @@
   width: 100%;
   vertical-align: middle;
 
-  .euiButton__icon,
-  .euiButton__spinner {
+  .euiButtonContent__icon,
+  .euiButtonContent__spinner {
     flex-shrink: 0; // Ensures the icons/spinner don't scale down below their intended size
   }
 
@@ -72,8 +72,8 @@
     flex-direction: row-reverse;
 
     > * + * {
-      margin-left: 0; // 1, 2
-      margin-right: $euiSizeS; // 1, 2
+      margin-inline-start: 0; // 1, 2
+      margin-inline-end: $euiSizeS; // 1, 2
     }
   } @else {
     display: flex;
@@ -81,8 +81,21 @@
     align-items: center;
 
     > * + * {
-      margin-left: $euiSizeS; // 1
+      margin-inline-start: $euiSizeS; // 1
     }
+  }
+}
+
+@mixin euiButtonContentDisabled {
+  pointer-events: auto;
+  cursor: not-allowed;
+
+  .euiButtonContent__icon {
+    fill: currentColor;
+  }
+
+  .euiButtonContent__spinner {
+    border-color: euiLoadingSpinnerBorderColors(currentColor);
   }
 }
 

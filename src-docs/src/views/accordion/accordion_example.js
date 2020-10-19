@@ -12,6 +12,8 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import { accordionConfig } from './playground';
+
 import Accordion from './accordion';
 const accordionSource = require('!!raw-loader!./accordion');
 const accordionHtml = renderToHtml(Accordion);
@@ -109,6 +111,26 @@ const accordionForceStateSnippet = `<EuiAccordion
   buttonContent="Controlled via outside prop">
     <!-- Content to show when expanded -->
 </EuiAccordion>`;
+
+import AccordionIsLoading from './accordion_isLoading';
+const accordionIsLoadingSource = require('!!raw-loader!./accordion_isLoading');
+const accordionIsLoadingHtml = renderToHtml(AccordionIsLoading);
+const accordionIsLoadingSnippet = [
+  `<EuiAccordion
+  id={accordionId}
+  isLoading
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`,
+  `<EuiAccordion
+  id={accordionId}
+  isLoading
+  isLoadingMessage={customMessage}
+  >
+  <!-- Content that will be replaced by isLoadingMessage -->
+</EuiAccordion>`,
+];
 
 export const AccordionExample = {
   title: 'Accordion',
@@ -353,5 +375,39 @@ export const AccordionExample = {
       snippet: accordionForceStateSnippet,
       demo: <AccordionForceState />,
     },
+    {
+      title: 'Loading accordion',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionIsLoadingSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionIsLoadingHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Use the <EuiCode>isLoading</EuiCode> prop when not all of the
+            accordion&apos;s content is ready yet. When using{' '}
+            <EuiCode>isLoading</EuiCode>, the content of{' '}
+            <EuiCode>extraAction</EuiCode> is replaced with a loading spinner.
+          </p>
+          <p>
+            Manage the behavior of the accordion&apos;s content using{' '}
+            <EuiCode>isLoadingMessage</EuiCode>. By default
+            <EuiCode>isLoadingMessage</EuiCode> is set to false and the content
+            will remain unaltered. Set <EuiCode>isLoadingMessage</EuiCode> to
+            true to show the default loading message or pass a node to show a
+            custom loading message.
+          </p>
+        </div>
+      ),
+      snippet: accordionIsLoadingSnippet,
+      demo: <AccordionIsLoading />,
+    },
   ],
+  playground: accordionConfig,
 };

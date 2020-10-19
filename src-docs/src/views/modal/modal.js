@@ -25,10 +25,10 @@ import { htmlIdGenerator } from '../../../../src/services';
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
-  const [superSelectvalue, setSuperSeelctValue] = useState('option_one');
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
 
   const onSwitchChange = () =>
-    setIsSwitchChecked(isSwitchChecked => !isSwitchChecked);
+    setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
 
   const closeModal = () => setIsModalVisible(false);
 
@@ -103,7 +103,7 @@ export default () => {
         <EuiSuperSelect
           options={superSelectOptions}
           valueOfSelected={superSelectvalue}
-          onChange={value => onSuperSelectChange(value)}
+          onChange={(value) => onSuperSelectChange(value)}
           itemLayoutAlign="top"
           hasDividers
         />
@@ -117,8 +117,8 @@ export default () => {
     </EuiForm>
   );
 
-  const onSuperSelectChange = value => {
-    setSuperSeelctValue(value);
+  const onSuperSelectChange = (value) => {
+    setSuperSelectValue(value);
   };
 
   let modal;

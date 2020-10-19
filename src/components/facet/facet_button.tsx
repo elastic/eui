@@ -23,6 +23,7 @@ import React, {
   MouseEventHandler,
   ReactNode,
   RefCallback,
+  ReactElement,
 } from 'react';
 import classNames from 'classnames';
 
@@ -31,12 +32,18 @@ import { CommonProps } from '../common';
 import { EuiNotificationBadge } from '../badge';
 
 import { EuiLoadingSpinner } from '../loading';
+import { EuiInnerText } from '../inner_text';
 
-export interface EuiFacetButtonProps {
+export interface EuiFacetButtonProps
+  extends CommonProps,
+    Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   buttonRef?: RefCallback<HTMLButtonElement>;
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
   /**
-   * Any node, but preferrably a `EuiIcon` or `EuiAvatar`
+   * Any node, but preferably a `EuiIcon` or `EuiAvatar`
    */
   icon?: ReactNode;
   isDisabled?: boolean;
@@ -55,9 +62,7 @@ export interface EuiFacetButtonProps {
   quantity?: number;
 }
 
-export const EuiFacetButton: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps
-> = ({
+export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   children,
   className,
   icon,
@@ -80,8 +85,8 @@ export const EuiFacetButton: FunctionComponent<
     className
   );
 
-  // Add quanity number if provided or loading indicator
-  let buttonQuantity;
+  // Add quantity number if provided or loading indicator
+  let buttonQuantity: ReactElement;
 
   if (isLoading) {
     buttonQuantity = (
@@ -99,7 +104,7 @@ export const EuiFacetButton: FunctionComponent<
   }
 
   // Add an icon to the button if one exists.
-  let buttonIcon;
+  let buttonIcon: ReactElement;
 
   if (React.isValidElement<{ className?: string }>(icon)) {
     buttonIcon = React.cloneElement(icon, {
@@ -107,25 +112,28 @@ export const EuiFacetButton: FunctionComponent<
     });
   }
 
-  let dataText;
-  if (typeof children === 'string') {
-    dataText = children;
-  }
-
   return (
-    <button
-      className={classes}
-      disabled={isDisabled}
-      type="button"
-      ref={buttonRef}
-      {...rest}>
-      <span className="euiFacetButton__content">
-        {buttonIcon}
-        <span data-text={dataText} className="euiFacetButton__text">
-          {children}
-        </span>
-        {buttonQuantity}
-      </span>
-    </button>
+    <EuiInnerText>
+      {(ref, innerText) => (
+        <button
+          className={classes}
+          disabled={isDisabled}
+          type="button"
+          ref={buttonRef}
+          title={rest['aria-label'] || innerText}
+          {...rest}>
+          <span className="euiFacetButton__content">
+            {buttonIcon}
+            <span
+              className="euiFacetButton__text"
+              data-text={innerText}
+              ref={ref}>
+              {children}
+            </span>
+            {buttonQuantity}
+          </span>
+        </button>
+      )}
+    </EuiInnerText>
   );
 };
