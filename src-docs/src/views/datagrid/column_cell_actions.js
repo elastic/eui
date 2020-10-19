@@ -67,7 +67,7 @@ const columns = [
         return (
           <Component
             onClick={() =>
-              alert(`Love sent to country at row ${row}, column "${columnId}"`)
+              alert(`Love sent from row ${row}, column "${columnId}"`)
             }
             iconType="heart"
             aria-label={label}>
