@@ -186,6 +186,9 @@ export interface EuiResizableContainerActions {
   }: ActionKeyMove['payload']) => void;
   resizerFocus: (resizerId: ActionFocus['payload']['resizerId']) => void;
   resizerBlur: () => void;
-  togglePanel: ({ panelId, options }: ActionToggle['payload']) => void;
+  togglePanel: (
+    panelId: ActionToggle['payload']['panelId'],
+    options: ActionToggle['payload']['options']
+  ) => void;
   resize: (resetTour?: boolean) => void;
 }

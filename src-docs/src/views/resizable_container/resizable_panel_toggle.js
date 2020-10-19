@@ -7,6 +7,7 @@ import {
   EuiPanel,
   EuiTitle,
   EuiSpacer,
+  EuiButton,
 } from '../../../../src/components';
 import { fake } from 'faker';
 
@@ -373,6 +374,43 @@ export default () => {
               initialSize={20}
               minSize="10%">
               <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+
+      <EuiSpacer size="xl" />
+
+      <EuiResizableContainer style={{ height: '600px' }}>
+        {(EuiResizablePanel, EuiResizableButton, actions) => (
+          <>
+            <EuiResizablePanel id="1" initialSize={20} minSize="10%">
+              <div>
+                <EuiButton
+                  onClick={() =>
+                    actions.togglePanel('2', { direction: 'right' })
+                  }>
+                  Toggle Panel 2
+                </EuiButton>
+              </div>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel id="2" initialSize={40} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                <EuiTitle>
+                  <p>Panel 2</p>
+                </EuiTitle>
+              </EuiPanel>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel id="3" initialSize={40} minSize="10%">
+              <EuiTitle>
+                <p>Panel 3</p>
+              </EuiTitle>
             </EuiResizablePanel>
           </>
         )}

@@ -177,13 +177,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     actions.reset();
   }, [actions]);
 
-  const onToggleCollapsed = useCallback(
-    (panelId: string, options: any) => {
-      actions.togglePanel({ options, panelId });
-    },
-    [actions]
-  );
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
@@ -209,7 +202,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         register: actions.registerPanel,
         deregister: actions.deregisterPanel,
       },
-      onToggleCollapsed,
+      onToggleCollapsed: actions.togglePanel,
     }),
     [actions, isHorizontal]
   );
