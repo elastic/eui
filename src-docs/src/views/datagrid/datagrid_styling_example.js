@@ -58,7 +58,7 @@ const gridSnippet = `<EuiDataGrid
           iconType="bell"
           color="text"
           className="euiDataGrid__controlBtn"
-          onClick={() => alert('You clicked me! Hugs.')}>
+          onClick={() => {}}>
           New button
         </EuiButtonEmpty>
         <EuiButtonEmpty
@@ -66,7 +66,7 @@ const gridSnippet = `<EuiDataGrid
           iconType="branch"
           color="text"
           className="euiDataGrid__controlBtn"
-          onClick={() => alert('You clicked me! Hugs.')}>
+          onClick={() => {}}>
           Another button
         </EuiButtonEmpty>
       </Fragment>
@@ -99,7 +99,7 @@ const controlsSnippet = `<EuiDataGrid
           iconType="bell"
           color="text"
           className="euiDataGrid__controlBtn"
-          onClick={() => alert('You clicked me! Hugs.')}>
+          onClick={() => {}}>
           New button
         </EuiButtonEmpty>
         <EuiButtonEmpty
@@ -107,7 +107,7 @@ const controlsSnippet = `<EuiDataGrid
           iconType="branch"
           color="text"
           className="euiDataGrid__controlBtn"
-          onClick={() => alert('You clicked me! Hugs.')}>
+          onClick={() => {}}>
           Another button
         </EuiButtonEmpty>
       </Fragment>

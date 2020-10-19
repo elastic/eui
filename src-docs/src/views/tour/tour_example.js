@@ -30,7 +30,7 @@ const stepSnippet = `
   isStepOpen={true}
   isTourActive={true}
   minWidth={300}
-  onFinish={() => alert('Done!')}
+  onFinish={() => {}}
   step={1}
   stepsTotal={1}
   title="Title of the current step"

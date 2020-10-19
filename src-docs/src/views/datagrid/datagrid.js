@@ -39,7 +39,7 @@ const columns = [
       additional: [
         {
           label: 'Custom action',
-          onClick: () => alert('🎉'),
+          onClick: () => {},
           iconType: 'cheer',
           size: 'xs',
           color: 'text',
@@ -113,7 +113,7 @@ const trailingControlColumns = [
             ownFocus={true}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
-              <button onClick={() => alert('hello')} component="span">
+              <button onClick={() => {}} component="span">
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -129,7 +129,7 @@ const trailingControlColumns = [
                 </EuiFlexGroup>
               </button>
               <EuiSpacer size="s" />
-              <button onClick={() => alert('hello')}>
+              <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
