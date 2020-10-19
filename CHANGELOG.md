@@ -1,6 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
+- Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([4056](https://github.com/elastic/eui/pull/4056))
+- Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
 - Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
+
+**Breaking changes**
+
+- Removed `EuiToggle` and `EuiButtonToggle` in favor of `aria-pressed` ([4056](https://github.com/elastic/eui/pull/4056))
+- Updated `legend` and `idSelected` props of `EuiButtonGroup` to be required ([4056](https://github.com/elastic/eui/pull/4056))
+- Removed `logoAPM` in favor of `logoObservability` ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `.euiHeaderNotification` CSS class ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiNavDrawer` in favor of `EuiCollapsibleNav` ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `compressed` and `displayOnly` props from `EuiFormRow` in favor of the `display` prop ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiPopover`'s `withTitle` prop ([4065](https://github.com/elastic/eui/pull/4065))
 
 **Theme: Amsterdam**
 
