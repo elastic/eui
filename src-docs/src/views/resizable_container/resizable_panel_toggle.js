@@ -343,6 +343,40 @@ export default () => {
           </>
         )}
       </EuiResizableContainer>
+      <EuiSpacer />
+      <EuiResizableContainer direction="vertical" style={{ height: '600px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel
+              mode="collapsible"
+              initialSize={20}
+              minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel mode="main" initialSize={60} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel
+              mode="collapsible"
+              initialSize={20}
+              minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
     </>
   );
 };

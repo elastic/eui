@@ -106,9 +106,12 @@ export interface EuiResizablePanelProps
   mode?: ModeOptions;
 }
 
+const DEFAULT_COLLAPSED = 'menuRight';
+const DEFAULT_NOT_COLLAPSED = 'menuLeft';
+
 const toggleDefault: ToggleOptions = {
-  collapsedIcon: 'menuRight',
-  notCollapsedIcon: 'menuLeft',
+  collapsedIcon: DEFAULT_COLLAPSED,
+  notCollapsedIcon: DEFAULT_NOT_COLLAPSED,
 };
 
 const getPosition = (ref: HTMLDivElement) => {
@@ -276,7 +279,13 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const toggleButtonClasses = classNames(
     'euiResizablePanel__toggleButton',
-    toggleObject && toggleObject.className
+    toggleObject && toggleObject.className,
+    {
+      'euiResizablePanel__toggleButton--defaultCollapsed':
+        toggleObject.collapsedIcon === DEFAULT_COLLAPSED,
+      'euiResizablePanel__toggleButton--defaultNotCollapsed':
+        toggleObject.notCollapsedIcon === DEFAULT_NOT_COLLAPSED,
+    }
   );
 
   const toggleButtonAriaLabel = useEuiI18n(
