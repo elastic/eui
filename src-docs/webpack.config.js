@@ -15,7 +15,15 @@ const bypassCache = NODE_ENV === 'puppeteer';
 
 function employCache(loaders) {
   if (isDevelopment && !bypassCache) {
-    return ['cache-loader'].concat(loaders);
+    return [
+      {
+        loader: 'cache-loader',
+        options: {
+          cacheDirectory: path.join(__dirname, '..', '.cache-loader'),
+        },
+      },
+      ...loaders,
+    ];
   }
 
   return loaders;

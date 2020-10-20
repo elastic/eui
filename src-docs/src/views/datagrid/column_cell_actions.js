@@ -21,29 +21,75 @@ const columns = [
   {
     id: 'email',
     isSortable: true,
-    actions: {
-      additional: [
-        {
-          iconType: 'heart',
-          label: 'Send Email',
-          size: 'xs',
-          onClick: () => {},
-        },
-      ],
-    },
+    cellActions: [
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Love sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="heart"
+            aria-label={`Send love to ${row}, column "${columnId}" `}>
+            Send love
+          </Component>
+        );
+      },
+    ],
   },
   {
     id: 'city',
     isSortable: true,
-    actions: {
-      showHide: {
-        iconType: 'cross',
-        label: 'Remove column',
+    cellActions: [
+      ({ rowIndex, columnId, Component, isExpanded }) => {
+        const row = ++rowIndex;
+        const message = isExpanded
+          ? `Cheers sent in Popover to row "${row}" column "${columnId}"`
+          : `Cheers sent from row ${row}, column "${columnId}"`;
+
+        return (
+          <Component
+            onClick={() => alert(message)}
+            iconType="cheer"
+            aria-label={message}>
+            Cheer
+          </Component>
+        );
       },
-    },
+    ],
   },
   {
     id: 'country',
+    cellActions: [
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        const label = `Love sent from row ${row}, column "${columnId}"`;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Love sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="heart"
+            aria-label={label}>
+            Love this city
+          </Component>
+        );
+      },
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        const label = `Paint country at row ${row}, column "${columnId}"`;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Paint sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="brush"
+            aria-label={label}>
+            Paint this city
+          </Component>
+        );
+      },
+    ],
   },
   {
     id: 'account',

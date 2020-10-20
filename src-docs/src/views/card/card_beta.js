@@ -23,7 +23,7 @@ const cardNodes = icons.map(function (item, index) {
             ? 'This module is not GA. Please help us by reporting any bugs.'
             : undefined
         }
-        onClick={() => window.alert('Card clicked')}
+        onClick={() => {}}
       />
     </EuiFlexItem>
   );
