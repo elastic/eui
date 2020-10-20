@@ -95,7 +95,7 @@ export interface Props {
    */
   content?: ReactNode;
   /**
-   * Common diplay alternatives for the component.
+   * Common display alternatives for the anchor wrapper
    */
   display?: keyof typeof displayToClassNameMap;
   /**
