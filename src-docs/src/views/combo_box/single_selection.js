@@ -9,7 +9,23 @@ const options = [
     'data-test-subj': 'titanOption',
   },
   {
+    label: 'Titan',
+    key: 'titan2',
+  },
+  {
+    label: 'Titan',
+    key: 'titan3',
+  },
+  {
     label: 'Enceladus',
+    key: 'en',
+  },
+  {
+    label: 'Enceladus',
+    key: 'en2',
+  },
+  {
+    label: 'Mimas',
   },
   {
     label: 'Mimas',
