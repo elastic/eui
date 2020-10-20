@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added display prop to `EuiTooltip` for common display block needs([4148](https://github.com/elastic/eui/pull/4148))
+- Added `display` prop to `EuiToolTip` for common display block needs ([#4148](https://github.com/elastic/eui/pull/4148))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
