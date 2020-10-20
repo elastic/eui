@@ -272,8 +272,8 @@ export const PopoverExample = {
       text: (
         <p>
           Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
-          of the panel content. When using popover titles, this setting will
-          propogate to the title. Or you can supply a custom{' '}
+          of the panel content. When using popover titles and footers, this setting 
+          will propogate to them. Or you can supply a custom{' '}
           <EuiCode>paddingSize</EuiCode> to either the{' '}
           <strong>EuiPopoverTitle</strong> of <strong>EuiPopoverFooter</strong>.
         </p>
