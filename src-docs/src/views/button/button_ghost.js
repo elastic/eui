@@ -6,24 +6,21 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonToggle,
   EuiPanel,
 } from '../../../../src/components';
 
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
 
-  const onToggle0Change = (e) => {
-    setToggle0On(e.target.checked);
+  const onToggle0Change = () => {
+    setToggle0On((isOn) => !isOn);
   };
 
   return (
     <EuiPanel paddingSize="l" className="guideDemo__ghostBackground">
       <EuiFlexGroup wrap gutterSize="s" alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton
-            color="ghost"
-            onClick={() => window.alert('Button clicked')}>
+          <EuiButton color="ghost" onClick={() => {}}>
             Ghost
           </EuiButton>
         </EuiFlexItem>
@@ -34,16 +31,13 @@ export default () => {
             color="ghost"
             size="s"
             iconType="check"
-            onClick={() => window.alert('Button clicked')}>
+            onClick={() => {}}>
             Filled
           </EuiButton>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButtonEmpty
-            size="s"
-            color="ghost"
-            onClick={() => window.alert('Button clicked')}>
+          <EuiButtonEmpty size="s" color="ghost" onClick={() => {}}>
             small
           </EuiButtonEmpty>
         </EuiFlexItem>
@@ -53,7 +47,7 @@ export default () => {
             size="s"
             color="ghost"
             iconType="user"
-            onClick={() => window.alert('Button clicked')}
+            onClick={() => {}}
             aria-label="Your account"
           />
         </EuiFlexItem>
@@ -71,12 +65,13 @@ export default () => {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButtonToggle
+          <EuiButton
             color="ghost"
-            label="Toggle Me"
+            isSelected={toggle0On}
             fill={toggle0On}
-            onChange={onToggle0Change}
-          />
+            onClick={onToggle0Change}>
+            Toggle me
+          </EuiButton>
         </EuiFlexItem>
       </EuiFlexGroup>
     </EuiPanel>

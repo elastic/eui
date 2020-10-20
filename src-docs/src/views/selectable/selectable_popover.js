@@ -80,9 +80,9 @@ export default () => {
           onChange={onChange}>
           {(list, search) => (
             <div style={{ width: 240 }}>
-              <EuiPopoverTitle>{search}</EuiPopoverTitle>
+              <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
               {list}
-              <EuiPopoverFooter>
+              <EuiPopoverFooter paddingSize="s">
                 <EuiButton size="s" fullWidth>
                   Manage this list
                 </EuiButton>

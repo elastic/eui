@@ -22,7 +22,6 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__items"
@@ -80,7 +79,6 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__items"
@@ -138,7 +136,6 @@ exports[`FieldValueSelectionFilter inactive - field is global 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__items"
@@ -195,7 +192,6 @@ exports[`FieldValueSelectionFilter inactive - fields in options 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__items"
@@ -252,7 +248,6 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__note"
@@ -296,7 +291,6 @@ exports[`FieldValueSelectionFilter render - fields in options 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__items"
@@ -353,7 +347,6 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__note"
@@ -397,7 +390,6 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__note"
@@ -441,7 +433,6 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={false}
 >
   <div
     className="euiFilterSelect__items"

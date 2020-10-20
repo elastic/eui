@@ -16,7 +16,7 @@
 @mixin euiButtonFocus {
   transition: all $euiAnimSpeedNormal ease-in-out;
 
-  &:hover:not(:disabled) {
+  &:hover:not([class*='isDisabled']) {
     transform: translateY(-1px);
   }
 
@@ -24,7 +24,7 @@
     animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
-  &:active:not(:disabled) {
+  &:active:not([class*='isDisabled']) {
     transform: translateY(1px);
   }
 }
@@ -43,7 +43,7 @@
   // focus states should come after all default styles
   @include euiButtonFocus;
 
-  &:hover:not(:disabled),
+  &:hover:not([class*='isDisabled']),
   &:focus {
     text-decoration: underline;
   }

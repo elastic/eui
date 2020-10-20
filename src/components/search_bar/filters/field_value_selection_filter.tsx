@@ -359,10 +359,6 @@ export class FieldValueSelectionFilter extends Component<
       config,
       multiSelect
     );
-    const threshold =
-      this.props.config.searchThreshold || defaults.config.searchThreshold;
-    const withTitle =
-      this.state.options != null && this.state.options.all.length >= threshold;
 
     return (
       <EuiPopover
@@ -372,7 +368,6 @@ export class FieldValueSelectionFilter extends Component<
         isOpen={this.state.popoverOpen}
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
-        withTitle={withTitle}
         anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel">
         {searchBox}
@@ -387,13 +382,14 @@ export class FieldValueSelectionFilter extends Component<
     if (this.state.options && this.state.options.all.length >= threshold) {
       const disabled = this.state.error != null;
       return (
-        <EuiPopoverTitle>
+        <EuiPopoverTitle paddingSize="s">
           <EuiFieldSearch
             inputRef={(ref) => (this.searchInput = ref)}
             disabled={disabled}
             incremental={true}
             onSearch={(query) => this.filterOptions(query)}
             onKeyDown={this.onKeyDown.bind(this, -1)}
+            compressed
           />
         </EuiPopoverTitle>
       );

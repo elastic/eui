@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -87,7 +88,7 @@ const popoverWithTitleSnippet = `<EuiPopover
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
   <EuiPopoverTitle><!-- Popover title --></EuiPopoverTitle>
-  <div><!-- Popover body --></div>
+  <!-- Popover content -->
   <EuiPopoverFooter><!-- Popover footer --></EuiPopoverFooter>
 </EuiPopover>`;
 
@@ -106,9 +107,10 @@ const popoverWithTitlePaddingSnippet = `<EuiPopover
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
-  panelPaddingSize="s">
-  <EuiPopoverTitle><!-- Popover title --></EuiPopoverTitle>
-  <!-- Content for popover with small padding -->
+  panelPaddingSize="none">
+  <EuiPopoverTitle paddingSize="s"><!-- Popover title --></EuiPopoverTitle>
+  <!-- Content for popover without padding -->
+  <EuiPopoverFooter paddingSize="s"><!-- Popover footer --></EuiPopoverFooter>
 </EuiPopover>`;
 
 const popoverContainerSnippet = `<EuiPopover
@@ -160,10 +162,27 @@ export const PopoverExample = {
         },
       ],
       text: (
-        <p>
-          Use the <strong>EuiPopover</strong> component to hide controls or
-          options behind a clickable element.
-        </p>
+        <>
+          <p>
+            Use the <strong>EuiPopover</strong> component to hide controls or
+            options behind a clickable element. A popover is temporary so keep
+            tasks simple and narrowly focused.
+          </p>
+          <p>
+            While the visibility of the popover is maintained by the consuming
+            application, popovers will automatically close when clicking outside
+            of the popover bounds. Therefore all work done in a popover should
+            automatically be saved.
+          </p>
+          <p>
+            Avoid popover inception (popover triggering another popover), and
+            instead use a{' '}
+            <Link to="/navigation/context-menu">
+              <strong>EuiContextMenu</strong>
+            </Link>{' '}
+            to swap the popover panel content.
+          </p>
+        </>
       ),
       props: { EuiPopover },
       snippet: popOverSnippet,
@@ -182,13 +201,11 @@ export const PopoverExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             The alignment and arrow on your popover can be set with the{' '}
-            <EuiCode>anchorPosition</EuiCode> prop. These positions will not
-            update based upon screen real estate and will stick to the positions
-            you declare. Because of this,{' '}
-            <strong>be careful when using left or right positioning</strong>.
+            <EuiCode>anchorPosition</EuiCode> prop. These positions will update
+            based upon screen real estate.
           </p>
           <p>
             <strong>Some tips:</strong>
@@ -204,13 +221,14 @@ export const PopoverExample = {
               popover.
             </li>
           </ul>
-        </div>
+        </>
       ),
+      props: { EuiPopover },
       snippet: popoverAnchorSnippet,
       demo: <PopoverAnchorPosition />,
     },
     {
-      title: 'Popover with title and/or footer',
+      title: 'Popover titles and footers',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -222,25 +240,50 @@ export const PopoverExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
-            Popovers often need titling. This can be applied through a prop or
-            used separately as its own component{' '}
-            <strong>EuiPopoverTitle</strong> nested somewhere in the child prop.
+            Popovers often need titling. Use the
+            <strong>EuiPopoverTitle</strong> component nested somewhere inside
+            the popover contents.
           </p>
           <p>
-            You can also add a similiarly styled{' '}
+            You can also add a similarly styled{' '}
             <strong>EuiPopoverFooter</strong> for smaller captions or call to
             action buttons.
           </p>
-        </div>
+        </>
       ),
       props: { EuiPopoverTitle, EuiPopoverFooter },
       demo: <PopoverWithTitle />,
       snippet: popoverWithTitleSnippet,
     },
     {
-      title: 'Panel class name and padding size',
+      title: 'Popover padding sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverWithTitlePaddingSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverWithTitlePaddingHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
+          of the panel content. When using popover titles and footers, this
+          setting will propogate to them. Or you can supply a custom{' '}
+          <EuiCode>paddingSize</EuiCode> to either the{' '}
+          <strong>EuiPopoverTitle</strong> of <strong>EuiPopoverFooter</strong>.
+        </p>
+      ),
+      props: { EuiPopover, EuiPopoverTitle, EuiPopoverFooter },
+      snippet: popoverWithTitlePaddingSnippet,
+      demo: <PopoverWithTitlePadding />,
+    },
+    {
+      title: 'Panel class name',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -253,109 +296,13 @@ export const PopoverExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
-          on the panel within the panel. Use the{' '}
-          <EuiCode>panelClassName</EuiCode> prop to pass a custom class to the
-          panel inside a popover.
+          Use the <EuiCode>panelClassName</EuiCode> prop to pass a custom class
+          to the panel containing the popover contents.
         </p>
       ),
+      props: { EuiPopover },
       demo: <PopoverPanelClassName />,
       snippet: popoverPanelClassNameSnippet,
-    },
-    {
-      title: 'Popover with title and padding size',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverWithTitlePaddingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverWithTitlePaddingHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            When using popover titles, you can still propogate the padding size
-            by using <EuiCode>panelPaddingSize</EuiCode>. This will only affect
-            the horizontal padding of the title and the overall padding of the
-            content.
-          </p>
-        </div>
-      ),
-      snippet: popoverWithTitlePaddingSnippet,
-      demo: <PopoverWithTitlePadding />,
-    },
-    {
-      title: 'Constraining a popover inside a container',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverContainerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverContainerHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            <strong>EuiPopover</strong> can accept a React or DOM element as a{' '}
-            <EuiCode>container</EuiCode> prop and restrict the popover from
-            overflowing that container.
-          </p>
-        </div>
-      ),
-      snippet: popoverContainerSnippet,
-      demo: <PopoverContainer />,
-    },
-    {
-      title: 'Popover using an HTMLElement as the anchor',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverHTMLElementAnchorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverHTMLElementAnchorHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            <strong>EuiWrappingPopover</strong> is an extra popover component
-            that allows any existing DOM element to be passed as the{' '}
-            <EuiCode>button</EuiCode> prop.
-          </p>
-        </div>
-      ),
-      demo: <PopoverHTMLElementAnchor />,
-    },
-    {
-      title: 'Popover on a fixed element',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverFixedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverFixedHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            Popover content even works on <EuiCode>position: fixed;</EuiCode>{' '}
-            elements.
-          </p>
-        </div>
-      ),
-      snippet: popoverFixedSnippet,
-      demo: <PopoverFixed />,
     },
     {
       title: 'Popover with block level display',
@@ -370,18 +317,63 @@ export const PopoverExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Popover anchors default to{' '}
-            <EuiCode language="sass">display: inline-block</EuiCode> so they do
-            not force block display on inline triggers. If you do need to change
-            this to block display, just add{' '}
-            <EuiCode language="js">display=&quot;block&quot;</EuiCode>
-          </p>
-        </div>
+        <p>
+          Popover anchors default to{' '}
+          <EuiCode language="sass">display: inline-block;</EuiCode> so they do
+          not force a display on inline triggers. If you do need to change this,
+          just add <EuiCode language="js">display=&quot;block&quot;</EuiCode>
+        </p>
       ),
+      props: { EuiPopover },
       snippet: popoverBlockSnippet,
       demo: <PopoverBlock />,
+    },
+    {
+      title: 'Popover on a fixed element',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverFixedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverFixedHtml,
+        },
+      ],
+      text: (
+        <p>
+          Popover content even works on{' '}
+          <EuiCode language="sass">position: fixed;</EuiCode> elements. Add the{' '}
+          <EuiCode>repositionOnScroll</EuiCode> boolean prop to ensure the
+          popover realigns to the fixed button on scroll.
+        </p>
+      ),
+      props: { EuiPopover },
+      snippet: popoverFixedSnippet,
+      demo: <PopoverFixed />,
+    },
+    {
+      title: 'Constraining a popover inside a container',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverContainerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverContainerHtml,
+        },
+      ],
+      text: (
+        <p>
+          <strong>EuiPopover</strong> can accept a React or DOM element as a{' '}
+          <EuiCode>container</EuiCode> prop and restrict the popover from
+          overflowing that container.
+        </p>
+      ),
+      props: { EuiPopover },
+      snippet: popoverContainerSnippet,
+      demo: <PopoverContainer />,
     },
     {
       title: 'Popover attached to input element',
@@ -396,7 +388,7 @@ export const PopoverExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiInputPopover</strong> is a specialized popover component
             intended to be used with form elements. Stylistically, the popover
@@ -414,14 +406,14 @@ export const PopoverExample = {
             <EuiCode>type=number</EuiCode> inputs as they natively bind to the
             down key.
           </p>
-        </div>
+        </>
       ),
       props: { EuiInputPopover },
       snippet: inputPopoverSnippet,
       demo: <InputPopover />,
     },
     {
-      title: 'Removing the focus focus',
+      title: 'Removing the focus trap',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -435,8 +427,9 @@ export const PopoverExample = {
       text: (
         <>
           <p>
-            If the popover cannot trap focus within itself, then you can remove{' '}
-            <EuiCode>ownFocus</EuiCode>.
+            If the popover should not trap focus within itself, then you can
+            remove it with <EuiCode language="ts">{'ownFocus={false}'}</EuiCode>
+            .
           </p>
           <EuiCallOut
             iconType="accessibility"
@@ -451,8 +444,30 @@ export const PopoverExample = {
           />
         </>
       ),
+      props: { EuiPopover },
       snippet: trapFocusSnippet,
       demo: <TrapFocus />,
+    },
+    {
+      title: 'Popover using an HTMLElement as the anchor',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverHTMLElementAnchorSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverHTMLElementAnchorHtml,
+        },
+      ],
+      text: (
+        <p>
+          <strong>EuiWrappingPopover</strong> is an extra popover component that
+          allows any existing DOM element to be passed as the{' '}
+          <EuiCode>button</EuiCode> prop.
+        </p>
+      ),
+      demo: <PopoverHTMLElementAnchor />,
     },
   ],
 };

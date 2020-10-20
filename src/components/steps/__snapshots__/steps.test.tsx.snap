@@ -12,12 +12,20 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 1"
+      <span
         class="euiStepNumber euiStep__circle"
       >
-        1
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 1
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          1
+        </span>
+      </span>
       <h2
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -38,12 +46,20 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 2"
+      <span
         class="euiStepNumber euiStep__circle"
       >
-        2
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 2
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          2
+        </span>
+      </span>
       <h2
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -64,10 +80,15 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Incomplete Step 3"
+      <span
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
-      />
+      >
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 3 is incomplete
+        </span>
+      </span>
       <h2
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -97,12 +118,20 @@ exports[`EuiSteps renders steps 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 1"
+      <span
         class="euiStepNumber euiStep__circle"
       >
-        1
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 1
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          1
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -123,12 +152,20 @@ exports[`EuiSteps renders steps 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 2"
+      <span
         class="euiStepNumber euiStep__circle"
       >
-        2
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 2
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          2
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -149,10 +186,15 @@ exports[`EuiSteps renders steps 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Incomplete Step 3"
+      <span
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
-      />
+      >
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 3 is incomplete
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -182,12 +224,20 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 10"
+      <span
         class="euiStepNumber euiStep__circle"
       >
-        10
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 10
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          10
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -208,12 +258,20 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 11"
+      <span
         class="euiStepNumber euiStep__circle"
       >
-        11
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 11
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          11
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -234,10 +292,15 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Incomplete Step 12"
+      <span
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
-      />
+      >
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 12 is incomplete
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--small euiStep__title"
       >
@@ -267,12 +330,20 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 1"
+      <span
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
-        1
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 1
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          1
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--xsmall euiStep__title"
       >
@@ -293,12 +364,20 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Step 2"
+      <span
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
-        2
-      </div>
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 2
+        </span>
+        <span
+          aria-hidden="true"
+        >
+          2
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--xsmall euiStep__title"
       >
@@ -319,10 +398,15 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
     <div
       class="euiStep__titleWrapper"
     >
-      <div
-        aria-label="Incomplete Step 3"
+      <span
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle euiStepNumber--small"
-      />
+      >
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Step 3 is incomplete
+        </span>
+      </span>
       <p
         class="euiTitle euiTitle--xsmall euiStep__title"
       >

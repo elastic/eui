@@ -39,9 +39,7 @@ export default () => {
         is enabled.
       </EuiText>
 
-      <EuiButton onClick={() => alert('External event triggered')}>
-        External Focusable Element
-      </EuiButton>
+      <EuiButton onClick={() => {}}>External Focusable Element</EuiButton>
     </div>
   );
 };
