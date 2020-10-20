@@ -4,14 +4,14 @@ import { PropTypes } from 'react-view';
 
 const iconOptions = mapOptions(iconTypes);
 
-export const iconValidator = prop => {
+export const iconValidator = (prop = { custom: {} }) => {
   const newProp = {
     ...prop,
     value: undefined,
     type: PropTypes.String,
     custom: {
       ...prop.custom,
-      validator: val => iconOptions[val],
+      validator: (val) => iconOptions[val],
     },
   };
   return newProp;

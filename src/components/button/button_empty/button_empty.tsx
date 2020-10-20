@@ -34,17 +34,11 @@ import {
   EuiButtonContentType,
 } from '../button_content';
 
-export type EuiButtonEmptyColor =
-  | 'primary'
-  | 'danger'
-  | 'disabled'
-  | 'text'
-  | 'ghost';
+export type EuiButtonEmptyColor = 'primary' | 'danger' | 'text' | 'ghost';
 
 const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
-  disabled: 'euiButtonEmpty--disabled',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
 };
@@ -64,6 +58,7 @@ export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
 const flushTypeToClassNameMap = {
   left: 'euiButtonEmpty--flushLeft',
   right: 'euiButtonEmpty--flushRight',
+  both: 'euiButtonEmpty--flushBoth',
 };
 
 export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
@@ -79,7 +74,7 @@ interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
   color?: EuiButtonEmptyColor;
   size?: EuiButtonEmptySizes;
   /**
-   * Ensure the text of the button sits flush to the left or right side of its container
+   * Ensure the text of the button sits flush to the left, right, or both sides of its container
    */
   flush?: keyof typeof flushTypeToClassNameMap;
   /**
@@ -90,6 +85,11 @@ interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
    * Force disables the button and changes the icon to a loading spinner
    */
   isLoading?: boolean;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
   href?: string;
   target?: string;
   rel?: string;
@@ -128,6 +128,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   buttonRef,
   contentProps,
   textProps,
+  isSelected,
   ...rest
 }) => {
   // If in the loading state, force disabled to true
@@ -191,6 +192,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       className={classes}
       type={type}
       ref={buttonRef}
+      aria-pressed={isSelected}
       {...(rest as EuiButtonEmptyPropsForButton)}>
       {innerNode}
     </button>

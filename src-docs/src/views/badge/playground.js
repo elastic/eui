@@ -7,8 +7,8 @@ import {
 import {
   propUtilityForPlayground,
   iconValidator,
+  dummyFunction,
 } from '../../services/playground';
-import * as t from '@babel/types';
 
 export const badgeConfig = () => {
   const docgenInfo = Array.isArray(EuiBadge.__docgenInfo)
@@ -25,7 +25,6 @@ export const badgeConfig = () => {
       use: 'switch',
       label: 'Simulate',
       modifyOtherProps: (val, state, set) => {
-        console.log(val, 'state', state);
         if (val) {
           if (!state.onClickAriaLabel.value) {
             set('onClickAriaLabel', 'onClickAriaLabel');
@@ -42,7 +41,7 @@ export const badgeConfig = () => {
     value: 'Badge content',
     hidden: true,
     custom: {
-      sanitize: val => {
+      sanitize: (val) => {
         return val.replace(/<(?:"[^"]"['"]|'[^']'['"]|[^'">])+>/g, '');
       },
     },
@@ -88,17 +87,7 @@ export const badgeConfig = () => {
         },
       },
       customProps: {
-        onClick: {
-          generate: val => {
-            if (!val) return null;
-            const obj = t.arrowFunctionExpression(
-              [],
-              t.blockStatement([]),
-              false
-            );
-            return obj;
-          },
-        },
+        onClick: dummyFunction,
       },
     },
   };

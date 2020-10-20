@@ -101,7 +101,7 @@ export default () => (
           <EuiButtonIcon
             size="s"
             color="danger"
-            onClick={() => window.alert('Button clicked')}
+            onClick={() => {}}
             iconType="trash"
             aria-label="Next"
           />

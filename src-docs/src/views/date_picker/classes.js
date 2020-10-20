@@ -11,7 +11,7 @@ import {
 export default () => {
   const [startDate, setStartDate] = useState(moment());
 
-  const handleChange = date => {
+  const handleChange = (date) => {
     setStartDate(date);
   };
 
@@ -44,7 +44,7 @@ export default () => {
           selected={startDate}
           showTimeSelect
           onChange={handleChange}
-          dayClassName={date =>
+          dayClassName={(date) =>
             date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined
           }
         />

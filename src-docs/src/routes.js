@@ -74,6 +74,7 @@ import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example'
 import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
+import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -133,11 +134,15 @@ import { ListGroupExample } from './views/list_group/list_group_example';
 
 import { LoadingExample } from './views/loading/loading_example';
 
+import { MarkdownEditorExample } from './views/markdown_editor/mardown_editor_example';
+
+import { MarkdownFormatExample } from './views/markdown_editor/mardown_format_example';
+
+import { MarkdownPluginExample } from './views/markdown_editor/markdown_plugin_example';
+
 import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
-
-import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
@@ -197,8 +202,6 @@ import { ToastExample } from './views/toast/toast_example';
 
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
-import { ToggleExample } from './views/toggle/toggle_example';
-
 import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
@@ -224,7 +227,7 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
  */
-const slugify = str => {
+const slugify = (str) => {
   const parts = str
     .toLowerCase()
     .replace(/[-]+/g, ' ')
@@ -257,11 +260,11 @@ const createExample = (example, customTitle) => {
     playground,
     guidelines,
   } = example;
-  sections.forEach(section => {
+  sections.forEach((section) => {
     section.id = slugify(section.title || title);
   });
 
-  const renderedSections = sections.map(section =>
+  const renderedSections = sections.map((section) =>
     createElement(GuideSection, {
       key: section.title || title,
       ...section,
@@ -330,13 +333,12 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      NavDrawerExample,
       PageExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
       SpacerExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Navigation',
@@ -354,7 +356,7 @@ const navigation = [
       SideNavExample,
       StepsExample,
       TabsExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Tabular content',
@@ -365,9 +367,10 @@ const navigation = [
       DataGridFocusExample,
       DataGridStylingExample,
       DataGridControlColumnsExample,
+      DataGridFooterRowExample,
       TableExample,
       TableInMemoryExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Display',
@@ -377,7 +380,6 @@ const navigation = [
       BadgeExample,
       CallOutExample,
       CardExample,
-      CodeExample,
       CommentListExample,
       DescriptionListExample,
       DragAndDropExample,
@@ -395,7 +397,7 @@ const navigation = [
       ToastExample,
       ToolTipExample,
       TourExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Forms',
@@ -407,7 +409,6 @@ const navigation = [
       SuperSelectExample,
       ComboBoxExample,
       ColorPickerExample,
-      CodeEditorExample,
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
@@ -416,7 +417,17 @@ const navigation = [
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Editors & syntax',
+    items: [
+      MarkdownFormatExample,
+      MarkdownEditorExample,
+      MarkdownPluginExample,
+      CodeEditorExample,
+      CodeExample,
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Elastic Charts',
@@ -426,7 +437,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Utilities',
@@ -452,9 +463,8 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
-      ToggleExample,
       WindowEventExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Package',
@@ -488,10 +498,10 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 export default {
   navigation,
 
-  getRouteForPath: path => {
+  getRouteForPath: (path) => {
     // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
     const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
-    return allRoutes.find(route => normalizedPath === route.path);
+    return allRoutes.find((route) => normalizedPath === route.path);
   },
 
   getAppRoutes: function getAppRoutes() {
@@ -499,7 +509,7 @@ export default {
   },
 
   getPreviousRoute: function getPreviousRoute(routeName) {
-    const index = allRoutes.findIndex(item => {
+    const index = allRoutes.findIndex((item) => {
       return item.name === routeName;
     });
 
@@ -507,7 +517,7 @@ export default {
   },
 
   getNextRoute: function getNextRoute(routeName) {
-    const index = allRoutes.findIndex(item => {
+    const index = allRoutes.findIndex((item) => {
       return item.name === routeName;
     });
 

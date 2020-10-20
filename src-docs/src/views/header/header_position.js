@@ -12,7 +12,7 @@ export default () => {
 
   const sections = [
     {
-      items: [<EuiHeaderLogo iconType="logoKibana">Kibana</EuiHeaderLogo>],
+      items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
       borders: 'right',
     },
   ];
@@ -22,7 +22,7 @@ export default () => {
       <EuiSwitch
         label={'Make header fixed position'}
         checked={position === 'fixed'}
-        onChange={e => setPosition(e.target.checked ? 'fixed' : 'static')}
+        onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
       />
       <EuiSpacer />
       <EuiHeader position={position} sections={sections} />

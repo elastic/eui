@@ -4,7 +4,7 @@
 
 ## New components, features, and bug fixes
 
-When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines][docs-components]. If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
+When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines](wiki/component-development.md). If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
 
 ### How we assign work and define our roadmap
 

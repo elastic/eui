@@ -177,10 +177,16 @@ export type EuiBasicTableColumn<T> =
   | EuiTableActionsColumnType<T>;
 
 export interface Criteria<T> {
+  /**
+   * If the shown items represents a page (slice) into a bigger set, this describes this page
+   */
   page?: {
     index: number;
     size: number;
   };
+  /**
+   * If the shown items are sorted, this describes the sort criteria
+   */
   sort?: {
     field: keyof T;
     direction: Direction;
@@ -188,6 +194,9 @@ export interface Criteria<T> {
 }
 
 export interface CriteriaWithPagination<T> extends Criteria<T> {
+  /**
+   * If the shown items represents a page (slice) into a bigger set, this describes this page
+   */
   page: {
     index: number;
     size: number;
@@ -198,24 +207,81 @@ type CellPropsCallback<T> = (item: T, column: EuiBasicTableColumn<T>) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
 interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
+  /**
+   * Describes how to extract a unique ID from each item, used for selections & expanded rows
+   */
   itemId?: ItemId<T>;
+  /**
+   * Row expansion uses the itemId prop to identify each row
+   */
   itemIdToExpandedRowMap?: ItemIdToExpandedRowMap;
+  /**
+   * A list of objects to who in the table - an item per row
+   */
   items: T[];
+  /**
+   * Applied to `EuiTableRowCell`
+   */
   cellProps?: object | CellPropsCallback<T>;
+  /**
+   * An array of one of the objects: #EuiTableFieldDataColumnType, #EuiTableComputedColumnType or #EuiTableActionsColumnType.
+   */
   columns: Array<EuiBasicTableColumn<T>>;
+  /**
+   * Error message to display
+   */
   error?: string;
+  /**
+   * Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."
+   */
   tableCaption?: string;
+  /**
+   * Indicates which column should be used as the identifying cell in each row. Should match a "field" prop in FieldDataColumn
+   */
   rowHeader?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
   isSelectable?: boolean;
+  /**
+   * Provides an infinite loading indicator
+   */
   loading?: boolean;
+  /**
+   * Message to display if table is empty
+   */
   noItemsMessage?: ReactNode;
+  /**
+   * Called whenever pagination or sorting changes (this property is required when either pagination or sorting is configured). See #Criteria or #CriteriaWithPagination
+   */
   onChange?: (criteria: Criteria<T>) => void;
+  /**
+   * Configures #Pagination
+   */
   pagination?: undefined;
+  /**
+   * If true, will convert table to cards in mobile view
+   */
+  responsive?: boolean;
+  /**
+   * Applied to `EuiTableRow`
+   */
   rowProps?: object | RowPropsCallback<T>;
+  /**
+   * Configures #EuiTableSelectionType
+   */
   selection?: EuiTableSelectionType<T>;
+  /**
+   * Configures #EuiTableSortingType
+   */
   sorting?: EuiTableSortingType<T>;
+  /**
+   * Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.
+   */
+  tableLayout?: 'fixed' | 'auto';
+  /**
+   * Applied to table cells => Any cell using render function will set this to be false, leading to unnecessary word breaks. Apply textOnly: true in order to ensure it breaks properly
+   */
+  textOnly?: boolean;
 }
 
 type BasicTableWithPaginationProps<T> = Omit<
@@ -366,7 +432,7 @@ export class EuiBasicTable<T = any> extends Component<
       'keydown',
       'keyup',
       'keypress',
-    ].forEach(event => {
+    ].forEach((event) => {
       tbody.addEventListener(event, listener, true);
       this.cleanups.push(() => {
         tbody.removeEventListener(event, listener, true);
@@ -375,7 +441,7 @@ export class EuiBasicTable<T = any> extends Component<
   };
 
   private removeLoadingListeners = () => {
-    this.cleanups.forEach(cleanup => cleanup());
+    this.cleanups.forEach((cleanup) => cleanup());
     this.cleanups.length = 0;
   };
 
@@ -466,7 +532,7 @@ export class EuiBasicTable<T = any> extends Component<
       },
     };
     if (this.props.onChange) {
-      // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
+      // @ts-ignore complex relationship between pagination's existence and criteria, the code logic ensures this is correctly maintained
       this.props.onChange(criteria);
     }
   }
@@ -532,9 +598,7 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
         </EuiFlexGroup>
       </EuiTableHeaderMobile>
-    ) : (
-      undefined
-    );
+    ) : undefined;
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
@@ -1040,9 +1104,7 @@ export class EuiBasicTable<T = any> extends Component<
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const { rowProps: rowPropsCallback } = this.props;
     const rowProps = getRowProps(item, rowPropsCallback as RowPropsCallback<T>);
@@ -1130,7 +1192,7 @@ export class EuiBasicTable<T = any> extends Component<
     );
     if (actualActions.length > 2) {
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = actualActions.filter(o => o.isPrimary);
+      const primaryActions = actualActions.filter((o) => o.isPrimary);
       actualActions = primaryActions.slice(0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we

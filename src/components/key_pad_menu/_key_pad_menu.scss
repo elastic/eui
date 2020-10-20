@@ -6,6 +6,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: $euiKeyPadMenuSize * 3;
+  max-width: 100%;
 }
 
 /**

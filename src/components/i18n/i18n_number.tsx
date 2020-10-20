@@ -33,6 +33,9 @@ interface EuiI18nNumberValueShape {
 
 interface EuiI18nNumberValuesShape {
   values: number[];
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 
@@ -45,13 +48,13 @@ function hasValues(x: EuiI18nNumberProps): x is EuiI18nNumberValuesShape {
   return x.values != null;
 }
 
-const EuiI18nNumber: React.FunctionComponent<EuiI18nNumberProps> = props => (
+const EuiI18nNumber: React.FunctionComponent<EuiI18nNumberProps> = (props) => (
   <EuiI18nConsumer>
-    {i18nConfig => {
+    {(i18nConfig) => {
       const formatNumber = i18nConfig.formatNumber || defaultFormatNumber;
 
       if (hasValues(props)) {
-        return props.children(props.values.map(value => formatNumber(value)));
+        return props.children(props.values.map((value) => formatNumber(value)));
       }
 
       const formattedValue = (formatNumber || defaultFormatNumber)(props.value);

@@ -29,9 +29,6 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
       </output>
     </div>
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -54,9 +51,6 @@ exports[`EuiRange allows value prop to accept empty string 1`] = `
       value=""
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -82,9 +76,6 @@ exports[`EuiRange is rendered 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -107,9 +98,6 @@ exports[`EuiRange props compressed should render 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -157,9 +145,6 @@ exports[`EuiRange props custom ticks should render 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -183,9 +168,6 @@ exports[`EuiRange props disabled should render 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -208,9 +190,6 @@ exports[`EuiRange props fullWidth should render 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -292,9 +271,6 @@ exports[`EuiRange props labels should render 1`] = `
   >
     100
   </label>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -329,9 +305,6 @@ exports[`EuiRange props levels should render 1`] = `
       value="20"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -362,9 +335,6 @@ exports[`EuiRange props range should render 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -480,9 +450,6 @@ exports[`EuiRange props ticks should render 1`] = `
       value="8"
     />
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 
@@ -515,8 +482,5 @@ exports[`EuiRange props value should render 1`] = `
       </output>
     </div>
   </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;

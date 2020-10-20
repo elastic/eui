@@ -23,11 +23,15 @@ import { CommonProps } from '../common';
 
 export interface EuiGlobalToastListItemProps {
   isDismissed?: boolean;
+  /**
+   * ReactElement to render as this component's content
+   */
   children?: ReactElement;
 }
 
-export const EuiGlobalToastListItem: FunctionComponent<CommonProps &
-  EuiGlobalToastListItemProps> = ({ children, isDismissed }) => {
+export const EuiGlobalToastListItem: FunctionComponent<
+  CommonProps & EuiGlobalToastListItemProps
+> = ({ children, isDismissed }) => {
   if (!children) {
     return null;
   }

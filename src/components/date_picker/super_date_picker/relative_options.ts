@@ -39,6 +39,6 @@ export const relativeOptions: RelativeOption[] = [
 
 const timeUnitIds = relativeOptions
   .map(({ value }) => value)
-  .filter(value => !value.includes('+')) as TimeUnitId[];
+  .filter((value) => !value.includes('+')) as TimeUnitId[];
 
 export const relativeUnitsFromLargestToSmallest = timeUnitIds.reverse();

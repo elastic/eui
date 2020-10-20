@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 
-const options = [
+const staticOptions = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -39,9 +39,10 @@ const options = [
 ];
 
 export default () => {
+  const [options, setOptions] = useState(staticOptions);
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
@@ -59,14 +60,16 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
-      options.push(newOption);
+      setOptions([...options, newOption]);
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    // Use the previousState parameter (prevSelected) from the setState
+    // instance (setSelected) to ensure looped calls do not override each other
+    setSelected((prevSelected) => [...prevSelected, newOption]);
   };
 
   return (

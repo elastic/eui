@@ -19,11 +19,11 @@ export const ResizeObserverExample = () => {
   const [width, setWidth] = useState(0);
 
   const togglePaddingSize = () => {
-    setPaddingSize(paddingSize => (paddingSize === 's' ? 'l' : 's'));
+    setPaddingSize((paddingSize) => (paddingSize === 's' ? 'l' : 's'));
   };
 
   const addItem = () => {
-    setItems(items => [...items, `Item ${items.length + 1}`]);
+    setItems((items) => [...items, `Item ${items.length + 1}`]);
   };
 
   const onResize = ({ height, width }) => {
@@ -59,13 +59,13 @@ export const ResizeObserverExample = () => {
       <EuiSpacer />
 
       <EuiResizeObserver onResize={onResize}>
-        {resizeRef => (
+        {(resizeRef) => (
           <div className="eui-displayInlineBlock" ref={resizeRef}>
             <EuiPanel
               className="eui-displayInlineBlock"
               paddingSize={paddingSize}>
               <ul>
-                {items.map(item => (
+                {items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

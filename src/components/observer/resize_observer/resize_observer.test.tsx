@@ -36,7 +36,7 @@ describe('testResizeObservers', () => {
   beforeAll(() => {
     _originalgetBoundingClientRect =
       HTMLElement.prototype.getBoundingClientRect;
-    HTMLElement.prototype.getBoundingClientRect = function() {
+    HTMLElement.prototype.getBoundingClientRect = function () {
       // use the length of the element's HTML to represent its height
       return { width: 100, height: this.innerHTML.length } as ReturnType<
         GetBoundingClientRect

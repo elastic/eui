@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const babelConfig = require('./.babelrc.js');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const getPort = require('get-port');
@@ -14,7 +15,15 @@ const bypassCache = NODE_ENV === 'puppeteer';
 
 function employCache(loaders) {
   if (isDevelopment && !bypassCache) {
-    return ['cache-loader'].concat(loaders);
+    return [
+      {
+        loader: 'cache-loader',
+        options: {
+          cacheDirectory: path.join(__dirname, '..', '.cache-loader'),
+        },
+      },
+      ...loaders,
+    ];
   }
 
   return loaders;
@@ -40,41 +49,34 @@ const webpackConfig = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
 
+  resolveLoader: {
+    alias: {
+      'prop-loader': path.resolve(
+        __dirname,
+        '../scripts/loaders/prop-loader.js'
+      ),
+    },
+  },
+
   module: {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: employCache(['babel-loader']),
+        loaders: employCache([
+          {
+            loader: 'babel-loader',
+            options: { babelrc: false, ...babelConfig },
+          },
+        ]),
         exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
-      },
-      {
-        // For IE11 and untranspiled node_modules
-        test: /\.(js?)$/,
-        use: () => {
-          const ie11Loader = [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  ['@babel/preset-env', { useBuiltIns: 'usage', corejs: '2' }],
-                ],
-                sourceType: 'unambiguous',
-              },
-            },
-          ];
-
-          return isDevelopment && !bypassCache
-            ? [{ loader: 'cache-loader' }, ...ie11Loader]
-            : ie11Loader;
-        },
-        include: [
-          /node_modules\/((lodash|html-format|vnopts|react-view|@babel\/code-frame|@babel\/template|@babel\/traverse|@babel\/parser|@babel\/core|@babel\/helper-annotate-as-pure|@babel\/generator|@babel\/helper-builder-react-jsx-experimental|@babel\/highlight|@babel\/plugin-syntax-jsx||@babel\/types|@miksu\/prettier|ansi-styles|chalk|gensync|is-fullwidth-code-point|jest-docblock|jsesc)\/).*/,
-        ],
       },
       {
         test: /\.scss$/,
         loaders: employCache([
-          'style-loader/useable',
+          {
+            loader: 'style-loader',
+            options: { injectType: 'lazySingletonStyleTag' },
+          },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -83,7 +85,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: employCache(['style-loader/useable', 'css-loader']),
+        loaders: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
@@ -117,7 +119,7 @@ const webpackConfig = {
 
     // run TypeScript during webpack build
     // new ForkTsCheckerWebpackPlugin({
-    //   tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    //   typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
     //   async: false, // makes errors more visible, but potentially less performant
     // }),
   ],
@@ -142,11 +144,11 @@ function getPortSync(options) {
   let error = null;
 
   getPort(options)
-    .then(port => {
+    .then((port) => {
       isDone = true;
       freeport = port;
     })
-    .catch(err => {
+    .catch((err) => {
       isDone = true;
       error = err;
     });

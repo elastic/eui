@@ -27,7 +27,7 @@ exports[`EuiSelectableSearch is rendered 1`] = `
       <span
         class="euiFormControlLayoutCustomIcon"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
           data-euiicon-type="search"
@@ -52,7 +52,7 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
       aria-haspopup="listbox"
       aria-owns="list"
       autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+      class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
       role="combobox"
       type="search"
       value="Mi"
@@ -63,12 +63,26 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
       <span
         class="euiFormControlLayoutCustomIcon"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
           data-euiicon-type="search"
         />
       </span>
+    </div>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <button
+        aria-label="Clear input"
+        class="euiFormControlLayoutClearButton"
+        type="button"
+      >
+        <span
+          class="euiFormControlLayoutClearButton__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
     </div>
   </div>
 </div>

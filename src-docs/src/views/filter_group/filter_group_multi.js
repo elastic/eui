@@ -65,10 +65,9 @@ export default () => {
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        panelPaddingSize="none"
-        withTitle>
-        <EuiPopoverTitle>
-          <EuiFieldSearch />
+        panelPaddingSize="none">
+        <EuiPopoverTitle paddingSize="s">
+          <EuiFieldSearch compressed />
         </EuiPopoverTitle>
         <div className="euiFilterSelect__items">
           {items.map((item, index) => (

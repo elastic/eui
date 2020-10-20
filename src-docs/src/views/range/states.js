@@ -21,11 +21,11 @@ export default () => {
     },
   ];
 
-  const onChange = e => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
 
-  const onDualChange = value => {
+  const onDualChange = (value) => {
     setDualValue(value);
   };
 

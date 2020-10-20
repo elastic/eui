@@ -8,6 +8,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiPanel } from '../../../../src/components';
 
+import { panelConfig } from './playground';
+
 import Panel from './panel';
 const panelSource = require('!!raw-loader!./panel');
 const panelHtml = renderToHtml(Panel);
@@ -116,4 +118,5 @@ export const PanelExample = {
       demo: <PanelBadge />,
     },
   ],
+  playground: panelConfig,
 };

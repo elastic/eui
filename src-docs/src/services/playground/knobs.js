@@ -95,7 +95,7 @@ const Knob = ({
           <EuiFieldNumber
             placeholder={placeholder}
             value={val ? val : undefined}
-            onChange={e => set(e.target.value)}
+            onChange={(e) => set(e.target.value)}
             aria-label={description}
             compressed
             fullWidth
@@ -108,7 +108,7 @@ const Knob = ({
     case PropTypes.Date:
       if (custom && custom.validator) {
         knobProps = {};
-        knobProps.onChange = e => {
+        knobProps.onChange = (e) => {
           const value = e.target.value;
           if (custom.validator(value)) set(value);
           else set(undefined);
@@ -116,14 +116,14 @@ const Knob = ({
       } else if (custom && custom.sanitize) {
         knobProps = {};
         knobProps.value = val;
-        knobProps.onChange = e => {
+        knobProps.onChange = (e) => {
           const value = e.target.value;
           set(custom.sanitize(value));
         };
       } else {
         knobProps = {};
         knobProps.value = val;
-        knobProps.onChange = e => {
+        knobProps.onChange = (e) => {
           const value = e.target.value;
           set(value);
         };
@@ -133,7 +133,8 @@ const Knob = ({
         <EuiFormRow
           isInvalid={error && error.length > 0}
           error={error}
-          fullWidth>
+          fullWidth
+          helpText={custom && custom.helpText}>
           <EuiFieldText
             placeholder={placeholder}
             aria-label={description}
@@ -152,7 +153,7 @@ const Knob = ({
             id={name}
             label=""
             checked={val}
-            onChange={e => {
+            onChange={(e) => {
               set(e.target.checked);
             }}
             compressed
@@ -171,7 +172,7 @@ const Knob = ({
         if (valueKey && !valueKey.includes('__')) {
           valueKey = `${valueKey}__${name}`;
         }
-        const flattenedOptions = optionsKeys.map(key => ({
+        const flattenedOptions = optionsKeys.map((key) => ({
           id: `${key}__${name}`,
           label: options[key],
         }));
@@ -181,7 +182,7 @@ const Knob = ({
             <EuiRadioGroup
               options={flattenedOptions}
               idSelected={valueKey}
-              onChange={id => {
+              onChange={(id) => {
                 let val = id;
                 if (val.includes('__')) val = val.split('__')[0];
                 set(val);
@@ -192,7 +193,7 @@ const Knob = ({
           </>
         );
       } else {
-        const flattenedOptions = optionsKeys.map(key => ({
+        const flattenedOptions = optionsKeys.map((key) => ({
           value: key,
           text: options[key],
         }));
@@ -206,7 +207,7 @@ const Knob = ({
               id={name}
               options={flattenedOptions}
               value={valueKey || defaultValue}
-              onChange={e => {
+              onChange={(e) => {
                 set(e.target.value);
               }}
               aria-label={`Select ${name}`}
@@ -224,7 +225,7 @@ const Knob = ({
           <EuiTextArea
             placeholder={placeholder}
             value={val}
-            onChange={e => {
+            onChange={(e) => {
               set(e.target.value);
             }}
           />
@@ -241,7 +242,7 @@ const Knob = ({
                   id={name}
                   label={custom.label || ''}
                   checked={typeof val !== 'undefined' && val}
-                  onChange={e => {
+                  onChange={(e) => {
                     const value = e.target.checked;
 
                     set(value ? value : undefined);
@@ -266,7 +267,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
   return (
     <>
       {knobNames.map((name, idx) => {
-        let humanizedType = '';
+        let humanizedType;
 
         if (
           state[name].custom &&
@@ -275,8 +276,10 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
         )
           humanizedType = humanizeType(state[name].custom.origin.type);
 
-        const typeMarkup = (
-          <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+        const typeMarkup = humanizedType && (
+          <EuiCode>
+            <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+          </EuiCode>
         );
 
         let humanizedName = (
@@ -293,6 +296,22 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
               {humanizedName}{' '}
               <EuiTextColor color="danger">(required)</EuiTextColor>
             </span>
+          );
+        }
+
+        let defaultValueMarkup;
+
+        if (
+          state[name].custom &&
+          state[name].custom.origin &&
+          state[name].custom.origin.defaultValue
+        ) {
+          defaultValueMarkup = (
+            <EuiCode key={`defaultValue-${name}`}>
+              <span className="eui-textBreakNormal">
+                {state[name].custom.origin.defaultValue.value}
+              </span>
+            </EuiCode>
           );
         }
 
@@ -314,17 +333,13 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
               key={`type__${name}-${idx}`}
               header="Type"
               className="playgroundKnobs__rowCell">
-              <EuiCode>{typeMarkup}</EuiCode>
+              {typeMarkup}
             </EuiTableRowCell>
             <EuiTableRowCell
               key={`default__${name}-${idx}`}
               header="Default"
               className="playgroundKnobs__rowCell">
-              <EuiCode key={`defaultValue-${name}`}>
-                <span className="eui-textBreakNormal">
-                  {state[name].defaultValue}
-                </span>
-              </EuiCode>
+              {defaultValueMarkup}
             </EuiTableRowCell>
             <EuiTableRowCell
               key={`modify__${name}-${idx}`}
@@ -341,7 +356,7 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
                 hidden={state[name].hidden}
                 options={state[name].options}
                 placeholder={state[name].placeholder}
-                set={value => set(value, name)}
+                set={(value) => set(value, name)}
                 enumName={state[name].enumName}
                 defaultValue={state[name].defaultValue}
                 custom={state[name] && state[name].custom}

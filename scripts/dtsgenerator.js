@@ -25,7 +25,7 @@ function hasParentIndex(pathToFile) {
 }
 
 const generator = dtsGenerator({
-  name: '@elastic/eui',
+  prefix: '@elastic/eui',
   project: baseDir,
   out: 'eui.d.ts',
   exclude: [
@@ -36,7 +36,8 @@ const generator = dtsGenerator({
     '**/*.testenv.ts',
     '**/*.testenv.tsx',
     'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
-    'src/test/*'  // A separate d.ts file is generated for test utils
+    'src/test/*', // A separate d.ts file is generated for test utils
+    'src-docs/**/*', // Don't include src-docs
   ],
   resolveModuleId(params) {
     if (

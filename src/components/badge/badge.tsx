@@ -55,7 +55,7 @@ type WithAnchorProps = {
   href: string;
   target?: string;
   rel?: string;
-} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color'>;
+} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color' | 'onClick'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
 
@@ -229,7 +229,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     relObj.href = href;
     relObj.target = target;
     relObj.rel = getSecureRelForTarget({ href, target, rel });
-  } else if (onClick) {
+  }
+  if (onClick) {
     relObj.onClick = onClick;
   }
 
@@ -258,7 +259,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       );
     } else {
       optionalIcon = (
-        <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
+        <EuiIcon
+          type={iconType}
+          size={children ? 's' : 'm'}
+          className="euiBadge__icon"
+        />
       );
     }
   }
@@ -268,6 +273,13 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       'When passing onClick to EuiBadge, you must also provide onClickAriaLabel'
     );
   }
+
+  const content = (
+    <span className="euiBadge__content">
+      {children && <span className="euiBadge__text">{children}</span>}
+      {optionalIcon}
+    </span>
+  );
 
   if (iconOnClick) {
     return onClick || href ? (
@@ -299,10 +311,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref}
             title={innerText}
             {...rest}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </span>
         )}
       </EuiInnerText>
@@ -320,10 +329,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             title={innerText}
             {...(relObj as HTMLAttributes<HTMLElement>)}
             {...(rest as HTMLAttributes<HTMLElement>)}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </Element>
         )}
       </EuiInnerText>
@@ -338,10 +344,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref}
             title={innerText}
             {...rest}>
-            <span className="euiBadge__content">
-              <span className="euiBadge__text">{children}</span>
-              {optionalIcon}
-            </span>
+            {content}
           </span>
         )}
       </EuiInnerText>

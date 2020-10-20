@@ -15,5 +15,9 @@ export default () => (
     <EuiFlexItem grow={false}>
       <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
     </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="both">Flush both</EuiButtonEmpty>
+    </EuiFlexItem>
   </EuiFlexGroup>
 );

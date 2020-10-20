@@ -22,13 +22,13 @@ export default () => {
     },
   ]);
 
-  const handleExtendedChange = colorStops => {
+  const handleExtendedChange = (colorStops) => {
     setExtendedColorStops(colorStops);
   };
 
   const [emptyColorStops, setEmptyColorStops] = useState([]);
 
-  const handleEmptyChange = colorStops => {
+  const handleEmptyChange = (colorStops) => {
     setEmptyColorStops(colorStops);
   };
 

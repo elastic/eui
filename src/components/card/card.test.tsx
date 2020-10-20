@@ -194,7 +194,7 @@ describe('EuiCard', () => {
     });
 
     describe('paddingSize', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is applied`, () => {
           const component = render(
             <EuiCard

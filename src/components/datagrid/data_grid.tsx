@@ -55,6 +55,7 @@ import {
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
+  EuiDataGridStyleFooter,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -64,7 +65,10 @@ import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiResizeObserver } from '../observer/resize_observer';
+import {
+  EuiResizeObserver,
+  useResizeObserver,
+} from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   useMergedSchema,
@@ -75,7 +79,6 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
-import { useResizeObserver } from '../observer/resize_observer/resize_observer';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -120,6 +123,12 @@ type CommonGridProps = CommonProps &
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
+     * A function called to render a cell's value. Behind the scenes it is treated as a React component
+     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * as its only argument.
+     */
+    renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
+    /**
      * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarVisibility density controls are available.
      */
     gridStyle?: EuiDataGridStyle;
@@ -128,7 +137,7 @@ type CommonGridProps = CommonProps &
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
-     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
+     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When omitted, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
@@ -136,7 +145,7 @@ type CommonGridProps = CommonProps &
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
+     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
     /**
@@ -165,6 +174,12 @@ const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
 const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
   shade: 'euiDataGrid--headerShade',
   underline: 'euiDataGrid--headerUnderline',
+};
+
+const footerToClassMap: { [footer in EuiDataGridStyleFooter]: string } = {
+  shade: 'euiDataGrid--footerShade',
+  overline: 'euiDataGrid--footerOverline',
+  striped: '',
 };
 
 const rowHoverToClassMap: {
@@ -416,7 +431,7 @@ function useInMemoryValues(
     const nextInMemoryValues = _inMemoryValues.current;
     nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
     nextInMemoryValues[rowIndex][columnId] = value;
-    setInMemoryValuesVersion(version => version + 1);
+    setInMemoryValuesVersion((version) => version + 1);
   }, []);
 
   // if `inMemory.level` or `rowCount` changes reset the values
@@ -426,12 +441,12 @@ function useInMemoryValues(
     if (resetRunCount.current++ > 0) {
       // this has to delete "overflow" keys from the object instead of resetting to an empty one,
       // as the internal inmemoryrenderer component's useEffect which sets the values
-      // exectues before this outer, wrapping useEffect
+      // executes before this outer, wrapping useEffect
       const existingRowKeyCount = Object.keys(_inMemoryValues.current).length;
       for (let i = rowCount; i < existingRowKeyCount; i++) {
         delete _inMemoryValues.current[i];
       }
-      setInMemoryValuesVersion(version => version + 1);
+      setInMemoryValuesVersion((version) => version + 1);
     }
   }, [inMemoryLevel, rowCount]);
 
@@ -462,7 +477,7 @@ function createKeyDownHandler(
 
     if (key === keys.ARROW_DOWN) {
       event.preventDefault();
-      if (y < rowCount - 1) {
+      if (props.renderFooterCellValue ? y < rowCount : y < rowCount - 1) {
         setFocusedCell([x, y + 1]);
       }
     } else if (key === keys.ARROW_LEFT) {
@@ -569,7 +584,7 @@ const useFocus = (
           }
         : {
             tabIndex: 0,
-            onFocus: e => {
+            onFocus: (e) => {
               // if e.target (the source element of the `focus event`
               // matches e.currentTarget (always the div with this onFocus listener)
               // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
@@ -611,7 +626,7 @@ function checkOrDefaultToolBarDiplayOptions<
 }
 
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
-export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
+export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
@@ -620,49 +635,47 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
-  const setContainerRef = useCallback(ref => _setContainerRef(ref), []);
+  const setContainerRef = useCallback((ref) => _setContainerRef(ref), []);
 
   const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
     headerIsInteractive
   );
 
-  const handleHeaderChange = useCallback<MutationCallback>(
-    records => {
+  const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
+    (headerRow) => {
+      const tabbables = tabbable(headerRow);
+      const managed = headerRow.querySelectorAll('[data-euigrid-tab-managed]');
+      const hasInteractives = tabbables.length > 0 || managed.length > 0;
+      if (hasInteractives !== headerIsInteractive) {
+        setHeaderIsInteractive(hasInteractives);
+
+        // if the focus is on the header, and the header is no longer interactive
+        // move the focus down to the first row
+        if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
+          setFocusedCell([focusedCell[0], 0]);
+        }
+      }
+    },
+    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+  );
+  const handleHeaderMutation = useCallback<MutationCallback>(
+    (records) => {
       const [{ target }] = records;
 
       // find the wrapping header div
       let headerRow = target.parentElement;
       while (
         headerRow &&
-        (headerRow.getAttribute('data-test-subj') || '').indexOf(
-          'dataGridHeader'
-        ) === -1
+        (headerRow.getAttribute('data-test-subj') || '')
+          .split(/\s+/)
+          .indexOf('dataGridHeader') === -1
       ) {
         headerRow = headerRow.parentElement;
       }
 
-      if (headerRow) {
-        const tabbables = tabbable(headerRow);
-        const managed = headerRow.querySelectorAll(
-          '[data-euigrid-tab-managed]'
-        );
-        const hasInteractives = tabbables.length > 0 || managed.length > 0;
-        if (hasInteractives !== headerIsInteractive) {
-          setHeaderIsInteractive(hasInteractives);
-
-          // if the focus is on the header, and the header is no longer interactive
-          // move the focus down to the first row
-          if (
-            hasInteractives === false &&
-            focusedCell &&
-            focusedCell[1] === -1
-          ) {
-            setFocusedCell([focusedCell[0], 0]);
-          }
-        }
-      }
+      if (headerRow) handleHeaderChange(headerRow);
     },
-    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+    [handleHeaderChange]
   );
 
   const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -684,6 +697,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     schemaDetectors,
     rowCount,
     renderCellValue,
+    renderFooterCellValue,
     className,
     gridStyle,
     toolbarVisibility = true,
@@ -698,7 +712,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   // enables/disables grid controls based on available width
   const onResize = useOnResize(
-    nextHasRoomForGridControls => {
+    (nextHasRoomForGridControls) => {
       if (nextHasRoomForGridControls !== hasRoomForGridControls) {
         setHasRoomForGridControls(nextHasRoomForGridControls);
       }
@@ -750,7 +764,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     {}
   );
 
-  const [columnSelector, orderedVisibleColumns] = useColumnSelector(
+  const [
+    columnSelector,
+    orderedVisibleColumns,
+    setVisibleColumns,
+    switchColumnPos,
+  ] = useColumnSelector(
     columns,
     columnVisibility,
     checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector'),
@@ -773,27 +792,42 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     orderedVisibleColumns
   );
 
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (contentRef) {
+      const headerElement = contentRef.querySelector(
+        '[data-test-subj~=dataGridHeader]'
+      );
+      if (headerElement) {
+        handleHeaderChange(headerElement as HTMLElement);
+      }
+    }
+  }, [contentRef, handleHeaderChange]);
 
   // Because of a weird Chrome bug with position:sticky css items and focus, we force scrolling to the top
   // if the item is in the first row. This prevents the cell from ever being under the sticky header.
   useEffect(() => {
     if (focusedCell !== undefined && focusedCell[1] === 0) {
-      if (contentRef.current != null) {
-        contentRef.current.scrollTop = 0;
+      if (contentRef != null) {
+        contentRef.scrollTop = 0;
       }
     }
-  }, [focusedCell]);
+  }, [focusedCell, contentRef]);
 
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
     bordersToClassMap[gridStyles.border!],
     headerToClassMap[gridStyles.header!],
+    footerToClassMap[gridStyles.footer!],
     rowHoverToClassMap[gridStyles.rowHover!],
     cellPaddingsToClassMap[gridStyles.cellPadding!],
     {
       'euiDataGrid--stripes': gridStyles.stripes!,
+    },
+    {
+      'euiDataGrid--stickyFooter': gridStyles.footer && gridStyles.stickyFooter,
     },
     {
       'euiDataGrid--fullScreen': isFullScreen,
@@ -886,22 +920,32 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const datagridContext = useMemo(
     () => ({
       onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
-        if (pagination) {
-          const key = `${cell[0]}-${cell[1]}`;
-          cellsUpdateFocus.current.set(key, updateFocus);
+        const key = `${cell[0]}-${cell[1]}`;
+        cellsUpdateFocus.current.set(key, updateFocus);
 
-          return () => {
-            cellsUpdateFocus.current.delete(key);
-          };
-        }
+        return () => {
+          cellsUpdateFocus.current.delete(key);
+        };
       },
     }),
-    [pagination]
+    []
   );
 
   const gridIds = htmlIdGenerator();
   const gridId = gridIds();
   const ariaLabelledById = gridIds();
+
+  const commonGridProps = {
+    columns: orderedVisibleColumns,
+    columnWidths,
+    defaultColumnWidth,
+    focusedCell,
+    leadingControlColumns,
+    onCellFocus: setFocusedCell,
+    schema: mergedSchema,
+    sorting,
+    trailingControlColumns,
+  };
 
   return (
     <EuiI18n
@@ -948,7 +992,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 <DataGridContext.Provider value={datagridContext}>
                   <EuiFocusTrap
                     disabled={!isFullScreen}
-                    style={{ height: '100%' }}>
+                    className="euiDataGrid__focusWrap">
                     <div
                       className={classes}
                       onKeyDown={handleGridKeyDown}
@@ -969,7 +1013,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                             </div>
                           ) : null}
                           <EuiResizeObserver onResize={onResize}>
-                            {resizeRef => (
+                            {(resizeRef) => (
                               <div
                                 onKeyDown={createKeyDownHandler(
                                   props,
@@ -1001,7 +1045,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                     />
                                   ) : null}
                                   <div
-                                    ref={contentRef}
+                                    ref={setContentRef}
                                     data-test-subj="dataGridWrapper"
                                     className="euiDataGrid__content"
                                     role="grid"
@@ -1013,52 +1057,33 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                         subtree: true,
                                         childList: true,
                                       }}
-                                      onMutation={handleHeaderChange}>
-                                      {ref => (
+                                      onMutation={handleHeaderMutation}>
+                                      {(ref) => (
                                         <EuiDataGridHeaderRow
                                           ref={ref}
-                                          leadingControlColumns={
-                                            leadingControlColumns
-                                          }
-                                          trailingControlColumns={
-                                            trailingControlColumns
-                                          }
-                                          columns={orderedVisibleColumns}
-                                          columnWidths={columnWidths}
-                                          defaultColumnWidth={
-                                            defaultColumnWidth
-                                          }
+                                          {...commonGridProps}
                                           setColumnWidth={setColumnWidth}
+                                          setVisibleColumns={setVisibleColumns}
+                                          switchColumnPos={switchColumnPos}
                                           schema={mergedSchema}
                                           sorting={sorting}
                                           headerIsInteractive={
                                             headerIsInteractive
                                           }
-                                          focusedCell={focusedCell}
-                                          setFocusedCell={setFocusedCell}
                                         />
                                       )}
                                     </EuiMutationObserver>
                                     <EuiDataGridBody
-                                      columnWidths={columnWidths}
-                                      defaultColumnWidth={defaultColumnWidth}
+                                      {...commonGridProps}
                                       inMemoryValues={inMemoryValues}
                                       inMemory={inMemory}
-                                      leadingControlColumns={
-                                        leadingControlColumns
-                                      }
-                                      trailingControlColumns={
-                                        trailingControlColumns
-                                      }
-                                      columns={orderedVisibleColumns}
-                                      schema={mergedSchema}
                                       schemaDetectors={allSchemaDetectors}
                                       popoverContents={popoverContents}
-                                      focusedCell={focusedCell}
-                                      onCellFocus={setFocusedCell}
                                       pagination={pagination}
-                                      sorting={sorting}
                                       renderCellValue={renderCellValue}
+                                      renderFooterCellValue={
+                                        renderFooterCellValue
+                                      }
                                       rowCount={rowCount}
                                       interactiveCellId={interactiveCellId}
                                     />

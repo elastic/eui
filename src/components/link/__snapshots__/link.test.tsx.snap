@@ -41,7 +41,7 @@ exports[`EuiLink it is an external link 1`] = `
   href="/baz/bing"
   rel="noreferrer"
 >
-  <div
+  <span
     aria-label="External link"
     class="euiLink__externalIcon"
     data-euiicon-type="popout"

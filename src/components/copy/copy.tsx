@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ReactElement, ReactNode } from 'react';
+import React, { Component, ReactElement, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
@@ -49,7 +49,7 @@ interface EuiCopyState {
   tooltipText: ReactNode;
 }
 
-export class EuiCopy extends React.Component<EuiCopyProps, EuiCopyState> {
+export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
   static defaultProps = {
     afterMessage: 'Copied',
   };
@@ -87,7 +87,7 @@ export class EuiCopy extends React.Component<EuiCopyProps, EuiCopyState> {
     } = this.props;
 
     return (
-      // See `src/components/tool_tip/tool_tip.js` for explaination of below eslint-disable
+      // See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <EuiToolTip
         content={this.state.tooltipText}

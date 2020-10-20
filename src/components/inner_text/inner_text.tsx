@@ -51,7 +51,7 @@ export function useInnerText(
   );
 
   useEffect(() => {
-    const observer = new MutationObserver(mutationsList => {
+    const observer = new MutationObserver((mutationsList) => {
       if (mutationsList.length) updateInnerText(ref);
     });
 
@@ -72,6 +72,9 @@ export function useInnerText(
 }
 
 export interface EuiInnerTextProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (ref?: (node: RefT) => void, innerText?: string) => ReactElement;
   fallback?: string;
 }

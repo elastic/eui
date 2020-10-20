@@ -34,7 +34,7 @@ describe('EuiNotificationBadge', () => {
 
   describe('props', () => {
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiNotificationBadge color={color}>5</EuiNotificationBadge>
@@ -46,7 +46,7 @@ describe('EuiNotificationBadge', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiNotificationBadge size={size}>5</EuiNotificationBadge>

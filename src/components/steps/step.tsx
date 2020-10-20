@@ -17,18 +17,21 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
-import { CommonProps } from '../common';
-
 import classNames from 'classnames';
-
+import React, {
+  createElement,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
+import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
-
-import { EuiStepStatus, EuiStepNumber } from './step_number';
-
-import { EuiI18n } from '../i18n';
+import { EuiStepNumber, EuiStepStatus } from './step_number';
 
 export interface EuiStepInterface {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
   /**
    * The HTML tag used for the title
@@ -50,7 +53,7 @@ export interface EuiStepInterface {
 }
 
 export type EuiStepProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
   EuiStepInterface;
 
 export const EuiStep: FunctionComponent<EuiStepProps> = ({
@@ -77,27 +80,15 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   return (
     <div className={classes} {...rest}>
       <div className="euiStep__titleWrapper">
-        <EuiI18n
-          token="euiStep.ariaLabel"
-          default={({ status }: { status?: EuiStepStatus }) => {
-            if (status === 'incomplete') return 'Incomplete Step';
-            return 'Step';
-          }}
-          values={{ status }}>
-          {(ariaLabel: string) => (
-            <EuiStepNumber
-              className={numberClasses}
-              aria-label={`${ariaLabel} ${step}`}
-              number={step}
-              status={status}
-              titleSize={titleSize}
-              isHollow={status === 'incomplete'}
-            />
-          )}
-        </EuiI18n>
-
+        <EuiStepNumber
+          className={numberClasses}
+          number={step}
+          status={status}
+          titleSize={titleSize}
+          isHollow={status === 'incomplete'}
+        />
         <EuiTitle size={titleSize as EuiTitleSize} className="euiStep__title">
-          {React.createElement(headingElement, null, title)}
+          {createElement(headingElement, null, title)}
         </EuiTitle>
       </div>
 

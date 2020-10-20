@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, createContext } from 'react';
 import {
   DragDropContext,
   DragDropContextProps,
@@ -34,9 +34,7 @@ interface EuiDraggingContext {
   isDraggingType: EuiDraggingType;
 }
 
-export const EuiDragDropContextContext = React.createContext<
-  EuiDraggingContext
->({
+export const EuiDragDropContextContext = createContext<EuiDraggingContext>({
   isDraggingType: null,
 });
 

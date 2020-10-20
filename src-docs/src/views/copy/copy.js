@@ -11,7 +11,7 @@ import {
 export default () => {
   const [copyText, setCopyText] = useState('I am the text that will be copied');
 
-  const onChange = e => {
+  const onChange = (e) => {
     setCopyText(e.target.value);
   };
 
@@ -24,7 +24,9 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiCopy textToCopy={copyText}>
-        {copy => <EuiButton onClick={copy}>Click to copy input text</EuiButton>}
+        {(copy) => (
+          <EuiButton onClick={copy}>Click to copy input text</EuiButton>
+        )}
       </EuiCopy>
     </div>
   );

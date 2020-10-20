@@ -26,7 +26,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 import { EuiBetaBadge } from '../badge/beta_badge';
 
 export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
@@ -78,7 +78,7 @@ const paddingSizeToClassNameMap = {
   l: 'euiPanel--paddingLarge',
 };
 
-export const SIZES = Object.keys(paddingSizeToClassNameMap);
+export const SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,

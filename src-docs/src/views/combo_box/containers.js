@@ -13,7 +13,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-const options = [
+const optionsStatic = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -49,6 +49,7 @@ const options = [
 ];
 
 export default () => {
+  const [options, setOptions] = useState(optionsStatic);
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPopoverOpen, setPopover] = useState(false);
@@ -69,7 +70,7 @@ export default () => {
     setPopover(false);
   };
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
@@ -91,14 +92,14 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
-      options.push(newOption);
+      setOptions([...options, newOption]);
     }
 
     // Select the option.
-    setSelected([...selectedOptions, newOption]);
+    setSelected((prevSelected) => [...prevSelected, newOption]);
   };
 
   const comboBox = (

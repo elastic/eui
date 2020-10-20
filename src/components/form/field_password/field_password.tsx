@@ -32,11 +32,14 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
+import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import { useCombinedRefs } from '../../../services';
 
-export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
+export type EuiFieldPasswordProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'type' | 'value'
+> &
   CommonProps & {
     isInvalid?: boolean;
     fullWidth?: boolean;
@@ -55,6 +58,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
      * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
+    value?: string | number;
 
     /**
      * Change the `type` of input for manually handling obfuscation.
@@ -66,7 +70,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
     /**
      * Additional props to apply to the dual toggle. Extends EuiButtonIcon
      */
-    dualToggleProps?: EuiButtonIconProps;
+    dualToggleProps?: Partial<EuiButtonIconPropsForButton>;
   };
 
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
@@ -104,16 +108,23 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   const [inputRef, _setInputRef] = useState<HTMLInputElement | null>(null);
   const setInputRef = useCombinedRefs([_setInputRef, _inputRef]);
 
-  const handleToggle = (isVisible: boolean) => {
+  const handleToggle = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    isVisible: boolean
+  ) => {
     setInputType(isVisible ? 'password' : 'text');
     if (inputRef) {
       inputRef.focus();
+    }
+
+    if (dualToggleProps && dualToggleProps.onClick) {
+      dualToggleProps.onClick(event);
     }
   };
 
   // Convert any `append` elements to an array so the visibility
   // toggle can be added to it
-  const appends = Array.isArray(append) ? append : [];
+  let appends = Array.isArray(append) ? append : [];
   if (append && !Array.isArray(append)) appends.push(append);
   // Add a toggling button to switch between `password` and `input` if consumer wants `dual`
   // https://www.w3schools.com/howto/howto_js_toggle_password.asp
@@ -122,15 +133,15 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
     const visibilityToggle = (
       <EuiButtonIcon
-        {...dualToggleProps}
         iconType={isVisible ? 'eyeClosed' : 'eye'}
-        onClick={() => handleToggle(isVisible)}
         aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
         title={isVisible ? maskPasswordLabel : showPasswordLabel}
         disabled={rest.disabled}
+        {...dualToggleProps}
+        onClick={(e) => handleToggle(e, isVisible)}
       />
     );
-    appends.push(visibilityToggle);
+    appends = [...appends, visibilityToggle];
   }
 
   const finalAppend = appends.length ? appends : undefined;

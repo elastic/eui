@@ -34,7 +34,7 @@ export const GUTTER_SIZES = Object.keys(
 ) as GutterSize[];
 
 export type EuiListGroupProps = CommonProps &
-  HTMLAttributes<HTMLUListElement> & {
+  Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {
     /**
      * Add a border to the list container
      */
@@ -144,7 +144,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     });
   } else {
     if (showToolTips) {
-      childrenOrListItems = React.Children.map(children, child => {
+      childrenOrListItems = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement<Partial<EuiListGroupItemProps>>(child, {
             showToolTip: true,

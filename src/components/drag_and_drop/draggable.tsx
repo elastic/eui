@@ -42,6 +42,9 @@ export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
 export interface EuiDraggableProps
   extends CommonProps,
     Omit<DraggableProps, 'children'> {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactElement | DraggableProps['children'];
   className?: string;
   /**

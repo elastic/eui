@@ -7,7 +7,7 @@ import { EUI_THEMES } from '../../../../src/themes';
 export const GuideThemeSelector = () => {
   return (
     <ThemeContext.Consumer>
-      {context => <GuideThemeSelectorComponent context={context} />}
+      {(context) => <GuideThemeSelectorComponent context={context} />}
     </ThemeContext.Consumer>
   );
 };
@@ -18,7 +18,7 @@ const GuideThemeSelectorComponent = ({ context }) => {
       <EuiSelect
         options={EUI_THEMES}
         value={context.theme}
-        onChange={e => {
+        onChange={(e) => {
           context.changeTheme(e.target.value);
         }}
         aria-label="Switch the theme"

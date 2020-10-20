@@ -1,11 +1,12 @@
 // Modifier naming and colors.
 $euiButtonIconTypes: (
-  danger: $euiColorDanger,
+  accent: $euiColorAccentText,
+  danger: $euiColorDangerText,
   disabled: $euiButtonColorDisabledText,
   ghost: $euiColorGhost,
-  primary: $euiColorPrimary,
+  primary: $euiColorPrimaryText,
   subdued: $euiTextSubduedColor,
-  success: $euiColorSuccess,
+  success: $euiColorSuccessText,
   text: $euiTextColor,
-  warning: $euiColorWarning,
+  warning: $euiColorWarningText,
 );

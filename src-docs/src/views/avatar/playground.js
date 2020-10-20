@@ -13,7 +13,7 @@ export default () => {
     value: undefined,
     custom: {
       ...propsToUse.color.custom,
-      validator: val => {
+      validator: (val) => {
         try {
           checkValidColor(val);
           return true;

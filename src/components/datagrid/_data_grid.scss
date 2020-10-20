@@ -21,6 +21,10 @@
     background: $euiColorLightestShade;
     border-top: $euiBorderThin;
   }
+
+  .euiDataGrid__verticalScroll .euiDataGridRow {
+    will-change: transform;
+  }
 }
 
 .euiDataGrid__content {
@@ -93,7 +97,7 @@
 .euiDataGrid__overflow {
   overflow-y: hidden;
   height: 100%;
-  background: $euiPageBackgroundColor;
+  background: $euiColorEmptyShade;
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled
@@ -108,4 +112,8 @@
   max-height: $euiDataGridPopoverMaxHeight;
   padding: $euiSizeS;
   margin: -$euiSizeS; // Offset against the panel to make the scrollbar flush scrollbars
+}
+
+.euiDataGrid__focusWrap {
+  height: 100%;
 }

@@ -30,7 +30,7 @@ const options = [
 export default () => {
   const [selectedOptions, setSelected] = useState([options[2]]);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     // We should only get back either 0 or 1 options.
     setSelected(selectedOptions);
   };
@@ -61,6 +61,7 @@ export default () => {
         selectedOptions={selectedOptions}
         onChange={onChange}
         onCreateOption={onCreateOption}
+        customOptionText="Add {searchValue} as your occupation"
       />
     </EuiFormRow>
   );

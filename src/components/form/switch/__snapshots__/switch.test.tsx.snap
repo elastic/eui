@@ -21,11 +21,11 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
       <span
         class="euiSwitch__track"
       >
-        <div
+        <span
           class="euiSwitch__icon"
           data-euiicon-type="cross"
         />
-        <div
+        <span
           class="euiSwitch__icon euiSwitch__icon--checked"
           data-euiicon-type="check"
         />
@@ -64,11 +64,11 @@ exports[`EuiSwitch is rendered 1`] = `
       <span
         class="euiSwitch__track"
       >
-        <div
+        <span
           class="euiSwitch__icon"
           data-euiicon-type="cross"
         />
-        <div
+        <span
           class="euiSwitch__icon euiSwitch__icon--checked"
           data-euiicon-type="check"
         />

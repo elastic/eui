@@ -4,7 +4,7 @@
 
   /**
    * 1. Allow pills to truncate their text with an ellipsis.
-   * 2. Don't allow pills to overlap with the caret or clear button.
+   * 2. Don't allow pills to overlap with the caret, loading icon or clear button.
    * 3. The height on combo can be larger than normal text inputs.
    */
 
@@ -24,6 +24,14 @@
     // to override the padding added above
     @include euiFormControlLayoutPadding(1); /* 2 */
 
+    .euiComboBoxPill {
+      $inputMinWidth: $euiSize;
+
+      // Ensure the input doesn't drop to the next line when the EuiBadge has a very long text
+      // Overrides the default EuiBadge max-width that is 100%
+      max-width: calc(100% - #{$euiSizeXS * .5} - #{$inputMinWidth});
+    }
+
     &:not(.euiComboBox__inputWrap--noWrap) {
       padding-top: $euiSizeXS;
       padding-bottom: $euiSizeXS;
@@ -39,6 +47,14 @@
 
     &.euiComboBox__inputWrap-isClearable {
       @include euiFormControlLayoutPadding(2); /* 2 */
+    }
+
+    &.euiComboBox__inputWrap-isLoading {
+      @include euiFormControlLayoutPadding(2); /* 2 */
+    }
+
+    &.euiComboBox__inputWrap-isLoading.euiComboBox__inputWrap-isClearable {
+      @include euiFormControlLayoutPadding(3); /* 2 */
     }
   }
 
@@ -96,8 +112,19 @@
       padding-top: 0;
       padding-bottom: 0;
 
+      // sass-lint:disable-block mixins-before-declarations
+      @include euiFormControlLayoutPadding(1, $compressed: true); /* 2 */
+
       &.euiComboBox__inputWrap-isClearable {
         @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
+      }
+
+      &.euiComboBox__inputWrap-isLoading {
+        @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
+      }
+
+      &.euiComboBox__inputWrap-isLoading.euiComboBox__inputWrap-isClearable {
+        @include euiFormControlLayoutPadding(3, $compressed: true); /* 2 */
       }
     }
   }

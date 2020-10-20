@@ -23,6 +23,10 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiAccordion } from './accordion';
 
+jest.mock('./../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
+
 let id = 0;
 const getId = () => `${id++}`;
 
@@ -131,6 +135,30 @@ describe('EuiAccordion', () => {
         component.find('button').simulate('click');
         expect(onToggleHandler).toBeCalled();
         expect(onToggleHandler).toBeCalledWith(true);
+      });
+    });
+
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} isLoading>
+            <p>You can see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('isLoadingMessage', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading>
+            <p>You can&apos;t see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
       });
     });
   });

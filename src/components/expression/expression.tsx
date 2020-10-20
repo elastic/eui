@@ -22,6 +22,7 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
+  FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
@@ -59,7 +60,7 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Second part of the expression
    */
-  value: ReactNode;
+  value?: ReactNode;
   valueProps?: HTMLAttributes<HTMLSpanElement>;
   /**
    * Color of the `description`
@@ -99,13 +100,14 @@ export type EuiExpressionProps = CommonProps & {
 };
 
 type Buttonlike = EuiExpressionProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> & {
     onClick: MouseEventHandler<HTMLButtonElement>;
   };
 
-type Spanlike = EuiExpressionProps & HTMLAttributes<HTMLSpanElement>;
+type Spanlike = EuiExpressionProps &
+  Omit<HTMLAttributes<HTMLSpanElement>, 'value'>;
 
-export const EuiExpression: React.FunctionComponent<ExclusiveUnion<
+export const EuiExpression: FunctionComponent<ExclusiveUnion<
   Buttonlike,
   Spanlike
 >> = ({
@@ -156,9 +158,7 @@ export const EuiExpression: React.FunctionComponent<ExclusiveUnion<
       type="alert"
       color={calculatedColor}
     />
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   return (
     <Component className={classes} onClick={onClick} {...rest}>
@@ -168,9 +168,11 @@ export const EuiExpression: React.FunctionComponent<ExclusiveUnion<
         {...descriptionProps}>
         {description}
       </span>{' '}
-      <span className="euiExpression__value" {...valueProps}>
-        {value}
-      </span>
+      {value && (
+        <span className="euiExpression__value" {...valueProps}>
+          {value}
+        </span>
+      )}
       {invalidIcon}
     </Component>
   );

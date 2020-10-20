@@ -1,13 +1,13 @@
 /* eslint-disable guard-for-in */
 import { PropTypes } from 'react-view';
 
-const getProp = prop => {
+const getProp = (prop) => {
   const newProp = {};
   if (prop.description) newProp.description = prop.description;
   newProp.custom = { origin: prop };
 
   switch (prop.type.name) {
-    case 'bool':
+    case 'boolean':
       newProp.type = PropTypes.Boolean;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value === 'true';
@@ -22,10 +22,7 @@ const getProp = prop => {
       newProp.type = PropTypes.Enum;
       newProp.required = prop.required;
       if (prop.defaultValue) {
-        newProp.defaultValue = prop.defaultValue.value.substring(
-          1,
-          prop.defaultValue.value.length - 1
-        );
+        newProp.defaultValue = prop.defaultValue.value;
       }
       newProp.value = undefined;
       newProp.options = {};
@@ -66,7 +63,7 @@ const getProp = prop => {
   return newProp;
 };
 
-const propUtilityForPlayground = props => {
+const propUtilityForPlayground = (props) => {
   const modifiedProps = {};
 
   for (const key in props) {

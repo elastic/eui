@@ -16,6 +16,8 @@ import {
   EuiLink,
 } from '../../../../src/components';
 
+import { flexGroupConfig, flexGridConfig } from './playground';
+
 import FlexGroup from './flex_group';
 const flexGroupSource = require('!!raw-loader!./flex_group');
 const flexGroupHtml = renderToHtml(FlexGroup);
@@ -624,4 +626,5 @@ export const FlexExample = {
       ),
     },
   ],
+  playground: [flexGroupConfig, flexGridConfig],
 };

@@ -20,6 +20,9 @@
 import { Component, ReactNode } from 'react';
 
 interface BaseProps {
+  /**
+   * ReactNode to render as this component's content
+   */
   children: (ref: any) => ReactNode;
 }
 

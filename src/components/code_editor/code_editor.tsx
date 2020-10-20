@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { Component, AriaAttributes, KeyboardEventHandler } from 'react';
+import React, { Component, AriaAttributes } from 'react';
 import classNames from 'classnames';
 import AceEditor, { IAceEditorProps } from 'react-ace';
 
@@ -92,7 +92,7 @@ export class EuiCodeEditor extends Component<
 
   idGenerator = htmlIdGenerator();
   aceEditor: AceEditor | null = null;
-  editorHint: HTMLDivElement | null = null;
+  editorHint: HTMLButtonElement | null = null;
 
   aceEditorRef = (aceEditor: AceEditor | null) => {
     if (aceEditor) {
@@ -114,17 +114,26 @@ export class EuiCodeEditor extends Component<
     }
   };
 
+  onEscToExit = () => {
+    this.stopEditing();
+    if (this.editorHint) {
+      this.editorHint.focus();
+    }
+  };
+
   onKeydownAce = (event: KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
-      // If the autocompletion context menu is open then we want to let ESCAPE close it but
-      // **not** exit out of editing mode.
-      if (this.aceEditor !== null && !this.aceEditor.editor.completer) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.stopEditing();
-        if (this.editorHint) {
-          this.editorHint.focus();
-        }
+      event.preventDefault();
+      event.stopPropagation();
+      // Handles exiting edit mode when `isReadOnly` is set.
+      // Other 'esc' cases handled by `stopEditingOnEsc` command.
+      // Would run after `stopEditingOnEsc`.
+      if (
+        this.aceEditor !== null &&
+        !this.aceEditor.editor.completer &&
+        this.state.isEditing
+      ) {
+        this.onEscToExit();
       }
     }
   };
@@ -142,13 +151,6 @@ export class EuiCodeEditor extends Component<
     this.stopEditing();
     if (this.props.onBlur) {
       this.props.onBlur(event, editor);
-    }
-  };
-
-  onKeyDownHint: KeyboardEventHandler<HTMLDivElement> = event => {
-    if (event.key === keys.ENTER) {
-      event.preventDefault();
-      this.startEditing();
     }
   };
 
@@ -193,7 +195,7 @@ export class EuiCodeEditor extends Component<
     if (el) {
       const textarea = el.querySelector('textarea');
       if (textarea)
-        keysOf(textareaProps).forEach(key => {
+        keysOf(textareaProps).forEach((key) => {
           if (textareaProps[key])
             textarea.setAttribute(`${key}`, textareaProps[key]!.toString());
         });
@@ -210,13 +212,14 @@ export class EuiCodeEditor extends Component<
     const {
       width,
       height,
-      onBlur, // eslint-disable-line no-unused-vars
+      onBlur,
       isReadOnly,
       setOptions,
       cursorStart,
       mode = DEFAULT_MODE,
       'data-test-subj': dataTestSubj = 'codeEditorContainer',
       theme = DEFAULT_THEME,
+      commands = [],
       ...rest
     } = this.props;
 
@@ -230,7 +233,7 @@ export class EuiCodeEditor extends Component<
 
     let filteredCursorStart;
 
-    const options = { ...setOptions };
+    const options: IAceEditorProps['setOptions'] = { ...setOptions };
 
     if (isReadOnly) {
       // Put the cursor at the beginning of the editor, so that it doesn't look like
@@ -246,18 +249,14 @@ export class EuiCodeEditor extends Component<
       filteredCursorStart = cursorStart;
     }
 
-    // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
-      <div
+      <button
         className={promptClasses}
         id={this.idGenerator('codeEditor')}
-        ref={hint => {
+        ref={(hint) => {
           this.editorHint = hint;
         }}
-        tabIndex={0}
-        role="button"
         onClick={this.startEditing}
-        onKeyDown={this.onKeyDownHint}
         data-test-subj="codeEditorHint">
         <p className="euiText">
           {isReadOnly ? (
@@ -286,7 +285,7 @@ export class EuiCodeEditor extends Component<
             />
           )}
         </p>
-      </div>
+      </button>
     );
 
     return (
@@ -312,6 +311,16 @@ export class EuiCodeEditor extends Component<
             $blockScrolling: Infinity,
           }}
           cursorStart={filteredCursorStart}
+          commands={[
+            // Handles exiting edit mode in all cases except `isReadOnly`
+            // Runs before `onKeydownAce`.
+            {
+              name: 'stopEditingOnEsc',
+              bindKey: { win: 'Esc', mac: 'Esc' },
+              exec: this.onEscToExit,
+            },
+            ...commands,
+          ]}
           {...rest}
         />
       </div>

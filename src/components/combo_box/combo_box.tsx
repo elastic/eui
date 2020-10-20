@@ -62,7 +62,11 @@ import { getElementZIndex } from '../../services/popover';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
-  'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
+  | 'customOptionText'
+  | 'onCreateOption'
+  | 'options'
+  | 'renderOption'
+  | 'selectedOptions'
 >;
 
 interface _EuiComboBoxProps<T>
@@ -223,7 +227,7 @@ export class EuiComboBox<T> extends Component<
 
   // Refs
   comboBoxRefInstance: RefInstance<HTMLDivElement> = null;
-  comboBoxRefCallback: RefCallback<HTMLDivElement> = ref => {
+  comboBoxRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     // IE11 doesn't support the `relatedTarget` event property for blur events
     // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
     if (this.comboBoxRefInstance) {
@@ -247,20 +251,20 @@ export class EuiComboBox<T> extends Component<
     }
   };
   autoSizeInputRefInstance: RefInstance<AutosizeInput & HTMLDivElement> = null;
-  autoSizeInputRefCallback: RefCallback<
-    AutosizeInput & HTMLDivElement
-  > = ref => {
+  autoSizeInputRefCallback: RefCallback<AutosizeInput & HTMLDivElement> = (
+    ref
+  ) => {
     this.autoSizeInputRefInstance = ref;
   };
 
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
-  searchInputRefCallback: RefCallback<HTMLInputElement> = ref => {
+  searchInputRefCallback: RefCallback<HTMLInputElement> = (ref) => {
     this.searchInputRefInstance = ref;
     if (this.props.inputRef) this.props.inputRef(ref);
   };
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
-  listRefCallback: RefCallback<HTMLDivElement> = ref => {
+  listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     if (this.comboBoxRefInstance) {
       // find the zIndex of the combobox relative to the page body
       // and use that to depth-position the list box
@@ -275,9 +279,9 @@ export class EuiComboBox<T> extends Component<
   toggleButtonRefInstance: RefInstance<
     HTMLButtonElement | HTMLSpanElement
   > = null;
-  toggleButtonRefCallback: RefCallback<
-    HTMLButtonElement | HTMLSpanElement
-  > = ref => {
+  toggleButtonRefCallback: RefCallback<HTMLButtonElement | HTMLSpanElement> = (
+    ref
+  ) => {
     this.toggleButtonRefInstance = ref;
   };
 
@@ -348,8 +352,9 @@ export class EuiComboBox<T> extends Component<
       // listElement doesn't have its width set until after updating the position
       // which means the popover service won't know about the correct width
       // however, we already know where to position the element
-      this.listRefInstance.style.left = `${comboBoxBounds.left +
-        window.pageXOffset}px`;
+      this.listRefInstance.style.left = `${
+        comboBoxBounds.left + window.pageXOffset
+      }px`;
       this.listRefInstance.style.width = `${comboBoxBounds.width}px`;
     }
 
@@ -467,7 +472,7 @@ export class EuiComboBox<T> extends Component<
       return;
     }
 
-    // Add new custom pill if this is custom input, even if it partially matches an option..
+    // Add new custom pill if this is custom input, even if it partially matches an option.
     const isOptionCreated = onCreateOption(
       searchValue,
       flattenOptionGroups(options)
@@ -504,7 +509,7 @@ export class EuiComboBox<T> extends Component<
       return false;
     }
 
-    const flattenOptions = flattenOptionGroups(options).map(option => {
+    const flattenOptions = flattenOptionGroups(options).map((option) => {
       return { ...option, label: option.label.trim().toLowerCase() };
     });
 
@@ -512,7 +517,8 @@ export class EuiComboBox<T> extends Component<
     selectedOptions.forEach(({ label }) => {
       const trimmedLabel = label.trim().toLowerCase();
       if (
-        flattenOptions.findIndex(option => option.label === trimmedLabel) !== -1
+        flattenOptions.findIndex((option) => option.label === trimmedLabel) !==
+        -1
       )
         numberOfSelectedOptions += 1;
     });
@@ -520,7 +526,7 @@ export class EuiComboBox<T> extends Component<
     return flattenOptions.length === numberOfSelectedOptions;
   };
 
-  onComboBoxFocus: FocusEventHandler<HTMLInputElement> = event => {
+  onComboBoxFocus: FocusEventHandler<HTMLInputElement> = (event) => {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
@@ -535,14 +541,14 @@ export class EuiComboBox<T> extends Component<
     const { delimiter } = this.props;
     if (delimiter) {
       searchValue.split(delimiter).forEach((option: string) => {
-        if (option.length > 0) this.addCustomOption(true, option);
+        if (option.length > 0) this.addCustomOption(isContainerBlur, option);
       });
     } else {
       this.addCustomOption(isContainerBlur, searchValue);
     }
   };
 
-  onContainerBlur: EventListener = event => {
+  onContainerBlur: EventListener = (event) => {
     // close the options list, unless the use clicked on an option
 
     /**
@@ -582,7 +588,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
+  onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
@@ -641,11 +647,11 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onOptionEnterKey: OptionHandler<T> = option => {
+  onOptionEnterKey: OptionHandler<T> = (option) => {
     this.onAddOption(option);
   };
 
-  onOptionClick: OptionHandler<T> = option => {
+  onOptionClick: OptionHandler<T> = (option) => {
     this.onAddOption(option);
   };
 
@@ -689,10 +695,10 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onRemoveOption: OptionHandler<T> = removedOption => {
+  onRemoveOption: OptionHandler<T> = (removedOption) => {
     const { onChange, selectedOptions } = this.props;
     if (onChange) {
-      onChange(selectedOptions.filter(option => option !== removedOption));
+      onChange(selectedOptions.filter((option) => option !== removedOption));
     }
 
     this.clearActiveOption();
@@ -726,10 +732,13 @@ export class EuiComboBox<T> extends Component<
       Boolean(this.props.singleSelection) &&
       this.props.selectedOptions.length === 1
     ) {
+      const selectedOptionIndex = this.state.matchingOptions.findIndex(
+        (option) =>
+          option.label === this.props.selectedOptions[0].label &&
+          option.key === this.props.selectedOptions[0].key
+      );
       this.setState({
-        activeOptionIndex: this.state.matchingOptions.indexOf(
-          this.props.selectedOptions[0]
-        ),
+        activeOptionIndex: selectedOptionIndex,
       });
     } else {
       this.clearActiveOption();
@@ -755,9 +764,9 @@ export class EuiComboBox<T> extends Component<
     this.closeList();
   };
 
-  onSearchChange: NonNullable<
-    EuiComboBoxInputProps<T>['onChange']
-  > = searchValue => {
+  onSearchChange: NonNullable<EuiComboBoxInputProps<T>['onChange']> = (
+    searchValue
+  ) => {
     const { onSearchChange, delimiter } = this.props;
 
     if (onSearchChange) {
@@ -769,9 +778,7 @@ export class EuiComboBox<T> extends Component<
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
     if (delimiter && searchValue.endsWith(delimiter)) {
-      searchValue.split(delimiter).forEach(value => {
-        if (value.length > 0) this.addCustomOption(false, value);
-      });
+      this.setCustomOptions(false);
     }
   };
 
@@ -897,6 +904,7 @@ export class EuiComboBox<T> extends Component<
       async,
       className,
       compressed,
+      customOptionText,
       fullWidth,
       id,
       inputRef,
@@ -947,7 +955,7 @@ export class EuiComboBox<T> extends Component<
     });
 
     const value = selectedOptions
-      .map(selectedOption => selectedOption.label)
+      .map((selectedOption) => selectedOption.label)
       .join(', ');
 
     let optionsList;
@@ -963,6 +971,7 @@ export class EuiComboBox<T> extends Component<
             zIndex={this.state.listZIndex}
             activeOptionIndex={this.state.activeOptionIndex}
             areAllOptionsSelected={this.areAllOptionsSelected()}
+            customOptionText={customOptionText}
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
             isLoading={isLoading}
@@ -1047,6 +1056,7 @@ export class EuiComboBox<T> extends Component<
           value={value}
           append={singleSelection ? append : undefined}
           prepend={singleSelection ? prepend : undefined}
+          isLoading={isLoading}
         />
         {optionsList}
       </div>

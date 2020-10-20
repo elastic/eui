@@ -125,7 +125,7 @@ describe('useInnerText', () => {
 
     expect(innerText).toEqual(first);
 
-    // MutationObserver polyfill institues a 30ms mutation timeout period
+    // MutationObserver polyfill institutes a 30ms mutation timeout period
     const mutationObserverPolyfillPeriod = 30;
     await sleep(timeout + mutationObserverPolyfillPeriod + 10);
 

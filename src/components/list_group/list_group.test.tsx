@@ -39,7 +39,7 @@ const someListItems: EuiListGroupItemProps[] = [
   },
   {
     label: 'Button with onClick',
-    onClick: e => {
+    onClick: (e) => {
       console.log('Visualize clicked', e);
     },
   },
@@ -109,7 +109,7 @@ describe('EuiListGroup', () => {
     });
 
     describe('gutter size', () => {
-      GUTTER_SIZES.forEach(gutter => {
+      GUTTER_SIZES.forEach((gutter) => {
         test(`${gutter} is rendered`, () => {
           const component = render(<EuiListGroup gutterSize={gutter} />);
 

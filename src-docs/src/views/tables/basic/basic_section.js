@@ -2,9 +2,22 @@ import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 import { EuiCode } from '../../../../../src/components';
-import { propsInfo } from './props_info';
-
 import { Table } from './basic';
+import { EuiBasicTable } from '../../../../../src/components/basic_table';
+import {
+  Criteria,
+  CriteriaWithPagination,
+} from '!!prop-loader!../../../../../src/components/basic_table/basic_table';
+import { Pagination } from '!!prop-loader!../../../../../src/components/basic_table/pagination_bar';
+import {
+  EuiTableFieldDataColumnType,
+  EuiTableComputedColumnType,
+  EuiTableActionsColumnType,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+} from '!!prop-loader!../../../../../src/components/basic_table/table_types';
+import { CustomItemAction } from '!!prop-loader!../../../../../src/components/basic_table/action_types';
+import { DefaultItemActionProps as DefaultItemAction } from './props';
 
 const source = require('!!raw-loader!./basic');
 const html = renderToHtml(Table);
@@ -81,6 +94,18 @@ export const section = {
       </ul>
     </div>
   ),
-  props: propsInfo,
+  props: {
+    EuiBasicTable,
+    Criteria,
+    CriteriaWithPagination,
+    Pagination,
+    EuiTableSortingType,
+    EuiTableSelectionType,
+    EuiTableFieldDataColumnType,
+    EuiTableComputedColumnType,
+    EuiTableActionsColumnType,
+    DefaultItemAction,
+    CustomItemAction,
+  },
   demo: <Table />,
 };

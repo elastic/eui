@@ -36,7 +36,7 @@ describe('EuiBadgeGroup', () => {
   });
 
   describe('gutterSize', () => {
-    GUTTER_SIZES.forEach(size => {
+    GUTTER_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
         const component = render(<EuiBadgeGroup gutterSize={size} />);
 

@@ -192,7 +192,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     location: { x: number; y: number },
     isFirstInteraction?: boolean
   ) => {
-    if (isFirstInteraction) return; // Prevents change on the inital MouseDown event
+    if (isFirstInteraction) return; // Prevents change on the initial MouseDown event
     if (parentRef == null) {
       return;
     }

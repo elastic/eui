@@ -5,11 +5,14 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiBadge,
+  EuiSpacer,
   EuiCallOut,
   EuiCode,
   EuiLink,
   EuiKeyboardAccessible,
   EuiSkipLink,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 import KeyboardAccessible from './keyboard_accessible';
@@ -48,8 +51,6 @@ const skipLinkSnippet = [
 `,
 ];
 
-import { ScreenReaderOnlyDocsComponent } from './props';
-
 export const AccessibilityExample = {
   title: 'Accessibility',
   sections: [
@@ -66,12 +67,38 @@ export const AccessibilityExample = {
         },
       ],
       text: (
-        <p>
-          You can make interactive elements keyboard-accessible with the{' '}
-          <strong>EuiKeyboardAccessible</strong> component. This is necessary
-          for non-button elements and <EuiCode>a</EuiCode> tags without{' '}
-          <EuiCode>href</EuiCode> attributes.
-        </p>
+        <>
+          <EuiBadge
+            color="danger"
+            href="https://github.com/elastic/eui/issues/1469"
+            target="_blank"
+            iconSide="right"
+            iconType="popout">
+            Set for deprecation. See details.
+          </EuiBadge>
+
+          <EuiSpacer />
+
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="Deprecated because it often causes problems for screen reader users">
+            <p>
+              Though this component solved some problems for keyboard-only users
+              it also frequently introduced problems for screen reader users. As
+              such, we don&apos;t recommend it&apos;s continued use.
+            </p>
+          </EuiCallOut>
+
+          <EuiSpacer />
+
+          <p>
+            You can make interactive elements keyboard-accessible with the{' '}
+            <strong>EuiKeyboardAccessible</strong> component. This is necessary
+            for non-button elements and <EuiCode>a</EuiCode> tags without{' '}
+            <EuiCode>href</EuiCode> attributes.
+          </p>
+        </>
       ),
       props: { EuiKeyboardAccessible },
       snippet: keyboardAccessibleSnippet,
@@ -117,7 +144,7 @@ export const AccessibilityExample = {
         </div>
       ),
       props: {
-        EuiScreenReaderOnly: ScreenReaderOnlyDocsComponent,
+        EuiScreenReaderOnly,
       },
       snippet: screenReaderOnlySnippet,
       demo: <ScreenReaderOnly />,

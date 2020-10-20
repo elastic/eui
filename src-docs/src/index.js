@@ -1,7 +1,3 @@
-// specifically polyfill Object.entries for IE11 support (used by @elastic/charts)
-import 'core-js/modules/es7.object.entries';
-import 'core-js/modules/es6.number.is-finite';
-
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -20,6 +16,7 @@ import themeDark from './theme_dark.scss';
 import themeAmsterdamLight from './theme_amsterdam_light.scss';
 import themeAmsterdamDark from './theme_amsterdam_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
+import ScrollToHash from './components/scroll_to_hash';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
@@ -50,15 +47,30 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider>
       <Router history={history}>
+        <ScrollToHash />
         <Switch>
           {routes.map(
             ({ name, path, sections, isNew, component, from, to }, i) => {
               const mainComponent = () => (
-                <Route key={i} path={`/${path}`}>
-                  <AppContainer currentRoute={{ name, path, sections, isNew }}>
-                    {createElement(component, {})}
-                  </AppContainer>
-                </Route>
+                <Route
+                  key={i}
+                  path={`/${path}`}
+                  render={(props) => {
+                    const { location } = props;
+                    // prevents encoded urls with a section id to fail
+                    if (location.pathname.includes('%23')) {
+                      const url = decodeURIComponent(location.pathname);
+                      return <Redirect push to={url} />;
+                    } else {
+                      return (
+                        <AppContainer
+                          currentRoute={{ name, path, sections, isNew }}>
+                          {createElement(component, {})}
+                        </AppContainer>
+                      );
+                    }
+                  }}
+                />
               );
 
               if (from)

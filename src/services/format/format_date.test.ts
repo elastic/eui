@@ -81,51 +81,37 @@ describe('formatDate', () => {
       refTime: value, // 1st January 1999 02:03:04.005 (Friday)
     };
 
-    const oneMonthFromNow = moment(options.refTime)
-      .add(1, 'month')
-      .toDate();
+    const oneMonthFromNow = moment(options.refTime).add(1, 'month').toDate();
     expect(
       formatDate(oneMonthFromNow, { format: 'calendarDate', options })
     ).toBe('1st Feb 1999');
 
-    const twoDaysFromNow = moment(options.refTime)
-      .add(2, 'day')
-      .toDate();
+    const twoDaysFromNow = moment(options.refTime).add(2, 'day').toDate();
     expect(
       formatDate(twoDaysFromNow, { format: 'calendarDate', options })
     ).toBe('Sunday');
 
-    const oneDayFromNow = moment(options.refTime)
-      .add(1, 'day')
-      .toDate();
+    const oneDayFromNow = moment(options.refTime).add(1, 'day').toDate();
     expect(formatDate(oneDayFromNow, { format: 'calendarDate', options })).toBe(
       'Tomorrow'
     );
 
-    const anMinuteAgo = moment(options.refTime)
-      .subtract(1, 'minute')
-      .toDate();
+    const anMinuteAgo = moment(options.refTime).subtract(1, 'minute').toDate();
     expect(formatDate(anMinuteAgo, { format: 'calendarDate', options })).toBe(
       'Today'
     );
 
-    const oneDayAgo = moment(options.refTime)
-      .subtract(1, 'day')
-      .toDate();
+    const oneDayAgo = moment(options.refTime).subtract(1, 'day').toDate();
     expect(formatDate(oneDayAgo, { format: 'calendarDate', options })).toBe(
       'Yesterday'
     );
 
-    const twoDaysWeekAgo = moment(options.refTime)
-      .subtract(2, 'day')
-      .toDate();
+    const twoDaysWeekAgo = moment(options.refTime).subtract(2, 'day').toDate();
     expect(
       formatDate(twoDaysWeekAgo, { format: 'calendarDate', options })
     ).toBe('Last Wednesday');
 
-    const oneMonthAgo = moment(options.refTime)
-      .subtract(1, 'month')
-      .toDate();
+    const oneMonthAgo = moment(options.refTime).subtract(1, 'month').toDate();
     expect(formatDate(oneMonthAgo, { format: 'calendarDate', options })).toBe(
       '1st Dec 1998'
     );
@@ -136,51 +122,37 @@ describe('formatDate', () => {
       refTime: value, // 1st January 1999 02:03:04.005
     };
 
-    const oneMonthFromNow = moment(options.refTime)
-      .add(1, 'month')
-      .toDate();
+    const oneMonthFromNow = moment(options.refTime).add(1, 'month').toDate();
     expect(
       formatDate(oneMonthFromNow, { format: 'calendarDateTime', options })
     ).toBe('1st Feb 1999 at 2:03AM');
 
-    const twoDaysFromNow = moment(options.refTime)
-      .add(2, 'day')
-      .toDate();
+    const twoDaysFromNow = moment(options.refTime).add(2, 'day').toDate();
     expect(
       formatDate(twoDaysFromNow, { format: 'calendarDateTime', options })
     ).toBe('Sunday at 2:03AM');
 
-    const oneDayFromNow = moment(options.refTime)
-      .add(1, 'day')
-      .toDate();
+    const oneDayFromNow = moment(options.refTime).add(1, 'day').toDate();
     expect(
       formatDate(oneDayFromNow, { format: 'calendarDateTime', options })
     ).toBe('Tomorrow at 2:03AM');
 
-    const anMinuteAgo = moment(options.refTime)
-      .subtract(1, 'minute')
-      .toDate();
+    const anMinuteAgo = moment(options.refTime).subtract(1, 'minute').toDate();
     expect(
       formatDate(anMinuteAgo, { format: 'calendarDateTime', options })
     ).toBe('Today at 2:02AM');
 
-    const oneDayAgo = moment(options.refTime)
-      .subtract(1, 'day')
-      .toDate();
+    const oneDayAgo = moment(options.refTime).subtract(1, 'day').toDate();
     expect(formatDate(oneDayAgo, { format: 'calendarDateTime', options })).toBe(
       'Yesterday at 2:03AM'
     );
 
-    const twoDaysWeekAgo = moment(options.refTime)
-      .subtract(2, 'day')
-      .toDate();
+    const twoDaysWeekAgo = moment(options.refTime).subtract(2, 'day').toDate();
     expect(
       formatDate(twoDaysWeekAgo, { format: 'calendarDateTime', options })
     ).toBe('Last Wednesday at 2:03AM');
 
-    const oneMonthAgo = moment(options.refTime)
-      .subtract(1, 'month')
-      .toDate();
+    const oneMonthAgo = moment(options.refTime).subtract(1, 'month').toDate();
     expect(
       formatDate(oneMonthAgo, { format: 'calendarDateTime', options })
     ).toBe('1st Dec 1998 at 2:03AM');

@@ -39,6 +39,9 @@ export interface EuiOverlayMaskInterface {
    * Function that applies to clicking the mask itself and not the children
    */
   onClick?: () => void;
+  /**
+   * ReactNode to render as this component's content
+   */
   children?: ReactNode;
   /**
    * Should the mask visually sit above or below the EuiHeader (controlled by z-index)
@@ -85,7 +88,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (!overlayMaskNode.current) return;
-    keysOf(rest).forEach(key => {
+    keysOf(rest).forEach((key) => {
       if (typeof rest[key] !== 'string') {
         throw new Error(
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
@@ -107,7 +110,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   useEffect(() => {
     if (!overlayMaskNode.current || !onClick) return;
     const portalTarget = overlayMaskNode.current;
-    overlayMaskNode.current.addEventListener('click', e => {
+    overlayMaskNode.current.addEventListener('click', (e) => {
       if (e.target === overlayMaskNode.current) {
         onClick();
       }

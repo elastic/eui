@@ -6,8 +6,8 @@ import { useView, Compiler, Placeholder } from 'react-view';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import Knobs from './knobs';
 
-export default ({ config, setGhostBackground }) => {
-  const getSnippet = code => {
+export default ({ config, setGhostBackground, playgroundClassName }) => {
+  const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
 
@@ -37,7 +37,7 @@ export default ({ config, setGhostBackground }) => {
       const { state } = params.knobProps;
       if (setGhostBackground) {
         let needGhostTheme = false;
-        Object.keys(setGhostBackground).forEach(name => {
+        Object.keys(setGhostBackground).forEach((name) => {
           if (state[name].value === setGhostBackground[name])
             needGhostTheme = true;
         });
@@ -45,9 +45,13 @@ export default ({ config, setGhostBackground }) => {
       }
     }, [params.knobProps]);
 
-    const compilerClasses = classNames('playgroundCompiler', {
-      playgroundCompiler__ghostBackground: isGhost,
-    });
+    const compilerClasses = classNames(
+      'playgroundCompiler',
+      {
+        playgroundCompiler__ghostBackground: isGhost,
+      },
+      playgroundClassName
+    );
 
     return (
       <React.Fragment>

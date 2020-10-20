@@ -63,7 +63,7 @@ describe('EuiFormControlLayout', () => {
       });
 
       describe('side', () => {
-        ICON_SIDES.forEach(side => {
+        ICON_SIDES.forEach((side) => {
           test(`${side} is rendered`, () => {
             const icon = {
               type: 'alert',

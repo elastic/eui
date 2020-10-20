@@ -13,10 +13,12 @@ import {
   EuiText,
 } from '../../../../src/components';
 import {
-  EuiColorPalettePickerPaletteText,
-  EuiColorPalettePickerPaletteFixed,
-  EuiColorPalettePickerPaletteGradient,
-} from './props';
+  EuiColorPalettePickerPaletteTextProps,
+  EuiColorPalettePickerPaletteFixedProps,
+  EuiColorPalettePickerPaletteGradientProps,
+} from '!!prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
+
+import playgrounds from './playground';
 
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -358,9 +360,9 @@ export const ColorPickerExample = {
       ],
       props: {
         EuiColorPalettePicker,
-        EuiColorPalettePickerPaletteText,
-        EuiColorPalettePickerPaletteFixed,
-        EuiColorPalettePickerPaletteGradient,
+        EuiColorPalettePickerPaletteTextProps,
+        EuiColorPalettePickerPaletteFixedProps,
+        EuiColorPalettePickerPaletteGradientProps,
       },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
@@ -648,4 +650,5 @@ export const ColorPickerExample = {
       demo: <KitchenSink />,
     },
   ],
+  playground: playgrounds,
 };

@@ -11,7 +11,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldSearch testClass1 testClass2"
+      class="euiFieldSearch euiFieldSearch-isClearable testClass1 testClass2"
       data-test-subj="test subject string"
       id="1"
       name="elastic"
@@ -51,6 +51,40 @@ exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
     <input
       class="euiFieldSearch euiFieldSearch--fullWidth"
       type="search"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldSearch props isClearable is accepted 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  icon="search"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldSearch"
+      type="search"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldSearch props isClearable is rendered when a value exists 1`] = `
+<eui-form-control-layout
+  clear="[object Object]"
+  compressed="false"
+  fullwidth="false"
+  icon="search"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldSearch euiFieldSearch-isClearable"
+      type="search"
+      value="Hello"
     />
   </eui-validatable-control>
 </eui-form-control-layout>

@@ -23,7 +23,10 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
 import { EuiIcon } from '../icon';
+import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
+import { EuiI18n } from '../i18n';
+import { htmlIdGenerator } from '../../services';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -37,8 +40,8 @@ const paddingSizeToClassNameMap = {
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
 
-export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
+export type EuiAccordionProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'id'> & {
     id: string;
     /**
      * Class that will apply to the trigger for the accordion.
@@ -70,13 +73,20 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
     paddingSize?: EuiAccordionSize;
     /**
      * Placement of the arrow indicator, or 'none' to hide it.
-     * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
      */
     arrowDisplay?: 'left' | 'right' | 'none';
     /**
-     * Control the opening of accordin via prop
+     * Control the opening of accordion via prop
      */
     forceState?: 'closed' | 'open';
+    /**
+     * Change `extraAction` and children into a loading spinner
+     */
+    isLoading?: boolean;
+    /**
+     * Choose whether the loading message replaces the content. Customize the message by passing a node
+     */
+    isLoadingMessage?: boolean | ReactNode;
   };
 
 export class EuiAccordion extends Component<
@@ -87,6 +97,8 @@ export class EuiAccordion extends Component<
     initialIsOpen: false,
     paddingSize: 'none',
     arrowDisplay: 'left',
+    isLoading: false,
+    isLoadingMessage: false,
   };
 
   childContent: HTMLDivElement | null = null;
@@ -126,7 +138,7 @@ export class EuiAccordion extends Component<
         this.props.onToggle(forceState === 'open' ? false : true);
     } else {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           isOpen: !prevState.isOpen,
         }),
         () => {
@@ -153,6 +165,8 @@ export class EuiAccordion extends Component<
       initialIsOpen,
       arrowDisplay,
       forceState,
+      isLoading,
+      isLoadingMessage,
       ...rest
     } = this.props;
 
@@ -170,6 +184,10 @@ export class EuiAccordion extends Component<
       ? classNames(paddingSizeToClassNameMap[paddingSize])
       : undefined;
 
+    const childrenClasses = classNames(paddingClass, {
+      'euiAccordion__children-isLoading': isLoading,
+    });
+
     const buttonClasses = classNames(
       'euiAccordion__button',
       {
@@ -182,27 +200,71 @@ export class EuiAccordion extends Component<
       'euiAccordion__icon-isOpen': isOpen,
     });
 
-    let icon;
+    const iconWrapperClasses = classNames('euiAccordion__iconWrapper', {
+      euiAccordion__iconButton: extraAction && arrowDisplay === 'right',
+    });
+
+    let baseIcon;
     if (arrowDisplay !== 'none') {
-      icon = (
-        <span className="euiAccordion__iconWrapper">
-          <EuiIcon className={iconClasses} type="arrowRight" size="m" />
-        </span>
+      baseIcon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
+    }
+
+    let icon;
+    let iconButton;
+    const buttonId = htmlIdGenerator()();
+    if (extraAction && arrowDisplay === 'right') {
+      iconButton = (
+        <button
+          aria-controls={id}
+          aria-expanded={isOpen}
+          aria-labelledby={buttonId}
+          tabIndex={-1}
+          className={iconWrapperClasses}
+          onClick={this.onToggle}>
+          {baseIcon}
+        </button>
       );
+    } else if (arrowDisplay !== 'none') {
+      icon = <span className={iconWrapperClasses}>{baseIcon}</span>;
     }
 
     let optionalAction = null;
 
-    if (extraAction) {
+    if (extraAction && !isLoading) {
       optionalAction = (
         <div className="euiAccordion__optionalAction">{extraAction}</div>
       );
+    } else if (isLoading) {
+      optionalAction = (
+        <div className="euiAccordion__optionalAction">
+          <EuiLoadingSpinner />
+        </div>
+      );
+    }
+
+    let childrenContent: any;
+    if (isLoading && isLoadingMessage) {
+      childrenContent = (
+        <>
+          <EuiLoadingSpinner className="euiAccordion__spinner" />
+          <span>
+            {isLoadingMessage && isLoadingMessage !== true ? (
+              isLoadingMessage
+            ) : (
+              <EuiI18n token="euiAccordion.isLoading" default="Loading" />
+            )}
+          </span>
+        </>
+      );
+    } else {
+      childrenContent = children;
     }
 
     return (
       <div className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
           <button
+            id={buttonId}
             aria-controls={id}
             aria-expanded={isOpen}
             onClick={this.onToggle}
@@ -217,24 +279,24 @@ export class EuiAccordion extends Component<
               {buttonContent}
             </span>
           </button>
-
           {optionalAction}
+          {iconButton}
         </div>
 
         <div
           className="euiAccordion__childWrapper"
-          ref={node => {
+          ref={(node) => {
             this.childWrapper = node;
           }}
           id={id}>
           <EuiResizeObserver onResize={this.setChildContentHeight}>
-            {resizeRef => (
+            {(resizeRef) => (
               <div
-                ref={ref => {
+                ref={(ref) => {
                   this.setChildContentRef(ref);
                   resizeRef(ref);
                 }}>
-                <div className={paddingClass}>{children}</div>
+                <div className={childrenClasses}>{childrenContent}</div>
               </div>
             )}
           </EuiResizeObserver>
