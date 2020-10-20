@@ -11,6 +11,7 @@
 
 **Bug fixes**
 - Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
+- Fix issue with duplicate checkmarks in `EuiComboBox` ([4162](https://github.com/elastic/eui/pull/4162))
 
 **Breaking changes**
 
