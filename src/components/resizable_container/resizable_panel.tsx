@@ -145,9 +145,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   ...rest
 }) => {
   const {
-    registry: { panels, resizerHasFocus } = {
+    registry: {
+      panels,
+      resizers,
+      // resizerHasFocus
+    } = {
       panels: {},
-      resizerHasFocus: null,
+      resizers: {},
+      // resizerHasFocus: null,
     },
   } = useEuiResizableContainerContext();
   const divRef = useRef<HTMLDivElement>(null);
@@ -196,7 +201,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return direction;
   }, [isCollapsible, position, panels]);
 
-  const focusedResizer = useMemo(() => resizerHasFocus, [resizerHasFocus]);
+  // const focusedResizer = useMemo(() => resizerHasFocus, [resizerHasFocus]);
 
   const classes = classNames(
     {
@@ -315,8 +320,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
             toggleButtonClasses,
             'euiResizablePanel__toggleButton--left',
             {
-              'euiResizablePanel__toggleButton--focused':
-                focusedResizer === resizerIds.current[0],
+              'euiResizablePanel__toggleButton--visible':
+                resizers[resizerIds.current[0]].isFocused ||
+                resizers[resizerIds.current[0]].isDisabled,
             }
           )}
           aria-label={toggleButtonAriaLabel}
@@ -336,8 +342,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
             toggleButtonClasses,
             'euiResizablePanel__toggleButton--right',
             {
-              'euiResizablePanel__toggleButton--focused':
-                focusedResizer === resizerIds.current[1],
+              'euiResizablePanel__toggleButton--visible':
+                resizers[resizerIds.current[1]].isFocused ||
+                resizers[resizerIds.current[1]].isDisabled,
             }
           )}
           aria-label={toggleButtonAriaLabel}

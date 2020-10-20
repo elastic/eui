@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   EuiText,
   EuiResizableContainer,
@@ -49,6 +49,8 @@ export default () => {
       label={item.label}
     />
   ));
+
+  const collapseFn = useRef(() => {});
 
   return (
     <>
@@ -135,34 +137,6 @@ export default () => {
           </>
         )}
       </EuiResizableContainer>
-      <EuiSpacer />
-      {/* <EuiResizableContainer style={{ minHeight: '320px' }}>
-        {(EuiResizablePanel, EuiResizableButton) => (
-          <>
-            <EuiResizablePanel initialSize={20} minSize="10%">
-              <EuiListGroup flush>{itemElements}</EuiListGroup>
-            </EuiResizablePanel>
-
-            <EuiResizableButton />
-
-            <EuiResizablePanel toggle initialSize={60} minSize="50px">
-              <EuiPanel paddingSize="l" style={{ minHeight: '280px' }}>
-                <EuiTitle>
-                  <p>{itemSelected.label}</p>
-                </EuiTitle>
-                <EuiSpacer />
-                <EuiText>{itemSelected.text}</EuiText>
-              </EuiPanel>
-            </EuiResizablePanel>
-
-            <EuiResizableButton />
-
-            <EuiResizablePanel initialSize={20} minSize="10%">
-              <EuiListGroup flush>{itemElements}</EuiListGroup>
-            </EuiResizablePanel>
-          </>
-        )}
-      </EuiResizableContainer> */}
       <EuiSpacer />
       <EuiResizableContainer style={{ minHeight: '320px' }}>
         {(EuiResizablePanel, EuiResizableButton) => (
@@ -320,6 +294,40 @@ export default () => {
         )}
       </EuiResizableContainer>
       <EuiSpacer />
+      <EuiResizableContainer style={{ height: '600px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel
+              mode="collapsible"
+              initialSize={20}
+              minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel
+              mode="collapsible"
+              initialSize={20}
+              minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel mode="main" initialSize={60} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+      <EuiSpacer />
       <EuiResizableContainer direction="vertical" style={{ height: '600px' }}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -381,39 +389,54 @@ export default () => {
 
       <EuiSpacer size="xl" />
 
+      <div>
+        <EuiButton onClick={() => collapseFn.current('1')}>
+          Toggle Panel 1
+        </EuiButton>
+        <EuiButton onClick={() => collapseFn.current('2')}>
+          Toggle Panel 2
+        </EuiButton>
+        <EuiButton onClick={() => collapseFn.current('3', 'right')}>
+          Toggle Panel 3
+        </EuiButton>
+      </div>
+      <EuiSpacer />
       <EuiResizableContainer style={{ height: '600px' }}>
-        {(EuiResizablePanel, EuiResizableButton, actions) => (
-          <>
-            <EuiResizablePanel id="1" initialSize={20} minSize="10%">
-              <div>
-                <EuiButton
-                  onClick={() =>
-                    actions.togglePanel('2', { direction: 'right' })
-                  }>
-                  Toggle Panel 2
-                </EuiButton>
-              </div>
-            </EuiResizablePanel>
+        {(EuiResizablePanel, EuiResizableButton, actions) => {
+          collapseFn.current = (id, direction = 'left') =>
+            actions.togglePanel(id, { direction });
+          return (
+            <>
+              <EuiResizablePanel id="1" initialSize={30} minSize="10%">
+                <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                  <EuiTitle>
+                    <p>Panel 1</p>
+                  </EuiTitle>
+                </EuiPanel>
+              </EuiResizablePanel>
 
-            <EuiResizableButton />
+              <EuiResizableButton />
 
-            <EuiResizablePanel id="2" initialSize={40} minSize="50px">
-              <EuiPanel paddingSize="l" style={{ height: '100%' }}>
-                <EuiTitle>
-                  <p>Panel 2</p>
-                </EuiTitle>
-              </EuiPanel>
-            </EuiResizablePanel>
+              <EuiResizablePanel id="2" initialSize={35} minSize="50px">
+                <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                  <EuiTitle>
+                    <p>Panel 2</p>
+                  </EuiTitle>
+                </EuiPanel>
+              </EuiResizablePanel>
 
-            <EuiResizableButton />
+              <EuiResizableButton />
 
-            <EuiResizablePanel id="3" initialSize={40} minSize="10%">
-              <EuiTitle>
-                <p>Panel 3</p>
-              </EuiTitle>
-            </EuiResizablePanel>
-          </>
-        )}
+              <EuiResizablePanel id="3" initialSize={35} minSize="10%">
+                <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                  <EuiTitle>
+                    <p>Panel 3</p>
+                  </EuiTitle>
+                </EuiPanel>
+              </EuiResizablePanel>
+            </>
+          );
+        }}
       </EuiResizableContainer>
     </>
   );

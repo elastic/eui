@@ -31,18 +31,13 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { keys } from '../../services';
-import {
-  EuiResizableContainerContextProvider,
-  // EuiResizablePanelContextProvider,
-} from './context';
+import { EuiResizableContainerContextProvider } from './context';
 import {
   EuiResizableButtonProps,
-  // useEuiResizableButton,
   euiResizableButtonWithControls,
 } from './resizable_button';
 import {
   EuiResizablePanelProps,
-  // EuiResizablePanel,
   euiResizablePanelWithControls,
 } from './resizable_panel';
 import { useContainerCallbacks, getPosition } from './helpers';
@@ -90,7 +85,7 @@ const initialState: EuiResizableContainerState = {
   resizersSize: 0,
   panels: {},
   resizers: {},
-  resizerHasFocus: null,
+  // resizerHasFocus: null,
 };
 
 export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps> = ({
@@ -234,7 +229,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       registry={{
         panels: reducerState.panels,
         resizers: reducerState.resizers,
-        resizerHasFocus: reducerState.resizerHasFocus,
+        // resizerHasFocus: reducerState.resizerHasFocus,
       }}>
       <div
         className={classes}

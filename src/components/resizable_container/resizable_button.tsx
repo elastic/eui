@@ -115,7 +115,12 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
       const id = resizerId.current;
       if (ref) {
         previousRef.current = ref;
-        registration.register({ id, ref, isDisabled: disabled || false });
+        registration.register({
+          id,
+          ref,
+          isFocused: false,
+          isDisabled: disabled || false,
+        });
       } else {
         if (previousRef.current != null) {
           registration.deregister(id);

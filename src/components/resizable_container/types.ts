@@ -40,12 +40,13 @@ export interface EuiResizableButtonController {
   id: string;
   ref: HTMLElement;
   isDisabled: boolean;
+  isFocused: boolean;
 }
 
 export interface EuiResizableContainerRegistry {
   panels: { [key: string]: EuiResizablePanelController };
   resizers: { [key: string]: EuiResizableButtonController };
-  resizerHasFocus: EuiResizableContainerState['resizerHasFocus'];
+  // resizerHasFocus: EuiResizableContainerState['resizerHasFocus'];
 }
 
 export type EuiResizableButtonMouseEvent =
@@ -63,7 +64,7 @@ export interface EuiResizableContainerState {
   isHorizontal?: boolean;
   panels: EuiResizableContainerRegistry['panels'];
   resizers: EuiResizableContainerRegistry['resizers'];
-  resizerHasFocus: string | null;
+  // resizerHasFocus: string | null;
 }
 
 export interface ActionToggleOptions {

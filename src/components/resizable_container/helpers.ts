@@ -94,6 +94,27 @@ export const getPosition = (
   return isHorizontal ? clientX : clientY;
 };
 
+const getSiblingPanel = (
+  element: HTMLElement | null,
+  adjacency: 'prev' | 'next'
+) => {
+  if (!element) return null;
+  const method =
+    adjacency === 'prev' ? 'previousElementSibling' : 'nextElementSibling';
+  let sibling = element[method];
+  while (sibling) {
+    if (
+      sibling.matches('.euiResizablePanel:not(.euiResizablePanel--collapsed)')
+    ) {
+      return sibling;
+    }
+    sibling = sibling[method];
+  }
+};
+
+// lazy initialization to prevent rerender on ititial interaction
+const init = (state: EuiResizableContainerState) => state;
+
 export const useContainerCallbacks = ({
   initialState,
   containerRef,
@@ -322,8 +343,28 @@ export const useContainerCallbacks = ({
         ) {
           otherPanels[nextPanel.id] = state.panels[nextPanel.id];
         }
-        const otherPanelsKeys = Object.keys(otherPanels);
-        const siblings = otherPanelsKeys.length;
+        let otherPanelsKeys = Object.keys(otherPanels);
+        let siblings = otherPanelsKeys.length;
+
+        // fallback panel size redistribution for panels controlled externally
+        if (!siblings) {
+          const maybePrevPanel = getSiblingPanel(panelElement, 'prev');
+          const maybeNextPanel = getSiblingPanel(panelElement, 'next');
+          // Intentional, preferential redistribution order
+          if (maybePrevPanel && options.direction === 'right') {
+            otherPanels[maybePrevPanel.id] = state.panels[maybePrevPanel.id];
+          } else if (maybeNextPanel && options.direction === 'left') {
+            otherPanels[maybeNextPanel.id] = state.panels[maybeNextPanel.id];
+          } else {
+            if (maybePrevPanel)
+              otherPanels[maybePrevPanel.id] = state.panels[maybePrevPanel.id];
+            if (maybeNextPanel)
+              otherPanels[maybeNextPanel.id] = state.panels[maybeNextPanel.id];
+          }
+          otherPanelsKeys = Object.keys(otherPanels);
+          siblings = otherPanelsKeys.length;
+        }
+
         const newPanelSize = shouldCollapse
           ? Math.ceil(pxToPercent(4, containerSize)) // Based on the button size
           : currentPanel.prevSize;
@@ -333,6 +374,7 @@ export const useContainerCallbacks = ({
         otherPanelsKeys.forEach((panelId) => {
           otherPanels[panelId].size = otherPanels[panelId].size + delta;
         });
+
         // if (onPanelWidthChange) {
         //   onPanelWidthChange({
         //     ...sizesOnly(otherPanels),
@@ -342,7 +384,7 @@ export const useContainerCallbacks = ({
 
         return {
           ...state,
-          resizerHasFocus: null,
+          // resizerHasFocus: null,
           panels: {
             ...state.panels,
             [currentPanelId]: {
@@ -357,6 +399,7 @@ export const useContainerCallbacks = ({
               (out: EuiResizableContainerState['resizers'], id) => {
                 out[id] = {
                   ...state.resizers[id],
+                  isFocused: false,
                   isDisabled:
                     resizersToDisable[id] ?? state.resizers[id].isDisabled,
                 };
@@ -371,13 +414,37 @@ export const useContainerCallbacks = ({
         const { resizerId } = action.payload;
         return {
           ...state,
-          resizerHasFocus: resizerId,
+          resizers: {
+            ...Object.keys(state.resizers).reduce(
+              (out: EuiResizableContainerState['resizers'], id) => {
+                out[id] = {
+                  ...state.resizers[id],
+                  isFocused: id === resizerId,
+                };
+                return out;
+              },
+              {}
+            ),
+          },
+          // resizerHasFocus: resizerId,
         };
       }
       case 'EUI_RESIZABLE_BUTTON_BLUR': {
         return {
           ...state,
-          resizerHasFocus: null,
+          resizers: {
+            ...Object.keys(state.resizers).reduce(
+              (out: EuiResizableContainerState['resizers'], id) => {
+                out[id] = {
+                  ...state.resizers[id],
+                  isFocused: false,
+                };
+                return out;
+              },
+              {}
+            ),
+          },
+          // resizerHasFocus: null,
         };
       }
       // TODO: Implement more generic version of
@@ -390,7 +457,7 @@ export const useContainerCallbacks = ({
       case 'EUI_RESIZABLE_RESET': {
         return {
           ...initialState,
-          resizerHasFocus: state.resizerHasFocus,
+          // resizerHasFocus: state.resizerHasFocus,
           panels: state.panels,
           resizers: state.resizers,
         };
@@ -405,7 +472,7 @@ export const useContainerCallbacks = ({
     }
   }
 
-  const [reducerState, dispatch] = useReducer(reducer, initialState);
+  const [reducerState, dispatch] = useReducer(reducer, initialState, init);
 
   // TODO: Not sure I like this. Left the alternate effect approach in, commented
   useEffect(() => {

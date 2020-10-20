@@ -20,14 +20,14 @@ import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizableResizerSize from './resizable_resizer_size';
-import ResizablePanelToggle from './resizable_panel_toggle';
+import ResizablePanelCollapsible from './resizable_panel_collapsible';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVericalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_container_three_panels');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizableResizerSizeSource = require('!!raw-loader!./resizable_resizer_size');
-const ResizablePanelToggleSource = require('!!raw-loader!./resizable_panel_toggle');
+const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 
 const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
 const ResizableContainerVericalHtml = renderToHtml(ResizableContainerVertical);
@@ -38,7 +38,7 @@ const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
 const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
-const ResizablePanelToggleHtml = renderToHtml(ResizablePanelToggle);
+const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
 
 const snippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton) => (
@@ -245,17 +245,17 @@ export const ResizableContainerExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: ResizablePanelToggleSource,
+          code: ResizablePanelCollapsibleSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: ResizablePanelToggleHtml,
+          code: ResizablePanelCollapsibleHtml,
         },
       ],
-      title: 'Toggle resizable panels',
+      title: 'Collapsible resizable panels',
       text: (
         <div>
-          <p>
+          {/* <p>
             You can add toggling to <strong>EuiResizablePanel</strong>s inside a{' '}
             <strong>EuiResizableContainer</strong> of horizontal{' '}
             <EuiCode>direction</EuiCode>. To do so, pass the{' '}
@@ -272,11 +272,12 @@ export const ResizableContainerExample = {
             <EuiCode>notCollapsedIcon</EuiCode> and{' '}
             <EuiCode>collapsedIcon</EuiCode>. Alternatively, you can pass an
             object customizing those values.
-          </p>
+          </p> */}
+          <p>Coming soon</p>
         </div>
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
-      demo: <ResizablePanelToggle />,
+      demo: <ResizablePanelCollapsible />,
     },
   ],
 };

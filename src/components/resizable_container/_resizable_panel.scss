@@ -17,7 +17,7 @@
 
 .euiResizablePanel--collapsible {
   &:not(.euiResizablePanel--collapsed) {
-    .euiResizablePanel__toggleButton:not(:focus):not(:active):not(.euiResizablePanel__toggleButton--focused) {
+    .euiResizablePanel__toggleButton:not(:focus):not(:active):not(.euiResizablePanel__toggleButton--visible) {
       @include euiScreenReaderOnly;
     }
   }
