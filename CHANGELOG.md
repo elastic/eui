@@ -30,6 +30,7 @@
 ## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
+- Added `cellActions` to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
 
 **Bug fixes**
 

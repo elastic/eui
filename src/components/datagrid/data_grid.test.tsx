@@ -1892,6 +1892,81 @@ Array [
     });
   });
 
+  describe('render column cell actions', () => {
+    it('renders various column cell actions configurations', () => {
+      const alertFn = jest.fn();
+      const happyFn = jest.fn();
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'A', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[
+            {
+              id: 'A',
+              isSortable: true,
+              cellActions: [
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => alertFn(rowIndex, columnId)}
+                      iconType="alert"
+                      aria-label="test1 aria label"
+                      data-test-subj={
+                        isExpanded ? 'alertActionPopover' : 'alertAction'
+                      }>
+                      test1
+                    </Component>
+                  );
+                },
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => happyFn(rowIndex, columnId)}
+                      iconType="faceHappy"
+                      aria-label="test2 aria label"
+                      data-test-subj={
+                        isExpanded ? 'happyActionPopover' : 'happyAction'
+                      }>
+                      test2
+                    </Component>
+                  );
+                },
+              ],
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      findTestSubject(component, 'alertAction').at(1).simulate('click');
+      expect(alertFn).toHaveBeenCalledWith(1, 'A');
+      findTestSubject(component, 'happyAction').at(1).simulate('click');
+      expect(happyFn).toHaveBeenCalledWith(1, 'A');
+      alertFn.mockReset();
+      happyFn.mockReset();
+
+      findTestSubject(component, 'dataGridRowCell')
+        .at(1)
+        .simulate('keydown', { key: keys.ENTER });
+      component.update();
+
+      findTestSubject(component, 'alertActionPopover').simulate('click');
+      expect(alertFn).toHaveBeenCalledWith(1, 'A');
+      findTestSubject(component, 'happyActionPopover').simulate('click');
+      expect(happyFn).toHaveBeenCalledWith(1, 'A');
+    });
+  });
+
   describe('keyboard controls', () => {
     it('supports simple arrow navigation', () => {
       let pagination = {
