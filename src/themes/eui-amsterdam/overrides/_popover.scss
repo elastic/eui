@@ -54,3 +54,42 @@
     }
   }
 }
+
+/**
+ * Title specific overrides
+ */
+
+.euiPopoverTitle {
+  text-transform: none;
+}
+
+// Mainly for specificity, but don't add padding to the title if
+// neither the the panel nor the title has a padding modifier (aka NONE)
+.euiPopover__panel:not([class*='euiPanel--padding']) .euiPopoverTitle:not([class*='euiPopoverTitle--padding']) {
+  padding: 0;
+}
+
+// Allow the panel padding to actually modify the all side of the title
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPopover__panel.euiPanel--#{$modifier} .euiPopoverTitle:not([class*='euiPopoverTitle--padding']) {
+    padding: $amount;
+  }
+}
+
+/**
+ * Footer specific overrides
+ */
+
+// Mainly for specificity, but don't add padding to the footer if
+// neither the the panel nor the footer has a padding modifier (aka NONE)
+.euiPopover__panel:not([class*='euiPanel--padding']) .euiPopoverFooter:not([class*='euiPopoverFooter--padding']) {
+  padding: 0;
+}
+
+// Allow the panel padding to actually modify the all side of the footer
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPopover__panel.euiPanel--#{$modifier} .euiPopoverFooter:not([class*='euiPopoverFooter--padding']) {
+    padding: $amount;
+  }
+}
+

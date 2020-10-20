@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import {
   EuiPopover,
   EuiPopoverTitle,
+  EuiPopoverFooter,
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
+  EuiCode,
 } from '../../../../src/components';
 
 export default () => {
@@ -14,6 +16,8 @@ export default () => {
   const [isPopoverOpen2, setIsPopoverOpen2] = useState(false);
   const [isPopoverOpen3, setIsPopoverOpen3] = useState(false);
   const [isPopoverOpen4, setIsPopoverOpen4] = useState(false);
+  const [isPopoverOpen5, setIsPopoverOpen5] = useState(false);
+  const [isPopoverOpen6, setIsPopoverOpen6] = useState(false);
 
   const onButtonClick1 = () =>
     setIsPopoverOpen1((isPopoverOpen1) => !isPopoverOpen1);
@@ -31,102 +35,203 @@ export default () => {
     setIsPopoverOpen4((isPopoverOpen4) => !isPopoverOpen4);
   const closePopover4 = () => setIsPopoverOpen4(false);
 
+  const onButtonClick5 = () =>
+    setIsPopoverOpen5((isPopoverOpen5) => !isPopoverOpen5);
+  const closePopover5 = () => setIsPopoverOpen5(false);
+
+  const onButtonClick6 = () =>
+    setIsPopoverOpen6((isPopoverOpen6) => !isPopoverOpen6);
+  const closePopover6 = () => setIsPopoverOpen6(false);
+
   return (
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem grow={false}>
-        <EuiPopover
-          ownFocus
-          button={
-            <EuiButton
-              iconType="arrowDown"
-              iconSide="right"
-              onClick={onButtonClick2}>
-              Title and small padding
-            </EuiButton>
-          }
-          isOpen={isPopoverOpen2}
-          closePopover={closePopover2}
-          anchorPosition="upCenter"
-          panelPaddingSize="s">
-          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
-          <div style={{ width: '300px' }}>
-            <EuiText>
-              <p>Popover content</p>
+    <>
+      <EuiFlexGroup wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="s"
+            ownFocus
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={onButtonClick2}>
+                Small panel padding
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen2}
+            closePopover={closePopover2}>
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Only changing the <EuiCode>panelPaddingSize</EuiCode> will get
+                inherited by the title.
+              </p>
             </EuiText>
-          </div>
-        </EuiPopover>
-      </EuiFlexItem>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
 
-      <EuiFlexItem grow={false}>
-        <EuiPopover
-          ownFocus
-          button={
-            <EuiButton
-              iconType="arrowDown"
-              iconSide="right"
-              onClick={onButtonClick1}>
-              Title and default padding (m)
-            </EuiButton>
-          }
-          isOpen={isPopoverOpen1}
-          closePopover={closePopover1}
-          anchorPosition="upCenter">
-          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
-          <div style={{ width: '300px' }}>
-            <EuiText>
-              <p>Popover content</p>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="none"
+            ownFocus
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={onButtonClick1}>
+                No panel padding (none)
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen1}
+            closePopover={closePopover1}>
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Removing the <EuiCode>panelPaddingSize</EuiCode> completely is
+                good for lists that should extend to the edges.
+              </p>
             </EuiText>
-          </div>
-        </EuiPopover>
-      </EuiFlexItem>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
 
-      <EuiFlexItem grow={false}>
-        <EuiPopover
-          ownFocus
-          button={
-            <EuiButton
-              iconType="arrowDown"
-              iconSide="right"
-              onClick={onButtonClick4}>
-              Title and large padding
-            </EuiButton>
-          }
-          isOpen={isPopoverOpen4}
-          closePopover={closePopover4}
-          anchorPosition="upCenter"
-          panelPaddingSize="l">
-          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
-          <div style={{ width: '300px' }}>
-            <EuiText>
-              <p>Popover content</p>
+      <EuiFlexGroup wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            ownFocus
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={onButtonClick4}>
+                No title padding (none)
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen4}
+            closePopover={closePopover4}>
+            <EuiPopoverTitle paddingSize="none">
+              Hello, I&rsquo;m a popover title
+            </EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Removing the padding from titles only with{' '}
+                <EuiCode>paddingSize</EuiCode> on{' '}
+                <strong>EuiPopoverTitle</strong>.
+              </p>
             </EuiText>
-          </div>
-        </EuiPopover>
-      </EuiFlexItem>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
 
-      <EuiFlexItem grow={false}>
-        <EuiPopover
-          ownFocus
-          button={
-            <EuiButton
-              iconType="arrowDown"
-              iconSide="right"
-              onClick={onButtonClick3}>
-              Title and no padding
-            </EuiButton>
-          }
-          isOpen={isPopoverOpen3}
-          closePopover={closePopover3}
-          anchorPosition="upCenter"
-          panelPaddingSize="none">
-          <EuiPopoverTitle>As the title, I keep my padding</EuiPopoverTitle>
-          <div style={{ width: '300px' }}>
-            <EuiText>
-              <p>Popover content</p>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="none"
+            ownFocus
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={onButtonClick3}>
+                No panel padding with small title padding
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen3}
+            closePopover={closePopover3}>
+            <EuiPopoverTitle paddingSize="s">
+              Hello, I&rsquo;m a popover title
+            </EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                You can adjust both the <EuiCode>panelPaddingSize</EuiCode> and
+                the <EuiCode>paddingSize</EuiCode> at the same time.
+              </p>
             </EuiText>
-          </div>
-        </EuiPopover>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiFlexGroup wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            ownFocus
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={onButtonClick5}>
+                No footer padding (none)
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen5}
+            closePopover={closePopover5}>
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Removing the padding from footers only with{' '}
+                <EuiCode>paddingSize</EuiCode> on{' '}
+                <strong>EuiPopoverFooter</strong>.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter paddingSize="none">
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="none"
+            ownFocus
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={onButtonClick6}>
+                Set each padding individually
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen6}
+            closePopover={closePopover6}>
+            <EuiPopoverTitle paddingSize="s">
+              Hello, I&rsquo;m a popover title
+            </EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                For the most reliable padding display, set the{' '}
+                <EuiCode>panelPaddingSize</EuiCode> and the{' '}
+                <EuiCode>paddingSize</EuiCode> props for each component
+                individually.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter paddingSize="s">
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
   );
 };

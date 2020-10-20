@@ -169,6 +169,7 @@ const trailingControlColumns = [
         <div>
           <EuiPopover
             isOpen={isPopoverOpen}
+            panelPaddingSize="s"
             anchorPosition="upCenter"
             button={
               <EuiButtonIcon

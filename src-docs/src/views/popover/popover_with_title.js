@@ -46,7 +46,7 @@ export default () => {
           anchorPosition="downCenter">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>
                 Selfies migas stumptown hot chicken quinoa wolf green juice,
                 mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
@@ -71,7 +71,7 @@ export default () => {
           closePopover={closePopover2}
           anchorPosition="upCenter">
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>
                 Selfies migas stumptown hot chicken quinoa wolf green juice,
                 mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
@@ -102,7 +102,7 @@ export default () => {
           anchorPosition="upCenter">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>
                 Selfies migas stumptown hot chicken quinoa wolf green juice,
                 mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
