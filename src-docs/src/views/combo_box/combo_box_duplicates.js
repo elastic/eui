@@ -20,51 +20,12 @@ const optionsStatic = [
     key: 'titan3',
   },
   {
-    label: 'Titan',
-    key: 'titan4',
-  },
-  {
     label: 'Dione',
-    key: 'dione1',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-  },
-  {
-    label: 'Dione',
-    key: 'dione2',
   },
 ];
 export default () => {
   const [options, setOptions] = useState(optionsStatic);
-  const [selectedOptions, setSelected] = useState([options[15]]);
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
   const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
@@ -99,7 +60,6 @@ export default () => {
       placeholder="Select or create options"
       options={options}
       selectedOptions={selectedOptions}
-      singleSelection={{ asPlainText: true }}
       onChange={onChange}
       onCreateOption={onCreateOption}
       isClearable={true}
