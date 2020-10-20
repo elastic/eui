@@ -128,20 +128,6 @@
     }
   }
 
-  .euiButtonGroupButton-isDisabled {
-    &.euiButtonGroupButton-isSelected {
-      background-color: $euiButtonColorDisabled;
-      border-color: $euiButtonColorDisabled;
-
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: $euiButtonColorDisabled;
-        border-color: $euiButtonColorDisabled;
-      }
-    }
-  }
-
   // Fix ghost/disabled look specifically
   .euiButtonGroupButton.euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost {
     &,
