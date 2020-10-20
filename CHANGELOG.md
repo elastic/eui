@@ -56,6 +56,18 @@ No public interface changes since `30.0.0`.
 
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
 
+## [`29.3.1`](https://github.com/elastic/eui/tree/v29.3.1)
+
+**Note: this release is a backport containing changes originally made in `30.0.0`**
+
+**Bug fixes**
+
+- Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
+
+## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
+
+- Added `both` option to `flush` prop of `EuiButtonEmpty` ([#4084](https://github.com/elastic/eui/pull/4084))
+
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
 - Added `both` option to `flush` prop of `EuiButtonEmpty` ([#4084](https://github.com/elastic/eui/pull/4084))
