@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.0.0`.
+**Bug fixes**
+
+- Fix issue with duplicate checkmarks in `EuiComboBox` ([4162](https://github.com/elastic/eui/pull/4162))
+
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
