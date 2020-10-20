@@ -107,14 +107,14 @@ export interface EuiPopoverProps {
    */
   display?: keyof typeof displayToClassNameMap;
   /**
-   * Turn off to not indiate to originating button with an arrow
+   * Show arrow indicating to originating button
    */
   hasArrow?: boolean;
   /**
    * Specifies what element should initially have focus; Can be a DOM
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
-   * returns a DOM node.
+   * returns a DOM node
    */
   initialFocus?: FocusTarget;
   /**
@@ -142,14 +142,14 @@ export interface EuiPopoverProps {
    */
   panelPaddingSize?: PanelPaddingSize;
   /**
-   * Standard DOM `style` attribute. Passed to the EuiPanel.
+   * Standard DOM `style` attribute. Passed to the EuiPanel
    */
   panelStyle?: CSSProperties;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
    * When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors.
+   * scrolls, this supports having fixed-position popover anchors
    */
   repositionOnScroll?: boolean;
   /**
@@ -162,16 +162,16 @@ export interface EuiPopoverProps {
    */
   onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
   /**
-   * Distance away from the anchor that the popover will render.
+   * Distance away from the anchor that the popover will render
    */
   offset?: number;
   /**
-   * Minimum distance between the popover and the bounding container.
+   * Minimum distance between the popover and the bounding container;
    * Default is 16
    */
   buffer?: number;
   /**
-   * Element to pass as the child element of the arrow.
+   * Element to pass as the child element of the arrow;
    * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
