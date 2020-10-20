@@ -243,7 +243,7 @@ export const PopoverExample = {
         <>
           <p>
             Popovers often need titling. Use the
-            <strong>EuiPopoverTitle</strong> componente nested somewhere inside
+            <strong>EuiPopoverTitle</strong> component nested somewhere inside
             the popover contents.
           </p>
           <p>
