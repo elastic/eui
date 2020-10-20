@@ -63,7 +63,7 @@ interface ToolTipStyles {
 
 const displayToClassNameMap = {
   inlineBlock: undefined,
-  block: 'eui-displayBlock',
+  block: 'euiToolTipAnchor--displayBlock',
 };
 
 const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {

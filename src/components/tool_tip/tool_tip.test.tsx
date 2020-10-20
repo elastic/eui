@@ -55,7 +55,7 @@ describe('EuiToolTip', () => {
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
 
-  test(`display prop renders 'block'`, async () => {
+  test('display prop renders block', async () => {
     const component = render(
       <EuiToolTip
         title="title"

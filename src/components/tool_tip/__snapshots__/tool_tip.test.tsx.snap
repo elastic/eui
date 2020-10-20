@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiToolTip applies our block stylings 1`] = `
+exports[`EuiToolTip display prop renders block 1`] = `
 <span
-  class="euiToolTipAnchor eui-displayBlock"
+  class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
 >
   <button>
     Trigger
