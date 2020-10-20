@@ -22,7 +22,7 @@ export default () => {
       isOpen={isPopoverOpen}
       closePopover={closePopover}>
       <EuiText style={{ width: 300 }}>
-        Popover content that&rsquo;s wider than the default width
+        <p>Popover content that&rsquo;s wider than the default width</p>
       </EuiText>
     </EuiPopover>
   );
