@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.0.0`.
+
+## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
+
 - Deprecated `EuiKeyboardAccessible` ([4135]https://github.com/elastic/eui/pull/4135)
 - Refactored `EuiStep`, `EuiHorizontalSteps`, and `EuiCodeEditor` for better accessibility ([4135]https://github.com/elastic/eui/pull/4135)
 - Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
