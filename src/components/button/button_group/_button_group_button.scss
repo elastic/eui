@@ -45,8 +45,58 @@
     color: $euiButtonColorDisabledText;
 
     &.euiButtonGroupButton-isSelected {
-      // Only increase the contrast of background color to text to 2.0 for disabled
       color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+      background-color: $euiButtonColorDisabled;
+      border-color: $euiButtonColorDisabled;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: $euiButtonColorDisabled;
+        border-color: $euiButtonColorDisabled;
+      }
+    }
+  }
+
+  @each $name, $color in $euiButtonTypes {
+    &.euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
+      @if ($name == 'ghost') {
+        // Ghost is unique and ALWAYS sits against a dark background.
+        color: $color;
+      } @else if ($name == 'text') {
+        // The default color is lighter than the normal text color, make the it the text color
+        color: $euiTextColor;
+      } @else {
+        // Other colors need to check their contrast against the page background color.
+        color: makeHighContrastColor($color, $euiPageBackgroundColor);
+      }
+
+      &.euiButtonGroupButton-isSelected {
+        background-color: $color;
+        border-color: $color;
+
+        // The function makes that hexes safe for theming
+        $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+
+        color: $fillTextColor;
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          $darkHighlightBg: darken($color, 12%);
+          $darkHighlightText: darken($color, 20%);
+
+          color: chooseLightOrDarkText($darkHighlightText, $euiColorGhost, $euiColorInk);
+          background-color: $darkHighlightBg;
+          border-color: $darkHighlightBg;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: transparentize($color, .8);
+      }
     }
   }
 }
@@ -92,44 +142,6 @@
     }
   }
 
-  @each $name, $color in $euiButtonTypes {
-    .euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
-      @if ($name == 'ghost') {
-        // Ghost is unique and ALWAYS sits against a dark background.
-        color: $color;
-      } @else if ($name == 'text') {
-        // The default color is lighter than the normal text color, make the it the text color
-        color: $euiTextColor;
-      } @else {
-        // Other colors need to check their contrast against the page background color.
-        color: makeHighContrastColor($color, $euiPageBackgroundColor);
-      }
-
-      &.euiButtonGroupButton-isSelected {
-        background-color: $color;
-        border-color: $color;
-
-        // The function makes that hexes safe for theming
-        $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
-
-        color: $fillTextColor;
-
-        &:hover,
-        &:focus,
-        &:focus-within {
-          background-color: darken($color, 5%);
-          border-color: darken($color, 5%);
-        }
-      }
-
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: transparentize($color, .9);
-      }
-    }
-  }
-
   // Fix ghost/disabled look specifically
   .euiButtonGroupButton.euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost {
     &,
@@ -163,9 +175,6 @@
  */
 
 .euiButtonGroup--compressed {
-  $darkHighlightBg: darken($euiColorDarkShade, 5%);
-  $lightHighlightBg: lighten($euiColorDarkShade, 5%);
-
   .euiButtonGroupButton {
     height: $euiFormControlCompressedHeight - 2px;
     line-height: $euiFormControlCompressedHeight - 2px; // prevents descenders from getting cut off
@@ -182,30 +191,13 @@
     }
 
     &.euiButtonGroupButton-isSelected {
-      color: $euiColorLightestShade;
       font-weight: $euiFontWeightSemiBold;
-      background-color: $euiColorDarkShade;
-
-      &.euiButtonGroupButton-isDisabled {
-        color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
-        background-color: $euiButtonColorDisabled;
-      }
-
-      &:not([class*='isDisabled']):hover {
-        background-color: lightOrDarkTheme($darkHighlightBg, $lightHighlightBg);
-      }
     }
 
     &:not([class*='isDisabled']) {
-      &:hover {
-        background-color: transparentize($euiColorDarkShade, .9);
-      }
-
       &:focus,
       &:focus-within {
-        color: $euiColorLightestShade;
         outline: 2px solid $euiFocusRingColor;
-        background-color: lightOrDarkTheme($darkHighlightBg, $lightHighlightBg);
       }
     }
   }
