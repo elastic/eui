@@ -61,7 +61,7 @@ export default () => (
         position="top"
         content="Here is some tooltip text"
         display="block">
-        <EuiButton href="#" fullWidth>
+        <EuiButton fullWidth>
           I am a block level tooltip, applied to a button with fullWidth
         </EuiButton>
       </EuiToolTip>
