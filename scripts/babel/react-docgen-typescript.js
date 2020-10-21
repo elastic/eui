@@ -18,6 +18,7 @@
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const gc = require('expose-gc/function');
 const propsParser = require('react-docgen-typescript');
 const template = require('@babel/template');
 const ts = require('typescript');
@@ -41,6 +42,8 @@ function buildProgram() {
     ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
     ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
   ];
+  program = null;
+  gc();
   program = ts.createProgram(files, programOptions);
 }
 buildProgram();

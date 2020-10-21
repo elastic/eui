@@ -20,9 +20,7 @@ export default () => {
     <EuiPanel paddingSize="l" className="guideDemo__ghostBackground">
       <EuiFlexGroup wrap gutterSize="s" alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton
-            color="ghost"
-            onClick={() => window.alert('Button clicked')}>
+          <EuiButton color="ghost" onClick={() => {}}>
             Ghost
           </EuiButton>
         </EuiFlexItem>
@@ -33,16 +31,13 @@ export default () => {
             color="ghost"
             size="s"
             iconType="check"
-            onClick={() => window.alert('Button clicked')}>
+            onClick={() => {}}>
             Filled
           </EuiButton>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButtonEmpty
-            size="s"
-            color="ghost"
-            onClick={() => window.alert('Button clicked')}>
+          <EuiButtonEmpty size="s" color="ghost" onClick={() => {}}>
             small
           </EuiButtonEmpty>
         </EuiFlexItem>
@@ -52,7 +47,7 @@ export default () => {
             size="s"
             color="ghost"
             iconType="user"
-            onClick={() => window.alert('Button clicked')}
+            onClick={() => {}}
             aria-label="Your account"
           />
         </EuiFlexItem>

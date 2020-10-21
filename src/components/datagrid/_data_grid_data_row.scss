@@ -32,15 +32,32 @@
   &:focus {
     @include euiDataGridCellFocus;
     margin-top: -1px;
+  }
 
-    .euiDataGridRowCell__expandButton {
-      margin-left: $euiDataGridCellPaddingM;
-    }
+  &:focus,
+  &:hover {
 
     .euiDataGridRowCell__expandButtonIcon {
-      display: flex;
-      width: inherit;
-      visibility: visible;
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+      background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
+    }
+
+    .euiDataGridRowCell__actionButtonIcon {
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+  }
+
+  // Only add the transition effect on hover, so that it is instantaneous on focus
+  // Long delays on hover to mitigate the accordion effect
+  &:hover {
+    .euiDataGridRowCell__expandButtonIcon {
+      transition: margin $euiAnimSpeedFast 1000ms, width $euiAnimSpeedFast 1000ms;
+    }
+
+    .euiDataGridRowCell__actionButtonIcon {
+      transition: margin $euiAnimSpeedFast 1000ms, width $euiAnimSpeedFast 1000ms;
     }
   }
 
@@ -96,35 +113,37 @@
   flex-grow: 1;
 }
 
-
 .euiDataGridRowCell__expandButton {
   display: flex;
   flex-grow: 0;
-
-  &-isActive,
-  &:focus {
-    margin-left: $euiDataGridCellPaddingM;
-  }
 }
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;
   min-height: $euiSizeM;
   background: $euiColorPrimary;
-  color: $euiColorGhost;
   border-radius: $euiBorderRadius / 2;
   padding: 0;
   width: 0;
   min-width: 0;
   overflow: hidden;
-  visibility: hidden;
+  transition: none; // Have to take out the generic transition so it is instaneous on focus
 
-  &-isActive,
-  &:focus {
-    width: inherit;
-    visibility: visible;
-    background: $euiColorPrimary;
+  &-isActive {
+    margin-left: $euiDataGridCellPaddingM;
+    width: $euiSizeM;
   }
+}
+
+.euiDataGridRowCell__actionButtonIcon {
+  height: $euiSizeM;
+  min-height: $euiSizeM;
+  border-radius: $euiBorderRadius / 2;
+  padding: 0;
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  transition: none; // Have to take out the generic transition so it is instaneous on focus
 }
 
 // Row highlights

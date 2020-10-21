@@ -78,7 +78,6 @@ export default () => {
       (option) => option.checked === 'on'
     );
     if (!clickedItem) return;
-    if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };
 
   return (

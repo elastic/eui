@@ -29,7 +29,6 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
-import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
 import { EuiContextMenuItem } from './context_menu_item';
@@ -450,9 +449,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         );
       } else {
         panelTitle = (
-          <EuiPopoverTitle>
+          <div className="euiContextMenuPanelTitle">
             <span className="euiContextMenu__itemLayout">{title}</span>
-          </EuiPopoverTitle>
+          </div>
         );
       }
     }

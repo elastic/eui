@@ -1,5 +1,103 @@
 [
   {
+    "version": "30.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.expandButtonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepHorizontal.buttonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepHorizontal.step",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepNumber.isComplete",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepNumber.hasWarnings",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepNumber.hasErrors",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStep.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCellButtons.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiStepStrings.step",
+        "changeType": "added",
+        "value": "Step {number}: {title}"
+      },
+      {
+        "token": "euiStepStrings.simpleStep",
+        "changeType": "added",
+        "value": "Step {number}"
+      },
+      {
+        "token": "euiStepStrings.complete",
+        "changeType": "added",
+        "value": "Step {number}: {title} is complete"
+      },
+      {
+        "token": "euiStepStrings.simpleComplete",
+        "changeType": "added",
+        "value": "Step {number} is complete"
+      },
+      {
+        "token": "euiStepStrings.warning",
+        "changeType": "added",
+        "value": "Step {number}: {title} has warnings"
+      },
+      {
+        "token": "euiStepStrings.simpleWarning",
+        "changeType": "added",
+        "value": "Step {number} has warnings"
+      },
+      {
+        "token": "euiStepStrings.errors",
+        "changeType": "added",
+        "value": "Step {number}: {title} has errors"
+      },
+      {
+        "token": "euiStepStrings.simpleErrors",
+        "changeType": "added",
+        "value": "Step {number} has errors"
+      },
+      {
+        "token": "euiStepStrings.incomplete",
+        "changeType": "added",
+        "value": "Step {number}: {title} is incomplete"
+      },
+      {
+        "token": "euiStepStrings.simpleIncomplete",
+        "changeType": "added",
+        "value": "Step {number} is incomplete"
+      },
+      {
+        "token": "euiStepStrings.disabled",
+        "changeType": "added",
+        "value": "Step {number}: {title} is disabled"
+      },
+      {
+        "token": "euiStepStrings.simpleDisabled",
+        "changeType": "added",
+        "value": "Step {number} is disabled"
+      }
+    ]
+  },
+  {
     "version": "29.1.0",
     "changes": [
       {

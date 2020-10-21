@@ -17,27 +17,16 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
+import React, { FunctionComponent } from 'react';
+import { CommonProps } from '../common';
+import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
 
-import { EuiStepHorizontalProps, EuiStepHorizontal } from './step_horizontal';
-
-type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProps, 'step'>;
-
-export interface EuiStepsHorizontalProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+export interface EuiStepsHorizontalProps extends CommonProps {
   /**
    * An array of `EuiStepHorizontal` objects excluding the `step` prop
    */
-  steps: ContainedEuiStepHorizontalProps[];
-}
-
-function renderHorizontalSteps(steps: ContainedEuiStepHorizontalProps[]) {
-  return steps.map((step, index) => {
-    return <EuiStepHorizontal key={index} step={index + 1} {...step} />;
-  });
+  steps: Array<Omit<EuiStepHorizontalProps, 'step'>>;
 }
 
 export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
@@ -48,8 +37,18 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   const classes = classNames('euiStepsHorizontal', className);
 
   return (
-    <div role="tablist" className={classes} {...rest}>
-      {renderHorizontalSteps(steps)}
-    </div>
+    <ol className={classes} {...rest}>
+      {steps.map((stepProps, index) => {
+        const isCurrent = stepProps.isSelected
+          ? { 'aria-current': 'step' as const }
+          : {};
+
+        return (
+          <li key={index} className="euiStepHorizontal__item" {...isCurrent}>
+            <EuiStepHorizontal step={index + 1} {...stepProps} />
+          </li>
+        );
+      })}
+    </ol>
   );
 };
