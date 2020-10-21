@@ -18,11 +18,13 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, OlHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
 
-export interface EuiStepsHorizontalProps extends CommonProps {
+export interface EuiStepsHorizontalProps
+  extends OlHTMLAttributes<HTMLOListElement>,
+    CommonProps {
   /**
    * An array of `EuiStepHorizontal` objects excluding the `step` prop
    */
