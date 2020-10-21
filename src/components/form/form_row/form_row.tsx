@@ -55,6 +55,12 @@ interface EuiFormRowState {
   id: string;
 }
 
+export function euiFormRowDisplayIsCompressed(
+  display?: EuiFormRowDisplayKeys
+): boolean {
+  return display ? display.includes('Compressed') : false;
+}
+
 export type EuiFormRowCommonProps = CommonProps & {
   /**
    * When `rowCompressed`, just tightens up the spacing;
@@ -66,7 +72,6 @@ export type EuiFormRowCommonProps = CommonProps & {
    * as the child is a switch.
    */
   display?: EuiFormRowDisplayKeys;
-  hasEmptyLabelSpace?: boolean;
   fullWidth?: boolean;
   /**
    * IDs of additional elements that should be part of children's `aria-describedby`
@@ -86,11 +91,16 @@ export type EuiFormRowCommonProps = CommonProps & {
    * being contained inside the form label. Good for things
    * like documentation links.
    */
-  labelAppend?: any;
+  labelAppend?: ReactNode;
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
   helpText?: ReactNode;
+  /**
+   * For use only in inline forms to align the inputs
+   * in case the form row has no label
+   */
+  hasEmptyLabelSpace?: boolean;
 };
 
 type LabelProps = {
@@ -295,11 +305,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...rest as HTMLAttributes<HTMLFieldSetElement>}>
+        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
         {contents}
       </fieldset>
     ) : (
-      <div {...sharedProps} {...rest as HTMLAttributes<HTMLDivElement>}>
+      <div {...sharedProps} {...(rest as HTMLAttributes<HTMLDivElement>)}>
         {contents}
       </div>
     );

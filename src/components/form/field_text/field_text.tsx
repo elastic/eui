@@ -28,9 +28,20 @@ import {
 
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiFormRow } from '../form_row';
-import { EuiFormRowCommonProps } from '../form_row/form_row';
+import {
+  EuiFormRowCommonProps,
+  euiFormRowDisplayIsCompressed,
+} from '../form_row/form_row';
 
-export type EuiFieldTextProps = Omit<EuiFormRowCommonProps, 'children'> &
+type EuiFieldTextSupportedRowDisplays =
+  | 'row'
+  | 'rowCompressed'
+  | 'columnCompressed';
+
+export type EuiFieldTextProps = Omit<
+  EuiFormRowCommonProps,
+  'children' | 'display' | 'hasChildLabel'
+> &
   InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
     icon?: EuiFormControlLayoutProps['icon'];
@@ -39,29 +50,36 @@ export type EuiFieldTextProps = Omit<EuiFormRowCommonProps, 'children'> &
     isLoading?: boolean;
     readOnly?: boolean;
     inputRef?: Ref<HTMLInputElement>;
+    placeholder?: HTMLInputElement['placeholder'];
 
     /**
-     * Creates an input group with element(s) coming before input.
+     * Creates an input group with element(s) coming before input;
      * `string` | `ReactElement` or an array of these
      */
     prepend?: EuiFormControlLayoutProps['prepend'];
 
     /**
-     * Creates an input group with element(s) coming after input.
+     * Creates an input group with element(s) coming after input;
      * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
 
     /**
      * Completely removes form control layout wrapper and ignores
-     * icon, prepend, and append. Best used inside EuiFormControlLayoutDelimited.
+     * icon, prepend, and append and all form row props;
+     * Best used inside EuiFormControlLayoutDelimited
      */
     controlOnly?: boolean;
 
     /**
-     * when `true` creates a shorter height input
+     * When `true` creates a shorter height input
      */
     compressed?: boolean;
+
+    /**
+     * Custom list of supported row displays
+     */
+    display?: EuiFieldTextSupportedRowDisplays;
   };
 
 export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
@@ -87,10 +105,12 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   labelAppend,
   hasEmptyLabelSpace,
   describedByIds,
-  display,
-  hasChildLabel,
+  display = 'row',
   ...rest
 }) => {
+  // Force compressed if `display` is compressed
+  compressed = euiFormRowDisplayIsCompressed(display) || compressed;
+
   const classes = classNames('euiFieldText', className, {
     'euiFieldText--withIcon': icon,
     'euiFieldText--fullWidth': fullWidth,
@@ -119,7 +139,15 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
 
   const formControlLayout = (
     <EuiFormControlLayout
-      icon={icon}
+      icon={
+        isInvalid
+          ? {
+              type: 'alert',
+              color: 'danger',
+              side: 'right',
+            }
+          : icon
+      }
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
@@ -131,7 +159,8 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     </EuiFormControlLayout>
   );
 
-  if (!label && !error && !helpText) return formControlLayout;
+  if (!label && !error && !helpText && !hasEmptyLabelSpace)
+    return formControlLayout;
 
   const formRowProps = {
     helpText,
@@ -140,8 +169,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     labelAppend,
     hasEmptyLabelSpace,
     describedByIds: id ? [id] : undefined,
-    display: compressed ? 'rowCompressed' : display,
-    hasChildLabel,
+    display,
     fullWidth,
     isInvalid,
   };

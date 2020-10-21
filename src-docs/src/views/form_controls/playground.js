@@ -22,14 +22,12 @@ const fieldTextConfig = () => {
     : EuiFieldText.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  propsToUse.append = {
-    ...propsToUse.append,
-    type: PropTypes.String,
-  };
-  propsToUse.prepend = {
-    ...propsToUse.prepend,
-    type: PropTypes.String,
-  };
+  propsToUse.append.type = PropTypes.String;
+  propsToUse.prepend.type = PropTypes.String;
+  // propsToUse.label = {
+  //   ...propsToUse.label,
+  //   type: PropTypes.String,
+  // };
 
   propsToUse.value = {
     ...propsToUse.value,

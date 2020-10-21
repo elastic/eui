@@ -67,6 +67,10 @@ const Knob = ({
     }
   }, [state, val, custom]);
 
+  if (hidden) {
+    return null;
+  }
+
   let knobProps = {};
   switch (type) {
     case PropTypes.Ref:
@@ -104,8 +108,22 @@ const Knob = ({
         </EuiFormRow>
       );
 
+    case PropTypes.ReactNode:
     case PropTypes.String:
     case PropTypes.Date:
+      if (name === 'children') {
+        return (
+          <EuiTextArea
+            placeholder={placeholder}
+            compressed
+            value={val}
+            onChange={(e) => {
+              set(e.target.value);
+            }}
+          />
+        );
+      }
+
       if (custom && custom.validator) {
         knobProps = {};
         knobProps.onChange = (e) => {
@@ -137,7 +155,7 @@ const Knob = ({
           helpText={custom && custom.helpText}>
           <EuiFieldText
             placeholder={placeholder}
-            aria-label={description}
+            aria-label={name}
             isInvalid={error && error.length > 0}
             compressed
             fullWidth
@@ -218,19 +236,6 @@ const Knob = ({
           </EuiFormRow>
         );
       }
-
-    case PropTypes.ReactNode:
-      if (name === 'children' && !hidden) {
-        return (
-          <EuiTextArea
-            placeholder={placeholder}
-            value={val}
-            onChange={(e) => {
-              set(e.target.value);
-            }}
-          />
-        );
-      } else return null;
 
     case PropTypes.Custom:
       if (custom && custom.use) {

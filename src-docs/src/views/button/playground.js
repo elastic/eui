@@ -16,8 +16,7 @@ export default () => {
   propsToUse.children = {
     value: 'Button',
     type: PropTypes.ReactNode,
-    description: 'Visible label.',
-    hidden: true,
+    description: 'Label of the button',
   };
 
   propsToUse.minWidth = {
