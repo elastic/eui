@@ -295,7 +295,7 @@ export class EuiToolTip extends Component<Props, State> {
       content,
       title,
       delay,
-      display,
+      display = 'inlineBlock',
       ...rest
     } = this.props;
 
