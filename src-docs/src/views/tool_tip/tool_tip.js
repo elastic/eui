@@ -56,6 +56,19 @@ export default () => (
 
     <EuiSpacer />
 
+    <p>
+      <EuiToolTip
+        position="top"
+        content="Here is some tooltip text"
+        display="block">
+        <EuiButton fullWidth>
+          I am a block level tooltip, applied to a button with fullWidth
+        </EuiButton>
+      </EuiToolTip>
+    </p>
+
+    <EuiSpacer />
+
     <EuiToolTip position="right" content="Works on anything">
       <EuiFieldText
         placeholder="Hover over me"
