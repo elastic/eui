@@ -25,7 +25,7 @@ import { getLinearGradient, getFixedLinearGradient } from '../utils';
 
 import { ColorStop } from '../color_stops';
 
-export type EuiColorPaletteDisplayProps<T extends string> = CommonProps & {
+export type EuiColorPaletteDisplayProps = CommonProps & {
   /**
    *  Specify the type of palette. `gradient`: each color fades into the next. `fixed`: individual color blocks
    */
@@ -37,13 +37,14 @@ export type EuiColorPaletteDisplayProps<T extends string> = CommonProps & {
   palette: string[] | ColorStop[];
 };
 
-export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps<
-  string
->> = ({ type, palette }) => {
+export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
+  type = 'gradient',
+  palette,
+}) => {
   const background =
-    type === 'fixed'
-      ? getFixedLinearGradient(palette)
-      : getLinearGradient(palette);
+    type === 'gradient'
+      ? getLinearGradient(palette)
+      : getFixedLinearGradient(palette);
 
   return <div className="euiColorPaletteDisplay" style={{ background }} />;
 };

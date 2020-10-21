@@ -9,14 +9,14 @@ import {
 } from '../../../../src/components/';
 
 export default () => {
-  const [selectionType, setSelectionType] = useState(false);
+  const [selectionType, setSelectionType] = useState(true);
 
   return (
     <>
       <EuiSwitch
         label={
           <span>
-            Display selected item as a <EuiCode>fixed</EuiCode>
+            Display selected item as <EuiCode>fixed</EuiCode>
           </span>
         }
         checked={selectionType}
