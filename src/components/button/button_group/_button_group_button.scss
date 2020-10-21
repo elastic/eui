@@ -62,7 +62,7 @@
     &.euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
       @if ($name == 'ghost') {
         // Ghost is unique and ALWAYS sits against a dark background.
-        // Compressed styles don't support ghost color, it defaults to "text"
+        // Compressed styles don't support ghost color, it defaults to the text color
         color: $color;
       } @else if ($name == 'text') {
         // The default color is lighter than the normal text color, make the it the text color
