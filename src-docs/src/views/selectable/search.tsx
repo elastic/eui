@@ -6,6 +6,7 @@ import { EuiSelectableTemplateSitewide } from '../../../../src/components/select
 import { EuiSelectableTemplateSitewideOption } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiLink } from '../../../../src/components/link';
+import { EuiButton } from '../../../../src/components/button';
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
@@ -31,7 +32,7 @@ export default () => {
    */
   const recents = searchData.slice(0, 5);
   const recentsWithIcon: EuiSelectableTemplateSitewideOption[] = recents.map(
-    recent => {
+    (recent) => {
       return {
         ...recent,
         icon: {
@@ -73,9 +74,10 @@ export default () => {
    * Do something with the selection based on the found option with `checked: on`
    */
   const onChange = (updatedOptions: EuiSelectableTemplateSitewideOption[]) => {
-    const clickedItem = updatedOptions.find(option => option.checked === 'on');
+    const clickedItem = updatedOptions.find(
+      (option) => option.checked === 'on'
+    );
     if (!clickedItem) return;
-    if (clickedItem && clickedItem.url) console.log(clickedItem.url);
   };
 
   return (
@@ -95,6 +97,8 @@ export default () => {
       popoverProps={{
         className: 'customPopoverClass',
       }}
+      popoverButton={<EuiButton>Mobile toggle</EuiButton>}
+      popoverButtonBreakpoints={['xs', 's']}
       popoverFooter={
         <EuiText color="subdued" size="xs">
           <EuiFlexGroup

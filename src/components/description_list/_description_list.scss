@@ -8,7 +8,7 @@
       line-height: $euiLineHeight;
       margin-top: $euiSize;
 
-      // Make sure the first <dt> doesn't get a margine.
+      // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
         margin-top: 0;
       }
@@ -91,7 +91,7 @@
       padding-left: $euiSizeS;
     }
 
-    // Align the title to smush against the description.
+    // Align the title to smash against the description.
     &.euiDescriptionList--center {
       .euiDescriptionList__title {
         text-align: right;
@@ -180,7 +180,7 @@
       padding:  0 $euiSizeXS;
       margin: 0 $euiSizeXS;
 
-      // Make sure the first <dt> doesn't get a margine.
+      // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
         margin-left: 0;
       }

@@ -34,21 +34,6 @@ exports[`EuiButtonEmpty props color danger is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButtonEmpty props color disabled is rendered 1`] = `
-<button
-  class="euiButtonEmpty euiButtonEmpty--disabled"
-  type="button"
->
-  <span
-    class="euiButtonContent euiButtonEmpty__content"
-  >
-    <span
-      class="euiButtonEmpty__text"
-    />
-  </span>
-</button>
-`;
-
 exports[`EuiButtonEmpty props color ghost is rendered 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--ghost"
@@ -113,6 +98,21 @@ exports[`EuiButtonEmpty props contentProps is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButtonEmpty props flush both is rendered 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--flushBoth"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButtonEmpty props flush left is rendered 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--flushLeft"
@@ -168,7 +168,7 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
   <span
     class="euiButtonContent euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -189,7 +189,7 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
   <span
     class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -210,7 +210,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
   <span
     class="euiButtonContent euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="user"
     />
@@ -281,6 +281,38 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
     <span
       class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
     />
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButtonEmpty props isSelected is rendered as false 1`] = `
+<button
+  aria-pressed="false"
+  class="euiButtonEmpty euiButtonEmpty--primary"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButtonEmpty props isSelected is rendered as true 1`] = `
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiButtonEmpty--primary"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
     <span
       class="euiButtonEmpty__text"
     />

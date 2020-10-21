@@ -127,10 +127,10 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return (matchLength / value.length) * confidenceAdjustment || 0;
     },
     comparator: (a, b, direction) => {
-      const aChars = a.split('').filter(char => numericChars.has(char));
+      const aChars = a.split('').filter((char) => numericChars.has(char));
       const aValue = parseFloat(aChars.join(''));
 
-      const bChars = b.split('').filter(char => numericChars.has(char));
+      const bChars = b.split('').filter((char) => numericChars.has(char));
       const bValue = parseFloat(bChars.join(''));
 
       if (aValue < bValue) return direction === 'asc' ? -1 : 1;
@@ -439,7 +439,7 @@ export function getDetailsForSchema(
   detectors: EuiDataGridSchemaDetector[],
   providedSchema: string | null
 ) {
-  const results = detectors.filter(matches => {
+  const results = detectors.filter((matches) => {
     return matches.type === providedSchema;
   });
 

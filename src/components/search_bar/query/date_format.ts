@@ -53,33 +53,33 @@ export const Granularity: GranularitiesType = Object.freeze({
     es: 'd',
     js: 'day',
     isSame: (d1, d2) => d1.isSame(d2, 'day'),
-    start: date => date.startOf('day'),
-    startOfNext: date => date.add(1, 'days').startOf('day'),
-    iso8601: date => date.format('YYYY-MM-DD'),
+    start: (date) => date.startOf('day'),
+    startOfNext: (date) => date.add(1, 'days').startOf('day'),
+    iso8601: (date) => date.format('YYYY-MM-DD'),
   },
   WEEK: {
     es: 'w',
     js: 'week',
     isSame: (d1, d2) => d1.isSame(d2, 'week'),
-    start: date => date.startOf('week'),
-    startOfNext: date => date.add(1, 'weeks').startOf('week'),
-    iso8601: date => date.format('YYYY-MM-DD'),
+    start: (date) => date.startOf('week'),
+    startOfNext: (date) => date.add(1, 'weeks').startOf('week'),
+    iso8601: (date) => date.format('YYYY-MM-DD'),
   },
   MONTH: {
     es: 'M',
     js: 'month',
     isSame: (d1, d2) => d1.isSame(d2, 'month'),
-    start: date => date.startOf('month'),
-    startOfNext: date => date.add(1, 'months').startOf('month'),
-    iso8601: date => date.format('YYYY-MM'),
+    start: (date) => date.startOf('month'),
+    startOfNext: (date) => date.add(1, 'months').startOf('month'),
+    iso8601: (date) => date.format('YYYY-MM'),
   },
   YEAR: {
     es: 'y',
     js: 'year',
     isSame: (d1, d2) => d1.isSame(d2, 'year'),
-    start: date => date.startOf('year'),
-    startOfNext: date => date.add(1, 'years').startOf('year'),
-    iso8601: date => date.format('YYYY'),
+    start: (date) => date.startOf('year'),
+    startOfNext: (date) => date.add(1, 'years').startOf('year'),
+    iso8601: (date) => date.format('YYYY'),
   },
 });
 
@@ -106,17 +106,13 @@ const parseDay = (value: string) => {
       return parsed;
 
     case 'yesterday':
-      parsed = utc()
-        .subtract(1, 'days')
-        .startOf('day');
+      parsed = utc().subtract(1, 'days').startOf('day');
       parsed[GRANULARITY_KEY] = Granularity.DAY;
       parsed[FORMAT_KEY] = value;
       return parsed;
 
     case 'tomorrow':
-      parsed = utc()
-        .add(1, 'days')
-        .startOf('day');
+      parsed = utc().add(1, 'days').startOf('day');
       parsed[GRANULARITY_KEY] = Granularity.DAY;
       parsed[FORMAT_KEY] = value;
       return parsed;
@@ -191,14 +187,10 @@ const parseMonth = (value: string) => {
       parsed = utc();
       break;
     case 'next month':
-      parsed = utc()
-        .endOf('month')
-        .add(2, 'days');
+      parsed = utc().endOf('month').add(2, 'days');
       break;
     case 'last month':
-      parsed = utc()
-        .startOf('month')
-        .subtract(2, 'days');
+      parsed = utc().startOf('month').subtract(2, 'days');
       break;
     default:
       parsed = utc(value, ['MMM', 'MMMM'], true);
@@ -238,18 +230,12 @@ const parseYear = (value: string) => {
       parsed[FORMAT_KEY] = value;
       return parsed;
     case 'next year':
-      parsed = utc()
-        .endOf('year')
-        .add(2, 'months')
-        .startOf('year');
+      parsed = utc().endOf('year').add(2, 'months').startOf('year');
       parsed[GRANULARITY_KEY] = Granularity.YEAR;
       parsed[FORMAT_KEY] = value;
       return parsed;
     case 'last year':
-      parsed = utc()
-        .startOf('year')
-        .subtract(2, 'months')
-        .startOf('year');
+      parsed = utc().startOf('year').subtract(2, 'months').startOf('year');
       parsed[GRANULARITY_KEY] = Granularity.YEAR;
       parsed[FORMAT_KEY] = value;
       return parsed;
@@ -313,20 +299,10 @@ const printWeek = (now: Moment, date: Moment, format: string) => {
     if (now.isSame(date, 'week')) {
       return 'This Week';
     }
-    if (
-      now
-        .startOf('week')
-        .subtract(2, 'days')
-        .isSame(date, 'week')
-    ) {
+    if (now.startOf('week').subtract(2, 'days').isSame(date, 'week')) {
       return 'Last Week';
     }
-    if (
-      now
-        .endOf('week')
-        .add(2, 'days')
-        .isSame(date, 'week')
-    ) {
+    if (now.endOf('week').add(2, 'days').isSame(date, 'week')) {
       return 'Next Week';
     }
   }
@@ -338,20 +314,10 @@ const printMonth = (now: Moment, date: Moment, format: string) => {
     if (now.isSame(date, 'month')) {
       return 'This Month';
     }
-    if (
-      now
-        .startOf('month')
-        .subtract(2, 'days')
-        .isSame(date, 'month')
-    ) {
+    if (now.startOf('month').subtract(2, 'days').isSame(date, 'month')) {
       return 'Last Month';
     }
-    if (
-      now
-        .endOf('month')
-        .add(2, 'days')
-        .isSame(date, 'month')
-    ) {
+    if (now.endOf('month').add(2, 'days').isSame(date, 'month')) {
       return 'Next Month';
     }
   }
@@ -363,20 +329,10 @@ const printYear = (now: Moment, date: Moment, format: string) => {
     if (now.isSame(date, 'year')) {
       return 'This Year';
     }
-    if (
-      now
-        .startOf('year')
-        .subtract(2, 'months')
-        .isSame(date, 'year')
-    ) {
+    if (now.startOf('year').subtract(2, 'months').isSame(date, 'year')) {
       return 'Last Year';
     }
-    if (
-      now
-        .endOf('year')
-        .add(2, 'months')
-        .isSame(date, 'year')
-    ) {
+    if (now.endOf('year').add(2, 'months').isSame(date, 'year')) {
       return 'Next Year';
     }
   }

@@ -1,4 +1,4 @@
-const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink'];
+const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink', 'EuiBadge'];
 
 module.exports = {
   meta: {
@@ -24,9 +24,7 @@ module.exports = {
         if (hasHref && hasOnClick) {
           context.report(
             node,
-            `<${
-              node.name.name
-            }> accepts either \`href\` or \`onClick\`, not both.`
+            `<${node.name.name}> accepts either \`href\` or \`onClick\`, not both.`
           );
         }
       },

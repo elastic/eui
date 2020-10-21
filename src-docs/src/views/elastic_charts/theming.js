@@ -83,7 +83,7 @@ export const Theming = () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const barPaletteIndex = paletteNames.findIndex(item => item === barPalette);
+  const barPaletteIndex = paletteNames.findIndex((item) => item === barPalette);
 
   const customTheme =
     barPaletteIndex > 0

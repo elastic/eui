@@ -151,7 +151,7 @@ describe('EuiBasicTable', () => {
             description: 'description',
           },
         ],
-        rowProps: item => {
+        rowProps: (item) => {
           const { id } = item;
           return {
             'data-test-subj': `row-${id}`,

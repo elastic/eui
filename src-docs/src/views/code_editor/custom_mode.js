@@ -12,7 +12,7 @@ class MyCustomAceMode extends TextMode {
 export default () => {
   const [value, updateValue] = useState('');
 
-  const onChange = value => {
+  const onChange = (value) => {
     updateValue(value);
   };
 

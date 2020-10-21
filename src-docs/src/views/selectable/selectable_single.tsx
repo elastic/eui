@@ -5,7 +5,7 @@ import { Options } from './data';
 
 export default () => {
   const [options, setOptions] = useState(
-    Options.map(option => {
+    Options.map((option) => {
       const { checked, ...checklessOption } = option;
       return { ...checklessOption };
     })
@@ -15,10 +15,10 @@ export default () => {
     <EuiSelectable
       aria-label="Single selection example"
       options={options}
-      onChange={newOptions => setOptions(newOptions)}
+      onChange={(newOptions) => setOptions(newOptions)}
       singleSelection={true}
       listProps={{ bordered: true }}>
-      {list => list}
+      {(list) => list}
     </EuiSelectable>
   );
 };

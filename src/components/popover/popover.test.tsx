@@ -104,7 +104,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen
@@ -121,7 +120,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen={false}
@@ -353,7 +351,7 @@ describe('EuiPopover', () => {
 
       const activeAnimationFrames = new Map<number, number>();
       let nextAnimationFrameId = 0;
-      window.requestAnimationFrame = fn => {
+      window.requestAnimationFrame = (fn) => {
         const animationFrameId = nextAnimationFrameId++;
         activeAnimationFrames.set(animationFrameId, setTimeout(fn));
         return animationFrameId;

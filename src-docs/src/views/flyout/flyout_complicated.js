@@ -47,9 +47,10 @@ export default () => {
 
   const closePopover = () => setIsPopoverOpen(false);
 
-  const togglePopover = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const togglePopover = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
 
-  const onSelectedTabChanged = id => setSelectedTabId(id);
+  const onSelectedTabChanged = (id) => setSelectedTabId(id);
 
   const renderTabs = tabs.map((tab, index) => (
     <EuiTab
@@ -105,7 +106,7 @@ export default () => {
     },
   ];
 
-  const onSuperSelectChange = value => {
+  const onSuperSelectChange = (value) => {
     setSuperSelectValue(value);
   };
 
@@ -215,7 +216,7 @@ export default () => {
               <EuiSuperSelect
                 options={superSelectOptions}
                 valueOfSelected={superSelectvalue}
-                onChange={value => onSuperSelectChange(value)}
+                onChange={(value) => onSuperSelectChange(value)}
                 itemLayoutAlign="top"
                 hasDividers
               />

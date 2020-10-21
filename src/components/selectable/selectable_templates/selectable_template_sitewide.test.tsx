@@ -131,5 +131,46 @@ describe('EuiSelectableTemplateSitewide', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    describe('popoverButton', () => {
+      // @ts-ignore innerWidth might be read only but we can still override it for the sake of testing
+      beforeAll(() => (window.innerWidth = 670));
+      afterAll(() => 1024); // reset to jsdom's default
+
+      test('is rendered', () => {
+        const component = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<button>Button</button>}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered with popoverButtonBreakpoints m', () => {
+        const component = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<button>Button</button>}
+            popoverButtonBreakpoints={['xs', 's', 'm']}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is not rendered with popoverButtonBreakpoints xs', () => {
+        const component = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<button>Button</button>}
+            popoverButtonBreakpoints={['xs']}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

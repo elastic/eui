@@ -11,6 +11,7 @@ import {
   EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiCallOut,
 } from '../../../../src/components/';
 
 const columns = [
@@ -36,7 +37,7 @@ const columns = [
 
 const data = [];
 
-for (let i = 1; i < 5; i++) {
+for (let i = 1; i < 6; i++) {
   data.push({
     avatar: (
       <EuiAvatar
@@ -52,6 +53,13 @@ for (let i = 1; i < 5; i++) {
     account: fake('{{finance.account}}'),
   });
 }
+
+const footerCellValues = {
+  avatar: '5 accounts',
+};
+
+const renderFooterCellValue = ({ columnId }) =>
+  footerCellValues[columnId] || null;
 
 export default class DataGrid extends Component {
   constructor(props) {
@@ -131,6 +139,21 @@ export default class DataGrid extends Component {
       {
         id: 'underline',
         label: 'Underline',
+      },
+    ];
+
+    this.footerOptions = [
+      {
+        id: 'shade',
+        label: 'Shade',
+      },
+      {
+        id: 'overline',
+        label: 'Overline',
+      },
+      {
+        id: 'striped',
+        label: 'Striped',
       },
     ];
 
@@ -231,6 +254,7 @@ export default class DataGrid extends Component {
       isPopoverOpen: false,
       isToolbarPopoverOpen: false,
       headerSelected: 'underline',
+      footerSelected: 'overline',
       showSortSelector: true,
       showStyleSelector: true,
       showColumnSelector: true,
@@ -249,85 +273,91 @@ export default class DataGrid extends Component {
     };
   }
 
-  onBorderChange = optionId => {
+  onBorderChange = (optionId) => {
     this.setState({
       borderSelected: optionId,
     });
   };
 
-  onFontSizeChange = optionId => {
+  onFontSizeChange = (optionId) => {
     this.setState({
       fontSizeSelected: optionId,
     });
   };
 
-  onCellPaddingChange = optionId => {
+  onCellPaddingChange = (optionId) => {
     this.setState({
       cellPaddingSelected: optionId,
     });
   };
 
-  onStripesChange = optionId => {
+  onStripesChange = (optionId) => {
     this.setState({
       stripesSelected: optionId === 'true',
     });
   };
 
-  onRowHoverChange = optionId => {
+  onRowHoverChange = (optionId) => {
     this.setState({
       rowHoverSelected: optionId,
     });
   };
 
-  onHeaderChange = optionId => {
+  onHeaderChange = (optionId) => {
     this.setState({
       headerSelected: optionId,
     });
   };
 
-  onShowSortSelectorChange = optionId => {
+  onFooterChange = (optionId) => {
+    this.setState({
+      footerSelected: optionId,
+    });
+  };
+
+  onShowSortSelectorChange = (optionId) => {
     this.setState({
       showSortSelector: optionId === 'true',
     });
   };
 
-  onShowStyleSelectorChange = optionId => {
+  onShowStyleSelectorChange = (optionId) => {
     this.setState({
       showStyleSelector: optionId === 'true',
     });
   };
 
-  onShowColumnSelectorChange = optionId => {
+  onShowColumnSelectorChange = (optionId) => {
     this.setState({
       showColumnSelector: optionId === 'true',
     });
   };
 
-  onAllowHideColumnsChange = optionId => {
+  onAllowHideColumnsChange = (optionId) => {
     this.setState({
       allowHideColumns: optionId === 'true',
     });
   };
 
-  onAllowOrderingColumnsChange = optionId => {
+  onAllowOrderingColumnsChange = (optionId) => {
     this.setState({
       allowOrderingColumns: optionId === 'true',
     });
   };
 
-  onShowFullScreenSelectorChange = optionId => {
+  onShowFullScreenSelectorChange = (optionId) => {
     this.setState({
       showFullScreenSelector: optionId === 'true',
     });
   };
 
-  onShowToolbarChange = optionId => {
+  onShowToolbarChange = (optionId) => {
     this.setState({
       showToolbar: optionId === 'true',
     });
   };
 
-  onToolbarPropTypeIsBooleanChange = optionId => {
+  onToolbarPropTypeIsBooleanChange = (optionId) => {
     this.setState({
       toolbarPropTypeIsBoolean: optionId === 'true',
     });
@@ -357,17 +387,17 @@ export default class DataGrid extends Component {
     });
   }
 
-  setPageIndex = pageIndex =>
+  setPageIndex = (pageIndex) =>
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageIndex },
     }));
 
-  setPageSize = pageSize =>
+  setPageSize = (pageSize) =>
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageSize, pageIndex: 0 },
     }));
 
-  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+  setVisibleColumns = (visibleColumns) => this.setState({ visibleColumns });
 
   render() {
     const { pagination } = this.state;
@@ -429,7 +459,7 @@ export default class DataGrid extends Component {
               isOpen={this.state.isPopoverOpen}
               anchorPosition="rightUp"
               closePopover={this.closePopover.bind(this)}>
-              <div style={{ width: 300 }}>
+              <div style={{ width: 380 }}>
                 <EuiFormRow label="Border" display="columnCompressed">
                   <EuiButtonGroup
                     isFullWidth
@@ -493,6 +523,17 @@ export default class DataGrid extends Component {
                     options={this.headerOptions}
                     idSelected={this.state.headerSelected}
                     onChange={this.onHeaderChange}
+                  />
+                </EuiFormRow>
+
+                <EuiFormRow label="Footer" display="columnCompressed">
+                  <EuiButtonGroup
+                    isFullWidth
+                    buttonSize="compressed"
+                    legend="Footer"
+                    options={this.footerOptions}
+                    idSelected={this.state.footerSelected}
+                    onChange={this.onFooterChange}
                   />
                 </EuiFormRow>
               </div>
@@ -619,6 +660,17 @@ export default class DataGrid extends Component {
           </EuiFlexItem>
         </EuiFlexGroup>
 
+        {this.state.footerSelected === 'striped' ? (
+          <>
+            <EuiSpacer />
+
+            <EuiCallOut
+              size="s"
+              title="A striped footer will be shaded depending on whether it is an even or an odd row considering the rest of the rows in the datagrid. Needs to be used with stripes={true}."
+            />
+          </>
+        ) : null}
+
         <EuiSpacer />
 
         <EuiDataGrid
@@ -636,9 +688,11 @@ export default class DataGrid extends Component {
             stripes: this.state.stripesSelected,
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
+            footer: this.state.footerSelected,
           }}
           toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          renderFooterCellValue={renderFooterCellValue}
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 10, 25],

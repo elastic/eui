@@ -11,7 +11,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
@@ -31,7 +31,7 @@ exports[`EuiSelectableListItem props append 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
@@ -57,7 +57,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       color="text"
       data-euiicon-type="cross"
@@ -78,7 +78,7 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       color="text"
       data-euiicon-type="check"
@@ -100,7 +100,7 @@ exports[`EuiSelectableListItem props disabled 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
@@ -120,7 +120,7 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
@@ -138,7 +138,7 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
         <span
           class="euiBadge__content"
         >
-          <div
+          <span
             class="euiBadge__icon"
             data-euiicon-type="returnKey"
           />
@@ -158,7 +158,7 @@ exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
@@ -178,7 +178,7 @@ exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />
@@ -198,7 +198,7 @@ exports[`EuiSelectableListItem props prepend 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <div
+    <span
       class="euiSelectableListItem__icon"
       data-euiicon-type="empty"
     />

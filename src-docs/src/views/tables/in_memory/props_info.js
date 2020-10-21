@@ -85,6 +85,18 @@ export const propsInfo = {
           required: false,
           type: { name: 'number' },
         },
+        pageIndex: {
+          description:
+            "When present, controls the table's pagination index. You must listen to the onTableChange callback to respond to user actions. Ignores any initialPageIndex value",
+          required: false,
+          type: { name: 'number' },
+        },
+        pageSize: {
+          description:
+            "When present, controls the table's page size. You must listen to the onTableChange callback to respond to user actions. Ignores any initialPageSize value",
+          required: false,
+          type: { name: 'number' },
+        },
         pageSizeOptions:
           basicPropsInfo.Pagination.__docgenInfo.props.pageSizeOptions,
         hidePerPageOptions:

@@ -3,16 +3,12 @@ import React from 'react';
 import { EuiControlBar, EuiLink } from '../../../../src/components';
 
 export default () => {
-  const soundTheAlarms = () => {
-    alert('You clicked a button!');
-  };
-
   const controls = [
     {
       controlType: 'button',
       id: 'controls_button',
       label: 'Button',
-      onClick: soundTheAlarms,
+      onClick: () => {},
     },
     {
       controlType: 'spacer',
@@ -29,7 +25,7 @@ export default () => {
       controlType: 'icon',
       id: 'controls_icon_button',
       iconType: 'bell',
-      onClick: soundTheAlarms,
+      onClick: () => {},
       color: 'primary',
       'aria-label': 'Bell',
     },

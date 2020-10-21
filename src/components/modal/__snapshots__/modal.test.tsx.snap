@@ -26,7 +26,7 @@ Array [
         class="euiButtonIcon euiButtonIcon--text euiModal__closeIcon"
         type="button"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"

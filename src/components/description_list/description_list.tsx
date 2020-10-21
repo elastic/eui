@@ -48,7 +48,7 @@ export interface EuiDescriptionListProps {
    */
   textStyle?: EuiDescriptionListTextStyle;
   /**
-   * How each item should be layed out
+   * How each item should be laid out
    */
   type?: EuiDescriptionListType;
   /**
@@ -84,9 +84,9 @@ const textStylesToClassNameMap = {
 
 export const TEXT_STYLES = keysOf(textStylesToClassNameMap);
 
-export const EuiDescriptionList: FunctionComponent<CommonProps &
-  HTMLAttributes<HTMLDListElement> &
-  EuiDescriptionListProps> = ({
+export const EuiDescriptionList: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
+> = ({
   align = 'left',
   children,
   className,

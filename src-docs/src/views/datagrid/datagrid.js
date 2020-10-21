@@ -4,6 +4,8 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  createContext,
+  useContext,
 } from 'react';
 import { fake } from 'faker';
 
@@ -17,37 +19,124 @@ import {
   EuiButtonIcon,
   EuiSpacer,
 } from '../../../../src/components/';
+const DataContext = createContext();
+
+const raw_data = [];
+
+for (let i = 1; i < 100; i++) {
+  const email = fake('{{internet.email}}');
+  const name = fake('{{name.lastName}}, {{name.firstName}}');
+  const suffix = fake('{{name.suffix}}');
+  raw_data.push({
+    name: {
+      formatted: `${name} ${suffix}`,
+      raw: name,
+    },
+    email: {
+      formatted: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
+      raw: email,
+    },
+    location: (
+      <Fragment>
+        {`${fake('{{address.city}}')}, `}
+        <EuiLink href="https://google.com">
+          {fake('{{address.country}}')}
+        </EuiLink>
+      </Fragment>
+    ),
+    date: fake('{{date.past}}'),
+    account: fake('{{finance.account}}'),
+    amount: fake('${{commerce.price}}'),
+    phone: fake('{{phone.phoneNumber}}'),
+    version: fake('{{system.semver}}'),
+  });
+}
 
 const columns = [
   {
     id: 'name',
     displayAsText: 'Name',
     defaultSortDirection: 'asc',
+    cellActions: [
+      ({ rowIndex, columnId, Component }) => {
+        const data = useContext(DataContext);
+        return (
+          <Component
+            onClick={() => alert(`Hi ${data[rowIndex][columnId].raw}`)}
+            iconType="heart"
+            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}>
+            Say hi
+          </Component>
+        );
+      },
+      ({ rowIndex, columnId, Component }) => {
+        const data = useContext(DataContext);
+        return (
+          <Component
+            onClick={() => alert(`Bye ${data[rowIndex][columnId].raw}`)}
+            iconType="moon"
+            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}>
+            Say bye
+          </Component>
+        );
+      },
+    ],
   },
   {
     id: 'email',
-    display: (
-      // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs" responsive={false}>
-        <EuiFlexItem className="eui-textTruncate">
-          <div className="eui-textTruncate">email</div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            aria-label="Column header email"
-            iconType="gear"
-            color="text"
-            onClick={() => alert('Email Icon Clicked!')}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    ),
+    cellActions: [
+      ({ rowIndex, columnId, Component }) => {
+        const data = useContext(DataContext);
+        return (
+          <Component
+            onClick={() => alert(data[rowIndex][columnId].raw)}
+            iconType="email"
+            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}>
+            Send email
+          </Component>
+        );
+      },
+    ],
   },
   {
     id: 'location',
   },
   {
     id: 'account',
+    actions: {
+      showHide: { label: 'Custom hide label' },
+      showMoveLeft: false,
+      showMoveRight: false,
+      additional: [
+        {
+          label: 'Custom action',
+          onClick: () => {},
+          iconType: 'cheer',
+          size: 'xs',
+          color: 'text',
+        },
+      ],
+    },
+    cellActions: [
+      ({ rowIndex, columnId, Component, isExpanded }) => {
+        const data = useContext(DataContext);
+        const onClick = isExpanded
+          ? () =>
+              alert(`Sent money to ${data[rowIndex][columnId]} when expanded`)
+          : () =>
+              alert(
+                `Sent money to ${data[rowIndex][columnId]} when not expanded`
+              );
+        return (
+          <Component
+            onClick={onClick}
+            iconType="faceHappy"
+            aria-label={`Send money to ${data[rowIndex][columnId]}`}>
+            Send money
+          </Component>
+        );
+      },
+    ],
   },
   {
     id: 'date',
@@ -65,30 +154,9 @@ const columns = [
     defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
+    actions: false,
   },
 ];
-
-const raw_data = [];
-
-for (let i = 1; i < 100; i++) {
-  raw_data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
-    location: (
-      <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </Fragment>
-    ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{commerce.price}}'),
-    phone: fake('{{phone.phoneNumber}}'),
-    version: fake('{{system.semver}}'),
-  });
-}
 
 const trailingControlColumns = [
   {
@@ -101,6 +169,7 @@ const trailingControlColumns = [
         <div>
           <EuiPopover
             isOpen={isPopoverOpen}
+            panelPaddingSize="s"
             anchorPosition="upCenter"
             button={
               <EuiButtonIcon
@@ -114,7 +183,7 @@ const trailingControlColumns = [
             ownFocus={true}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
-              <button onClick={() => alert('hello')} component="span">
+              <button onClick={() => {}} component="span">
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -130,7 +199,7 @@ const trailingControlColumns = [
                 </EuiFlexGroup>
               </button>
               <EuiSpacer size="s" />
-              <button onClick={() => alert('hello')}>
+              <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -157,19 +226,24 @@ export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
-    pageSize =>
-      setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
     [setPagination]
   );
   const onChangePage = useCallback(
-    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );
 
   // ** Sorting config
   const [sortingColumns, setSortingColumns] = useState([]);
   const onSort = useCallback(
-    sortingColumns => {
+    (sortingColumns) => {
       setSortingColumns(sortingColumns);
     },
     [setSortingColumns]
@@ -182,11 +256,12 @@ export default () => {
 
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId, setCellProps }) => {
+      const data = useContext(DataContext);
       useEffect(() => {
         if (columnId === 'amount') {
-          if (raw_data.hasOwnProperty(rowIndex)) {
+          if (data.hasOwnProperty(rowIndex)) {
             const numeric = parseFloat(
-              raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
+              data[rowIndex][columnId].match(/\d+\.\d+/)[0],
               10
             );
             setCellProps({
@@ -196,33 +271,41 @@ export default () => {
             });
           }
         }
-      }, [rowIndex, columnId, setCellProps]);
+      }, [rowIndex, columnId, setCellProps, data]);
 
-      return raw_data.hasOwnProperty(rowIndex)
-        ? raw_data[rowIndex][columnId]
+      function getFormatted() {
+        return data[rowIndex][columnId].formatted
+          ? data[rowIndex][columnId].formatted
+          : data[rowIndex][columnId];
+      }
+
+      return data.hasOwnProperty(rowIndex)
+        ? getFormatted(rowIndex, columnId)
         : null;
     };
   }, []);
 
   return (
-    <EuiDataGrid
-      aria-label="Data grid demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      trailingControlColumns={trailingControlColumns}
-      rowCount={raw_data.length}
-      renderCellValue={renderCellValue}
-      inMemory={{ level: 'sorting' }}
-      sorting={{ columns: sortingColumns, onSort }}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [10, 50, 100],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-      onColumnResize={eventData => {
-        console.log(eventData);
-      }}
-    />
+    <DataContext.Provider value={raw_data}>
+      <EuiDataGrid
+        aria-label="Data grid demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        trailingControlColumns={trailingControlColumns}
+        rowCount={raw_data.length}
+        renderCellValue={renderCellValue}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [10, 50, 100],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+        onColumnResize={(eventData) => {
+          console.log(eventData);
+        }}
+      />
+    </DataContext.Provider>
   );
 };

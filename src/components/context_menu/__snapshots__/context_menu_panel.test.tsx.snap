@@ -1,11 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <div
+      class="euiContextMenuPanelTitle"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        Testing separator
+      </span>
+    </div>
+    <div>
+      <div>
+        <hr
+          class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiContextMenu is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiContextMenu testClass1 testClass2"
   data-test-subj="test subject string"
 />
+`;
+
+exports[`EuiContextMenu panel item can be a separator line 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <div
+      class="euiContextMenuPanelTitle"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        Testing separator
+      </span>
+    </div>
+    <div>
+      <div>
+        <button
+          class="euiContextMenuItem"
+          type="button"
+        >
+          <span
+            class="euiContextMenu__itemLayout"
+          >
+            <span
+              class="euiContextMenuItem__text"
+            >
+              Foo
+            </span>
+          </span>
+        </button>
+        <hr
+          class="euiHorizontalRule euiHorizontalRule--full"
+        />
+        <button
+          class="euiContextMenuItem"
+          type="button"
+        >
+          <span
+            class="euiContextMenu__itemLayout"
+          >
+            <span
+              class="euiContextMenuItem__text"
+            >
+              Bar
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiContextMenu panel item can contain JSX 1`] = `
@@ -17,7 +101,7 @@ exports[`EuiContextMenu panel item can contain JSX 1`] = `
     tabindex="0"
   >
     <div
-      class="euiPopoverTitle"
+      class="euiContextMenuPanelTitle"
     >
       <span
         class="euiContextMenu__itemLayout"
@@ -68,7 +152,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -107,7 +191,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -138,7 +222,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -163,7 +247,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2a
             </span>
-            <div
+            <span
               class="euiContextMenu__arrow"
               data-euiicon-type="arrowRight"
             />
@@ -181,7 +265,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2b
             </span>
-            <div
+            <span
               class="euiContextMenu__arrow"
               data-euiicon-type="arrowRight"
             />
@@ -199,7 +283,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2c
             </span>
-            <div
+            <span
               class="euiContextMenu__arrow"
               data-euiicon-type="arrowRight"
             />
@@ -227,7 +311,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       <span
         class="euiContextMenu__itemLayout"
       >
-        <div
+        <span
           class="euiContextMenu__icon"
           data-euiicon-type="arrowLeft"
         />
@@ -277,7 +361,7 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
     <span
       class="euiContextMenu__itemLayout"
     >
-      <div
+      <span
         class="euiContextMenu__icon"
         data-euiicon-type="arrowLeft"
       />
@@ -300,7 +384,7 @@ exports[`EuiContextMenuPanel props title is rendered 1`] = `
   tabindex="0"
 >
   <div
-    class="euiPopoverTitle"
+    class="euiContextMenuPanelTitle"
   >
     <span
       class="euiContextMenu__itemLayout"

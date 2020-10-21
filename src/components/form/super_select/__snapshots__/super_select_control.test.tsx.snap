@@ -22,10 +22,8 @@ Array [
         aria-haspopup="true"
         aria-label="aria-label"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl testClass1 testClass2"
         data-test-subj="test subject string"
-        role="option"
         type="button"
       />
       <div
@@ -34,7 +32,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -67,9 +65,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl--compressed"
-        role="option"
         type="button"
       />
       <div
@@ -78,7 +74,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -111,9 +107,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl"
-        role="option"
         type="button"
       />
       <div
@@ -122,7 +116,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -155,9 +149,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl"
-        role="option"
         type="button"
       />
       <div
@@ -166,7 +158,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -199,9 +191,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
-        role="option"
         type="button"
       />
       <div
@@ -210,7 +200,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -243,9 +233,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl-isInvalid"
-        role="option"
         type="button"
       />
       <div
@@ -254,7 +242,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -287,9 +275,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl euiSuperSelectControl-isLoading"
-        role="option"
         type="button"
       />
       <div
@@ -301,7 +287,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"
@@ -334,9 +320,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        aria-selected="true"
         class="euiSuperSelectControl"
-        role="option"
         type="button"
       >
         Option #1
@@ -347,7 +331,7 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <div
+          <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="arrowDown"

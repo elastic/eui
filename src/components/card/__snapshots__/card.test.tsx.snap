@@ -218,7 +218,7 @@ exports[`EuiCard props icon 1`] = `
   <div
     class="euiCard__top"
   >
-    <div
+    <span
       class="myIconClass euiCard__icon"
       data-euiicon-type="apmApp"
     />

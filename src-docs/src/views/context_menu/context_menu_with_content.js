@@ -15,7 +15,7 @@ function flattenPanelTree(tree, array = []) {
   array.push(tree);
 
   if (tree.items) {
-    tree.items.forEach(item => {
+    tree.items.forEach((item) => {
       if (item.panel) {
         flattenPanelTree(item.panel, array);
         item.panel = item.panel.id;
@@ -46,7 +46,7 @@ export default () => {
     setDynamicPopover(false);
   };
 
-  const createPanelTree = Content => {
+  const createPanelTree = (Content) => {
     return flattenPanelTree({
       id: 0,
       title: 'View options',
@@ -56,8 +56,11 @@ export default () => {
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();
-            window.alert('Show fullscreen');
           },
+        },
+        {
+          isSeparator: true,
+          key: 'sep',
         },
         {
           name: 'See more',
@@ -113,7 +116,6 @@ export default () => {
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="upLeft">
         <EuiContextMenu initialPanelId={0} panels={panels} />
       </EuiPopover>
@@ -126,7 +128,6 @@ export default () => {
         isOpen={isDynamicPopoverOpen}
         closePopover={closeDynamicPopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="upLeft">
         <EuiContextMenu initialPanelId={0} panels={dynamicPanels} />
       </EuiPopover>

@@ -55,7 +55,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
   position,
   utcOffset,
 }) => {
-  const onTabClick: EuiTabbedContentProps['onTabClick'] = selectedTab => {
+  const onTabClick: EuiTabbedContentProps['onTabClick'] = (selectedTab) => {
     switch (selectedTab.id) {
       case DATE_MODES.ABSOLUTE:
         onChange(toAbsoluteString(value, roundUp));
@@ -133,7 +133,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
   ];
 
   const initialSelectedTab = renderTabs.find(
-    tab => tab.id === getDateMode(value)
+    (tab) => tab.id === getDateMode(value)
   );
 
   return (

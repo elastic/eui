@@ -15,7 +15,7 @@ export const HtmlIdGeneratorPrefix = () => {
   const [prefix, setPrefix] = useState('Id');
   const [customId, setCustomId] = useState(htmlIdGenerator('Id')());
 
-  const onSearchChange = e => {
+  const onSearchChange = (e) => {
     const prefix = e.target.value;
     setPrefix(prefix);
     setCustomId(htmlIdGenerator(prefix)());

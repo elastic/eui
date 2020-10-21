@@ -86,7 +86,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
   renderTree = (items: Array<EuiSideNavItemType<T>>, depth = 0) => {
     const { renderItem } = this.props;
 
-    return items.map(item => {
+    return items.map((item) => {
       const {
         id,
         name,

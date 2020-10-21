@@ -41,8 +41,16 @@ describe('EuiHeaderSectionItemButton', () => {
   });
 
   describe('renders notification', () => {
-    test('children', () => {
+    test('as a badge', () => {
       const component = render(<EuiHeaderSectionItemButton notification="1" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('as a dot', () => {
+      const component = render(
+        <EuiHeaderSectionItemButton notification={true} />
+      );
 
       expect(component).toMatchSnapshot();
     });

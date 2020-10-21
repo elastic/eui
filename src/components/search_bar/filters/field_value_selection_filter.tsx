@@ -120,7 +120,7 @@ export class FieldValueSelectionFilter extends Component<
   }
 
   onButtonClick() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (!prevState.popoverOpen) {
         // loading options updates the state, so we'll do that in the animation frame
         window.requestAnimationFrame(() => {
@@ -139,7 +139,7 @@ export class FieldValueSelectionFilter extends Component<
     const loader = this.resolveOptionsLoader();
     this.setState({ options: null, error: null });
     loader()
-      .then(options => {
+      .then((options) => {
         const items: {
           on: FieldValueOptionType[];
           off: FieldValueOptionType[];
@@ -155,7 +155,7 @@ export class FieldValueSelectionFilter extends Component<
         const multiSelect = this.resolveMultiSelect();
 
         if (options) {
-          options.forEach(op => {
+          options.forEach((op) => {
             const optionField = op.field || config.field;
             if (optionField) {
               const clause =
@@ -189,7 +189,7 @@ export class FieldValueSelectionFilter extends Component<
   }
 
   filterOptions(q = '') {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (isNil(prevState.options)) {
         return {};
       }
@@ -237,7 +237,7 @@ export class FieldValueSelectionFilter extends Component<
         return Promise.resolve(cachedOptions);
       }
 
-      return (options as OptionsLoader)().then(opts => {
+      return (options as OptionsLoader)().then((opts) => {
         // If a cache time is set, populate the cache and also schedule a
         // cache reset.
         if (this.props.config.cache != null && this.props.config.cache > 0) {
@@ -336,7 +336,7 @@ export class FieldValueSelectionFilter extends Component<
 
     const activeTop = this.isActiveField(config.field);
     const activeItem = this.state.options
-      ? this.state.options.all.some(item => this.isActiveField(item.field))
+      ? this.state.options.all.some((item) => this.isActiveField(item.field))
       : false;
 
     const active = activeTop || activeItem;
@@ -359,10 +359,6 @@ export class FieldValueSelectionFilter extends Component<
       config,
       multiSelect
     );
-    const threshold =
-      this.props.config.searchThreshold || defaults.config.searchThreshold;
-    const withTitle =
-      this.state.options != null && this.state.options.all.length >= threshold;
 
     return (
       <EuiPopover
@@ -372,7 +368,6 @@ export class FieldValueSelectionFilter extends Component<
         isOpen={this.state.popoverOpen}
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
-        withTitle={withTitle}
         anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel">
         {searchBox}
@@ -387,13 +382,14 @@ export class FieldValueSelectionFilter extends Component<
     if (this.state.options && this.state.options.all.length >= threshold) {
       const disabled = this.state.error != null;
       return (
-        <EuiPopoverTitle>
+        <EuiPopoverTitle paddingSize="s">
           <EuiFieldSearch
-            inputRef={ref => (this.searchInput = ref)}
+            inputRef={(ref) => (this.searchInput = ref)}
             disabled={disabled}
             incremental={true}
-            onSearch={query => this.filterOptions(query)}
+            onSearch={(query) => this.filterOptions(query)}
             onKeyDown={this.onKeyDown.bind(this, -1)}
+            compressed
           />
         </EuiPopoverTitle>
       );
@@ -447,7 +443,7 @@ export class FieldValueSelectionFilter extends Component<
           key={index}
           checked={checked}
           onClick={onClick}
-          ref={ref => (this.selectItems[index] = ref!)}
+          ref={(ref) => (this.selectItems[index] = ref!)}
           onKeyDown={this.onKeyDown.bind(this, index)}>
           {option.view ? option.view : this.resolveOptionName(option)}
         </EuiFilterSelectItem>

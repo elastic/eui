@@ -131,7 +131,7 @@ export const _fieldValuesToQuery = (
 ) => {
   const queries: QueryContainer[] = [];
 
-  keysOf(operations).forEach(operator => {
+  keysOf(operations).forEach((operator) => {
     const values = operations[operator];
     switch (operator) {
       case AST.Operator.EQ:
@@ -164,7 +164,7 @@ export const _fieldValuesToQuery = (
 
         if (phrases.length > 0) {
           queries.push(
-            ...phrases.map(phrase => ({
+            ...phrases.map((phrase) => ({
               match_phrase: {
                 [field]: phrase,
               },
@@ -174,7 +174,7 @@ export const _fieldValuesToQuery = (
 
         if (dates.length > 0) {
           queries.push(
-            ...dates.map(value => ({
+            ...dates.map((value) => ({
               match: {
                 [field]: processDateOperation(value).expression,
               },
@@ -304,13 +304,13 @@ const clausesToEsQueryDsl = (
   if (termMustQuery) {
     must.push(termMustQuery);
   }
-  Object.keys(fields.must.and).forEach(field => {
+  Object.keys(fields.must.and).forEach((field) => {
     must.push(fieldValuesToQuery(field, fields.must.and[field], 'and'));
   });
-  Object.keys(fields.must.or).forEach(field => {
+  Object.keys(fields.must.or).forEach((field) => {
     must.push(fieldValuesToQuery(field, fields.must.or[field], 'or'));
   });
-  is.forEach(clause => {
+  is.forEach((clause) => {
     must.push(isFlagToQuery(clause.flag, AST.Match.isMustClause(clause)));
   });
 
@@ -320,10 +320,10 @@ const clausesToEsQueryDsl = (
   if (termMustNotQuery) {
     mustNot.push(termMustNotQuery);
   }
-  Object.keys(fields.mustNot.and).forEach(field => {
+  Object.keys(fields.mustNot.and).forEach((field) => {
     mustNot.push(fieldValuesToQuery(field, fields.mustNot.and[field], 'and'));
   });
-  Object.keys(fields.mustNot.or).forEach(field => {
+  Object.keys(fields.mustNot.or).forEach((field) => {
     mustNot.push(fieldValuesToQuery(field, fields.mustNot.or[field], 'or'));
   });
 
@@ -395,7 +395,7 @@ export const astToEsQueryDsl = (ast: _AST, options = {}): QueryContainer => {
 
         must.push({
           bool: {
-            should: clauses.map(clause => ({ bool: clause })),
+            should: clauses.map((clause) => ({ bool: clause })),
           },
         });
         return must;

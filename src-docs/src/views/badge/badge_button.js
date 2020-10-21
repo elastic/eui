@@ -11,7 +11,7 @@ export default () => (
     <EuiFlexItem grow={false}>
       <EuiBadge
         color="primary"
-        onClick={() => window.alert('Badge clicked')}
+        onClick={() => {}}
         onClickAriaLabel="Example of onClick event for the button"
         data-test-sub="testExample1">
         onClick on text within badge
@@ -22,7 +22,7 @@ export default () => (
         color="hollow"
         iconType="cross"
         iconSide="right"
-        iconOnClick={() => window.alert('Icon inside badge clicked')}
+        iconOnClick={() => {}}
         iconOnClickAriaLabel="Example of onClick event for icon within the button"
         data-test-sub="testExample2">
         onClick on icon within badge
@@ -33,9 +33,9 @@ export default () => (
         color="secondary"
         iconType="cross"
         iconSide="right"
-        onClick={() => window.alert('Badge clicked')}
+        onClick={() => {}}
         onClickAriaLabel="Example of onClick event for the button"
-        iconOnClick={() => window.alert('Icon inside badge clicked')}
+        iconOnClick={() => {}}
         iconOnClickAriaLabel="Example of onClick event for icon within the button"
         data-test-sub="testExample3">
         onClick on both text and icon within badge
@@ -45,9 +45,9 @@ export default () => (
       <EuiBadge
         isDisabled={true}
         color="danger"
-        onClick={() => window.alert('Badge clicked')}
+        onClick={() => {}}
         onClickAriaLabel="Example of disabled button badge"
-        iconOnClick={() => window.alert('Disabled badge clicked')}
+        iconOnClick={() => {}}
         iconOnClickAriaLabel="Example of disabled button badge"
         data-test-sub="testExample4">
         disabled button badge

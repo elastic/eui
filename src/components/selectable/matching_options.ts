@@ -33,7 +33,7 @@ const getSelectedOptionForSearchValue = <T>(
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    option => getSearchableLabel<T>(option) === normalizedSearchValue
+    (option) => getSearchableLabel<T>(option) === normalizedSearchValue
   );
 };
 
@@ -96,7 +96,7 @@ export const getMatchingOptions = <T>(
   const normalizedSearchValue = searchValue.toLowerCase();
   const matchingOptions: Array<EuiSelectableOption<T>> = [];
 
-  options.forEach(option => {
+  options.forEach((option) => {
     collectMatchingOption<T>(
       matchingOptions,
       option,

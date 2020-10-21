@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconAppSearchProfiler = ({ title, titleId, ...props }) => (
   <svg

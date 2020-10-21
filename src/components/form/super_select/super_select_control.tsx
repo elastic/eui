@@ -108,7 +108,7 @@ export const EuiSuperSelectControl: <T extends string>(
 
   let selectedValue;
   if (value) {
-    const selectedOption = options.find(option => option.value === value);
+    const selectedOption = options.find((option) => option.value === value);
     selectedValue = selectedOption
       ? selectedOption.inputDisplay
       : selectedValue;
@@ -152,12 +152,10 @@ export const EuiSuperSelectControl: <T extends string>(
           </span>
         </EuiScreenReaderOnly>
         <button
-          role="option"
           type="button"
           className={classes}
           aria-haspopup="true"
           aria-labelledby={`${id} ${screenReaderId}`}
-          aria-selected={true}
           {...rest}>
           {selectedValue}
         </button>

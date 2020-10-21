@@ -73,7 +73,7 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
   /**
-   * Title sizing equivelant to EuiTitle, but only `s` and smaller
+   * Title sizing equivalent to EuiTitle, but only `s` and smaller
    */
   titleSize?: Exclude<EuiTitleProps['size'], 'l' | 'm'>;
 }
@@ -169,9 +169,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
         </EuiTitle>
       </EuiFlexItem>
     </EuiFlexGroup>
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   if (isCollapsible && title) {
     return (

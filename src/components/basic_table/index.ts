@@ -21,6 +21,8 @@ export {
   EuiBasicTable,
   EuiBasicTableProps,
   EuiBasicTableColumn,
+  Criteria,
+  CriteriaWithPagination,
 } from './basic_table';
 export { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 export {
@@ -32,3 +34,5 @@ export {
   EuiTableSelectionType,
   EuiTableSortingType,
 } from './table_types';
+export { Pagination } from './pagination_bar';
+export { DefaultItemAction, CustomItemAction } from './action_types';

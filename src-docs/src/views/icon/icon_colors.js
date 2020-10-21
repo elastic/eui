@@ -11,6 +11,8 @@
 
 import React from 'react';
 
+import classNames from 'classnames';
+
 import {
   EuiFlexGrid,
   EuiFlexItem,
@@ -24,7 +26,7 @@ import {
 const iconColors = [
   'default',
   'primary',
-  'secondary',
+  'success',
   'accent',
   'warning',
   'danger',
@@ -39,14 +41,19 @@ const iconColors = [
 export default () => (
   <div>
     <EuiFlexGrid columns={4}>
-      {iconColors.map(iconColor => (
+      {iconColors.map((iconColor) => (
         <EuiFlexItem
           className="guideDemo__icon"
           key={iconColor}
           style={{ width: '340px' }}>
-          <EuiPanel>
+          <EuiPanel
+            className={classNames({
+              guideDemo__ghostBackground: iconColor === 'ghost',
+            })}>
             <EuiIcon type="brush" color={iconColor} />
-            <EuiText size="s">
+            <EuiText
+              size="s"
+              color={iconColor === 'ghost' ? 'ghost' : 'default'}>
               <p>{iconColor}</p>
             </EuiText>
           </EuiPanel>
@@ -65,7 +72,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiFlexGrid columns={4}>
-      <EuiFlexItem className="guideDemo__icon" style={{ width: '340px' }}>
+      <EuiFlexItem className="guideDemo__icon" style={{ width: '255px' }}>
         <EuiPanel>
           <EuiIcon type="gisApp" size="xl" />
           <EuiText size="s">
@@ -75,7 +82,7 @@ export default () => (
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
-      <EuiFlexItem className="guideDemo__icon" style={{ width: '340px' }}>
+      <EuiFlexItem className="guideDemo__icon" style={{ width: '255px' }}>
         <EuiPanel>
           <EuiIcon type="gisApp" color="text" size="xl" />
           <EuiText size="s">
@@ -86,12 +93,23 @@ export default () => (
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
-      <EuiFlexItem className="guideDemo__icon" style={{ width: '340px' }}>
+      <EuiFlexItem className="guideDemo__icon" style={{ width: '255px' }}>
         <EuiPanel>
           <EuiIcon type="createAdvancedJob" color="primary" size="xl" />
           <EuiText size="s">
             <p>
               <strong>Special:</strong> the primary color makes{' '}
+              <strong>App</strong> icons fully that color
+            </p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+      <EuiFlexItem className="guideDemo__icon" style={{ width: '255px' }}>
+        <EuiPanel>
+          <EuiIcon type="createAdvancedJob" color="#DA8B45" size="xl" />
+          <EuiText size="s">
+            <p>
+              <strong>Special:</strong> a custom color makes{' '}
               <strong>App</strong> icons fully that color
             </p>
           </EuiText>
