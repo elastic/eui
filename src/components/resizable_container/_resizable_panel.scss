@@ -25,6 +25,7 @@
 
 .euiResizableContainer {
   .euiResizablePanel__toggleButton {
+    @include euiSlightShadow;
     position: absolute;
     z-index: 1;
     background-color: $euiColorLightestShade;
