@@ -22,7 +22,6 @@ export default () => {
 
   const detailsClicked = (e) => {
     e.stopPropagation();
-    console.log('Details clicked');
   };
 
   return (

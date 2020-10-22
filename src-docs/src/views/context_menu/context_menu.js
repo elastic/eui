@@ -31,7 +31,6 @@ export default () => {
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();
-            window.alert('Show fullscreen');
           },
         },
         {
@@ -53,7 +52,6 @@ export default () => {
           toolTipPosition: 'right',
           onClick: () => {
             closePopover();
-            window.alert('Display options');
           },
         },
         {
@@ -64,7 +62,6 @@ export default () => {
           disabled: true,
           onClick: () => {
             closePopover();
-            window.alert('Disabled option');
           },
         },
       ],
@@ -78,7 +75,6 @@ export default () => {
           icon: 'user',
           onClick: () => {
             closePopover();
-            window.alert('PDF reports');
           },
         },
         {
@@ -91,7 +87,6 @@ export default () => {
           icon: 'user',
           onClick: () => {
             closePopover();
-            window.alert('Permalinks');
           },
         },
       ],

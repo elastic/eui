@@ -382,13 +382,14 @@ export class FieldValueSelectionFilter extends Component<
     if (this.state.options && this.state.options.all.length >= threshold) {
       const disabled = this.state.error != null;
       return (
-        <EuiPopoverTitle>
+        <EuiPopoverTitle paddingSize="s">
           <EuiFieldSearch
             inputRef={(ref) => (this.searchInput = ref)}
             disabled={disabled}
             incremental={true}
             onSearch={(query) => this.filterOptions(query)}
             onKeyDown={this.onKeyDown.bind(this, -1)}
+            compressed
           />
         </EuiPopoverTitle>
       );
