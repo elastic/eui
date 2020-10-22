@@ -28,6 +28,7 @@ import { EuiIcon } from '../icon';
 import { EuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiLinkType = 'button' | 'reset' | 'submit';
 export type EuiLinkColor =
@@ -115,6 +116,17 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       </EuiI18n>
     ) : undefined;
 
+    const newTargetScreenreaderText = target ? (
+      <EuiScreenReaderOnly>
+        <span>
+          <EuiI18n
+            token="euiLink.newTarget.screenReaderOnlyText"
+            default="(opens in a new tab or window)"
+          />
+        </span>
+      </EuiScreenReaderOnly>
+    ) : undefined;
+
     if (href === undefined) {
       const buttonProps = {
         className: classNames(
@@ -153,6 +165,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
         {...(anchorProps as EuiLinkAnchorProps)}>
         {children}
         {externalLinkIcon}
+        {newTargetScreenreaderText}
       </a>
     );
   }
