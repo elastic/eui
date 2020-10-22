@@ -38,6 +38,12 @@ export const propsInfo = {
           required: false,
           type: { name: 'bool' },
         },
+        width: {
+          description:
+            'Allocates value given of the width of the container in mobile view (typically cells are contained to 50%)',
+          required: false,
+          type: { name: 'string' },
+        },
       },
     },
   },
