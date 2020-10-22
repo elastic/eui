@@ -145,14 +145,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   ...rest
 }) => {
   const {
-    registry: {
-      panels,
-      resizers,
-      // resizerHasFocus
-    } = {
+    registry: { panels, resizers } = {
       panels: {},
       resizers: {},
-      // resizerHasFocus: null,
     },
   } = useEuiResizableContainerContext();
   const divRef = useRef<HTMLDivElement>(null);

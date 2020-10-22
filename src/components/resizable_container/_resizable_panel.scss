@@ -64,11 +64,6 @@
 }
 
 .euiResizableContainer--vertical {
-  .euiResizablePanel--collapsed {
-    // sass-lint:disable-block no-important
-    min-height: 0 !important;
-  }
-
   .euiResizablePanel__toggleButton {
     left: 50%;
     margin-left: -12px;
@@ -86,6 +81,20 @@
     &.euiResizablePanel__toggleButton--defaultCollapsed,
     &.euiResizablePanel__toggleButton--defaultNotCollapsed {
       transform: rotate(90deg);
+      animation: none;
+    }
+  }
+
+  .euiResizablePanel--collapsed {
+    // sass-lint:disable-block no-important
+    min-height: 0 !important;
+
+    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--right {
+      top: 6px;
+    }
+
+    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--left {
+      bottom: 6px;
     }
   }
 }

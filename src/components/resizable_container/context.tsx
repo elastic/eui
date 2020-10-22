@@ -47,7 +47,7 @@ export const useEuiResizableContainerContext = () => {
   const context = useContext(EuiResizableContainerContext);
   if (!context.registry) {
     throw new Error(
-      'useEuiResizablePanelContext must be used within a <EuiResizablePanelContextProvider />'
+      'useEuiResizableContainerContext must be used within a <EuiResizableContainerContextProvider />'
     );
   }
   return context;

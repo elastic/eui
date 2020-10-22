@@ -85,7 +85,6 @@ const initialState: EuiResizableContainerState = {
   resizersSize: 0,
   panels: {},
   resizers: {},
-  // resizerHasFocus: null,
 };
 
 export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps> = ({
@@ -229,7 +228,6 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       registry={{
         panels: reducerState.panels,
         resizers: reducerState.resizers,
-        // resizerHasFocus: reducerState.resizerHasFocus,
       }}>
       <div
         className={classes}

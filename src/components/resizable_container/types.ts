@@ -64,7 +64,6 @@ export interface EuiResizableContainerState {
   isHorizontal?: boolean;
   panels: EuiResizableContainerRegistry['panels'];
   resizers: EuiResizableContainerRegistry['resizers'];
-  // resizerHasFocus: string | null;
 }
 
 export interface ActionToggleOptions {

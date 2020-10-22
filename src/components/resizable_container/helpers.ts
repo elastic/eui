@@ -19,7 +19,7 @@
 
 import {
   useMemo,
-  useEffect,
+  // useEffect,
   useReducer,
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,
@@ -142,6 +142,19 @@ export const useContainerCallbacks = ({
       );
     };
 
+    const runSideEffect = async (
+      panels: EuiResizableContainerState['panels']
+    ) => {
+      if (onPanelWidthChange) {
+        onPanelWidthChange(sizesOnly(panels));
+      }
+    };
+
+    const withSideEffect = (newState: EuiResizableContainerState) => {
+      runSideEffect(newState.panels);
+      return newState;
+    };
+
     switch (action.type) {
       case 'EUI_RESIZABLE_PANEL_REGISTER': {
         const { panel } = action.payload;
@@ -233,15 +246,7 @@ export const useContainerCallbacks = ({
           containerSize
         );
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
-          // if (onPanelWidthChange) {
-          //   onPanelWidthChange({
-          //     ...sizesOnly(state.panels),
-          //     [prevPanelId]: prevPanelSize,
-          //     [nextPanelId]: nextPanelSize,
-          //   });
-          // }
-
-          return {
+          return withSideEffect({
             ...state,
             currentResizerPos: position,
             panels: {
@@ -255,8 +260,9 @@ export const useContainerCallbacks = ({
                 size: nextPanelSize,
               },
             },
-          };
+          });
         }
+
         return {
           ...state,
         };
@@ -277,15 +283,7 @@ export const useContainerCallbacks = ({
           containerSize
         );
 
-        // if (onPanelWidthChange) {
-        //   onPanelWidthChange({
-        //     ...sizesOnly(state.panels),
-        //     [prevPanelId]: prevPanelSize,
-        //     [nextPanelId]: nextPanelSize,
-        //   });
-        // }
-
-        return {
+        return withSideEffect({
           ...state,
           isDragging: false,
           panels: {
@@ -299,7 +297,7 @@ export const useContainerCallbacks = ({
               size: nextPanelSize,
             },
           },
-        };
+        });
       }
 
       case 'EUI_RESIZABLE_TOGGLE': {
@@ -375,16 +373,8 @@ export const useContainerCallbacks = ({
           otherPanels[panelId].size = otherPanels[panelId].size + delta;
         });
 
-        // if (onPanelWidthChange) {
-        //   onPanelWidthChange({
-        //     ...sizesOnly(otherPanels),
-        //     [currentPanelId]: newPanelSize,
-        //   });
-        // }
-
-        return {
+        return withSideEffect({
           ...state,
-          // resizerHasFocus: null,
           panels: {
             ...state.panels,
             [currentPanelId]: {
@@ -408,7 +398,7 @@ export const useContainerCallbacks = ({
               {}
             ),
           },
-        };
+        });
       }
       case 'EUI_RESIZABLE_BUTTON_FOCUS': {
         const { resizerId } = action.payload;
@@ -426,7 +416,6 @@ export const useContainerCallbacks = ({
               {}
             ),
           },
-          // resizerHasFocus: resizerId,
         };
       }
       case 'EUI_RESIZABLE_BUTTON_BLUR': {
@@ -444,7 +433,6 @@ export const useContainerCallbacks = ({
               {}
             ),
           },
-          // resizerHasFocus: null,
         };
       }
       // TODO: Implement more generic version of
@@ -457,7 +445,6 @@ export const useContainerCallbacks = ({
       case 'EUI_RESIZABLE_RESET': {
         return {
           ...initialState,
-          // resizerHasFocus: state.resizerHasFocus,
           panels: state.panels,
           resizers: state.resizers,
         };
@@ -475,12 +462,12 @@ export const useContainerCallbacks = ({
   const [reducerState, dispatch] = useReducer(reducer, initialState, init);
 
   // TODO: Not sure I like this. Left the alternate effect approach in, commented
-  useEffect(() => {
-    if (!onPanelWidthChange) return;
-    dispatch({
-      type: 'EUI_RESIZABLE_ONCHANGE',
-    });
-  }, [reducerState.panels, onPanelWidthChange]);
+  // useEffect(() => {
+  //   if (!onPanelWidthChange) return;
+  //   dispatch({
+  //     type: 'EUI_RESIZABLE_ONCHANGE',
+  //   });
+  // }, [reducerState.panels, onPanelWidthChange]);
 
   const actions: EuiResizableContainerActions = useMemo(() => {
     return {
