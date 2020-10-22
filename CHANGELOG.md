@@ -36,7 +36,7 @@
 **Theme: Amsterdam**
 
 - Tightened `line-height` for some `EuiTitle` sizes ([#4133](https://github.com/elastic/eui/pull/4133))
-- Removed uppercase from `EuiPopoverTitle` and fixed inherited padding from `EuiPopover` ([#4133](https://github.com/elastic/eui/pull/4133))
+- Removed uppercase from `EuiPopoverTitle` and fixed inherited padding from `EuiPopover` ([#4146](https://github.com/elastic/eui/pull/4146))
 - Fixed `EuiFilterGroup` and `EuiFilterButton` styles ([#4151](https://github.com/elastic/eui/pull/4151))
 
 ## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
