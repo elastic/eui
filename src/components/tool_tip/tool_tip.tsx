@@ -123,11 +123,11 @@ export interface Props {
 }
 
 interface State {
+  children: ReactNode;
   visible: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
   arrowStyles: undefined | { left: number; top: number };
-  id: string;
 }
 
 export class EuiToolTip extends Component<Props, State> {
@@ -136,17 +136,47 @@ export class EuiToolTip extends Component<Props, State> {
   popover: null | HTMLElement = null;
   private timeoutId?: ReturnType<typeof setTimeout>;
 
+  static defaultProps: Partial<Props> = {
+    position: 'top',
+    delay: 'regular',
+  };
+
+  uniqueId = this.props.id || htmlIdGenerator()();
+
+  showToolTip = () => {
+    if (!this.timeoutId) {
+      this.timeoutId = setTimeout(() => {
+        enqueueStateChange(() => this.setState({ visible: true }));
+      }, delayToMsMap[this.props.delay]);
+    }
+  };
+
+  hideToolTip = () => {
+    this.clearAnimationTimeout();
+    enqueueStateChange(() => {
+      if (this._isMounted) {
+        this.setState({ visible: false });
+      }
+    });
+  };
+
+  augmentChildren = () => {
+    return cloneElement(this.props.children, {
+      onFocus: this.showToolTip,
+      onBlur: this.hideToolTip,
+      'aria-describedby': this.uniqueId,
+    });
+  };
+
   state: State = {
+    // cache the cloned `children` instead of during render,
+    // otherwise a re-render of this component would re-clone the children
+    // causing React to unmount & re-create the children elements
+    children: this.augmentChildren(),
     visible: false,
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
-    id: this.props.id || htmlIdGenerator()(),
-  };
-
-  static defaultProps: Partial<Props> = {
-    position: 'top',
-    delay: 'regular',
   };
 
   clearAnimationTimeout = () => {
@@ -168,6 +198,11 @@ export class EuiToolTip extends Component<Props, State> {
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
+    }
+
+    if (prevProps.children !== this.props.children) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ children: this.augmentChildren() });
     }
   }
 
@@ -196,14 +231,6 @@ export class EuiToolTip extends Component<Props, State> {
         toolTipStyles: DEFAULT_TOOLTIP_STYLES,
         arrowStyles: undefined,
       });
-    }
-  };
-
-  showToolTip = () => {
-    if (!this.timeoutId) {
-      this.timeoutId = setTimeout(() => {
-        enqueueStateChange(() => this.setState({ visible: true }));
-      }, delayToMsMap[this.props.delay]);
     }
   };
 
@@ -251,15 +278,6 @@ export class EuiToolTip extends Component<Props, State> {
     });
   };
 
-  hideToolTip = () => {
-    this.clearAnimationTimeout();
-    enqueueStateChange(() => {
-      if (this._isMounted) {
-        this.setState({ visible: false });
-      }
-    });
-  };
-
   hasFocusMouseMoveListener = () => {
     this.hideToolTip();
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
@@ -299,7 +317,8 @@ export class EuiToolTip extends Component<Props, State> {
       ...rest
     } = this.props;
 
-    const { arrowStyles, id, toolTipStyles, visible } = this.state;
+    const { arrowStyles, toolTipStyles, visible } = this.state;
+    const id = this.uniqueId;
 
     const classes = classNames(
       'euiToolTip',
@@ -353,11 +372,7 @@ export class EuiToolTip extends Component<Props, State> {
          * the enter key to trigger the button. That won't work if the enclosing anchor
          * element has focus.
          */}
-        {cloneElement(children, {
-          onFocus: this.showToolTip,
-          onBlur: this.hideToolTip,
-          ...(visible && { 'aria-describedby': this.state.id }),
-        })}
+        {this.state.children}
       </span>
     );
 
