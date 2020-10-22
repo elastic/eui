@@ -36,6 +36,8 @@ import {
 
 import { resolveWidthAsStyle } from './utils';
 
+import { useIsWithinBreakpoints } from '../../services/hooks/useIsWithinBreakpoints';
+
 interface EuiTableRowCellSharedPropsShape {
   /**
    * Horizontal alignment of the text in the cell
@@ -86,6 +88,7 @@ interface EuiTableRowCellMobileOptionsShape {
    * (typically cells are contained to 50%)
    */
   fullWidth?: boolean;
+  width?: string | number;
 }
 
 interface EuiTableRowCellProps {
@@ -201,7 +204,12 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     euiTableCellContent__hoverItem: showOnHover,
   });
 
-  const styleObj = resolveWidthAsStyle(style, width);
+  const widthValue =
+    useIsWithinBreakpoints(['xs', 's', 'm']) && mobileOptions.width
+      ? mobileOptions.width
+      : width;
+
+  const styleObj = resolveWidthAsStyle(style, widthValue);
 
   function modifyChildren(children: ReactNode) {
     let modifiedChildren = children;

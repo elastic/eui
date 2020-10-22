@@ -39,6 +39,7 @@ export {
   BREAKPOINTS,
   BREAKPOINT_KEYS,
   getBreakpoint,
+  isWithinBreakpoints,
   isWithinMaxBreakpoint,
 } from './breakpoint';
 
