@@ -6,6 +6,7 @@ import React, {
   useState,
   createContext,
   useContext,
+  useRef,
 } from 'react';
 import { fake } from 'faker';
 
@@ -158,6 +159,70 @@ const columns = [
   },
 ];
 
+const leadingControlColumns = [
+  {
+    id: 'actions',
+    width: 40,
+    headerCellRender: () => null,
+    rowCellRender: function RowCellRender() {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      return (
+        <div>
+          <EuiPopover
+            isOpen={isPopoverOpen}
+            panelPaddingSize="s"
+            anchorPosition="upCenter"
+            button={
+              <EuiButtonIcon
+                aria-label="show actions"
+                iconType="boxesHorizontal"
+                color="text"
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+              />
+            }
+            closePopover={() => setIsPopoverOpen(false)}
+            ownFocus={true}>
+            <EuiPopoverTitle>Actions</EuiPopoverTitle>
+            <div style={{ width: 150 }}>
+              <button onClick={() => {}}>
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Pin selected items"
+                      iconType="pin"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Pin</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+              <EuiSpacer size="s" />
+              <button onClick={() => {}}>
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Delete selected items"
+                      iconType="trash"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Delete</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+            </div>
+          </EuiPopover>
+        </div>
+      );
+    },
+  },
+];
+
 const trailingControlColumns = [
   {
     id: 'actions',
@@ -183,7 +248,7 @@ const trailingControlColumns = [
             ownFocus={true}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
-              <button onClick={() => {}} component="span">
+              <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -285,12 +350,17 @@ export default () => {
     };
   }, []);
 
+  const onColumnResize = useRef((eventData) => {
+    console.log(eventData);
+  });
+
   return (
     <DataContext.Provider value={raw_data}>
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
+        leadingControlColumns={leadingControlColumns}
         trailingControlColumns={trailingControlColumns}
         rowCount={raw_data.length}
         renderCellValue={renderCellValue}
@@ -302,9 +372,7 @@ export default () => {
           onChangeItemsPerPage: onChangeItemsPerPage,
           onChangePage: onChangePage,
         }}
-        onColumnResize={(eventData) => {
-          console.log(eventData);
-        }}
+        onColumnResize={onColumnResize.current}
       />
     </DataContext.Provider>
   );

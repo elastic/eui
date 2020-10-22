@@ -21,40 +21,27 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { keys } from '../../services';
 import tabbable from 'tabbable';
-import {
-  EuiDataGridControlColumn,
-  EuiDataGridFocusedCell,
-} from './data_grid_types';
-import { EuiDataGridDataRowProps } from './data_grid_data_row';
+import { EuiDataGridControlColumn } from './data_grid_types';
 
 export interface EuiDataGridControlHeaderRowProps {
   index: number;
   controlColumn: EuiDataGridControlColumn;
-  focusedCell?: EuiDataGridFocusedCell;
-  setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
   className?: string;
 }
 
-export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = (
-  props
-) => {
-  const {
-    controlColumn,
-    index,
-    focusedCell,
-    setFocusedCell,
-    headerIsInteractive,
-    className,
-  } = props;
+export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = props => {
+  const { controlColumn, index, headerIsInteractive, className } = props;
 
   const { headerCellRender: HeaderCellRender, width, id } = controlColumn;
 
   const classes = classnames('euiDataGridHeaderCell', className);
 
   const headerRef = useRef<HTMLDivElement>(null);
-  const isFocused =
-    focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
+  // todo
+  const isFocused = false;
+  // const isFocused =
+  //   focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
 
   useEffect(() => {
@@ -118,7 +105,8 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
           return false;
         } else {
           // take the focus
-          setFocusedCell([index, -1]);
+          // todo
+          // setFocusedCell([index, -1]);
         }
       }
 
@@ -175,7 +163,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
         headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
+  }, [headerIsInteractive, isFocused, setIsCellEntered, index]);
 
   return (
     <div

@@ -17,7 +17,18 @@
  * under the License.
  */
 
-import React, { Fragment, FunctionComponent, useMemo } from 'react';
+import React, {
+  forwardRef,
+  FunctionComponent,
+  useEffect,
+  useMemo,
+  useRef,
+  useCallback, useContext,
+} from 'react';
+import {
+  GridChildComponentProps,
+  VariableSizeGrid as Grid,
+} from 'react-window';
 import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridControlColumn,
@@ -28,20 +39,24 @@ import {
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
-  EuiDataGridFocusedCell,
+  EuiDataGridPopoverContent,
 } from './data_grid_types';
-import { EuiDataGridCellProps } from './data_grid_cell';
-import {
-  EuiDataGridDataRow,
-  EuiDataGridDataRowProps,
-} from './data_grid_data_row';
+import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 import {
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
 } from './data_grid_schema';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
+import {
+  EuiDataGridHeaderRow,
+  EuiDataGridHeaderRowProps,
+} from './data_grid_header_row';
+import { EuiMutationObserver } from '../observer/mutation_observer';
+import { EuiText } from '../text';
+import { DataGridSortingContext } from './data_grid_context';
 
 export interface EuiDataGridBodyProps {
+  gridWidth: number;
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   leadingControlColumns?: EuiDataGridControlColumn[];
@@ -50,8 +65,6 @@ export interface EuiDataGridBodyProps {
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
   popoverContents?: EuiDataGridPopoverContents;
-  focusedCell?: EuiDataGridFocusedCell;
-  onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
@@ -59,7 +72,11 @@ export interface EuiDataGridBodyProps {
   inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
-  sorting?: EuiDataGridSorting;
+  setColumnWidth: (columnId: string, width: number) => void;
+  headerIsInteractive: boolean;
+  handleHeaderMutation: MutationCallback;
+  setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
+  switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
 }
 
 const defaultComparator: NonNullable<
@@ -91,10 +108,130 @@ const providedPopoverContents: EuiDataGridPopoverContents = {
   },
 };
 
+const HEADER_ROW_HEIGHT = 34;
+const FOOTER_ROW_HEIGHT = 34;
+
+const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
+  return <EuiText>{children}</EuiText>;
+};
+
+const Cell: FunctionComponent<GridChildComponentProps> = ({
+  columnIndex,
+  rowIndex: _rowIndex,
+  style,
+  data,
+}) => {
+  const {
+    rowMap,
+    rowOffset,
+    leadingControlColumns,
+    trailingControlColumns,
+    columns,
+    schema,
+    popoverContents,
+    columnWidths,
+    defaultColumnWidth,
+    renderCellValue,
+    interactiveCellId,
+  } = data;
+
+  _rowIndex += rowOffset;
+  const rowIndex = rowMap.hasOwnProperty(_rowIndex)
+    ? rowMap[_rowIndex]
+    : _rowIndex;
+
+  let cellContent;
+
+  if (columnIndex < leadingControlColumns.length) {
+    // this is a leading control column
+    const leadingColumn = leadingControlColumns[columnIndex];
+    const { id, rowCellRender } = leadingColumn;
+
+    cellContent = (
+      <EuiDataGridCell
+        rowIndex={rowIndex}
+        visibleRowIndex={_rowIndex}
+        colIndex={columnIndex}
+        columnId={id}
+        popoverContent={DefaultColumnFormatter}
+        width={leadingColumn.width}
+        renderCellValue={rowCellRender}
+        interactiveCellId={interactiveCellId}
+        isExpandable={false}
+        className="euiDataGridRowCell--controlColumn"
+      />
+    );
+  } else if (columnIndex >= leadingControlColumns.length + columns.length) {
+    // this is a trailing control column
+    const columnOffset = columns.length + leadingControlColumns.length;
+    const adjustedColumnIndex = columnIndex - columnOffset;
+    const trailingColumn = trailingControlColumns[adjustedColumnIndex];
+    const { id, rowCellRender } = trailingColumn;
+
+    cellContent = (
+      <EuiDataGridCell
+        rowIndex={rowIndex}
+        visibleRowIndex={_rowIndex}
+        colIndex={adjustedColumnIndex}
+        columnId={id}
+        popoverContent={DefaultColumnFormatter}
+        width={trailingColumn.width}
+        renderCellValue={rowCellRender}
+        interactiveCellId={interactiveCellId}
+        isExpandable={false}
+        className="euiDataGridRowCell--controlColumn"
+      />
+    );
+  } else {
+    // this is a normal data cell
+
+    // offset the column index by the leading control columns
+    columnIndex -= leadingControlColumns.length;
+    const column = columns[columnIndex];
+    const columnId = column.id;
+    const columnType = schema[columnId] ? schema[columnId].columnType : null;
+
+    const isExpandable =
+      column.isExpandable !== undefined ? column.isExpandable : true;
+
+    const popoverContent =
+      popoverContents[columnType as string] || DefaultColumnFormatter;
+
+    const width = columnWidths[columnId] || defaultColumnWidth;
+
+    cellContent = (
+      <EuiDataGridCell
+        rowIndex={rowIndex}
+        visibleRowIndex={_rowIndex}
+        colIndex={columnIndex}
+        columnId={columnId}
+        column={column}
+        columnType={columnType}
+        popoverContent={popoverContent}
+        width={width || undefined}
+        renderCellValue={renderCellValue}
+        interactiveCellId={interactiveCellId}
+        isExpandable={isExpandable}
+      />
+    );
+  }
+
+  return (
+    <div
+      style={{
+        ...style,
+        top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,
+      }}>
+      {cellContent}
+    </div>
+  );
+};
+
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
+    gridWidth,
     columnWidths,
     defaultColumnWidth,
     leadingControlColumns = [],
@@ -103,8 +240,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     schema,
     schemaDetectors,
     popoverContents,
-    focusedCell,
-    onCellFocus,
     rowCount,
     renderCellValue,
     renderFooterCellValue,
@@ -112,7 +247,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     inMemoryValues,
     interactiveCellId,
     pagination,
-    sorting,
+    setColumnWidth,
+    headerIsInteractive,
+    handleHeaderMutation,
+    setVisibleColumns,
+    switchColumnPos,
   } = props;
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
@@ -128,6 +267,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
     return visibleRowIndices;
   }, [startRow, endRow]);
+
+  const sorting = useContext(DataGridSortingContext);
 
   const rowMap = useMemo(() => {
     const rowMap: { [key: number]: number } = {};
@@ -192,73 +333,262 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     [popoverContents]
   );
 
-  const rows = useMemo(() => {
-    const rowsToRender = visibleRowIndices.map((rowIndex, i) => {
-      rowIndex = rowMap.hasOwnProperty(rowIndex) ? rowMap[rowIndex] : rowIndex;
-      return (
-        <EuiDataGridDataRow
-          key={rowIndex}
-          leadingControlColumns={leadingControlColumns}
-          trailingControlColumns={trailingControlColumns}
-          columns={columns}
-          schema={schema}
-          popoverContents={mergedPopoverContents}
-          columnWidths={columnWidths}
-          defaultColumnWidth={defaultColumnWidth}
-          focusedCellPositionInTheRow={
-            focusedCell != null && i === focusedCell[1] ? focusedCell[0] : null
-          }
-          onCellFocus={onCellFocus}
-          renderCellValue={renderCellValue}
-          rowIndex={rowIndex}
-          visibleRowIndex={i}
-          interactiveCellId={interactiveCellId}
-        />
-      );
-    });
-
-    if (renderFooterCellValue) {
-      rowsToRender.push(
-        <EuiDataGridFooterRow
-          key="footerRow"
-          leadingControlColumns={leadingControlColumns}
-          trailingControlColumns={trailingControlColumns}
-          columns={columns}
-          schema={schema}
-          popoverContents={mergedPopoverContents}
-          columnWidths={columnWidths}
-          defaultColumnWidth={defaultColumnWidth}
-          focusedCellPositionInTheRow={
-            focusedCell != null && visibleRowIndices.length === focusedCell[1]
-              ? focusedCell[0]
-              : null
-          }
-          onCellFocus={onCellFocus}
-          renderCellValue={renderFooterCellValue}
-          rowIndex={visibleRowIndices.length}
-          visibleRowIndex={visibleRowIndices.length}
-          interactiveCellId={interactiveCellId}
-        />
-      );
-    }
-
-    return rowsToRender;
+  const headerRow = useMemo(() => {
+    return (
+      <>
+        <EuiMutationObserver
+          observerOptions={{
+            subtree: true,
+            childList: true,
+          }}
+          onMutation={handleHeaderMutation}>
+          {(ref) => (
+            <EuiDataGridHeaderRow
+              ref={ref}
+              switchColumnPos={switchColumnPos}
+              setVisibleColumns={setVisibleColumns}
+              leadingControlColumns={leadingControlColumns}
+              trailingControlColumns={trailingControlColumns}
+              columns={columns}
+              columnWidths={columnWidths}
+              defaultColumnWidth={defaultColumnWidth}
+              setColumnWidth={setColumnWidth}
+              schema={schema}
+              headerIsInteractive={headerIsInteractive}
+            />
+          )}
+        </EuiMutationObserver>
+      </>
+    );
   }, [
-    visibleRowIndices,
-    rowMap,
+    handleHeaderMutation,
+    switchColumnPos,
+    setVisibleColumns,
     leadingControlColumns,
     trailingControlColumns,
     columns,
-    schema,
-    mergedPopoverContents,
     columnWidths,
     defaultColumnWidth,
-    focusedCell,
-    onCellFocus,
-    renderCellValue,
-    renderFooterCellValue,
-    interactiveCellId,
+    setColumnWidth,
+    schema,
+    headerIsInteractive,
   ]);
 
-  return <Fragment>{rows}</Fragment>;
+  const footerRow = useMemo(() => {
+    if (renderFooterCellValue == null) return null;
+    return (
+      <EuiDataGridFooterRow
+        key="footerRow"
+        leadingControlColumns={leadingControlColumns}
+        trailingControlColumns={trailingControlColumns}
+        columns={columns}
+        schema={schema}
+        popoverContents={mergedPopoverContents}
+        columnWidths={columnWidths}
+        defaultColumnWidth={defaultColumnWidth}
+        renderCellValue={renderFooterCellValue}
+        rowIndex={visibleRowIndices.length}
+        visibleRowIndex={visibleRowIndices.length}
+        interactiveCellId={interactiveCellId}
+      />
+    );
+  }, [
+    columnWidths,
+    columns,
+    defaultColumnWidth,
+    interactiveCellId,
+    leadingControlColumns,
+    mergedPopoverContents,
+    renderFooterCellValue,
+    schema,
+    trailingControlColumns,
+    visibleRowIndices.length,
+  ]);
+
+  const InnerElement = useMemo(
+    () =>
+      forwardRef<HTMLDivElement, { style: { height: number } }>(
+        ({ children, style, ...rest }, ref) => {
+          return (
+            <>
+              <div
+                ref={ref}
+                style={{
+                  ...style,
+                  height: style.height + HEADER_ROW_HEIGHT,
+                }}
+                {...rest}>
+                {headerRow}
+                {children}
+              </div>
+              {footerRow}
+            </>
+          );
+        }
+      ),
+    [headerRow, footerRow]
+  );
+
+  const gridRef = useRef<Grid>(null);
+  useEffect(() => {
+    gridRef.current!.resetAfterColumnIndex(0);
+  }, [columns, columnWidths]);
+
+  const ROW_HEIGHT = 34;
+  const SCROLLBAR_HEIGHT = 15;
+
+  const getWidth = useCallback(
+    (index: number) => {
+      if (index < leadingControlColumns.length) {
+        // this is a leading control column
+        return leadingControlColumns[index].width;
+      } else if (index >= leadingControlColumns.length + columns.length) {
+        // this is a trailing control column
+        return trailingControlColumns[
+          index - leadingControlColumns.length - columns.length
+        ].width;
+      }
+      // normal data column
+      return (
+        columnWidths[columns[index - leadingControlColumns.length].id] ||
+        defaultColumnWidth ||
+        100
+      );
+    },
+    [
+      leadingControlColumns,
+      columns,
+      columnWidths,
+      defaultColumnWidth,
+      trailingControlColumns,
+    ]
+  );
+  const getRowHeight = useRef(() => ROW_HEIGHT);
+
+  return (
+    <Grid
+      ref={gridRef}
+      innerElementType={InnerElement}
+      columnCount={
+        leadingControlColumns.length +
+        columns.length +
+        trailingControlColumns.length
+      }
+      width={gridWidth}
+      columnWidth={getWidth}
+      // columnWidth={(index) => {
+      //   if (index < leadingControlColumns.length) {
+      //     // this is a leading control column
+      //     return leadingControlColumns[index].width;
+      //   } else if (index >= leadingControlColumns.length + columns.length) {
+      //     // this is a trailing control column
+      //     return trailingControlColumns[
+      //       index - leadingControlColumns.length - columns.length
+      //     ].width;
+      //   }
+      //   // normal data column
+      //   return (
+      //     columnWidths[columns[index - leadingControlColumns.length].id] ||
+      //     defaultColumnWidth ||
+      //     100
+      //   );
+      // }}
+      height={
+        ROW_HEIGHT * visibleRowIndices.length +
+        SCROLLBAR_HEIGHT +
+        HEADER_ROW_HEIGHT +
+        (footerRow ? FOOTER_ROW_HEIGHT : 0)
+      }
+      rowHeight={getRowHeight.current}
+      itemData={{
+        rowMap,
+        rowOffset: pagination ? pagination.pageIndex * pagination.pageSize : 0,
+        leadingControlColumns,
+        trailingControlColumns,
+        columns,
+        schema,
+        popoverContents: mergedPopoverContents,
+        columnWidths,
+        defaultColumnWidth,
+        renderCellValue,
+        interactiveCellId,
+      }}
+      rowCount={visibleRowIndices.length}>
+      {Cell}
+    </Grid>
+  );
+
+  // const rows = useMemo(() => {
+  //   const rowsToRender = visibleRowIndices.map((rowIndex, i) => {
+  //     rowIndex = rowMap.hasOwnProperty(rowIndex) ? rowMap[rowIndex] : rowIndex;
+  //     return (
+  //       <EuiDataGridDataRow
+  //         key={rowIndex}
+  //         leadingControlColumns={leadingControlColumns}
+  //         trailingControlColumns={trailingControlColumns}
+  //         columns={columns}
+  //         schema={schema}
+  //         popoverContents={mergedPopoverContents}
+  //         columnWidths={columnWidths}
+  //         defaultColumnWidth={defaultColumnWidth}
+  //         focusedCellPositionInTheRow={
+  //           focusedCell != null && i === focusedCell[1] ? focusedCell[0] : null
+  //         }
+  //         onCellFocus={onCellFocus}
+  //         renderCellValue={renderCellValue}
+  //         rowIndex={rowIndex}
+  //         visibleRowIndex={i}
+  //         interactiveCellId={interactiveCellId}
+  //       />
+  //     );
+  //   });
+  //
+  //   if (renderFooterCellValue) {
+  //     rowsToRender.push(
+  //       <EuiDataGridFooterRow
+  //         key="footerRow"
+  //         leadingControlColumns={leadingControlColumns}
+  //         trailingControlColumns={trailingControlColumns}
+  //         columns={columns}
+  //         schema={schema}
+  //         popoverContents={mergedPopoverContents}
+  //         columnWidths={columnWidths}
+  //         defaultColumnWidth={defaultColumnWidth}
+  //         focusedCellPositionInTheRow={
+  //           focusedCell != null && visibleRowIndices.length === focusedCell[1]
+  //             ? focusedCell[0]
+  //             : null
+  //         }
+  //         onCellFocus={onCellFocus}
+  //         renderCellValue={renderFooterCellValue}
+  //         rowIndex={visibleRowIndices.length}
+  //         visibleRowIndex={visibleRowIndices.length}
+  //         interactiveCellId={interactiveCellId}
+  //       />
+  //     );
+  //   }
+  //
+  //   return rowsToRender;
+  // }, [
+  //   leadingControlColumns,
+  //   trailingControlColumns,
+  //   defaultColumnWidth,
+  //   setColumnWidth,
+  //   schema,
+  //   sorting,
+  //   headerIsInteractive,
+  //   columnWidths,
+  //   columns,
+  //   schema,
+  //   mergedPopoverContents,
+  //   columnWidths,
+  //   defaultColumnWidth,
+  //   focusedCell,
+  //   onCellFocus,
+  //   renderCellValue,
+  //   renderFooterCellValue,
+  //   interactiveCellId,
+  // ]);
+  //
+  // return <Fragment>{rows}</Fragment>;
 };

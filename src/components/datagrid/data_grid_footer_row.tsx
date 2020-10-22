@@ -42,9 +42,7 @@ export type EuiDataGridFooterRowProps = CommonProps &
     popoverContents: EuiDataGridPopoverContents;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
-    focusedCellPositionInTheRow?: number | null;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
-    onCellFocus: Function;
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
@@ -65,8 +63,6 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
     className,
     renderCellValue,
     rowIndex,
-    focusedCellPositionInTheRow,
-    onCellFocus,
     interactiveCellId,
     'data-test-subj': _dataTestSubj,
     visibleRowIndex = rowIndex,
@@ -95,8 +91,6 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
             popoverContent={DefaultColumnFormatter}
             width={width}
             renderCellValue={() => null}
-            onCellFocus={onCellFocus}
-            isFocused={focusedCellPositionInTheRow === i}
             interactiveCellId={interactiveCellId}
             isExpandable={true}
             className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
@@ -122,8 +116,6 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               popoverContent={popoverContent}
               width={width || undefined}
               renderCellValue={renderCellValue}
-              onCellFocus={onCellFocus}
-              isFocused={focusedCellPositionInTheRow === columnPosition}
               interactiveCellId={interactiveCellId}
               isExpandable={true}
               className="euiDataGridFooterCell"
@@ -143,8 +135,6 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               popoverContent={DefaultColumnFormatter}
               width={width}
               renderCellValue={() => null}
-              onCellFocus={onCellFocus}
-              isFocused={focusedCellPositionInTheRow === colIndex}
               interactiveCellId={interactiveCellId}
               isExpandable={true}
               className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"

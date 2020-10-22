@@ -18,8 +18,20 @@
  */
 
 import React from 'react';
-import { EuiDataGridFocusedCell } from './data_grid_types';
+import { EuiDataGridFocusedCell, EuiDataGridSorting } from './data_grid_types';
 
-export const DataGridContext = React.createContext({
-  onFocusUpdate: (_cell: EuiDataGridFocusedCell, _updateFocus: Function) => {},
+export interface DataGridFocusContextShape {
+  setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => void;
+}
+
+export const DataGridFocusContext = React.createContext<
+  DataGridFocusContextShape
+>({
+  setFocusedCell: () => {},
+  onFocusUpdate: () => {},
 });
+
+export const DataGridSortingContext = React.createContext<
+  EuiDataGridSorting | undefined
+>(undefined);

@@ -288,6 +288,7 @@ function scoreValueBySchemaType(
 // represents lowest score a type detector can have to be considered valid
 const MINIMUM_SCORE_MATCH = 0.5;
 
+const emptyArray: unknown = []; // for in-memory object permanence
 export function useDetectSchema(
   inMemory: EuiDataGridInMemory | undefined,
   inMemoryValues: EuiDataGridInMemoryValues,
@@ -295,6 +296,9 @@ export function useDetectSchema(
   definedColumnSchemas: { [key: string]: string },
   autoDetectSchema: boolean
 ) {
+  const inMemorySkipColumns =
+    inMemory?.skipColumns || (emptyArray as EuiDataGridInMemory['skipColumns']);
+
   const schema = useMemo(() => {
     const schema: EuiDataGridSchema = {};
     if (autoDetectSchema === false) {
@@ -309,7 +313,7 @@ export function useDetectSchema(
     const rowIndices = Object.keys(inMemoryValues);
 
     const columnIdsWithDefinedSchemas = new Set<string>([
-      ...((inMemory && inMemory.skipColumns) || []),
+      ...inMemorySkipColumns,
       ...Object.keys(definedColumnSchemas),
     ]);
 
@@ -404,7 +408,7 @@ export function useDetectSchema(
   }, [
     autoDetectSchema,
     definedColumnSchemas,
-    inMemory,
+    inMemorySkipColumns,
     inMemoryValues,
     schemaDetectors,
   ]);

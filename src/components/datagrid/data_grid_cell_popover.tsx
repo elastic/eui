@@ -81,7 +81,9 @@ export function EuiDataGridCellPopover({
           closePopover();
         }
       }}
-      onTrapDeactivation={updateFocus}>
+      // todo
+      // onTrapDeactivation={updateFocus}
+    >
       {popoverIsOpen ? (
         <>
           <PopoverContent cellContentsElement={cellContentsRef!}>
