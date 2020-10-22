@@ -84,10 +84,8 @@
         &:hover,
         &:focus,
         &:focus-within {
-          $darkHighlightBg: darken($color, 12%);
-          $darkHighlightText: darken($color, 20%);
+          $darkHighlightBg: darken($color, 5%);
 
-          color: chooseLightOrDarkText($darkHighlightText, $euiColorGhost, $euiColorInk);
           background-color: $darkHighlightBg;
           border-color: $darkHighlightBg;
         }
@@ -96,7 +94,7 @@
       &:hover,
       &:focus,
       &:focus-within {
-        background-color: transparentize($color, .8);
+        background-color: transparentize($color, .9);
       }
     }
   }
