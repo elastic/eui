@@ -5,39 +5,39 @@
 
 **Bug fixes**
 
-- Fix issue with duplicate checkmarks in `EuiComboBox` ([4162](https://github.com/elastic/eui/pull/4162))
+- Fixed issue with duplicate checkmarks in `EuiComboBox` ([#4162](https://github.com/elastic/eui/pull/4162))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
-- Deprecated `EuiKeyboardAccessible` ([4135]https://github.com/elastic/eui/pull/4135)
-- Refactored `EuiStep`, `EuiHorizontalSteps`, and `EuiCodeEditor` for better accessibility ([4135]https://github.com/elastic/eui/pull/4135)
-- Added `minWidth` prop to `EuiButton` ([4056](https://github.com/elastic/eui/pull/4056))
-- Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([4056](https://github.com/elastic/eui/pull/4056))
-- Updated `EuiButtonGroup` props and render for better accessibility ([4056](https://github.com/elastic/eui/pull/4056))
-- Added `paddingSize` prop to `EuiPopoverTitle` and `EuiPopoverFooter` ([4133](https://github.com/elastic/eui/pull/4133))
+- Deprecated `EuiKeyboardAccessible` ([#4135](https://github.com/elastic/eui/pull/4135))
+- Refactored `EuiStep`, `EuiHorizontalSteps`, and `EuiCodeEditor` for better accessibility ([#4135](https://github.com/elastic/eui/pull/4135))
+- Added `minWidth` prop to `EuiButton` ([#4056](https://github.com/elastic/eui/pull/4056))
+- Added `isSelected` prop to easily turn `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` into toggle buttons ([#4056](https://github.com/elastic/eui/pull/4056))
+- Updated `EuiButtonGroup` props and render for better accessibility ([#4056](https://github.com/elastic/eui/pull/4056))
+- Added `paddingSize` prop to `EuiPopoverTitle` and `EuiPopoverFooter` ([#4133](https://github.com/elastic/eui/pull/4133))
 - Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
-- Updated types associated with `EuiMarkdownEditor` plugin dependencies ([4124](https://github.com/elastic/eui/pull/4124))
+- Updated types associated with `EuiMarkdownEditor` plugin dependencies ([#4124](https://github.com/elastic/eui/pull/4124))
 - Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
 
 **Bug fixes**
 
-- Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
+- Fixed focus management bug in `EuiSelectable` ([#4152](https://github.com/elastic/eui/pull/4152))
 
 **Breaking changes**
 
-- Removed `EuiToggle` and `EuiButtonToggle` in favor of `aria-pressed` ([4056](https://github.com/elastic/eui/pull/4056))
-- Updated `legend` and `idSelected` props of `EuiButtonGroup` to be required ([4056](https://github.com/elastic/eui/pull/4056))
-- Removed `logoAPM` in favor of `logoObservability` ([4065](https://github.com/elastic/eui/pull/4065))
-- Removed `.euiHeaderNotification` CSS class ([4065](https://github.com/elastic/eui/pull/4065))
-- Removed `EuiNavDrawer` in favor of `EuiCollapsibleNav` ([4065](https://github.com/elastic/eui/pull/4065))
-- Removed `compressed` and `displayOnly` props from `EuiFormRow` in favor of the `display` prop ([4065](https://github.com/elastic/eui/pull/4065))
-- Removed `EuiPopover`'s `withTitle` prop ([4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiToggle` and `EuiButtonToggle` in favor of `aria-pressed` ([#4056](https://github.com/elastic/eui/pull/4056))
+- Updated `legend` and `idSelected` props of `EuiButtonGroup` to be required ([#4056](https://github.com/elastic/eui/pull/4056))
+- Removed `logoAPM` in favor of `logoObservability` ([#4065](https://github.com/elastic/eui/pull/4065))
+- Removed `.euiHeaderNotification` CSS class ([#4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiNavDrawer` in favor of `EuiCollapsibleNav` ([#4065](https://github.com/elastic/eui/pull/4065))
+- Removed `compressed` and `displayOnly` props from `EuiFormRow` in favor of the `display` prop ([#4065](https://github.com/elastic/eui/pull/4065))
+- Removed `EuiPopover`'s `withTitle` prop ([#4065](https://github.com/elastic/eui/pull/4065))
 
 **Theme: Amsterdam**
 
-- Tightened `line-height` for some `EuiTitle` sizes ([4133](https://github.com/elastic/eui/pull/4133))
-- Removed uppercase from `EuiPopoverTitle` and fixed inherited padding from `EuiPopover` ([4133](https://github.com/elastic/eui/pull/4133))
-- Fixed `EuiFilterGroup` and `EuiFilterButton` styles ([4151](https://github.com/elastic/eui/pull/4151))
+- Tightened `line-height` for some `EuiTitle` sizes ([#4133](https://github.com/elastic/eui/pull/4133))
+- Removed uppercase from `EuiPopoverTitle` and fixed inherited padding from `EuiPopover` ([#4133](https://github.com/elastic/eui/pull/4133))
+- Fixed `EuiFilterGroup` and `EuiFilterButton` styles ([#4151](https://github.com/elastic/eui/pull/4151))
 
 ## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
 
@@ -67,7 +67,7 @@
 
 **Bug fixes**
 
-- Fixed focus management bug in `EuiSelectable` ([4152](https://github.com/elastic/eui/pull/4152))
+- Fixed focus management bug in `EuiSelectable` ([#4152](https://github.com/elastic/eui/pull/4152))
 
 ## [`29.3.0`](https://github.com/elastic/eui/tree/v29.3.0)
 
