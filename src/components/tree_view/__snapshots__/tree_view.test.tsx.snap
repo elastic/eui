@@ -30,7 +30,7 @@ exports[`EuiTreeView is rendered 1`] = `
         <span
           class="euiTreeView__iconWrapper"
         >
-          <div
+          <span
             data-euiicon-type="folderOpen"
           />
         </span>
@@ -64,7 +64,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 <span
                   class="euiTreeView__iconWrapper"
                 >
-                  <div
+                  <span
                     data-euiicon-type="document"
                   />
                 </span>
@@ -91,7 +91,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 <span
                   class="euiTreeView__iconWrapper"
                 >
-                  <div
+                  <span
                     data-euiicon-type="arrowRight"
                   />
                 </span>
@@ -118,7 +118,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 <span
                   class="euiTreeView__iconWrapper"
                 >
-                  <div
+                  <span
                     data-euiicon-type="arrowRight"
                   />
                 </span>

@@ -1,7 +1,3 @@
-// specifically polyfill Object.entries for IE11 support (used by @elastic/charts)
-import 'core-js/modules/es7.object.entries';
-import 'core-js/modules/es6.number.is-finite';
-
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -59,7 +55,7 @@ ReactDOM.render(
                 <Route
                   key={i}
                   path={`/${path}`}
-                  render={props => {
+                  render={(props) => {
                     const { location } = props;
                     // prevents encoded urls with a section id to fail
                     if (location.pathname.includes('%23')) {

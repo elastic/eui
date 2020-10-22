@@ -35,12 +35,13 @@
 
 .euiContextMenuPanelTitle {
   @include euiPopoverTitle;
+  padding: $euiSizeM;
 
   width: 100%;
   text-align: left;
 
-  &:hover,
-  &:focus {
+  &:enabled:hover,
+  &:enabled:focus {
     text-decoration: underline;
   }
 }

@@ -6,7 +6,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
   class="euiEmptyPrompt testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     color="subdued"
     data-euiicon-type="arrowUp"
   />
@@ -99,7 +99,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
 <div
   class="euiEmptyPrompt"
 >
-  <div
+  <span
     color="subdued"
     data-euiicon-type="arrowUp"
   />

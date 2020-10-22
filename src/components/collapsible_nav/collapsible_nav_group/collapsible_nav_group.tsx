@@ -169,9 +169,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
         </EuiTitle>
       </EuiFlexItem>
     </EuiFlexGroup>
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   if (isCollapsible && title) {
     return (

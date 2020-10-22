@@ -83,7 +83,7 @@ describe('EuiFieldPassword', () => {
     });
 
     describe('type', () => {
-      TYPES.forEach(type => {
+      TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
           const component = render(<EuiFieldPassword type={type} />);
 

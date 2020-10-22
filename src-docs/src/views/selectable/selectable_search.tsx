@@ -15,7 +15,7 @@ export default () => {
           'data-test-subj': 'selectableSearchHere',
         }}
         options={options}
-        onChange={newOptions => setOptions(newOptions)}>
+        onChange={(newOptions) => setOptions(newOptions)}>
         {(list, search) => (
           <Fragment>
             {search}

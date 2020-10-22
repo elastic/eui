@@ -75,86 +75,104 @@ export type PopoverAnchorPosition =
 const generateId = htmlIdGenerator();
 
 export interface EuiPopoverProps {
+  /**
+   * Class name passed to the direct parent of the button
+   */
   anchorClassName?: string;
-
+  /**
+   * Alignment of the popover and arrow relative to the button
+   */
   anchorPosition?: PopoverAnchorPosition;
-
-  /** Style and position alteration for arrow-less, left-aligned
-   * attachment. Intended for use with inputs as anchors, à la
-   * EuiColorPicker */
+  /**
+   * Style and position alteration for arrow-less, left-aligned
+   * attachment. Intended for use with inputs as anchors, e.g.
+   * EuiInputPopover
+   */
   attachToAnchor?: boolean;
-
+  /**
+   * Triggering element for which to align the popover to
+   */
   button: NonNullable<ReactNode>;
-
   buttonRef?: RefCallback<HTMLDivElement>;
-
+  /**
+   * Callback to handle hiding of the popover
+   */
   closePopover: NoArgCallback<void>;
-
+  /**
+   * Restrict the popover's position within this element
+   */
   container?: HTMLElement;
-
-  /** CSS display type for both the popover and anchor */
+  /**
+   * CSS display type for both the popover and anchor
+   */
   display?: keyof typeof displayToClassNameMap;
-
+  /**
+   * Show arrow indicating to originating button
+   */
   hasArrow?: boolean;
-
-  /** specifies what element should initially have focus; Can be a DOM
+  /**
+   * Specifies what element should initially have focus; Can be a DOM
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
-   * returns a DOM node. */
+   * returns a DOM node
+   */
   initialFocus?: FocusTarget;
-
-  /** Passed directly to EuiPortal for DOM positioning. Both properties are
-   * required if prop is specified **/
+  /**
+   * Passed directly to EuiPortal for DOM positioning. Both properties are
+   * required if prop is specified
+   */
   insert?: {
     sibling: HTMLElement;
     position: 'before' | 'after';
   };
-
-  isOpen?: boolean;
-
-  ownFocus?: boolean;
-
-  panelClassName?: string;
-
-  panelPaddingSize?: PanelPaddingSize;
-
-  panelRef?: RefCallback<HTMLElement | null>;
-
   /**
-   * Optional, standard DOM `style` attribute. Passed to the EuiPanel.
+   * Visibility state of the popover
+   */
+  isOpen?: boolean;
+  /**
+   * Traps tab focus within the popover contents
+   */
+  ownFocus?: boolean;
+  /**
+   * Custom class added to the EuiPanel containing the popover contents
+   */
+  panelClassName?: string;
+  /**
+   * EuiPanel padding on all sides
+   */
+  panelPaddingSize?: PanelPaddingSize;
+  /**
+   * Standard DOM `style` attribute. Passed to the EuiPanel
    */
   panelStyle?: CSSProperties;
-
+  panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
-
-  /** When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors. */
+  /**
+   * When `true`, the popover's position is re-calculated when the user
+   * scrolls, this supports having fixed-position popover anchors
+   */
   repositionOnScroll?: boolean;
-
-  withTitle?: boolean;
-
-  /** By default, popover content inherits the z-index of the anchor
-   * component; pass zIndex to override */
+  /**
+   * By default, popover content inherits the z-index of the anchor
+   * component; pass `zIndex` to override
+   */
   zIndex?: number;
-
   /**
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
-
   /**
-   * Distance away from the anchor that the popover will render.
+   * Distance away from the anchor that the popover will render
    */
   offset?: number;
-
   /**
-   * Minimum distance between the popover and the bounding container.
+   * Minimum distance between the popover and the bounding container;
    * Default is 16
    */
   buffer?: number;
-
   /**
-   * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
+   * Element to pass as the child element of the arrow;
+   * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
 }
@@ -603,7 +621,6 @@ export class EuiPopover extends Component<Props, State> {
       insert,
       isOpen,
       ownFocus,
-      withTitle,
       children,
       className,
       closePopover,
@@ -633,7 +650,6 @@ export class EuiPopover extends Component<Props, State> {
       display ? displayToClassNameMap[display] : null,
       {
         'euiPopover-isOpen': this.state.isOpening,
-        'euiPopover--withTitle': withTitle,
       },
       className
     );
@@ -644,7 +660,6 @@ export class EuiPopover extends Component<Props, State> {
       'euiPopover__panel',
       `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
-      { 'euiPopover__panel-withTitle': withTitle },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName
@@ -717,7 +732,7 @@ export class EuiPopover extends Component<Props, State> {
                   subtree: true, // watch all child elements
                 }}
                 onMutation={this.onMutation}>
-                {mutationRef => <div ref={mutationRef}>{children}</div>}
+                {(mutationRef) => <div ref={mutationRef}>{children}</div>}
               </EuiMutationObserver>
             </EuiPanel>
           </EuiFocusTrap>

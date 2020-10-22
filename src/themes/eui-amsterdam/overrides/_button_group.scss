@@ -1,14 +1,49 @@
-.euiButtonGroup--compressed {
-  .euiButtonGroup__button {
-    &:not(.euiButtonGroup__button--selected):not(:disabled) {
-      background-color: transparentize($euiColorLightShade, .6);
+.euiButtonGroup__buttons {
+  box-shadow: none !important; // sass-lint:disable-line no-important
+}
+
+.euiButtonGroup--medium,
+.euiButtonGroup--small {
+  .euiButtonGroupButton {
+    border: none !important; // sass-lint:disable-line no-important
+  }
+
+  .euiButtonGroupButton-isDisabled:not(.euiButtonGroupButton--ghost):not(.euiButtonGroupButton-isSelected) {
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 70%);
+    background-color: transparentize($euiButtonColorDisabled, .7);
+    color: makeHighContrastColor($euiButtonColorDisabled, $backgroundColorSimulated, 2);
+  }
+
+  // Change the hollow (bordered) buttons to have a transparent background
+  // and no border
+  @each $name, $color in $euiButtonTypes {
+    .euiButtonGroupButton--#{$name} {
+      @include euiButtonDefaultStyle($color);
+
+      @if ($name == 'ghost') {
+        // Ghost is unique and ALWAYS sits against a dark background.
+        $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
+        color: makeHighContrastColor($color, $backgroundColorSimulated);
+      }
     }
   }
 
-  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,
-  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button,
-  .euiButtonGroup__button--selected {
-    background-color: $euiColorDarkShade;
-    color: $euiColorLightestShade;
+  .euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost:not(.euiButtonGroupButton-isSelected) {
+    &,
+    &:hover,
+    &:focus {
+      background-color: transparentize($euiButtonColorGhostDisabled, .7);
+    }
   }
+}
+
+.euiButtonGroup--small .euiButtonGroup__buttons {
+  // Use a moderately smaller radius on small buttons
+  // so that they don't appear completely rounded
+  border-radius: $euiBorderRadius * .667;
+}
+
+.euiButtonGroup--compressed .euiButtonGroupButton {
+  // Add 1 to the border radius to account for the background-clip
+  border-radius: $euiFormControlCompressedBorderRadius + 1;
 }

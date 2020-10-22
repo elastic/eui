@@ -29,7 +29,6 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
-import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
 import { EuiContextMenuItem } from './context_menu_item';
@@ -302,7 +301,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     // Create fingerprint of all item's watched properties
     if (items.length && watchedItemProps && watchedItemProps.length) {
       return JSON.stringify(
-        items.map(item => {
+        items.map((item) => {
           // Create object of item properties and values
           const props: any = {
             key: item.key,
@@ -433,7 +432,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
             className="euiContextMenuPanelTitle"
             type="button"
             onClick={onClose}
-            ref={node => {
+            ref={(node) => {
               this.backButton = node;
             }}
             data-test-subj="contextMenuPanelTitleButton">
@@ -450,9 +449,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         );
       } else {
         panelTitle = (
-          <EuiPopoverTitle>
+          <div className="euiContextMenuPanelTitle">
             <span className="euiContextMenu__itemLayout">{title}</span>
-          </EuiPopoverTitle>
+          </div>
         );
       }
     }
@@ -492,7 +491,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
         <div ref={this.contentRef}>
           <EuiResizeObserver onResize={() => this.updateHeight()}>
-            {resizeRef => <div ref={resizeRef}>{content}</div>}
+            {(resizeRef) => <div ref={resizeRef}>{content}</div>}
           </EuiResizeObserver>
         </div>
       </div>

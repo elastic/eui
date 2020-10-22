@@ -14,10 +14,6 @@ export default () => {
   const [flushWidth, setFlushWidth] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
 
-  const handleOnClick = () => {
-    alert('Item was clicked');
-  };
-
   return (
     <Fragment>
       <EuiFlexGroup alignItems="center">
@@ -50,17 +46,13 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiListGroup flush={flushWidth} bordered={showBorder}>
-        <EuiListGroupItem onClick={handleOnClick} label="First item" />
+        <EuiListGroupItem onClick={() => {}} label="First item" />
 
-        <EuiListGroupItem onClick={handleOnClick} label="Second item" />
+        <EuiListGroupItem onClick={() => {}} label="Second item" />
 
-        <EuiListGroupItem onClick={handleOnClick} label="Third item" isActive />
+        <EuiListGroupItem onClick={() => {}} label="Third item" isActive />
 
-        <EuiListGroupItem
-          onClick={handleOnClick}
-          label="Fourth item"
-          isDisabled
-        />
+        <EuiListGroupItem onClick={() => {}} label="Fourth item" isDisabled />
       </EuiListGroup>
     </Fragment>
   );

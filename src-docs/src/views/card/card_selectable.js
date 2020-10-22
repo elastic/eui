@@ -20,9 +20,8 @@ export default () => {
     setCard2(!card2Selected);
   };
 
-  const detailsClicked = e => {
+  const detailsClicked = (e) => {
     e.stopPropagation();
-    console.log('Details clicked');
   };
 
   return (

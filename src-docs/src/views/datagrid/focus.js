@@ -34,37 +34,31 @@ for (let i = 0; i < 10; i++) {
     </span>,
 
     <span>
-      <EuiButtonEmpty size="xs" onClick={() => console.log('clicked Yes')}>
+      <EuiButtonEmpty size="xs" onClick={() => {}}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty
-        size="xs"
-        color="danger"
-        onClick={() => console.log('clicked No')}>
+      <EuiButtonEmpty size="xs" color="danger" onClick={() => {}}>
         No
       </EuiButtonEmpty>
     </span>,
     <span>
-      <EuiButtonEmpty size="xs" onClick={() => console.log('clicked Yes')}>
+      <EuiButtonEmpty size="xs" onClick={() => {}}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty
-        size="xs"
-        color="danger"
-        onClick={() => console.log('clicked No')}>
+      <EuiButtonEmpty size="xs" color="danger" onClick={() => {}}>
         No
       </EuiButtonEmpty>
     </span>,
   ]);
 }
 
-const renderHeaderIcon = areHeadersInteractive =>
+const renderHeaderIcon = (areHeadersInteractive) =>
   areHeadersInteractive ? (
     <EuiFlexItem grow={false}>
       <EuiButtonIcon
         aria-label="column settings"
         iconType="gear"
-        onClick={() => console.log('gear icon clicked')}
+        onClick={() => {}}
       />
     </EuiFlexItem>
   ) : null;
@@ -72,7 +66,7 @@ const renderHeaderIcon = areHeadersInteractive =>
 export default () => {
   const [areHeadersInteractive, setAreHeadersInteractive] = useState(false);
   const switchInteractiveHeaders = useCallback(
-    e => setAreHeadersInteractive(e.target.checked),
+    (e) => setAreHeadersInteractive(e.target.checked),
     [setAreHeadersInteractive]
   );
 
@@ -225,11 +219,12 @@ export default () => {
     pageSizeOptions: [4],
   });
   const onChangeItemsPerPage = useCallback(
-    pageSize => setPagination(pagination => ({ ...pagination, pageSize })),
+    (pageSize) => setPagination((pagination) => ({ ...pagination, pageSize })),
     [setPagination]
   );
   const onChangePage = useCallback(
-    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );
 

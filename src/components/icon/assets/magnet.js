@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const EuiIconMagnet = ({ title, titleId, ...props }) => (
   <svg

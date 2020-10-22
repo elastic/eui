@@ -88,7 +88,7 @@ describe('EuiValidatableControl', () => {
 
       const Component = () => (
         <EuiValidatableControl>
-          <input id="testInput" ref={el => ref(el)} />
+          <input id="testInput" ref={(el) => ref(el)} />
         </EuiValidatableControl>
       );
 

@@ -42,7 +42,7 @@ export default () => {
   const [error, setError] = useState(undefined);
   const [inputRef, setInputRef] = useState(undefined);
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
     setError(undefined);
   };

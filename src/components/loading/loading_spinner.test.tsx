@@ -31,7 +31,7 @@ describe('EuiLoadingSpinner', () => {
   });
 
   describe('size', () => {
-    SIZES.forEach(size => {
+    SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
         const component = render(<EuiLoadingSpinner size={size} />);
 

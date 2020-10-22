@@ -93,7 +93,7 @@ export class EuiTableSortMobile extends Component<
           style={{ minWidth: 200 }}
           items={
             items && items.length
-              ? items.map(item => {
+              ? items.map((item) => {
                   return (
                     <EuiTableSortMobileItem
                       key={item.key}

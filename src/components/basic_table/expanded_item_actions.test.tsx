@@ -36,7 +36,7 @@ describe('ExpandedItemActions', () => {
         {
           name: 'custom1',
           description: 'custom 1',
-          render: _item => <></>,
+          render: (_item) => <></>,
         },
       ],
       itemId: 'xyz',

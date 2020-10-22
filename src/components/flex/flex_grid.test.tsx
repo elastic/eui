@@ -36,7 +36,7 @@ describe('EuiFlexGrid', () => {
 
   describe('props', () => {
     describe('gutterSize', () => {
-      GUTTER_SIZES.forEach(value => {
+      GUTTER_SIZES.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid gutterSize={value} />);
 
@@ -46,7 +46,7 @@ describe('EuiFlexGrid', () => {
     });
 
     describe('columns', () => {
-      COLUMNS.forEach(value => {
+      COLUMNS.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid columns={value} />);
 
@@ -56,7 +56,7 @@ describe('EuiFlexGrid', () => {
     });
 
     describe('direction', () => {
-      DIRECTIONS.forEach(value => {
+      DIRECTIONS.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid direction={value} />);
 

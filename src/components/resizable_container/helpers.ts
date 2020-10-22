@@ -94,7 +94,7 @@ export const useContainerCallbacks = ({
       const clientY = isMouseEvent(event)
         ? event.clientY
         : event.touches[0].clientY;
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         isDragging: true,
         currentResizerPos: isHorizontal ? clientX : clientY,
@@ -173,7 +173,7 @@ export const useContainerCallbacks = ({
   );
 
   const onMouseMove: onMouseMove = useCallback(
-    event => {
+    (event) => {
       if (state.isDragging && state.previousPanelId && state.nextPanelId) {
         const clientX = isMouseEvent(event)
           ? event.clientX

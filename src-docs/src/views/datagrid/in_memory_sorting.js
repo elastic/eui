@@ -56,19 +56,24 @@ export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
-    pageSize =>
-      setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
     [setPagination]
   );
   const onChangePage = useCallback(
-    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );
 
   // ** Sorting config
   const [sortingColumns, setSortingColumns] = useState([]);
   const onSort = useCallback(
-    sortingColumns => {
+    (sortingColumns) => {
       setSortingColumns(sortingColumns);
     },
     [setSortingColumns]

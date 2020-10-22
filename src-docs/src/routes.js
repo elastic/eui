@@ -144,8 +144,6 @@ import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
 
-import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
-
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
@@ -204,8 +202,6 @@ import { ToastExample } from './views/toast/toast_example';
 
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
-import { ToggleExample } from './views/toggle/toggle_example';
-
 import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
@@ -231,7 +227,7 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
  */
-const slugify = str => {
+const slugify = (str) => {
   const parts = str
     .toLowerCase()
     .replace(/[-]+/g, ' ')
@@ -264,11 +260,11 @@ const createExample = (example, customTitle) => {
     playground,
     guidelines,
   } = example;
-  sections.forEach(section => {
+  sections.forEach((section) => {
     section.id = slugify(section.title || title);
   });
 
-  const renderedSections = sections.map(section =>
+  const renderedSections = sections.map((section) =>
     createElement(GuideSection, {
       key: section.title || title,
       ...section,
@@ -337,13 +333,12 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      NavDrawerExample,
       PageExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
       SpacerExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Navigation',
@@ -361,7 +356,7 @@ const navigation = [
       SideNavExample,
       StepsExample,
       TabsExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Tabular content',
@@ -375,7 +370,7 @@ const navigation = [
       DataGridFooterRowExample,
       TableExample,
       TableInMemoryExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Display',
@@ -402,7 +397,7 @@ const navigation = [
       ToastExample,
       ToolTipExample,
       TourExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Forms',
@@ -422,7 +417,7 @@ const navigation = [
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Editors & syntax',
@@ -432,7 +427,7 @@ const navigation = [
       MarkdownPluginExample,
       CodeEditorExample,
       CodeExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Elastic Charts',
@@ -442,7 +437,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Utilities',
@@ -468,9 +463,8 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
-      ToggleExample,
       WindowEventExample,
-    ].map(example => createExample(example)),
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Package',
@@ -504,10 +498,10 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 export default {
   navigation,
 
-  getRouteForPath: path => {
+  getRouteForPath: (path) => {
     // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
     const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
-    return allRoutes.find(route => normalizedPath === route.path);
+    return allRoutes.find((route) => normalizedPath === route.path);
   },
 
   getAppRoutes: function getAppRoutes() {
@@ -515,7 +509,7 @@ export default {
   },
 
   getPreviousRoute: function getPreviousRoute(routeName) {
-    const index = allRoutes.findIndex(item => {
+    const index = allRoutes.findIndex((item) => {
       return item.name === routeName;
     });
 
@@ -523,7 +517,7 @@ export default {
   },
 
   getNextRoute: function getNextRoute(routeName) {
-    const index = allRoutes.findIndex(item => {
+    const index = allRoutes.findIndex((item) => {
       return item.name === routeName;
     });
 

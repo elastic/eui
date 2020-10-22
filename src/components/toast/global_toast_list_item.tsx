@@ -29,8 +29,9 @@ export interface EuiGlobalToastListItemProps {
   children?: ReactElement;
 }
 
-export const EuiGlobalToastListItem: FunctionComponent<CommonProps &
-  EuiGlobalToastListItemProps> = ({ children, isDismissed }) => {
+export const EuiGlobalToastListItem: FunctionComponent<
+  CommonProps & EuiGlobalToastListItemProps
+> = ({ children, isDismissed }) => {
   if (!children) {
     return null;
   }

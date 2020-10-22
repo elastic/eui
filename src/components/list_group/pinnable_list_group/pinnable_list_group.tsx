@@ -95,7 +95,7 @@ export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> 
     pinExtraActionLabel: string,
     pinnedExtraActionLabel: string
   ) =>
-    listItems.map(item => {
+    listItems.map((item) => {
       const { pinned, pinnable = true, ...itemProps } = item;
       // Make some declarations of props for the nav implementation
       itemProps.className = classNames(

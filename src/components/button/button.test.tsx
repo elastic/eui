@@ -68,9 +68,31 @@ describe('EuiButton', () => {
       });
     });
 
+    describe('isSelected', () => {
+      it('is rendered as true', () => {
+        const component = render(<EuiButton isSelected />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered as false', () => {
+        const component = render(<EuiButton isSelected={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('fullWidth', () => {
       it('is rendered', () => {
         const component = render(<EuiButton fullWidth />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('minWidth', () => {
+      it('is rendered', () => {
+        const component = render(<EuiButton minWidth={0} />);
 
         expect(component).toMatchSnapshot();
       });
@@ -85,7 +107,7 @@ describe('EuiButton', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiButton color={color} />);
 
@@ -95,7 +117,7 @@ describe('EuiButton', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiButton size={size} />);
 
@@ -105,7 +127,7 @@ describe('EuiButton', () => {
     });
 
     describe('iconSide', () => {
-      ICON_SIDES.forEach(iconSide => {
+      ICON_SIDES.forEach((iconSide) => {
         test(`${iconSide} is rendered`, () => {
           const component = render(
             <EuiButton iconType="user" iconSide={iconSide}>

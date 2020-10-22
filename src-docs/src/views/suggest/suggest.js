@@ -53,13 +53,13 @@ export default () => {
   const [status, setStatus] = useState('unchanged');
   const [radioIdSelected, setSelectedId] = useState(`${idPrefix}0`);
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     setSelectedId(optionId);
-    setStatus(radios.find(x => x.id === optionId).value);
+    setStatus(radios.find((x) => x.id === optionId).value);
   };
 
-  const onItemClick = item => {
-    alert(`Item [${item.label}] was clicked`);
+  const onItemClick = (item) => {
+    console.log(item);
   };
 
   return (
@@ -67,7 +67,7 @@ export default () => {
       <EuiRadioGroup
         options={radios}
         idSelected={radioIdSelected}
-        onChange={id => onChange(id)}
+        onChange={(id) => onChange(id)}
       />
       <EuiSpacer size="xl" />
       <EuiSuggest

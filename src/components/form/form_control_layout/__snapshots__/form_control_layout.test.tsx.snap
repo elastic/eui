@@ -30,7 +30,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
         data-test-subj="clearButton"
         type="button"
       >
-        <div
+        <span
           class="euiFormControlLayoutClearButton__icon"
           data-euiicon-type="cross"
         />
@@ -63,7 +63,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
       <span
         class="euiFormControlLayoutCustomIcon"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
           data-euiicon-type="alert"
@@ -88,7 +88,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
         class="euiFormControlLayoutCustomIcon customClass"
         data-test-subj="myIcon"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
           data-euiicon-type="alert"
@@ -112,7 +112,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
       <span
         class="euiFormControlLayoutCustomIcon"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
           data-euiicon-type="alert"
@@ -136,7 +136,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
       <span
         class="euiFormControlLayoutCustomIcon"
       >
-        <div
+        <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
           data-euiicon-type="alert"

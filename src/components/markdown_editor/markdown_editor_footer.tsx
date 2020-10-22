@@ -52,7 +52,9 @@ interface EuiMarkdownEditorFooterProps {
   dropHandlers: EuiMarkdownDropHandler[];
 }
 
-export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterProps> = props => {
+export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterProps> = (
+  props
+) => {
   const {
     uiPlugins,
     isUploadingFiles,
@@ -63,7 +65,8 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
   } = props;
   const [isShowingHelp, setIsShowingHelp] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
   let uploadButton;
@@ -154,6 +157,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
         }
         isOpen={isPopoverOpen}
         closePopover={closePopover}
+        panelPaddingSize="s"
         anchorPosition="upCenter">
         <div className="euiMarkdownEditorFooter__popover">
           <EuiPopoverTitle>
@@ -163,7 +167,9 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
             />
           </EuiPopoverTitle>
           {errors.map((message, idx) => (
-            <EuiText key={idx}>{message.toString()}</EuiText>
+            <EuiText size="s" key={idx}>
+              {message.toString()}
+            </EuiText>
           ))}
         </div>
       </EuiPopover>
