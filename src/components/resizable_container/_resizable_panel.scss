@@ -34,11 +34,6 @@
 }
 
 .euiResizableContainer--horizontal {
-  .euiResizablePanel--collapsed {
-    // sass-lint:disable-block no-important
-    min-width: 0 !important;
-  }
-
   .euiResizablePanel__toggleButton {
     top: 50%;
     margin-top: -12px;
@@ -51,6 +46,19 @@
     &.euiResizablePanel__toggleButton--left {
       right: 100%;
       margin-right: -4px;
+    }
+  }
+
+  .euiResizablePanel--collapsed {
+    // sass-lint:disable-block no-important
+    min-width: 0 !important;
+
+    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--right {
+      left: 6px;
+    }
+
+    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--left {
+      right: 6px;
     }
   }
 }

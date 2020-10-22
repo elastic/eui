@@ -271,12 +271,15 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     onToggleCollapsed && onToggleCollapsed(panelId.current, options);
   };
 
-  const collapseLeft = () => {
+  const collapseLeft = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClickCollapse({ direction: 'left' });
+    if (e.detail) e.currentTarget.blur();
   };
 
-  const collapseRight = () => {
+  const collapseRight = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClickCollapse({ direction: 'right' });
+    e.currentTarget.blur();
+    if (e.detail) e.currentTarget.blur();
   };
 
   const toggleObject =
