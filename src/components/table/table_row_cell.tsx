@@ -88,7 +88,10 @@ interface EuiTableRowCellMobileOptionsShape {
    * (typically cells are contained to 50%)
    */
   fullWidth?: boolean;
-  width?: string | number;
+  /**
+   * Applies the value to the width of the cell in mobile view (typically 50%)
+   */
+  width?: CSSProperties['width'];
 }
 
 interface EuiTableRowCellProps {
