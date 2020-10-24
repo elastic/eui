@@ -118,7 +118,7 @@ export const Table = () => {
             )
           : undefined,
         header: customHeader ? false : true,
-        width: customHeader ? '100%' : 'auto',
+        width: customHeader ? '100%' : undefined,
         enlarge: customHeader ? true : false,
         truncateText: customHeader ? false : true,
       },
