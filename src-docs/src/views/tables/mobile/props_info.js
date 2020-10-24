@@ -40,7 +40,7 @@ export const propsInfo = {
         },
         width: {
           description:
-            'Allocates value given of the width of the container in mobile view (typically cells are contained to 50%)',
+            'Applies the value to the width of the cell in mobile view (typically 50%)',
           required: false,
           type: { name: 'string' },
         },
