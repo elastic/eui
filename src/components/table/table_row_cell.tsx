@@ -18,6 +18,7 @@
  */
 
 import React, {
+  CSSProperties,
   Fragment,
   FunctionComponent,
   ReactElement,
