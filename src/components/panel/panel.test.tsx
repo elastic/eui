@@ -21,12 +21,24 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPanel } from './panel';
+import { EuiPanel, SIZES } from './panel';
 
 describe('EuiPanel', () => {
   test('is rendered', () => {
     const component = render(<EuiPanel {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('paddingSize', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(<EuiPanel paddingSize={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });

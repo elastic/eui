@@ -308,9 +308,11 @@ const HeaderSpacesMenu = () => {
         }}>
         {(list, search) => (
           <>
-            <EuiPopoverTitle>{search || 'Your spaces'}</EuiPopoverTitle>
+            <EuiPopoverTitle paddingSize="s">
+              {search || 'Your spaces'}
+            </EuiPopoverTitle>
             {list}
-            <EuiPopoverFooter>
+            <EuiPopoverFooter paddingSize="s">
               <EuiButton
                 size="s"
                 fullWidth

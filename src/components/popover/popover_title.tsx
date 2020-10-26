@@ -19,18 +19,40 @@
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
+import { PanelPaddingSize } from '../panel';
 
 export type EuiPopoverTitleProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> & CommonProps
+  HTMLAttributes<HTMLDivElement> &
+    CommonProps & {
+      /**
+       * Customize the all around padding of the popover title.
+       * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
+       */
+      paddingSize?: PanelPaddingSize;
+    }
 >;
+
+const paddingSizeToClassNameMap = {
+  none: 'euiPopoverTitle--paddingNone',
+  s: 'euiPopoverTitle--paddingSmall',
+  m: 'euiPopoverTitle--paddingMedium',
+  l: 'euiPopoverTitle--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiPopoverTitle: EuiPopoverTitleProps = ({
   children,
   className,
+  paddingSize,
   ...rest
 }) => {
-  const classes = classNames('euiPopoverTitle', className);
+  const classes = classNames(
+    'euiPopoverTitle',
+    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
+    className
+  );
 
   return (
     <div className={classes} {...rest}>

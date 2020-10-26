@@ -3,10 +3,7 @@ import React from 'react';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 
 export default () => (
-  <button
-    onClick={() => {
-      window.alert('click');
-    }}>
+  <button onClick={() => {}}>
     <EuiFlexGroup component="span">
       <EuiFlexItem component="span">
         These items are within a button

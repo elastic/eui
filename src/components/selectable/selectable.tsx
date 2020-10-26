@@ -154,7 +154,7 @@ export class EuiSelectable<T = {}> extends Component<
     singleSelection: false,
     searchable: false,
   };
-
+  private containerRef = createRef<HTMLDivElement>();
   private optionsListRef = createRef<EuiSelectableList<T>>();
   rootId = htmlIdGenerator();
   constructor(props: EuiSelectableProps<T>) {
@@ -335,7 +335,10 @@ export class EuiSelectable<T = {}> extends Component<
     );
   };
 
-  onContainerBlur = () => {
+  onContainerBlur = (e: React.FocusEvent) => {
+    // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
+    if (this.containerRef.current!.contains(e.relatedTarget as Node)) return;
+
     this.setState({
       activeOptionIndex: undefined,
       isFocused: false,
@@ -592,6 +595,7 @@ export class EuiSelectable<T = {}> extends Component<
 
     return (
       <div
+        ref={this.containerRef}
         className={classes}
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}

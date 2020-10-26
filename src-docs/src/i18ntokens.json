@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 609,
+        "line": 675,
         "column": 10
       },
       "end": {
-        "line": 619,
+        "line": 685,
         "column": 12
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 628,
+        "line": 694,
         "column": 12
       },
       "end": {
-        "line": 639,
+        "line": 705,
         "column": 14
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 643,
+        "line": 709,
         "column": 12
       },
       "end": {
-        "line": 653,
+        "line": 719,
         "column": 14
       }
     },
@@ -69,11 +69,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 658,
+        "line": 724,
         "column": 10
       },
       "end": {
-        "line": 664,
+        "line": 730,
         "column": 12
       }
     },
@@ -85,11 +85,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 704,
+        "line": 770,
         "column": 6
       },
       "end": {
-        "line": 704,
+        "line": 770,
         "column": 77
       }
     },
@@ -101,11 +101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1096,
+        "line": 1162,
         "column": 8
       },
       "end": {
-        "line": 1096,
+        "line": 1162,
         "column": 79
       }
     },
@@ -117,11 +117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1317,
+        "line": 1383,
         "column": 10
       },
       "end": {
-        "line": 1321,
+        "line": 1387,
         "column": 12
       }
     },
@@ -277,11 +277,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 274,
+        "line": 263,
         "column": 12
       },
       "end": {
-        "line": 277,
+        "line": 266,
         "column": 14
       }
     },
@@ -293,11 +293,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 279,
+        "line": 268,
         "column": 12
       },
       "end": {
-        "line": 282,
+        "line": 271,
         "column": 14
       }
     },
@@ -309,11 +309,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 288,
+        "line": 277,
         "column": 12
       },
       "end": {
-        "line": 291,
+        "line": 280,
         "column": 14
       }
     },
@@ -325,11 +325,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 293,
+        "line": 282,
         "column": 12
       },
       "end": {
-        "line": 296,
+        "line": 285,
         "column": 14
       }
     },
@@ -992,20 +992,20 @@
     "filepath": "src/components/datagrid/column_sorting.tsx"
   },
   {
-    "token": "euiDataGridCell.expandButtonTitle",
+    "token": "euiDataGridCellButtons.expandButtonTitle",
     "defString": "Click or hit enter to interact with cell content",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 396,
-        "column": 6
+        "line": 47,
+        "column": 4
       },
       "end": {
-        "line": 398,
-        "column": 67
+        "line": 50,
+        "column": 65
       }
     },
-    "filepath": "src/components/datagrid/data_grid_cell.tsx"
+    "filepath": "src/components/datagrid/data_grid_cell_buttons.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.headerActions",
@@ -1941,11 +1941,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 163,
+        "line": 164,
         "column": 12
       },
       "end": {
-        "line": 166,
+        "line": 167,
         "column": 14
       }
     },
@@ -1957,11 +1957,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 196,
+        "line": 199,
         "column": 18
       },
       "end": {
-        "line": 199,
+        "line": 202,
         "column": 20
       }
     },
@@ -2165,11 +2165,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 676,
+        "line": 691,
         "column": 14
       },
       "end": {
-        "line": 679,
+        "line": 694,
         "column": 16
       }
     },
@@ -2309,11 +2309,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 427,
+        "line": 430,
         "column": 16
       },
       "end": {
-        "line": 430,
+        "line": 433,
         "column": 18
       }
     },
@@ -2325,11 +2325,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 449,
+        "line": 452,
         "column": 14
       },
       "end": {
-        "line": 453,
+        "line": 456,
         "column": 16
       }
     },
@@ -2341,11 +2341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 468,
+        "line": 471,
         "column": 14
       },
       "end": {
-        "line": 471,
+        "line": 474,
         "column": 16
       }
     },
@@ -2357,11 +2357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 535,
+        "line": 538,
         "column": 6
       },
       "end": {
-        "line": 535,
+        "line": 538,
         "column": 78
       }
     },
@@ -2373,11 +2373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 564,
+        "line": 567,
         "column": 6
       },
       "end": {
-        "line": 564,
+        "line": 567,
         "column": 78
       }
     },
@@ -2400,100 +2400,196 @@
     "filepath": "src/components/stat/stat.tsx"
   },
   {
-    "token": "euiStepHorizontal.buttonTitle",
-    "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}: Pick<EuiStepHorizontalProps, 'step' | 'title' | 'disabled' | 'isComplete'>) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
-    "highlighting": "code",
+    "token": "euiStepStrings.step",
+    "defString": "Step {number}: {title}",
+    "highlighting": "string",
     "loc": {
       "start": {
-        "line": 92,
+        "line": 25,
+        "column": 17
+      },
+      "end": {
+        "line": 28,
         "column": 4
-      },
-      "end": {
-        "line": 112,
-        "column": 53
       }
     },
-    "filepath": "src/components/steps/step_horizontal.tsx"
+    "filepath": "src/components/steps/step_strings.tsx"
   },
   {
-    "token": "euiStepHorizontal.step",
-    "defString": "Step",
+    "token": "euiStepStrings.simpleStep",
+    "defString": "Step {number}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 126,
-        "column": 16
+        "line": 30,
+        "column": 23
       },
       "end": {
-        "line": 126,
-        "column": 73
+        "line": 34,
+        "column": 3
       }
     },
-    "filepath": "src/components/steps/step_horizontal.tsx"
+    "filepath": "src/components/steps/step_strings.tsx"
   },
   {
-    "token": "euiStepNumber.isComplete",
-    "defString": "complete",
+    "token": "euiStepStrings.complete",
+    "defString": "Step {number}: {title} is complete",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 40,
+        "column": 17
+      },
+      "end": {
+        "line": 47,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.simpleComplete",
+    "defString": "Step {number} is complete",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 49,
+        "column": 23
+      },
+      "end": {
+        "line": 53,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.warning",
+    "defString": "Step {number}: {title} has warnings",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 59,
+        "column": 17
+      },
+      "end": {
+        "line": 66,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.simpleWarning",
+    "defString": "Step {number} has warnings",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 68,
+        "column": 23
+      },
+      "end": {
+        "line": 72,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.errors",
+    "defString": "Step {number}: {title} has errors",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 78,
+        "column": 17
+      },
+      "end": {
+        "line": 85,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.simpleErrors",
+    "defString": "Step {number} has errors",
     "highlighting": "string",
     "loc": {
       "start": {
         "line": 87,
-        "column": 6
+        "column": 23
       },
       "end": {
-        "line": 87,
-        "column": 67
+        "line": 91,
+        "column": 3
       }
     },
-    "filepath": "src/components/steps/step_number.tsx"
+    "filepath": "src/components/steps/step_strings.tsx"
   },
   {
-    "token": "euiStepNumber.hasWarnings",
-    "defString": "has warnings",
+    "token": "euiStepStrings.incomplete",
+    "defString": "Step {number}: {title} is incomplete",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 100,
-        "column": 6
+        "line": 97,
+        "column": 17
       },
       "end": {
-        "line": 100,
-        "column": 72
+        "line": 104,
+        "column": 3
       }
     },
-    "filepath": "src/components/steps/step_number.tsx"
+    "filepath": "src/components/steps/step_strings.tsx"
   },
   {
-    "token": "euiStepNumber.hasErrors",
-    "defString": "has errors",
+    "token": "euiStepStrings.simpleIncomplete",
+    "defString": "Step {number} is incomplete",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 113,
-        "column": 6
+        "line": 106,
+        "column": 23
       },
       "end": {
-        "line": 113,
-        "column": 68
+        "line": 110,
+        "column": 3
       }
     },
-    "filepath": "src/components/steps/step_number.tsx"
+    "filepath": "src/components/steps/step_strings.tsx"
   },
   {
-    "token": "euiStep.ariaLabel",
-    "defString": "({\n  status\n}: {\n  status?: EuiStepStatus;\n}) => {\n  if (status === 'incomplete') return 'Incomplete Step';\n  return 'Step';\n};",
-    "highlighting": "code",
+    "token": "euiStepStrings.disabled",
+    "defString": "Step {number}: {title} is disabled",
+    "highlighting": "string",
     "loc": {
       "start": {
-        "line": 83,
-        "column": 8
+        "line": 116,
+        "column": 17
       },
       "end": {
-        "line": 89,
-        "column": 30
+        "line": 123,
+        "column": 3
       }
     },
-    "filepath": "src/components/steps/step.tsx"
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.simpleDisabled",
+    "defString": "Step {number} is disabled",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 125,
+        "column": 23
+      },
+      "end": {
+        "line": 129,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
   },
   {
     "token": "euiTableSortMobile.sorting",

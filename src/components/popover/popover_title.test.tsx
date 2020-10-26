@@ -21,12 +21,24 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPopoverTitle } from './popover_title';
+import { EuiPopoverTitle, PADDING_SIZES } from './popover_title';
 
 describe('EuiPopoverTitle', () => {
   test('is rendered', () => {
     const component = render(<EuiPopoverTitle {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('paddingSize', () => {
+      PADDING_SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(<EuiPopoverTitle paddingSize={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });

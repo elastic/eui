@@ -35,7 +35,6 @@ export const GlobalFilterItem = (props) => {
   };
 
   const deleteFilter = (e) => {
-    window.alert('Filter would have been deleted.');
     // Make sure it doesn't also trigger the onclick for the whole badge
     e.stopPropagation();
   };
