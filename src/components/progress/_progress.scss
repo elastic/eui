@@ -89,16 +89,6 @@ $euiProgressSizes: (
   }
 }
 
-// Progress bars come in different colors.
-$euiProgressColors: (
-  primary: $euiColorPrimary,
-  secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  accent: $euiColorAccent,
-  subdued: $euiTextSubduedColor,
-);
-
 @each $name, $color in $euiProgressColors {
   .euiProgress--#{$name} {
     &.euiProgress--native {
@@ -118,9 +108,11 @@ $euiProgressColors: (
     }
   }
 
-  .euiProgress__data--#{$name} {
-    .euiProgress__valueText {
-      color: makeHighContrastColor($color);
+  @if ($name != 'customColor') {
+    .euiProgress__data--#{$name} {
+      .euiProgress__valueText {
+        color: makeHighContrastColor($color);
+      }
     }
   }
 }

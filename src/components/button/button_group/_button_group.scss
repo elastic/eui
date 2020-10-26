@@ -47,9 +47,4 @@
     border: 1px solid $euiFormBorderColor;
     overflow: visible;
   }
-
-  .euiButtonGroupButton {
-    // Add 2 to the border radius to account for the background-clip
-    border-radius: $euiFormControlCompressedBorderRadius + 2;
-  }
 }
