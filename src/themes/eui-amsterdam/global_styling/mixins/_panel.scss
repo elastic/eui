@@ -3,11 +3,6 @@
     @error 'A $selector must be provided to @mixin euiPanel().';
   } @else {
     #{$selector} {
-
-      @include euiBottomShadowSmall;
-      background-color: $euiColorEmptyShade;
-      border: none;
-      border-radius: $euiBorderRadius;
       flex-grow: 1;
 
       &#{$selector}--flexGrowZero {

@@ -21,7 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPanel, SIZES } from './panel';
+import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
 describe('EuiPanel', () => {
   test('is rendered', () => {
@@ -35,6 +35,26 @@ describe('EuiPanel', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiPanel paddingSize={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('backgroundColor', () => {
+      COLORS.forEach((color) => {
+        test(`${color} is rendered`, () => {
+          const component = render(<EuiPanel backgroundColor={color} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('borderRadius', () => {
+      BORDER_RADII.forEach((borderRadius) => {
+        test(`${borderRadius} is rendered`, () => {
+          const component = render(<EuiPanel borderRadius={borderRadius} />);
 
           expect(component).toMatchSnapshot();
         });

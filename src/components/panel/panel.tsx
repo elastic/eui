@@ -29,24 +29,54 @@ import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 import { EuiBetaBadge } from '../badge/beta_badge';
 
-export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiPanel--paddingSmall',
+  m: 'euiPanel--paddingMedium',
+  l: 'euiPanel--paddingLarge',
+};
+
+export const SIZES = keysOf(paddingSizeToClassNameMap);
+
+const borderRadiusToClassNameMap = {
+  none: 'euiPanel--borderRadiusNone',
+  m: 'euiPanel--borderRadiusMedium',
+};
+
+export const BORDER_RADII = keysOf(borderRadiusToClassNameMap);
+
+export const COLORS = [
+  'transparent',
+  'plain',
+  'subdued',
+  'accent',
+  'primary',
+  'success',
+  'warning',
+  'danger',
+] as const;
+
+export type PanelColor = typeof COLORS[number];
+export type PanelPaddingSize = typeof SIZES[number];
+export type PanelBorderRadius = typeof BORDER_RADII[number];
 
 interface Props extends CommonProps {
   /**
-   * If active, adds a deeper shadow to the panel
+   * If active, adds a deep shadow to the panel
    */
   hasShadow?: boolean;
   /**
-   * Padding applied to the panel
+   * Padding for all four sides
    */
   paddingSize?: PanelPaddingSize;
+  /**
+   * Corner border radius
+   */
+  borderRadius?: PanelBorderRadius;
   /**
    * When true the panel will grow to match `EuiFlexItem`
    */
   grow?: boolean;
-
-  panelRef?: Ref<HTMLDivElement>;
-
   /**
    * Add a badge to the panel to label it as "Beta" or other non-GA state
    */
@@ -61,6 +91,14 @@ interface Props extends CommonProps {
    * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
    */
   betaBadgeTitle?: string;
+
+  panelRef?: Ref<HTMLDivElement>;
+  /**
+   * *AMSTERDAM ONLY*
+   * Background color of the panel;
+   * Usually a lightened form of the brand colors
+   */
+  backgroundColor?: PanelColor;
 }
 
 interface Divlike
@@ -71,19 +109,12 @@ interface Buttonlike extends Props, ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPanel--paddingSmall',
-  m: 'euiPanel--paddingMedium',
-  l: 'euiPanel--paddingLarge',
-};
-
-export const SIZES = keysOf(paddingSizeToClassNameMap);
-
 export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,
   className,
   paddingSize = 'm',
+  borderRadius = 'm',
+  backgroundColor = 'plain',
   hasShadow = false,
   grow = true,
   panelRef,
@@ -95,7 +126,9 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
 }) => {
   const classes = classNames(
     'euiPanel',
-    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
+    paddingSizeToClassNameMap[paddingSize],
+    borderRadiusToClassNameMap[borderRadius],
+    `euiPanel--${backgroundColor}`,
     {
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,

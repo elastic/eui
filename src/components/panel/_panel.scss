@@ -2,7 +2,7 @@
 @include euiPanel($selector: '.euiPanel');
 @include euiHasBetaBadge($selector: '.euiPanel');
 
-// Specific
+// Padding
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPanel--#{$modifier} {
     padding: $amount;
@@ -11,5 +11,19 @@
     .euiPanel__betaBadgeWrapper {
       max-width: calc(100% - #{$amount*2});
     }
+  }
+}
+
+// Border Radii
+@each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+  .euiPanel--#{$modifier} {
+    border-radius: $amount;
+  }
+}
+
+// Background colors
+@each $modifier, $amount in $euiPanelBackgroundColorModifiers {
+  .euiPanel--#{$modifier} {
+    background-color: $amount;
   }
 }
