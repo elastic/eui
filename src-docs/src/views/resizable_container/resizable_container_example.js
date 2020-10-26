@@ -21,6 +21,7 @@ import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizableResizerSize from './resizable_resizer_size';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
+import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVericalSource = require('!!raw-loader!./resizable_container_vertical');
@@ -28,6 +29,7 @@ const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_co
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizableResizerSizeSource = require('!!raw-loader!./resizable_resizer_size');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
+const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
 
 const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
 const ResizableContainerVericalHtml = renderToHtml(ResizableContainerVertical);
@@ -39,6 +41,9 @@ const ResizableContainerResetValuesHtml = renderToHtml(
 );
 const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
+const ResizablePanelCollapsibleExtHtml = renderToHtml(
+  ResizablePanelCollapsibleExt
+);
 
 const snippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton) => (
@@ -276,8 +281,44 @@ export const ResizableContainerExample = {
           <p>Coming soon</p>
         </div>
       ),
-      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizablePanelCollapsible />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizablePanelCollapsibleExtSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizablePanelCollapsibleExtHtml,
+        },
+      ],
+      title: 'Collapsible panels with external control',
+      text: (
+        <div>
+          {/* <p>
+            You can add toggling to <strong>EuiResizablePanel</strong>s inside a{' '}
+            <strong>EuiResizableContainer</strong> of horizontal{' '}
+            <EuiCode>direction</EuiCode>. To do so, pass the{' '}
+            <EuiCode>toggle</EuiCode> prop to a{' '}
+            <strong>EuiResizablePanel</strong> to have it trigger the toggling
+            and show a toggle button at the top of it. You will also need to
+            pass
+            <EuiCode>willExpand</EuiCode> to the{' '}
+            <strong>EuiResizablePanel</strong> that will increase its width when
+            toggling is triggered.
+          </p>
+          <p>
+            Set <EuiCode>toggle</EuiCode> to true to use the defaults for{' '}
+            <EuiCode>notCollapsedIcon</EuiCode> and{' '}
+            <EuiCode>collapsedIcon</EuiCode>. Alternatively, you can pass an
+            object customizing those values.
+          </p> */}
+          <p>Coming soon</p>
+        </div>
+      ),
+      demo: <ResizablePanelCollapsibleExt />,
     },
   ],
 };
