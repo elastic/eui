@@ -24,7 +24,11 @@ export {
   Criteria,
   CriteriaWithPagination,
 } from './basic_table';
-export { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
+export {
+  EuiInMemoryTable,
+  EuiInMemoryTableProps,
+  Search,
+} from './in_memory_table';
 export {
   EuiTableDataType,
   EuiTableFooterProps,
@@ -36,3 +40,7 @@ export {
 } from './table_types';
 export { Pagination } from './pagination_bar';
 export { DefaultItemAction, CustomItemAction } from './action_types';
+export {
+  SearchFilterConfig,
+  FieldValueOptionType,
+} from '../search_bar/filters';
