@@ -2,7 +2,7 @@
 
 - Improved `EuiButtonGroup` focus, hover, selected and disabled states ([#4142](https://github.com/elastic/eui/pull/4142))
 - Added `display` prop to `EuiToolTip` for common display block needs ([#4148](https://github.com/elastic/eui/pull/4148))
-- Added more exports for `EuiInMemoryTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
+- Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
 
 **Bug fixes**
 
