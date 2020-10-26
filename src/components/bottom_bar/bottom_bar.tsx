@@ -101,7 +101,9 @@ export class EuiBottomBar extends Component<Props> {
   }
 
   componentWillUnmount() {
-    document.body.style.paddingBottom = '';
+    if (this.props.affordForDisplacement) {
+      document.body.style.paddingBottom = '';
+    }
 
     if (this.props.bodyClassName) {
       document.body.classList.remove(this.props.bodyClassName);
