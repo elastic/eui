@@ -64,7 +64,12 @@
     }
   }
 
-  .euiSuggestItem__description,
+  .euiSuggestItem__description {
+    // @include euiTextBreakWord;
+    display: block;
+  }
+
+  // .euiSuggestItem__description,
   .euiSuggestItem__label {
     @include euiTextTruncate;
     display: block;

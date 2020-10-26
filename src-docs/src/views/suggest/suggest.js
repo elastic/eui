@@ -9,12 +9,15 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 const shortDescription = 'This is the description';
+const longDescription =
+  'This is very long long descriptionThis is very long long descriptionThis is very long long description';
 
 const sampleItems = [
   {
     type: { iconType: 'kqlField', color: 'tint4' },
-    label: 'Field sample',
-    description: shortDescription,
+    label: longDescription,
+    description: longDescription,
+    labelDisplay: 'expand',
   },
   {
     type: { iconType: 'kqlValue', color: 'tint0' },

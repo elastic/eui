@@ -59,6 +59,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = (
       type={item.type}
       key={index}
       label={item.label}
+      labelDisplay={item.labelDisplay}
       onClick={onItemClick ? () => onItemClick(item) : undefined}
       description={item.description}
     />
