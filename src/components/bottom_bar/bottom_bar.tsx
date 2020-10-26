@@ -78,10 +78,30 @@ export class EuiBottomBar extends Component<Props> {
     }
   }
 
-  componentWillUnmount() {
-    if (this.props.affordForDisplacement) {
-      document.body.style.paddingBottom = '';
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.affordForDisplacement !== this.props.affordForDisplacement) {
+      if (this.props.affordForDisplacement) {
+        // start affording for displacement
+        const height = this.bar ? this.bar.clientHeight : -1;
+        document.body.style.paddingBottom = `${height}px`;
+      } else {
+        // stop affording for displacement
+        document.body.style.paddingBottom = '';
+      }
     }
+
+    if (prevProps.bodyClassName !== this.props.bodyClassName) {
+      if (prevProps.bodyClassName) {
+        document.body.classList.remove(prevProps.bodyClassName);
+      }
+      if (this.props.bodyClassName) {
+        document.body.classList.add(this.props.bodyClassName);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.paddingBottom = '';
 
     if (this.props.bodyClassName) {
       document.body.classList.remove(this.props.bodyClassName);
@@ -95,7 +115,7 @@ export class EuiBottomBar extends Component<Props> {
       paddingSize,
       bodyClassName,
       landmarkHeading,
-      affordForDisplacement, // eslint-disable-line no-unused-vars
+      affordForDisplacement,
       ...rest
     } = this.props;
 

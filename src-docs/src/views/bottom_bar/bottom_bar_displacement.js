@@ -37,24 +37,9 @@ export default () => {
         onChange={(id) => onChange(id)}
       />
 
-      {toggleIdSelected === 'bottomBarStandard' && (
-        <EuiBottomBar>
-          <EuiFlexGroup justifyContent="flexEnd">
-            <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
-                onClick={() => setToggleIdSelected(null)}
-                color="ghost"
-                size="s"
-                iconType="cross">
-                close
-              </EuiButtonEmpty>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiBottomBar>
-      )}
-
-      {toggleIdSelected === 'bottomBarWithoutAffordForDisplacement' && (
-        <EuiBottomBar affordForDisplacement={false}>
+      {toggleIdSelected && (
+        <EuiBottomBar
+          affordForDisplacement={toggleIdSelected === 'bottomBarStandard'}>
           <EuiFlexGroup justifyContent="flexEnd">
             <EuiFlexItem grow={false}>
               <EuiButtonEmpty
