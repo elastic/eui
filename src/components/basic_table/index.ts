@@ -40,7 +40,3 @@ export {
 } from './table_types';
 export { Pagination } from './pagination_bar';
 export { DefaultItemAction, CustomItemAction } from './action_types';
-export {
-  SearchFilterConfig,
-  FieldValueOptionType,
-} from '../search_bar/filters';
