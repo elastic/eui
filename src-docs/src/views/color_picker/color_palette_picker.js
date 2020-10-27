@@ -37,11 +37,11 @@ const palettes = [
       },
       {
         stop: 250,
-        color: 'gray',
+        color: 'lightgray',
       },
       {
-        stop: 350,
-        color: 'dimgray',
+        stop: 320,
+        color: 'gray',
       },
       {
         stop: 470,
@@ -60,11 +60,11 @@ const palettes = [
       },
       {
         stop: 250,
-        color: 'gray',
+        color: 'lightgray',
       },
       {
-        stop: 350,
-        color: 'dimgray',
+        stop: 320,
+        color: 'gray',
       },
       {
         stop: 470,

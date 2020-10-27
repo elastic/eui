@@ -180,7 +180,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
     for (let i = 1; i < lastColorStopArrayPosition; i++) {
       linearGradient = `${linearGradient} ${
         paletteColorStop[i].color
-      }\ ${Math.floor(paletteColorStop[i].stop * lastColorStopDecimal)}%,`;
+      }\ ${Math.round(paletteColorStop[i].stop * lastColorStopDecimal)}%,`;
     }
 
     const linearGradientStyle = `${linearGradient} ${paletteColorStop[lastColorStopArrayPosition].color} 100%)`;
@@ -190,7 +190,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
     linearGradient = `linear-gradient(to right, ${palette[0]} 0%,`;
 
     for (let i = 1; i < lastColorStopArrayPosition; i++) {
-      linearGradient = `${linearGradient} ${palette[i]}\ ${Math.floor(
+      linearGradient = `${linearGradient} ${palette[i]}\ ${Math.round(
         (100 * i) / lastColorStopArrayPosition
       )}%,`;
     }

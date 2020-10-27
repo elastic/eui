@@ -41,9 +41,10 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
     return (
       <div className="euiColorPaletteDisplay euiColorPaletteDisplay--fixed">
         {paletteColorStop.map((colorStop: any, index: number) => {
-          const numberOfStops = palette.length;
+          const lastColorStopArrayPosition = palette.length - 1;
 
-          const decimal = 100 / paletteColorStop[numberOfStops - 1].stop;
+          const lastColorStopDecimal =
+            100 / paletteColorStop[lastColorStopArrayPosition].stop;
 
           const isFirstColorStop = index === 0;
 
@@ -52,15 +53,16 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
           if (isFirstColorStop) {
             previousColorStopWidth = 0;
           } else {
-            previousColorStopWidth =
-              Math.floor(paletteColorStop[index - 1].stop) * decimal;
+            previousColorStopWidth = Math.round(
+              paletteColorStop[index - 1].stop * lastColorStopDecimal
+            );
           }
 
-          const currentColorStopWidth = Math.floor(colorStop.stop * decimal);
+          const currentColorStopWidth = Math.round(
+            colorStop.stop * lastColorStopDecimal
+          );
 
-          const colorStopWidth = (
-            currentColorStopWidth - previousColorStopWidth
-          ).toFixed(0);
+          const colorStopWidth = currentColorStopWidth - previousColorStopWidth;
 
           return (
             <span
