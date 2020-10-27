@@ -290,6 +290,7 @@ const stopKitchenSinkSnippet = `<EuiColorStops
 
 export const ColorPickerExample = {
   title: 'Color selection',
+  isNew: true,
   intro: (
     <React.Fragment>
       <EuiText>
