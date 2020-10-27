@@ -38,6 +38,12 @@ export const propsInfo = {
           required: false,
           type: { name: 'bool' },
         },
+        width: {
+          description:
+            'Applies the value to the width of the cell in mobile view (typically 50%)',
+          required: false,
+          type: { name: 'string' },
+        },
       },
     },
   },
