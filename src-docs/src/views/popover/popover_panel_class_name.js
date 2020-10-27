@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiPopover, EuiButton } from '../../../../src/components';
+import { EuiPopover, EuiButton, EuiText } from '../../../../src/components';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -17,14 +17,15 @@ export default () => {
           iconType="arrowDown"
           iconSide="right"
           onClick={onButtonClick}>
-          Turn padding off and apply a custom class
+          Text scaling
         </EuiButton>
       }
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      panelClassName="yourClassNameHere"
-      panelPaddingSize="none">
-      This should have no padding, and if you inspect, also a custom class.
+      panelClassName="guideDemo__textLines">
+      <EuiText style={{ width: 100 }}>
+        <p>This has a custom class that applies some grid lines.</p>
+      </EuiText>
     </EuiPopover>
   );
 };

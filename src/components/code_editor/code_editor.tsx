@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { Component, AriaAttributes, KeyboardEventHandler } from 'react';
+import React, { Component, AriaAttributes } from 'react';
 import classNames from 'classnames';
 import AceEditor, { IAceEditorProps } from 'react-ace';
 
@@ -92,7 +92,7 @@ export class EuiCodeEditor extends Component<
 
   idGenerator = htmlIdGenerator();
   aceEditor: AceEditor | null = null;
-  editorHint: HTMLDivElement | null = null;
+  editorHint: HTMLButtonElement | null = null;
 
   aceEditorRef = (aceEditor: AceEditor | null) => {
     if (aceEditor) {
@@ -151,13 +151,6 @@ export class EuiCodeEditor extends Component<
     this.stopEditing();
     if (this.props.onBlur) {
       this.props.onBlur(event, editor);
-    }
-  };
-
-  onKeyDownHint: KeyboardEventHandler<HTMLDivElement> = (event) => {
-    if (event.key === keys.ENTER) {
-      event.preventDefault();
-      this.startEditing();
     }
   };
 
@@ -256,18 +249,14 @@ export class EuiCodeEditor extends Component<
       filteredCursorStart = cursorStart;
     }
 
-    // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
-      <div
+      <button
         className={promptClasses}
         id={this.idGenerator('codeEditor')}
         ref={(hint) => {
           this.editorHint = hint;
         }}
-        tabIndex={0}
-        role="button"
         onClick={this.startEditing}
-        onKeyDown={this.onKeyDownHint}
         data-test-subj="codeEditorHint">
         <p className="euiText">
           {isReadOnly ? (
@@ -296,7 +285,7 @@ export class EuiCodeEditor extends Component<
             />
           )}
         </p>
-      </div>
+      </button>
     );
 
     return (

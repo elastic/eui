@@ -124,7 +124,7 @@ const getRowProps = (item) => {
   return {
     'data-test-subj': `row-${id}`,
     className: 'customRowClass',
-    onClick: () => console.log(`Clicked row ${id}`),
+    onClick: () => {},
   };
 };
 

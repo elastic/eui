@@ -17,9 +17,10 @@
  * under the License.
  */
 
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, JSXElementConstructor, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiListGroupItemProps } from '../list_group';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -54,7 +55,7 @@ export interface EuiDataGridColumn {
    */
   schema?: string;
   /**
-   * Defaults to true. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
+   * Defaults to true, always true if cellActions are defined. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
   /**
@@ -81,7 +82,15 @@ export interface EuiDataGridColumn {
    * Configuration of column actions. Set to false to disable or use #EuiDataGridColumnActions to configure the actions displayed in the header cell of the column.
    */
   actions?: false | EuiDataGridColumnActions;
+  /**
+   * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
+   */
+  cellActions?: EuiDataGridColumnCellAction[];
 }
+
+export type EuiDataGridColumnCellAction =
+  | JSXElementConstructor<EuiDataGridColumnCellActionProps>
+  | ((props: EuiDataGridColumnCellActionProps) => ReactNode);
 
 export interface EuiDataGridColumnActions {
   /**
@@ -108,6 +117,26 @@ export interface EuiDataGridColumnActions {
    * Append additional actions
    */
   additional?: EuiListGroupItemProps[];
+}
+
+export interface EuiDataGridColumnCellActionProps {
+  /**
+   * The index of the row that contains cell's data
+   */
+  rowIndex: number;
+  /**
+   * The id of the column that contains the cell's data
+   */
+  columnId: string;
+  /**
+   * React component representing the action displayed in the cell
+   */
+  // Component: ComponentType<EuiButtonEmptyProps | EuiButtonProps>;
+  Component: typeof EuiButtonEmpty | typeof EuiButtonIcon;
+  /**
+   * Determines whether the cell's action is displayed expanded (in the Popover)
+   */
+  isExpanded: boolean;
 }
 
 export interface EuiDataGridColumnVisibility {

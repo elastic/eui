@@ -34,24 +34,18 @@ for (let i = 0; i < 10; i++) {
     </span>,
 
     <span>
-      <EuiButtonEmpty size="xs" onClick={() => console.log('clicked Yes')}>
+      <EuiButtonEmpty size="xs" onClick={() => {}}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty
-        size="xs"
-        color="danger"
-        onClick={() => console.log('clicked No')}>
+      <EuiButtonEmpty size="xs" color="danger" onClick={() => {}}>
         No
       </EuiButtonEmpty>
     </span>,
     <span>
-      <EuiButtonEmpty size="xs" onClick={() => console.log('clicked Yes')}>
+      <EuiButtonEmpty size="xs" onClick={() => {}}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty
-        size="xs"
-        color="danger"
-        onClick={() => console.log('clicked No')}>
+      <EuiButtonEmpty size="xs" color="danger" onClick={() => {}}>
         No
       </EuiButtonEmpty>
     </span>,
@@ -64,7 +58,7 @@ const renderHeaderIcon = (areHeadersInteractive) =>
       <EuiButtonIcon
         aria-label="column settings"
         iconType="gear"
-        onClick={() => console.log('gear icon clicked')}
+        onClick={() => {}}
       />
     </EuiFlexItem>
   ) : null;

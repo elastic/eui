@@ -83,7 +83,7 @@ export default () => {
               iconType="bell"
               color="primary"
               className="euiDataGrid__controlBtn"
-              onClick={() => alert('You clicked me! Hugs.')}>
+              onClick={() => {}}>
               New button
             </EuiButtonEmpty>
             <EuiButtonEmpty
@@ -91,7 +91,7 @@ export default () => {
               iconType="branch"
               color="danger"
               className="euiDataGrid__controlBtn"
-              onClick={() => alert('You clicked me! Hugs.')}>
+              onClick={() => {}}>
               Another button
             </EuiButtonEmpty>
           </Fragment>
