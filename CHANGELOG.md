@@ -3,6 +3,7 @@
 - Improved `EuiButtonGroup` focus, hover, selected and disabled states ([#4142](https://github.com/elastic/eui/pull/4142))
 - Added `display` prop to `EuiToolTip` for common display block needs ([#4148](https://github.com/elastic/eui/pull/4148))
 - Added support for more colors in `EuiProgress` such as `vis0` through `vis9`, `warning`, `success`  and custom colors ([#4130](https://github.com/elastic/eui/pull/4130))
+- Added `affordForDisplacement` prop to `EuiBottomBar` ([#4156](https://github.com/elastic/eui/pull/4156))
 
 **Bug fixes**
 
@@ -19,7 +20,6 @@
 - Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
 - Updated types associated with `EuiMarkdownEditor` plugin dependencies ([#4124](https://github.com/elastic/eui/pull/4124))
 - Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
-- Added `affordForDisplacement` prop to `EuiBottomBar` ([#4156](https://github.com/elastic/eui/pull/4156))
 
 **Bug fixes**
 
