@@ -106,7 +106,11 @@ export const SuggestExample = {
             <strong>EuiSuggestItem</strong> is a list item component to display
             suggestions when typing queries in <strong>EuiSuggest</strong>. Use{' '}
             <EuiCode>labelDisplay</EuiCode> to set whether the{' '}
-            <EuiCode>label</EuiCode> has a fixed width or not.
+            <EuiCode>label</EuiCode> has a fixed width or not. By default, fixed
+            labels will have a width of 50%, you can adjust this by setting{' '}
+            <EuiCode>labelWidth</EuiCode>. Use{' '}
+            <EuiCode>descriptionDisplay</EuiCode> to set whether the{' '}
+            <EuiCode>description</EuiCode> truncates or wraps.
           </p>
         </div>
       ),
