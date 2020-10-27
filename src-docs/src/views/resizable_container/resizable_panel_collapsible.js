@@ -46,6 +46,7 @@ export default () => {
       key={index}
       onClick={() => setItemSelected(item)}
       label={item.label}
+      size="s"
     />
   ));
 

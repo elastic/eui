@@ -21,6 +21,7 @@ import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizableResizerSize from './resizable_resizer_size';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
+import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
@@ -29,6 +30,7 @@ const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_co
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizableResizerSizeSource = require('!!raw-loader!./resizable_resizer_size');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
+const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
 
 const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
@@ -41,6 +43,9 @@ const ResizableContainerResetValuesHtml = renderToHtml(
 );
 const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
+const ResizablePanelCollapsibleOptsHtml = renderToHtml(
+  ResizablePanelCollapsibleOpts
+);
 const ResizablePanelCollapsibleExtHtml = renderToHtml(
   ResizablePanelCollapsibleExt
 );
@@ -81,10 +86,11 @@ export const ResizableContainerExample = {
               React Render Props
             </EuiLink>{' '}
             technique to provide <strong>EuiResizablePanel</strong> and{' '}
-            <strong>EuiResizableButton</strong> components for you layout. Wrap
-            parts of your content with the <strong>EuiResizablePanel</strong>{' '}
-            component and put the <strong>EuiResizableButton</strong> component
-            between.
+            <strong>EuiResizableButton</strong> components for layout, and{' '}
+            <EuiCode>actions</EuiCode> for custom handling collapse and resize
+            functionality in your app. Wrap parts of your content with the{' '}
+            <strong>EuiResizablePanel</strong> component and put the{' '}
+            <strong>EuiResizableButton</strong> component between.
           </p>
         </EuiText>
       </EuiCallOut>
@@ -260,28 +266,46 @@ export const ResizableContainerExample = {
       title: 'Collapsible resizable panels',
       text: (
         <div>
-          {/* <p>
-            You can add toggling to <strong>EuiResizablePanel</strong>s inside a{' '}
-            <strong>EuiResizableContainer</strong> of horizontal{' '}
-            <EuiCode>direction</EuiCode>. To do so, pass the{' '}
-            <EuiCode>toggle</EuiCode> prop to a{' '}
-            <strong>EuiResizablePanel</strong> to have it trigger the toggling
-            and show a toggle button at the top of it. You will also need to
-            pass
-            <EuiCode>willExpand</EuiCode> to the{' '}
-            <strong>EuiResizablePanel</strong> that will increase its width when
-            toggling is triggered.
+          <p>
+            Panels can be designated as collpasible, which allows them to hide
+            content and automatically resize to a minimal width. The intent of
+            collapsible panels is to enable large, layout-level content areas to
+            cede space to a main content area. For instance, collapsing an
+            action panel to allow more focus on the primary display panel.
           </p>
           <p>
-            Set <EuiCode>toggle</EuiCode> to true to use the defaults for{' '}
-            <EuiCode>notCollapsedIcon</EuiCode> and{' '}
-            <EuiCode>collapsedIcon</EuiCode>. Alternatively, you can pass an
-            object customizing those values.
-          </p> */}
-          <p>Coming soon</p>
+            Use the <EuiCode>mode</EuiCode> prop on an{' '}
+            <strong>EuiResizablePanel</strong> to mark it as{' '}
+            <EuiCode>collapsible</EuiCode> or <EuiCode>main</EuiCode>. From the
+            provided <EuiCode>mode</EuiCode> configuration, the{' '}
+            <strong>EuiResizableContainer</strong> will determine placement of
+            the toggle button and functionality of panel collapsing. To prevent
+            empty states, not all panels can be{' '}
+            <EuiCode>mode=collapsible</EuiCode> (there must be at least one{' '}
+            <EuiCode>mode=main</EuiCode> panel).
+          </p>
         </div>
       ),
       demo: <ResizablePanelCollapsible />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizablePanelCollapsibleOptsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizablePanelCollapsibleOptsHtml,
+        },
+      ],
+      title: 'Collapsible panel options',
+      text: (
+        <div>
+          <p>Coming soon</p>
+        </div>
+      ),
+      demo: <ResizablePanelCollapsibleOpts />,
     },
     {
       source: [
@@ -297,24 +321,6 @@ export const ResizableContainerExample = {
       title: 'Collapsible panels with external control',
       text: (
         <div>
-          {/* <p>
-            You can add toggling to <strong>EuiResizablePanel</strong>s inside a{' '}
-            <strong>EuiResizableContainer</strong> of horizontal{' '}
-            <EuiCode>direction</EuiCode>. To do so, pass the{' '}
-            <EuiCode>toggle</EuiCode> prop to a{' '}
-            <strong>EuiResizablePanel</strong> to have it trigger the toggling
-            and show a toggle button at the top of it. You will also need to
-            pass
-            <EuiCode>willExpand</EuiCode> to the{' '}
-            <strong>EuiResizablePanel</strong> that will increase its width when
-            toggling is triggered.
-          </p>
-          <p>
-            Set <EuiCode>toggle</EuiCode> to true to use the defaults for{' '}
-            <EuiCode>notCollapsedIcon</EuiCode> and{' '}
-            <EuiCode>collapsedIcon</EuiCode>. Alternatively, you can pass an
-            object customizing those values.
-          </p> */}
           <p>Coming soon</p>
         </div>
       ),
