@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiColorPalettePicker is rendered 1`] = `
+<div
+  class="euiColorPaletteDisplay"
+  style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+/>
+`;
+
+exports[`EuiColorPalettePicker is rendered with a fixed palette with stops 1`] = `
+<div
+  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+>
+  <span
+    style="background-color:#54B399;width:21%"
+  />
+  <span
+    style="background-color:#D36086;width:32%"
+  />
+  <span
+    style="background-color:#9170B8;width:21%"
+  />
+  <span
+    style="background-color:#F5A700;width:26%"
+  />
+</div>
+`;
+
+exports[`EuiColorPalettePicker is rendered with a gradient palette with stops 1`] = `
+<div
+  class="euiColorPaletteDisplay"
+  style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+/>
+`;
+
+exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] = `
+<div
+  class="euiColorPaletteDisplay"
+  style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+/>
+`;
+
+exports[`EuiColorPalettePicker is rendered with fixed palette 1`] = `
+<div
+  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+>
+  <span
+    class="euiColorPaletteDisplay__colorStopWidthAuto"
+    style="background-color:#1fb0b2"
+  />
+  <span
+    class="euiColorPaletteDisplay__colorStopWidthAuto"
+    style="background-color:#ffdb6d"
+  />
+  <span
+    class="euiColorPaletteDisplay__colorStopWidthAuto"
+    style="background-color:#ee9191"
+  />
+  <span
+    class="euiColorPaletteDisplay__colorStopWidthAuto"
+    style="background-color:#ffffff"
+  />
+  <span
+    class="euiColorPaletteDisplay__colorStopWidthAuto"
+    style="background-color:#888094"
+  />
+</div>
+`;
+
+exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
+<EuiColorPaletteDisplay
+  aria-label="ariaLabel"
+  className="className"
+  palette={
+    Array [
+      Object {
+        "color": "#54B399",
+        "stop": 100,
+      },
+      Object {
+        "color": "#D36086",
+        "stop": 250,
+      },
+      Object {
+        "color": "#9170B8",
+        "stop": 350,
+      },
+      Object {
+        "color": "#F5A700",
+        "stop": 470,
+      },
+    ]
+  }
+>
+  <EuiLinearGradient
+    palette={
+      Array [
+        Object {
+          "color": "#54B399",
+          "stop": 100,
+        },
+        Object {
+          "color": "#D36086",
+          "stop": 250,
+        },
+        Object {
+          "color": "#9170B8",
+          "stop": 350,
+        },
+        Object {
+          "color": "#F5A700",
+          "stop": 470,
+        },
+      ]
+    }
+  >
+    <div
+      className="euiColorPaletteDisplay"
+      style={
+        Object {
+          "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+        }
+      }
+    />
+  </EuiLinearGradient>
+</EuiColorPaletteDisplay>
+`;
