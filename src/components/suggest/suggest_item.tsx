@@ -54,7 +54,7 @@ interface EuiSuggestItemPropsBase {
   labelDisplay?: keyof typeof labelDisplayToClassMap;
 
   /**
-   * With of 'label' when 'labelDisplay' is set to 'fixed'. Defaults to 50. Any value from 20 to 90 with increases of 10. 
+   * With of 'label' when 'labelDisplay' is set to 'fixed'. Defaults to 50. Any value from 20 to 90 with increases of 10.
    */
   labelWidth?: LabelWidthSize;
 
@@ -92,13 +92,14 @@ interface ColorToClassMap {
 }
 
 export type LabelWidthSize =
-  | 30
-  | 40
-  | 50
-  | 60
-  | 70
-  | 80
-  | 90;
+  | '20'
+  | '30'
+  | '40'
+  | '50'
+  | '60'
+  | '70'
+  | '80'
+  | '90';
 
 const colorToClassNameMap: ColorToClassMap = {
   tint0: 'euiSuggestItem__type--tint0',
@@ -133,7 +134,7 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   label,
   type,
   labelDisplay = 'fixed',
-  labelWidth = 50,
+  labelWidth = '50',
   description,
   descriptionDisplay = 'truncate',
   onClick,
@@ -154,13 +155,13 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
     labelDisplayToClassMap[labelDisplay],
     {
       'euiSuggestItem__labelDisplay--expand': !description,
-      [`euiSuggestItem__labelWidth${labelWidth}`] : labelDisplay === 'fixed',
-    },
+      [`euiSuggestItem__labelWidth${labelWidth}`]: labelDisplay === 'fixed',
+    }
   );
 
   const descriptionClassNames = classNames(
     'euiSuggestItem__description',
-    descriptionDisplayToClassMap[descriptionDisplay],
+    descriptionDisplayToClassMap[descriptionDisplay]
   );
 
   if (type && type.color) {

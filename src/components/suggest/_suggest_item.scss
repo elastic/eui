@@ -58,7 +58,8 @@
     color: $euiTextColor;
     display: block;
 
-    @for $i from 30 through 90 {
+    // Sets labelWidth from 20% to 90% in increments of 10%
+    @for $i from 20 through 90 {
       &.euiSuggestItem__labelWidth#{$i} {
         flex-basis: $i * 1%;
         min-width: $i * 1%;
