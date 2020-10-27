@@ -10,7 +10,7 @@
 
 - Fixed issue with duplicate checkmarks in `EuiComboBox` ([#4162](https://github.com/elastic/eui/pull/4162))
 - Reinstated base element type extensions for `EuiStepHorizontal` and `EuiStepsHorizontal` ([4166](https://github.com/elastic/eui/pull/4166))
-- Removed unnecessary shadow on hover of `EuiButtonGroup` ([#000](https://github.com/elastic/eui/pull/000))
+- Removed unnecessary shadow on hover of `EuiButtonGroup` ([#4186](https://github.com/elastic/eui/pull/4186))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
