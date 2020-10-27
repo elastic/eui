@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.1.0`.
+- Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
 
 ## [`30.1.0`](https://github.com/elastic/eui/tree/v30.1.0)
 
