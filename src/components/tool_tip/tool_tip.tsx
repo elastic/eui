@@ -61,6 +61,11 @@ interface ToolTipStyles {
   opacity?: number;
 }
 
+const displayToClassNameMap = {
+  inlineBlock: undefined,
+  block: 'euiToolTipAnchor--displayBlock',
+};
+
 const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // position the tooltip content near the top-left
   // corner of the window so it can't create scrollbars
@@ -89,6 +94,10 @@ export interface Props {
    * The main content of your tooltip.
    */
   content?: ReactNode;
+  /**
+   * Common display alternatives for the anchor wrapper
+   */
+  display?: keyof typeof displayToClassNameMap;
   /**
    * Delay before showing tooltip. Good for repeatable items.
    */
@@ -286,6 +295,7 @@ export class EuiToolTip extends Component<Props, State> {
       content,
       title,
       delay,
+      display = 'inlineBlock',
       ...rest
     } = this.props;
 
@@ -297,7 +307,11 @@ export class EuiToolTip extends Component<Props, State> {
       className
     );
 
-    const anchorClasses = classNames('euiToolTipAnchor', anchorClassName);
+    const anchorClasses = classNames(
+      'euiToolTipAnchor',
+      display ? displayToClassNameMap[display] : null,
+      anchorClassName
+    );
 
     let tooltip;
     if (visible && (content || title)) {

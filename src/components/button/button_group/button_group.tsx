@@ -117,7 +117,7 @@ export type EuiButtonGroupProps = CommonProps & {
       }
   );
 
-type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> &
+type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange' | 'color'> &
   EuiButtonGroupProps;
 
 const groupSizeToClassNameMap = {
