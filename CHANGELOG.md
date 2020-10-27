@@ -8,7 +8,7 @@
 **Bug fixes**
 
 - Fixed issue with duplicate checkmarks in `EuiComboBox` ([#4162](https://github.com/elastic/eui/pull/4162))
-- Fixed issue with `labelWidth` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+- Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
