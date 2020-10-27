@@ -26,7 +26,7 @@ export default () => {
   const [items, setItems] = useState([
     { name: 'Johann Sebastian Bach', checked: 'on' },
     { name: 'Wolfgang Amadeus Mozart', checked: 'on' },
-    { name: 'Antonín Dvořák', checked: 'on' },
+    { name: 'Antonín Dvořák', checked: 'off' },
     { name: 'Dmitri Shostakovich' },
     { name: 'Felix Mendelssohn-Bartholdy' },
     { name: 'Franz Liszt' },
@@ -50,10 +50,20 @@ export default () => {
       return;
     }
 
-    const newItems = items;
+    const newItems = [...items];
 
-    newItems[index].checked =
-      newItems[index].checked === 'on' ? undefined : 'on';
+    switch (newItems[index].checked) {
+      case 'on':
+        newItems[index].checked = 'off';
+        break;
+
+      case 'off':
+        newItems[index].checked = undefined;
+        break;
+
+      default:
+        newItems[index].checked = 'on';
+    }
 
     setItems(newItems);
   }
@@ -64,7 +74,7 @@ export default () => {
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
       numFilters={items.length}
-      hasActiveFilters={true}
+      hasActiveFilters={!!items.find((item) => item.checked === 'on')}
       numActiveFilters={items.filter((item) => item.checked === 'on').length}>
       Composers
     </EuiFilterButton>
