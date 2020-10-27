@@ -46,6 +46,7 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
 
   if (paletteHasStops) {
     const paletteColorStop = palette as ColorStop[];
+
     return (
       <div className={classes} {...rest}>
         {paletteColorStop.map((colorStop: any, index: number) => {
