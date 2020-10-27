@@ -1,15 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiColorPalettePicker is rendered 1`] = `
+exports[`EuiColorPaletteDisplay is rendered 1`] = `
 <div
-  class="euiColorPaletteDisplay"
+  aria-label="aria-label"
+  class="euiColorPaletteDisplay testClass1 testClass2"
+  data-test-subj="test subject string"
   style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
 />
 `;
 
-exports[`EuiColorPalettePicker is rendered with a fixed palette with stops 1`] = `
+exports[`EuiColorPaletteDisplay is rendered with a fixed palette with stops 1`] = `
 <div
-  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+  aria-label="aria-label"
+  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <span
     style="background-color:#54B399;width:21%"
@@ -26,23 +30,29 @@ exports[`EuiColorPalettePicker is rendered with a fixed palette with stops 1`] =
 </div>
 `;
 
-exports[`EuiColorPalettePicker is rendered with a gradient palette with stops 1`] = `
+exports[`EuiColorPaletteDisplay is rendered with a gradient palette 1`] = `
 <div
-  class="euiColorPaletteDisplay"
-  style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
-/>
-`;
-
-exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] = `
-<div
-  class="euiColorPaletteDisplay"
+  aria-label="aria-label"
+  class="euiColorPaletteDisplay testClass1 testClass2"
+  data-test-subj="test subject string"
   style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
 />
 `;
 
-exports[`EuiColorPalettePicker is rendered with fixed palette 1`] = `
+exports[`EuiColorPaletteDisplay is rendered with a gradient palette with stops 1`] = `
 <div
-  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+  aria-label="aria-label"
+  class="euiColorPaletteDisplay testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+/>
+`;
+
+exports[`EuiColorPaletteDisplay is rendered with fixed palette 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <span
     class="euiColorPaletteDisplay__colorStopWidthAuto"
@@ -65,63 +75,4 @@ exports[`EuiColorPalettePicker is rendered with fixed palette 1`] = `
     style="background-color:#888094"
   />
 </div>
-`;
-
-exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
-<EuiColorPaletteDisplay
-  aria-label="ariaLabel"
-  className="className"
-  palette={
-    Array [
-      Object {
-        "color": "#54B399",
-        "stop": 100,
-      },
-      Object {
-        "color": "#D36086",
-        "stop": 250,
-      },
-      Object {
-        "color": "#9170B8",
-        "stop": 350,
-      },
-      Object {
-        "color": "#F5A700",
-        "stop": 470,
-      },
-    ]
-  }
->
-  <EuiLinearGradient
-    palette={
-      Array [
-        Object {
-          "color": "#54B399",
-          "stop": 100,
-        },
-        Object {
-          "color": "#D36086",
-          "stop": 250,
-        },
-        Object {
-          "color": "#9170B8",
-          "stop": 350,
-        },
-        Object {
-          "color": "#F5A700",
-          "stop": 470,
-        },
-      ]
-    }
-  >
-    <div
-      className="euiColorPaletteDisplay"
-      style={
-        Object {
-          "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
-        }
-      }
-    />
-  </EuiLinearGradient>
-</EuiColorPaletteDisplay>
 `;

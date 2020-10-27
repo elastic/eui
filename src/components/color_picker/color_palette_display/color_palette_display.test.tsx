@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { render } from 'enzyme';
 
 import { EuiColorPaletteDisplay } from './color_palette_display';
 import { requiredProps } from '../../../test';
@@ -44,7 +44,7 @@ const paletteWithStops = [
   },
 ];
 
-describe('EuiColorPalettePicker', () => {
+describe('EuiColorPaletteDisplay', () => {
   test('is rendered', () => {
     const component = render(
       <EuiColorPaletteDisplay {...requiredProps} palette={palette} />
@@ -65,7 +65,7 @@ describe('EuiColorPalettePicker', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('is rendered with a selected gradient palette', () => {
+  test('is rendered with a gradient palette', () => {
     const component = render(
       <EuiColorPaletteDisplay
         {...requiredProps}
@@ -95,18 +95,6 @@ describe('EuiColorPalettePicker', () => {
         {...requiredProps}
         palette={paletteWithStops}
         type="gradient"
-      />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('more props are propagated to each option', () => {
-    const component = mount(
-      <EuiColorPaletteDisplay
-        className="className"
-        aria-label="ariaLabel"
-        palette={paletteWithStops}
       />
     );
 

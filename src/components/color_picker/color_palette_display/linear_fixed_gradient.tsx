@@ -18,6 +18,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 import { CommonProps } from '../../common';
 import { ColorStop } from '../color_stops';
 
@@ -31,15 +32,22 @@ export type EuiLinearFixedGradientProps = CommonProps & {
 
 export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientProps> = ({
   palette,
+  className,
+  ...rest
 }) => {
   const paletteHasStops = palette.some((item: string | ColorStop) => {
     return typeof item === 'object';
   });
 
+  const classes = classnames(
+    'euiColorPaletteDisplay euiColorPaletteDisplay--fixed',
+    className
+  );
+
   if (paletteHasStops) {
     const paletteColorStop = palette as ColorStop[];
     return (
-      <div className="euiColorPaletteDisplay euiColorPaletteDisplay--fixed">
+      <div className={classes} {...rest}>
         {paletteColorStop.map((colorStop: any, index: number) => {
           const lastColorStopArrayPosition = palette.length - 1;
 
@@ -80,7 +88,7 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
     const paletteColorStop = palette as String[];
 
     return (
-      <div className="euiColorPaletteDisplay euiColorPaletteDisplay--fixed">
+      <div className={classes} {...rest}>
         {paletteColorStop.map((hexCode: any, index) => (
           <span
             style={{ backgroundColor: hexCode }}

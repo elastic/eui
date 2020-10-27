@@ -18,6 +18,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 import { CommonProps } from '../../common';
 import { getLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
@@ -32,9 +33,11 @@ export type EuiLinearGradientProps = CommonProps & {
 
 export const EuiLinearGradient: FunctionComponent<EuiLinearGradientProps> = ({
   palette,
+  className,
+  ...rest
 }) => {
   const gradient = getLinearGradient(palette);
-  return (
-    <div className="euiColorPaletteDisplay" style={{ background: gradient }} />
-  );
+  const classes = classnames('euiColorPaletteDisplay', className);
+
+  return <div className={classes} style={{ background: gradient }} {...rest} />;
 };

@@ -38,10 +38,11 @@ export type EuiColorPaletteDisplayProps = CommonProps & {
 export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
   type = 'gradient',
   palette,
+  ...rest
 }) => {
   if (type === 'gradient') {
-    return <EuiLinearGradient palette={palette} />;
+    return <EuiLinearGradient palette={palette} {...rest} />;
   } else {
-    return <EuiLinearFixedGradient palette={palette} />;
+    return <EuiLinearFixedGradient palette={palette} {...rest} />;
   }
 };
