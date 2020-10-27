@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed issue with duplicate checkmarks in `EuiComboBox` ([#4162](https://github.com/elastic/eui/pull/4162))
+- Fixed Issue with `EuiFilterGroup` multi select example to be functional ([#4178](https://github.com/elastic/eui/pull/4178))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
