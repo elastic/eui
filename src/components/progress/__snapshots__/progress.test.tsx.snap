@@ -1,5 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiProgress color #885522 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--customColor"
+  style="color:#885522"
+/>
+`;
+
+exports[`EuiProgress color accent is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--accent"
+/>
+`;
+
+exports[`EuiProgress color danger is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--danger"
+/>
+`;
+
+exports[`EuiProgress color primary is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--primary"
+/>
+`;
+
+exports[`EuiProgress color secondary is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary"
+/>
+`;
+
+exports[`EuiProgress color subdued is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--subdued"
+/>
+`;
+
+exports[`EuiProgress color success is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--success"
+/>
+`;
+
+exports[`EuiProgress color vis0 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis0"
+/>
+`;
+
+exports[`EuiProgress color vis1 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis1"
+/>
+`;
+
+exports[`EuiProgress color vis2 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis2"
+/>
+`;
+
+exports[`EuiProgress color vis3 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis3"
+/>
+`;
+
+exports[`EuiProgress color vis4 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis4"
+/>
+`;
+
+exports[`EuiProgress color vis5 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis5"
+/>
+`;
+
+exports[`EuiProgress color vis6 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis6"
+/>
+`;
+
+exports[`EuiProgress color vis7 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis7"
+/>
+`;
+
+exports[`EuiProgress color vis8 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis8"
+/>
+`;
+
+exports[`EuiProgress color vis9 is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--vis9"
+/>
+`;
+
+exports[`EuiProgress color warning is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--warning"
+/>
+`;
+
 exports[`EuiProgress has labelProps 1`] = `
 Array [
   <div
@@ -91,6 +200,30 @@ exports[`EuiProgress is rendered 1`] = `
   aria-label="aria-label"
   class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary testClass1 testClass2"
   data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiProgress size l is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--l euiProgress--secondary"
+/>
+`;
+
+exports[`EuiProgress size m is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary"
+/>
+`;
+
+exports[`EuiProgress size s is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--s euiProgress--secondary"
+/>
+`;
+
+exports[`EuiProgress size xs is rendered 1`] = `
+<div
+  class="euiProgress euiProgress--indeterminate euiProgress--xs euiProgress--secondary"
 />
 `;
 
