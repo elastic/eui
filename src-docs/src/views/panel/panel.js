@@ -28,8 +28,8 @@ export default () => (
 
     <EuiSpacer size="l" />
 
-    <EuiPanel paddingSize="l" hasShadow>
-      <EuiCode>paddingSize=&quot;l&quot;</EuiCode>, <EuiCode>hasShadow</EuiCode>
+    <EuiPanel paddingSize="l" hasShadow={false}>
+      <EuiCode>{'hasShadow={false}'}</EuiCode>
     </EuiPanel>
   </div>
 );
