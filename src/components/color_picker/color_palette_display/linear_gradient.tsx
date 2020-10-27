@@ -19,15 +19,10 @@
 
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
+import { getLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
-import { EuiLinearFixedGradient } from './linear_fixed_gradient';
-import { EuiLinearGradient } from './linear_gradient';
 
-export type EuiColorPaletteDisplayProps = CommonProps & {
-  /**
-   *  Specify the type of palette. `gradient`: each color fades into the next. `fixed`: individual color blocks
-   */
-  type?: 'gradient' | 'fixed';
+export type EuiLinearGradientProps = CommonProps & {
   /**
    * Array of color `strings` or `ColorStops` in the form of
    * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
@@ -35,13 +30,11 @@ export type EuiColorPaletteDisplayProps = CommonProps & {
   palette: string[] | ColorStop[];
 };
 
-export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
-  type = 'gradient',
+export const EuiLinearGradient: FunctionComponent<EuiLinearGradientProps> = ({
   palette,
 }) => {
-  if (type === 'gradient') {
-    return <EuiLinearGradient palette={palette} />;
-  } else {
-    return <EuiLinearFixedGradient palette={palette} />;
-  }
+  const gradient = getLinearGradient(palette);
+  return (
+    <div className="euiColorPaletteDisplay" style={{ background: gradient }} />
+  );
 };

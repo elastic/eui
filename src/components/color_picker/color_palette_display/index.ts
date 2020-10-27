@@ -21,3 +21,10 @@ export {
   EuiColorPaletteDisplay,
   EuiColorPaletteDisplayProps,
 } from './color_palette_display';
+
+export {
+  EuiLinearFixedGradient,
+  EuiLinearFixedGradientProps,
+} from './linear_fixed_gradient';
+
+export { EuiLinearGradient, EuiLinearGradientProps } from './linear_gradient';

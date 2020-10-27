@@ -33,7 +33,7 @@ const colorPickerSnippet = `<EuiColorPicker
 `;
 
 import ColorPaletteDisplay from './color_palette_display';
-const colorPaletteDisplaySource = require('!!raw-loader!./color_palette_picker');
+const colorPaletteDisplaySource = require('!!raw-loader!./color_palette_display');
 const colorPaletteDisplayHtml = renderToHtml(ColorPaletteDisplay);
 const colorPaletteDisplaySnippet = `<EuiColorPaletteDisplay
   palette={euiPaletteColorBlind()}
