@@ -12,7 +12,7 @@ export default () => {
   const [showBar, setShowBar] = useState(false);
 
   const button = (
-    <EuiButton color="primary" onClick={() => setShowBar(!showBar)}>
+    <EuiButton color="primary" onClick={() => setShowBar((show) => !show)}>
       Toggle appearance of the bottom bar
     </EuiButton>
   );
