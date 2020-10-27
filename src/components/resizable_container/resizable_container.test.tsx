@@ -151,4 +151,33 @@ describe('EuiResizableContainer', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('toggleable panels can be configurable', () => {
+    const component = render(
+      <EuiResizableContainer {...requiredProps}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel
+              mode={[
+                'collapsible',
+                {
+                  notCollapsedIcon: 'arrowLeft',
+                  collapsedIcon: 'arrowRight',
+                  className: 'panel-toggle',
+                },
+              ]}
+              initialSize={20}>
+              Sidebar
+            </EuiResizablePanel>
+            <EuiResizableButton />
+            <EuiResizablePanel mode="main" initialSize={80}>
+              Sidebar content
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

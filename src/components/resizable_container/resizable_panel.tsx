@@ -49,6 +49,9 @@ interface ToggleOptions {
 
 type ModeOptions = PanelModeType | [PanelModeType, ToggleOptions];
 
+export const getModeType = (mode?: ModeOptions) =>
+  typeof mode === 'object' ? mode[0] : mode;
+
 export interface EuiResizablePanelControls {
   isHorizontal: boolean;
   registration: {
@@ -123,9 +126,6 @@ const getPosition = (ref: HTMLDivElement) => {
   }
   return position;
 };
-
-const getModeType = (mode?: ModeOptions) =>
-  typeof mode === 'object' ? mode[0] : mode;
 
 const generatePanelId = htmlIdGenerator('resizable-panel');
 

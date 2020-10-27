@@ -283,3 +283,41 @@ exports[`EuiResizableContainer is rendered 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel euiResizablePanel--collapsible euiResizablePanel--middle"
+    id="generated-id"
+    style="width:20%;height:auto;min-width:0px;min-height:0"
+  >
+    <div
+      class="euiResizablePanel__content"
+    >
+      Sidebar
+    </div>
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
+    data-test-subj="splitPanelResizer"
+    id="generated-id"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel euiResizablePanel--middle"
+    id="generated-id"
+    style="width:80%;height:auto;min-width:0px;min-height:0"
+  >
+    <div
+      class="euiResizablePanel__content"
+    >
+      Sidebar content
+    </div>
+  </div>
+</div>
+`;

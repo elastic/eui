@@ -12,11 +12,18 @@ export default () => {
   return (
     <>
       <div className="guideSection__shadedBox">
-        <EuiResizableContainer style={{ height: '400px' }}>
+        <EuiResizableContainer style={{ height: '320px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
               <EuiResizablePanel
-                mode="collapsible"
+                mode={[
+                  'collapsible',
+                  {
+                    notCollapsedIcon: 'arrowLeft',
+                    collapsedIcon: 'arrowRight',
+                    className: 'panel-toggle',
+                  },
+                ]}
                 initialSize={15}
                 minSize="5%">
                 <EuiListGroup>
@@ -39,11 +46,7 @@ export default () => {
                   <EuiEmptyPrompt
                     iconType="globe"
                     title={<h2>Add some data to get started</h2>}
-                    body={
-                      <>
-                        <p>You&rsquo;ll need data to perform actions.</p>
-                      </>
-                    }
+                    body={<p>You&rsquo;ll need data to perform actions.</p>}
                     actions={
                       <EuiButton color="primary" fill>
                         Add data
@@ -56,7 +59,14 @@ export default () => {
               <EuiResizableButton />
 
               <EuiResizablePanel
-                mode="collapsible"
+                mode={[
+                  'collapsible',
+                  {
+                    notCollapsedIcon: 'arrowLeft',
+                    collapsedIcon: 'arrowRight',
+                    className: 'panel-toggle',
+                  },
+                ]}
                 initialSize={15}
                 minSize="5%">
                 <EuiListGroup>

@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
   EuiCode,
+  EuiCodeBlock,
   EuiLink,
   EuiResizableContainer,
   EuiSpacer,
@@ -302,7 +303,18 @@ export const ResizableContainerExample = {
       title: 'Collapsible panel options',
       text: (
         <div>
-          <p>Coming soon</p>
+          <p>
+            An <strong>EuiResizablePanel</strong> marked as{' '}
+            <EuiCode>mode=collapsible</EuiCode> also accepts configuration
+            options by passing a second parameter, in the form of:
+          </p>
+          <EuiCodeBlock language="js">
+            {`mode={["collapsible", {
+  notCollapsedIcon: 'arrowLeft',
+  collapsedIcon: 'arrowRight',
+  className: 'panel-toggle'
+}]}`}
+          </EuiCodeBlock>
         </div>
       ),
       demo: <ResizablePanelCollapsibleOpts />,

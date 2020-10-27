@@ -39,6 +39,7 @@ import {
 import {
   EuiResizablePanelProps,
   euiResizablePanelWithControls,
+  getModeType,
 } from './resizable_panel';
 import { useContainerCallbacks, getPosition } from './helpers';
 import {
@@ -207,7 +208,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     const content = children(EuiResizablePanel, EuiResizableButton, actions);
     const modes = React.isValidElement(content)
       ? content.props.children.map(
-          (el: ReactElement) => el.props.mode || DEFAULT
+          (el: ReactElement) => getModeType(el.props.mode) || DEFAULT
         )
       : null;
     if (
