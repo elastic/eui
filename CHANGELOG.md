@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.1.0`.
+
+## [`30.1.0`](https://github.com/elastic/eui/tree/v30.1.0)
+
 - Improved `EuiButtonGroup` focus, hover, selected and disabled states ([#4142](https://github.com/elastic/eui/pull/4142))
 - Added `display` prop to `EuiToolTip` for common display block needs ([#4148](https://github.com/elastic/eui/pull/4148))
 - Added support for more colors in `EuiProgress` such as `vis0` through `vis9`, `warning`, `success`  and custom colors ([#4130](https://github.com/elastic/eui/pull/4130))
