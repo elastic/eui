@@ -23,35 +23,18 @@ const palettes = [
   },
   {
     value: 'pallette_2',
+    title: 'EUI palette for status (gradient)',
+    palette: euiPaletteForStatus(5),
+    type: 'gradient',
+  },
+  {
+    value: 'pallette_3',
     title: 'EUI palette for temperature (fixed)',
     palette: euiPaletteForTemperature(5),
     type: 'fixed',
   },
   {
-    value: 'pallette_3',
-    title: 'Grayscale (fixed with stops)',
-    palette: [
-      {
-        stop: 100,
-        color: 'white',
-      },
-      {
-        stop: 250,
-        color: 'lightgray',
-      },
-      {
-        stop: 320,
-        color: 'gray',
-      },
-      {
-        stop: 470,
-        color: 'black',
-      },
-    ],
-    type: 'fixed',
-  },
-  {
-    value: 'pallette_4',
+    value: 'pallette_5',
     title: 'Grayscale (gradient with stops)',
     palette: [
       {
@@ -75,43 +58,26 @@ const palettes = [
   },
   {
     value: 'pallette_5',
-    title: 'EUI palette for status (gradient)',
-    palette: euiPaletteForStatus(5),
-    type: 'gradient',
-  },
-  {
-    value: 'pallette_6',
-    title: 'One color (fixed)',
-    palette: ['pink'],
-    type: 'fixed',
-  },
-  {
-    value: 'pallette_7',
-    title: 'One color (gradient)',
-    palette: ['pink'],
-    type: 'gradient',
-  },
-  {
-    value: 'pallette_8',
-    title: 'One color with one stop (fixed)',
-    palette: [
-      {
-        stop: 470,
-        color: 'pink',
-      },
-    ],
-    type: 'fixed',
-  },
-  {
-    value: 'pallette_9',
-    title: 'One color with one stop (gradient)',
+    title: 'Grayscale (fixed with stops)',
     palette: [
       {
         stop: 100,
-        color: 'pink',
+        color: 'white',
+      },
+      {
+        stop: 250,
+        color: 'lightgray',
+      },
+      {
+        stop: 320,
+        color: 'gray',
+      },
+      {
+        stop: 470,
+        color: 'black',
       },
     ],
-    type: 'gradient',
+    type: 'fixed',
   },
   {
     value: 'custom',
@@ -122,7 +88,7 @@ const palettes = [
 
 export default () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
-  const [pallette, setPallette] = useState('pallette_3');
+  const [pallette, setPallette] = useState('pallette_1');
 
   return (
     <>

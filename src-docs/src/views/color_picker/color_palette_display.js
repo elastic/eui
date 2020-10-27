@@ -12,7 +12,6 @@ import {
   EuiColorPalettePicker,
   EuiFormRow,
   EuiSpacer,
-  EuiTitle,
 } from '../../../../src/components/';
 
 const paletteWithStops = [
@@ -92,13 +91,8 @@ export default () => {
         <EuiColorPaletteDisplay type="gradient" palette={paletteWithStops} />
       </EuiFormRow>
       <EuiSpacer />
-      <EuiTitle size="xxs">
-        <p>
-          Use in conjunction with <strong>EuiColorPalettePicker</strong>
-        </p>
-      </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiFormRow label="Select a palette">
+      <EuiFormRow label="Use in conjunction with EuiColorPalettePicker">
         <EuiColorPalettePicker
           palettes={palettesComplexExample}
           onChange={setPaletteValue}
