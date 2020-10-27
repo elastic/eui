@@ -41,8 +41,8 @@ const sampleItems = [
 const sampleItems2 = [
   {
     type: { iconType: 'kqlField', color: 'tint5' },
-    label: 'Field sample with label at 20%',
-    labelWidth: 20,
+    label: 'Field sample with label at 30%',
+    labelWidth: 30,
     description: shortDescription,
   },
   {

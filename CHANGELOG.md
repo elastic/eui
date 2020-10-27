@@ -3,10 +3,12 @@
 - Improved `EuiButtonGroup` focus, hover, selected and disabled states ([#4142](https://github.com/elastic/eui/pull/4142))
 - Added `display` prop to `EuiToolTip` for common display block needs ([#4148](https://github.com/elastic/eui/pull/4148))
 - Added support for more colors in `EuiProgress` such as `vis0` through `vis9`, `warning`, `success`  and custom colors ([#4130](https://github.com/elastic/eui/pull/4130))
+- Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 
 **Bug fixes**
 
 - Fixed issue with duplicate checkmarks in `EuiComboBox` ([#4162](https://github.com/elastic/eui/pull/4162))
+- Fixed issue with `labelWidth` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 

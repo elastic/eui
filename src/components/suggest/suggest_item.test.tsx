@@ -73,7 +73,7 @@ describe('props', () => {
     });
   });
 
-  describe('labelWidth is 20%', () => {
+  describe('labelWidth is 30%', () => {
     test('is rendered', () => {
       const component = render(
         <EuiSuggestItem
