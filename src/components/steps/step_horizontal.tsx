@@ -19,6 +19,7 @@
 
 import classNames from 'classnames';
 import React, {
+  ButtonHTMLAttributes,
   FunctionComponent,
   MouseEvent as ReactMouseEvent,
   MouseEventHandler,
@@ -33,7 +34,9 @@ import {
   useI18nWarningStep,
 } from './step_strings';
 
-export interface EuiStepHorizontalProps extends CommonProps {
+export interface EuiStepHorizontalProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
+    CommonProps {
   /**
    * Is the current step
    */
