@@ -19,15 +19,19 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { render, mount } from 'enzyme';
 import { keysOf } from '../common';
+import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiBottomBar, paddingSizeToClassNameMap } from './bottom_bar';
 
 // @ts-ignore TODO: Temporary hack which we can remove once react-test-renderer supports portals.
 // More info at https://github.com/facebook/react/issues/11565.
-ReactDOM.createPortal = (node) => node;
+ReactDOM.createPortal = (children) => {
+  // hack to make enzyme treat the portal as a fragment
+  if (children == null) return [['nested']];
+  return children;
+};
 
 describe('EuiBottomBar', () => {
   test('is rendered', () => {
@@ -47,6 +51,19 @@ describe('EuiBottomBar', () => {
           expect(component).toMatchSnapshot();
         });
       });
+    });
+
+    test('affordForDisplacement can be false', () => {
+      const component = render(<EuiBottomBar affordForDisplacement={false} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('bodyClassName is rendered', () => {
+      const component = mount(<EuiBottomBar bodyClassName={'customClass'} />);
+
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(document.body.classList.contains('customClass')).toBe(true);
     });
   });
 });
