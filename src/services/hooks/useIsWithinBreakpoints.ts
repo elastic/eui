@@ -30,11 +30,15 @@ import { isWithinBreakpoints, EuiBreakpointSize } from '../breakpoint';
  * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`
  */
 export function useIsWithinBreakpoints(sizes: EuiBreakpointSize[]) {
-  const [windowSize, setWindowSize] = useState<boolean>(false);
+  const [isWithinBreakpointsValue, setIsWithinBreakpointsValue] = useState<
+    boolean
+  >(false);
 
   useEffect(() => {
     function handleResize() {
-      setWindowSize(isWithinBreakpoints(window.innerWidth, sizes));
+      setIsWithinBreakpointsValue(
+        isWithinBreakpoints(window.innerWidth, sizes)
+      );
     }
 
     window.addEventListener('resize', handleResize);
@@ -44,5 +48,5 @@ export function useIsWithinBreakpoints(sizes: EuiBreakpointSize[]) {
     return () => window.removeEventListener('resize', handleResize);
   }, [sizes]);
 
-  return windowSize;
+  return isWithinBreakpointsValue;
 }
