@@ -62,7 +62,8 @@ export type PanelBorderRadius = typeof BORDER_RADII[number];
 
 interface Props extends CommonProps {
   /**
-   * If active, adds a deep shadow to the panel
+   * Adds a medium shadow to the panel;
+   * Clickable cards will still get a shadow on hover
    */
   hasShadow?: boolean;
   /**
@@ -98,14 +99,16 @@ interface Props extends CommonProps {
    * Background color of the panel;
    * Usually a lightened form of the brand colors
    */
-  backgroundColor?: PanelColor;
+  color?: PanelColor;
 }
 
 interface Divlike
   extends Props,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {}
+    Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'color'> {}
 
-interface Buttonlike extends Props, ButtonHTMLAttributes<HTMLButtonElement> {}
+interface Buttonlike
+  extends Props,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {}
 
 export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
 
@@ -114,8 +117,8 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   className,
   paddingSize = 'm',
   borderRadius = 'm',
-  backgroundColor = 'plain',
-  hasShadow = false,
+  color = 'plain',
+  hasShadow = true,
   grow = true,
   panelRef,
   onClick,
@@ -128,7 +131,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
     borderRadiusToClassNameMap[borderRadius],
-    `euiPanel--${backgroundColor}`,
+    `euiPanel--${color}`,
     {
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,

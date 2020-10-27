@@ -13,17 +13,3 @@
     }
   }
 }
-
-// Border Radii
-@each $modifier, $amount in $euiPanelBorderRadiusModifiers {
-  .euiPanel--#{$modifier} {
-    border-radius: $amount;
-  }
-}
-
-// Background colors
-@each $modifier, $amount in $euiPanelBackgroundColorModifiers {
-  .euiPanel--#{$modifier} {
-    background-color: $amount;
-  }
-}

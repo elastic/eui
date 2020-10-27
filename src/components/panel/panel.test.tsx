@@ -31,6 +31,14 @@ describe('EuiPanel', () => {
   });
 
   describe('props', () => {
+    describe('hasShadow', () => {
+      test('can be false', () => {
+        const component = render(<EuiPanel hasShadow={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
@@ -41,10 +49,10 @@ describe('EuiPanel', () => {
       });
     });
 
-    describe('backgroundColor', () => {
+    describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiPanel backgroundColor={color} />);
+          const component = render(<EuiPanel color={color} />);
 
           expect(component).toMatchSnapshot();
         });
