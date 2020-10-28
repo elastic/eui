@@ -1,6 +1,7 @@
 .euiButtonGroup {
   display: inline-block;
   max-width: 100%;
+  position: relative; // Ensures the EuiScreenReaderOnly component is positioned relative to this component
 }
 
 .euiButtonGroup--fullWidth {
