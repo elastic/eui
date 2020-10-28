@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiIcon } from '../icon';
-import { useEuiI18n } from '../i18n';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -116,10 +116,10 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     const newTargetScreenreaderText = (
       <EuiScreenReaderOnly>
         <span>
-          {useEuiI18n(
-            'euiLink.newTarget.screenReaderOnlyText',
-            '(opens in a new tab or window)'
-          )}
+          <EuiI18n
+            token="euiLink.newTarget.screenReaderOnlyText"
+            default="(opens in a new tab or window)"
+          />
         </span>
       </EuiScreenReaderOnly>
     );
