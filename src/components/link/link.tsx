@@ -69,8 +69,8 @@ export interface LinkAnchorProps {
   type?: EuiLinkType;
   color?: EuiLinkColor;
   /**
-   * Set to true to show an icon indicating that it is an external link. Defaults to true if
-   * `target="_blank".
+   * Set to true to show an icon indicating that it is an external link;
+   * Defaults to true if `target="_blank"`
    */
   external?: boolean;
 }

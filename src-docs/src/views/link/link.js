@@ -10,7 +10,7 @@ export default () => (
         Elastic website
       </EuiLink>{' '}
       in a new tab. Setting <EuiCode>target=&ldquo;_blank&rdquo;</EuiCode> also
-      defaults to <EuiCode>external={true}</EuiCode>.
+      defaults to <EuiCode>{`external={true}`}</EuiCode>.
     </p>
     <p>
       This{' '}
