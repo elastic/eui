@@ -1,5 +1,11 @@
 # Consuming EUI
 
+## Requirements and dependencies
+
+EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
+
+EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
+
 ## What's available
 
 EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://elastic.github.io/eui) for comprehensive info on what's available.
@@ -36,16 +42,6 @@ Test utilities are published from the `lib/test` directory.
 ```js
 import { findTestSubject } from '@elastic/eui/lib/test';
 ```
-
-## Requirements and dependencies
-
-EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
-
-EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
-
-## Using EUI in Kibana
-
-The EUI CSS is included in [Kibana's](https://www.github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
 
 ## Using EUI in a standalone project
 
