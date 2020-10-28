@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Removed unnecessary shadow on hover of `EuiButtonGroup` ([#4186](https://github.com/elastic/eui/pull/4186))
+- Fixed position of `EuiScreenReaderOnly` elements within `EuiButtonGroup` ([#4189](https://github.com/elastic/eui/pull/4189))
 
 ## [`30.1.0`](https://github.com/elastic/eui/tree/v30.1.0)
 
