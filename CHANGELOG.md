@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
+- Added screen reader notification for `EuiLink` when it opens in a new tab ([#3659](https://github.com/elastic/eui/pull/3659))
 
 **Bug fixes**
 
