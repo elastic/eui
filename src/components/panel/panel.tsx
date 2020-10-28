@@ -78,21 +78,6 @@ interface Props extends CommonProps {
    * When true the panel will grow to match `EuiFlexItem`
    */
   grow?: boolean;
-  /**
-   * Add a badge to the panel to label it as "Beta" or other non-GA state
-   */
-  betaBadgeLabel?: string;
-
-  /**
-   * Add a description to the beta badge (will appear in a tooltip)
-   */
-  betaBadgeTooltipContent?: ReactNode;
-
-  /**
-   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
-   */
-  betaBadgeTitle?: string;
-
   panelRef?: Ref<HTMLDivElement>;
   /**
    * *AMSTERDAM ONLY*
@@ -100,6 +85,21 @@ interface Props extends CommonProps {
    * Usually a lightened form of the brand colors
    */
   color?: PanelColor;
+  /**
+   * **DEPRECATED: use `EuiCard` instead.**
+   * Add a badge to the panel to label it as "Beta" or other non-GA state
+   */
+  betaBadgeLabel?: string;
+  /**
+   * **DEPRECATED: use `EuiCard` instead.**
+   * Add a description to the beta badge (will appear in a tooltip)
+   */
+  betaBadgeTooltipContent?: ReactNode;
+  /**
+   * **DEPRECATED: use `EuiCard` instead.**
+   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+   */
+  betaBadgeTitle?: string;
 }
 
 interface Divlike
