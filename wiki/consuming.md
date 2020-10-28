@@ -84,7 +84,7 @@ For the dark theme, swap the first import for the dark colors file.
 @import '@elastic/eui/src/themes/eui/eui_globals.scss';
 ```
 
-If you want to use new, but in progress Amsterdam theme, you can import it similarly.
+If you want to use the new, but in progress Amsterdam theme, you can import it similarly.
 
 ```scss
 @import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
@@ -93,9 +93,9 @@ If you want to use new, but in progress Amsterdam theme, you can import it simil
 
 ### Using Sass to customize EUI
 
-EUI's Sass themes are token based, which can be altered to suite your theming needs like changing the primary color. Simply declar your token overrides before importing the whole EUI theme. This will re-compile **all of the EUI components** with your colors.
+EUI's Sass themes are token based, which can be altered to suite your theming needs like changing the primary color. Simply declare your token overrides before importing the whole EUI theme. This will re-compile **all of the EUI components** with your colors.
 
-*Don't use in conjunction with importing the compiled CSS.*
+*Do not use in conjunction with the compiled CSS.*
 
 Here is an example setup.
 
