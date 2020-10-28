@@ -237,7 +237,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (
       singleSelection &&
       selectedOptions.length &&
-      selectedOptions[0].label === label
+      selectedOptions[0].label === label &&
+      selectedOptions[0].key === key
     ) {
       checked = 'on';
     }

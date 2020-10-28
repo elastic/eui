@@ -1,75 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiStepNumber is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiStepNumber testClass1 testClass2"
   data-test-subj="test subject string"
-/>
+>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 
+  </span>
+  <span
+    aria-hidden="true"
+  />
+</span>
 `;
 
 exports[`EuiStepNumber props has titleSize is rendered 1`] = `
-<div
+<span
   class="euiStepNumber"
 >
-  1
-</div>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 1
+  </span>
+  <span
+    aria-hidden="true"
+  >
+    1
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props isHollow is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber-isHollow"
-/>
+>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 1
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props status complete is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--complete"
 >
   <span
-    aria-label="complete"
+    aria-label="Step 1 is complete"
     class="euiStepNumber__icon"
     data-euiicon-type="check"
   />
-</div>
+</span>
 `;
 
 exports[`EuiStepNumber props status danger is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--danger"
 >
   <span
-    aria-label="has errors"
+    aria-label="Step 1 has errors"
     class="euiStepNumber__icon"
     data-euiicon-type="cross"
   />
-</div>
+</span>
 `;
 
 exports[`EuiStepNumber props status disabled is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--disabled"
 >
-  1
-</div>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 1 is disabled
+  </span>
+  <span
+    aria-hidden="true"
+  >
+    1
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props status incomplete is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--incomplete"
 >
-  1
-</div>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 1 is incomplete
+  </span>
+  <span
+    aria-hidden="true"
+  >
+    1
+  </span>
+</span>
 `;
 
 exports[`EuiStepNumber props status warning is rendered 1`] = `
-<div
+<span
   class="euiStepNumber euiStepNumber--warning"
 >
   <span
-    aria-label="has warnings"
+    aria-label="Step 1 has warnings"
     class="euiStepNumber__icon"
     data-euiicon-type="alert"
   />
-</div>
+</span>
 `;

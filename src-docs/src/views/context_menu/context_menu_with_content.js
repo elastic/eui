@@ -56,7 +56,6 @@ export default () => {
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();
-            window.alert('Show fullscreen');
           },
         },
         {
@@ -117,7 +116,6 @@ export default () => {
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="upLeft">
         <EuiContextMenu initialPanelId={0} panels={panels} />
       </EuiPopover>
@@ -130,7 +128,6 @@ export default () => {
         isOpen={isDynamicPopoverOpen}
         closePopover={closeDynamicPopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="upLeft">
         <EuiContextMenu initialPanelId={0} panels={dynamicPanels} />
       </EuiPopover>

@@ -46,10 +46,6 @@
   }
 }
 
-// SET FOR DEPRECATION: 2/21/20
-// The `euiHeaderNotification` class was needed to be manually applied
-// Now notifications can be automatically added to the buttons via props
-.euiHeaderNotification,
 .euiHeaderSectionItemButton__notification {
   position: absolute;
 }
@@ -80,7 +76,6 @@
   }
 
   // On small screens just show a small dot indicating there are notifications
-  .euiHeaderNotification,
   .euiHeaderSectionItemButton__notification--badge {
     @include size($euiSizeS);
     top: 20%;

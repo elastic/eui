@@ -23,6 +23,40 @@ Array [
 ]
 `;
 
+exports[`EuiBottomBar props affordForDisplacement can be false 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--paddingMedium"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--paddingMedium"
+>
+  <h2
+    class="euiScreenReaderOnly"
+  >
+    Page level controls
+  </h2>
+</section>
+`;
+
 exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
 Array [
   <section

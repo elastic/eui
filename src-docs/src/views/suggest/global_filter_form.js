@@ -81,7 +81,7 @@ const GlobalFilterForm = (props) => {
   const [selectedValues, setSelectedValues] = useState(
     props.selectedObject ? props.selectedObject.values : []
   );
-  const [useCustomLabel, setUseCoustomLabel] = useState(false);
+  const [useCustomLabel, setUseCustomLabel] = useState(false);
   const [customLabel, setCustomLabel] = useState('');
 
   const onFieldChange = (selectedOptions) => {
@@ -99,7 +99,7 @@ const GlobalFilterForm = (props) => {
   };
 
   const onCustomLabelSwitchChange = (e) => {
-    setCustomLabel(e.target.checked);
+    setUseCustomLabel(e.target.checked);
   };
 
   const onFieldSearchChange = (searchValue) => {
@@ -130,13 +130,12 @@ const GlobalFilterForm = (props) => {
     setSelectedField([]);
     setSelectedOperand([]);
     setSelectedValues([]);
-    setUseCoustomLabel(false);
-    setCustomLabel(null);
+    setUseCustomLabel(false);
+    setCustomLabel('');
   };
 
-  const onCustomLabelChange = (value) => {
-    console.log(value);
-    // setCustomLabel()
+  const onCustomLabelChange = (e) => {
+    setCustomLabel(e.target.value);
   };
 
   const { onAdd, onCancel, selectedObject, ...rest } = props;
@@ -220,7 +219,7 @@ const GlobalFilterForm = (props) => {
       <EuiFlexGroup direction="rowReverse" alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiButton
-            isDisabled={selectedValues.length < 1}
+            isDisabled={selectedValues.length < 1 && customLabel.length === 0}
             fill
             onClick={onAdd}>
             Add

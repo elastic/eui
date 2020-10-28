@@ -19,73 +19,84 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../../test';
+import { requiredProps as commonProps } from '../../../test';
 
-import { EuiButtonGroup, GroupButtonSize } from './button_group';
+import { EuiButtonGroup, EuiButtonGroupProps } from './button_group';
 import { COLORS } from '../button';
 
-const SIZES: GroupButtonSize[] = ['s', 'm', 'compressed'];
+const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
+  's',
+  'm',
+  'compressed',
+];
 
 const options = [
   {
     id: 'button00',
     label: 'Option one',
+    iconType: 'bolt',
+    ...commonProps,
   },
   {
     id: 'button01',
     label: 'Option two',
+    iconType: 'bolt',
   },
   {
     id: 'button02',
     label: 'Option three',
+    iconType: 'bolt',
+    isDisabled: true,
   },
 ];
 
-describe('EuiButtonGroup', () => {
-  test('is rendered', () => {
-    const component = render(
-      <EuiButtonGroup onChange={() => {}} {...requiredProps} />
-    );
+const requiredSingleProps: EuiButtonGroupProps = {
+  type: 'single',
+  legend: 'test',
+  onChange: () => {},
+  options,
+  name: 'test',
+  idSelected: '',
+};
 
-    expect(component).toMatchSnapshot();
+const requiredMultiProps: EuiButtonGroupProps = {
+  type: 'multi',
+  legend: 'test',
+  onChange: () => {},
+  options,
+};
+
+describe('EuiButtonGroup', () => {
+  describe('type', () => {
+    test('single is rendered', () => {
+      const component = render(
+        <EuiButtonGroup {...requiredSingleProps} {...commonProps} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+    test('multi is rendered', () => {
+      const component = render(
+        <EuiButtonGroup {...requiredMultiProps} {...commonProps} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  describe('props', () => {
-    describe('options', () => {
-      it('are rendered', () => {
-        const component = render(
-          <EuiButtonGroup onChange={() => {}} options={options} />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-
-      it('can pass down data-test-subj', () => {
-        const options2 = [
-          {
-            id: 'button00',
-            label: 'Option one',
-            'data-test-subj': 'test',
-          },
-        ];
-
-        const component = render(
-          <EuiButtonGroup onChange={() => {}} options={options2} />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
+  describe('button props', () => {
     describe('buttonSize', () => {
       SIZES.forEach((size) => {
-        test(`${size} is rendered`, () => {
+        test(`${size} is rendered for single`, () => {
           const component = render(
-            <EuiButtonGroup
-              onChange={() => {}}
-              buttonSize={size}
-              options={options}
-            />
+            <EuiButtonGroup {...requiredSingleProps} buttonSize={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+        test(`${size} is rendered for multi`, () => {
+          const component = render(
+            <EuiButtonGroup {...requiredMultiProps} buttonSize={size} />
           );
 
           expect(component).toMatchSnapshot();
@@ -94,9 +105,16 @@ describe('EuiButtonGroup', () => {
     });
 
     describe('isDisabled', () => {
-      it('is rendered', () => {
+      it('is rendered for single', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} isDisabled options={options} />
+          <EuiButtonGroup {...requiredSingleProps} isDisabled />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+      it('is rendered for multi', () => {
+        const component = render(
+          <EuiButtonGroup {...requiredMultiProps} isDisabled />
         );
 
         expect(component).toMatchSnapshot();
@@ -104,9 +122,16 @@ describe('EuiButtonGroup', () => {
     });
 
     describe('isFullWidth', () => {
-      it('is rendered', () => {
+      it('is rendered for single', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} isFullWidth options={options} />
+          <EuiButtonGroup {...requiredSingleProps} isFullWidth />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+      it('is rendered for multi', () => {
+        const component = render(
+          <EuiButtonGroup {...requiredMultiProps} isFullWidth />
         );
 
         expect(component).toMatchSnapshot();
@@ -114,9 +139,16 @@ describe('EuiButtonGroup', () => {
     });
 
     describe('isIconOnly', () => {
-      it('is rendered', () => {
+      it('is rendered for single', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} isIconOnly options={options} />
+          <EuiButtonGroup {...requiredSingleProps} isIconOnly />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+      it('is rendered for multi', () => {
+        const component = render(
+          <EuiButtonGroup {...requiredMultiProps} isIconOnly />
         );
 
         expect(component).toMatchSnapshot();
@@ -125,13 +157,16 @@ describe('EuiButtonGroup', () => {
 
     describe('color', () => {
       COLORS.forEach((color) => {
-        test(`${color} is rendered`, () => {
+        test(`${color} is rendered for single`, () => {
           const component = render(
-            <EuiButtonGroup
-              onChange={() => {}}
-              color={color}
-              options={options}
-            />
+            <EuiButtonGroup {...requiredSingleProps} color={color} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+        test(`${color} is rendered for multi`, () => {
+          const component = render(
+            <EuiButtonGroup {...requiredMultiProps} color={color} />
           );
 
           expect(component).toMatchSnapshot();
@@ -139,60 +174,20 @@ describe('EuiButtonGroup', () => {
       });
     });
 
-    describe('legend', () => {
-      it('is rendered', () => {
+    describe('selection', () => {
+      it('idSelected is rendered for single', () => {
+        const component = render(
+          <EuiButtonGroup {...requiredSingleProps} idSelected={options[0].id} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('idToSelectedMap is rendered for multi', () => {
         const component = render(
           <EuiButtonGroup
-            onChange={() => {}}
-            legend="legend"
-            options={options}
-          />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('name', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiButtonGroup onChange={() => {}} name="name" options={options} />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('idSelected', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiButtonGroup
-            onChange={() => {}}
-            idSelected="button00"
-            options={options}
-          />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('type of multi', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiButtonGroup onChange={() => {}} type="multi" options={options} />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-
-      it('idToSelectedMap is rendered', () => {
-        const component = render(
-          <EuiButtonGroup
-            onChange={() => {}}
-            type="multi"
-            idToSelectedMap={{ button00: true, button01: true }}
-            options={options}
+            {...requiredMultiProps}
+            idToSelectedMap={{ [options[0].id]: true, [options[1].id]: true }}
           />
         );
 
