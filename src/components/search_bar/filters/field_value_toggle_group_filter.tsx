@@ -32,6 +32,9 @@ export interface FieldValueToggleGroupFilterItemType {
 export interface FieldValueToggleGroupFilterConfigType {
   type: 'field_value_toggle_group';
   field: string;
+  /**
+   * See #FieldValueToggleGroupFilterItemType
+   */
   items: FieldValueToggleGroupFilterItemType[];
   available?: () => boolean;
 }
