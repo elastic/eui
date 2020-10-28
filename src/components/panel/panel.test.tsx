@@ -39,6 +39,14 @@ describe('EuiPanel', () => {
       });
     });
 
+    describe('grow', () => {
+      test('can be false', () => {
+        const component = render(<EuiPanel grow={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {

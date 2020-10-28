@@ -75,7 +75,7 @@ interface Props extends CommonProps {
    */
   borderRadius?: PanelBorderRadius;
   /**
-   * When true the panel will grow to match `EuiFlexItem`
+   * When true the panel will grow in height to match `EuiFlexItem`
    */
   grow?: boolean;
   panelRef?: Ref<HTMLDivElement>;

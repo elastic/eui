@@ -20,8 +20,8 @@ import Panel from './panel';
 const panelSource = require('!!raw-loader!./panel');
 const panelHtml = renderToHtml(Panel);
 
-import PanelShadow from './shadow';
-const panelShadowSource = require('!!raw-loader!./shadow');
+import PanelShadow from './panel_shadow';
+const panelShadowSource = require('!!raw-loader!./panel_shadow');
 const panelShadowHtml = renderToHtml(PanelShadow);
 
 import PanelColor from './panel_color';

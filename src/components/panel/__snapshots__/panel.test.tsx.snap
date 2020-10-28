@@ -68,6 +68,12 @@ exports[`EuiPanel props color warning is rendered 1`] = `
 />
 `;
 
+exports[`EuiPanel props grow can be false 1`] = `
+<div
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--shadow euiPanel--flexGrowZero"
+/>
+`;
+
 exports[`EuiPanel props hasShadow can be false 1`] = `
 <div
   class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain"
