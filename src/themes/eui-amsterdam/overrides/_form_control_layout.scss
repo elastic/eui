@@ -1,43 +1,34 @@
 .euiFormControlLayout--group {
-  $leftSideRadius: $euiFormControlBorderRadius 0 0 $euiFormControlBorderRadius;
-  $leftSideRadiusInternal: ($euiFormControlBorderRadius - 1) 0 0 ($euiFormControlBorderRadius - 1);
-  $rightSideRadius: 0 $euiFormControlBorderRadius $euiFormControlBorderRadius 0;
-  $rightSideRadiusInternal: 0 ($euiFormControlBorderRadius - 1) ($euiFormControlBorderRadius - 1) 0;
-  $leftSideRadiusSmall: $euiFormControlCompressedBorderRadius 0 0 $euiFormControlCompressedBorderRadius;
-  $leftSideRadiusSmallInternal: ($euiFormControlCompressedBorderRadius - 1) 0 0 ($euiFormControlCompressedBorderRadius - 1);
-  $rightSideRadiusSmall: 0 $euiFormControlCompressedBorderRadius $euiFormControlCompressedBorderRadius 0;
-  $rightSideRadiusSmallInternal: 0 ($euiFormControlCompressedBorderRadius - 1) ($euiFormControlCompressedBorderRadius - 1) 0;
-
   border-radius: $euiFormControlBorderRadius;
 
   .euiFormControlLayout__prepend:first-child {
-    border-radius: $leftSideRadiusInternal;
+    @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'left', $internal: true);
 
     [class*='euiButton'] {
-      border-radius: $leftSideRadiusInternal;
+      @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'left', $internal: true);
     }
   }
 
   .euiFormControlLayout__append:last-child {
-    border-radius: $rightSideRadiusInternal;
+    @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'right', $internal: true);
 
     [class*='euiButton'] {
-      border-radius: $rightSideRadiusInternal;
+      @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'right', $internal: true);
     }
   }
 
   .euiToolTipAnchor > .euiIcon {
-    border-radius: $rightSideRadiusInternal;
+    @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'right', $internal: true);
   }
 
   .euiToolTipAnchor:first-child [class*='euiButton'] {
-    border-radius: $leftSideRadiusInternal;
+    @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'left', $internal: true);
   }
 
   .euiToolTipAnchor:last-child {
     [class*='euiButton'],
     .euiText {
-      border-radius: $rightSideRadiusInternal;
+      @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'right', $internal: true);
     }
   }
 
@@ -47,43 +38,43 @@
   }
 
   .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
-    border-radius: $leftSideRadius;
+    @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'left');
   }
 
   .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
-    border-radius: $rightSideRadius;
+    @include euiFormControlBorderRadius($euiFormControlBorderRadius, $side: 'right');
   }
 
   &.euiFormControlLayout--compressed {
-    border-radius: $euiBorderRadiusSmall;
+    border-radius: $euiFormControlCompressedBorderRadius;
 
     .euiFormControlLayout__prepend:first-child {
-      border-radius: $leftSideRadiusSmallInternal;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left', $internal: true);
 
       [class*='euiButton'] {
-        border-radius: $leftSideRadiusSmall;
+        @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left');
       }
     }
 
     .euiFormControlLayout__append:last-child {
-      border-radius: $rightSideRadiusSmallInternal;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'right', $internal: true);
 
       [class*='euiButton'] {
-        border-radius: $rightSideRadiusSmallInternal;
+        @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'right', $internal: true);
       }
     }
 
     .euiToolTipAnchor > .euiIcon {
-      border-radius: $rightSideRadiusSmallInternal;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'right', $internal: true);
     }
 
     .euiToolTipAnchor:first-child [class*='euiButton'] {
-      border-radius: $leftSideRadiusSmallInternal;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left', $internal: true);
     }
 
     .euiToolTipAnchor:last-child [class*='euiButton'],
     .euiToolTipAnchor:last-child .euiText {
-      border-radius: $rightSideRadiusSmallInternal;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'right', $internal: true);
     }
 
     .euiFormControlLayout__childrenWrapper:nth-child(2) [class*='euiField'],
@@ -92,11 +83,11 @@
     }
 
     .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
-      border-radius: $leftSideRadiusSmall;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left', $internal: true);
     }
 
     .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
-      border-radius: $rightSideRadiusSmall;
+      @include euiFormControlBorderRadius($euiFormControlCompressedBorderRadius, $side: 'right', $internal: true);
     }
   }
 }
