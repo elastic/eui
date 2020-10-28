@@ -60,7 +60,7 @@
 
     // Sets labelWidth from 20% to 90% in increments of 10%
     @for $i from 20 through 90 {
-      &.euiSuggestItem__labelWidth#{$i} {
+      &.euiSuggestItem__label--width#{$i} {
         flex-basis: $i * 1%;
         min-width: $i * 1%;
         $i: $i + 10;
@@ -82,6 +82,7 @@
     &.euiSuggestItem__description--wrap {
       @include euiTextBreakWord;
       white-space: normal;
+      line-height: $euiSizeM + 2px;
     }
 
     &.euiSuggestItem__description--truncate {

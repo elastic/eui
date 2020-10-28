@@ -36,6 +36,18 @@ const suggestItemSnippet = [
   description={sampleItem.description}
   labelDisplay="expand"
 />`,
+  `<EuiSuggestItem
+  type={sampleItem.type}
+  label={sampleItem.label}
+  description={sampleItem.description}
+  labelWidth="30"
+/>`,
+  `<EuiSuggestItem
+  type={sampleItem.type}
+  label={sampleItem.label}
+  description={sampleItem.description}
+  descriptionDisplay="wrap"
+/>`,
 ];
 
 const suggestSnippet = [

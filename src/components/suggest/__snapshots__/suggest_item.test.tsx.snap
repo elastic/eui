@@ -14,7 +14,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand euiSuggestItem__labelWidth50"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
   >
     Test label
   </span>
@@ -36,7 +36,7 @@ exports[`props descriptionDisplay as wrap is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelWidth50"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__label--width50"
   >
     This is the description
   </span>
@@ -60,7 +60,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand euiSuggestItem__labelWidth50"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
   >
     This is the description
   </span>
@@ -106,7 +106,7 @@ exports[`props labelWidth is 30% is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelWidth30"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__label--width30"
   >
     This is the description
   </span>
