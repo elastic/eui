@@ -14,10 +14,10 @@ export default () => (
     </p>
     <p>
       This{' '}
-      <EuiLink href="http://www.elastic.co" external={false} target="_blank">
+      <EuiLink href="http://www.elastic.co" external>
         link
       </EuiLink>{' '}
-      has the <EuiCode>external</EuiCode> prop set to false.
+      has the <EuiCode>external</EuiCode> prop set to true.
     </p>
     <p>
       This link is actually a <EuiLink onClick={() => {}}>button</EuiLink> with
