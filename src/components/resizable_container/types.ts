@@ -46,7 +46,6 @@ export interface EuiResizableButtonController {
 export interface EuiResizableContainerRegistry {
   panels: { [key: string]: EuiResizablePanelController };
   resizers: { [key: string]: EuiResizableButtonController };
-  // resizerHasFocus: EuiResizableContainerState['resizerHasFocus'];
 }
 
 export type EuiResizableButtonMouseEvent =
@@ -95,7 +94,7 @@ export interface ActionKeyMove {
 
 export interface ActionResize {
   type: 'EUI_RESIZABLE_RESIZE';
-  payload: { resetTour?: boolean };
+  payload: {};
 }
 
 export interface ActionToggle {
@@ -190,5 +189,4 @@ export interface EuiResizableContainerActions {
     panelId: ActionToggle['payload']['panelId'],
     options: ActionToggle['payload']['options']
   ) => void;
-  resize: (resetTour?: boolean) => void;
 }

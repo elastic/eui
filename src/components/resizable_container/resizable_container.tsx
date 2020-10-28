@@ -68,7 +68,7 @@ export interface EuiResizableContainerProps
   children: (
     Panel: ComponentType<EuiResizablePanelProps>,
     Resizer: ComponentType<EuiResizableButtonProps>,
-    actions: EuiResizableContainerActions
+    actions: Partial<EuiResizableContainerActions>
   ) => ReactNode;
   /**
    * Pure function which accepts an object where keys are IDs of panels, which sizes were changed,
@@ -203,9 +203,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   );
 
   const render = () => {
-    // TODO: Maybe just a subset of actions?
     const DEFAULT = 'default';
-    const content = children(EuiResizablePanel, EuiResizableButton, actions);
+    const content = children(EuiResizablePanel, EuiResizableButton, {
+      togglePanel: actions.togglePanel,
+    });
     const modes = React.isValidElement(content)
       ? content.props.children.map(
           (el: ReactElement) => getModeType(el.props.mode) || DEFAULT

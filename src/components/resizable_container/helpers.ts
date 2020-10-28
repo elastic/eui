@@ -263,9 +263,7 @@ export const useContainerCallbacks = ({
           });
         }
 
-        return {
-          ...state,
-        };
+        return state;
       }
       case 'EUI_RESIZABLE_KEY_MOVE': {
         const { prevPanelId, nextPanelId, direction } = action.payload;
@@ -438,9 +436,7 @@ export const useContainerCallbacks = ({
       // TODO: Implement more generic version of
       // 'EUI_RESIZABLE_DRAG_MOVE' to expose to consumers
       case 'EUI_RESIZABLE_RESIZE': {
-        return {
-          ...state,
-        };
+        return state;
       }
       case 'EUI_RESIZABLE_RESET': {
         return {
@@ -536,7 +532,6 @@ export const useContainerCallbacks = ({
         dispatch({
           type: 'EUI_RESIZABLE_BUTTON_BLUR',
         }),
-      resize: () => dispatch({ type: 'EUI_RESIZABLE_RESIZE', payload: {} }),
     };
   }, []);
 
