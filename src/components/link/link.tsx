@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiIcon } from '../icon';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -69,7 +69,8 @@ export interface LinkAnchorProps {
   type?: EuiLinkType;
   color?: EuiLinkColor;
   /**
-   * Set to true to show an icon indicating that it is an external link.
+   * Set to true to show an icon indicating that it is an external link. Defaults to true if
+   * `target="_blank".
    */
   external?: boolean;
 }
@@ -103,29 +104,25 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     },
     ref
   ) => {
-    const externalLinkIcon = external ? (
-      <EuiI18n token="euiLink.external.ariaLabel" default="External link">
-        {(ariaLabel: string) => (
-          <EuiIcon
-            aria-label={ariaLabel}
-            size="s"
-            className="euiLink__externalIcon"
-            type="popout"
-          />
-        )}
-      </EuiI18n>
-    ) : undefined;
+    const externalLinkIcon = (
+      <EuiIcon
+        aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
+        size="s"
+        className="euiLink__externalIcon"
+        type="popout"
+      />
+    );
 
-    const newTargetScreenreaderText = target ? (
+    const newTargetScreenreaderText = (
       <EuiScreenReaderOnly>
         <span>
-          <EuiI18n
-            token="euiLink.newTarget.screenReaderOnlyText"
-            default="(opens in a new tab or window)"
-          />
+          {useEuiI18n(
+            'euiLink.newTarget.screenReaderOnlyText',
+            '(opens in a new tab or window)'
+          )}
         </span>
       </EuiScreenReaderOnly>
-    ) : undefined;
+    );
 
     if (href === undefined) {
       const buttonProps = {
@@ -158,14 +155,16 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       onClick,
       ...rest,
     };
+    const showExternalLinkIcon =
+      (target === '_blank' && external !== false) || external === true;
 
     return (
       <a
         ref={ref as React.Ref<HTMLAnchorElement>}
         {...(anchorProps as EuiLinkAnchorProps)}>
         {children}
-        {externalLinkIcon}
-        {newTargetScreenreaderText}
+        {showExternalLinkIcon && externalLinkIcon}
+        {target === '_blank' && newTargetScreenreaderText}
       </a>
     );
   }

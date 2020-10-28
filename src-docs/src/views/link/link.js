@@ -9,14 +9,15 @@ export default () => (
       <EuiLink href="http://www.elastic.co" target="_blank">
         Elastic website
       </EuiLink>{' '}
-      in a new tab.
+      in a new tab. Setting <EuiCode>target=&ldquo;_blank&rdquo;</EuiCode> also
+      defaults to <EuiCode>external={true}</EuiCode>.
     </p>
     <p>
       This{' '}
-      <EuiLink href="http://www.elastic.co" external target="_blank">
+      <EuiLink href="http://www.elastic.co" external={false} target="_blank">
         link
       </EuiLink>{' '}
-      has the <EuiCode>external</EuiCode> prop set to true.
+      has the <EuiCode>external</EuiCode> prop set to false.
     </p>
     <p>
       This link is actually a{' '}
@@ -34,7 +35,8 @@ export default () => (
         }}>
         link
       </EuiLink>{' '}
-      with both an href and an onClick handler.
+      with both an <EuiCode>href</EuiCode> and an <EuiCode>onClick</EuiCode>{' '}
+      handler.
     </p>
     <p>Links can be colored as well.</p>
     <ul>
