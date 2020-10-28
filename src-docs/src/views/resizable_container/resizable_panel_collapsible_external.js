@@ -52,9 +52,9 @@ export default () => {
       </div>
       <EuiSpacer />
       <EuiResizableContainer style={{ height: '600px' }}>
-        {(EuiResizablePanel, EuiResizableButton, actions) => {
+        {(EuiResizablePanel, EuiResizableButton, { togglePanel }) => {
           collapseFn.current = (id, direction = 'left') =>
-            actions.togglePanel(id, { direction });
+            togglePanel(id, { direction });
           return (
             <>
               <EuiResizablePanel id="panel1" initialSize={30} minSize="10%">
