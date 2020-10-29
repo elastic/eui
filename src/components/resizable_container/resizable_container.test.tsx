@@ -161,8 +161,7 @@ describe('EuiResizableContainer', () => {
               mode={[
                 'collapsible',
                 {
-                  notCollapsedIcon: 'arrowLeft',
-                  collapsedIcon: 'arrowRight',
+                  'data-test-subj': 'panel-toggle',
                   className: 'panel-toggle',
                 },
               ]}

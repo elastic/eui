@@ -32,7 +32,6 @@ import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
 import { htmlIdGenerator } from '../../services';
 import { EuiButtonIcon } from '../button';
-import { IconType } from '../icon';
 import { useEuiI18n } from '../i18n';
 import {
   EuiResizablePanelController,
@@ -42,15 +41,16 @@ import {
 } from './types';
 
 interface ToggleOptions {
-  notCollapsedIcon: IconType;
-  collapsedIcon: IconType;
+  'data-test-subj'?: string;
   className?: string;
 }
 
-type ModeOptions = PanelModeType | [PanelModeType, ToggleOptions];
+type ModeOptions = PanelModeType | [PanelModeType, Partial<ToggleOptions>];
 
 export const getModeType = (mode?: ModeOptions) =>
   typeof mode === 'object' ? mode[0] : mode;
+export const getToggleOptions = (mode?: ModeOptions) =>
+  typeof mode === 'object' ? mode[1] : null;
 
 export interface EuiResizablePanelControls {
   isHorizontal: boolean;
@@ -109,13 +109,8 @@ export interface EuiResizablePanelProps
   mode?: ModeOptions;
 }
 
-const DEFAULT_COLLAPSED = 'menuRight';
-const DEFAULT_NOT_COLLAPSED = 'menuLeft';
-
-const toggleDefault: ToggleOptions = {
-  collapsedIcon: DEFAULT_COLLAPSED,
-  notCollapsedIcon: DEFAULT_NOT_COLLAPSED,
-};
+const COLLAPSED_ICON = 'menuRight';
+const NOT_COLLAPSED_ICON = 'menuLeft';
 
 const getPosition = (ref: HTMLDivElement) => {
   let position: PanelPosition = 'middle';
@@ -154,6 +149,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const panelId = useRef(id || generatePanelId());
   const resizerIds = useRef<string[]>([]);
   const modeType = useMemo(() => getModeType(mode), [mode]);
+  const toggleOpts = useMemo(() => getToggleOptions(mode), [mode]);
   const innerSize = useMemo(
     () =>
       (panels[panelId.current] && panels[panelId.current].size) ??
@@ -277,18 +273,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     if (e.detail) e.currentTarget.blur();
   };
 
-  const toggleObject =
-    typeof mode === 'object' ? { ...toggleDefault, ...mode[1] } : toggleDefault;
-
   const toggleButtonClasses = classNames(
     'euiResizablePanel__toggleButton',
-    toggleObject && toggleObject.className,
-    {
-      'euiResizablePanel__toggleButton--defaultCollapsed':
-        toggleObject.collapsedIcon === DEFAULT_COLLAPSED,
-      'euiResizablePanel__toggleButton--defaultNotCollapsed':
-        toggleObject.notCollapsedIcon === DEFAULT_NOT_COLLAPSED,
-    }
+    toggleOpts && toggleOpts.className
   );
 
   const toggleButtonAriaLabel = useEuiI18n(
@@ -313,6 +300,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       {...rest}>
       {hasLeftToggle ? (
         <EuiButtonIcon
+          {...toggleOpts}
           color="text"
           className={classNames(
             toggleButtonClasses,
@@ -324,17 +312,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
             }
           )}
           aria-label={toggleButtonAriaLabel}
-          iconType={
-            isCollapsed
-              ? toggleObject.notCollapsedIcon
-              : toggleObject.collapsedIcon
-          }
+          iconType={isCollapsed ? NOT_COLLAPSED_ICON : COLLAPSED_ICON}
           onClick={collapseRight}
         />
       ) : null}
       <div className="euiResizablePanel__content">{children}</div>
       {hasRightToggle ? (
         <EuiButtonIcon
+          {...toggleOpts}
           color="text"
           className={classNames(
             toggleButtonClasses,
@@ -346,11 +331,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
             }
           )}
           aria-label={toggleButtonAriaLabel}
-          iconType={
-            isCollapsed
-              ? toggleObject.collapsedIcon
-              : toggleObject.notCollapsedIcon
-          }
+          iconType={isCollapsed ? COLLAPSED_ICON : NOT_COLLAPSED_ICON}
           onClick={collapseLeft}
         />
       ) : null}

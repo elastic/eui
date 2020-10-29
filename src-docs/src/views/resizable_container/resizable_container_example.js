@@ -395,8 +395,7 @@ export const ResizableContainerExample = {
           </p>
           <EuiCodeBlock language="js">
             {`mode={["collapsible", {
-  notCollapsedIcon: 'arrowLeft',
-  collapsedIcon: 'arrowRight',
+  'data-test-subj': 'panel-1-toggle',
   className: 'panel-toggle'
 }]}`}
           </EuiCodeBlock>

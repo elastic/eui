@@ -433,11 +433,6 @@ export const useContainerCallbacks = ({
           },
         };
       }
-      // TODO: Implement more generic version of
-      // 'EUI_RESIZABLE_DRAG_MOVE' to expose to consumers
-      case 'EUI_RESIZABLE_RESIZE': {
-        return state;
-      }
       case 'EUI_RESIZABLE_RESET': {
         return {
           ...initialState,
@@ -449,6 +444,11 @@ export const useContainerCallbacks = ({
         onPanelWidthChange!(sizesOnly(state.panels));
         return state;
       }
+      // TODO: Implement more generic version of
+      // 'EUI_RESIZABLE_DRAG_MOVE' to expose to consumers
+      case 'EUI_RESIZABLE_RESIZE': {
+        return state;
+      }
       default:
         assertNever(action);
         return state;
@@ -457,7 +457,7 @@ export const useContainerCallbacks = ({
 
   const [reducerState, dispatch] = useReducer(reducer, initialState, init);
 
-  // TODO: Not sure I like this. Left the alternate effect approach in, commented
+  // TODO: Handle side-effects like this?
   // useEffect(() => {
   //   if (!onPanelWidthChange) return;
   //   dispatch({

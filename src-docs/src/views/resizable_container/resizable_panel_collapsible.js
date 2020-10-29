@@ -51,8 +51,11 @@ export default () => {
   ));
 
   return (
-    <EuiText>
-      <h3>Simple</h3>
+    <>
+      <EuiText>
+        <h3>Simple</h3>
+      </EuiText>
+      <EuiSpacer />
       <div className="guideSection__shadedBox">
         <EuiResizableContainer style={{ height: '320px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
@@ -80,7 +83,11 @@ export default () => {
         </EuiResizableContainer>
       </div>
 
-      <h3>Multiple collapsible panels</h3>
+      <EuiSpacer />
+      <EuiText>
+        <h3>Multiple collapsible panels</h3>
+      </EuiText>
+      <EuiSpacer />
 
       <div className="guideSection__shadedBox">
         <EuiResizableContainer style={{ height: '320px' }}>
@@ -118,7 +125,11 @@ export default () => {
         </EuiResizableContainer>
       </div>
 
-      <h3>Vertical collapsible panels</h3>
+      <EuiSpacer />
+      <EuiText>
+        <h3>Vertical collapsible panels</h3>
+      </EuiText>
+      <EuiSpacer />
 
       <div className="guideSection__shadedBox">
         <EuiResizableContainer direction="vertical" style={{ height: '600px' }}>
@@ -146,6 +157,6 @@ export default () => {
           )}
         </EuiResizableContainer>
       </div>
-    </EuiText>
+    </>
   );
 };

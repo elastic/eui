@@ -1,90 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  EuiEmptyPrompt,
   EuiResizableContainer,
   EuiListGroup,
   EuiListGroupItem,
   EuiPanel,
-  EuiButton,
+  EuiTitle,
+  EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
+import { fake } from 'faker';
+
+const texts = [];
+
+for (let i = 0; i < 4; i++) {
+  texts.push(<p>{fake('{{lorem.paragraph}}')}</p>);
+}
 
 export default () => {
+  const items = [
+    {
+      id: 1,
+      label: 'First item',
+      text: texts[0],
+    },
+    {
+      id: 2,
+      label: 'Second item',
+      text: texts[1],
+    },
+    {
+      id: 3,
+      label: 'Third item',
+      text: texts[2],
+    },
+    {
+      id: 4,
+      label: 'Forth item',
+      text: texts[3],
+    },
+  ];
+
+  const [itemSelected, setItemSelected] = useState(items[0]);
+  const itemElements = items.map((item, index) => (
+    <EuiListGroupItem
+      key={index}
+      onClick={() => setItemSelected(item)}
+      label={item.label}
+      size="s"
+    />
+  ));
   return (
-    <>
-      <div className="guideSection__shadedBox">
-        <EuiResizableContainer style={{ height: '320px' }}>
-          {(EuiResizablePanel, EuiResizableButton) => (
-            <>
-              <EuiResizablePanel
-                mode={[
-                  'collapsible',
-                  {
-                    notCollapsedIcon: 'arrowLeft',
-                    collapsedIcon: 'arrowRight',
-                    className: 'panel-toggle',
-                  },
-                ]}
-                initialSize={15}
-                minSize="5%">
-                <EuiListGroup>
-                  {[...Array(4)].map((el, i) => (
-                    <EuiListGroupItem
-                      key={i}
-                      size="s"
-                      onClick={() => {}}
-                      label="Action"
-                      isDisabled
-                    />
-                  ))}
-                </EuiListGroup>
-              </EuiResizablePanel>
+    <div className="guideSection__shadedBox">
+      <EuiResizableContainer style={{ height: '320px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel
+              mode={[
+                'collapsible',
+                {
+                  className: 'panel-toggle',
+                  'data-test-subj': 'panel-1-toggle',
+                },
+              ]}
+              initialSize={20}
+              minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
 
-              <EuiResizableButton />
+            <EuiResizableButton />
 
-              <EuiResizablePanel mode="main" initialSize={70} minSize="50px">
-                <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
-                  <EuiEmptyPrompt
-                    iconType="globe"
-                    title={<h2>Add some data to get started</h2>}
-                    body={<p>You&rsquo;ll need data to perform actions.</p>}
-                    actions={
-                      <EuiButton color="primary" fill>
-                        Add data
-                      </EuiButton>
-                    }
-                  />
-                </EuiPanel>
-              </EuiResizablePanel>
+            <EuiResizablePanel mode="main" initialSize={60} minSize="50px">
+              <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+                <EuiTitle>
+                  <p>{itemSelected.label}</p>
+                </EuiTitle>
+                <EuiSpacer />
+                <EuiText>{itemSelected.text}</EuiText>
+              </EuiPanel>
+            </EuiResizablePanel>
 
-              <EuiResizableButton />
+            <EuiResizableButton />
 
-              <EuiResizablePanel
-                mode={[
-                  'collapsible',
-                  {
-                    notCollapsedIcon: 'arrowLeft',
-                    collapsedIcon: 'arrowRight',
-                    className: 'panel-toggle',
-                  },
-                ]}
-                initialSize={15}
-                minSize="5%">
-                <EuiListGroup>
-                  {[...Array(4)].map((el, i) => (
-                    <EuiListGroupItem
-                      key={i}
-                      size="s"
-                      onClick={() => {}}
-                      label="Action"
-                      isDisabled
-                    />
-                  ))}
-                </EuiListGroup>
-              </EuiResizablePanel>
-            </>
-          )}
-        </EuiResizableContainer>
-      </div>
-    </>
+            <EuiResizablePanel
+              mode={[
+                'collapsible',
+                {
+                  className: 'panel-toggle',
+                  'data-test-subj': 'panel-3-toggle',
+                },
+              ]}
+              initialSize={20}
+              minSize="10%">
+              <EuiListGroup flush>{itemElements}</EuiListGroup>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    </div>
   );
 };
