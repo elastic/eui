@@ -1,6 +1,8 @@
 .euiColorPaletteDisplay {
   @include innerBorder('dark', $euiBorderRadius, .2);
   position: relative;
+  display: flex;
+  flex-direction: row;
   border-radius: $euiBorderRadius;
   overflow: hidden;
   height: $euiSizeS;
@@ -16,12 +18,7 @@
     width: calc(100% + 1px);
   }
 
-  &--fixed {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__colorStopWidthAuto {
+  &__colorStop--widthAuto {
     flex: 1;
     width: auto;
   }

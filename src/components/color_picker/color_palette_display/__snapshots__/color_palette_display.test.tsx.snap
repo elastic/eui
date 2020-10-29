@@ -12,7 +12,7 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
 exports[`EuiColorPaletteDisplay is rendered with a fixed palette with stops 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
+  class="euiColorPaletteDisplay testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span
@@ -55,30 +55,30 @@ exports[`EuiColorPaletteDisplay is rendered with a gradient palette with stops 1
 exports[`EuiColorPaletteDisplay is rendered with fixed palette 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
+  class="euiColorPaletteDisplay testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span
     class="euiColorPaletteDisplay__inner"
   >
     <span
-      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      class="euiColorPaletteDisplay__colorStop--widthAuto"
       style="background-color:#1fb0b2"
     />
     <span
-      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      class="euiColorPaletteDisplay__colorStop--widthAuto"
       style="background-color:#ffdb6d"
     />
     <span
-      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      class="euiColorPaletteDisplay__colorStop--widthAuto"
       style="background-color:#ee9191"
     />
     <span
-      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      class="euiColorPaletteDisplay__colorStop--widthAuto"
       style="background-color:#ffffff"
     />
     <span
-      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      class="euiColorPaletteDisplay__colorStop--widthAuto"
       style="background-color:#888094"
     />
   </span>

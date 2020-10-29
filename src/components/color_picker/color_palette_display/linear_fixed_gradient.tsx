@@ -39,10 +39,7 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
     return typeof item === 'object';
   });
 
-  const classes = classnames(
-    'euiColorPaletteDisplay euiColorPaletteDisplay--fixed',
-    className
-  );
+  const classes = classnames('euiColorPaletteDisplay', className);
 
   if (paletteHasStops) {
     const paletteColorStop = palette as ColorStop[];
@@ -98,7 +95,7 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
             <span
               style={{ backgroundColor: hexCode }}
               key={`${hexCode}-${index}`}
-              className="euiColorPaletteDisplay__colorStopWidthAuto"
+              className="euiColorPaletteDisplay__colorStop--widthAuto"
             />
           ))}
         </span>

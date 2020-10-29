@@ -125,29 +125,29 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
         >
           Select an option: 
           <span
-            class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+            class="euiColorPaletteDisplay"
           >
             <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#1fb0b2"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#ffdb6d"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#ee9191"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#ffffff"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#888094"
               />
             </span>
@@ -163,29 +163,29 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           type="button"
         >
           <span
-            class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+            class="euiColorPaletteDisplay"
           >
             <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#1fb0b2"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#ffdb6d"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#ee9191"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#ffffff"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color:#888094"
               />
             </span>
@@ -405,29 +405,29 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
         >
           Select an option: 
           <span
-            class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+            class="euiColorPaletteDisplay"
           >
             <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(31, 176, 178);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(255, 219, 109);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(238, 145, 145);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(255, 255, 255);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(136, 128, 148);"
               />
             </span>
@@ -442,29 +442,29 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           type="button"
         >
           <span
-            class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
+            class="euiColorPaletteDisplay"
           >
             <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(31, 176, 178);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(255, 219, 109);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(238, 145, 145);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(255, 255, 255);"
               />
               <span
-                class="euiColorPaletteDisplay__colorStopWidthAuto"
+                class="euiColorPaletteDisplay__colorStop--widthAuto"
                 style="background-color: rgb(136, 128, 148);"
               />
             </span>
