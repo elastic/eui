@@ -7,7 +7,7 @@ export default () => {
 
   return (
     <>
-      {[0, 1, 2, 3, 4].map(idx => (
+      {[0, 1, 2, 3, 4].map((idx) => (
         <div key={idx}>
           <EuiPopover
             anchorPosition="rightCenter"
