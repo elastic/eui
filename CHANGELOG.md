@@ -1,14 +1,33 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+
+**Bug fixes**
+
+- Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+
+## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
+
+- Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
+
+**Bug fixes**
+
+- Removed unnecessary shadow on hover of `EuiButtonGroup` ([#4186](https://github.com/elastic/eui/pull/4186))
+- Fixed position of `EuiScreenReaderOnly` elements within `EuiButtonGroup` ([#4189](https://github.com/elastic/eui/pull/4189))
+
+## [`30.1.0`](https://github.com/elastic/eui/tree/v30.1.0)
+
 - Improved `EuiButtonGroup` focus, hover, selected and disabled states ([#4142](https://github.com/elastic/eui/pull/4142))
 - Added `display` prop to `EuiToolTip` for common display block needs ([#4148](https://github.com/elastic/eui/pull/4148))
 - Added support for more colors in `EuiProgress` such as `vis0` through `vis9`, `warning`, `success`  and custom colors ([#4130](https://github.com/elastic/eui/pull/4130))
 - Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865)) 
 - Added `affordForDisplacement` prop to `EuiBottomBar` ([#4156](https://github.com/elastic/eui/pull/4156))
+- Added `width` property to `mobileOptions` prop of `EuiTableRowCell` ([#4169](https://github.com/elastic/eui/issues/4169))
 
 **Bug fixes**
 
 - Fixed issue with duplicate checkmarks in `EuiComboBox` ([#4162](https://github.com/elastic/eui/pull/4162))
+- Reinstated base element type extensions for `EuiStepHorizontal` and `EuiStepsHorizontal` ([4166](https://github.com/elastic/eui/pull/4166))
 
 ## [`30.0.0`](https://github.com/elastic/eui/tree/v30.0.0)
 
@@ -21,6 +40,7 @@
 - Added more exports for `EuiBasicTable` types ([#4125](https://github.com/elastic/eui/pull/4125))
 - Updated types associated with `EuiMarkdownEditor` plugin dependencies ([#4124](https://github.com/elastic/eui/pull/4124))
 - Upgraded dependencies related to `EuiMarkdownEditor`: `react-dropzone`, `rehype-*`, `remark-*`, and `unified` ([#4124](https://github.com/elastic/eui/pull/4124))
+- Added `cellActions` to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
 
 **Bug fixes**
 
@@ -45,7 +65,6 @@
 ## [`29.5.0`](https://github.com/elastic/eui/tree/v29.5.0)
 
 - Added `plus` and `minus` glyphs to `EuiIcon` ([#4111](https://github.com/elastic/eui/pull/4111))
-- Added `cellActions` to `EuiDataGrid` ([#3668](https://github.com/elastic/eui/pull/3668))
 
 **Bug fixes**
 
