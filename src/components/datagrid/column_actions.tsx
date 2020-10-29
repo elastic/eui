@@ -20,10 +20,21 @@ import React from 'react';
 import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
 import { EuiI18n } from '../i18n';
 import { EuiListGroupItemProps } from '../list_group';
+import {
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+  getDetailsForSchema,
+} from './data_grid_schema';
+import {
+  defaultSortAscLabel,
+  defaultSortDescLabel,
+} from './column_sorting_draggable';
 
 export function getColumnActions(
   column: EuiDataGridColumn,
   columns: EuiDataGridColumn[],
+  schema: EuiDataGridSchema,
+  schemaDetectors: EuiDataGridSchemaDetector[],
   setVisibleColumns: (columnId: string[]) => void,
   setIsPopoverOpen: (value: boolean) => void,
   sorting: EuiDataGridSorting | undefined,
@@ -118,10 +129,21 @@ export function getColumnActions(
     }
   }
 
+  const schemaDetails =
+    schema.hasOwnProperty(column.id) && schema[column.id].columnType != null
+      ? getDetailsForSchema(schemaDetectors, schema[column.id].columnType)
+      : null;
   if (column.actions?.showSortAsc !== false && sorting) {
+    const label = schemaDetails
+      ? schemaDetails.sortTextAsc
+      : defaultSortAscLabel;
     const option = {
       label: (
-        <EuiI18n token="euiColumnActions.sortAsc" default="Sort schema asc" />
+        <EuiI18n
+          token="euiColumnActions.sort"
+          default="Sort {schemaLabel}"
+          values={{ schemaLabel: label }}
+        />
       ),
       onClick: onClickSortAsc,
       isDisabled: column.isSortable === false,
@@ -141,9 +163,16 @@ export function getColumnActions(
   }
 
   if (column.actions?.showSortDesc !== false && sorting) {
+    const label = schemaDetails
+      ? schemaDetails.sortTextDesc
+      : defaultSortDescLabel;
     const option = {
       label: (
-        <EuiI18n token="euiColumnActions.sortDesc" default="Sort schema desc" />
+        <EuiI18n
+          token="euiColumnActions.sort"
+          default="Sort {schemaLabel}"
+          values={{ schemaLabel: label }}
+        />
       ),
       onClick: onClickSortDesc,
       isDisabled: column.isSortable === false,
