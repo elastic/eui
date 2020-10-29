@@ -7,6 +7,21 @@ exports[`EuiLink accent is rendered 1`] = `
 />
 `;
 
+exports[`EuiLink allows for target and external to be controlled independently 1`] = `
+<a
+  class="euiLink euiLink--primary"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    (opens in a new tab or window)
+  </span>
+</a>
+`;
+
 exports[`EuiLink button respects the type property 1`] = `
 <button
   class="euiLink euiLink--primary"
@@ -127,9 +142,20 @@ exports[`EuiLink supports target 1`] = `
 <a
   class="euiLink euiLink--primary"
   href="#"
-  rel="noreferrer"
-  target="_parent"
-/>
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span
+    aria-label="External link"
+    class="euiLink__externalIcon"
+    data-euiicon-type="popout"
+  />
+  <span
+    class="euiScreenReaderOnly"
+  >
+    (opens in a new tab or window)
+  </span>
+</a>
 `;
 
 exports[`EuiLink text is rendered 1`] = `

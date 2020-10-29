@@ -1,12 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 - Added `color` and `borderRadius` props to `EuiPanel` ([#4194](https://github.com/elastic/eui/pull/4194))
 - Updated the use case for the `EuiPanel` prop `hasShadow` ([#4194](https://github.com/elastic/eui/pull/4194))
 - Deprecated the `onClick`, `betaBadgeLabel`, `betaBadgeTooltipContent`, and `betaBadgeTitle` props of `EuiPanel` ([#4194](https://github.com/elastic/eui/pull/4194))
 
+**Bug fixes**
+
+- Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 
 - Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
+- Added screen reader notification if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
+- Set `external` prop to true if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
 
 **Bug fixes**
 

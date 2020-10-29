@@ -54,15 +54,13 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = (
     onInputChange ? onInputChange(e.target) : null;
   };
 
-  const suggestionList = suggestions.map((item: EuiSuggestItemProps, index) => (
-    <EuiSuggestItem
-      type={item.type}
-      key={index}
-      label={item.label}
-      onClick={onItemClick ? () => onItemClick(item) : undefined}
-      description={item.description}
-    />
-  ));
+  const suggestionList = suggestions.map((item: EuiSuggestItemProps, index) => {
+    const props = { ...item };
+    if (onItemClick) {
+      props.onClick = () => onItemClick(item);
+    }
+    return <EuiSuggestItem key={index} {...props} />;
+  });
 
   const suggestInput = (
     <EuiSuggestInput

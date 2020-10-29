@@ -4,6 +4,9 @@ import { EuiSuggestItem, EuiSpacer } from '../../../../src/components';
 
 const shortDescription = 'This is the description';
 
+const longDescription =
+  'This is a long description. Fusce euismod dui eu metus sagittis molestie.';
+
 const sampleItems = [
   {
     type: { iconType: 'kqlField', color: 'tint5' },
@@ -35,13 +38,34 @@ const sampleItems = [
   },
 ];
 
+const sampleItems2 = [
+  {
+    type: { iconType: 'kqlField', color: 'tint5' },
+    label: 'Field sample with label at 30%',
+    labelWidth: 30,
+    description: shortDescription,
+  },
+  {
+    type: { iconType: 'kqlField', color: 'tint5' },
+    label: 'Field sample with label at 50%',
+    labelWidth: 50,
+    description: shortDescription,
+  },
+  {
+    type: { iconType: 'kqlField', color: 'tint5' },
+    label: 'Field sample with label at 80%',
+    labelWidth: 80,
+    description: shortDescription,
+  },
+];
+
 const typeObj = { iconType: 'kqlValue', color: 'tint0' };
 
 const longLabel =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar.';
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam.';
 
 export default () => (
-  <div>
+  <div style={{ maxWidth: '800px' }}>
     {sampleItems.map((item, index) => (
       <EuiSuggestItem
         type={item.type}
@@ -66,6 +90,28 @@ export default () => (
     <EuiSuggestItem
       type={{ iconType: 'search', color: 'tint10' }}
       label="Items with no description will expand their label"
+    />
+    <EuiSpacer size="m" />
+    {sampleItems2.map((item, index) => (
+      <EuiSuggestItem
+        type={item.type}
+        key={index}
+        labelWidth={item.labelWidth}
+        label={item.label}
+        description={item.description}
+      />
+    ))}
+    <EuiSpacer size="m" />
+    <EuiSuggestItem
+      type={typeObj}
+      label="Item with a description that truncates"
+      description={longDescription}
+    />
+    <EuiSuggestItem
+      type={typeObj}
+      label="Item with a description that wraps"
+      description={longDescription}
+      descriptionDisplay="wrap"
     />
   </div>
 );
