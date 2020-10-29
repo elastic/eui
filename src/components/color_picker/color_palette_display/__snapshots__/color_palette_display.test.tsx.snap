@@ -15,18 +15,22 @@ exports[`EuiColorPaletteDisplay is rendered with a fixed palette with stops 1`] 
   class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
-    style="background-color:#54B399;width:21%"
-  />
-  <span
-    style="background-color:#D36086;width:32%"
-  />
-  <span
-    style="background-color:#9170B8;width:21%"
-  />
-  <span
-    style="background-color:#F5A700;width:26%"
-  />
+  <div
+    class="euiColorPaletteDisplay__inner"
+  >
+    <span
+      style="background-color:#54B399;width:21%"
+    />
+    <span
+      style="background-color:#D36086;width:32%"
+    />
+    <span
+      style="background-color:#9170B8;width:21%"
+    />
+    <span
+      style="background-color:#F5A700;width:26%"
+    />
+  </div>
 </div>
 `;
 
@@ -54,25 +58,29 @@ exports[`EuiColorPaletteDisplay is rendered with fixed palette 1`] = `
   class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiColorPaletteDisplay__colorStopWidthAuto"
-    style="background-color:#1fb0b2"
-  />
-  <span
-    class="euiColorPaletteDisplay__colorStopWidthAuto"
-    style="background-color:#ffdb6d"
-  />
-  <span
-    class="euiColorPaletteDisplay__colorStopWidthAuto"
-    style="background-color:#ee9191"
-  />
-  <span
-    class="euiColorPaletteDisplay__colorStopWidthAuto"
-    style="background-color:#ffffff"
-  />
-  <span
-    class="euiColorPaletteDisplay__colorStopWidthAuto"
-    style="background-color:#888094"
-  />
+  <div
+    class="euiColorPaletteDisplay__inner"
+  >
+    <span
+      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      style="background-color:#1fb0b2"
+    />
+    <span
+      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      style="background-color:#ffdb6d"
+    />
+    <span
+      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      style="background-color:#ee9191"
+    />
+    <span
+      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      style="background-color:#ffffff"
+    />
+    <span
+      class="euiColorPaletteDisplay__colorStopWidthAuto"
+      style="background-color:#888094"
+    />
+  </div>
 </div>
 `;
