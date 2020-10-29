@@ -48,8 +48,8 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
     const paletteColorStop = palette as ColorStop[];
 
     return (
-      <div className={classes} {...rest}>
-        <div className="euiColorPaletteDisplay__inner">
+      <span className={classes} {...rest}>
+        <span className="euiColorPaletteDisplay__inner">
           {paletteColorStop.map((colorStop: any, index: number) => {
             const lastColorStopArrayPosition = palette.length - 1;
 
@@ -85,15 +85,15 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
               />
             );
           })}
-        </div>
-      </div>
+        </span>
+      </span>
     );
   } else {
     const paletteColorStop = palette as String[];
 
     return (
-      <div className={classes} {...rest}>
-        <div className="euiColorPaletteDisplay__inner">
+      <span className={classes} {...rest}>
+        <span className="euiColorPaletteDisplay__inner">
           {paletteColorStop.map((hexCode: any, index) => (
             <span
               style={{ backgroundColor: hexCode }}
@@ -101,8 +101,8 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
               className="euiColorPaletteDisplay__colorStopWidthAuto"
             />
           ))}
-        </div>
-      </div>
+        </span>
+      </span>
     );
   }
 };

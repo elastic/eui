@@ -124,10 +124,10 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           id="generated-id"
         >
           Select an option: 
-          <div
+          <span
             class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
           >
-            <div
+            <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
@@ -150,8 +150,8 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
                 class="euiColorPaletteDisplay__colorStopWidthAuto"
                 style="background-color:#888094"
               />
-            </div>
-          </div>
+            </span>
+          </span>
           , is selected
         </span>
         <button
@@ -162,10 +162,10 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           data-test-subj="test subject string"
           type="button"
         >
-          <div
+          <span
             class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
           >
-            <div
+            <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
@@ -188,8 +188,8 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
                 class="euiColorPaletteDisplay__colorStopWidthAuto"
                 style="background-color:#888094"
               />
-            </div>
-          </div>
+            </span>
+          </span>
         </button>
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
@@ -232,7 +232,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           id="generated-id"
         >
           Select an option: 
-          <div
+          <span
             class="euiColorPaletteDisplay"
             style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
           />
@@ -246,7 +246,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           data-test-subj="test subject string"
           type="button"
         >
-          <div
+          <span
             class="euiColorPaletteDisplay"
             style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
           />
@@ -292,7 +292,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           id="generated-id"
         >
           Select an option: 
-          <div
+          <span
             class="euiColorPaletteDisplay"
             style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
           />
@@ -306,7 +306,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           data-test-subj="test subject string"
           type="button"
         >
-          <div
+          <span
             class="euiColorPaletteDisplay"
             style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
           />
@@ -404,10 +404,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           id="generated-id"
         >
           Select an option: 
-          <div
+          <span
             class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
           >
-            <div
+            <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
@@ -430,8 +430,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 class="euiColorPaletteDisplay__colorStopWidthAuto"
                 style="background-color: rgb(136, 128, 148);"
               />
-            </div>
-          </div>
+            </span>
+          </span>
           , is selected
         </span>
         <button
@@ -441,10 +441,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           data-test-subj="colorPalettePicker"
           type="button"
         >
-          <div
+          <span
             class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed"
           >
-            <div
+            <span
               class="euiColorPaletteDisplay__inner"
             >
               <span
@@ -467,8 +467,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 class="euiColorPaletteDisplay__colorStopWidthAuto"
                 style="background-color: rgb(136, 128, 148);"
               />
-            </div>
-          </div>
+            </span>
+          </span>
         </button>
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"

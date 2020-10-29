@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiColorPaletteDisplay is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2"
   data-test-subj="test subject string"
@@ -10,12 +10,12 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with a fixed palette with stops 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     class="euiColorPaletteDisplay__inner"
   >
     <span
@@ -30,12 +30,12 @@ exports[`EuiColorPaletteDisplay is rendered with a fixed palette with stops 1`] 
     <span
       style="background-color:#F5A700;width:26%"
     />
-  </div>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with a gradient palette 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2"
   data-test-subj="test subject string"
@@ -44,7 +44,7 @@ exports[`EuiColorPaletteDisplay is rendered with a gradient palette 1`] = `
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with a gradient palette with stops 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2"
   data-test-subj="test subject string"
@@ -53,12 +53,12 @@ exports[`EuiColorPaletteDisplay is rendered with a gradient palette with stops 1
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with fixed palette 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiColorPaletteDisplay euiColorPaletteDisplay--fixed testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     class="euiColorPaletteDisplay__inner"
   >
     <span
@@ -81,6 +81,6 @@ exports[`EuiColorPaletteDisplay is rendered with fixed palette 1`] = `
       class="euiColorPaletteDisplay__colorStopWidthAuto"
       style="background-color:#888094"
     />
-  </div>
-</div>
+  </span>
+</span>
 `;
