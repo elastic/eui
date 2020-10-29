@@ -9,6 +9,8 @@
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 
 - Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
+- Added screen reader notification if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
+- Set `external` prop to true if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
 
 **Bug fixes**
 
