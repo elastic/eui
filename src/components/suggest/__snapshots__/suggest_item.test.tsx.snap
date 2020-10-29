@@ -18,9 +18,6 @@ exports[`EuiSuggestItem is rendered 1`] = `
   >
     Test label
   </span>
-  <span
-    class="euiSuggestItem__description euiSuggestItem__description--truncate"
-  />
 </div>
 `;
 
@@ -62,11 +59,8 @@ exports[`props item with no description has expanded label is rendered 1`] = `
   <span
     class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
   >
-    This is the description
+    Charles de Gaulle International Airport
   </span>
-  <span
-    class="euiSuggestItem__description euiSuggestItem__description--truncate"
-  />
 </div>
 `;
 

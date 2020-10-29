@@ -170,7 +170,9 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
         <EuiIcon type={type.iconType} />
       </span>
       <span className={labelClassNames}>{label}</span>
-      <span className={descriptionClassNames}>{description}</span>
+      {description && (
+        <span className={descriptionClassNames}>{description}</span>
+      )}
     </React.Fragment>
   );
 

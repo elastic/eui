@@ -90,7 +90,7 @@ describe('props', () => {
   describe('item with no description has expanded label', () => {
     test('is rendered', () => {
       const component = render(
-        <EuiSuggestItem label={sampleItem.description} type={sampleItem.type} />
+        <EuiSuggestItem label={sampleItem.label} type={sampleItem.type} />
       );
       expect(component).toMatchSnapshot();
     });
