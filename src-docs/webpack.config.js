@@ -136,7 +136,7 @@ const webpackConfig = {
         disableHostCheck: true,
         historyApiFallback: true,
       }
-    : null,
+    : undefined,
   node: {
     fs: 'empty',
   },
