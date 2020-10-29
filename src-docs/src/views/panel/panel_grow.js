@@ -30,7 +30,7 @@ export default () => (
     <EuiFlexItem>
       <EuiPanel grow={false}>
         <EuiText>
-          <p>I am some panel content... whose content did not</p>
+          <p>I am some panel content... whose content did not grow</p>
         </EuiText>
       </EuiPanel>
     </EuiFlexItem>

@@ -33,7 +33,7 @@
         }
       }
 
-      // Border Radii
+      // Border Radius
       @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
         &#{$selector}--#{$modifier} {
           border-radius: $amount;

@@ -156,7 +156,7 @@ export const PanelExample = {
       text: (
         <p>
           Using <strong>EuiPanel</strong> in an{' '}
-          <Link to="/layout/flex">
+          <Link to="/layout/flex#panels-grow-to-fill-flex-items">
             <strong>EuiFlexItem</strong>
           </Link>{' '}
           will always grow its height to match. This is great for rows of
