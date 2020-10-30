@@ -177,3 +177,21 @@
   }
 }
 
+@include euiBreakpoint('xs', 's', 'm') {
+
+  .euiImage {
+
+    &.euiImage--floatLeft,
+    &.euiImage--floatRight {
+      float: none;
+
+      // Return back to whatever margin settings were set without the float
+      &[class*='euiImage--margin']  {
+        margin-top: inherit;
+        margin-right: inherit;
+        margin-bottom: inherit;
+        margin-left: inherit;
+      }
+    }
+  }
+}
