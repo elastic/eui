@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+- Fixed bug with `EuiImage` not respecting the optional sizes when `allowFullScreen` is set to true ([#4180](https://github.com/elastic/eui/pull/4180))
 
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 

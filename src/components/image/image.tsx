@@ -140,6 +140,16 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     customStyle.width = 'auto';
   }
 
+  let allowFullScreenButtonClasses = 'euiImage__button';
+
+  // when the button is not custom we need it to go full width
+  // to match the parent '.euiImage' width except when the size is original
+  if (typeof size === 'string' && size !== 'original' && SIZES.includes(size)) {
+    allowFullScreenButtonClasses = `${allowFullScreenButtonClasses} euiImage__button--fullWidth`;
+  } else {
+    allowFullScreenButtonClasses = `${allowFullScreenButtonClasses}`;
+  }
+
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
   let optionalCaption;
   if (caption) {
@@ -201,16 +211,6 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     { alt }
   );
 
-  // we want to ensure the button gets the container width
-  // only when the size is not original
-  const allowFullScreenButtonClasses = classNames(
-    'euiImage__button',
-    {
-      'euiImage__button--fullWidth': size !== 'original',
-    },
-    className
-  );
-
   if (allowFullScreen) {
     return (
       <figure className={classes} aria-label={optionalCaptionText}>
@@ -221,10 +221,10 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           data-test-subj="activateFullScreenButton"
           onClick={openFullScreen}>
           <img
+            style={customStyle}
             src={url}
             alt={alt}
             className="euiImage__img"
-            style={customStyle}
             {...rest}
           />
           {allowFullScreenIcon}
