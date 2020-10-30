@@ -18,11 +18,16 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { act } from 'react-dom/test-utils';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
+import {
+  EuiSelectableImperativeHandle,
+  EuiSelectableTemplateSitewide,
+} from './selectable_template_sitewide';
 import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
+import { EuiPopover } from '../../popover';
 
 const options: EuiSelectableTemplateSitewideOption[] = [
   {
@@ -171,6 +176,110 @@ describe('EuiSelectableTemplateSitewide', () => {
 
         expect(component).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('ref methods', () => {
+    test('inputRef is usable', () => {
+      const inputRef = jest.fn();
+
+      const component = mount(
+        <EuiSelectableTemplateSitewide
+          options={options}
+          searchProps={{
+            'data-test-subj': 'inputField',
+            inputRef,
+          }}
+          popoverButtonBreakpoints={['xs']}
+        />
+      );
+
+      expect(inputRef).toBeCalledTimes(1);
+      expect(inputRef).toHaveBeenCalledWith(
+        component.find('input[data-test-subj="inputField"]').getDOMNode()
+      );
+    });
+
+    test('allows closing of popover', () => {
+      let ref: EuiSelectableImperativeHandle;
+      const setRef = (_ref: EuiSelectableImperativeHandle) => (ref = _ref);
+
+      const component = mount(
+        <EuiSelectableTemplateSitewide
+          ref={setRef}
+          options={options}
+          searchProps={{
+            'data-test-subj': 'inputField',
+          }}
+          popoverButtonBreakpoints={['xs']}
+        />
+      );
+
+      // verify the popover isn't open
+      expect(component.find(EuiPopover).props().isOpen).toBe(false);
+
+      // focus on the input field
+      const inputFieldDom = component
+        .find('input[data-test-subj="inputField"]')
+        .getDOMNode();
+      const focusEvent = {
+        currentTarget: inputFieldDom,
+      } as React.FocusEvent<HTMLInputElement>;
+      act(() => {
+        component.find('input[data-test-subj="inputField"]').props().onFocus!(
+          focusEvent
+        );
+      });
+      component.update();
+
+      // verify the popover has opened
+      expect(component.find(EuiPopover).props().isOpen).toBe(true);
+
+      // programatically close
+      act(() => {
+        ref.setIsPopoverOpen(false);
+      });
+      component.update();
+
+      // verify the popover has closed
+      expect(component.find(EuiPopover).props().isOpen).toBe(false);
+    });
+
+    test('allows setting the input value', () => {
+      let ref: EuiSelectableImperativeHandle;
+      const setRef = (_ref: EuiSelectableImperativeHandle) => (ref = _ref);
+
+      const component = mount(
+        <EuiSelectableTemplateSitewide
+          ref={setRef}
+          options={options}
+          searchProps={{
+            'data-test-subj': 'inputField',
+            defaultValue: 'original',
+          }}
+          popoverButtonBreakpoints={['xs']}
+        />
+      );
+
+      // verify the default value is set
+      expect(
+        component
+          .find('input[data-test-subj="inputField"]')
+          .getDOMNode<HTMLInputElement>().value
+      ).toBe('original');
+
+      // programatically set the value
+      act(() => {
+        ref!.setSearchValue('upgraded');
+      });
+      component.update();
+
+      // verify the new value is set
+      expect(
+        component
+          .find('input[data-test-subj="inputField"]')
+          .getDOMNode<HTMLInputElement>().value
+      ).toBe('upgraded');
     });
   });
 });

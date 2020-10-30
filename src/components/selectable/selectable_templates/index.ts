@@ -20,6 +20,7 @@
 export {
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideProps,
+  EuiSelectableImperativeHandle,
 } from './selectable_template_sitewide';
 
 export {
