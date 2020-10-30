@@ -27,8 +27,7 @@ const columns = [
           iconType: 'heart',
           label: 'Send Email',
           size: 'xs',
-          onClick: () =>
-            alert('🎵Return to sender, address unknown, no such number,...'),
+          onClick: () => {},
         },
       ],
     },

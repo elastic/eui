@@ -15,7 +15,7 @@ export default () => (
         icon={<EuiIcon size="xl" type={'logoBeats'} />}
         title={'Elastic Beats'}
         description="This card adds uses an 'xl' size icon which works well in a horizontal layout."
-        onClick={() => window.alert('Card clicked')}
+        onClick={() => {}}
       />
     </EuiFlexItem>
     <EuiFlexItem>
@@ -25,7 +25,7 @@ export default () => (
         titleSize="xs"
         title={'Elastic Cloud'}
         description="This card uses an 'l' size icon but also shrinks the 'titleSize' to 'xs'."
-        onClick={() => window.alert('Card clicked')}
+        onClick={() => {}}
       />
     </EuiFlexItem>
     <EuiFlexItem>
@@ -33,7 +33,7 @@ export default () => (
         layout="horizontal"
         title={'No icon example'}
         description="Example of a card's description. Stick to one or two sentences."
-        onClick={() => window.alert('Card clicked')}
+        onClick={() => {}}
         href="#"
       />
     </EuiFlexItem>

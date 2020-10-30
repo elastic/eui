@@ -8,15 +8,10 @@ import {
 
 export default () => (
   <EuiKeyPadMenu>
-    <EuiKeyPadMenuItem
-      label="Dashboard"
-      onClick={() => window.alert('Clicked')}>
+    <EuiKeyPadMenuItem label="Dashboard" onClick={() => {}}>
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
-    <EuiKeyPadMenuItem
-      label="Dashboard"
-      isDisabled
-      onClick={() => window.alert('Clicked')}>
+    <EuiKeyPadMenuItem label="Dashboard" isDisabled onClick={() => {}}>
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>
