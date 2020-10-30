@@ -70,9 +70,15 @@
     width: convertToRem(600px);
   }
 
-  &.euiImage--fullWidth,
-  &.euiImage--fullWidth .euiImage__button {
+  &.euiImage--fullWidth {
     width: 100%;
+  }
+
+  &.euiImage--original {
+    .euiImage__img {
+      width: auto;
+      max-width: 100%;
+    }
   }
 }
 

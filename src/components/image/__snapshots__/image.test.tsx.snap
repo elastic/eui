@@ -42,7 +42,7 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
 
 exports[`EuiImage is rendered with a node as the caption 1`] = `
 <figure
-  class="euiImage "
+  class="euiImage euiImage--original"
 >
   <img
     alt="alt"

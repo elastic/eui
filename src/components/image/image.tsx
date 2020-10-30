@@ -45,7 +45,7 @@ const sizeToClassNameMap: { [size in ImageSize]: string } = {
   l: 'euiImage--large',
   xl: 'euiImage--xlarge',
   fullWidth: 'euiImage--fullWidth',
-  original: '',
+  original: 'euiImage--original',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
