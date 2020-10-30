@@ -309,6 +309,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
               'euiResizablePanel__toggleButton--visible':
                 resizers[resizerIds.current[0]].isFocused ||
                 resizers[resizerIds.current[0]].isDisabled,
+              'euiResizablePanel__toggleButton--disabled':
+                resizers[resizerIds.current[0]].isDisabled,
             }
           )}
           aria-label={toggleButtonAriaLabel}
@@ -327,6 +329,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
             {
               'euiResizablePanel__toggleButton--visible':
                 resizers[resizerIds.current[1]].isFocused ||
+                resizers[resizerIds.current[1]].isDisabled,
+              'euiResizablePanel__toggleButton--disabled':
                 resizers[resizerIds.current[1]].isDisabled,
             }
           )}

@@ -209,7 +209,7 @@ export const ResizableContainerExample = {
             <li>
               add <EuiCode>initialSize</EuiCode> in percents to each panel to
               specify the initial size of it. Other calculations will be
-              incapsulated, you don&#39;t worry about it.
+              encapsulated, you don&#39;t worry about it.
             </li>
             <li>
               add <EuiCode>scrollable=false</EuiCode> prop to a panel to

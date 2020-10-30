@@ -145,6 +145,10 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     onBlur && onBlur();
   };
 
+  const handleFocus = () => {
+    onFocus && onFocus(resizerId.current);
+  };
+
   return (
     <EuiI18n
       tokens={[
@@ -166,7 +170,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           data-test-subj="splitPanelResizer"
           type="button"
           onClick={setFocus}
-          onFocus={() => onFocus && onFocus(resizerId.current)}
+          onFocus={handleFocus}
           onBlur={handleBlur}
           disabled={isDisabled}
           {...rest}

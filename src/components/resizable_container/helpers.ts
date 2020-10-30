@@ -366,9 +366,7 @@ export const useContainerCallbacks = ({
           siblings = Object.keys(otherPanels).length;
         }
 
-        let newPanelSize = shouldCollapse
-          ? Math.ceil(pxToPercent(24, containerSize)) // Based on the button size
-          : currentPanel.prevSize;
+        let newPanelSize = shouldCollapse ? 0 : currentPanel.prevSize;
 
         const delta = shouldCollapse
           ? (currentPanel.size - newPanelSize) / siblings

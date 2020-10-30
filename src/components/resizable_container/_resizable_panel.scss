@@ -36,61 +36,63 @@
 .euiResizableContainer--horizontal {
   .euiResizablePanel__toggleButton {
     top: 50%;
-    margin-top: -12px;
+    margin-top: -$euiSizeXS + -$euiSizeS;
 
     &.euiResizablePanel__toggleButton--right {
       left: 100%;
-      margin-left: -4px;
+      margin-left: -$euiSizeXS;
     }
 
     &.euiResizablePanel__toggleButton--left {
       right: 100%;
-      margin-right: -4px;
+      margin-right: -$euiSizeXS;
+    }
+
+    &.euiResizablePanel__toggleButton--disabled {
+      top: 0;
+      bottom: 0;
+      margin-top: 0;
+      margin-left: -$euiSizeS;
+      margin-right: -$euiSizeS;
     }
   }
 
   .euiResizablePanel--collapsed {
     // sass-lint:disable-block no-important
     min-width: 0 !important;
-
-    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--right {
-      left: 6px;
-    }
-
-    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--left {
-      right: 6px;
-    }
   }
 }
 
 .euiResizableContainer--vertical {
   .euiResizablePanel__toggleButton {
     left: 50%;
-    margin-left: -12px;
-    transform: rotate(90deg);
-    animation: none;
+    margin-left: -$euiSizeXS + -$euiSizeS;
+
+    .euiButtonIcon__icon {
+      transform: rotate(90deg);
+    }
 
     &.euiResizablePanel__toggleButton--right {
       top: 100%;
-      margin-top: -4px;
+      margin-top: -$euiSizeXS;
     }
 
     &.euiResizablePanel__toggleButton--left {
       bottom: 100%;
-      margin-bottom: -4px;
+      margin-bottom: -$euiSizeXS;
+    }
+
+    &.euiResizablePanel__toggleButton--disabled {
+      left: 0;
+      width: 100%;
+      margin-left: 0;
+      margin-top: -$euiSizeS;
+      margin-bottom: -$euiSizeS;
     }
   }
 
   .euiResizablePanel--collapsed {
     // sass-lint:disable-block no-important
     min-height: 0 !important;
-
-    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--right {
-      top: 6px;
-    }
-
-    .euiResizablePanel__toggleButton.euiResizablePanel__toggleButton--left {
-      bottom: 6px;
-    }
   }
 }
