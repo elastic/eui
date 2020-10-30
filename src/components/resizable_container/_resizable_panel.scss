@@ -67,6 +67,8 @@
   .euiResizablePanel__toggleButton {
     left: 50%;
     margin-left: -12px;
+    transform: rotate(90deg);
+    animation: none;
 
     &.euiResizablePanel__toggleButton--right {
       top: 100%;
@@ -76,12 +78,6 @@
     &.euiResizablePanel__toggleButton--left {
       bottom: 100%;
       margin-bottom: -4px;
-    }
-
-    &.euiResizablePanel__toggleButton--defaultCollapsed,
-    &.euiResizablePanel__toggleButton--defaultNotCollapsed {
-      transform: rotate(90deg);
-      animation: none;
     }
   }
 

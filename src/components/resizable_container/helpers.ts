@@ -56,9 +56,9 @@ const pxToPercent = (proportion: number, whole: number) =>
   (proportion / whole) * 100;
 
 const sizesOnly = (panelObject: EuiResizableContainerRegistry['panels']) => {
-  return Object.keys(panelObject).reduce(
-    (out: { [key: string]: number }, id) => {
-      out[id] = panelObject[id].size;
+  return Object.values(panelObject).reduce(
+    (out: { [key: string]: number }, panel) => {
+      out[panel.id] = panel.size;
       return out;
     },
     {}
@@ -171,10 +171,10 @@ export const useContainerCallbacks = ({
         return {
           ...state,
           panels: {
-            ...Object.keys(state.panels).reduce(
-              (out: EuiResizableContainerState['panels'], id) => {
-                if (id !== panelId) {
-                  out[id] = state.panels[id];
+            ...Object.values(state.panels).reduce(
+              (out: EuiResizableContainerState['panels'], panel) => {
+                if (panel.id !== panelId) {
+                  out[panel.id] = panel;
                 }
                 return out;
               },
@@ -198,10 +198,10 @@ export const useContainerCallbacks = ({
         return {
           ...state,
           resizers: {
-            ...Object.keys(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], id) => {
-                if (id !== resizerId) {
-                  out[id] = state.resizers[id];
+            ...Object.values(state.resizers).reduce(
+              (out: EuiResizableContainerState['resizers'], panel) => {
+                if (panel.id !== resizerId) {
+                  out[panel.id] = panel;
                 }
                 return out;
               },
@@ -324,7 +324,7 @@ export const useContainerCallbacks = ({
             ? true
             : shouldCollapse;
         }
-        const otherPanels: EuiResizableContainerRegistry['panels'] = {};
+        let otherPanels: EuiResizableContainerRegistry['panels'] = {};
         if (
           prevPanel &&
           !state.panels[prevPanel.id].isCollapsed &&
@@ -339,42 +339,130 @@ export const useContainerCallbacks = ({
         ) {
           otherPanels[nextPanel.id] = state.panels[nextPanel.id];
         }
-        let otherPanelsKeys = Object.keys(otherPanels);
-        let siblings = otherPanelsKeys.length;
+        let siblings = Object.keys(otherPanels).length;
 
-        // fallback panel size redistribution for panels controlled externally
+        // A toggling sequence has occurred where an immediate sibling panel
+        // has not been found. We need to move more broadly through the DOM
+        // to find the next most suitable panel or space affordance.
+        // Can only occur when multiple immediate sibling panels are collapsed.
         if (!siblings) {
           const maybePrevPanel = getSiblingPanel(panelElement, 'prev');
           const maybeNextPanel = getSiblingPanel(panelElement, 'next');
+          const validPrevPanel = maybePrevPanel
+            ? state.panels[maybePrevPanel.id]
+            : null;
+          const validNextPanel = maybeNextPanel
+            ? state.panels[maybeNextPanel.id]
+            : null;
           // Intentional, preferential redistribution order
-          if (maybePrevPanel && options.direction === 'right') {
-            otherPanels[maybePrevPanel.id] = state.panels[maybePrevPanel.id];
-          } else if (maybeNextPanel && options.direction === 'left') {
-            otherPanels[maybeNextPanel.id] = state.panels[maybeNextPanel.id];
+          if (validPrevPanel && options.direction === 'right') {
+            otherPanels[validPrevPanel.id] = validPrevPanel;
+          } else if (validNextPanel && options.direction === 'left') {
+            otherPanels[validNextPanel.id] = validNextPanel;
           } else {
-            if (maybePrevPanel)
-              otherPanels[maybePrevPanel.id] = state.panels[maybePrevPanel.id];
-            if (maybeNextPanel)
-              otherPanels[maybeNextPanel.id] = state.panels[maybeNextPanel.id];
+            if (validPrevPanel) otherPanels[validPrevPanel.id] = validPrevPanel;
+            if (validNextPanel) otherPanels[validNextPanel.id] = validNextPanel;
           }
-          otherPanelsKeys = Object.keys(otherPanels);
-          siblings = otherPanelsKeys.length;
+          siblings = Object.keys(otherPanels).length;
         }
 
-        const newPanelSize = shouldCollapse
+        let newPanelSize = shouldCollapse
           ? Math.ceil(pxToPercent(24, containerSize)) // Based on the button size
           : currentPanel.prevSize;
+
         const delta = shouldCollapse
           ? (currentPanel.size - newPanelSize) / siblings
           : ((newPanelSize - currentPanel.size) / siblings) * -1;
-        otherPanelsKeys.forEach((panelId) => {
-          otherPanels[panelId].size = otherPanels[panelId].size + delta;
-        });
+
+        const collapsedPanelsSize = Object.values(state.panels).reduce(
+          (sum: number, panel) => {
+            if (panel.id !== currentPanelId && panel.isCollapsed) {
+              sum += panel.size;
+            }
+            return sum;
+          },
+          0
+        );
+
+        // A toggling sequence has occurred where a to-be-opened panel will
+        // become the only open panel. Rather than reopen to its previous
+        // size, give it the full width, less size occupied by collapsed panels.
+        // Can only occur with external toggling.
+        if (!shouldCollapse && !siblings) {
+          newPanelSize = 100 - collapsedPanelsSize;
+        }
+        let updatedPanels: EuiResizableContainerState['panels'] = {};
+        if (
+          delta < 0 &&
+          Object.values(otherPanels).some(
+            (panel) =>
+              panel.size + delta <
+              getPanelMinSize(panel.minSize, containerSize, state.resizersSize)
+          )
+        ) {
+          // A toggling sequence has occurred where a to-be-opened panel is
+          // requesting more space than its logical sibling panel can afford.
+          // Rather than choose another single panel to sacrifice space,
+          // or try to pull proportionally from all availble panels
+          // (neither of which is guaranteed to prevent negative resulting widths),
+          // or attempt something even more complex,
+          // we redistribute _all_ space evenly to non-collapsed panels
+          // as something of a reset.
+          // This situation can only occur when (n-1) panels are collapsed at once
+          // and the most recently collapsed panel gains significant width
+          // during the previously occurring collapse.
+          // That is (largley), external toggling where the default logic has
+          // been negated by the lack of panel mode distinction.
+          otherPanels = {
+            ...Object.values(state.panels).reduce(
+              (out: EuiResizableContainerState['panels'], panel) => {
+                if (panel.id !== currentPanelId && !panel.isCollapsed) {
+                  out[panel.id] = {
+                    ...panel,
+                  };
+                }
+                return out;
+              },
+              {}
+            ),
+          };
+
+          newPanelSize =
+            (100 - collapsedPanelsSize) / (Object.keys(otherPanels).length + 1);
+
+          updatedPanels = {
+            ...Object.values(otherPanels).reduce(
+              (out: EuiResizableContainerState['panels'], panel) => {
+                out[panel.id] = {
+                  ...panel,
+                  size: newPanelSize,
+                };
+                return out;
+              },
+              {}
+            ),
+          };
+        } else {
+          // A toggling sequence has occurred that is standard and predictable
+          updatedPanels = {
+            ...Object.values(otherPanels).reduce(
+              (out: EuiResizableContainerState['panels'], panel) => {
+                out[panel.id] = {
+                  ...panel,
+                  size: panel.size + delta,
+                };
+                return out;
+              },
+              {}
+            ),
+          };
+        }
 
         return withSideEffect({
           ...state,
           panels: {
             ...state.panels,
+            ...updatedPanels,
             [currentPanelId]: {
               ...state.panels[currentPanelId],
               size: newPanelSize,
@@ -383,13 +471,13 @@ export const useContainerCallbacks = ({
             },
           },
           resizers: {
-            ...Object.keys(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], id) => {
-                out[id] = {
-                  ...state.resizers[id],
+            ...Object.values(state.resizers).reduce(
+              (out: EuiResizableContainerState['resizers'], resizer) => {
+                out[resizer.id] = {
+                  ...resizer,
                   isFocused: false,
                   isDisabled:
-                    resizersToDisable[id] ?? state.resizers[id].isDisabled,
+                    resizersToDisable[resizer.id] ?? resizer.isDisabled,
                 };
                 return out;
               },
@@ -403,11 +491,11 @@ export const useContainerCallbacks = ({
         return {
           ...state,
           resizers: {
-            ...Object.keys(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], id) => {
-                out[id] = {
-                  ...state.resizers[id],
-                  isFocused: id === resizerId,
+            ...Object.values(state.resizers).reduce(
+              (out: EuiResizableContainerState['resizers'], resizer) => {
+                out[resizer.id] = {
+                  ...resizer,
+                  isFocused: resizer.id === resizerId,
                 };
                 return out;
               },
@@ -420,10 +508,10 @@ export const useContainerCallbacks = ({
         return {
           ...state,
           resizers: {
-            ...Object.keys(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], id) => {
-                out[id] = {
-                  ...state.resizers[id],
+            ...Object.values(state.resizers).reduce(
+              (out: EuiResizableContainerState['resizers'], resizer) => {
+                out[resizer.id] = {
+                  ...resizer,
                   isFocused: false,
                 };
                 return out;
