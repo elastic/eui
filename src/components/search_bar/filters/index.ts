@@ -18,3 +18,4 @@
  */
 
 export { createFilter, SearchFilterConfig } from './filters';
+export { FieldValueOptionType } from './field_value_selection_filter';

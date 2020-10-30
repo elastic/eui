@@ -217,21 +217,6 @@ exports[`EuiFormRow is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFormRow props compressed is rendered 1`] = `
-<div
-  class="euiFormRow euiFormRow--compressed"
-  id="generated-id-row"
->
-  <div
-    class="euiFormRow__fieldWrapper"
-  >
-    <input
-      id="generated-id"
-    />
-  </div>
-</div>
-`;
-
 exports[`EuiFormRow props describedByIds is rendered 1`] = `
 <div
   className="euiFormRow"
@@ -336,23 +321,6 @@ exports[`EuiFormRow props display type rowCompressed is rendered 1`] = `
     <input
       id="generated-id"
     />
-  </div>
-</div>
-`;
-
-exports[`EuiFormRow props displayOnly is rendered 1`] = `
-<div
-  class="euiFormRow"
-  id="generated-id-row"
->
-  <div
-    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
-  >
-    <span
-      id="generated-id"
-    >
-      just some text
-    </span>
   </div>
 </div>
 `;

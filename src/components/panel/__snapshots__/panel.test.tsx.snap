@@ -7,3 +7,27 @@ exports[`EuiPanel is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiPanel props paddingSize l is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge"
+/>
+`;
+
+exports[`EuiPanel props paddingSize m is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--paddingMedium"
+/>
+`;
+
+exports[`EuiPanel props paddingSize none is rendered 1`] = `
+<div
+  class="euiPanel"
+/>
+`;
+
+exports[`EuiPanel props paddingSize s is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--paddingSmall"
+/>
+`;

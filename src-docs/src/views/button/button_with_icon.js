@@ -10,37 +10,25 @@ export default () => (
   <div>
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowUp">
+        <EuiButton onClick={() => {}} iconType="arrowUp">
           Primary
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          fill
-          iconType="arrowDown"
-          onClick={() => window.alert('Button clicked')}>
+        <EuiButton fill iconType="arrowDown" onClick={() => {}}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          iconType="arrowLeft"
-          size="s"
-          onClick={() => window.alert('Button clicked')}>
+        <EuiButton iconType="arrowLeft" size="s" onClick={() => {}}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          iconType="arrowRight"
-          size="s"
-          fill
-          onClick={() => window.alert('Button clicked')}>
+        <EuiButton iconType="arrowRight" size="s" fill onClick={() => {}}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -48,10 +36,7 @@ export default () => (
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          iconSide="right"
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowUp">
+        <EuiButton iconSide="right" onClick={() => {}} iconType="arrowUp">
           Primary
         </EuiButton>
       </EuiFlexItem>
@@ -61,7 +46,7 @@ export default () => (
           iconSide="right"
           fill
           iconType="arrowDown"
-          onClick={() => window.alert('Button clicked')}>
+          onClick={() => {}}>
           Filled
         </EuiButton>
       </EuiFlexItem>
@@ -71,7 +56,7 @@ export default () => (
           iconSide="right"
           iconType="arrowLeft"
           size="s"
-          onClick={() => window.alert('Button clicked')}>
+          onClick={() => {}}>
           small
         </EuiButton>
       </EuiFlexItem>
@@ -82,7 +67,7 @@ export default () => (
           iconType="arrowRight"
           size="s"
           fill
-          onClick={() => window.alert('Button clicked')}>
+          onClick={() => {}}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -92,7 +77,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           iconSide="right"
-          onClick={() => window.alert('Button clicked')}
+          onClick={() => {}}
           iconType="arrowUp"
           isDisabled>
           Disabled
@@ -104,7 +89,7 @@ export default () => (
           iconSide="right"
           fill
           iconType="arrowDown"
-          onClick={() => window.alert('Button clicked')}
+          onClick={() => {}}
           isDisabled>
           Filled
         </EuiButton>
@@ -115,7 +100,7 @@ export default () => (
           iconSide="right"
           iconType="arrowLeft"
           size="s"
-          onClick={() => window.alert('Button clicked')}
+          onClick={() => {}}
           isDisabled>
           small
         </EuiButton>
@@ -127,7 +112,7 @@ export default () => (
           iconType="arrowRight"
           size="s"
           fill
-          onClick={() => window.alert('Button clicked')}
+          onClick={() => {}}
           isDisabled>
           small and filled
         </EuiButton>

@@ -55,7 +55,7 @@ function isEuiSearchBarProps<T>(
   return typeof x !== 'boolean';
 }
 
-type Search = boolean | EuiSearchBarProps;
+export type Search = boolean | EuiSearchBarProps;
 
 interface PaginationOptions {
   pageSizeOptions?: number[];
@@ -79,6 +79,9 @@ type InMemoryTableProps<T> = Omit<
   'pagination' | 'sorting' | 'noItemsMessage'
 > & {
   message?: ReactNode;
+  /**
+   * Configures #Search.
+   */
   search?: Search;
   pagination?: undefined;
   sorting?: Sorting;
@@ -86,6 +89,9 @@ type InMemoryTableProps<T> = Omit<
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
   allowNeutralSort?: boolean;
+  /**
+   * Callback for when table pagination or sorting is changed. This is meant to be informational only, and not used to set any state as the in-memory table already manages this state. See #Criteria or #CriteriaWithPagination.
+   */
   onTableChange?: (nextValues: Criteria<T>) => void;
   executeQueryOptions?: {
     defaultFields?: string[];

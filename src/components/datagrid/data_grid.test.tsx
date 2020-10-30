@@ -178,10 +178,9 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter
-    .find('button[className*="euiButtonGroup__button--selected"]')
-    .closest('EuiToggle')
-    .find('input[className*="euiButtonToggle__input"]');
+  const activeSort = columnSorter.find(
+    'label[className*="euiButtonGroupButton-isSelected"]'
+  );
 
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
@@ -266,10 +265,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `input[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `label[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    sortButton.simulate('change', [undefined, direction]);
+    sortButton.find('input').simulate('change', [undefined, direction]);
   }
 
   closeColumnSorter(datagrid);
@@ -1890,6 +1889,81 @@ Array [
         );
         expect(actionGroup).toMatchSnapshot();
       }
+    });
+  });
+
+  describe('render column cell actions', () => {
+    it('renders various column cell actions configurations', () => {
+      const alertFn = jest.fn();
+      const happyFn = jest.fn();
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'A', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[
+            {
+              id: 'A',
+              isSortable: true,
+              cellActions: [
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => alertFn(rowIndex, columnId)}
+                      iconType="alert"
+                      aria-label="test1 aria label"
+                      data-test-subj={
+                        isExpanded ? 'alertActionPopover' : 'alertAction'
+                      }>
+                      test1
+                    </Component>
+                  );
+                },
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => happyFn(rowIndex, columnId)}
+                      iconType="faceHappy"
+                      aria-label="test2 aria label"
+                      data-test-subj={
+                        isExpanded ? 'happyActionPopover' : 'happyAction'
+                      }>
+                      test2
+                    </Component>
+                  );
+                },
+              ],
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      findTestSubject(component, 'alertAction').at(1).simulate('click');
+      expect(alertFn).toHaveBeenCalledWith(1, 'A');
+      findTestSubject(component, 'happyAction').at(1).simulate('click');
+      expect(happyFn).toHaveBeenCalledWith(1, 'A');
+      alertFn.mockReset();
+      happyFn.mockReset();
+
+      findTestSubject(component, 'dataGridRowCell')
+        .at(1)
+        .simulate('keydown', { key: keys.ENTER });
+      component.update();
+
+      findTestSubject(component, 'alertActionPopover').simulate('click');
+      expect(alertFn).toHaveBeenCalledWith(1, 'A');
+      findTestSubject(component, 'happyActionPopover').simulate('click');
+      expect(happyFn).toHaveBeenCalledWith(1, 'A');
     });
   });
 
