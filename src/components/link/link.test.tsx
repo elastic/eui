@@ -60,7 +60,14 @@ describe('EuiLink', () => {
   });
 
   test('supports target', () => {
-    const component = render(<EuiLink href="#" target="_parent" />);
+    const component = render(<EuiLink href="#" target="_blank" />);
+    expect(component).toMatchSnapshot();
+  });
+
+  test('allows for target and external to be controlled independently', () => {
+    const component = render(
+      <EuiLink href="#" target="_blank" external={false} />
+    );
     expect(component).toMatchSnapshot();
   });
 
