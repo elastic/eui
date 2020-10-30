@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+- Fixed copy in `EuiDataGrid`'s header menu's sort actions ([#4199](https://github.com/elastic/eui/pull/4199))
 
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 
