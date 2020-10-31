@@ -2,85 +2,123 @@
 
 exports[`EuiColorPaletteDisplay is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2"
-  data-test-subj="test subject string"
-  style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
-/>
+  class="euiColorPaletteDisplay"
+>
+  <span
+    class="euiLinearFixedGradient testClass1 testClass2"
+  >
+    <span
+      class="euiLinearFixedGradient__inner"
+    >
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#1fb0b2"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#ffdb6d"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#ee9191"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#ffffff"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#888094"
+      />
+    </span>
+  </span>
+</span>
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with a fixed palette with stops 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiColorPaletteDisplay"
 >
   <span
-    class="euiColorPaletteDisplay__inner"
+    class="euiLinearFixedGradient testClass1 testClass2"
   >
     <span
-      style="background-color:#54B399;width:21%"
-    />
-    <span
-      style="background-color:#D36086;width:32%"
-    />
-    <span
-      style="background-color:#9170B8;width:21%"
-    />
-    <span
-      style="background-color:#F5A700;width:26%"
-    />
+      class="euiLinearFixedGradient__inner"
+    >
+      <span
+        style="background-color:#54B399;width:21%"
+      />
+      <span
+        style="background-color:#D36086;width:32%"
+      />
+      <span
+        style="background-color:#9170B8;width:21%"
+      />
+      <span
+        style="background-color:#F5A700;width:26%"
+      />
+    </span>
   </span>
 </span>
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with a gradient palette 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2"
-  data-test-subj="test subject string"
-  style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
-/>
+  class="euiColorPaletteDisplay"
+>
+  <span
+    aria-label="aria-label"
+    class="euiLinearGradient testClass1 testClass2"
+    data-test-subj="test subject string"
+    style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+  />
+</span>
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with a gradient palette with stops 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2"
-  data-test-subj="test subject string"
-  style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
-/>
+  class="euiColorPaletteDisplay"
+>
+  <span
+    aria-label="aria-label"
+    class="euiLinearGradient testClass1 testClass2"
+    data-test-subj="test subject string"
+    style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+  />
+</span>
 `;
 
 exports[`EuiColorPaletteDisplay is rendered with fixed palette 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiColorPaletteDisplay"
 >
   <span
-    class="euiColorPaletteDisplay__inner"
+    class="euiLinearFixedGradient testClass1 testClass2"
   >
     <span
-      class="euiColorPaletteDisplay__colorStop--widthAuto"
-      style="background-color:#1fb0b2"
-    />
-    <span
-      class="euiColorPaletteDisplay__colorStop--widthAuto"
-      style="background-color:#ffdb6d"
-    />
-    <span
-      class="euiColorPaletteDisplay__colorStop--widthAuto"
-      style="background-color:#ee9191"
-    />
-    <span
-      class="euiColorPaletteDisplay__colorStop--widthAuto"
-      style="background-color:#ffffff"
-    />
-    <span
-      class="euiColorPaletteDisplay__colorStop--widthAuto"
-      style="background-color:#888094"
-    />
+      class="euiLinearFixedGradient__inner"
+    >
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#1fb0b2"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#ffdb6d"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#ee9191"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#ffffff"
+      />
+      <span
+        class="euiLinearFixedGradient__colorStop--widthAuto"
+        style="background-color:#888094"
+      />
+    </span>
   </span>
 </span>
 `;

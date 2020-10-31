@@ -1,0 +1,8 @@
+@mixin euiColorPaletteDisplay {
+  @include innerBorder('dark', $euiBorderRadius, .2);
+  display: flex;
+  flex-direction: row;
+  border-radius: $euiBorderRadius;
+  overflow: hidden;
+  height: $euiSizeS;
+}

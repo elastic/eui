@@ -29,20 +29,23 @@ export type EuiColorPaletteDisplayProps = CommonProps & {
    */
   type?: 'gradient' | 'fixed';
   /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   * Array of color `strings` or #ColorStop
    */
   palette: string[] | ColorStop[];
 };
 
 export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
-  type = 'gradient',
+  type = 'fixed',
   palette,
   ...rest
 }) => {
-  if (type === 'gradient') {
-    return <EuiLinearGradient palette={palette} {...rest} />;
-  } else {
-    return <EuiLinearFixedGradient palette={palette} {...rest} />;
-  }
+  return (
+    <span className="euiColorPaletteDisplay">
+      {type === 'fixed' ? (
+        <EuiLinearFixedGradient palette={palette} {...rest} />
+      ) : (
+        <EuiLinearGradient palette={palette} {...rest} />
+      )}
+    </span>
+  );
 };

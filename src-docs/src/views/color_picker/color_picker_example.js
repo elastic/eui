@@ -20,6 +20,8 @@ import {
   EuiColorPalettePickerPaletteGradientProps,
 } from '!!prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
 
+import { ColorStop } from '!!prop-loader!../../../../src/components/color_picker/color_stops/color_stop_thumb';
+
 import playgrounds from './playground';
 
 import ColorPicker from './color_picker';
@@ -421,6 +423,7 @@ export const ColorPickerExample = {
       ],
       props: {
         EuiColorPaletteDisplay,
+        ColorStop,
       },
       snippet: colorPaletteDisplaySnippet,
       demo: <ColorPaletteDisplay />,

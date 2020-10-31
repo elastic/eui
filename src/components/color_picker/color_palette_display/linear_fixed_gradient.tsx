@@ -33,20 +33,19 @@ export type EuiLinearFixedGradientProps = CommonProps & {
 export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientProps> = ({
   palette,
   className,
-  ...rest
 }) => {
   const paletteHasStops = palette.some((item: string | ColorStop) => {
     return typeof item === 'object';
   });
 
-  const classes = classnames('euiColorPaletteDisplay', className);
+  const classes = classnames('euiLinearFixedGradient', className);
 
   if (paletteHasStops) {
     const paletteColorStop = palette as ColorStop[];
 
     return (
-      <span className={classes} {...rest}>
-        <span className="euiColorPaletteDisplay__inner">
+      <span className={classes}>
+        <span className="euiLinearFixedGradient__inner">
           {paletteColorStop.map((colorStop: any, index: number) => {
             const lastColorStopArrayPosition = palette.length - 1;
 
@@ -89,13 +88,13 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
     const paletteColorStop = palette as String[];
 
     return (
-      <span className={classes} {...rest}>
-        <span className="euiColorPaletteDisplay__inner">
+      <span className={classes}>
+        <span className="euiLinearFixedGradient__inner">
           {paletteColorStop.map((hexCode: any, index) => (
             <span
               style={{ backgroundColor: hexCode }}
               key={`${hexCode}-${index}`}
-              className="euiColorPaletteDisplay__colorStop--widthAuto"
+              className="euiLinearFixedGradient__colorStop--widthAuto"
             />
           ))}
         </span>

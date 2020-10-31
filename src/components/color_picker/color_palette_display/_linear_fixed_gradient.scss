@@ -1,0 +1,17 @@
+.euiLinearFixedGradient {
+  @include euiColorPaletteDisplay;
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: $euiSizeS;
+    width: calc(100% + 1px);
+  }
+
+  &__colorStop--widthAuto {
+    flex: 1;
+    width: auto;
+  }
+}
