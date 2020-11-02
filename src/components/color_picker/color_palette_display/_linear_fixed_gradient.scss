@@ -1,6 +1,8 @@
 .euiLinearFixedGradient {
   @include euiColorPaletteDisplay;
 
+  // In a few screen sizes the palette display doesn't get a fully 100% width
+  // it gets 1px less on width and for this reason we're adding an horizontal 1px bleed area
   &__inner {
     position: absolute;
     top: 0;
