@@ -42,8 +42,7 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
    */
   type: 'text';
   /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette?: string[] | ColorStop[];
 }
@@ -62,8 +61,7 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
    */
   type: 'fixed';
   /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 }
@@ -82,8 +80,7 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
    */
   type: 'gradient';
   /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 }

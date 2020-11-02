@@ -379,6 +379,7 @@ export const ColorPickerExample = {
         EuiColorPalettePickerPaletteTextProps,
         EuiColorPalettePickerPaletteFixedProps,
         EuiColorPalettePickerPaletteGradientProps,
+        ColorStop,
       },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
@@ -452,7 +453,10 @@ export const ColorPickerExample = {
           code: colorStopsHtml,
         },
       ],
-      props: { EuiColorStops },
+      props: { 
+        EuiColorStops,
+        ColorStop,
+      },
       snippet: [
         colorStopsSnippetStandard,
         colorStopsSnippetAdd,

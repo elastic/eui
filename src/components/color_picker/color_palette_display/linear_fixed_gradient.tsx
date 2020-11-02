@@ -23,9 +23,8 @@ import { CommonProps } from '../../common';
 import { ColorStop } from '../color_stops';
 
 export type EuiLinearFixedGradientProps = CommonProps & {
-  /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+ /**
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 };
