@@ -1,15 +1,11 @@
 .euiComboBoxPlaceholder {
+  @include euiTextTruncate;
+  // Afford for the caret. The loading state is accounted ford in _combo_box.scss
+  @include euiFormControlLayoutPadding(1, 'right');
   position: absolute;
   pointer-events: none;
-  padding: 0 $euiSizeXS;
+  padding-left: $euiSizeXS;
   line-height: $euiSizeXL;
   color: $euiColorMediumShade;
   margin-bottom: 0 !important; // sass-lint:disable-line no-important
-
-  // Truncate placeholder with ellipsis if it's too long
-  // https://css-tricks.com/almanac/properties/t/text-overflow/
-  width: calc(100% - 28px); // 28px is a quick fix to give space for the combobox arrow
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
