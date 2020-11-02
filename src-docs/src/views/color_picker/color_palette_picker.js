@@ -57,7 +57,7 @@ const palettes = [
     type: 'gradient',
   },
   {
-    value: 'pallette_5',
+    value: 'pallette_6',
     title: 'Grayscale (fixed with stops)',
     palette: [
       {
