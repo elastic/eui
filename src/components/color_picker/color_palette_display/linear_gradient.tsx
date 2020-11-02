@@ -41,10 +41,6 @@ export const EuiLinearGradient: FunctionComponent<EuiLinearGradientProps> = ({
   const classes = classnames('euiLinearGradient', className);
 
   return (
-    <span 
-      className={classes}
-      style={{ background: gradient }}
-      {...rest}
-    />
+    <span className={classes} style={{ background: gradient }} {...rest} />
   );
 };
