@@ -1,6 +1,6 @@
 .euiComboBoxPlaceholder {
   @include euiTextTruncate;
-  // Afford for the caret. The loading state is accounted ford in _combo_box.scss
+  // Afford for the caret. The loading state is accounted for in _combo_box.scss
   @include euiFormControlLayoutPadding(1, 'right');
   position: absolute;
   pointer-events: none;
