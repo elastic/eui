@@ -123,7 +123,7 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiColorPaletteDisplay type="gradient" palette={paletteWithStops} />
       <EuiSpacer />
-      <EuiTitle size="xxs">
+      <EuiTitle size="xxxs">
         <h4>Complex example</h4>
       </EuiTitle>
       <EuiSpacer size="xs" />
