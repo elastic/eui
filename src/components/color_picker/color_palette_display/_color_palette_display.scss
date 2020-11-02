@@ -1,8 +1,24 @@
 .euiColorPaletteDisplay {
-  @include innerBorder('dark', $euiBorderRadius, .2);
   display: flex;
   flex-direction: row;
-  border-radius: $euiBorderRadius;
   overflow: hidden;
   height: $euiSizeS;
+}
+
+$sizes: (
+  sizeExtraSmall: $euiSizeXS,
+  sizeSmall: $euiSizeS,
+  sizeMedium: $euiSize,
+);
+
+@each $name, $size in $sizes {
+  .euiColorPaletteDisplay--#{$name} {
+    height: $size;
+    border-radius: $size;
+  }
+
+  .euiColorPaletteDisplay--#{$name} .euiColorPaletteDisplayFixed__bleedArea {
+    @include innerBorder('dark', $size, .2);
+    height: $size;
+  }
 }

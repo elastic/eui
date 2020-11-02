@@ -20,7 +20,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { EuiColorPaletteDisplay } from './color_palette_display';
+import { EuiColorPaletteDisplay, SIZES } from './color_palette_display';
 import { requiredProps } from '../../../test';
 
 const palette = ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'];
@@ -53,51 +53,71 @@ describe('EuiColorPaletteDisplay', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('is rendered with fixed palette', () => {
-    const component = render(
-      <EuiColorPaletteDisplay
-        {...requiredProps}
-        palette={palette}
-        type="fixed"
-      />
-    );
+  describe('props', () => {
+    describe('type and palette', () => {
+      it('are rendered with type fixed and palette without stops', () => {
+        const component = render(
+          <EuiColorPaletteDisplay
+            {...requiredProps}
+            palette={palette}
+            type="fixed"
+          />
+        );
 
-    expect(component).toMatchSnapshot();
-  });
+        expect(component).toMatchSnapshot();
+      });
 
-  test('is rendered with a gradient palette', () => {
-    const component = render(
-      <EuiColorPaletteDisplay
-        {...requiredProps}
-        palette={palette}
-        type="gradient"
-      />
-    );
+      it('are rendered with type gradient and palette without stops', () => {
+        const component = render(
+          <EuiColorPaletteDisplay
+            {...requiredProps}
+            palette={palette}
+            type="gradient"
+          />
+        );
 
-    expect(component).toMatchSnapshot();
-  });
+        expect(component).toMatchSnapshot();
+      });
 
-  test('is rendered with a fixed palette with stops', () => {
-    const component = render(
-      <EuiColorPaletteDisplay
-        {...requiredProps}
-        palette={paletteWithStops}
-        type="fixed"
-      />
-    );
+      it('are rendered with type fixed and palette with stops', () => {
+        const component = render(
+          <EuiColorPaletteDisplay
+            {...requiredProps}
+            palette={paletteWithStops}
+            type="fixed"
+          />
+        );
 
-    expect(component).toMatchSnapshot();
-  });
+        expect(component).toMatchSnapshot();
+      });
 
-  test('is rendered with a gradient palette with stops', () => {
-    const component = render(
-      <EuiColorPaletteDisplay
-        {...requiredProps}
-        palette={paletteWithStops}
-        type="gradient"
-      />
-    );
+      it('are rendered with type gradient and palette with stops', () => {
+        const component = render(
+          <EuiColorPaletteDisplay
+            {...requiredProps}
+            palette={paletteWithStops}
+            type="gradient"
+          />
+        );
 
-    expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        it(`${size} is rendered`, () => {
+          const component = render(
+            <EuiColorPaletteDisplay
+              {...requiredProps}
+              size={size}
+              palette={palette}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });

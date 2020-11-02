@@ -19,10 +19,20 @@
 
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import { ColorStop } from '../color_stops';
 import { EuiColorPaletteDisplayFixed } from './color_palette_display_fixed';
 import { EuiColorPaletteDisplayGradient } from './color_palette_display_gradient';
+
+const sizeToClassNameMap = {
+  xs: 'euiColorPaletteDisplay--sizeExtraSmall',
+  s: 'euiColorPaletteDisplay--sizeSmall',
+  m: 'euiColorPaletteDisplay--sizeMedium',
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
+
+export type EuiColorPaletteDisplaySize = keyof typeof sizeToClassNameMap;
 
 export type EuiColorPaletteDisplayProps = CommonProps & {
   /**
@@ -33,15 +43,21 @@ export type EuiColorPaletteDisplayProps = CommonProps & {
    * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
+  size?: EuiColorPaletteDisplaySize;
 };
 
 export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
   type = 'fixed',
   palette,
   className,
+  size = 's',
   ...rest
 }) => {
-  const classes = classnames('euiColorPaletteDisplay', className);
+  const classes = classnames(
+    'euiColorPaletteDisplay',
+    className,
+    sizeToClassNameMap[size]
+  );
 
   return (
     <>

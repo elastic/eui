@@ -24,6 +24,7 @@ import {
   EuiSwitch,
   EuiCode,
   EuiButtonEmpty,
+  EuiSelect,
 } from '../../../../src/components/';
 
 const paletteWithStops = [
@@ -58,11 +59,22 @@ const paletteData = {
 
 const paletteNames = Object.keys(paletteData);
 
+const sizes = [
+  { value: 'xs', text: 'Extra small' },
+  { value: 's', text: 'Small' },
+  { value: 'm', text: 'Medium' },
+];
+
 export default () => {
   const [palette, setPalette] = useState('1');
   const [categories, setCategories] = useState(5);
   const [selectionType, setSelectionType] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [size, setSize] = useState(sizes[1].value);
+
+  const onChangeSize = (e) => {
+    setSize(e.target.value);
+  };
 
   const onChange = (e) => {
     setCategories(parseInt(e.target.value));
@@ -132,6 +144,7 @@ export default () => {
           <EuiColorPaletteDisplay
             type={selectionType ? 'fixed' : 'gradient'}
             palette={selectedPalette}
+            size={size}
           />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
@@ -158,6 +171,14 @@ export default () => {
                 max={10}
                 compressed
                 showValue
+              />
+            </EuiFormRow>
+            <EuiFormRow label="Size" display="columnCompressed">
+              <EuiSelect
+                options={sizes}
+                value={size}
+                onChange={(e) => onChangeSize(e)}
+                compressed
               />
             </EuiFormRow>
             <EuiFormRow
