@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import {
   euiPaletteColorBlind,
-  euiPaletteCool,
   euiPaletteForStatus,
   euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
   euiPaletteGray,
 } from '../../../../src/services/color';
 
@@ -12,6 +16,15 @@ import {
   EuiColorPalettePicker,
   EuiFormRow,
   EuiSpacer,
+  EuiTitle,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonIcon,
+  EuiPopover,
+  EuiRange,
+  EuiSwitch,
+  EuiCode,
+  EuiButtonEmpty
 } from '../../../../src/components/';
 
 const paletteWithStops = [
@@ -33,80 +46,137 @@ const paletteWithStops = [
   },
 ];
 
-const palettesComplexExample = [
-  {
-    value: 'pallette_1',
-    title: 'EUI color blind (fixed)',
-    palette: euiPaletteColorBlind(),
-    type: 'fixed',
-  },
-  {
-    value: 'pallette_2',
-    title: 'EUI palette for temperature (fixed)',
-    palette: euiPaletteForTemperature(5),
-    type: 'fixed',
-  },
-  {
-    value: 'pallette_3',
-    title: 'EUI palette for status (gradient)',
-    palette: euiPaletteForStatus(5),
-    type: 'gradient',
-  },
-  {
-    value: 'pallette_4',
-    title: 'EUI palette cool (gradient)',
-    palette: euiPaletteCool(6),
-    type: 'gradient',
-  },
-  {
-    value: 'pallette_5',
-    title: 'EUI palette gray (gradient)',
-    palette: euiPaletteGray(5),
-    type: 'gradient',
-  },
-];
+const paletteData = {
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
+};
+
+const paletteNames = Object.keys(paletteData);
 
 export default () => {
-  const [paletteValue, setPaletteValue] = useState('pallette_3');
+  const [palette, setPalette] = useState("1");
+  const [categories, setCategories] = useState(5);
+  const [selectionType, setSelectionType] = useState(true);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const currentSelectedPalette = palettesComplexExample.find(
-    (palette) => palette.value === paletteValue
+  const onChange = (e) => {
+    setCategories(parseInt(e.target.value));
+  };
+
+  const palettes = paletteNames.map((paletteName, index) => {
+    return {
+      value: String(index + 1),
+      title: paletteName,
+      palette: paletteData[paletteNames[index]](categories),
+      type: selectionType ? 'fixed' : 'gradient',
+    };
+  });
+ 
+  const selectedPalette = paletteData[paletteNames[palette - 1]](categories);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty
+      onClick={onButtonClick}
+      iconType="controlsVertical"
+      aria-label="Open settings"
+      color="text"
+      size="xs"
+    >
+      Customize    
+    </EuiButtonEmpty>
   );
 
   return (
     <>
-      <EuiFormRow label="Fixed">
-        <EuiColorPaletteDisplay type="fixed" palette={euiPaletteColorBlind()} />
-      </EuiFormRow>
-      <EuiFormRow label="Gradient">
-        <EuiColorPaletteDisplay
-          type="gradient"
-          palette={euiPaletteColorBlind()}
-        />
-      </EuiFormRow>
-      <EuiFormRow label="Fixed with stops">
-        <EuiColorPaletteDisplay type="fixed" palette={paletteWithStops} />
-      </EuiFormRow>
-      <EuiFormRow label="Gradient with stops">
-        <EuiColorPaletteDisplay type="gradient" palette={paletteWithStops} />
-      </EuiFormRow>
+      <EuiTitle size="xxxs">
+        <h4>Fixed</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiColorPaletteDisplay type="fixed" palette={euiPaletteColorBlind()} />
       <EuiSpacer />
+      <EuiTitle size="xxxs">
+        <h4>Gradient</h4>
+      </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiFormRow label="Use in conjunction with EuiColorPalettePicker">
-        <EuiColorPalettePicker
-          palettes={palettesComplexExample}
-          onChange={setPaletteValue}
-          valueOfSelected={paletteValue}
-          selectionDisplay="title"
-        />
-      </EuiFormRow>
+      <EuiColorPaletteDisplay
+        type="gradient"
+        palette={euiPaletteColorBlind()}
+      />
+      <EuiSpacer />
+      <EuiTitle size="xxxs">
+        <h4>Fixed with stops</h4>
+      </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiFormRow>
-        <EuiColorPaletteDisplay
-          type={currentSelectedPalette.type}
-          palette={currentSelectedPalette.palette}
-        />
-      </EuiFormRow>
+      <EuiColorPaletteDisplay type="fixed" palette={paletteWithStops} />
+      <EuiSpacer />
+      <EuiTitle size="xxxs">
+        <h4>Gradient with stops</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiColorPaletteDisplay type="gradient" palette={paletteWithStops} />
+      <EuiSpacer />
+      <EuiTitle size="xxs">
+        <h4>Complex example</h4>
+      </EuiTitle>
+      <EuiSpacer size="xs" />
+      <EuiFlexGroup alignItems="center" gutterSize="xs">
+        <EuiFlexItem>
+          <EuiColorPaletteDisplay
+            type={selectionType ? 'fixed' : 'gradient'}
+            palette={selectedPalette}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            ownFocus
+            button={button}
+            isOpen={isPopoverOpen}
+            closePopover={closePopover}>
+            <EuiFormRow label="Palette">
+              <EuiColorPalettePicker
+                style={{ width: 300 }}
+                palettes={palettes}
+                onChange={setPalette}
+                valueOfSelected={palette}
+                selectionDisplay="title"
+                compressed
+              />
+            </EuiFormRow>
+            <EuiFormRow label="Stops">
+              <EuiRange
+                value={categories}
+                onChange={onChange}
+                min={1}
+                max={10}
+                compressed
+                showValue
+              />
+            </EuiFormRow>
+            <EuiFormRow>
+              <EuiSwitch
+                label={
+                  <span>
+                    Display palette as <EuiCode>fixed</EuiCode>
+                  </span>
+                }
+                checked={selectionType}
+                onChange={() => setSelectionType(!selectionType)}
+                compressed
+              />
+            </EuiFormRow>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </>
   );
 };
