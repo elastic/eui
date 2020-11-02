@@ -164,15 +164,15 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
   } else if (columnIndex >= leadingControlColumns.length + columns.length) {
     // this is a trailing control column
     const columnOffset = columns.length + leadingControlColumns.length;
-    const adjustedColumnIndex = columnIndex - columnOffset;
-    const trailingColumn = trailingControlColumns[adjustedColumnIndex];
+    const trailingColumnIndex = columnIndex - columnOffset;
+    const trailingColumn = trailingControlColumns[trailingColumnIndex];
     const { id, rowCellRender } = trailingColumn;
 
     cellContent = (
       <EuiDataGridCell
         rowIndex={rowIndex}
         visibleRowIndex={_rowIndex}
-        colIndex={adjustedColumnIndex}
+        colIndex={columnIndex}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
         width={trailingColumn.width}
@@ -186,8 +186,8 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     // this is a normal data cell
 
     // offset the column index by the leading control columns
-    columnIndex -= leadingControlColumns.length;
-    const column = columns[columnIndex];
+    const dataColumnIndex = columnIndex - leadingControlColumns.length;
+    const column = columns[dataColumnIndex];
     const columnId = column.id;
     const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
