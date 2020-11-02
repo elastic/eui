@@ -19,12 +19,11 @@ import {
   EuiTitle,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonIcon,
   EuiPopover,
   EuiRange,
   EuiSwitch,
   EuiCode,
-  EuiButtonEmpty
+  EuiButtonEmpty,
 } from '../../../../src/components/';
 
 const paletteWithStops = [
@@ -60,7 +59,7 @@ const paletteData = {
 const paletteNames = Object.keys(paletteData);
 
 export default () => {
-  const [palette, setPalette] = useState("1");
+  const [palette, setPalette] = useState('1');
   const [categories, setCategories] = useState(5);
   const [selectionType, setSelectionType] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -77,7 +76,7 @@ export default () => {
       type: selectionType ? 'fixed' : 'gradient',
     };
   });
- 
+
   const selectedPalette = paletteData[paletteNames[palette - 1]](categories);
 
   const onButtonClick = () =>
@@ -90,9 +89,8 @@ export default () => {
       iconType="controlsVertical"
       aria-label="Open settings"
       color="text"
-      size="xs"
-    >
-      Customize    
+      size="xs">
+      Customize
     </EuiButtonEmpty>
   );
 
