@@ -22,11 +22,13 @@ import classnames from 'classnames';
 import {
   EuiDataGridColumnWidths,
   EuiDataGridColumn,
-  EuiDataGridSorting,
   EuiDataGridControlColumn,
 } from './data_grid_types';
 import { CommonProps } from '../common';
-import { EuiDataGridSchema } from './data_grid_schema';
+import {
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+} from './data_grid_schema';
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 
@@ -36,6 +38,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   columns: EuiDataGridColumn[];
   columnWidths: EuiDataGridColumnWidths;
   schema: EuiDataGridSchema;
+  schemaDetectors: EuiDataGridSchemaDetector[];
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
@@ -56,6 +59,7 @@ const EuiDataGridHeaderRow = forwardRef<
     trailingControlColumns = [],
     columns,
     schema,
+    schemaDetectors,
     columnWidths,
     defaultColumnWidth,
     className,
@@ -94,6 +98,7 @@ const EuiDataGridHeaderRow = forwardRef<
           index={index + leadingControlColumns.length}
           columnWidths={columnWidths}
           schema={schema}
+          schemaDetectors={schemaDetectors}
           setColumnWidth={setColumnWidth}
           setVisibleColumns={setVisibleColumns}
           switchColumnPos={switchColumnPos}

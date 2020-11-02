@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -28,14 +29,22 @@ const progressFixedSnippet = `<!-- Position at top of parent container -->
   <EuiProgress size="xs" color="accent" position="fixed" />
 </EuiPortal>`;
 
-import ProgressSizeColor from './progress_size_color';
-const progressSizeColorSource = require('!!raw-loader!./progress_size_color');
-const progressSizeColorHtml = renderToHtml(ProgressSizeColor);
-const progressSizeColorSnippet = `<EuiProgress
+import ProgressSizes from './progress_sizes';
+const progressSizesSource = require('!!raw-loader!./progress_sizes');
+const progressSizesHtml = renderToHtml(ProgressSizes);
+const progressSizesSnippet = `<EuiProgress
   value={20}
   max={100} 
   size="s"
-  color="accent"
+/>`;
+
+import ProgressColors from './progress_colors';
+const progressColorsSource = require('!!raw-loader!./progress_colors');
+const progressColorsHtml = renderToHtml(ProgressColors);
+const progressColorsSnippet = `<EuiProgress
+  value={20}
+  max={100} 
+  color="vis4"
 />`;
 
 import ProgressChart from './progress_chart';
@@ -137,26 +146,67 @@ export const ProgressExample = {
       demo: <ProgressFixed />,
     },
     {
-      title: 'Progress has a range of sizes and colors',
+      title: 'Sizes',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: progressSizeColorSource,
+          code: progressSizesSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: progressSizeColorHtml,
+          code: progressSizesHtml,
         },
       ],
       text: (
         <p>
-          Both <EuiCode>size</EuiCode> and <EuiCode>color</EuiCode> can be
-          provided as props. These values will work on both determinate and
+          You can adjust the <EuiCode>size</EuiCode> of both determinate and
           indeterminate progress bars.
         </p>
       ),
-      demo: <ProgressSizeColor />,
-      snippet: progressSizeColorSnippet,
+      demo: <ProgressSizes />,
+      snippet: progressSizesSnippet,
+    },
+    {
+      title: 'Colors',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: progressColorsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: progressColorsHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            <strong>EuiProgress</strong> supports a few options for{' '}
+            <EuiCode>color</EuiCode>. You can pass any value from our basic
+            color set or from our visualization palette (<EuiCode>vis0</EuiCode>{' '}
+            through <EuiCode>vis9</EuiCode>). To learn more about color usage,
+            go to the <Link to="/guidelines/colors">Color guidelines</Link>{' '}
+            page.
+          </p>
+          <p>
+            Additionally, you can pass any valid color string like a hex value
+            or named color.
+          </p>
+          <EuiCallOut
+            title="Note about using custom colors"
+            iconType="accessibility"
+            color="warning">
+            <p>
+              Usually, we calculate a high contrast color for{' '}
+              <EuiCode>valueText</EuiCode> based on <EuiCode>color</EuiCode>.
+              This is not possible when using a custom color. In such cases,{' '}
+              <EuiCode>valueText</EuiCode> will just use the custom color.
+            </p>
+          </EuiCallOut>
+        </div>
+      ),
+      demo: <ProgressColors />,
+      snippet: progressColorsSnippet,
     },
     {
       title: 'Progress for charts',

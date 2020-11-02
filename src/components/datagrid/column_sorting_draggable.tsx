@@ -46,6 +46,13 @@ export interface EuiDataGridColumnSortingDraggableProps {
   display: string;
 }
 
+export const defaultSortAscLabel = (
+  <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
+);
+export const defaultSortDescLabel = (
+  <EuiI18n token="euiColumnSortingDraggable.defaultSortDesc" default="Z-A" />
+);
+
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
   id,
   display,
@@ -62,21 +69,10 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
       : null;
 
   const textSortAsc =
-    schemaDetails != null ? (
-      schemaDetails.sortTextAsc
-    ) : (
-      <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
-    );
+    schemaDetails != null ? schemaDetails.sortTextAsc : defaultSortAscLabel;
 
   const textSortDesc =
-    schemaDetails != null ? (
-      schemaDetails.sortTextDesc
-    ) : (
-      <EuiI18n
-        token="euiColumnSortingDraggable.defaultSortDesc"
-        default="Z-A"
-      />
-    );
+    schemaDetails != null ? schemaDetails.sortTextDesc : defaultSortDescLabel;
 
   const toggleOptions = [
     {

@@ -60,6 +60,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     columns,
     columnWidths,
     schema,
+    schemaDetectors,
     defaultColumnWidth,
     setColumnWidth,
     setVisibleColumns,
@@ -275,6 +276,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const columnActions = getColumnActions(
     column,
     columns,
+    schema,
+    schemaDetectors,
     setVisibleColumns,
     setIsPopoverOpen,
     sorting,

@@ -23,7 +23,8 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useCallback, useContext,
+  useCallback,
+  useContext,
 } from 'react';
 import {
   GridChildComponentProps,
@@ -38,7 +39,6 @@ import {
   EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
-  EuiDataGridSorting,
   EuiDataGridPopoverContent,
 } from './data_grid_types';
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
@@ -354,6 +354,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
               defaultColumnWidth={defaultColumnWidth}
               setColumnWidth={setColumnWidth}
               schema={schema}
+              schemaDetectors={schemaDetectors}
               headerIsInteractive={headerIsInteractive}
             />
           )}
@@ -371,6 +372,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     defaultColumnWidth,
     setColumnWidth,
     schema,
+    schemaDetectors,
     headerIsInteractive,
   ]);
 

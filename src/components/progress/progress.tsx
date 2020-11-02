@@ -23,11 +23,12 @@ import React, {
   ProgressHTMLAttributes,
   ReactNode,
   Fragment,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { isNil } from '../../services/predicate';
 
 const sizeToClassNameMap = {
@@ -37,28 +38,77 @@ const sizeToClassNameMap = {
   l: 'euiProgress--l',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiProgressSize = keyof typeof sizeToClassNameMap;
+
+export type ProgressColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'subdued'
+  | 'accent'
+  | 'vis0'
+  | 'vis1'
+  | 'vis2'
+  | 'vis3'
+  | 'vis4'
+  | 'vis5'
+  | 'vis6'
+  | 'vis7'
+  | 'vis8'
+  | 'vis9';
 
 const colorToClassNameMap = {
   primary: 'euiProgress--primary',
   secondary: 'euiProgress--secondary',
+  success: 'euiProgress--success',
+  warning: 'euiProgress--warning',
   danger: 'euiProgress--danger',
   subdued: 'euiProgress--subdued',
   accent: 'euiProgress--accent',
+  vis0: 'euiProgress--vis0',
+  vis1: 'euiProgress--vis1',
+  vis2: 'euiProgress--vis2',
+  vis3: 'euiProgress--vis3',
+  vis4: 'euiProgress--vis4',
+  vis5: 'euiProgress--vis5',
+  vis6: 'euiProgress--vis6',
+  vis7: 'euiProgress--vis7',
+  vis8: 'euiProgress--vis8',
+  vis9: 'euiProgress--vis9',
 };
 
-export const COLORS = Object.keys(colorToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
+
+type NamedColor = keyof typeof colorToClassNameMap;
+
+function isNamedColor(name: string): name is NamedColor {
+  return colorToClassNameMap.hasOwnProperty(name);
+}
 
 export type EuiProgressColor = keyof typeof colorToClassNameMap;
 
-const dataColorToClassNameMap = {
+const dataColorToClassNameMap: { [color in ProgressColor]: string } = {
   primary: 'euiProgress__data--primary',
   secondary: 'euiProgress__data--secondary',
+  success: 'euiProgress__data--success',
+  warning: 'euiProgress__data--warning',
   danger: 'euiProgress__data--danger',
   subdued: 'euiProgress__data--subdued',
   accent: 'euiProgress__data--accent',
+  vis0: 'euiProgress__data--vis0',
+  vis1: 'euiProgress__data--vis1',
+  vis2: 'euiProgress__data--vis2',
+  vis3: 'euiProgress__data--vis3',
+  vis4: 'euiProgress__data--vis4',
+  vis5: 'euiProgress__data--vis5',
+  vis6: 'euiProgress__data--vis6',
+  vis7: 'euiProgress__data--vis7',
+  vis8: 'euiProgress__data--vis8',
+  vis9: 'euiProgress__data--vis9',
 };
 
 const positionsToClassNameMap = {
@@ -67,13 +117,16 @@ const positionsToClassNameMap = {
   static: '',
 };
 
-export const POSITIONS = Object.keys(positionsToClassNameMap);
+export const POSITIONS = keysOf(positionsToClassNameMap);
 
 export type EuiProgressPosition = keyof typeof positionsToClassNameMap;
 
 export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
-  color?: EuiProgressColor;
+  /**
+   * One of EUI's color palette, vis colors or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   */
+  color?: EuiProgressColor | CSSProperties['color'];
   position?: EuiProgressPosition;
 };
 
@@ -109,6 +162,18 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
   ...rest
 }) => {
   const determinate = !isNil(max);
+  let colorClass = null;
+  let dataColorClass = null;
+  let optionalCustomStyles: any = null;
+  if (color) {
+    if (isNamedColor(color)) {
+      colorClass = colorToClassNameMap[color];
+      dataColorClass = dataColorToClassNameMap[color];
+    } else {
+      optionalCustomStyles = { color: color };
+      colorClass = 'euiProgress--customColor';
+    }
+  }
   const classes = classNames(
     'euiProgress',
     {
@@ -116,7 +181,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
       'euiProgress--native': determinate,
     },
     sizeToClassNameMap[size],
-    colorToClassNameMap[color],
+    colorClass,
     positionsToClassNameMap[position],
     className
   );
@@ -125,7 +190,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     {
       'euiProgress__data--l': size === 'l',
     },
-    dataColorToClassNameMap[color]
+    dataColorClass
   );
   const labelClasses = classNames(
     'euiProgress__label',
@@ -176,6 +241,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                   <span
                     title={innerText}
                     ref={ref}
+                    style={optionalCustomStyles}
                     className="euiProgress__valueText">
                     {valueRender}
                   </span>
@@ -186,6 +252,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
         ) : undefined}
         <progress
           className={classes}
+          style={optionalCustomStyles}
           max={max}
           value={value}
           aria-hidden={label && valueText ? true : false}
@@ -195,7 +262,11 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     );
   } else {
     return (
-      <div className={classes} {...(rest as HTMLAttributes<HTMLDivElement>)} />
+      <div
+        style={optionalCustomStyles}
+        className={classes}
+        {...(rest as HTMLAttributes<HTMLDivElement>)}
+      />
     );
   }
 };

@@ -16,7 +16,7 @@ const exampleItem = `{
   mobileOptions: {
     render: (item) => (<span>{item.firstName} {item.lastName}</span>), // Custom renderer for mobile view only
     header: false,   // Won't show inline header in mobile view
-    fullWidth: true, // Forces 100% width of the cell
+    width: '100%' // Applies a specific width
     enlarge: true,   // Increase text size compared to rest of cells
     truncateText: false, // Only works if a 'render()' is also provided
   }

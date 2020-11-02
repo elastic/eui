@@ -1085,7 +1085,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                         setVisibleColumns={setVisibleColumns}
                                         switchColumnPos={switchColumnPos}
                                         setColumnWidth={setColumnWidth}
-                                        headerIsInteractive={headerIsInteractive}
+                                        headerIsInteractive={
+                                          headerIsInteractive
+                                        }
                                         handleHeaderMutation={
                                           handleHeaderMutation
                                         }

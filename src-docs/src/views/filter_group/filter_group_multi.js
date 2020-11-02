@@ -23,7 +23,7 @@ export default () => {
     setIsPopoverOpen(false);
   };
 
-  const items = [
+  const [items, setItems] = useState([
     { name: 'Johann Sebastian Bach', checked: 'on' },
     { name: 'Wolfgang Amadeus Mozart', checked: 'on' },
     { name: 'Antonín Dvořák', checked: 'off' },
@@ -43,7 +43,30 @@ export default () => {
     { name: 'Robert Schumann' },
     { name: 'Sergej S. Prokofiew' },
     { name: 'Wolfgang Amadeus Mozart' },
-  ];
+  ]);
+
+  function updateItem(index) {
+    if (!items[index]) {
+      return;
+    }
+
+    const newItems = [...items];
+
+    switch (newItems[index].checked) {
+      case 'on':
+        newItems[index].checked = 'off';
+        break;
+
+      case 'off':
+        newItems[index].checked = undefined;
+        break;
+
+      default:
+        newItems[index].checked = 'on';
+    }
+
+    setItems(newItems);
+  }
 
   const button = (
     <EuiFilterButton
@@ -51,8 +74,8 @@ export default () => {
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
       numFilters={items.length}
-      hasActiveFilters={true}
-      numActiveFilters={2}>
+      hasActiveFilters={!!items.find((item) => item.checked === 'on')}
+      numActiveFilters={items.filter((item) => item.checked === 'on').length}>
       Composers
     </EuiFilterButton>
   );
@@ -71,7 +94,10 @@ export default () => {
         </EuiPopoverTitle>
         <div className="euiFilterSelect__items">
           {items.map((item, index) => (
-            <EuiFilterSelectItem checked={item.checked} key={index}>
+            <EuiFilterSelectItem
+              checked={item.checked}
+              key={index}
+              onClick={() => updateItem(index)}>
               {item.name}
             </EuiFilterSelectItem>
           ))}
