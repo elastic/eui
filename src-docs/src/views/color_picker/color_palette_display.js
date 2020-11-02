@@ -136,13 +136,13 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            panelStyle={{ minWidth: 380 }}
             ownFocus
             button={button}
             isOpen={isPopoverOpen}
             closePopover={closePopover}>
-            <EuiFormRow label="Palette">
+            <EuiFormRow label="Color palette" display="columnCompressed">
               <EuiColorPalettePicker
-                style={{ width: 300 }}
                 palettes={palettes}
                 onChange={setPalette}
                 valueOfSelected={palette}
@@ -150,7 +150,7 @@ export default () => {
                 compressed
               />
             </EuiFormRow>
-            <EuiFormRow label="Stops">
+            <EuiFormRow label="Number of stops" display="columnCompressed">
               <EuiRange
                 value={categories}
                 onChange={onChange}
@@ -160,13 +160,14 @@ export default () => {
                 showValue
               />
             </EuiFormRow>
-            <EuiFormRow>
+            <EuiFormRow
+              label={
+                <span>
+                  Display <EuiCode>fixed</EuiCode>
+                </span>
+              }
+              display="columnCompressedSwitch">
               <EuiSwitch
-                label={
-                  <span>
-                    Display palette as <EuiCode>fixed</EuiCode>
-                  </span>
-                }
                 checked={selectionType}
                 onChange={() => setSelectionType(!selectionType)}
                 compressed
