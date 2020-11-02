@@ -29,7 +29,7 @@ export type EuiColorPaletteDisplayProps = CommonProps & {
    */
   type?: 'gradient' | 'fixed';
   /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range. 
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 };

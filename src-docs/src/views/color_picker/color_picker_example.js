@@ -453,7 +453,7 @@ export const ColorPickerExample = {
           code: colorStopsHtml,
         },
       ],
-      props: { 
+      props: {
         EuiColorStops,
         ColorStop,
       },
