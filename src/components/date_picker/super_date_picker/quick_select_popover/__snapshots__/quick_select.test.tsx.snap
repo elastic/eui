@@ -90,7 +90,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       grow={false}
     >
       <EuiButton
-        aria-describedby="htmlId htmlId"
+        aria-describedby="generated-id generated-id"
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
@@ -108,7 +108,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
   />
   <EuiScreenReaderOnly>
     <p
-      id="htmlId"
+      id="generated-id"
     >
       <EuiI18n
         default="Currently set to {timeTense} {timeValue} {timeUnit}."
@@ -216,7 +216,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       grow={false}
     >
       <EuiButton
-        aria-describedby="htmlId htmlId"
+        aria-describedby="generated-id generated-id"
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
@@ -234,7 +234,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
   />
   <EuiScreenReaderOnly>
     <p
-      id="htmlId"
+      id="generated-id"
     >
       <EuiI18n
         default="Currently set to {timeTense} {timeValue} {timeUnit}."

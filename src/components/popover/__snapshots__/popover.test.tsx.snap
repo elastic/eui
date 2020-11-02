@@ -429,7 +429,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
         data-focus-lock-disabled="false"
       >
         <div
-          aria-describedby="htmlId"
+          aria-describedby="generated-id"
           aria-live="off"
           aria-modal="true"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -444,7 +444,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
           />
           <p
             class="euiScreenReaderOnly"
-            id="htmlId"
+            id="generated-id"
           >
             You are in a dialog. To close this dialog, hit escape.
           </p>

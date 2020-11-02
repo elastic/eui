@@ -24,10 +24,6 @@ import { requiredProps } from '../../../test';
 import { EuiFormRow } from '../form_row';
 import { EuiDescribedFormGroup } from './described_form_group';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiDescribedFormGroup', () => {
   const props = {
     title: <h3>Title</h3>,

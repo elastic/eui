@@ -28,7 +28,7 @@ import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
-import { htmlIdGenerator } from '../../../services/accessibility/html_id_generator';
+import { htmlIdGenerator } from '../../../services/accessibility';
 
 const displayToClassNameMap = {
   default: null,
