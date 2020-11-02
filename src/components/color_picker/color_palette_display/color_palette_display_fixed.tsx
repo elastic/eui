@@ -18,33 +18,30 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import classnames from 'classnames';
 import { CommonProps } from '../../common';
 import { ColorStop } from '../color_stops';
 
-export type EuiLinearFixedGradientProps = CommonProps & {
+export type EuiColorPaletteDisplayFixedProps = CommonProps & {
   /**
    * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 };
 
-export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientProps> = ({
+export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDisplayFixedProps> = ({
   palette,
-  className,
+  ...rest
 }) => {
   const paletteHasStops = palette.some((item: string | ColorStop) => {
     return typeof item === 'object';
   });
 
-  const classes = classnames('euiLinearFixedGradient', className);
-
   if (paletteHasStops) {
     const paletteColorStop = palette as ColorStop[];
 
     return (
-      <span className={classes}>
-        <span className="euiLinearFixedGradient__inner">
+      <span {...rest}>
+        <span className="euiColorPaletteDisplayFixed__bleedArea">
           {paletteColorStop.map((colorStop: any, index: number) => {
             const lastColorStopArrayPosition = palette.length - 1;
 
@@ -87,13 +84,13 @@ export const EuiLinearFixedGradient: FunctionComponent<EuiLinearFixedGradientPro
     const paletteColorStop = palette as String[];
 
     return (
-      <span className={classes}>
-        <span className="euiLinearFixedGradient__inner">
+      <span {...rest}>
+        <span className="euiColorPaletteDisplayFixed__bleedArea">
           {paletteColorStop.map((hexCode: any, index) => (
             <span
               style={{ backgroundColor: hexCode }}
               key={`${hexCode}-${index}`}
-              className="euiLinearFixedGradient__colorStop--widthAuto"
+              className="euiColorPaletteDisplayFixed__colorStopAuto"
             />
           ))}
         </span>

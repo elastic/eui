@@ -128,32 +128,28 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
             class="euiColorPaletteDisplay"
           >
             <span
-              class="euiLinearFixedGradient"
+              class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiLinearFixedGradient__inner"
-              >
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#1fb0b2"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#ffdb6d"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#ee9191"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#ffffff"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#888094"
-                />
-              </span>
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#1fb0b2"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#ffdb6d"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#ee9191"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#ffffff"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#888094"
+              />
             </span>
           </span>
           , is selected
@@ -170,32 +166,28 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
             class="euiColorPaletteDisplay"
           >
             <span
-              class="euiLinearFixedGradient"
+              class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiLinearFixedGradient__inner"
-              >
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#1fb0b2"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#ffdb6d"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#ee9191"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#ffffff"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color:#888094"
-                />
-              </span>
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#1fb0b2"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#ffdb6d"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#ee9191"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#ffffff"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color:#888094"
+              />
             </span>
           </span>
         </button>
@@ -242,12 +234,8 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           Select an option: 
           <span
             class="euiColorPaletteDisplay"
-          >
-            <span
-              class="euiLinearGradient"
-              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
-            />
-          </span>
+            style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+          />
           , is selected
         </span>
         <button
@@ -260,12 +248,8 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
         >
           <span
             class="euiColorPaletteDisplay"
-          >
-            <span
-              class="euiLinearGradient"
-              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
-            />
-          </span>
+            style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+          />
         </button>
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
@@ -310,12 +294,8 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           Select an option: 
           <span
             class="euiColorPaletteDisplay"
-          >
-            <span
-              class="euiLinearGradient"
-              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
-            />
-          </span>
+            style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+          />
           , is selected
         </span>
         <button
@@ -328,12 +308,8 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
         >
           <span
             class="euiColorPaletteDisplay"
-          >
-            <span
-              class="euiLinearGradient"
-              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
-            />
-          </span>
+            style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+          />
         </button>
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
@@ -432,32 +408,28 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
             class="euiColorPaletteDisplay"
           >
             <span
-              class="euiLinearFixedGradient"
+              class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiLinearFixedGradient__inner"
-              >
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(31, 176, 178);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(255, 219, 109);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(238, 145, 145);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(255, 255, 255);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(136, 128, 148);"
-                />
-              </span>
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(31, 176, 178);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(255, 219, 109);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(238, 145, 145);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(255, 255, 255);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(136, 128, 148);"
+              />
             </span>
           </span>
           , is selected
@@ -473,32 +445,28 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
             class="euiColorPaletteDisplay"
           >
             <span
-              class="euiLinearFixedGradient"
+              class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiLinearFixedGradient__inner"
-              >
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(31, 176, 178);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(255, 219, 109);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(238, 145, 145);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(255, 255, 255);"
-                />
-                <span
-                  class="euiLinearFixedGradient__colorStop--widthAuto"
-                  style="background-color: rgb(136, 128, 148);"
-                />
-              </span>
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(31, 176, 178);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(255, 219, 109);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(238, 145, 145);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(255, 255, 255);"
+              />
+              <span
+                class="euiColorPaletteDisplayFixed__colorStopAuto"
+                style="background-color: rgb(136, 128, 148);"
+              />
             </span>
           </span>
         </button>

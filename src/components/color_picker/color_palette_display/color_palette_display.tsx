@@ -18,10 +18,11 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 import { CommonProps } from '../../common';
 import { ColorStop } from '../color_stops';
-import { EuiLinearFixedGradient } from './linear_fixed_gradient';
-import { EuiLinearGradient } from './linear_gradient';
+import { EuiColorPaletteDisplayFixed } from './color_palette_display_fixed';
+import { EuiColorPaletteDisplayGradient } from './color_palette_display_gradient';
 
 export type EuiColorPaletteDisplayProps = CommonProps & {
   /**
@@ -37,15 +38,26 @@ export type EuiColorPaletteDisplayProps = CommonProps & {
 export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
   type = 'fixed',
   palette,
+  className,
   ...rest
 }) => {
+  const classes = classnames('euiColorPaletteDisplay', className);
+
   return (
-    <span className="euiColorPaletteDisplay">
+    <>
       {type === 'fixed' ? (
-        <EuiLinearFixedGradient palette={palette} {...rest} />
+        <EuiColorPaletteDisplayFixed
+          className={classes}
+          palette={palette}
+          {...rest}
+        />
       ) : (
-        <EuiLinearGradient palette={palette} {...rest} />
+        <EuiColorPaletteDisplayGradient
+          className={classes}
+          palette={palette}
+          {...rest}
+        />
       )}
-    </span>
+    </>
   );
 };

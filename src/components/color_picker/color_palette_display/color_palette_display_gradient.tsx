@@ -18,28 +18,22 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import classnames from 'classnames';
 import { CommonProps } from '../../common';
 import { getLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
 
-export type EuiLinearGradientProps = CommonProps & {
+export type EuiColorPaletteDisplayGradientProps = CommonProps & {
   /**
    * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 };
 
-export const EuiLinearGradient: FunctionComponent<EuiLinearGradientProps> = ({
+export const EuiColorPaletteDisplayGradient: FunctionComponent<EuiColorPaletteDisplayGradientProps> = ({
   palette,
-  className,
   ...rest
 }) => {
   const gradient = getLinearGradient(palette);
 
-  const classes = classnames('euiLinearGradient', className);
-
-  return (
-    <span className={classes} style={{ background: gradient }} {...rest} />
-  );
+  return <span style={{ background: gradient }} {...rest} />;
 };

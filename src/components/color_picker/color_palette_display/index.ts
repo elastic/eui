@@ -23,8 +23,11 @@ export {
 } from './color_palette_display';
 
 export {
-  EuiLinearFixedGradient,
-  EuiLinearFixedGradientProps,
-} from './linear_fixed_gradient';
+  EuiColorPaletteDisplayFixed,
+  EuiColorPaletteDisplayFixedProps,
+} from './color_palette_display_fixed';
 
-export { EuiLinearGradient, EuiLinearGradientProps } from './linear_gradient';
+export {
+  EuiColorPaletteDisplayGradient,
+  EuiColorPaletteDisplayGradientProps,
+} from './color_palette_display_gradient';

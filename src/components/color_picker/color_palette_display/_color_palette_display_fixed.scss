@@ -1,9 +1,7 @@
-.euiLinearFixedGradient {
-  @include euiColorPaletteDisplay;
-
+.euiColorPaletteDisplayFixed {
   // In a few screen sizes the palette display doesn't get a fully 100% width
   // it gets 1px less on width and for this reason we're adding an horizontal 1px bleed area
-  &__inner {
+  &__bleedArea {
     position: absolute;
     top: 0;
     left: 0;
@@ -12,7 +10,7 @@
     width: calc(100% + 1px);
   }
 
-  &__colorStop--widthAuto {
+  &__colorStopAuto {
     flex: 1;
     width: auto;
   }

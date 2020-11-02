@@ -1,4 +1,4 @@
-@mixin euiColorPaletteDisplay {
+.euiColorPaletteDisplay {
   @include innerBorder('dark', $euiBorderRadius, .2);
   display: flex;
   flex-direction: row;
