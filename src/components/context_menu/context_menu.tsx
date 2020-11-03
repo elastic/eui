@@ -230,7 +230,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       if (this.state.isUsingKeyboardToNavigate) {
         this.setState(({ idToPanelMap }) => ({
           focusedItemIndex:
-            idToPanelMap[nextPanelId].initialFocusedItemIndex || 0,
+            idToPanelMap[nextPanelId].initialFocusedItemIndex ?? 0,
         }));
       }
 
