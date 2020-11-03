@@ -27,7 +27,6 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiOverlayMask } from '../overlay_mask';
-import { EuiButtonIcon } from '../button';
 
 import { EuiIcon } from '../icon';
 
@@ -224,16 +223,10 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
             </button>
             {optionalCaption}
           </figure>
-          <EuiButtonIcon
-            iconType="cross"
-            color="text"
+          <EuiIcon
+            type="cross"
+            color="default"
             className="euiImage-isFullScreen__icon"
-            onClick={closeFullScreen}
-            aria-label={useEuiI18n(
-              'euiImage.closeImage',
-              'Close full screen {alt} image',
-              { alt }
-            )}
           />
         </>
       </EuiFocusTrap>

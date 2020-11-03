@@ -166,6 +166,7 @@
     position: absolute;
     right: $euiSize;
     top: $euiSize;
+    pointer-events: none;
   }
 
   &__img {
