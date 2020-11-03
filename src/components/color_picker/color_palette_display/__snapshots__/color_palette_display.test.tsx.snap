@@ -10,24 +10,19 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#1fb0b2"
+      style="background-color:#1fb0b2;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffdb6d"
+      style="background-color:#ffdb6d;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ee9191"
+      style="background-color:#ee9191;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffffff"
+      style="background-color:#ffffff;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#888094"
+      style="background-color:#888094;width:20%"
     />
   </span>
 </span>
@@ -43,24 +38,19 @@ exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#1fb0b2"
+      style="background-color:#1fb0b2;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffdb6d"
+      style="background-color:#ffdb6d;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ee9191"
+      style="background-color:#ee9191;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffffff"
+      style="background-color:#ffffff;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#888094"
+      style="background-color:#888094;width:20%"
     />
   </span>
 </span>
@@ -76,24 +66,19 @@ exports[`EuiColorPaletteDisplay props size s is rendered 1`] = `
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#1fb0b2"
+      style="background-color:#1fb0b2;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffdb6d"
+      style="background-color:#ffdb6d;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ee9191"
+      style="background-color:#ee9191;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffffff"
+      style="background-color:#ffffff;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#888094"
+      style="background-color:#888094;width:20%"
     />
   </span>
 </span>
@@ -109,24 +94,19 @@ exports[`EuiColorPaletteDisplay props size xs is rendered 1`] = `
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#1fb0b2"
+      style="background-color:#1fb0b2;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffdb6d"
+      style="background-color:#ffdb6d;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ee9191"
+      style="background-color:#ee9191;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffffff"
+      style="background-color:#ffffff;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#888094"
+      style="background-color:#888094;width:20%"
     />
   </span>
 </span>
@@ -167,24 +147,19 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#1fb0b2"
+      style="background-color:#1fb0b2;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffdb6d"
+      style="background-color:#ffdb6d;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ee9191"
+      style="background-color:#ee9191;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#ffffff"
+      style="background-color:#ffffff;width:20%"
     />
     <span
-      class="euiColorPaletteDisplayFixed__colorStopAuto"
-      style="background-color:#888094"
+      style="background-color:#888094;width:20%"
     />
   </span>
 </span>

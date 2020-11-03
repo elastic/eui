@@ -13,12 +13,12 @@ $sizes: (
 
 @each $name, $size in $sizes {
   .euiColorPaletteDisplay--#{$name} {
+    @include innerBorder('dark', $size, .2);
     height: $size;
     border-radius: $size;
   }
 
   .euiColorPaletteDisplay--#{$name} .euiColorPaletteDisplayFixed__bleedArea {
-    @include innerBorder('dark', $size, .2);
     height: $size;
   }
 }

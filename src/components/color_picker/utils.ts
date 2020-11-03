@@ -180,7 +180,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
     for (let i = 1; i < lastColorStopArrayPosition; i++) {
       linearGradient = `${linearGradient} ${
         paletteColorStop[i].color
-      }\ ${Math.round(paletteColorStop[i].stop * lastColorStopDecimal)}%,`;
+      }\ ${Math.floor(paletteColorStop[i].stop * lastColorStopDecimal)}%,`;
     }
 
     const linearGradientStyle = `${linearGradient} ${paletteColorStop[lastColorStopArrayPosition].color} 100%)`;
@@ -190,7 +190,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
     linearGradient = `linear-gradient(to right, ${palette[0]} 0%,`;
 
     for (let i = 1; i < lastColorStopArrayPosition; i++) {
-      linearGradient = `${linearGradient} ${palette[i]}\ ${Math.round(
+      linearGradient = `${linearGradient} ${palette[i]}\ ${Math.floor(
         (100 * i) / lastColorStopArrayPosition
       )}%,`;
     }
@@ -198,5 +198,63 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
     const linearGradientStyle = `${linearGradient} ${palette[lastColorStopArrayPosition]} 100%)`;
 
     return linearGradientStyle;
+  }
+};
+
+// Given an array of objects with key value pairs stop/color or an array of hex colors
+// returns an array of objects with key value pairs color/width
+export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
+  const paletteHasStops = palette.some((item: string | ColorStop) => {
+    return typeof item === 'object';
+  });
+
+  if (paletteHasStops) {
+    const paletteColorStop = palette as ColorStop[];
+
+    const fixedLinearGradientWithStops = paletteColorStop.map(
+      (colorStop: ColorStop, index: number) => {
+        const lastColorStopArrayPosition = palette.length - 1;
+
+        const lastColorStopDecimal =
+          100 / paletteColorStop[lastColorStopArrayPosition].stop;
+
+        const isFirstColorStop = index === 0;
+
+        let previousColorStopWidth;
+
+        if (isFirstColorStop) {
+          previousColorStopWidth = 0;
+        } else {
+          previousColorStopWidth = Math.floor(
+            paletteColorStop[index - 1].stop * lastColorStopDecimal
+          );
+        }
+
+        const currentColorStopWidth = Math.floor(
+          colorStop.stop * lastColorStopDecimal
+        );
+
+        const colorStopWidth = currentColorStopWidth - previousColorStopWidth;
+
+        return {
+          color: colorStop.color,
+          width: `${colorStopWidth}%`,
+        };
+      }
+    );
+
+    return fixedLinearGradientWithStops;
+  } else {
+    const paletteColorStop = palette as string[];
+    const paletteWidth = 100 / palette.length;
+
+    const fixedLinearGradientWidthAuto = paletteColorStop.map(
+      (hexCode: string) => ({
+        color: hexCode,
+        width: `${paletteWidth}%`,
+      })
+    );
+
+    return fixedLinearGradientWidthAuto;
   }
 };

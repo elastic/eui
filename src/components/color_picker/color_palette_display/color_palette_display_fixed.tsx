@@ -20,6 +20,7 @@
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import { ColorStop } from '../color_stops';
+import { getFixedLinearGradient } from '../utils';
 
 export type EuiColorPaletteDisplayFixedProps = CommonProps & {
   /**
@@ -28,73 +29,31 @@ export type EuiColorPaletteDisplayFixedProps = CommonProps & {
   palette: string[] | ColorStop[];
 };
 
+interface paletteItem {
+  color: string;
+  width: string;
+}
+
 export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDisplayFixedProps> = ({
   palette,
   ...rest
 }) => {
-  const paletteHasStops = palette.some((item: string | ColorStop) => {
-    return typeof item === 'object';
-  });
+  const fixedGradient = getFixedLinearGradient(palette);
 
-  if (paletteHasStops) {
-    const paletteColorStop = palette as ColorStop[];
+  const paletteDisplayFixed = fixedGradient.map(
+    (item: paletteItem, index: number) => (
+      <span
+        style={{ backgroundColor: item.color, width: item.width }}
+        key={`${item.color}-${index}`}
+      />
+    )
+  );
 
-    return (
-      <span {...rest}>
-        <span className="euiColorPaletteDisplayFixed__bleedArea">
-          {paletteColorStop.map((colorStop: ColorStop, index: number) => {
-            const lastColorStopArrayPosition = palette.length - 1;
-
-            const lastColorStopDecimal =
-              100 / paletteColorStop[lastColorStopArrayPosition].stop;
-
-            const isFirstColorStop = index === 0;
-
-            let previousColorStopWidth;
-
-            if (isFirstColorStop) {
-              previousColorStopWidth = 0;
-            } else {
-              previousColorStopWidth = Math.round(
-                paletteColorStop[index - 1].stop * lastColorStopDecimal
-              );
-            }
-
-            const currentColorStopWidth = Math.round(
-              colorStop.stop * lastColorStopDecimal
-            );
-
-            const colorStopWidth =
-              currentColorStopWidth - previousColorStopWidth;
-
-            return (
-              <span
-                style={{
-                  backgroundColor: colorStop.color,
-                  width: `${colorStopWidth}%`,
-                }}
-                key={`${colorStop.color}-${index}`}
-              />
-            );
-          })}
-        </span>
+  return (
+    <span {...rest}>
+      <span className="euiColorPaletteDisplayFixed__bleedArea">
+        {paletteDisplayFixed}
       </span>
-    );
-  } else {
-    const paletteColorStop = palette as String[];
-
-    return (
-      <span {...rest}>
-        <span className="euiColorPaletteDisplayFixed__bleedArea">
-          {paletteColorStop.map((hexCode: string, index) => (
-            <span
-              style={{ backgroundColor: hexCode }}
-              key={`${hexCode}-${index}`}
-              className="euiColorPaletteDisplayFixed__colorStopAuto"
-            />
-          ))}
-        </span>
-      </span>
-    );
-  }
+    </span>
+  );
 };

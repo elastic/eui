@@ -131,24 +131,19 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
               class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#1fb0b2"
+                style="background-color:#1fb0b2;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#ffdb6d"
+                style="background-color:#ffdb6d;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#ee9191"
+                style="background-color:#ee9191;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#ffffff"
+                style="background-color:#ffffff;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#888094"
+                style="background-color:#888094;width:20%"
               />
             </span>
           </span>
@@ -169,24 +164,19 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
               class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#1fb0b2"
+                style="background-color:#1fb0b2;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#ffdb6d"
+                style="background-color:#ffdb6d;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#ee9191"
+                style="background-color:#ee9191;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#ffffff"
+                style="background-color:#ffffff;width:20%"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color:#888094"
+                style="background-color:#888094;width:20%"
               />
             </span>
           </span>
@@ -411,24 +401,19 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(31, 176, 178);"
+                style="background-color: rgb(31, 176, 178); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(255, 219, 109);"
+                style="background-color: rgb(255, 219, 109); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(238, 145, 145);"
+                style="background-color: rgb(238, 145, 145); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(255, 255, 255);"
+                style="background-color: rgb(255, 255, 255); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(136, 128, 148);"
+                style="background-color: rgb(136, 128, 148); width: 20%;"
               />
             </span>
           </span>
@@ -448,24 +433,19 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(31, 176, 178);"
+                style="background-color: rgb(31, 176, 178); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(255, 219, 109);"
+                style="background-color: rgb(255, 219, 109); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(238, 145, 145);"
+                style="background-color: rgb(238, 145, 145); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(255, 255, 255);"
+                style="background-color: rgb(255, 255, 255); width: 20%;"
               />
               <span
-                class="euiColorPaletteDisplayFixed__colorStopAuto"
-                style="background-color: rgb(136, 128, 148);"
+                style="background-color: rgb(136, 128, 148); width: 20%;"
               />
             </span>
           </span>
