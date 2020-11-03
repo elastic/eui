@@ -20,6 +20,11 @@
 
 @include euiPanel($selector: '.euiDroppable--withPanel');
 
+.euiDroppable--withPanel {
+  @include euiBottomShadowMedium;
+  border-radius: $euiBorderRadius;
+}
+
 .euiDroppable--noGrow {
   flex-grow: 0;
 }

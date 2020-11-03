@@ -108,7 +108,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
@@ -159,7 +159,7 @@ exports[`EuiPopover props buffer 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
@@ -234,7 +234,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
@@ -284,7 +284,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 26px; left: -22px; z-index: 2000;"
         >
@@ -334,7 +334,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen euiPopover__panel-noArrow"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen euiPopover__panel-noArrow"
           role="dialog"
           style="top: 18px; left: -22px; z-index: 2000;"
         >
@@ -382,7 +382,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
@@ -432,7 +432,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
           aria-describedby="htmlId"
           aria-live="off"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           data-autofocus="true"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
@@ -489,7 +489,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
+          class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
@@ -538,7 +538,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         <div
           aria-live="assertive"
           aria-modal="true"
-          class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >

@@ -29,48 +29,6 @@ import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 import { EuiBetaBadge } from '../badge/beta_badge';
 
-export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
-
-interface Props extends CommonProps {
-  /**
-   * If active, adds a deeper shadow to the panel
-   */
-  hasShadow?: boolean;
-  /**
-   * Padding applied to the panel
-   */
-  paddingSize?: PanelPaddingSize;
-  /**
-   * When true the panel will grow to match `EuiFlexItem`
-   */
-  grow?: boolean;
-
-  panelRef?: Ref<HTMLDivElement>;
-
-  /**
-   * Add a badge to the panel to label it as "Beta" or other non-GA state
-   */
-  betaBadgeLabel?: string;
-
-  /**
-   * Add a description to the beta badge (will appear in a tooltip)
-   */
-  betaBadgeTooltipContent?: ReactNode;
-
-  /**
-   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
-   */
-  betaBadgeTitle?: string;
-}
-
-interface Divlike
-  extends Props,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {}
-
-interface Buttonlike extends Props, ButtonHTMLAttributes<HTMLButtonElement> {}
-
-export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
-
 const paddingSizeToClassNameMap = {
   none: null,
   s: 'euiPanel--paddingSmall',
@@ -80,11 +38,87 @@ const paddingSizeToClassNameMap = {
 
 export const SIZES = keysOf(paddingSizeToClassNameMap);
 
+const borderRadiusToClassNameMap = {
+  none: 'euiPanel--borderRadiusNone',
+  m: 'euiPanel--borderRadiusMedium',
+};
+
+export const BORDER_RADII = keysOf(borderRadiusToClassNameMap);
+
+export const COLORS = [
+  'transparent',
+  'plain',
+  'subdued',
+  'accent',
+  'primary',
+  'success',
+  'warning',
+  'danger',
+] as const;
+
+export type PanelColor = typeof COLORS[number];
+export type PanelPaddingSize = typeof SIZES[number];
+export type PanelBorderRadius = typeof BORDER_RADII[number];
+
+interface Props extends CommonProps {
+  /**
+   * Adds a medium shadow to the panel;
+   * Clickable cards will still get a shadow on hover
+   */
+  hasShadow?: boolean;
+  /**
+   * Padding for all four sides
+   */
+  paddingSize?: PanelPaddingSize;
+  /**
+   * Corner border radius
+   */
+  borderRadius?: PanelBorderRadius;
+  /**
+   * When true the panel will grow in height to match `EuiFlexItem`
+   */
+  grow?: boolean;
+  panelRef?: Ref<HTMLDivElement>;
+  /**
+   * *AMSTERDAM ONLY*
+   * Background color of the panel;
+   * Usually a lightened form of the brand colors
+   */
+  color?: PanelColor;
+  /**
+   * **DEPRECATED: use `EuiCard` instead.**
+   * Add a badge to the panel to label it as "Beta" or other non-GA state
+   */
+  betaBadgeLabel?: string;
+  /**
+   * **DEPRECATED: use `EuiCard` instead.**
+   * Add a description to the beta badge (will appear in a tooltip)
+   */
+  betaBadgeTooltipContent?: ReactNode;
+  /**
+   * **DEPRECATED: use `EuiCard` instead.**
+   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+   */
+  betaBadgeTitle?: string;
+}
+
+interface Divlike
+  extends Props,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'color'> {}
+
+interface Buttonlike
+  extends Props,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {}
+
+export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
+
 export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,
   className,
   paddingSize = 'm',
-  hasShadow = false,
+  borderRadius = 'm',
+  color = 'plain',
+  hasShadow = true,
   grow = true,
   panelRef,
   onClick,
@@ -95,7 +129,9 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
 }) => {
   const classes = classNames(
     'euiPanel',
-    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
+    paddingSizeToClassNameMap[paddingSize],
+    borderRadiusToClassNameMap[borderRadius],
+    `euiPanel--${color}`,
     {
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,

@@ -12,7 +12,7 @@
 .euiCard {
   display: flex;
   flex-direction: column;
-  min-height: 1px; /* 2 */// sass-lint:disable-line mixins-before-declarations
+  min-height: 1px; /* 2 */
 
   &.euiCard-isDisabled {
     cursor: not-allowed; // duplicate property due to Chrome bug
