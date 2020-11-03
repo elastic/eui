@@ -21,7 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPanel, SIZES } from './panel';
+import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
 describe('EuiPanel', () => {
   test('is rendered', () => {
@@ -31,10 +31,46 @@ describe('EuiPanel', () => {
   });
 
   describe('props', () => {
+    describe('hasShadow', () => {
+      test('can be false', () => {
+        const component = render(<EuiPanel hasShadow={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('grow', () => {
+      test('can be false', () => {
+        const component = render(<EuiPanel grow={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiPanel paddingSize={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('color', () => {
+      COLORS.forEach((color) => {
+        test(`${color} is rendered`, () => {
+          const component = render(<EuiPanel color={color} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('borderRadius', () => {
+      BORDER_RADII.forEach((borderRadius) => {
+        test(`${borderRadius} is rendered`, () => {
+          const component = render(<EuiPanel borderRadius={borderRadius} />);
 
           expect(component).toMatchSnapshot();
         });
