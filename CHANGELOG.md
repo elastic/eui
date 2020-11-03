@@ -2,6 +2,7 @@
 
 - Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 - Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865)) 
+- Added `float` and `margin` props to `EuiImage` ([#4209](https://github.com/elastic/eui/pull/4209))
 
 **Bug fixes**
 
