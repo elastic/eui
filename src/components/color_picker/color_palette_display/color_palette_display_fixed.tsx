@@ -40,19 +40,17 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDispl
 }) => {
   const fixedGradient = getFixedLinearGradient(palette);
 
-  const paletteDisplayFixed = fixedGradient.map(
-    (item: paletteItem, index: number) => (
-      <span
-        style={{ backgroundColor: item.color, width: item.width }}
-        key={`${item.color}-${index}`}
-      />
-    )
-  );
+  const paletteStops = fixedGradient.map((item: paletteItem, index: number) => (
+    <span
+      style={{ backgroundColor: item.color, width: item.width }}
+      key={`${item.color}-${index}`}
+    />
+  ));
 
   return (
     <span {...rest}>
       <span className="euiColorPaletteDisplayFixed__bleedArea">
-        {paletteDisplayFixed}
+        {paletteStops}
       </span>
     </span>
   );
