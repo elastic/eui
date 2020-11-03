@@ -224,8 +224,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-1"
     label={
       <EuiI18n
-        default="Sort schema asc"
-        token="euiColumnActions.sortAsc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="A-Z"
+              token="euiColumnSortingDraggable.defaultSortAsc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -253,13 +261,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema asc"
+          title="Sort A-Z"
         >
           <EuiI18n
-            default="Sort schema asc"
-            token="euiColumnActions.sortAsc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />,
+              }
+            }
           >
-            Sort schema asc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="A-Z"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortAsc"
+              >
+                A-Z
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -273,8 +305,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-2"
     label={
       <EuiI18n
-        default="Sort schema desc"
-        token="euiColumnActions.sortDesc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="Z-A"
+              token="euiColumnSortingDraggable.defaultSortDesc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -302,13 +342,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema desc"
+          title="Sort Z-A"
         >
           <EuiI18n
-            default="Sort schema desc"
-            token="euiColumnActions.sortDesc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />,
+              }
+            }
           >
-            Sort schema desc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="Z-A"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortDesc"
+              >
+                Z-A
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -459,8 +523,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-0"
     label={
       <EuiI18n
-        default="Sort schema asc"
-        token="euiColumnActions.sortAsc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="A-Z"
+              token="euiColumnSortingDraggable.defaultSortAsc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -488,13 +560,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema asc"
+          title="Sort A-Z"
         >
           <EuiI18n
-            default="Sort schema asc"
-            token="euiColumnActions.sortAsc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />,
+              }
+            }
           >
-            Sort schema asc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="A-Z"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortAsc"
+              >
+                A-Z
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -508,8 +604,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-1"
     label={
       <EuiI18n
-        default="Sort schema desc"
-        token="euiColumnActions.sortDesc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="Z-A"
+              token="euiColumnSortingDraggable.defaultSortDesc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -537,13 +641,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema desc"
+          title="Sort Z-A"
         >
           <EuiI18n
-            default="Sort schema desc"
-            token="euiColumnActions.sortDesc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />,
+              }
+            }
           >
-            Sort schema desc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="Z-A"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortDesc"
+              >
+                Z-A
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
