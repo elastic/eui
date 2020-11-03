@@ -21,7 +21,8 @@ import React, {
   AriaAttributes,
   FunctionComponent,
   HTMLAttributes,
-  useCallback, useContext,
+  useCallback,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -39,7 +40,10 @@ import { EuiDataGridColumn } from './data_grid_types';
 import { getColumnActions } from './column_actions';
 import { useEuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
-import { DataGridSortingContext } from './data_grid_context';
+import {
+  DataGridFocusContext,
+  DataGridSortingContext,
+} from './data_grid_context';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
@@ -85,6 +89,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   );
 
   const sorting = useContext(DataGridSortingContext);
+  const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
 
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -118,11 +123,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     className
   );
 
+  const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    onFocusUpdate([index, -1], (isFocused: boolean) => {
+      setIsFocused(isFocused);
+    });
+  }, []);
+
   const headerRef = useRef<HTMLDivElement>(null);
-  // todo
-  const isFocused = false;
-  // const isFocused =
-  //   focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -191,24 +200,19 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           return false;
         } else {
           // take the focus
-          // todo
-          // if (
-          //   focusedCell == null ||
-          //   focusedCell[0] !== index ||
-          //   focusedCell[1] !== -1
-          // ) {
-          //   setFocusedCell([index, -1]);
-          // } else if (headerRef.current) {
-          //   // this cell already had the grid's focus, so re-enable interactives
-          //   enableInteractives();
-          //   setIsCellEntered(true);
-          //
-          //   // if there is only one interactive element shift focus to the interactive element
-          //   const tabbables = tabbable(headerRef.current);
-          //   if (tabbables.length === 1) {
-          //     tabbables[0].focus();
-          //   }
-          // }
+          if (isFocused === false) {
+            setFocusedCell([index, -1]);
+          } else if (headerRef.current) {
+            // this cell already had the grid's focus, so re-enable interactives
+            enableInteractives();
+            setIsCellEntered(true);
+
+            // if there is only one interactive element shift focus to the interactive element
+            const tabbables = tabbable(headerRef.current);
+            if (tabbables.length === 1) {
+              tabbables[0].focus();
+            }
+          }
         }
       }
 

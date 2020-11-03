@@ -76,8 +76,11 @@ import {
   schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
 import { useColumnSorting } from './column_sorting';
-import { EuiMutationObserver } from '../observer/mutation_observer';
-import { DataGridFocusContext, DataGridFocusContextShape, DataGridSortingContext } from './data_grid_context';
+import {
+  DataGridFocusContext,
+  DataGridFocusContextShape,
+  DataGridSortingContext,
+} from './data_grid_context';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -675,25 +678,35 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     [_setFocusedCell]
   );
 
-  // @todo
-  // const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
-  //   (headerRow) => {
-  //     const tabbables = tabbable(headerRow);
-  //     const managed = headerRow.querySelectorAll('[data-euigrid-tab-managed]');
-  //     const hasInteractives = tabbables.length > 0 || managed.length > 0;
-  //     if (hasInteractives !== headerIsInteractive) {
-  //       setHeaderIsInteractive(hasInteractives);
-  //
-  //       // if the focus is on the header, and the header is no longer interactive
-  //       // move the focus down to the first row
-  //       if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
-  //         setFocusedCell([focusedCell[0], 0]);
-  //       }
-  //     }
-  //   },
-  //   [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
-  // );
-  const handleHeaderChange = useCallback(() => {}, []);
+  // maintain a statically-referenced copy of `focusedCell`
+  // so it can be looked up when needed without causing a re-render
+  const focusedCellReference = useRef<
+    EuiDataGridFocusedCell | null | undefined
+  >(focusedCell);
+  useEffect(() => {
+    focusedCellReference.current = focusedCell;
+  }, [focusedCell]);
+
+  const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
+    (headerRow) => {
+      const tabbables = tabbable(headerRow);
+      const managed = headerRow.querySelectorAll('[data-euigrid-tab-managed]');
+      const hasInteractives = tabbables.length > 0 || managed.length > 0;
+      if (hasInteractives !== headerIsInteractive) {
+        setHeaderIsInteractive(hasInteractives);
+
+        // if the focus is on the header, and the header is no longer interactive
+        // move the focus down to the first row
+        // if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
+        const focusedCell = focusedCellReference.current;
+        if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
+          setFocusedCell([focusedCell[0], 0]);
+        }
+      }
+    },
+    [headerIsInteractive, setHeaderIsInteractive, setFocusedCell]
+  );
+
   const handleHeaderMutation = useCallback<MutationCallback>(
     (records) => {
       const [{ target }] = records;
@@ -936,6 +949,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const focusAfterRender = useAfterRender(() => {
     if (focusedCell) {
+      // todo
       // const key = `${focusedCell[0]}-${focusedCell[1]}`;
       // if (cellsUpdateFocus.current.has(key)) {
       //   cellsUpdateFocus.current.get(key)!();
