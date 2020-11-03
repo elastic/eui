@@ -42,7 +42,7 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDispl
     return (
       <span {...rest}>
         <span className="euiColorPaletteDisplayFixed__bleedArea">
-          {paletteColorStop.map((colorStop: any, index: number) => {
+          {paletteColorStop.map((colorStop: ColorStop, index: number) => {
             const lastColorStopArrayPosition = palette.length - 1;
 
             const lastColorStopDecimal =
