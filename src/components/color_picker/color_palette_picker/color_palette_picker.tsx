@@ -123,12 +123,18 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const getPalette = (
-    item:
-      | EuiColorPalettePickerPaletteFixedProps
-      | EuiColorPalettePickerPaletteGradientProps
-  ) => {
-    return <EuiColorPaletteDisplay type={item.type} palette={item.palette} />;
+  const getPalette = ({
+    type,
+    palette,
+  }:
+    | EuiColorPalettePickerPaletteFixedProps
+    | EuiColorPalettePickerPaletteGradientProps) => {
+    // Working around ExclusiveUnion
+    return type === 'gradient' ? (
+      <EuiColorPaletteDisplay type={type} palette={palette} />
+    ) : (
+      <EuiColorPaletteDisplay type={type} palette={palette} />
+    );
   };
 
   const paletteOptions = palettes.map(

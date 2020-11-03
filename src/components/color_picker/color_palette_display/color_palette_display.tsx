@@ -19,10 +19,16 @@
 
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { ExclusiveUnion, keysOf } from '../../common';
 import { ColorStop } from '../color_stops';
-import { EuiColorPaletteDisplayFixed } from './color_palette_display_fixed';
-import { EuiColorPaletteDisplayGradient } from './color_palette_display_gradient';
+import {
+  EuiColorPaletteDisplayFixed,
+  EuiColorPaletteDisplayFixedProps,
+} from './color_palette_display_fixed';
+import {
+  EuiColorPaletteDisplayGradient,
+  EuiColorPaletteDisplayGradientProps,
+} from './color_palette_display_gradient';
 
 const sizeToClassNameMap = {
   xs: 'euiColorPaletteDisplay--sizeExtraSmall',
@@ -34,17 +40,34 @@ export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiColorPaletteDisplaySize = keyof typeof sizeToClassNameMap;
 
-export type EuiColorPaletteDisplayProps = CommonProps & {
-  /**
-   *  Specify the type of palette. `gradient`: each color fades into the next. `fixed`: individual color blocks
-   */
-  type?: 'gradient' | 'fixed';
+export interface EuiColorPaletteDisplayShared {
   /**
    * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
+}
+
+interface DisplayGradient extends EuiColorPaletteDisplayGradientProps {
+  /**
+   *   Specify the type of palette.
+   *  `gradient`: each color fades into the next.
+   */
+  type: 'gradient';
+}
+
+interface DisplayFixed extends EuiColorPaletteDisplayFixedProps {
+  /**
+   *  `fixed`: individual color blocks.
+   */
+  type?: 'fixed';
+}
+
+export type EuiColorPaletteDisplayProps = {
+  /**
+   * Height of the palette display
+   */
   size?: EuiColorPaletteDisplaySize;
-};
+} & ExclusiveUnion<DisplayFixed, DisplayGradient>;
 
 export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
   type = 'fixed',

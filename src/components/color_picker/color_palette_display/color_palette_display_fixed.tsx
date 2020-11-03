@@ -17,17 +17,15 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
-import { ColorStop } from '../color_stops';
 import { getFixedLinearGradient } from '../utils';
+import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
-export type EuiColorPaletteDisplayFixedProps = CommonProps & {
-  /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
-   */
-  palette: string[] | ColorStop[];
-};
+export interface EuiColorPaletteDisplayFixedProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    CommonProps,
+    EuiColorPaletteDisplayShared {}
 
 interface paletteItem {
   color: string;
