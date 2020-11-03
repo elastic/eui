@@ -86,7 +86,7 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDispl
     return (
       <span {...rest}>
         <span className="euiColorPaletteDisplayFixed__bleedArea">
-          {paletteColorStop.map((hexCode: any, index) => (
+          {paletteColorStop.map((hexCode: string, index) => (
             <span
               style={{ backgroundColor: hexCode }}
               key={`${hexCode}-${index}`}
