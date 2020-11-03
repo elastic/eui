@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.2.0`.
+- Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
 
 ## [`30.2.0`](https://github.com/elastic/eui/tree/v30.2.0)
 
