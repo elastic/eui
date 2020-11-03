@@ -17,7 +17,6 @@ export default () => {
       href: '#',
       onClick: (e) => {
         e.preventDefault();
-        console.log('You clicked Animals');
       },
       'data-test-subj': 'breadcrumbsAnimals',
     },
@@ -29,7 +28,6 @@ export default () => {
       href: '#',
       onClick: (e) => {
         e.preventDefault();
-        console.log('You clicked Boa constrictor');
       },
     },
     {

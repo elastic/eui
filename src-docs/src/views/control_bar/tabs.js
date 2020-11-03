@@ -7,10 +7,6 @@ export default () => {
   const [isDisplaying, setDisplay] = useState(false);
   const [contentIsVisible, setVisibility] = useState(false);
 
-  const soundTheAlarms = () => {
-    alert('You clicked a button!');
-  };
-
   const closeTheHatch = () => {
     setVisibility(false);
   };
@@ -54,7 +50,7 @@ export default () => {
       controlType: 'button',
       id: 'sound_the_alarm',
       label: 'Sound the Alarm',
-      onClick: soundTheAlarms,
+      onClick: () => {},
       color: 'danger',
       iconType: 'bell',
       'data-test-subj': 'look',

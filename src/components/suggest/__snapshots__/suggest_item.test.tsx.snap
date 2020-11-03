@@ -14,13 +14,34 @@ exports[`EuiSuggestItem is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
   >
     Test label
   </span>
+</div>
+`;
+
+exports[`props descriptionDisplay as wrap is rendered 1`] = `
+<div
+  class="euiSuggestItem"
+>
   <span
-    class="euiSuggestItem__description"
-  />
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
+  >
+    <span
+      data-euiicon-type="kqlValue"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__label--width50"
+  >
+    This is the description
+  </span>
+  <span
+    class="euiSuggestItem__description euiSuggestItem__description--wrap"
+  >
+    This is the description
+  </span>
 </div>
 `;
 
@@ -36,13 +57,10 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
   >
-    This is the description
+    Charles de Gaulle International Airport
   </span>
-  <span
-    class="euiSuggestItem__description"
-  />
 </div>
 `;
 
@@ -63,7 +81,31 @@ exports[`props labelDisplay as expand is rendered 1`] = `
     This is the description
   </span>
   <span
-    class="euiSuggestItem__description"
+    class="euiSuggestItem__description euiSuggestItem__description--truncate"
+  >
+    This is the description
+  </span>
+</div>
+`;
+
+exports[`props labelWidth is 30% is rendered 1`] = `
+<div
+  class="euiSuggestItem"
+>
+  <span
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
+  >
+    <span
+      data-euiicon-type="kqlValue"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__label--width30"
+  >
+    This is the description
+  </span>
+  <span
+    class="euiSuggestItem__description euiSuggestItem__description--truncate"
   >
     This is the description
   </span>

@@ -40,6 +40,30 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
 </figure>
 `;
 
+exports[`EuiImage is rendered with a float 1`] = `
+<figure
+  class="euiImage euiImage--floatLeft "
+>
+  <img
+    alt="alt"
+    class="euiImage__img"
+    src="/cat.jpg"
+  />
+</figure>
+`;
+
+exports[`EuiImage is rendered with a margin 1`] = `
+<figure
+  class="euiImage euiImage--marginLarge "
+>
+  <img
+    alt="alt"
+    class="euiImage__img"
+    src="/cat.jpg"
+  />
+</figure>
+`;
+
 exports[`EuiImage is rendered with a node as the caption 1`] = `
 <figure
   class="euiImage "

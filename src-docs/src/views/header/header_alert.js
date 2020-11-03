@@ -225,7 +225,7 @@ const HeaderUpdates = ({ flyoutOrPopover = 'flyout' }) => {
         isOpen={isFlyoutVisible}
         closePopover={() => closeFlyout()}
         panelPaddingSize="none">
-        <EuiPopoverTitle>What&apos;s new</EuiPopoverTitle>
+        <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
         <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
           <EuiSpacer size="s" />
           {alerts.map((alert, i) => (
@@ -239,7 +239,7 @@ const HeaderUpdates = ({ flyoutOrPopover = 'flyout' }) => {
             />
           ))}
         </div>
-        <EuiPopoverFooter>
+        <EuiPopoverFooter paddingSize="s">
           <EuiText color="subdued" size="s">
             <p>Version 7.0</p>
           </EuiText>

@@ -1,5 +1,11 @@
 # Consuming EUI
 
+## Requirements and dependencies
+
+EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
+
+EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
+
 ## What's available
 
 EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://elastic.github.io/eui) for comprehensive info on what's available.
@@ -37,49 +43,70 @@ Test utilities are published from the `lib/test` directory.
 import { findTestSubject } from '@elastic/eui/lib/test';
 ```
 
-## Requirements and dependencies
-
-EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
-
-EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
-
-## Using EUI in Kibana
-
-The EUI CSS is included in [Kibana's](https://www.github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
-
 ## Using EUI in a standalone project
 
 You can consume EUI in standalone projects, such as plugins and prototypes.
 
-### Importing CSS or SCSS
+### Importing compiled CSS
 
-Most of the time, you just need the CSS, which provides the styling for the React components. In this case, you can use Webpack to import the compiled EUI CSS with the `style`,`css`, and `postcss` loaders.
+Most of the time, you just need the compiled CSS, which provides the styling for the React components.
 
 ```js
 import '@elastic/eui/dist/eui_theme_light.css';
 ```
 
-If you want access to the Sass variables, functions, and mixins in EUI then you'll need to import the Sass files. This will require `style`, `css`, `postcss`, and `sass` loaders. You'll also want to import the Sass file into one of your own Sass files, to gain access to these variables, functions, and mixins.
+Other compiled themes include:
+```js
+import '@elastic/eui/dist/eui_theme_dark.css';
+```
+```js
+import '@elastic/eui/dist/eui_theme_amsterdam_light.css';
+```
+```js
+import '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
+```
+
+### Using our Sass variables on top of compiled CSS
+
+If you want to build **on top** of the EUI theme by accessing the Sass variables, functions, and mixins, you'll need to import the Sass globals. This will require `style`, `css`, `postcss`, and `sass` loaders.
+
+First import the correct colors file, followed by the globals file.
 
 ```scss
 @import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
 @import '@elastic/eui/src/themes/eui/eui_globals.scss';
 ```
 
-For the dark theme, import the dark colors file before the globals.
+For the dark theme, swap the first import for the dark colors file.
 
 ```scss
 @import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
 @import '@elastic/eui/src/themes/eui/eui_globals.scss';
 ```
 
-If you want to use new, but in progress Amsterdam theme, you can import it similarly.
+If you want to use the new, but in progress Amsterdam theme, you can import it similarly.
 
 ```scss
 @import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
 @import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';
 ```
 
+### Using Sass to customize EUI
+
+EUI's Sass themes are token based, which can be altered to suite your theming needs like changing the primary color. Simply declare your token overrides before importing the whole EUI theme. This will re-compile **all of the EUI components** with your colors.
+
+*Do not use in conjunction with the compiled CSS.*
+
+Here is an example setup.
+
+```scss
+// mytheme.scss
+$euiColorPrimary: #7B61FF;
+
+@import '@elastic/eui/src/theme_light.scss';
+```
+
+### Fonts
 
 By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
 
@@ -87,6 +114,13 @@ By default, EUI ships with a font stack that includes some outside, open source 
 // index.scss
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
 @import url('https://rsms.me/inter/inter-ui.css');
+```
+
+The Amsterdam theme uses the latest version of Inter that can be grabbed from Google Fonts as well.
+
+```scss
+// index.scss
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 ```
 
 ### Reusing the variables in JavaScript

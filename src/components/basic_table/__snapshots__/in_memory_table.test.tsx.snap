@@ -357,14 +357,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       isOpen={false}
                       ownFocus={false}
                       panelPaddingSize="none"
-                      withTitle={true}
                     >
                       <EuiOutsideClickDetector
                         isDisabled={true}
                         onOutsideClick={[Function]}
                       >
                         <div
-                          className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
+                          className="euiPopover euiPopover--anchorUpRight"
                           onKeyDown={[Function]}
                           onMouseDown={[Function]}
                           onMouseUp={[Function]}

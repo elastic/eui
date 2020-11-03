@@ -157,6 +157,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
         }
         isOpen={isPopoverOpen}
         closePopover={closePopover}
+        panelPaddingSize="s"
         anchorPosition="upCenter">
         <div className="euiMarkdownEditorFooter__popover">
           <EuiPopoverTitle>
@@ -166,7 +167,9 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
             />
           </EuiPopoverTitle>
           {errors.map((message, idx) => (
-            <EuiText key={idx}>{message.toString()}</EuiText>
+            <EuiText size="s" key={idx}>
+              {message.toString()}
+            </EuiText>
           ))}
         </div>
       </EuiPopover>

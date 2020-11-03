@@ -281,7 +281,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
           closePopover={closePopover}>
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
             {popoverTitle || popoverTrigger ? (
-              <EuiPopoverTitle>
+              <EuiPopoverTitle paddingSize="s">
                 {popoverTitle}
                 {popoverTitle && search && <EuiSpacer />}
                 {search}
@@ -289,7 +289,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
             ) : undefined}
             {list}
             {popoverFooter && (
-              <EuiPopoverFooter>{popoverFooter}</EuiPopoverFooter>
+              <EuiPopoverFooter paddingSize="s">
+                {popoverFooter}
+              </EuiPopoverFooter>
             )}
           </div>
         </EuiPopover>
