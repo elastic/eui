@@ -27,6 +27,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiOverlayMask } from '../overlay_mask';
+import { EuiButtonIcon } from '../button';
 
 import { EuiIcon } from '../icon';
 
@@ -199,34 +200,42 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
       data-test-subj="fullScreenOverlayMask"
       onClick={closeFullScreen}>
       <EuiFocusTrap clickOutsideDisables={true}>
-        <figure
-          className="euiImage euiImage-isFullScreen"
-          aria-label={optionalCaptionText}>
-          <button
-            type="button"
+        <>
+          <figure
+            className="euiImage euiImage-isFullScreen"
+            aria-label={optionalCaptionText}>
+            <button
+              type="button"
+              aria-label={useEuiI18n(
+                'euiImage.closeImage',
+                'Close full screen {alt} image',
+                { alt }
+              )}
+              className="euiImage__button"
+              data-test-subj="deactivateFullScreenButton"
+              onClick={closeFullScreen}
+              onKeyDown={onKeyDown}>
+              <img
+                src={url}
+                alt={alt}
+                className="euiImage-isFullScreen__img"
+                {...rest}
+              />
+            </button>
+            {optionalCaption}
+          </figure>
+          <EuiButtonIcon
+            iconType="cross"
+            color="text"
+            className="euiImage-isFullScreen__icon"
+            onClick={closeFullScreen}
             aria-label={useEuiI18n(
               'euiImage.closeImage',
               'Close full screen {alt} image',
               { alt }
             )}
-            className="euiImage__button"
-            data-test-subj="deactivateFullScreenButton"
-            onClick={closeFullScreen}
-            onKeyDown={onKeyDown}>
-            <img
-              src={url}
-              alt={alt}
-              className="euiImage-isFullScreen__img"
-              {...rest}
-            />
-            <EuiIcon
-              type="cross"
-              color={fullScreenIconColorMap[fullScreenIconColor]}
-              className="euiImage-isFullScreen__icon"
-            />
-          </button>
-          {optionalCaption}
-        </figure>
+          />
+        </>
       </EuiFocusTrap>
     </EuiOverlayMask>
   );
