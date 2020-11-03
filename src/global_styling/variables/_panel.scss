@@ -1,5 +1,16 @@
 $euiPanelPaddingModifiers: (
-  'paddingSmall': $euiSizeS,
+  'paddingSmall':  $euiSizeS,
   'paddingMedium': $euiSize,
-  'paddingLarge': $euiSizeL
+  'paddingLarge':  $euiSizeL
+) !default;
+
+$euiPanelBorderRadiusModifiers: (
+  'borderRadiusNone': 0,
+  'borderRadiusMedium': $euiBorderRadius,
+) !default;
+
+$euiPanelBackgroundColorModifiers: (
+  'transparent': transparent,
+  'plain': $euiColorEmptyShade,
+  'subdued': $euiColorLightestShade,
 ) !default;
