@@ -1,5 +1,6 @@
 .euiFormControlLayout--group {
   border-radius: $euiFormControlBorderRadius;
+  background-color: $euiFormInputGroupLabelBackground;
 
   .euiFormControlLayout__prepend:first-child {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'left', $internal: true);
@@ -37,16 +38,19 @@
     border-radius: 0;
   }
 
+  .euiFormControlLayout__childrenWrapper:first-child .euiSelect,
   .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'left');
   }
 
+  .euiFormControlLayout__childrenWrapper:last-child .euiSelect,
   .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'right');
   }
 
   &.euiFormControlLayout--compressed {
     border-radius: $euiFormControlCompressedBorderRadius;
+    background-color: $euiFormInputGroupLabelBackground;
 
     .euiFormControlLayout__prepend:first-child {
       @include euiFormControlSideBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left', $internal: true);
@@ -82,10 +86,12 @@
       border-radius: 0;
     }
 
+    .euiFormControlLayout__childrenWrapper:first-child .euiSelect,
     .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
       @include euiFormControlSideBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left', $internal: true);
     }
 
+    .euiFormControlLayout__childrenWrapper:last-child .euiSelect,
     .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
       @include euiFormControlSideBorderRadius($euiFormControlCompressedBorderRadius, $side: 'right', $internal: true);
     }
