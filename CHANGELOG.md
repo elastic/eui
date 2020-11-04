@@ -1,11 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.2.0`.
+- Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865)) 
 
 ## [`30.2.0`](https://github.com/elastic/eui/tree/v30.2.0)
 
 - Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
-- Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865)) 
 - Added `float` and `margin` props to `EuiImage` ([#4209](https://github.com/elastic/eui/pull/4209))
 - Added `color` and `borderRadius` props to `EuiPanel` ([#4194](https://github.com/elastic/eui/pull/4194))
 - Updated the use case for the `EuiPanel` prop `hasShadow` ([#4194](https://github.com/elastic/eui/pull/4194))
