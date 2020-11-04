@@ -731,6 +731,7 @@ export class EuiPopover extends Component<Props, State> {
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
+              hasShadow={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}

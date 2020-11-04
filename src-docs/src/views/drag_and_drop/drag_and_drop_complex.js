@@ -78,7 +78,7 @@ export default () => {
             disableInteractiveElementBlocking // Allows button to be drag handle
           >
             {(provided) => (
-              <EuiPanel paddingSize="s">
+              <EuiPanel color="subdued" paddingSize="s">
                 <EuiButtonIcon
                   iconType="grab"
                   aria-label="Drag Handle"
