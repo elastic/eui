@@ -5,8 +5,11 @@
 
 .euiResizablePanel__content {
   @include euiScrollBar;
+  @include euiOverflowShadow;
   height: 100%;
   overflow-y: auto;
+  // Manually remove the border for default theme
+  border: none;
 }
 
 .euiResizablePanel--collapsed {

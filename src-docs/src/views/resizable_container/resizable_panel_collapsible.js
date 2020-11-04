@@ -7,6 +7,7 @@ import {
   EuiPanel,
   EuiTitle,
   EuiSpacer,
+  EuiPage,
 } from '../../../../src/components';
 import { fake } from 'faker';
 
@@ -22,6 +23,7 @@ export default () => {
       id: 1,
       label: 'First item',
       text: texts[0],
+      active: true,
     },
     {
       id: 2,
@@ -56,20 +58,28 @@ export default () => {
         <h3>Simple</h3>
       </EuiText>
       <EuiSpacer />
-      <div className="guideSection__shadedBox">
+      <EuiPage paddingSize="none">
         <EuiResizableContainer style={{ height: '320px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%">
+                minSize="10%"
+                panelProps={{ paddingSize: 'm' }}>
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
 
               <EuiResizableButton />
 
-              <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+              <EuiResizablePanel
+                mode="main"
+                initialSize={80}
+                minSize="50px"
+                panelProps={{ paddingSize: 'm' }}>
                 <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
                   <EuiTitle>
                     <p>{itemSelected.label}</p>
@@ -81,7 +91,7 @@ export default () => {
             </>
           )}
         </EuiResizableContainer>
-      </div>
+      </EuiPage>
 
       <EuiSpacer />
       <EuiText>
@@ -89,7 +99,7 @@ export default () => {
       </EuiText>
       <EuiSpacer />
 
-      <div className="guideSection__shadedBox">
+      <EuiPage paddingSize="none">
         <EuiResizableContainer style={{ height: '320px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
@@ -123,7 +133,7 @@ export default () => {
             </>
           )}
         </EuiResizableContainer>
-      </div>
+      </EuiPage>
 
       <EuiSpacer />
       <EuiText>
@@ -131,7 +141,7 @@ export default () => {
       </EuiText>
       <EuiSpacer />
 
-      <div className="guideSection__shadedBox">
+      <EuiPage paddingSize="none">
         <EuiResizableContainer direction="vertical" style={{ height: '600px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
@@ -156,7 +166,7 @@ export default () => {
             </>
           )}
         </EuiResizableContainer>
-      </div>
+      </EuiPage>
     </>
   );
 };

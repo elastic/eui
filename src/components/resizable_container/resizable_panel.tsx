@@ -39,6 +39,8 @@ import {
   PanelModeType,
   PanelPosition,
 } from './types';
+import { EuiPanel } from '../panel';
+import { EuiPanelProps } from '../panel/panel';
 
 interface ToggleOptions {
   'data-test-subj'?: string;
@@ -107,6 +109,10 @@ export interface EuiResizablePanelProps
    * TODO
    */
   mode?: ModeOptions;
+  /**
+   * Update the panel using EuiPanel options like `paddingSize` and `color`
+   */
+  panelProps?: EuiPanelProps;
 }
 
 const COLLAPSED_ICON = 'menuRight';
@@ -137,6 +143,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   mode,
   registration,
   onToggleCollapsed,
+  panelProps,
   ...rest
 }) => {
   const {
@@ -204,6 +211,11 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     },
     `euiResizablePanel--${position}`,
     className
+  );
+
+  const panelClasses = classNames(
+    'euiResizablePanel__content',
+    panelProps && panelProps.className
   );
 
   let dimensions;
@@ -318,7 +330,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           onClick={collapseRight}
         />
       ) : null}
-      <div className="euiResizablePanel__content">{children}</div>
+      <EuiPanel
+        hasShadow={false}
+        borderRadius="none"
+        color="transparent"
+        {...panelProps}
+        className={panelClasses}>
+        {children}
+      </EuiPanel>
       {hasRightToggle ? (
         <EuiButtonIcon
           {...toggleOpts}
