@@ -30,9 +30,6 @@
       display: none; // Not supporting responsive footer content
     }
 
-    // Make each row a Panel
-    @include euiPanel($selector: '.euiTableRow');
-
     .euiTableRowCell__mobileHeader {
       // Always truncate
       @include euiTextTruncate;
@@ -64,14 +61,20 @@
       }
     }
 
+    // Make each row a Panel
+    @include euiPanel($selector: '.euiTableRow');
+
     .euiTableRow {
+      @include euiBottomShadowSmall;
+      background-color: map-get($euiPanelBackgroundColorModifiers, 'plain');
+      border-radius: $euiBorderRadius;
       display: flex;
       flex-wrap: wrap;
       padding: $euiTableCellContentPadding;
       margin-bottom: $euiTableCellContentPadding;
 
       &:hover {
-        background-color: transparent;
+        background-color: map-get($euiPanelBackgroundColorModifiers, 'plain');
       }
 
       &.euiTableRow-isExpandable,
@@ -107,6 +110,7 @@
         .euiTableRowCell--isExpander {
           top: auto;
           bottom: $euiSize; // same as row padding-bottom
+          right: 0;
         }
       }
 

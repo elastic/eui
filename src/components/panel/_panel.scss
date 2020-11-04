@@ -2,7 +2,7 @@
 @include euiPanel($selector: '.euiPanel');
 @include euiHasBetaBadge($selector: '.euiPanel');
 
-// Specific
+// Padding
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPanel--#{$modifier} {
     padding: $amount;
