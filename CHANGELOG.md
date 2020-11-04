@@ -4,6 +4,8 @@
 
 **Bug fixes**
 
+- Fixed focus trap + `EuiPopover` bug which prevented the anchor from receiving focus when the popover closes ([#4071](https://github.com/elastic/eui/pull/4071))
+- Fixed focus trap error & performance impact when one focus trap is deactivated and another becomes enabled ([#4071](https://github.com/elastic/eui/pull/4071))
 - Fixed a condition in `EuiInMemoryTable` to avoid mistaken assignment of `sortName` ([#4138](https://github.com/elastic/eui/pull/4138))
 
 ## [`30.2.0`](https://github.com/elastic/eui/tree/v30.2.0)
