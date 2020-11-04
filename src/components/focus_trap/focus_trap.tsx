@@ -17,34 +17,11 @@
  * under the License.
  */
 
-import React, {
-  Component,
-  FunctionComponent,
-  MouseEvent as ReactMouseEvent,
-  EventHandler,
-  CSSProperties,
-} from 'react';
+import React, { Component, CSSProperties } from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import { CommonProps } from '../common';
-import { EuiOutsideClickDetector } from '../outside_click_detector';
-
-interface DetectorProps {
-  handleEvent: EventHandler<any>;
-}
-
-const OutsideEventDetector: FunctionComponent<DetectorProps> = ({
-  children,
-  handleEvent,
-  ...rest
-}) => {
-  return (
-    <div onMouseDown={handleEvent} onTouchStart={handleEvent} {...rest}>
-      {children}
-    </div>
-  );
-};
 
 /**
  * A DOM node, a selector string (which will be passed to
@@ -76,6 +53,14 @@ interface State {
 }
 
 export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
+  static defaultProps = {
+    clickOutsideDisables: false,
+    disabled: false,
+    returnFocus: true,
+    noIsolation: true,
+    scrollLock: false,
+  };
+
   state: State = {
     hasBeenDisabledByClick: false,
   };
@@ -107,54 +92,25 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     node.setAttribute('data-autofocus', 'true');
   };
 
-  // Sets whether the focus trap has been disabled by clicks outside its component tree
-  // Only applicable for `clickOutsideDisables`
-  toggleDisabled = (shouldDisable = !this.state.hasBeenDisabledByClick) => {
-    this.setState({
-      hasBeenDisabledByClick: shouldDisable,
-    });
-  };
-
-  // Sets whether an event has been prevented from disabling the focus trap
-  // Only applicable for `clickOutsideDisables`
-  toggleExitPrevented = (shouldPrevent = !this.preventFocusExit) => {
-    this.preventFocusExit = shouldPrevent;
-  };
-
-  // Event handler to determine whether a mouse or key event should disable the focus trap
-  // Only applicable for `clickOutsideDisables`
-  handleOutsideClick = (event: Event) => {
-    this.toggleExitPrevented(false);
-    if (
-      this.preventFocusExit &&
-      this.lastInterceptedEvent &&
-      event.target === this.lastInterceptedEvent.target
-    ) {
-      return;
+  handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (...args) => {
+    const { onClickOutside, clickOutsideDisables } = this.props;
+    if (clickOutsideDisables) {
+      this.setState({ hasBeenDisabledByClick: true });
     }
-    this.toggleDisabled(true);
-    if (this.props.onClickOutside) {
-      this.props.onClickOutside(event as MouseEvent);
-    }
-  };
 
-  // Event handler to capture events from within the focus trap subtree and
-  // prevent them from disabling the trap (mostly for portals)
-  // Only applicable for `clickOutsideDisables`
-  handleBubbledEvent = (e: ReactMouseEvent) => {
-    this.lastInterceptedEvent = e.nativeEvent;
-    this.toggleExitPrevented(true);
+    if (onClickOutside) {
+      onClickOutside(...args);
+    }
   };
 
   render() {
     const {
       children,
-      clickOutsideDisables = false,
-      disabled = false,
-      returnFocus = true,
-      noIsolation = true,
-      scrollLock = false,
-      onClickOutside,
+      clickOutsideDisables,
+      disabled,
+      returnFocus,
+      noIsolation,
+      scrollLock,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
@@ -164,17 +120,8 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       scrollLock,
       enabled: !isDisabled,
       ...rest,
+      onClickOutside: this.handleOutsideClick,
     };
-    return clickOutsideDisables ? (
-      <EuiOutsideClickDetector
-        isDisabled={isDisabled}
-        onOutsideClick={this.handleOutsideClick}>
-        <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusOn {...focusOnProps}>{children}</FocusOn>
-        </OutsideEventDetector>
-      </EuiOutsideClickDetector>
-    ) : (
-      <FocusOn {...focusOnProps}>{children}</FocusOn>
-    );
+    return <FocusOn {...focusOnProps}>{children}</FocusOn>;
   }
 }

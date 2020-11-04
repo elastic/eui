@@ -3,8 +3,6 @@
     @error 'A $selector must be provided to @mixin euiPanel().';
   } @else {
     #{$selector} {
-
-      @include euiBottomShadowSmall;
       background-color: $euiColorEmptyShade;
       border: $euiBorderThin;
       border-radius: $euiBorderRadius;
@@ -12,6 +10,10 @@
 
       &#{$selector}--flexGrowZero {
         flex-grow: 0;
+      }
+
+      &#{$selector}--shadow {
+        @include euiBottomShadowSmall;
       }
 
       &#{$selector}--isClickable {
@@ -31,19 +33,17 @@
         }
       }
 
-      &#{$selector}--shadow {
-        @include euiBottomShadowMedium;
-
-        @if (lightness($euiTextColor) < 50) {
-          border-bottom-color: transparentize($euiShadowColor, .5);
-        } @else {
-          // Applied again here in case dark theme overrides light
-          border-bottom-color: $euiBorderColor;
+      // Border Radius
+      @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+        &#{$selector}--#{$modifier} {
+          border-radius: $amount;
         }
+      }
 
-        &#{$selector}--isClickable:hover,
-        &#{$selector}--isClickable:focus {
-          @include euiBottomShadow($color: $euiShadowColor, $opacity: .2);
+      // Background colors
+      @each $modifier, $amount in $euiPanelBackgroundColorModifiers {
+        &#{$selector}--#{$modifier} {
+          background-color: $amount;
         }
       }
     }

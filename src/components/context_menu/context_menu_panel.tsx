@@ -228,6 +228,14 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
+      // `focusedItemIndex={-1}` specifies that the panel itself should be focused.
+      // This should only be used when the panel does not have `item`s
+      // and preventing autofocus is desired, which is an uncommon case.
+      if (this.panel && this.state.focusedItemIndex === -1) {
+        this.panel.focus();
+        return;
+      }
+
       // If there aren't any items then this is probably a form or something.
       if (!this.state.menuItems.length) {
         // If we've already focused on something inside the panel, everything's fine.

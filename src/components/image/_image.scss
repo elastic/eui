@@ -11,6 +11,11 @@
   min-height: 1px; /* 1 */
   line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
 
+  // Required for common usage of nesting within EuiText
+  .euiImage__img {
+    margin-bottom: 0;
+  }
+
   &.euiImage--hasShadow {
     .euiImage__img {
       @include euiBottomShadowMedium;
@@ -50,24 +55,59 @@
   }
 
   // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
-  &.euiImage--small {
+  // Size is applied to the image, rather than the figure to work better with floats
+  &.euiImage--small .euiImage__img {
     width: convertToRem(120px);
   }
 
-  &.euiImage--medium {
+  &.euiImage--medium .euiImage__img {
     width: convertToRem(200px);
   }
 
-  &.euiImage--large {
+  &.euiImage--large .euiImage__img {
     width: convertToRem(360px);
   }
 
-  &.euiImage--xlarge {
+  &.euiImage--xlarge .euiImage__img {
     width: convertToRem(600px);
   }
 
   &.euiImage--fullWidth {
     width: 100%;
+  }
+
+  &.euiImage--floatLeft {
+    float: left;
+
+    &[class*='euiImage--margin']  {
+      margin-left: 0;
+      margin-top: 0;
+    }
+  }
+
+  &.euiImage--floatRight {
+    float: right;
+
+    &[class*='euiImage--margin']  {
+      margin-right: 0;
+      margin-top: 0;
+    }
+  }
+
+  &.euiImage--marginSmall {
+    margin: $euiSizeS;
+  }
+
+  &.euiImage--marginMedium {
+    margin: $euiSize;
+  }
+
+  &.euiImage--marginLarge {
+    margin: $euiSizeL;
+  }
+
+  &.euiImage--marginXlarge {
+    margin: $euiSizeXL;
   }
 }
 
@@ -79,6 +119,7 @@
 
 .euiImage__caption {
   @include euiFontSizeS;
+  margin-top: $euiSizeXS;
   text-align: center;
 }
 
@@ -136,3 +177,21 @@
   }
 }
 
+@include euiBreakpoint('xs', 's', 'm') {
+
+  .euiImage {
+
+    &.euiImage--floatLeft,
+    &.euiImage--floatRight {
+      float: none;
+
+      // Return back to whatever margin settings were set without the float
+      &[class*='euiImage--margin']  {
+        margin-top: inherit;
+        margin-right: inherit;
+        margin-bottom: inherit;
+        margin-left: inherit;
+      }
+    }
+  }
+}
