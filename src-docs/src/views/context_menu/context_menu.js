@@ -68,6 +68,7 @@ export default () => {
     },
     {
       id: 1,
+      initialFocusedItemIndex: 1,
       title: 'Nest panels',
       items: [
         {

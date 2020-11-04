@@ -25,6 +25,8 @@
 }
 
 .euiCommentEvent--regular {
+  @include euiBottomShadowMedium;
+  border-radius: $euiBorderRadius;
   border: $euiBorderThin;
 
   .euiCommentEvent__header {
