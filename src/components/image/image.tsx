@@ -226,7 +226,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           <EuiIcon
             type="cross"
             color="default"
-            className="euiImage-isFullScreen__icon"
+            className="euiImage-isFullScreenCloseIcon"
           />
         </>
       </EuiFocusTrap>
