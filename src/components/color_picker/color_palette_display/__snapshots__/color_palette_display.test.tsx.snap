@@ -28,6 +28,36 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiColorPaletteDisplay testClass1 testClass2 euiColorPaletteDisplay--sizeSmall"
+  data-test-subj="test subject string"
+  id="id"
+  title="title"
+>
+  <span
+    class="euiColorPaletteDisplayFixed__bleedArea"
+  >
+    <span
+      style="background-color:#1fb0b2;width:20%"
+    />
+    <span
+      style="background-color:#ffdb6d;width:20%"
+    />
+    <span
+      style="background-color:#ee9191;width:20%"
+    />
+    <span
+      style="background-color:#ffffff;width:20%"
+    />
+    <span
+      style="background-color:#888094;width:20%"
+    />
+  </span>
+</span>
+`;
+
 exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
 <span
   aria-label="aria-label"

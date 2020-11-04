@@ -17,23 +17,22 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import { getLinearGradient } from '../utils';
-import { ColorStop } from '../color_stops';
+import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
-export type EuiColorPaletteDisplayGradientProps = CommonProps & {
-  /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
-   */
-  palette: string[] | ColorStop[];
-};
+export interface EuiColorPaletteDisplayGradientProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    CommonProps,
+    EuiColorPaletteDisplayShared {}
 
 export const EuiColorPaletteDisplayGradient: FunctionComponent<EuiColorPaletteDisplayGradientProps> = ({
   palette,
+  style = {},
   ...rest
 }) => {
   const gradient = getLinearGradient(palette);
 
-  return <span style={{ background: gradient }} {...rest} />;
+  return <span style={{ ...style, background: gradient }} {...rest} />;
 };

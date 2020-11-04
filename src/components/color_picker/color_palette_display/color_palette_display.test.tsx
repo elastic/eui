@@ -119,5 +119,21 @@ describe('EuiColorPaletteDisplay', () => {
         });
       });
     });
+
+    describe('HTML attributes', () => {
+      it('accepts span attributes', () => {
+        const component = render(
+          <EuiColorPaletteDisplay
+            {...requiredProps}
+            palette={palette}
+            type="fixed"
+            id="id"
+            title="title"
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });
