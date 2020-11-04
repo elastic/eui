@@ -96,6 +96,7 @@ export interface EuiDataGridCellProps {
 interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
   popoverIsOpen: boolean; // is expansion popover open
+  isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
 }
@@ -133,6 +134,7 @@ export class EuiDataGridCell extends Component<
   state: EuiDataGridCellState = {
     cellProps: {},
     popoverIsOpen: false,
+    isFocused: false,
     isEntered: false,
     disableCellTabIndex: false,
   };
@@ -184,9 +186,11 @@ export class EuiDataGridCell extends Component<
   }
 
   onFocusUpdate = (isFocused: boolean) => {
-    if (isFocused) {
-      this.takeFocus();
-    }
+    this.setState({ isFocused }, () => {
+      if (isFocused) {
+        this.takeFocus();
+      }
+    });
   };
 
   componentWillUnmount() {
@@ -213,6 +217,7 @@ export class EuiDataGridCell extends Component<
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
+    if (nextState.isFocused !== this.state.isFocused) return true;
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
@@ -482,9 +487,7 @@ export class EuiDataGridCell extends Component<
     return (
       <div
         role="gridcell"
-        // tabIndex={isFocused && !this.state.disableCellTabIndex ? 0 : -1}
-        // @todo
-        tabIndex={!this.state.disableCellTabIndex ? 0 : -1}
+        tabIndex={this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1}
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
