@@ -22,7 +22,10 @@ export const LinkWrapper = ({ children }) => {
         const href = anchor.getAttribute('href');
         // check if this is an internal link
         if (href.startsWith('#')) {
-          history.push(href.replace('#', ''));
+          if (href !== '#') {
+            // a lone # character is used in the docs as a placeholder/demo value and should be ignored
+            history.push(href.replace('#', ''));
+          }
           e.preventDefault();
         }
       }
