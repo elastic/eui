@@ -5,13 +5,7 @@
   height: $euiSizeS;
 }
 
-$sizes: (
-  sizeExtraSmall: $euiSizeXS,
-  sizeSmall: $euiSizeS,
-  sizeMedium: $euiSize,
-);
-
-@each $name, $size in $sizes {
+@each $name, $size in $euiColorPaletteDisplaySizes {
   .euiColorPaletteDisplay--#{$name} {
     @include innerBorder('dark', $size, .2);
     height: $size;

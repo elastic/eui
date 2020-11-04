@@ -109,13 +109,13 @@ export default () => {
   return (
     <>
       <EuiTitle size="xxxs">
-        <h4>Fixed</h4>
+        <h3>Fixed</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiColorPaletteDisplay type="fixed" palette={euiPaletteColorBlind()} />
       <EuiSpacer />
       <EuiTitle size="xxxs">
-        <h4>Gradient</h4>
+        <h3>Gradient</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiColorPaletteDisplay
@@ -124,19 +124,19 @@ export default () => {
       />
       <EuiSpacer />
       <EuiTitle size="xxxs">
-        <h4>Fixed with stops</h4>
+        <h3>Fixed with stops</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiColorPaletteDisplay type="fixed" palette={paletteWithStops} />
       <EuiSpacer />
       <EuiTitle size="xxxs">
-        <h4>Gradient with stops</h4>
+        <h3>Gradient with stops</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiColorPaletteDisplay type="gradient" palette={paletteWithStops} />
       <EuiSpacer />
       <EuiTitle size="xxxs">
-        <h4>Complex example</h4>
+        <h3>Complex example</h3>
       </EuiTitle>
       <EuiSpacer size="xs" />
       <EuiFlexGroup alignItems="center" gutterSize="xs">

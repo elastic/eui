@@ -38,10 +38,29 @@ const colorPickerSnippet = `<EuiColorPicker
 import ColorPaletteDisplay from './color_palette_display';
 const colorPaletteDisplaySource = require('!!raw-loader!./color_palette_display');
 const colorPaletteDisplayHtml = renderToHtml(ColorPaletteDisplay);
-const colorPaletteDisplaySnippet = `<EuiColorPaletteDisplay
+const colorPaletteDisplaySnippet = [
+  `<EuiColorPaletteDisplay
   palette={euiPaletteColorBlind()}
 />
-`;
+`,
+  `<EuiColorPaletteDisplay
+  palette={[
+    {
+      stop: 100,
+      color: 'white',
+    },
+    {
+      stop: 250,
+      color: 'lightgray',
+    },
+    {
+      stop: 320,
+      color: 'gray',
+    },
+  ]}
+/>
+`,
+];
 
 import ColorPalettePicker from './color_palette_picker';
 const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
@@ -292,7 +311,6 @@ const stopKitchenSinkSnippet = `<EuiColorStops
 
 export const ColorPickerExample = {
   title: 'Color selection',
-  isNew: true,
   intro: (
     <React.Fragment>
       <EuiText>
