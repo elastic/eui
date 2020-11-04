@@ -16,6 +16,10 @@
 
 - Fixed base `line-heights` for within `euiFontSize[size]()` SASS mixins ([#4229](https://github.com/elastic/eui/pull/4229))
 
+**Bug fixes**
+
+- Fixed `EuiComboBox` `placeholder`. Added truncation with ellipsis to correctly display long placeholder texts ([#4210](https://github.com/elastic/eui/pull/4210))
+
 ## [`30.2.0`](https://github.com/elastic/eui/tree/v30.2.0)
 
 - Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
