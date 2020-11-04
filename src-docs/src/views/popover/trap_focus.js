@@ -26,6 +26,7 @@ export default () => {
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
+      ownFocus={false}
       initialFocus="[id=asdf2]">
       <EuiFormRow
         label="Generate a public snapshot?"
