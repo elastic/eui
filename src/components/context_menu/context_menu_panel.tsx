@@ -222,17 +222,17 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
+      // Setting focus while transitioning causes the animation to glitch, so we have to wait
+      // until it's finished before we focus anything.
+      if (this.props.transitionType) {
+        return;
+      }
+
       // `focusedItemIndex={-1}` specifies that the panel itself should be focused.
       // This should only be used when the panel does not have `item`s
       // and preventing autofocus is desired, which is an uncommon case.
       if (this.panel && this.state.focusedItemIndex === -1) {
         this.panel.focus();
-        return;
-      }
-
-      // Setting focus while transitioning causes the animation to glitch, so we have to wait
-      // until it's finished before we focus anything.
-      if (this.props.transitionType) {
         return;
       }
 
