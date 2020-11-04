@@ -65,6 +65,7 @@ export interface EuiContextMenuPanelDescriptor {
   items?: EuiContextMenuPanelItemDescriptor[];
   content?: ReactNode;
   width?: number;
+  initialFocusedItemIndex?: number;
 }
 
 export type EuiContextMenuProps = CommonProps &
@@ -227,9 +228,10 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
     if (nextPanelId) {
       if (this.state.isUsingKeyboardToNavigate) {
-        this.setState({
-          focusedItemIndex: 0,
-        });
+        this.setState(({ idToPanelMap }) => ({
+          focusedItemIndex:
+            idToPanelMap[nextPanelId].initialFocusedItemIndex ?? 0,
+        }));
       }
 
       this.showPanel(nextPanelId, 'next');
@@ -388,7 +390,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         initialFocusedItemIndex={
           this.state.isUsingKeyboardToNavigate
             ? this.state.focusedItemIndex
-            : undefined
+            : panel.initialFocusedItemIndex
         }
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}

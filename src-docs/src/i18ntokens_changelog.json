@@ -1,5 +1,28 @@
 [
   {
+    "version": "30.2.0",
+    "changes": [
+      {
+        "token": "euiColumnActions.sortAsc",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnActions.sortDesc",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnActions.sort",
+        "changeType": "added",
+        "value": "Sort {schemaLabel}"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
     "version": "30.0.0",
     "changes": [
       {
