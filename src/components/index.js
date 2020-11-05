@@ -60,14 +60,14 @@ export { EuiCodeEditor } from './code_editor';
 export { EuiCollapsibleNav, EuiCollapsibleNavGroup } from './collapsible_nav';
 
 export {
+  EuiColorPalettePicker,
+  EuiColorPaletteDisplay,
   EuiColorPicker,
   EuiColorPickerSwatch,
   EuiColorStops,
   EuiHue,
   EuiSaturation,
 } from './color_picker';
-
-export { EuiColorPalettePicker } from './color_picker/color_palette_picker';
 
 export { EuiComboBox } from './combo_box';
 
