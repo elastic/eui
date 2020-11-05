@@ -124,12 +124,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   );
 
   const [isFocused, setIsFocused] = useState(false);
-
   useEffect(() => {
     onFocusUpdate([index, -1], (isFocused: boolean) => {
       setIsFocused(isFocused);
     });
-  }, []);
+  }, [index, onFocusUpdate]);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const [isCellEntered, setIsCellEntered] = useState(false);

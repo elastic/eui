@@ -28,8 +28,7 @@ import React, {
   ReactChild,
   useMemo,
   useRef,
-  Dispatch,
-  SetStateAction,
+  MutableRefObject,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -461,8 +460,7 @@ function createKeyDownHandler(
   trailingControlColumns: EuiDataGridControlColumn[],
   focusedCell: EuiDataGridFocusedCell | undefined,
   headerIsInteractive: boolean,
-  setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
-  updateFocus: Function
+  setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
     if (focusedCell == null) return;
@@ -508,7 +506,6 @@ function createKeyDownHandler(
           props.pagination.onChangePage(pageIndex + 1);
         }
         setFocusedCell([focusedCell[0], 0]);
-        updateFocus();
       }
     } else if (key === keys.PAGE_UP) {
       if (props.pagination) {
@@ -518,7 +515,6 @@ function createKeyDownHandler(
           props.pagination.onChangePage(pageIndex - 1);
         }
         setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
-        updateFocus();
       }
     } else if (key === (ctrlKey && keys.END)) {
       event.preventDefault();
@@ -536,43 +532,40 @@ function createKeyDownHandler(
   };
 }
 
-function useAfterRender(fn: Function): Function {
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [needsExecution, setNeedsExecution] = useState(false);
-
-  // first useEffect waits for the parent & children to render & flush to dom
-  useEffect(() => {
-    if (isSubscribed) {
-      setIsSubscribed(false);
-      setNeedsExecution(true);
-    }
-  }, [isSubscribed, setIsSubscribed, setNeedsExecution]);
-
-  // second useEffect allows for a new `fn` to have been created
-  // with any state updates before being called
-  useEffect(() => {
-    if (needsExecution) {
-      setNeedsExecution(false);
-      fn();
-    }
-  }, [needsExecution, setNeedsExecution, fn]);
-
-  return () => {
-    setIsSubscribed(true);
-  };
-}
-
 type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
 const useFocus = (
-  headerIsInteractive: boolean
+  headerIsInteractive: boolean,
+  cellsUpdateFocus: MutableRefObject<Map<string, Function>>
 ): [
   FocusProps,
   EuiDataGridFocusedCell | undefined,
-  Dispatch<SetStateAction<EuiDataGridFocusedCell | undefined>>
+  (focusedCell: EuiDataGridFocusedCell) => void
 ] => {
-  const [focusedCell, setFocusedCell] = useState<
+  const [focusedCell, _setFocusedCell] = useState<
     EuiDataGridFocusedCell | undefined
   >(undefined);
+
+  const setFocusedCell = useCallback(
+    (focusedCell: EuiDataGridFocusedCell) => {
+      _setFocusedCell((previousCell) => {
+        // verify that the cell has changed
+        if (
+          previousCell != null &&
+          previousCell[0] === focusedCell[0] &&
+          previousCell[1] === focusedCell[1]
+        ) {
+          return previousCell;
+        }
+
+        if (previousCell) {
+          notifyCellOfFocusState(cellsUpdateFocus.current, previousCell, false);
+        }
+        notifyCellOfFocusState(cellsUpdateFocus.current, focusedCell, true);
+        return focusedCell;
+      });
+    },
+    [cellsUpdateFocus]
+  );
 
   const hasHadFocus = useMemo(() => focusedCell != null, [focusedCell]);
 
@@ -650,32 +643,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const setContainerRef = useCallback((ref) => _setContainerRef(ref), []);
 
-  const [wrappingDivFocusProps, focusedCell, _setFocusedCell] = useFocus(
-    headerIsInteractive
-  );
-
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
-  const setFocusedCell = useCallback(
-    (focusedCell: EuiDataGridFocusedCell) => {
-      _setFocusedCell((previousCell) => {
-        // verify that the cell has changed
-        if (
-          previousCell != null &&
-          previousCell[0] === focusedCell[0] &&
-          previousCell[1] === focusedCell[1]
-        ) {
-          return previousCell;
-        }
-
-        if (previousCell) {
-          notifyCellOfFocusState(cellsUpdateFocus.current, previousCell, false);
-        }
-        notifyCellOfFocusState(cellsUpdateFocus.current, focusedCell, true);
-        return focusedCell;
-      });
-    },
-    [_setFocusedCell]
+  const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
+    headerIsInteractive,
+    cellsUpdateFocus
   );
 
   // maintain a statically-referenced copy of `focusedCell`
@@ -947,16 +919,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     </EuiI18n>
   );
 
-  const focusAfterRender = useAfterRender(() => {
-    if (focusedCell) {
-      // todo
-      // const key = `${focusedCell[0]}-${focusedCell[1]}`;
-      // if (cellsUpdateFocus.current.has(key)) {
-      //   cellsUpdateFocus.current.get(key)!();
-      // }
-    }
-  });
-
   const onFocusUpdate = useCallback(
     (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
       const key = `${cell[0]}-${cell[1]}`;
@@ -1055,8 +1017,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     trailingControlColumns,
                                     focusedCell,
                                     headerIsInteractive,
-                                    setFocusedCell,
-                                    focusAfterRender
+                                    setFocusedCell
                                   )}
                                   className="euiDataGrid__verticalScroll"
                                   ref={resizeRef}

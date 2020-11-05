@@ -17,11 +17,18 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classnames from 'classnames';
 import { keys } from '../../services';
 import tabbable from 'tabbable';
 import { EuiDataGridControlColumn } from './data_grid_types';
+import { DataGridFocusContext } from './data_grid_context';
 
 export interface EuiDataGridControlHeaderRowProps {
   index: number;
@@ -30,18 +37,25 @@ export interface EuiDataGridControlHeaderRowProps {
   className?: string;
 }
 
-export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = props => {
+export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = (
+  props
+) => {
   const { controlColumn, index, headerIsInteractive, className } = props;
+
+  const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
 
   const { headerCellRender: HeaderCellRender, width, id } = controlColumn;
 
   const classes = classnames('euiDataGridHeaderCell', className);
 
+  const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    onFocusUpdate([index, -1], (isFocused: boolean) => {
+      setIsFocused(isFocused);
+    });
+  }, [index, onFocusUpdate]);
+
   const headerRef = useRef<HTMLDivElement>(null);
-  // todo
-  const isFocused = false;
-  // const isFocused =
-  //   focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
 
   useEffect(() => {
@@ -105,8 +119,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
           return false;
         } else {
           // take the focus
-          // todo
-          // setFocusedCell([index, -1]);
+          setFocusedCell([index, -1]);
         }
       }
 
