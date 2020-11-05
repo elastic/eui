@@ -359,7 +359,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       panelPaddingSize="none"
                     >
                       <EuiOutsideClickDetector
-                        isDisabled={true}
                         onOutsideClick={[Function]}
                       >
                         <div
