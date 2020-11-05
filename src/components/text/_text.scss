@@ -104,6 +104,8 @@
   // of other styling concerns, we should inherit their coloring. The default
   // coloring will likely coming from the reset.scss anyway.
   color: inherit;
+  // EuiImage with floats are often used within EuiText.
+  clear: both;
 
   // Style anchors that don't have a class. This prevents overwriting "buttons"
   // and other stylized elements passed in.
