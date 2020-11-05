@@ -105,11 +105,14 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+        data-autofocus="true"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -117,6 +120,12 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         >
           <span />
         </div>
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
@@ -154,16 +163,25 @@ exports[`EuiPopover props buffer 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+        data-autofocus="true"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
@@ -227,16 +245,25 @@ exports[`EuiPopover props isOpen renders true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+        data-autofocus="true"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
@@ -275,16 +302,25 @@ exports[`EuiPopover props offset with arrow 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+        data-autofocus="true"
         role="dialog"
         style="top: 26px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
@@ -323,15 +359,24 @@ exports[`EuiPopover props offset without arrow 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen euiPopover__panel-noArrow"
+        data-autofocus="true"
         role="dialog"
         style="top: 18px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
         />
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
@@ -472,16 +517,25 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
+        data-autofocus="true"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
@@ -519,16 +573,25 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-describedby="htmlId"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+        data-autofocus="true"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000;"
+        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <p
+          class="euiScreenReaderOnly"
+          id="htmlId"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
         <div />
       </div>
     </div>
