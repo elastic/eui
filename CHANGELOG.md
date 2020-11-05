@@ -21,6 +21,10 @@
 - Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 - Fixed copy in `EuiDataGrid`'s header menu's sort actions ([#4199](https://github.com/elastic/eui/pull/4199))
 
+**Theme: Amsterdam**
+
+- Fixed `border-radius` in `EuiFormControlLayout` ([#4196](https://github.com/elastic/eui/pull/4196))
+
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 
 - Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
@@ -31,10 +35,6 @@
 
 - Removed unnecessary shadow on hover of `EuiButtonGroup` ([#4186](https://github.com/elastic/eui/pull/4186))
 - Fixed position of `EuiScreenReaderOnly` elements within `EuiButtonGroup` ([#4189](https://github.com/elastic/eui/pull/4189))
-
-**Theme: Amsterdam**
-
-- Fixed `border-radius` in `EuiFormControlLayout` ([#4196](https://github.com/elastic/eui/pull/4196))
 
 ## [`30.1.0`](https://github.com/elastic/eui/tree/v30.1.0)
 
