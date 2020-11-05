@@ -100,7 +100,7 @@
   .euiText {
     background-color: $euiFormInputGroupLabelBackground;
     padding: $euiFormControlPadding;
-    line-height: $euiFontSize !important;
+    line-height: $euiSize !important;
     cursor: default !important; // pointer cursor on some form labels but not others is confusing
 
     // If the next sibling is not the input, pull it closer to the text to reduce space

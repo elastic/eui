@@ -1,0 +1,39 @@
+// sass-lint:disable no-vendor-prefixes
+// sass-lint:disable no-important
+
+// Font sizing extends, using rem mixin
+
+@mixin euiFontSizeXS {
+  @include fontSize($euiFontSizeXS);
+  @include lineHeightFromBaseline(2);
+}
+
+@mixin euiFontSizeS {
+  @include fontSize($euiFontSizeS);
+  @include lineHeightFromBaseline(3);
+}
+
+@mixin euiFontSize {
+  @include fontSize($euiFontSize);
+  @include lineHeightFromBaseline(3);
+}
+
+@mixin euiFontSizeM {
+  @include fontSize($euiFontSizeM);
+  @include lineHeightFromBaseline(3);
+}
+
+@mixin euiFontSizeL {
+  @include fontSize($euiFontSizeL);
+  @include lineHeightFromBaseline(4);
+}
+
+@mixin euiFontSizeXL {
+  @include fontSize($euiFontSizeXL);
+  @include lineHeightFromBaseline(4);
+}
+
+@mixin euiFontSizeXXL {
+  @include fontSize($euiFontSizeXXL);
+  @include lineHeightFromBaseline(5);
+}
