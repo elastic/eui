@@ -116,21 +116,22 @@ describe('EuiResizableContainer', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('can adjust button spacing', () => {
-    const component = render(
-      <EuiResizableContainer {...requiredProps}>
-        {(EuiResizablePanel, EuiResizableButton) => (
-          <>
-            <EuiResizablePanel initialSize={50}>Testing</EuiResizablePanel>
-            <EuiResizableButton size="s" />
-            <EuiResizablePanel initialSize={50}>123</EuiResizablePanel>
-          </>
-        )}
-      </EuiResizableContainer>
-    );
+  // Will come back to to test panel padding
+  // test('can adjust button spacing', () => {
+  //   const component = render(
+  //     <EuiResizableContainer {...requiredProps}>
+  //       {(EuiResizablePanel, EuiResizableButton) => (
+  //         <>
+  //           <EuiResizablePanel initialSize={50}>Testing</EuiResizablePanel>
+  //           <EuiResizableButton size="s" />
+  //           <EuiResizablePanel initialSize={50}>123</EuiResizablePanel>
+  //         </>
+  //       )}
+  //     </EuiResizableContainer>
+  //   );
 
-    expect(component).toMatchSnapshot();
-  });
+  //   expect(component).toMatchSnapshot();
+  // });
 
   test('can have toggleable panels', () => {
     const component = render(
@@ -140,7 +141,7 @@ describe('EuiResizableContainer', () => {
             <EuiResizablePanel mode="collapsible" initialSize={20}>
               Sidebar
             </EuiResizablePanel>
-            <EuiResizableButton size="s" />
+            <EuiResizableButton />
             <EuiResizablePanel mode="main" initialSize={80}>
               Sidebar content
             </EuiResizablePanel>

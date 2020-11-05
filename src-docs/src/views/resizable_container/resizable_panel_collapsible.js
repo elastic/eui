@@ -127,7 +127,13 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%">
+                minSize="10%"
+                panelProps={{
+                  color: 'subdued',
+                  style: {
+                    borderLeftWidth: '1px',
+                  },
+                }}>
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
             </>

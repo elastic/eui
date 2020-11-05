@@ -19,7 +19,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="xl" />
+        <EuiResizableButton size="l" />
 
         <EuiResizablePanel initialSize={25}>
           <EuiText size="s">
@@ -30,7 +30,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="l" />
+        <EuiResizableButton size="m" />
 
         <EuiResizablePanel initialSize={15}>
           <EuiText size="s">
@@ -42,7 +42,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="m" />
+        <EuiResizableButton size="s" />
 
         <EuiResizablePanel initialSize={15}>
           <EuiText size="s">
@@ -53,7 +53,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="s" />
+        <EuiResizableButton size="none" />
 
         <EuiResizablePanel initialSize={10} minSize="100px">
           <EuiText size="s">

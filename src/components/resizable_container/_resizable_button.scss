@@ -3,6 +3,7 @@
 .euiResizableButton {
   position: relative;
   flex-shrink: 0;
+  z-index: $euiZLevel1;
 
   &:before,
   &:after {
@@ -22,11 +23,14 @@
 
   &.euiResizableButton--horizontal {
     cursor: col-resize;
+    width: $euiResizableButtonSize;
+    margin-left: -($euiResizableButtonSize / 2);
+    margin-right: -($euiResizableButtonSize / 2);
 
     &:before,
     &:after {
       width: 1px;
-      height: 12px;
+      height: $euiSizeM;
     }
 
     &:before {
@@ -40,10 +44,13 @@
 
   &.euiResizableButton--vertical {
     cursor: row-resize;
+    height: $euiResizableButtonSize;
+    margin-top: -($euiResizableButtonSize / 2);
+    margin-bottom: -($euiResizableButtonSize / 2);
 
     &:before,
     &:after {
-      width: 12px;
+      width: $euiSizeM;
       height: 1px;
     }
 
@@ -117,24 +124,6 @@
   }
 
   &:disabled {
-    cursor: not-allowed;
-
-    &:before,
-    &:after {
-      background-color: $euiColorMediumShade;
-    }
-  }
-}
-
-//Generate modifier classes that control the size of the resizer
-@each $modifier, $amount in $euiResizableButtonSizeModifiers {
-  .euiResizableButton--#{$modifier} {
-    &.euiResizableButton--vertical {
-      height: $amount;
-    }
-
-    &.euiResizableButton--horizontal {
-      width: $amount;
-    }
+    display: none !important; // sass-lint:disable-line no-important
   }
 }

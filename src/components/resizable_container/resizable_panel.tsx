@@ -137,7 +137,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   isHorizontal,
   size,
   initialSize,
-  minSize = '0px',
+  minSize = '24px', // This should probably be calculated based on panel padding size
   scrollable = true,
   style = {},
   mode,

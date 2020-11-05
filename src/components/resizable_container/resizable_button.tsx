@@ -37,8 +37,6 @@ import {
   EuiResizableButtonKeyDownEvent,
 } from './types';
 
-export type EuiResizableButtonSize = 's' | 'm' | 'l' | 'xl';
-
 interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
@@ -58,28 +56,13 @@ export interface EuiResizableButtonProps
       keyof EuiResizableButtonControls
     >,
     CommonProps,
-    Partial<EuiResizableButtonControls> {
-  /**
-   * The size of the Resizer (the space between panels)
-   */
-  size?: EuiResizableButtonSize;
-}
-
-const sizeToClassNameMap = {
-  s: 'euiResizableButton--sizeSmall',
-  m: 'euiResizableButton--sizeMedium',
-  l: 'euiResizableButton--sizeLarge',
-  xl: 'euiResizableButton--sizeExtraLarge',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
+    Partial<EuiResizableButtonControls> {}
 
 const generatePanelId = htmlIdGenerator('resizable-button');
 
 export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   isHorizontal,
   className,
-  size = 'm',
   id,
   registration,
   disabled,
@@ -99,11 +82,10 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   );
   const classes = classNames(
     'euiResizableButton',
-    size ? sizeToClassNameMap[size] : null,
     {
       'euiResizableButton--vertical': !isHorizontal,
       'euiResizableButton--horizontal': isHorizontal,
-      'euiResizableButton--disabled': disabled,
+      'euiResizableButton--disabled': isDisabled,
     },
     className
   );
@@ -167,7 +149,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
           className={classes}
-          data-test-subj="splitPanelResizer"
+          data-test-subj="euiResizableButton"
           type="button"
           onClick={setFocus}
           onFocus={handleFocus}
