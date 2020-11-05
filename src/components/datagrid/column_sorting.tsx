@@ -141,7 +141,6 @@ export const useColumnSorting = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
-      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
@@ -212,7 +211,6 @@ export const useColumnSorting = (
                   isOpen={avilableColumnsisOpen}
                   closePopover={() => setAvailableColumnsIsOpen(false)}
                   anchorPosition="downLeft"
-                  ownFocus
                   panelPaddingSize="s"
                   button={
                     <EuiButtonEmpty

@@ -421,8 +421,7 @@ export const PopoverExample = {
         <>
           <p>
             If the popover should not trap focus within itself, then you can
-            remove it with <EuiCode language="ts">{'ownFocus={false}'}</EuiCode>
-            .
+            remove it <EuiCode language="ts">{'ownFocus={false}'}</EuiCode>.
           </p>
           <EuiCallOut
             iconType="accessibility"

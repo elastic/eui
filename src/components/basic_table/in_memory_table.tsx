@@ -416,7 +416,10 @@ export class EuiInMemoryTable<T> extends Component<
     // map back to `name` if this is the case
     for (let i = 0; i < this.props.columns.length; i++) {
       const column = this.props.columns[i];
-      if ((column as EuiTableFieldDataColumnType<T>).field === sortName) {
+      if (
+        'field' in column &&
+        (column as EuiTableFieldDataColumnType<T>).field === sortName
+      ) {
         sortName = column.name as keyof T;
         break;
       }
