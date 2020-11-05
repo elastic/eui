@@ -476,7 +476,6 @@ export class EuiDataGridCell extends Component<
             panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
             popoverIsOpen={this.state.popoverIsOpen}
             rowIndex={rowIndex}
-            updateFocus={this.takeFocus}
             renderCellValue={rest.renderCellValue}
             popoverContent={PopoverContent}
           />
@@ -487,7 +486,9 @@ export class EuiDataGridCell extends Component<
     return (
       <div
         role="gridcell"
-        tabIndex={this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1}
+        tabIndex={
+          this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
+        }
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"

@@ -42,7 +42,6 @@ interface EuiDataGridCellPopoverProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   rowIndex: number;
-  updateFocus: () => void;
 }
 
 export function EuiDataGridCellPopover({
@@ -56,7 +55,6 @@ export function EuiDataGridCellPopover({
   popoverIsOpen,
   renderCellValue,
   rowIndex,
-  updateFocus,
 }: EuiDataGridCellPopoverProps) {
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
@@ -81,8 +79,6 @@ export function EuiDataGridCellPopover({
           closePopover();
         }
       }}
-      // todo
-      // onTrapDeactivation={updateFocus}
     >
       {popoverIsOpen ? (
         <>
