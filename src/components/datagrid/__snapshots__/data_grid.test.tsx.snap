@@ -224,8 +224,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-1"
     label={
       <EuiI18n
-        default="Sort schema asc"
-        token="euiColumnActions.sortAsc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="A-Z"
+              token="euiColumnSortingDraggable.defaultSortAsc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -253,13 +261,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema asc"
+          title="Sort A-Z"
         >
           <EuiI18n
-            default="Sort schema asc"
-            token="euiColumnActions.sortAsc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />,
+              }
+            }
           >
-            Sort schema asc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="A-Z"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortAsc"
+              >
+                A-Z
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -273,8 +305,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-2"
     label={
       <EuiI18n
-        default="Sort schema desc"
-        token="euiColumnActions.sortDesc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="Z-A"
+              token="euiColumnSortingDraggable.defaultSortDesc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -302,13 +342,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema desc"
+          title="Sort Z-A"
         >
           <EuiI18n
-            default="Sort schema desc"
-            token="euiColumnActions.sortDesc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />,
+              }
+            }
           >
-            Sort schema desc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="Z-A"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortDesc"
+              >
+                Z-A
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -459,8 +523,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-0"
     label={
       <EuiI18n
-        default="Sort schema asc"
-        token="euiColumnActions.sortAsc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="A-Z"
+              token="euiColumnSortingDraggable.defaultSortAsc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -488,13 +560,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema asc"
+          title="Sort A-Z"
         >
           <EuiI18n
-            default="Sort schema asc"
-            token="euiColumnActions.sortAsc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />,
+              }
+            }
           >
-            Sort schema asc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="A-Z"
+                  token="euiColumnSortingDraggable.defaultSortAsc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="A-Z"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortAsc"
+              >
+                A-Z
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -508,8 +604,16 @@ exports[`EuiDataGrid render column actions renders various column actions config
     key="title-1"
     label={
       <EuiI18n
-        default="Sort schema desc"
-        token="euiColumnActions.sortDesc"
+        default="Sort {schemaLabel}"
+        token="euiColumnActions.sort"
+        values={
+          Object {
+            "schemaLabel": <EuiI18n
+              default="Z-A"
+              token="euiColumnSortingDraggable.defaultSortDesc"
+            />,
+          }
+        }
       />
     }
     onClick={[Function]}
@@ -537,13 +641,37 @@ exports[`EuiDataGrid render column actions renders various column actions config
         </EuiIcon>
         <span
           className="euiListGroupItem__label"
-          title="Sort schema desc"
+          title="Sort Z-A"
         >
           <EuiI18n
-            default="Sort schema desc"
-            token="euiColumnActions.sortDesc"
+            default="Sort {schemaLabel}"
+            token="euiColumnActions.sort"
+            values={
+              Object {
+                "schemaLabel": <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />,
+              }
+            }
           >
-            Sort schema desc
+            <Component
+              schemaLabel={
+                <EuiI18n
+                  default="Z-A"
+                  token="euiColumnSortingDraggable.defaultSortDesc"
+                />
+              }
+            >
+              Sort 
+              <EuiI18n
+                default="Z-A"
+                key="1"
+                token="euiColumnSortingDraggable.defaultSortDesc"
+              >
+                Z-A
+              </EuiI18n>
+            </Component>
           </EuiI18n>
         </span>
       </button>
@@ -1041,7 +1169,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1098,7 +1226,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1161,7 +1289,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1218,7 +1346,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1281,7 +1409,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1338,7 +1466,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1612,47 +1740,45 @@ Array [
                 style="width:50px"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
                   <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
+                    class="euiDataGridRowCell__expandFlex"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex"
+                      class="euiDataGridRowCell__expandContent"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          <span>
-                            Row: 1, Column: 1:
-                          </span>
-                        </p>
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                        >
-                          0
-                        </div>
+                        <span>
+                          Row: 1, Column: 1:
+                        </span>
+                      </p>
+                      <div
+                        class="euiDataGridRowCell__truncate"
+                      >
+                        0
                       </div>
                     </div>
                   </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
                 </div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
               </div>
               <div
                 class="euiDataGridRowCell"
@@ -1694,7 +1820,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1751,7 +1877,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1775,47 +1901,45 @@ Array [
                 style="width:50px"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
                   <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
+                    class="euiDataGridRowCell__expandFlex"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex"
+                      class="euiDataGridRowCell__expandContent"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          <span>
-                            Row: 1, Column: 4:
-                          </span>
-                        </p>
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                        >
-                          0
-                        </div>
+                        <span>
+                          Row: 1, Column: 4:
+                        </span>
+                      </p>
+                      <div
+                        class="euiDataGridRowCell__truncate"
+                      >
+                        0
                       </div>
                     </div>
                   </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
                 </div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
               </div>
             </div>
             <div
@@ -1830,47 +1954,45 @@ Array [
                 style="width:50px"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
                   <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
+                    class="euiDataGridRowCell__expandFlex"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex"
+                      class="euiDataGridRowCell__expandContent"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          <span>
-                            Row: 2, Column: 1:
-                          </span>
-                        </p>
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                        >
-                          1
-                        </div>
+                        <span>
+                          Row: 2, Column: 1:
+                        </span>
+                      </p>
+                      <div
+                        class="euiDataGridRowCell__truncate"
+                      >
+                        1
                       </div>
                     </div>
                   </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
                 </div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
               </div>
               <div
                 class="euiDataGridRowCell"
@@ -1912,7 +2034,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1969,7 +2091,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1993,47 +2115,45 @@ Array [
                 style="width:50px"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
                   <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
+                    class="euiDataGridRowCell__expandFlex"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex"
+                      class="euiDataGridRowCell__expandContent"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          <span>
-                            Row: 2, Column: 4:
-                          </span>
-                        </p>
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                        >
-                          1
-                        </div>
+                        <span>
+                          Row: 2, Column: 4:
+                        </span>
+                      </p>
+                      <div
+                        class="euiDataGridRowCell__truncate"
+                      >
+                        1
                       </div>
                     </div>
                   </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
                 </div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
               </div>
             </div>
             <div
@@ -2048,47 +2168,45 @@ Array [
                 style="width:50px"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
                   <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
+                    class="euiDataGridRowCell__expandFlex"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex"
+                      class="euiDataGridRowCell__expandContent"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          <span>
-                            Row: 3, Column: 1:
-                          </span>
-                        </p>
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                        >
-                          2
-                        </div>
+                        <span>
+                          Row: 3, Column: 1:
+                        </span>
+                      </p>
+                      <div
+                        class="euiDataGridRowCell__truncate"
+                      >
+                        2
                       </div>
                     </div>
                   </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
                 </div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
               </div>
               <div
                 class="euiDataGridRowCell"
@@ -2130,7 +2248,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2187,7 +2305,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2211,47 +2329,45 @@ Array [
                 style="width:50px"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
                   <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
+                    class="euiDataGridRowCell__expandFlex"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex"
+                      class="euiDataGridRowCell__expandContent"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          <span>
-                            Row: 3, Column: 4:
-                          </span>
-                        </p>
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                        >
-                          2
-                        </div>
+                        <span>
+                          Row: 3, Column: 4:
+                        </span>
+                      </p>
+                      <div
+                        class="euiDataGridRowCell__truncate"
+                      >
+                        2
                       </div>
                     </div>
                   </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
                 </div>
+                <div
+                  data-focus-guard="true"
+                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                  tabindex="-1"
+                />
               </div>
             </div>
           </div>
@@ -2512,7 +2628,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2569,7 +2685,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2632,7 +2748,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2689,7 +2805,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2752,7 +2868,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2809,7 +2925,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -3083,7 +3199,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -3140,7 +3256,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -3203,7 +3319,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -3260,7 +3376,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -3323,7 +3439,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -3380,7 +3496,7 @@ Array [
                         >
                           <button
                             aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
                             tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"

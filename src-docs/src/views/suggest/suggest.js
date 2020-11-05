@@ -59,7 +59,7 @@ export default () => {
   };
 
   const onItemClick = (item) => {
-    alert(`Item [${item.label}] was clicked`);
+    console.log(item);
   };
 
   return (

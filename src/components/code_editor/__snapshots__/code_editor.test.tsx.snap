@@ -1,12 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCodeEditor behavior hint element should be disabled when the ui ace box gains focus 1`] = `
-<div
+<button
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
   id="htmlId"
-  role="button"
-  tabindex="0"
 >
   <p
     class="euiText"
@@ -18,16 +16,14 @@ exports[`EuiCodeEditor behavior hint element should be disabled when the ui ace 
   >
     When you're done, press Escape to stop editing.
   </p>
-</div>
+</button>
 `;
 
 exports[`EuiCodeEditor behavior hint element should be enabled when the ui ace box loses focus 1`] = `
-<div
+<button
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
   id="htmlId"
-  role="button"
-  tabindex="0"
 >
   <p
     class="euiText"
@@ -39,16 +35,14 @@ exports[`EuiCodeEditor behavior hint element should be enabled when the ui ace b
   >
     When you're done, press Escape to stop editing.
   </p>
-</div>
+</button>
 `;
 
 exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
-<div
+<button
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
   id="htmlId"
-  role="button"
-  tabindex="0"
 >
   <p
     class="euiText"
@@ -60,7 +54,7 @@ exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
   >
     When you're done, press Escape to stop editing.
   </p>
-</div>
+</button>
 `;
 
 exports[`EuiCodeEditor is rendered 1`] = `
@@ -68,12 +62,10 @@ exports[`EuiCodeEditor is rendered 1`] = `
   class="euiCodeEditorWrapper"
   data-test-subj="test subject string"
 >
-  <div
+  <button
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
     id="htmlId"
-    role="button"
-    tabindex="0"
   >
     <p
       class="euiText"
@@ -85,7 +77,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
     >
       When you're done, press Escape to stop editing.
     </p>
-  </div>
+  </button>
   <div
     class=" ace_editor ace-tm testClass1 testClass2"
     id="htmlId"
@@ -184,12 +176,10 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
   class="euiCodeEditorWrapper"
   data-test-subj="codeEditorContainer"
 >
-  <div
+  <button
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
     id="htmlId"
-    role="button"
-    tabindex="0"
   >
     <p
       class="euiText"
@@ -201,7 +191,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
     >
       When you're done, press Escape to stop editing.
     </p>
-  </div>
+  </button>
   <div
     class=" ace_editor ace-tm"
     id="htmlId"
@@ -300,12 +290,10 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
   class="euiCodeEditorWrapper"
   data-test-subj="codeEditorContainer"
 >
-  <div
+  <button
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
     id="htmlId"
-    role="button"
-    tabindex="0"
   >
     <p
       class="euiText"
@@ -317,7 +305,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
     >
       When you're done, press Escape to stop editing.
     </p>
-  </div>
+  </button>
   <div
     class=" ace_editor ace-tm"
     id="htmlId"
@@ -416,12 +404,10 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
   class="euiCodeEditorWrapper"
   data-test-subj="codeEditorContainer"
 >
-  <div
+  <button
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
     id="htmlId"
-    role="button"
-    tabindex="0"
   >
     <p
       class="euiText"
@@ -433,7 +419,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
     >
       When you're done, press Escape to stop interacting with the code.
     </p>
-  </div>
+  </button>
   <div
     class=" ace_editor ace-tm"
     id="htmlId"
@@ -532,12 +518,10 @@ exports[`EuiCodeEditor props theme renders terminal theme 1`] = `
   class="euiCodeEditorWrapper"
   data-test-subj="codeEditorContainer"
 >
-  <div
+  <button
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
     id="htmlId"
-    role="button"
-    tabindex="0"
   >
     <p
       class="euiText"
@@ -549,7 +533,7 @@ exports[`EuiCodeEditor props theme renders terminal theme 1`] = `
     >
       When you're done, press Escape to stop editing.
     </p>
-  </div>
+  </button>
   <div
     class=" ace_editor ace-tm"
     id="htmlId"

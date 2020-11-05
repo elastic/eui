@@ -19,6 +19,7 @@
 
 import React, {
   Component,
+  KeyboardEvent,
   CSSProperties,
   HTMLAttributes,
   ReactNode,
@@ -40,8 +41,6 @@ import {
   htmlIdGenerator,
 } from '../../services';
 
-import { EuiOutsideClickDetector } from '../outside_click_detector';
-
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiPanel, PanelPaddingSize } from '../panel';
@@ -57,6 +56,7 @@ import {
 } from '../../services/popover';
 
 import { EuiI18n } from '../i18n';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 export type PopoverAnchorPosition =
   | 'upCenter'
@@ -75,84 +75,104 @@ export type PopoverAnchorPosition =
 const generateId = htmlIdGenerator();
 
 export interface EuiPopoverProps {
+  /**
+   * Class name passed to the direct parent of the button
+   */
   anchorClassName?: string;
-
+  /**
+   * Alignment of the popover and arrow relative to the button
+   */
   anchorPosition?: PopoverAnchorPosition;
-
-  /** Style and position alteration for arrow-less, left-aligned
-   * attachment. Intended for use with inputs as anchors, à la
-   * EuiColorPicker */
+  /**
+   * Style and position alteration for arrow-less, left-aligned
+   * attachment. Intended for use with inputs as anchors, e.g.
+   * EuiInputPopover
+   */
   attachToAnchor?: boolean;
-
+  /**
+   * Triggering element for which to align the popover to
+   */
   button: NonNullable<ReactNode>;
-
   buttonRef?: RefCallback<HTMLDivElement>;
-
+  /**
+   * Callback to handle hiding of the popover
+   */
   closePopover: NoArgCallback<void>;
-
+  /**
+   * Restrict the popover's position within this element
+   */
   container?: HTMLElement;
-
-  /** CSS display type for both the popover and anchor */
+  /**
+   * CSS display type for both the popover and anchor
+   */
   display?: keyof typeof displayToClassNameMap;
-
+  /**
+   * Show arrow indicating to originating button
+   */
   hasArrow?: boolean;
-
-  /** specifies what element should initially have focus; Can be a DOM
+  /**
+   * Specifies what element should initially have focus; Can be a DOM
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
-   * returns a DOM node. */
+   * returns a DOM node
+   */
   initialFocus?: FocusTarget;
-
-  /** Passed directly to EuiPortal for DOM positioning. Both properties are
-   * required if prop is specified **/
+  /**
+   * Passed directly to EuiPortal for DOM positioning. Both properties are
+   * required if prop is specified
+   */
   insert?: {
     sibling: HTMLElement;
     position: 'before' | 'after';
   };
-
-  isOpen?: boolean;
-
-  ownFocus?: boolean;
-
-  panelClassName?: string;
-
-  panelPaddingSize?: PanelPaddingSize;
-
-  panelRef?: RefCallback<HTMLElement | null>;
-
   /**
-   * Optional, standard DOM `style` attribute. Passed to the EuiPanel.
+   * Visibility state of the popover
+   */
+  isOpen?: boolean;
+  /**
+   * Traps tab focus within the popover contents
+   */
+  ownFocus?: boolean;
+  /**
+   * Custom class added to the EuiPanel containing the popover contents
+   */
+  panelClassName?: string;
+  /**
+   * EuiPanel padding on all sides
+   */
+  panelPaddingSize?: PanelPaddingSize;
+  /**
+   * Standard DOM `style` attribute. Passed to the EuiPanel
    */
   panelStyle?: CSSProperties;
-
+  panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
-
-  /** When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors. */
+  /**
+   * When `true`, the popover's position is re-calculated when the user
+   * scrolls, this supports having fixed-position popover anchors
+   */
   repositionOnScroll?: boolean;
-
-  /** By default, popover content inherits the z-index of the anchor
-   * component; pass zIndex to override */
+  /**
+   * By default, popover content inherits the z-index of the anchor
+   * component; pass `zIndex` to override
+   */
   zIndex?: number;
-
   /**
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
-
   /**
-   * Distance away from the anchor that the popover will render.
+   * Distance away from the anchor that the popover will render
    */
   offset?: number;
-
   /**
-   * Minimum distance between the popover and the bounding container.
+   * Minimum distance between the popover and the bounding container;
    * Default is 16
    */
   buffer?: number;
-
   /**
-   * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
+   * Element to pass as the child element of the arrow;
+   * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
 }
@@ -334,13 +354,23 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  closePopover = () => {
+    if (this.props.isOpen) {
+      this.props.closePopover();
+    }
+  };
+
+  onKeyDown = (event: KeyboardEvent) => {
     if (event.key === cascadingMenuKeys.ESCAPE) {
-      if (this.state.isOpenStable || this.state.isOpening) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.closePopover();
-      }
+      this.closePopover();
+    }
+  };
+
+  onClickOutside = (event: Event) => {
+    // only close the popover if the event source isn't the anchor button
+    // otherwise, it is up to the anchor to toggle the popover's open status
+    if (this.button && this.button.contains(event.target as Node) === false) {
+      this.closePopover();
     }
   };
 
@@ -682,17 +712,26 @@ export class EuiPopover extends Component<Props, State> {
         `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
+      const returnFocus = this.state.isOpenStable
+        ? { preventScroll: true }
+        : false;
+
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
-            disabled={!ownFocus}>
+            onClickOutside={this.onClickOutside}
+            onEscapeKey={this.closePopover}
+            disabled={
+              !ownFocus || !this.state.isOpenStable || this.state.isClosing
+            }>
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
+              hasShadow={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}
@@ -720,21 +759,32 @@ export class EuiPopover extends Component<Props, State> {
       );
     }
 
-    return (
-      <EuiOutsideClickDetector
-        isDisabled={!isOpen}
-        onOutsideClick={closePopover}>
-        <div
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          ref={popoverRef}
-          {...rest}>
+    // react-focus-on and relataed do not register outside click detection
+    // when disabled, so we still need to conditionally check for that ourselves
+    if (ownFocus) {
+      return (
+        <div className={classes} ref={popoverRef} {...rest}>
           <div className={anchorClasses} ref={this.buttonRef}>
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
         </div>
-      </EuiOutsideClickDetector>
-    );
+      );
+    } else {
+      return (
+        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
+          <div
+            className={classes}
+            ref={popoverRef}
+            onKeyDown={this.onKeyDown}
+            {...rest}>
+            <div className={anchorClasses} ref={this.buttonRef}>
+              {button instanceof HTMLElement ? null : button}
+            </div>
+            {panel}
+          </div>
+        </EuiOutsideClickDetector>
+      );
+    }
   }
 }

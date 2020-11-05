@@ -22,7 +22,7 @@ export default () => (
       <EuiFlexItem key={color} grow={false}>
         <EuiButtonIcon
           color={color}
-          onClick={() => window.alert('Button clicked')}
+          onClick={() => {}}
           iconType="arrowRight"
           aria-label="Next"
         />

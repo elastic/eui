@@ -17,19 +17,13 @@ export default () => (
     <EuiSpacer size="l" />
 
     <EuiPanel paddingSize="m">
-      <EuiCode>paddingSize=&quot;m&quot;</EuiCode>
+      <EuiCode>paddingSize=&quot;m&quot; (default)</EuiCode>
     </EuiPanel>
 
     <EuiSpacer size="l" />
 
     <EuiPanel paddingSize="l">
       <EuiCode>paddingSize=&quot;l&quot;</EuiCode>
-    </EuiPanel>
-
-    <EuiSpacer size="l" />
-
-    <EuiPanel paddingSize="l" hasShadow>
-      <EuiCode>paddingSize=&quot;l&quot;</EuiCode>, <EuiCode>hasShadow</EuiCode>
     </EuiPanel>
   </div>
 );

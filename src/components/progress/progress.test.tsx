@@ -21,7 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiProgress } from './progress';
+import { EuiProgress, COLORS, SIZES } from './progress';
 
 describe('EuiProgress', () => {
   test('is rendered', () => {
@@ -94,5 +94,25 @@ describe('EuiProgress', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('color', () => {
+    [...COLORS, '#885522'].forEach((color) => {
+      test(`${color} is rendered`, () => {
+        const component = render(<EuiProgress color={color} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('size', () => {
+    SIZES.forEach((size) => {
+      test(`${size} is rendered`, () => {
+        const component = render(<EuiProgress size={size} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

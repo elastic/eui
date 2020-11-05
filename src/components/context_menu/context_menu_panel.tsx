@@ -29,7 +29,6 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
-import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
 import { EuiContextMenuItem } from './context_menu_item';
@@ -226,6 +225,14 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
       if (this.props.transitionType) {
+        return;
+      }
+
+      // `focusedItemIndex={-1}` specifies that the panel itself should be focused.
+      // This should only be used when the panel does not have `item`s
+      // and preventing autofocus is desired, which is an uncommon case.
+      if (this.panel && this.state.focusedItemIndex === -1) {
+        this.panel.focus();
         return;
       }
 
@@ -450,9 +457,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         );
       } else {
         panelTitle = (
-          <EuiPopoverTitle>
+          <div className="euiContextMenuPanelTitle">
             <span className="euiContextMenu__itemLayout">{title}</span>
-          </EuiPopoverTitle>
+          </div>
         );
       }
     }

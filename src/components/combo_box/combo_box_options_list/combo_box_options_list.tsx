@@ -237,7 +237,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (
       singleSelection &&
       selectedOptions.length &&
-      selectedOptions[0].label === label
+      selectedOptions[0].label === label &&
+      selectedOptions[0].key === key
     ) {
       checked = 'on';
     }
@@ -476,6 +477,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     return (
       <EuiPanel
         paddingSize="none"
+        hasShadow={false}
         className={classes}
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
