@@ -17,15 +17,17 @@
  * under the License.
  */
 
-export { EuiColorPicker, EuiColorPickerProps } from './color_picker';
-export { EuiColorPickerSwatch } from './color_picker_swatch';
-export { EuiHue } from './hue';
-export { EuiSaturation } from './saturation';
-export { EuiColorStops } from './color_stops';
 export {
-  EuiColorPalettePicker,
-  EuiColorPalettePickerProps,
-  EuiColorPalettePickerPaletteProps,
-} from './color_palette_picker';
+  EuiColorPaletteDisplay,
+  EuiColorPaletteDisplayProps,
+} from './color_palette_display';
 
-export { EuiColorPaletteDisplay } from './color_palette_display';
+export {
+  EuiColorPaletteDisplayFixed,
+  EuiColorPaletteDisplayFixedProps,
+} from './color_palette_display_fixed';
+
+export {
+  EuiColorPaletteDisplayGradient,
+  EuiColorPaletteDisplayGradientProps,
+} from './color_palette_display_gradient';

@@ -161,7 +161,7 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
 // Given an array of objects with key value pairs stop/color returns a css linear-gradient
 // Or given an array of hex colors returns a css linear-gradient
 export const getLinearGradient = (palette: string[] | ColorStop[]) => {
-  const intervals = palette.length;
+  const lastColorStopArrayPosition = palette.length - 1;
 
   let linearGradient;
 
@@ -174,58 +174,87 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
 
     linearGradient = `linear-gradient(to right, ${paletteColorStop[0].color} 0%,`;
 
-    const decimal = 100 / paletteColorStop[paletteColorStop.length - 1].stop;
+    const lastColorStopDecimal =
+      100 / paletteColorStop[lastColorStopArrayPosition].stop;
 
-    for (let i = 1; i < intervals - 1; i++) {
+    for (let i = 1; i < lastColorStopArrayPosition; i++) {
       linearGradient = `${linearGradient} ${
         paletteColorStop[i].color
-      }\ ${Math.floor(paletteColorStop[i].stop * decimal)}%,`;
+      }\ ${Math.floor(paletteColorStop[i].stop * lastColorStopDecimal)}%,`;
     }
 
-    const linearGradientStyle = `${linearGradient} ${
-      paletteColorStop[palette.length - 1].color
-    } 100%)`;
+    const linearGradientStyle = `${linearGradient} ${paletteColorStop[lastColorStopArrayPosition].color} 100%)`;
 
     return linearGradientStyle;
   } else {
     linearGradient = `linear-gradient(to right, ${palette[0]} 0%,`;
 
-    for (let i = 1; i < intervals - 1; i++) {
+    for (let i = 1; i < lastColorStopArrayPosition; i++) {
       linearGradient = `${linearGradient} ${palette[i]}\ ${Math.floor(
-        (100 * i) / (intervals - 1)
+        (100 * i) / lastColorStopArrayPosition
       )}%,`;
     }
 
-    const linearGradientStyle = `${linearGradient} ${
-      palette[palette.length - 1]
-    } 100%)`;
+    const linearGradientStyle = `${linearGradient} ${palette[lastColorStopArrayPosition]} 100%)`;
 
     return linearGradientStyle;
   }
 };
 
-// Given an array of hex colors returns a css linear-gradient with individual color blocks
-export const getFixedLinearGradient = (palette: string[]) => {
-  const intervals = palette.length;
+// Given an array of objects with key value pairs stop/color or an array of hex colors
+// returns an array of objects with key value pairs color/width
+export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
+  const paletteHasStops = palette.some((item: string | ColorStop) => {
+    return typeof item === 'object';
+  });
 
-  let fixedLinearGradient;
+  if (paletteHasStops) {
+    const paletteColorStop = palette as ColorStop[];
 
-  for (let i = 0; i < intervals; i++) {
-    const initialColorStop = `${palette[0]} 0%, ${palette[0]}\ ${Math.floor(
-      (100 * 1) / intervals
-    )}%`;
-    const colorStop = `${palette[i]}\ ${Math.floor((100 * i) / intervals)}%, ${
-      palette[i]
-    }\ ${Math.floor((100 * (i + 1)) / intervals)}%`;
+    const fixedLinearGradientWithStops = paletteColorStop.map(
+      (colorStop: ColorStop, index: number) => {
+        const lastColorStopArrayPosition = palette.length - 1;
 
-    if (i === 0) {
-      fixedLinearGradient = `linear-gradient(to right, ${initialColorStop},`;
-    } else if (i === palette.length - 1) {
-      fixedLinearGradient = `${fixedLinearGradient} ${colorStop})`;
-    } else {
-      fixedLinearGradient = `${fixedLinearGradient} ${colorStop},`;
-    }
+        const lastColorStopDecimal =
+          100 / paletteColorStop[lastColorStopArrayPosition].stop;
+
+        const isFirstColorStop = index === 0;
+
+        let previousColorStopWidth;
+
+        if (isFirstColorStop) {
+          previousColorStopWidth = 0;
+        } else {
+          previousColorStopWidth = Math.floor(
+            paletteColorStop[index - 1].stop * lastColorStopDecimal
+          );
+        }
+
+        const currentColorStopWidth = Math.floor(
+          colorStop.stop * lastColorStopDecimal
+        );
+
+        const colorStopWidth = currentColorStopWidth - previousColorStopWidth;
+
+        return {
+          color: colorStop.color,
+          width: `${colorStopWidth}%`,
+        };
+      }
+    );
+
+    return fixedLinearGradientWithStops;
+  } else {
+    const paletteColorStop = palette as string[];
+    const paletteWidth = 100 / palette.length;
+
+    const fixedLinearGradientWidthAuto = paletteColorStop.map(
+      (hexCode: string) => ({
+        color: hexCode,
+        width: `${paletteWidth}%`,
+      })
+    );
+
+    return fixedLinearGradientWidthAuto;
   }
-
-  return fixedLinearGradient;
 };

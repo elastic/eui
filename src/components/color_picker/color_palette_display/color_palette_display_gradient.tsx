@@ -17,15 +17,22 @@
  * under the License.
  */
 
-export { EuiColorPicker, EuiColorPickerProps } from './color_picker';
-export { EuiColorPickerSwatch } from './color_picker_swatch';
-export { EuiHue } from './hue';
-export { EuiSaturation } from './saturation';
-export { EuiColorStops } from './color_stops';
-export {
-  EuiColorPalettePicker,
-  EuiColorPalettePickerProps,
-  EuiColorPalettePickerPaletteProps,
-} from './color_palette_picker';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { CommonProps } from '../../common';
+import { getLinearGradient } from '../utils';
+import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
-export { EuiColorPaletteDisplay } from './color_palette_display';
+export interface EuiColorPaletteDisplayGradientProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    CommonProps,
+    EuiColorPaletteDisplayShared {}
+
+export const EuiColorPaletteDisplayGradient: FunctionComponent<EuiColorPaletteDisplayGradientProps> = ({
+  palette,
+  style = {},
+  ...rest
+}) => {
+  const gradient = getLinearGradient(palette);
+
+  return <span style={{ ...style, background: gradient }} {...rest} />;
+};
