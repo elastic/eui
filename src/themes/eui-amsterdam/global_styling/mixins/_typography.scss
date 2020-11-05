@@ -1,7 +1,5 @@
-// sass-lint:disable no-vendor-prefixes
-// sass-lint:disable no-important
-
 // Font sizing extends, using rem mixin
+// All line-heights are aligned to baseline grid
 
 @mixin euiFontSizeXS {
   @include fontSize($euiFontSizeXS);
