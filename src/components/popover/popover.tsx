@@ -19,6 +19,7 @@
 
 import React, {
   Component,
+  KeyboardEvent,
   CSSProperties,
   HTMLAttributes,
   ReactNode,
@@ -40,8 +41,6 @@ import {
   htmlIdGenerator,
 } from '../../services';
 
-import { EuiOutsideClickDetector } from '../outside_click_detector';
-
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiPanel, PanelPaddingSize } from '../panel';
@@ -57,6 +56,7 @@ import {
 } from '../../services/popover';
 
 import { EuiI18n } from '../i18n';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 export type PopoverAnchorPosition =
   | 'upCenter'
@@ -354,13 +354,23 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  closePopover = () => {
+    if (this.props.isOpen) {
+      this.props.closePopover();
+    }
+  };
+
+  onKeyDown = (event: KeyboardEvent) => {
     if (event.key === cascadingMenuKeys.ESCAPE) {
-      if (this.state.isOpenStable || this.state.isOpening) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.closePopover();
-      }
+      this.closePopover();
+    }
+  };
+
+  onClickOutside = (event: Event) => {
+    // only close the popover if the event source isn't the anchor button
+    // otherwise, it is up to the anchor to toggle the popover's open status
+    if (this.button && this.button.contains(event.target as Node) === false) {
+      this.closePopover();
     }
   };
 
@@ -702,14 +712,22 @@ export class EuiPopover extends Component<Props, State> {
         `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
+      const returnFocus = this.state.isOpenStable
+        ? { preventScroll: true }
+        : false;
+
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
-            disabled={!ownFocus}>
+            onClickOutside={this.onClickOutside}
+            onEscapeKey={this.closePopover}
+            disabled={
+              !ownFocus || !this.state.isOpenStable || this.state.isClosing
+            }>
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
@@ -741,21 +759,32 @@ export class EuiPopover extends Component<Props, State> {
       );
     }
 
-    return (
-      <EuiOutsideClickDetector
-        isDisabled={!isOpen}
-        onOutsideClick={closePopover}>
-        <div
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          ref={popoverRef}
-          {...rest}>
+    // react-focus-on and relataed do not register outside click detection
+    // when disabled, so we still need to conditionally check for that ourselves
+    if (ownFocus) {
+      return (
+        <div className={classes} ref={popoverRef} {...rest}>
           <div className={anchorClasses} ref={this.buttonRef}>
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
         </div>
-      </EuiOutsideClickDetector>
-    );
+      );
+    } else {
+      return (
+        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
+          <div
+            className={classes}
+            ref={popoverRef}
+            onKeyDown={this.onKeyDown}
+            {...rest}>
+            <div className={anchorClasses} ref={this.buttonRef}>
+              {button instanceof HTMLElement ? null : button}
+            </div>
+            {panel}
+          </div>
+        </EuiOutsideClickDetector>
+      );
+    }
   }
 }

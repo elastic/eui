@@ -23,6 +23,7 @@
   }
 
   .euiImage__button {
+    position: relative;
     cursor: pointer;
 
     // transition the shadow
@@ -35,6 +36,10 @@
     &:hover .euiImage__icon {
       visibility: visible;
       fill-opacity: 1;
+    }
+
+    &--fullWidth {
+      width: 100%;
     }
   }
 
@@ -74,6 +79,13 @@
 
   &.euiImage--fullWidth {
     width: 100%;
+  }
+
+  &.euiImage--original {
+    .euiImage__img {
+      width: auto;
+      max-width: 100%;
+    }
   }
 
   &.euiImage--floatLeft {
@@ -150,12 +162,6 @@
     }
   }
 
-  &__icon {
-    position: absolute;
-    right: $euiSize;
-    top: $euiSize;
-  }
-
   &__img {
     max-height: 80vh;
     max-width: 80vw;
@@ -163,6 +169,13 @@
     cursor: pointer;
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
+}
+
+.euiImage-isFullScreenCloseIcon {
+  position: absolute;
+  right: $euiSize;
+  top: $euiSize;
+  pointer-events: none;
 }
 
 @keyframes euiImageFullScreen {
