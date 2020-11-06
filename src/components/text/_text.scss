@@ -112,15 +112,15 @@
   a:not([class]) {
     color: $euiLinkColor;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: darken($euiLinkColor, 10%);
       text-decoration: underline;
+      background-color: transparentize($euiLinkColor, .9);
     }
 
-    &:focus {
-      text-decoration: underline;
-      outline: solid 3px transparentize($euiLinkColor, .9);
-      background-color: transparentize($euiLinkColor, .9);
+    &:focus-visible {
+      @include euiFocusRing;
     }
   }
 

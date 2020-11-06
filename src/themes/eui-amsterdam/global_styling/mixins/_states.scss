@@ -8,8 +8,13 @@
   // }
 
   @if ($fauxOutline == 'true') {
+    outline: none;
     // Keep the animation so that it doesn't show automatically on quick clicks
-    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+    @if ($offset == 'inner') {
+      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateInset;
+    } @else {
+      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+    }
   } @else if ($fauxOutline == 'false') {
     outline: auto;
     outline-color: $euiFocusRingColor;

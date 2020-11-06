@@ -26,8 +26,7 @@
     @include euiFocusRing;
   }
 
-  &,
-  &:focus {
+  &:enabled:focus:focus-visible {
     // Override default `EuiButtonEmpty` :focus background to ensure better contrast
     background: $euiColorEmptyShade;
   }

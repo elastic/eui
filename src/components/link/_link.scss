@@ -26,13 +26,15 @@ $textColors: (
     &.euiLink--#{$name} {
       color: $color;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: darken($color, 10%);
+        text-decoration: underline;
+        background-color: transparentize($color, .9);
       }
 
-      &:focus {
-        outline: solid 3px transparentize($color, .9);
-        background-color: transparentize($color, .9);
+      &:focus-visible {
+        @include euiFocusRing;
       }
     }
   }
