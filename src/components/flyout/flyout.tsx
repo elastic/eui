@@ -174,7 +174,9 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
       {optionalOverlay}
       {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
         to the originating button */}
-      <EuiFocusTrap clickOutsideDisables={false}>{flyoutContent}</EuiFocusTrap>
+      <EuiFocusTrap clickOutsideDisables={!ownFocus}>
+        {flyoutContent}
+      </EuiFocusTrap>
     </Fragment>
   );
 };
