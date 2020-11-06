@@ -91,6 +91,7 @@ export interface EuiDataGridCellProps {
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+  setRowHeight?: (height: number) => void;
 }
 
 interface EuiDataGridCellState {
@@ -128,7 +129,8 @@ export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
-  cellRef = createRef<HTMLDivElement>();
+  cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
+  observer!: ResizeObserver;
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
@@ -139,6 +141,26 @@ export class EuiDataGridCell extends Component<
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
+
+  setCellRef = (ref: HTMLDivElement | null) => {
+    this.cellRef.current = ref;
+
+    // watch the first cell for size changes and use that to re-compute row heights
+    if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
+      if (ref) {
+        this.observer = new window.ResizeObserver(() => {
+          const rowHeight = this.cellRef.current!.getBoundingClientRect()
+            .height;
+          if (this.props.setRowHeight) {
+            this.props.setRowHeight(rowHeight);
+          }
+        });
+        this.observer.observe(ref);
+      } else {
+        this.observer.disconnect();
+      }
+    }
+  };
 
   static contextType = DataGridFocusContext;
 
@@ -489,7 +511,7 @@ export class EuiDataGridCell extends Component<
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
-        ref={this.cellRef}
+        ref={this.setCellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
