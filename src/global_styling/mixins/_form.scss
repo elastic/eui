@@ -327,7 +327,7 @@
 }
 
 @mixin euiCustomControlFocused {
-  @include euiFocusRing('small', true, true); // Second param is for Amsterdam only
+  @include euiFocusRing('small', 'false', 'true'); // Second param is for Amsterdam only
   border-color: $euiColorPrimary;
 }
 
