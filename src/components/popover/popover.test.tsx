@@ -204,11 +204,10 @@ describe('EuiPopover', () => {
     });
 
     describe('ownFocus', () => {
-      test('defaults to false', () => {
+      test('defaults to true', () => {
         const component = mount(
           <div>
             <EuiPopover
-              ownFocus={false}
               id={getId()}
               isOpen
               button={<button />}
