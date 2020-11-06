@@ -23,10 +23,10 @@ import { EuiSuperSelect } from '../../form';
 
 import { CommonProps } from '../../common';
 
-import { getLinearGradient, getFixedLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
+import { EuiColorPaletteDisplay } from '../color_palette_display';
 
 export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
@@ -42,8 +42,7 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
    */
   type: 'text';
   /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette?: string[] | ColorStop[];
 }
@@ -62,9 +61,9 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
    */
   type: 'fixed';
   /**
-   * Array of color `strings`.
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
-  palette: string[];
+  palette: string[] | ColorStop[];
 }
 
 export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
@@ -81,8 +80,7 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
    */
   type: 'gradient';
   /**
-   * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
 }
@@ -125,21 +123,17 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const getPalette = (
-    item:
-      | EuiColorPalettePickerPaletteFixedProps
-      | EuiColorPalettePickerPaletteGradientProps
-  ) => {
-    const background =
-      item.type === 'fixed'
-        ? getFixedLinearGradient(item.palette)
-        : getLinearGradient(item.palette);
-
-    return (
-      <div
-        className="euiColorPalettePicker__itemGradient"
-        style={{ background }}
-      />
+  const getPalette = ({
+    type,
+    palette,
+  }:
+    | EuiColorPalettePickerPaletteFixedProps
+    | EuiColorPalettePickerPaletteGradientProps) => {
+    // Working around ExclusiveUnion
+    return type === 'gradient' ? (
+      <EuiColorPaletteDisplay type={type} palette={palette} />
+    ) : (
+      <EuiColorPaletteDisplay type={type} palette={palette} />
     );
   };
 
