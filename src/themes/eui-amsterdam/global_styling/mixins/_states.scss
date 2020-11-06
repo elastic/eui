@@ -2,15 +2,15 @@
 // However, some components need to be forced to have the same behavior
 // By default the outline has a `0` offset
 
-@mixin euiFocusRing($size: null, $offset: 0, $fauxOutline: false) {
+@mixin euiFocusRing($size: null, $offset: 0, $fauxOutline: null) {
   // @if ($size) {
   //   @warn 'The $size variable of euiFocusRing() will be depricated in a future version of EUI.';
   // }
 
-  @if ($fauxOutline) {
+  @if ($fauxOutline == 'true') {
     // Keep the animation so that it doesn't show automatically on quick clicks
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
-  } @else {
+  } @else if ($fauxOutline == 'false') {
     outline: auto;
     outline-color: $euiFocusRingColor;
 

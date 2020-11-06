@@ -5,15 +5,15 @@
 
   font-weight: $euiFontWeightMedium;
   text-decoration: none;
-  transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
-
-  // sass-lint:disable mixins-before-declarations
-  // focus states should come after all default styles
-  @include euiButtonFocus;
+  transition: background-color $euiAnimSpeedNormal ease-in-out, border-color $euiAnimSpeedNormal ease-in-out;
 
   &:hover:not([class*='isDisabled']),
   &:focus {
     text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline-offset: -1px;
   }
 }
 

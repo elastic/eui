@@ -19,7 +19,7 @@
 .euiButton--small {
   // Use a moderately smaller radius on small buttons
   // so that they don't appear completely rounded
-  border-radius: $euiBorderRadius * .667;
+  border-radius: $euiBorderRadius * (2 / 3);
 }
 
 // Change the hollow (bordered) buttons to have a transparent background
@@ -32,6 +32,12 @@
       // Ghost is unique and ALWAYS sits against a dark background.
       $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
+    } @else {
+      &.euiButton--fill:focus-visible {
+        border-color: transparent;
+        outline-offset: -3px;
+        outline-color: $color;
+      }
     }
 
     &.euiButton--fill:not([class*='isDisabled']) {

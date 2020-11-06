@@ -70,21 +70,18 @@ body {
 }
 
 *:focus {
-  outline-color: $euiFocusRingColor;
-}
+  outline-color: currentColor;
 
-*:focus:not(:focus-visible) {
-  outline: none;
+  &:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 a {
   text-decoration: none;
   color: $euiColorPrimary;
 
-  &:hover {
-    text-decoration: none;
-  }
-
+  &:hover,
   &:focus {
     text-decoration: none;
   }
