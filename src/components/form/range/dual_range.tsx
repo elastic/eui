@@ -127,7 +127,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
     rangeWidth: undefined,
-    isVisible: true,
+    isVisible: true, // used to trigger a rerender if initial element width is 0
   };
 
   preventPopoverClose = false;
