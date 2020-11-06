@@ -104,7 +104,7 @@
     cursor: default !important; // pointer cursor on some form labels but not others is confusing
 
     // If the next sibling is not the input, pull it closer to the text to reduce space
-    + *:not(.euiFormControlLayout__childrenWrapper) {
+    + *:not(.euiFormControlLayout__childrenWrapper):not(input) {
       margin-left: -$euiFormControlPadding;
     }
   }
