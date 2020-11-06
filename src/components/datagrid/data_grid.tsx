@@ -545,27 +545,35 @@ const useFocus = (
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const setFocusedCell = useCallback(
-    (focusedCell: EuiDataGridFocusedCell) => {
-      _setFocusedCell((previousCell) => {
-        // verify that the cell has changed
-        if (
-          previousCell != null &&
-          previousCell[0] === focusedCell[0] &&
-          previousCell[1] === focusedCell[1]
-        ) {
-          return previousCell;
-        }
+  const setFocusedCell = useCallback((focusedCell: EuiDataGridFocusedCell) => {
+    _setFocusedCell((previousCell) => {
+      // verify that the cell has changed
+      if (
+        previousCell != null &&
+        previousCell[0] === focusedCell[0] &&
+        previousCell[1] === focusedCell[1]
+      ) {
+        return previousCell;
+      }
+      return focusedCell;
+    });
+  }, []);
 
-        if (previousCell) {
-          notifyCellOfFocusState(cellsUpdateFocus.current, previousCell, false);
-        }
-        notifyCellOfFocusState(cellsUpdateFocus.current, focusedCell, true);
-        return focusedCell;
-      });
-    },
-    [cellsUpdateFocus]
-  );
+  const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
+  useEffect(() => {
+    if (previousCell.current) {
+      notifyCellOfFocusState(
+        cellsUpdateFocus.current,
+        previousCell.current,
+        false
+      );
+    }
+    previousCell.current = focusedCell;
+
+    if (focusedCell) {
+      notifyCellOfFocusState(cellsUpdateFocus.current, focusedCell, true);
+    }
+  }, [cellsUpdateFocus, focusedCell]);
 
   const hasHadFocus = useMemo(() => focusedCell != null, [focusedCell]);
 
