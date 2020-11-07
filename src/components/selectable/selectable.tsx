@@ -400,10 +400,10 @@ export class EuiSelectable<T = {}> extends Component<
       'aria-label': searchAriaLabel,
       'aria-describedby': searchAriaDescribedby,
       onChange: propsOnChange,
+      onSearch,
       ...cleanedSearchProps
-    } =
-      searchProps ||
-      (unknownAccessibleName as Partial<EuiSelectableSearchProps<T>>);
+    } = (searchProps || unknownAccessibleName) as typeof searchProps &
+      typeof unknownAccessibleName;
     const {
       'aria-label': listAriaLabel,
       'aria-describedby': listAriaDescribedby,
