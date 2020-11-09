@@ -32,6 +32,8 @@ import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
 import { htmlIdGenerator } from '../../services';
 import { EuiButtonIcon } from '../button';
+import { EuiPanel, EuiPanelProps } from '../panel';
+import { panelPaddingValues } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
   EuiResizablePanelController,
@@ -39,8 +41,6 @@ import {
   PanelModeType,
   PanelPosition,
 } from './types';
-import { EuiPanel } from '../panel';
-import { EuiPanelProps } from '../panel/panel';
 
 interface ToggleOptions {
   'data-test-subj'?: string;
@@ -71,8 +71,10 @@ export interface EuiResizablePanelProps
     CommonProps,
     Partial<EuiResizablePanelControls> {
   /**
-   * Specify minimum panel size in pixels or percents,
+   * Specify a desired minimum panel size in pixels or percents,
    * for example "300px" or "30%"
+   * The actual minimum size will be calculated,
+   * using the larger of this prop and the panelProps.paddingSize
    */
   minSize?: string;
   /**
@@ -106,13 +108,18 @@ export interface EuiResizablePanelProps
    */
   style?: CSSProperties;
   /*
-   * TODO
+   * For use with collapsible panels.
+   * Specify either `'collapsible'` or `'main'`.
+   * `'collapsible'` also accepts an array where
+   * the second item is attributes for the toggle button:
+   * `['collapsible', {'data-test-subj'?: string, className?: string;}]
    */
   mode?: ModeOptions;
   /**
    * Update the panel using EuiPanel options like `paddingSize` and `color`
    */
   panelProps?: EuiPanelProps;
+  collapsedContent?: ReactNode;
 }
 
 const COLLAPSED_ICON = 'menuRight';
@@ -137,13 +144,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   isHorizontal,
   size,
   initialSize,
-  minSize = '24px', // This should probably be calculated based on panel padding size
+  minSize = '0px', // Actual minSize is calculated in `./helpers.ts`
   scrollable = true,
   style = {},
   mode,
   registration,
   onToggleCollapsed,
   panelProps,
+  collapsedContent,
   ...rest
 }) => {
   const {
@@ -199,7 +207,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return direction;
   }, [isCollapsible, position, panels]);
 
-  // const focusedResizer = useMemo(() => resizerHasFocus, [resizerHasFocus]);
+  const padding = useMemo(() => {
+    const paddingSize = panelProps?.paddingSize ? panelProps.paddingSize : 'm'; // default from EuiPanel is `'m'`
+    return `${panelPaddingValues[paddingSize] * 2}px`;
+  }, [panelProps]);
 
   const classes = classNames(
     {
@@ -235,8 +246,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const styles = {
     ...style,
     ...dimensions,
-    minWidth: isHorizontal ? minSize : 0,
-    minHeight: isHorizontal ? 0 : minSize,
   };
 
   useEffect(() => {
@@ -260,7 +269,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           ? divRef.current!.getBoundingClientRect().width
           : divRef.current!.getBoundingClientRect().height;
       },
-      minSize,
+      minSize: [minSize, padding],
       mode: modeType,
       isCollapsed: false,
       position: getPosition(divRef.current!),
@@ -268,7 +277,15 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return () => {
       registration.deregister(id);
     };
-  }, [initialSize, isHorizontal, minSize, size, registration, modeType]);
+  }, [
+    initialSize,
+    isHorizontal,
+    minSize,
+    size,
+    registration,
+    modeType,
+    padding,
+  ]);
 
   const onClickCollapse = (options: ActionToggleOptions) => {
     onToggleCollapsed && onToggleCollapsed(panelId.current, options);
@@ -338,6 +355,16 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
         className={panelClasses}>
         {children}
       </EuiPanel>
+      {isCollapsed && (
+        <EuiPanel
+          hasShadow={false}
+          borderRadius="none"
+          color="transparent"
+          className="euiResizablePanel__collapsedContent"
+          paddingSize={panelProps?.paddingSize}>
+          {collapsedContent}
+        </EuiPanel>
+      )}
       {hasRightToggle ? (
         <EuiButtonIcon
           {...toggleOpts}

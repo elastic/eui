@@ -3,7 +3,8 @@
   overflow-x: visible;
 }
 
-.euiResizablePanel__content {
+.euiResizablePanel__content,
+.euiResizablePanel__collapsedContent {
   @include euiScrollBar;
   height: 100%;
   overflow-y: auto;
@@ -70,6 +71,11 @@
 
   .euiResizablePanel--collapsed {
     min-width: 0 !important; // sass-lint:disable-line no-important
+
+    .euiResizablePanel__collapsedContent {
+      padding-right: 0;
+      padding-left: 0;
+    }
   }
 
   .euiResizablePanel--collapsible.euiResizablePanel--collapsed {
@@ -105,6 +111,11 @@
 
   .euiResizablePanel--collapsed {
     min-height: 0 !important; // sass-lint:disable-line no-important
+
+    .euiResizablePanel__collapsedContent {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
   .euiResizablePanel--collapsible.euiResizablePanel--collapsed {

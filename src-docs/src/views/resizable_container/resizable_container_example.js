@@ -20,7 +20,6 @@ import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
-import ResizableResizerSize from './resizable_resizer_size';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
@@ -29,7 +28,6 @@ const ResizableContainerSource = require('!!raw-loader!./resizable_container_bas
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_container_three_panels');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
-const ResizableResizerSizeSource = require('!!raw-loader!./resizable_resizer_size');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
@@ -81,7 +79,6 @@ const ResizableContainerThreePanelsHtml = renderToHtml(
 const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
-const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
 const collapsibleSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton) => (
@@ -308,34 +305,6 @@ export const ResizableContainerExample = {
         </div>
       ),
       snippet: verticalSnippet,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: ResizableResizerSizeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizableResizerSizeHtml,
-        },
-      ],
-      title: 'Resizable button spacing',
-      text: (
-        <div>
-          <p>
-            You can control the space between panels by modifying the{' '}
-            <EuiCode>size</EuiCode> prop of the{' '}
-            <strong>EuiResizableButton</strong> component. The available sizes
-            are <EuiCode>xl</EuiCode>, <EuiCode>l</EuiCode>,{' '}
-            <EuiCode>m</EuiCode>, and <EuiCode>s</EuiCode>. You should avoid
-            using different sizes within the same{' '}
-            <strong>EuiResizableContainer</strong>, as shown in the demo below.
-          </p>
-        </div>
-      ),
-      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
-      demo: <ResizableResizerSize />,
     },
     {
       source: [

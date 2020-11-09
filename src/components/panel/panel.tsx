@@ -29,6 +29,13 @@ import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 import { EuiBetaBadge } from '../badge/beta_badge';
 
+export const panelPaddingValues = {
+  none: 0,
+  s: 8,
+  m: 16,
+  l: 24,
+};
+
 const paddingSizeToClassNameMap = {
   none: null,
   s: 'euiPanel--paddingSmall',

@@ -29,7 +29,7 @@ export interface EuiResizablePanelController {
   id: string;
   size: number;
   getSizePx: () => number;
-  minSize: string;
+  minSize: string[];
   mode?: PanelModeType;
   isCollapsed: boolean;
   prevSize: number;
@@ -59,7 +59,7 @@ export interface EuiResizableContainerState {
   currentResizerPos: number;
   prevPanelId: string | null;
   nextPanelId: string | null;
-  resizersSize: number;
+  containerSize: number;
   isHorizontal?: boolean;
   panels: EuiResizableContainerRegistry['panels'];
   resizers: EuiResizableContainerRegistry['resizers'];
@@ -71,6 +71,10 @@ export interface ActionToggleOptions {
 
 interface ActionReset {
   type: 'EUI_RESIZABLE_RESET';
+}
+
+interface ActionInit {
+  type: 'EUI_RESIZABLE_CONTAINER_INIT';
 }
 
 export interface ActionDragStart {
@@ -149,6 +153,7 @@ interface ActionOnChange {
 
 export type EuiResizableContainerAction =
   | ActionReset
+  | ActionInit
   | ActionRegisterPanel
   | ActionDeregisterPanel
   | ActionRegisterResizer
@@ -164,6 +169,7 @@ export type EuiResizableContainerAction =
 
 export interface EuiResizableContainerActions {
   reset: () => void;
+  initContainer: () => void;
   registerPanel: (panel: EuiResizablePanelController) => void;
   deregisterPanel: (panelId: EuiResizablePanelController['id']) => void;
   registerResizer: (resizer: EuiResizableButtonController) => void;

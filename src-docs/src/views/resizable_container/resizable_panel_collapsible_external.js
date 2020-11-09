@@ -5,6 +5,8 @@ import {
   EuiTitle,
   EuiSpacer,
   EuiButtonGroup,
+  EuiButtonIcon,
+  EuiFlexGroup,
 } from '../../../../src/components';
 
 const toggleButtons = [
@@ -77,11 +79,30 @@ export default () => {
 
               <EuiResizableButton />
 
-              <EuiResizablePanel id="panel3" initialSize={35} minSize="10%">
+              <EuiResizablePanel
+                id="panel3"
+                initialSize={35}
+                minSize="10%"
+                collapsedContent={
+                  <EuiButtonIcon
+                    color="text"
+                    aria-label={'Toggle panel 3'}
+                    iconType="menuLeft"
+                    onClick={() => onChange(3)}
+                  />
+                }>
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
-                  <EuiTitle>
-                    <p>Panel 3</p>
-                  </EuiTitle>
+                  <EuiFlexGroup justifyContent="spaceBetween">
+                    <EuiTitle>
+                      <p>Panel 3</p>
+                    </EuiTitle>
+                    <EuiButtonIcon
+                      color="text"
+                      aria-label={'Toggle panel 3'}
+                      iconType="menuRight"
+                      onClick={() => onChange(3)}
+                    />
+                  </EuiFlexGroup>
                 </EuiPanel>
               </EuiResizablePanel>
             </>

@@ -65,20 +65,21 @@ const sizesOnly = (panelObject: EuiResizableContainerRegistry['panels']) => {
   );
 };
 
-const getPanelMinSize = (
-  panelMinSize: string,
-  containerSize: number,
-  resizerSize: number
-) => {
+const _getPanelMinSize = (panelMinSize: string, containerSize: number) => {
   let panelMinSizePercent = 0;
   const panelMinSizeInt = parseInt(panelMinSize);
   if (panelMinSize.indexOf('px') > -1) {
     panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
   } else if (panelMinSize.indexOf('%') > -1) {
-    panelMinSizePercent =
-      panelMinSizeInt + (resizerSize / containerSize) * panelMinSizeInt;
+    panelMinSizePercent = panelMinSizeInt + containerSize * panelMinSizeInt;
   }
   return panelMinSizePercent;
+};
+
+const getPanelMinSize = (panelMinSize: string[], containerSize: number) => {
+  const paddingMin = _getPanelMinSize(panelMinSize[1], containerSize);
+  const configMin = _getPanelMinSize(panelMinSize[0], containerSize);
+  return configMin > configMin ? configMin : paddingMin;
 };
 
 export const getPosition = (
@@ -129,18 +130,6 @@ export const useContainerCallbacks = ({
         ? containerRef.current!.getBoundingClientRect().width
         : containerRef.current!.getBoundingClientRect().height;
     };
-    const getResizerButtonsSize = () => {
-      // get sum of all of resizer button sizes to proper calculate panels ratio
-      // const allResizers = getAllResizers();
-      return Object.keys(state.resizers).reduce(
-        (size, resizer) =>
-          size +
-          (state.isHorizontal
-            ? state.resizers[resizer].ref.offsetWidth
-            : state.resizers[resizer].ref.offsetHeight),
-        0
-      );
-    };
 
     const runSideEffect = async (
       panels: EuiResizableContainerState['panels']
@@ -156,6 +145,12 @@ export const useContainerCallbacks = ({
     };
 
     switch (action.type) {
+      case 'EUI_RESIZABLE_CONTAINER_INIT': {
+        return {
+          ...state,
+          containerSize: getContainerSize(),
+        };
+      }
       case 'EUI_RESIZABLE_PANEL_REGISTER': {
         const { panel } = action.payload;
         return {
@@ -218,7 +213,6 @@ export const useContainerCallbacks = ({
           currentResizerPos: position,
           prevPanelId,
           nextPanelId,
-          resizersSize: getResizerButtonsSize(),
         };
       }
       case 'EUI_RESIZABLE_DRAG_MOVE': {
@@ -226,24 +220,21 @@ export const useContainerCallbacks = ({
         const prevPanel = state.panels[prevPanelId];
         const nextPanel = state.panels[nextPanelId];
         const delta = position - state.currentResizerPos;
-        const containerSize = getContainerSize() - state.resizersSize;
         const prevPanelMin = getPanelMinSize(
           prevPanel.minSize,
-          containerSize,
-          state.resizersSize
+          state.containerSize
         );
         const nextPanelMin = getPanelMinSize(
           nextPanel.minSize,
-          containerSize,
-          state.resizersSize
+          state.containerSize
         );
         const prevPanelSize = pxToPercent(
           prevPanel.getSizePx() + delta,
-          containerSize
+          state.containerSize
         );
         const nextPanelSize = pxToPercent(
           nextPanel.getSizePx() - delta,
-          containerSize
+          state.containerSize
         );
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           return withSideEffect({
@@ -269,16 +260,14 @@ export const useContainerCallbacks = ({
         const { prevPanelId, nextPanelId, direction } = action.payload;
         const prevPanel = state.panels[prevPanelId];
         const nextPanel = state.panels[nextPanelId];
-        const resizersSize = getResizerButtonsSize();
-        const containerSize = getContainerSize() - resizersSize;
 
         const prevPanelSize = pxToPercent(
           prevPanel.getSizePx() - (direction === 'backward' ? 10 : -10),
-          containerSize
+          state.containerSize
         );
         const nextPanelSize = pxToPercent(
           nextPanel.getSizePx() - (direction === 'forward' ? 10 : -10),
-          containerSize
+          state.containerSize
         );
 
         return withSideEffect({
@@ -300,7 +289,6 @@ export const useContainerCallbacks = ({
 
       case 'EUI_RESIZABLE_TOGGLE': {
         const { options, panelId: currentPanelId } = action.payload;
-        const containerSize = getContainerSize() - state.resizersSize;
         const currentPanel = state.panels[currentPanelId];
         const shouldCollapse = !currentPanel.isCollapsed;
         const panelElement = document.getElementById(currentPanelId);
@@ -366,7 +354,12 @@ export const useContainerCallbacks = ({
           siblings = Object.keys(otherPanels).length;
         }
 
-        let newPanelSize = shouldCollapse ? 0 : currentPanel.prevSize;
+        let newPanelSize = shouldCollapse
+          ? pxToPercent(
+              24, // size of the toggle button
+              state.containerSize
+            )
+          : currentPanel.prevSize;
 
         const delta = shouldCollapse
           ? (currentPanel.size - newPanelSize) / siblings
@@ -395,7 +388,7 @@ export const useContainerCallbacks = ({
           Object.values(otherPanels).some(
             (panel) =>
               panel.size + delta <
-              getPanelMinSize(panel.minSize, containerSize, state.resizersSize)
+              getPanelMinSize(panel.minSize, state.containerSize)
           )
         ) {
           // A toggling sequence has occurred where a to-be-opened panel is
@@ -524,6 +517,7 @@ export const useContainerCallbacks = ({
           ...initialState,
           panels: state.panels,
           resizers: state.resizers,
+          containerSize: state.containerSize,
         };
       }
       case 'EUI_RESIZABLE_ONCHANGE': {
@@ -554,6 +548,10 @@ export const useContainerCallbacks = ({
   const actions: EuiResizableContainerActions = useMemo(() => {
     return {
       reset: () => dispatch({ type: 'EUI_RESIZABLE_RESET' }),
+      initContainer: () =>
+        dispatch({
+          type: 'EUI_RESIZABLE_CONTAINER_INIT',
+        }),
       registerPanel: (panel: EuiResizablePanelController) =>
         dispatch({
           type: 'EUI_RESIZABLE_PANEL_REGISTER',
