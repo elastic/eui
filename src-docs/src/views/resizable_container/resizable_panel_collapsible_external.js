@@ -83,7 +83,7 @@ export default () => {
                 id="panel3"
                 initialSize={35}
                 minSize="10%"
-                collapsedContent={
+                collapsedButton={
                   <EuiButtonIcon
                     color="text"
                     aria-label={'Toggle panel 3'}

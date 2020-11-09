@@ -33,6 +33,7 @@
   z-index: $euiZLevel1 + 1;
   // Remove animations from EuiButtonIcon because of the custom transforms
   animation: none !important; // sass-lint:disable-line no-important
+  // Remove transitions from EuiButtonIcon because of the custom transforms
   transition: none !important; // sass-lint:disable-line no-important
 
   &,

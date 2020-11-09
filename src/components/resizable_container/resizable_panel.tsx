@@ -119,7 +119,11 @@ export interface EuiResizablePanelProps
    * Update the panel using EuiPanel options like `paddingSize` and `color`
    */
   panelProps?: EuiPanelProps;
-  collapsedContent?: ReactNode;
+  /**
+   * For use with externally controlled collapsible panels where
+   * a button is required to be visible when the panel is collapsesd
+   */
+  collapsedButton?: ReactNode;
 }
 
 const COLLAPSED_ICON = 'menuRight';
@@ -151,7 +155,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   registration,
   onToggleCollapsed,
   panelProps,
-  collapsedContent,
+  collapsedButton,
   ...rest
 }) => {
   const {
@@ -355,14 +359,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
         className={panelClasses}>
         {children}
       </EuiPanel>
-      {isCollapsed && (
+      {isCollapsed && collapsedButton && (
         <EuiPanel
           hasShadow={false}
           borderRadius="none"
           color="transparent"
           className="euiResizablePanel__collapsedContent"
           paddingSize={panelProps?.paddingSize}>
-          {collapsedContent}
+          {collapsedButton}
         </EuiPanel>
       )}
       {hasRightToggle ? (
