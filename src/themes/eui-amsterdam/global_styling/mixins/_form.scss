@@ -32,3 +32,15 @@
   transition: background-color $euiAnimSpeedFast ease-in,
               border-color $euiAnimSpeedFast ease-in;
 }
+
+// Adjusts form controls border radius
+@mixin euiFormControlSideBorderRadius($borderRadius, $side, $internal: false) {
+  @if $internal == true {
+    $borderRadius: $borderRadius - 1;
+  }
+  @if $side == 'left' {
+    border-radius: $borderRadius 0 0 $borderRadius;
+  } @else if $side == 'right' {
+    border-radius: 0 $borderRadius $borderRadius 0;
+  }
+}

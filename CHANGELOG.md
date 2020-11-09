@@ -1,16 +1,27 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865))
 - Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
+- Added `role="alert"` and `aria-live="assertive"` to `EuiForm`'s `EuiCallOut` for the errors ([#4238](https://github.com/elastic/eui/pull/4238))
 
 **Bug fixes**
 
 - Fixed focus trap + `EuiPopover` bug which prevented the anchor from receiving focus when the popover closes ([#4071](https://github.com/elastic/eui/pull/4071))
 - Fixed focus trap error & performance impact when one focus trap is deactivated and another becomes enabled ([#4071](https://github.com/elastic/eui/pull/4071))
 - Fixed a condition in `EuiInMemoryTable` to avoid mistaken assignment of `sortName` ([#4138](https://github.com/elastic/eui/pull/4138))
+- Fixed bug in small `EuiImage`'s not respecting the optional sizes when `allowFullScreen` is set to true ([#4207](https://github.com/elastic/eui/pull/4207))
+- Fixed incorrect initial rendering of `EuiDualRange` thumbs when element width is 0 ([#4230](https://github.com/elastic/eui/pull/4230))
+- Fixed bug in `EuiSelectable` to call `searchProps.onChange` and `searchProps.onSearch` calls in `EuiSelectable` ([#4153](https://github.com/elastic/eui/pull/4153))
+
+**Theme: Amsterdam**
+
+- Fixed base `line-heights` for within `euiFontSize[size]()` SASS mixins ([#4229](https://github.com/elastic/eui/pull/4229))
 
 ## [`30.2.0`](https://github.com/elastic/eui/tree/v30.2.0)
 
 - Added `labelWidth` and `descriptionDisplay` props to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
+- Added screen reader notification if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
+- Set `external` prop to true if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
 - Added `float` and `margin` props to `EuiImage` ([#4209](https://github.com/elastic/eui/pull/4209))
 - Added `color` and `borderRadius` props to `EuiPanel` ([#4194](https://github.com/elastic/eui/pull/4194))
 - Updated the use case for the `EuiPanel` prop `hasShadow` ([#4194](https://github.com/elastic/eui/pull/4194))
@@ -21,11 +32,13 @@
 - Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 - Fixed copy in `EuiDataGrid`'s header menu's sort actions ([#4199](https://github.com/elastic/eui/pull/4199))
 
+**Theme: Amsterdam**
+
+- Fixed `border-radius` in `EuiFormControlLayout` ([#4196](https://github.com/elastic/eui/pull/4196))
+
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 
 - Added more exports for `EuiInMemoryTable` types ([#4179](https://github.com/elastic/eui/pull/4179))
-- Added screen reader notification if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
-- Set `external` prop to true if `EuiLink` opens in a new window ([#4172](https://github.com/elastic/eui/pull/4172))
 
 **Bug fixes**
 
