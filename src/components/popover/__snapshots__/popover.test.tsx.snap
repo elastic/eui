@@ -445,7 +445,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
 </div>
 `;
 
-exports[`EuiPopover props ownFocus renders true 1`] = `
+exports[`EuiPopover props ownFocus renders false 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
@@ -470,25 +470,16 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
-        aria-live="off"
+        aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        data-autofocus="true"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000;"
-        tabindex="0"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
-        <p
-          class="euiScreenReaderOnly"
-          id="htmlId"
-        >
-          You are in a dialog. To close this dialog, hit escape.
-        </p>
         <div />
       </div>
     </div>

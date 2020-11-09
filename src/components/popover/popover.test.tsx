@@ -219,10 +219,11 @@ describe('EuiPopover', () => {
         expect(component.render()).toMatchSnapshot();
       });
 
-      test('renders true', () => {
+      test('renders false', () => {
         const component = mount(
           <div>
             <EuiPopover
+              ownFocus={false}
               id={getId()}
               isOpen
               button={<button />}
