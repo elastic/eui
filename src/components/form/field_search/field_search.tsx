@@ -244,8 +244,8 @@ export class EuiFieldSearch extends Component<
       {
         'euiFieldSearch--fullWidth': fullWidth,
         'euiFieldSearch--compressed': compressed,
+        'euiFieldSearch--inGroup': prepend || append,
         'euiFieldSearch-isLoading': isLoading,
-        'euiFieldText--inGroup': prepend || append,
         'euiFieldSearch-isClearable': isClearable && value,
       },
       className
