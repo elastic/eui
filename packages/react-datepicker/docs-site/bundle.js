@@ -26747,7 +26747,12 @@
 	        // transforming highlighted days (perhaps nested array)
 	        // to flat Map for faster access in day.jsx
 	        highlightDates: (0, _date_utils.getHightLightDaysMap)(_this.props.highlightDates),
-	        focused: false
+	        focused: false,
+	        // We attempt to handle focus trap activation manually,
+	        // but that is not possible with custom inputs like buttons.
+	        // Err on the side of a11y and trap focus when we can't be certain
+	        // that the trigger comoponent will work with our keyDown logic.
+	        enableFocusTrap: _this.props.customInput && _this.props.customInput.type !== 'input' ? true : false
 	      };
 	    };
 
@@ -26778,10 +26783,15 @@
 	    _this.setOpen = function (open) {
 	      var skipSetBlur = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-	      _this.setState({
-	        open: open,
-	        preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
-	        lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE
+	      _this.setState(function (_ref) {
+	        var enableFocusTrap = _ref.enableFocusTrap;
+
+	        return {
+	          open: open,
+	          preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
+	          lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE,
+	          enableFocusTrap: !open ? false : enableFocusTrap
+	        };
 	      }, function () {
 	        if (!open) {
 	          _this.setState(function (prev) {
@@ -26994,7 +27004,18 @@
 	      if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
 	        if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
 	          event.preventDefault();
-	          _this.onInputClick();
+	          _this.setState({ enableFocusTrap: true }, function () {
+	            _this.onInputClick();
+	          });
+	        }
+	        return;
+	      }
+	      if (_this.state.open && !_this.state.enableFocusTrap) {
+	        if (eventKey === "ArrowDown" || eventKey === "Tab") {
+	          event.preventDefault();
+	          _this.setState({ enableFocusTrap: true }, function () {
+	            _this.onInputClick();
+	          });
 	        }
 	        return;
 	      }
@@ -27149,7 +27170,8 @@
 	          popperProps: _this.props.popperProps,
 	          renderDayContents: _this.props.renderDayContents,
 	          updateSelection: _this.updateSelection,
-	          accessibleMode: _this.props.accessibleMode
+	          accessibleMode: _this.props.accessibleMode,
+	          enableFocusTrap: _this.state.enableFocusTrap
 	        },
 	        _this.props.children
 	      );
@@ -27623,7 +27645,8 @@
 	        onDropdownFocus: function onDropdownFocus() {},
 	        monthsShown: 1,
 	        forceShowMonthNavigation: false,
-	        timeCaption: "Time"
+	        timeCaption: "Time",
+	        enableFocusTrap: true
 	      };
 	    }
 	  }]);
@@ -28149,6 +28172,7 @@
 	        _react2.default.createElement(
 	          _focusTrapReact2.default,
 	          {
+	            active: this.props.enableFocusTrap,
 	            tag: FocusTrapContainer,
 	            focusTrapOptions: {
 	              onDeactivate: function onDeactivate() {
@@ -28254,7 +28278,8 @@
 	  renderCustomHeader: _propTypes2.default.func,
 	  renderDayContents: _propTypes2.default.func,
 	  updateSelection: _propTypes2.default.func.isRequired,
-	  accessibleMode: _propTypes2.default.bool
+	  accessibleMode: _propTypes2.default.bool,
+	  enableFocusTrap: _propTypes2.default.bool
 	};
 	exports.default = Calendar;
 

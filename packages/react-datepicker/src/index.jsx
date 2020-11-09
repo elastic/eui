@@ -262,7 +262,12 @@ export default class DatePicker extends React.Component {
       // transforming highlighted days (perhaps nested array)
       // to flat Map for faster access in day.jsx
       highlightDates: getHightLightDaysMap(this.props.highlightDates),
-      focused: false
+      focused: false,
+      // We attempt to handle focus trap activation manually,
+      // but that is not possible with custom inputs like buttons.
+      // Err on the side of a11y and trap focus when we can't be certain
+      // that the trigger comoponent will work with our keyDown logic.
+      enableFocusTrap: this.props.customInput && this.props.customInput.type !== 'input' ? true : false,
     };
   };
 
@@ -291,15 +296,17 @@ export default class DatePicker extends React.Component {
   };
 
   setOpen = (open, skipSetBlur = false) => {
-    this.setState(
-      {
-        open: open,
-        preSelection:
-          open && this.state.open
-            ? this.state.preSelection
-            : this.calcInitialState().preSelection,
-        lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE
-      },
+    this.setState(({enableFocusTrap}) => {
+      return {
+          open: open,
+          preSelection:
+            open && this.state.open
+              ? this.state.preSelection
+              : this.calcInitialState().preSelection,
+          lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE,
+          enableFocusTrap: !open ? false : enableFocusTrap
+      }
+    },
       () => {
         if (!open) {
           this.setState(
@@ -528,7 +535,18 @@ export default class DatePicker extends React.Component {
     ) {
       if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
         event.preventDefault();
-        this.onInputClick();
+        this.setState({enableFocusTrap: true}, () => {
+          this.onInputClick();
+        });
+      }
+      return;
+    }
+    if(this.state.open && !this.state.enableFocusTrap) {
+      if (eventKey === "ArrowDown" || eventKey === "Tab") {
+        event.preventDefault();
+        this.setState({enableFocusTrap: true}, () => {
+          this.onInputClick();
+        });
       }
       return;
     }
@@ -686,6 +704,7 @@ export default class DatePicker extends React.Component {
         renderDayContents={this.props.renderDayContents}
         updateSelection={this.updateSelection}
         accessibleMode={this.props.accessibleMode}
+        enableFocusTrap={this.state.enableFocusTrap}
       >
         {this.props.children}
       </WrappedCalendar>

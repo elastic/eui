@@ -121,7 +121,8 @@ export default class Calendar extends React.Component {
     renderCustomHeader: PropTypes.func,
     renderDayContents: PropTypes.func,
     updateSelection: PropTypes.func.isRequired,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
+    enableFocusTrap: PropTypes.bool
   };
 
   static get defaultProps() {
@@ -131,7 +132,8 @@ export default class Calendar extends React.Component {
       forceShowMonthNavigation: false,
       timeCaption: "Time",
       previousMonthButtonLabel: "Previous Month",
-      nextMonthButtonLabel: "Next Month"
+      nextMonthButtonLabel: "Next Month",
+      enableFocusTrap: true
     };
   }
 
@@ -140,7 +142,8 @@ export default class Calendar extends React.Component {
       onDropdownFocus: () => {},
       monthsShown: 1,
       forceShowMonthNavigation: false,
-      timeCaption: "Time"
+      timeCaption: "Time",
+      enableFocusTrap: true
     };
   }
 
@@ -690,6 +693,7 @@ export default class Calendar extends React.Component {
           })}
         >
           <FocusTrap
+            active={this.props.enableFocusTrap}
             tag={FocusTrapContainer}
             focusTrapOptions={{
               onDeactivate: () => this.props.setOpen(false),

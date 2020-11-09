@@ -509,6 +509,13 @@ function delay(fn) {
 
 var focusTrap_1 = focusTrap;
 
+var focusTrap$1 = /*#__PURE__*/Object.freeze({
+  default: focusTrap_1,
+  __moduleExports: focusTrap_1
+});
+
+var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -619,7 +626,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: focusTrap_1
+  _createFocusTrap: createFocusTrap
 };
 
 var focusTrapReact = FocusTrap;
@@ -3600,7 +3607,8 @@ var Calendar = function (_React$Component) {
         onDropdownFocus: function onDropdownFocus() {},
         monthsShown: 1,
         forceShowMonthNavigation: false,
-        timeCaption: "Time"
+        timeCaption: "Time",
+        enableFocusTrap: true
       };
     }
   }]);
@@ -4126,6 +4134,7 @@ var Calendar = function (_React$Component) {
         React__default.createElement(
           focusTrapReact,
           {
+            active: this.props.enableFocusTrap,
             tag: FocusTrapContainer,
             focusTrapOptions: {
               onDeactivate: function onDeactivate() {
@@ -4231,7 +4240,8 @@ Calendar.propTypes = {
   renderCustomHeader: PropTypes.func,
   renderDayContents: PropTypes.func,
   updateSelection: PropTypes.func.isRequired,
-  accessibleMode: PropTypes.bool
+  accessibleMode: PropTypes.bool,
+  enableFocusTrap: PropTypes.bool
 };
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -4264,17 +4274,10 @@ var _aFunction = function (it) {
   return it;
 };
 
-var _aFunction$1 = /*#__PURE__*/Object.freeze({
-  default: _aFunction,
-  __moduleExports: _aFunction
-});
-
-var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
-
 // optional / simple context binding
 
 var _ctx = function (fn, that, length) {
-  aFunction(fn);
+  _aFunction(fn);
   if (that === undefined) return fn;
   switch (length) {
     case 1: return function (a) {
@@ -4540,17 +4543,31 @@ var _objectKeysInternal = function (object, names) {
   return result;
 };
 
+var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
+  default: _objectKeysInternal,
+  __moduleExports: _objectKeysInternal
+});
+
 // IE 8- don't enum bug keys
 var _enumBugKeys = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
+
+var _enumBugKeys$1 = /*#__PURE__*/Object.freeze({
+  default: _enumBugKeys,
+  __moduleExports: _enumBugKeys
+});
+
+var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
+
+var enumBugKeys = ( _enumBugKeys$1 && _enumBugKeys ) || _enumBugKeys$1;
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 var _objectKeys = Object.keys || function keys(O) {
-  return _objectKeysInternal(O, _enumBugKeys);
+  return $keys(O, enumBugKeys);
 };
 
 var f$1 = Object.getOwnPropertySymbols;
@@ -4616,7 +4633,14 @@ var assign$1 = createCommonjsModule(function (module) {
 module.exports = { "default": assign, __esModule: true };
 });
 
-unwrapExports(assign$1);
+var assign$2 = unwrapExports(assign$1);
+
+var assign$3 = /*#__PURE__*/Object.freeze({
+  default: assign$2,
+  __moduleExports: assign$1
+});
+
+var _assign = ( assign$3 && assign$2 ) || assign$3;
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4624,7 +4648,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$1);
+var _assign2 = _interopRequireDefault(_assign);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4674,6 +4698,11 @@ var _stringAt = function (TO_STRING) {
   };
 };
 
+var _stringAt$1 = /*#__PURE__*/Object.freeze({
+  default: _stringAt,
+  __moduleExports: _stringAt
+});
+
 var _library = true;
 
 var _redefine = _hide;
@@ -4703,7 +4732,7 @@ var PROTOTYPE$1 = 'prototype';
 var createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
   var iframe = _domCreate('iframe');
-  var i = _enumBugKeys.length;
+  var i = enumBugKeys.length;
   var lt = '<';
   var gt = '>';
   var iframeDocument;
@@ -4717,7 +4746,7 @@ var createDict = function () {
   iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
   iframeDocument.close();
   createDict = iframeDocument.F;
-  while (i--) delete createDict[PROTOTYPE$1][_enumBugKeys[i]];
+  while (i--) delete createDict[PROTOTYPE$1][enumBugKeys[i]];
   return createDict();
 };
 
@@ -4833,10 +4862,19 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var $at = _stringAt(true);
+var _iterDefine$1 = /*#__PURE__*/Object.freeze({
+  default: _iterDefine,
+  __moduleExports: _iterDefine
+});
+
+var require$$0 = ( _stringAt$1 && _stringAt ) || _stringAt$1;
+
+var require$$0$1 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
+
+var $at = require$$0(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-_iterDefine(String, 'String', function (iterated) {
+require$$0$1(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4854,11 +4892,18 @@ var _iterStep = function (done, value) {
   return { value: value, done: !!done };
 };
 
+var _iterStep$1 = /*#__PURE__*/Object.freeze({
+  default: _iterStep,
+  __moduleExports: _iterStep
+});
+
+var step = ( _iterStep$1 && _iterStep ) || _iterStep$1;
+
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = require$$0$1(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -4869,11 +4914,11 @@ var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   var index = this._i++;
   if (!O || index >= O.length) {
     this._t = undefined;
-    return _iterStep(1);
+    return step(1);
   }
-  if (kind == 'keys') return _iterStep(0, index);
-  if (kind == 'values') return _iterStep(0, O[index]);
-  return _iterStep(0, [index, O[index]]);
+  if (kind == 'keys') return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
+  return step(0, [index, O[index]]);
 }, 'values');
 
 var TO_STRING_TAG = _wks('toStringTag');
@@ -4996,10 +5041,10 @@ var _isArray = Array.isArray || function isArray(arg) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 
-var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
+var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
 var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return _objectKeysInternal(O, hiddenKeys);
+  return $keys(O, hiddenKeys);
 };
 
 var _objectGopn = {
@@ -5314,7 +5359,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 });
 
-unwrapExports(_typeof_1);
+var _typeof$1 = unwrapExports(_typeof_1);
+
+var _typeof$2 = /*#__PURE__*/Object.freeze({
+  default: _typeof$1,
+  __moduleExports: _typeof_1
+});
+
+var _typeof2 = ( _typeof$2 && _typeof$1 ) || _typeof$2;
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
 
@@ -5322,7 +5374,7 @@ exports.__esModule = true;
 
 
 
-var _typeof3 = _interopRequireDefault(_typeof_1);
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5363,31 +5415,17 @@ var _setProto = {
   check: check
 };
 
-var _setProto$1 = /*#__PURE__*/Object.freeze({
-  default: _setProto,
-  __moduleExports: _setProto
-});
-
-var require$$0 = ( _setProto$1 && _setProto ) || _setProto$1;
-
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: require$$0.set });
+_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf,
-  __moduleExports: setPrototypeOf
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-var require$$0$1 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
-
-var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
-});
-
-unwrapExports(setPrototypeOf$2);
+unwrapExports(setPrototypeOf$1);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5397,11 +5435,18 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-unwrapExports(create$1);
+var require$$0$2 = ( create$1 && create ) || create$1;
+
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$2, __esModule: true };
+});
+
+unwrapExports(create$2);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5409,15 +5454,15 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$1);
+var _create2 = _interopRequireDefault(create$2);
 
 
 
-var _typeof3 = _interopRequireDefault(_typeof_1);
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7955,11 +8000,6 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
-var gud$1 = /*#__PURE__*/Object.freeze({
-  default: gud,
-  __moduleExports: gud
-});
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8051,8 +8091,6 @@ var warning$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: warning_1
 });
 
-var _gud = ( gud$1 && gud ) || gud$1;
-
 var _warning = ( warning$1 && warning_1 ) || warning$1;
 
 var implementation = createCommonjsModule(function (module, exports) {
@@ -8069,7 +8107,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(_gud);
+var _gud2 = _interopRequireDefault(gud);
 
 
 
@@ -8781,7 +8819,12 @@ var DatePicker = function (_React$Component) {
         // transforming highlighted days (perhaps nested array)
         // to flat Map for faster access in day.jsx
         highlightDates: getHightLightDaysMap(_this.props.highlightDates),
-        focused: false
+        focused: false,
+        // We attempt to handle focus trap activation manually,
+        // but that is not possible with custom inputs like buttons.
+        // Err on the side of a11y and trap focus when we can't be certain
+        // that the trigger comoponent will work with our keyDown logic.
+        enableFocusTrap: _this.props.customInput && _this.props.customInput.type !== 'input' ? true : false
       };
     };
 
@@ -8812,10 +8855,15 @@ var DatePicker = function (_React$Component) {
     _this.setOpen = function (open) {
       var skipSetBlur = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-      _this.setState({
-        open: open,
-        preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
-        lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE
+      _this.setState(function (_ref) {
+        var enableFocusTrap = _ref.enableFocusTrap;
+
+        return {
+          open: open,
+          preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
+          lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE,
+          enableFocusTrap: !open ? false : enableFocusTrap
+        };
       }, function () {
         if (!open) {
           _this.setState(function (prev) {
@@ -9028,7 +9076,18 @@ var DatePicker = function (_React$Component) {
       if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
         if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
           event.preventDefault();
-          _this.onInputClick();
+          _this.setState({ enableFocusTrap: true }, function () {
+            _this.onInputClick();
+          });
+        }
+        return;
+      }
+      if (_this.state.open && !_this.state.enableFocusTrap) {
+        if (eventKey === "ArrowDown" || eventKey === "Tab") {
+          event.preventDefault();
+          _this.setState({ enableFocusTrap: true }, function () {
+            _this.onInputClick();
+          });
         }
         return;
       }
@@ -9183,7 +9242,8 @@ var DatePicker = function (_React$Component) {
           popperProps: _this.props.popperProps,
           renderDayContents: _this.props.renderDayContents,
           updateSelection: _this.updateSelection,
-          accessibleMode: _this.props.accessibleMode
+          accessibleMode: _this.props.accessibleMode,
+          enableFocusTrap: _this.state.enableFocusTrap
         },
         _this.props.children
       );
