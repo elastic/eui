@@ -11,3 +11,7 @@
 
 // Keyframe animation declarations can be found in
 // utility/animations.scss
+
+@mixin euiFocusBackground($color: $euiColorPrimary) {
+  background-color: transparentize($color, $euiFocusTransparency);
+}

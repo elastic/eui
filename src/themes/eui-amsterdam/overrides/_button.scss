@@ -41,9 +41,13 @@
     }
 
     &.euiButton--fill:not([class*='isDisabled']) {
+      color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+
+      &,
       &:hover,
       &:focus {
-        background-color: darken($color, 10%);
+        background-color: $color;
+        // background-color: darken($color, 10%);
       }
     }
   }
@@ -52,7 +56,6 @@
 // Fix ghost/disabled look specifically
 .euiButton.euiButton-isDisabled.euiButton--ghost:not(.euiButton--fill) {
   &,
-  &:hover,
   &:focus {
     background-color: transparentize($euiButtonColorGhostDisabled, .7);
   }

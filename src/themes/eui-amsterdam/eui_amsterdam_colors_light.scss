@@ -5,9 +5,12 @@ $euiColorPrimary:     #006DE4;
 $euiColorSecondary:   #00BFB3;
 $euiColorAccent:      #FC358E;
 
-$euiLinkColor: $euiColorPrimary; // Weirdly this one wasn't updating with new primary color
+$euiLinkColor: $euiColorPrimary;
+$euiColorSuccess: $euiColorSecondary;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
 $euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
 $euiColorAccentText: makeHighContrastColor($euiColorAccent);
+
+$euiFocusBackgroundColor: transparentize($euiColorPrimary, .8);
