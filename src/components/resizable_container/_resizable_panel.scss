@@ -88,10 +88,6 @@
   .euiResizablePanel__toggleButton {
     left: 50%;
 
-    .euiButtonIcon__icon {
-      transform: rotate(90deg);
-    }
-
     &.euiResizablePanel__toggleButton--right {
       top: 100%;
       transform: translate(-50%, -50%);

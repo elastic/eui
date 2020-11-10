@@ -85,7 +85,7 @@ const initialState: EuiResizableContainerState = {
   currentResizerPos: -1,
   prevPanelId: null,
   nextPanelId: null,
-  containerSize: 0,
+  containerSize: 1,
   panels: {},
   resizers: {},
 };

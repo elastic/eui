@@ -126,9 +126,6 @@ export interface EuiResizablePanelProps
   collapsedButton?: ReactNode;
 }
 
-const COLLAPSED_ICON = 'menuRight';
-const NOT_COLLAPSED_ICON = 'menuLeft';
-
 const getPosition = (ref: HTMLDivElement) => {
   let position: PanelPosition = 'middle';
   if (ref.matches(':first-of-type')) {
@@ -251,6 +248,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     ...style,
     ...dimensions,
   };
+
+  const COLLAPSED_ICON = isHorizontal ? 'menuRight' : 'menuDown';
+  const NOT_COLLAPSED_ICON = isHorizontal ? 'menuLeft' : 'menuUp';
 
   useEffect(() => {
     if (!registration) return;
