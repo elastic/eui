@@ -77,7 +77,7 @@
   }
 
   // Thumb has trouble with animation, so we make something similar to `@include euiFocusRing`
-  &:focus {
+  &:focus-visible {
     @include euiRangeThumbPerBrowser {
       box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
       border-color: $euiColorPrimary;
