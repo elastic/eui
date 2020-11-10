@@ -57,6 +57,7 @@ import { EuiText } from '../text';
 import { DataGridSortingContext } from './data_grid_context';
 
 export interface EuiDataGridBodyProps {
+  gridHeight?: number;
   gridWidth: number;
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
@@ -237,6 +238,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
+    gridHeight,
     gridWidth,
     columnWidths,
     defaultColumnWidth,
@@ -488,10 +490,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       width={gridWidth}
       columnWidth={getWidth}
       height={
+        gridHeight ??
         rowHeight * visibleRowIndices.length +
-        SCROLLBAR_HEIGHT +
-        HEADER_ROW_HEIGHT +
-        (footerRow ? FOOTER_ROW_HEIGHT : 0)
+          SCROLLBAR_HEIGHT +
+          HEADER_ROW_HEIGHT +
+          (footerRow ? FOOTER_ROW_HEIGHT : 0)
       }
       rowHeight={getRowHeight}
       itemData={{

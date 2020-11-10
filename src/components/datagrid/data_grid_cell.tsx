@@ -200,7 +200,6 @@ export class EuiDataGridCell extends Component<
   };
 
   componentDidMount() {
-    console.log('mounted');
     this.unsubscribeCell = this.context.onFocusUpdate(
       [this.props.colIndex, this.props.visibleRowIndex],
       this.onFocusUpdate

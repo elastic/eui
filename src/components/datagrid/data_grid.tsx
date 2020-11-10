@@ -157,6 +157,14 @@ type CommonGridProps = CommonProps &
      * Defines a minimum width for the grid to show all controls in its header.
      */
     minSizeForControls?: number;
+    /**
+     * Sets the grid's height, forcing it to overflow in a scrollable container with cell virtualization
+     */
+    height?: number;
+    /**
+     * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
+     */
+    width?: number;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -641,6 +649,29 @@ function notifyCellOfFocusState(
 
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
+  const {
+    leadingControlColumns = emptyArrayDefault,
+    trailingControlColumns = emptyArrayDefault,
+    columns,
+    columnVisibility,
+    schemaDetectors,
+    rowCount,
+    renderCellValue,
+    renderFooterCellValue,
+    className,
+    gridStyle,
+    toolbarVisibility = true,
+    pagination,
+    sorting,
+    inMemory,
+    popoverContents,
+    onColumnResize,
+    minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
+    height,
+    width,
+    ...rest
+  } = props;
+
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(IS_JEST_ENVIRONMENT ? 500 : 0);
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
@@ -717,27 +748,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
         break;
     }
   };
-
-  const {
-    leadingControlColumns = emptyArrayDefault,
-    trailingControlColumns = emptyArrayDefault,
-    columns,
-    columnVisibility,
-    schemaDetectors,
-    rowCount,
-    renderCellValue,
-    renderFooterCellValue,
-    className,
-    gridStyle,
-    toolbarVisibility = true,
-    pagination,
-    sorting,
-    inMemory,
-    popoverContents,
-    onColumnResize,
-    minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
-    ...rest
-  } = props;
 
   // enables/disables grid controls based on available width
   const onResize = useOnResize(setGridWidth);
@@ -999,7 +1009,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                       <div
                         className={classes}
                         onKeyDown={handleGridKeyDown}
-                        ref={setContainerRef}>
+                        style={{ width }}
+                        ref={setContainerRef}
+                        {...rest}>
                         {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
                           <>
                             {showToolbar ? (
@@ -1028,8 +1040,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     setFocusedCell
                                   )}
                                   className="euiDataGrid__verticalScroll"
-                                  ref={resizeRef}
-                                  {...rest}>
+                                  ref={resizeRef}>
                                   <div className="euiDataGrid__overflow">
                                     {inMemory ? (
                                       <EuiDataGridInMemoryRenderer
@@ -1074,6 +1085,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                         handleHeaderMutation={
                                           handleHeaderMutation
                                         }
+                                        gridHeight={height}
                                         gridWidth={gridWidth}
                                         inMemoryValues={inMemoryValues}
                                         inMemory={inMemory}
