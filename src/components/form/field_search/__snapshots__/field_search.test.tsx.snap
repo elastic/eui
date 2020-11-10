@@ -33,7 +33,7 @@ exports[`EuiFieldSearch props append is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldText--inGroup"
+      class="euiFieldSearch euiFieldSearch--inGroup"
       type="search"
     />
   </eui-validatable-control>
@@ -134,7 +134,7 @@ exports[`EuiFieldSearch props prepend is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldText--inGroup"
+      class="euiFieldSearch euiFieldSearch--inGroup"
       type="search"
     />
   </eui-validatable-control>

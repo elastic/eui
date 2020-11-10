@@ -4,7 +4,7 @@
 
   /**
    * 1. Allow pills to truncate their text with an ellipsis.
-   * 2. Don't allow pills to overlap with the caret, loading icon or clear button.
+   * 2. Don't allow pills/placeholder to overlap with the caret, loading icon or clear button.
    * 3. The height on combo can be larger than normal text inputs.
    */
 
@@ -51,6 +51,10 @@
 
     &.euiComboBox__inputWrap-isLoading {
       @include euiFormControlLayoutPadding(2); /* 2 */
+
+      .euiComboBoxPlaceholder {
+        @include euiFormControlLayoutPadding(2); /* 2 */
+      }
     }
 
     &.euiComboBox__inputWrap-isLoading.euiComboBox__inputWrap-isClearable {
@@ -121,6 +125,10 @@
 
       &.euiComboBox__inputWrap-isLoading {
         @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
+
+        .euiComboBoxPlaceholder {
+          @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
+        }
       }
 
       &.euiComboBox__inputWrap-isLoading.euiComboBox__inputWrap-isClearable {

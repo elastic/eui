@@ -1,7 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865)) 
+- Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865))
 - Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
+- Added `role="alert"` and `aria-live="assertive"` to `EuiForm`'s `EuiCallOut` for the errors ([#4238](https://github.com/elastic/eui/pull/4238))
+- Added `menuDown` and `menuUp` glyphs to `EuiIcon` ([#4244](https://github.com/elastic/eui/pull/4244))
 
 **Bug fixes**
 
@@ -9,6 +11,13 @@
 - Fixed focus trap error & performance impact when one focus trap is deactivated and another becomes enabled ([#4071](https://github.com/elastic/eui/pull/4071))
 - Fixed a condition in `EuiInMemoryTable` to avoid mistaken assignment of `sortName` ([#4138](https://github.com/elastic/eui/pull/4138))
 - Fixed bug in small `EuiImage`'s not respecting the optional sizes when `allowFullScreen` is set to true ([#4207](https://github.com/elastic/eui/pull/4207))
+- Fixed incorrect initial rendering of `EuiDualRange` thumbs when element width is 0 ([#4230](https://github.com/elastic/eui/pull/4230))
+- Fixed bug in `EuiSelectable` to call `searchProps.onChange` and `searchProps.onSearch` calls in `EuiSelectable` ([#4153](https://github.com/elastic/eui/pull/4153))
+- Fixed truncation of the `EuiComboBox` `placeholder` text ([#4210](https://github.com/elastic/eui/pull/4210))
+
+**Theme: Amsterdam**
+
+- Fixed base `line-heights` for within `euiFontSize[size]()` SASS mixins ([#4229](https://github.com/elastic/eui/pull/4229))
 
 ## [`30.2.0`](https://github.com/elastic/eui/tree/v30.2.0)
 
@@ -24,6 +33,10 @@
 
 - Fixed issue with `labelDisplay` not being passed to `EuiSuggestItem` ([#4180](https://github.com/elastic/eui/pull/4180))
 - Fixed copy in `EuiDataGrid`'s header menu's sort actions ([#4199](https://github.com/elastic/eui/pull/4199))
+
+**Theme: Amsterdam**
+
+- Fixed `border-radius` in `EuiFormControlLayout` ([#4196](https://github.com/elastic/eui/pull/4196))
 
 ## [`30.1.1`](https://github.com/elastic/eui/tree/v30.1.1)
 
