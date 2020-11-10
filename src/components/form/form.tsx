@@ -82,7 +82,9 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
           <EuiCallOut
             className="euiForm__errors"
             title={addressFormErrors}
-            color="danger">
+            color="danger"
+            role="alert"
+            aria-live="assertive">
             {optionalErrors}
           </EuiCallOut>
         )}
