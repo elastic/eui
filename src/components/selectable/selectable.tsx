@@ -333,6 +333,9 @@ export class EuiSelectable<T = {}> extends Component<
         }
       }
     );
+    if (this.props.searchProps && this.props.searchProps.onSearch) {
+      this.props.searchProps.onSearch(searchValue);
+    }
   };
 
   onContainerBlur = (e: React.FocusEvent) => {
@@ -352,6 +355,12 @@ export class EuiSelectable<T = {}> extends Component<
     }));
     if (this.props.onChange) {
       this.props.onChange(options);
+    }
+    if (this.props.searchProps && this.props.searchProps.onChange) {
+      this.props.searchProps.onChange(
+        { ...this.state.visibleOptions },
+        this.state.searchValue
+      );
     }
   };
 
@@ -390,8 +399,11 @@ export class EuiSelectable<T = {}> extends Component<
     const {
       'aria-label': searchAriaLabel,
       'aria-describedby': searchAriaDescribedby,
+      onChange: propsOnChange,
+      onSearch,
       ...cleanedSearchProps
-    } = searchProps || unknownAccessibleName;
+    } = (searchProps || unknownAccessibleName) as typeof searchProps &
+      typeof unknownAccessibleName;
     const {
       'aria-label': listAriaLabel,
       'aria-describedby': listAriaDescribedby,
