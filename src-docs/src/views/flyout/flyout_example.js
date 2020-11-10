@@ -216,8 +216,8 @@ export const FlyoutExample = {
           <p>
             In this example, we set <EuiCode>size</EuiCode> to{' '}
             <EuiCode>s</EuiCode> and remove the <EuiCode>ownFocus</EuiCode>{' '}
-            prop. The latter removes the background overlay that reinforces your
-            boundaries and is not recommended for most use cases.
+            prop. Removing <EuiCode>ownFocus</EuiCode> will hide the overlay
+            mask keeping the underlying page content visible and clickable.
           </p>
         </>
       ),
