@@ -172,8 +172,14 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
     <Fragment>
       <EuiWindowEvent event="keydown" handler={onKeyDown} />
       {optionalOverlay}
-      {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
-        to the originating button */}
+      {/*
+       * Trap focus even when `ownFocus={false}`, otherwise closing
+       * the flyout won't return focus to the originating button.
+       *
+       * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+       * to allow non-keyboard users the ability to interact with
+       * elements outside the flyout.
+       */}
       <EuiFocusTrap clickOutsideDisables={!ownFocus}>
         {flyoutContent}
       </EuiFocusTrap>
