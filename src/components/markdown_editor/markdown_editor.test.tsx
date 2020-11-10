@@ -38,6 +38,40 @@ describe('EuiMarkdownEditor', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('props', () => {
+    describe('height', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            height={600}
+            editorId="editorId"
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('textareaClassName', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            textareaClassName="myTextareaClassName"
+            editorId="editorId"
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
+
   test('is preview rendered', () => {
     const component = mount(
       <EuiMarkdownEditor

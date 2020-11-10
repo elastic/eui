@@ -72,6 +72,11 @@ type CommonMarkdownEditorProps = Omit<
     /** ID of an element describing the text editor, useful for associating error messages */
     'aria-describedby'?: string;
 
+    /**
+     * Optional class applied to the textarea element
+     */
+    textareaClassName?: string;
+
     /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
@@ -149,6 +154,7 @@ export const EuiMarkdownEditor = forwardRef<
   (
     {
       className,
+      textareaClassName,
       editorId: _editorId,
       value,
       onChange,
@@ -341,6 +347,7 @@ export const EuiMarkdownEditor = forwardRef<
               setHasUnacceptedItems={setHasUnacceptedItems}>
               <EuiMarkdownEditorTextArea
                 ref={textareaRef}
+                textareaClassName={textareaClassName}
                 height={height}
                 id={editorId}
                 onChange={(e) => onChange(e.target.value)}
