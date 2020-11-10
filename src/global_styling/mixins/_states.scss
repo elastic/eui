@@ -1,4 +1,4 @@
-@mixin euiFocusRing($size: 'small', $amsterdamOnlyProp1: false, $amsterdamOnlyProp2: false) {
+@mixin euiFocusRing($size: 'small', $amsterdamOnlyProp1: null, $amsterdamOnlyProp2: null) {
   @if $size == 'large' {
     // It's always OK to use the focus animation. This will take precedence over times we turn it off individually like EuiButtonEmpty
     // sass-lint:disable-block no-important
@@ -13,5 +13,5 @@
 // utility/animations.scss
 
 @mixin euiFocusBackground($color: $euiColorPrimary) {
-  background-color: transparentize($color, $euiFocusTransparency);
+  background-color: tintOrShade($color, ((1 - $euiFocusTransparency) * 100%), ((1 - $euiFocusTransparency) * 100%));
 }

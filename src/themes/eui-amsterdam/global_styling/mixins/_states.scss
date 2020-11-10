@@ -26,3 +26,9 @@
     }
   }
 }
+
+// Amsterdam uses transparency instead of shading/tinting
+@mixin euiFocusBackground($color: $euiColorPrimary) {
+  background-color: transparentize($color, $euiFocusTransparency);
+}
+

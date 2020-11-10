@@ -35,7 +35,7 @@
     } @else {
       &.euiButton--fill:focus-visible {
         border-color: transparent;
-        outline-offset: -3px;
+        outline-offset: -($euiFocusRingSize * 2);
         outline-color: $color;
       }
     }

@@ -7,3 +7,4 @@ $euiFocusRingSize: 2px;
 
 // Transparency
 $euiFocusTransparency: .8;
+$euiFocusBackgroundColor: transparentize($euiColorPrimary, $euiFocusTransparency);
