@@ -188,7 +188,6 @@ export const Table = () => {
                   key={facet.id}
                   id={facet.id}
                   isSelected={facet.isSelected}
-                  // isLoading={loading}
                   onClick={facet.onClick}>
                   {facet.label}
                 </EuiFacetButton>
