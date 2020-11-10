@@ -75,12 +75,12 @@ type CommonMarkdownEditorProps = Omit<
     /**
      * Optional class applied to the textarea element
      */
-    textareaClassName?: string;
+    textareaProps?: TextareaHTMLAttributes<HTMLTextAreaElement> & CommonProps;
 
     /**
-     * Optional class applied to the preview element
+     * Optional props applied to the preview element
      */
-    previewClassName?: string;
+    previewProps?: <HTMLAttributes<HTMLDivElement> & CommonProps;
 
     /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
