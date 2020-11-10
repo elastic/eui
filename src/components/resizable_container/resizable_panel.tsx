@@ -302,7 +302,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const collapseRight = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClickCollapse({ direction: 'right' });
-    e.currentTarget.blur();
     if (e.detail) e.currentTarget.blur();
   };
 
