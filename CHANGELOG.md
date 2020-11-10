@@ -14,6 +14,7 @@
 - Fixed incorrect initial rendering of `EuiDualRange` thumbs when element width is 0 ([#4230](https://github.com/elastic/eui/pull/4230))
 - Fixed bug in `EuiSelectable` to call `searchProps.onChange` and `searchProps.onSearch` calls in `EuiSelectable` ([#4153](https://github.com/elastic/eui/pull/4153))
 - Fixed truncation of the `EuiComboBox` `placeholder` text ([#4210](https://github.com/elastic/eui/pull/4210))
+- Fixed bug preventing elements in `EuiPopover` panels from being tabbed into ([#4247](https://github.com/elastic/eui/pull/4247))
 
 **Theme: Amsterdam**
 
