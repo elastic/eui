@@ -3,7 +3,7 @@
 - Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865))
 - Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
 - Added `role="alert"` and `aria-live="assertive"` to `EuiForm`'s `EuiCallOut` for the errors ([#4238](https://github.com/elastic/eui/pull/4238))
-- Added a `textareaClassName` prop to `EuiMarkdownEditor` to better to better support extend it to full height ([#3865](https://github.com/elastic/eui/pull/3865))
+- Added `textareaClassName` and `previewClassName` props to `EuiMarkdownEditor` to better support extend it to full height ([#3865](https://github.com/elastic/eui/pull/3865))
 
 **Bug fixes**
 

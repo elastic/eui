@@ -77,6 +77,11 @@ type CommonMarkdownEditorProps = Omit<
      */
     textareaClassName?: string;
 
+    /**
+     * Optional class applied to the preview element
+     */
+    previewClassName?: string;
+
     /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
@@ -155,6 +160,7 @@ export const EuiMarkdownEditor = forwardRef<
     {
       className,
       textareaClassName,
+      previewClassName,
       editorId: _editorId,
       value,
       onChange,
@@ -295,6 +301,11 @@ export const EuiMarkdownEditor = forwardRef<
 
     const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
 
+    const previewClasses = classNames(
+      'euiMarkdownEditorPreview',
+      previewClassName
+    );
+
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
         <div className={classes} {...rest}>
@@ -309,9 +320,7 @@ export const EuiMarkdownEditor = forwardRef<
           />
 
           {isPreviewing && (
-            <div
-              className="euiMarkdownEditorPreview"
-              style={{ height: `${height}px` }}>
+            <div className={previewClasses} style={{ height: `${height}px` }}>
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
                 processingPluginList={processingPluginList}>
