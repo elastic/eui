@@ -55,8 +55,7 @@ export interface EuiFlyoutProps
    */
   hideCloseButton?: boolean;
   /**
-   * Locks the mouse / keyboard focus to within the flyout,
-   * and shows an EuiOverlayMask
+   * Adds an EuiOverlayMask when set to `true`
    */
   ownFocus?: boolean;
   /**
