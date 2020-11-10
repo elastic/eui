@@ -511,7 +511,12 @@ export class EuiPopover extends Component<Props, State> {
 
   onMutation = (records: MutationRecord[]) => {
     const waitDuration = getWaitDuration(records);
-    this.positionPopoverFixed();
+    // setTimeout to ensure the setState in positionPopoverFixed
+    // happens outside of any existing React event handling
+    // which apparently causes issues with react-focus-lock's active trap management
+    setTimeout(() => {
+      this.positionPopoverFixed();
+    }, 0);
 
     performOnFrame(waitDuration, this.positionPopoverFixed);
   };
