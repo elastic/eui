@@ -43,8 +43,8 @@ describe('EuiMarkdownEditor', () => {
       test('is rendered', () => {
         const component = render(
           <EuiMarkdownEditor
-            height={600}
             editorId="editorId"
+            height={600}
             value=""
             onChange={() => null}
             {...requiredProps}
@@ -59,8 +59,25 @@ describe('EuiMarkdownEditor', () => {
       test('is rendered', () => {
         const component = render(
           <EuiMarkdownEditor
-            textareaClassName="myTextareaClassName"
             editorId="editorId"
+            textareaClassName="myTextareaClassName"
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('previewClassName', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            initialViewMode="viewing"
+            previewClassName="myPreviewClassName"
             value=""
             onChange={() => null}
             {...requiredProps}
