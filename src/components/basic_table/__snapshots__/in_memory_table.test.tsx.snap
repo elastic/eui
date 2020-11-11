@@ -2158,9 +2158,6 @@ exports[`EuiInMemoryTable with search and component between search and table 1`]
   <div>
     Children Between
   </div>
-  <EuiSpacer
-    size="l"
-  />
   <EuiBasicTable
     aria-label="aria-label"
     className="testClass1 testClass2"
