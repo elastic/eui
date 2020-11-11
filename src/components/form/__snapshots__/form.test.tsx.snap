@@ -16,6 +16,111 @@ exports[`EuiForm renders a form element 1`] = `
 />
 `;
 
+exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiForm testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    aria-live="assertive"
+    class="euiCallOut euiCallOut--danger euiForm__errors"
+    role="alert"
+  >
+    <div
+      class="euiCallOutHeader"
+    >
+      <span
+        class="euiCallOutHeader__title"
+      >
+        Please address the highlighted errors.
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiForm renders with error callout when isInvalid is "true" and has multiple errors 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiForm testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    aria-live="assertive"
+    class="euiCallOut euiCallOut--danger euiForm__errors"
+    role="alert"
+  >
+    <div
+      class="euiCallOutHeader"
+    >
+      <span
+        class="euiCallOutHeader__title"
+      >
+        Please address the highlighted errors.
+      </span>
+    </div>
+    <div
+      class="euiText euiText--small"
+    >
+      <ul>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is one error
+          </span>
+        </li>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is another error
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiForm renders with error callout when isInvalid is "true" and has one error 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiForm testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    aria-live="assertive"
+    class="euiCallOut euiCallOut--danger euiForm__errors"
+    role="alert"
+  >
+    <div
+      class="euiCallOutHeader"
+    >
+      <span
+        class="euiCallOutHeader__title"
+      >
+        Please address the highlighted errors.
+      </span>
+    </div>
+    <div
+      class="euiText euiText--small"
+    >
+      <ul>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is one error
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiForm renders without error callout when invalidCallout is "none" 1`] = `
 <div
   aria-label="aria-label"

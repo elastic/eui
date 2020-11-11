@@ -266,6 +266,8 @@ function getElementFromInitialFocus(
   return initialFocus as HTMLElement | null;
 }
 
+const returnFocusConfig = { preventScroll: true };
+
 export type Props = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiPopoverProps;
@@ -712,9 +714,7 @@ export class EuiPopover extends Component<Props, State> {
         `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
-      const returnFocus = this.state.isOpenStable
-        ? { preventScroll: true }
-        : false;
+      const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
 
       panel = (
         <EuiPortal insert={insert}>
