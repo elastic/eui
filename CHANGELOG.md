@@ -1,8 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-**Theme: Amsterdam**
-
-- Removed faux border from `EuiAvatar` ([#4255](https://github.com/elastic/eui/pull/4255))
+No public interface changes since `30.3.0`.
 
 ## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
 

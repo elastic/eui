@@ -37,7 +37,7 @@ export default () => (
     <EuiAvatar
       size="xl"
       name="Cat"
-      imageUrl="https://pbs.twimg.com/profile_images/378800000211028099/56f5de9fb1f42689f954afd2634efef8_400x400.jpeg"
+      imageUrl="https://source.unsplash.com/64x64/?cat"
     />
   </div>
 );
