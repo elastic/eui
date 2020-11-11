@@ -29,7 +29,7 @@
   text-align-last: left;
 
   &:focus-visible {
-    @include euiFocusRing('small', 'inner', 'false');
+    @include euiFocusRing('small', 'false', 'inner');
   }
 
   &:hover,

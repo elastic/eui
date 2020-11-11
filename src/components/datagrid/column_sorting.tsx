@@ -213,7 +213,7 @@ export const useColumnSorting = (
                   closePopover={() => setAvailableColumnsIsOpen(false)}
                   anchorPosition="downLeft"
                   ownFocus
-                  panelPaddingSize="s"
+                  panelPaddingSize="none"
                   button={
                     <EuiButtonEmpty
                       size="xs"

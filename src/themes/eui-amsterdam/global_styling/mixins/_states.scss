@@ -2,7 +2,7 @@
 // However, some components need to be forced to have the same behavior
 // By default the outline has a `0` offset
 
-@mixin euiFocusRing($size: null, $offset: 0, $fauxOutline: null) {
+@mixin euiFocusRing($size: null, $fauxOutline: null, $offset: 0) {
   // @if ($size) {
   //   @warn 'The $size variable of euiFocusRing() will be depricated in a future version of EUI.';
   // }
@@ -17,11 +17,12 @@
     }
   } @else if ($fauxOutline == 'false') {
     outline: auto;
-    outline-color: $euiFocusRingColor;
 
     @if (type-of($offset) == number) {
       outline-offset: $offset;
-    } @else {
+    } @else if ($offset == 'inner') {
+      outline-offset: -$euiFocusRingSize;
+    } @else if ($offset == 'outer') {
       outline-offset: $euiFocusRingSize;
     }
   }
@@ -30,5 +31,38 @@
 // Amsterdam uses transparency instead of shading/tinting
 @mixin euiFocusBackground($color: $euiColorPrimary) {
   background-color: transparentize($color, $euiFocusTransparency);
+}
+
+@mixin euiHoverState {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@mixin euiFocusState($color: $euiColorPrimary) {
+  @include euiHoverState;
+  @include euiFocusBackground($color);
+}
+
+@mixin euiDisabledState($color: $euiButtonColorDisabledText) {
+  cursor: not-allowed;
+  text-decoration: none;
+
+  @if ($color) {
+    color: $euiButtonColorDisabledText;
+  }
+}
+
+@mixin euiInteractiveStates($focusColor: $euiColorPrimary, $disabledColor: $euiButtonColorDisabledText) {
+  &:hover {
+    @include euiHoverState;
+  }
+
+  &:focus {
+    @include euiFocusState($focusColor);
+  }
+
+  &:disabled {
+    @include euiDisabledState($disabledColor);
+  }
 }
 
