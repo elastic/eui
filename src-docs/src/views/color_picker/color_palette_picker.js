@@ -4,17 +4,17 @@ import {
   euiPaletteForStatus,
   euiPaletteForTemperature,
 } from '../../../../src/services';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiCode } from '../../../../src/components/code';
+
 import {
+  EuiSwitch,
+  EuiSpacer,
+  EuiCode,
   EuiColorPalettePicker,
-  EuiColorPalettePickerPaletteProps,
-} from '../../../../src/components/color_picker/color_palette_picker';
-// @ts-ignore importing from a JS file
+} from '../../../../src/components/';
+
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const palettes: EuiColorPalettePickerPaletteProps[] = [
+const palettes = [
   {
     value: 'pallette_1',
     title: 'EUI color blind (fixed)',
@@ -23,12 +23,18 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
   },
   {
     value: 'pallette_2',
+    title: 'EUI palette for status (gradient)',
+    palette: euiPaletteForStatus(5),
+    type: 'gradient',
+  },
+  {
+    value: 'pallette_3',
     title: 'EUI palette for temperature (fixed)',
     palette: euiPaletteForTemperature(5),
     type: 'fixed',
   },
   {
-    value: 'pallette_3',
+    value: 'pallette_4',
     title: 'Grayscale (gradient with stops)',
     palette: [
       {
@@ -37,11 +43,11 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
       },
       {
         stop: 250,
-        color: 'gray',
+        color: 'lightgray',
       },
       {
-        stop: 350,
-        color: 'dimgray',
+        stop: 320,
+        color: 'gray',
       },
       {
         stop: 470,
@@ -51,10 +57,27 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     type: 'gradient',
   },
   {
-    value: 'pallette_4',
-    title: 'EUI palette for status (gradient)',
-    palette: euiPaletteForStatus(5),
-    type: 'gradient',
+    value: 'pallette_5',
+    title: 'Grayscale (fixed with stops)',
+    palette: [
+      {
+        stop: 100,
+        color: 'white',
+      },
+      {
+        stop: 250,
+        color: 'lightgray',
+      },
+      {
+        stop: 320,
+        color: 'gray',
+      },
+      {
+        stop: 470,
+        color: 'black',
+      },
+    ],
+    type: 'fixed',
   },
   {
     value: 'custom',
@@ -63,7 +86,7 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
   },
 ];
 
-export const ColorPalettePicker = () => {
+export default () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
   const [pallette, setPallette] = useState('pallette_1');
 

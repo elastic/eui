@@ -48,6 +48,9 @@ import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
+  /**
+   * An array of #ColorStop. The stops must be numbers in an ordered range.
+   */
   colorStops: ColorStop[];
   onChange: (stops?: ColorStop[], isInvalid?: boolean) => void;
   fullWidth?: boolean;

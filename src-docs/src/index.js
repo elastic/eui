@@ -17,6 +17,7 @@ import themeAmsterdamLight from './theme_amsterdam_light.scss';
 import themeAmsterdamDark from './theme_amsterdam_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
 import ScrollToHash from './components/scroll_to_hash';
+import { LinkWrapper } from './views/link_wrapper';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
@@ -63,10 +64,12 @@ ReactDOM.render(
                       return <Redirect push to={url} />;
                     } else {
                       return (
-                        <AppContainer
-                          currentRoute={{ name, path, sections, isNew }}>
-                          {createElement(component, {})}
-                        </AppContainer>
+                        <LinkWrapper>
+                          <AppContainer
+                            currentRoute={{ name, path, sections, isNew }}>
+                            {createElement(component, {})}
+                          </AppContainer>
+                        </LinkWrapper>
                       );
                     }
                   }}
