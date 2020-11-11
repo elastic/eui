@@ -26785,20 +26785,16 @@
 	    _this.setOpen = function (open) {
 	      var skipSetBlur = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-	      _this.setState(function (_ref) {
-	        var enableFocusTrap = _ref.enableFocusTrap;
-
-	        return {
-	          open: open,
-	          preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
-	          lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE,
-	          enableFocusTrap: !open ? false : enableFocusTrap
-	        };
+	      _this.setState({
+	        open: open,
+	        preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
+	        lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE
 	      }, function () {
 	        if (!open) {
 	          _this.setState(function (prev) {
 	            return {
-	              focused: skipSetBlur ? prev.focused : false
+	              focused: skipSetBlur ? prev.focused : false,
+	              enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
 	            };
 	          }, function () {
 	            !skipSetBlur && _this.setBlur();
@@ -26902,6 +26898,7 @@
 	      if (!_this.props.shouldCloseOnSelect || _this.props.showTimeSelect) {
 	        _this.setPreSelection(date);
 	      } else if (!_this.props.inline) {
+	        // This causes the navigation button to close the popover
 	        _this.setOpen(false);
 	      }
 	    };
@@ -28181,7 +28178,7 @@
 	            tag: FocusTrapContainer,
 	            focusTrapOptions: {
 	              onDeactivate: function onDeactivate() {
-	                return _this3.props.setOpen(false);
+	                return _this3.props.setOpen(false, true);
 	              },
 	              initialFocus: initialFocusTarget
 	            }

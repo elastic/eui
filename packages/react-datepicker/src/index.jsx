@@ -297,22 +297,20 @@ export default class DatePicker extends React.Component {
   };
 
   setOpen = (open, skipSetBlur = false) => {
-    this.setState(({enableFocusTrap}) => {
-      return {
+    this.setState({
           open: open,
           preSelection:
             open && this.state.open
               ? this.state.preSelection
               : this.calcInitialState().preSelection,
           lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE,
-          enableFocusTrap: !open ? false : enableFocusTrap
-      }
     },
       () => {
         if (!open) {
           this.setState(
             prev => ({
-              focused: skipSetBlur ? prev.focused : false
+              focused: skipSetBlur ? prev.focused : false,
+              enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
             }),
             () => {
               !skipSetBlur && this.setBlur();
@@ -418,6 +416,7 @@ export default class DatePicker extends React.Component {
     if (!this.props.shouldCloseOnSelect || this.props.showTimeSelect) {
       this.setPreSelection(date);
     } else if (!this.props.inline) {
+      // This causes the navigation button to close the popover
       this.setOpen(false);
     }
   };

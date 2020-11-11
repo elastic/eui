@@ -696,7 +696,7 @@ export default class Calendar extends React.Component {
             active={this.props.enableFocusTrap}
             tag={FocusTrapContainer}
             focusTrapOptions={{
-              onDeactivate: () => this.props.setOpen(false),
+              onDeactivate: () => this.props.setOpen(false, true),
               initialFocus: initialFocusTarget
             }}
           >
