@@ -8,6 +8,14 @@ import {
 
 import { EuiSpacer } from '../../../../src/components';
 
+const pkg = require('../../../../package.json');
+
+const getVersion = (packageName) => {
+  return pkg.dependencies[packageName]
+    ? pkg.dependencies[packageName]
+    : pkg.devDependencies[packageName] || 'latest';
+};
+
 /* HOW THE CODE SANDBOX REGEX WORKS
  * Given the prop `content` we manipulate the provided source string to format
  * it for use as an independent file in Code Sandbox. In order the following
@@ -105,13 +113,18 @@ ${exampleClose}
       'package.json': {
         content: {
           dependencies: {
-            react: 'latest',
-            'react-dom': 'latest',
-            'react-scripts': 'latest',
-            moment: 'latest',
-            '@elastic/eui': 'latest',
-            '@elastic/datemath': 'latest',
-            ...mergedDeps,
+            '@elastic/eui': pkg.version,
+            ...[
+              '@elastic/datemath',
+              'moment',
+              'react',
+              'react-dom',
+              'react-scripts',
+              ...Object.keys(mergedDeps),
+            ].reduce((out, pkg) => {
+              out[pkg] = getVersion(pkg);
+              return out;
+            }, {}),
           },
         },
       },
