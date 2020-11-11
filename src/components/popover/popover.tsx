@@ -266,6 +266,8 @@ function getElementFromInitialFocus(
   return initialFocus as HTMLElement | null;
 }
 
+const returnFocusConfig = { preventScroll: true };
+
 export type Props = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiPopoverProps;
@@ -511,12 +513,7 @@ export class EuiPopover extends Component<Props, State> {
 
   onMutation = (records: MutationRecord[]) => {
     const waitDuration = getWaitDuration(records);
-    // setTimeout to ensure the setState in positionPopoverFixed
-    // happens outside of any existing React event handling
-    // which apparently causes issues with react-focus-lock's active trap management
-    setTimeout(() => {
-      this.positionPopoverFixed();
-    }, 0);
+    this.positionPopoverFixed();
 
     performOnFrame(waitDuration, this.positionPopoverFixed);
   };
@@ -717,9 +714,7 @@ export class EuiPopover extends Component<Props, State> {
         `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
-      const returnFocus = this.state.isOpenStable
-        ? { preventScroll: true }
-        : false;
+      const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
 
       panel = (
         <EuiPortal insert={insert}>
