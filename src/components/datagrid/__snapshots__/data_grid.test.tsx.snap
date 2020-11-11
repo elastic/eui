@@ -83,11 +83,11 @@ exports[`EuiDataGrid pagination renders 1`] = `
       class="euiPagination"
     >
       <a
-        aria-controls="htmlId"
+        aria-controls="generated-id"
         aria-label="Previous page, 1"
         class="euiButtonIcon euiButtonIcon--text"
         data-test-subj="pagination-button-previous"
-        href="#htmlId"
+        href="#generated-id"
         rel="noreferrer"
       >
         <span
@@ -104,11 +104,11 @@ exports[`EuiDataGrid pagination renders 1`] = `
           class="euiPagination__item"
         >
           <a
-            aria-controls="htmlId"
+            aria-controls="generated-id"
             aria-label="Page 1 of 2"
             class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
             data-test-subj="pagination-button-0"
-            href="#htmlId"
+            href="#generated-id"
             rel="noreferrer"
           >
             <span
@@ -126,7 +126,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           class="euiPagination__item"
         >
           <button
-            aria-controls="htmlId"
+            aria-controls="generated-id"
             aria-current="true"
             aria-label="Page 2 of 2"
             class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
@@ -1042,7 +1042,7 @@ Array [
             aria-label="aria-label"
             class="euiDataGrid__content"
             data-test-subj="dataGridWrapper"
-            id="htmlId"
+            id="generated-id"
             role="grid"
             tabindex="0"
           >
@@ -1489,7 +1489,7 @@ Array [
       </div>
       <p
         hidden=""
-        id="htmlId"
+        id="generated-id"
       >
         Cell contains interactive content.
       </p>
@@ -1616,7 +1616,7 @@ Array [
             aria-label="aria-label"
             class="euiDataGrid__content"
             data-test-subj="dataGridWrapper"
-            id="htmlId"
+            id="generated-id"
             role="grid"
             tabindex="0"
           >
@@ -2375,7 +2375,7 @@ Array [
       </div>
       <p
         hidden=""
-        id="htmlId"
+        id="generated-id"
       >
         Cell contains interactive content.
       </p>
@@ -2499,7 +2499,7 @@ Array [
             aria-label="aria-label"
             class="euiDataGrid__content"
             data-test-subj="dataGridWrapper"
-            id="htmlId"
+            id="generated-id"
             role="grid"
             tabindex="0"
           >
@@ -2948,7 +2948,7 @@ Array [
       </div>
       <p
         hidden=""
-        id="htmlId"
+        id="generated-id"
       >
         Cell contains interactive content.
       </p>
@@ -3072,7 +3072,7 @@ Array [
             aria-label="aria-label"
             class="euiDataGrid__content"
             data-test-subj="dataGridWrapper"
-            id="htmlId"
+            id="generated-id"
             role="grid"
             tabindex="0"
           >
@@ -3519,7 +3519,7 @@ Array [
       </div>
       <p
         hidden=""
-        id="htmlId"
+        id="generated-id"
       >
         Cell contains interactive content.
       </p>
