@@ -112,7 +112,6 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       anchorPosition={position === 'start' ? 'downLeft' : 'downRight'}
       display="block"
       panelPaddingSize="none"
-      ownFocus
       {...rest}>
       <EuiDatePopoverContent
         value={value}
