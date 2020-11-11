@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.3.0`.
+
+## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
+
 - Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865))
 - Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
 - Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
