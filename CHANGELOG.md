@@ -5,6 +5,7 @@
 - Added `role="alert"` and `aria-live="assertive"` to `EuiForm`'s `EuiCallOut` for the errors ([#4238](https://github.com/elastic/eui/pull/4238))
 - Added `menuDown` and `menuUp` glyphs to `EuiIcon` ([#4244](https://github.com/elastic/eui/pull/4244))
 - Removed spacer after `childrenBetween` in `EuiInMemoryTable` ([#4248](https://github.com/elastic/eui/pull/4248))
+- Changed `clickOutsideDisables` to `true` when `ownFocus={false}` in `EuiFlyout` ([#4236](https://github.com/elastic/eui/pull/4236))
 
 **Bug fixes**
 
