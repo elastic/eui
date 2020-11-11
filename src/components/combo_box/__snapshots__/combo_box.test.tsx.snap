@@ -279,7 +279,7 @@ exports[`props options list is rendered 1`] = `
           style="font-size: 14px; display: inline-block;"
         >
           <input
-            aria-controls="htmlid_listbox"
+            aria-controls="generated-id_listbox"
             data-test-subj="comboBoxSearchInput"
             role="textbox"
             style="box-sizing: content-box; width: 2px;"
@@ -320,7 +320,7 @@ exports[`props options list is rendered 1`] = `
         style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
       >
         <div
-          id="htmlid_listbox"
+          id="generated-id_listbox"
           role="listBox"
           style="height: 290px; width: 100%;"
           tabindex="0"
@@ -329,7 +329,7 @@ exports[`props options list is rendered 1`] = `
             aria-selected="false"
             class="euiFilterSelectItem"
             data-test-subj="titanOption"
-            id="htmlid__option-0"
+            id="generated-id__option-0"
             role="option"
             style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
             title="Titan"
@@ -356,7 +356,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-1"
+            id="generated-id__option-1"
             role="option"
             style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
             title="Enceladus"
@@ -383,7 +383,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-2"
+            id="generated-id__option-2"
             role="option"
             style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
             title="Mimas"
@@ -410,7 +410,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-3"
+            id="generated-id__option-3"
             role="option"
             style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
             title="Dione"
@@ -437,7 +437,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-4"
+            id="generated-id__option-4"
             role="option"
             style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
             title="Iapetus"
@@ -464,7 +464,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-5"
+            id="generated-id__option-5"
             role="option"
             style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
             title="Phoebe"
@@ -491,7 +491,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-6"
+            id="generated-id__option-6"
             role="option"
             style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
             title="Rhea"
@@ -518,7 +518,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-7"
+            id="generated-id__option-7"
             role="option"
             style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
@@ -545,7 +545,7 @@ exports[`props options list is rendered 1`] = `
           <button
             aria-selected="false"
             class="euiFilterSelectItem"
-            id="htmlid__option-8"
+            id="generated-id__option-8"
             role="option"
             style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
             title="Tethys"

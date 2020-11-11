@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.3.0`.
+- Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212)) 
 
 ## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
 

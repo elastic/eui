@@ -25,11 +25,6 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiTreeView } from './tree_view';
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 const items = [
   {
     label: 'Item One',
