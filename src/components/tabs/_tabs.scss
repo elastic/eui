@@ -67,17 +67,15 @@
     color: $euiColorPrimary;
     cursor: default;
 
-    &:not(:focus-visible) {
-      &::after {
-        animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
-        background-color: $euiColorPrimary;
-        bottom: 0;
-        content: ' ';
-        height: $euiBorderWidthThick;
-        left: 0;
-        position: absolute;
-        width: 100%;
-      }
+    &::after {
+      animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
+      background-color: $euiColorPrimary;
+      bottom: 0;
+      content: ' ';
+      height: $euiBorderWidthThick;
+      left: 0;
+      position: absolute;
+      width: 100%;
     }
   }
 

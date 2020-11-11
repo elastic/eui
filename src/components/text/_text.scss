@@ -119,7 +119,7 @@
     }
 
     &:focus {
-      background-color: transparentize($euiLinkColor, .9);
+      @include euiFocusBackground($euiLinkColor);
     }
 
     &:focus-visible {

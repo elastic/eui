@@ -1,4 +1,4 @@
-$textColors: (
+$euiLinkColors: (
   subdued: $euiTextSubduedColor,
   primary: $euiColorPrimaryText,
   secondary: $euiColorSecondaryText,
@@ -22,7 +22,7 @@ $textColors: (
   }
 
   // Create color modifiers based on the map
-  @each $name, $color in $textColors {
+  @each $name, $color in $euiLinkColors {
     &.euiLink--#{$name} {
       color: $color;
 
@@ -30,7 +30,10 @@ $textColors: (
       &:focus {
         color: darken($color, 10%);
         text-decoration: underline;
-        background-color: transparentize($color, .9);
+      }
+
+      &:focus {
+        @include euiFocusBackground($color);
       }
 
       &:focus-visible {
