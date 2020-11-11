@@ -2,6 +2,7 @@ import Calendar from "./calendar";
 import React from "react";
 import PropTypes from "prop-types";
 import PopperComponent, { popperPlacementPositions } from "./popper_component";
+import { ScreenReaderOnly } from "./screen_reader_only";
 import classnames from "classnames";
 
 import {
@@ -541,12 +542,15 @@ export default class DatePicker extends React.Component {
       }
       return;
     }
-    if(this.state.open && !this.state.enableFocusTrap) {
+    if (this.state.open && !this.state.enableFocusTrap) {
       if (eventKey === "ArrowDown" || eventKey === "Tab") {
         event.preventDefault();
         this.setState({enableFocusTrap: true}, () => {
           this.onInputClick();
         });
+      } else if (eventKey === "Escape") {
+        event.preventDefault();
+        this.setOpen(false, true);
       }
       return;
     }
@@ -748,7 +752,7 @@ export default class DatePicker extends React.Component {
       readOnly: this.props.readOnly,
       required: this.props.required,
       tabIndex: this.props.tabIndex,
-      "aria-label": inputValue
+      "aria-label": this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.'
     });
   };
 
