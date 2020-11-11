@@ -32,7 +32,7 @@ describe('EuiFacetGroup', () => {
 
   describe('props', () => {
     describe('layout', () => {
-      LAYOUTS.forEach(layout => {
+      LAYOUTS.forEach((layout) => {
         test(`${layout} is rendered`, () => {
           const component = render(<EuiFacetGroup layout={layout} />);
 
@@ -42,7 +42,7 @@ describe('EuiFacetGroup', () => {
     });
 
     describe('gutterSize', () => {
-      GUTTER_SIZES.forEach(size => {
+      GUTTER_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiFacetGroup gutterSize={size} />);
 

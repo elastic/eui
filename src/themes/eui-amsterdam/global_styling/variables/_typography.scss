@@ -14,15 +14,20 @@ $euiFontSizeL:     ceil($euiFontSize * 1.57); // 22px // h3
 $euiFontSizeXL:   floor($euiFontSize * 1.93); // 27px // h2
 $euiFontSizeXXL:  floor($euiFontSize * 2.43); // 34px // h1
 
+$euiBodyLineHeight: 1.142857143; // 16px from a 14px base font size to ensure it aligns to our 16px grid
+
 // Use 8px increments for base gridline
 @function lineHeightFromBaseline($multiplier: 3) {
   @return convertToRem(($euiSize/2)*$multiplier);
+}
+@mixin lineHeightFromBaseline($multiplier: 3) {
+  line-height: lineHeightFromBaseline($multiplier);
 }
 
 $euiTitles: (
   'xxxs': (
     'font-size': $euiFontSizeXS,
-    'line-height': lineHeightFromBaseline(3),
+    'line-height': lineHeightFromBaseline(2),
     'font-weight': $euiFontWeightBold,
   ),
   'xxs': (
@@ -42,12 +47,12 @@ $euiTitles: (
   ),
   'm': (
     'font-size': $euiFontSizeXL,
-    'line-height': lineHeightFromBaseline(5),
+    'line-height': lineHeightFromBaseline(4),
     'font-weight': $euiFontWeightBold,
   ),
   'l': (
     'font-size': $euiFontSizeXXL,
-    'line-height': lineHeightFromBaseline(6),
+    'line-height': lineHeightFromBaseline(5),
     'font-weight': $euiFontWeightBold,
   ),
 );

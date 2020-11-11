@@ -15,7 +15,7 @@ export const HtmlIdGeneratorSuffix = () => {
   const [suffix, setSuffix] = useState('Id');
   const [customId, setCustomId] = useState(htmlIdGenerator()('Id'));
 
-  const onSuffixChange = e => {
+  const onSuffixChange = (e) => {
     const suffix = e.target.value;
     setSuffix(suffix);
     setCustomId(htmlIdGenerator()(suffix));

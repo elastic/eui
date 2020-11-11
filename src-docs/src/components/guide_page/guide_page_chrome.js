@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
-
 import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
+  EuiButtonEmpty,
   EuiSideNav,
   EuiSpacer,
   EuiText,
@@ -21,7 +19,7 @@ import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
 
-const scrollTo = position => {
+const scrollTo = (position) => {
   window.scrollTo({ top: position, behavior: 'smooth' });
 };
 
@@ -64,7 +62,7 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  onSearchChange = event => {
+  onSearchChange = (event) => {
     this.setState({
       search: event.target.value,
       isSideNavOpenOnMobile: event.target.value !== '',
@@ -136,22 +134,13 @@ export class GuidePageChrome extends Component {
         responsive={false}
         wrap>
         <EuiFlexItem grow={false}>
-          <EuiFlexGroup
-            alignItems="center"
-            gutterSize="s"
-            responsive={false}
-            wrap>
-            <EuiFlexItem grow={false}>
-              <Link to="/" className="guideLogo" aria-label="Go to home page">
-                <EuiIcon type="logoElastic" size="l" />
-              </Link>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <Link to="/" aria-label="Go to home page" className="euiLink">
-                <strong>Elastic UI</strong>
-              </Link>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <EuiButtonEmpty
+            href="#/"
+            aria-label="EUI home"
+            iconType="logoElastic"
+            size="l">
+            <strong>Elastic UI</strong>
+          </EuiButtonEmpty>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
@@ -177,7 +166,7 @@ export class GuidePageChrome extends Component {
   }
 
   renderSubSections = (href, subSections = [], searchTerm = '') => {
-    const subSectionsWithTitles = subSections.filter(item => {
+    const subSectionsWithTitles = subSections.filter((item) => {
       if (!item.title) {
         return false;
       }
@@ -214,16 +203,16 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  renderSideNav = sideNav => {
+  renderSideNav = (sideNav) => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
     const searchTerm = this.state.search.toLowerCase();
 
-    sideNav.forEach(section => {
+    sideNav.forEach((section) => {
       let hasMatchingSubItem = false;
 
-      const matchingItems = section.items.filter(item => {
+      const matchingItems = section.items.filter((item) => {
         if (item.hidden) {
           return false;
         }
@@ -242,7 +231,7 @@ export class GuidePageChrome extends Component {
         }
       });
 
-      const items = matchingItems.map(item => {
+      const items = matchingItems.map((item) => {
         const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
 

@@ -54,7 +54,7 @@ export const ChartCard = ({ title, description, children }) => {
   );
 };
 
-export const ChartTypeCard = props => {
+export const ChartTypeCard = (props) => {
   const idPrefix = 'chartType';
 
   const toggleButtonsIcons = [
@@ -74,7 +74,7 @@ export const ChartTypeCard = props => {
 
   const [toggleIdSelected, setToggleIdSelectd] = useState(`${idPrefix}0`);
 
-  const onChartTypeChange = optionId => {
+  const onChartTypeChange = (optionId) => {
     setToggleIdSelectd(optionId);
 
     const chartType = toggleButtonsIcons.find(({ id }) => id === optionId)
@@ -111,11 +111,11 @@ ChartTypeCard.propTypes = {
   disabled: PropTypes.bool,
 };
 
-export const MultiChartCard = props => {
+export const MultiChartCard = (props) => {
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
 
-  const onMultiChange = e => {
+  const onMultiChange = (e) => {
     const isStacked = e.target.checked ? stacked : false;
 
     setMulti(e.target.checked);
@@ -127,7 +127,7 @@ export const MultiChartCard = props => {
     });
   };
 
-  const onStackedChange = e => {
+  const onStackedChange = (e) => {
     setStacked(e.target.checked);
 
     props.onChange({ multi: multi, stacked: e.target.checked });

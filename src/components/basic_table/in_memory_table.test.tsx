@@ -309,7 +309,7 @@ describe('EuiInMemoryTable', () => {
       expect(
         component
           .find('tbody .euiTableCellContent__text')
-          .map(cell => cell.text())
+          .map((cell) => cell.text())
       ).toEqual(['name3', 'name1', 'name2']);
     });
 
@@ -341,7 +341,7 @@ describe('EuiInMemoryTable', () => {
       expect(
         component
           .find('tbody .euiTableCellContent__text')
-          .map(cell => cell.text())
+          .map((cell) => cell.text())
       ).toEqual(['name1', 'name2', 'name3']);
     });
 
@@ -373,7 +373,7 @@ describe('EuiInMemoryTable', () => {
       expect(
         component
           .find('tbody .euiTableCellContent__text')
-          .map(cell => cell.text())
+          .map((cell) => cell.text())
       ).toEqual(['name3', 'name2', 'name1']);
     });
 
@@ -412,7 +412,7 @@ describe('EuiInMemoryTable', () => {
       expect(
         component
           .find('tbody .euiTableCellContent__text')
-          .map(cell => cell.text())
+          .map((cell) => cell.text())
       ).toEqual(['name3', '1', 'name2', '2', 'name1', '3']);
     });
 
@@ -661,6 +661,41 @@ describe('EuiInMemoryTable', () => {
       selection: {
         onSelectionChange: () => undefined,
       },
+    };
+    const component = shallow(<EuiInMemoryTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with search and component between search and table', () => {
+    const props: EuiInMemoryTableProps<BasicItem> = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+          sortable: true,
+        },
+        {
+          name: 'Actions',
+          actions: [
+            {
+              name: 'Edit',
+              description: 'edit',
+              onClick: () => undefined,
+            },
+          ],
+        },
+      ],
+      search: true,
+      childrenBetween: <div>Children Between</div>,
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
@@ -943,6 +978,33 @@ describe('EuiInMemoryTable', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('pagination with actions column and sorting set to true', async () => {
+      const props: EuiInMemoryTableProps<BasicItem> = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+          { id: '4', name: 'name4' },
+        ],
+        columns: [
+          {
+            name: 'Actions',
+            actions: [],
+          },
+        ],
+        sorting: true,
+        pagination: {
+          pageSizeOptions: [2, 4, 6],
+        },
+      };
+      const component = mount(<EuiInMemoryTable {...props} />);
+
+      component
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .simulate('click');
+    });
+
     test('onTableChange callback', () => {
       const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
@@ -1038,18 +1100,8 @@ describe('EuiInMemoryTable', () => {
         component.find('button[data-test-subj="pagination-button-1"][disabled]')
           .length
       ).toBe(1);
-      expect(
-        component
-          .find('td')
-          .at(0)
-          .text()
-      ).toBe('Index2');
-      expect(
-        component
-          .find('td')
-          .at(1)
-          .text()
-      ).toBe('Index3');
+      expect(component.find('td').at(0).text()).toBe('Index2');
+      expect(component.find('td').at(1).text()).toBe('Index3');
 
       // click the first pagination button
       component
@@ -1069,18 +1121,8 @@ describe('EuiInMemoryTable', () => {
         component.find('button[data-test-subj="pagination-button-1"][disabled]')
           .length
       ).toBe(1);
-      expect(
-        component
-          .find('td')
-          .at(0)
-          .text()
-      ).toBe('Index2');
-      expect(
-        component
-          .find('td')
-          .at(1)
-          .text()
-      ).toBe('Index3');
+      expect(component.find('td').at(0).text()).toBe('Index2');
+      expect(component.find('td').at(1).text()).toBe('Index3');
 
       // re-render with an updated `pageIndex` value
       pagination.pageIndex = 2;
@@ -1091,18 +1133,8 @@ describe('EuiInMemoryTable', () => {
         component.find('button[data-test-subj="pagination-button-2"][disabled]')
           .length
       ).toBe(1);
-      expect(
-        component
-          .find('td')
-          .at(0)
-          .text()
-      ).toBe('Index4');
-      expect(
-        component
-          .find('td')
-          .at(1)
-          .text()
-      ).toBe('Index5');
+      expect(component.find('td').at(0).text()).toBe('Index4');
+      expect(component.find('td').at(1).text()).toBe('Index5');
     });
 
     it('respects pageSize', () => {
@@ -1137,18 +1169,8 @@ describe('EuiInMemoryTable', () => {
 
       // check that the first 2 items rendered
       expect(component.find('td').length).toBe(2);
-      expect(
-        component
-          .find('td')
-          .at(0)
-          .text()
-      ).toBe('Index0');
-      expect(
-        component
-          .find('td')
-          .at(1)
-          .text()
-      ).toBe('Index1');
+      expect(component.find('td').at(0).text()).toBe('Index0');
+      expect(component.find('td').at(1).text()).toBe('Index1');
 
       // change the page size
       component
@@ -1171,18 +1193,8 @@ describe('EuiInMemoryTable', () => {
 
       // verify still only rendering the first 2 rows
       expect(component.find('td').length).toBe(2);
-      expect(
-        component
-          .find('td')
-          .at(0)
-          .text()
-      ).toBe('Index0');
-      expect(
-        component
-          .find('td')
-          .at(1)
-          .text()
-      ).toBe('Index1');
+      expect(component.find('td').at(0).text()).toBe('Index0');
+      expect(component.find('td').at(1).text()).toBe('Index1');
 
       // update the controlled page size
       pagination.pageSize = 4;
@@ -1190,30 +1202,10 @@ describe('EuiInMemoryTable', () => {
 
       // verify it now renders 4 rows
       expect(component.find('td').length).toBe(4);
-      expect(
-        component
-          .find('td')
-          .at(0)
-          .text()
-      ).toBe('Index0');
-      expect(
-        component
-          .find('td')
-          .at(1)
-          .text()
-      ).toBe('Index1');
-      expect(
-        component
-          .find('td')
-          .at(2)
-          .text()
-      ).toBe('Index2');
-      expect(
-        component
-          .find('td')
-          .at(3)
-          .text()
-      ).toBe('Index3');
+      expect(component.find('td').at(0).text()).toBe('Index0');
+      expect(component.find('td').at(1).text()).toBe('Index1');
+      expect(component.find('td').at(2).text()).toBe('Index2');
+      expect(component.find('td').at(3).text()).toBe('Index3');
     });
   });
 });

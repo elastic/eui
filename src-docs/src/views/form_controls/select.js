@@ -12,7 +12,7 @@ export default () => {
 
   const [value, setValue] = useState(options[1].value);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
 
@@ -23,7 +23,7 @@ export default () => {
         id="selectDocExample"
         options={options}
         value={value}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         aria-label="Use aria labels when no actual label is in use"
       />
     </DisplayToggles>

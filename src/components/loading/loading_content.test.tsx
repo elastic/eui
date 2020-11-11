@@ -33,7 +33,7 @@ describe('EuiLoadingContent', () => {
   });
 
   describe('lines', () => {
-    lines.forEach(line => {
+    lines.forEach((line) => {
       test(`${line} is rendered`, () => {
         const component = render(<EuiLoadingContent lines={line} />);
 

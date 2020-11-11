@@ -9,7 +9,7 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
     tabindex="0"
   >
     <div
-      class="euiPopoverTitle"
+      class="euiContextMenuPanelTitle"
     >
       <span
         class="euiContextMenu__itemLayout"
@@ -45,7 +45,7 @@ exports[`EuiContextMenu panel item can be a separator line 1`] = `
     tabindex="0"
   >
     <div
-      class="euiPopoverTitle"
+      class="euiContextMenuPanelTitle"
     >
       <span
         class="euiContextMenu__itemLayout"
@@ -101,7 +101,7 @@ exports[`EuiContextMenu panel item can contain JSX 1`] = `
     tabindex="0"
   >
     <div
-      class="euiPopoverTitle"
+      class="euiContextMenuPanelTitle"
     >
       <span
         class="euiContextMenu__itemLayout"
@@ -384,7 +384,7 @@ exports[`EuiContextMenuPanel props title is rendered 1`] = `
   tabindex="0"
 >
   <div
-    class="euiPopoverTitle"
+    class="euiContextMenuPanelTitle"
   >
     <span
       class="euiContextMenu__itemLayout"

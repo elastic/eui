@@ -17,7 +17,6 @@ import {
   EuiMarkdownFormat,
   EuiSpacer,
   EuiCodeBlock,
-  EuiButtonToggle,
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiModalBody,
@@ -58,7 +57,7 @@ const paletteData = {
 const paletteNames = Object.keys(paletteData);
 
 const dg = new DataGenerator();
-const generateData = categories => dg.generateGroupedSeries(10, categories);
+const generateData = (categories) => dg.generateGroupedSeries(10, categories);
 
 const chartDemoPlugin = {
   name: 'chartDemoPlugin',
@@ -90,7 +89,7 @@ const chartDemoPlugin = {
     const [palette, setPalette] = useState((node && node.palette) || '1');
     const [categories, setCategories] = useState(5);
 
-    const onChange = e => {
+    const onChange = (e) => {
       setCategories(parseInt(e.target.value));
     };
 
@@ -295,14 +294,13 @@ export default () => {
       />
       <EuiSpacer size="s" />
       <div className="eui-textRight">
-        <EuiButtonToggle
-          label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+        <EuiButton
           size="s"
-          isEmpty
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
-          onChange={() => setIsAstShowing(!isAstShowing)}
-          isSelected={isAstShowing}
-        />
+          onClick={() => setIsAstShowing(!isAstShowing)}
+          fill={isAstShowing}>
+          {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+        </EuiButton>
       </div>
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
 

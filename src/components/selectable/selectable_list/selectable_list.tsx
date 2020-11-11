@@ -225,7 +225,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       );
     }
 
-    const labelCount = data.filter(option => option.isGroupLabel).length;
+    const labelCount = data.filter((option) => option.isGroupLabel).length;
 
     return (
       <EuiSelectableListItem
@@ -367,7 +367,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   private onAddOption = (addedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, options, singleSelection } = this.props;
 
-    const updatedOptions = options.map(option => {
+    const updatedOptions = options.map((option) => {
       // if singleSelection is enabled, uncheck any selected option(s)
       const updatedOption = { ...option };
       if (singleSelection) {
@@ -388,7 +388,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   private onRemoveOption = (removedOption: EuiSelectableOption<T>) => {
     const { onOptionClick, singleSelection, options } = this.props;
 
-    const updatedOptions = options.map(option => {
+    const updatedOptions = options.map((option) => {
       const updatedOption = { ...option };
 
       if (option === removedOption && singleSelection !== 'always') {
@@ -405,7 +405,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
 
-    const updatedOptions = options.map(option => {
+    const updatedOptions = options.map((option) => {
       const updatedOption = { ...option };
 
       if (option === excludedOption) {

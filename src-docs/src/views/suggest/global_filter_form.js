@@ -68,7 +68,7 @@ const valueOption = [
   },
 ];
 
-const GlobalFilterForm = props => {
+const GlobalFilterForm = (props) => {
   const [fieldOptions, setFieldOptions] = useState(fieldOption);
   const [operandOptions, setOperandOptions] = useState(operatorOption);
   const [valueOptions, setValueOptions] = useState(valueOption);
@@ -81,46 +81,46 @@ const GlobalFilterForm = props => {
   const [selectedValues, setSelectedValues] = useState(
     props.selectedObject ? props.selectedObject.values : []
   );
-  const [useCustomLabel, setUseCoustomLabel] = useState(false);
+  const [useCustomLabel, setUseCustomLabel] = useState(false);
   const [customLabel, setCustomLabel] = useState('');
 
-  const onFieldChange = selectedOptions => {
+  const onFieldChange = (selectedOptions) => {
     // We should only get back either 0 or 1 options.
     setSelectedField(selectedOptions);
   };
 
-  const onOperandChange = selectedOptions => {
+  const onOperandChange = (selectedOptions) => {
     // We should only get back either 0 or 1 options.
     setSelectedOperand(selectedOptions);
   };
 
-  const onValuesChange = selectedOptions => {
+  const onValuesChange = (selectedOptions) => {
     setSelectedValues(selectedOptions);
   };
 
-  const onCustomLabelSwitchChange = e => {
-    setCustomLabel(e.target.checked);
+  const onCustomLabelSwitchChange = (e) => {
+    setUseCustomLabel(e.target.checked);
   };
 
-  const onFieldSearchChange = searchValue => {
+  const onFieldSearchChange = (searchValue) => {
     setFieldOptions(
-      fieldOption.filter(option =>
+      fieldOption.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   };
 
-  const onOperandSearchChange = searchValue => {
+  const onOperandSearchChange = (searchValue) => {
     setOperandOptions(
-      operatorOption.filter(option =>
+      operatorOption.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   };
 
-  const onValuesSearchChange = searchValue => {
+  const onValuesSearchChange = (searchValue) => {
     setValueOptions(
-      valueOption.filter(option =>
+      valueOption.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
@@ -130,13 +130,12 @@ const GlobalFilterForm = props => {
     setSelectedField([]);
     setSelectedOperand([]);
     setSelectedValues([]);
-    setUseCoustomLabel(false);
-    setCustomLabel(null);
+    setUseCustomLabel(false);
+    setCustomLabel('');
   };
 
-  const onCustomLabelChange = value => {
-    console.log(value);
-    // setCustomLabel()
+  const onCustomLabelChange = (e) => {
+    setCustomLabel(e.target.value);
   };
 
   const { onAdd, onCancel, selectedObject, ...rest } = props;
@@ -220,7 +219,7 @@ const GlobalFilterForm = props => {
       <EuiFlexGroup direction="rowReverse" alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiButton
-            isDisabled={selectedValues.length < 1}
+            isDisabled={selectedValues.length < 1 && customLabel.length === 0}
             fill
             onClick={onAdd}>
             Add

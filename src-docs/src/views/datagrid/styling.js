@@ -273,91 +273,91 @@ export default class DataGrid extends Component {
     };
   }
 
-  onBorderChange = optionId => {
+  onBorderChange = (optionId) => {
     this.setState({
       borderSelected: optionId,
     });
   };
 
-  onFontSizeChange = optionId => {
+  onFontSizeChange = (optionId) => {
     this.setState({
       fontSizeSelected: optionId,
     });
   };
 
-  onCellPaddingChange = optionId => {
+  onCellPaddingChange = (optionId) => {
     this.setState({
       cellPaddingSelected: optionId,
     });
   };
 
-  onStripesChange = optionId => {
+  onStripesChange = (optionId) => {
     this.setState({
       stripesSelected: optionId === 'true',
     });
   };
 
-  onRowHoverChange = optionId => {
+  onRowHoverChange = (optionId) => {
     this.setState({
       rowHoverSelected: optionId,
     });
   };
 
-  onHeaderChange = optionId => {
+  onHeaderChange = (optionId) => {
     this.setState({
       headerSelected: optionId,
     });
   };
 
-  onFooterChange = optionId => {
+  onFooterChange = (optionId) => {
     this.setState({
       footerSelected: optionId,
     });
   };
 
-  onShowSortSelectorChange = optionId => {
+  onShowSortSelectorChange = (optionId) => {
     this.setState({
       showSortSelector: optionId === 'true',
     });
   };
 
-  onShowStyleSelectorChange = optionId => {
+  onShowStyleSelectorChange = (optionId) => {
     this.setState({
       showStyleSelector: optionId === 'true',
     });
   };
 
-  onShowColumnSelectorChange = optionId => {
+  onShowColumnSelectorChange = (optionId) => {
     this.setState({
       showColumnSelector: optionId === 'true',
     });
   };
 
-  onAllowHideColumnsChange = optionId => {
+  onAllowHideColumnsChange = (optionId) => {
     this.setState({
       allowHideColumns: optionId === 'true',
     });
   };
 
-  onAllowOrderingColumnsChange = optionId => {
+  onAllowOrderingColumnsChange = (optionId) => {
     this.setState({
       allowOrderingColumns: optionId === 'true',
     });
   };
 
-  onShowFullScreenSelectorChange = optionId => {
+  onShowFullScreenSelectorChange = (optionId) => {
     this.setState({
       showFullScreenSelector: optionId === 'true',
     });
   };
 
-  onShowToolbarChange = optionId => {
+  onShowToolbarChange = (optionId) => {
     this.setState({
       showToolbar: optionId === 'true',
     });
   };
 
-  onToolbarPropTypeIsBooleanChange = optionId => {
+  onToolbarPropTypeIsBooleanChange = (optionId) => {
     this.setState({
       toolbarPropTypeIsBoolean: optionId === 'true',
     });
@@ -387,17 +387,17 @@ export default class DataGrid extends Component {
     });
   }
 
-  setPageIndex = pageIndex =>
+  setPageIndex = (pageIndex) =>
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageIndex },
     }));
 
-  setPageSize = pageSize =>
+  setPageSize = (pageSize) =>
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageSize, pageIndex: 0 },
     }));
 
-  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+  setVisibleColumns = (visibleColumns) => this.setState({ visibleColumns });
 
   render() {
     const { pagination } = this.state;

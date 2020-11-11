@@ -155,7 +155,7 @@ export class EuiGlobalToastList extends Component<
   };
 
   scheduleAllToastsForDismissal = () => {
-    this.props.toasts.forEach(toast => {
+    this.props.toasts.forEach((toast) => {
       if (!this.toastIdToTimerMap[toast.id]) {
         this.scheduleToastForDismissal(toast);
       }
@@ -185,7 +185,7 @@ export class EuiGlobalToastList extends Component<
           this.toastIdToTimerMap[toast.id].clear();
           delete this.toastIdToTimerMap[toast.id];
 
-          this.setState(prevState => {
+          this.setState((prevState) => {
             const toastIdToDismissedMap = {
               ...prevState.toastIdToDismissedMap,
             };
@@ -199,7 +199,7 @@ export class EuiGlobalToastList extends Component<
       }, TOAST_FADE_OUT_MS)
     );
 
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const toastIdToDismissedMap = {
         ...prevState.toastIdToDismissedMap,
         [toast.id]: true,
@@ -265,7 +265,7 @@ export class EuiGlobalToastList extends Component<
       ...rest
     } = this.props;
 
-    const renderedToasts = toasts.map(toast => {
+    const renderedToasts = toasts.map((toast) => {
       const { text, toastLifeTimeMs, ...rest } = toast;
 
       return (
@@ -292,7 +292,7 @@ export class EuiGlobalToastList extends Component<
       <div
         aria-live="polite"
         role="region"
-        ref={element => {
+        ref={(element) => {
           this.listElement = element;
         }}
         className={classes}

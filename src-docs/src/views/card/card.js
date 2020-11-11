@@ -9,7 +9,7 @@ import {
 
 const icons = ['Beats', 'Cloud', 'Logging', 'Kibana'];
 
-const cardNodes = icons.map(function(item, index) {
+const cardNodes = icons.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard
@@ -17,7 +17,7 @@ const cardNodes = icons.map(function(item, index) {
         title={`Elastic ${item}`}
         isDisabled={item === 'Kibana' ? true : false}
         description="Example of a card's description. Stick to one or two sentences."
-        onClick={() => window.alert('Card clicked')}
+        onClick={() => {}}
       />
     </EuiFlexItem>
   );

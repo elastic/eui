@@ -84,21 +84,15 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
             <div className="euiCommentEvent__headerTimestamp">
               <time>{timestamp}</time>
             </div>
-          ) : (
-            undefined
-          )}
+          ) : undefined}
         </div>
         {actions ? (
           <div className="euiCommentEvent__headerActions">{actions}</div>
-        ) : (
-          undefined
-        )}
+        ) : undefined}
       </HeaderElement>
       {children ? (
         <div className="euiCommentEvent__body">{children}</div>
-      ) : (
-        undefined
-      )}
+      ) : undefined}
     </Element>
   );
 };

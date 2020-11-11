@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { EuiCollapsibleNav } from '../../../../src/components/collapsible_nav';
-import { EuiButton, EuiButtonToggle } from '../../../../src/components/button';
+import { EuiButton } from '../../../../src/components/button';
 import { EuiTitle } from '../../../../src/components/title';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiText } from '../../../../src/components/text';
@@ -27,13 +27,12 @@ export default () => {
             <h2>I am some nav</h2>
           </EuiTitle>
           <EuiSpacer />
-          <EuiButtonToggle
-            label={`Docked: ${navIsDocked ? 'on' : 'off'}`}
-            fill={navIsDocked}
-            onChange={() => {
+          <EuiButton
+            onClick={() => {
               setNavIsDocked(!navIsDocked);
-            }}
-          />
+            }}>
+            Docked: {navIsDocked ? 'on' : 'off'}
+          </EuiButton>
         </div>
       </EuiCollapsibleNav>
 

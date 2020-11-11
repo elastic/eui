@@ -28,9 +28,7 @@ const GuidePageComponent = ({
       label="Beta"
       tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
     />
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   const tabs = [
     {

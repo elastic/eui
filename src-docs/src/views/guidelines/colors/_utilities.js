@@ -132,7 +132,7 @@ color: $${foreground};`;
         beforeMessage={beforeMessage}
         afterMessage={<small>Copied!</small>}
         textToCopy={textToCopy}>
-        {copy => (
+        {(copy) => (
           <EuiBadge
             className="guideColorSection__button"
             iconType={contrastRating}

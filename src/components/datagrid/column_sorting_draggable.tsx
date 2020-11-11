@@ -46,6 +46,13 @@ export interface EuiDataGridColumnSortingDraggableProps {
   display: string;
 }
 
+export const defaultSortAscLabel = (
+  <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
+);
+export const defaultSortDescLabel = (
+  <EuiI18n token="euiColumnSortingDraggable.defaultSortDesc" default="Z-A" />
+);
+
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
   id,
   display,
@@ -62,21 +69,10 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
       : null;
 
   const textSortAsc =
-    schemaDetails != null ? (
-      schemaDetails.sortTextAsc
-    ) : (
-      <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
-    );
+    schemaDetails != null ? schemaDetails.sortTextAsc : defaultSortAscLabel;
 
   const textSortDesc =
-    schemaDetails != null ? (
-      schemaDetails.sortTextDesc
-    ) : (
-      <EuiI18n
-        token="euiColumnSortingDraggable.defaultSortDesc"
-        default="Z-A"
-      />
-    );
+    schemaDetails != null ? schemaDetails.sortTextDesc : defaultSortDescLabel;
 
   const toggleOptions = [
     {
@@ -97,8 +93,9 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
     <EuiDraggable draggableId={id} index={index} {...rest}>
       {(provided, state) => (
         <div
-          className={`euiDataGridColumnSorting__item ${state.isDragging &&
-            'euiDataGridColumnSorting__item-isDragging'}`}>
+          className={`euiDataGridColumnSorting__item ${
+            state.isDragging && 'euiDataGridColumnSorting__item-isDragging'
+          }`}>
           <EuiScreenReaderOnly>
             <p>
               <EuiI18n
@@ -161,6 +158,8 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
                 {(toggleLegend: ReactChild) => (
                   <EuiButtonGroup
                     legend={`${toggleLegend} ${id}`}
+                    name={id}
+                    isFullWidth
                     options={toggleOptions}
                     data-test-subj={`-${direction}`}
                     buttonSize="compressed"

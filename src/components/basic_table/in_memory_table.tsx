@@ -55,7 +55,7 @@ function isEuiSearchBarProps<T>(
   return typeof x !== 'boolean';
 }
 
-type Search = boolean | EuiSearchBarProps;
+export type Search = boolean | EuiSearchBarProps;
 
 interface PaginationOptions {
   pageSizeOptions?: number[];
@@ -79,6 +79,9 @@ type InMemoryTableProps<T> = Omit<
   'pagination' | 'sorting' | 'noItemsMessage'
 > & {
   message?: ReactNode;
+  /**
+   * Configures #Search.
+   */
   search?: Search;
   pagination?: undefined;
   sorting?: Sorting;
@@ -86,12 +89,19 @@ type InMemoryTableProps<T> = Omit<
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
   allowNeutralSort?: boolean;
+  /**
+   * Callback for when table pagination or sorting is changed. This is meant to be informational only, and not used to set any state as the in-memory table already manages this state. See #Criteria or #CriteriaWithPagination.
+   */
   onTableChange?: (nextValues: Criteria<T>) => void;
   executeQueryOptions?: {
     defaultFields?: string[];
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
   };
+  /**
+   * Insert content between the search bar and table components.
+   */
+  childrenBetween?: ReactNode;
 };
 
 type InMemoryTablePropsWithPagination<T> = Omit<
@@ -406,7 +416,10 @@ export class EuiInMemoryTable<T> extends Component<
     // map back to `name` if this is the case
     for (let i = 0; i < this.props.columns.length; i++) {
       const column = this.props.columns[i];
-      if ((column as EuiTableFieldDataColumnType<T>).field === sortName) {
+      if (
+        'field' in column &&
+        (column as EuiTableFieldDataColumnType<T>).field === sortName
+      ) {
         sortName = column.name as keyof T;
         break;
       }
@@ -466,7 +479,7 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState(state => ({
+    this.setState((state) => ({
       prevProps: {
         ...state.prevProps,
         search,
@@ -604,6 +617,7 @@ export class EuiInMemoryTable<T> extends Component<
       onTableChange,
       executeQueryOptions,
       allowNeutralSort,
+      childrenBetween,
       ...rest
     } = this.props;
 
@@ -678,6 +692,8 @@ export class EuiInMemoryTable<T> extends Component<
     return (
       <div>
         {searchBar}
+        {childrenBetween != null ? <EuiSpacer size="l" /> : null}
+        {childrenBetween}
         <EuiSpacer size="l" />
         {table}
       </div>

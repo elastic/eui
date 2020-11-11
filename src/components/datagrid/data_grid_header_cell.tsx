@@ -50,13 +50,16 @@ export interface EuiDataGridHeaderCellProps
   className?: string;
 }
 
-export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = props => {
+export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = (
+  props
+) => {
   const {
     column,
     index,
     columns,
     columnWidths,
     schema,
+    schemaDetectors,
     defaultColumnWidth,
     setColumnWidth,
     setVisibleColumns,
@@ -99,7 +102,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ariaProps['aria-sort'] = sortValue;
     } else if (sorting.columns.length >= 2 && sortedColumnIds.has(id)) {
       sortString = sorting.columns
-        .map(col => `Sorted by ${col.id} ${col.direction}`)
+        .map((col) => `Sorted by ${col.id} ${col.direction}`)
         .join(' then ');
       ariaProps['aria-describedby'] = screenReaderId;
     }
@@ -272,6 +275,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const columnActions = getColumnActions(
     column,
     columns,
+    schema,
+    schemaDetectors,
     setVisibleColumns,
     setIsPopoverOpen,
     sorting,

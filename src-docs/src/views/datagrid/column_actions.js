@@ -27,8 +27,7 @@ const columns = [
           iconType: 'heart',
           label: 'Send Email',
           size: 'xs',
-          onClick: () =>
-            alert('🎵Return to sender, address unknown, no such number,...'),
+          onClick: () => {},
         },
       ],
     },
@@ -78,11 +77,11 @@ export default () => {
   );
 
   const setPageIndex = useCallback(
-    pageIndex => setPagination({ ...pagination, pageIndex }),
+    (pageIndex) => setPagination({ ...pagination, pageIndex }),
     [pagination, setPagination]
   );
   const setPageSize = useCallback(
-    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    (pageSize) => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
     [pagination, setPagination]
   );
 

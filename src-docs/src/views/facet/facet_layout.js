@@ -18,46 +18,46 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [selectedOptionId, setSelectedOptionId] = useState(undefined);
 
-  const facet0Clicked = id => {
+  const facet0Clicked = (id) => {
     setIcon(false);
     setDisabled(false);
     setAvatars(false);
     setLoading(false);
-    setSelectedOptionId(selectedOptionId =>
+    setSelectedOptionId((selectedOptionId) =>
       selectedOptionId === id ? undefined : id
     );
   };
 
-  const facet1Clicked = id => {
+  const facet1Clicked = (id) => {
     setIcon(true);
     setDisabled(false);
     setAvatars(false);
     setLoading(false);
-    setSelectedOptionId(selectedOptionId =>
+    setSelectedOptionId((selectedOptionId) =>
       selectedOptionId === id ? undefined : id
     );
   };
 
-  const facet2Clicked = id => {
-    setDisabled(disabled => !disabled);
-    setSelectedOptionId(selectedOptionId =>
+  const facet2Clicked = (id) => {
+    setDisabled((disabled) => !disabled);
+    setSelectedOptionId((selectedOptionId) =>
       selectedOptionId === id ? undefined : id
     );
   };
 
-  const facet3Clicked = id => {
+  const facet3Clicked = (id) => {
     setIcon(false);
     setDisabled(false);
     setAvatars(true);
     setLoading(false);
-    setSelectedOptionId(selectedOptionId =>
+    setSelectedOptionId((selectedOptionId) =>
       selectedOptionId === id ? undefined : id
     );
   };
 
-  const facet4Clicked = id => {
+  const facet4Clicked = (id) => {
     setLoading(true);
-    setSelectedOptionId(selectedOptionId =>
+    setSelectedOptionId((selectedOptionId) =>
       selectedOptionId === id ? undefined : id
     );
   };
@@ -113,10 +113,10 @@ export default () => {
     setLoading(false);
   }, 1200);
 
-  const facets = align => {
+  const facets = (align) => {
     return (
       <>
-        {list.map(facet => {
+        {list.map((facet) => {
           let iconNode;
           if (icon) {
             iconNode = <EuiIcon type="dot" color={facet.iconColor} />;

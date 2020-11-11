@@ -9,7 +9,7 @@ import 'brace/ext/language_tools';
 export default () => {
   const [value, updateValue] = useState('');
 
-  const onChange = value => {
+  const onChange = (value) => {
     updateValue(value);
   };
 
@@ -26,9 +26,7 @@ export default () => {
         enableSnippets: true,
         enableLiveAutocompletion: true,
       }}
-      onBlur={() => {
-        console.log('blur');
-      }} // eslint-disable-line no-console
+      onBlur={() => {}}
       aria-label="Code Editor"
     />
   );

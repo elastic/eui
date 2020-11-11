@@ -65,6 +65,7 @@ export interface EuiContextMenuPanelDescriptor {
   items?: EuiContextMenuPanelItemDescriptor[];
   content?: ReactNode;
   width?: number;
+  initialFocusedItemIndex?: number;
 }
 
 export type EuiContextMenuProps = CommonProps &
@@ -81,7 +82,7 @@ const isItemSeparator = (
 function mapIdsToPanels(panels: EuiContextMenuPanelDescriptor[]) {
   const map: { [id: string]: EuiContextMenuPanelDescriptor } = {};
 
-  panels.forEach(panel => {
+  panels.forEach((panel) => {
     map[panel.id] = panel;
   });
 
@@ -91,9 +92,9 @@ function mapIdsToPanels(panels: EuiContextMenuPanelDescriptor[]) {
 function mapIdsToPreviousPanels(panels: EuiContextMenuPanelDescriptor[]) {
   const idToPreviousPanelIdMap: { [panel: string]: EuiContextMenuPanelId } = {};
 
-  panels.forEach(panel => {
+  panels.forEach((panel) => {
     if (Array.isArray(panel.items)) {
-      panel.items.forEach(item => {
+      panel.items.forEach((item) => {
         if (isItemSeparator(item)) return;
         const isCloseable = item.panel !== undefined;
         if (isCloseable) {
@@ -111,7 +112,7 @@ function mapPanelItemsToPanels(panels: EuiContextMenuPanelDescriptor[]) {
     [id: string]: { [index: string]: EuiContextMenuPanelId };
   } = {};
 
-  panels.forEach(panel => {
+  panels.forEach((panel) => {
     idAndItemIndexToPanelIdMap[panel.id] = {};
 
     if (panel.items) {
@@ -227,9 +228,10 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
     if (nextPanelId) {
       if (this.state.isUsingKeyboardToNavigate) {
-        this.setState({
-          focusedItemIndex: 0,
-        });
+        this.setState(({ idToPanelMap }) => ({
+          focusedItemIndex:
+            idToPanelMap[nextPanelId].initialFocusedItemIndex ?? 0,
+        }));
       }
 
       this.showPanel(nextPanelId, 'next');
@@ -246,7 +248,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       // Set focus on the item which shows the panel we're leaving.
       const previousPanel = this.state.idToPanelMap[previousPanelId];
       const focusedItemIndex = previousPanel.items!.findIndex(
-        item =>
+        (item) =>
           !isItemSeparator(item) && item.panel === this.state.incomingPanelId
       );
 
@@ -288,7 +290,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     const idToRenderedItemsMap: { [id: string]: ReactElement[] } = {};
 
     // Pre-rendering the items lets us check reference equality inside of EuiContextMenuPanel.
-    panels.forEach(panel => {
+    panels.forEach((panel) => {
       idToRenderedItemsMap[panel.id] = this.renderItems(panel.items);
     });
 
@@ -388,7 +390,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         initialFocusedItemIndex={
           this.state.isUsingKeyboardToNavigate
             ? this.state.focusedItemIndex
-            : undefined
+            : panel.initialFocusedItemIndex
         }
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}

@@ -69,7 +69,7 @@ describe('EuiDescriptionList', () => {
     });
 
     describe('type', () => {
-      TYPES.forEach(type => {
+      TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
           const component = render(<EuiDescriptionList type={type} />);
 
@@ -79,7 +79,7 @@ describe('EuiDescriptionList', () => {
     });
 
     describe('align', () => {
-      ALIGNMENTS.forEach(alignment => {
+      ALIGNMENTS.forEach((alignment) => {
         test(`${alignment} is rendered`, () => {
           const component = render(<EuiDescriptionList align={alignment} />);
 

@@ -127,6 +127,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
     rangeWidth: undefined,
+    isVisible: true, // used to trigger a rerender if initial element width is 0
   };
 
   preventPopoverClose = false;
@@ -153,6 +154,24 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   }
   get isValid() {
     return this.lowerValueIsValid && this.upperValueIsValid;
+  }
+
+  componentDidMount() {
+    if (this.rangeSliderRef && this.rangeSliderRef.clientWidth === 0) {
+      // Safe to call `setState` inside conditional
+      // https://reactjs.org/docs/react-component.html#componentdidmount
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({ isVisible: false });
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.rangeSliderRef?.clientWidth && !this.state.isVisible) {
+      // Safe to call `setState` inside conditional
+      // https://reactjs.org/docs/react-component.html#componentdidupdate
+      // eslint-disable-next-line  react/no-did-update-set-state
+      this.setState({ isVisible: true });
+    }
   }
 
   _determineInvalidThumbMovement = (
@@ -491,9 +510,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const maxInput = !!showInput ? (
       <EuiRangeInput
@@ -524,9 +541,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const classes = classNames('euiDualRange', className);
     const theRange = (
@@ -663,9 +678,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onPanelResize={this.onResize}>
         {theRange}
       </EuiInputPopover>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     return thePopover || theRange;
   }

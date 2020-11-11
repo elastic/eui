@@ -76,7 +76,7 @@ export const ColorSection = ({
             />
           )}
 
-          {colorsForContrast.map(color2 => {
+          {colorsForContrast.map((color2) => {
             if (colorIsCore(color) && colorIsCore(color2)) {
               // i.e. don't render if both are core colors
               return;

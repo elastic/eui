@@ -31,7 +31,7 @@ describe('EuiListGroupItem', () => {
 
   describe('props', () => {
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiListGroupItem label="Label" size={size} />
@@ -43,7 +43,7 @@ describe('EuiListGroupItem', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiListGroupItem label="Label" color={color} />

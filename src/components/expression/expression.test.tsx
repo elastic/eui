@@ -52,7 +52,7 @@ describe('EuiExpression', () => {
 
   describe('props', () => {
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiExpression

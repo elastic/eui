@@ -227,13 +227,17 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
+    'euiCard--shadow', // For matching EuiPanel mixin
+    'euiCard--borderRadiusMedium', // For matching EuiPanel mixin
     paddingSizeToClassNameMap[paddingSize],
     displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {
       'euiCard--isClickable':
-        onClick || href || (selectable && !selectable.isDisabled),
+        (!isDisabled && onClick) ||
+        href ||
+        (selectable && !selectable.isDisabled),
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
@@ -316,7 +320,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaId}Description`}
         {...selectable}
-        buttonRef={node => {
+        buttonRef={(node) => {
           link = node;
         }}
       />
@@ -338,7 +342,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         target={target}
         aria-describedby={`${ariaId}Description`}
         rel={getSecureRelForTarget({ href, target, rel })}
-        ref={node => {
+        ref={(node) => {
           link = node;
         }}>
         {title}
@@ -351,7 +355,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
-        ref={node => {
+        ref={(node) => {
           link = node;
         }}>
         {title}

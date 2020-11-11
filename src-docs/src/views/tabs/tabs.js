@@ -44,7 +44,7 @@ const tabs = [
 export default () => {
   const [selectedTabId, setSelectedTabId] = useState('cobalt');
 
-  const onSelectedTabChanged = id => {
+  const onSelectedTabChanged = (id) => {
     setSelectedTabId(id);
   };
 

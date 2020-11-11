@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { EuiFieldText } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-export default function() {
+export default function () {
   const [value, setValue] = useState('');
 
-  const onChange = e => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
 
@@ -16,7 +16,7 @@ export default function() {
       <EuiFieldText
         placeholder="Placeholder text"
         value={value}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         aria-label="Use aria labels when no actual label is in use"
       />
     </DisplayToggles>

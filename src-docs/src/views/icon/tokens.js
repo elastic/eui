@@ -78,13 +78,13 @@ const tokens = [
 export default () => (
   <Fragment>
     <EuiFlexGrid columns={4}>
-      {tokens.map(token => (
+      {tokens.map((token) => (
         <EuiFlexItem
           className="guideDemo__icon"
           key={token}
           style={{ width: '200px' }}>
           <EuiCopy textToCopy={token} afterMessage={`${token} copied`}>
-            {copy => (
+            {(copy) => (
               <EuiPanel className="eui-textCenter" onClick={copy}>
                 <div
                   style={{

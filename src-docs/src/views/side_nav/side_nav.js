@@ -17,9 +17,7 @@ export default () => {
         {
           name: 'Advanced settings',
           id: 1,
-          onClick: () => {
-            window.alert('Advanced settings');
-          },
+          onClick: () => {},
         },
         {
           name: 'Index Patterns (link)',
@@ -29,17 +27,13 @@ export default () => {
         {
           name: 'Saved Objects',
           id: 3,
-          onClick: () => {
-            window.alert('Saved Objects');
-          },
+          onClick: () => {},
           isSelected: true,
         },
         {
           name: 'Reporting',
           id: 4,
-          onClick: () => {
-            window.alert('Reporting');
-          },
+          onClick: () => {},
         },
       ],
     },

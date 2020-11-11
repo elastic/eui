@@ -17,15 +17,15 @@ export default () => {
   const [isPopoverOpen3, setIsPopoverOpen3] = useState(false);
 
   const onButtonClick1 = () =>
-    setIsPopoverOpen1(isPopoverOpen1 => !isPopoverOpen1);
+    setIsPopoverOpen1((isPopoverOpen1) => !isPopoverOpen1);
   const closePopover1 = () => setIsPopoverOpen1(false);
 
   const onButtonClick2 = () =>
-    setIsPopoverOpen2(isPopoverOpen2 => !isPopoverOpen2);
+    setIsPopoverOpen2((isPopoverOpen2) => !isPopoverOpen2);
   const closePopover2 = () => setIsPopoverOpen2(false);
 
   const onButtonClick3 = () =>
-    setIsPopoverOpen3(isPopoverOpen3 => !isPopoverOpen3);
+    setIsPopoverOpen3((isPopoverOpen3) => !isPopoverOpen3);
   const closePopover3 = () => setIsPopoverOpen3(false);
 
   return (
@@ -46,7 +46,7 @@ export default () => {
           anchorPosition="downCenter">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>
                 Selfies migas stumptown hot chicken quinoa wolf green juice,
                 mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
@@ -71,7 +71,7 @@ export default () => {
           closePopover={closePopover2}
           anchorPosition="upCenter">
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>
                 Selfies migas stumptown hot chicken quinoa wolf green juice,
                 mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
@@ -102,7 +102,7 @@ export default () => {
           anchorPosition="upCenter">
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
-            <EuiText>
+            <EuiText size="s">
               <p>
                 Selfies migas stumptown hot chicken quinoa wolf green juice,
                 mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
