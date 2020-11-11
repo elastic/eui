@@ -893,7 +893,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                       className="react-datepicker__input-container"
                     >
                       <input
-                        aria-label=""
+                        aria-label="Press the down key to open a popover containing a calendar."
                         className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
                         disabled={false}
                         onBlur={[Function]}
@@ -920,7 +920,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                             className="react-datepicker__input-container"
                           >
                             <input
-                              aria-label=""
+                              aria-label="Press the down key to open a popover containing a calendar."
                               className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
                               disabled={false}
                               onBlur={[Function]}
