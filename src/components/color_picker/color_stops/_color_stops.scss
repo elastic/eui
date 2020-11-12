@@ -1,5 +1,5 @@
 .euiColorStops:not(.euiColorStops-isDisabled) {
-  &:focus-visible {
+  &:focus {
     outline: 2px solid $euiFocusRingColor;
   }
 }
