@@ -1,10 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
-- Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212)) 
+- Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212))
+- Added several Sass mixins for handling of unified focus/hover states ([#4242](https://github.com/elastic/eui/pull/4242))
 
 **Theme: Amsterdam**
 
+- Unify focus states by leaning into `outline` and restricting to keyboard navigation ([#4242](https://github.com/elastic/eui/pull/4242))
 - Removed faux border from `EuiAvatar` ([#4255](https://github.com/elastic/eui/pull/4255))
 
 ## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
