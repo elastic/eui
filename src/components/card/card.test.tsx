@@ -25,10 +25,6 @@ import { EuiCard, SIZES } from './card';
 
 import { EuiIcon } from '../icon';
 
-jest.mock('./../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiCard', () => {
   test('is rendered', () => {
     const component = render(

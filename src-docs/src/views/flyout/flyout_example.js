@@ -216,21 +216,9 @@ export const FlyoutExample = {
           <p>
             In this example, we set <EuiCode>size</EuiCode> to{' '}
             <EuiCode>s</EuiCode> and remove the <EuiCode>ownFocus</EuiCode>{' '}
-            prop. The latter not only removes the focus trap around the flyout,
-            but also removes the background overlay that reinforces your
-            boundaries.
+            prop. Removing <EuiCode>ownFocus</EuiCode> will hide the overlay
+            mask keeping the underlying page content visible and clickable.
           </p>
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <>
-                Removing <EuiCode>ownFocus</EuiCode> makes it difficult for
-                keyboard-only and screen reader users to navigate to and from
-                your flyout.
-              </>
-            }
-          />
         </>
       ),
       snippet: flyoutSmallSnippet,

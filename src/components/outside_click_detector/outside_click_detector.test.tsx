@@ -22,6 +22,10 @@ import { render, mount } from 'enzyme';
 
 import { EuiOutsideClickDetector, EuiEvent } from './outside_click_detector';
 
+jest.mock('./../../services/accessibility', () => {
+  return jest.requireActual('./../../services/accessibility');
+});
+
 describe('EuiOutsideClickDetector', () => {
   test('is rendered', () => {
     const component = render(
