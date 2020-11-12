@@ -13,10 +13,8 @@ import {
   EuiDataGrid,
   EuiLink,
   EuiText,
-  EuiSpacer,
-  EuiButtonGroup,
+  EuiResizableContainer,
 } from '../../../../src/components/';
-import { EuiFormRow } from '../../../../src/components/form/form_row';
 
 const DataContext = createContext();
 
@@ -90,15 +88,6 @@ function RenderCellValue({ rowIndex, columnId }) {
   return data.hasOwnProperty(rowIndex) ? data[rowIndex][columnId] : null;
 }
 
-const dimensionSizes = {
-  'height-300px': 300,
-  'height-600px': 600,
-
-  'width-200px': 200,
-  'width-50%': '50%',
-  'width-unconstrained': undefined,
-};
-
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
@@ -135,60 +124,45 @@ export default () => {
     []
   );
 
-  const [height, setHeight] = useState('height-300px');
-  const [width, setWidth] = useState('width-50%');
+  const grid = (
+    <EuiDataGrid
+      aria-label="Virtualized data grid demo"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={raw_data.length}
+      renderCellValue={RenderCellValue}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [50, 250, 1000],
+        onChangeItemsPerPage: onChangeItemsPerPage,
+        onChangePage: onChangePage,
+      }}
+    />
+  );
 
   return (
-    <>
-      <EuiFormRow label="Height">
-        <EuiButtonGroup
-          legend="Set a height for the following grid"
-          options={[
-            { id: 'height-300px', label: '300px' },
-            { id: 'height-600px', label: '600px' },
-            { id: 'height-unconstrained', label: 'Unconstrained' },
-          ]}
-          idSelected={height}
-          onChange={setHeight}
-        />
-      </EuiFormRow>
-
-      <EuiFormRow label="Width">
-        <EuiButtonGroup
-          legend="Set a width for the following grid"
-          options={[
-            { id: 'width-200px', label: '200px' },
-            { id: 'width-50%', label: '50%' },
-            { id: 'width-unconstrained', label: 'Unconstrained' },
-          ]}
-          idSelected={width}
-          onChange={setWidth}
-        />
-      </EuiFormRow>
-
-      <EuiSpacer />
-
+    <DataContext.Provider value={dataContext}>
       <EuiText>
         <p>There are {mountedCellCount} rendered cells</p>
       </EuiText>
 
-      <DataContext.Provider value={dataContext}>
-        <EuiDataGrid
-          aria-label="Virtualized data grid demo"
-          height={dimensionSizes[height]}
-          width={dimensionSizes[width]}
-          columns={columns}
-          columnVisibility={{ visibleColumns, setVisibleColumns }}
-          rowCount={raw_data.length}
-          renderCellValue={RenderCellValue}
-          pagination={{
-            ...pagination,
-            pageSizeOptions: [50, 250, 1000],
-            onChangeItemsPerPage: onChangeItemsPerPage,
-            onChangePage: onChangePage,
-          }}
-        />
-      </DataContext.Provider>
-    </>
+      <EuiResizableContainer style={{ height: '400px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize={50} minSize="30%">
+              {grid}
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel initialSize={50} minSize="200px">
+              <EuiText>
+                <p>This is a side panel with more information.</p>
+              </EuiText>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    </DataContext.Provider>
   );
 };

@@ -29,6 +29,7 @@ import React, {
   useMemo,
   useRef,
   MutableRefObject,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -160,11 +161,11 @@ type CommonGridProps = CommonProps &
     /**
      * Sets the grid's height, forcing it to overflow in a scrollable container with cell virtualization
      */
-    height?: number;
+    height?: CSSProperties['height'];
     /**
      * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
      */
-    width?: number;
+    width?: CSSProperties['width'];
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -402,12 +403,16 @@ function useColumnWidths(
   return [columnWidths, setColumnWidth];
 }
 
-function useOnResize(setGridWidth: (newWidth: number) => void) {
+function useOnResize(
+  setGridWidth: (newWidth: number) => void,
+  setGridHeight: (newHeight: number) => void
+) {
   return useCallback(
-    ({ width }: { width: number }) => {
+    ({ width, height }: { width: number; height: number }) => {
       setGridWidth(width);
+      setGridHeight(height);
     },
-    [setGridWidth]
+    [setGridWidth, setGridHeight]
   );
 }
 
@@ -674,6 +679,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(IS_JEST_ENVIRONMENT ? 500 : 0);
+
+  // default DOM layout rules allow block content to naturally expand to the full document width
+  // while height does not automatically expand; this gives us a little extra work when managing height:
+  // if a `height` prop is set, it will be applied via `style` to constrain the grid's DOM, which is reacted to with a resize observer and tracked with `gridHeight`
+  // if no `height` is set - or is unset - we need to unapply any existing `gridHeight` value
+  // this triggers a double re-render when the grid is switched from constrained to unconstrained
+  // but in reality ... maybe don't do that?
+  const [gridHeight, setGridHeight] = useState(IS_JEST_ENVIRONMENT ? 500 : 0);
+  useEffect(() => {
+    if (height == null) {
+      // if already 0 this update will be ignored
+      // if not already 0, this resets the height constraint so a new value can be observed
+      setGridHeight(0);
+    }
+  }, [height, pagination?.pageSize]);
+
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
     null
   );
@@ -750,7 +771,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   };
 
   // enables/disables grid controls based on available width
-  const onResize = useOnResize(setGridWidth);
+  const onResize = useOnResize(setGridWidth, setGridHeight);
   const hasRoomForGridControls = gridWidth > minSizeForControls || isFullScreen;
 
   const [columnWidths, setColumnWidth] = useColumnWidths(
@@ -948,7 +969,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     []
   );
   const datagridFocusContext = useMemo<DataGridFocusContextShape>(() => {
-    console.log('creating a datagridFocusContext');
     return {
       setFocusedCell,
       onFocusUpdate,
@@ -1009,7 +1029,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                       <div
                         className={classes}
                         onKeyDown={handleGridKeyDown}
-                        style={{ width }}
+                        style={{ width, height }}
                         ref={setContainerRef}
                         {...rest}>
                         {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
@@ -1085,7 +1105,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                         handleHeaderMutation={
                                           handleHeaderMutation
                                         }
-                                        gridHeight={height}
+                                        gridHeight={gridHeight}
                                         gridWidth={gridWidth}
                                         inMemoryValues={inMemoryValues}
                                         inMemory={inMemory}

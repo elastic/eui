@@ -442,7 +442,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const gridRef = useRef<Grid>(null);
   useEffect(() => {
     gridRef.current!.resetAfterColumnIndex(0);
-  }, [columns, columnWidths]);
+  }, [columns, columnWidths, defaultColumnWidth]);
 
   const getWidth = useCallback(
     (index: number) => {
@@ -473,7 +473,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
   const getRowHeight = useCallback(() => rowHeight, [rowHeight]);
-
   useEffect(() => {
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
@@ -490,7 +489,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       width={gridWidth}
       columnWidth={getWidth}
       height={
-        gridHeight ??
+        // intentionally ignoring gridHeight if it is null/undefined/0
+        gridHeight ||
         rowHeight * visibleRowIndices.length +
           SCROLLBAR_HEIGHT +
           HEADER_ROW_HEIGHT +
