@@ -9,10 +9,6 @@
   pointer-events: none;
 
   &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
     @include euiCustomControlFocused;
   }
 

@@ -70,8 +70,19 @@ body {
 }
 
 *:focus {
-  outline-color: currentColor;
+  // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
+  // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
+  // 👉 For these browsers we use the solid type in order to match with `currentColor`.
+  // 😦 Which does means the outline will be square
+  outline: $euiFocusRingSize solid currentColor;
+  outline-offset: -($euiFocusRingSize / 2);
 
+  // 👀 Chrome respects :focus-visible and allows coloring the `auto` style
+  &:focus-visible {
+    outline-style: auto;
+  }
+
+  //🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular `:focus` state
   &:not(:focus-visible) {
     outline: none;
   }

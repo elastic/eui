@@ -18,9 +18,8 @@
     }
   }
 
-  .euiButtonIcon:focus-visible {
-    outline: auto;
-    outline-offset: -1px;
+  .euiButtonIcon:focus {
+    outline-offset: -$euiFocusRingSize;
   }
 
   .euiToolTipAnchor > .euiIcon {

@@ -28,14 +28,14 @@
   width: 100%;
   text-align-last: left;
 
-  &:focus-visible {
-    @include euiFocusRing('small', 'false', 'inner');
+  &:focus {
+    @include euiFocusRing('small', 'inner');
   }
 
   &:hover,
   &:active,
   &:focus {
-    background-color: tintOrShade($euiColorLightShade, 50%, 10%);
+    @include euiFocusBackground($euiTextColor);
   }
 
   .euiTreeView__iconPlaceholder {

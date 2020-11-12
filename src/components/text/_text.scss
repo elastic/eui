@@ -120,9 +120,6 @@
 
     &:focus {
       @include euiFocusBackground($euiLinkColor);
-    }
-
-    &:focus-visible {
       @include euiFocusRing;
     }
   }

@@ -1,34 +1,28 @@
 // In Amsterdam, focus rings default to the browser's `outline`
 // However, some components need to be forced to have the same behavior
-// This re-uses the same faux focus ring mixin.
-
+// This re-uses the same faux focus ring mixin, but adjusts the outline instead
 // @param {size} Old param from default theme that won't be used, so it should always be `null`
-// @param {fauxOutline} If true, provides the ring as a box-shadow with animation. Good for circles.
-// @param {offset} Accepts a specific number or 'inner' or 'outer' to adjust outline position. Only 'inner` will apply if $fauxOutline is true.
+// @param {offset} Accepts a specific number or 'inner' or 'outer' to adjust outline position
+@mixin euiFocusRing($size: null, $offset: false) {
+  // Safari & Firefox
+  outline: $euiFocusRingSize solid currentColor;
 
-@mixin euiFocusRing($size: null, $fauxOutline: null, $offset: false) {
-  // @if ($size) {
-  //   @warn 'The $size variable of euiFocusRing() will be depricated in a future version of EUI.';
-  // }
+  // Chrome
+  &:focus-visible {
+    outline-style: auto;
+  }
 
-  @if ($fauxOutline == 'true') {
+  &:not(:focus-visible) {
     outline: none;
-    // Keep the animation so that it doesn't show automatically on quick clicks
-    @if ($offset == 'inner') {
-      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateInset;
-    } @else {
-      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
-    }
-  } @else if ($fauxOutline == 'false') {
-    outline: auto;
+  }
 
-    @if (type-of($offset) == number) {
-      outline-offset: $offset;
-    } @else if ($offset == 'inner') {
-      outline-offset: -$euiFocusRingSize;
-    } @else if ($offset == 'outer') {
-      outline-offset: $euiFocusRingSize;
-    }
+  // Adjusting position with offset
+  @if (type-of($offset) == number) {
+    outline-offset: #{$offset}px;
+  } @else if ($offset == 'inner') {
+    outline-offset: -$euiFocusRingSize;
+  } @else if ($offset == 'outer') {
+    outline-offset: $euiFocusRingSize;
   }
 }
 
