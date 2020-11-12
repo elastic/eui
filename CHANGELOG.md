@@ -1,9 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.3.0`.
+
+## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
+
 - Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865))
 - Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
+- Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
 - Added `role="alert"` and `aria-live="assertive"` to `EuiForm`'s `EuiCallOut` for the errors ([#4238](https://github.com/elastic/eui/pull/4238))
 - Added `menuDown` and `menuUp` glyphs to `EuiIcon` ([#4244](https://github.com/elastic/eui/pull/4244))
+- Removed spacer after `childrenBetween` in `EuiInMemoryTable` ([#4248](https://github.com/elastic/eui/pull/4248))
+- Changed `clickOutsideDisables` to `true` when `ownFocus={false}` in `EuiFlyout` ([#4236](https://github.com/elastic/eui/pull/4236))
 
 **Bug fixes**
 
