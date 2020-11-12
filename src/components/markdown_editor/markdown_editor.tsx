@@ -132,7 +132,7 @@ export type EuiMarkdownEditorProps = OneOf<
 
 // TODO I wanted to use the useCombinedRefs
 // but I can't because it's not allowed to use react hooks
-// inside og a callback.
+// inside a callback.
 const mergeRefs = (...refs: any[]) => {
   const filteredRefs = refs.filter(Boolean);
   if (!filteredRefs.length) return null;
