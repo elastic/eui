@@ -61,7 +61,7 @@
       }
     }
 
-    &:focus-visible,
+    &:focus,
     &:active:not(:disabled) {
       + .euiCheckbox__square {
         @include euiCustomControlFocused;

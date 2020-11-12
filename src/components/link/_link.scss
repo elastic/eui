@@ -34,10 +34,7 @@ $euiLinkColors: (
 
       &:focus {
         @include euiFocusBackground($color);
-      }
-
-      &:focus-visible {
-        @include euiFocusRing;
+        @include euiFocusRing(null, 0);
       }
     }
   }

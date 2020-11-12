@@ -18,8 +18,8 @@
     }
   }
 
-  .euiButtonIcon:focus {
-    outline-offset: -$euiFocusRingSize;
+  [class*='euiButton']:focus {
+    @include euiFocusRing(null, 'inner');
   }
 
   .euiToolTipAnchor > .euiIcon {
