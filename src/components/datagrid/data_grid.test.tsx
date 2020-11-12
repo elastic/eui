@@ -30,10 +30,6 @@ import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
 import cheerio from 'cheerio';
 
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
 }
@@ -658,7 +654,7 @@ Array [
         component.find('[role="columnheader"][aria-describedby]').length
       ).toBe(2);
       expect(
-        component.find('[role="columnheader"][aria-describedby="htmlId"]')
+        component.find('[role="columnheader"][aria-describedby="generated-id"]')
           .length
       ).toBe(2);
     });

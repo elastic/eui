@@ -19,6 +19,10 @@
 
 import { htmlIdGenerator } from './html_id_generator';
 
+jest.mock('./html_id_generator', () => {
+  return jest.requireActual('./html_id_generator');
+});
+
 describe('htmlIdGenerator', () => {
   it('should return a function', () => {
     const fn = htmlIdGenerator();

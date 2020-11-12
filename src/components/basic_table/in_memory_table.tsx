@@ -506,7 +506,12 @@ export class EuiInMemoryTable<T> extends Component<
         }
       }
 
-      return <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />;
+      return (
+        <>
+          <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
+          <EuiSpacer size="l" />
+        </>
+      );
     }
   }
 
@@ -692,9 +697,7 @@ export class EuiInMemoryTable<T> extends Component<
     return (
       <div>
         {searchBar}
-        {childrenBetween != null ? <EuiSpacer size="l" /> : null}
         {childrenBetween}
-        <EuiSpacer size="l" />
         {table}
       </div>
     );

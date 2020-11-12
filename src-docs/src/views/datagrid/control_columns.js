@@ -95,8 +95,7 @@ const SelectionButton = () => {
             selected
           </EuiButtonEmpty>
         }
-        closePopover={() => setIsPopoverOpen(false)}
-        ownFocus={true}>
+        closePopover={() => setIsPopoverOpen(false)}>
         <EuiPopoverTitle>
           {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
         </EuiPopoverTitle>
@@ -265,8 +264,7 @@ const trailingControlColumns = [
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
               />
             }
-            closePopover={() => setIsPopoverOpen(false)}
-            ownFocus={true}>
+            closePopover={() => setIsPopoverOpen(false)}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
               <button onClick={() => {}} component="span">
