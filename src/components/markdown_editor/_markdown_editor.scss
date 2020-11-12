@@ -5,4 +5,23 @@
   &:focus-within {
     @include euiSlightShadowHover;
   }
+
+  &--fullHeight {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .euiMarkdownEditorTextArea {
+      resize: none;
+    }
+
+    // safari needs this calc. Other browsers work well with 100%
+    .euiMarkdownEditor__toggleContainer {
+      height: calc(100% - #{$euiMarkdownEditorToolbarHeight});
+    }
+
+    .euiMarkdownEditorDropZone {
+      height: 100%;
+    }
+  }
 }

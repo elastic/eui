@@ -72,16 +72,6 @@ type CommonMarkdownEditorProps = Omit<
     /** ID of an element describing the text editor, useful for associating error messages */
     'aria-describedby'?: string;
 
-    /**
-     * Optional class applied to the textarea element
-     */
-    textareaProps?: TextareaHTMLAttributes<HTMLTextAreaElement> & CommonProps;
-
-    /**
-     * Optional props applied to the preview element
-     */
-    previewProps?: <HTMLAttributes<HTMLDivElement> & CommonProps;
-
     /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
@@ -92,8 +82,18 @@ type CommonMarkdownEditorProps = Omit<
     /** callback function when markdown content is modified */
     onChange: (value: string) => void;
 
-    /** height of the content/preview area */
-    height?: number;
+    /**
+     * Sets the `height` in pixels of the editor/preview area or pass `full` to allow
+     * the EuiMarkdownEditor to fill the height of its container.
+     * When in `full` mode the vertical resize is not allowed.
+     */
+    height?: number | 'full';
+
+    /**
+     * Sets the `max-height` in pixels of the editor/preview area.
+     * It doesn't work when the `height` is set to `full`.
+     */
+    maxHeight?: number;
 
     /** plugins to identify new syntax and parse it into an AST node */
     parsingPluginList?: PluggableList;
@@ -122,6 +122,7 @@ type CommonMarkdownEditorProps = Omit<
     /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
   };
+
 export type EuiMarkdownEditorProps = OneOf<
   CommonMarkdownEditorProps,
   'aria-label' | 'aria-labelledby'
@@ -159,12 +160,11 @@ export const EuiMarkdownEditor = forwardRef<
   (
     {
       className,
-      textareaClassName,
-      previewClassName,
       editorId: _editorId,
       value,
       onChange,
-      height = 150,
+      height = 250,
+      maxHeight = 500,
       parsingPluginList = defaultParsingPlugins,
       processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
@@ -197,7 +197,11 @@ export const EuiMarkdownEditor = forwardRef<
       [editorId, toolbarPlugins.map(({ name }) => name).join(',')]
     );
 
-    const classes = classNames('euiMarkdownEditor', className);
+    const classes = classNames(
+      'euiMarkdownEditor',
+      height === 'full' && 'euiMarkdownEditor--fullHeight',
+      className
+    );
 
     const parser = useMemo(() => {
       const Compiler = (tree: any) => {
@@ -301,10 +305,35 @@ export const EuiMarkdownEditor = forwardRef<
 
     const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
 
-    const previewClasses = classNames(
-      'euiMarkdownEditorPreview',
-      previewClassName
-    );
+    const [currentHeight, setCurrentHeight] = useState(height);
+
+    const markdownFooterHeight = 34;
+
+    // TODO do this in a better way
+    // Setting the height this way has a bug
+    // when we resize to the textareat to the max-height this functions doesn't trigger
+    // Not sure if I can use the EuiResizeObserver
+    const setTextAreaHeight = () => {
+      console.log('setTextAreaHeight was triggered onMouseUp');
+
+      if (textareaRef.current && viewMode === 'editing') {
+        const height = textareaRef.current.clientHeight;
+
+        setCurrentHeight(height + markdownFooterHeight);
+      }
+    };
+
+    const previewHeight =
+      height === 'full'
+        ? `calc(100% - ${markdownFooterHeight}px`
+        : currentHeight;
+
+    const textAreaHeight =
+      height === 'full' ? '100%' : `calc(${height - markdownFooterHeight}px)`;
+
+    // we just want add a max-height to the textarea when the height is not set to 'full'
+    const textAreaMaxHeight =
+      height !== 'full' ? `${maxHeight - markdownFooterHeight}px` : '';
 
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
@@ -320,7 +349,9 @@ export const EuiMarkdownEditor = forwardRef<
           />
 
           {isPreviewing && (
-            <div className={previewClasses} style={{ height: `${height}px` }}>
+            <div
+              className="euiMarkdownEditorPreview"
+              style={{ height: previewHeight }}>
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
                 processingPluginList={processingPluginList}>
@@ -329,7 +360,9 @@ export const EuiMarkdownEditor = forwardRef<
             </div>
           )}
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
-          <div style={{ display: isPreviewing ? 'none' : 'block' }}>
+          <div
+            className="euiMarkdownEditor__toggleContainer"
+            style={{ display: isPreviewing ? 'none' : 'block' }}>
             <EuiMarkdownEditorDropZone
               dropHandlers={dropHandlers}
               insertText={(
@@ -355,9 +388,12 @@ export const EuiMarkdownEditor = forwardRef<
               hasUnacceptedItems={hasUnacceptedItems}
               setHasUnacceptedItems={setHasUnacceptedItems}>
               <EuiMarkdownEditorTextArea
+                onMouseUp={() => {
+                  setTextAreaHeight();
+                }}
+                height={textAreaHeight}
+                maxHeight={textAreaMaxHeight}
                 ref={textareaRef}
-                textareaClassName={textareaClassName}
-                height={height}
                 id={editorId}
                 onChange={(e) => onChange(e.target.value)}
                 value={value}

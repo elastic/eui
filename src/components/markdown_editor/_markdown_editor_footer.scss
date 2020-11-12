@@ -1,6 +1,7 @@
 .euiMarkdownEditorFooter {
   display: inline-flex;
-  padding: $euiSizeXS;
+  padding: $euiSizeXS 0;
+  height: $euiMarkdownEditorFooterHeight;
   border: $euiBorderThin;
   align-items: center;
   background: $euiPageBackgroundColor;

@@ -40,11 +40,11 @@ describe('EuiMarkdownEditor', () => {
 
   describe('props', () => {
     describe('height', () => {
-      test('is rendered', () => {
+      test('is rendered with a custom size', () => {
         const component = render(
           <EuiMarkdownEditor
             editorId="editorId"
-            height={600}
+            height={400}
             value=""
             onChange={() => null}
             {...requiredProps}
@@ -55,12 +55,12 @@ describe('EuiMarkdownEditor', () => {
       });
     });
 
-    describe('textareaClassName', () => {
-      test('is rendered', () => {
+    describe('height', () => {
+      test('is rendered with full mode provided', () => {
         const component = render(
           <EuiMarkdownEditor
             editorId="editorId"
-            textareaClassName="myTextareaClassName"
+            height="full"
             value=""
             onChange={() => null}
             {...requiredProps}
@@ -71,13 +71,12 @@ describe('EuiMarkdownEditor', () => {
       });
     });
 
-    describe('previewClassName', () => {
-      test('is rendered', () => {
+    describe('maxHeight', () => {
+      test('is rendered with a custom size', () => {
         const component = render(
           <EuiMarkdownEditor
             editorId="editorId"
-            initialViewMode="viewing"
-            previewClassName="myPreviewClassName"
+            max-height={600}
             value=""
             onChange={() => null}
             {...requiredProps}

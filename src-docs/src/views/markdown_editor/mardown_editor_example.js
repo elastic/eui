@@ -21,6 +21,10 @@ import MarkdownEditorErrors from './markdown_editor_errors';
 const markdownEditorErrorsSource = require('!!raw-loader!./markdown_editor_errors');
 const markdownEditorErrorsHtml = renderToHtml(MarkdownEditorErrors);
 
+import MarkdownEditorHeight from './markdown_editor_height';
+const markdownEditorHeightSource = require('!!raw-loader!./markdown_editor_height');
+const markdownEditorHeightHtml = renderToHtml(MarkdownEditorHeight);
+
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
   beta: true,
@@ -94,6 +98,41 @@ export const MarkdownEditorExample = {
         EuiMarkdownEditor,
       },
       demo: <MarkdownEditorErrors />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: markdownEditorHeightSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: markdownEditorHeightHtml,
+        },
+      ],
+      title: 'Controlling the height',
+      text: (
+        <>
+          <p>
+            The <EuiCode>height</EuiCode> prop allows you to control the height
+            of the <strong>EuiMarkdownEditor</strong>. You can set the{' '}
+            <EuiCode>height</EuiCode> in pixels or pass{' '}
+            <EuiCode>&quot;full&quot;</EuiCode> to allow the{' '}
+            <strong>EuiMarkdownEditor</strong> to fill the height of its
+            container.
+          </p>
+          <p>
+            You can also control the <EuiCode>maxHeight</EuiCode> of the
+            editor/preview area. This feature only works when the{' '}
+            <EuiCode>height</EuiCode> is not set to{' '}
+            <EuiCode>&quot;full&quot;</EuiCode>.
+          </p>
+        </>
+      ),
+      props: {
+        EuiMarkdownEditor,
+      },
+      demo: <MarkdownEditorHeight />,
     },
   ],
 };
