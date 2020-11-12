@@ -39,7 +39,7 @@ import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
-import { htmlIdGenerator } from '../../services/accessibility';
+import { htmlIdGenerator } from '../../services/';
 
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
@@ -57,6 +57,8 @@ import {
   defaultParsingPlugins,
   defaultProcessingPlugins,
 } from './plugins/markdown_default_plugins';
+
+import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -127,6 +129,24 @@ export type EuiMarkdownEditorProps = OneOf<
   CommonMarkdownEditorProps,
   'aria-label' | 'aria-labelledby'
 >;
+
+// TODO I wanted to use the useCombinedRefs
+// but I can't because it's not allowed to use react hooks
+// inside og a callback.
+const mergeRefs = (...refs: any[]) => {
+  const filteredRefs = refs.filter(Boolean);
+  if (!filteredRefs.length) return null;
+  if (filteredRefs.length === 0) return filteredRefs[0];
+  return (inst: any) => {
+    for (const ref of filteredRefs) {
+      if (typeof ref === 'function') {
+        ref(inst);
+      } else if (ref) {
+        ref.current = inst;
+      }
+    }
+  };
+};
 
 interface EuiMarkdownEditorRef {
   textarea: HTMLTextAreaElement | null;
@@ -309,13 +329,7 @@ export const EuiMarkdownEditor = forwardRef<
 
     const markdownFooterHeight = 34;
 
-    // TODO do this in a better way
-    // Setting the height this way has a bug
-    // when we resize to the textareat to the max-height this functions doesn't trigger
-    // Not sure if I can use the EuiResizeObserver
-    const setTextAreaHeight = () => {
-      console.log('setTextAreaHeight was triggered onMouseUp');
-
+    const onResize = () => {
       if (textareaRef.current && viewMode === 'editing') {
         const height = textareaRef.current.clientHeight;
 
@@ -387,23 +401,26 @@ export const EuiMarkdownEditor = forwardRef<
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
               setHasUnacceptedItems={setHasUnacceptedItems}>
-              <EuiMarkdownEditorTextArea
-                onMouseUp={() => {
-                  setTextAreaHeight();
+              <EuiResizeObserver onResize={onResize}>
+                {(resizeRef) => {
+                  return (
+                    <EuiMarkdownEditorTextArea
+                      height={textAreaHeight}
+                      maxHeight={textAreaMaxHeight}
+                      ref={mergeRefs(textareaRef, resizeRef)}
+                      id={editorId}
+                      onChange={(e) => onChange(e.target.value)}
+                      value={value}
+                      onFocus={() => setHasUnacceptedItems(false)}
+                      {...{
+                        'aria-label': ariaLabel,
+                        'aria-labelledby': ariaLabelledBy,
+                        'aria-describedby': ariaDescribedBy,
+                      }}
+                    />
+                  );
                 }}
-                height={textAreaHeight}
-                maxHeight={textAreaMaxHeight}
-                ref={textareaRef}
-                id={editorId}
-                onChange={(e) => onChange(e.target.value)}
-                value={value}
-                onFocus={() => setHasUnacceptedItems(false)}
-                {...{
-                  'aria-label': ariaLabel,
-                  'aria-labelledby': ariaLabelledBy,
-                  'aria-describedby': ariaDescribedBy,
-                }}
-              />
+              </EuiResizeObserver>
             </EuiMarkdownEditorDropZone>
 
             {pluginEditorPlugin && (

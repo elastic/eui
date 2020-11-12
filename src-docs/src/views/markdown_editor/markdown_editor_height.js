@@ -30,7 +30,7 @@ export default () => {
   return (
     <div className="guideDemo__highlightGrid">
       <EuiFlexGroup>
-        <EuiFlexItem style={{ height: '600px' }}>
+        <EuiFlexItem>
           <EuiMarkdownEditor
             aria-label="EUI markdown editor demo"
             initialViewMode="viewing"
