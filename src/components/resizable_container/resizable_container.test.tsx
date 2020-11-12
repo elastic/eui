@@ -23,10 +23,6 @@ import { requiredProps } from '../../test';
 
 import { EuiResizableContainer } from './resizable_container';
 
-jest.mock('../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiResizableContainer', () => {
   test('is rendered', () => {
     const component = render(

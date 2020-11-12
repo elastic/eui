@@ -105,7 +105,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -122,7 +122,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         </div>
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -163,7 +163,7 @@ exports[`EuiPopover props buffer 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -178,7 +178,7 @@ exports[`EuiPopover props buffer 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -245,7 +245,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -260,7 +260,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -302,7 +302,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -317,7 +317,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -359,7 +359,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen euiPopover__panel-noArrow"
@@ -373,7 +373,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -414,7 +414,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -429,7 +429,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -517,7 +517,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
@@ -532,7 +532,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>
@@ -573,7 +573,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-describedby="htmlId"
+        aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -588,7 +588,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         />
         <p
           class="euiScreenReaderOnly"
-          id="htmlId"
+          id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
         </p>

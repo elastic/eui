@@ -23,10 +23,6 @@ import { requiredProps } from '../../../test';
 
 import { EuiFormRow, DISPLAYS } from './form_row';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiFormRow', () => {
   test('is rendered', () => {
     const component = render(

@@ -29,10 +29,6 @@ const props = {
   onChange: () => {},
 };
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiSwitch', () => {
   test('is rendered', () => {
     const component = render(

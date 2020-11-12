@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212)) 
+
 **Theme: Amsterdam**
 
 - Removed faux border from `EuiAvatar` ([#4255](https://github.com/elastic/eui/pull/4255))

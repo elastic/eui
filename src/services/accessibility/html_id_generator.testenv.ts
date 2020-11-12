@@ -17,14 +17,11 @@
  * under the License.
  */
 
-
-jest.mock('./../../../src/components/icon', () => {
-  const { EuiIcon } = require('./../../../src/components/icon/icon.testenv');
-  return { EuiIcon }
-});
-
-jest.mock('./../../../src/services/accessibility', () => {
-  const a11y = jest.requireActual('./../../../src/services/accessibility');
-  const { htmlIdGenerator } = require('./../../../src/services/accessibility/html_id_generator.testenv');
-  return { ...a11y, htmlIdGenerator }
-});
+export function htmlIdGenerator(idPrefix: string = '') {
+  const staticUuid = 'generated-id';
+  return (idSuffix: string = '') => {
+    const prefix = `${idPrefix}${idPrefix !== '' ? '_' : ''}`;
+    const suffix = idSuffix ? `_${idSuffix}` : '';
+    return `${prefix}${staticUuid}${suffix}`;
+  };
+}
