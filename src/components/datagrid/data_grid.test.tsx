@@ -548,61 +548,61 @@ describe('EuiDataGrid', () => {
           return props;
         })
       ).toMatchInlineSnapshot(`
-Array [
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "red",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "blue",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "red",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "blue",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-]
-`);
+        Array [
+          Object {
+            "className": "euiDataGridRowCell customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "red",
+              "width": "100px",
+            },
+            "tabIndex": -1,
+          },
+          Object {
+            "className": "euiDataGridRowCell customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "blue",
+              "width": "100px",
+            },
+            "tabIndex": -1,
+          },
+          Object {
+            "className": "euiDataGridRowCell customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "red",
+              "width": "100px",
+            },
+            "tabIndex": -1,
+          },
+          Object {
+            "className": "euiDataGridRowCell customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "blue",
+              "width": "100px",
+            },
+            "tabIndex": -1,
+          },
+        ]
+      `);
     });
 
     it('renders correct aria attributes on column headers', () => {
@@ -791,15 +791,15 @@ Array [
           .find('[className*="euiDataGridRowCell--"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+          ]
+        `);
       });
 
       it('automatically detects column types and applies classnames', () => {
@@ -829,15 +829,15 @@ Array [
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--boolean",
+            "euiDataGridRowCell",
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--boolean",
+            "euiDataGridRowCell",
+          ]
+        `);
       });
 
       it('overrides automatically detected column types with supplied schema', () => {
@@ -861,13 +861,13 @@ Array [
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
+          ]
+        `);
       });
 
       it('detects all of the supported types', () => {
@@ -898,16 +898,15 @@ Array [
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell euiDataGridRowCell--currency",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--currency",
+            "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--datetime",
+          ]
+        `);
       });
 
       it('accepts extra detectors', () => {
@@ -947,11 +946,11 @@ Array [
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--ipaddress",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric",
+            "euiDataGridRowCell euiDataGridRowCell--ipaddress",
+          ]
+        `);
       });
     });
   });
@@ -974,21 +973,13 @@ Array [
         />
       );
       expect(extractGridData(component)).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "Column 1",
-    "Column 2",
-  ],
-  Array [
-    "Hello, Row 0-Column 1!",
-    "Hello, Row 0-Column 2!",
-  ],
-  Array [
-    "Hello, Row 1-Column 1!",
-    "Hello, Row 1-Column 2!",
-  ],
-]
-`);
+        Array [
+          Array [
+            "Column 1",
+            "Column 2",
+          ],
+        ]
+      `);
     });
   });
 

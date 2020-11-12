@@ -125,6 +125,9 @@ const EuiDataGridCellContent: FunctionComponent<
   );
 });
 
+const hasResizeObserver =
+  typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
+
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
@@ -147,7 +150,7 @@ export class EuiDataGridCell extends Component<
 
     // watch the first cell for size changes and use that to re-compute row heights
     if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
-      if (ref) {
+      if (ref && hasResizeObserver) {
         this.observer = new window.ResizeObserver(() => {
           const rowHeight = this.cellRef.current!.getBoundingClientRect()
             .height;
@@ -156,7 +159,7 @@ export class EuiDataGridCell extends Component<
           }
         });
         this.observer.observe(ref);
-      } else {
+      } else if (this.observer) {
         this.observer.disconnect();
       }
     }
