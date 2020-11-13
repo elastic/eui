@@ -128,3 +128,8 @@
 @function makeGraphicContrastColor($color, $background: $euiPageBackgroundColor) {
   @return makeHighContrastColor($color, $background, 3);
 }
+
+// Disabled content only needs a contrast of at least 2 because there is no interaction available
+@function makeDisabledContrastColor($color, $background: $euiPageBackgroundColor) {
+  @return makeHighContrastColor($color, $background, 2);
+}

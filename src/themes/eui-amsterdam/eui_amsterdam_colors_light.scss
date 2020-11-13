@@ -1,13 +1,26 @@
 // This extra import allows any variables that are created via functions to work when loaded into JS
 @import '../../global_styling/variables/colors';
 
-$euiColorPrimary:     #006DE4;
+$euiColorPrimary:     #0077CC;
 $euiColorSecondary:   #00BFB3;
-$euiColorAccent:      #FC358E;
+$euiColorAccent:      #F04E98;
+$euiColorWarning:     #FEC514;
 
-$euiLinkColor: $euiColorPrimary; // Weirdly this one wasn't updating with new primary color
+$euiColorSuccess: $euiColorSecondary;
+$euiLinkColor: $euiColorPrimary;
+$euiColorDisabled: #ABB4C4;
+
+// Every color below must be based mathematically on the set above and in a particular order.
+$euiTextColor: $euiColorDarkestShade;
+$euiTextSubduedColor: $euiColorDarkShade;
+$euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%);
+$euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%);
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
 $euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
 $euiColorAccentText: makeHighContrastColor($euiColorAccent);
+$euiColorWarningText: makeHighContrastColor($euiColorWarning);
+$euiColorSuccessText: $euiColorSecondaryText;
+$euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled);
+$euiLinkColor: $euiColorPrimaryText;
