@@ -8,6 +8,7 @@
 
 - Unify focus states by leaning into `outline` and restricting to keyboard navigation ([#4242](https://github.com/elastic/eui/pull/4242))
 - Removed faux border from `EuiAvatar` ([#4255](https://github.com/elastic/eui/pull/4255))
+- Changed the color and font-weight of code blocks ([#4272](https://github.com/elastic/eui/pull/4272))
 
 ## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
 
