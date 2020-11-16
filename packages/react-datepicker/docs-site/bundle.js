@@ -26899,7 +26899,7 @@
 	        _this.setPreSelection(date);
 	      } else if (!_this.props.inline) {
 	        // This causes the navigation button to close the popover
-	        _this.setOpen(false);
+	        _this.setOpen(false, true);
 	      }
 	    };
 
@@ -26975,7 +26975,7 @@
 
 	      _this.props.onChange(changedDate);
 	      if (_this.props.shouldCloseOnSelect) {
-	        _this.setOpen(false);
+	        _this.setOpen(false, true);
 	      }
 	      _this.setState({ inputValue: null });
 	    };
@@ -27028,12 +27028,12 @@
 	          _this.handleSelect(copy, event);
 	          !_this.props.shouldCloseOnSelect && _this.setPreSelection(copy);
 	        } else {
-	          _this.setOpen(false);
+	          _this.setOpen(false, true);
 	        }
 	      } else if (eventKey === "Escape") {
 	        event.preventDefault();
 
-	        _this.setOpen(false);
+	        _this.setOpen(false, true);
 	        if (!_this.inputOk()) {
 	          _this.props.onInputError({ code: 1, msg: INPUT_ERR_1 });
 	        }

@@ -417,7 +417,7 @@ export default class DatePicker extends React.Component {
       this.setPreSelection(date);
     } else if (!this.props.inline) {
       // This causes the navigation button to close the popover
-      this.setOpen(false);
+      this.setOpen(false, true);
     }
   };
 
@@ -503,7 +503,7 @@ export default class DatePicker extends React.Component {
 
     this.props.onChange(changedDate);
     if (this.props.shouldCloseOnSelect) {
-      this.setOpen(false);
+      this.setOpen(false, true);
     }
     this.setState({ inputValue: null });
   };
@@ -563,12 +563,12 @@ export default class DatePicker extends React.Component {
         this.handleSelect(copy, event);
         !this.props.shouldCloseOnSelect && this.setPreSelection(copy);
       } else {
-        this.setOpen(false);
+        this.setOpen(false, true);
       }
     } else if (eventKey === "Escape") {
       event.preventDefault();
 
-      this.setOpen(false);
+      this.setOpen(false, true);
       if (!this.inputOk()) {
         this.props.onInputError({ code: 1, msg: INPUT_ERR_1 });
       }
