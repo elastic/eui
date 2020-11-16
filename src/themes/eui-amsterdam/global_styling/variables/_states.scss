@@ -1,0 +1,10 @@
+// Color when not using currentColor
+$euiFocusRingColor: $euiColorPrimaryText;
+
+// Sizing
+$euiFocusRingAnimStartSize: 2px;
+$euiFocusRingSize: 2px;
+
+// Transparency
+$euiFocusTransparency: .9;
+$euiFocusBackgroundColor: transparentize($euiColorPrimary, $euiFocusTransparency);

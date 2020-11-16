@@ -57,7 +57,7 @@
   height: 100%;
 
   // Background color can potentially have opacity
-  // Pseudo element placed below the thumb to prevent the track from showing through 
+  // Pseudo element placed below the thumb to prevent the track from showing through
   &:before {
     content: '';
     display: block;
