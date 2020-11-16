@@ -1,4 +1,4 @@
 .euiCodeBlock.euiCodeBlock--inline {
   border-radius: $euiBorderRadiusSmall;
-  color: $euiColorVis3;
+  color: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor);
 }
