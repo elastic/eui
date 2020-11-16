@@ -3,6 +3,11 @@
 - Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
 - Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212)) 
 
+**Bug fixes**
+
+- Fixed cell resizer overlapping of `EuiDataGrid` rightmost header cell ([#4071](https://github.com/elastic/eui/pull/4268))
+
+
 **Theme: Amsterdam**
 
 - Removed faux border from `EuiAvatar` ([#4255](https://github.com/elastic/eui/pull/4255))
