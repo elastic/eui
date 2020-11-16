@@ -60,6 +60,7 @@ export default () => {
                 {
                   className: 'panel-toggle',
                   'data-test-subj': 'panel-1-toggle',
+                  position: 'top',
                 },
               ]}
               initialSize={20}
@@ -87,6 +88,7 @@ export default () => {
                 {
                   className: 'panel-toggle',
                   'data-test-subj': 'panel-3-toggle',
+                  position: 'bottom',
                 },
               ]}
               initialSize={20}

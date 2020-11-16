@@ -29,7 +29,7 @@ export default () => {
 
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({});
 
-  const onChange = (optionId) => {
+  const onCollapse = (optionId) => {
     const newToggleIdToSelectedMap = {
       ...toggleIdToSelectedMap,
       ...{
@@ -37,6 +37,10 @@ export default () => {
       },
     };
     setToggleIdToSelectedMap(newToggleIdToSelectedMap);
+  };
+
+  const onChange = (optionId) => {
+    onCollapse(optionId);
     collapseFn.current(`panel${optionId}`, optionId === '3' ? 'right' : 'left');
   };
 
@@ -53,7 +57,9 @@ export default () => {
         />
       </div>
       <EuiSpacer />
-      <EuiResizableContainer style={{ height: '600px' }}>
+      <EuiResizableContainer
+        onToggleCollapsed={onCollapse}
+        style={{ height: '600px' }}>
         {(EuiResizablePanel, EuiResizableButton, { togglePanel }) => {
           collapseFn.current = (id, direction = 'left') =>
             togglePanel(id, { direction });
@@ -83,14 +89,7 @@ export default () => {
                 id="panel3"
                 initialSize={35}
                 minSize="10%"
-                collapsedButton={
-                  <EuiButtonIcon
-                    color="text"
-                    aria-label={'Toggle panel 3'}
-                    iconType="menuLeft"
-                    onClick={() => onChange(3)}
-                  />
-                }>
+                mode={['custom', { position: 'top' }]}>
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
                   <EuiFlexGroup justifyContent="spaceBetween">
                     <EuiTitle>

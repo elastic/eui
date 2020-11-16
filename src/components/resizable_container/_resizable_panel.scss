@@ -46,12 +46,36 @@
     box-shadow: none;
     background: transparent;
     border-radius: 0;
+    display: flex;
+  }
+
+  &--top {
+    justify-content: flex-start;
+  }
+
+  &--middle {
+    justify-content: center;
+  }
+
+  &--bottom {
+    justify-content: flex-end;
   }
 }
 
 .euiResizableContainer--horizontal {
   .euiResizablePanel__toggleButton {
-    top: 50%;
+
+    &--top {
+      top: 0%;
+    }
+
+    &--middle {
+      top: 50%;
+    }
+
+    &--bottom {
+      top: 100%;
+    }
 
     &.euiResizablePanel__toggleButton--right {
       right: 0;
@@ -64,6 +88,7 @@
     }
 
     &.euiResizablePanel__toggleButton--disabled {
+      flex-direction: column;
       top: 0;
       bottom: 0;
       transform: none;
@@ -72,11 +97,6 @@
 
   .euiResizablePanel--collapsed {
     min-width: 0 !important; // sass-lint:disable-line no-important
-
-    .euiResizablePanel__collapsedContent {
-      padding-right: 0;
-      padding-left: 0;
-    }
   }
 
   .euiResizablePanel--collapsible.euiResizablePanel--collapsed {
@@ -86,7 +106,18 @@
 
 .euiResizableContainer--vertical {
   .euiResizablePanel__toggleButton {
-    left: 50%;
+
+    &--top {
+      left: 0%;
+    }
+
+    &--middle {
+      left: 50%;
+    }
+
+    &--bottom {
+      left: 100%;
+    }
 
     &.euiResizablePanel__toggleButton--right {
       top: 100%;
@@ -99,6 +130,7 @@
     }
 
     &.euiResizablePanel__toggleButton--disabled {
+      flex-direction: row;
       left: 0;
       top: 0;
       width: 100%;
@@ -108,11 +140,6 @@
 
   .euiResizablePanel--collapsed {
     min-height: 0 !important; // sass-lint:disable-line no-important
-
-    .euiResizablePanel__collapsedContent {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
   }
 
   .euiResizablePanel--collapsible.euiResizablePanel--collapsed {

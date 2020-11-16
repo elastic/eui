@@ -13,8 +13,13 @@ import {
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+// eslint-disable-next-line
 import { EuiResizablePanel } from '../../../../src/components/resizable_container/resizable_panel';
 import { EuiResizableButton } from '../../../../src/components/resizable_container/resizable_button';
+
+// eslint-disable-next-line
+import { ModeOptions, ToggleOptions, ToggleCollapseCallback } from '!!prop-loader!../../../../src/components/resizable_container/resizable_panel';
+import { PanelModeType } from '!!prop-loader!../../../../src/components/resizable_container/types';
 
 import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
@@ -105,11 +110,11 @@ const ResizablePanelCollapsibleOptsHtml = renderToHtml(
 const collapsibleOptsSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
-      <EuiResizablePanel mode={['collapsible'], {
-          notCollapsedIcon: 'arrowLeft',
-          collapsedIcon: 'arrowRight',
-          className: 'panel-toggle'
-        }}
+      <EuiResizablePanel mode={['collapsible', {
+          className: 'panel-toggle',
+          'data-test-subj: 'test',
+          position: 'top'
+        }]}
         initialSize={20}
         minSize="5px"
       >
@@ -215,7 +220,11 @@ export const ResizableContainerExample = {
           </ul>
         </div>
       ),
-      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
+      props: {
+        EuiResizableContainer,
+        EuiResizablePanel,
+        EuiResizableButton,
+      },
       snippet: basicSnippet,
       demo: <ResizableContainerBasic />,
     },
@@ -340,6 +349,14 @@ export const ResizableContainerExample = {
           </p>
         </div>
       ),
+      props: {
+        EuiResizableContainer,
+        EuiResizablePanel,
+        EuiResizableButton,
+        ModeOptions,
+        PanelModeType,
+        ToggleOptions,
+      },
       demo: <ResizablePanelCollapsible />,
       snippet: collapsibleSnippet,
     },
@@ -365,7 +382,8 @@ export const ResizableContainerExample = {
           <EuiCodeBlock language="js">
             {`mode={["collapsible", {
   'data-test-subj': 'panel-1-toggle',
-  className: 'panel-toggle'
+  className: 'panel-toggle',
+  position: 'top,
 }]}`}
           </EuiCodeBlock>
         </div>

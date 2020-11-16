@@ -160,6 +160,7 @@ describe('EuiResizableContainer', () => {
                 {
                   'data-test-subj': 'panel-toggle',
                   className: 'panel-toggle',
+                  position: 'top',
                 },
               ]}
               initialSize={20}>

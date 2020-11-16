@@ -19,7 +19,7 @@
 
 import { KeyboardEvent, MouseEvent, TouchEvent } from 'react';
 
-export type PanelModeType = 'collapsible' | 'main';
+export type PanelModeType = 'collapsible' | 'main' | 'custom';
 
 export type PanelPosition = 'first' | 'middle' | 'last';
 

@@ -42,6 +42,7 @@ import {
   EuiResizablePanelProps,
   euiResizablePanelWithControls,
   getModeType,
+  ToggleCollapseCallback,
 } from './resizable_panel';
 import { useContainerCallbacks, getPosition } from './helpers';
 import {
@@ -77,6 +78,7 @@ export interface EuiResizableContainerProps
    * and values are actual sizes in percents
    */
   onPanelWidthChange?: ({}: { [key: string]: number }) => any;
+  onToggleCollapsed?: ToggleCollapseCallback;
   style?: CSSProperties;
 }
 
@@ -95,6 +97,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   children,
   className,
   onPanelWidthChange,
+  onToggleCollapsed,
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -212,13 +215,14 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         register: actions.registerPanel,
         deregister: actions.deregisterPanel,
       },
-      onToggleCollapsed: actions.togglePanel,
+      onToggleCollapsed,
+      onToggleCollapsedInternal: actions.togglePanel,
     }),
     [actions, isHorizontal]
   );
 
   const render = () => {
-    const DEFAULT = 'default';
+    const DEFAULT = 'custom';
     const content = children(EuiResizablePanel, EuiResizableButton, {
       togglePanel: actions.togglePanel,
     });
