@@ -366,7 +366,6 @@ export class FieldValueSelectionFilter extends Component<
     return (
       <EuiPopover
         id={`${config.type}_${index}`}
-        ownFocus
         button={button}
         isOpen={this.state.popoverOpen}
         closePopover={this.closePopover.bind(this)}

@@ -23,13 +23,6 @@ import { requiredProps, findTestSubject } from '../../../test';
 
 import { EuiTabbedContent, AUTOFOCUS } from './tabbed_content';
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => {
-    return () => 42;
-  },
-}));
-
 const elasticsearchTab = {
   id: 'es',
   name: 'Elasticsearch',

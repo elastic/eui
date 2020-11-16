@@ -9,7 +9,7 @@ import {
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiText,
+  EuiCallOut,
   EuiCode,
 } from '../../../../../src/components';
 
@@ -152,10 +152,15 @@ export const Table = () => {
         sorting={true}
         childrenBetween={
           contentBetween && (
-            <EuiText>
-              You can inject custom content between the search bar and the table
-              using <EuiCode>childrenBetween</EuiCode>.
-            </EuiText>
+            <EuiCallOut
+              size="s"
+              title={
+                <>
+                  You can inject custom content between the search bar and the
+                  table using <EuiCode>childrenBetween</EuiCode>.
+                </>
+              }
+            />
           )
         }
       />

@@ -24,11 +24,6 @@ import { requiredProps } from '../../../test/required_props';
 import { EuiSelectableList } from './selectable_list';
 import { EuiSelectableOption } from '../selectable_option';
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 const options: EuiSelectableOption[] = [
   {
     label: 'Titan',
