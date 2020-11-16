@@ -26814,9 +26814,10 @@
 	    };
 
 	    _this.handleFocus = function (event) {
+	      console.log(_this.state.preventFocus);
 	      if (!_this.state.preventFocus) {
 	        _this.props.onFocus(event);
-	        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly && !_this.props.accessibleMode) {
+	        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly) {
 	          _this.setOpen(true);
 	        }
 	      }
