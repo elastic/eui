@@ -1,3 +1,4 @@
+@import 'avatar';
 @import 'button';
 @import 'button_empty';
 @import 'button_group';
@@ -5,6 +6,9 @@
 @import 'code';
 @import 'context_menu';
 @import 'filter_group';
+@import 'form_control_layout';
+@import 'form_control_layout_delimited';
+@import 'form_controls';
 @import 'header';
 @import 'image';
 @import 'mark';
@@ -14,5 +18,3 @@
 @import 'progress';
 @import 'text';
 @import 'toast';
-@import 'form_control_layout';
-@import 'form_control_layout_delimited';

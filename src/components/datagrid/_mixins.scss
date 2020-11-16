@@ -55,6 +55,7 @@ $euiDataGridStyles: (
   box-shadow: 0 0 0 2px $euiFocusRingColor;
   border-radius: 1px;
   z-index: 2; // Needed so it sits above potential striping in the next row
+  outline: none; // Remove outline as we're handling it manually
 }
 
 @mixin euiDataGridRowCell {
