@@ -356,7 +356,7 @@ export const useContainerCallbacks = ({
 
         let newPanelSize = shouldCollapse
           ? pxToPercent(
-              24, // size of the toggle button
+              !currentPanel.mode ? 0 : 24, // size of the default toggle button
               state.containerSize
             )
           : currentPanel.prevSize;
