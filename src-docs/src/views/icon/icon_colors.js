@@ -47,6 +47,7 @@ export default () => (
           key={iconColor}
           style={{ width: '340px' }}>
           <EuiPanel
+            color="transparent"
             className={classNames({
               guideDemo__ghostBackground: iconColor === 'ghost',
             })}>

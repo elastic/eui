@@ -326,9 +326,27 @@
   }
 }
 
-@mixin euiCustomControlFocused {
-  @include euiFocusRing;
-  border-color: $euiColorPrimary;
+@mixin euiCustomControlFocused($amsterdamSelector: null) {
+  // Requires a selector to work with the Amsterdam outline styles
+  @if ($amsterdamSelector) {
+    + #{$amsterdamSelector} {
+      outline: $euiFocusRingSize solid currentColor;
+    }
+
+    // Chrome
+    &:focus-visible + #{$amsterdamSelector} {
+      outline-style: auto;
+      outline-offset: 3px;
+    }
+
+    &:not(:focus-visible) + #{$amsterdamSelector} {
+      outline: none;
+    }
+  } @else {
+    // Default theme
+    @include euiFocusRing('small', 'outer');
+    border-color: $euiColorPrimary;
+  }
 }
 
 @mixin euiHiddenSelectableInput {

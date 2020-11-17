@@ -61,8 +61,8 @@ import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
 import { keys, htmlIdGenerator } from '../../services';
 import { EuiDataGridBody } from './data_grid_body';
-import { useColumnSelector } from './column_selector';
-import { useStyleSelector, startingStyles } from './style_selector';
+import { useDataGridColumnSelector } from './column_selector';
+import { useDataGridStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import {
@@ -76,7 +76,7 @@ import {
   useDetectSchema,
   schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
-import { useColumnSorting } from './column_sorting';
+import { useDataGridColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
 
@@ -769,20 +769,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     orderedVisibleColumns,
     setVisibleColumns,
     switchColumnPos,
-  ] = useColumnSelector(
+  ] = useDataGridColumnSelector(
     columns,
     columnVisibility,
     checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector'),
     displayValues
   );
-  const columnSorting = useColumnSorting(
+  const columnSorting = useDataGridColumnSorting(
     orderedVisibleColumns,
     sorting,
     mergedSchema,
     allSchemaDetectors,
     displayValues
   );
-  const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
+  const [styleSelector, gridStyles] = useDataGridStyleSelector(
+    gridStyleWithDefaults
+  );
 
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(

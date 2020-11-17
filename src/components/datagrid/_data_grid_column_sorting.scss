@@ -26,18 +26,17 @@
 
 .euiDataGridColumnSorting__fieldList {
   @include euiYScrollWithShadows;
+  padding-top: $euiSizeXS;
+  padding-bottom: $euiSizeXS;
   max-height: 300px;
 }
 
 .euiDataGridColumnSorting__field {
+  @include euiInteractiveStates;
   display: block;
-  padding: $euiSizeXS;
+  padding: $euiSizeXS $euiSizeS;
   width: 100%;
-
-  &:focus {
-    background: $euiFocusBackgroundColor;
-    text-decoration: underline;
-  }
+  outline-offset: -$euiFocusRingSize;
 }
 
 .euiDataGridColumnSorting__orderButtons {

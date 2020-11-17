@@ -36,5 +36,8 @@ export {
   EuiDataGridSchemaDetector,
   SchemaTypeScore,
 } from './data_grid_schema';
+export { useDataGridColumnSelector } from './column_selector';
+export { useDataGridColumnSorting } from './column_sorting';
+export { useDataGridStyleSelector } from './style_selector';
 
 export * from './data_grid_types';

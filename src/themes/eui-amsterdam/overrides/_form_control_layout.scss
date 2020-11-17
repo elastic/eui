@@ -18,6 +18,10 @@
     }
   }
 
+  [class*='euiButton']:focus {
+    @include euiFocusRing(null, 'inner');
+  }
+
   .euiToolTipAnchor > .euiIcon {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'right', $internal: true);
   }

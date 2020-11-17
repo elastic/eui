@@ -4,5 +4,7 @@
 $euiColorPrimary: #238CFF;
 
 // Contrasty text variants
-$euiColorPrimaryText: $euiColorPrimary;
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
+
+$euiLinkColor: $euiColorPrimaryText;
+$euiFocusBackgroundColor: transparentize($euiColorPrimary, .8);
