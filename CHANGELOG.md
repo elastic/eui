@@ -1,9 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
+- Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212))
+- Added several Sass mixins for handling of unified focus/hover states ([#4242](https://github.com/elastic/eui/pull/4242))
+- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
+- Added `textareaClassName` and `previewClassName` props to `EuiMarkdownEditor` to better support extend it to full height ([#4245](https://github.com/elastic/eui/pull/4245))
+
+**Theme: Amsterdam**
+
+- Unify focus states by leaning into `outline` and restricting to keyboard navigation ([#4242](https://github.com/elastic/eui/pull/4242))
+- Removed faux border from `EuiAvatar` ([#4255](https://github.com/elastic/eui/pull/4255))
+- Changed the color and font-weight of inline code block ([#4272](https://github.com/elastic/eui/pull/4272))
+
+## [`30.3.0`](https://github.com/elastic/eui/tree/v30.3.0)
+
 - Added `EuiColorPaletteDisplay` component ([#3865](https://github.com/elastic/eui/pull/3865))
 - Added `initialFocusedItemIndex` support to `EuiContextMenuPanelDescriptor` ([#4223](https://github.com/elastic/eui/pull/4223))
+- Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
 - Added `role="alert"` and `aria-live="assertive"` to `EuiForm`'s `EuiCallOut` for the errors ([#4238](https://github.com/elastic/eui/pull/4238))
-- Added `textareaClassName` and `previewClassName` props to `EuiMarkdownEditor` to better support extend it to full height ([#4245](https://github.com/elastic/eui/pull/4245))
+- Added `menuDown` and `menuUp` glyphs to `EuiIcon` ([#4244](https://github.com/elastic/eui/pull/4244))
+- Removed spacer after `childrenBetween` in `EuiInMemoryTable` ([#4248](https://github.com/elastic/eui/pull/4248))
+- Changed `clickOutsideDisables` to `true` when `ownFocus={false}` in `EuiFlyout` ([#4236](https://github.com/elastic/eui/pull/4236))
 
 **Bug fixes**
 

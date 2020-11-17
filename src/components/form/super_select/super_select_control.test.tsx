@@ -23,10 +23,6 @@ import { requiredProps } from '../../../test';
 
 import { EuiSuperSelectControl } from './super_select_control';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiSuperSelectControl', () => {
   test('is rendered', () => {
     const component = render(<EuiSuperSelectControl {...requiredProps} />);

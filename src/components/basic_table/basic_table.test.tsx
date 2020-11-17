@@ -21,10 +21,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
-jest.mock('../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 import {
   EuiBasicTable,
   EuiBasicTableColumn,
@@ -34,10 +30,6 @@ import {
 
 import { SortDirection } from '../../services';
 import { EuiTableFieldDataColumnType } from './table_types';
-
-jest.mock('./../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {

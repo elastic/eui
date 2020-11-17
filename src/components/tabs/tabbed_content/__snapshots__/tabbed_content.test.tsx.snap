@@ -7,7 +7,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       id="es"
@@ -21,7 +21,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       data-test-subj="kibanaTab"
@@ -40,7 +40,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
   </div>
   <div
     aria-labelledby="es"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -85,14 +85,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
         role="tablist"
       >
         <EuiTab
-          aria-controls="42"
+          aria-controls="generated-id"
           id="es"
           isSelected={false}
           key="es"
           onClick={[Function]}
         >
           <button
-            aria-controls="42"
+            aria-controls="generated-id"
             aria-selected={false}
             className="euiTab"
             id="es"
@@ -108,7 +108,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
           </button>
         </EuiTab>
         <EuiTab
-          aria-controls="42"
+          aria-controls="generated-id"
           data-test-subj="kibanaTab"
           id="kibana"
           isSelected={true}
@@ -116,7 +116,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
           onClick={[Function]}
         >
           <button
-            aria-controls="42"
+            aria-controls="generated-id"
             aria-selected={true}
             className="euiTab euiTab-isSelected"
             data-test-subj="kibanaTab"
@@ -138,7 +138,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
     </EuiTabs>
     <div
       aria-labelledby="kibana"
-      id="42"
+      id="generated-id"
       role="tabpanel"
     >
       <p>
@@ -160,7 +160,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       id="es"
@@ -174,7 +174,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       data-test-subj="kibanaTab"
@@ -193,7 +193,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
   </div>
   <div
     aria-labelledby="es"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -210,7 +210,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       id="es"
@@ -224,7 +224,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       data-test-subj="kibanaTab"
@@ -243,7 +243,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
   </div>
   <div
     aria-labelledby="es"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -260,7 +260,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       id="es"
@@ -274,7 +274,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       data-test-subj="kibanaTab"
@@ -293,7 +293,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
   </div>
   <div
     aria-labelledby="es"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -310,7 +310,7 @@ exports[`EuiTabbedContent props display can be condensed 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       id="es"
@@ -324,7 +324,7 @@ exports[`EuiTabbedContent props display can be condensed 1`] = `
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       data-test-subj="kibanaTab"
@@ -343,7 +343,7 @@ exports[`EuiTabbedContent props display can be condensed 1`] = `
   </div>
   <div
     aria-labelledby="es"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -360,7 +360,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       id="es"
@@ -374,7 +374,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       data-test-subj="kibanaTab"
@@ -393,7 +393,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
   </div>
   <div
     aria-labelledby="kibana"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -410,7 +410,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       id="es"
@@ -424,7 +424,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       data-test-subj="kibanaTab"
@@ -443,7 +443,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
   </div>
   <div
     aria-labelledby="kibana"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>
@@ -460,7 +460,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="true"
       class="euiTab euiTab-isSelected"
       id="es"
@@ -474,7 +474,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       </span>
     </button>
     <button
-      aria-controls="42"
+      aria-controls="generated-id"
       aria-selected="false"
       class="euiTab"
       data-test-subj="kibanaTab"
@@ -493,7 +493,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
   </div>
   <div
     aria-labelledby="es"
-    id="42"
+    id="generated-id"
     role="tabpanel"
   >
     <p>

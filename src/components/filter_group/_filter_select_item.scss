@@ -1,5 +1,6 @@
 .euiFilterSelectItem {
   @include euiFontSizeS;
+  @include euiInteractiveStates;
 
   padding: $euiSizeXS $euiSizeM;
   display: block; // Necessary to make sure it doesn't force the whole popover to be too wide
@@ -8,26 +9,12 @@
   color: $euiTextColor;
   border-bottom: $euiBorderThin;
   border-color: darken($euiColorLightestShade, 2%);
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
+  outline-offset: -$euiFocusRingSize;
 
   &:focus,
   &-isFocused {
-    cursor: pointer;
+    @include euiFocusBackground;
     color: $euiColorPrimary;
-    background-color: $euiFocusBackgroundColor;
-  }
-
-  &[disabled] {
-    color: $euiColorMediumShade;
-    cursor: not-allowed;
-
-    &:hover {
-      text-decoration: none;
-    }
   }
 }
 

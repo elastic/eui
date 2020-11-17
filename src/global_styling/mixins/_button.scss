@@ -14,18 +14,20 @@
 
 // Adds the focus (and hover) animation for translating up 1px
 @mixin euiButtonFocus {
-  transition: all $euiAnimSpeedNormal ease-in-out;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: transform $euiAnimSpeedNormal ease-in-out, background $euiAnimSpeedNormal ease-in-out;
 
-  &:hover:not([class*='isDisabled']) {
-    transform: translateY(-1px);
-  }
+    &:hover:not([class*='isDisabled']) {
+      transform: translateY(-1px);
+    }
 
-  &:focus {
-    animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
-  }
+    &:focus {
+      animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
 
-  &:active:not([class*='isDisabled']) {
-    transform: translateY(1px);
+    &:active:not([class*='isDisabled']) {
+      transform: translateY(1px);
+    }
   }
 }
 

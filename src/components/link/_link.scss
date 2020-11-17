@@ -1,4 +1,4 @@
-$textColors: (
+$euiLinkColors: (
   subdued: $euiTextSubduedColor,
   primary: $euiColorPrimaryText,
   secondary: $euiColorSecondaryText,
@@ -22,17 +22,19 @@ $textColors: (
   }
 
   // Create color modifiers based on the map
-  @each $name, $color in $textColors {
+  @each $name, $color in $euiLinkColors {
     &.euiLink--#{$name} {
       color: $color;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: darken($color, 10%);
+        text-decoration: underline;
       }
 
       &:focus {
-        outline: solid 3px transparentize($color, .9);
-        background-color: transparentize($color, .9);
+        @include euiFocusBackground($color);
+        @include euiFocusRing(null, 0);
       }
     }
   }

@@ -24,12 +24,8 @@
 
   &:focus {
     @include euiFocusRing;
-  }
-
-  &,
-  &:focus {
     // Override default `EuiButtonEmpty` :focus background to ensure better contrast
-    background: $euiColorEmptyShade;
+    background: $euiColorEmptyShade !important; // sass-lint:disable-line no-important
   }
 }
 
