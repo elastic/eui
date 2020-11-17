@@ -28430,13 +28430,9 @@
 	      _this.toggleDropdown();
 	      if (year === _this.props.year) return;
 	      _this.props.onChange(year);
-	    }, _this.toggleDropdown = function (event) {
+	    }, _this.toggleDropdown = function () {
 	      _this.setState({
 	        dropdownVisible: !_this.state.dropdownVisible
-	      }, function () {
-	        if (_this.props.adjustDateOnChange) {
-	          _this.handleYearChange(_this.props.date, event);
-	        }
 	      });
 	    }, _this.handleYearChange = function (date, event) {
 	      _this.onSelect(date, event);

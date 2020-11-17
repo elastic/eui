@@ -523,13 +523,6 @@ function delay(fn) {
 
 var focusTrap_1 = focusTrap;
 
-var focusTrap$1 = /*#__PURE__*/Object.freeze({
-  default: focusTrap_1,
-  __moduleExports: focusTrap_1
-});
-
-var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -640,7 +633,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: createFocusTrap
+  _createFocusTrap: focusTrap_1
 };
 
 var focusTrapReact = FocusTrap;
@@ -1881,13 +1874,9 @@ var YearDropdown = function (_React$Component) {
       _this.toggleDropdown();
       if (year === _this.props.year) return;
       _this.props.onChange(year);
-    }, _this.toggleDropdown = function (event) {
+    }, _this.toggleDropdown = function () {
       _this.setState({
         dropdownVisible: !_this.state.dropdownVisible
-      }, function () {
-        if (_this.props.adjustDateOnChange) {
-          _this.handleYearChange(_this.props.date, event);
-        }
       });
     }, _this.handleYearChange = function (date, event) {
       _this.onSelect(date, event);
@@ -4492,33 +4481,26 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
+var _toInteger$1 = /*#__PURE__*/Object.freeze({
+  default: _toInteger,
+  __moduleExports: _toInteger
+});
+
+var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
+
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
-
-var _toLength$1 = /*#__PURE__*/Object.freeze({
-  default: _toLength,
-  __moduleExports: _toLength
-});
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = _toInteger(index);
+  index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
-
-var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
-  default: _toAbsoluteIndex,
-  __moduleExports: _toAbsoluteIndex
-});
-
-var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
-
-var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 // false -> Array#indexOf
 // true  -> Array#includes
@@ -4528,8 +4510,8 @@ var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteI
 var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
+    var length = _toLength(O.length);
+    var index = _toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
@@ -4609,6 +4591,13 @@ var _toObject = function (it) {
   return Object(defined(it));
 };
 
+var _toObject$1 = /*#__PURE__*/Object.freeze({
+  default: _toObject,
+  __moduleExports: _toObject
+});
+
+var toObject = ( _toObject$1 && _toObject ) || _toObject$1;
+
 // 19.1.2.1 Object.assign(target, source, ...)
 
 
@@ -4628,7 +4617,7 @@ var _objectAssign = !$assign || _fails(function () {
   K.split('').forEach(function (k) { B[k] = k; });
   return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
 }) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = _toObject(target);
+  var T = toObject(target);
   var aLen = arguments.length;
   var index = 1;
   var getSymbols = _objectGops.f;
@@ -4661,7 +4650,14 @@ var assign$1 = createCommonjsModule(function (module) {
 module.exports = { "default": assign, __esModule: true };
 });
 
-unwrapExports(assign$1);
+var assign$2 = unwrapExports(assign$1);
+
+var assign$3 = /*#__PURE__*/Object.freeze({
+  default: assign$2,
+  __moduleExports: assign$1
+});
+
+var _assign = ( assign$3 && assign$2 ) || assign$3;
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4669,7 +4665,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$1);
+var _assign2 = _interopRequireDefault(_assign);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4708,7 +4704,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(defined(that));
-    var i = _toInteger(pos);
+    var i = toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -4817,7 +4813,7 @@ var IE_PROTO$2 = _sharedKey('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 var _objectGpo = Object.getPrototypeOf || function (O) {
-  O = _toObject(O);
+  O = toObject(O);
   if (_has(O, IE_PROTO$2)) return O[IE_PROTO$2];
   if (typeof O.constructor == 'function' && O instanceof O.constructor) {
     return O.constructor.prototype;
@@ -5435,11 +5431,18 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-unwrapExports(create$1);
+var require$$0$2 = ( create$1 && create ) || create$1;
+
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$2, __esModule: true };
+});
+
+unwrapExports(create$2);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5451,7 +5454,7 @@ var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$1);
+var _create2 = _interopRequireDefault(create$2);
 
 
 
@@ -7993,11 +7996,6 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
-var gud$1 = /*#__PURE__*/Object.freeze({
-  default: gud,
-  __moduleExports: gud
-});
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8033,13 +8031,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
-var emptyFunction$1 = /*#__PURE__*/Object.freeze({
-  default: emptyFunction_1,
-  __moduleExports: emptyFunction_1
-});
-
-var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
-
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -8047,7 +8038,7 @@ var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction$2;
+var warning = emptyFunction_1;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -8096,8 +8087,6 @@ var warning$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: warning_1
 });
 
-var _gud = ( gud$1 && gud ) || gud$1;
-
 var _warning = ( warning$1 && warning_1 ) || warning$1;
 
 var implementation = createCommonjsModule(function (module, exports) {
@@ -8114,7 +8103,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(_gud);
+var _gud2 = _interopRequireDefault(gud);
 
 
 
@@ -8298,14 +8287,7 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-var implementation$1 = unwrapExports(implementation);
-
-var implementation$2 = /*#__PURE__*/Object.freeze({
-  default: implementation$1,
-  __moduleExports: implementation
-});
-
-var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
+unwrapExports(implementation);
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8317,7 +8299,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(_implementation);
+var _implementation2 = _interopRequireDefault(implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
