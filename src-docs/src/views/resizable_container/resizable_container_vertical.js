@@ -12,7 +12,7 @@ const text = (
 );
 
 export default () => (
-  <EuiResizableContainer style={{ height: '600px' }} direction="vertical">
+  <EuiResizableContainer style={{ height: '400px' }} direction="vertical">
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
         <EuiResizablePanel initialSize={60} minSize="40%">
@@ -21,7 +21,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="xl" />
+        <EuiResizableButton />
 
         <EuiResizablePanel initialSize={40} minSize="10%">
           <EuiText>

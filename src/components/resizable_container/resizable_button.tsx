@@ -120,7 +120,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     if (
       e.relatedTarget &&
       (e.relatedTarget as HTMLElement).classList.contains(
-        'euiResizablePanel__toggleButton'
+        'euiResizableToggleButton'
       )
     )
       return;

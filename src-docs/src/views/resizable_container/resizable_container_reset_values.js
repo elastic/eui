@@ -83,7 +83,7 @@ export default () => {
       <EuiSpacer />
 
       <EuiResizableContainer
-        style={{ height: '400px' }}
+        style={{ height: '200px' }}
         onPanelWidthChange={onPanelWidthChange}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -96,7 +96,7 @@ export default () => {
               </EuiText>
             </EuiResizablePanel>
 
-            <EuiResizableButton size="l" />
+            <EuiResizableButton />
 
             <EuiResizablePanel
               id={secondPanelId}

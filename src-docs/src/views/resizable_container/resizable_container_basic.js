@@ -11,7 +11,7 @@ const text = (
 );
 
 export default () => (
-  <EuiResizableContainer style={{ height: '400px' }}>
+  <EuiResizableContainer style={{ height: '200px' }}>
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
         <EuiResizablePanel initialSize={50} minSize="30%">

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -25,6 +26,7 @@ import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
+import ResizablePanels from './resizable_panels';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
@@ -33,6 +35,7 @@ const ResizableContainerSource = require('!!raw-loader!./resizable_container_bas
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_container_three_panels');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
+const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
@@ -57,6 +60,13 @@ const basicSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
     </>
   )}
 </EuiResizableContainer>`;
+
+const ResizablePanelsHtml = renderToHtml(ResizablePanels);
+const panelsSnippet = `<EuiResizablePanel color="subdued" paddingSize="none" wrapperPadding="m">
+  <EuiText>
+    <p>{text}</p>
+  </EuiText>
+</EuiResizablePanel>`;
 
 const ResizableContainerVerticalHtml = renderToHtml(ResizableContainerVertical);
 const verticalSnippet = `<EuiResizableContainer direction="vertical" style={{ height: '400px' }}>
@@ -162,23 +172,21 @@ export const ResizableContainerExample = {
   intro: (
     <Fragment>
       <EuiCallOut title="Consuming" color="warning">
-        <EuiText size="s">
-          <p>
-            This component is handy for various resizable containers.{' '}
-            <strong>EuiResizableContainer</strong> uses the{' '}
-            <EuiLink
-              href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
-              external>
-              React Render Props
-            </EuiLink>{' '}
-            technique to provide <strong>EuiResizablePanel</strong> and{' '}
-            <strong>EuiResizableButton</strong> components for layout, and{' '}
-            <EuiCode>actions</EuiCode> for custom handling collapse and resize
-            functionality in your app. Wrap parts of your content with the{' '}
-            <strong>EuiResizablePanel</strong> component and put the{' '}
-            <strong>EuiResizableButton</strong> component between.
-          </p>
-        </EuiText>
+        <p>
+          This component is handy for various resizable containers.{' '}
+          <strong>EuiResizableContainer</strong> uses the{' '}
+          <EuiLink
+            href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
+            external>
+            React Render Props
+          </EuiLink>{' '}
+          technique to provide <strong>EuiResizablePanel</strong> and{' '}
+          <strong>EuiResizableButton</strong> components for layout, and{' '}
+          <EuiCode>actions</EuiCode> for custom handling collapse and resize
+          functionality in your app. Wrap parts of your content with the{' '}
+          <strong>EuiResizablePanel</strong> component and put the{' '}
+          <strong>EuiResizableButton</strong> component between.
+        </p>
       </EuiCallOut>
 
       <EuiSpacer size="l" />
@@ -227,6 +235,41 @@ export const ResizableContainerExample = {
       },
       snippet: basicSnippet,
       demo: <ResizableContainerBasic />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizablePanelsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizablePanelsHtml,
+        },
+      ],
+      title: 'Resizable panel options',
+      text: (
+        <div>
+          <p>
+            Each <strong>EuiResizablePanel</strong> is simply an{' '}
+            <strong>EuiPanel</strong> wrapped with a{' '}
+            <EuiCode>{'<div>'}</EuiCode> for controlling the width. It stretches
+            to fill its container and accepts all of the same{' '}
+            <Link to="/layout/panel">
+              <strong>EuiPanel</strong>
+            </Link>{' '}
+            props to style your panel.
+          </p>
+          <p>
+            The default props clear most of the <strong>EuiPanel</strong>{' '}
+            styles, but you can add them back in with <EuiCode>color</EuiCode>,{' '}
+            <EuiCode>hasShadow</EuiCode>, and <EuiCode>paddingSize</EuiCode>.
+          </p>
+        </div>
+      ),
+      props: { EuiResizablePanel },
+      snippet: panelsSnippet,
+      demo: <ResizablePanels />,
     },
     {
       source: [
@@ -308,11 +351,7 @@ export const ResizableContainerExample = {
         </p>
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
-      demo: (
-        <div className="guideDemo__highlightSpacer">
-          <ResizableContainerVertical />
-        </div>
-      ),
+      demo: <ResizableContainerVertical />,
       snippet: verticalSnippet,
     },
     {
@@ -330,7 +369,7 @@ export const ResizableContainerExample = {
       text: (
         <div>
           <p>
-            Panels can be designated as collpasible, which allows them to hide
+            Panels can be designated as collapsible, which allows them to hide
             content and automatically resize to a minimal width. The intent of
             collapsible panels is to enable large, layout-level content areas to
             cede space to a main content area. For instance, collapsing an
@@ -376,14 +415,15 @@ export const ResizableContainerExample = {
         <div>
           <p>
             An <strong>EuiResizablePanel</strong> marked as{' '}
-            <EuiCode>mode=collapsible</EuiCode> also accepts configuration
-            options by passing a second parameter, in the form of:
+            <EuiCode language="ts">{"mode={['collapsible']}"}</EuiCode> also
+            accepts configuration options for the collapsible button by passing
+            a second parameter, in the form of:
           </p>
-          <EuiCodeBlock language="js">
-            {`mode={["collapsible", {
+          <EuiCodeBlock language="js" isCopyable>
+            {`mode={['collapsible', {
   'data-test-subj': 'panel-1-toggle',
   className: 'panel-toggle',
-  position: 'top,
+  position: 'top',
 }]}`}
           </EuiCodeBlock>
         </div>
@@ -408,11 +448,8 @@ export const ResizableContainerExample = {
           <p>
             <strong>EuiResizableContainer</strong> also provides action hooks
             for parent components to access internal methods, such as{' '}
-            <strong>EuiResizablePanel</strong> collapse toggling.
-          </p>
-          <p>
-            The actions are accessible via the third parameter of the render
-            prop function.
+            <strong>EuiResizablePanel</strong> collapse toggling. The actions
+            are accessible via the third parameter of the render prop function.
           </p>
           <p>
             Note that when bypassing internal{' '}
@@ -421,6 +458,19 @@ export const ResizableContainerExample = {
             allowing all panels to be collapsed creates a scenerio where your
             app will need to account for empty state and accesibility in regards
             to keyboard navigation.
+          </p>
+          <h3>Custom collapse button</h3>
+          <p>
+            You can also provide an external collapse button for custom
+            placement and look within your panel with{' '}
+            <EuiCode language="ts">{"mode={['custom']}"}</EuiCode>. When
+            collapsed, however, the default collapsed button will be used for
+            users to uncollapse the panel.
+          </p>
+          <p>
+            For consistency, we recommend the usage of the{' '}
+            <EuiCode>menuLeft</EuiCode>, <EuiCode>menuRight</EuiCode>, etc, icon
+            types.
           </p>
         </div>
       ),

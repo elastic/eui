@@ -105,7 +105,7 @@ const getSiblingPanel = (
   let sibling = element[method];
   while (sibling) {
     if (
-      sibling.matches('.euiResizablePanel:not(.euiResizablePanel--collapsed)')
+      sibling.matches('.euiResizablePanel:not(.euiResizablePanel-isCollapsed)')
     ) {
       return sibling;
     }

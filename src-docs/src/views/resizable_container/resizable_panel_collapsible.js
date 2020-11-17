@@ -65,21 +65,13 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%"
-                panelProps={{ paddingSize: 'm' }}>
-                <EuiListGroup flush>{itemElements}</EuiListGroup>
-                <EuiListGroup flush>{itemElements}</EuiListGroup>
-                <EuiListGroup flush>{itemElements}</EuiListGroup>
+                minSize="10%">
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
 
               <EuiResizableButton />
 
-              <EuiResizablePanel
-                mode="main"
-                initialSize={80}
-                minSize="50px"
-                panelProps={{ paddingSize: 'm' }}>
+              <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
                 <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
                   <EuiTitle>
                     <p>{itemSelected.label}</p>
@@ -127,13 +119,7 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%"
-                panelProps={{
-                  color: 'subdued',
-                  style: {
-                    borderLeftWidth: '1px',
-                  },
-                }}>
+                minSize="10%">
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
             </>
@@ -148,7 +134,7 @@ export default () => {
       <EuiSpacer />
 
       <EuiPage paddingSize="none">
-        <EuiResizableContainer direction="vertical" style={{ height: '600px' }}>
+        <EuiResizableContainer direction="vertical" style={{ height: '400px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
               <EuiResizablePanel

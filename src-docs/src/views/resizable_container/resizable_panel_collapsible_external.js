@@ -7,6 +7,8 @@ import {
   EuiButtonGroup,
   EuiButtonIcon,
   EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
 } from '../../../../src/components';
 
 const toggleButtons = [
@@ -17,10 +19,6 @@ const toggleButtons = [
   {
     id: '2',
     label: 'Toggle Panel 2',
-  },
-  {
-    id: '3',
-    label: 'Toggle Panel 3',
   },
 ];
 
@@ -46,7 +44,7 @@ export default () => {
 
   return (
     <>
-      <div>
+      <div className="eui-textCenter">
         <EuiButtonGroup
           legend="Collapsible panels"
           options={toggleButtons}
@@ -59,7 +57,7 @@ export default () => {
       <EuiSpacer />
       <EuiResizableContainer
         onToggleCollapsed={onCollapse}
-        style={{ height: '600px' }}>
+        style={{ height: '250px' }}>
         {(EuiResizablePanel, EuiResizableButton, { togglePanel }) => {
           collapseFn.current = (id, direction = 'left') =>
             togglePanel(id, { direction });
@@ -86,22 +84,36 @@ export default () => {
               <EuiResizableButton />
 
               <EuiResizablePanel
+                mode={['custom', { position: 'top' }]}
                 id="panel3"
                 initialSize={35}
-                minSize="10%"
-                mode={['custom', { position: 'top' }]}>
+                minSize="10%">
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
-                  <EuiFlexGroup justifyContent="spaceBetween">
-                    <EuiTitle>
-                      <p>Panel 3</p>
-                    </EuiTitle>
-                    <EuiButtonIcon
-                      color="text"
-                      aria-label={'Toggle panel 3'}
-                      iconType="menuRight"
-                      onClick={() => onChange(3)}
-                    />
+                  <EuiFlexGroup
+                    justifyContent="spaceBetween"
+                    alignItems="center">
+                    <EuiFlexItem>
+                      <EuiTitle>
+                        <p>Panel 3</p>
+                      </EuiTitle>
+                    </EuiFlexItem>
+                    <EuiFlexItem grow={false}>
+                      <EuiButtonIcon
+                        color="text"
+                        aria-label={'Toggle panel 3'}
+                        iconType="menuRight"
+                        onClick={() => onChange(3)}
+                      />
+                    </EuiFlexItem>
                   </EuiFlexGroup>
+                  <EuiSpacer />
+                  <EuiText size="s">
+                    <p>
+                      This panel provides its own button for triggering
+                      collapsibility but relies on the default collapsed button
+                      to uncollapse.
+                    </p>
+                  </EuiText>
                 </EuiPanel>
               </EuiResizablePanel>
             </>

@@ -5,7 +5,7 @@ import { fake } from 'faker';
 const text = fake('{{lorem.paragraphs}}');
 
 export default () => (
-  <EuiResizableContainer style={{ height: '400px' }}>
+  <EuiResizableContainer style={{ height: '200px' }}>
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
         <EuiResizablePanel initialSize={100 / 3} minSize="50px">
@@ -14,7 +14,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="l" />
+        <EuiResizableButton />
 
         <EuiResizablePanel initialSize={100 / 3}>
           <EuiText>
@@ -22,7 +22,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton size="l" />
+        <EuiResizableButton />
 
         <EuiResizablePanel initialSize={100 / 3} minSize="10%">
           <EuiText>

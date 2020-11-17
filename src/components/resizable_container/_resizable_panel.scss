@@ -1,148 +1,47 @@
 .euiResizablePanel {
   position: relative;
-  overflow-x: visible;
 }
 
-.euiResizablePanel__content,
-.euiResizablePanel__collapsedContent {
-  @include euiScrollBar;
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiResizablePanel--#{$modifier} {
+    padding: $amount;
+  }
+}
+
+.euiResizablePanel__content {
   height: 100%;
-  overflow-y: auto;
+
   // Manually remove the border for default theme
-  border-width: 0;
-}
-
-.euiResizablePanel--collapsed {
-  .euiResizablePanel__content {
-    // This should not display at all because of tab focusing
-    display: none;
+  &:not([class*='plain']) {
+    border-width: 0;
   }
 }
 
-.euiResizablePanel--collapsible {
-  &:not(.euiResizablePanel--collapsed) {
-    .euiResizablePanel__toggleButton:not(:focus):not(:active):not(.euiResizablePanel__toggleButton--visible) {
-      @include euiScreenReaderOnly;
-    }
-  }
+.euiResizablePanel__content--scrollable {
+  @include euiScrollBar;
+  overflow-y: auto;
 }
 
-.euiResizablePanel__toggleButton {
-  @include euiSlightShadow;
-  position: absolute;
-  z-index: $euiZLevel1 + 1;
-  // Remove animations from EuiButtonIcon because of the custom transforms
-  animation: none !important; // sass-lint:disable-line no-important
-  // Remove transitions from EuiButtonIcon because of the custom transforms
-  transition: none !important; // sass-lint:disable-line no-important
-
-  &,
-  &:hover,
-  &:focus {
-    background-color: $euiColorLightestShade;
-  }
-
-  &--disabled {
-    box-shadow: none;
-    background: transparent;
-    border-radius: 0;
-    display: flex;
-  }
-
-  &--top {
-    justify-content: flex-start;
-  }
-
-  &--middle {
-    justify-content: center;
-  }
-
-  &--bottom {
-    justify-content: flex-end;
-  }
+.euiResizablePanel-isCollapsed {
+  overflow: hidden;
 }
 
 .euiResizableContainer--horizontal {
-  .euiResizablePanel__toggleButton {
-
-    &--top {
-      top: 0%;
-    }
-
-    &--middle {
-      top: 50%;
-    }
-
-    &--bottom {
-      top: 100%;
-    }
-
-    &.euiResizablePanel__toggleButton--right {
-      right: 0;
-      transform: translate(50%, -50%);
-    }
-
-    &.euiResizablePanel__toggleButton--left {
-      left: 0;
-      transform: translate(-50%, -50%);
-    }
-
-    &.euiResizablePanel__toggleButton--disabled {
-      flex-direction: column;
-      top: 0;
-      bottom: 0;
-      transform: none;
-    }
-  }
-
-  .euiResizablePanel--collapsed {
+  .euiResizablePanel-isCollapsed {
     min-width: 0 !important; // sass-lint:disable-line no-important
   }
 
-  .euiResizablePanel--collapsible.euiResizablePanel--collapsed {
+  .euiResizablePanel--collapsible.euiResizablePanel-isCollapsed {
     min-width: $euiSizeL !important; // sass-lint:disable-line no-important
   }
 }
 
 .euiResizableContainer--vertical {
-  .euiResizablePanel__toggleButton {
-
-    &--top {
-      left: 0%;
-    }
-
-    &--middle {
-      left: 50%;
-    }
-
-    &--bottom {
-      left: 100%;
-    }
-
-    &.euiResizablePanel__toggleButton--right {
-      top: 100%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.euiResizablePanel__toggleButton--left {
-      bottom: 100%;
-      transform: translate(-50%, 50%);
-    }
-
-    &.euiResizablePanel__toggleButton--disabled {
-      flex-direction: row;
-      left: 0;
-      top: 0;
-      width: 100%;
-      transform: none;
-    }
-  }
-
-  .euiResizablePanel--collapsed {
+  .euiResizablePanel-isCollapsed {
     min-height: 0 !important; // sass-lint:disable-line no-important
   }
 
-  .euiResizablePanel--collapsible.euiResizablePanel--collapsed {
+  .euiResizablePanel--collapsible.euiResizablePanel-isCollapsed {
     min-height: $euiSizeL !important; // sass-lint:disable-line no-important
   }
 }

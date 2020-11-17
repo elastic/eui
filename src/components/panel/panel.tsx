@@ -67,7 +67,7 @@ export type PanelColor = typeof COLORS[number];
 export type PanelPaddingSize = typeof SIZES[number];
 export type PanelBorderRadius = typeof BORDER_RADII[number];
 
-interface Props extends CommonProps {
+export interface PanelProps extends CommonProps {
   /**
    * Adds a medium shadow to the panel;
    * Clickable cards will still get a shadow on hover
@@ -110,11 +110,11 @@ interface Props extends CommonProps {
 }
 
 interface Divlike
-  extends Props,
+  extends PanelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'color'> {}
 
 interface Buttonlike
-  extends Props,
+  extends PanelProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {}
 
 export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;

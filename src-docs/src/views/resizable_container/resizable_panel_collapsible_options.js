@@ -7,6 +7,7 @@ import {
   EuiTitle,
   EuiSpacer,
   EuiText,
+  EuiPage,
 } from '../../../../src/components';
 import { fake } from 'faker';
 
@@ -50,7 +51,7 @@ export default () => {
     />
   ));
   return (
-    <div className="guideSection__shadedBox">
+    <EuiPage paddingSize="none">
       <EuiResizableContainer style={{ height: '320px' }}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -98,6 +99,6 @@ export default () => {
           </>
         )}
       </EuiResizableContainer>
-    </div>
+    </EuiPage>
   );
 };
