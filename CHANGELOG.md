@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.4.0`.
+- Added `'full'` option to the `height` prop of `EuiMarkdownEditor`. Added `autoExpandPreview` and `maxHeight` props to `EuiMarkdownEditor` ([#4245](https://github.com/elastic/eui/pull/4245))
 
 ## [`30.4.0`](https://github.com/elastic/eui/tree/v30.4.0)
 
@@ -8,7 +8,6 @@ No public interface changes since `30.4.0`.
 - Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212))
 - Added several Sass mixins for handling of unified focus/hover states ([#4242](https://github.com/elastic/eui/pull/4242))
 - Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
-- Added `textareaClassName` and `previewClassName` props to `EuiMarkdownEditor` to better support extend it to full height ([#4245](https://github.com/elastic/eui/pull/4245))
 
 **Theme: Amsterdam**
 
