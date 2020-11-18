@@ -24,6 +24,10 @@
 
 .euiResizablePanel-isCollapsed {
   overflow: hidden;
+
+  .euiResizablePanel__content * {
+    display: none;
+  }
 }
 
 .euiResizableContainer--horizontal {

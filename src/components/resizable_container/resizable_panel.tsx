@@ -355,6 +355,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     (isCollapsible || isCollapsed) &&
     (position === 'first' || (position === 'middle' && direction === 'left'));
 
+  const hasVisibleToggle =
+    (modeType === 'custom' && isCollapsed) || isCollapsible;
+
   let theToggle;
   if ((isCollapsible || modeType === 'custom') && hasLeftToggle) {
     theToggle = (
@@ -390,35 +393,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     );
   }
 
-  // Only render a panel if not collapsed or if it needs to show the collapsed button
-  let thePanel;
-  if ((isCollapsible || modeType === 'custom') && isCollapsed) {
-    thePanel = (
-      <EuiPanel
-        className={panelClasses}
-        hasShadow={hasShadow}
-        borderRadius={borderRadius}
-        color={color}
-        paddingSize="none"
-        {...rest}>
-        {/* When collapsed, replace the children with the toggle so it sits on the chosen background color */}
-        {theToggle}
-      </EuiPanel>
-    );
-  } else if (!isCollapsed) {
-    thePanel = (
-      <EuiPanel
-        className={panelClasses}
-        hasShadow={hasShadow}
-        borderRadius={borderRadius}
-        color={color}
-        paddingSize={paddingSize}
-        {...rest}>
-        {children}
-      </EuiPanel>
-    );
-  }
-
   return (
     <div
       {...wrapperProps}
@@ -427,11 +401,18 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       style={styles}
       className={classes}>
       {/* The toggle is displayed on either side for tab order */}
-      {!isCollapsed && isCollapsible && hasLeftToggle && theToggle}
-      {/* The EuiPanel */}
-      {thePanel}
+      {hasVisibleToggle && hasLeftToggle && theToggle}
+      <EuiPanel
+        className={panelClasses}
+        hasShadow={hasShadow}
+        borderRadius={borderRadius}
+        color={color}
+        paddingSize={isCollapsed ? 'none' : paddingSize}
+        {...rest}>
+        {children}
+      </EuiPanel>
       {/* The toggle is displayed on either side for tab order */}
-      {!isCollapsed && isCollapsible && hasRightToggle && theToggle}
+      {hasVisibleToggle && hasRightToggle && theToggle}
     </div>
   );
 };
