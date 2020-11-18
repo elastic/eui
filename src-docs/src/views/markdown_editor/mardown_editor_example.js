@@ -119,13 +119,18 @@ export const MarkdownEditorExample = {
             <EuiCode>height</EuiCode> in pixels or pass{' '}
             <EuiCode>&quot;full&quot;</EuiCode> to allow the{' '}
             <strong>EuiMarkdownEditor</strong> to fill the height of its
-            container.
+            container. By default, the <EuiCode>autoExpandPreview</EuiCode> prop
+            is set to <EuiCode>true</EuiCode>. This means that the preview{' '}
+            <EuiCode>height</EuiCode> is automatically adjusted to fit all the
+            content and avoid a scrollbar.
           </p>
           <p>
-            You can also control the <EuiCode>maxHeight</EuiCode> of the
-            editor/preview area. This feature only works when the{' '}
+            You can also control the <EuiCode>maxHeight</EuiCode> of the{' '}
+            editor/preview area. This prop only works when the{' '}
             <EuiCode>height</EuiCode> is not set to{' '}
-            <EuiCode>&quot;full&quot;</EuiCode>.
+            <EuiCode>&quot;full&quot;</EuiCode> and won&apos;t work for the
+            preview if the <EuiCode>autoExpandPreview</EuiCode> is set to{' '}
+            <EuiCode>true</EuiCode>.
           </p>
         </>
       ),

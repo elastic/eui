@@ -56,7 +56,7 @@ describe('EuiMarkdownEditor', () => {
     });
 
     describe('height', () => {
-      test('is rendered with full mode provided', () => {
+      test('is rendered in full mode', () => {
         const component = render(
           <EuiMarkdownEditor
             editorId="editorId"
@@ -76,7 +76,23 @@ describe('EuiMarkdownEditor', () => {
         const component = render(
           <EuiMarkdownEditor
             editorId="editorId"
-            max-height={600}
+            maxHeight={600}
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('autoExpandPreview', () => {
+      test('is rendered with false', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            autoExpandPreview={false}
             value=""
             onChange={() => null}
             {...requiredProps}

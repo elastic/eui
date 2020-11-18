@@ -97,6 +97,11 @@ type CommonMarkdownEditorProps = Omit<
      */
     maxHeight?: number;
 
+    /**
+     * Automatically adjusts the preview height to fit all the content and avoid a scrollbar.
+     */
+    autoExpandPreview?: boolean;
+
     /** plugins to identify new syntax and parse it into an AST node */
     parsingPluginList?: PluggableList;
 
@@ -185,6 +190,7 @@ export const EuiMarkdownEditor = forwardRef<
       onChange,
       height = 250,
       maxHeight = 500,
+      autoExpandPreview = true,
       parsingPluginList = defaultParsingPlugins,
       processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
@@ -325,17 +331,30 @@ export const EuiMarkdownEditor = forwardRef<
 
     const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
 
-    const [currentHeight, setCurrentHeight] = useState(height);
-
     const markdownFooterHeight = 34;
+    const [currentHeight, setCurrentHeight] = useState(height);
+    const textarea = textareaRef.current;
+    const previewRef = useRef<HTMLDivElement>(null);
 
     const onResize = () => {
-      if (textareaRef.current && viewMode === 'editing') {
-        const height = textareaRef.current.clientHeight;
+      if (textarea && viewMode === 'editing' && height !== 'full') {
+        const resizedTextareaHeight =
+          textarea.clientHeight + markdownFooterHeight;
 
-        setCurrentHeight(height + markdownFooterHeight);
+        setCurrentHeight(resizedTextareaHeight);
       }
     };
+
+    useEffect(() => {
+      if (isPreviewing && autoExpandPreview && height !== 'full') {
+        if (previewRef.current!.scrollHeight > currentHeight) {
+          // Adds 5 pixels to prevent scrollbar
+          setCurrentHeight(previewRef.current!.scrollHeight + 5);
+        } else {
+          setCurrentHeight(currentHeight);
+        }
+      }
+    }, [currentHeight, isPreviewing, height, autoExpandPreview]);
 
     const previewHeight =
       height === 'full'
@@ -364,6 +383,7 @@ export const EuiMarkdownEditor = forwardRef<
 
           {isPreviewing && (
             <div
+              ref={previewRef}
               className="euiMarkdownEditorPreview"
               style={{ height: previewHeight }}>
               <EuiMarkdownFormat
