@@ -26,7 +26,6 @@ $euiColorFullShade: #000 !default;
 
 // Backgrounds
 $euiPageBackgroundColor: tint($euiColorLightestShade, 50%) !default;
-$euiFocusBackgroundColor: tint($euiColorPrimary, 90%) !default;
 $euiColorHighlight: #FFFCDD !default;
 
 // Every color below must be based mathematically on the set above and in a particular order.
