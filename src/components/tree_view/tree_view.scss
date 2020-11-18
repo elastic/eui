@@ -9,14 +9,11 @@
 
 .euiTreeView__node {
   max-height: $euiSizeXL;
-  overflow: hidden;
-  cursor: pointer;
   line-height: $euiSizeXL;
 }
 
 .euiTreeView__node--expanded {
   max-height: 100vh;
-  overflow: auto;
 }
 
 .euiTreeView__nodeInner {
@@ -32,12 +29,13 @@
   text-align-last: left;
 
   &:focus {
-    box-shadow: inset 0 0 0 $euiSizeXS / 4 $euiFocusRingColor;
+    @include euiFocusRing('small', 'inner');
   }
 
   &:hover,
-  &:active {
-    background-color: tintOrShade($euiColorLightShade, 50%, 10%);
+  &:active,
+  &:focus {
+    @include euiFocusBackground($euiTextColor);
   }
 
   .euiTreeView__iconPlaceholder {
@@ -85,7 +83,6 @@
 
   .euiTreeView__node--expanded {
     max-height: 100vh;
-    overflow: auto;
   }
 }
 

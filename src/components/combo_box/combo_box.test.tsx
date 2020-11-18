@@ -32,13 +32,6 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => {
-    return (suffix: string) => `htmlid_${suffix}`;
-  },
-}));
-
 interface TitanOption {
   'data-test-subj'?: 'titanOption';
   label: string;

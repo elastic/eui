@@ -11,6 +11,6 @@
 
 @each $name, $color in $euiButtonTypes {
   .euiButtonEmpty--#{$name}:enabled:focus {
-    background-color: transparentize($color, lightOrDarkTheme(.9, .8));
+    @include euiFocusBackground($color);
   }
 }

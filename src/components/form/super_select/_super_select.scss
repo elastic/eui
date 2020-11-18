@@ -34,17 +34,8 @@
 
 .euiSuperSelect__item {
   @include euiFontSizeS;
+  @include euiInteractiveStates;
   padding: $euiSizeS;
-
-  &:hover:not(:disabled),
-  &:focus {
-    text-decoration: none;
-    background-color: $euiFocusBackgroundColor;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
 }
 
 .euiSuperSelect__item--hasDividers:not(:last-of-type) {

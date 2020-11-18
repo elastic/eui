@@ -27,10 +27,6 @@ import {
 } from '../../test';
 import { EuiToolTip } from './tool_tip';
 
-jest.mock('./../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'id',
-}));
-
 describe('EuiToolTip', () => {
   test('is rendered', () => {
     const component = render(
