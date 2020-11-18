@@ -212,11 +212,6 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
-var tabbable$1 = /*#__PURE__*/Object.freeze({
-  default: tabbable_1,
-  __moduleExports: tabbable_1
-});
-
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -237,15 +232,6 @@ function extend() {
     return target
 }
 
-var immutable$1 = /*#__PURE__*/Object.freeze({
-  default: immutable,
-  __moduleExports: immutable
-});
-
-var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
-
-var xtend = ( immutable$1 && immutable ) || immutable$1;
-
 var listeningFocusTrap = null;
 
 function focusTrap(element, userOptions) {
@@ -253,7 +239,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = xtend(
+  var config = immutable(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -425,7 +411,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable$2.isFocusable(e.target)
+        returnFocus: !tabbable_1.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -480,7 +466,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable$2(container);
+    var tabbableNodes = tabbable_1(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -522,6 +508,13 @@ function delay(fn) {
 }
 
 var focusTrap_1 = focusTrap;
+
+var focusTrap$1 = /*#__PURE__*/Object.freeze({
+  default: focusTrap_1,
+  __moduleExports: focusTrap_1
+});
+
+var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -633,7 +626,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: focusTrap_1
+  _createFocusTrap: createFocusTrap
 };
 
 var focusTrapReact = FocusTrap;
@@ -1565,6 +1558,14 @@ function isSameMonth(date1, date2) {
 function isSameDay(moment1, moment2) {
   if (moment1 && moment2) {
     return moment1.isSame(moment2, "day");
+  } else {
+    return !moment1 && !moment2;
+  }
+}
+
+function isSameTime(moment1, moment2) {
+  if (moment1 && moment2) {
+    return moment1.format('HH:mm:ss') === moment2.format('HH:mm:ss');
   } else {
     return !moment1 && !moment2;
   }
@@ -4277,10 +4278,17 @@ var _aFunction = function (it) {
   return it;
 };
 
+var _aFunction$1 = /*#__PURE__*/Object.freeze({
+  default: _aFunction,
+  __moduleExports: _aFunction
+});
+
+var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
+
 // optional / simple context binding
 
 var _ctx = function (fn, that, length) {
-  _aFunction(fn);
+  aFunction(fn);
   if (that === undefined) return fn;
   switch (length) {
     case 1: return function (a) {
@@ -4447,11 +4455,18 @@ var _cof = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
+var _cof$1 = /*#__PURE__*/Object.freeze({
+  default: _cof,
+  __moduleExports: _cof
+});
+
+var cof = ( _cof$1 && _cof ) || _cof$1;
+
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 
 // eslint-disable-next-line no-prototype-builtins
 var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-  return _cof(it) == 'String' ? it.split('') : Object(it);
+  return cof(it) == 'String' ? it.split('') : Object(it);
 };
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -4481,26 +4496,26 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-var _toInteger$1 = /*#__PURE__*/Object.freeze({
-  default: _toInteger,
-  __moduleExports: _toInteger
-});
-
-var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
-
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
+
+var _toLength$1 = /*#__PURE__*/Object.freeze({
+  default: _toLength,
+  __moduleExports: _toLength
+});
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = toInteger(index);
+  index = _toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
+
+var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
 
 // false -> Array#indexOf
 // true  -> Array#includes
@@ -4510,7 +4525,7 @@ var _toAbsoluteIndex = function (index, length) {
 var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
-    var length = _toLength(O.length);
+    var length = toLength(O.length);
     var index = _toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
@@ -4544,8 +4559,15 @@ var _sharedKey = function (key) {
   return shared[key] || (shared[key] = _uid(key));
 };
 
+var _sharedKey$1 = /*#__PURE__*/Object.freeze({
+  default: _sharedKey,
+  __moduleExports: _sharedKey
+});
+
+var require$$0 = ( _sharedKey$1 && _sharedKey ) || _sharedKey$1;
+
 var arrayIndexOf = _arrayIncludes(false);
-var IE_PROTO = _sharedKey('IE_PROTO');
+var IE_PROTO = require$$0('IE_PROTO');
 
 var _objectKeysInternal = function (object, names) {
   var O = _toIobject(object);
@@ -4591,13 +4613,6 @@ var _toObject = function (it) {
   return Object(defined(it));
 };
 
-var _toObject$1 = /*#__PURE__*/Object.freeze({
-  default: _toObject,
-  __moduleExports: _toObject
-});
-
-var toObject = ( _toObject$1 && _toObject ) || _toObject$1;
-
 // 19.1.2.1 Object.assign(target, source, ...)
 
 
@@ -4617,7 +4632,7 @@ var _objectAssign = !$assign || _fails(function () {
   K.split('').forEach(function (k) { B[k] = k; });
   return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
 }) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
+  var T = _toObject(target);
   var aLen = arguments.length;
   var index = 1;
   var getSymbols = _objectGops.f;
@@ -4632,17 +4647,10 @@ var _objectAssign = !$assign || _fails(function () {
   } return T;
 } : $assign;
 
-var _objectAssign$1 = /*#__PURE__*/Object.freeze({
-  default: _objectAssign,
-  __moduleExports: _objectAssign
-});
-
-var require$$0 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
-
 // 19.1.3.1 Object.assign(target, source)
 
 
-_export(_export.S + _export.F, 'Object', { assign: require$$0 });
+_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 var assign = _core.Object.assign;
 
@@ -4650,14 +4658,7 @@ var assign$1 = createCommonjsModule(function (module) {
 module.exports = { "default": assign, __esModule: true };
 });
 
-var assign$2 = unwrapExports(assign$1);
-
-var assign$3 = /*#__PURE__*/Object.freeze({
-  default: assign$2,
-  __moduleExports: assign$1
-});
-
-var _assign = ( assign$3 && assign$2 ) || assign$3;
+unwrapExports(assign$1);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4665,7 +4666,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(_assign);
+var _assign2 = _interopRequireDefault(assign$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4704,7 +4705,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(defined(that));
-    var i = toInteger(pos);
+    var i = _toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -4736,7 +4737,7 @@ var _html = document$2 && document$2.documentElement;
 
 
 
-var IE_PROTO$1 = _sharedKey('IE_PROTO');
+var IE_PROTO$1 = require$$0('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE$1 = 'prototype';
 
@@ -4809,11 +4810,11 @@ var _iterCreate = function (Constructor, NAME, next) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 
 
-var IE_PROTO$2 = _sharedKey('IE_PROTO');
+var IE_PROTO$2 = require$$0('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 var _objectGpo = Object.getPrototypeOf || function (O) {
-  O = toObject(O);
+  O = _toObject(O);
   if (_has(O, IE_PROTO$2)) return O[IE_PROTO$2];
   if (typeof O.constructor == 'function' && O instanceof O.constructor) {
     return O.constructor.prototype;
@@ -4874,17 +4875,10 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var _iterDefine$1 = /*#__PURE__*/Object.freeze({
-  default: _iterDefine,
-  __moduleExports: _iterDefine
-});
-
-var require$$0$1 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
-
 var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-require$$0$1(String, 'String', function (iterated) {
+_iterDefine(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4906,7 +4900,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = require$$0$1(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -4951,7 +4945,12 @@ var iterator$1 = createCommonjsModule(function (module) {
 module.exports = { "default": iterator, __esModule: true };
 });
 
-unwrapExports(iterator$1);
+var iterator$2 = unwrapExports(iterator$1);
+
+var iterator$3 = /*#__PURE__*/Object.freeze({
+  default: iterator$2,
+  __moduleExports: iterator$1
+});
 
 var _meta = createCommonjsModule(function (module) {
 var META = _uid('meta');
@@ -5039,7 +5038,7 @@ var _enumKeys = function (it) {
 // 7.2.2 IsArray(argument)
 
 var _isArray = Array.isArray || function isArray(arg) {
-  return _cof(arg) == 'Array';
+  return cof(arg) == 'Array';
 };
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
@@ -5337,7 +5336,16 @@ var symbol$1 = createCommonjsModule(function (module) {
 module.exports = { "default": symbol, __esModule: true };
 });
 
-unwrapExports(symbol$1);
+var symbol$2 = unwrapExports(symbol$1);
+
+var symbol$3 = /*#__PURE__*/Object.freeze({
+  default: symbol$2,
+  __moduleExports: symbol$1
+});
+
+var _iterator = ( iterator$3 && iterator$2 ) || iterator$3;
+
+var _symbol = ( symbol$3 && symbol$2 ) || symbol$3;
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5345,11 +5353,11 @@ exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator$1);
+var _iterator2 = _interopRequireDefault(_iterator);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$1);
+var _symbol2 = _interopRequireDefault(_symbol);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5411,9 +5419,16 @@ var _setProto = {
   check: check
 };
 
+var _setProto$1 = /*#__PURE__*/Object.freeze({
+  default: _setProto,
+  __moduleExports: _setProto
+});
+
+var require$$0$1 = ( _setProto$1 && _setProto ) || _setProto$1;
+
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0$1.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
@@ -5431,18 +5446,11 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = /*#__PURE__*/Object.freeze({
-  default: create,
-  __moduleExports: create
+var create$1 = createCommonjsModule(function (module) {
+module.exports = { "default": create, __esModule: true };
 });
 
-var require$$0$2 = ( create$1 && create ) || create$1;
-
-var create$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
-});
-
-unwrapExports(create$2);
+unwrapExports(create$1);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5454,7 +5462,7 @@ var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$2);
+var _create2 = _interopRequireDefault(create$1);
 
 
 
@@ -7996,6 +8004,11 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
+var gud$1 = /*#__PURE__*/Object.freeze({
+  default: gud,
+  __moduleExports: gud
+});
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8087,6 +8100,8 @@ var warning$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: warning_1
 });
 
+var _gud = ( gud$1 && gud ) || gud$1;
+
 var _warning = ( warning$1 && warning_1 ) || warning$1;
 
 var implementation = createCommonjsModule(function (module, exports) {
@@ -8103,7 +8118,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(gud);
+var _gud2 = _interopRequireDefault(_gud);
 
 
 
@@ -8873,7 +8888,6 @@ var DatePicker = function (_React$Component) {
     };
 
     _this.handleFocus = function (event) {
-      console.log(_this.state.preventFocus);
       if (!_this.state.preventFocus) {
         _this.props.onFocus(event);
         if (!_this.props.preventOpenOnFocus && !_this.props.readOnly) {
@@ -8982,18 +8996,19 @@ var DatePicker = function (_React$Component) {
         return;
       }
 
-      if (!isSameDay(_this.props.selected, changedDate) || _this.props.allowSameDay) {
+      if (changedDate !== null && _this.props.selected) {
+        var selected = _this.props.selected;
+        if (keepInput) selected = newDate(changedDate);
+        changedDate = setTime(newDate(changedDate), {
+          hour: getHour(selected),
+          minute: getMinute(selected),
+          second: getSecond(selected),
+          millisecond: getMillisecond(selected)
+        });
+      }
+
+      if (!isSameDay(_this.props.selected, changedDate) || !isSameTime(_this.props.selected, changedDate) || _this.props.allowSameDay) {
         if (changedDate !== null) {
-          if (_this.props.selected) {
-            var selected = _this.props.selected;
-            if (keepInput) selected = newDate(changedDate);
-            changedDate = setTime(newDate(changedDate), {
-              hour: getHour(selected),
-              minute: getMinute(selected),
-              second: getSecond(selected),
-              millisecond: getMillisecond(selected)
-            });
-          }
           if (!_this.props.inline) {
             _this.setState({
               preSelection: changedDate
@@ -9029,11 +9044,16 @@ var DatePicker = function (_React$Component) {
         millisecond: 0
       });
 
-      _this.setState({
-        preSelection: changedDate
-      });
+      if (!isSameTime(selected, changedDate)) {
+        _this.setState({
+          preSelection: changedDate
+        });
 
-      _this.props.onChange(changedDate);
+        _this.props.onChange(changedDate);
+      }
+
+      _this.props.onSelect(changedDate);
+
       if (_this.props.shouldCloseOnSelect) {
         _this.setOpen(false, true);
       }

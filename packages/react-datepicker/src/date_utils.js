@@ -272,6 +272,14 @@ export function isSameDay(moment1, moment2) {
   }
 }
 
+export function isSameTime(moment1, moment2) {
+  if (moment1 && moment2) {
+    return moment1.format('HH:mm:ss') === moment2.format('HH:mm:ss');
+  } else {
+    return !moment1 && !moment2;
+  }
+}
+
 export function isSameUtcOffset(moment1, moment2) {
   if (moment1 && moment2) {
     return moment1.utcOffset() === moment2.utcOffset();

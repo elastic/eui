@@ -26814,7 +26814,6 @@
 	    };
 
 	    _this.handleFocus = function (event) {
-	      console.log(_this.state.preventFocus);
 	      if (!_this.state.preventFocus) {
 	        _this.props.onFocus(event);
 	        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly) {
@@ -26923,18 +26922,19 @@
 	        return;
 	      }
 
-	      if (!(0, _date_utils.isSameDay)(_this.props.selected, changedDate) || _this.props.allowSameDay) {
+	      if (changedDate !== null && _this.props.selected) {
+	        var selected = _this.props.selected;
+	        if (keepInput) selected = (0, _date_utils.newDate)(changedDate);
+	        changedDate = (0, _date_utils.setTime)((0, _date_utils.newDate)(changedDate), {
+	          hour: (0, _date_utils.getHour)(selected),
+	          minute: (0, _date_utils.getMinute)(selected),
+	          second: (0, _date_utils.getSecond)(selected),
+	          millisecond: (0, _date_utils.getMillisecond)(selected)
+	        });
+	      }
+
+	      if (!(0, _date_utils.isSameDay)(_this.props.selected, changedDate) || !(0, _date_utils.isSameTime)(_this.props.selected, changedDate) || _this.props.allowSameDay) {
 	        if (changedDate !== null) {
-	          if (_this.props.selected) {
-	            var selected = _this.props.selected;
-	            if (keepInput) selected = (0, _date_utils.newDate)(changedDate);
-	            changedDate = (0, _date_utils.setTime)((0, _date_utils.newDate)(changedDate), {
-	              hour: (0, _date_utils.getHour)(selected),
-	              minute: (0, _date_utils.getMinute)(selected),
-	              second: (0, _date_utils.getSecond)(selected),
-	              millisecond: (0, _date_utils.getMillisecond)(selected)
-	            });
-	          }
 	          if (!_this.props.inline) {
 	            _this.setState({
 	              preSelection: changedDate
@@ -26970,11 +26970,16 @@
 	        millisecond: 0
 	      });
 
-	      _this.setState({
-	        preSelection: changedDate
-	      });
+	      if (!(0, _date_utils.isSameTime)(selected, changedDate)) {
+	        _this.setState({
+	          preSelection: changedDate
+	        });
 
-	      _this.props.onChange(changedDate);
+	        _this.props.onChange(changedDate);
+	      }
+
+	      _this.props.onSelect(changedDate);
+
 	      if (_this.props.shouldCloseOnSelect) {
 	        _this.setOpen(false, true);
 	      }
@@ -29936,6 +29941,7 @@
 	exports.isSameYear = isSameYear;
 	exports.isSameMonth = isSameMonth;
 	exports.isSameDay = isSameDay;
+	exports.isSameTime = isSameTime;
 	exports.isSameUtcOffset = isSameUtcOffset;
 	exports.isDayInRange = isDayInRange;
 	exports.getDaysDiff = getDaysDiff;
@@ -30236,6 +30242,14 @@
 	function isSameDay(moment1, moment2) {
 	  if (moment1 && moment2) {
 	    return moment1.isSame(moment2, "day");
+	  } else {
+	    return !moment1 && !moment2;
+	  }
+	}
+
+	function isSameTime(moment1, moment2) {
+	  if (moment1 && moment2) {
+	    return moment1.format('HH:mm:ss') === moment2.format('HH:mm:ss');
 	  } else {
 	    return !moment1 && !moment2;
 	  }

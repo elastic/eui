@@ -28,6 +28,7 @@ import {
   subtractWeeks,
   subtractYears,
   isSameDay,
+  isSameTime,
   isDayDisabled,
   isOutOfBounds,
   isDayInRange,
@@ -331,7 +332,6 @@ export default class DatePicker extends React.Component {
       : this.props.open;
 
   handleFocus = event => {
-    console.log(this.state.preventFocus);
     if (!this.state.preventFocus) {
       this.props.onFocus(event);
       if (
@@ -441,21 +441,23 @@ export default class DatePicker extends React.Component {
       return;
     }
 
+    if (changedDate !== null && this.props.selected) {
+      let selected = this.props.selected;
+      if (keepInput) selected = newDate(changedDate);
+      changedDate = setTime(newDate(changedDate), {
+        hour: getHour(selected),
+        minute: getMinute(selected),
+        second: getSecond(selected),
+        millisecond: getMillisecond(selected),
+      });
+    }
+
     if (
       !isSameDay(this.props.selected, changedDate) ||
+      !isSameTime(this.props.selected, changedDate) ||
       this.props.allowSameDay
     ) {
       if (changedDate !== null) {
-        if (this.props.selected) {
-          let selected = this.props.selected;
-          if (keepInput) selected = newDate(changedDate);
-          changedDate = setTime(newDate(changedDate), {
-            hour: getHour(selected),
-            minute: getMinute(selected),
-            second: getSecond(selected),
-            millisecond: getMillisecond(selected),
-          });
-        }
         if (!this.props.inline) {
           this.setState({
             preSelection: changedDate
@@ -498,11 +500,16 @@ export default class DatePicker extends React.Component {
       millisecond: 0,
     });
 
-    this.setState({
-      preSelection: changedDate
-    });
+    if (!isSameTime(selected, changedDate)) {
+      this.setState({
+        preSelection: changedDate
+      });
 
-    this.props.onChange(changedDate);
+      this.props.onChange(changedDate);
+    }
+
+    this.props.onSelect(changedDate);
+    
     if (this.props.shouldCloseOnSelect) {
       this.setOpen(false, true);
     }
