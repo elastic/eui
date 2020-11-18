@@ -128,9 +128,7 @@ export const MarkdownEditorExample = {
             You can also control the <EuiCode>maxHeight</EuiCode> of the{' '}
             editor/preview area. This prop only works when the{' '}
             <EuiCode>height</EuiCode> is not set to{' '}
-            <EuiCode>&quot;full&quot;</EuiCode> and won&apos;t work for the
-            preview if the <EuiCode>autoExpandPreview</EuiCode> is set to{' '}
-            <EuiCode>true</EuiCode>.
+            <EuiCode>&quot;full&quot;</EuiCode>.
           </p>
         </>
       ),
