@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Created on consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/v))
+- Created one consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/v))
 
 **Theme: Amsterdam**
 
