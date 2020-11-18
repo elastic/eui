@@ -24,7 +24,7 @@
     @include euiCodeFont;
     display: block;
     line-height: $euiLineHeight;
-    font-weight: $euiFontWeightRegular;
+    font-weight: $euiCodeFontWeightRegular;
     font-size: inherit;
   }
 
@@ -180,7 +180,7 @@
 
   .hljs-selector-tag {
     color: $euiCodeBlockSelectorTagColor;
-    font-weight: bold;
+    font-weight: $euiCodeFontWeightBold;
   }
 
   .hljs-string,
@@ -274,7 +274,7 @@
   }
 
   .hljs-strong {
-    font-weight: bold;
+    font-weight: $euiCodeFontWeightBold;
   }
 
   .hljs-link {

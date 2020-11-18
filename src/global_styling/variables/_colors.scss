@@ -31,7 +31,6 @@ $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 $euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade) !default;
 $euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
-$euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
