@@ -4455,18 +4455,11 @@ var _cof = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
-var _cof$1 = /*#__PURE__*/Object.freeze({
-  default: _cof,
-  __moduleExports: _cof
-});
-
-var cof = ( _cof$1 && _cof ) || _cof$1;
-
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 
 // eslint-disable-next-line no-prototype-builtins
 var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-  return cof(it) == 'String' ? it.split('') : Object(it);
+  return _cof(it) == 'String' ? it.split('') : Object(it);
 };
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -4475,18 +4468,11 @@ var _defined = function (it) {
   return it;
 };
 
-var _defined$1 = /*#__PURE__*/Object.freeze({
-  default: _defined,
-  __moduleExports: _defined
-});
-
-var defined = ( _defined$1 && _defined ) || _defined$1;
-
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 
 
 var _toIobject = function (it) {
-  return _iobject(defined(it));
+  return _iobject(_defined(it));
 };
 
 // 7.1.4 ToInteger
@@ -4559,15 +4545,8 @@ var _sharedKey = function (key) {
   return shared[key] || (shared[key] = _uid(key));
 };
 
-var _sharedKey$1 = /*#__PURE__*/Object.freeze({
-  default: _sharedKey,
-  __moduleExports: _sharedKey
-});
-
-var require$$0 = ( _sharedKey$1 && _sharedKey ) || _sharedKey$1;
-
 var arrayIndexOf = _arrayIncludes(false);
-var IE_PROTO = require$$0('IE_PROTO');
+var IE_PROTO = _sharedKey('IE_PROTO');
 
 var _objectKeysInternal = function (object, names) {
   var O = _toIobject(object);
@@ -4610,7 +4589,7 @@ var _objectPie = {
 // 7.1.13 ToObject(argument)
 
 var _toObject = function (it) {
-  return Object(defined(it));
+  return Object(_defined(it));
 };
 
 // 19.1.2.1 Object.assign(target, source, ...)
@@ -4704,7 +4683,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 // false -> String#codePointAt
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
-    var s = String(defined(that));
+    var s = String(_defined(that));
     var i = _toInteger(pos);
     var l = s.length;
     var a, b;
@@ -4715,6 +4694,11 @@ var _stringAt = function (TO_STRING) {
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
+
+var _stringAt$1 = /*#__PURE__*/Object.freeze({
+  default: _stringAt,
+  __moduleExports: _stringAt
+});
 
 var _library = true;
 
@@ -4737,7 +4721,7 @@ var _html = document$2 && document$2.documentElement;
 
 
 
-var IE_PROTO$1 = require$$0('IE_PROTO');
+var IE_PROTO$1 = _sharedKey('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE$1 = 'prototype';
 
@@ -4810,7 +4794,7 @@ var _iterCreate = function (Constructor, NAME, next) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 
 
-var IE_PROTO$2 = require$$0('IE_PROTO');
+var IE_PROTO$2 = _sharedKey('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 var _objectGpo = Object.getPrototypeOf || function (O) {
@@ -4875,7 +4859,9 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var $at = _stringAt(true);
+var require$$0 = ( _stringAt$1 && _stringAt ) || _stringAt$1;
+
+var $at = require$$0(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 _iterDefine(String, 'String', function (iterated) {
@@ -4941,15 +4927,22 @@ var _wksExt = {
 
 var iterator = _wksExt.f('iterator');
 
-var iterator$1 = createCommonjsModule(function (module) {
-module.exports = { "default": iterator, __esModule: true };
+var iterator$1 = /*#__PURE__*/Object.freeze({
+  default: iterator,
+  __moduleExports: iterator
 });
 
-var iterator$2 = unwrapExports(iterator$1);
+var require$$0$1 = ( iterator$1 && iterator ) || iterator$1;
 
-var iterator$3 = /*#__PURE__*/Object.freeze({
-  default: iterator$2,
-  __moduleExports: iterator$1
+var iterator$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$1, __esModule: true };
+});
+
+var iterator$3 = unwrapExports(iterator$2);
+
+var iterator$4 = /*#__PURE__*/Object.freeze({
+  default: iterator$3,
+  __moduleExports: iterator$2
 });
 
 var _meta = createCommonjsModule(function (module) {
@@ -5038,7 +5031,7 @@ var _enumKeys = function (it) {
 // 7.2.2 IsArray(argument)
 
 var _isArray = Array.isArray || function isArray(arg) {
-  return cof(arg) == 'Array';
+  return _cof(arg) == 'Array';
 };
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
@@ -5332,20 +5325,20 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$1 = createCommonjsModule(function (module) {
-module.exports = { "default": symbol, __esModule: true };
+var symbol$1 = /*#__PURE__*/Object.freeze({
+  default: symbol,
+  __moduleExports: symbol
 });
 
-var symbol$2 = unwrapExports(symbol$1);
+var require$$0$2 = ( symbol$1 && symbol ) || symbol$1;
 
-var symbol$3 = /*#__PURE__*/Object.freeze({
-  default: symbol$2,
-  __moduleExports: symbol$1
+var symbol$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$2, __esModule: true };
 });
 
-var _iterator = ( iterator$3 && iterator$2 ) || iterator$3;
+unwrapExports(symbol$2);
 
-var _symbol = ( symbol$3 && symbol$2 ) || symbol$3;
+var _iterator = ( iterator$4 && iterator$3 ) || iterator$4;
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5357,7 +5350,7 @@ var _iterator2 = _interopRequireDefault(_iterator);
 
 
 
-var _symbol2 = _interopRequireDefault(_symbol);
+var _symbol2 = _interopRequireDefault(symbol$2);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5424,19 +5417,26 @@ var _setProto$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: _setProto
 });
 
-var require$$0$1 = ( _setProto$1 && _setProto ) || _setProto$1;
+var require$$0$3 = ( _setProto$1 && _setProto ) || _setProto$1;
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: require$$0$1.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0$3.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = createCommonjsModule(function (module) {
-module.exports = { "default": setPrototypeOf, __esModule: true };
+var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
+  default: setPrototypeOf,
+  __moduleExports: setPrototypeOf
 });
 
-unwrapExports(setPrototypeOf$1);
+var require$$0$4 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
+
+var setPrototypeOf$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$4, __esModule: true };
+});
+
+unwrapExports(setPrototypeOf$2);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5458,7 +5458,7 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
 
 
 
@@ -8044,6 +8044,13 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
+var emptyFunction$1 = /*#__PURE__*/Object.freeze({
+  default: emptyFunction_1,
+  __moduleExports: emptyFunction_1
+});
+
+var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
+
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -8051,7 +8058,7 @@ var emptyFunction_1 = emptyFunction;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction_1;
+var warning = emptyFunction$2;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -8972,7 +8979,6 @@ var DatePicker = function (_React$Component) {
       if (!_this.props.shouldCloseOnSelect || _this.props.showTimeSelect) {
         _this.setPreSelection(date);
       } else if (!_this.props.inline) {
-        // This causes the navigation button to close the popover
         _this.setOpen(false, true);
       }
     };

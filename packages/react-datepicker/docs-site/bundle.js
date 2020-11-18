@@ -26898,7 +26898,6 @@
 	      if (!_this.props.shouldCloseOnSelect || _this.props.showTimeSelect) {
 	        _this.setPreSelection(date);
 	      } else if (!_this.props.inline) {
-	        // This causes the navigation button to close the popover
 	        _this.setOpen(false, true);
 	      }
 	    };

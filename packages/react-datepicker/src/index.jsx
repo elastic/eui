@@ -417,7 +417,6 @@ export default class DatePicker extends React.Component {
     if (!this.props.shouldCloseOnSelect || this.props.showTimeSelect) {
       this.setPreSelection(date);
     } else if (!this.props.inline) {
-      // This causes the navigation button to close the popover
       this.setOpen(false, true);
     }
   };
