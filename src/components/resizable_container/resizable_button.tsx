@@ -116,17 +116,6 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
     e.currentTarget.focus();
 
-  const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
-    if (
-      e.relatedTarget &&
-      (e.relatedTarget as HTMLElement).classList.contains(
-        'euiResizableToggleButton'
-      )
-    )
-      return;
-    onBlur && onBlur();
-  };
-
   const handleFocus = () => {
     onFocus && onFocus(resizerId.current);
   };
@@ -153,7 +142,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           type="button"
           onClick={setFocus}
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={onBlur}
           disabled={isDisabled}
           {...rest}
         />
