@@ -15,7 +15,7 @@ $euiColorDisabled: #ABB4C4;
 
 // Backgrounds
 $euiPageBackgroundColor: tint($euiColorLightestShade, 50%);
-$euiFocusBackgroundColor: tint($euiColorPrimary, 90%);
+$euiFocusBackgroundColor: transparentize($euiColorPrimary, .8);
 $euiColorHighlight: tint($euiColorWarning, 90%);
 
 // Contrasty text variants

@@ -48,11 +48,13 @@ $euiLineHeight:     1.5 !default;
 $euiBodyLineHeight: 1 !default;
 
 // Font weights
-$euiFontWeightLight:    300 !default;
-$euiFontWeightRegular:  400 !default;
-$euiFontWeightMedium:   500 !default;
-$euiFontWeightSemiBold: 600 !default;
-$euiFontWeightBold:     700 !default;
+$euiFontWeightLight:        300 !default;
+$euiFontWeightRegular:      400 !default;
+$euiFontWeightMedium:       500 !default;
+$euiFontWeightSemiBold:     600 !default;
+$euiFontWeightBold:         700 !default;
+$euiCodeFontWeightRegular:  400 !default;
+$euiCodeFontWeightBold:     700 !default;
 
 // Titles map
 // Lists all the properties per EuiTitle size that then gets looped through to create the selectors.
