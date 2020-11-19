@@ -1,0 +1,18 @@
+.euiMarkdownEditor,
+.euiMarkdownEditor:focus-within {
+  box-shadow: none;
+}
+
+.euiMarkdownEditorToolbar {
+  border-radius: $euiFormControlBorderRadius $euiFormControlBorderRadius 0 0;
+}
+
+.euiMarkdownEditorTextArea {
+  &:focus:focus-visible {
+    outline-style: none;
+  }
+}
+
+.euiMarkdownEditorFooter {
+  border-radius: 0 0 $euiFormControlBorderRadius $euiFormControlBorderRadius;
+}
