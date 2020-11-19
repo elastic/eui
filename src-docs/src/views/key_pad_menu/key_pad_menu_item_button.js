@@ -14,10 +14,10 @@ export default () => (
     <EuiKeyPadMenuItem label="Disabled" isDisabled>
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
-    <EuiKeyPadMenuItem label="Link">
+    <EuiKeyPadMenuItem label="Selected" isSelected>
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
-    <EuiKeyPadMenuItem label="Selected" isSelected>
+    <EuiKeyPadMenuItem label="Link">
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
     <EuiKeyPadMenuItem label="Selected link" href="#" isSelected>

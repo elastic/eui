@@ -1,0 +1,34 @@
+/**
+ * 1. If this class is applied to a button, we need to override the Chrome default font.
+ * 2. If it has a BetaBadge, make sure only the first letter shows
+ */
+.euiKeyPadMenuItem {
+  @include euiInteractiveStates;
+  border: none;
+  // Disable indentation for transition legibility
+  // sass-lint:disable-block indentation
+  transition:
+    background-color $euiAnimSpeedFast ease-in,
+    box-shadow $euiAnimSpeedFast ease-in;
+
+  // Using the aria selectors to ensure proper a11y
+  &[aria-pressed='true'],
+  &[aria-current] {
+    @include euiFocusBackground;
+    color: $euiColorPrimaryText;
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include euiBottomShadowSmall;
+    }
+  }
+}
+
+.euiKeyPadMenuItem__label {
+  font-size: $euiFontSizeXS;
+  font-weight: $euiFontWeightSemiBold;
+  line-height: $euiSize;
+  text-align: center;
+}
