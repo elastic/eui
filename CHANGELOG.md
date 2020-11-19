@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.4.1`.
+
+## [`30.4.1`](https://github.com/elastic/eui/tree/v30.4.1)
+
 - Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
 
 **Theme: Amsterdam**
