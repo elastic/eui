@@ -18,15 +18,19 @@
  */
 
 import React, {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
   FunctionComponent,
   ReactNode,
   HTMLAttributes,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  PropsForAnchor,
+  PropsForButton,
+} from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
 
@@ -41,7 +45,7 @@ const renderContent = (
   betaBadgeTooltipContent?: ReactNode,
   betaBadgeIconType?: IconType
 ) => (
-  <div className="euiKeyPadMenuItem__inner">
+  <span className="euiKeyPadMenuItem__inner">
     {betaBadgeLabel && (
       <span className="euiKeyPadMenuItem__betaBadgeWrapper">
         <EuiBetaBadge
@@ -53,48 +57,65 @@ const renderContent = (
       </span>
     )}
 
-    <div className="euiKeyPadMenuItem__icon">{children}</div>
+    <span className="euiKeyPadMenuItem__icon">{children}</span>
 
     <p className="euiKeyPadMenuItem__label">{label}</p>
-  </div>
+  </span>
 );
 
 interface EuiKeyPadMenuItemCommonProps {
   /**
-   * ReactNode to render as this component's content
+   * Pass an EuiIcon, preferrably `size="l"`
    */
   children: ReactNode;
   isDisabled?: boolean;
+  /**
+   * Indicate if an item is the current one.
+   * Be sure to use `true` AND `false` when acting as a toggle.
+   */
+  isSelected?: boolean;
+  /**
+   * The text to display beneath the icon
+   */
   label: ReactNode;
-
   /**
    * Add a badge to the card to label it as "Beta" or other non-GA state
    */
   betaBadgeLabel?: string;
-
   /**
    * Supply an icon type if the badge should just be an icon
    */
   betaBadgeIconType?: IconType;
-
   /**
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
-  onClick?: () => void;
-  href?: string;
   rel?: string;
 }
 
+type EuiKeyPadMenuItemPropsForAnchor = PropsForAnchor<
+  EuiKeyPadMenuItemCommonProps,
+  {
+    buttonRef?: Ref<HTMLAnchorElement>;
+  }
+>;
+
+type EuiKeyPadMenuItemPropsForButton = PropsForButton<
+  EuiKeyPadMenuItemCommonProps,
+  {
+    buttonRef?: Ref<HTMLButtonElement>;
+  }
+>;
+
 export type EuiKeyPadMenuItemProps = CommonProps &
   ExclusiveUnion<
-    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'>,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>
-  > &
-  EuiKeyPadMenuItemCommonProps;
+    EuiKeyPadMenuItemPropsForAnchor,
+    EuiKeyPadMenuItemPropsForButton
+  >;
 
 export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   isDisabled,
+  isSelected,
   label,
   children,
   className,
@@ -104,6 +125,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   href,
   rel,
   target,
+  buttonRef,
   ...rest
 }) => {
   const classes = classNames(
@@ -116,28 +138,33 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
   const Element = href && !isDisabled ? 'a' : 'button';
   const relObj: {
-    role?: string;
     disabled?: boolean;
     type?: string;
     href?: string;
     rel?: string;
     target?: string;
+    'aria-pressed'?: boolean;
+    'aria-current'?: boolean;
   } = {};
 
   if (href && !isDisabled) {
     relObj.href = href;
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
     relObj.target = target;
-    relObj.rel = getSecureRelForTarget({ href, rel, target });
+    relObj['aria-current'] = isSelected ? isSelected : undefined;
   } else {
-    relObj.type = 'button';
     relObj.disabled = isDisabled;
+    relObj.type = 'button';
+    relObj['aria-pressed'] = isSelected;
   }
 
   return (
     <Element
       className={classes}
       {...(relObj as HTMLAttributes<HTMLElement>)}
-      {...(rest as HTMLAttributes<HTMLElement>)}>
+      {...(rest as HTMLAttributes<HTMLElement>)}
+      // ref={buttonRef} HELP!
+    >
       {renderContent(
         children,
         label,
