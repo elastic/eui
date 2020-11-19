@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.4.1`.
+**Theme: Amsterdam**
+
+- Fixed styles for `EuiMarkdownEditor` ([#4289](https://github.com/elastic/eui/pull/4289))
 
 ## [`30.4.1`](https://github.com/elastic/eui/tree/v30.4.1)
 
