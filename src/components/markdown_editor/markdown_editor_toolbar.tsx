@@ -22,6 +22,7 @@ import React, {
   MouseEventHandler,
   useContext,
   forwardRef,
+  Ref,
 } from 'react';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -106,7 +107,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
 >(
   (
     { markdownActions, viewMode, onClickPreview, uiPlugins, selectedNode },
-    ref
+    ref: Ref<HTMLDivElement>
   ) => {
     const { openPluginEditor } = useContext(EuiMarkdownContext);
 

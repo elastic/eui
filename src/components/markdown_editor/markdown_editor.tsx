@@ -373,7 +373,6 @@ export const EuiMarkdownEditor = forwardRef<
     const textAreaHeight =
       height === 'full' ? '100%' : `calc(${height - editorFooterHeight}px)`;
 
-    // we just want add a max-height to the textarea when the height is not set to 'full'
     const textAreaMaxHeight =
       height !== 'full' ? `${maxHeight - editorFooterHeight}px` : '';
 

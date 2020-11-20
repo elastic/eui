@@ -36,7 +36,7 @@ interface EuiMarkdownEditorDropZoneProps {
   insertText: (text: string, config: EuiMarkdownStringTagConfig) => void;
   hasUnacceptedItems: boolean;
   setHasUnacceptedItems: (hasUnacceptedItems: boolean) => void;
-  setEditorFooterHeight: any;
+  setEditorFooterHeight: (height: number) => void;
   isEditing: boolean;
 }
 
