@@ -13,6 +13,10 @@
 - Unify colors with the Elastic brand ([#4284](https://github.com/elastic/eui/pull/4284))
 - Created one consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/4284))
 
+*Bug fixes**
+
+- Fixed wrong columns assigned to `EuiDataGrid` leadingControlColumns ([#4269](https://github.com/elastic/eui/pull/4269))
+
 ## [`30.4.0`](https://github.com/elastic/eui/tree/v30.4.0)
 
 - Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
