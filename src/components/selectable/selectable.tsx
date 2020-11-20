@@ -333,9 +333,6 @@ export class EuiSelectable<T = {}> extends Component<
         }
       }
     );
-    if (this.props.searchProps && this.props.searchProps.onSearch) {
-      this.props.searchProps.onSearch(searchValue);
-    }
   };
 
   onContainerBlur = (e: React.FocusEvent) => {
@@ -372,10 +369,10 @@ export class EuiSelectable<T = {}> extends Component<
       options,
       onChange,
       searchable,
-      searchProps,
+      searchProps = {},
       singleSelection,
       isLoading,
-      listProps,
+      listProps = {},
       renderOption,
       height,
       allowExclusions,
@@ -388,27 +385,6 @@ export class EuiSelectable<T = {}> extends Component<
     } = this.props;
 
     const { searchValue, visibleOptions, activeOptionIndex } = this.state;
-
-    // Some messy destructuring here to remove aria-label/describedby from searchProps and listProps
-    // Made messier by some TS requirements
-    // The aria attributes are then used in getAccessibleName() to place them where they need to go
-    const unknownAccessibleName = {
-      'aria-label': undefined,
-      'aria-describedby': undefined,
-    };
-    const {
-      'aria-label': searchAriaLabel,
-      'aria-describedby': searchAriaDescribedby,
-      onChange: propsOnChange,
-      onSearch,
-      ...cleanedSearchProps
-    } = (searchProps || unknownAccessibleName) as typeof searchProps &
-      typeof unknownAccessibleName;
-    const {
-      'aria-label': listAriaLabel,
-      'aria-describedby': listAriaDescribedby,
-      ...cleanedListProps
-    } = listProps || unknownAccessibleName;
 
     const classes = classNames(
       'euiSelectable',
@@ -497,78 +473,82 @@ export class EuiSelectable<T = {}> extends Component<
       messageContentId = '';
     }
 
+    type AriaProps = Partial<{
+      'aria-label': string;
+      'aria-describedby': string;
+    }>;
+    type AriaLabelProps = {
+      'aria-label': string;
+      'aria-describedby': undefined;
+    };
+    type AriaDescribedbyProps = {
+      'aria-label': undefined;
+      'aria-describedby': string;
+    };
+    type AriaPropsReturn = AriaLabelProps | AriaDescribedbyProps | undefined;
+
     /**
      * There are lots of ways to add an accessible name
      * Usually we want the same name for the input and the listbox (which is added by aria-label/describedby)
      * But you can always override it using searchProps or listProps
-     * This finds the correct name to use
+     * This finds the correct aria props to use
      *
      * TODO: This doesn't handle being labelled (<label for="idOfInput">)
      */
-    const getAccessibleName = (
-      props:
-        | Partial<EuiSelectableSearchProps<T>>
-        | EuiSelectableOptionsListPropsWithDefaults
-        | undefined,
-      messageContentId?: string
-    ) => {
-      if (props && props['aria-label']) {
-        return { 'aria-label': props['aria-label'] };
+    const getAriaProps = (
+      props: AriaProps,
+      describedbyId?: string
+    ): AriaPropsReturn => {
+      if (props['aria-label']) {
+        return {
+          'aria-label': props['aria-label'],
+          'aria-describedby': undefined,
+        };
       }
 
-      const messageContentIdString = messageContentId
-        ? ` ${messageContentId}`
-        : '';
+      const describedByIdString = describedbyId ? ` ${messageContentId}` : '';
 
-      if (props && props['aria-describedby']) {
+      if (props['aria-describedby']) {
         return {
-          'aria-describedby': `${props['aria-describedby']}${messageContentIdString}`,
+          'aria-label': undefined,
+          'aria-describedby': `${props['aria-describedby']}${describedByIdString}`,
         };
       }
 
       if (ariaLabel) {
-        return { 'aria-label': ariaLabel };
+        return {
+          'aria-label': ariaLabel,
+          'aria-describedby': undefined,
+        };
       }
 
       if (ariaDescribedby) {
         return {
-          'aria-describedby': `${ariaDescribedby}${messageContentIdString}`,
+          'aria-label': undefined,
+          'aria-describedby': `${ariaDescribedby}${describedByIdString}`,
         };
       }
-
-      return {};
     };
 
-    const searchAccessibleName = getAccessibleName(
-      searchProps,
-      messageContentId
-    );
-    const searchHasAccessibleName = Boolean(
-      Object.keys(searchAccessibleName).length
-    );
     const search = searchable ? (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
           <EuiSelectableSearch<T>
             key="listSearch"
             options={options}
-            onChange={this.onSearchChange}
             listId={this.optionsListRef.current ? listId : undefined} // Only pass the listId if it exists on the page
             aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
-            {...(searchHasAccessibleName
-              ? searchAccessibleName
-              : { 'aria-label': placeholderName })}
-            {...cleanedSearchProps}
+            {...searchProps}
+            onChange={this.onSearchChange}
+            {...(getAriaProps(searchProps, messageContentId) || {
+              'aria-label': placeholderName,
+            })}
           />
         )}
       </EuiI18n>
     ) : undefined;
 
-    const listAccessibleName = getAccessibleName(listProps);
-    const listHasAccessibleName = Boolean(
-      Object.keys(listAccessibleName).length
-    );
     const list = messageContent ? (
       <EuiSelectableMessage
         id={messageContentId}
@@ -596,10 +576,10 @@ export class EuiSelectable<T = {}> extends Component<
             searchable={searchable}
             makeOptionId={makeOptionId}
             listId={listId}
-            {...(listHasAccessibleName
-              ? listAccessibleName
-              : searchable && { 'aria-label': placeholderName })}
-            {...cleanedListProps}
+            {...listProps}
+            {...(getAriaProps(listProps) || {
+              'aria-label': placeholderName,
+            })}
           />
         )}
       </EuiI18n>

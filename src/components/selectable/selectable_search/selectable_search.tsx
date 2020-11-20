@@ -83,6 +83,10 @@ export class EuiSelectableSearch<T> extends Component<
         this.props.onChange(matchingOptions, value);
       });
     }
+
+    if (this.props.onSearch) {
+      this.props.onSearch(value);
+    }
   };
 
   render() {
@@ -114,7 +118,6 @@ export class EuiSelectableSearch<T> extends Component<
       <EuiFieldSearch
         className={classes}
         placeholder={placeholder}
-        onSearch={this.onSearchChange}
         incremental
         defaultValue={defaultValue}
         fullWidth
@@ -122,6 +125,7 @@ export class EuiSelectableSearch<T> extends Component<
         aria-haspopup="listbox"
         {...ariaPropsIfListIsPresent}
         {...rest}
+        onSearch={this.onSearchChange}
       />
     );
   }
