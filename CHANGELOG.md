@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Exported `ToastColor` type ([#4290](https://github.com/elastic/eui/pull/4290))
+
 **Bug fixes**
 
 - Fixed initial focus of an `EuiButtonGroup` when first item in a popover ([#4288](https://github.com/elastic/eui/pull/4288))
