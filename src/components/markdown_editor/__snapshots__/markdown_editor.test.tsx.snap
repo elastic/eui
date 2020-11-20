@@ -177,7 +177,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="display:block"
+    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -187,7 +187,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         class="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(216px);max-height:466px"
+        style="height:calc(250px);max-height:500px"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -396,7 +396,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="display:block"
+    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -406,7 +406,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
         class="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(216px);max-height:466px"
+        style="height:calc(250px);max-height:500px"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -615,7 +615,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="display:block"
+    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -834,7 +834,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="display:block"
+    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -844,7 +844,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
         class="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(366px);max-height:466px"
+        style="height:calc(400px);max-height:500px"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -1053,7 +1053,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="display:block"
+    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -1063,7 +1063,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
         class="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(216px);max-height:566px"
+        style="height:calc(250px);max-height:600px"
       />
       <div
         class="euiMarkdownEditorFooter"

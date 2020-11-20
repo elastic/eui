@@ -6,6 +6,12 @@
     @include euiSlightShadowHover;
   }
 
+  &--isPreviewing {
+    .euiMarkdownEditor__toggleContainer {
+      display: none;
+    }
+  }
+
   &--fullHeight {
     display: flex;
     flex-direction: column;
@@ -15,10 +21,6 @@
       resize: none;
     }
 
-    // safari needs this calc. Other browsers work well with 100%
-    .euiMarkdownEditor__toggleContainer {
-      height: calc(100% - #{$euiMarkdownEditorToolbarHeight});
-    }
 
     .euiMarkdownEditorDropZone {
       height: 100%;

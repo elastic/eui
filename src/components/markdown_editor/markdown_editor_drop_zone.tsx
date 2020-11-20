@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
@@ -36,6 +36,8 @@ interface EuiMarkdownEditorDropZoneProps {
   insertText: (text: string, config: EuiMarkdownStringTagConfig) => void;
   hasUnacceptedItems: boolean;
   setHasUnacceptedItems: (hasUnacceptedItems: boolean) => void;
+  setEditorFooterHeight: any;
+  isEditing: boolean;
 }
 
 const getUnacceptedItems = (
@@ -78,6 +80,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     insertText,
     hasUnacceptedItems,
     setHasUnacceptedItems,
+    setEditorFooterHeight,
+    isEditing,
   } = props;
 
   const classes = classNames('euiMarkdownEditorDropZone', {
@@ -85,6 +89,12 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     'euiMarkdownEditorDropZone--hasError': hasUnacceptedItems,
     'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
+
+  const editorFooterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    isEditing && setEditorFooterHeight(editorFooterRef.current!.offsetHeight);
+  }, [setEditorFooterHeight, isEditing]);
 
   const { getRootProps, getInputProps, open } = useDropzone({
     disabled: dropHandlers.length === 0,
@@ -190,6 +200,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     <div {...getRootProps()} className={classes}>
       {children}
       <EuiMarkdownEditorFooter
+        ref={editorFooterRef}
         uiPlugins={uiPlugins}
         openFiles={() => {
           setHasUnacceptedItems(false);

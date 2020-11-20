@@ -103,7 +103,6 @@ export default () => {
             onChange={setValue4}
             height={200}
             maxHeight={300}
-            autoExpandPreview={false}
           />
         </EuiFlexItem>
       </EuiFlexGroup>

@@ -223,12 +223,6 @@ export const EuiMarkdownEditor = forwardRef<
       [editorId, toolbarPlugins.map(({ name }) => name).join(',')]
     );
 
-    const classes = classNames(
-      'euiMarkdownEditor',
-      height === 'full' && 'euiMarkdownEditor--fullHeight',
-      className
-    );
-
     const parser = useMemo(() => {
       const Compiler = (tree: any) => {
         return tree;
@@ -252,6 +246,7 @@ export const EuiMarkdownEditor = forwardRef<
     }, [parser, value]);
 
     const isPreviewing = viewMode === MODE_VIEWING;
+    const isEditing = viewMode === MODE_EDITING;
 
     const replaceNode = useCallback(
       (position, next) => {
@@ -329,21 +324,35 @@ export const EuiMarkdownEditor = forwardRef<
       [replaceNode]
     );
 
-    const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
-
-    const markdownFooterHeight = 34;
-    const [currentHeight, setCurrentHeight] = useState(height);
     const textarea = textareaRef.current;
     const previewRef = useRef<HTMLDivElement>(null);
+    const editorToolbarRef = useRef<HTMLDivElement>(null);
+    const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
+    const [currentHeight, setCurrentHeight] = useState(height);
+    const [editorFooterHeight, setEditorFooterHeight] = useState(0);
+    const [editorToolbarHeight, setEditorToolbarHeight] = useState(0);
+
+    const classes = classNames(
+      'euiMarkdownEditor',
+      { 'euiMarkdownEditor--fullHeight': height === 'full' },
+      {
+        'euiMarkdownEditor--isPreviewing': isPreviewing,
+      },
+      className
+    );
 
     const onResize = () => {
-      if (textarea && viewMode === 'editing' && height !== 'full') {
+      if (textarea && isEditing && height !== 'full') {
         const resizedTextareaHeight =
-          textarea.clientHeight + markdownFooterHeight;
+          textarea.offsetHeight + editorFooterHeight;
 
         setCurrentHeight(resizedTextareaHeight);
       }
     };
+
+    useEffect(() => {
+      setEditorToolbarHeight(editorToolbarRef.current!.offsetHeight);
+    }, [setEditorToolbarHeight]);
 
     useEffect(() => {
       if (isPreviewing && autoExpandPreview && height !== 'full') {
@@ -358,20 +367,26 @@ export const EuiMarkdownEditor = forwardRef<
 
     const previewHeight =
       height === 'full'
-        ? `calc(100% - ${markdownFooterHeight}px`
+        ? `calc(100% - ${editorFooterHeight}px)`
         : currentHeight;
 
     const textAreaHeight =
-      height === 'full' ? '100%' : `calc(${height - markdownFooterHeight}px)`;
+      height === 'full' ? '100%' : `calc(${height - editorFooterHeight}px)`;
 
     // we just want add a max-height to the textarea when the height is not set to 'full'
     const textAreaMaxHeight =
-      height !== 'full' ? `${maxHeight - markdownFooterHeight}px` : '';
+      height !== 'full' ? `${maxHeight - editorFooterHeight}px` : '';
+
+    // safari needs this calc when the height is set to full
+    const editorToggleContainerHeight = `calc(100% - ${editorToolbarHeight}px)`;
+
+    console.log('editorToolbarHeight', editorToolbarHeight);
 
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
         <div className={classes} {...rest}>
           <EuiMarkdownEditorToolbar
+            ref={editorToolbarRef}
             selectedNode={selectedNode}
             markdownActions={markdownActions}
             onClickPreview={() =>
@@ -396,8 +411,12 @@ export const EuiMarkdownEditor = forwardRef<
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
           <div
             className="euiMarkdownEditor__toggleContainer"
-            style={{ display: isPreviewing ? 'none' : 'block' }}>
+            style={{
+              height: editorToggleContainerHeight,
+            }}>
             <EuiMarkdownEditorDropZone
+              setEditorFooterHeight={setEditorFooterHeight}
+              isEditing={isEditing}
               dropHandlers={dropHandlers}
               insertText={(
                 text: string,

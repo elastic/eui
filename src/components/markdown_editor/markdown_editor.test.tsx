@@ -53,9 +53,7 @@ describe('EuiMarkdownEditor', () => {
 
         expect(component).toMatchSnapshot();
       });
-    });
 
-    describe('height', () => {
       test('is rendered in full mode', () => {
         const component = render(
           <EuiMarkdownEditor

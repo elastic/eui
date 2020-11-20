@@ -16,14 +16,30 @@ import { Link } from 'react-router-dom';
 import MarkdownEditor from './markdown_editor';
 const markdownEditorSource = require('!!raw-loader!./markdown_editor');
 const markdownEditorHtml = renderToHtml(MarkdownEditor);
+const markdownEditorSnippet = `<EuiMarkdownEditor
+  value={value}
+  onChange={setValue}
+/>`;
 
 import MarkdownEditorErrors from './markdown_editor_errors';
 const markdownEditorErrorsSource = require('!!raw-loader!./markdown_editor_errors');
 const markdownEditorErrorsHtml = renderToHtml(MarkdownEditorErrors);
+const markdownEditorErrorsSnippet = `<EuiMarkdownEditor
+  value={value}
+  onChange={setValue}
+  onParse={onParse}
+  errors={messages}
+/>`;
 
 import MarkdownEditorHeight from './markdown_editor_height';
 const markdownEditorHeightSource = require('!!raw-loader!./markdown_editor_height');
 const markdownEditorHeightHtml = renderToHtml(MarkdownEditorHeight);
+const markdownEditorHeightSnippet = `<EuiMarkdownEditor
+  value={value}
+  onChange={setValue}
+  height={400}
+  maxHeight={600}
+/>`;
 
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
@@ -70,6 +86,7 @@ export const MarkdownEditorExample = {
       props: {
         EuiMarkdownEditor,
       },
+      snippet: markdownEditorSnippet,
       demo: <MarkdownEditor />,
     },
     {
@@ -97,6 +114,7 @@ export const MarkdownEditorExample = {
       props: {
         EuiMarkdownEditor,
       },
+      snippet: markdownEditorErrorsSnippet,
       demo: <MarkdownEditorErrors />,
     },
     {
@@ -135,6 +153,7 @@ export const MarkdownEditorExample = {
       props: {
         EuiMarkdownEditor,
       },
+      snippet: markdownEditorHeightSnippet,
       demo: <MarkdownEditorHeight />,
     },
   ],
