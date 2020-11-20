@@ -2,7 +2,7 @@
 
 exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
 <label
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
   for="generated-id"
 >
   <span
@@ -36,7 +36,7 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
 
 exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
 <label
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
   for="generated-id"
 >
   <span
@@ -199,7 +199,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with href 1`] = `
 <button
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
   disabled=""
   type="button"
 >
@@ -222,7 +222,7 @@ exports[`EuiKeyPadMenuItem props isDisabled renders with href 1`] = `
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with onClick 1`] = `
 <button
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
   disabled=""
   type="button"
 >
@@ -246,7 +246,7 @@ exports[`EuiKeyPadMenuItem props isDisabled renders with onClick 1`] = `
 exports[`EuiKeyPadMenuItem props isSelected renders with href 1`] = `
 <a
   aria-current="true"
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
   href="#"
   rel="noreferrer"
 >
@@ -270,7 +270,7 @@ exports[`EuiKeyPadMenuItem props isSelected renders with href 1`] = `
 exports[`EuiKeyPadMenuItem props isSelected renders with onClick 1`] = `
 <button
   aria-pressed="true"
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
   type="button"
 >
   <span

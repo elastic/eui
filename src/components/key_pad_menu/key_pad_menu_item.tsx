@@ -175,8 +175,9 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     'euiKeyPadMenuItem',
     {
       'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
-      'euiKeyPadMenuItem-isDisabledLabel': checkable && actuallyDisabled,
-      'euiKeyPadMenuItem-isSelectedLabel': checkable && isSelected,
+      'euiKeyPadMenuItem--checkable': checkable,
+      'euiKeyPadMenuItem-isDisabled': actuallyDisabled,
+      'euiKeyPadMenuItem-isSelected': isSelected,
     },
     className
   );
@@ -241,9 +242,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const renderContent = () => (
     <span className="euiKeyPadMenuItem__inner">
       {checkable ? renderCheckableElement() : renderBetaBadge()}
-
       <span className="euiKeyPadMenuItem__icon">{children}</span>
-
       <span className="euiKeyPadMenuItem__label">{label}</span>
     </span>
   );

@@ -14,21 +14,21 @@
   border: $euiBorderThin;
   border-color: transparent;
   border-radius: $euiBorderRadius;
-  transition:
-    border-color $euiAnimSpeedFast ease-in,
-    box-shadow $euiAnimSpeedFast ease-in;
 
-  // Using the aria selectors to ensure proper a11y
-  &[aria-pressed='true'],
-  &[aria-current],
-  &.euiKeyPadMenuItem-isSelectedLabel {
-    color: $euiTitleColor;
-    border-color: $euiBorderColor;
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiAnimationsAllowed {
+    transition:
+      background-color $euiAnimSpeedFast ease-in,
+      border-color $euiAnimSpeedFast ease-in,
+      box-shadow $euiAnimSpeedFast ease-in;
   }
 
-  &:not(:disabled):not(.euiKeyPadMenuItem-isDisabledLabel) {
+  // Focus and Hover states (when not disabled)
+  &:not(.euiKeyPadMenuItem-isDisabled) {
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-within {
+      @include euiHoverState;
       @include euiSlightShadow;
       border-color: $euiBorderColor;
 
@@ -40,19 +40,15 @@
         }
       }
     }
-  }
 
-  // Hide the input if not selected, or being interacted with
-  &:not(:hover):not(:focus):not(:focus-within):not(.euiKeyPadMenuItem-isSelectedLabel) {
-    .euiKeyPadMenuItem__checkableInput {
-      @include euiScreenReaderOnly;
+    &:focus {
+      @include euiFocusState;
     }
   }
 
-  &:disabled,
-  &.euiKeyPadMenuItem-isDisabledLabel {
-    color: $euiButtonColorDisabledText;
-    cursor: not-allowed;
+  // Disabled state
+  &.euiKeyPadMenuItem-isDisabled {
+    @include euiDisabledState;
 
     .euiKeyPadMenuItem__icon  {
       filter: grayscale(100%);
@@ -61,8 +57,23 @@
         fill: $euiButtonColorDisabledText;
       }
     }
+  }
 
-    // Ensure the input stays hidden when disabled
+  // Selected state (when not disabled)
+  &.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
+    @include euiSlightShadow;
+    color: $euiTitleColor;
+  }
+
+  // Selected (even if disabled)
+  &.euiKeyPadMenuItem-isSelected {
+    border-color: $euiBorderColor;
+  }
+
+  // Hide the input if not selected, or being interacted with
+  &:not(:hover):not(:focus):not(:focus-within):not(.euiKeyPadMenuItem-isSelected),
+  // Also specifically if disabled but not selected
+  &.euiKeyPadMenuItem-isDisabled:not(.euiKeyPadMenuItem-isSelected) {
     .euiKeyPadMenuItem__checkableInput {
       @include euiScreenReaderOnly;
     }
@@ -116,4 +127,20 @@
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize;
   text-align: center;
+}
+
+.euiKeyPadMenuItem--checkable:not(.euiKeyPadMenuItem-isDisabled) {
+  // Increase contrast in dark mode for checkable style
+  color: lightOrDarkTheme($euiTextSubduedColor, $euiTextColor);
+}
+
+.euiKeyPadMenuItem--checkable.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
+  &,
+  &:hover,
+  &:focus,
+  &:focus-within {
+    @include euiFocusBackground;
+    color: $euiColorPrimaryText;
+    border-color: $euiColorPrimaryText;
+  }
 }

@@ -3,41 +3,43 @@
  * 2. If it has a BetaBadge, make sure only the first letter shows
  */
 .euiKeyPadMenuItem {
-  border: none;
+  border: none !important; // sass-lint:disable-line no-important
+  box-shadow: none;
 
-  // sass-lint:disable-block mixins-before-declarations
-  @include euiAnimationsAllowed {
-    // Disable indentation for transition legibility
-    // sass-lint:disable-block indentation
-    transition:
-      background-color $euiAnimSpeedFast ease-in,
-      box-shadow $euiAnimSpeedFast ease-in;
+  // Focus and Hover states (when not disabled)
+  &:not(.euiKeyPadMenuItem-isDisabled) {
+    &:hover,
+    &:focus:hover,
+    &:focus-within  {
+      @include euiBottomShadowSmall;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 
-  // Using the aria selectors to ensure proper a11y
-  &[aria-pressed='true'],
-  &[aria-current],
-  &.euiKeyPadMenuItem-isSelectedLabel {
-    @include euiFocusBackground;
-    color: $euiColorPrimaryText;
-  }
-
-  &:not(:disabled):not(.euiKeyPadMenuItem-isDisabledLabel) {
-    @include euiInteractiveStates;
+  &.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
+    box-shadow: none;
 
     &:hover {
       @include euiBottomShadowSmall;
     }
+
+    &,
+    &:hover,
+    &:focus,
+    &:focus-within {
+      @include euiFocusBackground;
+      color: $euiColorPrimaryText;
+    }
   }
 
-  &.euiKeyPadMenuItem-isDisabledLabel {
-    @include euiDisabledState;
+  &.euiKeyPadMenuItem-isSelected.euiKeyPadMenuItem-isDisabled {
+    @include euiFocusBackground($euiColorDisabled);
   }
 }
 
 .euiKeyPadMenuItem__label {
-  font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightSemiBold;
-  line-height: $euiSize;
-  text-align: center;
 }
