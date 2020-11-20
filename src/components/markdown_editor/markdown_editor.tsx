@@ -357,7 +357,7 @@ export const EuiMarkdownEditor = forwardRef<
     useEffect(() => {
       if (isPreviewing && autoExpandPreview && height !== 'full') {
         if (previewRef.current!.scrollHeight > currentHeight) {
-          // Adds 5 pixels to prevent scrollbar
+          // Adds 5 pixels to prevent a scrollbar
           setCurrentHeight(previewRef.current!.scrollHeight + 5);
         } else {
           setCurrentHeight(currentHeight);
@@ -378,8 +378,6 @@ export const EuiMarkdownEditor = forwardRef<
 
     // safari needs this calc when the height is set to full
     const editorToggleContainerHeight = `calc(100% - ${editorToolbarHeight}px)`;
-
-    console.log('editorToolbarHeight', editorToolbarHeight);
 
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
