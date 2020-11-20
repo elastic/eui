@@ -179,4 +179,26 @@ describe('EuiKeyPadMenuItem', () => {
 
     expect(onClickHandler).toBeCalledTimes(1);
   });
+
+  describe('checkable', () => {
+    test('renders as radio', () => {
+      const component = render(
+        <EuiKeyPadMenuItem onChange={() => {}} checkable="single" label="Label">
+          Icon
+        </EuiKeyPadMenuItem>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders as checkbox', () => {
+      const component = render(
+        <EuiKeyPadMenuItem onChange={() => {}} checkable="multi" label="Label">
+          Icon
+        </EuiKeyPadMenuItem>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

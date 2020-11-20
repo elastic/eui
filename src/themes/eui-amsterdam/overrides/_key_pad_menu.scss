@@ -3,26 +3,35 @@
  * 2. If it has a BetaBadge, make sure only the first letter shows
  */
 .euiKeyPadMenuItem {
-  @include euiInteractiveStates;
   border: none;
-  // Disable indentation for transition legibility
-  // sass-lint:disable-block indentation
-  transition:
-    background-color $euiAnimSpeedFast ease-in,
-    box-shadow $euiAnimSpeedFast ease-in;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiAnimationsAllowed {
+    // Disable indentation for transition legibility
+    // sass-lint:disable-block indentation
+    transition:
+      background-color $euiAnimSpeedFast ease-in,
+      box-shadow $euiAnimSpeedFast ease-in;
+  }
 
   // Using the aria selectors to ensure proper a11y
   &[aria-pressed='true'],
-  &[aria-current] {
+  &[aria-current],
+  &.euiKeyPadMenuItem-isSelectedLabel {
     @include euiFocusBackground;
     color: $euiColorPrimaryText;
   }
 
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
+  &:not(:disabled):not(.euiKeyPadMenuItem-isDisabledLabel) {
+    @include euiInteractiveStates;
+
+    &:hover {
       @include euiBottomShadowSmall;
     }
+  }
+
+  &.euiKeyPadMenuItem-isDisabledLabel {
+    @include euiDisabledState;
   }
 }
 

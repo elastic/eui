@@ -48,6 +48,10 @@ const keyPadBetaSnippet = `<EuiKeyPadMenuItem
 </EuiKeyPadMenuItem>
 `;
 
+import KeyPadCheckable from './key_pad_menu_checkable';
+const keyPadCheckableSource = require('!!raw-loader!./key_pad_menu_checkable');
+const keyPadCheckableHtml = renderToHtml(KeyPadCheckable);
+
 export const KeyPadMenuExample = {
   title: 'Key pad menu',
   sections: [
@@ -140,6 +144,26 @@ export const KeyPadMenuExample = {
       ),
       snippet: keyPadBetaSnippet,
       demo: <KeyPadBeta />,
+    },
+    {
+      title: 'Checkable',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: keyPadCheckableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: keyPadCheckableHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>...</p>
+        </div>
+      ),
+      // snippet: keyPadBetaSnippet,
+      demo: <KeyPadCheckable />,
     },
   ],
   playground: keyPadMenuItemConfig,

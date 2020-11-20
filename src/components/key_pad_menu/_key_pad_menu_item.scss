@@ -20,12 +20,13 @@
 
   // Using the aria selectors to ensure proper a11y
   &[aria-pressed='true'],
-  &[aria-current] {
+  &[aria-current],
+  &.euiKeyPadMenuItem-isSelectedLabel {
     color: $euiTitleColor;
     border-color: $euiBorderColor;
   }
 
-  &:not(:disabled) {
+  &:not(:disabled):not(.euiKeyPadMenuItem-isDisabledLabel) {
     &:hover,
     &:focus {
       @include euiSlightShadow;
@@ -41,7 +42,15 @@
     }
   }
 
-  &:disabled {
+  // Hide the input if not selected, or being interacted with
+  &:not(:hover):not(:focus):not(:focus-within):not(.euiKeyPadMenuItem-isSelectedLabel) {
+    .euiKeyPadMenuItem__checkableInput {
+      @include euiScreenReaderOnly;
+    }
+  }
+
+  &:disabled,
+  &.euiKeyPadMenuItem-isDisabledLabel {
     color: $euiButtonColorDisabledText;
     cursor: not-allowed;
 
@@ -51,6 +60,11 @@
       svg * { // sass-lint:disable-line nesting-depth
         fill: $euiButtonColorDisabledText;
       }
+    }
+
+    // Ensure the input stays hidden when disabled
+    .euiKeyPadMenuItem__checkableInput {
+      @include euiScreenReaderOnly;
     }
   }
 }
@@ -62,23 +76,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 
-  .euiKeyPadMenuItem--hasBetaBadge & {
-    position: relative;
+  .euiKeyPadMenuItem__checkableInput,
+  .euiKeyPadMenuItem__betaBadgeWrapper {
+    position: absolute;
+    top: $euiSizeXS;
+    right: $euiSizeXS;
+    z-index: 3;
+  }
 
-    .euiKeyPadMenuItem__betaBadgeWrapper {
-      position: absolute;
-      top: $euiSizeXS;
-      right: $euiSizeS;
-      z-index: 3;
-
-      // sass-lint:disable-block nesting-depth
-      .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
-        padding: 0 ($euiSizeM / 2);  /* 2 */
-        overflow: hidden;  /* 2 */
-        letter-spacing: 3rem;  /* 2 */
-      }
-    }
+  .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
+    padding: 0 ($euiSizeM / 2);  /* 2 */
+    overflow: hidden;  /* 2 */
+    letter-spacing: 3rem;  /* 2 */
   }
 }
 
