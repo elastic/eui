@@ -152,7 +152,8 @@ export default class Calendar extends React.Component {
     this.state = {
       date: this.localizeDate(this.getDateInView()),
       selectingDate: null,
-      monthContainer: null
+      monthContainer: null,
+      pauseFocusTrap: false
     };
   }
 
@@ -183,6 +184,19 @@ export default class Calendar extends React.Component {
       this.setState({
         date: this.localizeDate(this.props.openToDate)
       });
+    }
+  }
+
+  handleOnDropdownToggle = (isOpen, dropdown) => {
+    this.setState({pauseFocusTrap: isOpen});
+    if (!isOpen) {
+      const element = dropdown === 'month' ? document.querySelector('.react-datepicker__month-read-view') : document.querySelector('.react-datepicker__year-read-view');
+      if (element) {
+        // The focus trap has been unpaused and will rerinitialize focus
+        // but does so on the wrong element (calendar)
+        // This refocuses the previous element (dropdown button)
+        setTimeout(() => element.focus(), 50);
+      }
     }
   }
 
@@ -252,14 +266,6 @@ export default class Calendar extends React.Component {
   handleMonthChange = date => {
     if (this.props.onMonthChange) {
       this.props.onMonthChange(date);
-    }
-    if (this.props.adjustDateOnChange) {
-      if (this.props.onSelect) {
-        this.props.onSelect(date);
-      }
-      if (this.props.setOpen) {
-        this.props.setOpen(true);
-      }
     }
     if (this.props.accessibleMode) {
       this.handleSelectionChange(date);
@@ -476,6 +482,7 @@ export default class Calendar extends React.Component {
         scrollableYearDropdown={this.props.scrollableYearDropdown}
         yearDropdownItemNumber={this.props.yearDropdownItemNumber}
         accessibleMode={this.props.accessibleMode}
+        onDropdownToggle={this.handleOnDropdownToggle}
       />
     );
   };
@@ -493,6 +500,7 @@ export default class Calendar extends React.Component {
         month={getMonth(this.state.date)}
         useShortMonthInDropdown={this.props.useShortMonthInDropdown}
         accessibleMode={this.props.accessibleMode}
+        onDropdownToggle={this.handleOnDropdownToggle}
       />
     );
   };
@@ -693,6 +701,7 @@ export default class Calendar extends React.Component {
           })}
         >
           <FocusTrap
+            paused={this.state.pauseFocusTrap}
             active={this.props.enableFocusTrap}
             tag={FocusTrapContainer}
             focusTrapOptions={{

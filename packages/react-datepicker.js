@@ -1876,9 +1876,11 @@ var YearDropdown = function (_React$Component) {
       if (year === _this.props.year) return;
       _this.props.onChange(year);
     }, _this.toggleDropdown = function () {
+      var isOpen = !_this.state.dropdownVisible;
       _this.setState({
-        dropdownVisible: !_this.state.dropdownVisible
+        dropdownVisible: isOpen
       });
+      _this.props.onDropdownToggle(isOpen, 'year');
     }, _this.onSelect = function (date, event) {
       if (_this.props.onSelect) {
         _this.props.onSelect(date, event);
@@ -1930,7 +1932,8 @@ YearDropdown.propTypes = {
   date: PropTypes.object,
   onSelect: PropTypes.func,
   setOpen: PropTypes.func,
-  accessibleMode: PropTypes.bool
+  accessibleMode: PropTypes.bool,
+  onDropdownToggle: PropTypes.func
 };
 
 var MonthDropdownOptions = function (_React$Component) {
@@ -2193,9 +2196,11 @@ var MonthDropdown = function (_React$Component) {
     };
 
     _this.toggleDropdown = function () {
-      return _this.setState({
-        dropdownVisible: !_this.state.dropdownVisible
+      var isOpen = !_this.state.dropdownVisible;
+      _this.setState({
+        dropdownVisible: isOpen
       });
+      _this.props.onDropdownToggle(isOpen, 'month');
     };
 
     _this.localeData = getLocaleDataForLocale(_this.props.locale);
@@ -2262,7 +2267,8 @@ MonthDropdown.propTypes = {
   month: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   useShortMonthInDropdown: PropTypes.bool,
-  accessibleMode: PropTypes.bool
+  accessibleMode: PropTypes.bool,
+  onDropdownToggle: PropTypes.func
 };
 
 function generateMonthYears(minDate, maxDate) {
@@ -3615,6 +3621,21 @@ var Calendar = function (_React$Component) {
 
     var _this = possibleConstructorReturn(this, _React$Component.call(this, props));
 
+    _this.handleOnDropdownToggle = function (isOpen, dropdown) {
+      _this.setState({ pauseFocusTrap: isOpen });
+      if (!isOpen) {
+        var element = dropdown === 'month' ? document.querySelector('.react-datepicker__month-read-view') : document.querySelector('.react-datepicker__year-read-view');
+        if (element) {
+          // The focus trap has been unpaused and will rerinitialize focus
+          // but does so on the wrong element (calendar)
+          // This refocuses the previous element (dropdown button)
+          setTimeout(function () {
+            return element.focus();
+          }, 50);
+        }
+      }
+    };
+
     _this.handleClickOutside = function (event) {
       _this.props.onClickOutside(event);
     };
@@ -3692,14 +3713,6 @@ var Calendar = function (_React$Component) {
     _this.handleMonthChange = function (date) {
       if (_this.props.onMonthChange) {
         _this.props.onMonthChange(date);
-      }
-      if (_this.props.adjustDateOnChange) {
-        if (_this.props.onSelect) {
-          _this.props.onSelect(date);
-        }
-        if (_this.props.setOpen) {
-          _this.props.setOpen(true);
-        }
       }
       if (_this.props.accessibleMode) {
         _this.handleSelectionChange(date);
@@ -3882,7 +3895,8 @@ var Calendar = function (_React$Component) {
         year: getYear(_this.state.date),
         scrollableYearDropdown: _this.props.scrollableYearDropdown,
         yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
-        accessibleMode: _this.props.accessibleMode
+        accessibleMode: _this.props.accessibleMode,
+        onDropdownToggle: _this.handleOnDropdownToggle
       });
     };
 
@@ -3899,7 +3913,8 @@ var Calendar = function (_React$Component) {
         onChange: _this.changeMonth,
         month: getMonth(_this.state.date),
         useShortMonthInDropdown: _this.props.useShortMonthInDropdown,
-        accessibleMode: _this.props.accessibleMode
+        accessibleMode: _this.props.accessibleMode,
+        onDropdownToggle: _this.handleOnDropdownToggle
       });
     };
 
@@ -4081,7 +4096,8 @@ var Calendar = function (_React$Component) {
     _this.state = {
       date: _this.localizeDate(_this.getDateInView()),
       selectingDate: null,
-      monthContainer: null
+      monthContainer: null,
+      pauseFocusTrap: false
     };
     return _this;
   }
@@ -4131,6 +4147,7 @@ var Calendar = function (_React$Component) {
         React__default.createElement(
           focusTrapReact,
           {
+            paused: this.state.pauseFocusTrap,
             active: this.props.enableFocusTrap,
             tag: FocusTrapContainer,
             focusTrapOptions: {
@@ -4448,24 +4465,17 @@ var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return _cof(it) == 'String' ? it.split('') : Object(it);
 };
 
-var _iobject$1 = /*#__PURE__*/Object.freeze({
-  default: _iobject,
-  __moduleExports: _iobject
-});
-
 // 7.2.1 RequireObjectCoercible(argument)
 var _defined = function (it) {
   if (it == undefined) throw TypeError("Can't call method on  " + it);
   return it;
 };
 
-var IObject = ( _iobject$1 && _iobject ) || _iobject$1;
-
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 
 
 var _toIobject = function (it) {
-  return IObject(_defined(it));
+  return _iobject(_defined(it));
 };
 
 // 7.1.4 ToInteger
@@ -4482,26 +4492,12 @@ var _toLength = function (it) {
   return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
-var _toLength$1 = /*#__PURE__*/Object.freeze({
-  default: _toLength,
-  __moduleExports: _toLength
-});
-
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
   index = _toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
-
-var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
-  default: _toAbsoluteIndex,
-  __moduleExports: _toAbsoluteIndex
-});
-
-var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
-
-var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 // false -> Array#indexOf
 // true  -> Array#includes
@@ -4511,8 +4507,8 @@ var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteI
 var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
+    var length = _toLength(O.length);
+    var index = _toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
@@ -4561,24 +4557,17 @@ var _objectKeysInternal = function (object, names) {
   return result;
 };
 
-var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
-  default: _objectKeysInternal,
-  __moduleExports: _objectKeysInternal
-});
-
 // IE 8- don't enum bug keys
 var _enumBugKeys = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
-
-var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 var _objectKeys = Object.keys || function keys(O) {
-  return $keys(O, _enumBugKeys);
+  return _objectKeysInternal(O, _enumBugKeys);
 };
 
 var f$1 = Object.getOwnPropertySymbols;
@@ -4624,7 +4613,7 @@ var _objectAssign = !$assign || _fails(function () {
   var getSymbols = _objectGops.f;
   var isEnum = _objectPie.f;
   while (aLen > index) {
-    var S = IObject(arguments[index++]);
+    var S = _iobject(arguments[index++]);
     var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
     var length = keys.length;
     var j = 0;
@@ -4868,17 +4857,10 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var _iterDefine$1 = /*#__PURE__*/Object.freeze({
-  default: _iterDefine,
-  __moduleExports: _iterDefine
-});
-
-var require$$0$1 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
-
 var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-require$$0$1(String, 'String', function (iterated) {
+_iterDefine(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4907,7 +4889,7 @@ var step = ( _iterStep$1 && _iterStep ) || _iterStep$1;
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = require$$0$1(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -5048,7 +5030,7 @@ var _isArray = Array.isArray || function isArray(arg) {
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
 var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return $keys(O, hiddenKeys);
+  return _objectKeysInternal(O, hiddenKeys);
 };
 
 var _objectGopn = {
@@ -5338,14 +5320,7 @@ var symbol$1 = createCommonjsModule(function (module) {
 module.exports = { "default": symbol, __esModule: true };
 });
 
-var symbol$2 = unwrapExports(symbol$1);
-
-var symbol$3 = /*#__PURE__*/Object.freeze({
-  default: symbol$2,
-  __moduleExports: symbol$1
-});
-
-var _symbol = ( symbol$3 && symbol$2 ) || symbol$3;
+unwrapExports(symbol$1);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5357,7 +5332,7 @@ var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(_symbol);
+var _symbol2 = _interopRequireDefault(symbol$1);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5419,9 +5394,16 @@ var _setProto = {
   check: check
 };
 
+var _setProto$1 = /*#__PURE__*/Object.freeze({
+  default: _setProto,
+  __moduleExports: _setProto
+});
+
+var require$$0$1 = ( _setProto$1 && _setProto ) || _setProto$1;
+
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0$1.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
@@ -5436,12 +5418,7 @@ var setPrototypeOf$2 = createCommonjsModule(function (module) {
 module.exports = { "default": require$$0$2, __esModule: true };
 });
 
-var setPrototypeOf$3 = unwrapExports(setPrototypeOf$2);
-
-var setPrototypeOf$4 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf$3,
-  __moduleExports: setPrototypeOf$2
-});
+unwrapExports(setPrototypeOf$2);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5451,20 +5428,18 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-var create$2 = unwrapExports(create$1);
+var require$$0$3 = ( create$1 && create ) || create$1;
 
-var create$3 = /*#__PURE__*/Object.freeze({
-  default: create$2,
-  __moduleExports: create$1
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$3, __esModule: true };
 });
 
-var _setPrototypeOf = ( setPrototypeOf$4 && setPrototypeOf$3 ) || setPrototypeOf$4;
-
-var _create = ( create$3 && create$2 ) || create$3;
+unwrapExports(create$2);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5472,11 +5447,11 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
 
 
 
-var _create2 = _interopRequireDefault(_create);
+var _create2 = _interopRequireDefault(create$2);
 
 
 
@@ -8053,6 +8028,13 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
+var emptyFunction$1 = /*#__PURE__*/Object.freeze({
+  default: emptyFunction_1,
+  __moduleExports: emptyFunction_1
+});
+
+var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
+
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -8060,7 +8042,7 @@ var emptyFunction_1 = emptyFunction;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction_1;
+var warning = emptyFunction$2;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -8104,6 +8086,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
+var warning$1 = /*#__PURE__*/Object.freeze({
+  default: warning_1,
+  __moduleExports: warning_1
+});
+
+var _warning = ( warning$1 && warning_1 ) || warning$1;
+
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8122,7 +8111,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(warning_1);
+var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8302,7 +8291,14 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-unwrapExports(implementation);
+var implementation$1 = unwrapExports(implementation);
+
+var implementation$2 = /*#__PURE__*/Object.freeze({
+  default: implementation$1,
+  __moduleExports: implementation
+});
+
+var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8314,7 +8310,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(implementation);
+var _implementation2 = _interopRequireDefault(_implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8551,10 +8547,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$1 = function() {};
+var warning$2 = function() {};
 
 if (__DEV__) {
-  warning$1 = function(condition, format, args) {
+  warning$2 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8592,7 +8588,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$1;
+var warning_1$1 = warning$2;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);

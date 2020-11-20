@@ -2,7 +2,6 @@ import Calendar from "./calendar";
 import React from "react";
 import PropTypes from "prop-types";
 import PopperComponent, { popperPlacementPositions } from "./popper_component";
-import { ScreenReaderOnly } from "./screen_reader_only";
 import classnames from "classnames";
 
 import {

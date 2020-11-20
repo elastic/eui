@@ -26640,8 +26640,6 @@
 
 	var _popper_component2 = _interopRequireDefault(_popper_component);
 
-	var _screen_reader_only = __webpack_require__(530);
-
 	var _classnames2 = __webpack_require__(525);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
@@ -27663,6 +27661,21 @@
 
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
+	    _this.handleOnDropdownToggle = function (isOpen, dropdown) {
+	      _this.setState({ pauseFocusTrap: isOpen });
+	      if (!isOpen) {
+	        var element = dropdown === 'month' ? document.querySelector('.react-datepicker__month-read-view') : document.querySelector('.react-datepicker__year-read-view');
+	        if (element) {
+	          // The focus trap has been unpaused and will rerinitialize focus
+	          // but does so on the wrong element (calendar)
+	          // This refocuses the previous element (dropdown button)
+	          setTimeout(function () {
+	            return element.focus();
+	          }, 50);
+	        }
+	      }
+	    };
+
 	    _this.handleClickOutside = function (event) {
 	      _this.props.onClickOutside(event);
 	    };
@@ -27740,14 +27753,6 @@
 	    _this.handleMonthChange = function (date) {
 	      if (_this.props.onMonthChange) {
 	        _this.props.onMonthChange(date);
-	      }
-	      if (_this.props.adjustDateOnChange) {
-	        if (_this.props.onSelect) {
-	          _this.props.onSelect(date);
-	        }
-	        if (_this.props.setOpen) {
-	          _this.props.setOpen(true);
-	        }
 	      }
 	      if (_this.props.accessibleMode) {
 	        _this.handleSelectionChange(date);
@@ -27930,7 +27935,8 @@
 	        year: (0, _date_utils.getYear)(_this.state.date),
 	        scrollableYearDropdown: _this.props.scrollableYearDropdown,
 	        yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
-	        accessibleMode: _this.props.accessibleMode
+	        accessibleMode: _this.props.accessibleMode,
+	        onDropdownToggle: _this.handleOnDropdownToggle
 	      });
 	    };
 
@@ -27947,7 +27953,8 @@
 	        onChange: _this.changeMonth,
 	        month: (0, _date_utils.getMonth)(_this.state.date),
 	        useShortMonthInDropdown: _this.props.useShortMonthInDropdown,
-	        accessibleMode: _this.props.accessibleMode
+	        accessibleMode: _this.props.accessibleMode,
+	        onDropdownToggle: _this.handleOnDropdownToggle
 	      });
 	    };
 
@@ -28129,7 +28136,8 @@
 	    _this.state = {
 	      date: _this.localizeDate(_this.getDateInView()),
 	      selectingDate: null,
-	      monthContainer: null
+	      monthContainer: null,
+	      pauseFocusTrap: false
 	    };
 	    return _this;
 	  }
@@ -28179,6 +28187,7 @@
 	        _react2.default.createElement(
 	          _focusTrapReact2.default,
 	          {
+	            paused: this.state.pauseFocusTrap,
 	            active: this.props.enableFocusTrap,
 	            tag: FocusTrapContainer,
 	            focusTrapOptions: {
@@ -28435,9 +28444,11 @@
 	      if (year === _this.props.year) return;
 	      _this.props.onChange(year);
 	    }, _this.toggleDropdown = function () {
+	      var isOpen = !_this.state.dropdownVisible;
 	      _this.setState({
-	        dropdownVisible: !_this.state.dropdownVisible
+	        dropdownVisible: isOpen
 	      });
+	      _this.props.onDropdownToggle(isOpen, 'year');
 	    }, _this.onSelect = function (date, event) {
 	      if (_this.props.onSelect) {
 	        _this.props.onSelect(date, event);
@@ -28489,7 +28500,8 @@
 	  date: _propTypes2.default.object,
 	  onSelect: _propTypes2.default.func,
 	  setOpen: _propTypes2.default.func,
-	  accessibleMode: _propTypes2.default.bool
+	  accessibleMode: _propTypes2.default.bool,
+	  onDropdownToggle: _propTypes2.default.func
 	};
 	exports.default = YearDropdown;
 
@@ -47259,9 +47271,11 @@
 	    };
 
 	    _this.toggleDropdown = function () {
-	      return _this.setState({
-	        dropdownVisible: !_this.state.dropdownVisible
+	      var isOpen = !_this.state.dropdownVisible;
+	      _this.setState({
+	        dropdownVisible: isOpen
 	      });
+	      _this.props.onDropdownToggle(isOpen, 'month');
 	    };
 
 	    _this.localeData = utils.getLocaleDataForLocale(_this.props.locale);
@@ -47328,7 +47342,8 @@
 	  month: _propTypes2.default.number.isRequired,
 	  onChange: _propTypes2.default.func.isRequired,
 	  useShortMonthInDropdown: _propTypes2.default.bool,
-	  accessibleMode: _propTypes2.default.bool
+	  accessibleMode: _propTypes2.default.bool,
+	  onDropdownToggle: _propTypes2.default.func
 	};
 	exports.default = MonthDropdown;
 

@@ -14,7 +14,8 @@ export default class MonthDropdown extends React.Component {
     month: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     useShortMonthInDropdown: PropTypes.bool,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
+    onDropdownToggle: PropTypes.func
   };
 
   constructor(props) {
@@ -156,10 +157,13 @@ export default class MonthDropdown extends React.Component {
     }
   };
 
-  toggleDropdown = () =>
+  toggleDropdown = () => {
+    const isOpen = !this.state.dropdownVisible
     this.setState({
-      dropdownVisible: !this.state.dropdownVisible
+      dropdownVisible: isOpen
     });
+    this.props.onDropdownToggle(isOpen, 'month');
+  }
 
   render() {
     let renderedDropdown;
