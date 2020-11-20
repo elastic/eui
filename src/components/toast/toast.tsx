@@ -33,7 +33,7 @@ import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 
-type ToastColor = 'primary' | 'success' | 'warning' | 'danger';
+export type ToastColor = 'primary' | 'success' | 'warning' | 'danger';
 
 const colorToClassNameMap: { [color in ToastColor]: string } = {
   primary: 'euiToast--primary',
