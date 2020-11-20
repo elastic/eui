@@ -88,6 +88,11 @@ body {
   }
 }
 
+// Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
+::selection {
+  background: $euiFocusBackgroundColor;
+}
+
 a {
   text-decoration: none;
   color: $euiColorPrimary;

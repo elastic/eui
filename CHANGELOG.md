@@ -2,12 +2,37 @@
 
 - Added `'full'` option to the `height` prop of `EuiMarkdownEditor`. Added `autoExpandPreview` and `maxHeight` props to `EuiMarkdownEditor` ([#4245](https://github.com/elastic/eui/pull/4245))
 
+**Bug fixes**
+
+- Fixed initial focus of an `EuiButtonGroup` when first item in a popover ([#4288](https://github.com/elastic/eui/pull/4288))
+
+**Theme: Amsterdam**
+
+- Fixed styles for `EuiMarkdownEditor` ([#4289](https://github.com/elastic/eui/pull/4289))
+
+## [`30.4.1`](https://github.com/elastic/eui/tree/v30.4.1)
+
+- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
+
+**Theme: Amsterdam**
+
+- Unify colors with the Elastic brand ([#4284](https://github.com/elastic/eui/pull/4284))
+- Created one consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/4284))
+
+*Bug fixes**
+
+- Fixed wrong columns assigned to `EuiDataGrid` leadingControlColumns ([#4269](https://github.com/elastic/eui/pull/4269))
+
 ## [`30.4.0`](https://github.com/elastic/eui/tree/v30.4.0)
 
 - Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
 - Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212))
 - Added several Sass mixins for handling of unified focus/hover states ([#4242](https://github.com/elastic/eui/pull/4242))
-- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
+
+**Bug fixes**
+
+- Fixed cell resizer overlapping of `EuiDataGrid` rightmost header cell ([#4071](https://github.com/elastic/eui/pull/4268))
+
 
 **Theme: Amsterdam**
 
