@@ -452,7 +452,6 @@ export default class DatePicker extends React.Component {
     }
 
     if (
-      !isSameDay(this.props.selected, changedDate) ||
       !isSameTime(this.props.selected, changedDate) ||
       this.props.allowSameDay
     ) {

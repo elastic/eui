@@ -26932,7 +26932,7 @@
 	        });
 	      }
 
-	      if (!(0, _date_utils.isSameDay)(_this.props.selected, changedDate) || !(0, _date_utils.isSameTime)(_this.props.selected, changedDate) || _this.props.allowSameDay) {
+	      if (!(0, _date_utils.isSameTime)(_this.props.selected, changedDate) || _this.props.allowSameDay) {
 	        if (changedDate !== null) {
 	          if (!_this.props.inline) {
 	            _this.setState({
@@ -28438,16 +28438,9 @@
 	      _this.setState({
 	        dropdownVisible: !_this.state.dropdownVisible
 	      });
-	    }, _this.handleYearChange = function (date, event) {
-	      _this.onSelect(date, event);
-	      _this.setOpen();
 	    }, _this.onSelect = function (date, event) {
 	      if (_this.props.onSelect) {
 	        _this.props.onSelect(date, event);
-	      }
-	    }, _this.setOpen = function () {
-	      if (_this.props.setOpen) {
-	        _this.props.setOpen(true);
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -30248,7 +30241,7 @@
 
 	function isSameTime(moment1, moment2) {
 	  if (moment1 && moment2) {
-	    return moment1.format('HH:mm:ss') === moment2.format('HH:mm:ss');
+	    return moment1.isSame(moment2, "second");
 	  } else {
 	    return !moment1 && !moment2;
 	  }
