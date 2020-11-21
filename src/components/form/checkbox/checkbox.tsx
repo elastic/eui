@@ -83,7 +83,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       ...rest
     } = this.props;
 
-    const { indeterminate, ...inputProps } = rest; // `indeterminate` is set dynamically later
+    const { indeterminate, inputRef, ...inputProps } = rest; // `indeterminate` and `inputRef` are set dynamically later
 
     const classes = classNames(
       'euiCheckbox',
