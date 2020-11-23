@@ -27651,6 +27651,8 @@
 	        monthsShown: 1,
 	        forceShowMonthNavigation: false,
 	        timeCaption: "Time",
+	        previousMonthButtonLabel: "Previous Month",
+	        nextMonthButtonLabel: "Next Month",
 	        enableFocusTrap: true
 	      };
 	    }
@@ -27674,9 +27676,10 @@
 	      if (!isOpen) {
 	        var element = dropdown === 'month' ? _this.monthRef : _this.yearRef;
 	        if (element) {
-	          // The focus trap has been unpaused and will rerinitialize focus
+	          // The focus trap has been unpaused and will reinitialize focus
 	          // but does so on the wrong element (calendar)
-	          // This refocuses the previous element (dropdown button)
+	          // This refocuses the previous element (dropdown button).
+	          // Duration arrived at by trial-and-error.
 	          setTimeout(function () {
 	            return element.focus();
 	          }, 25);

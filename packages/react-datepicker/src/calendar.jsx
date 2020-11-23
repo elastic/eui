@@ -137,16 +137,6 @@ export default class Calendar extends React.Component {
     };
   }
 
-  static get defaultProps() {
-    return {
-      onDropdownFocus: () => {},
-      monthsShown: 1,
-      forceShowMonthNavigation: false,
-      timeCaption: "Time",
-      enableFocusTrap: true
-    };
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -202,9 +192,10 @@ export default class Calendar extends React.Component {
     if (!isOpen) {
       const element = dropdown === 'month' ? this.monthRef : this.yearRef;
       if (element) {
-        // The focus trap has been unpaused and will rerinitialize focus
+        // The focus trap has been unpaused and will reinitialize focus
         // but does so on the wrong element (calendar)
-        // This refocuses the previous element (dropdown button)
+        // This refocuses the previous element (dropdown button).
+        // Duration arrived at by trial-and-error.
         setTimeout(() => element.focus(), 25);
       }
     }
