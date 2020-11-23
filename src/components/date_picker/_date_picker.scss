@@ -121,7 +121,7 @@
   &[data-placement^="top"] {
     @include euiBottomShadowFlat;
 
-    border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
+    border-radius: $euiBorderRadius $euiBorderRadius 0 0;
 
     // .react-datepicker__triangle {
     // }
