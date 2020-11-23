@@ -15,7 +15,8 @@ export default class MonthDropdown extends React.Component {
     onChange: PropTypes.func.isRequired,
     useShortMonthInDropdown: PropTypes.bool,
     accessibleMode: PropTypes.bool,
-    onDropdownToggle: PropTypes.func
+    onDropdownToggle: PropTypes.func,
+    buttonRef: PropTypes.func
   };
 
   constructor(props) {
@@ -66,6 +67,7 @@ export default class MonthDropdown extends React.Component {
 
   setReadViewRef = ref => {
     this.readViewref = ref;
+    this.props.buttonRef(ref);
   };
 
   onReadViewKeyDown = event => {

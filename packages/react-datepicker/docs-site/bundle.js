@@ -27661,17 +27661,25 @@
 
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
+	    _this.setMonthRef = function (node) {
+	      _this.monthRef = node;
+	    };
+
+	    _this.setYearRef = function (node) {
+	      _this.yearRef = node;
+	    };
+
 	    _this.handleOnDropdownToggle = function (isOpen, dropdown) {
 	      _this.setState({ pauseFocusTrap: isOpen });
 	      if (!isOpen) {
-	        var element = dropdown === 'month' ? document.querySelector('.react-datepicker__month-read-view') : document.querySelector('.react-datepicker__year-read-view');
+	        var element = dropdown === 'month' ? _this.monthRef : _this.yearRef;
 	        if (element) {
 	          // The focus trap has been unpaused and will rerinitialize focus
 	          // but does so on the wrong element (calendar)
 	          // This refocuses the previous element (dropdown button)
 	          setTimeout(function () {
 	            return element.focus();
-	          }, 50);
+	          }, 25);
 	        }
 	      }
 	    };
@@ -27936,7 +27944,8 @@
 	        scrollableYearDropdown: _this.props.scrollableYearDropdown,
 	        yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
 	        accessibleMode: _this.props.accessibleMode,
-	        onDropdownToggle: _this.handleOnDropdownToggle
+	        onDropdownToggle: _this.handleOnDropdownToggle,
+	        buttonRef: _this.setYearRef
 	      });
 	    };
 
@@ -27954,7 +27963,8 @@
 	        month: (0, _date_utils.getMonth)(_this.state.date),
 	        useShortMonthInDropdown: _this.props.useShortMonthInDropdown,
 	        accessibleMode: _this.props.accessibleMode,
-	        onDropdownToggle: _this.handleOnDropdownToggle
+	        onDropdownToggle: _this.handleOnDropdownToggle,
+	        buttonRef: _this.setMonthRef
 	      });
 	    };
 
@@ -28139,6 +28149,8 @@
 	      monthContainer: null,
 	      pauseFocusTrap: false
 	    };
+	    _this.monthRef = _react2.default.createRef();
+	    _this.yearRef = _react2.default.createRef();
 	    return _this;
 	  }
 
@@ -28351,6 +28363,7 @@
 	      dropdownVisible: false
 	    }, _this.setReadViewRef = function (ref) {
 	      _this.readViewref = ref;
+	      _this.props.buttonRef(ref);
 	    }, _this.onReadViewKeyDown = function (event) {
 	      var eventKey = event.key;
 	      switch (eventKey) {
@@ -28501,7 +28514,8 @@
 	  onSelect: _propTypes2.default.func,
 	  setOpen: _propTypes2.default.func,
 	  accessibleMode: _propTypes2.default.bool,
-	  onDropdownToggle: _propTypes2.default.func
+	  onDropdownToggle: _propTypes2.default.func,
+	  buttonRef: _propTypes2.default.func
 	};
 	exports.default = YearDropdown;
 
@@ -47169,6 +47183,7 @@
 
 	    _this.setReadViewRef = function (ref) {
 	      _this.readViewref = ref;
+	      _this.props.buttonRef(ref);
 	    };
 
 	    _this.onReadViewKeyDown = function (event) {
@@ -47343,7 +47358,8 @@
 	  onChange: _propTypes2.default.func.isRequired,
 	  useShortMonthInDropdown: _propTypes2.default.bool,
 	  accessibleMode: _propTypes2.default.bool,
-	  onDropdownToggle: _propTypes2.default.func
+	  onDropdownToggle: _propTypes2.default.func,
+	  buttonRef: _propTypes2.default.func
 	};
 	exports.default = MonthDropdown;
 

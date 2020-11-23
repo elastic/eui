@@ -155,6 +155,8 @@ export default class Calendar extends React.Component {
       monthContainer: null,
       pauseFocusTrap: false
     };
+    this.monthRef = React.createRef();
+    this.yearRef = React.createRef();
   }
 
   componentDidMount() {
@@ -187,15 +189,23 @@ export default class Calendar extends React.Component {
     }
   }
 
+  setMonthRef = (node) => {
+    this.monthRef = node;
+  }
+
+  setYearRef = (node) => {
+    this.yearRef = node;
+  }
+
   handleOnDropdownToggle = (isOpen, dropdown) => {
     this.setState({pauseFocusTrap: isOpen});
     if (!isOpen) {
-      const element = dropdown === 'month' ? document.querySelector('.react-datepicker__month-read-view') : document.querySelector('.react-datepicker__year-read-view');
+      const element = dropdown === 'month' ? this.monthRef : this.yearRef;
       if (element) {
         // The focus trap has been unpaused and will rerinitialize focus
         // but does so on the wrong element (calendar)
         // This refocuses the previous element (dropdown button)
-        setTimeout(() => element.focus(), 50);
+        setTimeout(() => element.focus(), 25);
       }
     }
   }
@@ -483,6 +493,7 @@ export default class Calendar extends React.Component {
         yearDropdownItemNumber={this.props.yearDropdownItemNumber}
         accessibleMode={this.props.accessibleMode}
         onDropdownToggle={this.handleOnDropdownToggle}
+        buttonRef={this.setYearRef}
       />
     );
   };
@@ -501,6 +512,7 @@ export default class Calendar extends React.Component {
         useShortMonthInDropdown={this.props.useShortMonthInDropdown}
         accessibleMode={this.props.accessibleMode}
         onDropdownToggle={this.handleOnDropdownToggle}
+        buttonRef={this.setMonthRef}
       />
     );
   };

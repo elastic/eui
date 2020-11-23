@@ -20,7 +20,8 @@ export default class YearDropdown extends React.Component {
     onSelect: PropTypes.func,
     setOpen: PropTypes.func,
     accessibleMode: PropTypes.bool,
-    onDropdownToggle: PropTypes.func
+    onDropdownToggle: PropTypes.func,
+    buttonRef: PropTypes.func
   };
 
   state = {
@@ -39,6 +40,7 @@ export default class YearDropdown extends React.Component {
 
   setReadViewRef = ref => {
     this.readViewref = ref;
+    this.props.buttonRef(ref);
   };
 
   onReadViewKeyDown = event => {
