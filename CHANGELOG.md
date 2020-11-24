@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Fixed stale state argument passed to `searchProps.onChange` in an `EuiSelectable`([#4292](https://github.com/elastic/eui/pull/4292))
 - Fixed initial focus of an `EuiButtonGroup` when first item in a popover ([#4288](https://github.com/elastic/eui/pull/4288))
 
 **Theme: Amsterdam**
