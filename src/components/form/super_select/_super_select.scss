@@ -1,35 +1,8 @@
-/*
- * 1. Make popover the same width as the form control
- * 2. Style popover similar to combobox
- * 3. Use attribute selector to match popover position without needing the full popover class name
- */
-
-.euiSuperSelect {
-  &:not(.euiSuperSelect--fullWidth) { /* 1 */
-    // sass-lint:disable-block no-important
-    max-width: $euiFormMaxWidth !important; // override default popover styles
-  }
-}
-
 .euiSuperSelect__listbox {
   @include euiScrollBar;
   max-height: 300px;
   overflow: hidden;
   overflow-y: auto;
-}
-
-.euiSuperSelect__popoverPanel[class*='bottom'] { /* 3 */
-  border-top-color: transparentize($euiBorderColor, .2);
-  border-top-right-radius: 0; /* 2 */
-  border-top-left-radius: 0; /* 2 */
-}
-
-.euiSuperSelect__popoverPanel[class*='top'] { /* 3 */
-  @include euiBottomShadowFlat; /* 2 */
-
-  border-bottom-color: transparentize($euiBorderColor, .2);
-  border-bottom-right-radius: 0; /* 2 */
-  border-bottom-left-radius: 0; /* 2 */
 }
 
 .euiSuperSelect__item {

@@ -1,56 +1,30 @@
 /**
- * 1. Make width match that of the input and tweak position to match.
- * 2. Put the list at the top of the screen, otherwise it will cause a scrollbar to show up when
- *    the portal is appended to the body. This would throw off our logic for positioning the
- *    list beneath the input.
- * 3. The height can expand, hence auto
- * 4. Using specificity to override panel shadow
+ * 1. Using specificity to override panel shadow
+ * 2. Prevent really long input from overflowing the container.
  */
 .euiComboBoxOptionsList {
-  // z-index is programmatically added to the options list by JavaScript
-  @include euiFormControlSize(auto, $includeAlternates: true); /* 3 */
-  position: absolute; /* 2 */
-  top: 0; /* 2 */
+  // Remove transforms from popover panel
+  transform: none !important; // sass-lint:disable-line no-important
 
-  .ReactVirtualized__List {
-    @include euiScrollBar;
-  }
-
-  &.euiComboBoxOptionsList--bottom { /* 4 */
-    @include euiBottomShadowMedium;
-  }
-
-  &.euiComboBoxOptionsList--top { /* 4 */
-    // sass-lint:disable-block indentation
-    box-shadow:
-      0 -2px 4px -1px transparentize($euiShadowColor, .8),
-      0 0 2px 0 transparentize($euiShadowColor, .8);
+  &.euiPopover__panel-isAttached.euiComboBoxOptionsList--top { /* 1 */
+    @include euiBottomShadowFlat;
   }
 }
 
-.euiComboBoxOptionsList--bottom {
-  // sass-lint:disable-block no-important
-  border-radius: 0 0 $euiBorderRadius $euiBorderRadius !important;
-  border-top: none !important;
-}
-
-.euiComboBoxOptionsList--top {
-  // sass-lint:disable-block no-important
-  border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
-}
-
-/**
-  * 1. Prevent really long input from overflowing the container.
-  */
 .euiComboBoxOptionsList__empty {
+  @include euiTextBreakWord; /* 2 */
   padding: $euiSizeS;
   text-align: center;
   color: $euiColorDarkShade;
-  word-wrap: break-word; /* 1 */
+  word-wrap: break-word;
 }
 
 .euiComboBoxOptionsList__rowWrap {
   padding: 0;
-  max-height: 200px;
+  max-height: 200px; // Also used/set in the JS file
   overflow: hidden;
+
+  > div { // Targets the element for FixedSizeList that doesn't have a selector
+    @include euiScrollBar;
+  }
 }
