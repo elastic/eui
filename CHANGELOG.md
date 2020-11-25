@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.5.0`.
+
+## [`30.5.0`](https://github.com/elastic/eui/tree/v30.5.0)
+
 - Export `euiSelectableTemplateSitewideRenderOptions` ([#4305](https://github.com/elastic/eui/pull/4305))
 
 **Bug fixes**
