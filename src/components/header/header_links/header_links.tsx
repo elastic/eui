@@ -134,6 +134,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
           <EuiShowFor sizes={popoverBreakpoints}>
             <EuiPopover
+              ownFocus
               button={button}
               isOpen={mobileMenuIsOpen}
               anchorPosition="downRight"
