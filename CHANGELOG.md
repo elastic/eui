@@ -10,11 +10,18 @@
 - Fixed visible scrollbar in `EuiComboBox` list ([#4301](https://github.com/elastic/eui/pull/4301))
 - Removed hiding of time select on small screens for `EuiDatePicker` ([#4301](https://github.com/elastic/eui/pull/4301))
 - Reverted changing of `EuiPopover`s `ownFocus` default from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
+- Fixed wrong columns assigned to `EuiDataGrid` leadingControlColumns ([#4269](https://github.com/elastic/eui/pull/4269))
 
 **Theme: Amsterdam**
 
 - Fixed styles for `EuiMarkdownEditor` ([#4289](https://github.com/elastic/eui/pull/4289))
 - Rounded all corners of dropdown type of inputs ([#4301](https://github.com/elastic/eui/pull/4301))
+
+## [`30.4.2`](https://github.com/elastic/eui/tree/v30.4.2)
+
+**Bug fixes**
+
+- Reverted changing of `EuiPopover`s `ownFocus` default from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
 
 ## [`30.4.1`](https://github.com/elastic/eui/tree/v30.4.1)
 
@@ -24,10 +31,6 @@
 
 - Unify colors with the Elastic brand ([#4284](https://github.com/elastic/eui/pull/4284))
 - Created one consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/4284))
-
-*Bug fixes**
-
-- Fixed wrong columns assigned to `EuiDataGrid` leadingControlColumns ([#4269](https://github.com/elastic/eui/pull/4269))
 
 ## [`30.4.0`](https://github.com/elastic/eui/tree/v30.4.0)
 
