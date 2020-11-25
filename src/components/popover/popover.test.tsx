@@ -98,7 +98,6 @@ describe('EuiPopover', () => {
 
         const component = mount(
           <EuiPopover
-            ownFocus={false}
             id={getId()}
             button={<button />}
             closePopover={closePopoverHandler}
@@ -199,7 +198,7 @@ describe('EuiPopover', () => {
     });
 
     describe('ownFocus', () => {
-      test('defaults to true', () => {
+      test('defaults to false', () => {
         const component = mount(
           <div>
             <EuiPopover
@@ -214,13 +213,13 @@ describe('EuiPopover', () => {
         expect(component.render()).toMatchSnapshot();
       });
 
-      test('renders false', () => {
+      test('renders true', () => {
         const component = mount(
           <div>
             <EuiPopover
-              ownFocus={false}
               id={getId()}
               isOpen
+              ownFocus
               button={<button />}
               closePopover={() => {}}
             />
