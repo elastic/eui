@@ -179,7 +179,8 @@ const trailingControlColumns = [
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
               />
             }
-            closePopover={() => setIsPopoverOpen(false)}>
+            closePopover={() => setIsPopoverOpen(false)}
+            ownFocus={true}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
               <button onClick={() => {}} component="span">

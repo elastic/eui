@@ -68,6 +68,7 @@ export function EuiDataGridCellPopover({
       button={anchorContent}
       isOpen={popoverIsOpen}
       panelRef={panelRefFn}
+      ownFocus
       panelClassName="euiDataGridRowCell__popover"
       panelPaddingSize="s"
       zIndex={8001}
