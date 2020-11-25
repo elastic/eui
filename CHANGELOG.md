@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.4.2`.
+
+## [`30.4.2`](https://github.com/elastic/eui/tree/v30.4.2)
+
 **Bug fixes**
 
 - Reverted changing of `EuiPopover`s `ownFocus` default from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
