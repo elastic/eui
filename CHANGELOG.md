@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `29.3.1`.
+- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
 
 ## [`29.3.1`](https://github.com/elastic/eui/tree/v29.3.1)
 
