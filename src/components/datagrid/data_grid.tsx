@@ -156,6 +156,10 @@ type CommonGridProps = CommonProps &
      * Defines a minimum width for the grid to show all controls in its header.
      */
     minSizeForControls?: number;
+    /**
+     * Adds blank rows to the end to keep rows per page the same
+     */
+    blankRows?: boolean;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -707,6 +711,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     popoverContents,
     onColumnResize,
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
+    blankRows,
     ...rest
   } = props;
 
@@ -1086,6 +1091,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                       }
                                       rowCount={rowCount}
                                       interactiveCellId={interactiveCellId}
+                                      blankRows={blankRows}
                                     />
                                   </div>
                                 </div>

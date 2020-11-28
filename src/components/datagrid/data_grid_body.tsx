@@ -60,6 +60,7 @@ export interface EuiDataGridBodyProps {
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
   sorting?: EuiDataGridSorting;
+  blankRows?: boolean;
 }
 
 const defaultComparator: NonNullable<
@@ -242,6 +243,36 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       );
     }
 
+    // If blankRows is set to true, this pads the data grid with emppty rows
+    if (
+      props.blankRows &&
+      props.pagination?.pageSize &&
+      visibleRowIndices.length < props.pagination?.pageSize
+    ) {
+      // Determine how many blank rows to render
+      const countMissingRows = Math.abs(
+        visibleRowIndices.length - props.pagination?.pageSize
+      );
+      for (let i = 0; i < countMissingRows; i++) {
+        rowsToRender.push(
+          <EuiDataGridDataRow
+            key={i}
+            leadingControlColumns={leadingControlColumns}
+            trailingControlColumns={trailingControlColumns}
+            columns={columns}
+            columnWidths={columnWidths}
+            schema={schema}
+            popoverContents={mergedPopoverContents}
+            renderCellValue={() => 'empty'}
+            rowIndex={i}
+            onCellFocus={() => {}}
+            visibleRowIndex={visibleRowIndices.length}
+            interactiveCellId={interactiveCellId}
+          />
+        );
+      }
+    }
+
     return rowsToRender;
   }, [
     visibleRowIndices,
@@ -258,6 +289,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     renderCellValue,
     renderFooterCellValue,
     interactiveCellId,
+    props.blankRows,
+    props.pagination,
   ]);
 
   return <Fragment>{rows}</Fragment>;
