@@ -227,7 +227,7 @@ export default () => {
       onColumnResize={(eventData) => {
         console.log(eventData);
       }}
-      blankRows={true}
+      blankRows={false}
     />
   );
 };
