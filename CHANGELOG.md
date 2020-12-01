@@ -1,10 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
+- Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 
 **Theme: Amsterdam**
 
-- Removed `shadow` in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
+- Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 
 ## [`30.5.0`](https://github.com/elastic/eui/tree/v30.5.0)
 
