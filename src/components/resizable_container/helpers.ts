@@ -79,7 +79,7 @@ const _getPanelMinSize = (panelMinSize: string, containerSize: number) => {
 const getPanelMinSize = (panelMinSize: string[], containerSize: number) => {
   const paddingMin = _getPanelMinSize(panelMinSize[1], containerSize);
   const configMin = _getPanelMinSize(panelMinSize[0], containerSize);
-  return configMin > configMin ? configMin : paddingMin;
+  return Math.max(configMin, paddingMin);
 };
 
 export const getPosition = (
@@ -113,7 +113,7 @@ const getSiblingPanel = (
   }
 };
 
-// lazy initialization to prevent rerender on ititial interaction
+// lazy initialization to prevent rerender on initial interaction
 const init = (state: EuiResizableContainerState) => state;
 
 export const useContainerCallbacks = ({

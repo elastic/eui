@@ -30,9 +30,7 @@ export default () => {
   const onCollapse = (optionId) => {
     const newToggleIdToSelectedMap = {
       ...toggleIdToSelectedMap,
-      ...{
-        [optionId]: !toggleIdToSelectedMap[optionId],
-      },
+      [optionId]: !toggleIdToSelectedMap[optionId],
     };
     setToggleIdToSelectedMap(newToggleIdToSelectedMap);
   };
