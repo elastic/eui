@@ -39,7 +39,7 @@ export type EuiButtonEmptyColor =
   | 'danger'
   | 'text'
   | 'ghost'
-  | 'secondary'
+  | 'success'
   | 'warning';
 
 const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
@@ -47,7 +47,7 @@ const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   danger: 'euiButtonEmpty--danger',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
-  secondary: 'euiButtonEmpty--secondary',
+  success: 'euiButtonEmpty--success',
   warning: 'euiButtonEmpty--warning',
 };
 

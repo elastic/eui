@@ -64,9 +64,9 @@ exports[`EuiButtonEmpty props color primary is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButtonEmpty props color secondary is rendered 1`] = `
+exports[`EuiButtonEmpty props color success is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--secondary"
+  class="euiButtonEmpty euiButtonEmpty--success"
   type="button"
 >
   <span

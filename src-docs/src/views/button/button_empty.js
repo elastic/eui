@@ -6,14 +6,7 @@ import {
   EuiFlexItem,
 } from '../../../../src/components/';
 
-const buttons = [
-  'primary',
-  'secondary',
-  'warning',
-  'danger',
-  'text',
-  'disabled',
-];
+const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
 
 export default () => (
   <div>
