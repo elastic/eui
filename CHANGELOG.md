@@ -3,10 +3,13 @@
 - Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313)) 
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 
-
 **Theme: Amsterdam**
 
 - Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+
+## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
+
+- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
 
 ## [`30.5.0`](https://github.com/elastic/eui/tree/v30.5.0)
 
