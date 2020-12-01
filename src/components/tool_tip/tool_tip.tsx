@@ -318,7 +318,6 @@ export class EuiToolTip extends Component<Props, State> {
 
     let tooltip;
     if (visible && (content || title)) {
-      console.log(toolTipStyles);
       tooltip = (
         <EuiPortal>
           <EuiToolTipPopover
