@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.5.1`.
+**Bug fixes**
+
+- Expose `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
 
 ## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
 
