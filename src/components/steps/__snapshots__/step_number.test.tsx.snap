@@ -104,6 +104,16 @@ exports[`EuiStepNumber props status incomplete is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiStepNumber props status loading is rendered 1`] = `
+<span
+  class="euiStepNumber euiStepNumber--loading"
+>
+  <span
+    class="euiLoadingSpinner euiLoadingSpinner--medium euiStepNumber__icon"
+  />
+</span>
+`;
+
 exports[`EuiStepNumber props status warning is rendered 1`] = `
 <span
   class="euiStepNumber euiStepNumber--warning"

@@ -2,6 +2,7 @@
   @include createStepsNumber;
 
   .euiStepNumber__icon {
+    vertical-align: middle;
     position: relative;
     top: -2px;
   }
@@ -15,10 +16,18 @@
   }
 
   &--complete {
-    // Thicken the checkmark but adding a slight stroke.
+    // Thicken the checkmark by adding a slight stroke.
     .euiStepNumber__icon {
       stroke: currentColor;
       stroke-width: .5px;
+    }
+  }
+
+  @include euiCanAnimate {
+    &--complete,
+    &--warning,
+    &--danger {
+      animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
     }
   }
 
@@ -39,10 +48,6 @@
 
       color: $textColor;
       background-color: $backgroundColor;
-
-      &.euiStepNumber-isHollow {
-        border-color: $color;
-      }
     }
   }
 }

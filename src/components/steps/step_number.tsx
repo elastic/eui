@@ -31,23 +31,19 @@ import {
   useI18nStep,
   useI18nWarningStep,
 } from './step_strings';
+import { EuiLoadingSpinner } from '../loading';
 
 const statusToClassNameMap = {
-  complete: 'euiStepNumber--complete',
   incomplete: 'euiStepNumber--incomplete',
+  disabled: 'euiStepNumber--disabled',
+  loading: 'euiStepNumber--loading',
   warning: 'euiStepNumber--warning',
   danger: 'euiStepNumber--danger',
-  disabled: 'euiStepNumber--disabled',
+  complete: 'euiStepNumber--complete',
 };
 
 export const STATUS = keysOf(statusToClassNameMap);
-
-export type EuiStepStatus =
-  | 'complete'
-  | 'incomplete'
-  | 'warning'
-  | 'danger'
-  | 'disabled';
+export type EuiStepStatus = typeof STATUS[number];
 
 export interface EuiStepNumberProps
   extends CommonProps,
@@ -58,7 +54,8 @@ export interface EuiStepNumberProps
   status?: EuiStepStatus;
   number?: number;
   /**
-   * Uses a border and removes the step number
+   * **DEPRECATED IN AMSTERDAM**
+   * Uses a border and removes the step number.
    */
   isHollow?: boolean;
   /**
@@ -81,6 +78,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const errorsAriaLabel = useI18nErrorsStep({ number });
   const incompleteAriaLabel = useI18nIncompleteStep({ number });
   const disabledAriaLabel = useI18nDisabledStep({ number });
+  const loadingAriaLabel = useI18nDisabledStep({ number });
 
   const classes = classNames(
     'euiStepNumber',
@@ -93,6 +91,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   let screenReaderText = stepAriaLabel;
   if (status === 'incomplete') screenReaderText = incompleteAriaLabel;
   else if (status === 'disabled') screenReaderText = disabledAriaLabel;
+  else if (status === 'loading') screenReaderText = loadingAriaLabel;
 
   let numberOrIcon = (
     <>
@@ -129,6 +128,10 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         size={iconSize}
         aria-label={errorsAriaLabel}
       />
+    );
+  } else if (status === 'loading') {
+    numberOrIcon = (
+      <EuiLoadingSpinner className="euiStepNumber__icon" size={iconSize} />
     );
   }
 

@@ -162,6 +162,24 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiStepHorizontal props status loading is rendered 1`] = `
+<button
+  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  title="Step 1"
+>
+  <span
+    class="euiStepNumber euiStepNumber--loading euiStepHorizontal__number"
+  >
+    <span
+      class="euiLoadingSpinner euiLoadingSpinner--medium euiStepNumber__icon"
+    />
+  </span>
+  <span
+    class="euiStepHorizontal__title"
+  />
+</button>
+`;
+
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"

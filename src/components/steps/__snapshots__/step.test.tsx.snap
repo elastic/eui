@@ -209,6 +209,36 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiStep props status loading is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <span
+      class="euiStepNumber euiStepNumber--loading euiStep__circle"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium euiStepNumber__icon"
+      />
+    </span>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
 exports[`EuiStep props status warning is rendered 1`] = `
 <div
   class="euiStep"
