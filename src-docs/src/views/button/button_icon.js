@@ -14,6 +14,7 @@ const colors = [
   'success',
   'warning',
   'danger',
+  'secondary',
 ];
 
 export default () => (

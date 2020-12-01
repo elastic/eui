@@ -6,36 +6,59 @@ import {
   EuiFlexItem,
 } from '../../../../src/components/';
 
+const buttons = [
+  'primary',
+  'secondary',
+  'warning',
+  'danger',
+  'text',
+  'disabled',
+];
+
 export default () => (
   <div>
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty onClick={() => {}}>Primary</EuiButtonEmpty>
-      </EuiFlexItem>
+    {buttons.map((value) => (
+      <>
+        <EuiFlexGroup gutterSize="s" alignItems="center">
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              style={{
+                textTransform: 'capitalize',
+              }}
+              isDisabled={value === 'disabled' ? true : false}
+              color={value}
+              onClick={() => {}}>
+              {value}
+            </EuiButtonEmpty>
+          </EuiFlexItem>
 
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty size="s" onClick={() => {}}>
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              isDisabled={value === 'disabled' ? true : false}
+              color={value}
+              size="s"
+              onClick={() => {}}>
+              small
+            </EuiButtonEmpty>
+          </EuiFlexItem>
 
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty size="xs" onClick={() => {}}>
-          extra small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              isDisabled={value === 'disabled' ? true : false}
+              color={value}
+              size="xs"
+              onClick={() => {}}>
+              extra small
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </>
+    ))}
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty onClick={() => {}} iconType="arrowDown">
-          Primary
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty size="s" onClick={() => {}} iconType="arrowDown">
-          small
+          arrowDown
         </EuiButtonEmpty>
       </EuiFlexItem>
 
@@ -44,155 +67,7 @@ export default () => (
           onClick={() => {}}
           iconType="arrowDown"
           iconSide="right">
-          Primary
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right">
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" onClick={() => {}}>
-          Danger
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" size="s" onClick={() => {}}>
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" size="xs" onClick={() => {}}>
-          extra small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" onClick={() => {}} iconType="arrowDown">
-          Danger
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown">
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right">
-          Danger
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right">
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="text" onClick={() => {}}>
-          Text
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="text" size="s" onClick={() => {}}>
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="text" size="xs" onClick={() => {}}>
-          extra small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="text" onClick={() => {}} iconType="arrowDown">
-          Text
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="text"
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown">
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="text"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right">
-          Text
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="text"
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right">
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" onClick={() => {}} isDisabled>
-          Disabled
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" size="s" onClick={() => {}} isDisabled>
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="danger" size="xs" onClick={() => {}} isDisabled>
-          extra small
+          arrowDown right
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -207,52 +82,6 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty onClick={() => {}} isLoading iconSide="right">
           Loading
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          onClick={() => {}}
-          iconType="arrowDown"
-          isDisabled>
-          Disabled
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown"
-          isDisabled>
-          small
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right"
-          isDisabled>
-          Disabled
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="danger"
-          size="s"
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right"
-          isDisabled>
-          small
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>

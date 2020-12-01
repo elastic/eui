@@ -46,6 +46,7 @@ export type EuiButtonIconColor =
   | 'subdued'
   | 'success'
   | 'text'
+  | 'secondary'
   | 'warning';
 
 export interface EuiButtonIconProps extends CommonProps {
@@ -95,6 +96,7 @@ const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
   success: 'euiButtonIcon--success',
   text: 'euiButtonIcon--text',
   warning: 'euiButtonIcon--warning',
+  secondary: 'euiButtonIcon--secondary',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);

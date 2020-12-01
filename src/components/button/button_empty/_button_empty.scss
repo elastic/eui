@@ -74,6 +74,8 @@ $euiButtonEmptyTypes: (
   disabled: $euiButtonColorDisabledText,
   ghost: $euiColorGhost,
   text: $euiTextColor,
+  secondary: $euiColorSecondaryText,
+  warning: $euiColorWarningText,
 );
 
 // Create button modifiers based upon the map.
