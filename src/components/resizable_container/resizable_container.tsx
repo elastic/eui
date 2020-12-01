@@ -134,8 +134,11 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   const onMouseDown = useCallback(
     (event: EuiResizableButtonMouseEvent) => {
       const currentTarget = event.currentTarget;
-      const prevPanelId = currentTarget.previousElementSibling!.id;
-      const nextPanelId = currentTarget.nextElementSibling!.id;
+      const prevPanel = currentTarget.previousElementSibling;
+      const nextPanel = currentTarget.nextElementSibling;
+      if (!prevPanel || !nextPanel) return;
+      const prevPanelId = prevPanel!.id;
+      const nextPanelId = nextPanel!.id;
       const position = getPosition(event, isHorizontal);
       actions.dragStart({ position, prevPanelId, nextPanelId });
     },
