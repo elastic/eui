@@ -19,14 +19,14 @@ export default () => (
   <div>
     {buttons.map((value) => (
       <>
-        <EuiFlexGroup gutterSize="s" alignItems="center">
+        <EuiFlexGroup gutterSize="s" key={value} alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
               style={{
                 textTransform: 'capitalize',
               }}
               isDisabled={value === 'disabled' ? true : false}
-              color={value}
+              color={value !== 'disabled' ? value : 'primary'}
               onClick={() => {}}>
               {value}
             </EuiButtonEmpty>
@@ -35,7 +35,7 @@ export default () => (
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
               isDisabled={value === 'disabled' ? true : false}
-              color={value}
+              color={value !== 'disabled' ? value : 'primary'}
               size="s"
               onClick={() => {}}>
               small
@@ -45,7 +45,7 @@ export default () => (
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
               isDisabled={value === 'disabled' ? true : false}
-              color={value}
+              color={value !== 'disabled' ? value : 'primary'}
               size="xs"
               onClick={() => {}}>
               extra small
