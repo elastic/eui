@@ -1,6 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313)) 
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 
 **Theme: Amsterdam**
