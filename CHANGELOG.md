@@ -4,7 +4,7 @@
 
 **Theme: Amsterdam**
 
-- Removed `border` in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
+- Removed `shadow` in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 
 ## [`30.5.0`](https://github.com/elastic/eui/tree/v30.5.0)
 
