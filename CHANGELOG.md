@@ -1,10 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 
 **Theme: Amsterdam**
 
+- Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+
+**Bug fixes**
+
+- Expose `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
 
 ## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
 
