@@ -23,10 +23,6 @@ import { requiredProps, takeMountedSnapshot } from '../../../test';
 
 import { EuiSuperSelect } from './super_select';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: any) => children,
 }));

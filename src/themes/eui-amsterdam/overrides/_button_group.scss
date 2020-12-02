@@ -6,6 +6,14 @@
 .euiButtonGroup--small {
   .euiButtonGroupButton {
     border: none !important; // sass-lint:disable-line no-important
+
+    &:focus {
+      @include euiFocusRing(null, 'inner');
+    }
+
+    &.euiButtonGroupButton-isSelected:focus {
+      @include euiFocusRing(null, -3);
+    }
   }
 
   .euiButtonGroupButton-isDisabled:not(.euiButtonGroupButton--ghost):not(.euiButtonGroupButton-isSelected) {
@@ -40,10 +48,32 @@
 .euiButtonGroup--small .euiButtonGroup__buttons {
   // Use a moderately smaller radius on small buttons
   // so that they don't appear completely rounded
-  border-radius: $euiBorderRadius * .667;
+  border-radius: $euiBorderRadius * (2 / 3);
 }
 
 .euiButtonGroup--compressed .euiButtonGroupButton {
   // Add 1 to the border radius to account for the background-clip
   border-radius: $euiFormControlCompressedBorderRadius + 1;
+
+  &:not([class*='isDisabled']):focus-within {
+    outline: none; // Resetting from default theme
+  }
+
+  &:not([class*='isDisabled']):focus {
+    @include euiFocusRing(null, 'false');
+  }
+
+  @each $name, $color in $euiButtonTypes {
+    &--#{$name} {
+      &:not([class*='isDisabled']):hover,
+      &:not([class*='isDisabled']):focus,
+      &:not([class*='isDisabled']):focus-within {
+        @include euiFocusBackground($color);
+      }
+
+      &:not([class*='isDisabled']):focus {
+        outline-color: $color;
+      }
+    }
+  }
 }

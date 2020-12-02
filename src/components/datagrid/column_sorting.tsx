@@ -45,7 +45,7 @@ import {
 } from './data_grid_schema';
 import { EuiToken } from '../token';
 
-export const useColumnSorting = (
+export const useDataGridColumnSorting = (
   columns: EuiDataGridColumn[],
   sorting: EuiDataGridSorting | undefined,
   schema: EuiDataGridSchema,
@@ -141,6 +141,7 @@ export const useColumnSorting = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
+      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
@@ -211,7 +212,8 @@ export const useColumnSorting = (
                   isOpen={avilableColumnsisOpen}
                   closePopover={() => setAvailableColumnsIsOpen(false)}
                   anchorPosition="downLeft"
-                  panelPaddingSize="s"
+                  ownFocus
+                  panelPaddingSize="none"
                   button={
                     <EuiButtonEmpty
                       size="xs"

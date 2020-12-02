@@ -32,6 +32,7 @@
 
   &:focus {
     @include euiDataGridCellFocus;
+    border-top: none;
   }
 
   // We only truncate if the cell is not a control column.
@@ -39,6 +40,7 @@
 
     &:focus-within {
       @include euiDataGridCellFocus;
+      border-top: none;
     }
 
     .euiDataGridHeaderCell__button {
@@ -48,6 +50,7 @@
       display: flex;
       text-align: left;
       font-weight: $euiFontWeightBold;
+      outline: none;
     }
 
     .euiDataGridHeaderCell__content {

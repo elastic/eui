@@ -25,7 +25,7 @@ import { EuiText } from '../text';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
-  error?: Error;
+  error?: string;
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
@@ -55,8 +55,14 @@ export class EuiErrorBoundary extends Component<
     this.state = errorState;
   }
 
-  componentDidCatch(error: Error) {
+  componentDidCatch({ message, stack }: Error) {
     // Display fallback UI
+    // Only Chrome includes the `message` property as part of `stack`.
+    // For consistency, rebuild the full error text from the Error subparts.
+    const idx = stack?.indexOf(message) || -1;
+    const stackStr = idx > -1 ? stack?.substr(idx + message.length + 1) : stack;
+    const error = `Error: ${message}
+${stackStr}`;
     this.setState({
       hasError: true,
       error,
@@ -74,7 +80,7 @@ export class EuiErrorBoundary extends Component<
             <EuiText size="xs">
               <h1>Error</h1>
               <pre className="euiErrorBoundary__stack">
-                <p>{this.state.error && this.state.error.stack}</p>
+                <p>{this.state.error}</p>
               </pre>
             </EuiText>
           </div>

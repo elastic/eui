@@ -25,10 +25,6 @@ import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { keys, SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
 
-jest.mock('../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 interface BasicItem {
   id: number | string;
   name: string;

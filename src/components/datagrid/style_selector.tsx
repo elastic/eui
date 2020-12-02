@@ -49,7 +49,7 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
   },
 };
 
-export const useStyleSelector = (
+export const useDataGridStyleSelector = (
   initialStyles: EuiDataGridStyle
 ): [ReactElement, EuiDataGridStyle] => {
   // track styles specified by the user at run time
@@ -79,6 +79,7 @@ export const useStyleSelector = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downCenter"
+      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={

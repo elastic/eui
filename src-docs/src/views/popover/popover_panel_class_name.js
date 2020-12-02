@@ -11,6 +11,7 @@ export default () => {
 
   return (
     <EuiPopover
+      ownFocus
       button={
         <EuiButton
           iconType="arrowDown"

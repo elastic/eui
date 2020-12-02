@@ -57,7 +57,7 @@ const getShowColumnSelectorValue = (
   return showColumnSelector[valueName] !== false;
 };
 
-export const useColumnSelector = (
+export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility,
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
@@ -156,6 +156,7 @@ export const useColumnSelector = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
+      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={

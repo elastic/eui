@@ -4,6 +4,7 @@
   width: 100%;
   text-align: left;
   color: $euiTextColor;
+  outline-offset: -$euiFocusRingSize;
 
   &:hover,
   &:focus {

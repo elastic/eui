@@ -47,7 +47,6 @@
 .euiBreadcrumbs--truncate {
   white-space: nowrap;
   flex-wrap: nowrap;
-  overflow: hidden;
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
     max-width: $euiBreadcrumbTruncateWidth;

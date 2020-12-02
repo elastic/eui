@@ -27,7 +27,7 @@ export function scrollToSelector(selector, attempts = 5) {
   const element = document.querySelector(selector);
 
   if (element) {
-    scrollTo(element.offsetTop - 20);
+    scrollTo(element.offsetTop - 120); // Offset affords for the sticky contrast slider
   } else if (attempts > 0) {
     setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
   }
