@@ -51,7 +51,7 @@ export default () => (
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty onClick={() => {}} iconType="arrowDown">
-          arrowDown
+          Icon left
         </EuiButtonEmpty>
       </EuiFlexItem>
 
@@ -60,7 +60,7 @@ export default () => (
           onClick={() => {}}
           iconType="arrowDown"
           iconSide="right">
-          arrowDown right
+          Icon right
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
