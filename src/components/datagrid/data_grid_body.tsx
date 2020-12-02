@@ -163,6 +163,10 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         isExpandable={false}
         className="euiDataGridRowCell--controlColumn"
         setRowHeight={setRowHeight}
+        style={{
+          ...style,
+          top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,
+        }}
       />
     );
   } else if (columnIndex >= leadingControlColumns.length + columns.length) {
@@ -184,6 +188,10 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         interactiveCellId={interactiveCellId}
         isExpandable={false}
         className="euiDataGridRowCell--controlColumn"
+        style={{
+          ...style,
+          top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,
+        }}
       />
     );
   } else {
@@ -216,19 +224,15 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         renderCellValue={renderCellValue}
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
+        style={{
+          ...style,
+          top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,
+        }}
       />
     );
   }
 
-  return (
-    <div
-      style={{
-        ...style,
-        top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,
-      }}>
-      {cellContent}
-    </div>
-  );
+  return cellContent;
 };
 
 const INITIAL_ROW_HEIGHT = 34;
@@ -481,6 +485,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     <Grid
       ref={gridRef}
       innerElementType={InnerElement}
+      className="euiDataGrid__virtualized"
       columnCount={
         leadingControlColumns.length +
         columns.length +

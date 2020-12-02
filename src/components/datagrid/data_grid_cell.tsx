@@ -92,6 +92,7 @@ export interface EuiDataGridCellProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
+  style: any;
 }
 
 interface EuiDataGridCellState {
@@ -144,6 +145,7 @@ export class EuiDataGridCell extends Component<
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
+  style = null;
 
   setCellRef = (ref: HTMLDivElement | null) => {
     this.cellRef.current = ref;
@@ -310,6 +312,7 @@ export class EuiDataGridCell extends Component<
       columnType,
       className,
       column,
+      style,
       ...rest
     } = this.props;
     const { colIndex, rowIndex } = rest;
@@ -332,11 +335,7 @@ export class EuiDataGridCell extends Component<
     };
 
     const widthStyle = width != null ? { width: `${width}px` } : {};
-    if (cellProps.hasOwnProperty('style')) {
-      cellProps.style = { ...cellProps.style, ...widthStyle };
-    } else {
-      cellProps.style = widthStyle;
-    }
+    cellProps.style = { ...style, widthStyle };
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
