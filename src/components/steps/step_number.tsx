@@ -98,7 +98,9 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
       <EuiScreenReaderOnly>
         <span>{screenReaderText}</span>
       </EuiScreenReaderOnly>
-      {!isHollow && <span aria-hidden="true">{number}</span>}
+      <span className="euiStepNumber__number" aria-hidden="true">
+        {number}
+      </span>
     </>
   );
 

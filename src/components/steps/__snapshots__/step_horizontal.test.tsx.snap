@@ -17,6 +17,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -62,6 +63,7 @@ exports[`EuiStepHorizontal props isSelected 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -127,6 +129,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -152,6 +155,7 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -215,6 +219,7 @@ exports[`EuiStepHorizontal props step 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       5
     </span>
@@ -240,6 +245,7 @@ exports[`EuiStepHorizontal props title 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>

@@ -64,7 +64,7 @@
   &::after {
     content: '';
     position: absolute;
-    width: 50%;
+    width: calc(50% - #{$euiStepNumberSize / 2});
     height: 1px;
     top: $euiSizeL + ($euiStepNumberSize / 2);
     background-color: $euiColorLightShade;
