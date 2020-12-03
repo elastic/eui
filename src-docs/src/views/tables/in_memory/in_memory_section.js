@@ -45,7 +45,7 @@ export const section = {
     <div>
       <p>
         The <strong>EuiInMemoryTable</strong> is a higher level component
-        wrapper around <strong>EuiBasicTable</strong> that aimed at displaying
+        wrapper around <strong>EuiBasicTable</strong> aimed at displaying
         tables data when all the data is in memory. It takes the full set of
         data (all possible items) and based on its configuration, will display
         it handling all configured functionality (pagination and sorting) for
