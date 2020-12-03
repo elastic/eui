@@ -1,13 +1,66 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.4.0`.
+- Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
+- Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+
+**Bug fixes**
+
+- Fixed `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
+- Fixed `EuiToolTip` closing during initial positioning period ([#4327](https://github.com/elastic/eui/pull/4327))
+- Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
+
+**Theme: Amsterdam**
+
+- Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
+- Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+
+## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
+
+- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
+
+## [`30.5.0`](https://github.com/elastic/eui/tree/v30.5.0)
+
+- Export `euiSelectableTemplateSitewideRenderOptions` ([#4305](https://github.com/elastic/eui/pull/4305))
+
+**Bug fixes**
+
+- Expose `isPreFiltered` in `EuiSelectable` props fixing consumer-side searching ([#4305](https://github.com/elastic/eui/pull/4305))
+- Fixed stale state argument passed to `searchProps.onChange` in an `EuiSelectable`([#4292](https://github.com/elastic/eui/pull/4292))
+- Fixed initial focus of an `EuiButtonGroup` when first item in a popover ([#4288](https://github.com/elastic/eui/pull/4288))
+- Fixed visible scrollbar in `EuiComboBox` list ([#4301](https://github.com/elastic/eui/pull/4301))
+- Removed hiding of time select on small screens for `EuiDatePicker` ([#4301](https://github.com/elastic/eui/pull/4301))
+- Fixed wrong columns assigned to `EuiDataGrid` leadingControlColumns ([#4269](https://github.com/elastic/eui/pull/4269))
+
+**Theme: Amsterdam**
+
+- Fixed styles for `EuiMarkdownEditor` ([#4289](https://github.com/elastic/eui/pull/4289))
+- Rounded all corners of dropdown type of inputs ([#4301](https://github.com/elastic/eui/pull/4301))
+
+## [`30.4.2`](https://github.com/elastic/eui/tree/v30.4.2)
+
+**Bug fixes**
+
+- Reverted changing of `EuiPopover`s `ownFocus` default from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
+
+## [`30.4.1`](https://github.com/elastic/eui/tree/v30.4.1)
+
+- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
+
+**Theme: Amsterdam**
+
+- Unify colors with the Elastic brand ([#4284](https://github.com/elastic/eui/pull/4284))
+- Created one consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/4284))
 
 ## [`30.4.0`](https://github.com/elastic/eui/tree/v30.4.0)
 
 - Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
 - Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212))
 - Added several Sass mixins for handling of unified focus/hover states ([#4242](https://github.com/elastic/eui/pull/4242))
-- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
+
+**Bug fixes**
+
+- Fixed cell resizer overlapping of `EuiDataGrid` rightmost header cell ([#4071](https://github.com/elastic/eui/pull/4268))
+
 
 **Theme: Amsterdam**
 

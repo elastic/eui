@@ -85,7 +85,12 @@ export { EuiControlBar } from './control_bar';
 
 export { EuiCopy } from './copy';
 
-export { EuiDataGrid } from './datagrid';
+export {
+  EuiDataGrid,
+  useDataGridColumnSelector,
+  useDataGridColumnSorting,
+  useDataGridStyleSelector,
+} from './datagrid';
 
 export {
   EuiDatePicker,
@@ -283,6 +288,7 @@ export {
   EuiSelectableMessage,
   EuiSelectableSearch,
   EuiSelectableTemplateSitewide,
+  euiSelectableTemplateSitewideRenderOptions,
 } from './selectable';
 
 export { EuiSideNav } from './side_nav';

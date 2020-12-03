@@ -31,4 +31,5 @@ export {
   EuiSelectableTemplateSitewideProps,
   EuiSelectableTemplateSitewideOption,
   EuiSelectableTemplateSitewideMetaData,
+  euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_templates';

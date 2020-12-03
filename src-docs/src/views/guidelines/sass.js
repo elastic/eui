@@ -454,7 +454,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             </p>
             <p>
               For example, depending upon what theme you use{' '}
-              <EuiCode>$EuiColorPrimary</EuiCode> will be a different hex value.
+              <EuiCode>$euiColorPrimary</EuiCode> will be a different hex value.
             </p>
           </EuiText>
           <EuiSpacer />

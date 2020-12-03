@@ -143,6 +143,7 @@ export default () => {
           }
           isOpen={example1.isOpen}
           closePopover={closeExample1}
+          ownFocus
           panelPaddingSize="s"
           anchorPosition="downLeft">
           {renderPopover1()}
@@ -163,6 +164,7 @@ export default () => {
           }
           isOpen={example2.isOpen}
           closePopover={closeExample2}
+          ownFocus
           anchorPosition="downLeft">
           {renderPopover2()}
         </EuiPopover>

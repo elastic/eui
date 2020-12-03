@@ -49,6 +49,7 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             panelPaddingSize="s"
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -77,6 +78,7 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             panelPaddingSize="none"
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -106,6 +108,7 @@ export default () => {
       <EuiFlexGroup wrap={true}>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -137,6 +140,7 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             panelPaddingSize="none"
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -168,6 +172,7 @@ export default () => {
       <EuiFlexGroup wrap={true}>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -197,6 +202,7 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             panelPaddingSize="none"
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"

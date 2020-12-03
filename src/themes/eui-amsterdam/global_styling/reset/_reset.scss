@@ -66,7 +66,7 @@ html {
 }
 
 body {
-  line-height: 1;
+  line-height: $euiBodyLineHeight;
 }
 
 *:focus {
@@ -86,6 +86,11 @@ body {
   &:not(:focus-visible) {
     outline: none;
   }
+}
+
+// Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
+::selection {
+  background: $euiFocusBackgroundColor;
 }
 
 a {
