@@ -59,6 +59,7 @@ interface ToolTipStyles {
   left: number | 'auto';
   right?: number | 'auto';
   opacity?: number;
+  visibility?: 'hidden';
 }
 
 const displayToClassNameMap = {
@@ -75,6 +76,8 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // just in case, avoid any potential flicker by hiding
   // the tooltip before it is positioned
   opacity: 0,
+  // prevent accidental mouse interaction while positioning
+  visibility: 'hidden',
 };
 
 export interface Props {
