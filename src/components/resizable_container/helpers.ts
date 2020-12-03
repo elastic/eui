@@ -19,7 +19,6 @@
 
 import {
   useMemo,
-  // useEffect,
   useReducer,
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,
@@ -141,9 +140,7 @@ export const useContainerCallbacks = ({
         : containerRef.current!.getBoundingClientRect().height;
     };
 
-    const runSideEffect = async (
-      panels: EuiResizableContainerState['panels']
-    ) => {
+    const runSideEffect = (panels: EuiResizableContainerState['panels']) => {
       if (onPanelWidthChange) {
         onPanelWidthChange(sizesOnly(panels));
       }
@@ -546,14 +543,6 @@ export const useContainerCallbacks = ({
   }
 
   const [reducerState, dispatch] = useReducer(reducer, initialState, init);
-
-  // TODO: Handle side-effects like this?
-  // useEffect(() => {
-  //   if (!onPanelWidthChange) return;
-  //   dispatch({
-  //     type: 'EUI_RESIZABLE_ONCHANGE',
-  //   });
-  // }, [reducerState.panels, onPanelWidthChange]);
 
   const actions: EuiResizableContainerActions = useMemo(() => {
     return {
