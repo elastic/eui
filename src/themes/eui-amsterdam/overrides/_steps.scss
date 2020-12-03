@@ -7,6 +7,8 @@
 // STEP NUMBER CHANGES
 
 .euiStepNumber {
+  outline-color: $euiColorPrimary;
+
   .euiStepNumber__icon {
     position: relative;
     top: -1px;
@@ -32,6 +34,7 @@
     &--#{$name} {
       background-color: $color;
       color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+      outline-color: chooseLightOrDarkText($color, $color, $euiColorInk) !important; // sass-lint:disable-line no-important
     }
   }
 
@@ -92,3 +95,9 @@
 .euiStepsHorizontal {
   background: none;
 }
+
+// Fix outline in Chrome for horizontal steps
+.euiStepHorizontal:focus:not(.euiStepHorizontal-isDisabled) .euiStepHorizontal__number:not(:focus-visible) {
+  outline: $euiFocusRingSize solid $euiColorPrimary;
+}
+

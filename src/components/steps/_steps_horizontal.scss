@@ -41,16 +41,16 @@
   // focus & hover state
   &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
-    .euiStepHorizontal__number {
-      @include euiFocusRing(large);
-
-      // sass-lint:disable-block indentation
-      transition: background-color $euiAnimSpeedNormal $euiAnimSlightResistance,
-                  color $euiAnimSpeedNormal $euiAnimSlightResistance;
-    }
-
     .euiStepHorizontal__title {
       text-decoration: underline;
+    }
+  }
+
+  &:focus:not(.euiStepHorizontal-isDisabled) {
+    outline: none;
+
+    .euiStepHorizontal__number {
+      @include euiFocusRing(large);
     }
   }
 

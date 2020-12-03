@@ -175,6 +175,11 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
     class="euiStepNumber euiStepNumber--loading euiStepHorizontal__number"
   >
     <span
+      class="euiScreenReaderOnly"
+    >
+      Step 1 is loading
+    </span>
+    <span
       class="euiLoadingSpinner euiLoadingSpinner--medium euiStepNumber__icon"
     />
   </span>

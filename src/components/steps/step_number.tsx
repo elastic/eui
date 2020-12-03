@@ -30,6 +30,7 @@ import {
   useI18nIncompleteStep,
   useI18nStep,
   useI18nWarningStep,
+  useI18nLoadingStep,
 } from './step_strings';
 import { EuiLoadingSpinner } from '../loading';
 
@@ -78,7 +79,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const errorsAriaLabel = useI18nErrorsStep({ number });
   const incompleteAriaLabel = useI18nIncompleteStep({ number });
   const disabledAriaLabel = useI18nDisabledStep({ number });
-  const loadingAriaLabel = useI18nDisabledStep({ number });
+  const loadingAriaLabel = useI18nLoadingStep({ number });
 
   const classes = classNames(
     'euiStepNumber',
@@ -133,7 +134,12 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
     );
   } else if (status === 'loading') {
     numberOrIcon = (
-      <EuiLoadingSpinner className="euiStepNumber__icon" size={iconSize} />
+      <>
+        <EuiScreenReaderOnly>
+          <span>{screenReaderText}</span>
+        </EuiScreenReaderOnly>
+        <EuiLoadingSpinner className="euiStepNumber__icon" size={iconSize} />
+      </>
     );
   }
 
