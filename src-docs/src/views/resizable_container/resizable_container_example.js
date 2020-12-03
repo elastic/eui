@@ -19,12 +19,11 @@ import { EuiResizablePanel } from '../../../../src/components/resizable_containe
 import { EuiResizableButton } from '../../../../src/components/resizable_container/resizable_button';
 
 // eslint-disable-next-line
-import { ModeOptions, ToggleOptions, ToggleCollapseCallback } from '!!prop-loader!../../../../src/components/resizable_container/resizable_panel';
+import { ModeOptions, ToggleOptions } from '!!prop-loader!../../../../src/components/resizable_container/resizable_panel';
 import { PanelModeType } from '!!prop-loader!../../../../src/components/resizable_container/types';
 
 import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
-import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizablePanels from './resizable_panels';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
@@ -33,7 +32,6 @@ import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
-const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_container_three_panels');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
@@ -88,9 +86,6 @@ const verticalSnippet = `<EuiResizableContainer direction="vertical" style={{ he
     </>
   )}
 </EuiResizableContainer>`;
-const ResizableContainerThreePanelsHtml = renderToHtml(
-  ResizableContainerThreePanels
-);
 const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
@@ -308,28 +303,6 @@ export const ResizableContainerExample = {
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerResetValues />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: ResizableContainerThreePanelsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizableContainerThreePanelsHtml,
-        },
-      ],
-      title: 'Horizontal resizing with three panels',
-      text: (
-        <p>
-          The <strong>EuiResizablePanel</strong> and{' '}
-          <strong>EuiResizableButton</strong> components can each be used
-          multiple times to create a more complex layout.
-        </p>
-      ),
-      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
-      demo: <ResizableContainerThreePanels />,
     },
     {
       source: [

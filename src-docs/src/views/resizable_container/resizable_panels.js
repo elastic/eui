@@ -27,7 +27,8 @@ export default () => (
           color="plain"
           hasShadow
           borderRadius="m"
-          wrapperPadding="m">
+          wrapperPadding="m"
+          minSize="20%">
           <EuiText size="s">
             <p>
               This <strong>EuiResizablePanel</strong> resets most of the{' '}

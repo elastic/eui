@@ -147,7 +147,12 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
 
   const onMouseMove = useCallback(
     (event: React.MouseEvent | React.TouchEvent) => {
-      if (!reducerState.prevPanelId || !reducerState.nextPanelId) return;
+      if (
+        !reducerState.prevPanelId ||
+        !reducerState.nextPanelId ||
+        !reducerState.isDragging
+      )
+        return;
       const position = getPosition(event, isHorizontal);
       actions.dragMove({
         position,
@@ -155,7 +160,13 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         nextPanelId: reducerState.nextPanelId,
       });
     },
-    [actions, isHorizontal, reducerState.prevPanelId, reducerState.nextPanelId]
+    [
+      actions,
+      isHorizontal,
+      reducerState.prevPanelId,
+      reducerState.nextPanelId,
+      reducerState.isDragging,
+    ]
   );
 
   const onKeyDown = useCallback(

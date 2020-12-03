@@ -71,7 +71,10 @@ const _getPanelMinSize = (panelMinSize: string, containerSize: number) => {
   if (panelMinSize.indexOf('px') > -1) {
     panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
   } else if (panelMinSize.indexOf('%') > -1) {
-    panelMinSizePercent = panelMinSizeInt + containerSize * panelMinSizeInt;
+    panelMinSizePercent = pxToPercent(
+      containerSize * (panelMinSizeInt / 100),
+      containerSize
+    );
   }
   return panelMinSizePercent;
 };
@@ -165,17 +168,15 @@ export const useContainerCallbacks = ({
         const { panelId } = action.payload;
         return {
           ...state,
-          panels: {
-            ...Object.values(state.panels).reduce(
-              (out: EuiResizableContainerState['panels'], panel) => {
-                if (panel.id !== panelId) {
-                  out[panel.id] = panel;
-                }
-                return out;
-              },
-              {}
-            ),
-          },
+          panels: Object.values(state.panels).reduce(
+            (out: EuiResizableContainerState['panels'], panel) => {
+              if (panel.id !== panelId) {
+                out[panel.id] = panel;
+              }
+              return out;
+            },
+            {}
+          ),
         };
       }
       case 'EUI_RESIZABLE_BUTTON_REGISTER': {
@@ -192,17 +193,15 @@ export const useContainerCallbacks = ({
         const { resizerId } = action.payload;
         return {
           ...state,
-          resizers: {
-            ...Object.values(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], panel) => {
-                if (panel.id !== resizerId) {
-                  out[panel.id] = panel;
-                }
-                return out;
-              },
-              {}
-            ),
-          },
+          resizers: Object.values(state.resizers).reduce(
+            (out: EuiResizableContainerState['resizers'], panel) => {
+              if (panel.id !== resizerId) {
+                out[panel.id] = panel;
+              }
+              return out;
+            },
+            {}
+          ),
         };
       }
       case 'EUI_RESIZABLE_DRAG_START': {
@@ -216,10 +215,14 @@ export const useContainerCallbacks = ({
         };
       }
       case 'EUI_RESIZABLE_DRAG_MOVE': {
+        if (!state.isDragging) {
+          return state;
+        }
         const { position, prevPanelId, nextPanelId } = action.payload;
         const prevPanel = state.panels[prevPanelId];
         const nextPanel = state.panels[nextPanelId];
         const delta = position - state.currentResizerPos;
+
         const prevPanelMin = getPanelMinSize(
           prevPanel.minSize,
           state.containerSize
@@ -236,6 +239,7 @@ export const useContainerCallbacks = ({
           nextPanel.getSizePx() - delta,
           state.containerSize
         );
+
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           return withSideEffect({
             ...state,
@@ -261,6 +265,14 @@ export const useContainerCallbacks = ({
         const prevPanel = state.panels[prevPanelId];
         const nextPanel = state.panels[nextPanelId];
 
+        const prevPanelMin = getPanelMinSize(
+          prevPanel.minSize,
+          state.containerSize
+        );
+        const nextPanelMin = getPanelMinSize(
+          nextPanel.minSize,
+          state.containerSize
+        );
         const prevPanelSize = pxToPercent(
           prevPanel.getSizePx() - (direction === 'backward' ? 10 : -10),
           state.containerSize
@@ -270,21 +282,25 @@ export const useContainerCallbacks = ({
           state.containerSize
         );
 
-        return withSideEffect({
-          ...state,
-          isDragging: false,
-          panels: {
-            ...state.panels,
-            [prevPanelId]: {
-              ...state.panels[prevPanelId],
-              size: prevPanelSize,
+        if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
+          return withSideEffect({
+            ...state,
+            isDragging: false,
+            panels: {
+              ...state.panels,
+              [prevPanelId]: {
+                ...state.panels[prevPanelId],
+                size: prevPanelSize,
+              },
+              [nextPanelId]: {
+                ...state.panels[nextPanelId],
+                size: nextPanelSize,
+              },
             },
-            [nextPanelId]: {
-              ...state.panels[nextPanelId],
-              size: nextPanelSize,
-            },
-          },
-        });
+          });
+        }
+
+        return state;
       }
 
       case 'EUI_RESIZABLE_TOGGLE': {
@@ -402,51 +418,45 @@ export const useContainerCallbacks = ({
           // This situation can only occur when (n-1) panels are collapsed at once
           // and the most recently collapsed panel gains significant width
           // during the previously occurring collapse.
-          // That is (largley), external toggling where the default logic has
+          // That is (largely), external toggling where the default logic has
           // been negated by the lack of panel mode distinction.
-          otherPanels = {
-            ...Object.values(state.panels).reduce(
-              (out: EuiResizableContainerState['panels'], panel) => {
-                if (panel.id !== currentPanelId && !panel.isCollapsed) {
-                  out[panel.id] = {
-                    ...panel,
-                  };
-                }
-                return out;
-              },
-              {}
-            ),
-          };
+          otherPanels = Object.values(state.panels).reduce(
+            (out: EuiResizableContainerState['panels'], panel) => {
+              if (panel.id !== currentPanelId && !panel.isCollapsed) {
+                out[panel.id] = {
+                  ...panel,
+                };
+              }
+              return out;
+            },
+            {}
+          );
 
           newPanelSize =
             (100 - collapsedPanelsSize) / (Object.keys(otherPanels).length + 1);
 
-          updatedPanels = {
-            ...Object.values(otherPanels).reduce(
-              (out: EuiResizableContainerState['panels'], panel) => {
-                out[panel.id] = {
-                  ...panel,
-                  size: newPanelSize,
-                };
-                return out;
-              },
-              {}
-            ),
-          };
+          updatedPanels = Object.values(otherPanels).reduce(
+            (out: EuiResizableContainerState['panels'], panel) => {
+              out[panel.id] = {
+                ...panel,
+                size: newPanelSize,
+              };
+              return out;
+            },
+            {}
+          );
         } else {
           // A toggling sequence has occurred that is standard and predictable
-          updatedPanels = {
-            ...Object.values(otherPanels).reduce(
-              (out: EuiResizableContainerState['panels'], panel) => {
-                out[panel.id] = {
-                  ...panel,
-                  size: panel.size + delta,
-                };
-                return out;
-              },
-              {}
-            ),
-          };
+          updatedPanels = Object.values(otherPanels).reduce(
+            (out: EuiResizableContainerState['panels'], panel) => {
+              out[panel.id] = {
+                ...panel,
+                size: panel.size + delta,
+              };
+              return out;
+            },
+            {}
+          );
         }
 
         return withSideEffect({
@@ -461,55 +471,48 @@ export const useContainerCallbacks = ({
               prevSize: shouldCollapse ? currentPanel.size : newPanelSize,
             },
           },
-          resizers: {
-            ...Object.values(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], resizer) => {
-                out[resizer.id] = {
-                  ...resizer,
-                  isFocused: false,
-                  isDisabled:
-                    resizersToDisable[resizer.id] ?? resizer.isDisabled,
-                };
-                return out;
-              },
-              {}
-            ),
-          },
+          resizers: Object.values(state.resizers).reduce(
+            (out: EuiResizableContainerState['resizers'], resizer) => {
+              out[resizer.id] = {
+                ...resizer,
+                isFocused: false,
+                isDisabled: resizersToDisable[resizer.id] ?? resizer.isDisabled,
+              };
+              return out;
+            },
+            {}
+          ),
         });
       }
       case 'EUI_RESIZABLE_BUTTON_FOCUS': {
         const { resizerId } = action.payload;
         return {
           ...state,
-          resizers: {
-            ...Object.values(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], resizer) => {
-                out[resizer.id] = {
-                  ...resizer,
-                  isFocused: resizer.id === resizerId,
-                };
-                return out;
-              },
-              {}
-            ),
-          },
+          resizers: Object.values(state.resizers).reduce(
+            (out: EuiResizableContainerState['resizers'], resizer) => {
+              out[resizer.id] = {
+                ...resizer,
+                isFocused: resizer.id === resizerId,
+              };
+              return out;
+            },
+            {}
+          ),
         };
       }
       case 'EUI_RESIZABLE_BUTTON_BLUR': {
         return {
           ...state,
-          resizers: {
-            ...Object.values(state.resizers).reduce(
-              (out: EuiResizableContainerState['resizers'], resizer) => {
-                out[resizer.id] = {
-                  ...resizer,
-                  isFocused: false,
-                };
-                return out;
-              },
-              {}
-            ),
-          },
+          resizers: Object.values(state.resizers).reduce(
+            (out: EuiResizableContainerState['resizers'], resizer) => {
+              out[resizer.id] = {
+                ...resizer,
+                isFocused: false,
+              };
+              return out;
+            },
+            {}
+          ),
         };
       }
       case 'EUI_RESIZABLE_RESET': {
