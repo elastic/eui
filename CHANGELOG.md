@@ -2,6 +2,7 @@
 
 - Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
 
 **Bug fixes**
 
