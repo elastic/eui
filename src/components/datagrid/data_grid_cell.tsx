@@ -92,7 +92,7 @@ export interface EuiDataGridCellProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
-  style: any;
+  style?: React.CSSProperties;
 }
 
 interface EuiDataGridCellState {
