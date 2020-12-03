@@ -27,6 +27,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
+import classNames from 'classnames';
 import {
   GridChildComponentProps,
   VariableSizeGrid as Grid,
@@ -145,8 +146,30 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
 
   let cellContent;
 
-  if (columnIndex < leadingControlColumns.length) {
-    // this is a leading control column
+  const isFirstColumn = columnIndex === 0;
+  const isLastColumn =
+    columnIndex ===
+    columns.length +
+      leadingControlColumns.length +
+      trailingControlColumns.length -
+      1;
+  const isStripableRow = rowIndex % 2 !== 0;
+
+  const isLeadingControlColumn = columnIndex < leadingControlColumns.length;
+  const isTrailingControlColumn =
+    columnIndex >= leadingControlColumns.length + columns.length;
+
+  console.log(rowIndex, columnIndex);
+
+  const classes = classNames({
+    'euiDataGridRowCell--stripe': isStripableRow,
+    'euiDataGridRowCell--firstColumn': isFirstColumn,
+    'euiDataGridRowCell--lastColumn': isLastColumn,
+    'euiDataGridRowCell--controlColumn':
+      isLeadingControlColumn || isTrailingControlColumn,
+  });
+
+  if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[columnIndex];
     const { id, rowCellRender } = leadingColumn;
 
@@ -161,7 +184,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         renderCellValue={rowCellRender}
         interactiveCellId={interactiveCellId}
         isExpandable={false}
-        className="euiDataGridRowCell--controlColumn"
+        className={classes}
         setRowHeight={setRowHeight}
         style={{
           ...style,
@@ -169,8 +192,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         }}
       />
     );
-  } else if (columnIndex >= leadingControlColumns.length + columns.length) {
-    // this is a trailing control column
+  } else if (isTrailingControlColumn) {
     const columnOffset = columns.length + leadingControlColumns.length;
     const trailingColumnIndex = columnIndex - columnOffset;
     const trailingColumn = trailingControlColumns[trailingColumnIndex];
@@ -187,7 +209,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         renderCellValue={rowCellRender}
         interactiveCellId={interactiveCellId}
         isExpandable={false}
-        className="euiDataGridRowCell--controlColumn"
+        className={classes}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,
@@ -224,6 +246,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         renderCellValue={renderCellValue}
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
+        className={classes}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + HEADER_ROW_HEIGHT}px`,

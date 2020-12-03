@@ -21,11 +21,11 @@
     width: 100%;
   }
 
-  &:first-of-type {
+  &.euiDataGridRowCell--firstColumn {
     border-left: $euiBorderThin;
   }
 
-  &:last-of-type {
+  &.euiDataGridRowCell--lastColumn {
     border-right-color: $euiBorderColor;
   }
 
@@ -159,8 +159,8 @@
 
 // Stripes
 @include euiDataGridStyles(stripes) {
-  .euiDataGridRow:nth-child(odd) {
-    @include euiDataGridRowCell {
+  @include euiDataGridRowCell {
+    &.euiDataGridRowCell--stripe {
       background: $euiColorLightestShade;
     }
   }
