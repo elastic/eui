@@ -52,10 +52,14 @@ function isMouseEvent(
   return typeof event === 'object' && 'pageX' in event && 'pageY' in event;
 }
 
-const pxToPercent = (proportion: number, whole: number) =>
-  (proportion / whole) * 100;
+export const pxToPercent = (proportion: number, whole: number) => {
+  if (whole < 1 || proportion < 0) return 0;
+  return (proportion / whole) * 100;
+};
 
-const sizesOnly = (panelObject: EuiResizableContainerRegistry['panels']) => {
+export const sizesOnly = (
+  panelObject: EuiResizableContainerRegistry['panels']
+) => {
   return Object.values(panelObject).reduce(
     (out: { [key: string]: number }, panel) => {
       out[panel.id] = panel.size;
@@ -79,7 +83,10 @@ const _getPanelMinSize = (panelMinSize: string, containerSize: number) => {
   return panelMinSizePercent;
 };
 
-const getPanelMinSize = (panelMinSize: string[], containerSize: number) => {
+export const getPanelMinSize = (
+  panelMinSize: string[],
+  containerSize: number
+) => {
   const paddingMin = _getPanelMinSize(panelMinSize[1], containerSize);
   const configMin = _getPanelMinSize(panelMinSize[0], containerSize);
   return Math.max(configMin, paddingMin);
