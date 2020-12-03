@@ -23,6 +23,11 @@
     background-color: $euiColorLightestShade;
   }
 
+  &:focus {
+    @include euiSlightShadowHover;
+    background-color: $euiColorLightShade;
+  }
+
   &-isCollapsed {
     box-shadow: none;
     background: transparent;
