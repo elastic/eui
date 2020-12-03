@@ -3,6 +3,11 @@
 - Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 
+**Bug fixes**
+
+- Fixed `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
+- Fixed `EuiToolTip` closing during initial positioning period ([#4327](https://github.com/elastic/eui/pull/4327))
+
 **Theme: Amsterdam**
 
 - Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
