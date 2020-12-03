@@ -1,10 +1,13 @@
 import { PropTypes } from 'react-view';
 
-export const simulateFunction = (prop = { custom: {} }) => {
+export const simulateFunction = (
+  prop = { custom: {} },
+  defaultValue = false
+) => {
   const newProp = {
     ...prop,
     type: PropTypes.Custom,
-    value: undefined,
+    value: defaultValue,
     custom: {
       ...prop.custom,
       use: 'switch',

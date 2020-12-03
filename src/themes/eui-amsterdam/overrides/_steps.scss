@@ -1,7 +1,10 @@
+// Make the disabled step title the same disabled text color
 .euiStepHorizontal-isDisabled .euiStepHorizontal__title,
 .euiStep-isDisabled .euiStep__title {
   color: $euiColorDisabledText;
 }
+
+// STEP NUMBER CHANGES
 
 .euiStepNumber {
   .euiStepNumber__icon {
@@ -83,4 +86,9 @@
 .euiStep__content {
   padding-bottom: ($euiSizeXL + $euiSizeS);
   margin-bottom: 0;
+}
+
+// Remove forced background from horizontal steps
+.euiStepsHorizontal {
+  background: none;
 }
