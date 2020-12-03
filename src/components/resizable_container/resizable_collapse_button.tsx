@@ -37,7 +37,7 @@ export type EuiResizableCollapseButtonProps = Omit<
    * Position of the toggle button.
    * Enums based on the `direction` of the EuiResizableContainer
    */
-  externalPosition: 'before' | 'after';
+  externalPosition?: 'before' | 'after';
   /**
    * Same direction derived from EuiResizableContainer
    */
