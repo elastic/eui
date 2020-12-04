@@ -159,8 +159,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
   const isTrailingControlColumn =
     columnIndex >= leadingControlColumns.length + columns.length;
 
-  console.log(rowIndex, columnIndex);
-
   const classes = classNames({
     'euiDataGridRowCell--stripe': isStripableRow,
     'euiDataGridRowCell--firstColumn': isFirstColumn,
