@@ -1888,6 +1888,65 @@ Array [
     });
   });
 
+  describe('render sorting arrows', () => {
+    it('renders sorting arrows only when they are sorted', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [
+              { id: 'A', direction: 'asc' },
+              { id: 'B', direction: 'desc' },
+            ],
+            onSort: () => {},
+          }}
+          columns={[
+            { id: 'A', isSortable: true },
+            { id: 'B', isSortable: true },
+            {
+              id: 'C',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                showSortAsc: false,
+                showSortDesc: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B', 'C'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      const arrowA = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-A'
+      );
+      expect(arrowA.length).toBe(1);
+
+      const arrowB = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-B'
+      );
+      expect(arrowB.length).toBe(1);
+
+      const arrowC = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-C'
+      );
+      expect(arrowC.length).toBe(0);
+    });
+  });
+
   describe('render column cell actions', () => {
     it('renders various column cell actions configurations', () => {
       const alertFn = jest.fn();
