@@ -1,3 +1,4 @@
+import { findLastIndex } from 'lodash';
 import React, { useState } from 'react';
 
 import {
@@ -8,6 +9,7 @@ import {
   EuiPopover,
   EuiSwitch,
   EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => {
@@ -39,6 +41,12 @@ export default () => {
         {
           name: 'Go to a link',
           icon: 'user',
+          keyboardIcon: (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <EuiIcon type="globe" size="m" />
+              +C
+            </div>
+          ),
           href: 'http://elastic.co',
           target: '_blank',
         },
