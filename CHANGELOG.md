@@ -13,6 +13,7 @@
 
 - Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Increased font size for `m` size of `EuiListGroupItem` ([#4340](https://github.com/elastic/eui/pull/4340))
 
 ## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
 
