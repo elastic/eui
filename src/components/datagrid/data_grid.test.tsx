@@ -1889,7 +1889,7 @@ Array [
   });
 
   describe('render sorting arrows', () => {
-    it('renders sorting arrows only when they are sorted', () => {
+    it('renders sorting arrows when direction is given', () => {
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
@@ -1903,6 +1903,39 @@ Array [
           columns={[
             { id: 'A', isSortable: true },
             { id: 'B', isSortable: true },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+      const arrowA = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-A'
+      );
+      expect(arrowA.length).toBe(1);
+
+      const arrowB = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-B'
+      );
+      expect(arrowB.length).toBe(1);
+    });
+
+    it('does not render the arrows if the column is not sorted', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [],
+            onSort: () => {},
+          }}
+          columns={[
             {
               id: 'C',
               isSortable: true,
@@ -1917,7 +1950,7 @@ Array [
             },
           ]}
           columnVisibility={{
-            visibleColumns: ['A', 'B', 'C'],
+            visibleColumns: ['C'],
             setVisibleColumns: () => {},
           }}
           rowCount={2}
@@ -1926,24 +1959,37 @@ Array [
           }
         />
       );
-
-      const arrowA = findTestSubject(
-        component,
-        'dataGridHeaderCellSortingIcon-A'
-      );
-      expect(arrowA.length).toBe(1);
-
-      const arrowB = findTestSubject(
-        component,
-        'dataGridHeaderCellSortingIcon-B'
-      );
-      expect(arrowB.length).toBe(1);
-
       const arrowC = findTestSubject(
         component,
         'dataGridHeaderCellSortingIcon-C'
       );
       expect(arrowC.length).toBe(0);
+    });
+
+    it('renders the icons if they are sorted but user is not allowed to perform any action', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'D', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[{ id: 'D', actions: false }]}
+          columnVisibility={{
+            visibleColumns: ['D'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+      const arrowD = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-D'
+      );
+      expect(arrowD.length).toBe(1);
     });
   });
 

@@ -285,6 +285,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
   const showColumnActions = columnActions && columnActions.length > 0;
   const sortedColumn = sorting?.columns.find((col) => col.id === id);
+  const sortingArrow = sortedColumn ? (
+    <EuiIcon
+      type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
+      size="m"
+      color="text"
+      data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
+    />
+  ) : null;
 
   return (
     <div
@@ -309,19 +317,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         </EuiScreenReaderOnly>
       )}
       {!showColumnActions ? (
-        <div className="euiDataGridHeaderCell__content">{display || id}</div>
+        <>
+          {sortingArrow}
+          <div className="euiDataGridHeaderCell__content">{display || id}</div>
+        </>
       ) : (
         <button
           className="euiDataGridHeaderCell__button"
           onClick={() => setIsPopoverOpen(true)}>
-          {sortedColumn && (
-            <EuiIcon
-              type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
-              size="m"
-              color="text"
-              data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
-            />
-          )}
+          {sortingArrow}
           <div className="euiDataGridHeaderCell__content">{display || id}</div>
           <EuiPopover
             className="euiDataGridHeaderCell__popover"
