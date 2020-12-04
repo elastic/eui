@@ -8,6 +8,8 @@
 - Fixed `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
 - Fixed `EuiToolTip` closing during initial positioning period ([#4327](https://github.com/elastic/eui/pull/4327))
 - Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
+- Fixed `EuiDataGrid` column property `displayAsText`. Column headers prefer `displayAsText` over `id`; `display` still takes precedence. If provided, the filter in the sort-popover will search against `displayAsText` instead of `id`. ([#4351](https://github.com/elastic/eui/pull/4351))
+
 
 **Theme: Amsterdam**
 
