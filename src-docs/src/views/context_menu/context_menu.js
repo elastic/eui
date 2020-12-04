@@ -34,6 +34,9 @@ export default () => {
           },
         },
         {
+          isSeparator: true,
+        },
+        {
           name: 'Go to a link',
           icon: 'user',
           href: 'http://elastic.co',
@@ -138,7 +141,7 @@ export default () => {
       closePopover={closePopover}
       panelPaddingSize="none"
       anchorPosition="downLeft">
-      <EuiContextMenu initialPanelId={0} panels={panels} />
+      <EuiContextMenu size="s" initialPanelId={0} panels={panels} />
     </EuiPopover>
   );
 };

@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -68,10 +68,20 @@ export interface EuiContextMenuPanelDescriptor {
   initialFocusedItemIndex?: number;
 }
 
+export type MenuSize = 's' | 'm';
+
+export const sizeToClassNameMap: { [size in MenuSize]: string | null } = {
+  s: 'euiContextMenu--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
+
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
     initialPanelId?: EuiContextMenuPanelId;
+    size?: MenuSize;
   };
 
 const isItemSeparator = (
@@ -151,6 +161,7 @@ interface State {
 export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   static defaultProps: Partial<EuiContextMenuProps> = {
     panels: [],
+    size: 'm',
   };
 
   static getDerivedStateFromProps(
@@ -401,7 +412,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   render() {
-    const { panels, className, initialPanelId, ...rest } = this.props;
+    const { panels, className, initialPanelId, size, ...rest } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId!, 'in');
     let outgoingPanel;
@@ -416,7 +427,11 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         ? this.state.idToPanelMap[this.state.incomingPanelId!].width
         : undefined;
 
-    const classes = classNames('euiContextMenu', className);
+    const classes = classNames(
+      'euiContextMenu',
+      sizeToClassNameMap[size],
+      className
+    );
 
     return (
       <div

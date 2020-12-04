@@ -11,6 +11,16 @@ $euiContextMenuWidth: $euiSize * 16;
   .euiContextMenu__content {
     padding: $euiSizeS;
   }
+
+  &--small {
+    .euiContextMenuPanelTitle {
+      padding: $euiSizeS;
+    }
+
+    .euiContextMenuItem {
+      padding: $euiSizeS;
+    }
+  }
 }
 
 /**
