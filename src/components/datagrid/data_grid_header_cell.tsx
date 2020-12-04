@@ -288,8 +288,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const sortingArrow = sortedColumn ? (
     <EuiIcon
       type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
-      size="m"
       color="text"
+      className="euiDataGridHeaderCell__sortingArrow"
       data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
     />
   ) : null;
