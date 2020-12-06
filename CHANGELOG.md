@@ -15,6 +15,7 @@
 - Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 - Increased font size for `m` size of `EuiListGroupItem` ([#4340](https://github.com/elastic/eui/pull/4340))
 - Reduced padding in `EuiToolTip` ([#4353](https://github.com/elastic/eui/pull/4353))
+- Reduced border-radius in `EuiRange`'s tooltip ([#4353](https://github.com/elastic/eui/pull/4353))
 
 ## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
 
