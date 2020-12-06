@@ -33,6 +33,7 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
     HTMLAttributes<HTMLSpanElement>
   > & {
     type: IconType;
+    compressed?: boolean;
     iconRef?:
       | string
       | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
@@ -43,6 +44,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
   onClick,
   type,
   iconRef,
+  compressed = false,
   ...rest
 }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
@@ -60,6 +62,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
         <EuiIcon
           className="euiFormControlLayoutCustomIcon__icon"
           aria-hidden="true"
+          size={compressed ? 's' : 'm'}
           type={type}
         />
       </button>
@@ -71,6 +74,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
       <EuiIcon
         className="euiFormControlLayoutCustomIcon__icon"
         aria-hidden="true"
+        size={compressed ? 's' : 'm'}
         type={type}
       />
     </span>

@@ -52,6 +52,7 @@ export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
+  compressed?: boolean;
 }
 
 export class EuiFormControlLayoutIcons extends Component<
@@ -59,7 +60,6 @@ export class EuiFormControlLayoutIcons extends Component<
 > {
   render() {
     const { icon } = this.props;
-
     const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
@@ -94,6 +94,7 @@ export class EuiFormControlLayoutIcons extends Component<
 
   renderCustomIcon() {
     const { icon } = this.props;
+    const { compressed } = this.props;
 
     if (!icon) {
       return null;
@@ -105,10 +106,15 @@ export class EuiFormControlLayoutIcons extends Component<
       : {
           type: icon,
         };
-
     const { ref: iconRef, side, ...iconRest } = iconProps;
 
-    return <EuiFormControlLayoutCustomIcon iconRef={iconRef} {...iconRest} />;
+    return (
+      <EuiFormControlLayoutCustomIcon
+        compressed={compressed}
+        iconRef={iconRef}
+        {...iconRest}
+      />
+    );
   }
 
   renderLoadingSpinner() {

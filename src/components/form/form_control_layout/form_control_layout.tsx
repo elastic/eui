@@ -74,7 +74,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       fullWidth,
       isLoading,
       isDisabled,
-      compressed,
+      compressed = false,
       className,
       prepend,
       append,
@@ -107,6 +107,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
           <EuiFormControlLayoutIcons
             icon={icon}
             clear={clear}
+            compressed={compressed}
             isLoading={isLoading}
           />
         </div>
