@@ -2,6 +2,7 @@
 
 - Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Added `disabled` and `loading` `status` to `EuiStep` ([#4338](https://github.com/elastic/eui/pull/4338))
 
 **Bug fixes**
 
@@ -19,6 +20,7 @@
 - Increased font size for `m` size of `EuiListGroupItem` ([#4340](https://github.com/elastic/eui/pull/4340))
 - Reduced padding in `EuiToolTip` ([#4353](https://github.com/elastic/eui/pull/4353))
 - Reduced border-radius in `EuiRange`'s tooltip ([#4353](https://github.com/elastic/eui/pull/4353))
+- Consolidated `EuiStepNumber` indicators for `EuiSteps` and `EuiHorizontalSteps` ([#4338](https://github.com/elastic/eui/pull/4338))
 
 ## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
 
