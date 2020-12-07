@@ -355,71 +355,80 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       display="inlineBlock"
                       hasArrow={true}
                       isOpen={false}
-                      ownFocus={true}
+                      ownFocus={false}
                       panelPaddingSize="none"
                     >
-                      <div
-                        className="euiPopover euiPopover--anchorUpRight"
+                      <EuiOutsideClickDetector
+                        onOutsideClick={[Function]}
                       >
                         <div
-                          className="euiPopover__anchor"
+                          className="euiPopover euiPopover--anchorUpRight"
+                          onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onMouseUp={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchStart={[Function]}
                         >
-                          <EuiButtonEmpty
-                            color="text"
-                            data-test-subj="tablePaginationPopoverButton"
-                            iconSide="right"
-                            iconType="arrowDown"
-                            onClick={[Function]}
-                            size="xs"
+                          <div
+                            className="euiPopover__anchor"
                           >
-                            <button
-                              className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+                            <EuiButtonEmpty
+                              color="text"
                               data-test-subj="tablePaginationPopoverButton"
+                              iconSide="right"
+                              iconType="arrowDown"
                               onClick={[Function]}
-                              type="button"
+                              size="xs"
                             >
-                              <EuiButtonContent
-                                className="euiButtonEmpty__content"
-                                iconSide="right"
-                                iconType="arrowDown"
-                                textProps={
-                                  Object {
-                                    "className": "euiButtonEmpty__text",
-                                  }
-                                }
+                              <button
+                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+                                data-test-subj="tablePaginationPopoverButton"
+                                onClick={[Function]}
+                                type="button"
                               >
-                                <span
-                                  className="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                                <EuiButtonContent
+                                  className="euiButtonEmpty__content"
+                                  iconSide="right"
+                                  iconType="arrowDown"
+                                  textProps={
+                                    Object {
+                                      "className": "euiButtonEmpty__text",
+                                    }
+                                  }
                                 >
-                                  <EuiIcon
-                                    className="euiButtonContent__icon"
-                                    size="m"
-                                    type="arrowDown"
-                                  >
-                                    <span
-                                      className="euiButtonContent__icon"
-                                      data-euiicon-type="arrowDown"
-                                      size="m"
-                                    />
-                                  </EuiIcon>
                                   <span
-                                    className="euiButtonEmpty__text"
+                                    className="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
                                   >
-                                    <EuiI18n
-                                      default="Rows per page"
-                                      token="euiTablePagination.rowsPerPage"
+                                    <EuiIcon
+                                      className="euiButtonContent__icon"
+                                      size="m"
+                                      type="arrowDown"
                                     >
-                                      Rows per page
-                                    </EuiI18n>
-                                    : 
-                                    2
+                                      <span
+                                        className="euiButtonContent__icon"
+                                        data-euiicon-type="arrowDown"
+                                        size="m"
+                                      />
+                                    </EuiIcon>
+                                    <span
+                                      className="euiButtonEmpty__text"
+                                    >
+                                      <EuiI18n
+                                        default="Rows per page"
+                                        token="euiTablePagination.rowsPerPage"
+                                      >
+                                        Rows per page
+                                      </EuiI18n>
+                                      : 
+                                      2
+                                    </span>
                                   </span>
-                                </span>
-                              </EuiButtonContent>
-                            </button>
-                          </EuiButtonEmpty>
+                                </EuiButtonContent>
+                              </button>
+                            </EuiButtonEmpty>
+                          </div>
                         </div>
-                      </div>
+                      </EuiOutsideClickDetector>
                     </EuiPopover>
                   </div>
                 </EuiFlexItem>

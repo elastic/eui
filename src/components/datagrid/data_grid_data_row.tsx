@@ -93,7 +93,7 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
               visibleRowIndex={visibleRowIndex}
               colIndex={i}
               columnId={id}
-              column={columns[i]}
+              column={leadingColumn}
               popoverContent={DefaultColumnFormatter}
               width={leadingColumn.width}
               renderCellValue={rowCellRender}
@@ -136,8 +136,8 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
             />
           );
         })}
-        {trailingControlColumns.map((leadingColumn, i) => {
-          const { id, rowCellRender } = leadingColumn;
+        {trailingControlColumns.map((trailingColumn, i) => {
+          const { id, rowCellRender } = trailingColumn;
           const colIndex = i + columns.length + leadingControlColumns.length;
 
           return (
@@ -147,9 +147,9 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
               visibleRowIndex={visibleRowIndex}
               colIndex={colIndex}
               columnId={id}
-              column={columns[colIndex]}
+              column={trailingColumn}
               popoverContent={DefaultColumnFormatter}
-              width={leadingColumn.width}
+              width={trailingColumn.width}
               renderCellValue={rowCellRender}
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === colIndex}

@@ -117,7 +117,10 @@ export const useDataGridColumnSelector = (
   });
 
   const filteredColumns = sortedColumns.filter(
-    (id) => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
+    (id) =>
+      (displayValues[id] || id)
+        .toLowerCase()
+        .indexOf(columnSearchText.toLowerCase()) !== -1
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
@@ -150,6 +153,7 @@ export const useDataGridColumnSelector = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
+      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
