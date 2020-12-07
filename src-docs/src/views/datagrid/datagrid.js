@@ -84,6 +84,8 @@ const columns = [
   },
   {
     id: 'email',
+    displayAsText: 'Email address',
+    initialWidth: 130,
     cellActions: [
       ({ rowIndex, columnId, Component }) => {
         const data = useContext(DataContext);
@@ -100,9 +102,11 @@ const columns = [
   },
   {
     id: 'location',
+    displayAsText: 'Location',
   },
   {
     id: 'account',
+    displayAsText: 'Account',
     actions: {
       showHide: { label: 'Custom hide label' },
       showMoveLeft: false,
@@ -140,19 +144,23 @@ const columns = [
   },
   {
     id: 'date',
+    displayAsText: 'Date',
     defaultSortDirection: 'desc',
   },
   {
     id: 'amount',
+    displayAsText: 'Amount',
   },
   {
     id: 'phone',
+    displayAsText: 'Phone',
     isSortable: false,
   },
   {
     id: 'version',
+    displayAsText: 'Version',
     defaultSortDirection: 'desc',
-    initialWidth: 65,
+    initialWidth: 70,
     isResizable: false,
     actions: false,
   },

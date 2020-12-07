@@ -70,7 +70,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     headerIsInteractive,
     className,
   } = props;
-  const { id, display } = column;
+  const { id, display, displayAsText } = column;
 
   const width = columnWidths[id] || defaultColumnWidth;
 
@@ -308,12 +308,16 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         </EuiScreenReaderOnly>
       )}
       {!showColumnActions ? (
-        <div className="euiDataGridHeaderCell__content">{display || id}</div>
+        <div className="euiDataGridHeaderCell__content">
+          {display || displayAsText || id}
+        </div>
       ) : (
         <button
           className="euiDataGridHeaderCell__button"
           onClick={() => setIsPopoverOpen(true)}>
-          <div className="euiDataGridHeaderCell__content">{display || id}</div>
+          <div className="euiDataGridHeaderCell__content">
+            {display || displayAsText || id}
+          </div>
           <EuiPopover
             className="euiDataGridHeaderCell__popover"
             panelPaddingSize="none"
