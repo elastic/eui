@@ -17,7 +17,6 @@
  * under the License.
  */
 
-import { isEqual } from 'lodash'; 
 import React, {
   FunctionComponent,
   HTMLAttributes,
@@ -80,6 +79,7 @@ import {
 import { useDataGridColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
+import { usePerfomanceCheck, useDebugEffect, useDebugMemo } from './debug_hooks';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -423,7 +423,7 @@ function useInMemoryValues(
   const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inMemoryValues = useMemo(useDebug(() => ({ ..._inMemoryValues.current }), 'inMemoryValues'), [
+  const inMemoryValues = useMemo(useDebugMemo(() => ({ ..._inMemoryValues.current }), 'inMemoryValues'), [
     inMemoryValuesVersion,
   ]);
 
@@ -572,10 +572,10 @@ const useFocus = (
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const hasHadFocus = useMemo(useDebug(() => focusedCell != null, 'hasHadFocus'), [focusedCell]);
+  const hasHadFocus = useMemo(useDebugMemo(() => focusedCell != null, 'hasHadFocus'), [focusedCell]);
 
   const focusProps = useMemo<FocusProps>(
-    useDebug(() =>
+    useDebugMemo(() =>
       hasHadFocus
         ? {
             // FireFox allows tabbing to a div that is scrollable, while Chrome does not
@@ -598,51 +598,6 @@ const useFocus = (
 
   return [focusProps, focusedCell, setFocusedCell];
 };
-
-function usePerfomanceCheck(
-  dependencies: any[]
-) {
-  useDebugEffect(() => {
-    window.performance.mark(`EuiDataGridFinishRendering`);
-    window.performance.measure(`EuiDataGrid`, `EuiDataGridStartRendering`, `EuiDataGridFinishRendering`);
-    const obj = window.performance.getEntriesByName('EuiDataGrid');
-    console.log(`time of all operations after some changes`, obj[obj.length - 1]);
-  }, dependencies, 'usePerfomanceCheck')
-}
-
-function compareDependencies(oldDeps, newDeps) {
-  oldDeps.forEach((oldDep, index) => {
-    const newDep = newDeps[index];
-    if(!isEqual(newDep, oldDep)) {
-      console.log(`The dependency changed in position ${index}`);
-      console.log("Old value:", oldDep)
-      console.log("New value:", newDep)
-    }
-  });
-}
-
-function useDebugEffect(hook, dependencies, name) {
-  const oldDepsRef = useRef(dependencies);
-  useEffect(() => {
-    const oldDeps = oldDepsRef.current;
-
-    console.log(name);
-    compareDependencies(oldDeps, dependencies);
-
-    // Save the current dependencies
-    oldDepsRef.current = dependencies;
-    hook()
-  }, dependencies)
-}
-
-function useDebug(hook, name) {
-  return (params?: any) => {
-    window.performance.mark(`execute cache-related hook for ${name}`);
-    const obj = window.performance.getEntriesByName(`execute cache-related hook for ${name}`);
-    console.log(`hook was called for ${name}`, obj[obj.length - 1]);
-    return hook(params);
-  };
-}
 
 // Typeguards to see if toolbarVisibility has a certain boolean property assigned
 // If not, just set it to true and assume it's OK to show
@@ -672,7 +627,7 @@ function checkOrDefaultToolBarDiplayOptions<
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   console.log('EuiDataGrid - start');
-  window.performance.mark(`EuiDataGridStartRendering`);
+  window.performance.mark(`EuiDataGridStart`);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
@@ -777,7 +732,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
-  const definedColumnSchemas = useMemo(useDebug(() => {
+  const definedColumnSchemas = useMemo(useDebugMemo(() => {
     return columns.reduce<{ [key: string]: string }>(
       (definedColumnSchemas, { id, schema }) => {
         if (schema != null) {
@@ -790,7 +745,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   }, 'definedColumnSchemas'), [columns]);
 
   const allSchemaDetectors = useMemo(
-    useDebug(() => [...providedSchemaDetectors, ...(schemaDetectors || [])], 'allSchemaDetectors'),
+    useDebugMemo(() => [...providedSchemaDetectors, ...(schemaDetectors || [])], 'allSchemaDetectors'),
     [schemaDetectors]
   );
   const detectedSchema = useDetectSchema(
@@ -966,7 +921,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   });
 
   const datagridContext = useMemo(
-    useDebug(() => ({
+    useDebugMemo(() => ({
       onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
         const key = `${cell[0]}-${cell[1]}`;
         cellsUpdateFocus.current.set(key, updateFocus);
@@ -1005,7 +960,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     focusedCell,
     wrappingDivFocusProps,
     contentRef
-  ]);
+  ], 'EuiDataGrid');
 
   return (
     <EuiI18n
