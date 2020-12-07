@@ -22,6 +22,7 @@ import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
 import * as MarkdownTooltip from './markdown_tooltip';
 import * as MarkdownCheckbox from './markdown_checkbox';
+import { markdownLinkValidator } from './markdown_link_validator';
 import React, { createElement } from 'react';
 import { EuiLink } from '../../link';
 import { EuiCodeBlock, EuiCode } from '../../code';
@@ -37,6 +38,7 @@ export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [emoji, { emoticon: true }],
   [MarkdownTooltip.parser, {}],
   [MarkdownCheckbox.parser, {}],
+  [markdownLinkValidator, {}],
 ];
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
