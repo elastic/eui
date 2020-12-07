@@ -138,7 +138,10 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         <EuiScreenReaderOnly>
           <span>{screenReaderText}</span>
         </EuiScreenReaderOnly>
-        <EuiLoadingSpinner className="euiStepNumber__icon" size={iconSize} />
+        <EuiLoadingSpinner
+          className="euiStepNumber__loader"
+          size={iconSize === 's' ? 'l' : 'xl'}
+        />
       </>
     );
   }

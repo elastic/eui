@@ -31,6 +31,10 @@
     }
   }
 
+  &--loading {
+    background: transparent;
+  }
+
   &.euiStepNumber-isHollow {
     background-color: transparent;
     border: 2px solid $euiColorPrimary;

@@ -107,7 +107,7 @@
 
 // Selected state
 .euiStepHorizontal-isSelected {
-  .euiStepHorizontal__number:not([class*='danger']):not([class*='warning']) {
+  .euiStepHorizontal__number:not([class*='danger']):not([class*='warning']):not([class*='loading']) {
     @include euiSlightShadow(desaturate($euiColorPrimary, 20%));
   }
 

@@ -52,7 +52,6 @@
   }
 }
 
-.euiStepNumber--loading,
 .euiStepNumber--disabled {
   $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 90%);
   background-color: transparentize($euiButtonColorDisabled, .9);
