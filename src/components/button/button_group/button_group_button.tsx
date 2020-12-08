@@ -56,8 +56,6 @@ type Props = EuiButtonGroupOptionProps & {
    * Inherit from EuiButtonGroup
    */
   onChange: EuiButtonGroupProps['onChange'];
-
-  buttonType?: 'button' | 'submit' | 'reset';
 };
 
 export const EuiButtonGroupButton: FunctionComponent<Props> = ({
