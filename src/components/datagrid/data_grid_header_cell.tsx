@@ -318,7 +318,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ) : (
         <button
           className="euiDataGridHeaderCell__button"
-          onClick={() => setIsPopoverOpen(true)}>
+          onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
           <div className="euiDataGridHeaderCell__content">
             {display || displayAsText || id}
           </div>
