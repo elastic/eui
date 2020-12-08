@@ -22,16 +22,15 @@ const columns = [
     id: 'email',
     isSortable: true,
     cellActions: [
-      ({ rowIndex, columnId, Component }) => {
-        const row = ++rowIndex;
+      ({ Component, closePopover }) => {
         return (
           <Component
-            onClick={() =>
-              alert(`Love sent from row ${row}, column "${columnId}"`)
-            }
+            onClick={() => {
+              closePopover?.();
+            }}
             iconType="heart"
-            aria-label={`Send love to ${row}, column "${columnId}" `}>
-            Send love
+            aria-label="Close the popover if expanded">
+            Close the popover
           </Component>
         );
       },
