@@ -105,6 +105,9 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     },
     ref
   ) => {
+    const isHrefValid = !href || validateHref(href);
+    const disabled = _disabled || !isHrefValid;
+
     const externalLinkIcon = (
       <EuiIcon
         aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
@@ -124,9 +127,6 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
         </span>
       </EuiScreenReaderOnly>
     );
-
-    const isHrefValid = !href || validateHref(href);
-    const disabled = _disabled || !isHrefValid;
 
     if (href === undefined || !isHrefValid) {
       const buttonProps = {

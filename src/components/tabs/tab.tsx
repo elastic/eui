@@ -26,6 +26,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -49,12 +50,15 @@ export const EuiTab: FunctionComponent<Props> = ({
   isSelected,
   children,
   className,
-  disabled,
+  disabled: _disabled,
   href,
   target,
   rel,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
+
   const classes = classNames('euiTab', className, {
     'euiTab-isSelected': isSelected,
     'euiTab-isDisabled': disabled,

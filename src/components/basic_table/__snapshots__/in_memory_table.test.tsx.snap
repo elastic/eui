@@ -383,6 +383,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               <button
                                 className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
                                 data-test-subj="tablePaginationPopoverButton"
+                                disabled={false}
                                 onClick={[Function]}
                                 type="button"
                               >
