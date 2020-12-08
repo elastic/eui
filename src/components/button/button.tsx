@@ -119,6 +119,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   contentProps?: EuiButtonContentType;
   style?: CSSProperties;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export type EuiButtonDisplayProps = EuiButtonProps &

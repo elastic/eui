@@ -56,6 +56,8 @@ type Props = EuiButtonGroupOptionProps & {
    * Inherit from EuiButtonGroup
    */
   onChange: EuiButtonGroupProps['onChange'];
+
+  buttonType?: 'button' | 'submit' | 'reset';
 };
 
 export const EuiButtonGroupButton: FunctionComponent<Props> = ({
@@ -70,6 +72,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   size,
   value,
   type = 'button',
+  buttonType = 'button',
   ...rest
 }) => {
   // Force element to be a button if disabled
@@ -100,6 +103,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       ...elementProps,
       id,
       isSelected,
+      type: buttonType,
       onClick: () => onChange(id),
     };
   }
