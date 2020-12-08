@@ -2,6 +2,7 @@
 
 - Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Added a sorting indicator on the `EuiDataGridColumn` which indicates the sorting direction and is being displayed only when the column is sorted ([#4343](https://github.com/elastic/eui/pull/4343))
 - Added `disabled` and `loading` `status` to `EuiStep` ([#4338](https://github.com/elastic/eui/pull/4338))
 
 **Bug fixes**
