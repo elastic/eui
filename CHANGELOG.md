@@ -2,6 +2,9 @@
 
 - Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Added a sorting indicator on the `EuiDataGridColumn` which indicates the sorting direction and is being displayed only when the column is sorted ([#4343](https://github.com/elastic/eui/pull/4343))
+- Added `disabled` and `loading` `status` to `EuiStep` ([#4338](https://github.com/elastic/eui/pull/4338))
+- Added `closePopover` prop to `EuiDataGridColumnCellActionProps` ([#4346](https://github.com/elastic/eui/pull/4346))
 
 **Bug fixes**
 
@@ -9,6 +12,7 @@
 - Fixed `EuiToolTip` closing during initial positioning period ([#4327](https://github.com/elastic/eui/pull/4327))
 - Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
 - Fixed `EuiDataGrid` column property `displayAsText`. Column headers prefer `displayAsText` over `id`; `display` still takes precedence. If provided, the filter in the sort-popover will search against `displayAsText` instead of `id`. ([#4351](https://github.com/elastic/eui/pull/4351))
+- Fixed propagation of `esc` key presses closing parent popovers ([#4336](https://github.com/elastic/eui/pull/4336))
 
 
 **Theme: Amsterdam**
@@ -16,6 +20,9 @@
 - Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
 - Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 - Increased font size for `m` size of `EuiListGroupItem` ([#4340](https://github.com/elastic/eui/pull/4340))
+- Reduced padding in `EuiToolTip` ([#4353](https://github.com/elastic/eui/pull/4353))
+- Reduced border-radius in `EuiRange`'s tooltip ([#4353](https://github.com/elastic/eui/pull/4353))
+- Consolidated `EuiStepNumber` indicators for `EuiSteps` and `EuiHorizontalSteps` ([#4338](https://github.com/elastic/eui/pull/4338))
 
 ## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
 

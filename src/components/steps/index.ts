@@ -23,6 +23,8 @@ export { EuiSteps, EuiStepsProps } from './steps';
 
 export { EuiSubSteps, EuiSubStepsProps } from './sub_steps';
 
+export { EuiStepHorizontal } from './step_horizontal';
+
 export {
   EuiStepsHorizontal,
   EuiStepsHorizontalProps,
