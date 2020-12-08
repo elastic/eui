@@ -18,6 +18,7 @@
  */
 
 import { validateUrl, mutateLinkToText } from './markdown_link_validator';
+import { validateHref } from '../../../services/security/href_validator';
 
 describe('validateURL', () => {
   it('approves of https:', () => {
@@ -48,6 +49,8 @@ describe('validateURL', () => {
   it('rejects javascript', () => {
     // eslint-disable-next-line no-script-url
     expect(validateUrl('javascript:')).toBeFalsy();
+    // eslint-disable-next-line no-script-url
+    expect(validateHref('javascript:alert()')).toBeFalsy();
   });
 });
 
