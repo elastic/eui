@@ -79,7 +79,7 @@ import {
 import { useDataGridColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
-import { usePerfomanceCheck, useDebugEffect, useDebugMemo } from './debug_hooks';
+import { usePerfomanceCheck, useDebugMemo } from './debug_hooks';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -423,9 +423,9 @@ function useInMemoryValues(
   const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inMemoryValues = useMemo(useDebugMemo(() => ({ ..._inMemoryValues.current }), 'inMemoryValues'), [
+  const inMemoryValues = useDebugMemo(() => ({ ..._inMemoryValues.current }), [
     inMemoryValuesVersion,
-  ]);
+  ], 'inMemoryValues',);
 
   const onCellRender = useCallback((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
@@ -572,10 +572,10 @@ const useFocus = (
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const hasHadFocus = useMemo(useDebugMemo(() => focusedCell != null, 'hasHadFocus'), [focusedCell]);
+  const hasHadFocus = useDebugMemo(() => focusedCell != null, [focusedCell], 'hasHadFocus');
 
-  const focusProps = useMemo<FocusProps>(
-    useDebugMemo(() =>
+  const focusProps = useDebugMemo(
+    () =>
       hasHadFocus
         ? {
             // FireFox allows tabbing to a div that is scrollable, while Chrome does not
@@ -592,8 +592,9 @@ const useFocus = (
                 setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]);
               }
             },
-          }, 'focusProps'),
-    [hasHadFocus, setFocusedCell, headerIsInteractive]
+          },
+    [hasHadFocus, setFocusedCell, headerIsInteractive],
+    'focusProps'
   );
 
   return [focusProps, focusedCell, setFocusedCell];
@@ -732,7 +733,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
-  const definedColumnSchemas = useMemo(useDebugMemo(() => {
+  const definedColumnSchemas = useDebugMemo(() => {
     return columns.reduce<{ [key: string]: string }>(
       (definedColumnSchemas, { id, schema }) => {
         if (schema != null) {
@@ -742,11 +743,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       },
       {}
     );
-  }, 'definedColumnSchemas'), [columns]);
+  }, [columns], 'definedColumnSchemas');
 
-  const allSchemaDetectors = useMemo(
-    useDebugMemo(() => [...providedSchemaDetectors, ...(schemaDetectors || [])], 'allSchemaDetectors'),
-    [schemaDetectors]
+  const allSchemaDetectors = useDebugMemo(
+    () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
+    [schemaDetectors],
+    'allSchemaDetectors'
   );
   const detectedSchema = useDetectSchema(
     inMemory,
@@ -920,8 +922,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   });
 
-  const datagridContext = useMemo(
-    useDebugMemo(() => ({
+  const datagridContext = useDebugMemo(() => ({
       onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
         const key = `${cell[0]}-${cell[1]}`;
         cellsUpdateFocus.current.set(key, updateFocus);
@@ -930,8 +931,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
           cellsUpdateFocus.current.delete(key);
         };
       },
-    }), 'datagridContext'),
-    []
+    }),
+    [],
+    'datagridContext'
   );
 
   const gridIds = htmlIdGenerator();

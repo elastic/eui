@@ -18,7 +18,38 @@
  */
 
 import { isEqual, last } from 'lodash';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
+
+function compareDependencies(oldDeps: any[], newDeps: any[]) {
+  oldDeps.forEach((oldDep, index) => {
+    const newDep = newDeps[index];
+    if(!isEqual(newDep, oldDep)) {
+      console.log(`The dependency changed in position ${index}`);
+      console.log("Old value: ", oldDep);
+      console.log("New value: ", newDep);
+    }
+  });
+}
+
+function useDebugHooks(hook: Function, hookFn: Function, dependencies: any[], name: string, isShouldReturn = false) {
+  const oldDepsRef = useRef(dependencies);
+  return hook((params?: any) => {
+    const oldDeps = oldDepsRef.current;
+
+    if (dependencies.length !== 0) {
+      console.log(`hook for ${name} was executed cause some dependency was changed`);
+      compareDependencies(oldDeps, dependencies);
+    }
+
+    // Save the current dependencies
+    oldDepsRef.current = dependencies;
+    if (isShouldReturn) {
+      return hookFn(params);
+    } else {
+      hookFn(params);
+    }
+  }, dependencies)
+}
 
 export function usePerfomanceCheck(
   dependencies: any[],
@@ -32,36 +63,16 @@ export function usePerfomanceCheck(
   }, dependencies, 'usePerfomanceCheck')
 }
 
-function compareDependencies(oldDeps: any[], newDeps: any[]) {
-  oldDeps.forEach((oldDep, index) => {
-    const newDep = newDeps[index];
-    if(!isEqual(newDep, oldDep)) {
-      console.log(`The dependency changed in position ${index}`);
-      console.log("Old value: ", oldDep);
-      console.log("New value: ", newDep);
-    }
-  });
+export function useDebugEffect(hookFn: Function, dependencies: any[], name: string) {
+  return useDebugHooks(useEffect, hookFn, dependencies, name);
 }
 
-export function useDebugEffect(hook: Function, dependencies: any[], name: string) {
-  const oldDepsRef = useRef(dependencies);
-  useEffect(() => {
-    const oldDeps = oldDepsRef.current;
-
-    console.log(name);
-    compareDependencies(oldDeps, dependencies);
-
-    // Save the current dependencies
-    oldDepsRef.current = dependencies;
-    hook();
-  }, dependencies)
-}
-
-export function useDebugMemo(hook: Function, name: string) {
-  return (params?: any) => {
+export function useDebugMemo(hookFn: Function, dependencies: any[], name: string) {
+  const enhancedHookFn = (params?: any) => {
     window.performance.mark(`execute cache-related hook for ${name}`);
     const obj = window.performance.getEntriesByName(`execute cache-related hook for ${name}`);
     console.log(`hook was called for ${name}`, last(obj));
-    return hook(params);
+    return hookFn(params);
   };
+  return useDebugHooks(useMemo, enhancedHookFn, dependencies, name, true);
 }
