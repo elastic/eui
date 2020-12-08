@@ -13,6 +13,7 @@ exports[`EuiStepNumber is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
+    class="euiStepNumber__number"
   />
 </span>
 `;
@@ -28,6 +29,7 @@ exports[`EuiStepNumber props has titleSize is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
+    class="euiStepNumber__number"
   >
     1
   </span>
@@ -42,6 +44,12 @@ exports[`EuiStepNumber props isHollow is rendered 1`] = `
     class="euiScreenReaderOnly"
   >
     Step 1
+  </span>
+  <span
+    aria-hidden="true"
+    class="euiStepNumber__number"
+  >
+    1
   </span>
 </span>
 `;
@@ -81,6 +89,7 @@ exports[`EuiStepNumber props status disabled is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
+    class="euiStepNumber__number"
   >
     1
   </span>
@@ -98,9 +107,25 @@ exports[`EuiStepNumber props status incomplete is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
+    class="euiStepNumber__number"
   >
     1
   </span>
+</span>
+`;
+
+exports[`EuiStepNumber props status loading is rendered 1`] = `
+<span
+  class="euiStepNumber euiStepNumber--loading"
+>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step 1 is loading
+  </span>
+  <span
+    class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+  />
 </span>
 `;
 

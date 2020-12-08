@@ -14,7 +14,7 @@ import {
 
 import { EuiStepHorizontal } from '../../../../src/components/steps/step_horizontal';
 
-import { stepConfig } from './playground';
+import { stepConfig, stepHorizontalConfig } from './playground';
 
 import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
@@ -24,7 +24,7 @@ const stepsSnippet = [
   steps={[
     {
       title: 'Step 1',
-      children: <p>Do this first</p>,
+      children: <EuiText><p>Do this first</p></EuiText>,
     },
   ]}
 />`,
@@ -33,7 +33,7 @@ const stepsSnippet = [
   steps={[
     {
       title: 'Step 3',
-      children: <p>Do this third first</p>,
+      children: <EuiText><p>Do this third first</p></EuiText>,
     },
   ]}
 />`,
@@ -42,6 +42,51 @@ const stepsSnippet = [
 import StepsComplex from './steps_complex';
 const stepsComplexSource = require('!!raw-loader!./steps_complex');
 const stepsComplexHtml = renderToHtml(StepsComplex);
+const stepsComplexSnippet = [
+  `<EuiSteps
+  steps={[
+    {
+      title: 'Step 1 has intro plus code snippet',
+      children: (
+        <>
+          <EuiText>
+            <p>Run this code snippet to install things.</p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCodeBlock language="bash">npm install</EuiCodeBlock>
+        </>
+      ),
+    },
+  ]}
+/>`,
+  `<EuiSteps
+  steps={[
+    {
+      title: 'Step 2 has sub steps',
+      children: (
+        <EuiText>
+          <p>
+            In order to complete this step, do the following things <strong>in order</strong>.
+          </p>
+          <EuiSubSteps>
+            <ol>
+              <li>Do thing 1</li>
+              <li>Do thing 2</li>
+              <li>Do thing 3</li>
+            </ol>
+          </EuiSubSteps>
+          <p>Here are some bullet point reminders.</p>
+          <ul>
+            <li>Reminder 1</li>
+            <li>Reminder 2</li>
+            <li>Reminder 3</li>
+          </ul>
+        </EuiText>
+      ),
+    },
+  ]}
+/>`,
+];
 
 import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
@@ -75,9 +120,7 @@ const statusSnippet = `<EuiSteps
 import StepsTitleSizes from './steps_title_sizes';
 const stepsTitleSizesSource = require('!!raw-loader!./steps_title_sizes');
 const stepsTitleSizesHtml = renderToHtml(StepsTitleSizes);
-const stepsTitleSizesSnippet = `<EuiSteps titleSize="xs" steps={[{
-  title: 'Completed step',
-}]} />
+const stepsTitleSizesSnippet = `<EuiSteps titleSize="xs" steps={steps} />
 `;
 
 export const StepsExample = {
@@ -97,7 +140,11 @@ export const StepsExample = {
       text: (
         <p>
           <strong>EuiSteps</strong> presents procedural content in a numbered
-          outline format.
+          outline format. It is best used when presenting instructional content
+          that must be conducted in a particular order. It requires a{' '}
+          <EuiCode>title</EuiCode> and <EuiCode>children</EuiCode> to be present
+          and will automatically increment the step number based on the initial{' '}
+          <EuiCode>firstStepNumber</EuiCode>.
         </p>
       ),
       props: { EuiSteps, EuiStep },
@@ -125,6 +172,7 @@ export const StepsExample = {
       ),
       demo: <StepsComplex />,
       props: { EuiSubSteps },
+      snippet: stepsComplexSnippet,
     },
     {
       title: 'Heading elements',
@@ -174,7 +222,8 @@ export const StepsExample = {
           Steps can optionally include <EuiCode>status</EuiCode> prop that will
           alter the look of the number prefix. The options are{' '}
           <EuiCode>incomplete</EuiCode>, <EuiCode>complete</EuiCode>,{' '}
-          <EuiCode>warning</EuiCode>, and <EuiCode>danger</EuiCode>. This is
+          <EuiCode>warning</EuiCode>, <EuiCode>danger</EuiCode>,{' '}
+          <EuiCode>disabled</EuiCode> and <EuiCode>loading</EuiCode>. This is
           used mostly as a final step when you need to make some sort of final
           check.
         </p>
@@ -240,5 +289,5 @@ export const StepsExample = {
       props: { EuiStepsHorizontal, EuiStepHorizontal },
     },
   ],
-  playground: stepConfig,
+  playground: [stepConfig, stepHorizontalConfig],
 };

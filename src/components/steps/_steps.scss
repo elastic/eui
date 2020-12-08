@@ -42,17 +42,6 @@
   flex-shrink: 0;
   margin-right: $euiStepNumberMargin;
   vertical-align: top; /* 1 */
-
-  &[class*='complete'],
-  &[class*='warning'],
-  &[class*='danger'] {
-    animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
-  }
-
-  &[class*='incomplete'] {
-    border-color: $euiColorPrimary;
-    animation: none;
-  }
 }
 
 .euiStep__title {

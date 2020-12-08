@@ -41,16 +41,16 @@
   // focus & hover state
   &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
-    .euiStepHorizontal__number {
-      @include euiFocusRing(large);
-
-      // sass-lint:disable-block indentation
-      transition: background-color $euiAnimSpeedNormal $euiAnimSlightResistance,
-                  color $euiAnimSpeedNormal $euiAnimSlightResistance;
-    }
-
     .euiStepHorizontal__title {
       text-decoration: underline;
+    }
+  }
+
+  &:focus:not(.euiStepHorizontal-isDisabled) {
+    outline: none;
+
+    .euiStepHorizontal__number {
+      @include euiFocusRing(large);
     }
   }
 
@@ -64,7 +64,7 @@
   &::after {
     content: '';
     position: absolute;
-    width: 50%;
+    width: calc(50% - #{$euiStepNumberSize / 2});
     height: 1px;
     top: $euiSizeL + ($euiStepNumberSize / 2);
     background-color: $euiColorLightShade;
@@ -107,7 +107,7 @@
 
 // Selected state
 .euiStepHorizontal-isSelected {
-  .euiStepHorizontal__number:not([class*='danger']):not([class*='warning']) {
+  .euiStepHorizontal__number:not([class*='danger']):not([class*='warning']):not([class*='loading']) {
     @include euiSlightShadow(desaturate($euiColorPrimary, 20%));
   }
 
