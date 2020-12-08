@@ -17,6 +17,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -62,6 +63,7 @@ exports[`EuiStepHorizontal props isSelected 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -127,6 +129,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
@@ -152,9 +155,33 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
+  </span>
+  <span
+    class="euiStepHorizontal__title"
+  />
+</button>
+`;
+
+exports[`EuiStepHorizontal props status loading is rendered 1`] = `
+<button
+  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  title="Step 1"
+>
+  <span
+    class="euiStepNumber euiStepNumber--loading euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step 1 is loading
+    </span>
+    <span
+      class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+    />
   </span>
   <span
     class="euiStepHorizontal__title"
@@ -197,6 +224,7 @@ exports[`EuiStepHorizontal props step 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       5
     </span>
@@ -222,6 +250,7 @@ exports[`EuiStepHorizontal props title 1`] = `
     </span>
     <span
       aria-hidden="true"
+      class="euiStepNumber__number"
     >
       1
     </span>
