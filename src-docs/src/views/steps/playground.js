@@ -1,8 +1,10 @@
 import { PropTypes } from 'react-view';
-import { EuiStep } from '../../../../src/components/';
+import { EuiStep, EuiStepHorizontal } from '../../../../src/components/steps';
 import {
   propUtilityForPlayground,
   createOptionalEnum,
+  simulateFunction,
+  dummyFunction,
 } from '../../services/playground';
 
 export const stepConfig = () => {
@@ -32,6 +34,37 @@ export const stepConfig = () => {
         '@elastic/eui': {
           named: ['EuiStep'],
         },
+      },
+    },
+  };
+};
+
+export const stepHorizontalConfig = () => {
+  const docgenInfo = Array.isArray(EuiStepHorizontal.__docgenInfo)
+    ? EuiStepHorizontal.__docgenInfo[0]
+    : EuiStepHorizontal.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.title.value = 'Horizontal step';
+
+  propsToUse.status = createOptionalEnum(propsToUse.status);
+
+  propsToUse.onClick = simulateFunction(propsToUse.onClick, true);
+
+  return {
+    config: {
+      componentName: 'EuiStepHorizontal',
+      props: propsToUse,
+      scope: {
+        EuiStepHorizontal,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiStepHorizontal'],
+        },
+      },
+      customProps: {
+        onClick: dummyFunction,
       },
     },
   };
