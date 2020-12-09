@@ -12,8 +12,7 @@
 - Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
 - Fixed `EuiDataGrid` column property `displayAsText`. Column headers prefer `displayAsText` over `id`; `display` still takes precedence. If provided, the filter in the sort-popover will search against `displayAsText` instead of `id`. ([#4351](https://github.com/elastic/eui/pull/4351))
 - Fixed propagation of `esc` key presses closing parent popovers ([#4336](https://github.com/elastic/eui/pull/4336))
-- Fixed autosubmit bug in button `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` and `EuiButton` ([#4368](https://github.com/elastic/eui/pull/4368)).
-
+- Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
 
 **Theme: Amsterdam**
 

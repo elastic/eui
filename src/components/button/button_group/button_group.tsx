@@ -42,6 +42,10 @@ export interface EuiButtonGroupOptionProps
    * The value of the radio input.
    */
   value?: any;
+  /**
+   * The type of the underlying HTML button
+   */
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export type EuiButtonGroupProps = CommonProps & {

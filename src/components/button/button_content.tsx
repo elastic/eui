@@ -58,11 +58,6 @@ export interface EuiButtonContentProps extends CommonProps {
       ref?: Ref<HTMLSpanElement>;
       'data-text'?: string;
     };
-
-  /**
-   * The type of the underlying HTML button
-   */
-  type?: 'button' | 'submit' | 'reset';
 }
 
 export const EuiButtonContent: FunctionComponent<
