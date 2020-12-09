@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed initial focus of an `EuiButtonGroup` when first item in a popover ([#4288](https://github.com/elastic/eui/pull/4288))
+- Fixed `inputRef` for `EuiCheckbox` ([#4298](https://github.com/elastic/eui/pull/4298))
 
 **Theme: Amsterdam**
 
