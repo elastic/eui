@@ -49,7 +49,7 @@ const gridSnippet = `
     columns={[
         { id: 'A', initialWidth: 150, isResizable: false, actions: false },
         { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
-        { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test) }]}
+        { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
     ]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{

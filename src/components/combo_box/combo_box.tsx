@@ -616,8 +616,11 @@ export class EuiComboBox<T> extends Component<
         break;
 
       case keys.ESCAPE:
-        event.stopPropagation();
-        this.closeList();
+        if (this.state.isListOpen) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.closeList();
+        }
         break;
 
       case keys.ENTER:

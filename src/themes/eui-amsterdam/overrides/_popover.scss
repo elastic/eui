@@ -1,4 +1,17 @@
 .euiPopover__panel {
+
+  &.euiPopover__panel-isAttached {
+    @include euiBottomShadowMedium;
+
+    // Reset border radius to panel's
+    // Specificity also helps override default theme
+    @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+      &.euiPanel--#{$modifier} {
+        border-radius: $amount;
+      }
+    }
+  }
+
   .euiPopover__panelArrow {
     &:before {
       filter: blur($euiSizeXS - 1px);

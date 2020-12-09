@@ -7,15 +7,19 @@ import {
   EuiCodeBlock,
   EuiSubSteps,
 } from '../../../../src/components';
+import { EuiSpacer } from '../../../../src/components/spacer';
 
 const steps = [
   {
     title: 'Step 1 has intro plus code snippet',
     children: (
-      <EuiText>
-        <p>Run this code snippet to install things.</p>
+      <>
+        <EuiText>
+          <p>Run this code snippet to install things.</p>
+        </EuiText>
+        <EuiSpacer />
         <EuiCodeBlock language="bash">npm install</EuiCodeBlock>
-      </EuiText>
+      </>
     ),
   },
   {
@@ -50,7 +54,7 @@ const steps = [
           Now that you&apos;ve completed step 2, go find the{' '}
           <EuiCode>thing</EuiCode>.
         </p>
-        <p className="euiStep__subSteps">
+        <p>
           Go to <strong>Overview &gt;&gt; Endpoints</strong> note{' '}
           <strong>Elasticsearch</strong> as <EuiCode>&lt;thing&gt;</EuiCode>.
         </p>
