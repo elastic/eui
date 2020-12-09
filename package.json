@@ -78,6 +78,7 @@
     "tabbable": "^3.0.0",
     "text-diff": "^1.0.1",
     "unified": "^9.2.0",
+    "url-parse": "^1.4.7",
     "uuid": "^8.3.0",
     "vfile": "^4.2.0"
   },
@@ -108,6 +109,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/resize-observer-browser": "^0.1.3",
     "@types/tabbable": "^3.1.0",
+    "@types/url-parse": "^1.4.3",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
