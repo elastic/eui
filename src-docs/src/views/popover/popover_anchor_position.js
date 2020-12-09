@@ -86,6 +86,7 @@ export default () => {
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -103,6 +104,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -120,6 +122,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -141,6 +144,7 @@ export default () => {
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -158,6 +162,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -175,6 +180,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -196,6 +202,7 @@ export default () => {
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -213,6 +220,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -230,6 +238,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -251,6 +260,7 @@ export default () => {
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -268,6 +278,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"
@@ -285,6 +296,7 @@ export default () => {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
+            ownFocus
             button={
               <EuiButton
                 iconType="arrowDown"

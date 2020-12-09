@@ -38,14 +38,19 @@ export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
     CommonProps {
   /**
-   * Is the current step
+   * **DEPRECATED IN AMSTERDAM**
+   * Adds to the line before the indicator for showing current progress
    */
   isSelected?: boolean;
   /**
-   * Is a previous step that has been completed
+   * **DEPRECATED IN AMSTERDAM**
+   * Adds to the line after the indicator for showing current progress
    */
   isComplete?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Makes the whole step button disabled.
+   */
   disabled?: boolean;
   /**
    * The number of the step in the list of steps
@@ -53,6 +58,7 @@ export interface EuiStepHorizontalProps
   step?: number;
   title?: string;
   /**
+   * Visual representation of the step number indicator.
    * May replace the number provided in props.step with alternate styling.
    * The `isSelected`, `isComplete`, and `disabled` props will override these.
    */

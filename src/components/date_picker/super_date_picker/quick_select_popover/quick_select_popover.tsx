@@ -187,7 +187,8 @@ export class EuiQuickSelectPopover extends Component<
         isOpen={isOpen}
         closePopover={this.closePopover}
         anchorPosition="downLeft"
-        anchorClassName="euiQuickSelectPopover__anchor">
+        anchorClassName="euiQuickSelectPopover__anchor"
+        ownFocus>
         <div
           className="euiQuickSelectPopover__content"
           data-test-subj="superDatePickerQuickMenu">

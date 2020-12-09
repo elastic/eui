@@ -461,6 +461,7 @@ export class EuiDataGridCell extends Component<
             rowIndex={rowIndex}
             column={column}
             popoverIsOpen={this.state.popoverIsOpen}
+            closePopover={() => this.setState({ popoverIsOpen: false })}
             onExpandClick={() => {
               this.setState(({ popoverIsOpen }) => ({
                 popoverIsOpen: !popoverIsOpen,

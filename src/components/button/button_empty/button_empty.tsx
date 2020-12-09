@@ -34,13 +34,21 @@ import {
   EuiButtonContentType,
 } from '../button_content';
 
-export type EuiButtonEmptyColor = 'primary' | 'danger' | 'text' | 'ghost';
+export type EuiButtonEmptyColor =
+  | 'primary'
+  | 'danger'
+  | 'text'
+  | 'ghost'
+  | 'success'
+  | 'warning';
 
 const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
+  success: 'euiButtonEmpty--success',
+  warning: 'euiButtonEmpty--warning',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);

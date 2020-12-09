@@ -19,6 +19,7 @@ exports[`EuiStep is rendered 1`] = `
       </span>
       <span
         aria-hidden="true"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -56,6 +57,7 @@ exports[`EuiStep props headingElement 1`] = `
       </span>
       <span
         aria-hidden="true"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -142,7 +144,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
 
 exports[`EuiStep props status disabled is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep euiStep-isDisabled"
 >
   <div
     class="euiStep__titleWrapper"
@@ -157,6 +159,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
       </span>
       <span
         aria-hidden="true"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -192,6 +195,47 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
       >
         Step 1 is incomplete
       </span>
+      <span
+        aria-hidden="true"
+        class="euiStepNumber__number"
+      >
+        1
+      </span>
+    </span>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props status loading is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <span
+      class="euiStepNumber euiStepNumber--loading euiStep__circle"
+    >
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Step 1 is loading
+      </span>
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+      />
     </span>
     <p
       class="euiTitle euiTitle--small euiStep__title"
@@ -258,6 +302,7 @@ exports[`EuiStep props step 1`] = `
       </span>
       <span
         aria-hidden="true"
+        class="euiStepNumber__number"
       >
         5
       </span>
@@ -295,6 +340,7 @@ exports[`EuiStep props titleSize 1`] = `
       </span>
       <span
         aria-hidden="true"
+        class="euiStepNumber__number"
       >
         1
       </span>

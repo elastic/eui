@@ -28,11 +28,13 @@ import { EuiButtonIcon, EuiButtonIconProps } from '../button/button_icon';
 
 export const EuiDataGridCellButtons = ({
   popoverIsOpen,
+  closePopover,
   onExpandClick,
   column,
   rowIndex,
 }: {
   popoverIsOpen: boolean;
+  closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
@@ -84,6 +86,7 @@ export const EuiDataGridCellButtons = ({
                 columnId={column.id}
                 Component={ButtonComponent}
                 isExpanded={false}
+                closePopover={closePopover}
               />
             );
           }

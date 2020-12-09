@@ -277,6 +277,7 @@ const HeaderUserMenu = () => {
   return (
     <EuiPopover
       id={id}
+      ownFocus
       repositionOnScroll
       button={button}
       isOpen={isOpen}
