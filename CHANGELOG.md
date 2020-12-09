@@ -8,7 +8,7 @@
 - Fixed `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
 - Fixed `EuiToolTip` closing during initial positioning period ([#4327](https://github.com/elastic/eui/pull/4327))
 - Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
-- Prevented `EuiSuggest` popover to open when an empty array is passed into `suggestions` prop ([#4349](https://github.com/elastic/eui/pull/4349))
+- Fixed `EuiSuggest` popover opening when an empty array is passed into the `suggestions` prop ([#4349](https://github.com/elastic/eui/pull/4349))
 
 **Theme: Amsterdam**
 
