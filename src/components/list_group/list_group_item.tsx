@@ -196,7 +196,13 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   let extraActionNode;
 
   if (extraAction) {
-    const { iconType, alwaysShow, className, ...rest } = extraAction;
+    const {
+      iconType,
+      alwaysShow,
+      className,
+      isDisabled: actionIsDisabled,
+      ...rest
+    } = extraAction;
 
     const extraActionClasses = classNames(
       'euiListGroupItem__extraAction',
@@ -211,7 +217,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         className={extraActionClasses}
         iconType={iconType}
         {...rest}
-        disabled={isDisabled}
+        disabled={isDisabled || actionIsDisabled}
       />
     );
   }
