@@ -70,6 +70,7 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
     'euiStep',
     {
       'euiStep--small': titleSize === 'xs',
+      'euiStep-isDisabled': status === 'disabled',
     },
     className
   );
