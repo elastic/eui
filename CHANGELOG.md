@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.6.0`.
+**Bug fixes**
+
+- Fixed `EuiSuggest` popover opening when an empty array is passed into the `suggestions` prop ([#4349](https://github.com/elastic/eui/pull/4349))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
