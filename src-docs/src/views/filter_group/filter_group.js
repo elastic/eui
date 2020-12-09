@@ -71,6 +71,7 @@ export default () => {
       </EuiFilterButton>
       <EuiPopover
         id="popover"
+        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}

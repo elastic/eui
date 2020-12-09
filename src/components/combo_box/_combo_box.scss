@@ -19,6 +19,7 @@
     @include euiFormControlSize(auto, $includeAlternates: true);
     padding: $euiSizeXS $euiSizeS;
     display: flex; /* 1 */
+    outline: none; // Fixes an intermittent focus ring in Firefox
 
     // sass-lint:disable-block mixins-before-declarations
     // to override the padding added above
