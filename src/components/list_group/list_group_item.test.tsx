@@ -124,6 +124,20 @@ describe('EuiListGroupItem', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('can be disabled', () => {
+        const component = render(
+          <EuiListGroupItem
+            label="Label"
+            extraAction={{
+              iconType: 'empty',
+              isDisabled: true,
+            }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('href', () => {
