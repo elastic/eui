@@ -33,6 +33,7 @@ import { EuiIcon } from '../icon';
 import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 
 import { getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
@@ -90,7 +91,7 @@ export class EuiContextMenuItem extends Component<Props> {
       hasPanel,
       icon,
       buttonRef,
-      disabled,
+      disabled: _disabled,
       layoutAlign = 'center',
       toolTipTitle,
       toolTipContent,
@@ -101,6 +102,9 @@ export class EuiContextMenuItem extends Component<Props> {
       ...rest
     } = this.props;
     let iconInstance;
+
+    const isHrefValid = !href || validateHref(href);
+    const disabled = _disabled || !isHrefValid;
 
     if (icon) {
       switch (typeof icon) {

@@ -35,6 +35,7 @@ import {
   EuiButtonContentType,
   EuiButtonContent,
 } from './button_content';
+import { validateHref } from '../../services/security/href_validator';
 
 export type ButtonColor =
   | 'primary'
@@ -203,8 +204,8 @@ export type Props = ExclusiveUnion<
 >;
 
 export const EuiButton: FunctionComponent<Props> = ({
-  isDisabled,
-  disabled,
+  isDisabled: _isDisabled,
+  disabled: _disabled,
   href,
   target,
   rel,
@@ -212,6 +213,10 @@ export const EuiButton: FunctionComponent<Props> = ({
   buttonRef,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
+  const isDisabled = _isDisabled || !isHrefValid;
+
   const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
   const element = href && !isDisabled ? 'a' : 'button';
 

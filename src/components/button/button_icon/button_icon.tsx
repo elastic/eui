@@ -37,6 +37,7 @@ import {
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { ButtonSize } from '../button';
+import { validateHref } from '../../../services/security/href_validator';
 
 export type EuiButtonIconColor =
   | 'accent'
@@ -101,7 +102,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   iconType,
   iconSize = 'm',
   color = 'primary',
-  isDisabled,
+  isDisabled: _isDisabled,
   href,
   type = 'button',
   target,
@@ -109,6 +110,9 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   buttonRef,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
+
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
 

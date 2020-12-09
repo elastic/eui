@@ -33,6 +33,7 @@ import { EuiBetaBadge } from '../badge/beta_badge';
 import { getSecureRelForTarget } from '../../services';
 
 import { IconType } from '../icon';
+import { validateHref } from '../../services/security/href_validator';
 
 const renderContent = (
   children: ReactNode,
@@ -94,7 +95,7 @@ export type EuiKeyPadMenuItemProps = CommonProps &
   EuiKeyPadMenuItemCommonProps;
 
 export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
-  isDisabled,
+  isDisabled: _isDisabled,
   label,
   children,
   className,
@@ -106,6 +107,9 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   target,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
+
   const classes = classNames(
     'euiKeyPadMenuItem',
     {
