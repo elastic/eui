@@ -4,6 +4,7 @@
 - Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
 - Added a sorting indicator on the `EuiDataGridColumn` which indicates the sorting direction and is being displayed only when the column is sorted ([#4343](https://github.com/elastic/eui/pull/4343))
 - Added `disabled` and `loading` `status` to `EuiStep` ([#4338](https://github.com/elastic/eui/pull/4338))
+- Added `closePopover` prop to `EuiDataGridColumnCellActionProps` ([#4346](https://github.com/elastic/eui/pull/4346))
 
 **Bug fixes**
 
@@ -12,6 +13,8 @@
 - Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
 - Fixed `EuiDataGrid` column property `displayAsText`. Column headers prefer `displayAsText` over `id`; `display` still takes precedence. If provided, the filter in the sort-popover will search against `displayAsText` instead of `id`. ([#4351](https://github.com/elastic/eui/pull/4351))
 - Fixed propagation of `esc` key presses closing parent popovers ([#4336](https://github.com/elastic/eui/pull/4336))
+- Fixed overwritten `isDisabled` prop on `EuiListGroupItem` `extraAction` config ([#4359](https://github.com/elastic/eui/pull/4359))
+- Fixed `inputRef` for `EuiCheckbox` ([#4298](https://github.com/elastic/eui/pull/4298))
 - Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
 
 **Theme: Amsterdam**
