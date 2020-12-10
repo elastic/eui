@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
@@ -161,27 +161,25 @@ export const ResizableContainerExample = {
   title: 'Resizable container',
   isNew: true,
   intro: (
-    <Fragment>
-      <EuiCallOut title="Consuming" color="warning">
-        <p>
-          This component is handy for various resizable containers.{' '}
-          <strong>EuiResizableContainer</strong> uses the{' '}
-          <EuiLink
-            href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
-            external>
-            React Render Props
-          </EuiLink>{' '}
-          technique to provide <strong>EuiResizablePanel</strong> and{' '}
-          <strong>EuiResizableButton</strong> components for layout, and{' '}
-          <EuiCode>actions</EuiCode> for custom handling collapse and resize
-          functionality in your app. Wrap parts of your content with the{' '}
-          <strong>EuiResizablePanel</strong> component and put the{' '}
-          <strong>EuiResizableButton</strong> component between.
-        </p>
-      </EuiCallOut>
+    <EuiText>
+      <p>
+        This component is handy for various resizable containers.{' '}
+        <strong>EuiResizableContainer</strong> uses the{' '}
+        <EuiLink
+          href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
+          external>
+          React Render Props
+        </EuiLink>{' '}
+        technique to provide <strong>EuiResizablePanel</strong> and{' '}
+        <strong>EuiResizableButton</strong> components for layout, and{' '}
+        <EuiCode>actions</EuiCode> for custom handling collapse and resize
+        functionality in your app. Wrap parts of your content with the{' '}
+        <strong>EuiResizablePanel</strong> component and put the{' '}
+        <strong>EuiResizableButton</strong> component between.
+      </p>
 
       <EuiSpacer size="l" />
-    </Fragment>
+    </EuiText>
   ),
   sections: [
     {
