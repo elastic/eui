@@ -345,9 +345,10 @@ export const DataGridStylingExample = {
           <p>
             Below, the email and city columns provide 1{' '}
             <EuiCode>cellAction</EuiCode> each, while the country column
-            provides 2 <EuiCode>cellAction</EuiCode>s. The city column shows
-            another action with different alert when it&apos;s clicked in the
-            popover.
+            provides 2 <EuiCode>cellAction</EuiCode>s.
+            <br />
+            The email column cell action closes the popover if it&apos;s
+            expanded through the <EuiCode>closePopover</EuiCode> prop.
           </p>
         </Fragment>
       ),

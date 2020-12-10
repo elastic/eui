@@ -150,7 +150,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
     <EuiInputPopover
       className={classes}
       input={customInput}
-      isOpen={isPopoverOpen}
+      isOpen={suggestions.length > 0 && isPopoverOpen}
       panelPaddingSize="none"
       fullWidth
       closePopover={closePopover}>

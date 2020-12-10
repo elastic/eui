@@ -29,6 +29,7 @@ import { EuiI18n, useEuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { validateHref } from '../../services/security/href_validator';
 
 export type EuiLinkType = 'button' | 'reset' | 'submit';
 export type EuiLinkColor =
@@ -99,11 +100,14 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       rel,
       type = 'button',
       onClick,
-      disabled,
+      disabled: _disabled,
       ...rest
     },
     ref
   ) => {
+    const isHrefValid = !href || validateHref(href);
+    const disabled = _disabled || !isHrefValid;
+
     const externalLinkIcon = (
       <EuiIcon
         aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
@@ -124,7 +128,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       </EuiScreenReaderOnly>
     );
 
-    if (href === undefined) {
+    if (href === undefined || !isHrefValid) {
       const buttonProps = {
         className: classNames(
           'euiLink',
