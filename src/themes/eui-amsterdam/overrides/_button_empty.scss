@@ -7,6 +7,10 @@
     // so that they don't appear completely rounded
     border-radius: $euiBorderRadius * .667;
   }
+
+  &.euiButtonEmpty--xSmall {
+    font-size: $euiFontSizeXS;
+  }
 }
 
 @each $name, $color in $euiButtonTypes {

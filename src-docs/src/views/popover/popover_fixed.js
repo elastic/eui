@@ -28,6 +28,7 @@ export default () => {
       <EuiButton onClick={toggleExample}>Toggle example</EuiButton>
       {isExampleShown && (
         <EuiPopover
+          ownFocus
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}

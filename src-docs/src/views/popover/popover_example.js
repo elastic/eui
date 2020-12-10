@@ -59,6 +59,7 @@ const inputPopoverSource = require('!!raw-loader!./input_popover');
 const inputPopoverHtml = renderToHtml(PopoverBlock);
 
 const popOverSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -66,7 +67,6 @@ const popOverSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const trapFocusSnippet = `<EuiPopover
-  ownFocus={false}
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -74,6 +74,7 @@ const trapFocusSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverAnchorSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -82,6 +83,7 @@ const popoverAnchorSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverWithTitleSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -91,6 +93,7 @@ const popoverWithTitleSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverPanelClassNameSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -100,6 +103,7 @@ const popoverPanelClassNameSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverWithTitlePaddingSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -110,6 +114,7 @@ const popoverWithTitlePaddingSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverContainerSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -118,6 +123,7 @@ const popoverContainerSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverFixedSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
@@ -126,6 +132,7 @@ const popoverFixedSnippet = `<EuiPopover
 </EuiPopover>`;
 
 const popoverBlockSnippet = `<EuiPopover
+  ownFocus
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}

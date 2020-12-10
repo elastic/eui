@@ -53,6 +53,10 @@
       outline: none;
     }
 
+    .euiDataGridHeaderCell__sortingArrow {
+      margin-right: $euiSizeXS;
+    }
+
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
       overflow: hidden;

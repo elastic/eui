@@ -155,6 +155,7 @@ export default () => {
         }
         isOpen={example1.isOpen}
         closePopover={closeExample1}
+        ownFocus
         display="block"
         panelPaddingSize="s"
         anchorPosition="downLeft">
@@ -175,6 +176,7 @@ export default () => {
         }
         isOpen={example2.isOpen}
         closePopover={closeExample2}
+        ownFocus
         display="block"
         anchorPosition="downLeft">
         {renderPopover2()}

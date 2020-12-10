@@ -69,11 +69,13 @@
 
 // Modifier naming and colors.
 $euiButtonEmptyTypes: (
-  primary: $euiColorPrimary,
-  danger: $euiColorDanger,
+  primary: $euiColorPrimaryText,
+  danger: $euiColorDangerText,
   disabled: $euiButtonColorDisabledText,
   ghost: $euiColorGhost,
   text: $euiTextColor,
+  success: $euiColorSecondaryText,
+  warning: $euiColorWarningText,
 );
 
 // Create button modifiers based upon the map.

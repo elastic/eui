@@ -25,25 +25,32 @@
 
 /**
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.
- * 2. Animation happens on the panel.
+ * 2. Animation happens on the panel. But don't animate when using the attached mode like for inputs
  * 3. Make sure the panel stays within the window.
  */
 .euiPopover__panel {
   // Ignore linting for legibility of transition property, and the mixin performs an overwrite
-  // sass-lint:disable-block indentation, mixins-before-declarations
+  // sass-lint:disable-block indentation
+  @include euiBottomShadow($adjustBorders: true);
   position: absolute;
   min-width: $euiButtonMinWidth; /* 1 */
   max-width: calc(100vw - #{$euiSizeXL}); /* 3 */
   backface-visibility: hidden;
   pointer-events: none;
-  transition: /* 2 */
-    opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
-    visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
-    transform $euiAnimSlightBounce ($euiAnimSpeedSlow + 100ms);
   opacity: 0; /* 2 */
   visibility: hidden; /* 2 */
-  transform: translateY(0) translateX(0) translateZ(0); /* 2 */
-  @include euiBottomShadow($adjustBorders: true);
+  transition: /* 2 */
+    opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
+    visibility $euiAnimSlightBounce $euiAnimSpeedSlow;
+
+  // Don't animate when using the attached mode like for inputs
+  &:not(.euiPopover__panel-isAttached) {
+    transform: translateY(0) translateX(0) translateZ(0); /* 2 */
+    transition: /* 2 */
+      opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
+      visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
+      transform $euiAnimSlightBounce ($euiAnimSpeedSlow + 100ms);
+  }
 
   &.euiPopover__panel-isOpen {
     opacity: 1;
@@ -161,10 +168,12 @@
   }
 }
 
+.euiPopover__panel.euiPopover__panel-isAttached.euiPopover__panel--top,  /* 2 */
 .euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--top {
   transform: translateY($euiPopoverTranslateDistance) translateZ(0);
 }
 
+.euiPopover__panel.euiPopover__panel-isAttached.euiPopover__panel--bottom,  /* 2 */
 .euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--bottom {
   transform: translateY(-$euiPopoverTranslateDistance) translateZ(0);
 }

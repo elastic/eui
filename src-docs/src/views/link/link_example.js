@@ -10,12 +10,16 @@ import linkConfig from './playground';
 
 import Link from './link';
 import { LinkDisable } from './link_disable';
+import { LinkValidation } from './link_validation';
 
 const linkSource = require('!!raw-loader!./link');
 const linkHtml = renderToHtml(Link);
 
 const linkDisableSource = require('!!raw-loader!./link_disable');
 const linkDisableHtml = renderToHtml(LinkDisable);
+
+const linkValidationSource = require('!!raw-loader!./link_validation');
+const linkValidationHtml = renderToHtml(LinkValidation);
 
 const linkSnippet = [
   `<EuiLink href="#"><!-- Link text --></EuiLink>
@@ -76,6 +80,36 @@ export const LinkExample = {
       ),
       props: { EuiLink },
       demo: <LinkDisable />,
+    },
+    {
+      title: 'Link validation',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: linkValidationSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: linkValidationHtml,
+        },
+      ],
+      text: (
+        <p>
+          To make links more secure for users, <strong>EuiLink</strong> and
+          other components that accept an <EuiCode>href</EuiCode> prop become
+          disabled if that <EuiCode>href</EuiCode> uses the{' '}
+          <EuiCode>javascript:</EuiCode> protocol. This helps protect consuming
+          applications from cross-site scripting (XSS) attacks and mirrors
+          React&apos;s{' '}
+          <EuiLink
+            href="https://github.com/facebook/react/blob/940f48b999a3131e77b2545bd7ae252ef27ae6d1/packages/react-dom/src/shared/sanitizeURL.js#L37"
+            target="_blank">
+            planned behavior
+          </EuiLink>{' '}
+          to prevent rendering of <EuiCode>javascript:</EuiCode> links.
+        </p>
+      ),
+      demo: <LinkValidation />,
     },
   ],
   playground: linkConfig,

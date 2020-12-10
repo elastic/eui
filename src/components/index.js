@@ -288,6 +288,7 @@ export {
   EuiSelectableMessage,
   EuiSelectableSearch,
   EuiSelectableTemplateSitewide,
+  euiSelectableTemplateSitewideRenderOptions,
 } from './selectable';
 
 export { EuiSideNav } from './side_nav';

@@ -44,7 +44,7 @@ exports[`CollapsedItemActions render with href and _target provided 1`] = `
   hasArrow={true}
   id="id-actions"
   isOpen={true}
-  ownFocus={true}
+  ownFocus={false}
   panelPaddingSize="none"
   popoverRef={[Function]}
 >

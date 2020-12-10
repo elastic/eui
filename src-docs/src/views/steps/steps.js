@@ -9,24 +9,39 @@ import {
 
 const firstSetOfSteps = [
   {
-    title:
-      'Step 1 with a long title to check what happens during wrapping which should have been fixed.',
-    children: <p>Do this first</p>,
+    title: 'Step 1',
+    children: (
+      <EuiText>
+        <p>Do this first</p>
+      </EuiText>
+    ),
   },
   {
     title: 'Step 2',
-    children: <p>Then this</p>,
+    children: (
+      <EuiText>
+        <p>Then this</p>
+      </EuiText>
+    ),
   },
 ];
 
 const nextSetOfSteps = [
   {
     title: 'Good step',
-    children: <p>Do this first</p>,
+    children: (
+      <EuiText>
+        <p>Do this first</p>
+      </EuiText>
+    ),
   },
   {
     title: 'Better step',
-    children: <p>Then this</p>,
+    children: (
+      <EuiText>
+        <p>Then this</p>
+      </EuiText>
+    ),
   },
 ];
 
@@ -34,14 +49,14 @@ export default () => (
   <div>
     <EuiSteps steps={firstSetOfSteps} />
 
+    <EuiSpacer size="m" />
     <EuiText>
-      <EuiSpacer size="m" />
       <p>
         Set <EuiCode>firstStepNumber</EuiCode> to continue step numbering after
         any type of break in the content
       </p>
-      <EuiSpacer size="m" />
     </EuiText>
+    <EuiSpacer size="m" />
 
     <EuiSteps
       firstStepNumber={firstSetOfSteps.length + 1}
