@@ -357,8 +357,24 @@ export const EuiMarkdownEditor = forwardRef<
     useEffect(() => {
       if (isPreviewing && autoExpandPreview && height !== 'full') {
         if (previewRef.current!.scrollHeight > currentHeight) {
-          // Adds 5 pixels to prevent a scrollbar
-          setCurrentHeight(previewRef.current!.scrollHeight + 5);
+          // scrollHeight does not include the border or margin
+          // so we ask for the computed value for those,
+          // which is always in pixels because getComputedValue
+          // returns the resolved values
+          const elementComputedStyle = window.getComputedStyle(
+            previewRef.current!
+          );
+          const borderWidth =
+            parseFloat(elementComputedStyle.borderTopWidth) +
+            parseFloat(elementComputedStyle.borderBottomWidth);
+          const marginWidth =
+            parseFloat(elementComputedStyle.marginTop) +
+            parseFloat(elementComputedStyle.marginBottom);
+
+          // then add an extra pixel for safety and because the scrollHeight value is rounded
+          const extraHeight = borderWidth + marginWidth + 1;
+
+          setCurrentHeight(previewRef.current!.scrollHeight + extraHeight);
         } else {
           setCurrentHeight(currentHeight);
         }
