@@ -20,6 +20,10 @@ import SinglePanel from './single_panel';
 const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
 
+import Small from './small';
+const smallSizeSource = require('!!raw-loader!./small');
+const smallSizeHtml = renderToHtml(SinglePanel);
+
 import ContentPanel from './content_panel';
 const contentPanelSource = require('!!raw-loader!./content_panel');
 const contentPanelHtml = renderToHtml(ContentPanel);
@@ -75,6 +79,26 @@ export const ContextMenuExample = {
         </p>
       ),
       demo: <SinglePanel />,
+    },
+    {
+      title: 'Small size',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: smallSizeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: smallSizeHtml,
+        },
+      ],
+      text: (
+        <p>
+          You can reduce the size of <strong>EuiContextMenu</strong> by setting{' '}
+          <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode>.
+        </p>
+      ),
+      demo: <Small />,
     },
     {
       title: 'Displaying custom elements',

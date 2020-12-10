@@ -39,7 +39,6 @@ export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
-  keyboardIcon?: ReactNode;
   hasPanel?: boolean;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent) => void;
@@ -89,7 +88,6 @@ export class EuiContextMenuItem extends Component<Props> {
       className,
       hasPanel,
       icon,
-      keyboardIcon,
       buttonRef,
       disabled,
       layoutAlign = 'center',
@@ -141,7 +139,6 @@ export class EuiContextMenuItem extends Component<Props> {
         {iconInstance}
         <span className="euiContextMenuItem__text">{children}</span>
         {arrow}
-        {!hasPanel && keyboardIcon ? keyboardIcon : null}
       </span>
     );
 

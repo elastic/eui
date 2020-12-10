@@ -9,7 +9,6 @@ import {
   EuiPopover,
   EuiSwitch,
   EuiSpacer,
-  EuiText,
 } from '../../../../src/components';
 
 export default () => {
@@ -81,11 +80,6 @@ export default () => {
           },
         },
         {
-          name: 'Embed code',
-          icon: 'user',
-          panel: 2,
-        },
-        {
           name: 'Permalinks',
           icon: 'user',
           onClick: () => {
@@ -94,41 +88,11 @@ export default () => {
         },
       ],
     },
-    {
-      id: 2,
-      title: 'Embed code',
-      content: (
-        <div style={{ padding: 16 }}>
-          <EuiFormRow label="Generate a public snapshot?" hasChildLabel={false}>
-            <EuiSwitch
-              name="switch"
-              id="asdf"
-              label="Snapshot data"
-              checked={true}
-              onChange={() => {}}
-            />
-          </EuiFormRow>
-          <EuiFormRow
-            label="Include the following in the embed"
-            hasChildLabel={false}>
-            <EuiSwitch
-              name="switch"
-              id="asdf2"
-              label="Current time range"
-              checked={true}
-              onChange={() => {}}
-            />
-          </EuiFormRow>
-          <EuiSpacer />
-          <EuiButton fill>Copy iFrame code</EuiButton>
-        </div>
-      ),
-    },
   ];
 
   const button = (
     <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
-      Click me to load a context menu
+      Small context menu
     </EuiButton>
   );
 
@@ -140,7 +104,7 @@ export default () => {
       closePopover={closePopover}
       panelPaddingSize="none"
       anchorPosition="downLeft">
-      <EuiContextMenu initialPanelId={0} panels={panels} />
+      <EuiContextMenu size="s" initialPanelId={0} panels={panels} />
     </EuiPopover>
   );
 };

@@ -68,14 +68,14 @@ export interface EuiContextMenuPanelDescriptor {
   initialFocusedItemIndex?: number;
 }
 
-export type MenuSize = 's' | 'm';
-
 export const sizeToClassNameMap: { [size in MenuSize]: string | null } = {
   s: 'euiContextMenu--small',
   m: null,
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
+
+export type MenuSize = 's' | 'm';
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
