@@ -39,21 +39,17 @@ const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_pa
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
 
 const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
-const basicSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
+const basicSnippet = `<EuiResizableContainer>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
       <EuiResizablePanel initialSize={50} minSize="200px">
-        <EuiText>
-          <p>{text}</p>
-        </EuiText>
+        <!-- Left panel content -->
       </EuiResizablePanel>
 
       <EuiResizableButton />
 
       <EuiResizablePanel initialSize={50} minSize="200px">
-        <EuiText>
-          <p>{text}</p>
-        </EuiText>
+        <!-- Right panel content -->
       </EuiResizablePanel>
     </>
   )}
@@ -67,7 +63,7 @@ const panelsSnippet = `<EuiResizablePanel color="subdued" paddingSize="none" wra
 </EuiResizablePanel>`;
 
 const ResizableContainerVerticalHtml = renderToHtml(ResizableContainerVertical);
-const verticalSnippet = `<EuiResizableContainer direction="vertical" style={{ height: '400px' }}>
+const verticalSnippet = `<EuiResizableContainer direction="vertical">
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
       <EuiResizablePanel initialSize={50} minSize="20%">
@@ -90,7 +86,7 @@ const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
 const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
-const collapsibleSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
+const collapsibleSnippet = `<EuiResizableContainer>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
       <EuiResizablePanel mode="collapsible" initialSize={20} minSize="5px">
