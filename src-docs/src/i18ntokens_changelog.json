@@ -1,5 +1,20 @@
 [
   {
+    "version": "30.6.0",
+    "changes": [
+      {
+        "token": "euiStepStrings.loading",
+        "changeType": "added",
+        "value": "Step {number}: {title} is loading"
+      },
+      {
+        "token": "euiStepStrings.simpleLoading",
+        "changeType": "added",
+        "value": "Step {number} is loading"
+      }
+    ]
+  },
+  {
     "version": "30.2.0",
     "changes": [
       {

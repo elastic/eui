@@ -18,6 +18,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -37,6 +38,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -57,6 +59,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -143,6 +146,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -180,6 +184,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -199,6 +204,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -219,6 +225,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -305,6 +312,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -342,6 +350,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -361,6 +370,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -381,6 +391,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -467,6 +478,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -504,6 +516,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -523,6 +536,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -543,6 +557,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -629,6 +644,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--danger euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -666,6 +682,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -685,6 +702,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -705,6 +723,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -791,6 +810,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--ghost euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -828,6 +848,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -847,6 +868,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -867,6 +889,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -953,6 +976,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       class="euiButtonGroupButton euiButtonGroupButton--primary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -990,6 +1014,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
       class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1009,6 +1034,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1029,6 +1055,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
       class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1115,6 +1142,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
       class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1152,6 +1180,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1171,6 +1200,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1191,6 +1221,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1277,6 +1308,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1314,6 +1346,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1333,6 +1366,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1353,6 +1387,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1439,6 +1474,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       class="euiButtonGroupButton euiButtonGroupButton--warning euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1478,6 +1514,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       data-test-subj="test subject string"
       disabled=""
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1498,6 +1535,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1518,6 +1556,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1557,6 +1596,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       data-test-subj="test subject string"
       disabled=""
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1577,6 +1617,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1597,6 +1638,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1634,6 +1676,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1653,6 +1696,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1673,6 +1717,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1759,6 +1804,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1796,6 +1842,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1815,6 +1862,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isIconOnly"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1835,6 +1883,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled euiButtonGroupButton-isIconOnly"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1921,6 +1970,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled euiButtonGroupButton-isIconOnly"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2008,6 +2058,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2045,6 +2096,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2064,6 +2116,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       aria-pressed="true"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton--fill euiButtonGroupButton-isSelected"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2084,6 +2137,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2123,6 +2177,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small testClass1 testClass2"
       data-test-subj="test subject string"
       id="button00"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2142,6 +2197,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
       id="button01"
+      type="button"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2162,6 +2218,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2250,6 +2307,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       disabled=""
       id="button02"
+      type="submit"
     >
       <span
         class="euiButtonContent euiButton__content"

@@ -37,6 +37,7 @@ import {
   euiCardSelectableColor,
 } from './card_select';
 import { htmlIdGenerator } from '../../services/accessibility';
+import { validateHref } from '../../services/security/href_validator';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -176,7 +177,7 @@ export const SIZES = keysOf(paddingSizeToClassNameMap);
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
   description,
-  isDisabled,
+  isDisabled: _isDisabled,
   title,
   titleElement = 'span',
   titleSize = 's',
@@ -198,6 +199,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   paddingSize = 'm',
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
+
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
    * without having to make the whole card a button or anchor tag.
