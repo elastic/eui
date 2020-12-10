@@ -10,7 +10,7 @@ import {
 
 export default () => (
   <Fragment>
-    <EuiFormControlLayout compressed icon="search">
+    <EuiFormControlLayout icon="search">
       <input
         type="text"
         className="euiFieldText"
