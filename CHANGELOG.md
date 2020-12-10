@@ -1,8 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
+- Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
+
 **Bug fixes**
 
 - Fixed `EuiSuggest` popover opening when an empty array is passed into the `suggestions` prop ([#4349](https://github.com/elastic/eui/pull/4349))
+
+**Breaking changes**
+
+- Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
