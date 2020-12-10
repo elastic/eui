@@ -2,6 +2,7 @@
 
 - Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
 - Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
+- Reduced size of `icon` for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
 
 **Bug fixes**
 
