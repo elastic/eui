@@ -17,16 +17,19 @@
  * under the License.
  */
 
-import React, { Fragment, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { prettyDuration } from '../pretty_duration';
 
-import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
+import { EuiI18n } from '../../../i18n';
+import { EuiFlexItem } from '../../../flex';
+import { htmlIdGenerator } from '../../../../services';
 import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
 import { EuiLink } from '../../../link';
-import { EuiText } from '../../../text';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { DurationRange, ApplyTime } from '../../types';
+
+const generateId = htmlIdGenerator();
 
 export interface EuiRecentlyUsedProps {
   applyTime: ApplyTime;
@@ -41,6 +44,8 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
   dateFormat,
   recentlyUsedRanges = [],
 }) => {
+  const legendId = generateId();
+
   if (recentlyUsedRanges.length === 0) {
     return null;
   }
@@ -50,7 +55,11 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
       applyTime({ start, end });
     };
     return (
-      <EuiFlexItem grow={false} key={`${start}-${end}`}>
+      <EuiFlexItem
+        className="euiCommonlyUsedTimeRanges__item"
+        component="li"
+        grow={false}
+        key={`${start}-${end}`}>
         <EuiLink onClick={applyRecentlyUsed}>
           {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
         </EuiLink>
@@ -59,18 +68,21 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
   });
 
   return (
-    <Fragment>
+    <fieldset>
       <EuiTitle size="xxxs">
-        <span>Recently used date ranges</span>
+        <legend id={legendId}>
+          <EuiI18n
+            token="euiRecentlyUsed.legend"
+            default="Recently used date ranges"
+          />
+        </legend>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiText size="s" className="euiQuickSelectPopover__section">
-        <EuiFlexGroup gutterSize="s" direction="column">
-          {links}
-        </EuiFlexGroup>
-      </EuiText>
+      <div className="euiQuickSelectPopover__section">
+        <ul>{links}</ul>
+      </div>
       <EuiHorizontalRule margin="s" />
-    </Fragment>
+    </fieldset>
   );
 };
 
