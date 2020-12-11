@@ -93,7 +93,7 @@ type CommonMarkdownEditorProps = Omit<
 
     /**
      * Sets the `max-height` in pixels of the editor/preview area.
-     * It doesn't work when the `height` is set to `full`.
+     * It has no effect when the `height` is set to `full`.
      */
     maxHeight?: number;
 
