@@ -86,7 +86,7 @@ const items = [
 describe('EuiTreeView', () => {
   test('is rendered', () => {
     const component = render(<EuiTreeView items={items} {...requiredProps} />);
-
+    
     expect(component).toMatchSnapshot();
   });
 
