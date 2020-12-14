@@ -47,6 +47,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
         <span
           aria-hidden="true"
+          class="euiStepNumber__number"
         >
           2
         </span>
@@ -75,6 +76,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
         <span
           aria-hidden="true"
+          class="euiStepNumber__number"
         >
           3
         </span>
@@ -104,6 +106,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
         <span
           aria-hidden="true"
+          class="euiStepNumber__number"
         >
           4
         </span>

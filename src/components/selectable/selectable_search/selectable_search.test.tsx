@@ -30,6 +30,7 @@ describe('EuiSelectableSearch', () => {
         options={[]}
         listId="list"
         onChange={() => {}}
+        isPreFiltered={false}
         {...requiredProps}
       />
     );
@@ -44,6 +45,7 @@ describe('EuiSelectableSearch', () => {
           options={[]}
           listId="list"
           onChange={() => {}}
+          isPreFiltered={false}
           defaultValue="Mi"
         />
       );

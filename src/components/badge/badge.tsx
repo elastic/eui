@@ -36,6 +36,7 @@ import {
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { chromaValid, parseColor } from '../color_picker/utils';
+import { validateHref } from '../../services/security/href_validator';
 
 type IconSide = 'left' | 'right';
 
@@ -136,7 +137,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   iconType,
   iconSide = 'left',
   className,
-  isDisabled,
+  isDisabled: _isDisabled,
   onClick,
   iconOnClick,
   onClickAriaLabel,
@@ -149,6 +150,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   ...rest
 }) => {
   checkValidColor(color);
+
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
 
   let optionalCustomStyles: object | undefined = style;
   let textColor = null;
@@ -215,6 +219,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     'euiBadge__icon',
     closeButtonProps && closeButtonProps.className
   );
+
   const Element = href && !isDisabled ? 'a' : 'button';
   const relObj: {
     href?: string;

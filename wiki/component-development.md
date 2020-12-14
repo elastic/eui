@@ -55,9 +55,9 @@ Refer to the [automated accessibility testing guide](automated-accessibility-tes
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
 1. In the `eui` folder, run `yarn build` then `npm pack`. This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
-2. In Kibana you have two choices:
-    * Point your `package.json` files in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap --no-validate` (the flag is required when bootstrapping with a `.tgz`).
-    * Alternatively (and often easier), you can run `yarn kbn bootstrap` in Kibana first, then just unpack the `.tgz` file and paste its contents into an empty `/kibana/node_modules/@elastic/eui` folder. This method avoids having to edit all the various `package.json` files in Kibana if you need to run functional tests.
+2. Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap --no-validate`.
+    * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
+    * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
 3. Regardless of the method you decide run Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't use a previously cached version of EUI.
 
 ## Principles

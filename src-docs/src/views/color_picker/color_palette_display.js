@@ -192,6 +192,8 @@ export default () => {
                 checked={selectionType}
                 onChange={() => setSelectionType(!selectionType)}
                 compressed
+                showLabel={false}
+                label="Display as fixed"
               />
             </EuiFormRow>
           </EuiPopover>

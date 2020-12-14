@@ -1,20 +1,19 @@
 // This extra import allows any variables that are created via functions to work when loaded into JS
 @import '../functions/index';
 
-// Core
-$euiColorPrimary: #006BB4 !default;
-$euiColorSecondary: #017D73 !default;
-$euiColorAccent: #DD0A73 !default;
-$euiColorHighlight: #FFFCDD !default;
-
 // These colors stay the same no matter the theme
 $euiColorGhost: #FFF !default;
 $euiColorInk: #000 !default;
 
+// Core
+$euiColorPrimary: #006BB4 !default;
+$euiColorSecondary: #017D73 !default;
+$euiColorAccent: #DD0A73 !default;
+
 // Status
 $euiColorSuccess: $euiColorSecondary !default;
-$euiColorDanger: #BD271E !default;
 $euiColorWarning: #F5A700 !default;
+$euiColorDanger: #BD271E !default;
 
 // Grays
 $euiColorEmptyShade: #FFF !default;
@@ -25,12 +24,15 @@ $euiColorDarkShade: #69707D !default;
 $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
 
+// Backgrounds
+$euiPageBackgroundColor: tint($euiColorLightestShade, 50%) !default;
+$euiColorHighlight: #FFFCDD !default;
+
 // Every color below must be based mathematically on the set above and in a particular order.
 $euiTextColor: $euiColorDarkestShade !default;
-$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
+$euiTitleColor: shade($euiTextColor, 50%) !default;
 $euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade) !default;
-$euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
-$euiLinkColor: $euiColorPrimary !default;
+$euiColorDisabled: tint($euiTextColor, 70%) !default;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
@@ -38,7 +40,9 @@ $euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
 $euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
 $euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
 $euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
+$euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
 $euiColorSuccessText: $euiColorSecondaryText !default;
+$euiLinkColor: $euiColorPrimaryText !default;
 
 // Visualization colors
 
@@ -116,7 +120,6 @@ $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9')
 // Charts
 $euiColorChartLines: shade($euiColorLightestShade, 3%) !default;
 $euiColorChartBand: $euiColorLightestShade !default;
-
 
 // Code
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;

@@ -1,13 +1,89 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.4.0`.
+- Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
+- Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
+- Changed `showTimeSelect` prop to true when `showTimeSelectOnly` prop is set to true. ([#4372](https://github.com/elastic/eui/pull/4372))
+
+**Bug fixes**
+
+- Fixed `EuiSuggest` popover opening when an empty array is passed into the `suggestions` prop ([#4349](https://github.com/elastic/eui/pull/4349))
+
+**Breaking changes**
+
+- Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
+
+## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
+
+- Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
+- Added `success` and `warning` colors to `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Added a sorting indicator on the `EuiDataGridColumn` ([#4343](https://github.com/elastic/eui/pull/4343))
+- Added `disabled` and `loading` `status` to `EuiStep` ([#4338](https://github.com/elastic/eui/pull/4338))
+- Added `closePopover` prop to `EuiDataGridColumnCellActionProps` ([#4346](https://github.com/elastic/eui/pull/4346))
+
+**Bug fixes**
+
+- Fixed `EuiErrorBoundary` error message not showing in non-Chromium browsers ([#4324](https://github.com/elastic/eui/pull/4324))
+- Fixed `EuiToolTip` closing during initial positioning period ([#4327](https://github.com/elastic/eui/pull/4327))
+- Added `!default` to SASS variables of `EuiCollapsibleNav` ([#4335](https://github.com/elastic/eui/pull/4335))
+- Fixed `EuiDataGrid` column property `displayAsText` ([#4351](https://github.com/elastic/eui/pull/4351))
+- Fixed propagation of `esc` key presses closing parent popovers ([#4336](https://github.com/elastic/eui/pull/4336))
+- Fixed overwritten `isDisabled` prop on `EuiListGroupItem` `extraAction` config ([#4359](https://github.com/elastic/eui/pull/4359))
+- Fixed `inputRef` for `EuiCheckbox` ([#4298](https://github.com/elastic/eui/pull/4298))
+- Limited the links allowed in `EuiMarkdownEditor` to http, https, or starting with a forward slash ([#4362](https://github.com/elastic/eui/pull/4362))
+- Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
+- Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
+
+**Theme: Amsterdam**
+
+- Removed the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
+- Reduced font size for `xs` size in `EuiButtonEmpty` ([#4325](https://github.com/elastic/eui/pull/4325))
+- Increased font size for `m` size of `EuiListGroupItem` ([#4340](https://github.com/elastic/eui/pull/4340))
+- Reduced padding in `EuiToolTip` ([#4353](https://github.com/elastic/eui/pull/4353))
+- Reduced border-radius in `EuiRange`'s tooltip ([#4353](https://github.com/elastic/eui/pull/4353))
+- Consolidated `EuiStepNumber` indicators for `EuiSteps` and `EuiHorizontalSteps` ([#4338](https://github.com/elastic/eui/pull/4338))
+
+## [`30.5.1`](https://github.com/elastic/eui/tree/v30.5.1)
+
+- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
+
+## [`30.5.0`](https://github.com/elastic/eui/tree/v30.5.0)
+
+- Export `euiSelectableTemplateSitewideRenderOptions` ([#4305](https://github.com/elastic/eui/pull/4305))
+
+**Bug fixes**
+
+- Expose `isPreFiltered` in `EuiSelectable` props fixing consumer-side searching ([#4305](https://github.com/elastic/eui/pull/4305))
+- Fixed stale state argument passed to `searchProps.onChange` in an `EuiSelectable`([#4292](https://github.com/elastic/eui/pull/4292))
+- Fixed initial focus of an `EuiButtonGroup` when first item in a popover ([#4288](https://github.com/elastic/eui/pull/4288))
+- Fixed visible scrollbar in `EuiComboBox` list ([#4301](https://github.com/elastic/eui/pull/4301))
+- Removed hiding of time select on small screens for `EuiDatePicker` ([#4301](https://github.com/elastic/eui/pull/4301))
+- Fixed wrong columns assigned to `EuiDataGrid` leadingControlColumns ([#4269](https://github.com/elastic/eui/pull/4269))
+
+**Theme: Amsterdam**
+
+- Fixed styles for `EuiMarkdownEditor` ([#4289](https://github.com/elastic/eui/pull/4289))
+- Rounded all corners of dropdown type of inputs ([#4301](https://github.com/elastic/eui/pull/4301))
+
+## [`30.4.2`](https://github.com/elastic/eui/tree/v30.4.2)
+
+**Bug fixes**
+
+- Reverted changing of `EuiPopover`s `ownFocus` default from `false` to `true` ([#4228](https://github.com/elastic/eui/pull/4228))
+
+## [`30.4.1`](https://github.com/elastic/eui/tree/v30.4.1)
+
+- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
+
+**Theme: Amsterdam**
+
+- Unify colors with the Elastic brand ([#4284](https://github.com/elastic/eui/pull/4284))
+- Created one consistent look for disabled `EuiButton` ([#4284](https://github.com/elastic/eui/pull/4284))
 
 ## [`30.4.0`](https://github.com/elastic/eui/tree/v30.4.0)
 
 - Added `eql` glyph in `EuiIcon` ([#4110](https://github.com/elastic/eui/pull/4110))
 - Added `testenv` mock for `htmlIdGenerator` ([#4212](https://github.com/elastic/eui/pull/4212))
 - Added several Sass mixins for handling of unified focus/hover states ([#4242](https://github.com/elastic/eui/pull/4242))
-- Exported `useDataGridColumnSelector`, `useDataGridColumnSorting`, and `useDataGridStyleSelector` hooks ([#4271](https://github.com/elastic/eui/pull/4271))
 
 **Bug fixes**
 
@@ -138,6 +214,16 @@ No public interface changes since `30.4.0`.
 **Bug fixes**
 
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
+
+## [`29.3.2`](https://github.com/elastic/eui/tree/v29.3.2)
+
+**Note: this release is a backport containing changes originally made in `30.6.0`**
+
+**Bug fixes**
+
+- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
+- Limited the links allowed in `EuiMarkdownEditor` to http, https, or starting with a forward slash ([#4362](https://github.com/elastic/eui/pull/4362))
+- Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
 
 ## [`29.3.1`](https://github.com/elastic/eui/tree/v29.3.1)
 

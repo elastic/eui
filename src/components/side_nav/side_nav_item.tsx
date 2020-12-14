@@ -30,6 +30,7 @@ import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
 
 import { getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 
 type ItemProps = CommonProps & {
   href?: string;
@@ -124,7 +125,7 @@ export function EuiSideNavItem<
   isParent,
   icon,
   onClick,
-  href,
+  href: _href,
   rel,
   target,
   items,
@@ -134,6 +135,8 @@ export function EuiSideNavItem<
   className,
   ...rest
 }: EuiSideNavItemProps<T>) {
+  const isHrefValid = !_href || validateHref(_href);
+  const href = isHrefValid ? _href : '';
   let childItems;
 
   if (items && isOpen) {
