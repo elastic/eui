@@ -2,6 +2,7 @@
 
 - Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
 - Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
+- Changed `showTimeSelect` prop to true when `showTimeSelectOnly` prop is set to true. ([#4372](https://github.com/elastic/eui/pull/4372))
 
 **Bug fixes**
 
@@ -18,7 +19,6 @@
 - Added a sorting indicator on the `EuiDataGridColumn` ([#4343](https://github.com/elastic/eui/pull/4343))
 - Added `disabled` and `loading` `status` to `EuiStep` ([#4338](https://github.com/elastic/eui/pull/4338))
 - Added `closePopover` prop to `EuiDataGridColumnCellActionProps` ([#4346](https://github.com/elastic/eui/pull/4346))
-- Changed `showTimeSelect` prop to true when `showTimeSelectOnly` prop is set to true. ([#4372](https://github.com/elastic/eui/pull/4372))
 
 **Bug fixes**
 
