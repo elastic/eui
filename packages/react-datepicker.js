@@ -212,6 +212,11 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
+var tabbable$1 = /*#__PURE__*/Object.freeze({
+  default: tabbable_1,
+  __moduleExports: tabbable_1
+});
+
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -236,6 +241,8 @@ var immutable$1 = /*#__PURE__*/Object.freeze({
   default: immutable,
   __moduleExports: immutable
 });
+
+var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
 
 var xtend = ( immutable$1 && immutable ) || immutable$1;
 
@@ -418,7 +425,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable_1.isFocusable(e.target)
+        returnFocus: !tabbable$2.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -473,7 +480,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable_1(container);
+    var tabbableNodes = tabbable$2(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -1377,9 +1384,10 @@ function cloneDate(date) {
 
 function parseDate(value, _ref) {
   var dateFormat = _ref.dateFormat,
-      locale = _ref.locale;
+      locale = _ref.locale,
+      strictParsing = _ref.strictParsing;
 
-  var m = moment(value, dateFormat, locale || moment.locale(), true);
+  var m = moment(value, dateFormat, locale || moment.locale(), strictParsing);
   return m.isValid() ? m : null;
 }
 
@@ -4518,11 +4526,18 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
+var _toInteger$1 = /*#__PURE__*/Object.freeze({
+  default: _toInteger,
+  __moduleExports: _toInteger
+});
+
+var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
+
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 var _toLength$1 = /*#__PURE__*/Object.freeze({
@@ -4533,11 +4548,18 @@ var _toLength$1 = /*#__PURE__*/Object.freeze({
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = _toInteger(index);
+  index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
 
+var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
+  default: _toAbsoluteIndex,
+  __moduleExports: _toAbsoluteIndex
+});
+
 var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
+
+var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 // false -> Array#indexOf
 // true  -> Array#includes
@@ -4548,7 +4570,7 @@ var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
     var length = toLength(O.length);
-    var index = _toAbsoluteIndex(fromIndex, length);
+    var index = toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
@@ -4676,18 +4698,18 @@ _export(_export.S + _export.F, 'Object', { assign: require$$0 });
 
 var assign = _core.Object.assign;
 
-var assign$1 = createCommonjsModule(function (module) {
-module.exports = { "default": assign, __esModule: true };
+var assign$1 = /*#__PURE__*/Object.freeze({
+  default: assign,
+  __moduleExports: assign
 });
 
-var assign$2 = unwrapExports(assign$1);
+var require$$0$1 = ( assign$1 && assign ) || assign$1;
 
-var assign$3 = /*#__PURE__*/Object.freeze({
-  default: assign$2,
-  __moduleExports: assign$1
+var assign$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$1, __esModule: true };
 });
 
-var _assign = ( assign$3 && assign$2 ) || assign$3;
+unwrapExports(assign$2);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4695,7 +4717,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(_assign);
+var _assign2 = _interopRequireDefault(assign$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4734,7 +4756,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(_defined(that));
-    var i = _toInteger(pos);
+    var i = toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -4744,6 +4766,11 @@ var _stringAt = function (TO_STRING) {
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
+
+var _stringAt$1 = /*#__PURE__*/Object.freeze({
+  default: _stringAt,
+  __moduleExports: _stringAt
+});
 
 var _library = true;
 
@@ -4762,13 +4789,6 @@ var _objectDps = _descriptors ? Object.defineProperties : function definePropert
 var document$2 = _global.document;
 var _html = document$2 && document$2.documentElement;
 
-var _html$1 = /*#__PURE__*/Object.freeze({
-  default: _html,
-  __moduleExports: _html
-});
-
-var require$$2 = ( _html$1 && _html ) || _html$1;
-
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 
 
@@ -4786,7 +4806,7 @@ var createDict = function () {
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  require$$2.appendChild(iframe);
+  _html.appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -4911,10 +4931,19 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var $at = _stringAt(true);
+var _iterDefine$1 = /*#__PURE__*/Object.freeze({
+  default: _iterDefine,
+  __moduleExports: _iterDefine
+});
+
+var require$$0$2 = ( _stringAt$1 && _stringAt ) || _stringAt$1;
+
+var require$$0$3 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
+
+var $at = require$$0$2(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-_iterDefine(String, 'String', function (iterated) {
+require$$0$3(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4936,7 +4965,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = require$$0$3(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -4977,11 +5006,18 @@ var _wksExt = {
 
 var iterator = _wksExt.f('iterator');
 
-var iterator$1 = createCommonjsModule(function (module) {
-module.exports = { "default": iterator, __esModule: true };
+var iterator$1 = /*#__PURE__*/Object.freeze({
+  default: iterator,
+  __moduleExports: iterator
 });
 
-unwrapExports(iterator$1);
+var require$$0$4 = ( iterator$1 && iterator ) || iterator$1;
+
+var iterator$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$4, __esModule: true };
+});
+
+unwrapExports(iterator$2);
 
 var _meta = createCommonjsModule(function (module) {
 var META = _uid('meta');
@@ -5375,7 +5411,7 @@ exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator$1);
+var _iterator2 = _interopRequireDefault(iterator$2);
 
 
 
@@ -5441,17 +5477,31 @@ var _setProto = {
   check: check
 };
 
+var _setProto$1 = /*#__PURE__*/Object.freeze({
+  default: _setProto,
+  __moduleExports: _setProto
+});
+
+var require$$0$5 = ( _setProto$1 && _setProto ) || _setProto$1;
+
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0$5.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = createCommonjsModule(function (module) {
-module.exports = { "default": setPrototypeOf, __esModule: true };
+var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
+  default: setPrototypeOf,
+  __moduleExports: setPrototypeOf
 });
 
-unwrapExports(setPrototypeOf$1);
+var require$$0$6 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
+
+var setPrototypeOf$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$6, __esModule: true };
+});
+
+unwrapExports(setPrototypeOf$2);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5473,7 +5523,7 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
 
 
 
@@ -8798,7 +8848,9 @@ var DatePicker = function (_React$Component) {
         nextMonthButtonLabel: "Next month",
         renderDayContents: function renderDayContents(date) {
           return date;
-        }
+        },
+
+        strictParsing: false
       };
     }
   }]);
@@ -9469,7 +9521,8 @@ DatePicker.propTypes = {
   renderCustomHeader: PropTypes.func,
   renderDayContents: PropTypes.func,
   accessibleMode: PropTypes.bool,
-  accessibleModeButton: PropTypes.element
+  accessibleModeButton: PropTypes.element,
+  strictParsing: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
 };
 
 

@@ -169,7 +169,8 @@ export default class DatePicker extends React.Component {
     renderCustomHeader: PropTypes.func,
     renderDayContents: PropTypes.func,
     accessibleMode: PropTypes.bool,
-    accessibleModeButton: PropTypes.element
+    accessibleModeButton: PropTypes.element,
+    strictParsing: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   };
 
   static get defaultProps() {
@@ -202,7 +203,8 @@ export default class DatePicker extends React.Component {
       nextMonthButtonLabel: "Next month",
       renderDayContents(date) {
         return date;
-      }
+      },
+      strictParsing: false
     };
   }
 

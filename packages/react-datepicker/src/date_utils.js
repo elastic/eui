@@ -63,8 +63,8 @@ export function cloneDate(date) {
   return date.clone();
 }
 
-export function parseDate(value, { dateFormat, locale }) {
-  const m = moment(value, dateFormat, locale || moment.locale(), true);
+export function parseDate(value, { dateFormat, locale, strictParsing}) {
+  const m = moment(value, dateFormat, locale || moment.locale(), strictParsing);
   return m.isValid() ? m : null;
 }
 

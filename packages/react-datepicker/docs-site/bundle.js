@@ -26721,7 +26721,9 @@
 	        nextMonthButtonLabel: "Next month",
 	        renderDayContents: function renderDayContents(date) {
 	          return date;
-	        }
+	        },
+
+	        strictParsing: false
 	      };
 	    }
 	  }]);
@@ -27392,7 +27394,8 @@
 	  renderCustomHeader: _propTypes2.default.func,
 	  renderDayContents: _propTypes2.default.func,
 	  accessibleMode: _propTypes2.default.bool,
-	  accessibleModeButton: _propTypes2.default.element
+	  accessibleModeButton: _propTypes2.default.element,
+	  strictParsing: _propTypes2.default.bool // eslint-disable-line react/no-unused-prop-types
 	};
 	exports.default = DatePicker;
 
@@ -30057,9 +30060,10 @@
 
 	function parseDate(value, _ref) {
 	  var dateFormat = _ref.dateFormat,
-	      locale = _ref.locale;
+	      locale = _ref.locale,
+	      strictParsing = _ref.strictParsing;
 
-	  var m = (0, _moment2.default)(value, dateFormat, locale || _moment2.default.locale(), true);
+	  var m = (0, _moment2.default)(value, dateFormat, locale || _moment2.default.locale(), strictParsing);
 	  return m.isValid() ? m : null;
 	}
 
