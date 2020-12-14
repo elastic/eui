@@ -1,6 +1,5 @@
 .euiPage {
   display: flex;
-  padding: $euiSize;
   background-color: $euiPageBackgroundColor;
 
   &--restrictWidth-default,
@@ -15,6 +14,12 @@
 
   @include euiBreakpoint('xs', 's') {
     flex-direction: column;
-    // padding: 0; temporarily removing
+  }
+}
+
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPage--#{$modifier} {
+    padding: $amount;
   }
 }

@@ -1,8 +1,2 @@
-$euiResizableButtonTransitionSpeed: $euiAnimSpeedFast;
-
-$euiResizableButtonSizeModifiers: (
-  'sizeSmall': $euiSizeM,
-  'sizeMedium': $euiSize,
-  'sizeLarge': $euiSizeL,
-  'sizeExtraLarge': $euiSizeXXL
-) !default;
+$euiResizableButtonTransitionSpeed: $euiAnimSpeedFast !default;
+$euiResizableButtonSize: $euiSize !default;

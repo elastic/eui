@@ -1,8 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
+- Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
+
 **Bug fixes**
 
 - Fixed `EuiSuggest` popover opening when an empty array is passed into the `suggestions` prop ([#4349](https://github.com/elastic/eui/pull/4349))
+
+**Breaking changes**
+
+- Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
@@ -207,6 +214,16 @@
 **Bug fixes**
 
 - Fixed `EuiFieldSearch` padding when `isClearable` but has no `value` ([#4089](https://github.com/elastic/eui/pull/4089))
+
+## [`29.3.2`](https://github.com/elastic/eui/tree/v29.3.2)
+
+**Note: this release is a backport containing changes originally made in `30.6.0`**
+
+**Bug fixes**
+
+- Upgraded `highlight.js` to 9.18.5 ([#4313](https://github.com/elastic/eui/pull/4313))
+- Limited the links allowed in `EuiMarkdownEditor` to http, https, or starting with a forward slash ([#4362](https://github.com/elastic/eui/pull/4362))
+- Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
 
 ## [`29.3.1`](https://github.com/elastic/eui/tree/v29.3.1)
 
