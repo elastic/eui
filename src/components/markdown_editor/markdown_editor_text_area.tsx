@@ -30,21 +30,7 @@ export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
     compressed?: boolean;
     height: string;
     maxHeight: string;
-
-    /**
-     * Which direction, if at all, should the textarea resize
-     */
-    resize?: keyof typeof resizeToClassNameMap;
   };
-
-const resizeToClassNameMap = {
-  vertical: 'euiTextArea--resizeVertical',
-  horizontal: 'euiTextArea--resizeHorizontal',
-  both: 'euiTextArea--resizeBoth',
-  none: 'euiTextArea--resizeNone',
-};
-
-export const RESIZE = Object.keys(resizeToClassNameMap);
 
 export const EuiMarkdownEditorTextArea = forwardRef<
   HTMLTextAreaElement,

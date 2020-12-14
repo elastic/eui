@@ -375,8 +375,6 @@ export const EuiMarkdownEditor = forwardRef<
           const extraHeight = borderWidth + marginWidth + 1;
 
           setCurrentHeight(previewRef.current!.scrollHeight + extraHeight);
-        } else {
-          setCurrentHeight(currentHeight);
         }
       }
     }, [currentHeight, isPreviewing, height, autoExpandPreview]);
