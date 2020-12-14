@@ -21,10 +21,8 @@ import React, { FunctionComponent } from 'react';
 import { prettyDuration } from '../pretty_duration';
 
 import { EuiI18n } from '../../../i18n';
-import { EuiFlexItem } from '../../../flex';
 import { htmlIdGenerator } from '../../../../services';
 import { EuiTitle } from '../../../title';
-import { EuiSpacer } from '../../../spacer';
 import { EuiLink } from '../../../link';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { DurationRange, ApplyTime } from '../../types';
@@ -55,15 +53,13 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
       applyTime({ start, end });
     };
     return (
-      <EuiFlexItem
-        className="euiCommonlyUsedTimeRanges__item"
-        component="li"
-        grow={false}
+      <li
+        className="euiQuickSelectPopover__sectionItem"
         key={`${start}-${end}`}>
         <EuiLink onClick={applyRecentlyUsed}>
           {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
         </EuiLink>
-      </EuiFlexItem>
+      </li>
     );
   });
 
@@ -77,7 +73,6 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
           />
         </legend>
       </EuiTitle>
-      <EuiSpacer size="s" />
       <div className="euiQuickSelectPopover__section">
         <ul>{links}</ul>
       </div>
