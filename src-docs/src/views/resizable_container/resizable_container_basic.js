@@ -11,12 +11,12 @@ const text = (
 );
 
 export default () => (
-  <EuiResizableContainer style={{ height: '400px' }}>
+  <EuiResizableContainer style={{ height: '200px' }}>
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
         <EuiResizablePanel initialSize={50} minSize="30%">
           <EuiText>
-            <p>{text}</p>
+            <div>{text}</div>
             <a href="">Hello world</a>
           </EuiText>
         </EuiResizablePanel>
@@ -24,9 +24,7 @@ export default () => (
         <EuiResizableButton />
 
         <EuiResizablePanel initialSize={50} minSize="200px">
-          <EuiText>
-            <p>{text}</p>
-          </EuiText>
+          <EuiText>{text}</EuiText>
         </EuiResizablePanel>
       </>
     )}

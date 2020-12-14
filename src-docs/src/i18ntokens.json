@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 126,
+        "line": 129,
         "column": 4
       },
       "end": {
-        "line": 126,
+        "line": 129,
         "column": 66
       }
     },
@@ -789,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 131,
+        "line": 134,
         "column": 6
       },
       "end": {
-        "line": 135,
+        "line": 138,
         "column": 8
       }
     },
@@ -805,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 139,
+        "line": 142,
         "column": 6
       },
       "end": {
-        "line": 143,
+        "line": 146,
         "column": 8
       }
     },
@@ -821,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 261,
+        "line": 264,
         "column": 16
       },
       "end": {
-        "line": 264,
+        "line": 267,
         "column": 18
       }
     },
@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
+        "line": 275,
         "column": 16
       },
       "end": {
-        "line": 272,
+        "line": 275,
         "column": 80
       }
     },
@@ -997,11 +997,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 47,
+        "line": 49,
         "column": 4
       },
       "end": {
-        "line": 50,
+        "line": 52,
         "column": 65
       }
     },
@@ -1829,11 +1829,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 109,
+        "line": 113,
         "column": 20
       },
       "end": {
-        "line": 109,
+        "line": 113,
         "column": 77
       }
     },
@@ -1845,11 +1845,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 119,
+        "line": 123,
         "column": 10
       },
       "end": {
-        "line": 122,
+        "line": 126,
         "column": 12
       }
     },
@@ -2181,11 +2181,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 703,
+        "line": 711,
         "column": 14
       },
       "end": {
-        "line": 706,
+        "line": 714,
         "column": 16
       }
     },
@@ -2602,6 +2602,38 @@
       },
       "end": {
         "line": 129,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.loading",
+    "defString": "Step {number}: {title} is loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 135,
+        "column": 17
+      },
+      "end": {
+        "line": 142,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiStepStrings.simpleLoading",
+    "defString": "Step {number} is loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 144,
+        "column": 23
+      },
+      "end": {
+        "line": 148,
         "column": 3
       }
     },

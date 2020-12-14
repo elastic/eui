@@ -21,7 +21,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps as commonProps } from '../../../test';
 
-import { EuiButtonGroup, EuiButtonGroupProps } from './button_group';
+import {
+  EuiButtonGroup,
+  EuiButtonGroupOptionProps,
+  EuiButtonGroupProps,
+} from './button_group';
+
 import { COLORS } from '../button';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
@@ -30,7 +35,7 @@ const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
   'compressed',
 ];
 
-const options = [
+const options: EuiButtonGroupOptionProps[] = [
   {
     id: 'button00',
     label: 'Option one',
@@ -47,6 +52,7 @@ const options = [
     label: 'Option three',
     iconType: 'bolt',
     isDisabled: true,
+    type: 'submit',
   },
 ];
 

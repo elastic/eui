@@ -33,6 +33,7 @@ import {
   EuiButtonContentProps,
   EuiButtonContentType,
 } from '../button_content';
+import { validateHref } from '../../../services/security/href_validator';
 
 export type EuiButtonEmptyColor =
   | 'primary'
@@ -126,8 +127,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   color = 'primary',
   size,
   flush,
-  isDisabled,
-  disabled,
+  isDisabled: _isDisabled,
+  disabled: _disabled,
   isLoading,
   href,
   target,
@@ -139,6 +140,10 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
+  const isDisabled = _isDisabled || !isHrefValid;
+
   // If in the loading state, force disabled to true
   const buttonIsDisabled = isLoading || isDisabled || disabled;
 

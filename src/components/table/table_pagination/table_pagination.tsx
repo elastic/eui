@@ -73,7 +73,6 @@ export class EuiTablePagination extends Component<Props, State> {
       onChangeItemsPerPage = () => {},
       onChangePage,
       pageCount,
-      'aria-controls': ariaControls,
       ...rest
     } = this.props;
 
@@ -132,7 +131,6 @@ export class EuiTablePagination extends Component<Props, State> {
 
         <EuiFlexItem grow={false}>
           <EuiPagination
-            aria-controls={ariaControls}
             pageCount={pageCount}
             activePage={activePage}
             onPageClick={onChangePage}
