@@ -280,7 +280,9 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
               const buttonId = `${this.state.treeID}--${index}--node`;
 
               return (
-                <EuiInnerText key={node.id + index}>
+                <EuiInnerText
+                  key={node.id + index}
+                  fallback={typeof node.label === 'string' ? node.label : ''}>
                   {(ref, innerText) => (
                     <EuiI18n
                       key={node.id + index}
