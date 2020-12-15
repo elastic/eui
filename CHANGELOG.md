@@ -12,6 +12,7 @@
 **Breaking changes**
 
 - Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
+- Upgraded to TypeScript v4.0 ([#4296](https://github.com/elastic/eui/pull/4296))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
