@@ -25,6 +25,7 @@ import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiText } from '../text';
 import { keys, htmlIdGenerator } from '../../services';
+import { EuiInnerText } from '../inner_text';
 
 const EuiTreeViewContext = createContext<string>('');
 const treeIdGenerator = htmlIdGenerator('euiTreeView');
@@ -41,7 +42,7 @@ export interface Node {
   children?: Node[];
   /** The readable label for the item
    */
-  label: string;
+  label: React.ReactNode;
   /** A unique ID
    */
   id: string;
@@ -279,101 +280,116 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
               const buttonId = `${this.state.treeID}--${index}--node`;
 
               return (
-                <EuiI18n
-                  key={node.label + index}
-                  token="euiTreeView.ariaLabel"
-                  default="{nodeLabel} child of {ariaLabel}"
-                  values={{
-                    nodeLabel: node.label,
-                    ariaLabel: hasAriaLabel(rest) ? rest['aria-label'] : '',
-                  }}>
-                  {(ariaLabel: string) => {
-                    const label:
-                      | { 'aria-label': string }
-                      | { 'aria-labelledby': string } = hasAriaLabel(rest)
-                      ? {
-                          'aria-label': ariaLabel,
-                        }
-                      : {
-                          'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
-                        };
-
-                    const nodeClasses = classNames(
-                      'euiTreeView__node',
-                      display ? displayToClassNameMap[display] : null,
-                      { 'euiTreeView__node--expanded': this.isNodeOpen(node) }
-                    );
-
-                    const nodeButtonClasses = classNames(
-                      'euiTreeView__nodeInner',
-                      showExpansionArrows && node.children
-                        ? 'euiTreeView__nodeInner--withArrows'
-                        : null,
-                      this.state.activeItem === node.id
-                        ? 'euiTreeView__node--active'
-                        : null,
-                      node.className ? node.className : null
-                    );
-
-                    return (
-                      <React.Fragment>
-                        <li className={nodeClasses}>
-                          <button
-                            id={buttonId}
-                            aria-controls={`euiNestedTreeView-${this.state.treeID}`}
-                            aria-expanded={this.isNodeOpen(node)}
-                            ref={(ref) => this.setButtonRef(ref, index)}
-                            data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
-                            onKeyDown={(event: React.KeyboardEvent) =>
-                              this.onKeyDown(event, node)
+                <EuiInnerText
+                  key={node.id + index}
+                  fallback={typeof node.label === 'string' ? node.label : ''}>
+                  {(ref, innerText) => (
+                    <EuiI18n
+                      key={node.id + index}
+                      token="euiTreeView.ariaLabel"
+                      default="{nodeLabel} child of {ariaLabel}"
+                      values={{
+                        nodeLabel: innerText,
+                        ariaLabel: hasAriaLabel(rest) ? rest['aria-label'] : '',
+                      }}>
+                      {(ariaLabel: string) => {
+                        const label:
+                          | { 'aria-label': string }
+                          | { 'aria-labelledby': string } = hasAriaLabel(rest)
+                          ? {
+                              'aria-label': ariaLabel,
                             }
-                            onClick={() => this.handleNodeClick(node)}
-                            className={nodeButtonClasses}>
-                            {showExpansionArrows && node.children ? (
-                              <EuiIcon
-                                className="euiTreeView__expansionArrow"
-                                size={display === 'compressed' ? 's' : 'm'}
-                                type={
-                                  this.isNodeOpen(node)
-                                    ? 'arrowDown'
-                                    : 'arrowRight'
+                          : {
+                              'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
+                            };
+
+                        const nodeClasses = classNames(
+                          'euiTreeView__node',
+                          display ? displayToClassNameMap[display] : null,
+                          {
+                            'euiTreeView__node--expanded': this.isNodeOpen(
+                              node
+                            ),
+                          }
+                        );
+
+                        const nodeButtonClasses = classNames(
+                          'euiTreeView__nodeInner',
+                          showExpansionArrows && node.children
+                            ? 'euiTreeView__nodeInner--withArrows'
+                            : null,
+                          this.state.activeItem === node.id
+                            ? 'euiTreeView__node--active'
+                            : null,
+                          node.className ? node.className : null
+                        );
+
+                        return (
+                          <React.Fragment>
+                            <li className={nodeClasses}>
+                              <button
+                                id={buttonId}
+                                aria-controls={`euiNestedTreeView-${this.state.treeID}`}
+                                aria-expanded={this.isNodeOpen(node)}
+                                ref={(ref) => this.setButtonRef(ref, index)}
+                                data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
+                                onKeyDown={(event: React.KeyboardEvent) =>
+                                  this.onKeyDown(event, node)
                                 }
-                              />
-                            ) : null}
-                            {node.icon && !node.useEmptyIcon ? (
-                              <span className="euiTreeView__iconWrapper">
-                                {this.isNodeOpen(node) && node.iconWhenExpanded
-                                  ? node.iconWhenExpanded
-                                  : node.icon}
-                              </span>
-                            ) : null}
-                            {node.useEmptyIcon && !node.icon ? (
-                              <span className="euiTreeView__iconPlaceholder" />
-                            ) : null}
-                            <span className="euiTreeView__nodeLabel">
-                              {node.label}
-                            </span>
-                          </button>
-                          <div
-                            id={`euiNestedTreeView-${this.state.treeID}`}
-                            onKeyDown={(event: React.KeyboardEvent) =>
-                              this.onChildrenKeydown(event, index)
-                            }>
-                            {node.children && this.isNodeOpen(node) ? (
-                              <EuiTreeView
-                                items={node.children}
-                                display={display}
-                                showExpansionArrows={showExpansionArrows}
-                                expandByDefault={this.state.expandChildNodes}
-                                {...label}
-                              />
-                            ) : null}
-                          </div>
-                        </li>
-                      </React.Fragment>
-                    );
-                  }}
-                </EuiI18n>
+                                onClick={() => this.handleNodeClick(node)}
+                                className={nodeButtonClasses}>
+                                {showExpansionArrows && node.children ? (
+                                  <EuiIcon
+                                    className="euiTreeView__expansionArrow"
+                                    size={display === 'compressed' ? 's' : 'm'}
+                                    type={
+                                      this.isNodeOpen(node)
+                                        ? 'arrowDown'
+                                        : 'arrowRight'
+                                    }
+                                  />
+                                ) : null}
+                                {node.icon && !node.useEmptyIcon ? (
+                                  <span className="euiTreeView__iconWrapper">
+                                    {this.isNodeOpen(node) &&
+                                    node.iconWhenExpanded
+                                      ? node.iconWhenExpanded
+                                      : node.icon}
+                                  </span>
+                                ) : null}
+                                {node.useEmptyIcon && !node.icon ? (
+                                  <span className="euiTreeView__iconPlaceholder" />
+                                ) : null}
+                                <span
+                                  ref={ref}
+                                  className="euiTreeView__nodeLabel">
+                                  {node.label}
+                                </span>
+                              </button>
+                              <div
+                                id={`euiNestedTreeView-${this.state.treeID}`}
+                                onKeyDown={(event: React.KeyboardEvent) =>
+                                  this.onChildrenKeydown(event, index)
+                                }>
+                                {node.children && this.isNodeOpen(node) ? (
+                                  <EuiTreeView
+                                    items={node.children}
+                                    display={display}
+                                    showExpansionArrows={showExpansionArrows}
+                                    expandByDefault={
+                                      this.state.expandChildNodes
+                                    }
+                                    {...label}
+                                  />
+                                ) : null}
+                              </div>
+                            </li>
+                          </React.Fragment>
+                        );
+                      }}
+                    </EuiI18n>
+                  )}
+                </EuiInnerText>
               );
             })}
           </ul>
