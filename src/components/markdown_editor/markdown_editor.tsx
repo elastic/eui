@@ -72,6 +72,9 @@ type CommonMarkdownEditorProps = Omit<
     /** ID of an element describing the text editor, useful for associating error messages */
     'aria-describedby'?: string;
 
+    /** Initialize the markdown editor with tooltip plugin  */
+    withTooltip?: boolean;
+
     /** a unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
@@ -149,6 +152,7 @@ export const EuiMarkdownEditor = forwardRef<
   (
     {
       className,
+      withTooltip,
       editorId: _editorId,
       value,
       onChange,
@@ -171,12 +175,16 @@ export const EuiMarkdownEditor = forwardRef<
     const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [
       _editorId,
     ]);
+    const withTooltipPlugin = withTooltip;
 
     const [pluginEditorPlugin, setPluginEditorPlugin] = useState<
       EuiMarkdownEditorUiPlugin | undefined
     >(undefined);
 
-    const toolbarPlugins = [MarkdownTooltip.plugin, ...uiPlugins];
+    const toolbarPlugins = [...uiPlugins];
+    if (typeof withTooltipPlugin === 'undefined' || withTooltipPlugin) {
+      toolbarPlugins.splice(0, 0, MarkdownTooltip.plugin);
+    }
 
     const markdownActions = useMemo(
       () => new MarkdownActions(editorId, toolbarPlugins),

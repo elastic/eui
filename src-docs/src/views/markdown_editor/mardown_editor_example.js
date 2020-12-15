@@ -61,6 +61,9 @@ export const MarkdownEditorExample = {
         <p>
           The base editor can render basic markdown along with some built-in
           plugins.
+          <br />
+          Pass <code>withTooltip = {'{false}'} </code> prop to remove the
+          initial plugins.
         </p>
       ),
       props: {
