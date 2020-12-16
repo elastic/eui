@@ -949,7 +949,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                 className="euiFormControlLayoutIcons"
               >
                 <EuiFormControlLayoutCustomIcon
-                  compressed={false}
+                  size="m"
                   type="calendar"
                 >
                   <span

@@ -20,19 +20,33 @@
 import React, { FunctionComponent, ButtonHTMLAttributes } from 'react';
 
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 
+const sizeToClassNameMap = {
+  s: 'euiFormControlLayoutClearButton--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
+
 export type EuiFormControlLayoutClearButtonProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement>;
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    size?: typeof SIZES[number];
+  };
 
 export const EuiFormControlLayoutClearButton: FunctionComponent<EuiFormControlLayoutClearButtonProps> = ({
   className,
   onClick,
+  size = 'm',
   ...rest
 }) => {
-  const classes = classNames('euiFormControlLayoutClearButton', className);
+  const classes = classNames(
+    'euiFormControlLayoutClearButton',
+    sizeToClassNameMap[size],
+    className
+  );
 
   return (
     <EuiI18n

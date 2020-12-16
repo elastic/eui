@@ -24,7 +24,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { EuiIcon, IconType } from '../../icon';
+import { EuiIcon, EuiIconProps, IconType } from '../../icon';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 export type EuiFormControlLayoutCustomIconProps = CommonProps &
@@ -33,7 +33,7 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
     HTMLAttributes<HTMLSpanElement>
   > & {
     type: IconType;
-    compressed?: boolean;
+    size?: EuiIconProps['size'];
     iconRef?:
       | string
       | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
@@ -44,7 +44,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
   onClick,
   type,
   iconRef,
-  compressed = false,
+  size,
   ...rest
 }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
@@ -62,7 +62,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
         <EuiIcon
           className="euiFormControlLayoutCustomIcon__icon"
           aria-hidden="true"
-          size={compressed ? 's' : 'm'}
+          size={size}
           type={type}
         />
       </button>
@@ -74,7 +74,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
       <EuiIcon
         className="euiFormControlLayoutCustomIcon__icon"
         aria-hidden="true"
-        size={compressed ? 's' : 'm'}
+        size={size}
         type={type}
       />
     </span>

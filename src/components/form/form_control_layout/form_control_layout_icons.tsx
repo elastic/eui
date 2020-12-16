@@ -93,8 +93,7 @@ export class EuiFormControlLayoutIcons extends Component<
   }
 
   renderCustomIcon() {
-    const { icon } = this.props;
-    const { compressed } = this.props;
+    const { icon, compressed } = this.props;
 
     if (!icon) {
       return null;
@@ -110,7 +109,7 @@ export class EuiFormControlLayoutIcons extends Component<
 
     return (
       <EuiFormControlLayoutCustomIcon
-        compressed={compressed}
+        size={compressed ? 's' : 'm'}
         iconRef={iconRef}
         {...iconRest}
       />
@@ -128,11 +127,16 @@ export class EuiFormControlLayoutIcons extends Component<
   }
 
   renderClearButton() {
-    const { clear } = this.props;
+    const { clear, compressed } = this.props;
     if (!clear) {
       return null;
     }
 
-    return <EuiFormControlLayoutClearButton {...clear} />;
+    return (
+      <EuiFormControlLayoutClearButton
+        size={compressed ? 's' : 'm'}
+        {...clear}
+      />
+    );
   }
 }
