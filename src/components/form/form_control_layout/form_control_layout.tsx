@@ -74,7 +74,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       fullWidth,
       isLoading,
       isDisabled,
-      compressed = false,
+      compressed,
       className,
       prepend,
       append,

@@ -941,7 +941,6 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
               </DatePicker>
             </EuiValidatableControl>
             <EuiFormControlLayoutIcons
-              compressed={false}
               icon="calendar"
               isLoading={false}
             >
