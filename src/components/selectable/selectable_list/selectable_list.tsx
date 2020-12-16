@@ -238,7 +238,6 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         onClick={() => this.onAddOrRemoveOption(option)}
         ref={ref ? ref.bind(null, index) : undefined}
         isFocused={this.props.activeOptionIndex === index}
-        showIcons={this.props.showIcons}
         title={searchableLabel || label}
         checked={checked}
         disabled={disabled}
@@ -249,7 +248,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         onFocusBadge={this.props.onFocusBadge}
         allowExclusions={this.props.allowExclusions}
         // @ts-ignore complex
-        {...(optionRest as EuiSelectableListItemProps)}>
+        {...(optionRest as EuiSelectableListItemProps)}
+        showIcons={this.props.showIcons}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
         ) : (

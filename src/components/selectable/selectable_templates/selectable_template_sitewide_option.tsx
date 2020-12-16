@@ -81,7 +81,6 @@ export const euiSelectableTemplateSitewideFormatOptions = (
 
     return {
       key: item.label,
-      label: item.label,
       title,
       ...item,
       className: classNames(
