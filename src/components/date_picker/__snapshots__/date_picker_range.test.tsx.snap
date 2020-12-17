@@ -23,7 +23,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
               class="react-datepicker__input-container"
             >
               <input
-                aria-label=""
+                aria-label="Press the down key to open a popover containing a calendar."
                 class="euiDatePicker euiFieldText euiFieldText--withIcon"
                 type="text"
                 value=""
@@ -73,7 +73,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
               class="react-datepicker__input-container"
             >
               <input
-                aria-label=""
+                aria-label="Press the down key to open a popover containing a calendar."
                 class="euiDatePicker euiFieldText"
                 type="text"
                 value=""

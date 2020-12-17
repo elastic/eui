@@ -193,6 +193,11 @@ export interface ReactDatePickerProps {
   showYearDropdown?: boolean;
   startDate?: moment.Moment | null;
   startOpen?: boolean;
+
+  /**
+   * Use Moment strict mode, allowing exact format matches only
+   */
+  strictParsing?: boolean;
   tabIndex?: number;
   timeCaption?: string;
 

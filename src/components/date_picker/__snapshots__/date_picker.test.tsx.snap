@@ -54,6 +54,7 @@ exports[`EuiDatePicker is rendered 2`] = `
   showMonthDropdown={true}
   showTimeSelect={false}
   showYearDropdown={true}
+  strictParsing={false}
   timeCaption="Time"
   timeFormat="hh:mm A"
   timeIntervals={30}
@@ -868,6 +869,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                 showMonthDropdown={true}
                 showTimeSelect={false}
                 showYearDropdown={true}
+                strictParsing={false}
                 timeCaption="Time"
                 timeFormat="hh:mm A"
                 timeIntervals={30}
@@ -893,7 +895,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                       className="react-datepicker__input-container"
                     >
                       <input
-                        aria-label=""
+                        aria-label="Press the down key to open a popover containing a calendar."
                         className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
                         disabled={false}
                         onBlur={[Function]}
@@ -920,7 +922,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                             className="react-datepicker__input-container"
                           >
                             <input
-                              aria-label=""
+                              aria-label="Press the down key to open a popover containing a calendar."
                               className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
                               disabled={false}
                               onBlur={[Function]}
