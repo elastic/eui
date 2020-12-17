@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.0.0`.
+- Added ability for text input updates in `EuiDatePicker` ([#4243](https://github.com/elastic/eui/pull/4243))
 
 ## [`31.0.0`](https://github.com/elastic/eui/tree/v31.0.0)
 
