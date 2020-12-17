@@ -49,7 +49,7 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
       <EuiFlexItem
         key={label}
         component="li"
-        className="euiCommonlyUsedTimeRanges__item">
+        className="euiQuickSelectPopover__sectionItem">
         <EuiLink onClick={applyCommonlyUsed} data-test-subj={dataTestSubj}>
           {label}
         </EuiLink>
@@ -60,7 +60,7 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
   return (
     <fieldset>
       <EuiTitle size="xxxs">
-        <legend id={legendId} aria-label="Commonly used time ranges">
+        <legend id={legendId}>
           <EuiI18n
             token="euiCommonlyUsedTimeRanges.legend"
             default="Commonly used"

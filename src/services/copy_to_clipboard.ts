@@ -32,6 +32,7 @@ function createHiddenTextElement(text: string): HTMLSpanElement {
   textElement.style.webkitUserSelect = 'text';
   // @ts-ignore this one doesn't appear in the TS definitions for some reason
   textElement.style.MozUserSelect = 'text';
+  // @ts-ignore this one doesn't appear in the TS definitions for some reason
   textElement.style.msUserSelect = 'text';
   textElement.style.userSelect = 'text';
   return textElement;
