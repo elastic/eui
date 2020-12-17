@@ -119,12 +119,20 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
   constructor(props: EuiSearchBarProps) {
     super(props);
-    const query = parseQuery(props.defaultQuery || props.query, props);
-    this.state = {
-      query,
-      queryText: query.text,
-      error: null,
-    };
+    try {
+      const query = parseQuery(props.defaultQuery || props.query, props);
+      this.state = {
+        query,
+        queryText: query.text,
+        error: null,
+      };
+    } catch (e) {
+      this.state = {
+        query: parseQuery('', props),
+        queryText: parseQuery(props.defaultQuery, props).text,
+        error: e,
+      };
+    }
   }
 
   static getDerivedStateFromProps(
