@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `31.0.0`.
+
+## [`31.0.0`](https://github.com/elastic/eui/tree/v31.0.0)
+
 - Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
 - Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
 - Changed `showTimeSelect` prop to true when `showTimeSelectOnly` prop is set to true. ([#4372](https://github.com/elastic/eui/pull/4372))
@@ -12,6 +16,7 @@
 **Breaking changes**
 
 - Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
+- Upgraded to TypeScript v4.0 ([#4296](https://github.com/elastic/eui/pull/4296))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
@@ -33,7 +38,8 @@
 - Limited the links allowed in `EuiMarkdownEditor` to http, https, or starting with a forward slash ([#4362](https://github.com/elastic/eui/pull/4362))
 - Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
 - Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
-- Added try-catch to fallback to default query in case of bad query string in `EuiSearchBar` ([#4389](https://github.com/elastic/eui/pull/4389))
+- Added try-catch to fallback to default query in case of bad query string in `EuiSearchBar` ([#4395](https://github.com/elastic/eui/pull/4395))
+- Changed `label` type from `string` to `ReactNode` in `EuiTreeViewNode` ([#4352](https://github.com/elastic/eui/pull/4352))
 
 **Theme: Amsterdam**
 

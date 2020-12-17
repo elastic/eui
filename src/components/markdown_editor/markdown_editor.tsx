@@ -229,7 +229,7 @@ export const EuiMarkdownEditor = forwardRef<
       [replaceNode]
     );
 
-    const [selectedNode, setSelectedNode] = useState();
+    const [selectedNode, setSelectedNode] = useState<EuiMarkdownAstNode>();
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
