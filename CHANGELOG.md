@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.0.0`.
+- Reduced the size of the icons and clear button for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
 
 ## [`31.0.0`](https://github.com/elastic/eui/tree/v31.0.0)
 

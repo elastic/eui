@@ -948,6 +948,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                 className="euiFormControlLayoutIcons"
               >
                 <EuiFormControlLayoutCustomIcon
+                  size="m"
                   type="calendar"
                 >
                   <span
@@ -956,12 +957,14 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                     <EuiIcon
                       aria-hidden="true"
                       className="euiFormControlLayoutCustomIcon__icon"
+                      size="m"
                       type="calendar"
                     >
                       <span
                         aria-hidden="true"
                         className="euiFormControlLayoutCustomIcon__icon"
                         data-euiicon-type="calendar"
+                        size="m"
                       />
                     </EuiIcon>
                   </span>
