@@ -27023,6 +27023,9 @@
 	        } else if (eventKey === "Escape") {
 	          event.preventDefault();
 	          _this.setOpen(false, true);
+	        } else if (eventKey === "Enter") {
+	          event.preventDefault();
+	          _this.setOpen(false, true);
 	        }
 	        return;
 	      }

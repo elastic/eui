@@ -554,7 +554,7 @@ export default class DatePicker extends React.Component {
         this.setState({enableFocusTrap: true}, () => {
           this.onInputClick();
         });
-      } else if (eventKey === "Escape") {
+      } else if (eventKey === "Escape" || eventKey === "Enter") {
         event.preventDefault();
         this.setOpen(false, true);
       }

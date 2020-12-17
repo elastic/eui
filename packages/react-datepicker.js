@@ -212,11 +212,6 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
-var tabbable$1 = /*#__PURE__*/Object.freeze({
-  default: tabbable_1,
-  __moduleExports: tabbable_1
-});
-
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -237,15 +232,6 @@ function extend() {
     return target
 }
 
-var immutable$1 = /*#__PURE__*/Object.freeze({
-  default: immutable,
-  __moduleExports: immutable
-});
-
-var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
-
-var xtend = ( immutable$1 && immutable ) || immutable$1;
-
 var listeningFocusTrap = null;
 
 function focusTrap(element, userOptions) {
@@ -253,7 +239,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = xtend(
+  var config = immutable(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -425,7 +411,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable$2.isFocusable(e.target)
+        returnFocus: !tabbable_1.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -480,7 +466,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable$2(container);
+    var tabbableNodes = tabbable_1(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -522,13 +508,6 @@ function delay(fn) {
 }
 
 var focusTrap_1 = focusTrap;
-
-var focusTrap$1 = /*#__PURE__*/Object.freeze({
-  default: focusTrap_1,
-  __moduleExports: focusTrap_1
-});
-
-var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -640,7 +619,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: createFocusTrap
+  _createFocusTrap: focusTrap_1
 };
 
 var focusTrapReact = FocusTrap;
@@ -4322,17 +4301,10 @@ var _aFunction = function (it) {
   return it;
 };
 
-var _aFunction$1 = /*#__PURE__*/Object.freeze({
-  default: _aFunction,
-  __moduleExports: _aFunction
-});
-
-var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
-
 // optional / simple context binding
 
 var _ctx = function (fn, that, length) {
-  aFunction(fn);
+  _aFunction(fn);
   if (that === undefined) return fn;
   switch (length) {
     case 1: return function (a) {
@@ -4349,6 +4321,11 @@ var _ctx = function (fn, that, length) {
     return fn.apply(that, arguments);
   };
 };
+
+var _ctx$1 = /*#__PURE__*/Object.freeze({
+  default: _ctx,
+  __moduleExports: _ctx
+});
 
 var _isObject = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
@@ -4430,6 +4407,8 @@ var _hide = _descriptors ? function (object, key, value) {
   return object;
 };
 
+var require$$0 = ( _ctx$1 && _ctx ) || _ctx$1;
+
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -4453,7 +4432,7 @@ var $export = function (type, name, source) {
     // prevent global pollution for namespaces
     exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
     // bind timers to global for call from export context
-    : IS_BIND && own ? _ctx(out, _global)
+    : IS_BIND && own ? require$$0(out, _global)
     // wrap global constructors for prevent change them in library
     : IS_WRAP && target[key] == out ? (function (C) {
       var F = function (a, b, c) {
@@ -4468,7 +4447,7 @@ var $export = function (type, name, source) {
       F[PROTOTYPE] = C[PROTOTYPE];
       return F;
     // make static versions for prototype methods
-    })(out) : IS_PROTO && typeof out == 'function' ? _ctx(Function.call, out) : out;
+    })(out) : IS_PROTO && typeof out == 'function' ? require$$0(Function.call, out) : out;
     // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
     if (IS_PROTO) {
       (exports.virtual || (exports.virtual = {}))[key] = out;
@@ -4526,40 +4505,19 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-var _toInteger$1 = /*#__PURE__*/Object.freeze({
-  default: _toInteger,
-  __moduleExports: _toInteger
-});
-
-var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
-
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
-
-var _toLength$1 = /*#__PURE__*/Object.freeze({
-  default: _toLength,
-  __moduleExports: _toLength
-});
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = toInteger(index);
+  index = _toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
-
-var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
-  default: _toAbsoluteIndex,
-  __moduleExports: _toAbsoluteIndex
-});
-
-var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
-
-var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 // false -> Array#indexOf
 // true  -> Array#includes
@@ -4569,8 +4527,8 @@ var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteI
 var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
+    var length = _toLength(O.length);
+    var index = _toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
@@ -4689,12 +4647,12 @@ var _objectAssign$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: _objectAssign
 });
 
-var require$$0 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
+var require$$0$1 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
 
 // 19.1.3.1 Object.assign(target, source)
 
 
-_export(_export.S + _export.F, 'Object', { assign: require$$0 });
+_export(_export.S + _export.F, 'Object', { assign: require$$0$1 });
 
 var assign = _core.Object.assign;
 
@@ -4703,10 +4661,10 @@ var assign$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: assign
 });
 
-var require$$0$1 = ( assign$1 && assign ) || assign$1;
+var require$$0$2 = ( assign$1 && assign ) || assign$1;
 
 var assign$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
+module.exports = { "default": require$$0$2, __esModule: true };
 });
 
 unwrapExports(assign$2);
@@ -4756,7 +4714,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(_defined(that));
-    var i = toInteger(pos);
+    var i = _toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -4766,11 +4724,6 @@ var _stringAt = function (TO_STRING) {
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
-
-var _stringAt$1 = /*#__PURE__*/Object.freeze({
-  default: _stringAt,
-  __moduleExports: _stringAt
-});
 
 var _library = true;
 
@@ -4931,19 +4884,10 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var _iterDefine$1 = /*#__PURE__*/Object.freeze({
-  default: _iterDefine,
-  __moduleExports: _iterDefine
-});
-
-var require$$0$2 = ( _stringAt$1 && _stringAt ) || _stringAt$1;
-
-var require$$0$3 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
-
-var $at = require$$0$2(true);
+var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-require$$0$3(String, 'String', function (iterated) {
+_iterDefine(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4965,7 +4909,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = require$$0$3(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -5006,18 +4950,16 @@ var _wksExt = {
 
 var iterator = _wksExt.f('iterator');
 
-var iterator$1 = /*#__PURE__*/Object.freeze({
-  default: iterator,
-  __moduleExports: iterator
+var iterator$1 = createCommonjsModule(function (module) {
+module.exports = { "default": iterator, __esModule: true };
 });
 
-var require$$0$4 = ( iterator$1 && iterator ) || iterator$1;
+var iterator$2 = unwrapExports(iterator$1);
 
-var iterator$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$4, __esModule: true };
+var iterator$3 = /*#__PURE__*/Object.freeze({
+  default: iterator$2,
+  __moduleExports: iterator$1
 });
-
-unwrapExports(iterator$2);
 
 var _meta = createCommonjsModule(function (module) {
 var META = _uid('meta');
@@ -5403,7 +5345,16 @@ var symbol$1 = createCommonjsModule(function (module) {
 module.exports = { "default": symbol, __esModule: true };
 });
 
-unwrapExports(symbol$1);
+var symbol$2 = unwrapExports(symbol$1);
+
+var symbol$3 = /*#__PURE__*/Object.freeze({
+  default: symbol$2,
+  __moduleExports: symbol$1
+});
+
+var _iterator = ( iterator$3 && iterator$2 ) || iterator$3;
+
+var _symbol = ( symbol$3 && symbol$2 ) || symbol$3;
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5411,11 +5362,11 @@ exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator$2);
+var _iterator2 = _interopRequireDefault(_iterator);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$1);
+var _symbol2 = _interopRequireDefault(_symbol);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5463,7 +5414,7 @@ var _setProto = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = _ctx(Function.call, _objectGopd.f(Object.prototype, '__proto__').set, 2);
+        set = require$$0(Function.call, _objectGopd.f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -5477,31 +5428,22 @@ var _setProto = {
   check: check
 };
 
-var _setProto$1 = /*#__PURE__*/Object.freeze({
-  default: _setProto,
-  __moduleExports: _setProto
-});
-
-var require$$0$5 = ( _setProto$1 && _setProto ) || _setProto$1;
-
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: require$$0$5.set });
+_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf,
-  __moduleExports: setPrototypeOf
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-var require$$0$6 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
+var setPrototypeOf$2 = unwrapExports(setPrototypeOf$1);
 
-var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$6, __esModule: true };
+var setPrototypeOf$3 = /*#__PURE__*/Object.freeze({
+  default: setPrototypeOf$2,
+  __moduleExports: setPrototypeOf$1
 });
-
-unwrapExports(setPrototypeOf$2);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5511,11 +5453,27 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-unwrapExports(create$1);
+var require$$0$3 = ( create$1 && create ) || create$1;
+
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$3, __esModule: true };
+});
+
+var create$3 = unwrapExports(create$2);
+
+var create$4 = /*#__PURE__*/Object.freeze({
+  default: create$3,
+  __moduleExports: create$2
+});
+
+var _setPrototypeOf = ( setPrototypeOf$3 && setPrototypeOf$2 ) || setPrototypeOf$3;
+
+var _create = ( create$4 && create$3 ) || create$4;
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5523,11 +5481,11 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
+var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
 
 
-var _create2 = _interopRequireDefault(create$1);
+var _create2 = _interopRequireDefault(_create);
 
 
 
@@ -8104,6 +8062,13 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
+var emptyFunction$1 = /*#__PURE__*/Object.freeze({
+  default: emptyFunction_1,
+  __moduleExports: emptyFunction_1
+});
+
+var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
+
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -8111,7 +8076,7 @@ var emptyFunction_1 = emptyFunction;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction_1;
+var warning = emptyFunction$2;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -9148,6 +9113,9 @@ var DatePicker = function (_React$Component) {
             _this.onInputClick();
           });
         } else if (eventKey === "Escape") {
+          event.preventDefault();
+          _this.setOpen(false, true);
+        } else if (eventKey === "Enter") {
           event.preventDefault();
           _this.setOpen(false, true);
         }
