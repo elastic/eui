@@ -26,7 +26,6 @@ import React, {
   useEffect,
   Fragment,
   ReactChild,
-  useMemo,
   useRef,
   Dispatch,
   SetStateAction,
@@ -79,7 +78,7 @@ import {
 import { useDataGridColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
-import { usePerfomanceCheck, useDebugMemo } from './debug_hooks';
+import { useDebugMemo } from './debug_hooks';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -157,6 +156,10 @@ type CommonGridProps = CommonProps &
      * Defines a minimum width for the grid to show all controls in its header.
      */
     minSizeForControls?: number;
+    /**
+     * Allow to track and logging execution of hooks.
+     */
+    debugMode?: boolean;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -405,7 +408,8 @@ function useOnResize(
 
 function useInMemoryValues(
   inMemory: EuiDataGridInMemory | undefined,
-  rowCount: number
+  rowCount: number,
+  debugMode: boolean
 ): [
   EuiDataGridInMemoryValues,
   (rowIndex: number, columnId: string, value: string) => void
@@ -423,9 +427,12 @@ function useInMemoryValues(
   const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inMemoryValues = useDebugMemo(() => ({ ..._inMemoryValues.current }), [
-    inMemoryValuesVersion,
-  ], 'inMemoryValues',);
+  const inMemoryValues = useDebugMemo(
+    () => ({ ..._inMemoryValues.current }),
+    [inMemoryValuesVersion],
+    'inMemoryValues',
+    debugMode
+  );
 
   const onCellRender = useCallback((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
@@ -562,7 +569,8 @@ function useAfterRender(fn: Function): Function {
 
 type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
 const useFocus = (
-  headerIsInteractive: boolean
+  headerIsInteractive: boolean,
+  debugMode: boolean
 ): [
   FocusProps,
   EuiDataGridFocusedCell | undefined,
@@ -572,7 +580,12 @@ const useFocus = (
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const hasHadFocus = useDebugMemo(() => focusedCell != null, [focusedCell], 'hasHadFocus');
+  const hasHadFocus = useDebugMemo(
+    () => focusedCell != null,
+    [focusedCell],
+    'hasHadFocus',
+    debugMode
+  );
 
   const focusProps = useDebugMemo(
     () =>
@@ -594,7 +607,8 @@ const useFocus = (
             },
           },
     [hasHadFocus, setFocusedCell, headerIsInteractive],
-    'focusProps'
+    'focusProps',
+    debugMode
   );
 
   return [focusProps, focusedCell, setFocusedCell];
@@ -627,8 +641,6 @@ function checkOrDefaultToolBarDiplayOptions<
 
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
-  console.log('EuiDataGrid - start');
-  window.performance.mark(`EuiDataGridStart`);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
@@ -637,10 +649,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
-  const setContainerRef = useCallback((ref) => { return _setContainerRef(ref)}, []);
+  const setContainerRef = useCallback((ref) => {
+    return _setContainerRef(ref);
+  }, []);
+
+  const { debugMode = false } = props;
 
   const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
-    headerIsInteractive
+    headerIsInteractive,
+    debugMode
   );
 
   const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
@@ -731,24 +748,34 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
 
-  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
+  const [inMemoryValues, onCellRender] = useInMemoryValues(
+    inMemory,
+    rowCount,
+    debugMode
+  );
 
-  const definedColumnSchemas = useDebugMemo(() => {
-    return columns.reduce<{ [key: string]: string }>(
-      (definedColumnSchemas, { id, schema }) => {
-        if (schema != null) {
-          definedColumnSchemas[id] = schema;
-        }
-        return definedColumnSchemas;
-      },
-      {}
-    );
-  }, [columns], 'definedColumnSchemas');
+  const definedColumnSchemas = useDebugMemo(
+    () => {
+      return columns.reduce<{ [key: string]: string }>(
+        (definedColumnSchemas, { id, schema }) => {
+          if (schema != null) {
+            definedColumnSchemas[id] = schema;
+          }
+          return definedColumnSchemas;
+        },
+        {}
+      );
+    },
+    [columns],
+    'definedColumnSchemas',
+    debugMode
+  );
 
   const allSchemaDetectors = useDebugMemo(
     () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
     [schemaDetectors],
-    'allSchemaDetectors'
+    'allSchemaDetectors',
+    debugMode
   );
   const detectedSchema = useDetectSchema(
     inMemory,
@@ -922,7 +949,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   });
 
-  const datagridContext = useDebugMemo(() => ({
+  const datagridContext = useDebugMemo(
+    () => ({
       onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
         const key = `${cell[0]}-${cell[1]}`;
         cellsUpdateFocus.current.set(key, updateFocus);
@@ -931,9 +959,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
           cellsUpdateFocus.current.delete(key);
         };
       },
+      debugMode,
     }),
     [],
-    'datagridContext'
+    'datagridContext',
+    debugMode
   );
 
   const gridIds = htmlIdGenerator();
@@ -951,18 +981,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     sorting,
     trailingControlColumns,
   };
-
-  usePerfomanceCheck([
-    containerRef,
-    leadingControlColumns,
-    trailingControlColumns,
-    orderedVisibleColumns,
-    defaultColumnWidth,
-    headerIsInteractive,
-    focusedCell,
-    wrappingDivFocusProps,
-    contentRef
-  ], 'EuiDataGrid');
 
   return (
     <EuiI18n
