@@ -274,6 +274,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     isFocused,
     setIsCellEntered,
     index,
+    setFocusedCell,
   ]);
 
   const columnActions = getColumnActions(
@@ -330,7 +331,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ) : (
         <button
           className="euiDataGridHeaderCell__button"
-          onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+          onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}>
           {sortingArrow}
           <div className="euiDataGridHeaderCell__content">
             {display || displayAsText || id}
@@ -339,6 +340,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             className="euiDataGridHeaderCell__popover"
             panelPaddingSize="none"
             anchorPosition="downRight"
+            ownFocus
             button={
               <EuiIcon
                 type="arrowDown"
@@ -349,8 +351,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               />
             }
             isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}
-            ownFocus={isFocused}>
+            closePopover={() => setIsPopoverOpen(false)}>
             <div>
               <EuiListGroup
                 listItems={columnActions}
