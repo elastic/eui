@@ -158,7 +158,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   // If the iconType passed is one of the prefab token types,
   // grab its properties
-  if (iconType in TOKEN_MAP) {
+  if (typeof iconType === 'string' && iconType in TOKEN_MAP) {
     const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
     finalDisplay = defaults(currentDisplay, tokenDisplay);
   } else {

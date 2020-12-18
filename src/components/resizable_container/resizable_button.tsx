@@ -20,31 +20,34 @@
 import React, {
   FunctionComponent,
   ButtonHTMLAttributes,
-  KeyboardEvent,
   MouseEvent,
-  TouchEvent,
   useCallback,
+  useMemo,
   useRef,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
-import { EuiResizablePanelRegistry } from './context';
-
-export type EuiResizableButtonMouseEvent =
-  | MouseEvent<HTMLButtonElement>
-  | TouchEvent<HTMLButtonElement>;
-export type EuiResizableButtonKeyDownEvent = KeyboardEvent<HTMLButtonElement>;
-
-export type EuiResizableButtonSize = 's' | 'm' | 'l' | 'xl';
+import { htmlIdGenerator } from '../../services';
+import { useEuiResizableContainerContext } from './context';
+import {
+  EuiResizableButtonController,
+  EuiResizableButtonMouseEvent,
+  EuiResizableButtonKeyDownEvent,
+} from './types';
 
 interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
   onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
+  onFocus: (id: string) => void;
+  onBlur: () => void;
+  registration: {
+    register: (resizer: EuiResizableButtonController) => void;
+    deregister: (resizerId: EuiResizableButtonController['id']) => void;
+  };
   isHorizontal: boolean;
-  registryRef: React.MutableRefObject<EuiResizablePanelRegistry>;
 }
 
 export interface EuiResizableButtonProps
@@ -53,35 +56,36 @@ export interface EuiResizableButtonProps
       keyof EuiResizableButtonControls
     >,
     CommonProps,
-    Partial<EuiResizableButtonControls> {
-  /**
-   * The size of the Resizer (the space between panels)
-   */
-  size?: EuiResizableButtonSize;
-}
+    Partial<EuiResizableButtonControls> {}
 
-const sizeToClassNameMap = {
-  s: 'euiResizableButton--sizeSmall',
-  m: 'euiResizableButton--sizeMedium',
-  l: 'euiResizableButton--sizeLarge',
-  xl: 'euiResizableButton--sizeExtraLarge',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
+const generatePanelId = htmlIdGenerator('resizable-button');
 
 export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   isHorizontal,
   className,
-  size = 'm',
-  registryRef,
+  id,
+  registration,
+  disabled,
+  onFocus,
+  onBlur,
   ...rest
 }) => {
+  const resizerId = useRef(id || generatePanelId());
+  const {
+    registry: { resizers } = { resizers: {} },
+  } = useEuiResizableContainerContext();
+  const isDisabled = useMemo(
+    () =>
+      disabled ||
+      (resizers[resizerId.current] && resizers[resizerId.current].isDisabled),
+    [resizers, disabled]
+  );
   const classes = classNames(
     'euiResizableButton',
-    size ? sizeToClassNameMap[size] : null,
     {
       'euiResizableButton--vertical': !isHorizontal,
       'euiResizableButton--horizontal': isHorizontal,
+      'euiResizableButton--disabled': isDisabled,
     },
     className
   );
@@ -89,21 +93,32 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   const previousRef = useRef<HTMLElement>();
   const onRef = useCallback(
     (ref: HTMLElement | null) => {
+      if (!registration) return;
+      const id = resizerId.current;
       if (ref) {
         previousRef.current = ref;
-        registryRef!.current.registerResizerRef(ref);
+        registration.register({
+          id,
+          ref,
+          isFocused: false,
+          isDisabled: disabled || false,
+        });
       } else {
         if (previousRef.current != null) {
-          registryRef!.current.deregisterResizerRef(previousRef.current);
+          registration.deregister(id);
           previousRef.current = undefined;
         }
       }
     },
-    [registryRef]
+    [registration, disabled]
   );
 
   const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
     e.currentTarget.focus();
+
+  const handleFocus = () => {
+    onFocus && onFocus(resizerId.current);
+  };
 
   return (
     <EuiI18n
@@ -117,14 +132,18 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
       ]}>
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
         <button
+          id={resizerId.current}
           ref={onRef}
           aria-label={
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
           className={classes}
-          data-test-subj="splitPanelResizer"
+          data-test-subj="euiResizableButton"
           type="button"
           onClick={setFocus}
+          onFocus={handleFocus}
+          onBlur={onBlur}
+          disabled={isDisabled}
           {...rest}
         />
       )}

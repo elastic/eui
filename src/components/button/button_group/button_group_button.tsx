@@ -27,7 +27,7 @@ type Props = EuiButtonGroupOptionProps & {
   /**
    * Element to display based on single or multi
    */
-  type: 'button' | 'label';
+  element: 'button' | 'label';
   /**
    * Styles the selected button to look selected (usually with `fill`)
    */
@@ -69,15 +69,16 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   onChange,
   size,
   value,
+  element = 'button',
   type = 'button',
   ...rest
 }) => {
   // Force element to be a button if disabled
-  const element = isDisabled ? 'button' : type;
+  const el = isDisabled ? 'button' : element;
 
   let elementProps = {};
   let singleInput;
-  if (element === 'label') {
+  if (el === 'label') {
     elementProps = {
       ...elementProps,
       htmlFor: id,
@@ -100,6 +101,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       ...elementProps,
       id,
       isSelected,
+      type,
       onClick: () => onChange(id),
     };
   }
@@ -123,7 +125,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     <EuiButtonDisplay
       baseClassName="euiButtonGroupButton"
       className={buttonClasses}
-      element={element}
+      element={el}
       fill={size !== 'compressed' && isSelected}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}

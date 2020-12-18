@@ -27,6 +27,7 @@ import classNames from 'classnames';
 import { EuiIcon, IconType } from '../icon';
 import { CommonProps } from '../common';
 import { getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 
 export type EuiHeaderLogoProps = CommonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -53,9 +54,10 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
 }) => {
   const classes = classNames('euiHeaderLogo', className);
   const secureRel = getSecureRelForTarget({ href, rel, target });
+  const isHrefValid = !href || validateHref(href);
   return (
     <a
-      href={href}
+      href={isHrefValid ? href : ''}
       rel={secureRel}
       target={target}
       className={classes}

@@ -102,6 +102,7 @@ export function EuiDataGridCellPopover({
                             <EuiButtonEmpty {...props} size="s" />
                           )}
                           isExpanded={true}
+                          closePopover={closePopover}
                         />
                       </EuiFlexItem>
                     );
