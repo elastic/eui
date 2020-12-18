@@ -687,13 +687,18 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   // this triggers a double re-render when the grid is switched from constrained to unconstrained
   // but in reality ... maybe don't do that?
   const [gridHeight, setGridHeight] = useState(IS_JEST_ENVIRONMENT ? 500 : 0);
+  const pageSize = pagination?.pageSize;
   useEffect(() => {
     if (height == null) {
       // if already 0 this update will be ignored
       // if not already 0, this resets the height constraint so a new value can be observed
       setGridHeight(0);
     }
-  }, [height, pagination?.pageSize]);
+  }, [
+    height,
+    pageSize,
+    rowCount, // recompute height if the rowCount changes
+  ]);
 
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
     null
