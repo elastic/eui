@@ -83,8 +83,10 @@ export const useMutationObserver = (
   useEffect(
     () => {
       if (container != null) {
-        const observer = makeMutationObserver(container, observerOptions, () =>
-          console.log('SOMETHING CHANGED')
+        const observer = makeMutationObserver(
+          container,
+          observerOptions,
+          callback
         );
         return () => observer.disconnect();
       }

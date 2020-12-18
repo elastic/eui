@@ -63,7 +63,10 @@ describe('useMutationObserver', () => {
     const mutationCallback = jest.fn();
     const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
       const [ref, setRef] = useState<Element | null>(null);
-      useMutationObserver(ref, mutationCallback, { childList: true, subtree: true });
+      useMutationObserver(ref, mutationCallback, {
+        childList: true,
+        subtree: true,
+      });
       return <div ref={setRef}>{children}</div>;
     });
 
