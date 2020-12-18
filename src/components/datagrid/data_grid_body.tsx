@@ -55,7 +55,10 @@ import {
 } from './data_grid_header_row';
 import { useMutationObserver } from '../observer/mutation_observer';
 import { EuiText } from '../text';
-import { DataGridSortingContext } from './data_grid_context';
+import {
+  DataGridSortingContext,
+  DataGridHeaderRowHeightContext,
+} from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
 
 export interface EuiDataGridBodyProps {
@@ -137,8 +140,9 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     renderCellValue,
     interactiveCellId,
     setRowHeight,
-    headerRowDimensions,
   } = data;
+
+  const headerRowHeight = useContext(DataGridHeaderRowHeightContext);
 
   _rowIndex += rowOffset;
   const rowIndex = rowMap.hasOwnProperty(_rowIndex)
@@ -187,9 +191,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         setRowHeight={setRowHeight}
         style={{
           ...style,
-          top: `${
-            parseFloat(style.top as string) + headerRowDimensions.height
-          }px`,
+          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
         }}
       />
     );
@@ -213,9 +215,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         style={{
           ...style,
-          top: `${
-            parseFloat(style.top as string) + headerRowDimensions.height
-          }px`,
+          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
         }}
       />
     );
@@ -252,9 +252,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         style={{
           ...style,
-          top: `${
-            parseFloat(style.top as string) + headerRowDimensions.height
-          }px`,
+          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
         }}
       />
     );
@@ -300,7 +298,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     subtree: true,
     childList: true,
   });
-  const headerRowDimensions = useResizeObserver(headerRowRef, 'height');
+  const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
   let endRow = pagination
@@ -447,13 +445,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     () =>
       forwardRef<HTMLDivElement, { style: { height: number } }>(
         ({ children, style, ...rest }, ref) => {
+          const headerRowHeight = useContext(DataGridHeaderRowHeightContext);
           return (
             <>
               <div
                 ref={ref}
                 style={{
                   ...style,
-                  height: style.height + headerRowDimensions.height,
+                  height: style.height + headerRowHeight,
                 }}
                 {...rest}>
                 {headerRow}
@@ -464,7 +463,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           );
         }
       ),
-    [headerRowDimensions.height, headerRow, footerRow]
+    [headerRow, footerRow]
   );
 
   const gridRef = useRef<Grid>(null);
@@ -506,43 +505,46 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [getRowHeight]);
 
   return (
-    <Grid
-      ref={gridRef}
-      innerElementType={InnerElement}
-      className="euiDataGrid__virtualized"
-      columnCount={
-        leadingControlColumns.length +
-        columns.length +
-        trailingControlColumns.length
-      }
-      width={gridWidth}
-      columnWidth={getWidth}
-      height={
-        // intentionally ignoring gridHeight if it is null/undefined/0
-        gridHeight ||
-        rowHeight * visibleRowIndices.length +
-          SCROLLBAR_HEIGHT +
-          headerRowDimensions.height +
-          (footerRow ? FOOTER_ROW_HEIGHT : 0)
-      }
-      rowHeight={getRowHeight}
-      itemData={{
-        setRowHeight,
-        rowMap,
-        rowOffset: pagination ? pagination.pageIndex * pagination.pageSize : 0,
-        leadingControlColumns,
-        trailingControlColumns,
-        columns,
-        schema,
-        popoverContents: mergedPopoverContents,
-        columnWidths,
-        defaultColumnWidth,
-        renderCellValue,
-        interactiveCellId,
-        headerRowDimensions,
-      }}
-      rowCount={visibleRowIndices.length}>
-      {Cell}
-    </Grid>
+    <DataGridHeaderRowHeightContext.Provider value={headerRowHeight}>
+      <Grid
+        ref={gridRef}
+        innerElementType={InnerElement}
+        className="euiDataGrid__virtualized"
+        columnCount={
+          leadingControlColumns.length +
+          columns.length +
+          trailingControlColumns.length
+        }
+        width={gridWidth}
+        columnWidth={getWidth}
+        height={
+          // intentionally ignoring gridHeight if it is null/undefined/0
+          gridHeight ||
+          rowHeight * visibleRowIndices.length +
+            SCROLLBAR_HEIGHT +
+            headerRowHeight +
+            (footerRow ? FOOTER_ROW_HEIGHT : 0)
+        }
+        rowHeight={getRowHeight}
+        itemData={{
+          setRowHeight,
+          rowMap,
+          rowOffset: pagination
+            ? pagination.pageIndex * pagination.pageSize
+            : 0,
+          leadingControlColumns,
+          trailingControlColumns,
+          columns,
+          schema,
+          popoverContents: mergedPopoverContents,
+          columnWidths,
+          defaultColumnWidth,
+          renderCellValue,
+          interactiveCellId,
+        }}
+        rowCount={visibleRowIndices.length}>
+        {Cell}
+      </Grid>
+    </DataGridHeaderRowHeightContext.Provider>
   );
 };

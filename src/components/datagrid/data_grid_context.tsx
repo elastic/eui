@@ -35,3 +35,5 @@ export const DataGridFocusContext = React.createContext<
 export const DataGridSortingContext = React.createContext<
   EuiDataGridSorting | undefined
 >(undefined);
+
+export const DataGridHeaderRowHeightContext = React.createContext<number>(0);

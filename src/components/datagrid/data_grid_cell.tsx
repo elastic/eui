@@ -240,6 +240,13 @@ export class EuiDataGridCell extends Component<
       return true;
     if (nextProps.popoverContent !== this.props.popoverContent) return true;
 
+    // respond to adjusted top/left
+    if (nextProps.style) {
+      if (!this.props.style) return true;
+      if (nextProps.style.top !== this.props.style.top) return true;
+      if (nextProps.style.left !== this.props.style.left) return true;
+    }
+
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
