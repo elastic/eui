@@ -37,10 +37,11 @@ import {
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { ButtonSize } from '../button';
+import { validateHref } from '../../../services/security/href_validator';
 
 export type EuiButtonIconColor =
+  | 'accent'
   | 'danger'
-  | 'disabled'
   | 'ghost'
   | 'primary'
   | 'subdued'
@@ -49,13 +50,18 @@ export type EuiButtonIconColor =
   | 'warning';
 
 export interface EuiButtonIconProps extends CommonProps {
-  iconType?: IconType;
+  iconType: IconType;
   color?: EuiButtonIconColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
+  /**
+   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
+   * *Only use when the readable text does not change between states.*
+   */
+  isSelected?: boolean;
 }
 
 type EuiButtonIconPropsForAnchor = {
@@ -82,8 +88,8 @@ type Props = ExclusiveUnion<
 >;
 
 const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
+  accent: 'euiButtonIcon--accent',
   danger: 'euiButtonIcon--danger',
-  disabled: 'euiButtonIcon--disabled',
   ghost: 'euiButtonIcon--ghost',
   primary: 'euiButtonIcon--primary',
   subdued: 'euiButtonIcon--subdued',
@@ -99,14 +105,18 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   iconType,
   iconSize = 'm',
   color = 'primary',
-  isDisabled,
+  isDisabled: _isDisabled,
   href,
   type = 'button',
   target,
   rel,
   buttonRef,
+  isSelected,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
+
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
 
@@ -161,6 +171,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}
+      aria-pressed={isSelected}
       type={type as typeof buttonType}
       ref={buttonRef as Ref<HTMLButtonElement>}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>

@@ -91,7 +91,7 @@ const tabs = [
 export default () => {
   const [selectedTab, setSelectedTab] = useState(tabs[1]);
 
-  const onTabClick = selectedTab => {
+  const onTabClick = (selectedTab) => {
     setSelectedTab(selectedTab);
   };
 

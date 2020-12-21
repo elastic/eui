@@ -62,7 +62,7 @@ export default () => {
           <EuiRadioGroup
             options={nestedRadios}
             idSelected={nestedRadio}
-            onChange={nestedRadio => setNestedRadio(nestedRadio)}
+            onChange={(nestedRadio) => setNestedRadio(nestedRadio)}
             disabled={radio !== 'radio2'}
           />
         </EuiCheckableCard>

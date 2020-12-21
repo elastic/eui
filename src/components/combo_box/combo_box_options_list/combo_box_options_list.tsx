@@ -53,13 +53,6 @@ import {
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge/';
 
-const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string;
-} = {
-  top: 'euiComboBoxOptionsList--top',
-  bottom: 'euiComboBoxOptionsList--bottom',
-};
-
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps &
@@ -192,7 +185,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
   };
 
-  listRefCallback: RefCallback<HTMLDivElement> = ref => {
+  listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.props.listRef(ref);
     this.listRefInstance = ref;
   };
@@ -213,7 +206,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
-    const { isGroupLabelOption, label, value, ...rest } = option;
+    const { key, isGroupLabelOption, label, value, ...rest } = option;
     const {
       singleSelection,
       selectedOptions,
@@ -227,7 +220,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     if (isGroupLabelOption) {
       return (
-        <div key={label.toLowerCase()} style={style}>
+        <div key={key ?? label.toLowerCase()} style={style}>
           <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
         </div>
       );
@@ -237,7 +230,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (
       singleSelection &&
       selectedOptions.length &&
-      selectedOptions[0].label === label
+      selectedOptions[0].label === label &&
+      selectedOptions[0].key === key
     ) {
       checked = 'on';
     }
@@ -249,7 +243,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     return (
       <EuiFilterSelectItem
         style={style}
-        key={option.label.toLowerCase()}
+        key={option.key ?? option.label.toLowerCase()}
         onClick={() => {
           if (onOptionClick) {
             onOptionClick(option);
@@ -302,7 +296,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       onScroll,
       optionRef,
       options,
-      position,
+      position = 'bottom',
       renderOption,
       rootId,
       rowHeight,
@@ -442,17 +436,18 @@ export class EuiComboBoxOptionsList<T> extends Component<
       <EuiText size="xs" className="euiComboBoxOptionsList__empty">
         {emptyStateContent}
       </EuiText>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;
-    const height = numVisibleOptions * rowHeight;
+    const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
+
+    // bounded by max-height of euiComboBoxOptionsList__rowWrap
+    const boundedHeight = height > 200 ? 200 : height;
 
     const optionsList = (
       <FixedSizeList
-        height={height}
+        height={boundedHeight}
         onScroll={onScroll}
         itemCount={matchingOptions.length}
         itemSize={rowHeight}
@@ -464,17 +459,23 @@ export class EuiComboBoxOptionsList<T> extends Component<
       </FixedSizeList>
     );
 
+    /**
+     * Reusing the EuiPopover__panel classes to help with consistency/maintenance.
+     * But this should really be converted to user the popover component.
+     */
     const classes = classNames(
       'euiComboBoxOptionsList',
-      position ? positionToClassNameMap[position] : '',
-      {
-        'euiComboBoxOptionsList--fullWidth': fullWidth,
-      }
+      'euiPopover__panel',
+      'euiPopover__panel-isAttached',
+      'euiPopover__panel-noArrow',
+      'euiPopover__panel-isOpen',
+      `euiPopover__panel--${position}`
     );
 
     return (
       <EuiPanel
         paddingSize="none"
+        hasShadow={false}
         className={classes}
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}

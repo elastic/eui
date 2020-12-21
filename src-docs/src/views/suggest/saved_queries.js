@@ -97,16 +97,16 @@ export default () => {
     setHide(false);
   };
 
-  const getInputValue = val => {
+  const getInputValue = (val) => {
     setValue(val);
   };
 
-  const onItemClick = item => {
-    alert(`Item [${item.label}] was clicked`);
+  const onItemClick = (item) => {
+    console.log(item);
   };
 
-  const onTimeChange = () => {
-    alert('Time changed');
+  const onTimeChange = (dateRange) => {
+    console.log(dateRange);
   };
 
   const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;

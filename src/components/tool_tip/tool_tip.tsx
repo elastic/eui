@@ -59,7 +59,13 @@ interface ToolTipStyles {
   left: number | 'auto';
   right?: number | 'auto';
   opacity?: number;
+  visibility?: 'hidden';
 }
+
+const displayToClassNameMap = {
+  inlineBlock: undefined,
+  block: 'euiToolTipAnchor--displayBlock',
+};
 
 const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // position the tooltip content near the top-left
@@ -70,6 +76,8 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // just in case, avoid any potential flicker by hiding
   // the tooltip before it is positioned
   opacity: 0,
+  // prevent accidental mouse interaction while positioning
+  visibility: 'hidden',
 };
 
 export interface Props {
@@ -89,6 +97,10 @@ export interface Props {
    * The main content of your tooltip.
    */
   content?: ReactNode;
+  /**
+   * Common display alternatives for the anchor wrapper
+   */
+  display?: keyof typeof displayToClassNameMap;
   /**
    * Delay before showing tooltip. Good for repeatable items.
    */
@@ -286,6 +298,7 @@ export class EuiToolTip extends Component<Props, State> {
       content,
       title,
       delay,
+      display = 'inlineBlock',
       ...rest
     } = this.props;
 
@@ -297,7 +310,11 @@ export class EuiToolTip extends Component<Props, State> {
       className
     );
 
-    const anchorClasses = classNames('euiToolTipAnchor', anchorClassName);
+    const anchorClasses = classNames(
+      'euiToolTipAnchor',
+      display ? displayToClassNameMap[display] : null,
+      anchorClassName
+    );
 
     let tooltip;
     if (visible && (content || title)) {
@@ -314,7 +331,7 @@ export class EuiToolTip extends Component<Props, State> {
             {...rest}>
             <div style={arrowStyles} className="euiToolTip__arrow" />
             <EuiResizeObserver onResize={this.positionToolTip}>
-              {resizeRef => <div ref={resizeRef}>{content}</div>}
+              {(resizeRef) => <div ref={resizeRef}>{content}</div>}
             </EuiResizeObserver>
           </EuiToolTipPopover>
         </EuiPortal>
@@ -324,11 +341,11 @@ export class EuiToolTip extends Component<Props, State> {
     const anchor = (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <span
-        ref={anchor => (this.anchor = anchor)}
+        ref={(anchor) => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}
-        onKeyUp={event => {
+        onKeyUp={(event) => {
           this.onKeyUp(event);
         }}>
         {/**

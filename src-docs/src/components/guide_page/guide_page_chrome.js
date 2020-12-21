@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
-
 import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
+  EuiButtonEmpty,
   EuiSideNav,
   EuiSpacer,
   EuiText,
@@ -21,7 +19,7 @@ import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
 
-const scrollTo = position => {
+const scrollTo = (position) => {
   window.scrollTo({ top: position, behavior: 'smooth' });
 };
 
@@ -29,7 +27,7 @@ export function scrollToSelector(selector, attempts = 5) {
   const element = document.querySelector(selector);
 
   if (element) {
-    scrollTo(element.offsetTop - 20);
+    scrollTo(element.offsetTop - 120); // Offset affords for the sticky contrast slider
   } else if (attempts > 0) {
     setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
   }
@@ -64,7 +62,7 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  onSearchChange = event => {
+  onSearchChange = (event) => {
     this.setState({
       search: event.target.value,
       isSideNavOpenOnMobile: event.target.value !== '',
@@ -96,20 +94,6 @@ export class GuidePageChrome extends Component {
     }, 250);
   };
 
-  onClickLink = id => {
-    // Scroll to element.
-    scrollToSelector(`#${id}`);
-
-    if (this._isMounted)
-      this.setState(
-        {
-          search: '',
-          isSideNavOpenOnMobile: false,
-        },
-        this.scrollNavSectionIntoView
-      );
-  };
-
   onClickRoute = () => {
     if (this._isMounted)
       this.setState(
@@ -119,12 +103,6 @@ export class GuidePageChrome extends Component {
         },
         this.scrollNavSectionIntoView
       );
-
-    // To delay scroll to top when switched to a new page
-    setTimeout(() => {
-      if (document.body) document.body.scrollTop = 0;
-      if (document.documentElement) document.documentElement.scrollTop = 0;
-    }, 0);
   };
 
   onButtonClick() {
@@ -156,22 +134,13 @@ export class GuidePageChrome extends Component {
         responsive={false}
         wrap>
         <EuiFlexItem grow={false}>
-          <EuiFlexGroup
-            alignItems="center"
-            gutterSize="s"
-            responsive={false}
-            wrap>
-            <EuiFlexItem grow={false}>
-              <Link to="/" className="guideLogo" aria-label="Go to home page">
-                <EuiIcon type="logoElastic" size="l" />
-              </Link>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <Link to="/" aria-label="Go to home page" className="euiLink">
-                <strong>Elastic UI</strong>
-              </Link>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <EuiButtonEmpty
+            href="#/"
+            aria-label="EUI home"
+            iconType="logoElastic"
+            size="l">
+            <strong>Elastic UI</strong>
+          </EuiButtonEmpty>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
@@ -197,7 +166,7 @@ export class GuidePageChrome extends Component {
   }
 
   renderSubSections = (href, subSections = [], searchTerm = '') => {
-    const subSectionsWithTitles = subSections.filter(item => {
+    const subSectionsWithTitles = subSections.filter((item) => {
       if (!item.title) {
         return false;
       }
@@ -229,22 +198,21 @@ export class GuidePageChrome extends Component {
       return {
         id: `subSection-${id}`,
         name,
-        href,
-        onClick: this.onClickLink.bind(this, id),
+        href: href.concat(`#${id}`),
       };
     });
   };
 
-  renderSideNav = sideNav => {
+  renderSideNav = (sideNav) => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
     const searchTerm = this.state.search.toLowerCase();
 
-    sideNav.forEach(section => {
+    sideNav.forEach((section) => {
       let hasMatchingSubItem = false;
 
-      const matchingItems = section.items.filter(item => {
+      const matchingItems = section.items.filter((item) => {
         if (item.hidden) {
           return false;
         }
@@ -263,7 +231,7 @@ export class GuidePageChrome extends Component {
         }
       });
 
-      const items = matchingItems.map(item => {
+      const items = matchingItems.map((item) => {
         const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
 

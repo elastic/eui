@@ -54,7 +54,7 @@ export default () => {
       },
       customProps: {
         onClick: {
-          generate: val => {
+          generate: (val) => {
             if (!val) return null;
             const obj = t.arrowFunctionExpression(
               [],

@@ -18,26 +18,44 @@
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const gc = require('expose-gc/function');
 const propsParser = require('react-docgen-typescript');
 const template = require('@babel/template');
 const ts = require('typescript');
 const glob = require('glob');
 const util = require('util');
 const { SyntaxKind } = require('typescript');
+const chokidar = require('chokidar');
 
-const files = [
-  ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
-  ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
-];
+const { NODE_ENV, CI } = process.env;
+const isDevelopment = NODE_ENV !== 'production' && CI == null;
 
 /**
  * To support extended props from tsx files.
  */
-const options = {
+const programOptions = {
   jsx: ts.JsxEmit.React,
 };
+let program;
+function buildProgram() {
+  const files = [
+    ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
+    ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
+  ];
+  program = null;
+  gc();
+  program = ts.createProgram(files, programOptions);
+}
+buildProgram();
 
-const program = ts.createProgram(files, options);
+if (isDevelopment) {
+  chokidar
+    .watch(['./src', './src-docs'], {
+      ignoreInitial: true, // don't emit `add` event during file discovery
+    })
+    .on('add', buildProgram)
+    .on('change', buildProgram);
+}
 
 module.exports = function({ types }) {
   return {

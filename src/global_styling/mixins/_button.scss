@@ -14,18 +14,20 @@
 
 // Adds the focus (and hover) animation for translating up 1px
 @mixin euiButtonFocus {
-  transition: all $euiAnimSpeedNormal ease-in-out;
+  @include euiCanAnimate {
+    transition: transform $euiAnimSpeedNormal ease-in-out, background $euiAnimSpeedNormal ease-in-out;
 
-  &:hover:not(:disabled) {
-    transform: translateY(-1px);
-  }
+    &:hover:not([class*='isDisabled']) {
+      transform: translateY(-1px);
+    }
 
-  &:focus {
-    animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
-  }
+    &:focus {
+      animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
 
-  &:active:not(:disabled) {
-    transform: translateY(1px);
+    &:active:not([class*='isDisabled']) {
+      transform: translateY(1px);
+    }
   }
 }
 
@@ -43,7 +45,7 @@
   // focus states should come after all default styles
   @include euiButtonFocus;
 
-  &:hover:not(:disabled),
+  &:hover:not([class*='isDisabled']),
   &:focus {
     text-decoration: underline;
   }
@@ -72,8 +74,8 @@
     flex-direction: row-reverse;
 
     > * + * {
-      margin-left: 0; // 1, 2
-      margin-right: $euiSizeS; // 1, 2
+      margin-inline-start: 0; // 1, 2
+      margin-inline-end: $euiSizeS; // 1, 2
     }
   } @else {
     display: flex;
@@ -81,7 +83,7 @@
     align-items: center;
 
     > * + * {
-      margin-left: $euiSizeS; // 1
+      margin-inline-start: $euiSizeS; // 1
     }
   }
 }

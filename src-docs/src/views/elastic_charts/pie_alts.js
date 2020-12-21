@@ -1,6 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, Fragment, useContext } from 'react';
-import _ from 'lodash';
+import groupBy from 'lodash/groupBy';
+import mapValues from 'lodash/mapValues';
+import orderBy from 'lodash/orderBy';
+import sortBy from 'lodash/sortBy';
+import sumBy from 'lodash/sumBy';
 
 import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis, BarSeries } from '@elastic/charts';
@@ -58,28 +62,28 @@ export default () => {
   let usesRainData;
   if (formatted && formattedData) {
     data = ordered
-      ? _.orderBy(DAYS_OF_RAIN, ['precipitation', 'days'], ['desc', 'asc'])
+      ? orderBy(DAYS_OF_RAIN, ['precipitation', 'days'], ['desc', 'asc'])
       : DAYS_OF_RAIN;
     usesRainData = true;
     color = euiPaletteForTemperature(3);
   } else {
     const DATASET = grouped ? GITHUB_DATASET_MOD : GITHUB_DATASET;
-    data = _.orderBy(DATASET, 'issueType', 'asc');
+    data = orderBy(DATASET, 'issueType', 'asc');
 
     if (ordered) {
-      const totals = _.mapValues(_.groupBy(DATASET, 'vizType'), groups =>
-        _.sumBy(groups, 'count')
+      const totals = mapValues(groupBy(DATASET, 'vizType'), (groups) =>
+        sumBy(groups, 'count')
       );
 
-      data = _.orderBy(DATASET, 'issueType', 'desc');
-      const sortedData = _.sortBy(data, [
+      data = orderBy(DATASET, 'issueType', 'desc');
+      const sortedData = sortBy(data, [
         ({ vizType }) => totals[vizType],
       ]).reverse();
       data = sortedData;
     }
   }
 
-  const tickFormat = tick => {
+  const tickFormat = (tick) => {
     if (formatted) {
       return `${Number(tick * 100).toFixed(0)}%`;
     } else if (!grouped && String(tick).length > 1) {
@@ -201,7 +205,7 @@ export default () => {
               <EuiSwitch
                 label="Use percentage data"
                 checked={formattedData}
-                onChange={e => setFormattedData(e.target.checked)}
+                onChange={(e) => setFormattedData(e.target.checked)}
               />
             )}
           </ChartCard>
@@ -215,19 +219,19 @@ export default () => {
             <EuiSwitch
               label="Stacked bar chart"
               checked={stacked}
-              onChange={e => setStacked(e.target.checked)}
+              onChange={(e) => setStacked(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Group 'Other' slices"
               checked={grouped}
-              onChange={e => setGrouped(e.target.checked)}
+              onChange={(e) => setGrouped(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Show as percentages"
               checked={formatted}
-              onChange={e => setFormatted(e.target.checked)}
+              onChange={(e) => setFormatted(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -239,13 +243,13 @@ export default () => {
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
-              onChange={e => setOrdered(e.target.checked)}
+              onChange={(e) => setOrdered(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Rotate 90deg"
               checked={rotated}
-              onChange={e => setRotated(e.target.checked)}
+              onChange={(e) => setRotated(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -302,7 +306,7 @@ export default () => {
     }
   />
 </Chart>`}>
-          {copy => (
+          {(copy) => (
             <EuiButton
               disabled={isMisleadingChart || isBadChart}
               fill

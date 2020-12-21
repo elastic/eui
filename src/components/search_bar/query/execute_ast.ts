@@ -82,7 +82,7 @@ const fieldClauseMatcher = <T>(
   clauses: FieldClause[] = [],
   explain?: Explain[]
 ) => {
-  return clauses.every(clause => {
+  return clauses.every((clause) => {
     const { type, value, match } = clause;
     let operator = nameToOperatorMap[clause.operator];
     if (!operator) {
@@ -95,7 +95,7 @@ const fieldClauseMatcher = <T>(
     }
     const itemValue = get(item, field);
     const hit = isArray(value)
-      ? value.some(v => operator(itemValue, v))
+      ? value.some((v) => operator(itemValue, v))
       : operator(itemValue, value);
     if (explain && hit) {
       explain.push({ hit, type, field, value, match, operator });
@@ -122,12 +122,12 @@ const termClauseMatcher = <T>(
   explain?: Explain[]
 ) => {
   const searchableFields = fields || extractStringFieldsFromItem(item);
-  return clauses.every(clause => {
+  return clauses.every((clause) => {
     const { type, value, match } = clause;
     const isMustClause = AST.Match.isMustClause(clause);
     const equals = nameToOperatorMap[AST.Operator.EQ];
 
-    const containsMatches = searchableFields.some(field => {
+    const containsMatches = searchableFields.some((field) => {
       const itemValue = get(item, field);
       const isMatch = equals(itemValue, value);
 
@@ -186,22 +186,22 @@ export const createFilter = <T extends {}>(
       return false;
     }
 
-    const isFieldsMatch = fields.every(field =>
+    const isFieldsMatch = fields.every((field) =>
       fieldClauseMatcher(item, field, ast.getFieldClauses(field), explainLines)
     );
     if (!isFieldsMatch) {
       return false;
     }
 
-    const isIsMatch = isClauses.every(clause =>
+    const isIsMatch = isClauses.every((clause) =>
       isClauseMatcher(item, clause, explainLines)
     );
     if (!isIsMatch) {
       return false;
     }
 
-    const isGroupMatch = groupClauses.every(clause => {
-      const matchesGroup = clause.value.some(clause => {
+    const isGroupMatch = groupClauses.every((clause) => {
+      const matchesGroup = clause.value.some((clause) => {
         if (AST.Term.isInstance(clause)) {
           return termClauseMatcher(item, defaultFields, [clause], explainLines);
         }

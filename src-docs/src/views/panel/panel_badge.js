@@ -8,7 +8,7 @@ import {
 
 const badges = [null, 'Beta', 'Lab'];
 
-const panelNodes = badges.map(function(item, index) {
+const panelNodes = badges.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiPanel
@@ -18,7 +18,7 @@ const panelNodes = badges.map(function(item, index) {
             ? 'This module is not GA. Please help us by reporting any bugs.'
             : undefined
         }
-        onClick={() => window.alert('Card clicked')}>
+        onClick={() => {}}>
         I am some panel content
       </EuiPanel>
     </EuiFlexItem>

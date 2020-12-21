@@ -87,12 +87,12 @@ export interface EuiDualRangeProps
    */
   ticks?: EuiRangeTick[];
   /**
-   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopver`.
+   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopover`.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopver`.
+   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopover`.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
@@ -127,6 +127,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
     rangeWidth: undefined,
+    isVisible: true, // used to trigger a rerender if initial element width is 0
   };
 
   preventPopoverClose = false;
@@ -153,6 +154,24 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   }
   get isValid() {
     return this.lowerValueIsValid && this.upperValueIsValid;
+  }
+
+  componentDidMount() {
+    if (this.rangeSliderRef && this.rangeSliderRef.clientWidth === 0) {
+      // Safe to call `setState` inside conditional
+      // https://reactjs.org/docs/react-component.html#componentdidmount
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({ isVisible: false });
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.rangeSliderRef?.clientWidth && !this.state.isVisible) {
+      // Safe to call `setState` inside conditional
+      // https://reactjs.org/docs/react-component.html#componentdidupdate
+      // eslint-disable-next-line  react/no-did-update-set-state
+      this.setState({ isVisible: true });
+    }
   }
 
   _determineInvalidThumbMovement = (
@@ -186,14 +205,14 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     upper: ValueMember,
     e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
   ) => {
-    // Lower thumb targeted or right-moving swap has occured
+    // Lower thumb targeted or right-moving swap has occurred
     if (
       Math.abs((lower as number) - (newVal as number)) <
       Math.abs((upper as number) - (newVal as number))
     ) {
       lower = newVal;
     }
-    // Upper thumb targeted or left-moving swap has occured
+    // Upper thumb targeted or left-moving swap has occurred
     else {
       upper = newVal;
     }
@@ -400,7 +419,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget
       // Instead, a prevention flag is set on mousedown, with a waiting period here.
-      // Mousedown is viable because in the popover case, it is inaccessable via keyboard (intentionally)
+      // Mousedown is viable because in the popover case, it is inaccessible via keyboard (intentionally)
       if (this.preventPopoverClose) {
         this.preventPopoverClose = false;
         return;
@@ -491,9 +510,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const maxInput = !!showInput ? (
       <EuiRangeInput
@@ -524,9 +541,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const classes = classNames('euiDualRange', className);
     const theRange = (
@@ -534,7 +549,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         className={classes}
         fullWidth={fullWidth}
         compressed={compressed}>
-        {!showInputOnly && (
+        {showInput && !showInputOnly && (
           <>
             {minInput}
             <div className="euiRange__horizontalSpacer" />
@@ -632,7 +647,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
-        {!showInputOnly && (
+        {showInput && !showInputOnly && (
           <>
             <div className="euiRange__horizontalSpacer" />
             {maxInput}
@@ -663,9 +678,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onPanelResize={this.onResize}>
         {theRange}
       </EuiInputPopover>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     return thePopover || theRange;
   }

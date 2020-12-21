@@ -9,25 +9,32 @@ import {
 const colors = [
   'primary',
   'text',
+  'accent',
   'subdued',
   'success',
   'warning',
   'danger',
-  'disabled',
 ];
 
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
-    {colors.map(color => (
+    {colors.map((color) => (
       <EuiFlexItem key={color} grow={false}>
         <EuiButtonIcon
           color={color}
-          onClick={() => window.alert('Button clicked')}
+          onClick={() => {}}
           iconType="arrowRight"
           aria-label="Next"
-          disabled={color === 'disabled' ? true : false}
         />
       </EuiFlexItem>
     ))}
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        onClick={() => window.alert('Button clicked')}
+        iconType="arrowRight"
+        aria-label="Next"
+        disabled
+      />
+    </EuiFlexItem>
   </EuiFlexGroup>
 );

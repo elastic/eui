@@ -24,12 +24,8 @@
 
   &:focus {
     @include euiFocusRing;
-  }
-
-  &,
-  &:focus {
     // Override default `EuiButtonEmpty` :focus background to ensure better contrast
-    background: $euiColorEmptyShade;
+    background: $euiColorEmptyShade !important; // sass-lint:disable-line no-important
   }
 }
 
@@ -57,7 +53,7 @@
     margin-right: -15%;
 
     .euiCollapsibleNav__closeButtonText {
-      // But be sure the text can still be read by a screenreader
+      // But be sure the text can still be read by a screen reader
       @include euiScreenReaderOnly;
     }
   }

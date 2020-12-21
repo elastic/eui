@@ -51,10 +51,14 @@
     border-radius: $euiRangeTrackRadius;
   }
 
-  &:focus,
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible,
   &--hasFocus {
     @include euiRangeThumbPerBrowser {
-      @include euiCustomControlFocused;
+      box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
     }
 
     ~ .euiRangeThumb {

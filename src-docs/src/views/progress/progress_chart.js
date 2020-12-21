@@ -16,7 +16,7 @@ const data = [
 export default () => (
   <Fragment>
     <div style={{ maxWidth: 160 }}>
-      {data.map(item => (
+      {data.map((item) => (
         <>
           <EuiProgress
             valueText={true}
@@ -31,7 +31,7 @@ export default () => (
     </div>
     <EuiSpacer size="m" />
     <div style={{ maxWidth: 200 }}>
-      {data.map(item => (
+      {data.map((item) => (
         <>
           <EuiProgress
             valueText={true}

@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiHorizontalRule } from './horizontal_rule';
+export { EuiHorizontalRule, EuiHorizontalRuleProps } from './horizontal_rule';

@@ -22,8 +22,8 @@ import React, {
   FunctionComponent,
   MouseEventHandler,
   ReactNode,
-  useState,
   useEffect,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
@@ -34,7 +34,7 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { getBreakpoint, EuiBreakpointSize } from '../../services/breakpoint';
+import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
@@ -187,7 +187,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   ...rest
 }) => {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(window.innerWidth)
+    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
   );
 
   const functionToCallOnWindowResize = throttle(() => {

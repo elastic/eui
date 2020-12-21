@@ -26,6 +26,10 @@ import FormHelp from './form_horizontal_help';
 const formHelpSource = require('!!raw-loader!./form_horizontal_help');
 const formHelpHtml = renderToHtml(FormHelp);
 
+import FormPopover from './form_compressed_popover';
+const formPopoverSource = require('!!raw-loader!./form_compressed_popover');
+const formPopoverHtml = renderToHtml(FormPopover);
+
 import ComplexExample from './complex_example';
 const ComplexExampleSource = require('!!raw-loader!./complex_example');
 const ComplexExampleHtml = renderToHtml(ComplexExample);
@@ -184,6 +188,28 @@ export const FormCompressedExample = {
   <EuiFieldText compressed />
 </EuiFormRow>`,
       ],
+    },
+    {
+      title: 'In a popover',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formPopoverSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formPopoverHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Always use the compressed version of forms and elements when they
+            exist inside of a<Link to="/layout/popover">popover</Link>.
+          </p>
+        </Fragment>
+      ),
+      demo: <FormPopover />,
     },
     {
       title: 'Complex example',

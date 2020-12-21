@@ -27,13 +27,13 @@ export default class extends Component {
     this.onSelectChange = this.onSelectChange.bind(this);
   }
 
-  onSelectChange = e => {
+  onSelectChange = (e) => {
     this.setState({
       utcOffset: parseInt(e.target.value, 10),
     });
   };
 
-  handleChange = date => {
+  handleChange = (date) => {
     this.setState({
       startDate: date,
     });

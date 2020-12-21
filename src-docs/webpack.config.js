@@ -7,15 +7,23 @@ const babelConfig = require('./.babelrc.js');
 const getPort = require('get-port');
 const deasync = require('deasync');
 
-const { NODE_ENV, CI } = process.env;
+const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
 
-const isDevelopment = NODE_ENV !== 'production' && CI == null;
+const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const bypassCache = NODE_ENV === 'puppeteer';
 
 function employCache(loaders) {
   if (isDevelopment && !bypassCache) {
-    return ['cache-loader'].concat(loaders);
+    return [
+      {
+        loader: 'cache-loader',
+        options: {
+          cacheDirectory: path.join(__dirname, '..', '.cache-loader'),
+        },
+      },
+      ...loaders,
+    ];
   }
 
   return loaders;
@@ -65,7 +73,10 @@ const webpackConfig = {
       {
         test: /\.scss$/,
         loaders: employCache([
-          'style-loader/useable',
+          {
+            loader: 'style-loader',
+            options: { injectType: 'lazySingletonStyleTag' },
+          },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -74,7 +85,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: employCache(['style-loader/useable', 'css-loader']),
+        loaders: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
@@ -108,19 +119,24 @@ const webpackConfig = {
 
     // run TypeScript during webpack build
     // new ForkTsCheckerWebpackPlugin({
-    //   tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    //   typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
     //   async: false, // makes errors more visible, but potentially less performant
     // }),
   ],
 
-  devServer: {
-    contentBase: 'src-docs/build',
-    host: '0.0.0.0',
-    allowedHosts: ['*'],
-    port: getPortSync({ port: getPort.makeRange(8030, 8130), host: '0.0.0.0' }),
-    disableHostCheck: true,
-    historyApiFallback: true,
-  },
+  devServer: isDevelopment
+    ? {
+        contentBase: 'src-docs/build',
+        host: '0.0.0.0',
+        allowedHosts: ['*'],
+        port: getPortSync({
+          port: getPort.makeRange(8030, 8130),
+          host: '0.0.0.0',
+        }),
+        disableHostCheck: true,
+        historyApiFallback: true,
+      }
+    : undefined,
   node: {
     fs: 'empty',
   },
@@ -133,11 +149,11 @@ function getPortSync(options) {
   let error = null;
 
   getPort(options)
-    .then(port => {
+    .then((port) => {
       isDone = true;
       freeport = port;
     })
-    .catch(err => {
+    .catch((err) => {
       isDone = true;
       error = err;
     });

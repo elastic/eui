@@ -22,12 +22,15 @@ import {
   isBoolean,
   isString,
   isNumber,
-} from '../../services/predicate/lodash_predicates';
+  isUndefined,
+} from '../../services/predicate';
 import { isElement } from 'react-is';
 import { RenderableValues } from '../context/context';
 
-function isPrimitive(value: ReactChild) {
-  return isBoolean(value) || isString(value) || isNumber(value);
+function isPrimitive(value: ReactChild | undefined) {
+  return (
+    isBoolean(value) || isString(value) || isNumber(value) || isUndefined(value)
+  );
 }
 
 type Child = string | { propName: string } | ReactChild | undefined;

@@ -48,6 +48,9 @@ import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
+  /**
+   * An array of #ColorStop. The stops must be numbers in an ordered range.
+   */
   colorStops: ColorStop[];
   onChange: (stops?: ColorStop[], isInvalid?: boolean) => void;
   fullWidth?: boolean;
@@ -90,7 +93,7 @@ function sortStops(colorStops: ColorStop[]) {
 }
 
 function getValidStops(colorStops: ColorStop[]) {
-  return colorStops.map(el => el.stop).filter(stop => !isNaN(stop));
+  return colorStops.map((el) => el.stop).filter((stop) => !isNaN(stop));
 }
 
 function getRangeMin(colorStops: ColorStop[], min?: number) {
@@ -217,7 +220,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   useEffect(() => {
     if (focusStopOnUpdate !== null) {
       const toFocusIndex = sortedStops
-        .map(el => el.stop)
+        .map((el) => el.stop)
         .indexOf(focusStopOnUpdate);
       const toFocusId = toFocusIndex > -1 ? sortedStops[toFocusIndex].id : null;
       onFocusStop(toFocusIndex);
@@ -378,7 +381,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         onRemove={
           sortedStops.length > 1 ? () => onRemove(colorStop.id) : undefined
         }
-        onChange={stop => handleStopChange(stop, colorStop.id)}
+        onChange={(stop) => handleStopChange(stop, colorStop.id)}
         onFocus={() => setFocusedStopIndex(index)}
         parentRef={wrapperRef}
         colorPickerMode={mode}
@@ -386,9 +389,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         colorPickerSwatches={swatches}
         disabled={disabled}
         readOnly={readOnly}
-        aria-valuetext={`Stop: ${colorStop.stop}, Color: ${
-          colorStop.color
-        } (${index + 1} of ${colorStops.length})`}
+        aria-valuetext={`Stop: ${colorStop.stop}, Color: ${colorStop.color} (${
+          index + 1
+        } of ${colorStops.length})`}
         isPopoverOpen={colorStop.id === openedStopId}
         openPopover={() => {
           setOpenedStopId(colorStop.id);

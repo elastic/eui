@@ -7,7 +7,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   data-test-subj="test subject string"
   rel="noreferrer"
 >
-  <div
+  <span
     aria-label="Elastic"
     class="euiHeaderLogo__icon"
     data-euiicon-type="logoElastic"
@@ -21,7 +21,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
   href="#"
   rel="noreferrer"
 >
-  <div
+  <span
     aria-label="Elastic"
     class="euiHeaderLogo__icon"
     data-euiicon-type="logoElastic"
@@ -35,7 +35,7 @@ exports[`EuiHeaderLogo renders href with rel 1`] = `
   href="#"
   rel="noreferrer"
 >
-  <div
+  <span
     aria-label="Elastic"
     class="euiHeaderLogo__icon"
     data-euiicon-type="logoElastic"
@@ -49,7 +49,7 @@ exports[`EuiHeaderLogo renders optional props 1`] = `
   rel="noreferrer"
   style="color:red"
 >
-  <div
+  <span
     aria-label="Moby Dick"
     class="euiHeaderLogo__icon"
     data-euiicon-type="alert"

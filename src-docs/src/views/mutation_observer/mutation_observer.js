@@ -38,7 +38,7 @@ export const MutationObserver = () => {
       <EuiMutationObserver
         observerOptions={{ subtree: true, attributes: true, childList: true }}
         onMutation={onMutation}>
-        {mutationRef => (
+        {(mutationRef) => (
           <div ref={mutationRef}>
             <EuiButton
               color={buttonColor}
@@ -53,7 +53,7 @@ export const MutationObserver = () => {
               <EuiFlexItem grow={false}>
                 <EuiPanel grow={false}>
                   <ul>
-                    {items.map(item => (
+                    {items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>

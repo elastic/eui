@@ -46,7 +46,6 @@ export {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
-  EuiButtonToggle,
   EuiButtonGroup,
 } from './button';
 
@@ -66,14 +65,14 @@ export { EuiCodeEditor } from './code_editor';
 export { EuiCollapsibleNav, EuiCollapsibleNavGroup } from './collapsible_nav';
 
 export {
+  EuiColorPalettePicker,
+  EuiColorPaletteDisplay,
   EuiColorPicker,
   EuiColorPickerSwatch,
   EuiColorStops,
   EuiHue,
   EuiSaturation,
 } from './color_picker';
-
-export { EuiColorPalettePicker } from './color_picker/color_palette_picker';
 
 export { EuiComboBox } from './combo_box';
 
@@ -91,7 +90,12 @@ export { EuiControlBar } from './control_bar';
 
 export { EuiCopy } from './copy';
 
-export { EuiDataGrid } from './datagrid';
+export {
+  EuiDataGrid,
+  useDataGridColumnSelector,
+  useDataGridColumnSorting,
+  useDataGridStyleSelector,
+} from './datagrid';
 
 export {
   EuiDatePicker,
@@ -241,12 +245,6 @@ export {
 
 export { EuiMutationObserver } from './observer/mutation_observer';
 
-export {
-  EuiNavDrawer,
-  EuiNavDrawerGroup,
-  EuiNavDrawerFlyout,
-} from './nav_drawer';
-
 export { EuiOutsideClickDetector } from './outside_click_detector';
 
 export { EuiOverlayMask } from './overlay_mask';
@@ -295,6 +293,7 @@ export {
   EuiSelectableMessage,
   EuiSelectableSearch,
   EuiSelectableTemplateSitewide,
+  euiSelectableTemplateSitewideRenderOptions,
 } from './selectable';
 
 export { EuiSideNav } from './side_nav';
@@ -340,8 +339,6 @@ export { useEuiTextDiff } from './text_diff';
 export { EuiTitle } from './title';
 
 export { EuiGlobalToastList, EuiGlobalToastListItem, EuiToast } from './toast';
-
-export { EuiToggle } from './toggle';
 
 export { EuiIconTip, EuiToolTip } from './tool_tip';
 

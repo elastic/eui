@@ -27,10 +27,10 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { EuiTitle, EuiTitleSize } from '../title/title';
+import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { EuiIcon, IconColor, IconType } from '../icon/icon';
+import { EuiIcon, IconColor, IconType } from '../icon';
 import { EuiText, EuiTextColor } from '../text';
 
 export type EuiEmptyPromptProps = CommonProps &

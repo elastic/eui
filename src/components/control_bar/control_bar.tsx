@@ -347,11 +347,11 @@ export class EuiControlBar extends Component<
             <EuiButtonIcon
               key={id + index}
               className={classNames('euiControlBar__buttonIcon', className)}
-              iconType={iconType}
               onClick={onClick}
               href={href}
               color={color as EuiButtonIconProps['color']}
               {...(rest as IconButtonControlType)}
+              iconType={iconType}
               size="s"
             />
           ) : (
@@ -412,7 +412,7 @@ export class EuiControlBar extends Component<
             <button
               key={id + index}
               className={tabClasses}
-              onClick={event => handleTabClick(control, event)}
+              onClick={(event) => handleTabClick(control, event)}
               {...rest}>
               {label}
             </button>
@@ -448,7 +448,7 @@ export class EuiControlBar extends Component<
             </EuiScreenReaderOnly>
             <div
               className="euiControlBar__controls"
-              ref={node => {
+              ref={(node) => {
                 this.bar = node;
               }}>
               {controls.map((control, index) => controlItem(control, index))}

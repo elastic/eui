@@ -19,6 +19,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
         aria-controls="12"
         aria-expanded={false}
         className="euiAccordion__button"
+        id="generated-id"
         onClick={[Function]}
         type="button"
       >
@@ -30,7 +31,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             size="m"
             type="arrowRight"
           >
-            <div
+            <span
               className="euiAccordion__icon"
               data-euiicon-type="arrowRight"
               size="m"
@@ -79,6 +80,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
         aria-controls="11"
         aria-expanded={true}
         className="euiAccordion__button"
+        id="generated-id"
         onClick={[Function]}
         type="button"
       >
@@ -90,7 +92,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             size="m"
             type="arrowRight"
           >
-            <div
+            <span
               className="euiAccordion__icon euiAccordion__icon-isOpen"
               data-euiicon-type="arrowRight"
               size="m"
@@ -133,12 +135,13 @@ exports[`EuiAccordion is rendered 1`] = `
       aria-controls="0"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -172,6 +175,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
       aria-controls="6"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
@@ -207,12 +211,13 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
       aria-controls="5"
       aria-expanded="false"
       class="euiAccordion__button euiAccordion__buttonReverse"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -250,12 +255,13 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
       aria-controls="2"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -293,12 +299,13 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
       aria-controls="1"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -332,12 +339,13 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       aria-controls="3"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -378,12 +386,13 @@ exports[`EuiAccordion props forceState is rendered 1`] = `
       aria-controls="7"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -421,12 +430,13 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
       aria-controls="4"
       aria-expanded="true"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon euiAccordion__icon-isOpen"
           data-euiicon-type="arrowRight"
         />
@@ -464,12 +474,13 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
       aria-controls="9"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />
@@ -514,12 +525,13 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
       aria-controls="10"
       aria-expanded="false"
       class="euiAccordion__button"
+      id="generated-id"
       type="button"
     >
       <span
         class="euiAccordion__iconWrapper"
       >
-        <div
+        <span
           class="euiAccordion__icon"
           data-euiicon-type="arrowRight"
         />

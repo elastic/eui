@@ -3,7 +3,7 @@ import { EuiButton } from '../../../../src/components';
 
 import { EuiWindowEvent } from '../../../../src/services';
 
-export const ModalExample = props => {
+export const ModalExample = (props) => {
   const [open, setOpen] = useState(false);
 
   const openModal = () => {

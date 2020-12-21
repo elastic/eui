@@ -31,7 +31,7 @@ describe('EuiListGroupItem', () => {
 
   describe('props', () => {
     describe('size', () => {
-      SIZES.forEach(size => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiListGroupItem label="Label" size={size} />
@@ -43,7 +43,7 @@ describe('EuiListGroupItem', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiListGroupItem label="Label" color={color} />
@@ -118,6 +118,20 @@ describe('EuiListGroupItem', () => {
               iconType: 'empty',
               alwaysShow: true,
               'aria-label': 'label',
+            }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be disabled', () => {
+        const component = render(
+          <EuiListGroupItem
+            label="Label"
+            extraAction={{
+              iconType: 'empty',
+              isDisabled: true,
             }}
           />
         );

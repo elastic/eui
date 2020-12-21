@@ -60,7 +60,7 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Second part of the expression
    */
-  value: ReactNode;
+  value?: ReactNode;
   valueProps?: HTMLAttributes<HTMLSpanElement>;
   /**
    * Color of the `description`
@@ -158,9 +158,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
       type="alert"
       color={calculatedColor}
     />
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   return (
     <Component className={classes} onClick={onClick} {...rest}>
@@ -170,9 +168,11 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
         {...descriptionProps}>
         {description}
       </span>{' '}
-      <span className="euiExpression__value" {...valueProps}>
-        {value}
-      </span>
+      {value && (
+        <span className="euiExpression__value" {...valueProps}>
+          {value}
+        </span>
+      )}
       {invalidIcon}
     </Component>
   );

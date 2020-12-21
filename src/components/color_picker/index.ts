@@ -27,3 +27,5 @@ export {
   EuiColorPalettePickerProps,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';
+
+export { EuiColorPaletteDisplay } from './color_palette_display';

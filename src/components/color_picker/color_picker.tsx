@@ -642,6 +642,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   ) : (
     <EuiPopover
       ownFocus={popoverShouldOwnFocus}
+      initialFocus={
+        (mode !== 'swatch' ? satruationRef.current : swatchRef.current) ??
+        undefined
+      }
       button={buttonOrInput}
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}

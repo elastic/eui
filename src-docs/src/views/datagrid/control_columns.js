@@ -101,7 +101,7 @@ const SelectionButton = () => {
           {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
         </EuiPopoverTitle>
         <div style={{ width: 150 }}>
-          <button onClick={() => alert('hello')} component="span">
+          <button onClick={() => {}} component="span">
             <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
@@ -114,7 +114,7 @@ const SelectionButton = () => {
             </EuiFlexGroup>
           </button>
           <EuiSpacer size="s" />
-          <button onClick={() => alert('hello')}>
+          <button onClick={() => {}}>
             <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
@@ -144,7 +144,7 @@ const SelectionHeaderCell = () => {
       aria-label="Select all rows"
       indeterminate={isIndeterminate}
       checked={selectedRows.size > 0}
-      onChange={e => {
+      onChange={(e) => {
         if (isIndeterminate) {
           // clear selection
           updateSelectedRows({ action: 'clear' });
@@ -172,7 +172,7 @@ const SelectionRowCell = ({ rowIndex }) => {
         id={`${rowIndex}`}
         aria-label={`Select row ${rowIndex}, ${data[rowIndex].name}`}
         checked={isChecked}
-        onChange={e => {
+        onChange={(e) => {
           if (e.target.checked) {
             updateSelectedRows({ action: 'add', rowIndex });
           } else {
@@ -184,12 +184,11 @@ const SelectionRowCell = ({ rowIndex }) => {
   );
 };
 
-const FlyoutRowCell = rowIndex => {
+const FlyoutRowCell = (rowIndex) => {
   let flyout;
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
   if (isFlyoutOpen) {
     const rowData = data[rowIndex.rowIndex];
-    console.log(rowData);
 
     const details = Object.entries(rowData).map(([key, value]) => {
       return (
@@ -270,7 +269,7 @@ const trailingControlColumns = [
             ownFocus={true}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
-              <button onClick={() => alert('hello')} component="span">
+              <button onClick={() => {}} component="span">
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -286,7 +285,7 @@ const trailingControlColumns = [
                 </EuiFlexGroup>
               </button>
               <EuiSpacer size="s" />
-              <button onClick={() => alert('hello')}>
+              <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -315,11 +314,11 @@ export default function DataGrid() {
     pageSize: 15,
   });
   const setPageIndex = useCallback(
-    pageIndex => setPagination({ ...pagination, pageIndex }),
+    (pageIndex) => setPagination({ ...pagination, pageIndex }),
     [pagination, setPagination]
   );
   const setPageSize = useCallback(
-    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    (pageSize) => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
     [pagination, setPagination]
   );
 

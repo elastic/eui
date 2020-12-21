@@ -26,10 +26,6 @@ import {
 } from './color_palette_picker';
 import { requiredProps, takeMountedSnapshot } from '../../../test';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'paletteFixed',

@@ -114,7 +114,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     isColorInvalid(color, colorPickerShowAlpha)
   );
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
-  const [numberInputRef, setNumberInputRef] = useState();
+  const [numberInputRef, setNumberInputRef] = useState<HTMLInputElement | null>(
+    null
+  );
   const popoverRef = useRef<EuiPopover>(null);
 
   useEffect(() => {
@@ -192,7 +194,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     location: { x: number; y: number },
     isFirstInteraction?: boolean
   ) => {
-    if (isFirstInteraction) return; // Prevents change on the inital MouseDown event
+    if (isFirstInteraction) return; // Prevents change on the initial MouseDown event
     if (parentRef == null) {
       return;
     }
@@ -262,7 +264,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       ownFocus={isPopoverOpen}
-      initialFocus={numberInputRef}
+      initialFocus={numberInputRef || undefined}
       panelClassName={
         numberInputRef ? undefined : 'euiColorStopPopover-isLoadingPanel'
       }

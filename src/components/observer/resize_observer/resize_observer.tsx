@@ -110,7 +110,7 @@ export const useResizeObserver = (
   // new state (and trigger a re-render) when the new dimensions actually differ
   const _currentDimensions = useRef(size);
   const setSize = useCallback(
-    dimensions => {
+    (dimensions) => {
       const doesWidthMatter = dimension !== 'height';
       const doesHeightMatter = dimension !== 'width';
       if (

@@ -43,7 +43,7 @@ export interface EuiFacetButtonProps
    */
   children: ReactNode;
   /**
-   * Any node, but preferrably a `EuiIcon` or `EuiAvatar`
+   * Any node, but preferably a `EuiIcon` or `EuiAvatar`
    */
   icon?: ReactNode;
   isDisabled?: boolean;
@@ -85,7 +85,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
     className
   );
 
-  // Add quanity number if provided or loading indicator
+  // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
 
   if (isLoading) {

@@ -34,11 +34,6 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 let id = 0;
 const getId = () => `${id++}`;
 
@@ -104,7 +99,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen
@@ -121,7 +115,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen={false}
@@ -353,7 +346,7 @@ describe('EuiPopover', () => {
 
       const activeAnimationFrames = new Map<number, number>();
       let nextAnimationFrameId = 0;
-      window.requestAnimationFrame = fn => {
+      window.requestAnimationFrame = (fn) => {
         const animationFrameId = nextAnimationFrameId++;
         activeAnimationFrames.set(animationFrameId, setTimeout(fn));
         return animationFrameId;

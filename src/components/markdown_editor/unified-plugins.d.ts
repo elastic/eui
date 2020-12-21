@@ -32,18 +32,9 @@ declare module 'remark-highlight.js' {
 
 declare module 'mdast-util-to-hast/lib/all' {
   // eslint-disable-next-line import/no-unresolved
-  import { Node as UnistNode, Position as UnistPosition } from 'unist';
+  import { Node } from 'unist';
+  import { H } from 'mdast-util-to-hast';
 
-  interface RehypeNode {}
-  interface RemarkRehypeHandlerCallback {
-    (
-      node: UnistPosition,
-      tagName: string,
-      props: Object,
-      children: RehypeNode[]
-    ): RehypeNode;
-  }
-
-  const all: (h: RemarkRehypeHandlerCallback, node: UnistNode) => RehypeNode[];
+  const all: (h: H, node: Node) => Node[];
   export = all;
 }

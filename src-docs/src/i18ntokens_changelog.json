@@ -1,5 +1,201 @@
 [
   {
+    "version": "31.0.0",
+    "changes": [
+      {
+        "token": "euiRecentlyUsed.legend",
+        "changeType": "added",
+        "value": "Recently used date ranges"
+      },
+      {
+        "token": "euiResizablePanel.toggleButtonAriaLabel",
+        "changeType": "added",
+        "value": "Press to toggle this panel"
+      }
+    ]
+  },
+  {
+    "version": "30.6.0",
+    "changes": [
+      {
+        "token": "euiStepStrings.loading",
+        "changeType": "added",
+        "value": "Step {number}: {title} is loading"
+      },
+      {
+        "token": "euiStepStrings.simpleLoading",
+        "changeType": "added",
+        "value": "Step {number} is loading"
+      }
+    ]
+  },
+  {
+    "version": "30.2.0",
+    "changes": [
+      {
+        "token": "euiColumnActions.sortAsc",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnActions.sortDesc",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnActions.sort",
+        "changeType": "added",
+        "value": "Sort {schemaLabel}"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
+    "version": "30.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.expandButtonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepHorizontal.buttonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepHorizontal.step",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepNumber.isComplete",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepNumber.hasWarnings",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStepNumber.hasErrors",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStep.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCellButtons.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiStepStrings.step",
+        "changeType": "added",
+        "value": "Step {number}: {title}"
+      },
+      {
+        "token": "euiStepStrings.simpleStep",
+        "changeType": "added",
+        "value": "Step {number}"
+      },
+      {
+        "token": "euiStepStrings.complete",
+        "changeType": "added",
+        "value": "Step {number}: {title} is complete"
+      },
+      {
+        "token": "euiStepStrings.simpleComplete",
+        "changeType": "added",
+        "value": "Step {number} is complete"
+      },
+      {
+        "token": "euiStepStrings.warning",
+        "changeType": "added",
+        "value": "Step {number}: {title} has warnings"
+      },
+      {
+        "token": "euiStepStrings.simpleWarning",
+        "changeType": "added",
+        "value": "Step {number} has warnings"
+      },
+      {
+        "token": "euiStepStrings.errors",
+        "changeType": "added",
+        "value": "Step {number}: {title} has errors"
+      },
+      {
+        "token": "euiStepStrings.simpleErrors",
+        "changeType": "added",
+        "value": "Step {number} has errors"
+      },
+      {
+        "token": "euiStepStrings.incomplete",
+        "changeType": "added",
+        "value": "Step {number}: {title} is incomplete"
+      },
+      {
+        "token": "euiStepStrings.simpleIncomplete",
+        "changeType": "added",
+        "value": "Step {number} is incomplete"
+      },
+      {
+        "token": "euiStepStrings.disabled",
+        "changeType": "added",
+        "value": "Step {number}: {title} is disabled"
+      },
+      {
+        "token": "euiStepStrings.simpleDisabled",
+        "changeType": "added",
+        "value": "Step {number} is disabled"
+      }
+    ]
+  },
+  {
+    "version": "29.1.0",
+    "changes": [
+      {
+        "token": "euiHeaderLinks.openNavigationMenu",
+        "changeType": "modified",
+        "value": "Open menu"
+      },
+      {
+        "token": "euiHeaderLinks.appNavigation",
+        "changeType": "modified",
+        "value": "App menu"
+      },
+      {
+        "token": "euiColumnActions.hideColumn",
+        "changeType": "added",
+        "value": "Hide column"
+      },
+      {
+        "token": "euiColumnActions.sortAsc",
+        "changeType": "added",
+        "value": "Sort schema asc"
+      },
+      {
+        "token": "euiColumnActions.sortDesc",
+        "changeType": "added",
+        "value": "Sort schema desc"
+      },
+      {
+        "token": "euiColumnActions.moveLeft",
+        "changeType": "added",
+        "value": "Move left"
+      },
+      {
+        "token": "euiColumnActions.moveRight",
+        "changeType": "added",
+        "value": "Move right"
+      },
+      {
+        "token": "euiDataGridHeaderCell.headerActions",
+        "changeType": "added",
+        "value": "Header actions"
+      }
+    ]
+  },
+  {
     "version": "28.2.0",
     "changes": [
       {

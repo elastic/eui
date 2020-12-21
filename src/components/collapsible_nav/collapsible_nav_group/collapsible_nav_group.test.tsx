@@ -78,7 +78,7 @@ describe('EuiCollapsibleNavGroup', () => {
     });
 
     describe('background', () => {
-      BACKGROUNDS.forEach(color => {
+      BACKGROUNDS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiCollapsibleNavGroup id="id" background={color} />

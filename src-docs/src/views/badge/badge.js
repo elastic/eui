@@ -42,7 +42,7 @@ export default () => {
       </EuiTitle>
       <EuiSpacer size="m" />
       <EuiFlexGroup wrap responsive={false} gutterSize="xs">
-        {badges.map(badge => (
+        {badges.map((badge) => (
           <EuiFlexItem grow={false} key={badge}>
             <EuiBadge color={badge}>{badge}</EuiBadge>
           </EuiFlexItem>
@@ -58,7 +58,7 @@ export default () => {
         responsive={false}
         gutterSize="xs"
         style={{ maxWidth: '300px' }}>
-        {customBadges.map(badge => (
+        {customBadges.map((badge) => (
           <EuiFlexItem grow={false} key={badge}>
             <EuiBadge color={badge}>{badge}</EuiBadge>
           </EuiFlexItem>
@@ -77,7 +77,7 @@ export default () => {
       <EuiSwitch
         label="Show disabled state"
         checked={isDisabled}
-        onChange={e => setDisabled(e.target.checked)}
+        onChange={(e) => setDisabled(e.target.checked)}
       />
       <EuiSpacer size="m" />
       <EuiFlexGroup wrap responsive={false} gutterSize="xs">

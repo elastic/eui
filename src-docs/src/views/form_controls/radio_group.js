@@ -26,7 +26,7 @@ export default () => {
 
   const [radioIdSelected, setRadioIdSelected] = useState(`${idPrefix}1`);
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     setRadioIdSelected(optionId);
   };
 
@@ -40,7 +40,7 @@ export default () => {
       <EuiRadioGroup
         options={radios}
         idSelected={radioIdSelected}
-        onChange={id => onChange(id)}
+        onChange={(id) => onChange(id)}
         name="radio group"
         legend={{
           children: <span>This is a legend for a radio group</span>,

@@ -20,12 +20,14 @@ const dataGridHtml = renderToHtml(DataGrid);
 
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
+  EuiDataGridColumnActions,
   EuiDataGridPopoverContentProps,
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
@@ -41,9 +43,14 @@ const gridSnippet = `
     // Required. There are 200 total records.
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
-    // The second column B won't allow clicking in to see the content in a popup.
-    // The first column defines a starting width of 150px and prevents the user from resizing it
-    columns={[{ id: 'A', initialWidth: 150, isResizable: false }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
+    // The first column defines a starting width of 150px, prevents the user from resizing it and no actions are displayed
+    // The second column B won't allow clicking in to see the content in a popup and doesn't show move actions in column header cell
+    // The third column provides one additional cell action, that triggers an alert once clicked
+    columns={[
+        { id: 'A', initialWidth: 150, isResizable: false, actions: false },
+        { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
+        { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
+    ]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
@@ -353,7 +360,9 @@ export const DataGridExample = {
       props: {
         EuiDataGrid,
         EuiDataGridColumn,
+        EuiDataGridColumnCellAction,
         EuiDataGridColumnVisibility,
+        EuiDataGridColumnActions,
         EuiDataGridControlColumn,
         EuiDataGridInMemory,
         EuiDataGridPaginationProps,

@@ -14,6 +14,14 @@ const bottomBarSnippet = `<EuiBottomBar paddingSize="s">
   <!-- Content goes here -->
 </EuiBottomBar>`;
 
+import BottomBarDisplacement from './bottom_bar_displacement';
+const bottomBarDisplacementSource = require('!!raw-loader!./bottom_bar_displacement');
+const bottomBarDisplacementHtml = renderToHtml(BottomBarDisplacement);
+
+const bottomBarDisplacementSnippet = `<EuiBottomBar affordForDisplacement={false}>
+  <!-- Content goes here -->
+</EuiBottomBar>`;
+
 export const BottomBarExample = {
   title: 'Bottom bar',
   sections: [
@@ -29,7 +37,7 @@ export const BottomBarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiBottomBar</strong> is a simple wrapper component that
             does nothing but fix a bottom bar (usually filled with buttons) to
@@ -41,13 +49,41 @@ export const BottomBarExample = {
             Like many of our other wrapper components,{' '}
             <strong>EuiBottomBar</strong> accepts a{' '}
             <EuiCode>paddingSize</EuiCode> prop, which can be set to{' '}
-            <EuiCode>s / m / l / none</EuiCode>.
+            <EuiCode>s / m (default) / l / none</EuiCode>.
           </p>
-        </div>
+        </>
       ),
       props: { EuiBottomBar },
       snippet: bottomBarSnippet,
       demo: <BottomBar />,
+    },
+    {
+      title: 'Displacement',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: bottomBarDisplacementSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: bottomBarDisplacementHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            There is an <EuiCode>affordForDisplacement</EuiCode> prop
+            (defaulting to <EuiCode>true</EuiCode>), which determines whether
+            the component makes room for itself by adding bottom padding
+            equivalent to its own height on the document body element. Setting
+            this to <EuiCode>false</EuiCode> can be useful to minimize scrollbar
+            visibility but will cause the bottom bar to overlap body content.
+          </p>
+        </>
+      ),
+      props: { EuiBottomBar },
+      snippet: bottomBarDisplacementSnippet,
+      demo: <BottomBarDisplacement />,
     },
   ],
 };

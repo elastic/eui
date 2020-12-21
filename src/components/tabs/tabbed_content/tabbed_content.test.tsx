@@ -23,13 +23,6 @@ import { requiredProps, findTestSubject } from '../../../test';
 
 import { EuiTabbedContent, AUTOFOCUS } from './tabbed_content';
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => {
-    return () => 42;
-  },
-}));
-
 const elasticsearchTab = {
   id: 'es',
   name: 'Elasticsearch',
@@ -101,7 +94,7 @@ describe('EuiTabbedContent', () => {
     });
 
     describe('autoFocus', () => {
-      AUTOFOCUS.forEach(focusType => {
+      AUTOFOCUS.forEach((focusType) => {
         test(`${focusType} is rendered`, () => {
           const component = render(
             <EuiTabbedContent autoFocus={focusType} tabs={tabs} />
@@ -128,10 +121,7 @@ describe('EuiTabbedContent', () => {
       ];
       const component = mount(<EuiTabbedContent tabs={tabs} />);
 
-      component
-        .find('EuiTab[id="kibana"] button')
-        .first()
-        .simulate('click');
+      component.find('EuiTab[id="kibana"] button').first().simulate('click');
 
       component.setProps({
         tabs: [

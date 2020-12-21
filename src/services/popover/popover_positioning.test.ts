@@ -92,7 +92,7 @@ describe('popover_positioning', () => {
     };
 
     it('returns the distance from each side of the anchor to each side of the container', () => {
-      POSITIONS.forEach(side => {
+      POSITIONS.forEach((side) => {
         expect(
           getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0, side)
         ).toEqual(expectedAvailableSpace);
@@ -100,7 +100,7 @@ describe('popover_positioning', () => {
     });
 
     it('subtracts the buffer amount from the returned distances', () => {
-      POSITIONS.forEach(side => {
+      POSITIONS.forEach((side) => {
         expect(
           getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0, side)
         ).toEqual({
@@ -113,7 +113,7 @@ describe('popover_positioning', () => {
     });
 
     it('subtracts the offset from the specified offsetSide', () => {
-      POSITIONS.forEach(side => {
+      POSITIONS.forEach((side) => {
         expect(
           getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5, side)
         ).toEqual({
@@ -124,7 +124,7 @@ describe('popover_positioning', () => {
     });
 
     it('subtracts the buffer and the offset from the specified offsetSide', () => {
-      POSITIONS.forEach(side => {
+      POSITIONS.forEach((side) => {
         expect(
           getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1, side)
         ).toEqual({

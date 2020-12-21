@@ -49,16 +49,36 @@
   }
 }
 
+
+.euiButtonEmpty--flushLeft,
+.euiButtonEmpty--flushRight,
+.euiButtonEmpty--flushBoth {
+  .euiButtonEmpty__content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.euiButtonEmpty--flushLeft {
+  margin-right: $euiSizeS;
+}
+
+.euiButtonEmpty--flushRight {
+  margin-left: $euiSizeS;
+}
+
 // Modifier naming and colors.
 $euiButtonEmptyTypes: (
-  primary: $euiColorPrimary,
-  danger: $euiColorDanger,
+  primary: $euiColorPrimaryText,
+  danger: $euiColorDangerText,
   disabled: $euiButtonColorDisabledText,
   ghost: $euiColorGhost,
   text: $euiTextColor,
+  success: $euiColorSecondaryText,
+  warning: $euiColorWarningText,
 );
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $name, $color in $euiButtonEmptyTypes {
   .euiButtonEmpty--#{$name} {
     @if ($name == 'ghost') {
@@ -84,22 +104,3 @@ $euiButtonEmptyTypes: (
   }
 }
 
-.euiButtonEmpty--flushLeft {
-  margin-right: $euiSizeS;
-
-  .euiButtonEmpty__content {
-    border-left: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-.euiButtonEmpty--flushRight {
-  margin-left: $euiSizeS;
-
-  .euiButtonEmpty__content {
-    border-right: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}

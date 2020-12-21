@@ -38,7 +38,7 @@ export default () => {
   return (
     <Fragment>
       <EuiFlexGrid>
-        {DARK_COLORS.map(color => (
+        {DARK_COLORS.map((color) => (
           <EuiFlexItem
             style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }}
             key={color.join('')}>
@@ -52,7 +52,7 @@ export default () => {
       </EuiFlexGrid>
 
       <EuiFlexGrid>
-        {LIGHT_COLORS.map(color => (
+        {LIGHT_COLORS.map((color) => (
           <EuiFlexItem
             style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }}
             key={color.join('')}>

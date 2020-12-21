@@ -27,7 +27,6 @@ import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitew
 const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Basic data application',
-    'data-test-subj': 'test-this',
     avatar: {
       name: 'Default Space',
     },
@@ -39,6 +38,7 @@ const options: EuiSelectableTemplateSitewideOption[] = [
     ],
     url: 'welcome-dashboards',
     ...requiredProps,
+    'data-test-subj': 'test-this',
   },
   {
     label: 'Platform with deployment highlighted',
@@ -84,11 +84,6 @@ const options: EuiSelectableTemplateSitewideOption[] = [
   },
 ];
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 describe('EuiSelectableTemplateSitewide', () => {
   test('is rendered', () => {
     const component = render(
@@ -130,6 +125,47 @@ describe('EuiSelectableTemplateSitewide', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('popoverButton', () => {
+      // @ts-ignore innerWidth might be read only but we can still override it for the sake of testing
+      beforeAll(() => (window.innerWidth = 670));
+      afterAll(() => 1024); // reset to jsdom's default
+
+      test('is rendered', () => {
+        const component = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<button>Button</button>}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered with popoverButtonBreakpoints m', () => {
+        const component = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<button>Button</button>}
+            popoverButtonBreakpoints={['xs', 's', 'm']}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is not rendered with popoverButtonBreakpoints xs', () => {
+        const component = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<button>Button</button>}
+            popoverButtonBreakpoints={['xs']}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });

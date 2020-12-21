@@ -53,14 +53,12 @@ export interface EuiSearchBarProps extends CommonProps {
   defaultQuery?: QueryType;
 
   /**
-   If you wish to use the search bar as a controlled component, continuously pass the query
-   via this prop
+   If you wish to use the search bar as a controlled component, continuously pass the query via this prop.
    */
   query?: QueryType;
 
   /**
-   Configures the search box. Set `placeholder` to change the placeholder text in the box and
-   `incremental` to support incremental (as you type) search.
+   Configures the search box. Set `placeholder` to change the placeholder text in the box and `incremental` to support incremental (as you type) search.
    */
   box?: EuiFieldSearchProps & {
     // Boolean values are not meaningful to this EuiSearchBox, but are allowed so that other
@@ -70,7 +68,7 @@ export interface EuiSearchBarProps extends CommonProps {
   };
 
   /**
-   An array of search filters.
+   An array of search filters. See #SearchFilterConfig.
    */
   filters?: SearchFilterConfig[];
 
@@ -201,7 +199,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     }
 
     if (Array.isArray(tools)) {
-      return tools.map(tool => (
+      return tools.map((tool) => (
         <EuiFlexItem grow={false} key={tool.key == null ? undefined : tool.key}>
           {tool}
         </EuiFlexItem>
@@ -222,9 +220,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const toolsLeftEl = this.renderTools(toolsLeft);
 
-    const filtersBar = !filters ? (
-      undefined
-    ) : (
+    const filtersBar = !filters ? undefined : (
       <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
         <EuiSearchFilters
           filters={filters}

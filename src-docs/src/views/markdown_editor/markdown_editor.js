@@ -4,7 +4,7 @@ import {
   EuiMarkdownEditor,
   EuiSpacer,
   EuiCodeBlock,
-  EuiButtonToggle,
+  EuiButton,
 } from '../../../../src/components';
 
 const initialContent = `## Hello world!
@@ -21,10 +21,10 @@ The editor also ships with some built in plugins. For example it can handle chec
 const dropHandlers = [
   {
     supportedFiles: ['.jpg', '.jpeg'],
-    accepts: itemType => itemType === 'image/jpeg',
-    getFormattingForItem: item => {
+    accepts: (itemType) => itemType === 'image/jpeg',
+    getFormattingForItem: (item) => {
       // fake an upload
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           const url = URL.createObjectURL(item);
           resolve({
@@ -59,14 +59,13 @@ export default () => {
       />
       <EuiSpacer size="s" />
       <div className="eui-textRight">
-        <EuiButtonToggle
-          label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+        <EuiButton
           size="s"
-          isEmpty
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
-          onChange={() => setIsAstShowing(!isAstShowing)}
-          isSelected={isAstShowing}
-        />
+          onClick={() => setIsAstShowing(!isAstShowing)}
+          fill={isAstShowing}>
+          {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+        </EuiButton>
       </div>
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
     </>

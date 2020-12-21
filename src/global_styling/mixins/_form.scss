@@ -25,10 +25,16 @@
   }
 }
 
-@mixin euiFormControlLayoutClearIcon($iconClass) {
+@mixin euiFormControlLayoutClearIcon($iconClass, $size: 'm') {
   $clearSize: $euiSize;
-  @include size($clearSize);
+  $clearIconStroke: 2px;
 
+  @if ($size == 's') {
+    $clearSize: $euiSizeM;
+    $clearIconStroke: $euiSizeXS;
+  }
+
+  @include size($clearSize);
   pointer-events: all;
   background-color: lightOrDarkTheme($euiColorMediumShade, $euiColorDarkShade);
   border-radius: $clearSize;
@@ -39,10 +45,11 @@
   }
 
   #{$iconClass} {
-    @include size($euiSizeS);
+    @include size($clearSize / 2);
     fill: $euiColorEmptyShade;
+    // increase thickness of icon at such a small size
     stroke: $euiColorEmptyShade;
-    stroke-width: 2px; // increase thickness of icon at such a small size
+    stroke-width: $clearIconStroke;
   }
 }
 
@@ -216,7 +223,7 @@
   @include euiFormControlText;
 
   border: none;
-  border-radius: 0;
+  border-radius: $euiFormControlBorderRadius;
   padding: $euiFormControlPadding;
 
   @if ($includeStates) {
@@ -301,7 +308,7 @@
   @if $type == 'round' {
     border-radius: $size;
   } @else if $type == 'square' {
-    border-radius: $euiBorderRadius;
+    border-radius: $euiCheckboxBorderRadius;
   }
   // sass-lint:disable-block indentation
   transition: background-color $euiAnimSpeedFast ease-in,
@@ -326,9 +333,27 @@
   }
 }
 
-@mixin euiCustomControlFocused {
-  @include euiFocusRing;
-  border-color: $euiColorPrimary;
+@mixin euiCustomControlFocused($amsterdamSelector: null) {
+  // Requires a selector to work with the Amsterdam outline styles
+  @if ($amsterdamSelector) {
+    + #{$amsterdamSelector} {
+      outline: $euiFocusRingSize solid currentColor;
+    }
+
+    // Chrome
+    &:focus-visible + #{$amsterdamSelector} {
+      outline-style: auto;
+      outline-offset: 3px;
+    }
+
+    &:not(:focus-visible) + #{$amsterdamSelector} {
+      outline: none;
+    }
+  } @else {
+    // Default theme
+    @include euiFocusRing('small', 'outer');
+    border-color: $euiColorPrimary;
+  }
 }
 
 @mixin euiHiddenSelectableInput {

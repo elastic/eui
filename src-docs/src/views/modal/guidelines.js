@@ -40,7 +40,7 @@ export default () => (
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 300 }}>
         <div>
-          <EuiPanel hasShadow paddingSize="none">
+          <EuiPanel paddingSize="none">
             <EuiModalHeader>
               <EuiModalHeaderTitle>
                 A modal title should be one line
@@ -101,7 +101,7 @@ export default () => (
         type="do"
         text="Do. A save action is a good use case for a modal. The
         meaning is clear and the content is simple.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Save dashboard</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -127,7 +127,7 @@ export default () => (
         type="dont"
         text="Don't. Modals aren't the best design solution for multiple steps or complex user input.
         An in-page form is more appropriate.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Add a team member</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -192,7 +192,7 @@ export default () => (
         type="do"
         text="Do. Use a modal for confirmation when the user might lose data. For the body
         text, use one to two short sentences that explain the consequences.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>
               Save changes before leaving?
@@ -218,7 +218,7 @@ export default () => (
         text="Don't.  Confirmations aren't good for messages.
           Toasts are best for success messages because they are less disruptive.
           Error and warning messages often appear directly on the page.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Great!</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -244,7 +244,7 @@ export default () => (
         text="
           Do. Use the same action verbs in the header and button text.
         ">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Refresh field list?</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -268,7 +268,7 @@ export default () => (
         text='Don&apos;t use a vague header such as "Are you sure?" or
         the button labels "Yes" and "No."
           '>
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>
               Are you sure you want to refresh this field list?
@@ -299,7 +299,7 @@ export default () => (
         text="Do. Asking users to delete a single item should include the item name in the title,
         if possible.
         Use single quotes around the name if it helps clarify meaning.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>
               Delete pipeline &apos;MyPipeline&apos;?
@@ -325,7 +325,7 @@ export default () => (
         type="do"
         panel={false}
         text="Do. For bulk actions, include the number of items in the title.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Delete 6 pipelines?</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -356,7 +356,7 @@ export default () => (
         text="Do. Here the header and body are enough.
         The modal asks the user whether to remove an index pattern&mdash;
         data won't be lost.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Remove index pattern?</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -376,7 +376,7 @@ export default () => (
         panel={false}
         text="Don't write body text that simply repeats the title.
         It doesn't add value.">
-        <EuiPanel hasShadow paddingSize="none">
+        <EuiPanel paddingSize="none">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Remove index pattern?</EuiModalHeaderTitle>
           </EuiModalHeader>

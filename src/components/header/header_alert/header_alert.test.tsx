@@ -23,10 +23,6 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderAlert } from './header_alert';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiHeaderAlert', () => {
   test('is rendered', () => {
     const component = render(

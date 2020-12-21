@@ -24,7 +24,7 @@ export default () => (
         href="/#/display/badge"
         iconType="bolt"
         iconSide="right"
-        iconOnClick={() => window.alert('Icon inside badge clicked')}
+        iconOnClick={() => {}}
         iconOnClickAriaLabel="Example of onClick event for icon within the anchor">
         anchor with an icon and iconOnClick
       </EuiBadge>

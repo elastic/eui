@@ -43,7 +43,7 @@ exports[`DefaultItemAction render - icon 1`] = `
   position="top"
 >
   <EuiButtonIcon
-    aria-labelledby="random_id"
+    aria-labelledby="generated-id"
     color="primary"
     iconType="trash"
     isDisabled={false}
@@ -51,7 +51,7 @@ exports[`DefaultItemAction render - icon 1`] = `
   />
   <EuiScreenReaderOnly>
     <span
-      id="random_id"
+      id="generated-id"
     >
       <span>
         action1

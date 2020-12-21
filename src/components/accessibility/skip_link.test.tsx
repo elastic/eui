@@ -52,7 +52,7 @@ describe('EuiSkipLink', () => {
     });
 
     describe('position', () => {
-      POSITIONS.forEach(position => {
+      POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {
           const component = render(
             <EuiSkipLink destinationId="somewhere" position={position} />

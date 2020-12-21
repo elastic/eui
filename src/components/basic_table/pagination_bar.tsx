@@ -26,10 +26,25 @@ import {
 } from '../table/table_pagination/table_pagination';
 
 export interface Pagination {
+  /**
+   * The current page (zero-based) index
+   */
   pageIndex: number;
+  /**
+   * The maximum number of items that can be shown in a single page
+   */
   pageSize: number;
+  /**
+   * The total number of items the page is "sliced" of
+   */
   totalItemCount: number;
+  /**
+   * Configures the page size dropdown options
+   */
   pageSizeOptions?: number[];
+  /**
+   * Hides the page size dropdown
+   */
   hidePerPageOptions?: boolean;
 }
 
