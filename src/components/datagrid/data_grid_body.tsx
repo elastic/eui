@@ -84,6 +84,7 @@ export interface EuiDataGridBodyProps {
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
+  resetGridHeight: () => void;
 }
 
 const defaultComparator: NonNullable<
@@ -290,6 +291,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     handleHeaderMutation,
     setVisibleColumns,
     switchColumnPos,
+    resetGridHeight
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -299,6 +301,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     childList: true,
   });
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
+
+  useEffect(() => resetGridHeight(), [headerRowHeight]);
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
   let endRow = pagination
@@ -519,7 +523,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         columnWidth={getWidth}
         height={
           // intentionally ignoring gridHeight if it is null/undefined/0
-          gridHeight ||
+          (headerRowHeight && gridHeight) ||
           rowHeight * visibleRowIndices.length +
             SCROLLBAR_HEIGHT +
             headerRowHeight +
