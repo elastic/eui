@@ -200,7 +200,6 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
 
   const wrapperProps = {
     className: classes,
-    style: optionalStyles,
   };
 
   if (inline) {
@@ -339,6 +338,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
                 codeTagProps={{
                   ref: innerTextRef,
                   className: codeClasses,
+                  style: optionalStyles,
                 }}
                 {...rest}>
                 {children}
