@@ -122,13 +122,20 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
-    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    class="prismjs euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
   >
     <code
-      class="euiCodeBlock__code html hljs xml"
+      class="euiCodeBlock__code html"
+      style="white-space: pre;"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class=""
+      >
+        var some = 'code';
+
+      </span>
+      console.log(some);
+
     </code>
   </pre>
 </div>
@@ -258,12 +265,12 @@ exports[`EuiCodeBlock renders a code block 1`] = `
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
 >
   <pre
-    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    aria-label="aria-label"
+    class="prismjs euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    data-test-subj="test subject string"
   >
     <code
-      aria-label="aria-label"
       class="euiCodeBlock__code"
-      data-test-subj="test subject string"
     >
       var some = 'code';
 console.log(some);

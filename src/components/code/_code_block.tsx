@@ -25,9 +25,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { PrismAsyncLight } from 'react-syntax-highlighter';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
-import hljs from 'highlight.js';
 
 import { EuiCopy } from '../copy';
 
@@ -87,6 +87,8 @@ interface Props {
    * `pre-wrap` respects line breaks/white space but does force them to wrap the line when necessary.
    */
   whiteSpace?: 'pre' | 'pre-wrap';
+  startingLineNumber?: number;
+  showLineNumbers?: boolean;
 }
 
 /**
@@ -104,51 +106,50 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   children,
   className,
   overflowHeight,
+  startingLineNumber = 1,
+  showLineNumbers = false,
   ...rest
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
   const codeTarget = useRef<HTMLDivElement | null>(null);
-  const code = useRef<HTMLElement | null>(null);
-  const [codeFullScreen, setCodeFullScreen] = useState<HTMLElement | null>(
-    null
-  );
+  const codeRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     codeTarget.current = document.createElement('div');
     setIsPortalTargetReady(true);
   }, []);
 
-  useEffect(() => {
-    /**
-     * because React maintains a mapping between its Virtual DOM representation and the actual
-     * DOM elements (including text nodes), and hljs modifies the DOM structure which leads
-     * to React updating detached nodes, we render to a document fragment and
-     * copy from that fragment into the target elements
-     * (https://github.com/elastic/eui/issues/2322)
-     */
-    const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
+  // useEffect(() => {
+  //   /**
+  //    * because React maintains a mapping between its Virtual DOM representation and the actual
+  //    * DOM elements (including text nodes), and hljs modifies the DOM structure which leads
+  //    * to React updating detached nodes, we render to a document fragment and
+  //    * copy from that fragment into the target elements
+  //    * (https://github.com/elastic/eui/issues/2322)
+  //    */
+  //   const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
+  //
+  //   if (code.current) {
+  //     code.current.innerHTML = html;
+  //   }
+  //
+  //   if (language) {
+  //     if (code.current) {
+  //       hljs.highlightBlock(code.current);
+  //     }
+  //   }
+  // });
 
-    if (code.current) {
-      code.current.innerHTML = html;
-    }
-
-    if (language) {
-      if (code.current) {
-        hljs.highlightBlock(code.current);
-      }
-    }
-  });
-
-  useEffect(() => {
-    if (codeFullScreen) {
-      const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
-      codeFullScreen.innerHTML = html;
-      if (language) {
-        hljs.highlightBlock(codeFullScreen);
-      }
-    }
-  }, [isPortalTargetReady, codeFullScreen, language]);
+  // useEffect(() => {
+  //   if (codeFullScreen) {
+  //     const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
+  //     codeFullScreen.innerHTML = html;
+  //     if (language) {
+  //       hljs.highlightBlock(codeFullScreen);
+  //     }
+  //   }
+  // }, [isPortalTargetReady, codeFullScreen, language]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
@@ -191,7 +192,11 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     optionalStyles.maxHeight = overflowHeight;
   }
 
-  const codeSnippet = <code ref={code} className={codeClasses} {...rest} />;
+  const codeSnippet = (
+    <code ref={codeRef} className={codeClasses} {...rest}>
+      {children}
+    </code>
+  );
 
   const wrapperProps = {
     className: classes,
@@ -292,15 +297,20 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
         <EuiOverlayMask>
           <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
-              <pre className={preClasses}>
-                <code
-                  ref={setCodeFullScreen}
-                  className={codeClasses}
-                  tabIndex={0}
-                  onKeyDown={onKeyDown}
-                />
-              </pre>
-
+              <PrismAsyncLight
+                language={language}
+                startingLineNumber={startingLineNumber}
+                useInlineStyles={false}
+                showLineNumbers={showLineNumbers}
+                {...rest}
+                className={preClasses}
+                codeTagProps={{
+                  className: codeClasses,
+                  tabIndex: 0,
+                  onKeyDown: onKeyDown,
+                }}>
+                {children}
+              </PrismAsyncLight>
               {codeBlockControls}
             </div>
           </EuiFocusTrap>
@@ -319,12 +329,21 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
           const codeBlockControls = getCodeBlockControls(innerText);
           return (
             <div {...wrapperProps}>
-              <pre
-                ref={innerTextRef}
+              <PrismAsyncLight
+                language={language}
+                startingLineNumber={startingLineNumber}
+                useInlineStyles={false}
+                showLineNumbers={showLineNumbers}
                 style={optionalStyles}
-                className={preClasses}>
+                className={preClasses}
+                codeTagProps={{
+                  ref: innerTextRef,
+                  className: codeClasses,
+                }}
+                {...rest}>
+                {children}
                 {codeSnippet}
-              </pre>
+              </PrismAsyncLight>
 
               {/*
                 If the below fullScreen code renders, it actually attaches to the body because of

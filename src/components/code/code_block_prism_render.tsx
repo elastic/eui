@@ -19,10 +19,11 @@
 
 import React from 'react';
 import { FixedSizeList } from 'react-window';
-//@ts-ignore
+//@ts-ignore doesn't have types
 import createElement from 'react-syntax-highlighter/create-element';
 
 function rowRenderer({ rows, stylesheet, useInlineStyles }: any) {
+  console.log(rows);
   return ({ index, key, style }: any) =>
     createElement({
       node: rows[index],

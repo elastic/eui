@@ -50,6 +50,7 @@ export type EuiCodeBlockPrismProps = CommonProps &
     paddingSize?: PaddingSize;
     transparentBackground?: boolean;
     inline?: boolean;
+    showLineNumbers?: boolean;
   };
 
 export const EuiCodeBlockPrism: FunctionComponent<EuiCodeBlockPrismProps> = ({
@@ -62,6 +63,7 @@ export const EuiCodeBlockPrism: FunctionComponent<EuiCodeBlockPrismProps> = ({
   paddingSize = 'l',
   fontSize = 's',
   isCopyable = false,
+  showLineNumbers = false,
   overflowHeight,
   ...rest
 }) => {
@@ -78,13 +80,16 @@ export const EuiCodeBlockPrism: FunctionComponent<EuiCodeBlockPrismProps> = ({
   );
 
   return (
-    <PrismAsyncLight
-      language={language}
-      startingLineNumber={startingLineNumber}
-      useInlineStyles={false}
-      {...rest}
-      className={classes}>
-      {children}
-    </PrismAsyncLight>
+    <div className={classes}>
+      <PrismAsyncLight
+        language={language}
+        startingLineNumber={startingLineNumber}
+        useInlineStyles={false}
+        showLineNumbers={showLineNumbers}
+        {...rest}
+        className="euiCodeBlock__pre">
+        {children}
+      </PrismAsyncLight>
+    </div>
   );
 };

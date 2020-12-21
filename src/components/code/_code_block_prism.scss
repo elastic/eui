@@ -1,15 +1,12 @@
 .euiCodeBlock {
-  pre[class*="language-"] {
+  pre {
     @include euiScrollBar;
     height: 100%;
     overflow: auto;
     display: block;
-  }
-
-  /* Code blocks */
-  pre[class*="language-"] {
     white-space: pre;
   }
+
   code[class*="language-"] {
     @include euiCodeFont;
     display: block;
@@ -50,8 +47,7 @@
   .token.number,
   .token.constant,
   .token.symbol {
-    color: $euiCodeBlockSelectorTagColor;
-    font-weight: $euiFontWeightBold;
+    color: $euiCodeBlockTagColor;
   }
 
   .token.selector,
@@ -69,7 +65,7 @@
   .language-css .token.string,
   .style .token.string,
   .token.variable {
-    color: hsl(40, 90%, 60%);
+    color: inherit;
   }
 
   .token.atrule,

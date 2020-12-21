@@ -2,8 +2,7 @@ import React from 'react';
 
 import { EuiCodeBlockPrism } from '../../../../src/components';
 
-const codeExample = `
-import React, { useState } from 'react';
+const codeExample = `import React, { useState } from 'react';
 
 import {
   EuiBadge,
@@ -49,8 +48,7 @@ export default () => {
       </EuiButton>
     </div>
   );
-};
-`;
+};`;
 
 export default () => (
   <div>
