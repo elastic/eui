@@ -85,6 +85,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   resetGridHeight: () => void;
+  setSizeIsStable: (sizeIsStable: boolean) => void;
 }
 
 const defaultComparator: NonNullable<
@@ -115,8 +116,6 @@ const providedPopoverContents: EuiDataGridPopoverContents = {
     );
   },
 };
-
-const FOOTER_ROW_HEIGHT = 34;
 
 const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
   return <EuiText>{children}</EuiText>;
@@ -291,18 +290,31 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     handleHeaderMutation,
     setVisibleColumns,
     switchColumnPos,
-    resetGridHeight
+    resetGridHeight,
+    setSizeIsStable,
   } = props;
 
+  const hasFooterRow = renderFooterCellValue;
+
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
+  const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
 
   useMutationObserver(headerRowRef, handleHeaderMutation, {
     subtree: true,
     childList: true,
   });
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
+  const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
 
-  useEffect(() => resetGridHeight(), [headerRowHeight]);
+  useEffect(() => {
+    const isHeaderStable = headerRowHeight !== 0;
+    const isFooterStable = !hasFooterRow || footerRowHeight !== 0;
+    setSizeIsStable(isHeaderStable && isFooterStable);
+  }, [hasFooterRow, setSizeIsStable, headerRowHeight, footerRowHeight]);
+
+  useEffect(() => {
+    resetGridHeight();
+  }, [resetGridHeight, headerRowHeight, footerRowHeight]);
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
   let endRow = pagination
@@ -419,6 +431,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     return (
       <EuiDataGridFooterRow
         key="footerRow"
+        ref={setFooterRowRef}
         leadingControlColumns={leadingControlColumns}
         trailingControlColumns={trailingControlColumns}
         columns={columns}
@@ -508,6 +521,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
 
+  const height =
+    // intentionally ignoring gridHeight if it is null/undefined/0
+    // and using it only if we have found the header&footer heights
+    (headerRowHeight && (!hasFooterRow || footerRowHeight) && gridHeight) ||
+    // otherwise compute the height
+    rowHeight * visibleRowIndices.length +
+      SCROLLBAR_HEIGHT +
+      headerRowHeight +
+      footerRowHeight;
+
   return (
     <DataGridHeaderRowHeightContext.Provider value={headerRowHeight}>
       <Grid
@@ -521,14 +544,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         }
         width={gridWidth}
         columnWidth={getWidth}
-        height={
-          // intentionally ignoring gridHeight if it is null/undefined/0
-          (headerRowHeight && gridHeight) ||
-          rowHeight * visibleRowIndices.length +
-            SCROLLBAR_HEIGHT +
-            headerRowHeight +
-            (footerRow ? FOOTER_ROW_HEIGHT : 0)
-        }
+        height={height}
         rowHeight={getRowHeight}
         itemData={{
           setRowHeight,

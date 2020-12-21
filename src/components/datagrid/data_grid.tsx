@@ -761,13 +761,27 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   };
 
   // enables/disables grid controls based on available width
+  const [sizeIsStable, setSizeIsStable] = useState(false);
+
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
   const gridDimensions = useResizeObserver(resizeRef);
   useEffect(() => {
-    const { height, width } = gridDimensions;
-    setGridWidth(width);
-    setGridHeight(height);
-  }, [gridDimensions]);
+    if (resizeRef) {
+      if (sizeIsStable) {
+        const { height, width } = gridDimensions;
+        setGridWidth(width);
+        setGridHeight((currentHeight) => {
+          // because of a race condition between useResizeObserver which
+          // fires async outside of the React lifecycle
+          // and useEffect, we allow the height to grow but not shrink
+          return currentHeight < height ? height : currentHeight;
+        });
+      }
+    } else {
+      setGridWidth(0);
+      setGridHeight(0);
+    }
+  }, [sizeIsStable, resizeRef, gridDimensions]);
 
   const hasRoomForGridControls = gridWidth > minSizeForControls || isFullScreen;
 
@@ -1112,6 +1126,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     rowCount={rowCount}
                                     interactiveCellId={interactiveCellId}
                                     resetGridHeight={resetGridHeight}
+                                    setSizeIsStable={setSizeIsStable}
                                   />
                                 </div>
                               </div>

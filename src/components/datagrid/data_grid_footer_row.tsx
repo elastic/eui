@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes, memo } from 'react';
+import React, { forwardRef, HTMLAttributes, memo } from 'react';
 import classnames from 'classnames';
 import {
   EuiDataGridControlColumn,
@@ -51,86 +51,47 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
   return <EuiText>{children}</EuiText>;
 };
 
-const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
-  ({
-    leadingControlColumns,
-    trailingControlColumns,
-    columns,
-    schema,
-    popoverContents,
-    columnWidths,
-    defaultColumnWidth,
-    className,
-    renderCellValue,
-    rowIndex,
-    interactiveCellId,
-    'data-test-subj': _dataTestSubj,
-    visibleRowIndex = rowIndex,
-    ...rest
-  }) => {
-    const classes = classnames(
-      'euiDataGridRow',
-      'euiDataGridFooter',
-      className
-    );
-    const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
+const EuiDataGridFooterRow = memo(
+  forwardRef<HTMLDivElement, EuiDataGridFooterRowProps>(
+    (
+      {
+        leadingControlColumns,
+        trailingControlColumns,
+        columns,
+        schema,
+        popoverContents,
+        columnWidths,
+        defaultColumnWidth,
+        className,
+        renderCellValue,
+        rowIndex,
+        interactiveCellId,
+        'data-test-subj': _dataTestSubj,
+        visibleRowIndex = rowIndex,
+        ...rest
+      },
+      ref
+    ) => {
+      const classes = classnames(
+        'euiDataGridRow',
+        'euiDataGridFooter',
+        className
+      );
+      const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
-    return (
-      <div
-        role="row"
-        className={classes}
-        data-test-subj={dataTestSubj}
-        {...rest}>
-        {leadingControlColumns.map(({ id, width }, i) => (
-          <EuiDataGridCell
-            key={`${id}-${rowIndex}`}
-            rowIndex={rowIndex}
-            visibleRowIndex={visibleRowIndex}
-            colIndex={i}
-            columnId={id}
-            popoverContent={DefaultColumnFormatter}
-            width={width}
-            renderCellValue={() => null}
-            interactiveCellId={interactiveCellId}
-            isExpandable={true}
-            className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
-          />
-        ))}
-        {columns.map(({ id }, i) => {
-          const columnType = schema[id] ? schema[id].columnType : null;
-          const popoverContent =
-            (columnType && popoverContents[columnType]) ||
-            DefaultColumnFormatter;
-
-          const width = columnWidths[id] || defaultColumnWidth;
-          const columnPosition = i + leadingControlColumns.length;
-
-          return (
+      return (
+        <div
+          ref={ref}
+          role="row"
+          className={classes}
+          data-test-subj={dataTestSubj}
+          {...rest}>
+          {leadingControlColumns.map(({ id, width }, i) => (
             <EuiDataGridCell
               key={`${id}-${rowIndex}`}
               rowIndex={rowIndex}
               visibleRowIndex={visibleRowIndex}
-              colIndex={columnPosition}
-              columnId={id}
-              columnType={columnType}
-              popoverContent={popoverContent}
-              width={width || undefined}
-              renderCellValue={renderCellValue}
-              interactiveCellId={interactiveCellId}
-              isExpandable={true}
-              className="euiDataGridFooterCell"
-            />
-          );
-        })}
-        {trailingControlColumns.map(({ id, width }, i) => {
-          const colIndex = i + columns.length + leadingControlColumns.length;
-
-          return (
-            <EuiDataGridCell
-              key={`${id}-${rowIndex}`}
-              rowIndex={rowIndex}
-              visibleRowIndex={visibleRowIndex}
-              colIndex={colIndex}
+              colIndex={i}
               columnId={id}
               popoverContent={DefaultColumnFormatter}
               width={width}
@@ -139,11 +100,58 @@ const EuiDataGridFooterRow: FunctionComponent<EuiDataGridFooterRowProps> = memo(
               isExpandable={true}
               className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
             />
-          );
-        })}
-      </div>
-    );
-  }
+          ))}
+          {columns.map(({ id }, i) => {
+            const columnType = schema[id] ? schema[id].columnType : null;
+            const popoverContent =
+              (columnType && popoverContents[columnType]) ||
+              DefaultColumnFormatter;
+
+            const width = columnWidths[id] || defaultColumnWidth;
+            const columnPosition = i + leadingControlColumns.length;
+
+            return (
+              <EuiDataGridCell
+                key={`${id}-${rowIndex}`}
+                rowIndex={rowIndex}
+                visibleRowIndex={visibleRowIndex}
+                colIndex={columnPosition}
+                columnId={id}
+                columnType={columnType}
+                popoverContent={popoverContent}
+                width={width || undefined}
+                renderCellValue={renderCellValue}
+                interactiveCellId={interactiveCellId}
+                isExpandable={true}
+                className="euiDataGridFooterCell"
+              />
+            );
+          })}
+          {trailingControlColumns.map(({ id, width }, i) => {
+            const colIndex = i + columns.length + leadingControlColumns.length;
+
+            return (
+              <EuiDataGridCell
+                key={`${id}-${rowIndex}`}
+                rowIndex={rowIndex}
+                visibleRowIndex={visibleRowIndex}
+                colIndex={colIndex}
+                columnId={id}
+                popoverContent={DefaultColumnFormatter}
+                width={width}
+                renderCellValue={() => null}
+                interactiveCellId={interactiveCellId}
+                isExpandable={true}
+                className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
+              />
+            );
+          })}
+        </div>
+      );
+    }
+  )
 );
+
+EuiDataGridFooterRow.displayName = 'EuiDataGridFooterRow';
 
 export { EuiDataGridFooterRow };
