@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { isArray, isBoolean } from 'lodash';
 import { useEffect, useRef, useMemo } from 'react';
 
 function compareDependencies(oldDeps: any[], newDeps: any[]) {
@@ -39,19 +40,26 @@ function enhanceHookFn(hookFn: Function, name: string) {
   };
 }
 
+function checkDebugMode(debugMode: boolean | string[], name: string) {
+  return (
+    (isBoolean(debugMode) && debugMode) ||
+    (isArray(debugMode) && debugMode.includes(name))
+  );
+}
+
 function useDebugHooks(
   hook: Function,
   hookFn: Function,
   dependencies: any[],
   name: string,
   isShouldReturn = false,
-  debugMode = false
+  debugMode: boolean | string[] = false
 ) {
   const oldDepsRef = useRef(dependencies);
   return hook((params?: any) => {
     const oldDeps = oldDepsRef.current;
 
-    if (debugMode && dependencies.length !== 0) {
+    if (checkDebugMode(debugMode, name) && dependencies.length !== 0) {
       console.log(
         `hook for ${name} was executed cause some dependency was changed`
       );
@@ -71,7 +79,7 @@ export function useDebugEffect(
   hookFn: Function,
   dependencies: any[],
   name: string,
-  debugMode: boolean
+  debugMode: boolean | string[]
 ) {
   return useDebugHooks(
     useEffect,
@@ -87,7 +95,7 @@ export function useDebugMemo(
   hookFn: Function,
   dependencies: any[],
   name: string,
-  debugMode: boolean
+  debugMode: boolean | string[]
 ) {
   return useDebugHooks(
     useMemo,

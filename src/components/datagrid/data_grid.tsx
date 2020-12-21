@@ -159,7 +159,7 @@ type CommonGridProps = CommonProps &
     /**
      * Allow to track and logging execution of hooks.
      */
-    debugMode?: boolean;
+    debugMode?: boolean | string[];
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -409,7 +409,7 @@ function useOnResize(
 function useInMemoryValues(
   inMemory: EuiDataGridInMemory | undefined,
   rowCount: number,
-  debugMode: boolean
+  debugMode: boolean | string[]
 ): [
   EuiDataGridInMemoryValues,
   (rowIndex: number, columnId: string, value: string) => void
@@ -570,7 +570,7 @@ function useAfterRender(fn: Function): Function {
 type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
 const useFocus = (
   headerIsInteractive: boolean,
-  debugMode: boolean
+  debugMode: boolean | string[]
 ): [
   FocusProps,
   EuiDataGridFocusedCell | undefined,
