@@ -28,7 +28,6 @@ import { EuiSpacer } from '../../spacer';
 import { EuiIcon } from '../../icon';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
-import { EuiNotificationBadge } from '../../badge/notification_badge';
 
 export interface FieldValueOptionType {
   field?: string;
@@ -351,18 +350,13 @@ export class FieldValueSelectionFilter extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
+        numFilters={this.state.options?.all.length}
+        numActiveFilters={this.state.options?.all.length}
         grow>
         {config.name}
-        <EuiNotificationBadge
-          style={{
-            marginLeft: 5,
-          }}
-          size="m">
-          {this.state.options?.all.length}
-        </EuiNotificationBadge>
       </EuiFilterButton>
     );
-
+    
     const searchBox = this.renderSearchBox();
     const content = this.renderContent(
       config.field,
