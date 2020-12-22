@@ -662,7 +662,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   } = props;
 
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [gridWidth, setGridWidth] = useState(IS_JEST_ENVIRONMENT ? 500 : 0);
+  const [gridWidth, setGridWidth] = useState(0);
 
   // default DOM layout rules allow block content to naturally expand to the full document width
   // while height does not automatically expand; this gives us a little extra work when managing height:
@@ -670,9 +670,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   // if no `height` is set - or is unset - we need to unapply any existing `gridHeight` value
   // this triggers a double re-render when the grid is switched from constrained to unconstrained
   // but in reality ... maybe don't do that?
-  const [gridHeight, setGridHeight] = useState(IS_JEST_ENVIRONMENT ? 500 : 0);
+  const [gridHeight, setGridHeight] = useState(0);
   const pageSize = pagination?.pageSize;
-  const resetGridHeight = useCallback(() => setGridHeight(0), []);
+  const resetGridHeight = useCallback(() => {
+    setGridHeight(0);
+  }, []);
   useEffect(() => {
     if (height == null) {
       // if already 0 this update will be ignored
@@ -783,7 +785,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [sizeIsStable, resizeRef, gridDimensions]);
 
-  const hasRoomForGridControls = gridWidth > minSizeForControls || isFullScreen;
+  const hasRoomForGridControls = IS_JEST_ENVIRONMENT
+    ? true
+    : gridWidth > minSizeForControls || isFullScreen;
 
   const [columnWidths, setColumnWidth] = useColumnWidths(
     columns,

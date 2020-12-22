@@ -263,6 +263,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
 
 const INITIAL_ROW_HEIGHT = 34;
 const SCROLLBAR_HEIGHT = 15;
+const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
@@ -542,9 +543,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           columns.length +
           trailingControlColumns.length
         }
-        width={gridWidth}
+        width={IS_JEST_ENVIRONMENT ? 500 : gridWidth}
         columnWidth={getWidth}
-        height={height}
+        height={IS_JEST_ENVIRONMENT ? 500 : height}
         rowHeight={getRowHeight}
         itemData={{
           setRowHeight,
