@@ -386,7 +386,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
 
     return rowMap;
-  }, [sorting, inMemoryValues, schema, schemaDetectors]);
+  }, [sorting, inMemoryValues, schema, schemaDetectors, inMemory?.level]);
 
   const mergedPopoverContents = useMemo(
     () => ({
