@@ -176,7 +176,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
         headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [headerIsInteractive, isFocused, setIsCellEntered, index]);
+  }, [setFocusedCell, headerIsInteractive, isFocused, setIsCellEntered, index]);
 
   return (
     <div

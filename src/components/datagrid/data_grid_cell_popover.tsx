@@ -78,8 +78,7 @@ export function EuiDataGridCellPopover({
           event.stopPropagation();
           closePopover();
         }
-      }}
-    >
+      }}>
       {popoverIsOpen ? (
         <>
           <PopoverContent cellContentsElement={cellContentsRef!}>

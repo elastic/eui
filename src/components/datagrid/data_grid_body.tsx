@@ -57,7 +57,7 @@ import { useMutationObserver } from '../observer/mutation_observer';
 import { EuiText } from '../text';
 import {
   DataGridSortingContext,
-  DataGridHeaderRowHeightContext,
+  DataGridWrapperRowsContext,
 } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
 
@@ -123,7 +123,7 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
 
 const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
-  rowIndex: _rowIndex,
+  rowIndex: visibleRowIndex,
   style,
   data,
 }) => {
@@ -142,12 +142,12 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     setRowHeight,
   } = data;
 
-  const headerRowHeight = useContext(DataGridHeaderRowHeightContext);
+  const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
 
-  _rowIndex += rowOffset;
-  const rowIndex = rowMap.hasOwnProperty(_rowIndex)
-    ? rowMap[_rowIndex]
-    : _rowIndex;
+  const offsetRowIndex = visibleRowIndex + rowOffset;
+  const rowIndex = rowMap.hasOwnProperty(offsetRowIndex)
+    ? rowMap[offsetRowIndex]
+    : offsetRowIndex;
 
   let cellContent;
 
@@ -179,7 +179,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     cellContent = (
       <EuiDataGridCell
         rowIndex={rowIndex}
-        visibleRowIndex={_rowIndex}
+        visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
@@ -204,7 +204,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     cellContent = (
       <EuiDataGridCell
         rowIndex={rowIndex}
-        visibleRowIndex={_rowIndex}
+        visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
@@ -239,7 +239,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     cellContent = (
       <EuiDataGridCell
         rowIndex={rowIndex}
-        visibleRowIndex={_rowIndex}
+        visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
         columnId={columnId}
         column={column}
@@ -431,7 +431,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (renderFooterCellValue == null) return null;
     return (
       <EuiDataGridFooterRow
-        key="footerRow"
         ref={setFooterRowRef}
         leadingControlColumns={leadingControlColumns}
         trailingControlColumns={trailingControlColumns}
@@ -463,7 +462,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     () =>
       forwardRef<HTMLDivElement, { style: { height: number } }>(
         ({ children, style, ...rest }, ref) => {
-          const headerRowHeight = useContext(DataGridHeaderRowHeightContext);
+          const { headerRowHeight, headerRow, footerRow } = useContext(
+            DataGridWrapperRowsContext
+          );
           return (
             <>
               <div
@@ -481,7 +482,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           );
         }
       ),
-    [headerRow, footerRow]
+    []
   );
 
   const gridRef = useRef<Grid>(null);
@@ -533,7 +534,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       footerRowHeight;
 
   return (
-    <DataGridHeaderRowHeightContext.Provider value={headerRowHeight}>
+    <DataGridWrapperRowsContext.Provider
+      value={{ headerRowHeight, headerRow, footerRow }}>
       <Grid
         ref={gridRef}
         innerElementType={InnerElement}
@@ -566,6 +568,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         rowCount={visibleRowIndices.length}>
         {Cell}
       </Grid>
-    </DataGridHeaderRowHeightContext.Provider>
+    </DataGridWrapperRowsContext.Provider>
   );
 };

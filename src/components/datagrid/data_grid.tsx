@@ -538,23 +538,9 @@ const useFocus = (
   EuiDataGridFocusedCell | undefined,
   (focusedCell: EuiDataGridFocusedCell) => void
 ] => {
-  const [focusedCell, _setFocusedCell] = useState<
+  const [focusedCell, setFocusedCell] = useState<
     EuiDataGridFocusedCell | undefined
   >(undefined);
-
-  const setFocusedCell = useCallback((focusedCell: EuiDataGridFocusedCell) => {
-    _setFocusedCell((previousCell) => {
-      // verify that the cell has changed
-      if (
-        previousCell != null &&
-        previousCell[0] === focusedCell[0] &&
-        previousCell[1] === focusedCell[1]
-      ) {
-        return previousCell;
-      }
-      return focusedCell;
-    });
-  }, []);
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
   useEffect(() => {

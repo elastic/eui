@@ -297,7 +297,8 @@ export function useDetectSchema(
   autoDetectSchema: boolean
 ) {
   const inMemorySkipColumns =
-    inMemory?.skipColumns || (emptyArray as EuiDataGridInMemory['skipColumns']);
+    inMemory?.skipColumns ??
+    (emptyArray as NonNullable<EuiDataGridInMemory['skipColumns']>);
 
   const schema = useMemo(() => {
     const schema: EuiDataGridSchema = {};
