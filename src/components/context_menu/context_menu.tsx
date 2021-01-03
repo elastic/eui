@@ -429,7 +429,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
     const classes = classNames(
       'euiContextMenu',
-      sizeToClassNameMap[size],
+      size && sizeToClassNameMap[size],
       className
     );
 

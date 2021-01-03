@@ -1,4 +1,3 @@
-import { findLastIndex } from 'lodash';
 import React, { useState } from 'react';
 
 import {
@@ -9,7 +8,6 @@ import {
   EuiPopover,
   EuiSwitch,
   EuiSpacer,
-  EuiText,
 } from '../../../../src/components';
 
 export default () => {

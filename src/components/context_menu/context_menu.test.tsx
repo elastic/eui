@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiContextMenu, SIZES} from './context_menu';
+import { EuiContextMenu, SIZES } from './context_menu';
 import { setTimeout } from 'timers';
 
 const panel3 = {
