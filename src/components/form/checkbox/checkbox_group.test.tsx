@@ -34,11 +34,7 @@ const checkboxGroupRequiredProps = {
 describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCheckboxGroup
-        onChange={() => {}}
-        {...checkboxGroupRequiredProps}
-        {...requiredProps}
-      />
+      <EuiCheckboxGroup {...checkboxGroupRequiredProps} {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();

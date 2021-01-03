@@ -89,7 +89,7 @@ describe('testResizeObservers', () => {
       expect.assertions(2);
 
       const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
-        const [ref, setRef] = useState();
+        const [ref, setRef] = useState<Element | null>(null);
         useResizeObserver(ref);
         return <div ref={setRef}>{children}</div>;
       });

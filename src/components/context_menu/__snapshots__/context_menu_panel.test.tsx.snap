@@ -525,7 +525,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
       <EuiResizeObserver onResize={[Function: onResize]}>
         <div>
           <EuiContextMenuItem data-counter={0} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option A
@@ -534,7 +534,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
             </button>
           </EuiContextMenuItem>
           <EuiContextMenuItem data-counter={1} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option B
@@ -556,7 +556,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
       <EuiResizeObserver onResize={[Function: onResize]}>
         <div>
           <EuiContextMenuItem data-counter={0} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option A
@@ -565,7 +565,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
             </button>
           </EuiContextMenuItem>
           <EuiContextMenuItem data-counter={1} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option B
@@ -615,7 +615,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
       <EuiResizeObserver onResize={[Function: onResize]}>
         <div>
           <EuiContextMenuItem data-counter={0} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option A
@@ -624,7 +624,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
             </button>
           </EuiContextMenuItem>
           <EuiContextMenuItem data-counter={1} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option B
@@ -646,7 +646,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
       <EuiResizeObserver onResize={[Function: onResize]}>
         <div>
           <EuiContextMenuItem data-counter={2} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option A
@@ -655,7 +655,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
             </button>
           </EuiContextMenuItem>
           <EuiContextMenuItem data-counter={3} buttonRef={[Function: bound ]}>
-            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
+            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
               <span className=\\"euiContextMenu__itemLayout\\">
                 <span className=\\"euiContextMenuItem__text\\">
                   Option B

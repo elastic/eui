@@ -19,7 +19,9 @@ export default class YearDropdown extends React.Component {
     date: PropTypes.object,
     onSelect: PropTypes.func,
     setOpen: PropTypes.func,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
+    onDropdownToggle: PropTypes.func,
+    buttonRef: PropTypes.func
   };
 
   state = {
@@ -38,6 +40,7 @@ export default class YearDropdown extends React.Component {
 
   setReadViewRef = ref => {
     this.readViewref = ref;
+    this.props.buttonRef(ref);
   };
 
   onReadViewKeyDown = event => {
@@ -143,33 +146,17 @@ export default class YearDropdown extends React.Component {
     this.props.onChange(year);
   };
 
-  toggleDropdown = event => {
-    this.setState(
-      {
-        dropdownVisible: !this.state.dropdownVisible
-      },
-      () => {
-        if (this.props.adjustDateOnChange) {
-          this.handleYearChange(this.props.date, event);
-        }
-      }
-    );
-  };
-
-  handleYearChange = (date, event) => {
-    this.onSelect(date, event);
-    this.setOpen();
+  toggleDropdown = () => {
+    const isOpen = !this.state.dropdownVisible;
+    this.setState({
+      dropdownVisible: isOpen
+    });
+    this.props.onDropdownToggle(isOpen, 'year');
   };
 
   onSelect = (date, event) => {
     if (this.props.onSelect) {
       this.props.onSelect(date, event);
-    }
-  };
-
-  setOpen = () => {
-    if (this.props.setOpen) {
-      this.props.setOpen(true);
     }
   };
 

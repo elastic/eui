@@ -36,6 +36,7 @@ import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 
 import { getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 
 type ItemSize = 'xs' | 's' | 'm' | 'l';
 const sizeToClassNameMap: { [size in ItemSize]: string } = {
@@ -147,7 +148,7 @@ export type EuiListGroupItemProps = CommonProps &
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   label,
   isActive = false,
-  isDisabled = false,
+  isDisabled: _isDisabled = false,
   href,
   target,
   rel,
@@ -163,6 +164,9 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   buttonRef,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
+
   const classes = classNames(
     'euiListGroupItem',
     sizeToClassNameMap[size],
@@ -196,7 +200,13 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   let extraActionNode;
 
   if (extraAction) {
-    const { iconType, alwaysShow, className, ...rest } = extraAction;
+    const {
+      iconType,
+      alwaysShow,
+      className,
+      isDisabled: actionIsDisabled,
+      ...rest
+    } = extraAction;
 
     const extraActionClasses = classNames(
       'euiListGroupItem__extraAction',
@@ -211,7 +221,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         className={extraActionClasses}
         iconType={iconType}
         {...rest}
-        disabled={isDisabled}
+        disabled={isDisabled || actionIsDisabled}
       />
     );
   }

@@ -98,3 +98,9 @@ export interface CustomItemAction<T> {
 }
 
 export type Action<T> = DefaultItemAction<T> | CustomItemAction<T>;
+
+export const isCustomItemAction = (
+  action: DefaultItemAction<any> | CustomItemAction<any>
+): action is CustomItemAction<any> => {
+  return action.hasOwnProperty('render');
+};

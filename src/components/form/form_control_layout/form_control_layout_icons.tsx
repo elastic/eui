@@ -52,6 +52,7 @@ export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
+  compressed?: boolean;
 }
 
 export class EuiFormControlLayoutIcons extends Component<
@@ -59,7 +60,6 @@ export class EuiFormControlLayoutIcons extends Component<
 > {
   render() {
     const { icon } = this.props;
-
     const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
@@ -93,7 +93,7 @@ export class EuiFormControlLayoutIcons extends Component<
   }
 
   renderCustomIcon() {
-    const { icon } = this.props;
+    const { icon, compressed } = this.props;
 
     if (!icon) {
       return null;
@@ -105,10 +105,15 @@ export class EuiFormControlLayoutIcons extends Component<
       : {
           type: icon,
         };
-
     const { ref: iconRef, side, ...iconRest } = iconProps;
 
-    return <EuiFormControlLayoutCustomIcon iconRef={iconRef} {...iconRest} />;
+    return (
+      <EuiFormControlLayoutCustomIcon
+        size={compressed ? 's' : 'm'}
+        iconRef={iconRef}
+        {...iconRest}
+      />
+    );
   }
 
   renderLoadingSpinner() {
@@ -122,11 +127,16 @@ export class EuiFormControlLayoutIcons extends Component<
   }
 
   renderClearButton() {
-    const { clear } = this.props;
+    const { clear, compressed } = this.props;
     if (!clear) {
       return null;
     }
 
-    return <EuiFormControlLayoutClearButton {...clear} />;
+    return (
+      <EuiFormControlLayoutClearButton
+        size={compressed ? 's' : 'm'}
+        {...clear}
+      />
+    );
   }
 }

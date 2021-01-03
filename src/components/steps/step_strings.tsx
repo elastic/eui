@@ -130,3 +130,22 @@ export const useI18nDisabledStep = ({ number, title }: Props): string => {
 
   return title ? string : simpleString;
 };
+
+export const useI18nLoadingStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.loading',
+    'Step {number}: {title} is loading',
+    {
+      number,
+      title,
+    }
+  );
+
+  const simpleString = useEuiI18n(
+    'euiStepStrings.simpleLoading',
+    'Step {number} is loading',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};

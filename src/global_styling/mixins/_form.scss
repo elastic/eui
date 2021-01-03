@@ -25,10 +25,16 @@
   }
 }
 
-@mixin euiFormControlLayoutClearIcon($iconClass) {
+@mixin euiFormControlLayoutClearIcon($iconClass, $size: 'm') {
   $clearSize: $euiSize;
-  @include size($clearSize);
+  $clearIconStroke: 2px;
 
+  @if ($size == 's') {
+    $clearSize: $euiSizeM;
+    $clearIconStroke: $euiSizeXS;
+  }
+
+  @include size($clearSize);
   pointer-events: all;
   background-color: lightOrDarkTheme($euiColorMediumShade, $euiColorDarkShade);
   border-radius: $clearSize;
@@ -39,10 +45,11 @@
   }
 
   #{$iconClass} {
-    @include size($euiSizeS);
+    @include size($clearSize / 2);
     fill: $euiColorEmptyShade;
+    // increase thickness of icon at such a small size
     stroke: $euiColorEmptyShade;
-    stroke-width: 2px; // increase thickness of icon at such a small size
+    stroke-width: $clearIconStroke;
   }
 }
 
