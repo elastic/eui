@@ -3,6 +3,10 @@
 - Reduced the size of the icons and clear button for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
 - Added ability for text input updates in `EuiDatePicker` ([#4243](https://github.com/elastic/eui/pull/4243))
 
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` extra margin when `showUpdateButton` and `isAutoRefreshOnly` are active ([#4406](https://github.com/elastic/eui/pull/4406))
+
 ## [`31.0.0`](https://github.com/elastic/eui/tree/v31.0.0)
 
 - Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
