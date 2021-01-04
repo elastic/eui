@@ -7,8 +7,6 @@ import {
   EuiFormLabel,
   EuiPanel,
   EuiText,
-  EuiFlexGroup,
-  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => {
@@ -103,25 +101,17 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiFlexGroup gutterSize="none" alignItems="center">
-        <EuiFlexItem>
-          <EuiSuperDatePicker
-            isLoading={isLoading}
-            start={start}
-            end={end}
-            onTimeChange={onTimeChange}
-            onRefresh={onRefresh}
-            isPaused={isPaused}
-            refreshInterval={refreshInterval}
-            onRefreshChange={onRefreshChange}
-            recentlyUsedRanges={recentlyUsedRanges}
-            showUpdateButton={false}
-            // isAutoRefreshOnly={true}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem>Test</EuiFlexItem>
-      </EuiFlexGroup>
-
+      <EuiSuperDatePicker
+        isLoading={isLoading}
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        onRefresh={onRefresh}
+        isPaused={isPaused}
+        refreshInterval={refreshInterval}
+        onRefreshChange={onRefreshChange}
+        recentlyUsedRanges={recentlyUsedRanges}
+      />
       <EuiSpacer />
       {renderTimeRange()}
     </Fragment>
