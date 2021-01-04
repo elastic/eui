@@ -36,6 +36,7 @@ import { getSecureRelForTarget } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
+
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export interface EuiContextMenuItemProps extends CommonProps {
