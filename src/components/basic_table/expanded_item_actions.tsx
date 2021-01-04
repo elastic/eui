@@ -25,6 +25,7 @@ import {
   Action,
   CustomItemAction as CustomAction,
   DefaultItemAction as DefaultAction,
+  isCustomItemAction,
 } from './action_types';
 import { ItemIdResolved } from './table_types';
 
@@ -61,7 +62,7 @@ export const ExpandedItemActions = <T extends {}>({
           expandedItemActions__completelyHide: moreThanThree && index < 2,
         });
 
-        if ((action as CustomAction<T>).render) {
+        if (isCustomItemAction(action)) {
           // custom action has a render function
           tools.push(
             <CustomItemAction

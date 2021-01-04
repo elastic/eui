@@ -8,7 +8,7 @@
   max-height: $euiSizeM * 11;
   overflow: hidden;
   overflow-y: auto;
-  padding: $euiSizeXS 0; // Offset negative margin from flex items
+  padding: $euiSizeS 0 $euiSizeXS; // Offset negative margin from flex items
 }
 
 // sass-lint:disable no-important
@@ -19,4 +19,13 @@
 
 .euiQuickSelectPopover__anchor {
   height: 100%;
+}
+
+.euiQuickSelectPopover__sectionItem {
+  font-size: $euiFontSizeS;
+  line-height: $euiFontSizeS;
+
+  &:not(:last-of-type) {
+    margin-bottom: $euiSizeS;
+  }
 }

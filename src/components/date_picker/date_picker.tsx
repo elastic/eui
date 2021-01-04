@@ -270,7 +270,9 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
                       selected={selected}
                       shouldCloseOnSelect={shouldCloseOnSelect}
                       showMonthDropdown
-                      showTimeSelect={showTimeSelect}
+                      showTimeSelect={
+                        showTimeSelectOnly ? true : showTimeSelect
+                      }
                       showTimeSelectOnly={showTimeSelectOnly}
                       showYearDropdown
                       timeFormat={timeFormat}

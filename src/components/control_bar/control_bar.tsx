@@ -347,11 +347,11 @@ export class EuiControlBar extends Component<
             <EuiButtonIcon
               key={id + index}
               className={classNames('euiControlBar__buttonIcon', className)}
-              iconType={iconType}
               onClick={onClick}
               href={href}
               color={color as EuiButtonIconProps['color']}
               {...(rest as IconButtonControlType)}
+              iconType={iconType}
               size="s"
             />
           ) : (
