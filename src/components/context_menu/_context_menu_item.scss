@@ -55,3 +55,9 @@
     flex-shrink: 0;
   }
 }
+
+.euiContextMenu--small {
+  .euiContextMenuItem__text {
+    @include euiFontSizeS;
+  }
+}

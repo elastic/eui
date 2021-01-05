@@ -81,7 +81,7 @@ export const ContextMenuExample = {
       demo: <SinglePanel />,
     },
     {
-      title: 'Small size',
+      title: 'Sizes',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -93,10 +93,18 @@ export const ContextMenuExample = {
         },
       ],
       text: (
-        <p>
-          You can reduce the size of <strong>EuiContextMenu</strong> by setting{' '}
-          <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode>.
-        </p>
+        <div>
+          <p>
+            You can reduce the size of <strong>EuiContextMenu</strong> by
+            setting <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode>.
+          </p>
+          <p>
+            Use the default size <EuiCode>m</EuiCode> for major actions such as
+            Share and Export which appear in top application menu items. Use the
+            smaller size <EuiCode>s</EuiCode> for actions that affect only a
+            single item and are repeated per row.
+          </p>
+        </div>
       ),
       demo: <Small />,
     },

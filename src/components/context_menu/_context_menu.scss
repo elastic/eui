@@ -14,6 +14,7 @@ $euiContextMenuWidth: $euiSize * 16;
 
   &--small {
     .euiContextMenuPanelTitle {
+      @include euiTitle('xxxs');
       padding: $euiSizeS;
     }
 
