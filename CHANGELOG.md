@@ -40,6 +40,8 @@
 - Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
 - Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
 - Changed `label` type from `string` to `ReactNode` in `EuiTreeViewNode` ([#4352](https://github.com/elastic/eui/pull/4352))
+- Fixed icons' and buttons' sizes in append/prepend in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4410))
+
 
 **Theme: Amsterdam**
 
