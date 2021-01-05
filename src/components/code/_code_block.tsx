@@ -210,12 +210,12 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   const getCopyButton = (textToCopy?: string) => {
     let copyButton: JSX.Element | undefined;
 
-    if (isCopyable && textToCopy) {
+    if (isCopyable) {
       copyButton = (
         <div className="euiCodeBlock__copyButton">
           <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
             {(copyButton: string) => (
-              <EuiCopy textToCopy={textToCopy}>
+              <EuiCopy textToCopy={textToCopy?textToCopy:""}>
                 {(copy) => (
                   <EuiButtonIcon
                     size="s"
