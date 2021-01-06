@@ -376,7 +376,7 @@ exports[`EuiContextMenu props size s is rendered 1`] = `
   class="euiContextMenu euiContextMenu--small"
 >
   <div
-    class="euiContextMenuPanel euiContextMenu__panel"
+    class="euiContextMenuPanel euiContextMenuPanel--small euiContextMenu__panel"
     tabindex="0"
   >
     <button

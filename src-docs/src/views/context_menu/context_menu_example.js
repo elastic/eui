@@ -116,8 +116,7 @@ export const ContextMenuExample = {
       ],
       text: (
         <p>
-          <strong>EuiContextMenu</strong> and{' '}
-          <strong>EuiContextMenuPanel</strong> support a small and medium{' '}
+          <strong>EuiContextMenu</strong> supports a small and medium{' '}
           <EuiCode>size</EuiCode>. Use the default size <EuiCode>m</EuiCode> for
           major actions such as <em>Share</em> and <em>Export</em> which appear
           in top application menus. Use the smaller size <EuiCode>s</EuiCode>{' '}

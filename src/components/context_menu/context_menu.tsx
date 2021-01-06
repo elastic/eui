@@ -66,6 +66,7 @@ export interface EuiContextMenuPanelDescriptor {
   content?: ReactNode;
   width?: number;
   initialFocusedItemIndex?: number;
+  size?: typeof SIZES[number];
 }
 
 const sizeToClassNameMap = {
@@ -344,7 +345,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         <EuiContextMenuItem
           key={key || (typeof name === 'string' ? name : undefined) || index}
           icon={icon}
-          size={this.props.size}
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}
           toolTipTitle={toolTipTitle}
@@ -376,6 +376,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     return (
       <EuiContextMenuPanel
         key={panelId}
+        size={this.props.size}
         className="euiContextMenu__panel"
         onHeightChange={
           transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined
