@@ -15,22 +15,41 @@ import {
 import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
 const contextMenuHtml = renderToHtml(ContextMenu);
+const contextMenuSnippet = `<EuiContextMenu 
+  initialPanelId={0}
+  panels={panels} 
+/>`;
 
 import SinglePanel from './single_panel';
 const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
+const singlePanelSnippet = `<EuiContextMenuPanel 
+  items={items} 
+/>`;
 
 import Small from './small';
 const smallSizeSource = require('!!raw-loader!./small');
 const smallSizeHtml = renderToHtml(SinglePanel);
+const smallSnippet = `<EuiContextMenuPanel 
+  size="s"
+  items={items} 
+/>`;
 
 import ContentPanel from './content_panel';
 const contentPanelSource = require('!!raw-loader!./content_panel');
 const contentPanelHtml = renderToHtml(ContentPanel);
+const contentPanelSnippet = `<EuiContextMenuPanel>
+  <!-- React element as child -->
+</EuiContextMenuPanel>
+`;
 
 import ContextMenuWithContent from './context_menu_with_content';
 const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_content');
 const contextMenuWithContentHtml = renderToHtml(ContextMenuWithContent);
+const contextMenuWithContentSnippet = `<EuiContextMenu 
+  initialPanelId={0} 
+  panels={dynamicPanels} 
+/>`;
 
 export const ContextMenuExample = {
   title: 'Context menu',
@@ -58,6 +77,7 @@ export const ContextMenuExample = {
         </p>
       ),
       props: { EuiContextMenu, EuiContextMenuPanel, EuiContextMenuItem },
+      snippet: contextMenuSnippet,
       demo: <ContextMenu />,
     },
     {
@@ -74,10 +94,12 @@ export const ContextMenuExample = {
       ],
       text: (
         <p>
-          Context menus can be used for simple, non-nested menus as well. The
-          below pagination example has no nesting and no title.
+          Use <strong>EuiContextMenuPanel</strong> for simple, non-nested
+          context menus. The below pagination example has no nesting and no
+          title.
         </p>
       ),
+      snippet: singlePanelSnippet,
       demo: <SinglePanel />,
     },
     {
@@ -93,19 +115,17 @@ export const ContextMenuExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            You can reduce the size of <strong>EuiContextMenu</strong> by
-            setting <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode>.
-          </p>
-          <p>
-            Use the default size <EuiCode>m</EuiCode> for major actions such as
-            Share and Export which appear in top application menu items. Use the
-            smaller size <EuiCode>s</EuiCode> for actions that affect only a
-            single item and are repeated per row.
-          </p>
-        </div>
+        <p>
+          <strong>EuiContextMenu</strong> and{' '}
+          <strong>EuiContextMenuPanel</strong> support a small and medium{' '}
+          <EuiCode>size</EuiCode>. Use the default size <EuiCode>m</EuiCode> for
+          major actions such as <em>Share</em> and <em>Export</em> which appear
+          in top application menus. Use the smaller size <EuiCode>s</EuiCode>{' '}
+          for actions that affect only a single item or are repeated like in{' '}
+          <strong>EuiTable</strong> actions.
+        </p>
       ),
+      snippet: smallSnippet,
       demo: <Small />,
     },
     {
@@ -127,6 +147,7 @@ export const ContextMenuExample = {
           <strong>EuiContextMenuPanel</strong>.
         </p>
       ),
+      snippet: contentPanelSnippet,
       demo: <ContentPanel />,
     },
     {
@@ -166,6 +187,7 @@ export const ContextMenuExample = {
           </p>
         </div>
       ),
+      snippet: contextMenuWithContentSnippet,
       demo: <ContextMenuWithContent />,
     },
   ],

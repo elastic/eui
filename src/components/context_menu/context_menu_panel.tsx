@@ -27,7 +27,7 @@ import React, {
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps, NoArgCallback } from '../common';
+import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
@@ -39,6 +39,13 @@ export type EuiContextMenuPanelTransitionDirection = 'next' | 'previous';
 export type EuiContextMenuPanelShowPanelCallback = (
   currentPanelIndex?: number
 ) => void;
+
+const sizeToClassNameMap = {
+  s: 'euiContextMenuPanel--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
 
 export interface EuiContextMenuPanelProps {
   hasFocus?: boolean;
@@ -54,6 +61,7 @@ export interface EuiContextMenuPanelProps {
   transitionDirection?: EuiContextMenuPanelTransitionDirection;
   transitionType?: EuiContextMenuPanelTransitionType;
   watchedItemProps?: string[];
+  size?: typeof SIZES[number];
 }
 
 type Props = CommonProps &
@@ -429,6 +437,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       initialFocusedItemIndex,
       showNextPanel,
       showPreviousPanel,
+      size,
       ...rest
     } = this.props;
     let panelTitle;
@@ -466,6 +475,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     const classes = classNames(
       'euiContextMenuPanel',
+      size && sizeToClassNameMap[size],
       className,
       transitionDirection &&
         transitionType &&
@@ -482,6 +492,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
             MenuItem.type === EuiContextMenuItem
               ? cloneElement(MenuItem, {
                   buttonRef: this.menuItemRef.bind(this, index),
+                  size: this.props.size,
                 })
               : MenuItem
           )

@@ -68,20 +68,18 @@ export interface EuiContextMenuPanelDescriptor {
   initialFocusedItemIndex?: number;
 }
 
-export const sizeToClassNameMap: { [size in MenuSize]: string | null } = {
+const sizeToClassNameMap = {
   s: 'euiContextMenu--small',
   m: null,
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-export type MenuSize = 's' | 'm';
-
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
     initialPanelId?: EuiContextMenuPanelId;
-    size?: MenuSize;
+    size?: typeof SIZES[number];
   };
 
 const isItemSeparator = (
@@ -346,6 +344,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         <EuiContextMenuItem
           key={key || (typeof name === 'string' ? name : undefined) || index}
           icon={icon}
+          size={this.props.size}
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}
           toolTipTitle={toolTipTitle}
