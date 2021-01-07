@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  min-height: 150px;
+  min-height: $euiMarkdownEditorMinHeight;
 
   &__input {
     position: absolute;
