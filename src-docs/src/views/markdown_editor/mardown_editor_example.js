@@ -59,7 +59,7 @@ const markdownEditorHeightSnippet = [
   value={value}
   onChange={setValue}
   height={200}
-  maxHeight={600}
+  maxHeight={300}
 />`,
 ];
 
