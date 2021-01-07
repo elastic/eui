@@ -18,6 +18,7 @@
  */
 
 import React, { TextareaHTMLAttributes, forwardRef } from 'react';
+
 import { CommonProps } from '../common';
 
 export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
@@ -27,23 +28,9 @@ export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
     isInvalid?: boolean;
     fullWidth?: boolean;
     compressed?: boolean;
-
-    /**
-     * Which direction, if at all, should the textarea resize
-     */
-    resize?: keyof typeof resizeToClassNameMap;
-
-    height: number;
+    height: string;
+    maxHeight: string;
   };
-
-const resizeToClassNameMap = {
-  vertical: 'euiTextArea--resizeVertical',
-  horizontal: 'euiTextArea--resizeHorizontal',
-  both: 'euiTextArea--resizeBoth',
-  none: 'euiTextArea--resizeNone',
-};
-
-export const RESIZE = Object.keys(resizeToClassNameMap);
 
 export const EuiMarkdownEditorTextArea = forwardRef<
   HTMLTextAreaElement,
@@ -52,7 +39,6 @@ export const EuiMarkdownEditorTextArea = forwardRef<
   (
     {
       children,
-      className,
       compressed,
       id,
       isInvalid,
@@ -60,16 +46,15 @@ export const EuiMarkdownEditorTextArea = forwardRef<
       placeholder,
       rows,
       height,
+      maxHeight,
       ...rest
     },
     ref
   ) => {
-    const markdownFooterHeight = 34;
-
     return (
       <textarea
         ref={ref}
-        style={{ height: `calc(${height - markdownFooterHeight}px` }}
+        style={{ height, maxHeight }}
         className="euiMarkdownEditorTextArea"
         {...rest}
         rows={6}
