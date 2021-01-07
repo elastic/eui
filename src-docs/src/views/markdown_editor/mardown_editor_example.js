@@ -34,12 +34,34 @@ const markdownEditorErrorsSnippet = `<EuiMarkdownEditor
 import MarkdownEditorHeight from './markdown_editor_height';
 const markdownEditorHeightSource = require('!!raw-loader!./markdown_editor_height');
 const markdownEditorHeightHtml = renderToHtml(MarkdownEditorHeight);
-const markdownEditorHeightSnippet = `<EuiMarkdownEditor
+const markdownEditorHeightSnippet = [
+  `// Custom height with auto-expanding preview
+<EuiMarkdownEditor
   value={value}
   onChange={setValue}
-  height={400}
+  height={200}
+/>`,
+  `// Height set to full
+<EuiMarkdownEditor
+  value={value}
+  onChange={setValue}
+  height="full"
+/>`,
+  `// Custom height with no auto-expanding preview
+<EuiMarkdownEditor
+  value={value}
+  onChange={setValue}
+  height={200}
+  autoExpandPreview={false}
+/>`,
+  `// Custom height and custom max height
+<EuiMarkdownEditor
+  value={value}
+  onChange={setValue}
+  height={200}
   maxHeight={600}
-/>`;
+/>`,
+];
 
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
