@@ -2,12 +2,4 @@
   .euiContextMenuPanelTitle {
     text-transform: none;
   }
-
-  &--small {
-    .euiContextMenuPanelTitle {
-      @include euiTitle('xxs');
-      padding: $euiSizeXS $euiSizeS;
-    }
-
-  }
 }
