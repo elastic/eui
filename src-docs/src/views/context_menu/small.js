@@ -4,7 +4,6 @@ import {
   EuiButton,
   EuiContextMenuPanel,
   EuiContextMenuItem,
-  // EuiIcon,
   EuiPopover,
 } from '../../../../src/components';
 
