@@ -61,6 +61,9 @@ export interface EuiContextMenuPanelProps {
   transitionDirection?: EuiContextMenuPanelTransitionDirection;
   transitionType?: EuiContextMenuPanelTransitionType;
   watchedItemProps?: string[];
+  /**
+   * Alters the size of the items and the title
+   */
   size?: typeof SIZES[number];
 }
 
@@ -496,7 +499,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
             MenuItem.type === EuiContextMenuItem
               ? cloneElement(MenuItem, {
                   buttonRef: this.menuItemRef.bind(this, index),
-                  size: this.props.size,
+                  size,
                 })
               : MenuItem
           )

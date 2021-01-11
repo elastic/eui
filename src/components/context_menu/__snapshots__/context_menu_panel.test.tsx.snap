@@ -454,6 +454,46 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
 </div>
 `;
 
+exports[`EuiContextMenuPanel props size m is rendered 1`] = `
+<div
+  class="euiContextMenuPanel"
+  tabindex="0"
+>
+  <div
+    class="euiContextMenuPanelTitle"
+  >
+    <span
+      class="euiContextMenu__itemLayout"
+    >
+      Title
+    </span>
+  </div>
+  <div>
+    <div />
+  </div>
+</div>
+`;
+
+exports[`EuiContextMenuPanel props size s is rendered 1`] = `
+<div
+  class="euiContextMenuPanel"
+  tabindex="0"
+>
+  <div
+    class="euiContextMenuPanelTitle euiContextMenuPanelTitle--small"
+  >
+    <span
+      class="euiContextMenu__itemLayout"
+    >
+      Title
+    </span>
+  </div>
+  <div>
+    <div />
+  </div>
+</div>
+`;
+
 exports[`EuiContextMenuPanel props title is rendered 1`] = `
 <div
   class="euiContextMenuPanel"

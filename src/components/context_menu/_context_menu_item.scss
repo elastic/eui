@@ -26,7 +26,7 @@
   }
 
   &--small {
-    padding: $euiSizeS * .75 $euiSizeS;
+    padding: ($euiSizeS * .75) $euiSizeS;
 
     .euiContextMenuItem__text {
       @include euiFontSizeS;
@@ -63,5 +63,3 @@
     flex-shrink: 0;
   }
 }
-
-
