@@ -167,9 +167,10 @@ export interface EuiPopoverProps {
   offset?: number;
   /**
    * Minimum distance between the popover and the bounding container;
+   * Pass an array of 4 values to adjust each side differently: `[top, right, bottom, left]`
    * Default is 16
    */
-  buffer?: number;
+  buffer?: number | [number, number, number, number];
   /**
    * Element to pass as the child element of the arrow;
    * Use case is typically limited to an accompanying `EuiBeacon`
