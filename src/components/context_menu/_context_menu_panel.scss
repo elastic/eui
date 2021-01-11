@@ -45,6 +45,11 @@
   &:enabled:focus {
     text-decoration: underline;
   }
+
+  &--small {
+    @include euiPopoverTitle('s');
+    padding: ($euiSizeS * .75) $euiSizeS;
+  }
 }
 
 @keyframes euiContextMenuPanelTxInLeft {

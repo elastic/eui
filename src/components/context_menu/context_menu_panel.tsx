@@ -40,12 +40,12 @@ export type EuiContextMenuPanelShowPanelCallback = (
   currentPanelIndex?: number
 ) => void;
 
-const sizeToClassNameMap = {
-  s: 'euiContextMenuPanel--small',
+const titleSizeToClassNameMap = {
+  s: 'euiContextMenuPanelTitle--small',
   m: null,
 };
 
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = keysOf(titleSizeToClassNameMap);
 
 export interface EuiContextMenuPanelProps {
   hasFocus?: boolean;
@@ -443,10 +443,15 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     let panelTitle;
 
     if (title) {
+      const titleClasses = classNames(
+        'euiContextMenuPanelTitle',
+        size && titleSizeToClassNameMap[size]
+      );
+
       if (Boolean(onClose)) {
         panelTitle = (
           <button
-            className="euiContextMenuPanelTitle"
+            className={titleClasses}
             type="button"
             onClick={onClose}
             ref={(node) => {
@@ -466,7 +471,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         );
       } else {
         panelTitle = (
-          <div className="euiContextMenuPanelTitle">
+          <div className={titleClasses}>
             <span className="euiContextMenu__itemLayout">{title}</span>
           </div>
         );
@@ -475,7 +480,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     const classes = classNames(
       'euiContextMenuPanel',
-      size && sizeToClassNameMap[size],
       className,
       transitionDirection &&
         transitionType &&
