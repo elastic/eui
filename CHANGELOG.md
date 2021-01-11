@@ -2,7 +2,7 @@
 
 - Reduced the size of the icons and clear button for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
 - Added ability for text input updates in `EuiDatePicker` ([#4243](https://github.com/elastic/eui/pull/4243))
-- Fixed icons' and buttons' sizes in append/prepend in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4410))
+- Fixed heights of `append` and `prepend` in `EuiFormControlLayout` ([#4410](https://github.com/elastic/eui/pull/4410))
 
 ## [`31.0.0`](https://github.com/elastic/eui/tree/v31.0.0)
 
@@ -41,7 +41,6 @@
 - Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
 - Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
 - Changed `label` type from `string` to `ReactNode` in `EuiTreeViewNode` ([#4352](https://github.com/elastic/eui/pull/4352))
-
 
 **Theme: Amsterdam**
 
