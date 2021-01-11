@@ -334,6 +334,22 @@ describe('EuiPopover', () => {
 
       expect(component.render()).toMatchSnapshot();
     });
+
+    test('buffer for all sides', () => {
+      const component = mount(
+        <div>
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            buffer={[20, 40, 60, 80]}
+            isOpen
+          />
+        </div>
+      );
+
+      expect(component.render()).toMatchSnapshot();
+    });
   });
 
   describe('listener cleanup', () => {
