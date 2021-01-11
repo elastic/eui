@@ -42,9 +42,12 @@ export function useInnerText(
         // while the result of `textContent` could correctly be non-`null` due to
         // differing reliance on browser layout calculations.
         // We prefer the result of `innerText`, if available.
-        'innerText' in node
-          ? node.innerText
-          : node.textContent || innerTextFallback
+
+        // 'innerText' in node
+        //   ? node.innerText
+        //   : node.textContent || innerTextFallback
+
+        node.textContent === null ? undefined: node.textContent
       );
     },
     [innerTextFallback]
