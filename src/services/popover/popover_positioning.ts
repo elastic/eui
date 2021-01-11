@@ -81,7 +81,7 @@ interface FindPopoverPositionArgs {
   align?: EuiPopoverPosition;
   position: EuiPopoverPosition;
   forcePosition?: boolean;
-  buffer?: number | number[];
+  buffer?: number | [number, number, number, number];
   offset?: number;
   allowCrossAxis?: boolean;
   container?: HTMLElement;
@@ -98,7 +98,9 @@ interface FindPopoverPositionResult {
   anchorBoundingBox?: EuiClientRect;
 }
 
-const getBufferValues = (buffer: number | number[]): number[] => {
+const getBufferValues = (
+  buffer: number | [number, number, number, number]
+): [number, number, number, number] => {
   if (Array.isArray(buffer)) {
     const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = buffer;
     return [topBuffer, rightBuffer, bottomBuffer, leftBuffer];
@@ -267,7 +269,7 @@ interface GetPopoverScreenCoordinatesArgs {
   containerBoundingBox: EuiClientRect;
   arrowConfig?: { arrowWidth: number; arrowBuffer: number };
   offset?: number;
-  buffer?: number | number[];
+  buffer?: number | [number, number, number, number];
 }
 
 interface GetPopoverScreenCoordinatesResult {
@@ -434,7 +436,7 @@ interface GetCrossAxisPositionArgs {
   crossAxisDimension: Dimension;
   position: EuiPopoverPosition;
   align?: EuiPopoverPosition;
-  buffer: number | number[];
+  buffer: number | [number, number, number, number];
   offset: number;
   windowBoundingBox: EuiClientRect;
   containerBoundingBox: EuiClientRect;
@@ -650,7 +652,7 @@ export function getElementBoundingBox(element: HTMLElement): EuiClientRect {
 export function getAvailableSpace(
   anchorBoundingBox: BoundingBox,
   containerBoundingBox: BoundingBox,
-  buffer: number | number[],
+  buffer: number | [number, number, number, number],
   offset: number,
   offsetSide: EuiPopoverPosition
 ): BoundingBox {
