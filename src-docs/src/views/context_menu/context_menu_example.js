@@ -15,24 +15,44 @@ import {
 import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
 const contextMenuHtml = renderToHtml(ContextMenu);
-const contextMenuSnippet = `<EuiContextMenu 
+const contextMenuSnippet = `<EuiContextMenu
   initialPanelId={0}
-  panels={panels} 
+  panels={[
+    {
+      id: 0,
+      title: 'This is a context menu',
+      items: [
+        {
+          name: 'Handle an onClick',
+          icon: <EuiIcon type="search" size="m" />,
+          onClick: () => {
+            closePopover();
+          },
+        },
+      ]
+    }
+  ]}
 />`;
 
 import SinglePanel from './single_panel';
 const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
-const singlePanelSnippet = `<EuiContextMenuPanel 
-  items={items} 
+const singlePanelSnippet = `<EuiContextMenuPanel
+  items={[
+    <EuiContextMenuItem
+      key=""
+      onClick={}>
+      This is a context menu item
+    </EuiContextMenuItem>
+  ]}
 />`;
 
 import Small from './small';
 const smallSizeSource = require('!!raw-loader!./small');
 const smallSizeHtml = renderToHtml(SinglePanel);
-const smallSnippet = `<EuiContextMenuPanel 
+const smallSnippet = `<EuiContextMenuPanel
   size="s"
-  items={items} 
+  items={items}
 />`;
 
 import ContentPanel from './content_panel';
@@ -46,10 +66,6 @@ const contentPanelSnippet = `<EuiContextMenuPanel>
 import ContextMenuWithContent from './context_menu_with_content';
 const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_content');
 const contextMenuWithContentHtml = renderToHtml(ContextMenuWithContent);
-const contextMenuWithContentSnippet = `<EuiContextMenu 
-  initialPanelId={0} 
-  panels={dynamicPanels} 
-/>`;
 
 export const ContextMenuExample = {
   title: 'Context menu',
@@ -81,6 +97,32 @@ export const ContextMenuExample = {
       demo: <ContextMenu />,
     },
     {
+      title: 'Sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: smallSizeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: smallSizeHtml,
+        },
+      ],
+      text: (
+        <p>
+          <strong>EuiContextMenu</strong> supports a small and medium{' '}
+          <EuiCode>size</EuiCode>. The default size is medium,{' '}
+          <EuiCode>m</EuiCode>, and should be used for most menus and major
+          actions such as top application menus. Use the smaller size,{' '}
+          <EuiCode>s</EuiCode>, for a more compressed version containing minor
+          actions or repeated menus like in <strong>EuiTable</strong>{' '}
+          pagination.
+        </p>
+      ),
+      snippet: smallSnippet,
+      demo: <SinglePanel />,
+    },
+    {
       title: 'With single panel',
       source: [
         {
@@ -100,31 +142,6 @@ export const ContextMenuExample = {
         </p>
       ),
       snippet: singlePanelSnippet,
-      demo: <SinglePanel />,
-    },
-    {
-      title: 'Sizes',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: smallSizeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: smallSizeHtml,
-        },
-      ],
-      text: (
-        <p>
-          <strong>EuiContextMenu</strong> supports a small and medium{' '}
-          <EuiCode>size</EuiCode>. Use the default size <EuiCode>m</EuiCode> for
-          major actions such as <em>Share</em> and <em>Export</em> which appear
-          in top application menus. Use the smaller size <EuiCode>s</EuiCode>{' '}
-          for actions that affect only a single item or are repeated like in{' '}
-          <strong>EuiTable</strong> actions.
-        </p>
-      ),
-      snippet: smallSnippet,
       demo: <Small />,
     },
     {
@@ -186,7 +203,6 @@ export const ContextMenuExample = {
           </p>
         </div>
       ),
-      snippet: contextMenuWithContentSnippet,
       demo: <ContextMenuWithContent />,
     },
   ],
