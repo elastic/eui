@@ -8,6 +8,7 @@
 - Reduced the size of the icons and clear button for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
 - Added ability for text input updates in `EuiDatePicker` ([#4243](https://github.com/elastic/eui/pull/4243))
 - Fixed heights of `append` and `prepend` in `EuiFormControlLayout` ([#4410](https://github.com/elastic/eui/pull/4410))
+- Added `inherit` prop to inherit `font-size` for `EuiHealth` component. ([#4420](https://github.com/elastic/eui/pull/4420))
 
 **Bug fixes**
 
