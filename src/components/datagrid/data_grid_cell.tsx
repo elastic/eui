@@ -98,9 +98,11 @@ export interface EuiDataGridCellProps {
 interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
   popoverIsOpen: boolean; // is expansion popover open
+  renderPopoverOpen: boolean; // wait one render cycle to actuall render the popover as open
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   isHovered: boolean;
+  renderIsHovered: boolean;
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
 }
 
@@ -141,9 +143,11 @@ export class EuiDataGridCell extends Component<
   state: EuiDataGridCellState = {
     cellProps: {},
     popoverIsOpen: false,
+    renderPopoverOpen: false,
     isFocused: false,
     isEntered: false,
     isHovered: false,
+    renderIsHovered: false,
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
@@ -251,9 +255,12 @@ export class EuiDataGridCell extends Component<
 
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
+    if (nextState.renderPopoverOpen !== this.state.renderPopoverOpen)
+      return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
     if (nextState.isHovered !== this.state.isHovered) return true;
+    if (nextState.renderIsHovered !== this.state.renderIsHovered) return true;
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
@@ -313,6 +320,14 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  closePopover = () => {
+    this.setState({ popoverIsOpen: false }, () =>
+      this.setState(() => ({
+        renderPopoverOpen: false,
+      }))
+    )
+  };
+
   render() {
     const {
       width,
@@ -355,7 +370,11 @@ export class EuiDataGridCell extends Component<
           case keys.ENTER:
           case keys.F2:
             event.preventDefault();
-            this.setState({ popoverIsOpen: true });
+            this.setState({ popoverIsOpen: true }, () =>
+              this.setState(({ popoverIsOpen }) => ({
+                renderPopoverOpen: popoverIsOpen,
+              }))
+            );
             break;
         }
       } else {
@@ -461,11 +480,15 @@ export class EuiDataGridCell extends Component<
     );
 
     const showCellButtons =
-      this.state.isFocused || this.state.isEntered || this.state.isHovered || this.state.popoverIsOpen;
+      this.state.isFocused ||
+      this.state.isEntered ||
+      this.state.isHovered ||
+      this.state.popoverIsOpen;
 
-      if (showCellButtons) {
-        console.log('showing cell buttons for ' + rowIndex + ',' + colIndex);
-      }
+    if (showCellButtons) {
+      console.log('showing cell buttons for ' + rowIndex + ',' + colIndex);
+      console.log('renderIsHovered:' + this.state.renderIsHovered);
+    }
 
     if (isExpandable || (column && column.cellActions)) {
       anchorContent = (
@@ -493,11 +516,18 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               column={column}
               popoverIsOpen={this.state.popoverIsOpen}
-              closePopover={() => this.setState({ popoverIsOpen: false })}
+              isHoveredOrFocused={this.state.renderIsHovered}
+              closePopover={this.closePopover}
               onExpandClick={() => {
-                this.setState(({ popoverIsOpen }) => ({
-                  popoverIsOpen: !popoverIsOpen,
-                }));
+                this.setState(
+                  ({ popoverIsOpen }) => ({
+                    popoverIsOpen: !popoverIsOpen,
+                  }),
+                  () =>
+                    this.setState(({ popoverIsOpen }) => ({
+                      renderPopoverOpen: popoverIsOpen,
+                    }))
+                );
               }}
             />
           )}
@@ -517,7 +547,7 @@ export class EuiDataGridCell extends Component<
               closePopover={() => this.setState({ popoverIsOpen: false })}
               column={column}
               panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
-              popoverIsOpen={this.state.popoverIsOpen}
+              popoverIsOpen={this.state.renderPopoverOpen}
               rowIndex={rowIndex}
               renderCellValue={rest.renderCellValue}
               popoverContent={PopoverContent}
@@ -545,12 +575,14 @@ export class EuiDataGridCell extends Component<
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {
-          console.log('hovering');
-          this.setState({ isHovered: true });
+          this.setState({ isHovered: true, renderIsHovered: false }, () => {
+            setTimeout(() => {
+              this.setState({ renderIsHovered: true });
+            }, 500);
+          });
         }}
         onMouseLeave={() => {
-          console.log('leaving');
-          this.setState({ isHovered: false });
+          this.setState({ isHovered: false, renderIsHovered: false });
         }}
         onBlur={this.onBlur}>
         {innerContent}

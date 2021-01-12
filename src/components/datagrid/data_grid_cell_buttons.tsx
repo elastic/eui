@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { JSXElementConstructor } from 'react';
+import React, { JSXElementConstructor, useMemo } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
@@ -28,12 +28,14 @@ import { EuiButtonIcon, EuiButtonIconProps } from '../button/button_icon';
 
 export const EuiDataGridCellButtons = ({
   popoverIsOpen,
+  isHoveredOrFocused,
   closePopover,
   onExpandClick,
   column,
   rowIndex,
 }: {
   popoverIsOpen: boolean;
+  isHoveredOrFocused: boolean;
   closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
@@ -44,6 +46,7 @@ export const EuiDataGridCellButtons = ({
   });
   const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
     'euiDataGridRowCell__expandButton-isActive': popoverIsOpen,
+    'euiDataGridRowCell__expandButton-isHoveredOrFocused': isHoveredOrFocused,
   });
   const expandButton = (
     <EuiI18n
@@ -63,16 +66,16 @@ export const EuiDataGridCellButtons = ({
       )}
     </EuiI18n>
   );
-  const ButtonComponent = (props: EuiButtonIconProps) => (
-    <EuiButtonIcon
-      {...props}
-      aria-hidden
-      className="euiDataGridRowCell__actionButtonIcon"
-      iconSize="s"
-    />
-  );
-  const additionalButtons =
-    column && Array.isArray(column.cellActions)
+  const additionalButtons = useMemo(() => {
+    const ButtonComponent = (props: EuiButtonIconProps) => (
+      <EuiButtonIcon
+        {...props}
+        aria-hidden
+        className="euiDataGridRowCell__actionButtonIcon"
+        iconSize="s"
+      />
+    );
+    return column && Array.isArray(column.cellActions)
       ? column.cellActions.map(
           (Action: EuiDataGridColumnCellAction, idx: number) => {
             // React is more permissible than the TS types indicate
@@ -92,6 +95,8 @@ export const EuiDataGridCellButtons = ({
           }
         )
       : [];
+  }, [column, rowIndex, closePopover]);
+
   return (
     <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>
   );
