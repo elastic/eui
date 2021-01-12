@@ -75,6 +75,22 @@ describe('EuiConfirmModal', () => {
     ).toMatchSnapshot();
   });
 
+  test('renders EuiConfirmModal inside an EuiOverlayMask', () => {
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        ownFocus
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
+
+    expect(
+      takeMountedSnapshot(component, { hasArrayOutput: true })
+    ).toMatchSnapshot();
+  });
+
   test('onConfirm', () => {
     const component = mount(
       <EuiConfirmModal
@@ -88,6 +104,21 @@ describe('EuiConfirmModal', () => {
     findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
     expect(onConfirm).toHaveBeenCalledTimes(1);
     expect(onCancel).toHaveBeenCalledTimes(0);
+  });
+
+  test('onConfirm loading', () => {
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        isLoading
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
+
+    findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+    expect(onConfirm).toHaveBeenCalledTimes(0);
   });
 
   test('onConfirm can be disabled', () => {

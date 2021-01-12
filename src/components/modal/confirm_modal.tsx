@@ -34,6 +34,7 @@ import { EuiModalBody } from './modal_body';
 import { EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
+import { EuiOverlayMask } from '../overlay_mask';
 
 export interface EuiConfirmModalProps
   extends Omit<
@@ -72,6 +73,14 @@ export interface EuiConfirmModalProps
    * set to a string for a custom width in custom measurement.
    */
   maxWidth?: boolean | number | string;
+  /**
+   * Show loading spinner in confirm button
+   */
+  isLoading?: boolean;
+  /***
+   * Renders the modal inside an overlay mask
+   */
+  ownFocus?: boolean;
 }
 
 export const CONFIRM_BUTTON = 'confirm';
@@ -88,6 +97,8 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   className,
   buttonColor = 'primary',
   defaultFocusedButton,
+  isLoading,
+  ownFocus,
   ...rest
 }) => {
   const [cancelButton, setCancelButton] = useState<
@@ -137,7 +148,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
     message = children;
   }
 
-  return (
+  const modalComponent = (
     <EuiModal className={classes} onClose={onCancel} {...rest}>
       {modalTitle}
 
@@ -158,6 +169,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
         <EuiButton
           data-test-subj="confirmModalConfirmButton"
           onClick={onConfirm}
+          isLoading={isLoading}
           fill
           buttonRef={confirmRef}
           color={buttonColor}
@@ -166,5 +178,11 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
         </EuiButton>
       </EuiModalFooter>
     </EuiModal>
+  );
+
+  return ownFocus ? (
+    <EuiOverlayMask>{modalComponent}</EuiOverlayMask>
+  ) : (
+    modalComponent
   );
 };
