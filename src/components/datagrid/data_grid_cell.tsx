@@ -341,7 +341,7 @@ export class EuiDataGridCell extends Component<
       className: classNames(cellClasses, this.state.cellProps.className),
     };
 
-    cellProps.style = { ...style, width };
+    cellProps.style = { ...style, width, ...cellProps.style };
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
