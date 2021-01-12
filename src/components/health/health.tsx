@@ -33,15 +33,21 @@ type EuiHealthProps = CommonProps &
      * `subdued` or `ghost`; or any valid CSS color value as a `string`
      */
     color?: IconColor;
+    inherit?: boolean;
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   children,
   className,
   color,
+  inherit,
   ...rest
 }) => {
-  const classes = classNames('euiHealth', className);
+  const classes = classNames(
+    'euiHealth',
+    inherit ? 'euiHealth--fontSizeInherit' : null,
+    className
+  );
 
   return (
     <div className={classes} {...rest}>
