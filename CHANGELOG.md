@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `isLoading` prop to `EuiConfirmModal`. Added support for always rendering `EuiConfirmModal` inside `EuiOverlayMask`  ([#4421](https://github.com/elastic/eui/pull/4421))
 - Added support for adjusting `buffer` for individual window sides of `EuiPopover`. ([#4417](https://github.com/elastic/eui/pull/4417))
 - Added `'full'` option to the `height` prop of `EuiMarkdownEditor`. Added `autoExpandPreview` and `maxHeight` props to `EuiMarkdownEditor` ([#4245](https://github.com/elastic/eui/pull/4245))
 
