@@ -16,6 +16,14 @@ export default () => {
     isButtonDisabledModalVisible,
     setIsButtonDisabledModalVisible,
   ] = useState(false);
+  const [
+    isConfirmlLoadingModalVisible,
+    setIsConfirmlLoadingModalVisible,
+  ] = useState(false);
+  const [
+    isOverlayMaskModalVisible,
+    setIsOverlayMasklLoadingModalVisible,
+  ] = useState(false);
 
   const closeModal = () => setIsModalVisible(false);
   const showModal = () => setIsModalVisible(true);
@@ -28,6 +36,14 @@ export default () => {
 
   const closeButtonDisabledModal = () => setIsButtonDisabledModalVisible(false);
   const showButtonDisabledModal = () => setIsButtonDisabledModalVisible(true);
+
+  const closeConfirmLoadingModal = () =>
+    setIsConfirmlLoadingModalVisible(false);
+  const showConfirmLoadingModal = () => setIsConfirmlLoadingModalVisible(true);
+
+  const closeOverlayMaskModal = () =>
+    setIsOverlayMasklLoadingModalVisible(false);
+  const showOverlayMaskModal = () => setIsOverlayMasklLoadingModalVisible(true);
 
   let modal;
 
@@ -103,6 +119,42 @@ export default () => {
     );
   }
 
+  let confirmLoadingModal;
+
+  if (isConfirmlLoadingModalVisible) {
+    confirmLoadingModal = (
+      <EuiOverlayMask>
+        <EuiConfirmModal
+          title="My button is loading"
+          onCancel={closeConfirmLoadingModal}
+          onConfirm={closeConfirmLoadingModal}
+          isLoading
+          cancelButtonText="No, don't do it"
+          confirmButtonText="Loading"
+          defaultFocusedButton="cancel"
+        />
+      </EuiOverlayMask>
+    );
+  }
+
+  let overlayMaskModal;
+
+  if (isOverlayMaskModalVisible) {
+    overlayMaskModal = (
+      <EuiOverlayMask>
+        <EuiConfirmModal
+          title="This modal is inside an overlay mask"
+          onCancel={closeOverlayMaskModal}
+          onConfirm={closeOverlayMaskModal}
+          ownFocus
+          cancelButtonText="No, don't do it"
+          confirmButtonText="Loading"
+          defaultFocusedButton="cancel"
+        />
+      </EuiOverlayMask>
+    );
+  }
+
   return (
     <div>
       <EuiFlexGroup wrap gutterSize="xs">
@@ -124,11 +176,23 @@ export default () => {
             Show confirm disabled confirm modal
           </EuiButton>
         </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={showConfirmLoadingModal}>
+            Show confirm loading confirm modal
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={showOverlayMaskModal}>
+            Show confirm modal inside overlay mask
+          </EuiButton>
+        </EuiFlexItem>
       </EuiFlexGroup>
       {modal}
       {destroyModal}
       {emptyModal}
       {buttonDisabledModal}
+      {confirmLoadingModal}
+      {overlayMaskModal}
     </div>
   );
 };

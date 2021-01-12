@@ -77,7 +77,7 @@ export interface EuiConfirmModalProps
    * Show loading spinner in confirm button
    */
   isLoading?: boolean;
-  /***
+  /**
    * Renders the modal inside an overlay mask
    */
   ownFocus?: boolean;
