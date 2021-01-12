@@ -527,7 +527,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
     if (boundingRect.height !== unconstrainedHeight) {
-      // unconstrained height did not change, apply the bounding height
       setHeight(boundingRect.height);
     }
     if (boundingRect.width !== unconstrainedWidth) {
