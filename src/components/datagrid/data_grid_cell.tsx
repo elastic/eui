@@ -461,7 +461,7 @@ export class EuiDataGridCell extends Component<
     );
 
     const showCellButtons =
-      this.state.isFocused || this.state.isEntered || this.state.isHovered;
+      this.state.isFocused || this.state.isEntered || this.state.isHovered || this.state.popoverIsOpen;
 
       if (showCellButtons) {
         console.log('showing cell buttons for ' + rowIndex + ',' + colIndex);
