@@ -174,6 +174,12 @@ export default () => {
 
       <DataContext.Provider value={dataContext}>
         <EuiDataGrid
+          // completely reset the grid when switching between controlled & uncontrolled heights
+          // otherwise, going from constrained->unconstrained is ignored.
+          // this is for example only, don't switch between controlled & uncontrolled heights
+          key={
+            height === 'height-unconstrained' ? 'unconstrained' : 'constrained'
+          }
           aria-label="Virtualized data grid demo"
           height={dimensionSizes[height]}
           width={dimensionSizes[width]}

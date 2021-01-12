@@ -650,29 +650,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
 
-  // default DOM layout rules allow block content to naturally expand to the full document width
-  // while height does not automatically expand; this gives us a little extra work when managing height:
-  // if a `height` prop is set, it will be applied via `style` to constrain the grid's DOM, which is reacted to with a resize observer and tracked with `gridHeight`
-  // if no `height` is set - or is unset - we need to unapply any existing `gridHeight` value
-  // this triggers a double re-render when the grid is switched from constrained to unconstrained
-  // but in reality ... maybe don't do that?
-  const [gridHeight, setGridHeight] = useState(0);
-  const pageSize = pagination?.pageSize;
-  const resetGridHeight = useCallback(() => {
-    setGridHeight(0);
-  }, []);
-  useEffect(() => {
-    if (height == null) {
-      // if already 0 this update will be ignored
-      // if not already 0, this resets the height constraint so a new value can be observed
-      setGridHeight(0);
-    }
-  }, [
-    height,
-    pageSize,
-    rowCount, // recompute height if the rowCount changes
-  ]);
-
   const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
     null
   );
@@ -749,27 +726,16 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   };
 
   // enables/disables grid controls based on available width
-  const [sizeIsStable, setSizeIsStable] = useState(false);
-
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
-  const gridDimensions = useResizeObserver(resizeRef);
+  const gridDimensions = useResizeObserver(resizeRef, 'width');
   useEffect(() => {
     if (resizeRef) {
-      if (sizeIsStable) {
-        const { height, width } = gridDimensions;
-        setGridWidth(width);
-        setGridHeight((currentHeight) => {
-          // because of a race condition between useResizeObserver which
-          // fires async outside of the React lifecycle
-          // and useEffect, we allow the height to grow but not shrink
-          return currentHeight < height ? height : currentHeight;
-        });
-      }
+      const { width } = gridDimensions;
+      setGridWidth(width);
     } else {
       setGridWidth(0);
-      setGridHeight(0);
     }
-  }, [sizeIsStable, resizeRef, gridDimensions]);
+  }, [resizeRef, gridDimensions]);
 
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
@@ -1060,8 +1026,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                 headerIsInteractive,
                                 setFocusedCell
                               )}
-                              className="euiDataGrid__verticalScroll"
-                              ref={setResizeRef}>
+                              ref={setResizeRef}
+                              className="euiDataGrid__verticalScroll">
                               <div className="euiDataGrid__overflow">
                                 {inMemory ? (
                                   <EuiDataGridInMemoryRenderer
@@ -1102,8 +1068,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     setColumnWidth={setColumnWidth}
                                     headerIsInteractive={headerIsInteractive}
                                     handleHeaderMutation={handleHeaderMutation}
-                                    gridHeight={gridHeight}
-                                    gridWidth={gridWidth}
+                                    // gridHeight={gridHeight}
+                                    // gridWidth={gridWidth}
                                     inMemoryValues={inMemoryValues}
                                     inMemory={inMemory}
                                     schemaDetectors={allSchemaDetectors}
@@ -1115,8 +1081,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     }
                                     rowCount={rowCount}
                                     interactiveCellId={interactiveCellId}
-                                    resetGridHeight={resetGridHeight}
-                                    setSizeIsStable={setSizeIsStable}
                                   />
                                 </div>
                               </div>
