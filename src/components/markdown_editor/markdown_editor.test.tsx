@@ -38,6 +38,70 @@ describe('EuiMarkdownEditor', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('props', () => {
+    describe('height', () => {
+      test('is rendered with a custom size', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            height={400}
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered in full mode', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            height="full"
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('maxHeight', () => {
+      test('is rendered with a custom size', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            maxHeight={600}
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('autoExpandPreview', () => {
+      test('is rendered with false', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            autoExpandPreview={false}
+            value=""
+            onChange={() => null}
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
+
   test('is preview rendered', () => {
     const component = mount(
       <EuiMarkdownEditor

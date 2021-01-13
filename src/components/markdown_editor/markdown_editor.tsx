@@ -39,7 +39,7 @@ import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
-import { htmlIdGenerator } from '../../services/accessibility';
+import { htmlIdGenerator } from '../../services/';
 
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
@@ -57,6 +57,8 @@ import {
   defaultParsingPlugins,
   defaultProcessingPlugins,
 } from './plugins/markdown_default_plugins';
+
+import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -82,8 +84,23 @@ type CommonMarkdownEditorProps = Omit<
     /** callback function when markdown content is modified */
     onChange: (value: string) => void;
 
-    /** height of the content/preview area */
-    height?: number;
+    /**
+     * Sets the `height` in pixels of the editor/preview area or pass `full` to allow
+     * the EuiMarkdownEditor to fill the height of its container.
+     * When in `full` mode the vertical resize is not allowed.
+     */
+    height?: number | 'full';
+
+    /**
+     * Sets the `max-height` in pixels of the editor/preview area.
+     * It has no effect when the `height` is set to `full`.
+     */
+    maxHeight?: number;
+
+    /**
+     * Automatically adjusts the preview height to fit all the content and avoid a scrollbar.
+     */
+    autoExpandPreview?: boolean;
 
     /** plugins to identify new syntax and parse it into an AST node */
     parsingPluginList?: PluggableList;
@@ -112,10 +129,29 @@ type CommonMarkdownEditorProps = Omit<
     /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
   };
+
 export type EuiMarkdownEditorProps = OneOf<
   CommonMarkdownEditorProps,
   'aria-label' | 'aria-labelledby'
 >;
+
+// TODO I wanted to use the useCombinedRefs
+// but I can't because it's not allowed to use react hooks
+// inside a callback.
+const mergeRefs = (...refs: any[]) => {
+  const filteredRefs = refs.filter(Boolean);
+  if (!filteredRefs.length) return null;
+  if (filteredRefs.length === 0) return filteredRefs[0];
+  return (inst: any) => {
+    for (const ref of filteredRefs) {
+      if (typeof ref === 'function') {
+        ref(inst);
+      } else if (ref) {
+        ref.current = inst;
+      }
+    }
+  };
+};
 
 interface EuiMarkdownEditorRef {
   textarea: HTMLTextAreaElement | null;
@@ -152,7 +188,9 @@ export const EuiMarkdownEditor = forwardRef<
       editorId: _editorId,
       value,
       onChange,
-      height = 150,
+      height = 250,
+      maxHeight = 500,
+      autoExpandPreview = true,
       parsingPluginList = defaultParsingPlugins,
       processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
@@ -185,8 +223,6 @@ export const EuiMarkdownEditor = forwardRef<
       [editorId, toolbarPlugins.map(({ name }) => name).join(',')]
     );
 
-    const classes = classNames('euiMarkdownEditor', className);
-
     const parser = useMemo(() => {
       const Compiler = (tree: any) => {
         return tree;
@@ -210,6 +246,7 @@ export const EuiMarkdownEditor = forwardRef<
     }, [parser, value]);
 
     const isPreviewing = viewMode === MODE_VIEWING;
+    const isEditing = viewMode === MODE_EDITING;
 
     const replaceNode = useCallback(
       (position, next) => {
@@ -287,12 +324,80 @@ export const EuiMarkdownEditor = forwardRef<
       [replaceNode]
     );
 
+    const textarea = textareaRef.current;
+    const previewRef = useRef<HTMLDivElement>(null);
+    const editorToolbarRef = useRef<HTMLDivElement>(null);
     const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
+    const [currentHeight, setCurrentHeight] = useState(height);
+    const [editorFooterHeight, setEditorFooterHeight] = useState(0);
+    const [editorToolbarHeight, setEditorToolbarHeight] = useState(0);
+
+    const classes = classNames(
+      'euiMarkdownEditor',
+      { 'euiMarkdownEditor--fullHeight': height === 'full' },
+      {
+        'euiMarkdownEditor--isPreviewing': isPreviewing,
+      },
+      className
+    );
+
+    const onResize = () => {
+      if (textarea && isEditing && height !== 'full') {
+        const resizedTextareaHeight =
+          textarea.offsetHeight + editorFooterHeight;
+
+        setCurrentHeight(resizedTextareaHeight);
+      }
+    };
+
+    useEffect(() => {
+      setEditorToolbarHeight(editorToolbarRef.current!.offsetHeight);
+    }, [setEditorToolbarHeight]);
+
+    useEffect(() => {
+      if (isPreviewing && autoExpandPreview && height !== 'full') {
+        if (previewRef.current!.scrollHeight > currentHeight) {
+          // scrollHeight does not include the border or margin
+          // so we ask for the computed value for those,
+          // which is always in pixels because getComputedValue
+          // returns the resolved values
+          const elementComputedStyle = window.getComputedStyle(
+            previewRef.current!
+          );
+          const borderWidth =
+            parseFloat(elementComputedStyle.borderTopWidth) +
+            parseFloat(elementComputedStyle.borderBottomWidth);
+          const marginWidth =
+            parseFloat(elementComputedStyle.marginTop) +
+            parseFloat(elementComputedStyle.marginBottom);
+
+          // then add an extra pixel for safety and because the scrollHeight value is rounded
+          const extraHeight = borderWidth + marginWidth + 1;
+
+          setCurrentHeight(previewRef.current!.scrollHeight + extraHeight);
+        }
+      }
+    }, [currentHeight, isPreviewing, height, autoExpandPreview]);
+
+    const previewHeight =
+      height === 'full'
+        ? `calc(100% - ${editorFooterHeight}px)`
+        : currentHeight;
+
+    const textAreaHeight =
+      height === 'full' ? '100%' : `calc(${height - editorFooterHeight}px)`;
+
+    const textAreaMaxHeight =
+      height !== 'full' ? `${maxHeight - editorFooterHeight}px` : '';
+
+    // safari needs this calc when the height is set to full
+    const editorToggleContainerHeight = `calc(100% - ${editorToolbarHeight}px)`;
 
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
         <div className={classes} {...rest}>
           <EuiMarkdownEditorToolbar
+            ref={editorToolbarRef}
             selectedNode={selectedNode}
             markdownActions={markdownActions}
             onClickPreview={() =>
@@ -304,8 +409,9 @@ export const EuiMarkdownEditor = forwardRef<
 
           {isPreviewing && (
             <div
+              ref={previewRef}
               className="euiMarkdownEditorPreview"
-              style={{ height: `${height}px` }}>
+              style={{ height: previewHeight }}>
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
                 processingPluginList={processingPluginList}>
@@ -314,8 +420,14 @@ export const EuiMarkdownEditor = forwardRef<
             </div>
           )}
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
-          <div style={{ display: isPreviewing ? 'none' : 'block' }}>
+          <div
+            className="euiMarkdownEditor__toggleContainer"
+            style={{
+              height: editorToggleContainerHeight,
+            }}>
             <EuiMarkdownEditorDropZone
+              setEditorFooterHeight={setEditorFooterHeight}
+              isEditing={isEditing}
               dropHandlers={dropHandlers}
               insertText={(
                 text: string,
@@ -339,19 +451,26 @@ export const EuiMarkdownEditor = forwardRef<
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
               setHasUnacceptedItems={setHasUnacceptedItems}>
-              <EuiMarkdownEditorTextArea
-                ref={textareaRef}
-                height={height}
-                id={editorId}
-                onChange={(e) => onChange(e.target.value)}
-                value={value}
-                onFocus={() => setHasUnacceptedItems(false)}
-                {...{
-                  'aria-label': ariaLabel,
-                  'aria-labelledby': ariaLabelledBy,
-                  'aria-describedby': ariaDescribedBy,
+              <EuiResizeObserver onResize={onResize}>
+                {(resizeRef) => {
+                  return (
+                    <EuiMarkdownEditorTextArea
+                      height={textAreaHeight}
+                      maxHeight={textAreaMaxHeight}
+                      ref={mergeRefs(textareaRef, resizeRef)}
+                      id={editorId}
+                      onChange={(e) => onChange(e.target.value)}
+                      value={value}
+                      onFocus={() => setHasUnacceptedItems(false)}
+                      {...{
+                        'aria-label': ariaLabel,
+                        'aria-labelledby': ariaLabelledBy,
+                        'aria-describedby': ariaDescribedBy,
+                      }}
+                    />
+                  );
                 }}
-              />
+              </EuiResizeObserver>
             </EuiMarkdownEditorDropZone>
 
             {pluginEditorPlugin && (

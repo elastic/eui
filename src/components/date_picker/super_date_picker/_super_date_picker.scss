@@ -6,12 +6,10 @@
 
 .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
   width: $euiFormMaxWidth;
-  max-width: 100%
 }
 
 .euiSuperDatePicker__flexWrapper--noUpdateButton {
   width: $euiSuperDatePickerWidth;
-  max-width: 100%
 }
 
 .euiSuperDatePicker {
@@ -70,10 +68,8 @@
 }
 
 @include euiBreakpoint('xs', 's') {
-  .euiSuperDatePicker__flexWrapper,
-  .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly,
-  .euiSuperDatePicker__flexWrapper--noUpdateButton {
-    width: 100%;
+  .euiSuperDatePicker__flexWrapper {
+    width: calc(100% + #{$euiSizeS});
   }
 
   .euiSuperDatePicker__prettyFormatLink {
