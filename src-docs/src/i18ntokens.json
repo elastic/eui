@@ -1877,11 +1877,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 85,
         "column": 20
       },
       "end": {
-        "line": 87,
+        "line": 88,
         "column": 5
       }
     },
@@ -1893,11 +1893,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 89,
         "column": 21
       },
       "end": {
-        "line": 91,
+        "line": 92,
         "column": 5
       }
     },
@@ -1909,11 +1909,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 92,
+        "line": 93,
         "column": 25
       },
       "end": {
-        "line": 95,
+        "line": 96,
         "column": 5
       }
     },
@@ -1925,11 +1925,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 96,
+        "line": 97,
         "column": 24
       },
       "end": {
-        "line": 100,
+        "line": 101,
         "column": 5
       }
     },
@@ -1941,11 +1941,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 102,
         "column": 22
       },
       "end": {
-        "line": 104,
+        "line": 105,
         "column": 5
       }
     },
@@ -1957,11 +1957,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 105,
+        "line": 106,
         "column": 22
       },
       "end": {
-        "line": 108,
+        "line": 109,
         "column": 5
       }
     },
@@ -1973,11 +1973,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 164,
+        "line": 165,
         "column": 12
       },
       "end": {
-        "line": 167,
+        "line": 168,
         "column": 14
       }
     },
@@ -1989,11 +1989,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
+        "line": 200,
         "column": 18
       },
       "end": {
-        "line": 202,
+        "line": 203,
         "column": 20
       }
     },
@@ -2005,12 +2005,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 191,
-        "column": 10
+        "line": 193,
+        "column": 12
       },
       "end": {
-        "line": 191,
-        "column": 78
+        "line": 193,
+        "column": 80
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
@@ -2021,12 +2021,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
-        "column": 10
+        "line": 201,
+        "column": 12
       },
       "end": {
-        "line": 202,
-        "column": 12
+        "line": 204,
+        "column": 14
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
@@ -2197,11 +2197,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 711,
+        "line": 712,
         "column": 14
       },
       "end": {
-        "line": 714,
+        "line": 715,
         "column": 16
       }
     },
