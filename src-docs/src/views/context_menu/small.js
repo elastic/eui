@@ -19,27 +19,20 @@ export default () => {
   };
 
   const items = [
-    <EuiContextMenuItem
-      key="copy"
-      icon="copy"
-      onClick={() => {
-        closePopover();
-      }}>
+    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
       Copy
     </EuiContextMenuItem>,
-    <EuiContextMenuItem
-      key="edit"
-      icon="pencil"
-      onClick={() => {
-        closePopover();
-      }}>
+    <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
       Edit
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
+      Share
     </EuiContextMenuItem>,
   ];
 
   const button = (
     <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
-      Small context menu
+      Click to show a single panel
     </EuiButton>
   );
 
@@ -51,7 +44,7 @@ export default () => {
       closePopover={closePopover}
       panelPaddingSize="none"
       anchorPosition="downLeft">
-      <EuiContextMenuPanel items={items} size="s" />
+      <EuiContextMenuPanel size="s" items={items} />
     </EuiPopover>
   );
 };

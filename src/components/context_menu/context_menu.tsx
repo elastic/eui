@@ -66,6 +66,9 @@ export interface EuiContextMenuPanelDescriptor {
   content?: ReactNode;
   width?: number;
   initialFocusedItemIndex?: number;
+  /**
+   * Alters the size of the items and the title
+   */
   size?: typeof SIZES[number];
 }
 
@@ -80,6 +83,9 @@ export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
     initialPanelId?: EuiContextMenuPanelId;
+    /**
+     * Alters the size of the items and the title
+     */
     size?: typeof SIZES[number];
   };
 

@@ -71,6 +71,9 @@ export interface EuiContextMenuItemProps extends CommonProps {
    * How to align icon with content of button
    */
   layoutAlign?: EuiContextMenuItemLayoutAlignment;
+  /**
+   * Reduce the size to `s` when in need of a more compressed menu
+   */
   size?: typeof SIZES[number];
 }
 

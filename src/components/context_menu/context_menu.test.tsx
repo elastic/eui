@@ -168,6 +168,7 @@ describe('EuiContextMenu', () => {
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
       });
     });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
