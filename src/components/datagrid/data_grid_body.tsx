@@ -62,8 +62,6 @@ import {
 import { useResizeObserver } from '../observer/resize_observer';
 
 export interface EuiDataGridBodyProps {
-  gridHeight?: number;
-  gridWidth: number;
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   leadingControlColumns?: EuiDataGridControlColumn[];
@@ -84,8 +82,6 @@ export interface EuiDataGridBodyProps {
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
-  resetGridHeight: () => void;
-  setSizeIsStable: (sizeIsStable: boolean) => void;
 }
 
 const defaultComparator: NonNullable<
@@ -269,8 +265,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
-    gridHeight,
-    gridWidth,
     columnWidths,
     defaultColumnWidth,
     leadingControlColumns = [],
@@ -291,11 +285,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     handleHeaderMutation,
     setVisibleColumns,
     switchColumnPos,
-    resetGridHeight,
-    setSizeIsStable,
   } = props;
-
-  const hasFooterRow = renderFooterCellValue;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
   const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
@@ -306,16 +296,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   });
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
   const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
-
-  useEffect(() => {
-    const isHeaderStable = headerRowHeight !== 0;
-    const isFooterStable = !hasFooterRow || footerRowHeight !== 0;
-    setSizeIsStable(isHeaderStable && isFooterStable);
-  }, [hasFooterRow, setSizeIsStable, headerRowHeight, footerRowHeight]);
-
-  useEffect(() => {
-    resetGridHeight();
-  }, [resetGridHeight, headerRowHeight, footerRowHeight]);
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
   let endRow = pagination
@@ -523,51 +503,76 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
 
-  const height =
-    // intentionally ignoring gridHeight if it is null/undefined/0
-    // and using it only if we have found the header&footer heights
-    (headerRowHeight && (!hasFooterRow || footerRowHeight) && gridHeight) ||
-    // otherwise compute the height
+  const unconstrainedHeight =
     rowHeight * visibleRowIndices.length +
-      SCROLLBAR_HEIGHT +
-      headerRowHeight +
-      footerRowHeight;
+    SCROLLBAR_HEIGHT +
+    headerRowHeight +
+    footerRowHeight;
+
+  // unable to determine this until the container's size is known anyway
+  const unconstrainedWidth = 0;
+
+  const [height, setHeight] = useState<number | undefined>(undefined);
+  const [width, setWidth] = useState<number | undefined>(undefined);
+
+  // reset height constraint when rowCount changes
+  useEffect(() => {
+    setHeight(undefined);
+  }, [rowCount]);
+
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const wrapperDimensions = useResizeObserver(wrapperRef.current);
+
+  useEffect(() => {
+    const boundingRect = wrapperRef.current!.getBoundingClientRect();
+
+    if (boundingRect.height !== unconstrainedHeight) {
+      setHeight(boundingRect.height);
+    }
+    if (boundingRect.width !== unconstrainedWidth) {
+      setWidth(boundingRect.width);
+    }
+  }, [unconstrainedHeight, wrapperDimensions]);
 
   return (
-    <DataGridWrapperRowsContext.Provider
-      value={{ headerRowHeight, headerRow, footerRow }}>
-      <Grid
-        ref={gridRef}
-        innerElementType={InnerElement}
-        className="euiDataGrid__virtualized"
-        columnCount={
-          leadingControlColumns.length +
-          columns.length +
-          trailingControlColumns.length
-        }
-        width={IS_JEST_ENVIRONMENT ? 500 : gridWidth}
-        columnWidth={getWidth}
-        height={IS_JEST_ENVIRONMENT ? 500 : height}
-        rowHeight={getRowHeight}
-        itemData={{
-          setRowHeight,
-          rowMap,
-          rowOffset: pagination
-            ? pagination.pageIndex * pagination.pageSize
-            : 0,
-          leadingControlColumns,
-          trailingControlColumns,
-          columns,
-          schema,
-          popoverContents: mergedPopoverContents,
-          columnWidths,
-          defaultColumnWidth,
-          renderCellValue,
-          interactiveCellId,
-        }}
-        rowCount={visibleRowIndices.length}>
-        {Cell}
-      </Grid>
-    </DataGridWrapperRowsContext.Provider>
+    <div
+      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+      ref={wrapperRef}>
+      <DataGridWrapperRowsContext.Provider
+        value={{ headerRowHeight, headerRow, footerRow }}>
+        <Grid
+          ref={gridRef}
+          innerElementType={InnerElement}
+          className="euiDataGrid__virtualized"
+          columnCount={
+            leadingControlColumns.length +
+            columns.length +
+            trailingControlColumns.length
+          }
+          width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
+          columnWidth={getWidth}
+          height={IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight}
+          rowHeight={getRowHeight}
+          itemData={{
+            setRowHeight,
+            rowMap,
+            rowOffset: pagination
+              ? pagination.pageIndex * pagination.pageSize
+              : 0,
+            leadingControlColumns,
+            trailingControlColumns,
+            columns,
+            schema,
+            popoverContents: mergedPopoverContents,
+            columnWidths,
+            defaultColumnWidth,
+            renderCellValue,
+            interactiveCellId,
+          }}
+          rowCount={visibleRowIndices.length}>
+          {Cell}
+        </Grid>
+      </DataGridWrapperRowsContext.Provider>
+    </div>
   );
 };

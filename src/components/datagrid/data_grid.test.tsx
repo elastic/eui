@@ -523,6 +523,7 @@ describe('EuiDataGrid', () => {
             "onKeyDown": [Function],
             "role": "gridcell",
             "style": Object {
+              "color": "red",
               "height": 34,
               "left": 0,
               "position": "absolute",
@@ -539,6 +540,7 @@ describe('EuiDataGrid', () => {
             "onKeyDown": [Function],
             "role": "gridcell",
             "style": Object {
+              "color": "blue",
               "height": 34,
               "left": 100,
               "position": "absolute",
@@ -555,6 +557,7 @@ describe('EuiDataGrid', () => {
             "onKeyDown": [Function],
             "role": "gridcell",
             "style": Object {
+              "color": "red",
               "height": 34,
               "left": 0,
               "position": "absolute",
@@ -571,6 +574,7 @@ describe('EuiDataGrid', () => {
             "onKeyDown": [Function],
             "role": "gridcell",
             "style": Object {
+              "color": "blue",
               "height": 34,
               "left": 100,
               "position": "absolute",
