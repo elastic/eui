@@ -74,7 +74,7 @@ export interface EuiContextMenuItemProps extends CommonProps {
   /**
    * Reduce the size to `s` when in need of a more compressed menu
    */
-  size?: typeof SIZES[number];
+  size?: keyof typeof sizeToClassNameMap;
 }
 
 type Props = CommonProps &

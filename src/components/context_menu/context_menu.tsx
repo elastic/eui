@@ -86,7 +86,7 @@ export type EuiContextMenuProps = CommonProps &
     /**
      * Alters the size of the items and the title
      */
-    size?: typeof SIZES[number];
+    size?: keyof typeof sizeToClassNameMap;
   };
 
 const isItemSeparator = (
