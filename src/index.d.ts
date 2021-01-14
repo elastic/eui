@@ -18,5 +18,6 @@
  */
 
 /* eslint-disable @typescript-eslint/triple-slash-reference */
+/// <reference types="@emotion/react/types/css-prop" />
 /// <reference path="./components/index.d.ts" />
 /// <reference path="./themes/index.d.ts" />

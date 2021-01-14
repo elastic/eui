@@ -223,6 +223,18 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
+
+/** ! Temporary ! */
+
+import {
+  // App as EnvoyApp,
+  // AppB as EnvoyAppB,
+  // AppC as EnvoyAppC,
+  Canopy,
+  // CoilApp,
+  // PropagateApp,
+} from './views/emotion';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -305,6 +317,53 @@ const createExample = (example, customTitle) => {
 };
 
 const navigation = [
+  {
+    name: 'Temporary',
+    items: [
+      // createExample(
+      //   {
+      //     intro: <EnvoyApp />,
+      //     sections: [],
+      //   },
+      //   'Envoy'
+      // ),
+      // createExample(
+      //   {
+      //     intro: <EnvoyAppB />,
+      //     sections: [],
+      //   },
+      //   'Envoy B'
+      // ),
+      // createExample(
+      //   {
+      //     intro: <EnvoyAppC />,
+      //     sections: [],
+      //   },
+      //   'Envoy C'
+      // ),
+      createExample(
+        {
+          intro: <Canopy />,
+          sections: [],
+        },
+        'Canopy'
+      ),
+      // createExample(
+      //   {
+      //     intro: <CoilApp />,
+      //     sections: [],
+      //   },
+      //   'Coil'
+      // ),
+      // createExample(
+      //   {
+      //     intro: <PropagateApp />,
+      //     sections: [],
+      //   },
+      //   'Propagate'
+      // ),
+    ],
+  },
   {
     name: 'Guidelines',
     items: [
