@@ -546,7 +546,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     <div
       style={{ width: '100%', height: '100%', overflow: 'hidden' }}
       ref={wrapperRef}>
-      {width && width > 0 && (
+      {(IS_JEST_ENVIRONMENT || (width && width > 0)) && (
         <DataGridWrapperRowsContext.Provider
           value={{ headerRowHeight, headerRow, footerRow }}>
           <Grid
