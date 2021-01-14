@@ -46,12 +46,12 @@ exports[`EuiHeaderSectionItemButton renders background 1`] = `
     class="euiHeaderSectionItemButton__inner--hasBackground"
   >
     <span
-      class="euiHeaderSectionItemButton__notification--dot"
-      color="accent"
-      data-euiicon-type="dot"
+      class=""
     />
     <span
-      class=""
+      class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+      color="accent"
+      data-euiicon-type="dot"
     />
   </span>
 </button>

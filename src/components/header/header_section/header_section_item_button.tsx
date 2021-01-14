@@ -73,46 +73,33 @@ export const EuiHeaderSectionItemButton = React.forwardRef<
     const animationClasses = classNames({
       'euiHeaderSectionItemButton--isAnimating': animation,
     });
+    const buttonClasses = classNames({
+      euiHeaderSectionItemButton__inner: !hasBackground,
+      'euiHeaderSectionItemButton__inner--hasBackground': hasBackground,
+    });
 
-    let buttonContent;
+    const buttonInner = (
+      <span className={buttonClasses}>
+        <span className={animationClasses}>{children}</span>
 
-    if (hasBackground) {
-      buttonContent = (
-        <span className="euiHeaderSectionItemButton__inner--hasBackground">
-          {notification && (
-            <EuiIcon
-              className="euiHeaderSectionItemButton__notification--dot"
-              type="dot"
-              color={notificationColor}
-            />
-          )}
-          <span className={animationClasses}>{children}</span>
-        </span>
-      );
-    } else {
-      buttonContent = (
-        <span className="euiHeaderSectionItemButton__inner">
-          <span className={animationClasses}>{children}</span>
+        {notification && typeof notification === 'boolean' && (
+          <EuiIcon
+            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+            color={notificationColor}
+            type="dot"
+            size="l"
+          />
+        )}
 
-          {notification && typeof notification === 'boolean' && (
-            <EuiIcon
-              className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-              color={notificationColor}
-              type="dot"
-              size="l"
-            />
-          )}
-
-          {notification && typeof notification !== 'boolean' && (
-            <EuiNotificationBadge
-              className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-              color={notificationColor}>
-              {notification}
-            </EuiNotificationBadge>
-          )}
-        </span>
-      );
-    }
+        {notification && typeof notification !== 'boolean' && (
+          <EuiNotificationBadge
+            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+            color={notificationColor}>
+            {notification}
+          </EuiNotificationBadge>
+        )}
+      </span>
+    );
 
     return (
       <button
@@ -121,7 +108,7 @@ export const EuiHeaderSectionItemButton = React.forwardRef<
         onClick={onClick}
         type="button"
         {...rest}>
-        {buttonContent}
+        {buttonInner}
       </button>
     );
   }

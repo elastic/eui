@@ -133,25 +133,10 @@ const HeaderUpdates = ({
     setIsPopoverVisible(!isPopoverVisible);
   };
 
-  const button = (
+  const bellButton = (
     <EuiHeaderSectionItemButton
       aria-controls="headerFlyoutNewsFeed"
       aria-expanded={isFlyoutVisible}
-      aria-haspopup="true"
-      aria-label={`News feed: ${
-        showNotification ? 'Updates available' : 'No updates'
-      }`}
-      onClick={() => showPopover()}
-      notification={showNotification && notificationsNumber}
-      animation={isAnimating}>
-      <EuiIcon type="cheer" size="m" />
-    </EuiHeaderSectionItemButton>
-  );
-
-  const alertButton = (
-    <EuiHeaderSectionItemButton
-      aria-controls="headerPopoverNewsFeed"
-      aria-expanded={isPopoverVisible}
       aria-haspopup="true"
       aria-label={`News feed: ${
         showNotification ? 'Updates available' : 'No updates'
@@ -160,7 +145,22 @@ const HeaderUpdates = ({
       notification={showNotification}
       animation={isAnimating}
       hasBackground>
-      <EuiIcon type="bell" size="m" />
+      <EuiIcon type="bell" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const cheerButton = (
+    <EuiHeaderSectionItemButton
+      aria-controls="headerPopoverNewsFeed"
+      aria-expanded={isPopoverVisible}
+      aria-haspopup="true"
+      aria-label={`News feed: ${
+        showNotification ? 'Updates available' : 'No updates'
+      }`}
+      onClick={() => showPopover()}
+      notification={showNotification && notificationsNumber}
+      animation={isAnimating}>
+      <EuiIcon type="cheer" />
     </EuiHeaderSectionItemButton>
   );
 
@@ -209,38 +209,42 @@ const HeaderUpdates = ({
     </EuiPortal>
   );
 
+  const popover = (
+    <EuiPopover
+      id="headerPopoverNewsFeed"
+      ownFocus
+      repositionOnScroll
+      button={cheerButton}
+      isOpen={isPopoverVisible}
+      closePopover={() => closePopover()}
+      panelPaddingSize="none">
+      <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
+      <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
+        <EuiSpacer size="s" />
+        {alerts.map((alert, i) => (
+          <EuiHeaderAlert
+            key={`alert-${i}`}
+            title={alert.title}
+            action={alert.action}
+            text={alert.text}
+            date={alert.date}
+            badge={alert.badge}
+          />
+        ))}
+      </div>
+      <EuiPopoverFooter paddingSize="s">
+        <EuiText color="subdued" size="s">
+          <p>Version 7.0</p>
+        </EuiText>
+      </EuiPopoverFooter>
+    </EuiPopover>
+  );
+
   return (
     <>
-      {alertButton}
+      {bellButton}
+      {popover}
       {isFlyoutVisible && flyout}
-      <EuiPopover
-        id="headerPopoverNewsFeed"
-        ownFocus
-        repositionOnScroll
-        button={button}
-        isOpen={isPopoverVisible}
-        closePopover={() => closePopover()}
-        panelPaddingSize="none">
-        <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
-        <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
-          <EuiSpacer size="s" />
-          {alerts.map((alert, i) => (
-            <EuiHeaderAlert
-              key={`alert-${i}`}
-              title={alert.title}
-              action={alert.action}
-              text={alert.text}
-              date={alert.date}
-              badge={alert.badge}
-            />
-          ))}
-        </div>
-        <EuiPopoverFooter paddingSize="s">
-          <EuiText color="subdued" size="s">
-            <p>Version 7.0</p>
-          </EuiText>
-        </EuiPopoverFooter>
-      </EuiPopover>
     </>
   );
 };

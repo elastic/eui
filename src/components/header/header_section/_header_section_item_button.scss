@@ -16,23 +16,17 @@
 
 .euiHeaderSectionItemButton__notification {
   position: absolute;
+
+  &--dot {
+    stroke: $euiHeaderBackgroundColor;
+  }
+
+  &--badge {
+    box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
+  }
 }
 
-.euiHeaderSectionItemButton__notification--badge {
-  top: 9%;
-  right: 9%;
-  box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
-}
-
-.euiHeaderSectionItemButton--isAnimating {
-  animation: 5s bellRinging ease-in-out;
-}
-
-.euiHeaderSectionItemButton__notification--dot {
-  position: absolute;
-  stroke: $euiHeaderBackgroundColor;
-}
-
+// button without a background
 .euiHeaderSectionItemButton__inner {
   position: relative;
   width: 100%;
@@ -45,8 +39,14 @@
     top: 0;
     right: 0;
   }
+
+  .euiHeaderSectionItemButton__notification--badge {
+    top: 9%;
+    right: 9%;
+  }
 }
 
+// button with a background
 .euiHeaderSectionItemButton__inner--hasBackground {
   position: relative;
   background: $euiColorLightestShade;
@@ -60,9 +60,18 @@
   margin: 0 auto;
 
   .euiHeaderSectionItemButton__notification--dot {
+    top: -$euiSizeS;
+    right: -$euiSizeS;
+  }
+
+  .euiHeaderSectionItemButton__notification--badge {
     top: -$euiSizeXS;
     right: -$euiSizeXS;
   }
+}
+
+.euiHeaderSectionItemButton--isAnimating {
+  animation: 5s euiButtonRinging ease-in-out;
 }
 
 @include euiBreakpoint('xs') {
@@ -73,7 +82,6 @@
   // On small screens just show a small dot indicating there are notifications
   .euiHeaderSectionItemButton__notification--badge {
     @include size($euiSizeS);
-    top: 20%;
     min-width: 0;
     border-radius: $euiSizeS;
     color: $euiColorAccent;
@@ -83,6 +91,19 @@
   // Using specificity to override the default icon size
   .euiHeaderSectionItemButton__notification.euiHeaderSectionItemButton__notification--dot {
     @include size($euiSize);
-    top: 9%;
+  }
+
+  .euiHeaderSectionItemButton__inner {
+    .euiHeaderSectionItemButton__notification--badge {
+      top: 20%;
+    }
+  }
+
+  .euiHeaderSectionItemButton__inner--hasBackground {
+    .euiHeaderSectionItemButton__notification--dot,
+    .euiHeaderSectionItemButton__notification--badge {
+      top: 0;
+      right: 0;
+    }
   }
 }
