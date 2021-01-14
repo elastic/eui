@@ -67,6 +67,22 @@ describe('EuiHeaderSectionItemButton', () => {
     });
   });
 
+  test('renders animation', () => {
+    const component = render(
+      <EuiHeaderSectionItemButton animation={true} notification={true} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders background', () => {
+    const component = render(
+      <EuiHeaderSectionItemButton hasBackground={true} notification={true} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('onClick', () => {
     test("isn't called upon instantiation", () => {
       const onClickHandler = jest.fn();

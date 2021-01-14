@@ -1,0 +1,88 @@
+.euiHeaderSectionItemButton {
+  position: relative; // For positioning the notification
+  height: $euiHeaderChildSize;
+  min-width: $euiHeaderChildSize;
+  text-align: center;
+  font-size: 0; // aligns icons better vertically
+
+  &:hover {
+    background: $euiColorLightestShade;
+  }
+
+  &:focus {
+    background: $euiFocusBackgroundColor;
+  }
+}
+
+.euiHeaderSectionItemButton__notification {
+  position: absolute;
+}
+
+.euiHeaderSectionItemButton__notification--badge {
+  top: 9%;
+  right: 9%;
+  box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
+}
+
+.euiHeaderSectionItemButton--isAnimating {
+  animation: 5s bellRinging ease-in-out;
+}
+
+.euiHeaderSectionItemButton__notification--dot {
+  position: absolute;
+  stroke: $euiHeaderBackgroundColor;
+}
+
+.euiHeaderSectionItemButton__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .euiHeaderSectionItemButton__notification--dot {
+    top: 0;
+    right: 0;
+  }
+}
+
+.euiHeaderSectionItemButton__inner--hasBackground {
+  position: relative;
+  background: $euiColorLightestShade;
+  height: $euiSizeXL;
+  width: $euiSizeXL;
+  min-width: $euiSizeXL;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto;
+
+  .euiHeaderSectionItemButton__notification--dot {
+    top: -$euiSizeXS;
+    right: -$euiSizeXS;
+  }
+}
+
+@include euiBreakpoint('xs') {
+  .euiHeaderSectionItemButton {
+    min-width: $euiHeaderChildSize * .75;
+  }
+
+  // On small screens just show a small dot indicating there are notifications
+  .euiHeaderSectionItemButton__notification--badge {
+    @include size($euiSizeS);
+    top: 20%;
+    min-width: 0;
+    border-radius: $euiSizeS;
+    color: $euiColorAccent;
+    overflow: hidden;
+  }
+
+  // Using specificity to override the default icon size
+  .euiHeaderSectionItemButton__notification.euiHeaderSectionItemButton__notification--dot {
+    @include size($euiSize);
+    top: 9%;
+  }
+}

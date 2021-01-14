@@ -279,7 +279,7 @@ export const HeaderExample = {
       demo: <HeaderDark theme={lightColors} />,
     },
     {
-      title: 'Portal content in the header',
+      title: 'Portal content in the header and buttons',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -312,14 +312,35 @@ export const HeaderExample = {
             the <EuiCode>repositionOnScroll</EuiCode> prop to the popover.
           </p>
           <p>
+            To alert or notify users about the additional information they are
+            receiving, use the <strong>EuiHeaderSectionItemButton</strong>{' '}
+            <EuiCode>notification</EuiCode> prop. You can pass a{' '}
+            <EuiCode>node</EuiCode> that will render inside a{' '}
+            <strong>EuiBadgeNotification</strong> or pass{' '}
+            <EuiCode>true</EuiCode> to render a simple dot. You can also animate
+            the button by passing <EuiCode>true</EuiCode> into the{' '}
+            <EuiCode>animation</EuiCode> prop.
+          </p>
+
+          <p>
             The example below shows how to incorporate{' '}
-            <strong>EuiHeaderAlert</strong> components to show a list of
-            updates.
+            <strong>EuiHeaderAlert</strong> components to show a list of updates
+            inside a{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyout</strong>
+            </Link>{' '}
+            and a{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            . It also shows how to animate and add different types of
+            notifications.
           </p>
         </>
       ),
       props: {
         EuiHeaderAlert,
+        EuiHeaderSectionItemButton,
       },
       demo: <HeaderAlert />,
     },

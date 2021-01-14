@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   EuiAvatar,
   EuiBadge,
+  EuiButton,
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
@@ -29,42 +30,14 @@ import {
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
-export default () => {
-  const [position, setPosition] = useState('static');
-
-  return (
-    <>
-      <EuiSwitch
-        label={'Make header fixed position and put alerts in flyout'}
-        checked={position === 'fixed'}
-        onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
-      />
-      <EuiSpacer />
-      <EuiHeader position={position}>
-        <EuiHeaderSection grow={false}>
-          <EuiHeaderSectionItem border="right">
-            <EuiHeaderLogo>Elastic</EuiHeaderLogo>
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-
-        <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem>
-            <HeaderUpdates
-              flyoutOrPopover={position === 'fixed' ? 'flyout' : 'popover'}
-            />
-          </EuiHeaderSectionItem>
-          <EuiHeaderSectionItem>
-            <HeaderUserMenu />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
-    </>
-  );
-};
-
-const HeaderUpdates = ({ flyoutOrPopover = 'flyout' }) => {
+const HeaderUpdates = ({
+  showNotification,
+  setShowNotification,
+  notificationsNumber,
+  isAnimating,
+}) => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [showBadge, setShowBadge] = useState(true);
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
   const alerts = [
     {
@@ -146,84 +119,107 @@ const HeaderUpdates = ({ flyoutOrPopover = 'flyout' }) => {
     setIsFlyoutVisible(false);
   };
 
+  const closePopover = () => {
+    setIsPopoverVisible(false);
+  };
+
   const showFlyout = () => {
-    setShowBadge(false);
+    setShowNotification(false);
     setIsFlyoutVisible(!isFlyoutVisible);
+  };
+
+  const showPopover = () => {
+    setShowNotification(false);
+    setIsPopoverVisible(!isPopoverVisible);
   };
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls="headerNewsFeed"
+      aria-controls="headerFlyoutNewsFeed"
       aria-expanded={isFlyoutVisible}
       aria-haspopup="true"
       aria-label={`News feed: ${
-        showBadge ? 'Updates available' : 'No updates'
+        showNotification ? 'Updates available' : 'No updates'
       }`}
-      onClick={() => showFlyout()}
-      notification={showBadge}>
+      onClick={() => showPopover()}
+      notification={showNotification && notificationsNumber}
+      animation={isAnimating}>
       <EuiIcon type="cheer" size="m" />
     </EuiHeaderSectionItemButton>
   );
 
-  let content;
-  if (flyoutOrPopover === 'flyout') {
-    content = (
-      <>
-        {button}
-        {isFlyoutVisible && (
-          <EuiPortal>
-            <EuiFlyout
-              onClose={() => closeFlyout()}
-              size="s"
-              id="headerNewsFeed"
-              aria-labelledby="flyoutSmallTitle">
-              <EuiFlyoutHeader hasBorder>
-                <EuiTitle size="s">
-                  <h2 id="flyoutSmallTitle">What&apos;s new</h2>
-                </EuiTitle>
-              </EuiFlyoutHeader>
-              <EuiFlyoutBody>
-                {alerts.map((alert, i) => (
-                  <EuiHeaderAlert
-                    key={`alert-${i}`}
-                    title={alert.title}
-                    action={alert.action}
-                    text={alert.text}
-                    date={alert.date}
-                    badge={alert.badge}
-                  />
-                ))}
-              </EuiFlyoutBody>
-              <EuiFlyoutFooter>
-                <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-                  <EuiFlexItem grow={false}>
-                    <EuiButtonEmpty
-                      iconType="cross"
-                      onClick={() => closeFlyout()}
-                      flush="left">
-                      Close
-                    </EuiButtonEmpty>
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiText color="subdued" size="s">
-                      <p>Version 7.0</p>
-                    </EuiText>
-                  </EuiFlexItem>
-                </EuiFlexGroup>
-              </EuiFlyoutFooter>
-            </EuiFlyout>
-          </EuiPortal>
-        )}
-      </>
-    );
-  }
+  const alertButton = (
+    <EuiHeaderSectionItemButton
+      aria-controls="headerPopoverNewsFeed"
+      aria-expanded={isPopoverVisible}
+      aria-haspopup="true"
+      aria-label={`News feed: ${
+        showNotification ? 'Updates available' : 'No updates'
+      }`}
+      onClick={() => showFlyout()}
+      notification={showNotification}
+      animation={isAnimating}
+      hasBackground>
+      <EuiIcon type="bell" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
 
-  if (flyoutOrPopover === 'popover') {
-    content = (
+  const flyout = (
+    <EuiPortal>
+      <EuiFlyout
+        onClose={() => closeFlyout()}
+        size="s"
+        id="headerFlyoutNewsFeed"
+        aria-labelledby="flyoutSmallTitle">
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="s">
+            <h2 id="flyoutSmallTitle">What&apos;s new</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          {alerts.map((alert, i) => (
+            <EuiHeaderAlert
+              key={`alert-${i}`}
+              title={alert.title}
+              action={alert.action}
+              text={alert.text}
+              date={alert.date}
+              badge={alert.badge}
+            />
+          ))}
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty
+                iconType="cross"
+                onClick={() => closeFlyout()}
+                flush="left">
+                Close
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiText color="subdued" size="s">
+                <p>Version 7.0</p>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlyoutFooter>
+      </EuiFlyout>
+    </EuiPortal>
+  );
+
+  return (
+    <>
+      {alertButton}
+      {isFlyoutVisible && flyout}
       <EuiPopover
+        id="headerPopoverNewsFeed"
+        ownFocus
+        repositionOnScroll
         button={button}
-        isOpen={isFlyoutVisible}
-        closePopover={() => closeFlyout()}
+        isOpen={isPopoverVisible}
+        closePopover={() => closePopover()}
         panelPaddingSize="none">
         <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
         <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
@@ -245,10 +241,8 @@ const HeaderUpdates = ({ flyoutOrPopover = 'flyout' }) => {
           </EuiText>
         </EuiPopoverFooter>
       </EuiPopover>
-    );
-  }
-
-  return content;
+    </>
+  );
 };
 
 const HeaderUserMenu = () => {
@@ -317,5 +311,86 @@ const HeaderUserMenu = () => {
         </EuiFlexGroup>
       </div>
     </EuiPopover>
+  );
+};
+
+export default () => {
+  const [position, setPosition] = useState('static');
+  const [showNotification, setShowNotification] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [theme, setTheme] = useState('light');
+  const [notificationsNumber, setNotificationsNumber] = useState(1);
+
+  const animate = () => {
+    setIsAnimating(false);
+
+    setTimeout(() => {
+      setIsAnimating(true);
+    }, 100);
+  };
+
+  const notify = () => {
+    if (!showNotification) {
+      setNotificationsNumber(1);
+      setShowNotification(true);
+    } else {
+      setNotificationsNumber(notificationsNumber + 1);
+    }
+  };
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center" gutterSize="m">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={'Make header fixed position'}
+            checked={position === 'fixed'}
+            onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={'Change theme to dark'}
+            checked={theme === 'dark'}
+            onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={notify}>
+            Notify
+          </EuiButton>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={animate}>
+            Animate
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+      <EuiHeader position={position} theme={theme}>
+        <EuiHeaderSection grow={false}>
+          <EuiHeaderSectionItem border="right">
+            <EuiHeaderLogo>Elastic</EuiHeaderLogo>
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>
+            <HeaderUpdates
+              showNotification={showNotification}
+              setShowNotification={() => setShowNotification()}
+              notificationsNumber={notificationsNumber}
+              isAnimating={isAnimating}
+            />
+          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
+            <HeaderUserMenu isAnimating={isAnimating} />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    </>
   );
 };
