@@ -102,8 +102,7 @@ const makeResizeObserver = (node: Element, callback: () => void) => {
 
 export const useResizeObserver = (
   container: Element | null,
-  dimension?: 'width' | 'height',
-  debug = ''
+  dimension?: 'width' | 'height'
 ) => {
   const [size, _setSize] = useState({ width: 0, height: 0 });
 
@@ -121,9 +120,6 @@ export const useResizeObserver = (
           _currentDimensions.current.height !== dimensions.height)
       ) {
         _currentDimensions.current = dimensions;
-        if (debug) {
-          console.log(`${debug}: setting size`);
-        }
         _setSize(dimensions);
       }
     },
@@ -135,18 +131,12 @@ export const useResizeObserver = (
       // ResizeObserver's first call to the observation callback is scheduled in the future
       // so find the container's initial dimensions now
       const boundingRect = container.getBoundingClientRect();
-      if (debug) {
-        console.log(`${debug}: initial size setting`);
-      }
       setSize({
         width: boundingRect.width,
         height: boundingRect.height,
       });
 
       const observer = makeResizeObserver(container, () => {
-        if (debug) {
-          console.log(`${debug}: observer fired`);
-        }
         const boundingRect = container.getBoundingClientRect();
         setSize({
           width: boundingRect.width,
@@ -160,8 +150,5 @@ export const useResizeObserver = (
     }
   }, [container, setSize]);
 
-  if (debug) {
-    console.log(`${debug}: ${JSON.stringify(size)}`);
-  }
   return size;
 };

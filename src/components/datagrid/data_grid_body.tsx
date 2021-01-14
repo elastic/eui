@@ -264,7 +264,6 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
-  console.log('render data grid body');
   const {
     columnWidths,
     defaultColumnWidth,
@@ -524,11 +523,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [rowCount]);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const wrapperDimensions = useResizeObserver(
-    wrapperRef.current,
-    undefined,
-    'wrapper'
-  );
+  const wrapperDimensions = useResizeObserver(wrapperRef.current, undefined);
 
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
@@ -537,14 +532,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       boundingRect.height !== unconstrainedHeight &&
       height !== boundingRect.height
     ) {
-      console.log('setting height');
       setHeight(boundingRect.height);
     }
     if (
       boundingRect.width !== unconstrainedWidth &&
       width !== boundingRect.width
     ) {
-      console.log('setting width');
       setWidth(boundingRect.width);
     }
   }, [unconstrainedHeight, wrapperDimensions]);

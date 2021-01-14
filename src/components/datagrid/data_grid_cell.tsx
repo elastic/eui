@@ -469,9 +469,10 @@ export class EuiDataGridCell extends Component<
                     <EuiDataGridCellContent {...cellContentProps} />
                   </div>
                 </div>
-              );
-            }}
-          </EuiMutationObserver>
+             );
+
+              }}
+            </EuiMutationObserver>
         </div>
       </EuiFocusTrap>
     );

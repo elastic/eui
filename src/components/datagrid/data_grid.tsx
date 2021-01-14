@@ -621,7 +621,6 @@ function notifyCellOfFocusState(
 
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
-  console.log('render data grid');
   const {
     leadingControlColumns = emptyArrayDefault,
     trailingControlColumns = emptyArrayDefault,
@@ -721,7 +720,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   // enables/disables grid controls based on available width
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
-  const gridDimensions = useResizeObserver(resizeRef, 'width', 'main');
+  const gridDimensions = useResizeObserver(resizeRef, 'width');
   useEffect(() => {
     if (resizeRef) {
       const { width } = gridDimensions;
