@@ -3,6 +3,18 @@
   min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
 }
 
+@keyframes euiDataGridCellButtonSlideIn {
+  from {
+    margin-left: 0;
+    width: 0;
+  }
+
+  to {
+    margin-left: $euiDataGridCellPaddingM;
+    width: $euiSizeM;
+  }
+}
+
 @include euiDataGridRowCell {
   @include euiFontSizeS;
 
@@ -38,11 +50,31 @@
   // Long delays on hover to mitigate the accordion effect
   &:hover {
     .euiDataGridRowCell__expandButtonIcon {
-      transition: margin $euiAnimSpeedFast 500ms, width $euiAnimSpeedFast 500ms;
+      animation-duration: $euiAnimSpeedFast;
+      animation-name: euiDataGridCellButtonSlideIn;
+      animation-iteration-count: 1;
+      animation-delay: 1000ms;
+      animation-fill-mode: forwards;  
     }
 
     .euiDataGridRowCell__actionButtonIcon {
-      transition: margin $euiAnimSpeedFast 500ms, width $euiAnimSpeedFast 500ms;
+      animation-duration: $euiAnimSpeedFast;
+      animation-name: euiDataGridCellButtonSlideIn;
+      animation-iteration-count: 1;
+      animation-delay: 1000ms;
+      animation-fill-mode: forwards;  
+    }
+  }
+
+  &:not(:hover) {
+    .euiDataGridRowCell__expandButtonIcon {
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+
+    .euiDataGridRowCell__actionButtonIcon {
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
     }
   }
 
@@ -74,6 +106,7 @@
       white-space: nowrap;
     }
   }
+
 }
 
 .euiDataGridRowCell__popover {
@@ -102,20 +135,11 @@
   display: flex;
   flex-grow: 0;
 
-  &.euiDataGridRowCell__expandButton-isHoveredOrFocused {
-    .euiDataGridRowCell__expandButtonIcon {
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-      background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
-    }
-
-    .euiDataGridRowCell__actionButtonIcon {
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-    }
+  .euiDataGridRowCell__expandButtonIcon {
+    background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
   }
-
 }
+
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;

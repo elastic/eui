@@ -1145,46 +1145,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, A
                             </div>
                           </div>
                         </div>
@@ -1202,46 +1181,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, B
                             </div>
                           </div>
                         </div>
@@ -1259,46 +1217,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, A
                             </div>
                           </div>
                         </div>
@@ -1316,46 +1253,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, B
                             </div>
                           </div>
                         </div>
@@ -1373,46 +1289,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, A
                             </div>
                           </div>
                         </div>
@@ -1430,46 +1325,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, B
                             </div>
                           </div>
                         </div>
@@ -1791,46 +1665,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, A
                             </div>
                           </div>
                         </div>
@@ -1848,46 +1701,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 3:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 3:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, B
                             </div>
                           </div>
                         </div>
@@ -1999,46 +1831,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, A
                             </div>
                           </div>
                         </div>
@@ -2056,46 +1867,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 3:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 3:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, B
                             </div>
                           </div>
                         </div>
@@ -2207,46 +1997,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, A
                             </div>
                           </div>
                         </div>
@@ -2264,46 +2033,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 3:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 3:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, B
                             </div>
                           </div>
                         </div>
@@ -2594,46 +2342,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, A
                             </div>
                           </div>
                         </div>
@@ -2651,46 +2378,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, B
                             </div>
                           </div>
                         </div>
@@ -2708,46 +2414,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, A
                             </div>
                           </div>
                         </div>
@@ -2765,46 +2450,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, B
                             </div>
                           </div>
                         </div>
@@ -2822,46 +2486,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, A
                             </div>
                           </div>
                         </div>
@@ -2879,46 +2522,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, B
                             </div>
                           </div>
                         </div>
@@ -3160,46 +2782,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, A
                             </div>
                           </div>
                         </div>
@@ -3217,46 +2818,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 1, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                0, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 1, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              0, B
                             </div>
                           </div>
                         </div>
@@ -3274,46 +2854,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, A
                             </div>
                           </div>
                         </div>
@@ -3331,46 +2890,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 2, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                1, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 2, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              1, B
                             </div>
                           </div>
                         </div>
@@ -3388,46 +2926,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 1:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, A
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 1:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, A
                             </div>
                           </div>
                         </div>
@@ -3445,46 +2962,25 @@ Array [
                       class="euiDataGridRowCell__content"
                     >
                       <div
-                        class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                        class="euiDataGridRowCell__expand"
                       >
                         <div
-                          class="euiPopover__anchor euiDataGridRowCell__expand"
+                          class="euiDataGridRowCell__expandFlex"
                         >
                           <div
-                            class="euiDataGridRowCell__expandFlex"
+                            class="euiDataGridRowCell__expandContent"
                           >
-                            <div
-                              class="euiDataGridRowCell__expandContent"
+                            <p
+                              class="euiScreenReaderOnly"
                             >
-                              <p
-                                class="euiScreenReaderOnly"
-                              >
-                                <span>
-                                  Row: 3, Column: 2:
-                                </span>
-                              </p>
-                              <div
-                                class="euiDataGridRowCell__truncate"
-                              >
-                                2, B
-                              </div>
-                            </div>
+                              <span>
+                                Row: 3, Column: 2:
+                              </span>
+                            </p>
                             <div
-                              class="euiDataGridRowCell__expandButton"
+                              class="euiDataGridRowCell__truncate"
                             >
-                              <button
-                                aria-hidden="true"
-                                class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                                tabindex="-1"
-                                title="Click or hit enter to interact with cell content"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  class="euiButtonIcon__icon"
-                                  data-euiicon-type="expandMini"
-                                />
-                              </button>
+                              2, B
                             </div>
                           </div>
                         </div>

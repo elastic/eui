@@ -102,7 +102,6 @@ interface EuiDataGridCellState {
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   isHovered: boolean;
-  renderIsHovered: boolean;
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
 }
 
@@ -147,7 +146,6 @@ export class EuiDataGridCell extends Component<
     isFocused: false,
     isEntered: false,
     isHovered: false,
-    renderIsHovered: false,
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
@@ -260,7 +258,6 @@ export class EuiDataGridCell extends Component<
     if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
     if (nextState.isHovered !== this.state.isHovered) return true;
-    if (nextState.renderIsHovered !== this.state.renderIsHovered) return true;
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
@@ -296,7 +293,7 @@ export class EuiDataGridCell extends Component<
   };
 
   onBlur = () => {
-    this.setState({ disableCellTabIndex: false });
+    this.setState({ disableCellTabIndex: false, isFocused: false });
   };
 
   preventTabbing = () => {
@@ -485,11 +482,6 @@ export class EuiDataGridCell extends Component<
       this.state.isHovered ||
       this.state.popoverIsOpen;
 
-    if (showCellButtons) {
-      console.log('showing cell buttons for ' + rowIndex + ',' + colIndex);
-      console.log('renderIsHovered:' + this.state.renderIsHovered);
-    }
-
     if (isExpandable || (column && column.cellActions)) {
       anchorContent = (
         <div className="euiDataGridRowCell__expandFlex">
@@ -516,7 +508,6 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               column={column}
               popoverIsOpen={this.state.popoverIsOpen}
-              isHoveredOrFocused={this.state.renderIsHovered}
               closePopover={this.closePopover}
               onExpandClick={() => {
                 this.setState(
@@ -575,14 +566,10 @@ export class EuiDataGridCell extends Component<
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {
-          this.setState({ isHovered: true, renderIsHovered: false }, () => {
-            setTimeout(() => {
-              this.setState({ renderIsHovered: true });
-            }, 500);
-          });
+          this.setState({ isHovered: true });
         }}
         onMouseLeave={() => {
-          this.setState({ isHovered: false, renderIsHovered: false });
+          this.setState({ isHovered: false });
         }}
         onBlur={this.onBlur}>
         {innerContent}

@@ -28,6 +28,7 @@ import {
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
+import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -521,6 +522,8 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -538,6 +541,8 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -555,6 +560,8 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -572,6 +579,8 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -1986,7 +1995,7 @@ describe('EuiDataGrid', () => {
   });
 
   describe('render column cell actions', () => {
-    it('renders various column cell actions configurations', () => {
+    it('renders various column cell actions configurations after cell gets hovered', async () => {
       const alertFn = jest.fn();
       const happyFn = jest.fn();
       const component = mount(
@@ -2041,9 +2050,21 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      findTestSubject(component, 'alertAction').at(1).simulate('click');
+      // cell buttons should not get rendered for unfocused, unhovered cell
+      expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
+      expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
+
+      await act(async () => {
+        findTestSubject(component, 'dataGridRowCell')
+          .at(1)
+          .prop('onMouseEnter')!({} as React.MouseEvent);
+      });
+
+      component.update();
+
+      findTestSubject(component, 'alertAction').at(0).simulate('click');
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyAction').at(1).simulate('click');
+      findTestSubject(component, 'happyAction').at(0).simulate('click');
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
       alertFn.mockReset();
       happyFn.mockReset();

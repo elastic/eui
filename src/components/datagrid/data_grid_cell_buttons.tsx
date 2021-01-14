@@ -28,14 +28,12 @@ import { EuiButtonIcon, EuiButtonIconProps } from '../button/button_icon';
 
 export const EuiDataGridCellButtons = ({
   popoverIsOpen,
-  isHoveredOrFocused,
   closePopover,
   onExpandClick,
   column,
   rowIndex,
 }: {
   popoverIsOpen: boolean;
-  isHoveredOrFocused: boolean;
   closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
@@ -46,7 +44,6 @@ export const EuiDataGridCellButtons = ({
   });
   const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
     'euiDataGridRowCell__expandButton-isActive': popoverIsOpen,
-    'euiDataGridRowCell__expandButton-isHoveredOrFocused': isHoveredOrFocused,
   });
   const expandButton = (
     <EuiI18n
