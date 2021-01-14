@@ -69,7 +69,7 @@ export interface EuiContextMenuPanelDescriptor {
   /**
    * Alters the size of the items and the title
    */
-  size?: typeof SIZES[number];
+  size?: keyof typeof sizeToClassNameMap;
 }
 
 const sizeToClassNameMap = {
