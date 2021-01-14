@@ -38,7 +38,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="contextMenuExample"
+      id="smallContextMenuExample"
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
