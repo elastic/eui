@@ -264,6 +264,7 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
+  console.log('render data grid body');
   const {
     columnWidths,
     defaultColumnWidth,
@@ -467,7 +468,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const gridRef = useRef<Grid>(null);
   useEffect(() => {
-    gridRef.current!.resetAfterColumnIndex(0);
+    if (gridRef.current) {
+      gridRef.current.resetAfterColumnIndex(0);
+    }
   }, [columns, columnWidths, defaultColumnWidth]);
 
   const getWidth = useCallback(
@@ -521,15 +524,27 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [rowCount]);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const wrapperDimensions = useResizeObserver(wrapperRef.current);
+  const wrapperDimensions = useResizeObserver(
+    wrapperRef.current,
+    undefined,
+    'wrapper'
+  );
 
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight) {
+    if (
+      boundingRect.height !== unconstrainedHeight &&
+      height !== boundingRect.height
+    ) {
+      console.log('setting height');
       setHeight(boundingRect.height);
     }
-    if (boundingRect.width !== unconstrainedWidth) {
+    if (
+      boundingRect.width !== unconstrainedWidth &&
+      width !== boundingRect.width
+    ) {
+      console.log('setting width');
       setWidth(boundingRect.width);
     }
   }, [unconstrainedHeight, wrapperDimensions]);
@@ -538,41 +553,43 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     <div
       style={{ width: '100%', height: '100%', overflow: 'hidden' }}
       ref={wrapperRef}>
-      <DataGridWrapperRowsContext.Provider
-        value={{ headerRowHeight, headerRow, footerRow }}>
-        <Grid
-          ref={gridRef}
-          innerElementType={InnerElement}
-          className="euiDataGrid__virtualized"
-          columnCount={
-            leadingControlColumns.length +
-            columns.length +
-            trailingControlColumns.length
-          }
-          width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
-          columnWidth={getWidth}
-          height={IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight}
-          rowHeight={getRowHeight}
-          itemData={{
-            setRowHeight,
-            rowMap,
-            rowOffset: pagination
-              ? pagination.pageIndex * pagination.pageSize
-              : 0,
-            leadingControlColumns,
-            trailingControlColumns,
-            columns,
-            schema,
-            popoverContents: mergedPopoverContents,
-            columnWidths,
-            defaultColumnWidth,
-            renderCellValue,
-            interactiveCellId,
-          }}
-          rowCount={visibleRowIndices.length}>
-          {Cell}
-        </Grid>
-      </DataGridWrapperRowsContext.Provider>
+      {width && width > 0 && (
+        <DataGridWrapperRowsContext.Provider
+          value={{ headerRowHeight, headerRow, footerRow }}>
+          <Grid
+            ref={gridRef}
+            innerElementType={InnerElement}
+            className="euiDataGrid__virtualized"
+            columnCount={
+              leadingControlColumns.length +
+              columns.length +
+              trailingControlColumns.length
+            }
+            width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
+            columnWidth={getWidth}
+            height={IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight}
+            rowHeight={getRowHeight}
+            itemData={{
+              setRowHeight,
+              rowMap,
+              rowOffset: pagination
+                ? pagination.pageIndex * pagination.pageSize
+                : 0,
+              leadingControlColumns,
+              trailingControlColumns,
+              columns,
+              schema,
+              popoverContents: mergedPopoverContents,
+              columnWidths,
+              defaultColumnWidth,
+              renderCellValue,
+              interactiveCellId,
+            }}
+            rowCount={visibleRowIndices.length}>
+            {Cell}
+          </Grid>
+        </DataGridWrapperRowsContext.Provider>
+      )}
     </div>
   );
 };
