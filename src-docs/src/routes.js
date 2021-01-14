@@ -226,14 +226,7 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
 /** ! Temporary ! */
 
-import {
-  // App as EnvoyApp,
-  // AppB as EnvoyAppB,
-  // AppC as EnvoyAppC,
-  Canopy,
-  // CoilApp,
-  // PropagateApp,
-} from './views/emotion';
+import Canopy from './views/emotion/canopy';
 
 /**
  * Lowercases input and replaces spaces with hyphens:
@@ -320,27 +313,6 @@ const navigation = [
   {
     name: 'Temporary',
     items: [
-      // createExample(
-      //   {
-      //     intro: <EnvoyApp />,
-      //     sections: [],
-      //   },
-      //   'Envoy'
-      // ),
-      // createExample(
-      //   {
-      //     intro: <EnvoyAppB />,
-      //     sections: [],
-      //   },
-      //   'Envoy B'
-      // ),
-      // createExample(
-      //   {
-      //     intro: <EnvoyAppC />,
-      //     sections: [],
-      //   },
-      //   'Envoy C'
-      // ),
       createExample(
         {
           intro: <Canopy />,
@@ -348,20 +320,6 @@ const navigation = [
         },
         'Canopy'
       ),
-      // createExample(
-      //   {
-      //     intro: <CoilApp />,
-      //     sections: [],
-      //   },
-      //   'Coil'
-      // ),
-      // createExample(
-      //   {
-      //     intro: <PropagateApp />,
-      //     sections: [],
-      //   },
-      //   'Propagate'
-      // ),
     ],
   },
   {

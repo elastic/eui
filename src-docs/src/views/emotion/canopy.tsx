@@ -23,35 +23,13 @@ import chroma from 'chroma-js';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
 import {
-  createTheme,
+  buildTheme,
   computed,
-  Computed,
-  setOn,
-} from '../../../../src/services/theme/theme';
+  useEuiTheme,
+  EuiThemeProvider,
+} from '../../../../src/services/theme';
 
-const mergeDeep = (_target: any, source: any) => {
-  const isObject = (obj: any) => obj && typeof obj === 'object';
-  const target = { ..._target };
-
-  if (!isObject(target) || !isObject(source)) {
-    return source;
-  }
-
-  Object.keys(source).forEach((key) => {
-    const targetValue = target[key];
-    const sourceValue = source[key];
-
-    if (isObject(targetValue) && isObject(sourceValue)) {
-      target[key] = mergeDeep({ ...targetValue }, { ...sourceValue });
-    } else {
-      target[key] = sourceValue;
-    }
-  });
-
-  return target;
-};
-
-const DefaultEuiTheme = createTheme({
+const globalTheme = buildTheme({
   light: {
     colors: {
       primary: '#006BB4',
@@ -75,104 +53,6 @@ const DefaultEuiTheme = createTheme({
     },
   },
 });
-
-const EuiThemeContext = React.createContext<any>(undefined);
-const EuiOverrideContext = React.createContext<any>({});
-const EuiColorModeContext = React.createContext<any>(undefined);
-
-export function EuiThemeProvider({
-  theme: themeConfig,
-  colorMode: _colorMode,
-  overrides: _overrides = {},
-  children,
-}: {
-  theme?: any;
-  colorMode?: string;
-  overrides?: any;
-  children: any;
-}) {
-  const parentSystem = React.useContext(EuiThemeContext);
-  const parentOverrides = React.useContext(EuiOverrideContext);
-  const parentColorMode = React.useContext(EuiColorModeContext);
-  // const isParentThemeProvider = parentSystem === undefined;
-
-  const theme = React.useMemo(() => themeConfig || parentSystem, [
-    themeConfig,
-    parentSystem,
-  ]);
-
-  const colorMode = React.useMemo(
-    () => getColorMode(_colorMode, parentColorMode),
-    [_colorMode, parentColorMode]
-  );
-  const overrides = React.useMemo(() => {
-    return mergeDeep(parentOverrides, _overrides);
-  }, [_overrides, parentOverrides]);
-
-  return (
-    <EuiColorModeContext.Provider value={colorMode}>
-      <EuiThemeContext.Provider value={theme}>
-        <EuiOverrideContext.Provider value={overrides}>
-          {children}
-        </EuiOverrideContext.Provider>
-      </EuiThemeContext.Provider>
-    </EuiColorModeContext.Provider>
-  );
-}
-
-function isInverseColorMode(colorMode?: string) {
-  return colorMode === 'inverse';
-}
-
-function getColorMode(colorMode?: string, parentColorMode?: string) {
-  if (colorMode == null) {
-    return parentColorMode || 'light';
-  } else if (isInverseColorMode(colorMode)) {
-    return parentColorMode === 'dark' || parentColorMode === undefined
-      ? 'light'
-      : 'dark';
-  } else {
-    return colorMode;
-  }
-}
-
-function compute(base: any, over: any) {
-  const output = {};
-
-  function loop(base: any, over: any, path?: string) {
-    Object.keys(base).forEach((key) => {
-      const baseValue =
-        base[key] instanceof Computed
-          ? base[key].getValue(base.root, over.root, output)
-          : base[key];
-      const overValue =
-        over[key] instanceof Computed
-          ? over[key].getValue(base.root, over.root, output)
-          : over[key];
-      const newPath = path ? `${path}.${key}` : `${key}`;
-      if (baseValue && typeof baseValue === 'object') {
-        loop(baseValue, overValue ?? {}, newPath);
-      } else {
-        setOn(output, newPath, overValue ?? baseValue);
-      }
-    });
-  }
-  loop(base, over);
-  return output;
-}
-
-export function useEuiTheme() {
-  const theme = React.useContext(EuiThemeContext);
-  const overrides = React.useContext(EuiOverrideContext);
-  const colorMode = React.useContext(EuiColorModeContext);
-  const [values, setValues] = React.useState<any>(() => {
-    return compute(theme, createTheme(overrides));
-  });
-  React.useEffect(() => {
-    setValues(compute(theme, createTheme(overrides)));
-  }, [theme, overrides]);
-  return [values[colorMode], theme, colorMode];
-}
 
 const View = () => {
   const [theme, , colorMode] = useEuiTheme();
@@ -256,7 +136,7 @@ const View2 = () => {
   );
 };
 
-export const Canopy = () => {
+export default () => {
   const [colorMode, setColorMode] = React.useState('light');
   const toggleTheme = () => {
     setColorMode((mode) => (mode === 'light' ? 'dark' : 'light'));
@@ -286,7 +166,7 @@ export const Canopy = () => {
   return (
     <>
       <EuiThemeProvider
-        theme={DefaultEuiTheme}
+        theme={globalTheme}
         colorMode={colorMode}
         overrides={overrides}>
         <button type="button" onClick={toggleTheme}>
