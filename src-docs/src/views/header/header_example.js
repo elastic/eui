@@ -279,7 +279,7 @@ export const HeaderExample = {
       demo: <HeaderDark theme={lightColors} />,
     },
     {
-      title: 'Portal content in the header and buttons',
+      title: 'Portal content and buttons in the header ',
       source: [
         {
           type: GuideSectionTypes.JS,

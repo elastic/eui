@@ -17,7 +17,11 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  PropsWithChildren,
+  forwardRef,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -52,7 +56,7 @@ export type EuiHeaderSectionItemButtonProps = CommonProps &
 
 export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
 
-export const EuiHeaderSectionItemButton = React.forwardRef<
+export const EuiHeaderSectionItemButton = forwardRef<
   EuiHeaderSectionItemButtonRef,
   PropsWithChildren<EuiHeaderSectionItemButtonProps>
 >(
