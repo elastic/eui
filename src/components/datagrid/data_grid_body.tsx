@@ -62,6 +62,7 @@ import {
 import { useResizeObserver } from '../observer/resize_observer';
 
 export interface EuiDataGridBodyProps {
+  isFullScreen: boolean;
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   leadingControlColumns?: EuiDataGridControlColumn[];
@@ -265,6 +266,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
+    isFullScreen,
     columnWidths,
     defaultColumnWidth,
     leadingControlColumns = [],
@@ -534,6 +536,13 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [unconstrainedHeight, wrapperDimensions]);
 
+  let finalHeight = IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight;
+  let finalWidth = IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth;
+  if (isFullScreen) {
+    finalHeight = window.innerHeight;
+    finalWidth = window.innerWidth;
+  }
+
   return (
     <div
       style={{ width: '100%', height: '100%', overflow: 'hidden' }}
@@ -549,9 +558,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             columns.length +
             trailingControlColumns.length
           }
-          width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
+          width={finalWidth}
           columnWidth={getWidth}
-          height={IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight}
+          height={finalHeight}
           rowHeight={getRowHeight}
           itemData={{
             setRowHeight,

@@ -997,7 +997,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                       <div
                         className={classes}
                         onKeyDown={handleGridKeyDown}
-                        style={{ width, height }}
+                        style={isFullScreen ? undefined : { width, height }}
                         ref={setContainerRef}
                         {...rest}>
                         {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
@@ -1052,6 +1052,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                   {...wrappingDivFocusProps}
                                   {...gridAriaProps}>
                                   <EuiDataGridBody
+                                    isFullScreen={isFullScreen}
                                     columns={orderedVisibleColumns}
                                     columnWidths={columnWidths}
                                     defaultColumnWidth={defaultColumnWidth}
