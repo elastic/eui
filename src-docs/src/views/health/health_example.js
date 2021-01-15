@@ -16,9 +16,9 @@ const healthSnippet = [
 ];
 
 import HealthSize from './health_size';
-const healthSizeSource = require('!!raw-loader!./health_size');
-const healthSizeHtml = renderToHtml(HealthSize);
-const healthSizeSnippet = [
+const healthTextSizeSource = require('!!raw-loader!./health_size');
+const healthTextSizeHtml = renderToHtml(HealthSize);
+const healthTextSizeSnippet = [
   '<EuiHealth textSize="inherit">Text inherited from the parent element</EuiHealth>',
   '<EuiHealth textSize="xs">Text extra small</EuiHealth>',
 ];
@@ -56,11 +56,11 @@ export const HealthExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: healthSizeSource,
+          code: healthTextSizeSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: healthSizeHtml,
+          code: healthTextSizeHtml,
         },
       ],
       text: (
@@ -71,7 +71,7 @@ export const HealthExample = {
           or inherit its value from its parent element.
         </p>
       ),
-      snippet: healthSizeSnippet,
+      snippet: healthTextSizeSnippet,
       props: { EuiHealth },
       demo: <HealthSize />,
     },
