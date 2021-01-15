@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
+- Allowed visual state of `EuiSelect` with `hasNoInitialSelection` to be reset with `value={undefined}` ([#4428](https://github.com/elastic/eui/pull/4428))
 
 ## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
 

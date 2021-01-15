@@ -10,16 +10,21 @@ export default () => {
     { value: 'option_three', text: 'Option three' },
   ];
 
-  const [value, setValue] = useState(options[1].value);
+  const [value, setValue] = useState(undefined);
 
   const onChange = (e) => {
     setValue(e.target.value);
   };
 
+  window.asdf = () => {
+    setValue(undefined);
+  }
+
   return (
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend canAppend canReadOnly={false}>
       <EuiSelect
+        hasNoInitialSelection
         id="selectDocExample"
         options={options}
         value={value}
