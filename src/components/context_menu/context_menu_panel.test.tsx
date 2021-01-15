@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
 
-import { EuiContextMenuPanel } from './context_menu_panel';
+import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
 import { EuiContextMenuItem } from './context_menu_item';
 
@@ -56,6 +56,18 @@ describe('EuiContextMenuPanel', () => {
         const component = render(<EuiContextMenuPanel title="Title" />);
 
         expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        it(`${size} is rendered`, () => {
+          const component = render(
+            <EuiContextMenuPanel title="Title" size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
 

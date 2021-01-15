@@ -80,7 +80,7 @@ export default () => {
       closePopover={closePopover}
       panelPaddingSize="none"
       anchorPosition="downLeft">
-      <EuiContextMenuPanel items={items} />
+      <EuiContextMenuPanel size="s" items={items} />
     </EuiPopover>
   );
 };

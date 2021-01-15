@@ -1,5 +1,12 @@
-@mixin euiPopoverTitle {
-  @include euiTitle('xxs');
+@mixin euiPopoverTitle($size: 'm') {
+  @if ($size == 's') {
+    @include euiTitle('xxxs');
+  } @else if ($size == 'm') {
+    @include euiTitle('xxs');
+  } @else {
+    @warn 'euiPopoverTitle only accepts "s" or "m" sizes';
+  }
+
   padding: $euiSizeM;
   text-transform: uppercase;
   border-bottom: $euiBorderThin;
