@@ -72,6 +72,7 @@ export const HealthExample = {
         </p>
       ),
       snippet: healthSizeSnippet,
+      props: { EuiHealth },
       demo: <HealthSize />,
     },
   ],
