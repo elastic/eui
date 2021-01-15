@@ -25,7 +25,6 @@ import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-export type HealthTextSize = 'xs' | 's' | 'm' | 'inherit';
 
 const sizeToClassNameMap: { [textSize in HealthTextSize]: string | null } = {
   xs: 'euiHealth--textSizeXS',
