@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
+
+## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
+
 - Added support for adjusting `buffer` for individual window sides of `EuiPopover`. ([#4417](https://github.com/elastic/eui/pull/4417))
 - Added `'full'` option to the `height` prop of `EuiMarkdownEditor`. Added `autoExpandPreview` and `maxHeight` props to `EuiMarkdownEditor` ([#4245](https://github.com/elastic/eui/pull/4245))
 
