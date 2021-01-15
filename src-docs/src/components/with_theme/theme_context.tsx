@@ -1,7 +1,13 @@
 import React from 'react';
-import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
+import { EUI_THEMES, EUI_THEME, DefaultEuiTheme } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
+import {
+  // buildTheme,
+  // computed,
+  // useEuiTheme,
+  EuiThemeProvider,
+} from '../../../../src/services/theme';
 
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 
@@ -47,7 +53,11 @@ export class ThemeProvider extends React.Component<object, State> {
           theme,
           changeTheme: this.changeTheme,
         }}>
-        {children}
+        <EuiThemeProvider
+          theme={DefaultEuiTheme}
+          colorMode={theme.includes('light') ? 'light' : 'dark'}>
+          {children}
+        </EuiThemeProvider>
       </ThemeContext.Provider>
     );
   }

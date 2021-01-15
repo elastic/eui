@@ -23,36 +23,12 @@ import chroma from 'chroma-js';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
 import {
-  buildTheme,
-  computed,
+  // buildTheme,
+  // computed,
   useEuiTheme,
   EuiThemeProvider,
 } from '../../../../src/services/theme';
-
-const globalTheme = buildTheme({
-  light: {
-    colors: {
-      primary: '#006BB4',
-      secondary: computed(['light.colors.primary'], ([primary]) => {
-        return chroma(primary).darken(2).hex();
-      }),
-      tertiary: computed(['light.colors.secondary'], ([secondary]) => {
-        return chroma(secondary).brighten().hex();
-      }),
-    },
-  },
-  dark: {
-    colors: {
-      primary: '#DD0A73',
-      secondary: computed(['dark.colors.primary'], ([primary]) => {
-        return chroma(primary).brighten(3).hex();
-      }),
-      tertiary: computed(['dark.colors.secondary'], ([secondary]) => {
-        return chroma(secondary).darken().hex();
-      }),
-    },
-  },
-});
+import { DefaultEuiTheme } from '../../../../src/themes';
 
 const View = () => {
   const [theme, , colorMode] = useEuiTheme();
@@ -65,28 +41,28 @@ const View = () => {
         </pre>
       </div>
       <div>
-        <h3 id={theme.colors.primary}>
+        <h3>
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.primary }}
+            css={{ color: theme.colors.euiColorPrimary }}
           />
         </h3>
-        <h3 id={theme.colors.secondary}>
+        <h3>
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.secondary }}
+            css={{ color: theme.colors.euiColorSecondary }}
           />
         </h3>
-        <h3 id={theme.colors.tertiary}>
+        <h3>
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.tertiary }}
+            css={{ color: theme.colors.euiTextColor }}
           />
         </h3>
       </div>
@@ -97,10 +73,10 @@ const View = () => {
 const View3 = () => {
   const overrides = {
     light: {
-      colors: { primary: '#017D73' },
+      colors: { euiColorPrimary: '#8A07BD' },
     },
     dark: {
-      colors: { primary: '#F5A700' },
+      colors: { euiColorPrimary: '#bd07a5' },
     },
   };
   return (
@@ -119,10 +95,10 @@ const View3 = () => {
 const View2 = () => {
   const overrides = {
     light: {
-      colors: { secondary: '#017D73' },
+      colors: { euiColorSecondary: '#85e89d' },
     },
     dark: {
-      colors: { secondary: '#F5A700' },
+      colors: { euiColorSecondary: '#f0fff4' },
     },
   };
   return (
@@ -147,7 +123,7 @@ export default () => {
       ...overrides,
       light: {
         colors: {
-          primary: chroma.random().hex(),
+          euiColorPrimary: chroma.random().hex(),
         },
       },
     });
@@ -157,7 +133,7 @@ export default () => {
       ...overrides,
       dark: {
         colors: {
-          primary: chroma.random().hex(),
+          euiColorPrimary: chroma.random().hex(),
         },
       },
     });
@@ -166,7 +142,7 @@ export default () => {
   return (
     <>
       <EuiThemeProvider
-        theme={globalTheme}
+        theme={DefaultEuiTheme}
         colorMode={colorMode}
         overrides={overrides}>
         <button type="button" onClick={toggleTheme}>
@@ -180,7 +156,6 @@ export default () => {
         <button type="button" onClick={darkColors}>
           Randomize Dark Primary!
         </button>
-
         <EuiSpacer />
         <em>Default view</em>
         <View />
