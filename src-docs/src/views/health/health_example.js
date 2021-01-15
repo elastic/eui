@@ -52,7 +52,7 @@ export const HealthExample = {
       demo: <Health />,
     },
     {
-      title: 'The text can be sized',
+      title: 'Text sizes',
       source: [
         {
           type: GuideSectionTypes.JS,
