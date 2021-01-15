@@ -19,7 +19,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 import { EuiIcon, IconColor } from '../icon';
 
@@ -27,12 +27,14 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
 export type HealthTextSize = 'xs' | 's' | 'm' | 'inherit';
 
-const sizeToClassNameMap: { [size in HealthTextSize]: string | null } = {
+const sizeToClassNameMap: { [textSize in HealthTextSize]: string | null } = {
   xs: 'euiHealth--textSizeXS',
   s: 'euiHealth--textSizeS',
   m: 'euiHealth--textSizeM',
   inherit: 'euiHealth--textSizeInherit',
 };
+
+export const TEXT_SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
