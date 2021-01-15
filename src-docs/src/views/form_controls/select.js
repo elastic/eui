@@ -16,10 +16,6 @@ export default () => {
     setValue(e.target.value);
   };
 
-  window.asdf = () => {
-    setValue(undefined);
-  }
-
   return (
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend canAppend canReadOnly={false}>
