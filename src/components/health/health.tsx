@@ -25,8 +25,7 @@ import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-
-const sizeToClassNameMap: { [textSize in HealthTextSize]: string | null } = {
+const sizeToClassNameMap = {
   xs: 'euiHealth--textSizeXS',
   s: 'euiHealth--textSizeS',
   m: 'euiHealth--textSizeM',
@@ -43,7 +42,7 @@ export type EuiHealthProps = CommonProps &
      * `subdued` or `ghost`; or any valid CSS color value as a `string`
      */
     color?: IconColor;
-    textSize?: HealthTextSize;
+    textSize?: typeof TEXT_SIZES[number];
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({

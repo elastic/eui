@@ -67,8 +67,8 @@ export const HealthExample = {
         <p>
           Match the text size of <strong>EuiHealth</strong> to your context by
           passing <EuiCode>xs / s / m / inherit</EuiCode> to the{' '}
-          <EuiCode>textSize</EuiCode> prop. The 'inherit' style will
-          get its font size from the parent element.
+          <EuiCode>textSize</EuiCode> prop. The <EuiCode>inherit</EuiCode> style
+          will get its font size from the parent element.
         </p>
       ),
       snippet: healthTextSizeSnippet,
