@@ -178,6 +178,10 @@ export const buildTheme = (model: any) => {
       }
     },
 
+    set(target: any) {
+      return target;
+    },
+
     deleteProperty(target: any, property: any) {
       return Reflect.deleteProperty(target.model, property);
     },
