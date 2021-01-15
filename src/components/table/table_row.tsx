@@ -19,7 +19,11 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/react';
+import chroma from 'chroma-js';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services/theme';
+import { tint, shade } from '../../themes/theme';
 
 interface EuiTableRowProps {
   /**
@@ -61,6 +65,61 @@ export const EuiTableRow: FunctionComponent<Props> = ({
   onClick,
   ...rest
 }) => {
+  const [theme, , colorMode] = useEuiTheme();
+  const euiTableHoverColor =
+    colorMode === 'light' // tintOrShade
+      ? tint(theme.colors.euiColorLightestShade, 0.5)
+      : shade(theme.colors.euiColorLightestShade, 0.2);
+  const euiTableSelectedColor =
+    colorMode === 'light'
+      ? tint(theme.colors.euiFocusBackgroundColor, 0.3)
+      : theme.colors.euiFocusBackgroundColor;
+  const euiTableHoverSelectedColor =
+    colorMode === 'light'
+      ? theme.colors.euiFocusBackgroundColor
+      : shade(theme.colors.euiFocusBackgroundColor, 0.1);
+  const euiTableHoverClickableColor = chroma(theme.colors.euiColorPrimary)
+    .alpha(0.05)
+    .css();
+  const euiTableFocusClickableColor = chroma(theme.colors.euiColorPrimary)
+    .alpha(0.1)
+    .css();
+  const styles = css`
+    &:hover {
+      background-color: ${euiTableHoverColor};
+    }
+    ${isExpandedRow
+      ? `
+        & .euiTableRowCell {
+          background-color: ${euiTableHoverColor};
+        }`
+      : null}
+    ${isSelected
+      ? `
+          background-color: ${euiTableSelectedColor};
+          
+          & + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+            background-color: ${euiTableSelectedColor};
+          }
+
+          &:hover,
+          &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+            background-color: ${euiTableHoverSelectedColor};
+          }
+      `
+      : null};
+    ${onClick
+      ? `
+          &:hover {
+            background-color: ${euiTableHoverClickableColor};
+          }
+
+          &:focus {
+            background-color: ${euiTableFocusClickableColor};
+          }
+      `
+      : null}
+  `;
   const classes = classNames('euiTableRow', className, {
     'euiTableRow-isSelectable': isSelectable,
     'euiTableRow-isSelected': isSelected,
@@ -71,7 +130,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
   });
 
   return (
-    <tr className={classes} onClick={onClick} {...rest}>
+    <tr css={styles} className={classes} onClick={onClick} {...rest}>
       {children}
     </tr>
   );

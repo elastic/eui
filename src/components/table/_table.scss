@@ -10,7 +10,7 @@
   table-layout: fixed;
   border: none;
   border-collapse: collapse;
-  background-color: $euiColorEmptyShade;
+  // background-color: $euiColorEmptyShade;
 
   &.euiTable--auto {
     table-layout: auto;
@@ -58,12 +58,12 @@
   &:focus {
     .euiTableCellContent__text {
       text-decoration: underline;
-      color: $euiColorPrimary;
+      // color: $euiColorPrimary;
     }
 
-    .euiTableSortIcon {
-      fill: $euiColorPrimary;
-    }
+    // .euiTableSortIcon {
+    //   fill: $euiColorPrimary;
+    // }
   }
 }
 
@@ -71,9 +71,9 @@
   margin-left: $euiSizeXS;
   flex-shrink: 0; // makes sure the icon doesn't change size because the text is long
 
-  .euiTableHeaderButton-isSorted & {
-    fill: $euiTitleColor;
-  }
+  // .euiTableHeaderButton-isSorted & {
+  //   fill: $euiTitleColor;
+  // }
 }
 
 .euiTableHeaderCellCheckbox {
@@ -82,38 +82,38 @@
 }
 
 .euiTableRow {
-  &:hover {
-    background-color: $euiTableHoverColor;
-  }
+  // &:hover {
+  //   background-color: $euiTableHoverColor;
+  // }
 
   &.euiTableRow-isExpandedRow {
-    .euiTableRowCell {
-      background-color: $euiTableHoverColor;
-    }
+    // .euiTableRowCell {
+    //   background-color: $euiTableHoverColor;
+    // }
 
     &.euiTableRow-isSelectable .euiTableCellContent {
       padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
     }
   }
 
-  &.euiTableRow-isSelected {
-    background-color: $euiTableSelectedColor;
+  // &.euiTableRow-isSelected {
+  //   background-color: $euiTableSelectedColor;
 
-    + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-      background-color: $euiTableSelectedColor;
-    }
+  //   + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+  //     background-color: $euiTableSelectedColor;
+  //   }
 
-    &:hover,
-    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell  {
-      background-color: $euiTableHoverSelectedColor;
-    }
-  }
+  //   &:hover,
+  //   &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell  {
+  //     background-color: $euiTableHoverSelectedColor;
+  //   }
+  // }
 }
 
 .euiTableRowCell {
   @include euiTableCell;
 
-  color: $euiTextColor;
+  // color: $euiTextColor;
 
   &.euiTableRowCell--isMobileHeader {
     display: none; // Hide if not mobile breakpoint
@@ -126,7 +126,7 @@
 
 // Must come after .euiTableRowCell selector for border to be removed
 .euiTableFooterCell {
-  background-color: $euiColorLightestShade;
+  // background-color: $euiColorLightestShade;
   border-bottom: none;
 }
 
@@ -237,11 +237,11 @@
 
 .euiTableRow-isClickable {
   &:hover {
-    background-color: $euiTableHoverClickableColor;
+    // background-color: $euiTableHoverClickableColor;
     cursor: pointer;
   }
 
-  &:focus {
-    background-color: $euiTableFocusClickableColor;
-  }
+  // &:focus {
+  //   background-color: $euiTableFocusClickableColor;
+  // }
 }

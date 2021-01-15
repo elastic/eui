@@ -25,6 +25,8 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { css } from '@emotion/react';
+import { useEuiTheme } from '../../services/theme';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { resolveWidthAsStyle } from './utils';
@@ -100,6 +102,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
   style,
   ...rest
 }) => {
+  const [theme] = useEuiTheme();
   const classes = classNames('euiTableHeaderCell', className, {
     'euiTableHeaderCell--hideForDesktop': mobileOptions.only || isMobileHeader,
     'euiTableHeaderCell--hideForMobile': !mobileOptions.show || hideForMobile,
@@ -151,6 +154,24 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
       );
     }
 
+    const buttonStyles = css`
+      &:hover,
+      &:focus {
+        & .euiTableCellContent__text {
+          color: ${theme.colors.euiColorPrimary};
+        }
+
+        & .euiTableSortIcon {
+          fill: ${theme.colors.euiColorPrimary};
+        }
+    `;
+
+    const iconStyles = css`
+      & .euiTableHeaderButton-isSorted & {
+        fill: ${theme.colors.euiTitleColor};
+      }
+    `;
+
     return (
       <CellComponent
         className={classes}
@@ -162,6 +183,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
         {...rest}>
         <button
           type="button"
+          css={buttonStyles}
           className={buttonClasses}
           onClick={onSort}
           data-test-subj="tableHeaderSortButton">
@@ -191,6 +213,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
                 values={{ ariaSortValue }}>
                 {(sortedAriaLabel: string) => (
                   <EuiIcon
+                    css={iconStyles}
                     className="euiTableSortIcon"
                     type={isSortAscending ? 'sortUp' : 'sortDown'}
                     size="m"

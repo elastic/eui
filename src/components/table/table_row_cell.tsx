@@ -26,7 +26,9 @@ import React, {
   TdHTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/react';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services/theme';
 
 import {
   HorizontalAlignment,
@@ -168,6 +170,10 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   width,
   ...rest
 }) => {
+  const [theme] = useEuiTheme();
+  const styles = css`
+    color: ${theme.colors.euiTextColor};
+  `;
   const cellClasses = classNames('euiTableRowCell', {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
@@ -240,6 +246,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
+    css: styles,
     scope: setScopeRow ? 'row' : undefined,
     style: styleObj,
     ...rest,

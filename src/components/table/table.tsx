@@ -19,7 +19,9 @@
 
 import React, { FunctionComponent, TableHTMLAttributes } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/react';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services/theme';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -45,6 +47,10 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   responsive = true,
   ...rest
 }) => {
+  const [theme] = useEuiTheme();
+  const styles = css`
+    background-color: ${theme.colors.euiColorEmptyShade};
+  `;
   const classes = classNames(
     'euiTable',
     className,
@@ -56,7 +62,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   );
 
   return (
-    <table tabIndex={-1} className={classes} {...rest}>
+    <table tabIndex={-1} css={styles} className={classes} {...rest}>
       {children}
     </table>
   );
