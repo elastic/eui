@@ -28,6 +28,7 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 import {
   GridChildComponentProps,
   VariableSizeGrid as Grid,
@@ -53,7 +54,10 @@ import {
   EuiDataGridHeaderRow,
   EuiDataGridHeaderRowProps,
 } from './data_grid_header_row';
-import { useMutationObserver } from '../observer/mutation_observer';
+import {
+  EuiMutationObserver,
+  useMutationObserver,
+} from '../observer/mutation_observer';
 import { EuiText } from '../text';
 import {
   DataGridSortingContext,
@@ -542,47 +546,71 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [unconstrainedHeight, wrapperDimensions]);
 
+  const preventTabbing = useCallback(() => {
+    if (wrapperRef.current) {
+      const tabbables = tabbable(wrapperRef.current);
+      for (let i = 0; i < tabbables.length; i++) {
+        const element = tabbables[i];
+        if (element.getAttribute('role') !== 'gridcell' && !element.dataset['euigrid-tab-managed']) {
+          element.setAttribute('tabIndex', '-1');
+          element.setAttribute('data-datagrid-interactable', 'true');
+        }
+      }
+    }
+  }, [wrapperRef]);
+
   return (
-    <div
-      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
-      ref={wrapperRef}>
-      {(IS_JEST_ENVIRONMENT || (width && width > 0)) && (
-        <DataGridWrapperRowsContext.Provider
-          value={{ headerRowHeight, headerRow, footerRow }}>
-          <Grid
-            ref={gridRef}
-            innerElementType={InnerElement}
-            className="euiDataGrid__virtualized"
-            columnCount={
-              leadingControlColumns.length +
-              columns.length +
-              trailingControlColumns.length
-            }
-            width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
-            columnWidth={getWidth}
-            height={IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight}
-            rowHeight={getRowHeight}
-            itemData={{
-              setRowHeight,
-              rowMap,
-              rowOffset: pagination
-                ? pagination.pageIndex * pagination.pageSize
-                : 0,
-              leadingControlColumns,
-              trailingControlColumns,
-              columns,
-              schema,
-              popoverContents: mergedPopoverContents,
-              columnWidths,
-              defaultColumnWidth,
-              renderCellValue,
-              interactiveCellId,
-            }}
-            rowCount={visibleRowIndices.length}>
-            {Cell}
-          </Grid>
-        </DataGridWrapperRowsContext.Provider>
+    <EuiMutationObserver
+      observerOptions={{ subtree: true, childList: true }}
+      onMutation={preventTabbing}>
+      {(mutationRef) => (
+        <div
+          style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+          ref={(el) => {
+            wrapperRef.current = el;
+            mutationRef(el);
+          }}>
+          {(IS_JEST_ENVIRONMENT || (width && width > 0)) && (
+            <DataGridWrapperRowsContext.Provider
+              value={{ headerRowHeight, headerRow, footerRow }}>
+              <Grid
+                ref={gridRef}
+                innerElementType={InnerElement}
+                className="euiDataGrid__virtualized"
+                columnCount={
+                  leadingControlColumns.length +
+                  columns.length +
+                  trailingControlColumns.length
+                }
+                width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
+                columnWidth={getWidth}
+                height={
+                  IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight
+                }
+                rowHeight={getRowHeight}
+                itemData={{
+                  setRowHeight,
+                  rowMap,
+                  rowOffset: pagination
+                    ? pagination.pageIndex * pagination.pageSize
+                    : 0,
+                  leadingControlColumns,
+                  trailingControlColumns,
+                  columns,
+                  schema,
+                  popoverContents: mergedPopoverContents,
+                  columnWidths,
+                  defaultColumnWidth,
+                  renderCellValue,
+                  interactiveCellId,
+                }}
+                rowCount={visibleRowIndices.length}>
+                {Cell}
+              </Grid>
+            </DataGridWrapperRowsContext.Provider>
+          )}
+        </div>
       )}
-    </div>
+    </EuiMutationObserver>
   );
 };

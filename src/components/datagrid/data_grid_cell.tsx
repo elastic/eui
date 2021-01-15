@@ -39,7 +39,6 @@ import {
   EuiDataGridColumn,
   EuiDataGridPopoverContent,
 } from './data_grid_types';
-import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridFocusContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
@@ -322,7 +321,7 @@ export class EuiDataGridCell extends Component<
       this.setState(() => ({
         renderPopoverOpen: false,
       }))
-    )
+    );
   };
 
   render() {
@@ -454,25 +453,14 @@ export class EuiDataGridCell extends Component<
         }}
         clickOutsideDisables={true}>
         <div className="euiDataGridRowCell__expandFlex">
-          <EuiMutationObserver
-            observerOptions={{ subtree: true, childList: true }}
-            onMutation={this.preventTabbing}>
-            {(mutationRef) => {
-              return (
-                <div
-                  ref={mutationRef}
-                  className="euiDataGridRowCell__expandContent">
-                  {screenReaderPosition}
-                  <div
-                    ref={this.setCellContentsRef}
-                    className="euiDataGridRowCell__truncate">
-                    <EuiDataGridCellContent {...cellContentProps} />
-                  </div>
-                </div>
-             );
-
-              }}
-            </EuiMutationObserver>
+          <div className="euiDataGridRowCell__expandContent">
+            {screenReaderPosition}
+            <div
+              ref={this.setCellContentsRef}
+              className="euiDataGridRowCell__truncate">
+              <EuiDataGridCellContent {...cellContentProps} />
+            </div>
+          </div>
         </div>
       </EuiFocusTrap>
     );
@@ -486,24 +474,14 @@ export class EuiDataGridCell extends Component<
     if (isExpandable || (column && column.cellActions)) {
       anchorContent = (
         <div className="euiDataGridRowCell__expandFlex">
-          <EuiMutationObserver
-            observerOptions={{ subtree: true, childList: true }}
-            onMutation={this.preventTabbing}>
-            {(mutationRef) => {
-              return (
-                <div
-                  ref={mutationRef}
-                  className="euiDataGridRowCell__expandContent">
-                  {screenReaderPosition}
-                  <div
-                    ref={this.setCellContentsRef}
-                    className="euiDataGridRowCell__truncate">
-                    <EuiDataGridCellContent {...cellContentProps} />
-                  </div>
-                </div>
-              );
-            }}
-          </EuiMutationObserver>
+          <div className="euiDataGridRowCell__expandContent">
+            {screenReaderPosition}
+            <div
+              ref={this.setCellContentsRef}
+              className="euiDataGridRowCell__truncate">
+              <EuiDataGridCellContent {...cellContentProps} />
+            </div>
+          </div>
           {showCellButtons && (
             <EuiDataGridCellButtons
               rowIndex={rowIndex}
