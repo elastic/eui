@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
+- Added a `textSize` prop to `EuiHealth` ([#4420](https://github.com/elastic/eui/pull/4420))
 
 ## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
 

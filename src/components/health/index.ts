@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiHealth } from './health';
+export { EuiHealth, EuiHealthProps } from './health';
