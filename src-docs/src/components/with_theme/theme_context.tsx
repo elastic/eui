@@ -7,7 +7,7 @@ import {
   // computed,
   // useEuiTheme,
   EuiThemeProvider,
-} from '../../../../src/services/theme';
+} from '../../../../src/services';
 
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 

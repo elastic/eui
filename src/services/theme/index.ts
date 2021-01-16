@@ -17,7 +17,21 @@
  * under the License.
  */
 
-export * from './context';
-export * from './hooks';
-export * from './provider';
-export * from './utils';
+export {
+  EuiThemeContext,
+  EuiOverrideContext,
+  EuiColorModeContext,
+} from './context';
+export { useEuiTheme } from './hooks';
+export { EuiThemeProvider } from './provider';
+export {
+  buildTheme,
+  computed,
+  isInverseColorMode,
+  getColorMode,
+  getComputed,
+  getOn,
+  mergeDeep,
+  setOn,
+  Computed,
+} from './utils';
