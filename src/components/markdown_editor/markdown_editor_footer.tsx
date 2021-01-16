@@ -18,11 +18,11 @@
  */
 
 import React, {
-  FunctionComponent,
   useState,
   useMemo,
   Fragment,
   ReactChild,
+  forwardRef,
 } from 'react';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -52,9 +52,10 @@ interface EuiMarkdownEditorFooterProps {
   dropHandlers: EuiMarkdownDropHandler[];
 }
 
-export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterProps> = (
-  props
-) => {
+export const EuiMarkdownEditorFooter = forwardRef<
+  HTMLDivElement,
+  EuiMarkdownEditorFooterProps
+>((props, ref) => {
   const {
     uiPlugins,
     isUploadingFiles,
@@ -177,7 +178,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
   }
 
   return (
-    <div className="euiMarkdownEditorFooter">
+    <div ref={ref} className="euiMarkdownEditorFooter">
       <div className="euiMarkdownEditorFooter__actions">
         {uploadButton}
         {errorsButton}
@@ -250,4 +251,6 @@ export const EuiMarkdownEditorFooter: FunctionComponent<EuiMarkdownEditorFooterP
       )}
     </div>
   );
-};
+});
+
+EuiMarkdownEditorFooter.displayName = 'EuiMarkdownEditorFooter';

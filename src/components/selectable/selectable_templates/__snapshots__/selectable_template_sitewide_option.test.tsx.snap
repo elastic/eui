@@ -13,7 +13,7 @@ Array [
       "name": "Default Space",
     },
     "className": "euiSelectableTemplateSitewide__listItem testClass1 testClass2",
-    "data-test-subj": "test subject string",
+    "data-test-subj": "test-this",
     "key": "Basic data application",
     "label": "Basic data application",
     "meta": Array [

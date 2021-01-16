@@ -19,13 +19,22 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-type EuiHealthProps = CommonProps &
+const sizeToClassNameMap = {
+  xs: 'euiHealth--textSizeXS',
+  s: 'euiHealth--textSizeS',
+  m: 'euiHealth--textSizeM',
+  inherit: 'euiHealth--textSizeInherit',
+};
+
+export const TEXT_SIZES = keysOf(sizeToClassNameMap);
+
+export type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     /**
      * Sets the color of the dot icon.
@@ -33,15 +42,25 @@ type EuiHealthProps = CommonProps &
      * `subdued` or `ghost`; or any valid CSS color value as a `string`
      */
     color?: IconColor;
+    /**
+     * Matches the text scales of EuiText.
+     * The `inherit` style will get its font size from the parent element
+    */
+    textSize?: typeof TEXT_SIZES[number];
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   children,
   className,
   color,
+  textSize = 's',
   ...rest
 }) => {
-  const classes = classNames('euiHealth', className);
+  const classes = classNames(
+    'euiHealth',
+    textSize ? sizeToClassNameMap[textSize] : null,
+    className
+  );
 
   return (
     <div className={classes} {...rest}>

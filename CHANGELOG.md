@@ -1,5 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
+- Added a `textSize` prop to `EuiHealth` ([#4420](https://github.com/elastic/eui/pull/4420))
+
+## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
+
+- Added support for adjusting `buffer` for individual window sides of `EuiPopover`. ([#4417](https://github.com/elastic/eui/pull/4417))
+- Added `'full'` option to the `height` prop of `EuiMarkdownEditor`. Added `autoExpandPreview` and `maxHeight` props to `EuiMarkdownEditor` ([#4245](https://github.com/elastic/eui/pull/4245))
+
+## [`31.1.0`](https://github.com/elastic/eui/tree/v31.1.0)
+
+- Reduced the size of the icons and clear button for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
+- Added ability for text input updates in `EuiDatePicker` ([#4243](https://github.com/elastic/eui/pull/4243))
+- Fixed heights of `append` and `prepend` in `EuiFormControlLayout` ([#4410](https://github.com/elastic/eui/pull/4410))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` extra margin when `showUpdateButton` and `isAutoRefreshOnly` are active ([#4406](https://github.com/elastic/eui/pull/4406))
+
+## [`31.0.0`](https://github.com/elastic/eui/tree/v31.0.0)
+
 - Added collapsble behavior to `EuiResizableContainer` panels ([#3978](https://github.com/elastic/eui/pull/3978))
 - Updated `EuiResizablePanel` to use `EuiPanel` ([#3978](https://github.com/elastic/eui/pull/3978))
 - Changed `showTimeSelect` prop to true when `showTimeSelectOnly` prop is set to true. ([#4372](https://github.com/elastic/eui/pull/4372))
@@ -12,6 +32,7 @@
 **Breaking changes**
 
 - Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
+- Upgraded to TypeScript v4.0 ([#4296](https://github.com/elastic/eui/pull/4296))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
@@ -33,6 +54,7 @@
 - Limited the links allowed in `EuiMarkdownEditor` to http, https, or starting with a forward slash ([#4362](https://github.com/elastic/eui/pull/4362))
 - Aligned components with an `href` prop to React's practice of disallowing `javascript:` protocols ([#4362](https://github.com/elastic/eui/pull/4362))
 - Fixed form submit bug in `EuiButtonGroup` by adding an optional `type` prop for `EuiButtonGroupOption` ([#4368](https://github.com/elastic/eui/pull/4368))
+- Changed `label` type from `string` to `ReactNode` in `EuiTreeViewNode` ([#4352](https://github.com/elastic/eui/pull/4352))
 
 **Theme: Amsterdam**
 

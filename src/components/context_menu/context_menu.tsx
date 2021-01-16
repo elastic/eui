@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -66,12 +66,27 @@ export interface EuiContextMenuPanelDescriptor {
   content?: ReactNode;
   width?: number;
   initialFocusedItemIndex?: number;
+  /**
+   * Alters the size of the items and the title
+   */
+  size?: keyof typeof sizeToClassNameMap;
 }
+
+const sizeToClassNameMap = {
+  s: 'euiContextMenu--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
     initialPanelId?: EuiContextMenuPanelId;
+    /**
+     * Alters the size of the items and the title
+     */
+    size?: keyof typeof sizeToClassNameMap;
   };
 
 const isItemSeparator = (
@@ -151,6 +166,7 @@ interface State {
 export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   static defaultProps: Partial<EuiContextMenuProps> = {
     panels: [],
+    size: 'm',
   };
 
   static getDerivedStateFromProps(
@@ -366,6 +382,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     return (
       <EuiContextMenuPanel
         key={panelId}
+        size={this.props.size}
         className="euiContextMenu__panel"
         onHeightChange={
           transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined
@@ -401,7 +418,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   render() {
-    const { panels, className, initialPanelId, ...rest } = this.props;
+    const { panels, className, initialPanelId, size, ...rest } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId!, 'in');
     let outgoingPanel;
@@ -416,7 +433,11 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         ? this.state.idToPanelMap[this.state.incomingPanelId!].width
         : undefined;
 
-    const classes = classNames('euiContextMenu', className);
+    const classes = classNames(
+      'euiContextMenu',
+      size && sizeToClassNameMap[size],
+      className
+    );
 
     return (
       <div
