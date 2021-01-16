@@ -86,3 +86,10 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
 ];
 
 export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();
+
+export const getDefaultEuiMarkdownUiPlugins = () => {
+  const array = [MarkdownTooltip.plugin];
+  // @ts-ignore __originatedFromEui is a custom property
+  array.__originatedFromEui = true;
+  return array;
+};

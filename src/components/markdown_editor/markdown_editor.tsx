@@ -176,7 +176,10 @@ export const EuiMarkdownEditor = forwardRef<
       EuiMarkdownEditorUiPlugin | undefined
     >(undefined);
 
-    const toolbarPlugins = [MarkdownTooltip.plugin, ...uiPlugins];
+    const toolbarPlugins = [...uiPlugins];
+    // @ts-ignore __originatedFromEui is a custom property
+    if (!uiPlugins.__originatedFromEui)
+      toolbarPlugins.unshift(MarkdownTooltip.plugin);
 
     const markdownActions = useMemo(
       () => new MarkdownActions(editorId, toolbarPlugins),
