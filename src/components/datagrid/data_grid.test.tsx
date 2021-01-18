@@ -517,7 +517,7 @@ describe('EuiDataGrid', () => {
       ).toMatchInlineSnapshot(`
         Array [
           Object {
-            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn customClass",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -536,7 +536,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
-            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn customClass",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -555,7 +555,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
-            "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -574,7 +574,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
-            "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -785,17 +785,17 @@ describe('EuiDataGrid', () => {
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -828,12 +828,12 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--stripe",
-            "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell__truncate",
+            "euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell__truncate euiDataGridRowCell--stripe",
+            "euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -860,10 +860,10 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -897,12 +897,12 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--currency",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell__truncate",
+            "euiDataGridRowCell euiDataGridRowCell--currency euiDataGridRowCell__truncate",
+            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell__truncate",
+            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell__truncate",
+            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell__truncate",
           ]
         `);
       });
@@ -945,8 +945,8 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--ipaddress euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn",
           ]
         `);
       });

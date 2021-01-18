@@ -96,10 +96,15 @@
     text-transform: capitalize;
   }
 
+  &.euiDataGridRowCell__truncate {
+    display: block;
+  }
+
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridRowCell--controlColumn) {
     .euiDataGridRowCell__content,
     .euiDataGridRowCell__truncate,
+    &.euiDataGridRowCell__truncate,
     .euiDataGridRowCell__expandContent {
       @include euiTextTruncate;
       overflow: hidden;

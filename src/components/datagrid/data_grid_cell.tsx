@@ -45,6 +45,7 @@ import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
 
+let count = 0;
 export interface EuiDataGridCellValueElementProps {
   /**
    * index of the row being rendered, 0 represents the first row. This index always includes
@@ -232,6 +233,7 @@ export class EuiDataGridCell extends Component<
     nextProps: EuiDataGridCellProps,
     nextState: EuiDataGridCellState
   ) {
+    console.log(++count);
     if (nextProps.rowIndex !== this.props.rowIndex) return true;
     if (nextProps.visibleRowIndex !== this.props.visibleRowIndex) return true;
     if (nextProps.colIndex !== this.props.colIndex) return true;
@@ -246,7 +248,10 @@ export class EuiDataGridCell extends Component<
     // respond to adjusted top/left
     if (nextProps.style) {
       if (!this.props.style) return true;
-      if (nextProps.style.top !== this.props.style.top) return true;
+      if (nextProps.style.top !== this.props.style.top) {
+        console.log(`${nextProps.style.top} from ${this.props.style.top}`);
+        return true;
+      }
       if (nextProps.style.left !== this.props.style.left) return true;
     }
 
@@ -338,12 +343,19 @@ export class EuiDataGridCell extends Component<
     } = this.props;
     const { colIndex, rowIndex } = rest;
 
+    const showCellButtons =
+      this.state.isFocused ||
+      this.state.isEntered ||
+      this.state.isHovered ||
+      this.state.popoverIsOpen;
+
     const cellClasses = classNames(
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
+        euiDataGridRowCell__truncate: (isExpandable || (column && column.cellActions)) && !showCellButtons,
       },
-      className
+      className,
     );
 
     const cellProps = {
@@ -435,9 +447,9 @@ export class EuiDataGridCell extends Component<
             tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
             defaults={['Row', 'Column']}>
             {([row, column]: ReactChild[]) => (
-              <span>
+              <>
                 {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
-              </span>
+              </>
             )}
           </EuiI18n>
         </p>
@@ -465,44 +477,47 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    const showCellButtons =
-      this.state.isFocused ||
-      this.state.isEntered ||
-      this.state.isHovered ||
-      this.state.popoverIsOpen;
-
     if (isExpandable || (column && column.cellActions)) {
-      anchorContent = (
-        <div className="euiDataGridRowCell__expandFlex">
-          <div className="euiDataGridRowCell__expandContent">
-            {screenReaderPosition}
-            <div
-              ref={this.setCellContentsRef}
-              className="euiDataGridRowCell__truncate">
-              <EuiDataGridCellContent {...cellContentProps} />
+      if (showCellButtons) {
+        anchorContent = (
+          <div className="euiDataGridRowCell__expandFlex">
+            <div className="euiDataGridRowCell__expandContent">
+              <div
+                ref={this.setCellContentsRef}
+                className="euiDataGridRowCell__truncate">
+                <EuiDataGridCellContent {...cellContentProps} />
+              </div>
+              {screenReaderPosition}
             </div>
+            {showCellButtons && (
+              <EuiDataGridCellButtons
+                rowIndex={rowIndex}
+                column={column}
+                popoverIsOpen={this.state.popoverIsOpen}
+                closePopover={this.closePopover}
+                onExpandClick={() => {
+                  this.setState(
+                    ({ popoverIsOpen }) => ({
+                      popoverIsOpen: !popoverIsOpen,
+                    }),
+                    () =>
+                      this.setState(({ popoverIsOpen }) => ({
+                        renderPopoverOpen: popoverIsOpen,
+                      }))
+                  );
+                }}
+              />
+            )}
           </div>
-          {showCellButtons && (
-            <EuiDataGridCellButtons
-              rowIndex={rowIndex}
-              column={column}
-              popoverIsOpen={this.state.popoverIsOpen}
-              closePopover={this.closePopover}
-              onExpandClick={() => {
-                this.setState(
-                  ({ popoverIsOpen }) => ({
-                    popoverIsOpen: !popoverIsOpen,
-                  }),
-                  () =>
-                    this.setState(({ popoverIsOpen }) => ({
-                      renderPopoverOpen: popoverIsOpen,
-                    }))
-                );
-              }}
-            />
-          )}
-        </div>
-      );
+        );
+      } else {
+        anchorContent = (
+          <>
+            <EuiDataGridCellContent {...cellContentProps} />
+            {screenReaderPosition}
+          </>
+        );
+      }
     }
 
     let innerContent = anchorContent;
@@ -525,7 +540,7 @@ export class EuiDataGridCell extends Component<
           </div>
         );
       } else {
-        innerContent = (anchorContent);
+        innerContent = anchorContent;
       }
     }
 
@@ -535,7 +550,12 @@ export class EuiDataGridCell extends Component<
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
-        ref={this.setCellRef}
+        ref={(el) => {
+          this.setCellRef(el);
+          if ((isExpandable || (column && column.cellActions)) && showCellButtons) {
+            this.setCellContentsRef(el);
+          }
+        }}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}

@@ -1135,220 +1135,88 @@ Array [
                     </div>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 2:
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1636,9 +1504,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 1, Column: 1:
-                            </span>
+                            Row: 1, Column: 1:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
@@ -1655,76 +1521,32 @@ Array [
                     />
                   </div>
                   <div
-                    class="euiDataGridRowCell"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:50px;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:150px;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 3:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 3:
+                    </p>
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
@@ -1755,9 +1577,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 1, Column: 4:
-                            </span>
+                            Row: 1, Column: 4:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
@@ -1802,9 +1622,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 2, Column: 1:
-                            </span>
+                            Row: 2, Column: 1:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
@@ -1821,76 +1639,32 @@ Array [
                     />
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:50px;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:150px;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 3:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 3:
+                    </p>
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
@@ -1921,9 +1695,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 2, Column: 4:
-                            </span>
+                            Row: 2, Column: 4:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
@@ -1968,9 +1740,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 3, Column: 1:
-                            </span>
+                            Row: 3, Column: 1:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
@@ -1987,76 +1757,32 @@ Array [
                     />
                   </div>
                   <div
-                    class="euiDataGridRowCell"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:50px;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:150px;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 3:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 3:
+                    </p>
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
@@ -2087,9 +1813,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 3, Column: 4:
-                            </span>
+                            Row: 3, Column: 4:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
@@ -2332,220 +2056,88 @@ Array [
                     </div>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 2:
+                    </p>
                   </div>
                 </div>
               </div>
@@ -2772,220 +2364,88 @@ Array [
                     </div>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:0px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    0, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 1, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              0, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 1, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:34px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    1, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 2, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              1, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 2, Column: 2:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--firstColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, A
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 1:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, A
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 1:
+                    </p>
                   </div>
                   <div
-                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    class="euiDataGridRowCell euiDataGridRowCell__truncate euiDataGridRowCell--lastColumn"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:68px;height:34px;width:100px"
                     tabindex="-1"
                   >
-                    <div
-                      class="euiDataGridRowCell__content"
+                    2, B
+                    <p
+                      class="euiScreenReaderOnly"
                     >
-                      <div
-                        class="euiDataGridRowCell__expand"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandFlex"
-                        >
-                          <div
-                            class="euiDataGridRowCell__expandContent"
-                          >
-                            <p
-                              class="euiScreenReaderOnly"
-                            >
-                              <span>
-                                Row: 3, Column: 2:
-                              </span>
-                            </p>
-                            <div
-                              class="euiDataGridRowCell__truncate"
-                            >
-                              2, B
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      Row: 3, Column: 2:
+                    </p>
                   </div>
                 </div>
               </div>

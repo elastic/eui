@@ -582,7 +582,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             wrapperRef.current = el;
             mutationRef(el);
           }}>
-          {(IS_JEST_ENVIRONMENT || (width && width > 0)) && (
+          {(IS_JEST_ENVIRONMENT || finalWidth > 0) && (
             <DataGridWrapperRowsContext.Provider
               value={{ headerRowHeight, headerRow, footerRow }}>
               <Grid
@@ -595,7 +595,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   trailingControlColumns.length
                 }
                 width={finalWidth}
-                width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
                 columnWidth={getWidth}
                 height={finalHeight}
                 rowHeight={getRowHeight}
@@ -615,7 +614,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   renderCellValue,
                   interactiveCellId,
                 }}
-                rowCount={visibleRowIndices.length}>
+                rowCount={
+                  IS_JEST_ENVIRONMENT || headerRowHeight > 0
+                    ? visibleRowIndices.length
+                    : 0
+                }>
                 {Cell}
               </Grid>
             </DataGridWrapperRowsContext.Provider>
