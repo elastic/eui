@@ -66,7 +66,7 @@
     }
   }
 
-  &:not(:hover) {
+  &:not(:hover):not(.euiDataGridRowCell--hovered) {
     .euiDataGridRowCell__expandButtonIcon {
       margin-left: $euiDataGridCellPaddingM;
       width: $euiSizeM;
@@ -94,10 +94,6 @@
 
   &.euiDataGridRowCell--boolean {
     text-transform: capitalize;
-  }
-
-  &.euiDataGridRowCell__truncate {
-    display: block;
   }
 
   // We only truncate if the cell is not a control column.

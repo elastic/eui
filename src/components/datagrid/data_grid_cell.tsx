@@ -353,9 +353,9 @@ export class EuiDataGridCell extends Component<
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
-        euiDataGridRowCell__truncate: (isExpandable || (column && column.cellActions)) && !showCellButtons,
+        [`euiDataGridRowCell--hovered`]: this.state.isHovered,
       },
-      className,
+      className
     );
 
     const cellProps = {
@@ -512,10 +512,12 @@ export class EuiDataGridCell extends Component<
         );
       } else {
         anchorContent = (
-          <>
+          <div
+            ref={this.setCellContentsRef}
+            className="euiDataGridRowCell__truncate">
             <EuiDataGridCellContent {...cellContentProps} />
             {screenReaderPosition}
-          </>
+          </div>
         );
       }
     }
@@ -550,12 +552,7 @@ export class EuiDataGridCell extends Component<
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
-        ref={(el) => {
-          this.setCellRef(el);
-          if ((isExpandable || (column && column.cellActions)) && showCellButtons) {
-            this.setCellContentsRef(el);
-          }
-        }}
+        ref={this.setCellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
