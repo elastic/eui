@@ -18,59 +18,22 @@
   position: absolute;
 
   &--dot {
+    top: 0;
+    right: 0;
     stroke: $euiHeaderBackgroundColor;
   }
 
   &--badge {
+    top: 9%;
+    right: 9%;
     box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
   }
 }
 
-// button without a background
-.euiHeaderSectionItemButton__inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  .euiHeaderSectionItemButton__notification--dot {
-    top: 0;
-    right: 0;
-  }
-
-  .euiHeaderSectionItemButton__notification--badge {
-    top: 9%;
-    right: 9%;
-  }
-}
-
-// button with a background
-.euiHeaderSectionItemButton__inner--hasBackground {
-  position: relative;
-  background: $euiColorLightestShade;
-  height: $euiSizeXL;
-  width: $euiSizeXL;
-  min-width: $euiSizeXL;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  margin: 0 auto;
-
-  .euiHeaderSectionItemButton__notification--dot {
-    top: -$euiSizeS;
-    right: -$euiSizeS;
-  }
-
-  .euiHeaderSectionItemButton__notification--badge {
-    top: -$euiSizeXS;
-    right: -$euiSizeXS;
-  }
-}
-
-.euiHeaderSectionItemButton--isAnimating {
+.euiHeaderSectionItemButton__content--isAnimating {
+  // This element is a span and we're changing the display because inline elements can’t take a transform
+  display: inline-block;
   animation: 5s euiButtonRinging ease-in-out;
 }
 
@@ -86,24 +49,12 @@
     border-radius: $euiSizeS;
     color: $euiColorAccent;
     overflow: hidden;
+    top: 20%;
   }
 
   // Using specificity to override the default icon size
   .euiHeaderSectionItemButton__notification.euiHeaderSectionItemButton__notification--dot {
     @include size($euiSize);
-  }
-
-  .euiHeaderSectionItemButton__inner {
-    .euiHeaderSectionItemButton__notification--badge {
-      top: 20%;
-    }
-  }
-
-  .euiHeaderSectionItemButton__inner--hasBackground {
-    .euiHeaderSectionItemButton__notification--dot,
-    .euiHeaderSectionItemButton__notification--badge {
-      top: 0;
-      right: 0;
-    }
+    top: 9%;
   }
 }

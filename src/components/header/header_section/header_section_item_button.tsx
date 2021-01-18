@@ -42,12 +42,6 @@ export type EuiHeaderSectionItemButtonProps = CommonProps &
      * Changes the color of the notification background
      */
     notificationColor?: EuiNotificationBadgeProps['color'];
-
-    /**
-     * Adds a circular background to the button to emphasize the content
-     */
-    hasBackground?: boolean;
-
     /**
      * Pass `true` to trigger an animation
      */
@@ -68,24 +62,17 @@ export const EuiHeaderSectionItemButton = forwardRef<
       notification,
       notificationColor = 'accent',
       animation = false,
-      hasBackground = false,
       ...rest
     },
     ref
   ) => {
     const classes = classNames('euiHeaderSectionItemButton', className);
     const animationClasses = classNames({
-      'euiHeaderSectionItemButton--isAnimating': animation,
-    });
-    const buttonClasses = classNames({
-      euiHeaderSectionItemButton__inner: !hasBackground,
-      'euiHeaderSectionItemButton__inner--hasBackground': hasBackground,
+      'euiHeaderSectionItemButton__content--isAnimating': animation,
     });
 
-    const buttonInner = (
-      <span className={buttonClasses}>
-        <span className={animationClasses}>{children}</span>
-
+    const buttonNotification = (
+      <>
         {notification && typeof notification === 'boolean' && (
           <EuiIcon
             className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
@@ -102,7 +89,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
             {notification}
           </EuiNotificationBadge>
         )}
-      </span>
+      </>
     );
 
     return (
@@ -112,7 +99,8 @@ export const EuiHeaderSectionItemButton = forwardRef<
         onClick={onClick}
         type="button"
         {...rest}>
-        {buttonInner}
+        <span className={animationClasses}>{children}</span>
+        {buttonNotification}
       </button>
     );
   }

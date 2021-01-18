@@ -8,12 +8,8 @@ exports[`EuiHeaderSectionItemButton is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__inner"
-  >
-    <span
-      class=""
-    />
-  </span>
+    class=""
+  />
 </button>
 `;
 
@@ -23,37 +19,13 @@ exports[`EuiHeaderSectionItemButton renders animation 1`] = `
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__inner"
-  >
-    <span
-      class="euiHeaderSectionItemButton--isAnimating"
-    />
-    <span
-      class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-      color="accent"
-      data-euiicon-type="dot"
-    />
-  </span>
-</button>
-`;
-
-exports[`EuiHeaderSectionItemButton renders background 1`] = `
-<button
-  class="euiHeaderSectionItemButton"
-  type="button"
->
+    class="euiHeaderSectionItemButton__content--isAnimating"
+  />
   <span
-    class="euiHeaderSectionItemButton__inner--hasBackground"
-  >
-    <span
-      class=""
-    />
-    <span
-      class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-      color="accent"
-      data-euiicon-type="dot"
-    />
-  </span>
+    class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+    color="accent"
+    data-euiicon-type="dot"
+  />
 </button>
 `;
 
@@ -63,14 +35,10 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__inner"
+    class=""
   >
-    <span
-      class=""
-    >
-      <span>
-        Ahoy!
-      </span>
+    <span>
+      Ahoy!
     </span>
   </span>
 </button>
@@ -82,16 +50,12 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__inner"
+    class=""
+  />
+  <span
+    class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
   >
-    <span
-      class=""
-    />
-    <span
-      class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-    >
-      1
-    </span>
+    1
   </span>
 </button>
 `;
@@ -102,17 +66,13 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__inner"
-  >
-    <span
-      class=""
-    />
-    <span
-      class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-      color="accent"
-      data-euiicon-type="dot"
-    />
-  </span>
+    class=""
+  />
+  <span
+    class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+    color="accent"
+    data-euiicon-type="dot"
+  />
 </button>
 `;
 
@@ -122,16 +82,12 @@ exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__inner"
+    class=""
+  />
+  <span
+    class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
   >
-    <span
-      class=""
-    />
-    <span
-      class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-    >
-      1
-    </span>
+    1
   </span>
 </button>
 `;
