@@ -42,16 +42,6 @@
     min-width: $euiHeaderChildSize * .75;
   }
 
-  // On small screens just show a small dot indicating there are notifications
-  .euiHeaderSectionItemButton__notification--badge {
-    @include size($euiSizeS);
-    min-width: 0;
-    border-radius: $euiSizeS;
-    color: $euiColorAccent;
-    overflow: hidden;
-    top: 20%;
-  }
-
   // Using specificity to override the default icon size
   .euiHeaderSectionItemButton__notification.euiHeaderSectionItemButton__notification--dot {
     @include size($euiSize);

@@ -23,13 +23,13 @@ import React, {
   forwardRef,
 } from 'react';
 import classNames from 'classnames';
-
 import { CommonProps } from '../../common';
 import {
   EuiNotificationBadgeProps,
   EuiNotificationBadge,
 } from '../../badge/notification_badge/badge_notification';
 import { EuiIcon } from '../../icon';
+import { EuiHideFor, EuiShowFor } from '../../responsive';
 
 export type EuiHeaderSectionItemButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -71,23 +71,30 @@ export const EuiHeaderSectionItemButton = forwardRef<
       'euiHeaderSectionItemButton__content--isAnimating': animation,
     });
 
+    const notificationDot = (
+      <EuiIcon
+        className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+        color={notificationColor}
+        type="dot"
+        size="l"
+      />
+    );
+
     const buttonNotification = (
       <>
-        {notification && typeof notification === 'boolean' && (
-          <EuiIcon
-            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-            color={notificationColor}
-            type="dot"
-            size="l"
-          />
-        )}
+        {notification && typeof notification === 'boolean' && notificationDot}
 
         {notification && typeof notification !== 'boolean' && (
-          <EuiNotificationBadge
-            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-            color={notificationColor}>
-            {notification}
-          </EuiNotificationBadge>
+          <>
+            <EuiHideFor sizes={['xs']}>
+              <EuiNotificationBadge
+                className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+                color={notificationColor}>
+                {notification}
+              </EuiNotificationBadge>
+            </EuiHideFor>
+            <EuiShowFor sizes={['xs']}>{notificationDot}</EuiShowFor>
+          </>
         )}
       </>
     );
