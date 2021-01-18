@@ -143,8 +143,7 @@ const HeaderUpdates = ({
       }`}
       onClick={() => showFlyout()}
       notification={showNotification}
-      animation={isAnimating}
-      hasBackground>
+      animation={isAnimating}>
       <EuiIcon type="bell" />
     </EuiHeaderSectionItemButton>
   );

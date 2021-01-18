@@ -67,7 +67,8 @@ const headerSnippet = `<EuiHeader>
       <!-- HeaderSectionItem content -->
     </EuiHeaderSectionItem>
   </EuiHeaderSection>
-</EuiHeader>`;
+</EuiHeader>
+`;
 
 const headerSectionsSnippet = `<EuiHeader
   sections={[
@@ -103,6 +104,30 @@ const headerLinksSnippet = `<EuiHeader>
       <!-- Second link -->
     </EuiHeaderLink>
   </EuiHeaderLinks>
+</EuiHeader>`;
+
+const headerAlertSnippet = `<EuiHeader>
+  <EuiHeaderSection grow={false}>
+    <EuiHeaderSectionItem>
+      <!-- HeaderSectionItem content -->
+    </EuiHeaderSectionItem>
+  </EuiHeaderSection>
+
+  <EuiHeaderSection side="right">
+    <EuiHeaderSectionItem>
+      <!-- Button to trigger portal content like a EuiPopover or a EuiFlyout -->
+      <EuiHeaderSectionItemButton
+        aria-controls={portalContentId}
+        aria-expanded={isPortalContentVisible}
+        aria-label="Open portal content"
+        onClick={() => showPortalConten()}
+        notification={showNotification}
+        animation={isAnimating}
+      >
+        <EuiIcon type="bell" />
+      </EuiHeaderSectionItemButton>
+    </EuiHeaderSectionItem>
+  </EuiHeaderSection>
 </EuiHeader>`;
 
 export const HeaderExample = {
@@ -279,7 +304,7 @@ export const HeaderExample = {
       demo: <HeaderDark theme={lightColors} />,
     },
     {
-      title: 'Portal content and buttons in the header ',
+      title: 'Portal content and buttons in the header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -342,6 +367,7 @@ export const HeaderExample = {
         EuiHeaderAlert,
         EuiHeaderSectionItemButton,
       },
+      snippet: headerAlertSnippet,
       demo: <HeaderAlert />,
     },
     {
