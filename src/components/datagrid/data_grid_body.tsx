@@ -66,6 +66,7 @@ import {
 import { useResizeObserver } from '../observer/resize_observer';
 
 export interface EuiDataGridBodyProps {
+  isFullScreen: boolean;
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   leadingControlColumns?: EuiDataGridControlColumn[];
@@ -269,6 +270,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
+    isFullScreen,
     columnWidths,
     defaultColumnWidth,
     leadingControlColumns = [],
@@ -551,13 +553,23 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       const tabbables = tabbable(wrapperRef.current);
       for (let i = 0; i < tabbables.length; i++) {
         const element = tabbables[i];
-        if (element.getAttribute('role') !== 'gridcell' && !element.dataset['euigrid-tab-managed']) {
+        if (
+          element.getAttribute('role') !== 'gridcell' &&
+          !element.dataset['euigrid-tab-managed']
+        ) {
           element.setAttribute('tabIndex', '-1');
           element.setAttribute('data-datagrid-interactable', 'true');
         }
       }
     }
   }, [wrapperRef]);
+
+  let finalHeight = IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight;
+  let finalWidth = IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth;
+  if (isFullScreen) {
+    finalHeight = window.innerHeight;
+    finalWidth = window.innerWidth;
+  }
 
   return (
     <EuiMutationObserver
@@ -582,11 +594,10 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   columns.length +
                   trailingControlColumns.length
                 }
+                width={finalWidth}
                 width={IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth}
                 columnWidth={getWidth}
-                height={
-                  IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight
-                }
+                height={finalHeight}
                 rowHeight={getRowHeight}
                 itemData={{
                   setRowHeight,

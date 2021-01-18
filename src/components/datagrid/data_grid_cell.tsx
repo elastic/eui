@@ -525,11 +525,7 @@ export class EuiDataGridCell extends Component<
           </div>
         );
       } else {
-        innerContent = (
-          <div className="euiDataGridRowCell__content">
-            <div className="euiDataGridRowCell__expand">{anchorContent}</div>
-          </div>
-        );
+        innerContent = (anchorContent);
       }
     }
 

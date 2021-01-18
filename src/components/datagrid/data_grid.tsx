@@ -677,7 +677,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
         // if the focus is on the header, and the header is no longer interactive
         // move the focus down to the first row
-        // if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
         const focusedCell = focusedCellReference.current;
         if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
           setFocusedCell([focusedCell[0], 0]);
@@ -991,7 +990,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                       <div
                         className={classes}
                         onKeyDown={handleGridKeyDown}
-                        style={{ width, height }}
+                        style={isFullScreen ? undefined : { width, height }}
                         ref={setResizeRef}
                         {...rest}>
                         {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
@@ -1045,6 +1044,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                   {...wrappingDivFocusProps}
                                   {...gridAriaProps}>
                                   <EuiDataGridBody
+                                    isFullScreen={isFullScreen}
                                     columns={orderedVisibleColumns}
                                     columnWidths={columnWidths}
                                     defaultColumnWidth={defaultColumnWidth}
@@ -1060,8 +1060,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     setColumnWidth={setColumnWidth}
                                     headerIsInteractive={headerIsInteractive}
                                     handleHeaderMutation={handleHeaderMutation}
-                                    // gridHeight={gridHeight}
-                                    // gridWidth={gridWidth}
                                     inMemoryValues={inMemoryValues}
                                     inMemory={inMemory}
                                     schemaDetectors={allSchemaDetectors}
