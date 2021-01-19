@@ -10,7 +10,7 @@ export default () => {
     { value: 'option_three', text: 'Option three' },
   ];
 
-  const [value, setValue] = useState(undefined);
+  const [value, setValue] = useState(options[1].value);
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -20,7 +20,6 @@ export default () => {
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend canAppend canReadOnly={false}>
       <EuiSelect
-        hasNoInitialSelection
         id="selectDocExample"
         options={options}
         value={value}
