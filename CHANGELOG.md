@@ -2,6 +2,7 @@
 
 - Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
 - Added a `textSize` prop to `EuiHealth` ([#4420](https://github.com/elastic/eui/pull/4420))
+- Removed selected item of `EuiSelect` when `hasNoInitialSelection=true` and value reset to `undefined` ([#4428](https://github.com/elastic/eui/pull/4428))
 
 ## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
 
