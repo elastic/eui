@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiHealth } from '../../../../src/components';
+import { EuiHealth, EuiCode } from '../../../../src/components';
 import healthConfig from './playground';
 
 import Health from './health';
@@ -13,6 +13,14 @@ const healthHtml = renderToHtml(Health);
 const healthSnippet = [
   '<EuiHealth color="success">Healthy</EuiHealth>',
   '<EuiHealth color="#33CC33">Custom color as hex</EuiHealth>',
+];
+
+import HealthSize from './health_size';
+const healthTextSizeSource = require('!!raw-loader!./health_size');
+const healthTextSizeHtml = renderToHtml(HealthSize);
+const healthTextSizeSnippet = [
+  '<EuiHealth textSize="inherit">Text inherited from the parent element</EuiHealth>',
+  '<EuiHealth textSize="xs">Text extra small</EuiHealth>',
 ];
 
 export const HealthExample = {
@@ -42,6 +50,30 @@ export const HealthExample = {
       snippet: healthSnippet,
       props: { EuiHealth },
       demo: <Health />,
+    },
+    {
+      title: 'Text sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: healthTextSizeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: healthTextSizeHtml,
+        },
+      ],
+      text: (
+        <p>
+          Match the text size of <strong>EuiHealth</strong> to your context by
+          passing <EuiCode>xs / s / m / inherit</EuiCode> to the{' '}
+          <EuiCode>textSize</EuiCode> prop. The <EuiCode>inherit</EuiCode> style
+          will get its font size from the parent element.
+        </p>
+      ),
+      snippet: healthTextSizeSnippet,
+      props: { EuiHealth },
+      demo: <HealthSize />,
     },
   ],
   playground: healthConfig,

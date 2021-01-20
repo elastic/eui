@@ -38,7 +38,7 @@
   .euiFormControlLayout__append {
     @include euiTextTruncate;
     flex-shrink: 0;
-    height: auto;
+    height: 100%;
     border-radius: 0;
 
     // ICONS
