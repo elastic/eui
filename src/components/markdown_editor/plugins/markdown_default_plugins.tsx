@@ -109,3 +109,5 @@ export const getDefaultEuiMarkdownUiPlugins = () => {
   array.__originatedFromEui = true;
   return array;
 };
+
+export const defaultUiPlugins = getDefaultEuiMarkdownUiPlugins();
