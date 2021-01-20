@@ -31,8 +31,8 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
   markAsRead,
 }) => {
   const classesReadState = classNames('euiNotificationEventReadButton', {
-    'euiNotificationEventReadButton--isRead': isRead === true,
-    'euiNotificationEventReadButton--isUnread': isRead === false,
+    'euiNotificationEventReadButton--isRead': isRead,
+    'euiNotificationEventReadButton--isUnread': !isRead,
   });
 
   return (
