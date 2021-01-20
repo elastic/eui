@@ -100,7 +100,7 @@ interface EuiDataGridCellState {
   renderPopoverOpen: boolean; // wait one render cycle to actually render the popover as open
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
-  isHovered: boolean;
+  enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
 }
 
@@ -144,7 +144,7 @@ export class EuiDataGridCell extends Component<
     renderPopoverOpen: false,
     isFocused: false,
     isEntered: false,
-    isHovered: false,
+    enableInteractions: false,
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
@@ -258,7 +258,7 @@ export class EuiDataGridCell extends Component<
       return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
-    if (nextState.isHovered !== this.state.isHovered) return true;
+    if (nextState.enableInteractions !== this.state.enableInteractions) return true;
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
@@ -345,7 +345,7 @@ export class EuiDataGridCell extends Component<
     const showCellButtons =
       this.state.isFocused ||
       this.state.isEntered ||
-      this.state.isHovered ||
+      this.state.enableInteractions ||
       this.state.popoverIsOpen;
 
     const cellClasses = classNames(
@@ -559,10 +559,6 @@ export class EuiDataGridCell extends Component<
       }
     }
 
-    console.log(
-      `this.state.isFocused: ${this.state.isFocused}, this.state.disableCellTabIndex: ${this.state.disableCellTabIndex}`
-    );
-
     return (
       <div
         role="gridcell"
@@ -575,10 +571,7 @@ export class EuiDataGridCell extends Component<
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {
-          this.setState({ isHovered: true });
-        }}
-        onMouseLeave={() => {
-          this.setState({ isHovered: false });
+          this.setState({ enableInteractions: true });
         }}
         onBlur={this.onBlur}>
         {innerContent}

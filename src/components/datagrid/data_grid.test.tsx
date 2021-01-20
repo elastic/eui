@@ -28,7 +28,6 @@ import {
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
-import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -523,7 +522,6 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -542,7 +540,6 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -561,7 +558,6 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -580,7 +576,6 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -2054,9 +2049,9 @@ describe('EuiDataGrid', () => {
       expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
       expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
 
-      findTestSubject(component, 'dataGridRowCell')
-        .at(1)
-        .prop('onMouseEnter')!({} as React.MouseEvent);
+      findTestSubject(component, 'dataGridRowCell').at(1).prop('onMouseEnter')!(
+        {} as React.MouseEvent
+      );
 
       component.update();
 
