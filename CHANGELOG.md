@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.2.0`.
+**Bug Fixes**
+
+- Fixed id usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#]())
+- Stopped rendering an empty tab container in `EuiTabs` if no tabs are passed in ([#]())
 
 ## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
 

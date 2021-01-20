@@ -4,21 +4,27 @@ exports[`EuiTabs props display can be condensed 1`] = `
 <div
   class="euiTabs euiTabs--condensed"
   role="tablist"
-/>
+>
+  children
+</div>
 `;
 
 exports[`EuiTabs props expand is rendered 1`] = `
 <div
   class="euiTabs euiTabs--expand"
   role="tablist"
-/>
+>
+  children
+</div>
 `;
 
 exports[`EuiTabs props size can be small 1`] = `
 <div
   class="euiTabs euiTabs--small"
   role="tablist"
-/>
+>
+  children
+</div>
 `;
 
 exports[`EuiTabs renders 1`] = `
@@ -27,5 +33,7 @@ exports[`EuiTabs renders 1`] = `
   class="euiTabs testClass1 testClass2"
   data-test-subj="test subject string"
   role="tablist"
-/>
+>
+  children
+</div>
 `;

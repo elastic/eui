@@ -121,6 +121,10 @@ export default () => {
     },
   ];
 
+  const toggleButtonsIconsMultiCompressed = toggleButtonsIconsMulti.map(
+    (config) => ({ ...config, id: `${config.id}-compressed` })
+  );
+
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}1`);
   const [toggleIdDisabled, setToggleIdDisabled] = useState(`${idPrefix}4`);
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
@@ -137,7 +141,7 @@ export default () => {
     setToggleIconIdToSelectedMapIcon,
   ] = useState({});
   const [toggleCompressedIdSelected, setToggleCompressedIdSelected] = useState(
-    `${idPrefix2}4`
+    `${idPrefix2}4-compressed`
   );
 
   const onChange = (optionId) => {
@@ -268,9 +272,9 @@ export default () => {
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup
-          legend="Text style"
+          legend="Text style compressed"
           className="eui-displayInlineBlock"
-          options={toggleButtonsIconsMulti}
+          options={toggleButtonsIconsMultiCompressed}
           idToSelectedMap={toggleIconIdToSelectedMapIcon}
           onChange={(id) => onChangeIconsMultiIcons(id)}
           type="multi"
