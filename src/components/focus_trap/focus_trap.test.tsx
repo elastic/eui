@@ -127,18 +127,16 @@ describe('EuiFocusTrap', () => {
       const triggerDocumentMouseDown: EventHandler<any> = (
         e: React.MouseEvent
       ) => {
-        const nativeEvent = (e.nativeEvent as unknown) as EuiEvent;
         const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = nativeEvent.euiGeneratedBy;
+        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
       const triggerDocumentMouseUp: EventHandler<any> = (
         e: React.MouseEvent
       ) => {
-        const nativeEvent = (e.nativeEvent as unknown) as EuiEvent;
         const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = nativeEvent.euiGeneratedBy;
+        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
