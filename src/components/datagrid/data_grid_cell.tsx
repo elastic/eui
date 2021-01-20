@@ -294,7 +294,7 @@ export class EuiDataGridCell extends Component<
   };
 
   onBlur = () => {
-    this.setState({ disableCellTabIndex: false, isFocused: false });
+    this.setState({ disableCellTabIndex: false });
   };
 
   preventTabbing = () => {
@@ -352,8 +352,6 @@ export class EuiDataGridCell extends Component<
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
-        ['euiDataGridRowCell--hovered']: this.state.isHovered,
-        ['euiDataGridRowCell--focused']: this.state.isFocused,
         ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
       },
       className
