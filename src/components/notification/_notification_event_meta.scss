@@ -1,0 +1,15 @@
+.euiNotificationEventMeta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  > div > * + * {
+    margin-left: $euiSizeS;
+  }
+
+  &__time {
+    font-size: $euiFontSizeXS;
+    color: $euiColorDarkShade;
+  }
+}

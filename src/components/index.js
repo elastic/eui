@@ -240,6 +240,11 @@ export {
 
 export { EuiMutationObserver } from './observer/mutation_observer';
 
+export {
+  EuiNotificationEventMeta,
+  EuiNotificationEventReadButton,
+} from './notification/';
+
 export { EuiOutsideClickDetector } from './outside_click_detector';
 
 export { EuiOverlayMask } from './overlay_mask';

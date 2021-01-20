@@ -1,0 +1,11 @@
+.euiNotificationEventReadButton {
+  &--isUnread svg {
+    fill: $euiColorPrimary;
+  }
+
+  &--isRead svg {
+    fill: transparent;
+    stroke-width: 1px;
+    stroke: $euiBorderColor;
+  }
+}
