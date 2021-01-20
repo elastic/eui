@@ -22,7 +22,7 @@ export {
   EuiOverrideContext,
   EuiColorModeContext,
 } from './context';
-export { useEuiTheme } from './hooks';
+export { useEuiTheme, withEuiTheme } from './hooks';
 export { EuiThemeProvider } from './provider';
 export {
   buildTheme,
@@ -35,3 +35,4 @@ export {
   setOn,
   Computed,
 } from './utils';
+export { EuiTheme, EuiThemeColorMode } from './types';

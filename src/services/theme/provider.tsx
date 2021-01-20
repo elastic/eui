@@ -25,26 +25,26 @@ import {
   EuiColorModeContext,
 } from './context';
 import { getColorMode, mergeDeep } from './utils';
+import { EuiTheme, EuiThemeColorMode } from './types';
 
-export const EuiThemeProvider: FunctionComponent<any> = ({
-  theme: themeConfig,
+export interface EuiThemeProviderProps {
+  theme?: EuiTheme;
+  colorMode?: EuiThemeColorMode;
+  overrides?: EuiTheme;
+  children: any;
+}
+
+export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
+  theme: _theme,
   colorMode: _colorMode,
   overrides: _overrides = {},
   children,
-}: {
-  theme?: any;
-  colorMode?: string;
-  overrides?: any;
-  children: any;
 }) => {
   const parentSystem = useContext(EuiThemeContext);
   const parentOverrides = useContext(EuiOverrideContext);
   const parentColorMode = useContext(EuiColorModeContext);
 
-  const theme = useMemo(() => themeConfig || parentSystem, [
-    themeConfig,
-    parentSystem,
-  ]);
+  const theme = useMemo(() => _theme || parentSystem, [_theme, parentSystem]);
 
   const colorMode = useMemo(() => getColorMode(_colorMode, parentColorMode), [
     _colorMode,

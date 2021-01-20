@@ -95,3 +95,14 @@
 // > = null as any;
 // siblingsAccessor; // number || undefined
 // siblingsAccessor.toString(); // good error
+
+export type EuiThemeInverseColorMode = 'inverse';
+export type EuiThemeStandardColorMode = 'light' | 'dark';
+export type EuiThemeColorMode =
+  | string
+  | EuiThemeStandardColorMode
+  | EuiThemeInverseColorMode;
+// The actual shape of a theme is still in flux
+export interface EuiTheme {
+  [key: string]: any;
+}

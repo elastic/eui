@@ -65,7 +65,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
   onClick,
   ...rest
 }) => {
-  const [theme, , colorMode] = useEuiTheme();
+  const [theme, colorMode] = useEuiTheme();
   const euiTableHoverColor =
     colorMode === 'light' // tintOrShade
       ? tint(theme.colors.euiColorLightestShade, 0.5)

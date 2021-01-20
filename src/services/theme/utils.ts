@@ -17,11 +17,16 @@
  * under the License.
  */
 
-export const isInverseColorMode = (colorMode?: string) => {
+import { EuiTheme, EuiThemeColorMode } from './types';
+
+export const isInverseColorMode = (colorMode?: EuiThemeColorMode) => {
   return colorMode === 'inverse';
 };
 
-export const getColorMode = (colorMode?: string, parentColorMode?: string) => {
+export const getColorMode = (
+  colorMode?: EuiThemeColorMode,
+  parentColorMode?: EuiThemeColorMode
+) => {
   if (colorMode == null) {
     return parentColorMode || 'light';
   } else if (isInverseColorMode(colorMode)) {
@@ -33,7 +38,7 @@ export const getColorMode = (colorMode?: string, parentColorMode?: string) => {
   }
 };
 
-export const getOn = (model: { [key: string]: any }, _path: string) => {
+export const getOn = (model: EuiTheme, _path: string) => {
   const path = _path.split('.');
   let node = model;
 
@@ -50,11 +55,7 @@ export const getOn = (model: { [key: string]: any }, _path: string) => {
   return node;
 };
 
-export const setOn = (
-  model: { [key: string]: any },
-  _path: string,
-  value: any
-) => {
+export const setOn = (model: EuiTheme, _path: string, value: any) => {
   const path = _path.split('.');
   const propertyName = path.pop()!;
   let node = model;
@@ -73,11 +74,11 @@ export const setOn = (
 
 export class Computed<T> {
   constructor(
-    public dependencies: any[],
+    public dependencies: string[],
     public computer: (...values: any[]) => T
   ) {}
 
-  getValue(model: any, overrides = {}, working: any) {
+  getValue(model: EuiTheme, overrides: EuiTheme = {}, working: EuiTheme) {
     return this.computer(
       this.dependencies.map((dependency) => {
         if (working) {
@@ -90,16 +91,16 @@ export class Computed<T> {
 }
 
 export const computed = <T>(
-  dependencies: any[],
+  dependencies: string[],
   computer: (values: any[]) => T
 ) => {
   return (new Computed(dependencies, computer) as unknown) as T;
 };
 
-export const getComputed = (base: any, over: any) => {
+export const getComputed = (base: EuiTheme, over: EuiTheme) => {
   const output = {};
 
-  function loop(base: any, over: any, path?: string) {
+  function loop(base: EuiTheme, over: EuiTheme, path?: string) {
     Object.keys(base).forEach((key) => {
       const baseValue =
         base[key] instanceof Computed
@@ -121,21 +122,21 @@ export const getComputed = (base: any, over: any) => {
   return output;
 };
 
-export const buildTheme = (model: any) => {
+export const buildTheme = (model: EuiTheme) => {
   const handler = {
-    getPrototypeOf(target: any) {
+    getPrototypeOf(target: EuiTheme) {
       return Reflect.getPrototypeOf(target.model);
     },
 
-    setPrototypeOf(target: any, prototype: any) {
+    setPrototypeOf(target: EuiTheme, prototype: any) {
       return Reflect.setPrototypeOf(target.model, prototype);
     },
 
-    isExtensible(target: any) {
+    isExtensible(target: EuiTheme) {
       return Reflect.isExtensible(target);
     },
 
-    preventExtensions(target: any) {
+    preventExtensions(target: EuiTheme) {
       return Reflect.preventExtensions(target.model);
     },
 
@@ -146,7 +147,7 @@ export const buildTheme = (model: any) => {
     // },
 
     // TODO: Is this ok?
-    getOwnPropertyDescriptor(target: any, key: any) {
+    getOwnPropertyDescriptor(target: EuiTheme, key: string) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(
         target.model,
         key
@@ -158,15 +159,15 @@ export const buildTheme = (model: any) => {
       return descriptor;
     },
 
-    defineProperty(target: any, property: any, attributes: any) {
+    defineProperty(target: EuiTheme, property: string, attributes: any) {
       return Reflect.defineProperty(target.model, property, attributes);
     },
 
-    has(target: any, property: any) {
+    has(target: EuiTheme, property: string) {
       return Reflect.has(target.model, property);
     },
 
-    get(_target: any, property: any): any {
+    get(_target: EuiTheme, property: string): any {
       const target = property === 'root' ? _target : _target.model || _target;
       if (typeof target[property] === 'object' && target[property] !== null) {
         return new Proxy(
@@ -182,20 +183,20 @@ export const buildTheme = (model: any) => {
       return target;
     },
 
-    deleteProperty(target: any, property: any) {
+    deleteProperty(target: EuiTheme, property: string) {
       return Reflect.deleteProperty(target.model, property);
     },
 
-    ownKeys(target: any) {
+    ownKeys(target: EuiTheme) {
       return Reflect.ownKeys(target.model);
     },
 
-    apply(target: any, thisArg: any, argumentList: any) {
+    apply(target: EuiTheme, thisArg: any, argumentList: any) {
       console.log('apply');
       return Reflect.apply(target.model, thisArg, argumentList);
     },
 
-    construct(target: any, argumentsList: any, newTarget: any) {
+    construct(target: EuiTheme, argumentsList: any, newTarget: any) {
       return Reflect.construct(target.model, argumentsList, newTarget);
     },
   };
@@ -204,7 +205,7 @@ export const buildTheme = (model: any) => {
   return themeProxy;
 };
 
-export const mergeDeep = (_target: any, source: any) => {
+export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
   const isObject = (obj: any) => obj && typeof obj === 'object';
   const target = { ..._target };
 

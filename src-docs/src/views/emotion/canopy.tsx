@@ -23,15 +23,14 @@ import chroma from 'chroma-js';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
 import {
-  // buildTheme,
-  // computed,
   useEuiTheme,
+  withEuiTheme,
   EuiThemeProvider,
 } from '../../../../src/services/theme';
 import { DefaultEuiTheme } from '../../../../src/themes';
 
 const View = () => {
-  const [theme, , colorMode] = useEuiTheme();
+  const [theme, colorMode] = useEuiTheme();
   return (
     <div css={{ display: 'flex' }}>
       <div>
@@ -112,6 +111,24 @@ const View2 = () => {
   );
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
+class Block extends React.Component<any> {
+  render() {
+    const { theme, ...props } = this.props;
+    return (
+      <div {...props}>
+        <EuiIcon
+          aria-hidden="true"
+          type="stopFilled"
+          size="xxl"
+          css={{ color: theme.theme.colors.euiColorPrimary }}
+        />
+      </div>
+    );
+  }
+}
+const BlockWithTheme = withEuiTheme(Block);
+
 export default () => {
   const [colorMode, setColorMode] = React.useState('light');
   const toggleTheme = () => {
@@ -164,6 +181,8 @@ export default () => {
         <EuiThemeProvider colorMode="inverse">
           <em>Inverse colorMode</em>
           <View3 />
+          <em>withEuiTheme</em>
+          <BlockWithTheme />
         </EuiThemeProvider>
       </EuiThemeProvider>
       <EuiSpacer />

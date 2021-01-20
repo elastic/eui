@@ -17,24 +17,58 @@
  * under the License.
  */
 
-import { useContext, useEffect, useState } from 'react';
+import React, { forwardRef, useContext, useEffect, useState } from 'react';
 
 import {
   EuiThemeContext,
   EuiOverrideContext,
   EuiColorModeContext,
 } from './context';
+import { EuiTheme, EuiThemeColorMode } from './types';
 import { buildTheme, getComputed } from './utils';
 
-export const useEuiTheme = () => {
+export const useEuiTheme = (): [EuiTheme, EuiThemeColorMode, EuiTheme] => {
   const theme = useContext(EuiThemeContext);
   const overrides = useContext(EuiOverrideContext);
   const colorMode = useContext(EuiColorModeContext);
-  const [values, setValues] = useState<any>(() => {
+  const [values, setValues] = useState<EuiTheme>(() => {
     return getComputed(theme, buildTheme(overrides));
   });
   useEffect(() => {
     setValues(getComputed(theme, buildTheme(overrides)));
   }, [theme, overrides]);
-  return [values[colorMode], theme, colorMode];
+  return [values[colorMode], colorMode, theme];
+};
+
+export const withEuiTheme = <T extends {}>(
+  Component: React.ComponentType<
+    T & {
+      theme: {
+        theme: EuiTheme;
+        colorMode: EuiThemeColorMode;
+      };
+    }
+  >
+) => {
+  const componentName = Component.displayName || Component.name || 'Component';
+  const Render = (props: T, ref: React.Ref<T>) => {
+    const [theme, colorMode] = useEuiTheme();
+    return (
+      <Component
+        // TODO: Two props?
+        theme={{
+          theme,
+          colorMode,
+        }}
+        ref={ref}
+        {...props}
+      />
+    );
+  };
+
+  const WithEuiTheme = forwardRef(Render);
+
+  WithEuiTheme.displayName = `WithEuiTheme(${componentName})`;
+
+  return WithEuiTheme;
 };

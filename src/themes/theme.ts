@@ -20,12 +20,12 @@
 import chroma from 'chroma-js';
 import { buildTheme, computed } from '../services/theme';
 
-export const tint = (c: string, pct: any) =>
-  pct && chroma.mix(c, '#fff', pct).hex();
-export const shade = (c: string, pct: any) =>
-  pct && chroma.mix(c, '#000', pct).hex();
-const makeHighContrastColor = (c: string) => c;
-const makeDisabledContrastColor = (c: string) => c;
+export const tint = (color: string, ratio: number) =>
+  chroma.mix(color, '#fff', ratio).hex();
+export const shade = (color: string, ratio: number) =>
+  chroma.mix(color, '#000', ratio).hex();
+const makeHighContrastColor = (color: string) => color;
+const makeDisabledContrastColor = (color: string) => color;
 
 export const light = {
   euiColorPrimary: '#006BB4',

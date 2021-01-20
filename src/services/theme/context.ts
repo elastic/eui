@@ -18,7 +18,8 @@
  */
 
 import { createContext } from 'react';
+import { EuiTheme, EuiThemeColorMode } from './types';
 
-export const EuiThemeContext = createContext<any>(undefined);
-export const EuiOverrideContext = createContext<any>({});
-export const EuiColorModeContext = createContext<any>(undefined);
+export const EuiThemeContext = createContext<EuiTheme>({});
+export const EuiOverrideContext = createContext<EuiTheme>({});
+export const EuiColorModeContext = createContext<EuiThemeColorMode>('light');
