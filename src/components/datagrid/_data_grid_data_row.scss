@@ -66,12 +66,21 @@
     }
   }
 
-  &:not(:hover):not(.euiDataGridRowCell--hovered) {
+  &:not(:hover):not(.euiDataGridRowCell--hovered), &.euiDataGridRowCell--open {
     .euiDataGridRowCell__expandButtonIcon {
+      animation: none;
       margin-left: $euiDataGridCellPaddingM;
       width: $euiSizeM;
     }
 
+    .euiDataGridRowCell__actionButtonIcon {
+      animation: none;
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+  }
+
+  &.euiDataGridRowCell--focused {
     .euiDataGridRowCell__actionButtonIcon {
       margin-left: $euiDataGridCellPaddingM;
       width: $euiSizeM;

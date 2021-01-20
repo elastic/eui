@@ -2054,11 +2054,9 @@ describe('EuiDataGrid', () => {
       expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
       expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
 
-      await act(async () => {
-        findTestSubject(component, 'dataGridRowCell')
-          .at(1)
-          .prop('onMouseEnter')!({} as React.MouseEvent);
-      });
+      findTestSubject(component, 'dataGridRowCell')
+        .at(1)
+        .prop('onMouseEnter')!({} as React.MouseEvent);
 
       component.update();
 
