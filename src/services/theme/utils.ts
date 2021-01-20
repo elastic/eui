@@ -140,23 +140,8 @@ export const buildTheme = (model: EuiTheme) => {
       return Reflect.preventExtensions(target.model);
     },
 
-    // TODO: Figure this out
-    // JSON.stringify errors on this
-    // getOwnPropertyDescriptor(target, key) {
-    //   return Reflect.getOwnPropertyDescriptor(target.model, key);
-    // },
-
-    // TODO: Is this ok?
     getOwnPropertyDescriptor(target: EuiTheme, key: string) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        target.model,
-        key
-      ) || {
-        value: handler.get(target, key),
-      };
-
-      Object.defineProperty(target, key, descriptor);
-      return descriptor;
+      return Reflect.getOwnPropertyDescriptor(target.model, key);
     },
 
     defineProperty(target: EuiTheme, property: string, attributes: any) {

@@ -2,12 +2,7 @@ import React from 'react';
 import { EUI_THEMES, EUI_THEME, DefaultEuiTheme } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
-import {
-  // buildTheme,
-  // computed,
-  // useEuiTheme,
-  EuiThemeProvider,
-} from '../../../../src/services';
+import { EuiThemeProvider } from '../../../../src/services';
 
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 

@@ -26,7 +26,7 @@ import {
   useEuiTheme,
   withEuiTheme,
   EuiThemeProvider,
-} from '../../../../src/services/theme';
+} from '../../../../src/services';
 import { DefaultEuiTheme } from '../../../../src/themes';
 
 const View = () => {

@@ -123,6 +123,7 @@ export {
   EuiOverrideContext,
   EuiColorModeContext,
   useEuiTheme,
+  withEuiTheme,
   EuiThemeProvider,
   buildTheme,
   computed,
