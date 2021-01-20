@@ -536,7 +536,15 @@ export class EuiDataGridCell extends Component<
               anchorContent={anchorContent}
               cellContentProps={cellContentProps}
               cellContentsRef={this.cellContentsRef}
-              closePopover={() => this.setState({ popoverIsOpen: false })}
+              closePopover={() => {
+                // due to a bug, popovers don't close properly wenn unmounted in open state.
+                // This "double set" makes sure to unmount the component in closed state.
+                this.setState({ popoverIsOpen: false }, () =>
+                  this.setState(() => ({
+                    renderPopoverOpen: false,
+                  }))
+                );
+              }}
               column={column}
               panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
               popoverIsOpen={this.state.renderPopoverOpen}
@@ -551,7 +559,9 @@ export class EuiDataGridCell extends Component<
       }
     }
 
-    console.log(`this.state.isFocused: ${this.state.isFocused}, this.state.disableCellTabIndex: ${this.state.disableCellTabIndex}`);
+    console.log(
+      `this.state.isFocused: ${this.state.isFocused}, this.state.disableCellTabIndex: ${this.state.disableCellTabIndex}`
+    );
 
     return (
       <div
