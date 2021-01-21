@@ -31,6 +31,7 @@ import classNames from 'classnames';
 import {
   GridChildComponentProps,
   VariableSizeGrid as Grid,
+  VariableSizeGridProps,
 } from 'react-window';
 import { EuiCodeBlock } from '../code';
 import {
@@ -258,6 +259,31 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
   return cellContent;
 };
 
+const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
+  HTMLDivElement,
+  { style: { height: number } }
+>(({ children, style, ...rest }, ref) => {
+  const { headerRowHeight, headerRow, footerRow } = useContext(
+    DataGridWrapperRowsContext
+  );
+  return (
+    <>
+      <div
+        ref={ref}
+        style={{
+          ...style,
+          height: style.height + headerRowHeight,
+        }}
+        {...rest}>
+        {headerRow}
+        {children}
+      </div>
+      {footerRow}
+    </>
+  );
+});
+InnerElement.displayName = 'EuiDataGridInnerElement';
+
 const INITIAL_ROW_HEIGHT = 34;
 const SCROLLBAR_HEIGHT = 15;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -439,33 +465,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     trailingControlColumns,
     visibleRowIndices.length,
   ]);
-
-  const InnerElement = useMemo(
-    () =>
-      forwardRef<HTMLDivElement, { style: { height: number } }>(
-        ({ children, style, ...rest }, ref) => {
-          const { headerRowHeight, headerRow, footerRow } = useContext(
-            DataGridWrapperRowsContext
-          );
-          return (
-            <>
-              <div
-                ref={ref}
-                style={{
-                  ...style,
-                  height: style.height + headerRowHeight,
-                }}
-                {...rest}>
-                {headerRow}
-                {children}
-              </div>
-              {footerRow}
-            </>
-          );
-        }
-      ),
-    []
-  );
 
   const gridRef = useRef<Grid>(null);
   useEffect(() => {
