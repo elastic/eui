@@ -46,6 +46,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     <div
       className="euiAccordion__childWrapper"
       id="12"
+      tabIndex={-1}
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -107,6 +108,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     <div
       className="euiAccordion__childWrapper"
       id="11"
+      tabIndex={-1}
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -154,6 +156,7 @@ exports[`EuiAccordion is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="0"
+    tabindex="-1"
   >
     <div>
       <div
@@ -186,6 +189,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="6"
+    tabindex="-1"
   >
     <div>
       <div
@@ -230,6 +234,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="5"
+    tabindex="-1"
   >
     <div>
       <div
@@ -278,6 +283,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="2"
+    tabindex="-1"
   >
     <div>
       <div
@@ -318,6 +324,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="1"
+    tabindex="-1"
   >
     <div>
       <div
@@ -365,6 +372,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="3"
+    tabindex="-1"
   >
     <div>
       <div
@@ -405,6 +413,7 @@ exports[`EuiAccordion props forceState is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="7"
+    tabindex="-1"
   >
     <div>
       <div
@@ -449,6 +458,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="4"
+    tabindex="-1"
   >
     <div>
       <div
@@ -500,6 +510,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="9"
+    tabindex="-1"
   >
     <div>
       <div
@@ -551,6 +562,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
   <div
     class="euiAccordion__childWrapper"
     id="10"
+    tabindex="-1"
   >
     <div>
       <div
