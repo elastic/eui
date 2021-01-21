@@ -534,19 +534,13 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (
-      boundingRect.height !== unconstrainedHeight &&
-      height !== boundingRect.height
-    ) {
+    if (boundingRect.height !== unconstrainedHeight) {
       setHeight(boundingRect.height);
     }
-    if (
-      boundingRect.width !== unconstrainedWidth &&
-      width !== boundingRect.width
-    ) {
+    if (boundingRect.width !== unconstrainedWidth) {
       setWidth(boundingRect.width);
     }
-  }, [unconstrainedHeight, wrapperDimensions, height, width]);
+  }, [unconstrainedHeight, wrapperDimensions]);
 
   const preventTabbing = useCallback(() => {
     if (wrapperRef.current) {
