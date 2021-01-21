@@ -3,18 +3,6 @@
   min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
 }
 
-@keyframes euiDataGridCellButtonSlideIn {
-  from {
-    margin-left: 0;
-    width: 0;
-  }
-
-  to {
-    margin-left: $euiDataGridCellPaddingM;
-    width: $euiSizeM;
-  }
-}
-
 @include euiDataGridRowCell {
   @include euiFontSizeS;
 
@@ -50,23 +38,24 @@
   // Long delays on hover to mitigate the accordion effect
   &:hover {
     .euiDataGridRowCell__expandButtonIcon {
-      animation-duration: $euiAnimSpeedFast;
+      animation-duration: $euiAnimSpeedExtraFast;
       animation-name: euiDataGridCellButtonSlideIn;
       animation-iteration-count: 1;
-      animation-delay: 1000ms;
-      animation-fill-mode: forwards;  
+      animation-delay: $euiAnimSpeedNormal;
+      animation-fill-mode: forwards;
     }
 
     .euiDataGridRowCell__actionButtonIcon {
-      animation-duration: $euiAnimSpeedFast;
+      animation-duration: $euiAnimSpeedExtraFast;
       animation-name: euiDataGridCellButtonSlideIn;
       animation-iteration-count: 1;
-      animation-delay: 1000ms;
-      animation-fill-mode: forwards;  
+      animation-delay: $euiAnimSpeedNormal;
+      animation-fill-mode: forwards;
     }
   }
 
-  &:not(:hover), &.euiDataGridRowCell--open {
+  &:not(:hover),
+  &.euiDataGridRowCell--open {
     .euiDataGridRowCell__expandButtonIcon {
       animation: none;
       margin-left: $euiDataGridCellPaddingM;
@@ -90,7 +79,8 @@
 
   // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
   &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
-    .euiDataGridRowCell__expandButtonIcon, .euiDataGridRowCell__actionButtonIcon {
+    .euiDataGridRowCell__expandButtonIcon,
+    .euiDataGridRowCell__actionButtonIcon {
       display: none;
     }
   }
@@ -255,5 +245,17 @@
       // Needed because the focus state adds a border, which needs to be subtracted from padding
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
+  }
+}
+
+@keyframes euiDataGridCellButtonSlideIn {
+  from {
+    margin-left: 0;
+    width: 0;
+  }
+
+  to {
+    margin-left: $euiDataGridCellPaddingM;
+    width: $euiSizeM;
   }
 }

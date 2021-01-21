@@ -258,7 +258,8 @@ export class EuiDataGridCell extends Component<
       return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
-    if (nextState.enableInteractions !== this.state.enableInteractions) return true;
+    if (nextState.enableInteractions !== this.state.enableInteractions)
+      return true;
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 

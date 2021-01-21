@@ -650,7 +650,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
-
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
   const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
