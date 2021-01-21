@@ -18,6 +18,10 @@ export default () => {
 
   return (
     <>
+      <EuiTitle size="s">
+        <h2>EuiNotificationEventMeta</h2>
+      </EuiTitle>
+      <EuiSpacer size="m" />
       <EuiTitle size="xs">
         <h3>All props</h3>
       </EuiTitle>
