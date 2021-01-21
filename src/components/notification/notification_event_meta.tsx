@@ -64,7 +64,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   onRead,
   severity,
 }) => {
-  const markAsRead = () => {
+  const onMarkAsRead = () => {
     onRead && onRead();
   };
 
@@ -74,7 +74,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         {typeof isRead === 'boolean' && (
           <EuiNotificationEventReadButton
             isRead={isRead}
-            markAsRead={markAsRead}
+            onMarkAsRead={onMarkAsRead}
           />
         )}
 
