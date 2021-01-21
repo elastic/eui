@@ -126,15 +126,21 @@ const EuiDataGridCellContent: FunctionComponent<
   );
 });
 
+// TODO: TypeScript has added types for ResizeObserver but not yet released
+// https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/948
+// for now, marking ResizeObserver usage as `any`
+// and when EUI upgrades to a version of TS with ResizeObserver
+// the anys can be removed
 const hasResizeObserver =
-  typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
+  typeof window !== 'undefined' &&
+  typeof (window as any).ResizeObserver !== 'undefined';
 
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
-  observer!: ResizeObserver;
+  observer!: any; // ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
@@ -153,7 +159,7 @@ export class EuiDataGridCell extends Component<
     // watch the first cell for size changes and use that to re-compute row heights
     if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
       if (ref && hasResizeObserver) {
-        this.observer = new window.ResizeObserver(() => {
+        this.observer = new (window as any).ResizeObserver(() => {
           const rowHeight = this.cellRef.current!.getBoundingClientRect()
             .height;
           if (this.props.setRowHeight) {
