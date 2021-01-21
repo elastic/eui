@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.3.0`.
+**Bug fixes**
+
+- Fixed heights of `append` and `prepend` in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4406))
 
 ## [`31.3.0`](https://github.com/elastic/eui/tree/v31.3.0)
 
