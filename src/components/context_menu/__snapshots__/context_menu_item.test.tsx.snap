@@ -125,6 +125,36 @@ exports[`EuiContextMenuItem props rel is rendered 1`] = `
 </a>
 `;
 
+exports[`EuiContextMenuItem props size m is rendered 1`] = `
+<button
+  class="euiContextMenuItem"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props size s is rendered 1`] = `
+<button
+  class="euiContextMenuItem euiContextMenuItem--small"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiContextMenuItem props target is rendered 1`] = `
 <a
   aria-label="aria-label"

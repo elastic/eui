@@ -21,7 +21,7 @@ import React from 'react';
 import { render, shallow, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiContextMenuItem } from './context_menu_item';
+import { EuiContextMenuItem, SIZES } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
   test('is rendered', () => {
@@ -48,6 +48,16 @@ describe('EuiContextMenuItem', () => {
         const component = render(<EuiContextMenuItem disabled />);
 
         expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        it(`${size} is rendered`, () => {
+          const component = render(<EuiContextMenuItem size={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
 
