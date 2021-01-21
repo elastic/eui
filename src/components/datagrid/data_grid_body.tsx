@@ -529,7 +529,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [rowCount]);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const wrapperDimensions = useResizeObserver(wrapperRef.current, undefined);
+  const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
