@@ -23,7 +23,7 @@ import { css } from '@emotion/react';
 import chroma from 'chroma-js';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services/theme';
-import { tint, shade } from '../../themes/theme';
+import { tint, shade } from '../../services/theme/theme';
 
 interface EuiTableRowProps {
   /**

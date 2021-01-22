@@ -26,8 +26,8 @@ import {
   useEuiTheme,
   withEuiTheme,
   EuiThemeProvider,
+  // DefaultEuiTheme,
 } from '../../../../src/services';
-import { DefaultEuiTheme } from '../../../../src/themes';
 
 const View = () => {
   const [theme, colorMode] = useEuiTheme();
@@ -159,7 +159,7 @@ export default () => {
   return (
     <>
       <EuiThemeProvider
-        theme={DefaultEuiTheme}
+        // theme={DefaultEuiTheme}
         colorMode={colorMode}
         overrides={overrides}>
         <button type="button" onClick={toggleTheme}>

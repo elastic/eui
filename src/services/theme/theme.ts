@@ -18,7 +18,7 @@
  */
 
 import chroma from 'chroma-js';
-import { buildTheme, computed } from '../services';
+import { buildTheme, computed } from './utils';
 
 export const tint = (color: string, ratio: number) =>
   chroma.mix(color, '#fff', ratio).hex();

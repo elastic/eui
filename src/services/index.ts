@@ -134,4 +134,5 @@ export {
   mergeDeep,
   setOn,
   Computed,
+  DefaultEuiTheme,
 } from './theme';

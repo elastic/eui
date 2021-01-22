@@ -31,6 +31,7 @@ export const useEuiTheme = (): [EuiTheme, EuiThemeColorMode, EuiTheme] => {
   const theme = useContext(EuiThemeContext);
   const overrides = useContext(EuiOverrideContext);
   const colorMode = useContext(EuiColorModeContext);
+
   const [values, setValues] = useState<EuiTheme>(() => {
     return getComputed(theme, buildTheme(overrides));
   });

@@ -50,9 +50,10 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
     _colorMode,
     parentColorMode,
   ]);
-  const overrides = useMemo(() => {
-    return mergeDeep(parentOverrides, _overrides);
-  }, [_overrides, parentOverrides]);
+  const overrides = useMemo(() => mergeDeep(parentOverrides, _overrides), [
+    _overrides,
+    parentOverrides,
+  ]);
 
   return (
     <EuiColorModeContext.Provider value={colorMode}>
