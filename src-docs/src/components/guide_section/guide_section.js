@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { useView, Compiler, Placeholder } from 'react-view';
+import format from 'html-format';
 import PropTypes from 'prop-types';
 
 import {
   EuiHorizontalRule,
-  EuiCode,
   EuiCodeBlock,
   EuiErrorBoundary,
   EuiSpacer,
@@ -33,78 +34,7 @@ import { cleanEuiImports } from '../../services';
 import { extendedTypesInfo } from './guide_section_extends';
 import { EuiIcon } from '../../../../src/components/icon';
 
-export const markup = (text) => {
-  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split('\n').map((token) => {
-    const values = token.split(regex).map((token, index) => {
-      if (!token) {
-        return '';
-      }
-      if (token.startsWith('#')) {
-        const id = token.substring(1);
-        const onClick = () => {
-          document.getElementById(id).scrollIntoView();
-        };
-        return (
-          <EuiLink key={`markup-${index}`} onClick={onClick}>
-            {id}
-          </EuiLink>
-        );
-      }
-      if (token.startsWith('`')) {
-        const code = token.substring(1, token.length - 1);
-        return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-      }
-      if (token.includes('\n')) {
-        return token
-          .split('\n')
-          .map((item) => [item, <br key={`markup-${index}`} />]);
-      }
-      return token;
-    });
-    return [...values, <br key="lineBreak" />];
-  });
-};
-
-export const humanizeType = (type) => {
-  if (!type) {
-    return '';
-  }
-
-  let humanizedType;
-
-  switch (type.name) {
-    case 'enum':
-      if (Array.isArray(type.value)) {
-        humanizedType = type.value.map(({ value }) => value).join(', ');
-        break;
-      }
-      humanizedType = type.value;
-      break;
-
-    case 'union':
-      if (Array.isArray(type.value)) {
-        const unionValues = type.value.map(({ name }) => name);
-        unionValues[unionValues.length - 1] = `or ${
-          unionValues[unionValues.length - 1]
-        }`;
-
-        if (unionValues.length > 2) {
-          humanizedType = unionValues.join(', ');
-        } else {
-          humanizedType = unionValues.join(' ');
-        }
-        break;
-      }
-      humanizedType = type.value;
-      break;
-
-    default:
-      humanizedType = type.name;
-  }
-
-  return humanizedType;
-};
+import Knobs, { humanizeType, markup } from '../../services/playground/knobs';
 
 const nameToCodeClassMap = {
   javascript: 'javascript',
@@ -165,6 +95,7 @@ export class GuideSection extends Component {
       selectedTab: undefined,
       renderedCode: null,
       sortedComponents: {},
+      isPlayground: false,
     };
 
     this.memoScroll = 0;
@@ -591,11 +522,9 @@ export class GuideSection extends Component {
       );
     }
     return (
-      <div>
-        <div className="guideSection__text">
-          {title}
-          {this.renderText()}
-        </div>
+      <div className="guideSection__text">
+        {title}
+        {this.renderText()}
       </div>
     );
   }
@@ -629,6 +558,9 @@ export class GuideSection extends Component {
   }
 
   renderExample() {
+    if (this.state.isPlayground && this.props.playground) {
+      return <PlaygroundExample config={this.props.playground().config} />;
+    }
     return (
       <EuiErrorBoundary>
         <div>{this.props.demo}</div>
@@ -663,7 +595,11 @@ export class GuideSection extends Component {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          {this.renderProps()}
+          <EuiSpacer />
+          <PlaygroundProps
+            config={this.props.playground().config}
+            isPlayground={this.state.isPlayground}
+          />
         </EuiErrorBoundary>
       );
     }
@@ -677,6 +613,43 @@ export class GuideSection extends Component {
         </EuiButtonEmpty>
       </CodeSandboxLink>
     );
+  }
+
+  renderPlaygroundToggle() {
+    const isPlaygroundUnsupported =
+      // Check for IE11 -- TODO: NOT WORKING IN HERE
+      typeof window !== 'undefined' &&
+      typeof document !== 'undefined' &&
+      !!window.MSInputMethodContext &&
+      !!document.documentMode;
+
+    if (!isPlaygroundUnsupported && this.props.playground) {
+      return (
+        <EuiSwitch
+          onChange={() => {
+            this.setState(
+              (prevState) => ({
+                isPlayground: !prevState.isPlayground,
+              }),
+              () => {
+                if (
+                  this.state.isPlayground &&
+                  this.state.selectedTab &&
+                  this.state.selectedTab.name !== 'props'
+                ) {
+                  this.onSelectedTabChanged(
+                    this.tabs.find((tab) => tab.name === 'props')
+                  );
+                }
+              }
+            );
+          }}
+          checked={this.state.isPlayground}
+          compressed
+          label={'Playground'}
+        />
+      );
+    }
   }
 
   render() {
@@ -706,14 +679,7 @@ export class GuideSection extends Component {
                 )}
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
-                {this.props.playground && (
-                  <EuiSwitch
-                    onChange={() => {}}
-                    checked={false}
-                    compressed
-                    label={'Playground'}
-                  />
-                )}
+                {this.renderPlaygroundToggle()}
               </EuiFlexItem>
             </EuiFlexGroup>
             {this.renderContent()}
@@ -736,9 +702,73 @@ GuideSection.propTypes = {
   children: PropTypes.any,
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
-  playground: PropTypes.node,
+  playground: PropTypes.any,
 };
 
 GuideSection.defaultProps = {
   props: {},
+};
+
+const PlaygroundExample = ({
+  config,
+  // setGhostBackground,
+  // playgroundClassName,
+}) => {
+  const params = useView(config);
+
+  const getSnippet = (code) => {
+    let regex = /return \(([\S\s]*?)(;)$/gm;
+    let newCode = code.match(regex);
+
+    if (newCode) {
+      newCode = newCode[0];
+      if (newCode.startsWith('return ('))
+        newCode = newCode.replace('return (', '');
+    } else {
+      regex = /return ([\S\s]*?)(;)$/gm;
+      newCode = code.match(regex)[0];
+      if (newCode.startsWith('return '))
+        newCode = newCode.replace('return ', '');
+    }
+
+    if (newCode.endsWith(');')) {
+      newCode = newCode.replace(/(\);)$/m, '');
+    }
+
+    return format(newCode.trim(), ' '.repeat(4));
+  };
+
+  return (
+    <>
+      <EuiFlexItem grow={false}>
+        <div>
+          <Compiler
+            {...params.compilerProps}
+            minHeight={62}
+            placeholder={Placeholder}
+          />
+        </div>
+      </EuiFlexItem>
+      <EuiFlexItem className="eui-fullWidth" grow={true}>
+        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+          {getSnippet(params.editorProps.code)}
+        </EuiCodeBlock>
+      </EuiFlexItem>
+    </>
+  );
+};
+
+const PlaygroundProps = ({
+  config,
+  isPlayground,
+  // setGhostBackground,
+  // playgroundClassName,
+}) => {
+  const params = useView(config);
+
+  return (
+    <>
+      <Knobs {...params.knobProps} isPlayground={isPlayground} />
+    </>
+  );
 };
