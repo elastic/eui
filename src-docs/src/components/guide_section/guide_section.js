@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import {
+  EuiHorizontalRule,
   EuiCode,
   EuiCodeBlock,
   EuiErrorBoundary,
@@ -21,6 +22,8 @@ import {
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiPanel,
+  EuiSwitch,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../codesandbox';
@@ -28,6 +31,7 @@ import { CodeSandboxLink } from '../codesandbox';
 import { cleanEuiImports } from '../../services';
 
 import { extendedTypesInfo } from './guide_section_extends';
+import { EuiIcon } from '../../../../src/components/icon';
 
 export const markup = (text) => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -116,23 +120,27 @@ export class GuideSection extends Component {
 
     this.tabs = [];
 
-    if (props.demo) {
-      this.tabs.push({
-        name: 'demo',
-        displayName: 'Demo',
-      });
-    }
+    // if (props.demo) {
+    //   this.tabs.push({
+    //     name: 'demo',
+    //     displayName: 'Demo',
+    //   });
+    // }
 
     if (props.source) {
       this.tabs.push(
         {
           name: 'javascript',
-          displayName: 'Demo JS',
+          displayName: (
+            <>
+              <EuiIcon type="editorCodeBlock" /> JS
+            </>
+          ),
           isCode: true,
         },
         {
           name: 'html',
-          displayName: 'Demo HTML',
+          displayName: 'HTML',
           isCode: true,
         }
       );
@@ -154,7 +162,7 @@ export class GuideSection extends Component {
     }
 
     this.state = {
-      selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
+      selectedTab: undefined,
       renderedCode: null,
       sortedComponents: {},
     };
@@ -243,20 +251,35 @@ export class GuideSection extends Component {
       }
     }
 
-    this.setState({ selectedTab, renderedCode }, () => {
-      if (name === 'javascript') {
-        requestAnimationFrame(() => {
-          const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
-          if (!pre) return;
-          pre.scrollTop = this.memoScroll;
-        });
+    this.setState(
+      (prevState) => {
+        if (prevState.selectedTab && prevState.selectedTab.name === name) {
+          // Unselect tabs if clicking the same one that is currently open
+          return {
+            selectedTab: undefined,
+            renderedCode: null,
+          };
+        }
+        return { selectedTab, renderedCode };
+      },
+      () => {
+        if (name === 'javascript') {
+          requestAnimationFrame(() => {
+            const pre = this.refs.javascript.querySelector(
+              '.euiCodeBlock__pre'
+            );
+            if (!pre) return;
+            pre.scrollTop = this.memoScroll;
+          });
+        }
       }
-    });
+    );
   };
 
   renderTabs() {
     return this.tabs.map((tab) => (
       <EuiTab
+        className="euiTab--small"
         onClick={() => this.onSelectedTabChanged(tab)}
         isSelected={tab === this.state.selectedTab}
         key={tab.name}>
@@ -481,7 +504,10 @@ export class GuideSection extends Component {
 
     if (rows.length) {
       table = (
-        <EuiTable compressed key={`propsTable-${componentName}`}>
+        <EuiTable
+          style={{ background: 'transparent' }}
+          compressed
+          key={`propsTable-${componentName}`}>
           <EuiTableHeader>
             <EuiTableHeaderCell
               onSort={() => {
@@ -570,17 +596,9 @@ export class GuideSection extends Component {
           {title}
           {this.renderText()}
         </div>
-
-        {this.tabs.length > 0 && (
-          <>
-            <EuiSpacer size="m" />
-            <EuiTabs>{this.renderTabs()}</EuiTabs>
-          </>
-        )}
       </div>
     );
   }
-
   renderCode(name) {
     const euiCodeBlock = (
       <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
@@ -610,35 +628,45 @@ export class GuideSection extends Component {
     return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
+  renderExample() {
+    return (
+      <EuiErrorBoundary>
+        <div>{this.props.demo}</div>
+      </EuiErrorBoundary>
+    );
+  }
+
   renderContent() {
     if (typeof this.state.selectedTab === 'undefined') {
       return;
     }
 
     if (this.state.selectedTab.name === 'snippet') {
-      return <EuiErrorBoundary>{this.renderSnippet()}</EuiErrorBoundary>;
+      return (
+        <EuiErrorBoundary>
+          <EuiHorizontalRule margin="none" />
+          {this.renderSnippet()}
+        </EuiErrorBoundary>
+      );
     }
 
     if (this.state.selectedTab.isCode) {
       return (
         <EuiErrorBoundary>
+          <EuiHorizontalRule margin="none" />
           {this.renderCode(this.state.selectedTab.name)}
         </EuiErrorBoundary>
       );
     }
 
     if (this.state.selectedTab.name === 'props') {
-      return <EuiErrorBoundary>{this.renderProps()}</EuiErrorBoundary>;
+      return (
+        <EuiErrorBoundary>
+          <EuiHorizontalRule margin="none" />
+          {this.renderProps()}
+        </EuiErrorBoundary>
+      );
     }
-
-    return (
-      <EuiErrorBoundary>
-        <div>
-          <div className="guideSection__space" />
-          {this.props.demo}
-        </div>
-      </EuiErrorBoundary>
-    );
   }
 
   renderCodeSandBoxButton() {
@@ -657,7 +685,40 @@ export class GuideSection extends Component {
     return (
       <div className="guideSection" id={this.props.id}>
         {chrome}
-        {this.renderContent()}
+        <EuiSpacer />
+        <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
+          <EuiPanel hasShadow={false} paddingSize="l" color="transparent">
+            <EuiFlexGroup direction="column" alignItems="center">
+              {this.renderExample()}
+            </EuiFlexGroup>
+          </EuiPanel>
+          <EuiPanel
+            paddingSize="s"
+            color="subdued"
+            hasShadow={false}
+            borderRadius="none">
+            <EuiFlexGroup gutterSize="none" alignItems="center">
+              <EuiFlexItem>
+                {this.tabs.length > 0 && (
+                  <EuiTabs size="s" display="condensed">
+                    {this.renderTabs()}
+                  </EuiTabs>
+                )}
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                {this.props.playground && (
+                  <EuiSwitch
+                    onChange={() => {}}
+                    checked={false}
+                    compressed
+                    label={'Playground'}
+                  />
+                )}
+              </EuiFlexItem>
+            </EuiFlexGroup>
+            {this.renderContent()}
+          </EuiPanel>
+        </EuiPanel>
         {this.props.extraContent}
       </div>
     );
@@ -675,6 +736,7 @@ GuideSection.propTypes = {
   children: PropTypes.any,
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
+  playground: PropTypes.node,
 };
 
 GuideSection.defaultProps = {
