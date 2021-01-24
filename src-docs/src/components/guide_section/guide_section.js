@@ -435,6 +435,7 @@ export class GuideSection extends Component {
             tabs={this.renderTabs()}
             tabContent={this.renderContent()}
             playground={this.renderPlaygroundToggle()}
+            ghostBackground={this.props.ghostBackground}
           />
         )}
         {this.props.extraContent}
@@ -455,6 +456,7 @@ GuideSection.propTypes = {
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
   playground: PropTypes.any,
+  ghostBackground: PropTypes.bool,
 };
 
 GuideSection.defaultProps = {

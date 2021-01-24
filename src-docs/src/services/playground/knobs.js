@@ -21,6 +21,7 @@ import {
   EuiTextArea,
   EuiFormRow,
   EuiLink,
+  EuiText,
 } from '../../../../src/components/';
 
 export const markup = (text) => {
@@ -239,6 +240,7 @@ const Knob = ({
 
       let valueKey = val || defaultValue;
 
+      // When would numberOfOptions ever be less than 1?
       if (numberOfOptions < 1) {
         if (valueKey && !valueKey.includes('__')) {
           valueKey = `${valueKey}__${name}`;
@@ -446,14 +448,19 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
         <EuiTableRowCell
           key={`prop__${name}-${idx}`}
           header="Prop"
+          textOnly={false}
           isMobileFullWidth={true}>
-          <EuiTitle size="xxs">{humanizedName}</EuiTitle>
-          {state[name].description && (
-            <>
-              <EuiSpacer size="xs" />
-              <>{markup(state[name].description)}</>
-            </>
-          )}
+          <div>
+            <EuiTitle size="xxs">{humanizedName}</EuiTitle>
+            {state[name].description && (
+              <>
+                <EuiSpacer size="xs" />
+                <EuiText color="subdued" size="xs">
+                  <p>{markup(state[name].description)}</p>
+                </EuiText>
+              </>
+            )}
+          </div>
         </EuiTableRowCell>
         <EuiTableRowCell
           key={`type__${name}-${idx}`}
@@ -528,7 +535,7 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
   // TODO
 
   return (
-    <EuiTable compressed style={{ background: 'transparent' }}>
+    <EuiTable style={{ background: 'transparent' }}>
       <EuiTableHeader>
         {columns.map(({ name, width }, id) => {
           return (

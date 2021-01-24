@@ -11,6 +11,7 @@ export interface GuideSectionExample {
   tabContent?: ReactNode;
   playground?: any;
   componentName?: string;
+  ghostBackground?: boolean;
 }
 
 export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
@@ -19,13 +20,17 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   playground,
   tabContent,
   componentName,
+  ghostBackground = false,
 }) => {
   return (
     <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
-      <EuiPanel hasShadow={false} paddingSize="l" color="transparent">
-        <EuiFlexGroup direction="column" alignItems="center">
-          {exampleCode}
-        </EuiFlexGroup>
+      <EuiPanel
+        hasShadow={false}
+        paddingSize="l"
+        color="transparent"
+        borderRadius="none"
+        className={ghostBackground ? 'guideDemo__ghostBackground' : ''}>
+        {exampleCode}
       </EuiPanel>
       <EuiPanel
         paddingSize="s"

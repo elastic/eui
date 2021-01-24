@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import classNames from 'classnames';
 import format from 'html-format';
 
 import { useView, Compiler, Placeholder } from 'react-view';
 import {
-  EuiFlexItem,
+  EuiSpacer,
   EuiCodeBlock,
   EuiErrorBoundary,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 import Knobs from './knobs';
 import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
-import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 
 export default ({
   config,
@@ -58,35 +57,27 @@ export default ({
       }
     }, [params.knobProps]);
 
-    const compilerClasses = classNames(
-      'playgroundCompiler',
-      {
-        playgroundCompiler__ghostBackground: isGhost,
-      },
-      playgroundClassName
-    );
-
     return (
       <GuideSectionExample
+        ghostBackground={isGhost}
         componentName={config.componentName}
         exampleCode={
           <>
-            <EuiFlexItem className={compilerClasses}>
+            <div className={playgroundClassName}>
               <Compiler
                 {...params.compilerProps}
                 minHeight={62}
                 placeholder={Placeholder}
               />
-            </EuiFlexItem>
-            <EuiFlexItem className="eui-fullWidth" grow={true}>
-              <EuiCodeBlock
-                language="html"
-                fontSize="m"
-                paddingSize="m"
-                isCopyable>
-                {getSnippet(params.editorProps.code)}
-              </EuiCodeBlock>
-            </EuiFlexItem>
+            </div>
+            <EuiSpacer />
+            <EuiCodeBlock
+              language="html"
+              fontSize="m"
+              paddingSize="m"
+              isCopyable>
+              {getSnippet(params.editorProps.code)}
+            </EuiCodeBlock>
           </>
         }
         tabs={tabs}

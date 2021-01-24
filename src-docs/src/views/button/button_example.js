@@ -403,6 +403,7 @@ export const ButtonExample = {
     },
     {
       title: 'Ghost',
+      ghostBackground: true,
       source: [
         {
           type: GuideSectionTypes.JS,
