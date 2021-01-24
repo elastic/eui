@@ -1,21 +1,17 @@
 import React, { Component, Fragment } from 'react';
-import { useView, Compiler, Placeholder } from 'react-view';
-import format from 'html-format';
+import { useView } from 'react-view';
 import PropTypes from 'prop-types';
 
 import {
   EuiHorizontalRule,
-  EuiCodeBlock,
   EuiErrorBoundary,
   EuiSpacer,
   EuiTab,
-  EuiTabs,
   EuiText,
   EuiTitle,
   EuiLink,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiPanel,
   EuiSwitch,
 } from '../../../../src/components';
 
@@ -28,6 +24,8 @@ import Knobs, { markup } from '../../services/playground/knobs';
 import { propUtilityForPlayground } from '../../services/playground';
 import { GuideSectionSnippets } from './guide_section_parts/guide_section_snippets';
 import { GuideSectionExampleCode } from './guide_section_parts/guide_section_code';
+import { GuideSectionExample } from './guide_section_parts/guide_section_example';
+import playground from '../../services/playground/playground';
 
 export class GuideSection extends Component {
   constructor(props) {
@@ -88,26 +86,6 @@ export class GuideSection extends Component {
 
     this.memoScroll = 0;
   }
-
-  onSort = (componentName) => {
-    const { sortedComponents } = this.state;
-    if (
-      !sortedComponents[componentName] ||
-      sortedComponents[componentName] === 'NONE'
-    ) {
-      this.setState({
-        sortedComponents: { ...sortedComponents, [componentName]: 'ASC' },
-      });
-    } else if (sortedComponents[componentName] === 'ASC') {
-      this.setState({
-        sortedComponents: { ...sortedComponents, [componentName]: 'DSC' },
-      });
-    } else {
-      this.setState({
-        sortedComponents: { ...sortedComponents, [componentName]: 'NONE' },
-      });
-    }
-  };
 
   onSelectedTabChanged = (selectedTab) => {
     const { name } = selectedTab;
@@ -201,13 +179,14 @@ export class GuideSection extends Component {
         className="euiTab--small"
         onClick={() => this.onSelectedTabChanged(tab)}
         isSelected={tab === this.state.selectedTab}
+        disabled={this.state.isPlayground}
         key={tab.name}>
         {tab.displayName}
       </EuiTab>
     ));
   }
 
-  renderPropsForComponent = (componentName, component) => {
+  renderPropsForComponent = (componentName, component, descriptionOnly) => {
     if (!component.__docgenInfo) {
       return;
     }
@@ -242,17 +221,17 @@ export class GuideSection extends Component {
 
     if (description) {
       descriptionElement = (
-        <div key={`description-${componentName}`}>
+        <>
           <EuiText>
             <p>{markup(description)}</p>
           </EuiText>
-          <EuiSpacer size="m" id={`propsSpacer-${componentName}`} />
-        </div>
+          <EuiSpacer />
+        </>
       );
     }
 
     return (
-      <>
+      <React.Fragment key={componentName}>
         <EuiSpacer size="m" />
         <EuiFlexGroup alignItems="baseline" wrap>
           <EuiFlexItem grow={false}>
@@ -270,19 +249,17 @@ export class GuideSection extends Component {
         </EuiFlexGroup>
         <EuiSpacer size="s" />
         {descriptionElement}
-        <PlaygroundProps
-          isPlayground={this.state.isPlayground}
-          config={
-            this.state.isPlayground
-              ? this.props.playground().config
-              : {
-                  componentName: componentName,
-                  props: propUtilityForPlayground(docgenInfo.props),
-                  scope: component,
-                }
-          }
-        />
-      </>
+        {!descriptionOnly && (
+          <PlaygroundProps
+            isPlayground={false}
+            config={{
+              componentName: componentName,
+              props: propUtilityForPlayground(docgenInfo.props),
+              scope: component,
+            }}
+          />
+        )}
+      </React.Fragment>
     );
   };
 
@@ -313,17 +290,6 @@ export class GuideSection extends Component {
         {title}
         {this.props.text && <EuiText key="text">{this.props.text}</EuiText>}
       </div>
-    );
-  }
-
-  renderExample() {
-    if (this.state.isPlayground && this.props.playground) {
-      return <PlaygroundExample config={this.props.playground().config} />;
-    }
-    return (
-      <EuiErrorBoundary>
-        <div>{this.props.demo}</div>
-      </EuiErrorBoundary>
     );
   }
 
@@ -404,11 +370,7 @@ export class GuideSection extends Component {
                   this.onSelectedTabChanged(
                     this.tabs.find((tab) => tab.name === 'props')
                   );
-                } else if (
-                  !this.state.isPlayground &&
-                  this.state.selectedTab &&
-                  this.state.selectedTab.name !== 'props'
-                ) {
+                } else if (!this.state.isPlayground) {
                   this.setState({ selectedTab: undefined });
                 }
               }
@@ -426,6 +388,33 @@ export class GuideSection extends Component {
     }
   }
 
+  renderPlayground() {
+    if (!this.props.playground) {
+      return;
+    }
+
+    const {
+      config,
+      setGhostBackground,
+      playgroundClassName,
+    } = this.props.playground();
+
+    const description = this.renderPropsForComponent(
+      config.componentName,
+      config.scope[config.componentName],
+      true
+    );
+
+    return playground({
+      config,
+      setGhostBackground,
+      playgroundClassName,
+      playgroundToggle: this.renderPlaygroundToggle(),
+      tabs: this.renderTabs(),
+      description,
+    });
+  }
+
   render() {
     const chrome = this.renderChrome();
 
@@ -433,32 +422,21 @@ export class GuideSection extends Component {
       <div className="guideSection" id={this.props.id}>
         {chrome}
         <EuiSpacer />
-        <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
-          <EuiPanel hasShadow={false} paddingSize="l" color="transparent">
-            <EuiFlexGroup direction="column" alignItems="center">
-              {this.renderExample()}
-            </EuiFlexGroup>
-          </EuiPanel>
-          <EuiPanel
-            paddingSize="s"
-            color="subdued"
-            hasShadow={false}
-            borderRadius="none">
-            <EuiFlexGroup gutterSize="none" alignItems="center">
-              <EuiFlexItem>
-                {this.tabs.length > 0 && (
-                  <EuiTabs size="s" display="condensed">
-                    {this.renderTabs()}
-                  </EuiTabs>
-                )}
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                {this.renderPlaygroundToggle()}
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            {this.renderContent()}
-          </EuiPanel>
-        </EuiPanel>
+
+        {this.state.isPlayground ? (
+          this.renderPlayground()
+        ) : (
+          <GuideSectionExample
+            exampleCode={
+              <EuiErrorBoundary>
+                <div>{this.props.demo}</div>
+              </EuiErrorBoundary>
+            }
+            tabs={this.renderTabs()}
+            tabContent={this.renderContent()}
+            playground={this.renderPlaygroundToggle()}
+          />
+        )}
         {this.props.extraContent}
       </div>
     );
@@ -483,61 +461,7 @@ GuideSection.defaultProps = {
   props: {},
 };
 
-const PlaygroundExample = ({
-  config,
-  // setGhostBackground,
-  // playgroundClassName,
-}) => {
-  const params = useView(config);
-
-  const getSnippet = (code) => {
-    let regex = /return \(([\S\s]*?)(;)$/gm;
-    let newCode = code.match(regex);
-
-    if (newCode) {
-      newCode = newCode[0];
-      if (newCode.startsWith('return ('))
-        newCode = newCode.replace('return (', '');
-    } else {
-      regex = /return ([\S\s]*?)(;)$/gm;
-      newCode = code.match(regex)[0];
-      if (newCode.startsWith('return '))
-        newCode = newCode.replace('return ', '');
-    }
-
-    if (newCode.endsWith(');')) {
-      newCode = newCode.replace(/(\);)$/m, '');
-    }
-
-    return format(newCode.trim(), ' '.repeat(4));
-  };
-
-  return (
-    <>
-      <EuiFlexItem grow={false}>
-        <div>
-          <Compiler
-            {...params.compilerProps}
-            minHeight={62}
-            placeholder={Placeholder}
-          />
-        </div>
-      </EuiFlexItem>
-      <EuiFlexItem className="eui-fullWidth" grow={true}>
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-          {getSnippet(params.editorProps.code)}
-        </EuiCodeBlock>
-      </EuiFlexItem>
-    </>
-  );
-};
-
-const PlaygroundProps = ({
-  config,
-  isPlayground,
-  // setGhostBackground,
-  // playgroundClassName,
-}) => {
+const PlaygroundProps = ({ config, isPlayground }) => {
   const params = useView(config);
 
   return <Knobs {...params.knobProps} isPlayground={isPlayground} />;

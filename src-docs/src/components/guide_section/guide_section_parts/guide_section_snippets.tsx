@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiSpacer } from '../../../../../src/components/spacer';
 
-type GuideSectionSnippets = {
+export type GuideSectionSnippets = {
   snippets: string | string[];
 };
 

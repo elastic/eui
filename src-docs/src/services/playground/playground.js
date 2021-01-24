@@ -3,10 +3,23 @@ import classNames from 'classnames';
 import format from 'html-format';
 
 import { useView, Compiler, Placeholder } from 'react-view';
-import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiFlexItem,
+  EuiCodeBlock,
+  EuiErrorBoundary,
+} from '../../../../src/components';
 import Knobs from './knobs';
+import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
+import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 
-export default ({ config, setGhostBackground, playgroundClassName }) => {
+export default ({
+  config,
+  setGhostBackground,
+  playgroundClassName,
+  playgroundToggle,
+  description,
+  tabs,
+}) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
@@ -54,27 +67,38 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
     );
 
     return (
-      <React.Fragment>
-        <EuiTitle>
-          <h3>{config.componentName}</h3>
-        </EuiTitle>
-        <div className={compilerClasses}>
-          <Compiler
-            {...params.compilerProps}
-            minHeight={62}
-            placeholder={Placeholder}
-          />
-        </div>
-        <EuiSpacer />
-
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-          {getSnippet(params.editorProps.code)}
-        </EuiCodeBlock>
-        <EuiSpacer />
-
-        <Knobs {...params.knobProps} />
-        <EuiSpacer />
-      </React.Fragment>
+      <GuideSectionExample
+        componentName={config.componentName}
+        exampleCode={
+          <>
+            <EuiFlexItem className={compilerClasses}>
+              <Compiler
+                {...params.compilerProps}
+                minHeight={62}
+                placeholder={Placeholder}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem className="eui-fullWidth" grow={true}>
+              <EuiCodeBlock
+                language="html"
+                fontSize="m"
+                paddingSize="m"
+                isCopyable>
+                {getSnippet(params.editorProps.code)}
+              </EuiCodeBlock>
+            </EuiFlexItem>
+          </>
+        }
+        tabs={tabs}
+        tabContent={
+          <EuiErrorBoundary>
+            <EuiHorizontalRule margin="none" />
+            {description}
+            <Knobs {...params.knobProps} />
+          </EuiErrorBoundary>
+        }
+        playground={playgroundToggle}
+      />
     );
   };
 
