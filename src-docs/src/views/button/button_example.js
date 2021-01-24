@@ -163,7 +163,7 @@ export const ButtonExample = {
           code: buttonHtml,
         },
       ],
-      props: { EuiButton },
+      props: { EuiButton, EuiButtonEmpty },
       snippet: buttonSnippet,
       demo: <Button />,
       playground: Playground,

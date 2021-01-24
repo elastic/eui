@@ -335,125 +335,168 @@ const Knob = ({
 };
 
 const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
-  return (
-    <>
-      {knobNames.map((name, idx) => {
-        /**
-         * TS Type
-         */
-        let humanizedType;
+  return knobNames.map((name, idx) => {
+    const codeBlockProps = {
+      className: 'guideSection__tableCodeBlock',
+      paddingSize: 'none',
+      language: 'ts',
+    };
 
-        if (
-          state[name].custom &&
-          state[name].custom.origin &&
-          state[name].custom.origin.type
-        )
-          humanizedType = humanizeType(state[name].custom.origin.type);
+    /**
+     * TS Type
+     */
+    let humanizedType;
 
-        const codeBlockProps = {
-          className: 'guideSection__tableCodeBlock',
-          paddingSize: 'none',
-          language: 'ts',
-        };
+    if (
+      state[name].custom &&
+      state[name].custom.origin &&
+      state[name].custom.origin.type
+    )
+      humanizedType = humanizeType(state[name].custom.origin.type);
 
-        const typeMarkup = humanizedType && (
-          <EuiCodeBlock {...codeBlockProps}>
-            <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+    let typeMarkup;
+
+    if (humanizedType) {
+      typeMarkup = humanizedType && (
+        <EuiCodeBlock {...codeBlockProps}>
+          <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
+        </EuiCodeBlock>
+      );
+
+      const functionMatches = [
+        ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
+      ];
+
+      const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
+
+      if (functionMatches.length > 0) {
+        const elements = [];
+        let j = 0;
+        for (let i = 0; i < types.length; i++) {
+          if (functionMatches[j]) {
+            elements.push(
+              <React.Fragment key={`type-${i}`}>
+                {types[i]} <br />
+              </React.Fragment>
+            );
+            elements.push(
+              <React.Fragment key={`function-${i}`}>
+                {functionMatches[j][0]} <br />
+              </React.Fragment>
+            );
+            j++;
+          } else {
+            elements.push(
+              <React.Fragment key={`type-${i}`}>
+                {types[i]} <br />
+              </React.Fragment>
+            );
+          }
+        }
+        typeMarkup = (
+          <EuiCodeBlock whiteSpace="pre" {...codeBlockProps}>
+            {elements}
           </EuiCodeBlock>
         );
+      }
+    }
 
-        /**
-         * Prop name
-         */
-        let humanizedName = (
-          <strong className="eui-textBreakNormal">{name}</strong>
-        );
+    /**
+     * Prop name
+     */
+    let humanizedName = <strong className="eui-textBreakNormal">{name}</strong>;
 
-        if (
-          state[name].custom &&
-          state[name].custom.origin &&
-          state[name].custom.origin.required
-        ) {
-          humanizedName = (
-            <span>
-              {humanizedName}{' '}
-              <EuiTextColor color="danger">(required)</EuiTextColor>
-            </span>
-          );
-        }
+    if (
+      state[name].custom &&
+      state[name].custom.origin &&
+      state[name].custom.origin.required
+    ) {
+      humanizedName = (
+        <>
+          {humanizedName} <EuiTextColor color="danger">(required)</EuiTextColor>
+        </>
+      );
+    }
 
-        /**
-         * Default value
-         */
+    /**
+     * Default value
+     */
 
-        let defaultValueMarkup;
+    let defaultValueMarkup;
 
-        if (
-          !isPlayground &&
-          state[name].custom &&
-          state[name].custom.origin &&
-          state[name].custom.origin.defaultValue
-        ) {
-          defaultValueMarkup = (
-            <EuiCode language="typescript" key={`defaultValue-${name}`}>
-              <span className="eui-textBreakNormal">
-                {state[name].custom.origin.defaultValue.value}
-              </span>
-            </EuiCode>
-          );
-        }
+    if (
+      !isPlayground &&
+      state[name].custom &&
+      state[name].custom.origin &&
+      state[name].custom.origin.defaultValue
+    ) {
+      const defaultValue = state[name].custom.origin.defaultValue;
+      defaultValueMarkup = (
+        <>
+          <EuiCodeBlock {...codeBlockProps}>
+            <span className="eui-textBreakNormal">{defaultValue.value}</span>
+          </EuiCodeBlock>
+          {defaultValue.comment && `(${defaultValue.comment})`}
+        </>
+      );
+    }
 
-        return (
-          <EuiTableRow key={name}>
-            <EuiTableRowCell key={`prop__${name}-${idx}`} header="Prop">
-              <EuiTitle size="xxs">{humanizedName}</EuiTitle>
-              {state[name].description && (
-                <>
-                  <EuiSpacer size="xs" />
-                  <>{markup(state[name].description)}</>
-                </>
-              )}
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              key={`type__${name}-${idx}`}
-              header="Type"
-              textOnly={false}>
-              {typeMarkup}
-            </EuiTableRowCell>
-            {!isPlayground ? (
-              <EuiTableRowCell key={`default__${name}-${idx}`} header="Default">
-                {defaultValueMarkup}
-              </EuiTableRowCell>
-            ) : (
-              <EuiTableRowCell
-                key={`modify__${name}-${idx}`}
-                header="Modify"
-                textOnly={false}
-                className="playgroundKnobs__rowCell">
-                <Knob
-                  key={name}
-                  name={name}
-                  error={error.where === name ? error.msg : null}
-                  description={state[name].description}
-                  type={state[name].type}
-                  val={state[name].value}
-                  hidden={state[name].hidden}
-                  options={state[name].options}
-                  placeholder={state[name].placeholder}
-                  set={(value) => set(value, name)}
-                  enumName={state[name].enumName}
-                  defaultValue={state[name].defaultValue}
-                  custom={state[name] && state[name].custom}
-                  state={state}
-                  orgSet={set}
-                />
-              </EuiTableRowCell>
-            )}
-          </EuiTableRow>
-        );
-      })}
-    </>
-  );
+    return (
+      <EuiTableRow key={name}>
+        <EuiTableRowCell
+          key={`prop__${name}-${idx}`}
+          header="Prop"
+          isMobileFullWidth={true}>
+          <EuiTitle size="xxs">{humanizedName}</EuiTitle>
+          {state[name].description && (
+            <>
+              <EuiSpacer size="xs" />
+              <>{markup(state[name].description)}</>
+            </>
+          )}
+        </EuiTableRowCell>
+        <EuiTableRowCell
+          key={`type__${name}-${idx}`}
+          header="Type"
+          textOnly={false}>
+          {typeMarkup}
+        </EuiTableRowCell>
+        {!isPlayground ? (
+          <EuiTableRowCell
+            key={`default__${name}-${idx}`}
+            header="Default"
+            textOnly={false}
+            hideForMobile={!defaultValueMarkup}>
+            {defaultValueMarkup}
+          </EuiTableRowCell>
+        ) : (
+          <EuiTableRowCell
+            key={`modify__${name}-${idx}`}
+            header="Modify"
+            textOnly={false}
+            className="playgroundKnobs__rowCell">
+            <Knob
+              key={name}
+              name={name}
+              error={error.where === name ? error.msg : null}
+              description={state[name].description}
+              type={state[name].type}
+              val={state[name].value}
+              hidden={state[name].hidden}
+              options={state[name].options}
+              placeholder={state[name].placeholder}
+              set={(value) => set(value, name)}
+              enumName={state[name].enumName}
+              defaultValue={state[name].defaultValue}
+              custom={state[name] && state[name].custom}
+              state={state}
+              orgSet={set}
+            />
+          </EuiTableRowCell>
+        )}
+      </EuiTableRow>
+    );
+  });
 };
 
 const Knobs = ({ state, set, error, isPlayground = true }) => {
@@ -463,8 +506,7 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
     {
       field: 'prop',
       name: 'Prop',
-      sortable: true,
-      'data-test-subj': 'PropCell',
+      // sortable: true,
     },
     {
       field: 'type',
@@ -474,19 +516,26 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
       ? {
           field: 'default',
           name: 'Default',
+          width: 200,
         }
       : {
           field: 'modify',
           name: 'Modify',
-          width: 120,
+          width: 200,
         },
   ];
+
+  // TODO
 
   return (
     <EuiTable compressed style={{ background: 'transparent' }}>
       <EuiTableHeader>
-        {columns.map(({ name }, id) => {
-          return <EuiTableHeaderCell key={id}>{name}</EuiTableHeaderCell>;
+        {columns.map(({ name, width }, id) => {
+          return (
+            <EuiTableHeaderCell width={width} key={id}>
+              {name}
+            </EuiTableHeaderCell>
+          );
         })}
       </EuiTableHeader>
 

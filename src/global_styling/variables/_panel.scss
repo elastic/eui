@@ -12,5 +12,5 @@ $euiPanelBorderRadiusModifiers: (
 $euiPanelBackgroundColorModifiers: (
   'transparent': transparent,
   'plain': $euiColorEmptyShade,
-  'subdued': $euiColorLightestShade,
+  'subdued': $euiPageBackgroundColor,
 ) !default;

@@ -9,15 +9,8 @@ import {
   EuiErrorBoundary,
   EuiSpacer,
   EuiTab,
-  EuiTable,
-  EuiTableBody,
-  EuiTableHeader,
-  EuiTableHeaderCell,
-  EuiTableRow,
-  EuiTableRowCell,
   EuiTabs,
   EuiText,
-  EuiTextColor,
   EuiTitle,
   EuiLink,
   EuiButtonEmpty,
@@ -34,7 +27,8 @@ import { cleanEuiImports } from '../../services';
 import { extendedTypesInfo } from './guide_section_extends';
 import { EuiIcon } from '../../../../src/components/icon';
 
-import Knobs, { humanizeType, markup } from '../../services/playground/knobs';
+import Knobs, { markup } from '../../services/playground/knobs';
+import { propUtilityForPlayground } from '../../services/playground';
 
 const nameToCodeClassMap = {
   javascript: 'javascript',
@@ -274,133 +268,6 @@ export class GuideSection extends Component {
       return;
     }
 
-    const { sortedComponents } = this.state;
-
-    const propNames = Object.keys(props);
-    if (
-      sortedComponents[componentName] &&
-      sortedComponents[componentName] !== 'NONE'
-    ) {
-      propNames.sort((a, b) => {
-        if (sortedComponents[componentName] === 'ASC') {
-          return a < b ? -1 : 1;
-        } else {
-          return a < b ? 1 : -1;
-        }
-      });
-    }
-
-    const rows = propNames.map((propName) => {
-      const {
-        description: propDescription = '',
-        required,
-        defaultValue,
-        type,
-      } = props[propName];
-
-      const codeBlockProps = {
-        className: 'guideSection__tableCodeBlock',
-        paddingSize: 'none',
-        language: 'ts',
-      };
-
-      let humanizedName = (
-        <strong className="eui-textBreakNormal">{propName}</strong>
-      );
-
-      if (required) {
-        humanizedName = (
-          <span>
-            {humanizedName}{' '}
-            <EuiTextColor color="danger">(required)</EuiTextColor>
-          </span>
-        );
-      }
-
-      const humanizedType = humanizeType(type);
-
-      const functionMatches = [
-        ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
-      ];
-      const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
-
-      const typeMarkup = (
-        <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
-      );
-      const descriptionMarkup = markup(propDescription);
-      let defaultValueMarkup = '';
-      if (defaultValue) {
-        defaultValueMarkup = [
-          <EuiCodeBlock {...codeBlockProps} key={`defaultValue-${propName}`}>
-            {defaultValue.value}
-          </EuiCodeBlock>,
-        ];
-        if (defaultValue.comment) {
-          defaultValueMarkup.push(`(${defaultValue.comment})`);
-        }
-      }
-
-      let defaultTypeCell = (
-        <EuiTableRowCell key="type" header="Type" textOnly={false}>
-          <EuiCodeBlock {...codeBlockProps}>{typeMarkup}</EuiCodeBlock>
-        </EuiTableRowCell>
-      );
-      if (functionMatches.length > 0) {
-        const elements = [];
-        let j = 0;
-        for (let i = 0; i < types.length; i++) {
-          if (functionMatches[j]) {
-            elements.push(
-              <Fragment key={`type-${i}`}>
-                {types[i]} <br />
-              </Fragment>
-            );
-            elements.push(
-              <Fragment key={`function-${i}`}>
-                {functionMatches[j][0]} <br />
-              </Fragment>
-            );
-            j++;
-          } else {
-            elements.push(
-              <Fragment key={`type-${i}`}>
-                {types[i]} <br />
-              </Fragment>
-            );
-          }
-        }
-        defaultTypeCell = (
-          <EuiTableRowCell key="type" header="Type" textOnly={false}>
-            <EuiCodeBlock whiteSpace="pre" {...codeBlockProps}>
-              {elements}
-            </EuiCodeBlock>
-          </EuiTableRowCell>
-        );
-      }
-
-      const cells = [
-        <EuiTableRowCell key="name" header="Prop">
-          {humanizedName}
-        </EuiTableRowCell>,
-        defaultTypeCell,
-        <EuiTableRowCell
-          key="defaultValue"
-          header="Default"
-          hideForMobile={!defaultValue}>
-          {defaultValueMarkup}
-        </EuiTableRowCell>,
-        <EuiTableRowCell
-          key="description"
-          header="Note"
-          isMobileFullWidth={true}
-          hideForMobile={!propDescription}>
-          {descriptionMarkup}
-        </EuiTableRowCell>,
-      ];
-
-      return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
-    });
-
     const extendedTypes = extendedInterfaces
       ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
       : [];
@@ -431,72 +298,39 @@ export class GuideSection extends Component {
       );
     }
 
-    let table;
-
-    if (rows.length) {
-      table = (
-        <EuiTable
-          style={{ background: 'transparent' }}
-          compressed
-          key={`propsTable-${componentName}`}>
-          <EuiTableHeader>
-            <EuiTableHeaderCell
-              onSort={() => {
-                this.onSort(componentName);
-              }}
-              isSorted={
-                sortedComponents[componentName] &&
-                sortedComponents[componentName] !== 'NONE'
-              }
-              isSortAscending={
-                sortedComponents[componentName] &&
-                sortedComponents[componentName] === 'ASC'
-              }
-              style={{ Width: '20%' }}>
-              Prop
-            </EuiTableHeaderCell>
-
-            <EuiTableHeaderCell style={{ width: '15%' }}>
-              Type
-            </EuiTableHeaderCell>
-
-            <EuiTableHeaderCell style={{ width: '15%' }}>
-              Default
-            </EuiTableHeaderCell>
-
-            <EuiTableHeaderCell style={{ width: '50%' }}>
-              Note
-            </EuiTableHeaderCell>
-          </EuiTableHeader>
-
-          <EuiTableBody>{rows}</EuiTableBody>
-        </EuiTable>
-      );
-    }
-
-    return [
-      <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiFlexGroup
-        key={`propsName-${componentName}`}
-        alignItems="baseline"
-        wrap>
-        <EuiFlexItem grow={false}>
-          <EuiTitle size="s">
-            <h3 id={componentName}>{componentName}</h3>
-          </EuiTitle>
-        </EuiFlexItem>
-        {extendedTypesElements.length > 0 && (
-          <EuiFlexItem>
-            <EuiText size="s">
-              <p>[ extends {extendedTypesElements} ]</p>
-            </EuiText>
+    return (
+      <>
+        <EuiSpacer size="m" />
+        <EuiFlexGroup alignItems="baseline" wrap>
+          <EuiFlexItem grow={false}>
+            <EuiTitle size="s">
+              <h3 id={componentName}>{componentName}</h3>
+            </EuiTitle>
           </EuiFlexItem>
-        )}
-      </EuiFlexGroup>,
-      <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
-      descriptionElement,
-      table,
-    ];
+          {extendedTypesElements.length > 0 && (
+            <EuiFlexItem>
+              <EuiText size="s">
+                <p>[ extends {extendedTypesElements} ]</p>
+              </EuiText>
+            </EuiFlexItem>
+          )}
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+        {descriptionElement}
+        <PlaygroundProps
+          isPlayground={this.state.isPlayground}
+          config={
+            this.state.isPlayground
+              ? this.props.playground().config
+              : {
+                  componentName: componentName,
+                  props: propUtilityForPlayground(docgenInfo.props),
+                  scope: component,
+                }
+          }
+        />
+      </>
+    );
   };
 
   renderProps() {
@@ -592,14 +426,23 @@ export class GuideSection extends Component {
     }
 
     if (this.state.selectedTab.name === 'props') {
+      let propsTable;
+
+      if (this.state.isPlayground) {
+        const { componentName, scope } = this.props.playground().config;
+
+        propsTable = this.renderPropsForComponent(
+          componentName,
+          scope[componentName]
+        );
+      } else {
+        propsTable = this.renderProps();
+      }
+
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          <EuiSpacer />
-          <PlaygroundProps
-            config={this.props.playground().config}
-            isPlayground={this.state.isPlayground}
-          />
+          {propsTable}
         </EuiErrorBoundary>
       );
     }
@@ -634,19 +477,30 @@ export class GuideSection extends Component {
               () => {
                 if (
                   this.state.isPlayground &&
-                  this.state.selectedTab &&
-                  this.state.selectedTab.name !== 'props'
+                  (!this.state.selectedTab ||
+                    (this.state.selectedTab &&
+                      this.state.selectedTab.name !== 'props'))
                 ) {
                   this.onSelectedTabChanged(
                     this.tabs.find((tab) => tab.name === 'props')
                   );
+                } else if (
+                  !this.state.isPlayground &&
+                  this.state.selectedTab &&
+                  this.state.selectedTab.name !== 'props'
+                ) {
+                  this.setState({ selectedTab: undefined });
                 }
               }
             );
           }}
           checked={this.state.isPlayground}
           compressed
-          label={'Playground'}
+          label={
+            <EuiText component="span" size="xs">
+              <strong>Playground</strong>
+            </EuiText>
+          }
         />
       );
     }

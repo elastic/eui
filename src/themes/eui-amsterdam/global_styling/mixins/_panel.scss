@@ -10,7 +10,7 @@
       }
 
       &#{$selector}--shadow {
-        @include euiBottomShadowMedium;
+        @include euiBottomShadowSmall;
       }
 
       &#{$selector}--isClickable {
