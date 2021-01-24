@@ -13,14 +13,11 @@ import {
   EuiText,
   EuiTitle,
   EuiLink,
-  EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
   EuiSwitch,
 } from '../../../../src/components';
-
-import { CodeSandboxLink } from '../codesandbox';
 
 import { cleanEuiImports } from '../../services';
 
@@ -29,11 +26,8 @@ import { EuiIcon } from '../../../../src/components/icon';
 
 import Knobs, { markup } from '../../services/playground/knobs';
 import { propUtilityForPlayground } from '../../services/playground';
-
-const nameToCodeClassMap = {
-  javascript: 'javascript',
-  html: 'html',
-};
+import { GuideSectionSnippets } from './guide_section_parts/guide_section_snippets';
+import { GuideSectionExampleCode } from './guide_section_parts/guide_section_code';
 
 export class GuideSection extends Component {
   constructor(props) {
@@ -213,47 +207,6 @@ export class GuideSection extends Component {
     ));
   }
 
-  renderText() {
-    const { text } = this.props;
-
-    if (!text) {
-      return;
-    }
-
-    return [<EuiText key="text">{text}</EuiText>];
-  }
-
-  renderSnippet() {
-    const { snippet } = this.props;
-
-    if (!snippet) {
-      return;
-    }
-
-    let snippetCode;
-    if (typeof snippet === 'string') {
-      snippetCode = (
-        <Fragment key="snippet">
-          <EuiSpacer size="m" />
-          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-            {snippet}
-          </EuiCodeBlock>
-        </Fragment>
-      );
-    } else {
-      snippetCode = snippet.map((snip, index) => (
-        <Fragment key={`snippet${index}`}>
-          <EuiSpacer size="m" />
-          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-            {snip}
-          </EuiCodeBlock>
-        </Fragment>
-      ));
-    }
-
-    return snippetCode;
-  }
-
   renderPropsForComponent = (componentName, component) => {
     if (!component.__docgenInfo) {
       return;
@@ -358,37 +311,9 @@ export class GuideSection extends Component {
     return (
       <div className="guideSection__text">
         {title}
-        {this.renderText()}
+        {this.props.text && <EuiText key="text">{this.props.text}</EuiText>}
       </div>
     );
-  }
-  renderCode(name) {
-    const euiCodeBlock = (
-      <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-        {this.state.renderedCode}
-      </EuiCodeBlock>
-    );
-
-    const divProps = {
-      key: name,
-      ref: name,
-    };
-
-    const memoScrollUtility = () => {
-      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
-      this.memoScroll = pre.scrollTop;
-    };
-
-    if (name === 'javascript') {
-      return (
-        <div {...divProps} onScroll={memoScrollUtility}>
-          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
-          {euiCodeBlock}
-        </div>
-      );
-    }
-
-    return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
   renderExample() {
@@ -411,7 +336,8 @@ export class GuideSection extends Component {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          {this.renderSnippet()}
+          <EuiSpacer />
+          <GuideSectionSnippets snippets={this.props.snippet} />
         </EuiErrorBoundary>
       );
     }
@@ -420,7 +346,11 @@ export class GuideSection extends Component {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          {this.renderCode(this.state.selectedTab.name)}
+          <GuideSectionExampleCode
+            language={this.state.selectedTab.name}
+            code={this.state.renderedCode}
+            codeSandbox={this.props.source[0].code.default}
+          />
         </EuiErrorBoundary>
       );
     }
@@ -446,16 +376,6 @@ export class GuideSection extends Component {
         </EuiErrorBoundary>
       );
     }
-  }
-
-  renderCodeSandBoxButton() {
-    return (
-      <CodeSandboxLink content={this.props.source[0].code.default}>
-        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
-          Try out this demo on Code Sandbox
-        </EuiButtonEmpty>
-      </CodeSandboxLink>
-    );
   }
 
   renderPlaygroundToggle() {
@@ -620,9 +540,5 @@ const PlaygroundProps = ({
 }) => {
   const params = useView(config);
 
-  return (
-    <>
-      <Knobs {...params.knobProps} isPlayground={isPlayground} />
-    </>
-  );
+  return <Knobs {...params.knobProps} isPlayground={isPlayground} />;
 };
