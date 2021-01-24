@@ -171,9 +171,18 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   font-size: $euiFontSizeS;
 }
 
+.guideDemoPanel {
+  overflow: hidden; // Hide backgrounds within border-radius
+
+  > .guideDemoPanel_inner {
+    // remove border from inner panels
+    border: none;
+  }
+}
+
 .guideDemo__ghostBackground {
   @if (lightness($euiTextColor) < 50) {
-    background: $euiColorDarkestShade;
+    background: $euiColorDarkestShade !important; // Override EuiPanel specificity
   }
 }
 

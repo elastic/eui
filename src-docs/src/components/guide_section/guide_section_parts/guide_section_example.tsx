@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
+import classNames from 'classnames';
 
 import { EuiTabs } from '../../../../../src/components/tabs';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
@@ -22,21 +23,26 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   componentName,
   ghostBackground = false,
 }) => {
+  const classes = classNames('guideDemoPanel', {
+    guideDemo__ghostBackground: ghostBackground,
+  });
+
   return (
-    <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
+    <EuiPanel paddingSize="none" className={classes}>
       <EuiPanel
         hasShadow={false}
         paddingSize="l"
         color="transparent"
         borderRadius="none"
-        className={ghostBackground ? 'guideDemo__ghostBackground' : ''}>
+        className="guideDemoPanel_inner">
         {exampleCode}
       </EuiPanel>
       <EuiPanel
         paddingSize="s"
         color="subdued"
         hasShadow={false}
-        borderRadius="none">
+        borderRadius="none"
+        className="guideDemoPanel_inner">
         {tabs ? (
           <EuiFlexGroup gutterSize="none" alignItems="center">
             <EuiFlexItem>
