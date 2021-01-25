@@ -109,6 +109,14 @@ const buttonToggleSnippet = [
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
+
+import ButtonGroupIcons from './button_group_icon';
+const buttonGroupIconsSource = require('!!raw-loader!./button_group_icon');
+const buttonGroupIconsHtml = renderToHtml(ButtonGroupIcons);
+
+import ButtonGroupCompressed from './button_group_compressed';
+const buttonGroupCompressedSource = require('!!raw-loader!./button_group_compressed');
+const buttonGroupCompressedHtml = renderToHtml(ButtonGroupCompressed);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
   type="single"
@@ -123,6 +131,8 @@ const buttonGroupSnippet = [
   idSelected={idSelected}
   onChange={(optionId) => {}}
 />`,
+];
+const buttonGroupIconsSnippet = [
   `<EuiButtonGroup
   type="multi"
   isIconOnly
@@ -400,6 +410,33 @@ export const ButtonExample = {
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupIconsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: buttonGroupIconsHtml,
+        },
+      ],
+      demo: <ButtonGroupIcons />,
+      snippet: buttonGroupIconsSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupCompressedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: buttonGroupCompressedHtml,
+        },
+      ],
+      demo: <ButtonGroupCompressed />,
     },
     {
       title: 'Ghost',
