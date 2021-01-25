@@ -12,6 +12,7 @@ import {
   EuiButtonGroup,
   EuiCallOut,
   EuiText,
+  EuiTitle,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -422,6 +423,12 @@ export const ButtonExample = {
           code: buttonGroupIconsHtml,
         },
       ],
+      wrapText: false,
+      text: (
+        <EuiTitle size="xs">
+          <h3>Icons only</h3>
+        </EuiTitle>
+      ),
       demo: <ButtonGroupIcons />,
       snippet: buttonGroupIconsSnippet,
     },
@@ -469,5 +476,4 @@ export const ButtonExample = {
     },
   ],
   guidelines: <Guidelines />,
-  playground: Playground,
 };

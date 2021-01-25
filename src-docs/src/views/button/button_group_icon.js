@@ -1,10 +1,6 @@
 import React, { useState, Fragment } from 'react';
 
-import {
-  EuiButtonGroup,
-  EuiSpacer,
-  EuiTitle,
-} from '../../../../src/components';
+import { EuiButtonGroup } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -82,10 +78,6 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiTitle size="xxs">
-        <h3>Icons only</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
       <EuiButtonGroup
         legend="Text align"
         options={toggleButtonsIcons}
