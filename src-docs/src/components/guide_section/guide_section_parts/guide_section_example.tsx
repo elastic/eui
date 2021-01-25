@@ -28,7 +28,7 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   });
 
   return (
-    <EuiPanel paddingSize="none" className={classes}>
+    <EuiPanel paddingSize="none" grow={false} className={classes}>
       <EuiPanel
         hasShadow={false}
         paddingSize="l"

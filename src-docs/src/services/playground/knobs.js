@@ -22,6 +22,7 @@ import {
   EuiFormRow,
   EuiLink,
   EuiText,
+  EuiBadge,
 } from '../../../../src/components/';
 
 export const markup = (text) => {
@@ -435,10 +436,10 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
         <>
-          <EuiCodeBlock {...codeBlockProps}>
-            <span className="eui-textBreakNormal">{defaultValue.value}</span>
-          </EuiCodeBlock>
-          {defaultValue.comment && `(${defaultValue.comment})`}
+          <EuiBadge color="hollow">
+            Default: <code>{defaultValue.value}</code>
+          </EuiBadge>
+          {/* {defaultValue.comment && `(${defaultValue.comment})`} */}
         </>
       );
     }
@@ -451,7 +452,9 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           textOnly={false}
           isMobileFullWidth={true}>
           <div>
-            <EuiTitle size="xxs">{humanizedName}</EuiTitle>
+            <EuiTitle size="xxs">
+              <span>{humanizedName}</span>
+            </EuiTitle>
             {state[name].description && (
               <>
                 <EuiSpacer size="xs" />
@@ -466,17 +469,17 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`type__${name}-${idx}`}
           header="Type"
           textOnly={false}>
-          {typeMarkup}
+          <div>
+            {typeMarkup}
+            {defaultValueMarkup && (
+              <>
+                <EuiSpacer size="xs" />
+                {defaultValueMarkup}
+              </>
+            )}
+          </div>
         </EuiTableRowCell>
-        {!isPlayground ? (
-          <EuiTableRowCell
-            key={`default__${name}-${idx}`}
-            header="Default"
-            textOnly={false}
-            hideForMobile={!defaultValueMarkup}>
-            {defaultValueMarkup}
-          </EuiTableRowCell>
-        ) : (
+        {isPlayground && (
           <EuiTableRowCell
             key={`modify__${name}-${idx}`}
             header="Modify"
@@ -519,20 +522,14 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
       field: 'type',
       name: 'Type',
     },
-    !isPlayground
-      ? {
-          field: 'default',
-          name: 'Default',
-          width: 200,
-        }
-      : {
-          field: 'modify',
-          name: 'Modify',
-          width: 200,
-        },
   ];
 
-  // TODO
+  if (isPlayground)
+    columns.push({
+      field: 'modify',
+      name: 'Modify',
+      width: 200,
+    });
 
   return (
     <EuiTable style={{ background: 'transparent' }}>
