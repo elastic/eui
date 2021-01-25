@@ -107,7 +107,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
             repositionOnScroll
             isOpen={isPopoverOpen}
             panelPaddingSize="s"
-            anchorPosition="upCenter"
+            anchorPosition="leftUp"
             button={
               <EuiI18n
                 token="euiNotificationEventMeta.contextMenuButton"
