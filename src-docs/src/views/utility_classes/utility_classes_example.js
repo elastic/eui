@@ -1,34 +1,83 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
-import { GuideSectionTypes } from '../../components';
-
-import UtilityClasses from './utility_classes';
-const utilityClassesSource = require('!!raw-loader!./utility_classes');
-const utilityClassesHtml = renderToHtml(UtilityClasses);
+import { EuiSpacer, EuiText } from '../../../../src/components';
+import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+import UtilityClassesDisplay from './utility_classes';
+import UtilityClassesText from './utility_classes_text';
+import UtilityClassesOverflows from './utility_classes_overflow';
+import UtilityClassesVertAlign from './utility_classes_vert_align';
+import UtilityClassesResponsive from './utility_classes_responsive';
 
 export const UtilityClassesExample = {
   title: 'CSS utility classes',
+  intro: (
+    <EuiText grow={false}>
+      <p>
+        The following CSS-only classes are provided as helper utilities. They
+        are useful for making micro-adjustments to existing React components.
+      </p>
+
+      <EuiSpacer size="l" />
+    </EuiText>
+  ),
   sections: [
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: utilityClassesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: utilityClassesHtml,
-        },
-      ],
+      title: 'Display',
+      wrapText: false,
       text: (
-        <p>
-          The following CSS-only classes are provided as helper utilities. They
-          are useful for making micro-adjustments to existing React components.
-        </p>
+        <>
+          <EuiSpacer />
+          <UtilityClassesDisplay />
+          <EuiSpacer />
+          <EuiHorizontalRule />
+        </>
       ),
-      demo: <UtilityClasses />,
+    },
+    {
+      title: 'Text',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesText />
+          <EuiSpacer />
+          <EuiHorizontalRule />
+        </>
+      ),
+    },
+    {
+      title: 'Overflows',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesOverflows />
+          <EuiSpacer />
+          <EuiHorizontalRule />
+        </>
+      ),
+    },
+    {
+      title: 'Vertical alignment',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesVertAlign />
+          <EuiSpacer />
+          <EuiHorizontalRule />
+        </>
+      ),
+    },
+    {
+      title: 'Responsive',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesResponsive />
+        </>
+      ),
     },
   ],
 };

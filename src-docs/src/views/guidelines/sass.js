@@ -250,7 +250,7 @@ function renderAnimationTiming(speed) {
   );
 }
 
-function renderBreakpoint(size) {
+export function renderBreakpoint(size, breakpoints) {
   return (
     <EuiFlexGroup
       responsive={false}
@@ -905,8 +905,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
             <EuiSpacer />
 
-            {euiBreakPoints.map(function (size, index) {
-              return renderBreakpoint(size, index);
+            {euiBreakPoints.map(function (size) {
+              return renderBreakpoint(size, breakpoints);
             })}
           </div>
         </EuiFlexItem>

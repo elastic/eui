@@ -288,7 +288,11 @@ export class GuideSection extends Component {
     return (
       <div className="guideSection__text">
         {title}
-        {this.props.text && <EuiText key="text">{this.props.text}</EuiText>}
+        {this.props.text && this.props.wrapText ? (
+          <EuiText key="text">{this.props.text}</EuiText>
+        ) : (
+          this.props.text
+        )}
       </div>
     );
   }
@@ -423,9 +427,8 @@ export class GuideSection extends Component {
         {chrome}
         <EuiSpacer />
 
-        {this.state.isPlayground ? (
-          this.renderPlayground()
-        ) : (
+        {this.state.isPlayground && this.renderPlayground()}
+        {!this.state.isPlayground && this.props.demo && (
           <GuideSectionExample
             exampleCode={
               <EuiErrorBoundary>
@@ -457,10 +460,12 @@ GuideSection.propTypes = {
   props: PropTypes.object,
   playground: PropTypes.any,
   ghostBackground: PropTypes.bool,
+  wrapText: PropTypes.bool,
 };
 
 GuideSection.defaultProps = {
   props: {},
+  wrapText: true,
 };
 
 const PlaygroundProps = ({ config, isPlayground }) => {
