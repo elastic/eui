@@ -23,7 +23,10 @@ export const NotificationEventsExample = {
           code: notificationHtml,
         },
       ],
-      props: { EuiNotificationEventMeta, EuiContextMenuItem },
+      props: {
+        EuiNotificationEventMeta,
+        EuiContextMenuItem,
+      },
       demo: <Notification />,
     },
   ],

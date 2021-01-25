@@ -47,6 +47,7 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
           className={classesReadState}
           disabled={isRead}
           onClick={onMarkAsRead}
+          data-test-subj="notificationEventReadButton"
         />
       )}
     </EuiI18n>

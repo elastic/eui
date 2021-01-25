@@ -22,7 +22,7 @@ import { EuiIcon } from '../icon';
 import { EuiBadge } from '../badge';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
-import { EuiContextMenuPanel, EuiContextMenuItemProps } from '../context_menu';
+import { EuiContextMenuPanel } from '../context_menu';
 import { EuiI18n } from '../i18n';
 import { EuiNotificationEventReadButton } from './notification_event_read_button';
 
@@ -60,7 +60,7 @@ export type EuiNotificationEventMetaProps = {
   /**
    * An array of context menu items. See #EuiContextMenuItem
    */
-  contextMenuItems?: EuiContextMenuItemProps[];
+  contextMenuItems?: ReactElement[];
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
@@ -124,7 +124,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
               </EuiI18n>
             }
             closePopover={() => setIsPopoverOpen(false)}>
-            <EuiContextMenuPanel items={contextMenuItems as ReactElement[]} />
+            <EuiContextMenuPanel items={contextMenuItems} />
           </EuiPopover>
         )}
       </div>
