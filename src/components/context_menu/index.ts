@@ -30,6 +30,7 @@ export {
 
 export {
   EuiContextMenuItem,
+  EuiContextMenuItemProps,
   EuiContextMenuItemIcon,
   EuiContextMenuItemLayoutAlignment,
 } from './context_menu_item';

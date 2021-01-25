@@ -5,6 +5,7 @@ import {
   EuiPanel,
   EuiSpacer,
   EuiTitle,
+  EuiContextMenuItem,
 } from '../../../../src/components';
 
 export default () => {
@@ -15,6 +16,20 @@ export default () => {
   };
 
   const panelStyle = { maxWidth: '400px' };
+
+  const contextMenuItems = [
+    <EuiContextMenuItem key="contextMenuItemA" onClick={onRead}>
+      Mark as read
+    </EuiContextMenuItem>,
+
+    <EuiContextMenuItem key="contextMenuItemB" onClick={() => {}}>
+      View messages like this
+    </EuiContextMenuItem>,
+
+    <EuiContextMenuItem key="contextMenuItemC" onClick={() => {}}>
+      Don’t notify me about this
+    </EuiContextMenuItem>,
+  ];
 
   return (
     <>
@@ -35,6 +50,7 @@ export default () => {
           time="2 min ago"
           isRead={isRead}
           onRead={onRead}
+          contextMenuItems={contextMenuItems}
         />
       </EuiPanel>
       <EuiSpacer />

@@ -17,10 +17,13 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, ReactElement } from 'react';
 import { EuiIcon } from '../icon';
 import { EuiBadge } from '../badge';
-
+import { EuiPopover } from '../popover';
+import { EuiButtonIcon } from '../button';
+import { EuiContextMenuPanel, EuiContextMenuItemProps } from '../context_menu';
+import { EuiI18n } from '../i18n';
 import { EuiNotificationEventReadButton } from './notification_event_read_button';
 
 export type EuiNotificationEventMetaProps = {
@@ -53,6 +56,11 @@ export type EuiNotificationEventMetaProps = {
   time: string;
 
   onRead?: () => void;
+
+  /**
+   * An array of context menu items. See #EuiContextMenuItem
+   */
+  contextMenuItems?: EuiContextMenuItemProps[];
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
@@ -63,7 +71,10 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   healthStatus,
   onRead,
   severity,
+  contextMenuItems = [],
 }) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
   const onMarkAsRead = () => {
     onRead && onRead();
   };
@@ -89,6 +100,33 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
 
       <div>
         <span className="euiNotificationEventMeta__time">{time}</span>
+
+        {contextMenuItems.length > 0 && (
+          <EuiPopover
+            ownFocus
+            repositionOnScroll
+            isOpen={isPopoverOpen}
+            panelPaddingSize="s"
+            anchorPosition="upCenter"
+            button={
+              <EuiI18n
+                token="euiNotificationEventMeta.contextMenuButton"
+                default="Open menu">
+                {(contextMenuButton: string) => (
+                  <EuiButtonIcon
+                    aria-label={contextMenuButton}
+                    iconType="boxesVertical"
+                    color="subdued"
+                    className="euiNotificationEventMeta__secondaryAction"
+                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  />
+                )}
+              </EuiI18n>
+            }
+            closePopover={() => setIsPopoverOpen(false)}>
+            <EuiContextMenuPanel items={contextMenuItems as ReactElement[]} />
+          </EuiPopover>
+        )}
       </div>
     </div>
   );

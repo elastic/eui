@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
-
 import { EuiNotificationEventMeta } from '../../../../src/components';
+import { EuiContextMenuItem } from '../../../../src/components/context_menu/';
 
 import Notification from './notification_events';
 const notificationSource = require('!!raw-loader!./notification_events');
@@ -25,7 +23,7 @@ export const NotificationEventsExample = {
           code: notificationHtml,
         },
       ],
-      props: { EuiNotificationEventMeta },
+      props: { EuiNotificationEventMeta, EuiContextMenuItem },
       demo: <Notification />,
     },
   ],
