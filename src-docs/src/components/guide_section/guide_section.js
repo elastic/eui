@@ -306,7 +306,6 @@ export class GuideSection extends Component {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          <EuiSpacer />
           <GuideSectionSnippets snippets={this.props.snippet} />
         </EuiErrorBoundary>
       );

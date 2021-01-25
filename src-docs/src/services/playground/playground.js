@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import format from 'html-format';
 
 import { useView, Compiler, Placeholder } from 'react-view';
@@ -63,11 +64,13 @@ export default ({
         componentName={config.componentName}
         exampleCode={
           <>
-            <div className={playgroundClassName}>
+            <div
+              className={classNames('playgroundWrapper', playgroundClassName)}>
               <Compiler
                 {...params.compilerProps}
-                minHeight={62}
+                minHeight={0}
                 placeholder={Placeholder}
+                className={playgroundClassName}
               />
             </div>
             <EuiSpacer />

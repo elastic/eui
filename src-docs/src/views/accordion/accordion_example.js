@@ -186,6 +186,7 @@ export const AccordionExample = {
       props: { EuiAccordion },
       snippet: accordionSnippet,
       demo: <Accordion />,
+      playground: accordionConfig,
     },
     {
       title: 'Arrow display',
@@ -409,5 +410,4 @@ export const AccordionExample = {
       demo: <AccordionIsLoading />,
     },
   ],
-  playground: accordionConfig,
 };
