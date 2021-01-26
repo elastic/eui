@@ -280,6 +280,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   <div
     class="euiAccordion__childWrapper"
     id="id"
+    tabindex="-1"
   >
     <div>
       <div
