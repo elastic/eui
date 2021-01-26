@@ -17,7 +17,14 @@
  * under the License.
  */
 
-import React, { forwardRef, useContext, useEffect, useState } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  // useRef,
+  useState,
+} from 'react';
+// import isEqual from 'lodash/isEqual';
 
 import {
   EuiThemeContext,
@@ -32,11 +39,21 @@ export const useEuiTheme = (): [EuiTheme, EuiThemeColorMode, EuiTheme] => {
   const overrides = useContext(EuiOverrideContext);
   const colorMode = useContext(EuiColorModeContext);
 
+  // const prevThemeId = useRef(theme.key);
+  // const prevOverrides = useRef(overrides);
+
   const [values, setValues] = useState<EuiTheme>(() => {
-    return getComputed(theme, buildTheme(overrides));
+    return getComputed(theme, buildTheme(overrides, `_${theme.key}`));
   });
   useEffect(() => {
-    setValues(getComputed(theme, buildTheme(overrides)));
+    // if (
+    //   prevThemeId.current !== theme.key ||
+    //   !isEqual(prevOverrides.current, overrides)
+    // ) {
+    //   prevThemeId.current = theme.key;
+    //   prevOverrides.current = overrides;
+    setValues(getComputed(theme, buildTheme(overrides, `_${theme.key}`)));
+    // }
   }, [theme, overrides]);
   return [values[colorMode], colorMode, theme];
 };

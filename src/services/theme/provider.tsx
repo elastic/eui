@@ -17,7 +17,15 @@
  * under the License.
  */
 
-import React, { useMemo, useContext, FunctionComponent } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  FunctionComponent,
+} from 'react';
+import isEqual from 'lodash/isEqual';
 
 import {
   EuiThemeContext,
@@ -44,16 +52,46 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
   const parentOverrides = useContext(EuiOverrideContext);
   const parentColorMode = useContext(EuiColorModeContext);
 
-  const theme = useMemo(() => _theme || parentSystem, [_theme, parentSystem]);
+  const [theme, setTheme] = useState(_theme || parentSystem);
+  const prevThemeKey = useRef(theme.key);
+
+  const [overrides, setOverrides] = useState(
+    mergeDeep(parentOverrides, _overrides)
+  );
+  const prevOverrides = useRef(overrides);
 
   const colorMode = useMemo(() => getColorMode(_colorMode, parentColorMode), [
     _colorMode,
     parentColorMode,
   ]);
-  const overrides = useMemo(() => mergeDeep(parentOverrides, _overrides), [
-    _overrides,
-    parentOverrides,
-  ]);
+
+  useEffect(() => {
+    const newTheme = _theme || parentSystem;
+    if (prevThemeKey.current !== newTheme.key) {
+      setTheme(newTheme);
+      prevThemeKey.current = newTheme.key;
+    }
+  }, [_theme, parentSystem]);
+
+  useEffect(() => {
+    const newOverrides = mergeDeep(parentOverrides, _overrides);
+    if (!isEqual(prevOverrides.current, newOverrides)) {
+      console.log('overrides');
+      setOverrides(newOverrides);
+      prevOverrides.current = newOverrides;
+    }
+  }, [_overrides, parentOverrides]);
+
+  // const theme = useMemo(() => _theme || parentSystem, [_theme, parentSystem]);
+
+  // const colorMode = useMemo(() => getColorMode(_colorMode, parentColorMode), [
+  //   _colorMode,
+  //   parentColorMode,
+  // ]);
+  // const overrides = useMemo(() => mergeDeep(parentOverrides, _overrides), [
+  //   _overrides,
+  //   parentOverrides,
+  // ]);
 
   return (
     <EuiColorModeContext.Provider value={colorMode}>

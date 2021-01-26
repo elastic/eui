@@ -208,7 +208,10 @@ export const dark = {
   ),
 };
 
-export const DefaultEuiTheme = buildTheme({
-  light: { colors: light },
-  dark: { colors: dark },
-});
+export const DefaultEuiTheme = buildTheme(
+  {
+    light: { colors: light },
+    dark: { colors: dark },
+  },
+  'DEFAULT_EUI_THEME'
+);

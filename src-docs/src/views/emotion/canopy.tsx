@@ -163,7 +163,7 @@ export default () => {
         colorMode={colorMode}
         overrides={overrides}>
         <button type="button" onClick={toggleTheme}>
-          Toggle Theme!
+          Toggle Color Mode!
         </button>
         <EuiSpacer />
         <button type="button" onClick={lightColors}>

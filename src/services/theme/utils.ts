@@ -122,7 +122,7 @@ export const getComputed = (base: EuiTheme, over: EuiTheme) => {
   return output;
 };
 
-export const buildTheme = (model: EuiTheme) => {
+export const buildTheme = (model: EuiTheme, key: string) => {
   const handler = {
     getPrototypeOf(target: EuiTheme) {
       return Reflect.getPrototypeOf(target.model);
@@ -153,6 +153,9 @@ export const buildTheme = (model: EuiTheme) => {
     },
 
     get(_target: EuiTheme, property: string): any {
+      if (property === 'key') {
+        return _target[property];
+      }
       const target = property === 'root' ? _target : _target.model || _target;
       if (typeof target[property] === 'object' && target[property] !== null) {
         return new Proxy(
@@ -177,7 +180,6 @@ export const buildTheme = (model: EuiTheme) => {
     },
 
     apply(target: EuiTheme, thisArg: any, argumentList: any) {
-      console.log('apply');
       return Reflect.apply(target.model, thisArg, argumentList);
     },
 
@@ -185,7 +187,7 @@ export const buildTheme = (model: EuiTheme) => {
       return Reflect.construct(target.model, argumentsList, newTarget);
     },
   };
-  const themeProxy = new Proxy({ model, root: model }, handler);
+  const themeProxy = new Proxy({ model, root: model, key }, handler);
 
   return themeProxy;
 };
