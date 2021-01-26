@@ -137,4 +137,11 @@
       }
     }
   }
+
+  // Overrides the euiFormControlLayout prepend and append height that is 100%
+  .euiFormControlLayout__prepend,
+  .euiFormControlLayout__append {
+    // sass-lint:disable-block no-important
+    height: auto !important;
+  }
 }
