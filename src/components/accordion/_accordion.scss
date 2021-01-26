@@ -73,10 +73,6 @@
   transition:
     height $euiAnimSpeedNormal $euiAnimSlightResistance,
     opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
-
-  &:focus {
-    outline: 1px solid blue;
-  }
 }
 
 $paddingSizes: (
