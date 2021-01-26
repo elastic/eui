@@ -42,6 +42,7 @@ import {
   euiPalettePositive,
   euiPaletteWarm,
 } from '../../../../src/services/color';
+import { getDefaultEuiMarkdownUiPlugins } from '../../../../src/components/markdown_editor';
 
 const paletteData = {
   euiPaletteForStatus,
@@ -261,6 +262,9 @@ exampleParsingList.push(ChartMarkdownParser);
 const exampleProcessingList = getDefaultEuiMarkdownProcessingPlugins();
 exampleProcessingList[1][1].components.chartDemoPlugin = ChartMarkdownRenderer;
 
+const exampleUiPlugins = getDefaultEuiMarkdownUiPlugins();
+exampleUiPlugins.push(chartDemoPlugin);
+
 const initialExample = `## Chart plugin
 
 Notice the toolbar above has a new chart button. Click it to add a chart.
@@ -286,7 +290,7 @@ export default () => {
         value={value}
         onChange={setValue}
         height={400}
-        uiPlugins={[chartDemoPlugin]}
+        uiPlugins={exampleUiPlugins}
         parsingPluginList={exampleParsingList}
         processingPluginList={exampleProcessingList}
         onParse={onParse}
