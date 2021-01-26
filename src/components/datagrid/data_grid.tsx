@@ -298,14 +298,11 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
 }
 
 function useDefaultColumnWidth(
-  container: HTMLElement | null,
+  gridWidth: number,
   leadingControlColumns: EuiDataGridControlColumn[],
   trailingControlColumns: EuiDataGridControlColumn[],
   columns: EuiDataGridProps['columns']
 ): number | null {
-  const containerSize = useResizeObserver(container, 'width');
-  const gridWidth = containerSize.width;
-
   const computeDefaultWidth = useCallback((): number | null => {
     if (IS_JEST_ENVIRONMENT) return 100;
     if (gridWidth === 0) return null; // we can't tell what size to compute yet
@@ -650,13 +647,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
 
-  const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
-    null
-  );
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
-
-  const setContainerRef = useCallback((ref) => _setContainerRef(ref), []);
 
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
@@ -807,7 +799,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
-    containerRef,
+    gridDimensions.width,
     leadingControlColumns,
     trailingControlColumns,
     orderedVisibleColumns
@@ -998,7 +990,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         className={classes}
                         onKeyDown={handleGridKeyDown}
                         style={isFullScreen ? undefined : { width, height }}
-                        ref={setContainerRef}
+                        ref={setResizeRef}
                         {...rest}>
                         {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
                           <>
@@ -1025,7 +1017,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                 headerIsInteractive,
                                 setFocusedCell
                               )}
-                              ref={setResizeRef}
                               className="euiDataGrid__verticalScroll">
                               <div className="euiDataGrid__overflow">
                                 {inMemory ? (

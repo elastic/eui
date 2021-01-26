@@ -521,13 +521,14 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
               "height": 34,
               "left": 0,
               "position": "absolute",
-              "top": "0px",
+              "top": "100px",
               "width": 100,
             },
             "tabIndex": -1,
@@ -538,13 +539,14 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
               "height": 34,
               "left": 100,
               "position": "absolute",
-              "top": "0px",
+              "top": "100px",
               "width": 100,
             },
             "tabIndex": -1,
@@ -555,13 +557,14 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
               "height": 34,
               "left": 0,
               "position": "absolute",
-              "top": "34px",
+              "top": "134px",
               "width": 100,
             },
             "tabIndex": -1,
@@ -572,13 +575,14 @@ describe('EuiDataGrid', () => {
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
               "height": 34,
               "left": 100,
               "position": "absolute",
-              "top": "34px",
+              "top": "134px",
               "width": 100,
             },
             "tabIndex": -1,
@@ -1986,7 +1990,7 @@ describe('EuiDataGrid', () => {
   });
 
   describe('render column cell actions', () => {
-    it('renders various column cell actions configurations', () => {
+    it('renders various column cell actions configurations after cell gets hovered', async () => {
       const alertFn = jest.fn();
       const happyFn = jest.fn();
       const component = mount(
@@ -2041,9 +2045,19 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      findTestSubject(component, 'alertAction').at(1).simulate('click');
+      // cell buttons should not get rendered for unfocused, unhovered cell
+      expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
+      expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
+
+      findTestSubject(component, 'dataGridRowCell').at(1).prop('onMouseEnter')!(
+        {} as React.MouseEvent
+      );
+
+      component.update();
+
+      findTestSubject(component, 'alertAction').at(0).simulate('click');
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyAction').at(1).simulate('click');
+      findTestSubject(component, 'happyAction').at(0).simulate('click');
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
       alertFn.mockReset();
       happyFn.mockReset();

@@ -20,6 +20,9 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { EuiObserver, Observer } from '../observer';
 
+// Used to short-circuit some async browser behaviour that is difficult to account for in tests
+const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+
 interface Props {
   /**
    * ReactNode to render as this component's content
@@ -128,7 +131,9 @@ export const useResizeObserver = (
   );
 
   useEffect(() => {
-    if (container != null) {
+    if (IS_JEST_ENVIRONMENT) {
+      setSize({ width: 100, height: 100 });
+    } else if (container != null) {
       // ResizeObserver's first call to the observation callback is scheduled in the future
       // so find the container's initial dimensions now
       const boundingRect = container.getBoundingClientRect();
