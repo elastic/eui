@@ -29,6 +29,10 @@ import FlyoutLarge from './flyout_large';
 const flyoutLargeSource = require('!!raw-loader!./flyout_large');
 const flyoutLargeHtml = renderToHtml(FlyoutLarge);
 
+import FlyoutPaddingSmall from './flyout_padding_small';
+const flyoutPaddingSmallSource = require('!!raw-loader!./flyout_padding_small');
+const flyoutPaddingSmallHtml = renderToHtml(FlyoutPaddingSmall);
+
 import FlyoutMaxWidth from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
@@ -68,6 +72,18 @@ const flyoutComplicatedSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
 `;
 
 const flyoutSmallSnippet = `<EuiFlyout size="s" onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Flyout body content -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutSmallPaddingSnippet = `<EuiFlyout paddingSize="s" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -244,6 +260,27 @@ export const FlyoutExample = {
       ),
       snippet: flyoutLargeSnippet,
       demo: <FlyoutLarge />,
+    },
+    {
+      title: 'Flyout with a small padding',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutPaddingSmallSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flyoutPaddingSmallHtml,
+        },
+      ],
+      text: (
+        <p>
+          In this example, we set <EuiCode>paddingSize</EuiCode> to{' '}
+          <EuiCode>s</EuiCode>.
+        </p>
+      ),
+      snippet: flyoutSmallPaddingSnippet,
+      demo: <FlyoutPaddingSmall />,
     },
     {
       title: 'Max width',

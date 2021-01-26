@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiFlyout, EuiFlyoutSize } from './flyout';
+import { EuiFlyout, EuiFlyoutSize, EuiFlyoutPaddingSize } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -30,6 +30,7 @@ jest.mock('../overlay_mask', () => ({
 }));
 
 const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
+const PADDING_SIZES: EuiFlyoutPaddingSize[] = ['none', 's', 'm', 'l'];
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
@@ -86,6 +87,20 @@ describe('EuiFlyout', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const component = mount(<EuiFlyout onClose={() => {}} size={size} />);
+
+          expect(
+            takeMountedSnapshot(component, { hasArrayOutput: true })
+          ).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('paddingSize', () => {
+      PADDING_SIZES.forEach((paddingSize) => {
+        it(`${paddingSize} is rendered`, () => {
+          const component = mount(
+            <EuiFlyout onClose={() => {}} paddingSize={paddingSize} />
+          );
 
           expect(
             takeMountedSnapshot(component, { hasArrayOutput: true })
