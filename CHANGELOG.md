@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `getDefaultEuiMarkdownProcessingPlugins` method for better control over `EuiMarkdownEditor`'s toolbar UI ([#4383](https://github.com/elastic/eui/pull/4383))
+- Changed `EuiOutsideClickDetector` events to be standard event types ([#4434](https://github.com/elastic/eui/pull/4434))
 
 **Bug fixes**
 
