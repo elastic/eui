@@ -8,6 +8,13 @@
   //   padding-bottom: $euiSizeL;
 }
 
+.euiPageHeader--restrictWidth-default {
+  width: 100%;
+  max-width: $euiPageDefaultMaxWidth;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .euiPageHeader--top {
   align-items: flex-start;
 }
@@ -17,7 +24,8 @@
 }
 
 .euiPageHeader__titleIcon {
-  vertical-align: baseline;
+  top: -$euiSizeXS;
+  position: relative;
   margin-right: $euiSize;
 }
 
