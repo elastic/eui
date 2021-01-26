@@ -110,6 +110,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+.guideDemo__highlightLayout--single {
+  background: transparentize($euiColorPrimary, .9);
+}
+
 .guideDemo__highlightSpacer {
   .euiSpacer {
     background: transparentize($euiColorPrimary, .9);

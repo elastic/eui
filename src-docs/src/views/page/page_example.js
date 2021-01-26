@@ -3,6 +3,7 @@ import React from 'react';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
+import Playground from './playground';
 
 import {
   EuiCode,
@@ -27,6 +28,14 @@ import PageSimple from './page_simple';
 const pageSimpleSource = require('!!raw-loader!./page_simple');
 const pageSimpleHtml = renderToHtml(PageSimple);
 
+import PageHeader from './page_header';
+const pageHeaderSource = require('!!raw-loader!./page_header');
+const pageHeaderHtml = renderToHtml(PageHeader);
+
+import PageHeaderCustom from './page_header_custom';
+const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
+const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
+
 import PageContentOnly from './page_content_only';
 const pageContentOnlySource = require('!!raw-loader!./page_content_only');
 const pageContentOnlyHtml = renderToHtml(Page);
@@ -40,6 +49,7 @@ const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_
 const PageContentCenterWithSideBarHtml = renderToHtml(Page);
 
 export const PageExample = {
+  playground: Playground,
   title: 'Page',
   intro: (
     <EuiText>
@@ -114,6 +124,81 @@ export const PageExample = {
       demo: (
         <div className="guideDemo__highlightLayout">
           <PageSimple />
+        </div>
+      ),
+    },
+    {
+      title: 'Page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageHeaderSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageHeaderHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiPageHeader</strong> comes with some pre-determined
+            content that you can apply to the left and right sides of the
+            component.
+          </p>
+          <p>
+            The left side allows you to pass any combination of{' '}
+            <EuiCode>pageTitle</EuiCode>, <EuiCode>description</EuiCode>,{' '}
+            <EuiCode>tabs</EuiCode>, or any <EuiCode>leftSideContent</EuiCode>.
+            The order of which are determined by the particular combination.
+          </p>
+          <p>
+            The right side, <EuiCode>rightSideContent</EuiCode>, allows for just
+            a simple <strong>array of nodes</strong> which are placed within a
+            flexbox row. This is usually in the form of multiple buttons, of
+            which, at least one is primary (or{' '}
+            <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
+            also display in <strong>reverse order</strong> so that the first and
+            primary action should be first in the list.
+          </p>
+          <p>
+            You can further adjust the display of these content types with an
+            optional <EuiCode>iconType</EuiCode> placed to the left of the
+            title, <EuiCode>alignItems</EuiCode> for adjusting the vertical
+            alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>
+            to determine which content to display first on smaller screens.
+          </p>
+        </>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout--single">
+          <PageHeader />
+        </div>
+      ),
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageHeaderCustomSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageHeaderCustomHtml,
+        },
+      ],
+      text: (
+        <p>
+          Or you can simply pass in your own custom <EuiCode>children</EuiCode>{' '}
+          utilizing the <strong>EuiPageHeaderSection</strong> components. Do
+          note, that when supplying <EuiCode>children</EuiCode>,{' '}
+          <strong>EuiPageHeader</strong> will completely ignore any other
+          content props and only render the children.
+        </p>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageHeaderCustom />
         </div>
       ),
     },
