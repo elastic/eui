@@ -20,6 +20,7 @@
   &:disabled {
     color: $euiButtonColorDisabledText;
     pointer-events: none;
+    border-color: $euiButtonColorDisabled;
 
     .euiButtonIcon__icon {
       pointer-events: auto;
@@ -37,16 +38,62 @@
 // Create button modifiers based upon the map.
 @each $name, $color in $euiButtonIconTypes {
   .euiButtonIcon--#{$name} {
+    border: solid 1px $color;
     color: $color;
 
-    &:focus {
-      background-color: transparentize($color, .9);
+    &.euiButtonIcon--empty {
+      border: none;
+
+      &:focus {
+        background-color: transparentize($color, .9);
+      }
+
+      &:hover,
+      &:focus {
+        @if ($name == 'disabled') {
+          cursor: not-allowed;
+        }
+      }
     }
 
-    &:hover,
-    &:focus {
-      @if ($name == 'disabled') {
-        cursor: not-allowed;
+    &.euiButtonIcon--fill {
+      background-color: $color;
+      border-color: $color;
+
+      // The function makes that hexes safe for theming
+      $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+
+      color: $fillTextColor;
+
+      &:not([disabled]) {
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: darken($color, 5%);
+          border-color: darken($color, 5%);
+        }
+      }
+    }
+
+    &.euiButtonIcon--default {
+
+      &:not([disabled]) {
+        $shadowColor: $euiShadowColor;
+        @if ($name == 'ghost') {
+          $shadowColor: $euiColorInk;
+        } @else if (lightness($euiTextColor) < 50) {
+          // Only if this is the light theme do we use the button variant color to colorize the shadow
+          $shadowColor: desaturate($color, 60%);
+        }
+
+        @include euiSlightShadow($shadowColor);
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          @include euiSlightShadowHover($shadowColor);
+          background-color: transparentize($color, .9);
+        }
       }
     }
   }

@@ -49,6 +49,15 @@ export type EuiButtonIconColor =
   | 'text'
   | 'warning';
 
+const displayToClassNameMap = {
+  default: 'euiButtonIcon--default',
+  empty: 'euiButtonIcon--empty',
+  fill: 'euiButtonIcon--fill',
+};
+
+export const DISPLAYS = keysOf(displayToClassNameMap);
+export type EuiButtonIconDisplay = keyof typeof displayToClassNameMap;
+
 export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   color?: EuiButtonIconColor;
@@ -62,6 +71,11 @@ export interface EuiButtonIconProps extends CommonProps {
    * *Only use when the readable text does not change between states.*
    */
   isSelected?: boolean;
+  /**
+   * Sets the display style for the button. Defaults to empty.
+   */
+
+  display?: EuiButtonIconDisplay;
 }
 
 type EuiButtonIconPropsForAnchor = {
@@ -108,6 +122,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   isDisabled: _isDisabled,
   href,
   type = 'button',
+  display = 'empty',
   target,
   rel,
   buttonRef,
@@ -129,6 +144,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   const classes = classNames(
     'euiButtonIcon',
     colorToClassNameMap[color],
+    displayToClassNameMap[display],
     className
   );
 

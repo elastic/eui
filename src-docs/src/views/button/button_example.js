@@ -55,9 +55,15 @@ const buttonOptionFlushSnippet = `<EuiButtonEmpty flush="left"><!-- Button text 
 import ButtonIcon from './button_icon';
 const buttonIconSource = require('!!raw-loader!./button_icon');
 const buttonIconHtml = renderToHtml(ButtonIcon);
-const buttonIconSnippet = `<EuiButtonIcon
+const buttonIconSnippet = [
+  `<EuiButtonIcon
+iconType={icon}
+/>`,
+  `<EuiButtonIcon
+  display="fill"
   iconType={icon}
-/>`;
+/>`,
+];
 
 import ButtonGhost from './button_ghost';
 const buttonGhostSource = require('!!raw-loader!./button_ghost');
@@ -302,7 +308,12 @@ export const ButtonExample = {
       text: (
         <p>
           <strong>EuiButtonIcons</strong> are buttons that only contain an icon
-          (no text).
+          (no text). Use the <code>display</code> prop to change the appearance
+          of your <strong>EuiButtonIcon</strong>. Most of the time you&apos;ll
+          use the <code>empty</code> display. Pass <code>default</code> to get{' '}
+          <strong>EuiButton</strong>&apos;s default style and pass{' '}
+          <code>fill</code> to get the style of <strong>EuiButton</strong> when
+          fill is set to true.
         </p>
       ),
       props: { EuiButtonIcon },

@@ -17,24 +17,51 @@ const colors = [
 ];
 
 export default () => (
-  <EuiFlexGroup gutterSize="s" alignItems="center">
-    {colors.map((color) => (
-      <EuiFlexItem key={color} grow={false}>
+  <>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      {colors.map((color) => (
+        <EuiFlexItem key={color} grow={false}>
+          <EuiButtonIcon
+            color={color}
+            onClick={() => {}}
+            iconType="arrowRight"
+            aria-label="Next"
+          />
+        </EuiFlexItem>
+      ))}
+      <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          color={color}
-          onClick={() => {}}
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          aria-label="Next"
+          disabled
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiFlexGroup gutterSize="s">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          onClick={() => window.alert('Button clicked')}
           iconType="arrowRight"
           aria-label="Next"
         />
       </EuiFlexItem>
-    ))}
-    <EuiFlexItem grow={false}>
-      <EuiButtonIcon
-        onClick={() => window.alert('Button clicked')}
-        iconType="arrowRight"
-        aria-label="Next"
-        disabled
-      />
-    </EuiFlexItem>
-  </EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          display="fill"
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          display="default"
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </>
 );

@@ -1,0 +1,16 @@
+// Change the hollow (bordered) buttons ("default" style) to have a transparent background
+// and no border
+@each $name, $color in $euiButtonTypes {
+  .euiButtonIcon--#{$name} {
+    border: none;
+
+    &.euiButtonIcon--default {
+      @include euiButtonDefaultStyle($color);
+    }
+
+    &.euiButtonIcon--fill:not([disabled]) {
+      color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+      background-color: $color;
+    }
+  }
+}
