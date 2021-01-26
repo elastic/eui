@@ -11,3 +11,443 @@ exports[`EuiPageHeader is rendered 1`] = `
   />
 </div>
 `;
+
+exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--bottom"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      Page title
+    </h1>
+  </div>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props alignItems middle is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--middle"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      Page title
+    </h1>
+  </div>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props alignItems top is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--top"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      Page title
+    </h1>
+  </div>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props children is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  Child
+</div>
+`;
+
+exports[`EuiPageHeader props children is rendered even if content props are passed 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  Child
+</div>
+`;
+
+exports[`EuiPageHeader props description is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiText euiText--medium"
+    >
+      <p>
+        Description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props leftSideContent is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <p>
+      Anything
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props pageTitle is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      Page title
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props pageTitle is rendered with icon 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      <span
+        class="euiPageHeader__titleIcon"
+        data-euiicon-type="logoKibana"
+      />
+      Page title
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props responsive is rendered as false 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  />
+</div>
+`;
+
+exports[`EuiPageHeader props responsiveOrder leftFirst is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      Page title
+    </h1>
+  </div>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props responsiveOrder rightFirst is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--responsiveReverse euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <h1
+      class="euiTitle euiTitle--large"
+    >
+      Page title
+    </h1>
+  </div>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--restrictWidth-default euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  />
+</div>
+`;
+
+exports[`EuiPageHeader props rightSideContent is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  />
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props rightSideContent is rendered with rightSideResponsive as true 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  />
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiPageHeader__rightSideContent"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <button>
+          Button 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props tabs is rendered 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      class="euiTabs euiTabs--condensed"
+      role="tablist"
+    >
+      <button
+        aria-selected="true"
+        class="euiTab euiTab-isSelected"
+        role="tab"
+        type="button"
+      >
+        <span
+          class="euiTab__content"
+        >
+          Tab 1
+        </span>
+      </button>
+      <button
+        aria-selected="false"
+        class="euiTab"
+        role="tab"
+        type="button"
+      >
+        <span
+          class="euiTab__content"
+        >
+          Tab 2
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageHeader props tabs is rendered with tabsProps 1`] = `
+<div
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
+>
+  <div
+    class="euiPageHeaderSection"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiTabs euiTabs--condensed testClass1 testClass2"
+      data-test-subj="test subject string"
+      role="tablist"
+    >
+      <button
+        aria-selected="true"
+        class="euiTab euiTab-isSelected"
+        role="tab"
+        type="button"
+      >
+        <span
+          class="euiTab__content"
+        >
+          Tab 1
+        </span>
+      </button>
+      <button
+        aria-selected="false"
+        class="euiTab"
+        role="tab"
+        type="button"
+      >
+        <span
+          class="euiTab__content"
+        >
+          Tab 2
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

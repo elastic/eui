@@ -54,7 +54,8 @@ export type EuiPageHeaderTitle = {
 export type EuiPageHeaderTabs = {
   /**
    * In-app navigation presented as large borderless tabs.
-   * Accepts an array of `EuiTab` objects
+   * Accepts an array of `EuiTab` objects;
+   * HELP: This is evaluating to `any[]` in the props table
    */
   tabs?: EuiTabProps[];
   /**
@@ -105,7 +106,8 @@ export type EuiPageHeaderProps = CommonProps &
      */
     alignItems?: typeof ALIGN_ITEMS[number];
     /**
-     * Which content to display first when on smaller screens
+     * Which content to display first when on smaller screens.
+     * Useful when the right side content should actually come beforehand in the hierarchy (like time)
      */
     responsiveOrder?: typeof RESPONSIVE_ORDER[number];
     /**
@@ -136,8 +138,9 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
     {
       'euiPageHeader--responsive': responsive,
       'euiPageHeader--restrictWidth-default': restrictWidth,
-      'euiPageHeader--tabsAtBottom': pageTitle && tabs,
-      'euiPageHeader--responsiveReverse': responsiveOrder === 'rightFirst',
+      'euiPageHeader--tabsAtBottom': !children && pageTitle && tabs,
+      'euiPageHeader--responsiveReverse':
+        !children && responsiveOrder === 'rightFirst',
     },
     `euiPageHeader--${alignItems}`,
     className
@@ -155,7 +158,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   if (description) {
     descriptionNode = (
       <>
-        <EuiSpacer />
+        {(pageTitle || tabs) && <EuiSpacer />}
         <EuiText>
           <p>{description}</p>
         </EuiText>

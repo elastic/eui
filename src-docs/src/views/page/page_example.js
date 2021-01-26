@@ -175,6 +175,7 @@ export const PageExample = {
           <PageHeader />
         </div>
       ),
+      props: { EuiPageHeader },
     },
     {
       source: [
@@ -188,19 +189,26 @@ export const PageExample = {
         },
       ],
       text: (
-        <p>
-          Or you can simply pass in your own custom <EuiCode>children</EuiCode>{' '}
-          utilizing the <strong>EuiPageHeaderSection</strong> components. Do
-          note, that when supplying <EuiCode>children</EuiCode>,{' '}
-          <strong>EuiPageHeader</strong> will completely ignore any other
-          content props and only render the children.
-        </p>
+        <>
+          <p>
+            The page header content props mainly are helpful props to push
+            content into established Elastic page layout patterns. They are
+            completely optional and by nature, inflexible. If you need a layout
+            that does not match these patterns you can simply pass in your own{' '}
+            <EuiCode>children</EuiCode> utilizing the{' '}
+            <strong>EuiPageHeaderSection</strong> components. Do note, that when
+            supplying <EuiCode>children</EuiCode>,{' '}
+            <strong>EuiPageHeader</strong> will completely ignore any other
+            content props and only render the children.
+          </p>
+        </>
       ),
       demo: (
         <div className="guideDemo__highlightLayout">
           <PageHeaderCustom />
         </div>
       ),
+      props: { EuiPageHeader },
     },
     {
       title: 'Page with content only',
