@@ -8,7 +8,6 @@ import {
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
   EuiPageHeader,
-  EuiPageHeaderSection,
   EuiPageSideBar,
   EuiTitle,
 } from '../../../../src/components';
@@ -17,14 +16,7 @@ export default () => (
   <EuiPage>
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
     <EuiPageBody component="div">
-      <EuiPageHeader>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Page title</h1>
-          </EuiTitle>
-        </EuiPageHeaderSection>
-        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
-      </EuiPageHeader>
+      <EuiPageHeader pageTitle="Page title" />
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>

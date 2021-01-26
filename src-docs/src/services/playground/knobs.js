@@ -251,6 +251,16 @@ const Knob = ({
                 />
               </>
             );
+          case 'textarea':
+            return (
+              <EuiTextArea
+                placeholder={placeholder}
+                value={val}
+                onChange={(e) => {
+                  set(e.target.value);
+                }}
+              />
+            );
         }
       }
 
