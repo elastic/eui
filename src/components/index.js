@@ -224,6 +224,7 @@ export {
   EuiMarkdownFormat,
   getDefaultEuiMarkdownParsingPlugins,
   getDefaultEuiMarkdownProcessingPlugins,
+  getDefaultEuiMarkdownUiPlugins,
 } from './markdown_editor';
 export { EuiMark } from './mark';
 
