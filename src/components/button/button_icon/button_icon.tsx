@@ -56,7 +56,7 @@ const displayToClassNameMap = {
 };
 
 export const DISPLAYS = keysOf(displayToClassNameMap);
-export type EuiButtonIconDisplay = keyof typeof displayToClassNameMap;
+type EuiButtonIconDisplay = keyof typeof displayToClassNameMap;
 
 export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
@@ -74,7 +74,6 @@ export interface EuiButtonIconProps extends CommonProps {
   /**
    * Sets the display style for the button. Defaults to empty.
    */
-
   display?: EuiButtonIconDisplay;
 }
 
