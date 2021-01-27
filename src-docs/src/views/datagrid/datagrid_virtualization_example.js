@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
-
+import { EuiCallOut, EuiCode } from '../../../../src/components';
 import { GuideSectionTypes } from '../../components';
 
 import DataGridVirtualization from './virtualization';
@@ -30,7 +30,39 @@ export const DataGridVirtualizationExample = {
       ],
       text: (
         <Fragment>
-          <p>Virtualization description</p>
+          <p>
+            Creating a lot of DOM nodes is computationally expensive, and{' '}
+            <strong>EuiDataGrid</strong> uses a couple wrapping divs to build
+            each cell. To help offset the cost of larger tables, cell
+            virtualization can be opted into by constraining the grid&apos;s
+            height and/or width. There are two ways to enable this
+            functionality. First, <EuiCode>height</EuiCode> and/or{' '}
+            <EuiCode>width</EuiCode> can be passed as props, which are applied
+            to the grid&apos;s container style. Alternatively, if{' '}
+            <strong>EuiDataGrid</strong> is unable to render at the full
+            dimensions it needs due to screen real estate or other DOM
+            constraints, it will overflow within a scrollable container and only
+            render the visible cells.
+          </p>
+
+          <EuiCallOut
+            title={
+              <>
+                Never toggle the height between a value and{' '}
+                <EuiCode>undefined</EuiCode>.
+              </>
+            }
+            color="warning">
+            <p>
+              Similar to React&apos;s rule of not switching between a controlled
+              and uncontrolled input, <EuiCode>EuiDataGrid</EuiCode> does not
+              accommodate for its height switching to or from{' '}
+              <EuiCode>undefined</EuiCode>. For demonstration purposes, the
+              example below uses a <EuiCode>key</EuiCode> to force{' '}
+              <strong>EuiDataGrid</strong> to completely remount when its height
+              changes between constrained & constrained heights.
+            </p>
+          </EuiCallOut>
         </Fragment>
       ),
       components: { DataGridVirtualization },
@@ -48,11 +80,6 @@ export const DataGridVirtualizationExample = {
           code: dataGridVirtualizationConstrainedHtml,
         },
       ],
-      text: (
-        <Fragment>
-          <p>Virtualization description</p>
-        </Fragment>
-      ),
       demo: <DataGridVirtualizationConstrained />,
     },
   ],

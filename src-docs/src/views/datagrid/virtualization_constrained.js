@@ -157,7 +157,11 @@ export default () => {
 
             <EuiResizablePanel initialSize={50} minSize="200px">
               <EuiText>
-                <p>This is a side panel with more information.</p>
+                <p>
+                  This panel is constraining the datagrid. You can resize it
+                  using the drag handle and <strong>EuiDataGrid</strong>{' '}
+                  automatically detects the changes to its container size.
+                </p>
               </EuiText>
             </EuiResizablePanel>
           </>
