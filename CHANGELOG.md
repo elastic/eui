@@ -6,17 +6,14 @@
 **Bug fixes**
 
 - Fixed heights of `append` and `prepend` in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4410))
+- Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
+- Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
 
 ## [`31.3.0`](https://github.com/elastic/eui/tree/v31.3.0)
 
 - Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
 - Added a `textSize` prop to `EuiHealth` ([#4420](https://github.com/elastic/eui/pull/4420))
 - Removed selected item of `EuiSelect` when `hasNoInitialSelection=true` and value reset to `undefined` ([#4428](https://github.com/elastic/eui/pull/4428))
-
-**Bug Fixes**
-
-- Fixed id usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
-- Stopped rendering an empty tab container in `EuiTabs` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
 
 ## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
 

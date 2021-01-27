@@ -86,10 +86,12 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
       className
     );
 
-    if (!children) return <></>;
-
     return (
-      <div ref={ref} role="tablist" className={classes} {...rest}>
+      <div
+        ref={ref}
+        className={classes}
+        {...(children && { role: 'tablist' })}
+        {...rest}>
         {children}
       </div>
     );
