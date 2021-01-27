@@ -275,7 +275,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         onTouchMove={onMouseMove}
         onTouchEnd={onMouseUp}
         {...rest}>
-        {!!reducerState.containerSize && render()}
+        {render()}
       </div>
     </EuiResizableContainerContextProvider>
   );
