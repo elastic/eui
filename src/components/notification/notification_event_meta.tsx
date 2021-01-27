@@ -60,7 +60,7 @@ export type EuiNotificationEventMetaProps = {
   /**
    * An array of context menu items. See #EuiContextMenuItem
    */
-  contextMenuItems?: ReactElement[];
+  contextMenuItems?: EuiContextMenuPanelProps['items'];
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
