@@ -29,11 +29,11 @@ import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventMetaProps = {
   /**
-   * Type of event (e.g. "Alert", "Cloud", etc..). Appears inside a badge.
+   * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
    */
   type: string;
   /**
-   * Type of severity (e.g. "Critical", "Warning", etc..)
+   * Type of severity (e.g. "Critical", "Warning", etc..). Shows as a text after the `type` following the format "Alert: Critical".
    */
   severity?: string;
   /**
