@@ -46,9 +46,9 @@ export default () => {
         <EuiNotificationEventMeta
           type="Alert"
           severity="Critical"
-          healthStatus="danger"
+          badgeColor="danger"
           iconType="logoCloud"
-          time="2 min ago"
+          time={<span>2 min ago</span>}
           isRead={isRead}
           onRead={onRead}
           contextMenuItems={contextMenuItems}
@@ -63,9 +63,9 @@ export default () => {
       <EuiPanel paddingSize="s" hasShadow={true} style={{ ...panelStyle }}>
         <EuiNotificationEventMeta
           type="Cloud"
-          healthStatus="warning"
+          badgeColor="warning"
           iconType="logoCloud"
-          time="2 min ago"
+          time={<span>2 min ago</span>}
           isRead={isRead}
           onRead={onRead}
         />
@@ -77,7 +77,7 @@ export default () => {
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiPanel paddingSize="s" hasShadow={true} style={{ ...panelStyle }}>
-        <EuiNotificationEventMeta type="Cloud" time="2 min ago" />
+        <EuiNotificationEventMeta type="Cloud" time={<span>2 min ago</span>} />
       </EuiPanel>
     </>
   );

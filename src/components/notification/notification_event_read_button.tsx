@@ -18,18 +18,22 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiButtonIcon } from '../button';
+import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import { EuiI18n } from '../i18n';
 import classNames from 'classnames';
 
-export type EuiNotificationEventReadButtonProps = {
-  onMarkAsRead: () => void;
+export type EuiNotificationEventReadButtonProps = Omit<
+  EuiButtonIconProps,
+  'iconType'
+> & {
   isRead: boolean;
+  onClick: () => void;
 };
 
 export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEventReadButtonProps> = ({
   isRead,
-  onMarkAsRead,
+  onClick,
+  ...rest
 }) => {
   const classesReadState = classNames('euiNotificationEventReadButton', {
     'euiNotificationEventReadButton--isRead': isRead,
@@ -42,13 +46,14 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
       default="Mark as read">
       {(markAsRead: string) => (
         <EuiButtonIcon
+          iconType="dot"
           aria-label={markAsRead}
           title={markAsRead}
-          iconType="dot"
           className={classesReadState}
           disabled={isRead}
-          onClick={onMarkAsRead}
+          onClick={onClick}
           data-test-subj="notificationEventReadButton"
+          {...rest}
         />
       )}
     </EuiI18n>

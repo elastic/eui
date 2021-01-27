@@ -17,8 +17,8 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useState } from 'react';
-import { EuiIcon } from '../icon';
+import React, { FunctionComponent, useState, ReactNode } from 'react';
+import { EuiIcon, IconType, IconColor } from '../icon';
 import { EuiBadge } from '../badge';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
@@ -29,32 +29,32 @@ import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventMetaProps = {
   /**
-   * Type of event (e.g. "Alert", "Cloud", etc..)
+   * Type of event (e.g. "Alert", "Cloud", etc..). Appears inside a badge.
    */
   type: string;
   /**
-   * Type of severity (e.g. "Critical", "Cloud", etc..)
+   * Type of severity (e.g. "Critical", "Warning", etc..)
    */
   severity?: string;
   /**
-   * The read state of the event
+   * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
    */
   isRead?: boolean | undefined;
 
   /**
-   * Changes the color of the badge
+   * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
-  healthStatus?: 'secondary' | 'warning' | 'danger';
+  badgeColor?: IconColor;
 
   /**
    * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
    */
-  iconType?: string;
+  iconType?: IconType;
 
   /**
    * Indicates when was the event received
    */
-  time: string;
+  time: ReactNode;
 
   /**
    * Applies an `onClick` handler to the `read` indicator
@@ -72,18 +72,18 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   iconType,
   type,
   time,
-  healthStatus,
+  badgeColor = 'hollow',
   onRead,
   severity,
   contextMenuItems = [],
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
+  const id = htmlIdGenerator()();
+
   const onMarkAsRead = () => {
     onRead && onRead();
   };
-
-  const id = htmlIdGenerator()();
 
   return (
     <div className="euiNotificationEventMeta">
@@ -91,14 +91,14 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         {typeof isRead === 'boolean' && (
           <EuiNotificationEventReadButton
             isRead={isRead}
-            onMarkAsRead={onMarkAsRead}
+            onClick={onMarkAsRead}
           />
         )}
 
         {iconType && <EuiIcon type={iconType} />}
 
         {type && (
-          <EuiBadge color={healthStatus ? healthStatus : 'hollow'}>
+          <EuiBadge color={badgeColor}>
             {severity ? `${type}: ${severity}` : type}
           </EuiBadge>
         )}

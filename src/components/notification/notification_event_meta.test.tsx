@@ -25,7 +25,7 @@ import { EuiContextMenuItem } from '../context_menu';
 describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiNotificationEventMeta type="Alert" time="2 min ago" />
+      <EuiNotificationEventMeta type="Alert" time={<span>2 min ago</span>} />
     );
 
     expect(component).toMatchSnapshot();
@@ -36,7 +36,7 @@ describe('EuiNotificationEventMeta', () => {
       const component = render(
         <EuiNotificationEventMeta
           type="Alert"
-          time="2 min ago"
+          time={<span>2 min ago</span>}
           severity="severity"
         />
       );
@@ -46,18 +46,22 @@ describe('EuiNotificationEventMeta', () => {
 
     test('isRead  is rendered', () => {
       const component = render(
-        <EuiNotificationEventMeta type="Alert" time="2 min ago" isRead={true} />
+        <EuiNotificationEventMeta
+          type="Alert"
+          time={<span>2 min ago</span>}
+          isRead={true}
+        />
       );
 
       expect(component).toMatchSnapshot();
     });
 
-    test('healthStatus  is rendered', () => {
+    test('badgeColor  is rendered', () => {
       const component = render(
         <EuiNotificationEventMeta
           type="Alert"
-          time="2 min ago"
-          healthStatus="secondary"
+          time={<span>2 min ago</span>}
+          badgeColor="secondary"
         />
       );
 
@@ -68,7 +72,7 @@ describe('EuiNotificationEventMeta', () => {
       const component = render(
         <EuiNotificationEventMeta
           type="Alert"
-          time="2 min ago"
+          time={<span>2 min ago</span>}
           iconType="logoCloud"
         />
       );
@@ -92,7 +96,7 @@ describe('EuiNotificationEventMeta', () => {
       const component = render(
         <EuiNotificationEventMeta
           type="Alert"
-          time="2 min ago"
+          time={<span>2 min ago</span>}
           iconType="logoCloud"
           contextMenuItems={contextMenuItems}
         />

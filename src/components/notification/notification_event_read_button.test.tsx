@@ -25,7 +25,7 @@ import { EuiNotificationEventReadButton } from './notification_event_read_button
 describe('EuiNotificationEventReadButton', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiNotificationEventReadButton isRead={true} onMarkAsRead={() => {}} />
+      <EuiNotificationEventReadButton isRead={true} onClick={() => {}} />
     );
 
     expect(component).toMatchSnapshot();
@@ -33,7 +33,7 @@ describe('EuiNotificationEventReadButton', () => {
 
   test('renders isRead to false', () => {
     const component = render(
-      <EuiNotificationEventReadButton isRead={false} onMarkAsRead={() => {}} />
+      <EuiNotificationEventReadButton isRead={false} onClick={() => {}} />
     );
 
     expect(component).toMatchSnapshot();
@@ -42,7 +42,7 @@ describe('EuiNotificationEventReadButton', () => {
   test('onClick fires for buttons', () => {
     const handler = jest.fn();
     const component = mount(
-      <EuiNotificationEventReadButton isRead={false} onMarkAsRead={handler} />
+      <EuiNotificationEventReadButton isRead={false} onClick={handler} />
     );
     component.find('button').simulate('click');
     expect(handler.mock.calls.length).toEqual(1);
