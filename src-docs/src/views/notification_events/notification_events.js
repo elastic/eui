@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 import {
-  EuiNotificationEventMeta,
   EuiPanel,
   EuiSpacer,
   EuiTitle,
   EuiContextMenuItem,
 } from '../../../../src/components';
+
+import { EuiNotificationEventMeta } from '../../../../src/components/notification/notification_event_meta';
 
 export default () => {
   const [isRead, setIsRead] = useState(false);

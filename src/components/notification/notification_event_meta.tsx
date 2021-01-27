@@ -17,14 +17,15 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useState, ReactElement } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { EuiIcon } from '../icon';
 import { EuiBadge } from '../badge';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
-import { EuiContextMenuPanel } from '../context_menu';
+import { EuiContextMenuPanel, EuiContextMenuPanelProps } from '../context_menu';
 import { EuiI18n } from '../i18n';
 import { EuiNotificationEventReadButton } from './notification_event_read_button';
+import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventMetaProps = {
   /**
@@ -55,6 +56,9 @@ export type EuiNotificationEventMetaProps = {
    */
   time: string;
 
+  /**
+   * Applies an `onClick` handler to the `read` indicator
+   */
   onRead?: () => void;
 
   /**
@@ -79,9 +83,11 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
     onRead && onRead();
   };
 
+  const id = htmlIdGenerator()();
+
   return (
     <div className="euiNotificationEventMeta">
-      <div>
+      <div className="euiNotificationEventMeta__section">
         {typeof isRead === 'boolean' && (
           <EuiNotificationEventReadButton
             isRead={isRead}
@@ -98,15 +104,16 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         )}
       </div>
 
-      <div>
+      <div className="euiNotificationEventMeta__section">
         <span className="euiNotificationEventMeta__time">{time}</span>
 
         {contextMenuItems.length > 0 && (
           <EuiPopover
+            id={id}
             ownFocus
             repositionOnScroll
             isOpen={isPopoverOpen}
-            panelPaddingSize="s"
+            panelPaddingSize="none"
             anchorPosition="leftUp"
             button={
               <EuiI18n
@@ -115,10 +122,14 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                 {(contextMenuButton: string) => (
                   <EuiButtonIcon
                     aria-label={contextMenuButton}
+                    aria-controls={id}
+                    aria-expanded={isPopoverOpen}
+                    aria-haspopup="true"
                     iconType="boxesVertical"
                     color="subdued"
                     className="euiNotificationEventMeta__secondaryAction"
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    data-test-subj="notificationEventMetaButton"
                   />
                 )}
               </EuiI18n>

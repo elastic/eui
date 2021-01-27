@@ -43,6 +43,7 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
       {(markAsRead: string) => (
         <EuiButtonIcon
           aria-label={markAsRead}
+          title={markAsRead}
           iconType="dot"
           className={classesReadState}
           disabled={isRead}
