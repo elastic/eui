@@ -36,4 +36,4 @@ export {
   Computed,
 } from './utils';
 export { EuiTheme, EuiThemeColorMode } from './types';
-export { DefaultEuiTheme } from './theme';
+export { DefaultEuiTheme, unbuiltDefaultEuiTheme } from './theme';

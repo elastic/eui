@@ -38,17 +38,26 @@ export const getColorMode = (
   }
 };
 
-export const getOn = (model: EuiTheme, _path: string) => {
+export const getOn = (
+  colorMode: EuiThemeColorMode,
+  model: EuiTheme,
+  _path: string
+) => {
   const path = _path.split('.');
   let node = model;
 
   while (path.length) {
     const segment = path.shift()!;
-    if (node.hasOwnProperty(segment) === false) return undefined;
-    if (node[segment] instanceof Computed) {
-      node = node[segment].getValue(model);
+    if (segment === 'colors') {
+      node = node[segment][colorMode];
     } else {
-      node = node[segment];
+      if (node.hasOwnProperty(segment) === false) return undefined;
+      if (node[segment] instanceof Computed) {
+        // TODO: Branch not necessary?
+        node = node[segment].getValue(colorMode, node);
+      } else {
+        node = node[segment];
+      }
     }
   }
 
@@ -78,13 +87,22 @@ export class Computed<T> {
     public computer: (...values: any[]) => T
   ) {}
 
-  getValue(model: EuiTheme, overrides: EuiTheme = {}, working: EuiTheme) {
+  getValue(
+    colorMode: EuiThemeColorMode,
+    model: EuiTheme,
+    overrides: EuiTheme = {},
+    working: EuiTheme
+  ) {
     return this.computer(
       this.dependencies.map((dependency) => {
         if (working) {
-          return getOn(working, dependency);
+          return getOn(colorMode, working, dependency);
         }
-        return getOn(overrides, dependency) ?? getOn(model, dependency);
+        // TODO: Branch not necessary?
+        return (
+          getOn(colorMode, overrides, dependency) ??
+          getOn(colorMode, model, dependency)
+        );
       })
     );
   }
@@ -97,29 +115,39 @@ export const computed = <T>(
   return (new Computed(dependencies, computer) as unknown) as T;
 };
 
-export const getComputed = (base: EuiTheme, over: EuiTheme) => {
+export const getComputed = (
+  colorMode: EuiThemeColorMode,
+  base: EuiTheme,
+  over: EuiTheme
+) => {
   const output = {};
 
   function loop(base: EuiTheme, over: EuiTheme, path?: string) {
     Object.keys(base).forEach((key) => {
-      const baseValue =
-        base[key] instanceof Computed
-          ? base[key].getValue(base.root, over.root, output)
-          : base[key];
-      const overValue =
-        over[key] instanceof Computed
-          ? over[key].getValue(base.root, over.root, output)
-          : over[key];
-      const newPath = path ? `${path}.${key}` : `${key}`;
-      if (baseValue && typeof baseValue === 'object') {
-        loop(baseValue, overValue ?? {}, newPath);
+      const arr = path?.split('.') || [];
+      const last = arr[arr.length - 1];
+      if (last === 'colors' && key !== colorMode) {
+        // Intentional no-op
       } else {
-        setOn(output, newPath, overValue ?? baseValue);
+        const newPath = path ? `${path}.${key}` : `${key}`;
+        const baseValue =
+          base[key] instanceof Computed
+            ? base[key].getValue(colorMode, base.root, over.root, output)
+            : base[key];
+        const overValue =
+          over[key] instanceof Computed
+            ? over[key].getValue(colorMode, base.root, over.root, output)
+            : over[key];
+        if (baseValue && typeof baseValue === 'object') {
+          loop(baseValue, overValue ?? {}, newPath);
+        } else {
+          setOn(output, newPath, overValue ?? baseValue);
+        }
       }
     });
   }
   loop(base, over);
-  return output;
+  return flattenColors(colorMode, output);
 };
 
 export const buildTheme = (model: EuiTheme, key: string) => {
@@ -192,8 +220,9 @@ export const buildTheme = (model: EuiTheme, key: string) => {
   return themeProxy;
 };
 
+const isObject = (obj: any) => obj && typeof obj === 'object';
+
 export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
-  const isObject = (obj: any) => obj && typeof obj === 'object';
   const target = { ..._target };
 
   if (!isObject(target) || !isObject(source)) {
@@ -208,6 +237,29 @@ export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
       target[key] = mergeDeep({ ...targetValue }, { ...sourceValue });
     } else {
       target[key] = sourceValue;
+    }
+  });
+
+  return target;
+};
+
+export const flattenColors = (
+  colorMode: EuiThemeColorMode,
+  source: EuiTheme
+) => {
+  const target: EuiTheme = {};
+
+  Object.keys(source).forEach((key) => {
+    if (key === 'colors') {
+      target[key] = source[key][colorMode];
+    } else {
+      const sourceValue = source[key];
+
+      if (isObject(sourceValue)) {
+        target[key] = flattenColors(colorMode, { ...sourceValue });
+      } else {
+        target[key] = sourceValue;
+      }
     }
   });
 

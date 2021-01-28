@@ -23,9 +23,11 @@ import chroma from 'chroma-js';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
 import {
+  mergeDeep,
   useEuiTheme,
   withEuiTheme,
   EuiThemeProvider,
+  computed,
   // DefaultEuiTheme,
 } from '../../../../src/services';
 
@@ -71,11 +73,9 @@ const View = () => {
 
 const View3 = () => {
   const overrides = {
-    light: {
-      colors: { euiColorPrimary: '#8A07BD' },
-    },
-    dark: {
-      colors: { euiColorPrimary: '#bd07a5' },
+    colors: {
+      light: { euiColorPrimary: '#8A07BD' },
+      dark: { euiColorPrimary: '#bd07a5' },
     },
   };
   return (
@@ -93,11 +93,14 @@ const View3 = () => {
 
 const View2 = () => {
   const overrides = {
-    light: {
-      colors: { euiColorSecondary: '#85e89d' },
-    },
-    dark: {
-      colors: { euiColorSecondary: '#f0fff4' },
+    colors: {
+      light: {
+        euiColorSecondary: computed(
+          ['colors.euiColorPrimary'],
+          () => '#85e89d'
+        ),
+      },
+      dark: { euiColorSecondary: '#f0fff4' },
     },
   };
   return (
@@ -136,24 +139,26 @@ export default () => {
   };
   const [overrides, setOverrides] = React.useState({});
   const lightColors = () => {
-    setOverrides({
-      ...overrides,
-      light: {
+    setOverrides(
+      mergeDeep(overrides, {
         colors: {
-          euiColorPrimary: chroma.random().hex(),
+          light: {
+            euiColorPrimary: chroma.random().hex(),
+          },
         },
-      },
-    });
+      })
+    );
   };
   const darkColors = () => {
-    setOverrides({
-      ...overrides,
-      dark: {
+    setOverrides(
+      mergeDeep(overrides, {
         colors: {
-          euiColorPrimary: chroma.random().hex(),
+          dark: {
+            euiColorPrimary: chroma.random().hex(),
+          },
         },
-      },
-    });
+      })
+    );
   };
 
   return (

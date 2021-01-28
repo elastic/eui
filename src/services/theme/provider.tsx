@@ -20,7 +20,6 @@
 import React, {
   useContext,
   useEffect,
-  useMemo,
   useRef,
   useState,
   FunctionComponent,
@@ -28,11 +27,12 @@ import React, {
 import isEqual from 'lodash/isEqual';
 
 import {
+  EuiSystemContext,
   EuiThemeContext,
   EuiOverrideContext,
   EuiColorModeContext,
 } from './context';
-import { getColorMode, mergeDeep } from './utils';
+import { getColorMode, mergeDeep, getComputed, buildTheme } from './utils';
 import { EuiTheme, EuiThemeColorMode } from './types';
 
 export interface EuiThemeProviderProps {
@@ -43,63 +43,86 @@ export interface EuiThemeProviderProps {
 }
 
 export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
-  theme: _theme,
+  theme: _system,
   colorMode: _colorMode,
   overrides: _overrides = {},
   children,
 }) => {
-  const parentSystem = useContext(EuiThemeContext);
+  const parentSystem = useContext(EuiSystemContext);
   const parentOverrides = useContext(EuiOverrideContext);
   const parentColorMode = useContext(EuiColorModeContext);
+  const parentTheme = useContext(EuiThemeContext);
 
-  const [theme, setTheme] = useState(_theme || parentSystem);
-  const prevThemeKey = useRef(theme.key);
+  const [system, setSystem] = useState(_system || parentSystem);
+  const prevSystemKey = useRef(system.key);
 
   const [overrides, setOverrides] = useState(
     mergeDeep(parentOverrides, _overrides)
   );
   const prevOverrides = useRef(overrides);
 
-  const colorMode = useMemo(() => getColorMode(_colorMode, parentColorMode), [
-    _colorMode,
-    parentColorMode,
-  ]);
+  const [colorMode, setColorMode] = useState(
+    getColorMode(_colorMode, parentColorMode)
+  );
+  const prevColorMode = useRef(colorMode);
+
+  // TODO: Flip if return to using parent
+  const isParentTheme = useRef(
+    prevSystemKey.current === parentSystem.key &&
+      colorMode === parentColorMode &&
+      isEqual(parentOverrides, overrides)
+  );
+
+  const [theme, setTheme] = useState(
+    Object.keys(parentTheme).length
+      ? parentTheme
+      : getComputed(colorMode, system, buildTheme(overrides, `_${system.key}`))
+  );
 
   useEffect(() => {
-    const newTheme = _theme || parentSystem;
-    if (prevThemeKey.current !== newTheme.key) {
-      setTheme(newTheme);
-      prevThemeKey.current = newTheme.key;
+    const newSystem = _system || parentSystem;
+    if (prevSystemKey.current !== newSystem.key) {
+      setSystem(newSystem);
+      prevSystemKey.current = newSystem.key;
+      isParentTheme.current = false;
     }
-  }, [_theme, parentSystem]);
+  }, [_system, parentSystem]);
 
   useEffect(() => {
     const newOverrides = mergeDeep(parentOverrides, _overrides);
     if (!isEqual(prevOverrides.current, newOverrides)) {
-      console.log('overrides');
       setOverrides(newOverrides);
       prevOverrides.current = newOverrides;
+      isParentTheme.current = false;
     }
   }, [_overrides, parentOverrides]);
 
-  // const theme = useMemo(() => _theme || parentSystem, [_theme, parentSystem]);
+  useEffect(() => {
+    const newColorMode = getColorMode(_colorMode, parentColorMode);
+    if (!isEqual(newColorMode, prevColorMode.current)) {
+      setColorMode(newColorMode);
+      prevColorMode.current = newColorMode;
+      isParentTheme.current = false;
+    }
+  }, [_colorMode, parentColorMode]);
 
-  // const colorMode = useMemo(() => getColorMode(_colorMode, parentColorMode), [
-  //   _colorMode,
-  //   parentColorMode,
-  // ]);
-  // const overrides = useMemo(() => mergeDeep(parentOverrides, _overrides), [
-  //   _overrides,
-  //   parentOverrides,
-  // ]);
+  useEffect(() => {
+    if (!isParentTheme.current) {
+      setTheme(
+        getComputed(colorMode, system, buildTheme(overrides, `_${system.key}`))
+      );
+    }
+  }, [colorMode, system, overrides]);
 
   return (
     <EuiColorModeContext.Provider value={colorMode}>
-      <EuiThemeContext.Provider value={theme}>
+      <EuiSystemContext.Provider value={system}>
         <EuiOverrideContext.Provider value={overrides}>
-          {children}
+          <EuiThemeContext.Provider value={theme}>
+            {children}
+          </EuiThemeContext.Provider>
         </EuiOverrideContext.Provider>
-      </EuiThemeContext.Provider>
+      </EuiSystemContext.Provider>
     </EuiColorModeContext.Provider>
   );
 };

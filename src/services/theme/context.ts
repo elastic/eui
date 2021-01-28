@@ -21,6 +21,7 @@ import { createContext } from 'react';
 import { EuiTheme, EuiThemeColorMode } from './types';
 import { DefaultEuiTheme } from './theme';
 
-export const EuiThemeContext = createContext<EuiTheme>(DefaultEuiTheme);
+export const EuiSystemContext = createContext<EuiTheme>(DefaultEuiTheme);
 export const EuiOverrideContext = createContext<EuiTheme>({});
 export const EuiColorModeContext = createContext<EuiThemeColorMode>('light');
+export const EuiThemeContext = createContext<EuiTheme>({});

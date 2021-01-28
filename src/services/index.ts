@@ -135,4 +135,5 @@ export {
   setOn,
   Computed,
   DefaultEuiTheme,
+  unbuiltDefaultEuiTheme,
 } from './theme';

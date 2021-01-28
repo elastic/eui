@@ -17,14 +17,7 @@
  * under the License.
  */
 
-import React, {
-  forwardRef,
-  useContext,
-  useEffect,
-  // useRef,
-  useState,
-} from 'react';
-// import isEqual from 'lodash/isEqual';
+import React, { forwardRef, useContext } from 'react';
 
 import {
   EuiThemeContext,
@@ -32,30 +25,13 @@ import {
   EuiColorModeContext,
 } from './context';
 import { EuiTheme, EuiThemeColorMode } from './types';
-import { buildTheme, getComputed } from './utils';
 
 export const useEuiTheme = (): [EuiTheme, EuiThemeColorMode, EuiTheme] => {
   const theme = useContext(EuiThemeContext);
   const overrides = useContext(EuiOverrideContext);
   const colorMode = useContext(EuiColorModeContext);
 
-  // const prevThemeId = useRef(theme.key);
-  // const prevOverrides = useRef(overrides);
-
-  const [values, setValues] = useState<EuiTheme>(() => {
-    return getComputed(theme, buildTheme(overrides, `_${theme.key}`));
-  });
-  useEffect(() => {
-    // if (
-    //   prevThemeId.current !== theme.key ||
-    //   !isEqual(prevOverrides.current, overrides)
-    // ) {
-    //   prevThemeId.current = theme.key;
-    //   prevOverrides.current = overrides;
-    setValues(getComputed(theme, buildTheme(overrides, `_${theme.key}`)));
-    // }
-  }, [theme, overrides]);
-  return [values[colorMode], colorMode, theme];
+  return [theme, colorMode, overrides];
 };
 
 export const withEuiTheme = <T extends {}>(
