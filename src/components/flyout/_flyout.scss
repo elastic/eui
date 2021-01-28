@@ -53,8 +53,6 @@ $flyoutSizes: (
       padding-bottom: $paddingAmount;
     }
 
-    // The actual size of the X button in pixels is a bit fuzzy because of all the
-    // button padding so there is some pixel pushing here.
     .euiFlyout__closeButton {
       @if $paddingAmount == $euiSizeS {
         right: $paddingAmount;
@@ -63,6 +61,8 @@ $flyoutSizes: (
         right: $euiSizeS;
         top: $euiSizeS;
       } @else {
+        // The actual size of the X button in pixels is a bit fuzzy because of all the
+        // button padding so there is some pixel pushing here.
         right: $paddingAmount - 7px;
         top: $paddingAmount - 7px;
       }

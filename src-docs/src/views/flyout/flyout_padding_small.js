@@ -46,6 +46,7 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         paddingSize="s"
+        id="flyoutSmallPadding"
         aria-labelledby="flyoutSmallPaddingTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
@@ -79,7 +80,14 @@ export default () => {
   }
   return (
     <div>
-      <EuiButton onClick={showFlyout}>Show flyout with small padding</EuiButton>
+      <EuiButton
+        onClick={showFlyout}
+        aria-controls="flyoutSmallPadding"
+        aria-expanded={isFlyoutVisible}
+        aria-haspopup="true"
+        aria-label="Show flyout">
+        Show flyout with small padding
+      </EuiButton>
       {flyout}
     </div>
   );

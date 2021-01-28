@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiFlyout, EuiFlyoutSize, EuiFlyoutPaddingSize } from './flyout';
+import { EuiFlyout, EuiFlyoutSize, PADDING_SIZES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -30,7 +30,6 @@ jest.mock('../overlay_mask', () => ({
 }));
 
 const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
-const PADDING_SIZES: EuiFlyoutPaddingSize[] = ['none', 's', 'm', 'l'];
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
