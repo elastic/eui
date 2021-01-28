@@ -22,6 +22,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useCallback,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -39,6 +40,10 @@ import { EuiDataGridColumn } from './data_grid_types';
 import { getColumnActions } from './column_actions';
 import { useEuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
+import {
+  DataGridFocusContext,
+  DataGridSortingContext,
+} from './data_grid_context';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
@@ -64,9 +69,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     setColumnWidth,
     setVisibleColumns,
     switchColumnPos,
-    sorting,
-    focusedCell,
-    onCellFocus: setFocusedCell,
     headerIsInteractive,
     className,
   } = props;
@@ -85,6 +87,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     'euiDataGridHeaderCell.headerActions',
     'Header actions'
   );
+
+  const sorting = useContext(DataGridSortingContext);
+  const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
 
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -118,9 +123,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     className
   );
 
+  const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    return onFocusUpdate([index, -1], (isFocused: boolean) => {
+      setIsFocused(isFocused);
+    });
+  }, [index, onFocusUpdate]);
+
   const headerRef = useRef<HTMLDivElement>(null);
-  const isFocused =
-    focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -189,11 +199,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           return false;
         } else {
           // take the focus
-          if (
-            focusedCell == null ||
-            focusedCell[0] !== index ||
-            focusedCell[1] !== -1
-          ) {
+          if (isFocused === false) {
             setFocusedCell([index, -1]);
           } else if (headerRef.current) {
             // this cell already had the grid's focus, so re-enable interactives
@@ -267,9 +273,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     headerIsInteractive,
     isFocused,
     setIsCellEntered,
-    focusedCell,
-    setFocusedCell,
     index,
+    setFocusedCell,
   ]);
 
   const columnActions = getColumnActions(
@@ -326,7 +331,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ) : (
         <button
           className="euiDataGridHeaderCell__button"
-          onClick={() => setIsPopoverOpen(true)}>
+          onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}>
           {sortingArrow}
           <div className="euiDataGridHeaderCell__content">
             {display || displayAsText || id}
@@ -335,6 +340,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             className="euiDataGridHeaderCell__popover"
             panelPaddingSize="none"
             anchorPosition="downRight"
+            ownFocus
             button={
               <EuiIcon
                 type="arrowDown"
@@ -345,8 +351,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               />
             }
             isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}
-            ownFocus={isFocused}>
+            closePopover={() => setIsPopoverOpen(false)}>
             <div>
               <EuiListGroup
                 listItems={columnActions}

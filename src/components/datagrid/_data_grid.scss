@@ -28,12 +28,8 @@
 }
 
 .euiDataGrid__content {
-  @include euiScrollBar;
-
   height: 100%;
-  overflow: auto;
   font-feature-settings: 'tnum' 1; // Tabular numbers
-  scroll-padding: 0;
   max-width: 100%;
   width: 100%;
   z-index: 2; // Sits above the pagination below it, but below the controls above it
@@ -116,4 +112,9 @@
 
 .euiDataGrid__focusWrap {
   height: 100%;
+}
+
+.euiDataGrid__virtualized {
+  @include euiScrollBar;
+  scroll-padding: 0;
 }

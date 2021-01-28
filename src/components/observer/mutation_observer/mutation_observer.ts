@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { EuiObserver } from '../observer';
 
@@ -40,22 +40,59 @@ export class EuiMutationObserver extends EuiObserver<Props> {
   };
 
   beginObserve = () => {
-    // IE11 and the MutationObserver polyfill used in Kibana (for Jest) implement
-    // an older spec in which specifying `attributeOldValue` or `attributeFilter`
-    // without specifying `attributes` results in a `SyntaxError`.
-    // The following logic patches the newer spec in which `attributes: true` can be
-    // implied when appropriate (`attributeOldValue` or `attributeFilter` is specified).
-    const observerOptions: MutationObserverInit = {
-      ...this.props.observerOptions,
-    };
-    const needsAttributes =
-      observerOptions.hasOwnProperty('attributeOldValue') ||
-      observerOptions.hasOwnProperty('attributeFilter');
-    if (needsAttributes && !observerOptions.hasOwnProperty('attributes')) {
-      observerOptions.attributes = true;
-    }
-
-    this.observer = new MutationObserver(this.onMutation);
-    this.observer.observe(this.childNode!, observerOptions);
+    const childNode = this.childNode!;
+    this.observer = makeMutationObserver(
+      childNode,
+      this.props.observerOptions,
+      this.onMutation
+    );
   };
 }
+
+const makeMutationObserver = (
+  node: Element,
+  _observerOptions: MutationObserverInit | undefined,
+  callback: MutationCallback
+) => {
+  // IE11 and the MutationObserver polyfill used in Kibana (for Jest) implement
+  // an older spec in which specifying `attributeOldValue` or `attributeFilter`
+  // without specifying `attributes` results in a `SyntaxError`.
+  // The following logic patches the newer spec in which `attributes: true` can be
+  // implied when appropriate (`attributeOldValue` or `attributeFilter` is specified).
+  const observerOptions: MutationObserverInit = {
+    ..._observerOptions,
+  };
+  const needsAttributes =
+    observerOptions.hasOwnProperty('attributeOldValue') ||
+    observerOptions.hasOwnProperty('attributeFilter');
+  if (needsAttributes && !observerOptions.hasOwnProperty('attributes')) {
+    observerOptions.attributes = true;
+  }
+
+  const observer = new MutationObserver(callback);
+  observer.observe(node, observerOptions);
+
+  return observer;
+};
+
+export const useMutationObserver = (
+  container: Element | null,
+  callback: MutationCallback,
+  observerOptions?: MutationObserverInit
+) => {
+  useEffect(
+    () => {
+      if (container != null) {
+        const observer = makeMutationObserver(
+          container,
+          observerOptions,
+          callback
+        );
+        return () => observer.disconnect();
+      }
+    },
+    // ignore changing observerOptions
+    // eslint-disable-next-line
+    [container, callback]
+  );
+};

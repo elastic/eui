@@ -947,6 +947,7 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
+      data-test-subj="test subject string"
     >
       <div
         class="euiDataGrid__controls"
@@ -1033,7 +1034,6 @@ Array [
       </div>
       <div
         class="euiDataGrid__verticalScroll"
-        data-test-subj="test subject string"
       >
         <div
           class="euiDataGrid__overflow"
@@ -1047,438 +1047,199 @@ Array [
             tabindex="0"
           >
             <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
+              style="width:100%;height:100%;overflow:hidden"
             >
               <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
+                class="euiDataGrid__virtualized"
+                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
+                  style="height:102px;width:200px"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    A
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                    class="euiDataGridHeader"
+                    data-test-subj="dataGridHeader"
+                    role="row"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-A"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
+                      <button
+                        class="euiDataGridHeaderCell__button"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__content"
+                        >
+                          A
+                        </div>
+                        <div
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                        >
+                          <div
+                            class="euiPopover__anchor"
+                          >
+                            <span
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-A"
+                            />
+                          </div>
+                        </div>
+                      </button>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
-                >
-                  <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    B
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-B"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
-                    </div>
-                  </div>
-                </button>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
-                  <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
-                  >
-                    <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      <button
+                        class="euiDataGridHeaderCell__button"
                       >
                         <div
-                          class="euiDataGridRowCell__expandContent"
+                          class="euiDataGridHeaderCell__content"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 1, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            0, A
-                          </div>
+                          B
                         </div>
                         <div
-                          class="euiDataGridRowCell__expandButton"
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                         >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
+                          <div
+                            class="euiPopover__anchor"
                           >
                             <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </button>
+                          </div>
                         </div>
-                      </div>
+                      </button>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      0, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 1, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            0, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 1, Column: 1:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      0, B
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 2, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            1, A
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 1, Column: 2:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      1, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 2, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            1, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 2, Column: 1:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      1, B
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 3, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            2, A
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 2, Column: 2:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:68px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      2, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 3, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            2, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 3, Column: 1:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      2, B
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 3, Column: 2:
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1521,6 +1282,7 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
+      data-test-subj="test subject string"
     >
       <div
         class="euiDataGrid__controls"
@@ -1607,7 +1369,6 @@ Array [
       </div>
       <div
         class="euiDataGrid__verticalScroll"
-        data-test-subj="test subject string"
       >
         <div
           class="euiDataGrid__overflow"
@@ -1621,180 +1382,142 @@ Array [
             tabindex="0"
           >
             <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
+              style="width:100%;height:100%;overflow:hidden"
             >
               <div
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
-                data-test-subj="dataGridHeaderCell-leading"
-                role="columnheader"
-                style="width:50px"
-                tabindex="-1"
+                class="euiDataGrid__virtualized"
+                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  <span>
-                    leading heading
-                  </span>
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
+                  style="height:102px;width:300px"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    A
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                    class="euiDataGridHeader"
+                    data-test-subj="dataGridHeader"
+                    role="row"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
+                      data-test-subj="dataGridHeaderCell-leading"
+                      role="columnheader"
+                      style="width:50px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      <div
+                        class="euiDataGridHeaderCell__content"
+                      >
+                        <span>
+                          leading heading
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-A"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
+                    >
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
+                      <button
+                        class="euiDataGridHeaderCell__button"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__content"
+                        >
+                          A
+                        </div>
+                        <div
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                        >
+                          <div
+                            class="euiPopover__anchor"
+                          >
+                            <span
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-A"
+                            />
+                          </div>
+                        </div>
+                      </button>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
-                >
-                  <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    B
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-B"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
+                      <button
+                        class="euiDataGridHeaderCell__button"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__content"
+                        >
+                          B
+                        </div>
+                        <div
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                        >
+                          <div
+                            class="euiPopover__anchor"
+                          >
+                            <span
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-B"
+                            />
+                          </div>
+                        </div>
+                      </button>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
-                data-test-subj="dataGridHeaderCell-trailing"
-                role="columnheader"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  <span>
-                    trailing heading
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
                     <div
-                      class="euiDataGridRowCell__expandContent"
+                      class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
+                      data-test-subj="dataGridHeaderCell-trailing"
+                      role="columnheader"
+                      style="width:50px"
+                      tabindex="-1"
                     >
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridHeaderCell__content"
                       >
                         <span>
-                          Row: 1, Column: 1:
+                          trailing heading
                         </span>
-                      </p>
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                      >
-                        0
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:0px;height:34px;width:50px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-lock-disabled="disabled"
                     >
                       <div
                         class="euiDataGridRowCell__expandFlex"
@@ -1805,53 +1528,77 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 1, Column: 2:
-                            </span>
+                            Row: 1, Column: 1:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
                           >
-                            0, A
+                            0
                           </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
                         </div>
                       </div>
                     </div>
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:50px;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      0, A
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 1, Column: 2:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:150px;top:0px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      0, B
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 1, Column: 3:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:250px;top:0px;height:34px;width:50px"
+                    tabindex="-1"
+                  >
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-lock-disabled="disabled"
                     >
                       <div
                         class="euiDataGridRowCell__expandFlex"
@@ -1862,153 +1609,41 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 1, Column: 3:
-                            </span>
+                            Row: 1, Column: 4:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
                           >
-                            0, B
+                            0
                           </div>
                         </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
                       </div>
                     </div>
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:34px;height:34px;width:50px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        <span>
-                          Row: 1, Column: 4:
-                        </span>
-                      </p>
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                      >
-                        0
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                     <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        <span>
-                          Row: 2, Column: 1:
-                        </span>
-                      </p>
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                      >
-                        1
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
-                  <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
-                  >
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      data-focus-lock-disabled="disabled"
                     >
                       <div
                         class="euiDataGridRowCell__expandFlex"
@@ -2019,53 +1654,77 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 2, Column: 2:
-                            </span>
+                            Row: 2, Column: 1:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
                           >
-                            1, A
+                            1
                           </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
                         </div>
                       </div>
                     </div>
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:50px;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      1, A
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 2, Column: 2:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:150px;top:34px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      1, B
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 2, Column: 3:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:250px;top:34px;height:34px;width:50px"
+                    tabindex="-1"
+                  >
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-lock-disabled="disabled"
                     >
                       <div
                         class="euiDataGridRowCell__expandFlex"
@@ -2076,153 +1735,41 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 2, Column: 3:
-                            </span>
+                            Row: 2, Column: 4:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
                           >
-                            1, B
+                            1
                           </div>
                         </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
                       </div>
                     </div>
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:68px;height:34px;width:50px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        <span>
-                          Row: 2, Column: 4:
-                        </span>
-                      </p>
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                      >
-                        1
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                     <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        <span>
-                          Row: 3, Column: 1:
-                        </span>
-                      </p>
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                      >
-                        2
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
-                  <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
-                  >
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      data-focus-lock-disabled="disabled"
                     >
                       <div
                         class="euiDataGridRowCell__expandFlex"
@@ -2233,53 +1780,77 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 3, Column: 2:
-                            </span>
+                            Row: 3, Column: 1:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
                           >
-                            2, A
+                            2
                           </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
                         </div>
                       </div>
                     </div>
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:50px;top:68px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      2, A
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 3, Column: 2:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:150px;top:68px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      2, B
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 3, Column: 3:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:250px;top:68px;height:34px;width:50px"
+                    tabindex="-1"
+                  >
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-lock-disabled="disabled"
                     >
                       <div
                         class="euiDataGridRowCell__expandFlex"
@@ -2290,84 +1861,23 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            <span>
-                              Row: 3, Column: 3:
-                            </span>
+                            Row: 3, Column: 4:
                           </p>
                           <div
                             class="euiDataGridRowCell__truncate"
                           >
-                            2, B
+                            2
                           </div>
                         </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
                     <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        <span>
-                          Row: 3, Column: 4:
-                        </span>
-                      </p>
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                      >
-                        2
-                      </div>
-                    </div>
+                      data-focus-guard="true"
+                      style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                      tabindex="-1"
+                    />
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
             </div>
           </div>
@@ -2407,6 +1917,7 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
+      data-test-subj="test subject string"
     >
       <div
         class="euiDataGrid__controls"
@@ -2490,7 +2001,6 @@ Array [
       </div>
       <div
         class="euiDataGrid__verticalScroll"
-        data-test-subj="test subject string"
       >
         <div
           class="euiDataGrid__overflow"
@@ -2504,440 +2014,201 @@ Array [
             tabindex="0"
           >
             <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
+              style="width:100%;height:100%;overflow:hidden"
             >
               <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
+                class="euiDataGrid__virtualized"
+                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
+                  style="height:102px;width:200px"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    Column A
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                    class="euiDataGridHeader"
+                    data-test-subj="dataGridHeader"
+                    role="row"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-A"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
+                      <button
+                        class="euiDataGridHeaderCell__button"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__content"
+                        >
+                          Column A
+                        </div>
+                        <div
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                        >
+                          <div
+                            class="euiPopover__anchor"
+                          >
+                            <span
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-A"
+                            />
+                          </div>
+                        </div>
+                      </button>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
-                >
-                  <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    <div>
-                      More Elements
-                    </div>
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-B"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
-                    </div>
-                  </div>
-                </button>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
-                  <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
-                  >
-                    <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      <button
+                        class="euiDataGridHeaderCell__button"
                       >
                         <div
-                          class="euiDataGridRowCell__expandContent"
+                          class="euiDataGridHeaderCell__content"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 1, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            0, A
+                          <div>
+                            More Elements
                           </div>
                         </div>
                         <div
-                          class="euiDataGridRowCell__expandButton"
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                         >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
+                          <div
+                            class="euiPopover__anchor"
                           >
                             <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
-                  <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
-                  >
-                    <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
-                      >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 1, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            0, B
                           </div>
                         </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                      </button>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      0, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 2, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            1, A
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 1, Column: 1:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      0, B
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 2, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            1, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 1, Column: 2:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      1, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 3, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            2, A
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 2, Column: 1:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      1, B
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 3, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            2, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 2, Column: 2:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:68px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      2, A
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 3, Column: 1:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      2, B
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 3, Column: 2:
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -2980,6 +2251,7 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2"
+      data-test-subj="test subject string"
     >
       <div
         class="euiDataGrid__controls"
@@ -3063,7 +2335,6 @@ Array [
       </div>
       <div
         class="euiDataGrid__verticalScroll"
-        data-test-subj="test subject string"
       >
         <div
           class="euiDataGrid__overflow"
@@ -3077,438 +2348,199 @@ Array [
             tabindex="0"
           >
             <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
+              style="width:100%;height:100%;overflow:hidden"
             >
               <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
+                class="euiDataGrid__virtualized"
+                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
+                  style="height:102px;width:200px"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    A
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                    class="euiDataGridHeader"
+                    data-test-subj="dataGridHeader"
+                    role="row"
                   >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-A"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
+                      <button
+                        class="euiDataGridHeaderCell__button"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__content"
+                        >
+                          A
+                        </div>
+                        <div
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
+                        >
+                          <div
+                            class="euiPopover__anchor"
+                          >
+                            <span
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-A"
+                            />
+                          </div>
+                        </div>
+                      </button>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
-                />
-                <button
-                  class="euiDataGridHeaderCell__button"
-                >
-                  <div
-                    class="euiDataGridHeaderCell__content"
-                  >
-                    B
-                  </div>
-                  <div
-                    class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                  >
                     <div
-                      class="euiPopover__anchor"
+                      class="euiDataGridHeaderCell"
+                      data-test-subj="dataGridHeaderCell-B"
+                      role="columnheader"
+                      style="width:100px"
+                      tabindex="-1"
                     >
-                      <span
-                        aria-label="Header actions"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      <div
+                        class="euiDataGridColumnResizer"
+                        data-test-subj="dataGridColumnResizer"
+                        style="margin-right:0px"
                       />
-                    </div>
-                  </div>
-                </button>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
-                  <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
-                  >
-                    <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      <button
+                        class="euiDataGridHeaderCell__button"
                       >
                         <div
-                          class="euiDataGridRowCell__expandContent"
+                          class="euiDataGridHeaderCell__content"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 1, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            0, A
-                          </div>
+                          B
                         </div>
                         <div
-                          class="euiDataGridRowCell__expandButton"
+                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
                         >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
+                          <div
+                            class="euiPopover__anchor"
                           >
                             <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
+                              aria-label="Header actions"
+                              color="text"
+                              data-euiicon-type="arrowDown"
+                              data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </button>
+                          </div>
                         </div>
-                      </div>
+                      </button>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      0, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 1, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            0, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 1, Column: 1:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      0, B
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 2, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            1, A
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 1, Column: 2:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      1, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 2, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            1, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 2, Column: 1:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      1, B
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 3, Column: 1:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            2, A
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 2, Column: 2:
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                style="width:100px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridRowCell__content"
-                >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+                    class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:0;top:68px;height:34px;width:100px"
+                    tabindex="-1"
                   >
                     <div
-                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                      class="euiDataGridRowCell__truncate"
                     >
-                      <div
-                        class="euiDataGridRowCell__expandFlex"
+                      2, A
+                      <p
+                        class="euiScreenReaderOnly"
                       >
-                        <div
-                          class="euiDataGridRowCell__expandContent"
-                        >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            <span>
-                              Row: 3, Column: 2:
-                            </span>
-                          </p>
-                          <div
-                            class="euiDataGridRowCell__truncate"
-                          >
-                            2, B
-                          </div>
-                        </div>
-                        <div
-                          class="euiDataGridRowCell__expandButton"
-                        >
-                          <button
-                            aria-hidden="true"
-                            class="euiButtonIcon euiButtonIcon--ghost euiDataGridRowCell__expandButtonIcon"
-                            tabindex="-1"
-                            title="Click or hit enter to interact with cell content"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="euiButtonIcon__icon"
-                              data-euiicon-type="expandMini"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        Row: 3, Column: 1:
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-test-subj="dataGridRowCell"
+                    role="gridcell"
+                    style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                    >
+                      2, B
+                      <p
+                        class="euiScreenReaderOnly"
+                      >
+                        Row: 3, Column: 2:
+                      </p>
                     </div>
                   </div>
                 </div>
