@@ -38,7 +38,7 @@ export const light = {
 
   // Status
   euiColorSuccess: computed(
-    ['colors.euiColorDanger'],
+    ['colors.euiColorSecondary'],
     ([euiColorSecondary]) => euiColorSecondary
   ),
   euiColorDanger: '#BD271E',
@@ -206,6 +206,20 @@ export const dark = {
 
 const sizes = {
   euiSize: 16,
+  euiSizeXS: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.25),
+  euiSizeS: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.5),
+  euiSizeM: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.75),
+  euiSizeL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 1.5),
+  euiSizeXL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 2),
+  euiSizeXXL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 2.5),
+
+  euiButtonMinWidth: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 7),
+
+  euiScrollBar: computed(['sizes.euiSize'], ([euiSize]) => euiSize),
+  euiScrollBarCorner: computed(
+    ['sizes.euiSizeS'],
+    ([euiSizeS]) => euiSizeS * 0.75
+  ),
 };
 
 export const unbuiltDefaultEuiTheme = {
