@@ -292,6 +292,8 @@ export class EuiAccordion extends Component<
             this.childWrapper = node;
           }}
           tabIndex={-1}
+          role="region"
+          aria-labelledby={buttonId}
           id={id}>
           <EuiResizeObserver onResize={this.setChildContentHeight}>
             {(resizeRef) => (
