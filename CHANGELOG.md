@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `getDefaultEuiMarkdownProcessingPlugins` method for better control over `EuiMarkdownEditor`'s toolbar UI ([#4383](https://github.com/elastic/eui/pull/4383))
+- Added virtualized cell rendering to `EuiDataGrid` ([#4170](https://github.com/elastic/eui/pull/4170))
 
 **Bug fixes**
 
