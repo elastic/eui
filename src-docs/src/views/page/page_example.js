@@ -32,6 +32,10 @@ import PageHeader from './page_header';
 const pageHeaderSource = require('!!raw-loader!./page_header');
 const pageHeaderHtml = renderToHtml(PageHeader);
 
+import PageHeaderTabs from './page_header_tabs';
+const pageHeaderTabsSource = require('!!raw-loader!./page_header_tabs');
+const pageHeaderTabsHtml = renderToHtml(PageHeaderTabs);
+
 import PageHeaderCustom from './page_header_custom';
 const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
 const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
@@ -178,6 +182,38 @@ export const PageExample = {
       props: { EuiPageHeader },
     },
     {
+      title: 'Page header tabs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageHeaderTabsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageHeaderTabsHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When using supplying <EuiCode>tabs</EuiCode> with a{' '}
+            <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
+            promote those tabs as if they are the page title. This means that
+            any <EuiCode>description</EuiCode>, or{' '}
+            <EuiCode>leftSideContent</EuiCode> will sit <strong>below</strong>{' '}
+            the tabs.
+          </p>
+        </>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout--single">
+          <PageHeaderTabs />
+        </div>
+      ),
+      props: { EuiPageHeader },
+    },
+    {
+      title: 'Page header custom',
       source: [
         {
           type: GuideSectionTypes.JS,

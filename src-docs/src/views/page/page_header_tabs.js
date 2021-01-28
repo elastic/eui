@@ -10,8 +10,6 @@ import {
 export default () => (
   <>
     <EuiPageHeader
-      pageTitle="Page title"
-      iconType="logoKibana"
       tabs={[
         {
           label: 'Tab 1',
@@ -21,7 +19,7 @@ export default () => (
           label: 'Tab 2',
         },
       ]}
-      description="Page description goes here."
+      description="The right side, rightSideContent, allows for just a simple array of nodes which are placed within a flexbox row. This is usually in the form of multiple buttons, of which, at least one is primary. These items are also displayed in reverse order so that the first and primary action should be first in the list."
       leftSideContent={
         <EuiText>
           <p>And some custom content</p>
@@ -34,8 +32,6 @@ export default () => (
       alignItems="top"
     />
     <EuiPageHeaderContent
-      pageTitle="Page title"
-      iconType="logoKibana"
       tabs={[
         {
           label: 'Tab 1',
@@ -45,7 +41,7 @@ export default () => (
           label: 'Tab 2',
         },
       ]}
-      description="Page description goes here."
+      description="The right side, rightSideContent, allows for just a simple array of nodes which are placed within a flexbox row. This is usually in the form of multiple buttons, of which, at least one is primary. These items are also displayed in reverse order so that the first and primary action should be first in the list."
       leftSideContent={
         <EuiText>
           <p>And some custom content</p>
