@@ -44,8 +44,10 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       </button>
     </div>
     <div
+      aria-labelledby="generated-id"
       className="euiAccordion__childWrapper"
       id="12"
+      role="region"
       tabIndex={-1}
     >
       <EuiResizeObserver
@@ -106,8 +108,10 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       </button>
     </div>
     <div
+      aria-labelledby="generated-id"
       className="euiAccordion__childWrapper"
       id="11"
+      role="region"
       tabIndex={-1}
     >
       <EuiResizeObserver
@@ -154,8 +158,10 @@ exports[`EuiAccordion is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="0"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -187,8 +193,10 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="6"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -232,8 +240,10 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="5"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -281,8 +291,10 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="2"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -322,8 +334,10 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="1"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -370,8 +384,10 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     </div>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="3"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -411,8 +427,10 @@ exports[`EuiAccordion props forceState is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="7"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -456,8 +474,10 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="4"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -508,8 +528,10 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
     </div>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="9"
+    role="region"
     tabindex="-1"
   >
     <div>
@@ -560,8 +582,10 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
     </div>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="10"
+    role="region"
     tabindex="-1"
   >
     <div>
