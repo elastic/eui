@@ -2,6 +2,7 @@
 
 - Added `getDefaultEuiMarkdownProcessingPlugins` method for better control over `EuiMarkdownEditor`'s toolbar UI ([#4383](https://github.com/elastic/eui/pull/4383))
 - Changed `EuiOutsideClickDetector` events to be standard event types ([#4434](https://github.com/elastic/eui/pull/4434))
+- Added `EuiFieldTextProps` in type definitions for `EuiSuggestInput` ([#4452](https://github.com/elastic/eui/pull/4452))
 
 **Bug fixes**
 
