@@ -19,6 +19,10 @@
 
 import { EuiTheme, EuiThemeColorMode } from './types';
 
+export const COLOR_MODE_KEY = 'colors';
+
+const isObject = (obj: any) => obj && typeof obj === 'object';
+
 export const isInverseColorMode = (colorMode?: EuiThemeColorMode) => {
   return colorMode === 'inverse';
 };
@@ -39,22 +43,26 @@ export const getColorMode = (
 };
 
 export const getOn = (
-  colorMode: EuiThemeColorMode,
   model: EuiTheme,
-  _path: string
+  _path: string,
+  colorMode?: EuiThemeColorMode
 ) => {
   const path = _path.split('.');
   let node = model;
-
   while (path.length) {
     const segment = path.shift()!;
-    if (segment === 'colors') {
-      node = node[segment][colorMode];
+    if (node.hasOwnProperty(segment) === false) {
+      return undefined;
+    }
+    if (colorMode && segment === COLOR_MODE_KEY) {
+      if (node[segment].hasOwnProperty(colorMode) === false) {
+        return undefined;
+      } else {
+        node = node[segment][colorMode];
+      }
     } else {
-      if (node.hasOwnProperty(segment) === false) return undefined;
       if (node[segment] instanceof Computed) {
-        // TODO: Branch not necessary?
-        node = node[segment].getValue(colorMode, node);
+        node = node[segment].getValue(null, null, node, colorMode);
       } else {
         node = node[segment];
       }
@@ -88,20 +96,17 @@ export class Computed<T> {
   ) {}
 
   getValue(
-    colorMode: EuiThemeColorMode,
-    model: EuiTheme,
+    base: EuiTheme,
     overrides: EuiTheme = {},
-    working: EuiTheme
+    working: EuiTheme,
+    colorMode?: EuiThemeColorMode
   ) {
     return this.computer(
       this.dependencies.map((dependency) => {
-        if (working) {
-          return getOn(colorMode, working, dependency);
-        }
-        // TODO: Branch not necessary?
         return (
-          getOn(colorMode, overrides, dependency) ??
-          getOn(colorMode, model, dependency)
+          getOn(working, dependency, colorMode) ??
+          getOn(overrides, dependency, colorMode) ??
+          getOn(base, dependency, colorMode)
         );
       })
     );
@@ -116,9 +121,9 @@ export const computed = <T>(
 };
 
 export const getComputed = (
-  colorMode: EuiThemeColorMode,
   base: EuiTheme,
-  over: EuiTheme
+  over: EuiTheme,
+  colorMode?: EuiThemeColorMode
 ) => {
   const output = {};
 
@@ -126,19 +131,19 @@ export const getComputed = (
     Object.keys(base).forEach((key) => {
       const arr = path?.split('.') || [];
       const last = arr[arr.length - 1];
-      if (last === 'colors' && key !== colorMode) {
+      if (colorMode && last === COLOR_MODE_KEY && key !== colorMode) {
         // Intentional no-op
       } else {
         const newPath = path ? `${path}.${key}` : `${key}`;
         const baseValue =
           base[key] instanceof Computed
-            ? base[key].getValue(colorMode, base.root, over.root, output)
+            ? base[key].getValue(base.root, over.root, output, colorMode)
             : base[key];
         const overValue =
           over[key] instanceof Computed
-            ? over[key].getValue(colorMode, base.root, over.root, output)
+            ? over[key].getValue(base.root, over.root, output, colorMode)
             : over[key];
-        if (baseValue && typeof baseValue === 'object') {
+        if (isObject(baseValue)) {
           loop(baseValue, overValue ?? {}, newPath);
         } else {
           setOn(output, newPath, overValue ?? baseValue);
@@ -147,7 +152,7 @@ export const getComputed = (
     });
   }
   loop(base, over);
-  return flattenColors(colorMode, output);
+  return !colorMode ? output : currentColorModeOnly(colorMode, output);
 };
 
 export const buildTheme = (model: EuiTheme, key: string) => {
@@ -220,8 +225,6 @@ export const buildTheme = (model: EuiTheme, key: string) => {
   return themeProxy;
 };
 
-const isObject = (obj: any) => obj && typeof obj === 'object';
-
 export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
   const target = { ..._target };
 
@@ -243,25 +246,25 @@ export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
   return target;
 };
 
-export const flattenColors = (
+export const currentColorModeOnly = (
   colorMode: EuiThemeColorMode,
-  source: EuiTheme
+  _theme: EuiTheme
 ) => {
-  const target: EuiTheme = {};
+  const theme: EuiTheme = {};
 
-  Object.keys(source).forEach((key) => {
-    if (key === 'colors') {
-      target[key] = source[key][colorMode];
+  Object.keys(_theme).forEach((key) => {
+    if (key === COLOR_MODE_KEY) {
+      theme[key] = _theme[key][colorMode];
     } else {
-      const sourceValue = source[key];
+      const themeValue = _theme[key];
 
-      if (isObject(sourceValue)) {
-        target[key] = flattenColors(colorMode, { ...sourceValue });
+      if (isObject(themeValue)) {
+        theme[key] = currentColorModeOnly(colorMode, themeValue);
       } else {
-        target[key] = sourceValue;
+        theme[key] = themeValue;
       }
     }
   });
 
-  return target;
+  return theme;
 };

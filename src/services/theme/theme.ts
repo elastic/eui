@@ -18,7 +18,7 @@
  */
 
 import chroma from 'chroma-js';
-import { buildTheme, computed } from './utils';
+import { buildTheme, computed, COLOR_MODE_KEY } from './utils';
 
 export const tint = (color: string, ratio: number) =>
   chroma.mix(color, '#fff', ratio).hex();
@@ -38,7 +38,7 @@ export const light = {
 
   // Status
   euiColorSuccess: computed(
-    ['colors.euiColorSecondary'],
+    ['colors.euiColorDanger'],
     ([euiColorSecondary]) => euiColorSecondary
   ),
   euiColorDanger: '#BD271E',
@@ -209,22 +209,22 @@ const sizes = {
 };
 
 export const unbuiltDefaultEuiTheme = {
-  colors: {
+  [COLOR_MODE_KEY]: {
     light,
     dark,
   },
   sizes,
-  // buttons: {
-  //   colors: {
-  //     light: {
-  //       custom: computed(
-  //         ['colors.euiColorPrimary'],
-  //         ([primary]) => primary /*'#000'*/
-  //       ),
-  //     },
-  //     dark: { custom: '#fff' },
-  //   },
-  // },
+  buttons: {
+    [COLOR_MODE_KEY]: {
+      light: {
+        custom: computed(
+          ['colors.euiColorPrimary'],
+          ([primary]) => primary /*'#000'*/
+        ),
+      },
+      dark: { custom: '#fff' },
+    },
+  },
 };
 
 export const DefaultEuiTheme = buildTheme(

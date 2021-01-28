@@ -76,7 +76,7 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
   const [theme, setTheme] = useState(
     Object.keys(parentTheme).length
       ? parentTheme
-      : getComputed(colorMode, system, buildTheme(overrides, `_${system.key}`))
+      : getComputed(system, buildTheme(overrides, `_${system.key}`), colorMode)
   );
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
   useEffect(() => {
     if (!isParentTheme.current) {
       setTheme(
-        getComputed(colorMode, system, buildTheme(overrides, `_${system.key}`))
+        getComputed(system, buildTheme(overrides, `_${system.key}`), colorMode)
       );
     }
   }, [colorMode, system, overrides]);
