@@ -442,6 +442,16 @@ function moveColumnToIndex(
 
 describe('EuiDataGrid', () => {
   describe('rendering', () => {
+    const getBoundingClientRect =
+      window.Element.prototype.getBoundingClientRect;
+    beforeAll(() => {
+      window.Element.prototype.getBoundingClientRect = () =>
+        ({ width: 100, height: 100 } as DOMRect);
+    });
+    afterAll(() => {
+      window.Element.prototype.getBoundingClientRect = getBoundingClientRect;
+    });
+
     it('renders with common and div attributes', () => {
       const component = render(
         <EuiDataGrid
