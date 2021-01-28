@@ -298,7 +298,7 @@ exports[`EuiPageHeader props responsiveOrder rightFirst is rendered 1`] = `
 
 exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
 <div
-  class="euiPageHeader euiPageHeader--responsive euiPageHeader--restrictWidth-default euiPageHeader--center"
+  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center euiPageHeader--restrictWidth-default"
 >
   <div
     class="euiPageHeaderSection"

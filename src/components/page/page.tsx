@@ -43,7 +43,7 @@ export interface EuiPageProps
   restrictWidth?: boolean | number | string;
   /**
    * Adjust the padding.
-   * When using this setting it's best to be consistent throught all similar usages.
+   * When using this setting it's best to be consistent throughout all similar usages.
    */
   paddingSize?: typeof SIZES[number];
 }

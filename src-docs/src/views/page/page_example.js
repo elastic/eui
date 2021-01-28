@@ -158,15 +158,15 @@ export const PageExample = {
             flexbox row. This is usually in the form of multiple buttons, of
             which, at least one is primary (or{' '}
             <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
-            also display in <strong>reverse order</strong> so that the first and
-            primary action should be first in the list.
+            also displayed in <strong>reverse order</strong> so that the first
+            and primary action should be first in the list.
           </p>
           <p>
             You can further adjust the display of these content types with an
             optional <EuiCode>iconType</EuiCode> placed to the left of the
             title, <EuiCode>alignItems</EuiCode> for adjusting the vertical
             alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>
-            to determine which content to display first on smaller screens.
+            to determine which content side to display first on smaller screens.
           </p>
         </>
       ),

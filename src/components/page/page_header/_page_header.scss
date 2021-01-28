@@ -1,18 +1,20 @@
 .euiPageHeader {
+  width: 100%;
   margin-bottom: $euiSize;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  //   padding-top: $euiSizeL;
-  //   padding-bottom: $euiSizeL;
-}
 
-.euiPageHeader--restrictWidth-default {
-  width: 100%;
-  max-width: $euiPageDefaultMaxWidth;
-  margin-left: auto;
-  margin-right: auto;
+  &--restrictWidth-default,
+  &--restrictWidth-custom {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &--restrictWidth-default {
+    max-width: $euiPageDefaultMaxWidth;
+  }
 }
 
 .euiPageHeader--top {

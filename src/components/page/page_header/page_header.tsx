@@ -97,9 +97,13 @@ export type EuiPageHeaderProps = CommonProps &
      */
     rightSideContent?: ReactNode[];
     /**
-     * (?) Should we allow custom values too?
+     * Sets the max-width of the page,
+     * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
      */
-    restrictWidth?: boolean;
+    restrictWidth?: boolean | number | string;
     /**
      * Vertical alignment of the left and right side content;
      * Default is `top` or dependendent on content
@@ -131,24 +135,35 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   rightSideResponsive = false,
   children,
   responsive = true,
+  style,
   ...rest
 }) => {
+  let widthClassname;
+  let newStyle;
+
+  if (restrictWidth === true) {
+    widthClassname = 'euiPageHeader--restrictWidth-default';
+  } else if (restrictWidth !== false) {
+    widthClassname = 'euiPageHeader--restrictWidth-custom';
+    newStyle = { ...style, maxWidth: restrictWidth };
+  }
+
   const classes = classNames(
     'euiPageHeader',
     {
       'euiPageHeader--responsive': responsive,
-      'euiPageHeader--restrictWidth-default': restrictWidth,
       'euiPageHeader--tabsAtBottom': !children && pageTitle && tabs,
       'euiPageHeader--responsiveReverse':
         !children && responsiveOrder === 'rightFirst',
     },
     `euiPageHeader--${alignItems}`,
+    widthClassname,
     className
   );
 
   if (children) {
     return (
-      <div className={classes} {...rest}>
+      <div className={classes} style={newStyle || style} {...rest}>
         {children}
       </div>
     );
@@ -260,7 +275,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} style={newStyle || style} {...rest}>
       <EuiPageHeaderSection>{leftSideOrder}</EuiPageHeaderSection>
       {rightSideNode}
     </div>
