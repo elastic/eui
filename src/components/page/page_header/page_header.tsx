@@ -130,7 +130,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   leftSideContent,
   rightSideContent,
   restrictWidth = false,
-  alignItems = 'center',
+  alignItems = 'middle',
   responsiveOrder = 'leftFirst',
   rightSideResponsive = false,
   children,
