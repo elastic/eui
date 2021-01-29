@@ -37,20 +37,21 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
 }) => {
   const classesReadState = classNames('euiNotificationEventReadButton', {
     'euiNotificationEventReadButton--isRead': isRead,
-    'euiNotificationEventReadButton--isUnread': !isRead,
   });
 
   return (
     <EuiI18n
-      token="euiNotificationEventReadButton.markAsRead"
-      default="Mark as read">
-      {(markAsRead: string) => (
+      tokens={[
+        'euiNotificationEventReadButton.markAsRead',
+        'euiNotificationEventReadButton.markAsUnread',
+      ]}
+      defaults={['Mark as read', 'Mark as unread']}>
+      {([markAsRead, markAsUnread]: string[]) => (
         <EuiButtonIcon
           iconType="dot"
-          aria-label={markAsRead}
-          title={markAsRead}
+          aria-label={!isRead ? markAsRead : markAsUnread}
+          title={!isRead ? markAsRead : markAsUnread}
           className={classesReadState}
-          disabled={isRead}
           onClick={onClick}
           data-test-subj="notificationEventReadButton"
           {...rest}

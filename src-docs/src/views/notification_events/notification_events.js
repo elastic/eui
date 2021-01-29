@@ -13,7 +13,7 @@ export default () => {
   const [isRead, setIsRead] = useState(false);
 
   const onRead = () => {
-    setIsRead(true);
+    setIsRead(!isRead);
   };
 
   const panelStyle = { maxWidth: '400px' };

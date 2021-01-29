@@ -141,11 +141,10 @@ exports[`EuiNotificationEventMeta props isRead  is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <button
-      aria-label="Mark as read"
+      aria-label="Mark as unread"
       class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
       data-test-subj="notificationEventReadButton"
-      disabled=""
-      title="Mark as read"
+      title="Mark as unread"
       type="button"
     >
       <span
