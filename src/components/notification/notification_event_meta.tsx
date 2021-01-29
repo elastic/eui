@@ -44,7 +44,7 @@ export type EuiNotificationEventMetaProps = {
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
-  badgeColor?: IconColor;
+  badgeColor?: EuiBadgeProps['color'];
 
   /**
    * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
