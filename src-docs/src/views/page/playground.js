@@ -38,12 +38,6 @@ export default () => {
     value: 'Page title',
   };
 
-  // HELP: NOT WORKING
-  propsToUse.alignItems = {
-    ...propsToUse.alignItems,
-    defaultValue: 'center',
-  };
-
   propsToUse.description = {
     ...propsToUse.description,
     value: 'Example of a description.',
