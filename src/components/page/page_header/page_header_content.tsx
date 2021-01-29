@@ -22,14 +22,13 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, IconType } from '../../icon';
 import { EuiTab, EuiTabs, EuiTabsProps } from '../../tabs';
-import { EuiPageHeaderSection } from './page_header_section';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiTitle } from '../../title';
 import { EuiText } from '../../text';
+import { useIsWithinBreakpoints } from '../../../services/hooks';
 
-export const ALIGN_ITEMS = ['top', 'bottom', 'middle'] as const;
-export const RESPONSIVE_ORDER = ['leftFirst', 'rightFirst'] as const;
+export const ALIGN_ITEMS = ['top', 'bottom', 'center'] as const;
 
 // Gets all the tab props including the button or link props
 type EuiTabProps = React.ComponentProps<typeof EuiTab> & {
@@ -83,10 +82,10 @@ export type EuiPageHeaderContentProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiPageHeaderContentLeft & {
     /**
-     * Set to false if you don't want the children to stack
-     * at small screen sizes.
+     * Set to false if you don't want the children to stack at small screen sizes.
+     * Set to `reverse` to display the right side content first for the sack of hierarchy (like global time)
      */
-    responsive?: boolean;
+    responsive?: boolean | 'reverse';
     /**
      * Pass custom an array of content to this side usually up to 3 buttons.
      * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
@@ -94,72 +93,41 @@ export type EuiPageHeaderContentProps = CommonProps &
      */
     rightSideContent?: ReactNode[];
     /**
-     * Sets the max-width of the page,
-     * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
-     * set to `false` to not restrict the width,
-     * set to a number for a custom width in px,
-     * set to a string for a custom width in custom measurement.
-     */
-    restrictWidth?: boolean | number | string;
-    /**
      * Vertical alignment of the left and right side content;
-     * Default is `top` or dependendent on content
+     * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
      */
     alignItems?: typeof ALIGN_ITEMS[number];
-    /**
-     * Which content to display first when on smaller screens.
-     * Useful when the right side content should actually come beforehand in the hierarchy (like time)
-     */
-    responsiveOrder?: typeof RESPONSIVE_ORDER[number];
     /**
      * Whether the array of right side items should all break to their own line on small screens
      */
     rightSideResponsive?: boolean;
     /**
-     * Custom children will be rendered before the `tabs` unless no `pageTitle` is present, then it will be the last item
+     * Custom children will be rendered before the `tabs` unless no `pageTitle` is present,
+     * then it will be the last item
      */
     children?: ReactNode;
   };
 
 export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> = ({
+  className,
   pageTitle,
   iconType,
-  description,
   tabs,
   tabsProps,
-  className,
+  description,
   rightSideContent,
-  restrictWidth = false,
-  alignItems = 'center',
-  responsiveOrder = 'leftFirst',
+  alignItems = 'top',
+  responsive = true,
   rightSideResponsive = false,
   children,
-  responsive = true,
-  style,
   ...rest
 }) => {
-  let widthClassname;
-  let newStyle;
-
-  if (restrictWidth === true) {
-    widthClassname = 'EuiPageHeaderContent--restrictWidth-default';
-  } else if (restrictWidth !== false) {
-    widthClassname = 'EuiPageHeaderContent--restrictWidth-custom';
-    newStyle = { ...style, maxWidth: restrictWidth };
-  }
-
-  const classes = classNames(
-    'EuiPageHeaderContent',
-    {
-      'EuiPageHeaderContent--responsive': responsive,
-      'EuiPageHeaderContent--column': !children,
-      'EuiPageHeaderContent--tabsAtBottom': pageTitle && tabs,
-      'EuiPageHeaderContent--responsiveReverse':
-        !children && responsiveOrder === 'rightFirst',
-    },
-    widthClassname,
-    `EuiPageHeaderContent--${alignItems}`
+  const isResponsiveBreakpoint = useIsWithinBreakpoints(
+    ['xs', 's'],
+    !!responsive
   );
+
+  const classes = classNames('euiPageHeaderContent');
 
   let descriptionNode;
   if (description) {
@@ -177,7 +145,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   if (pageTitle) {
     const icon = iconType ? (
       <EuiIcon
-        className="EuiPageHeaderContent__titleIcon"
+        className="euiPageHeaderContent__titleIcon"
         type={iconType}
         size="xl"
       />
@@ -219,7 +187,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   let leftSideContentNode = children;
   if (children && (tabsNode || pageTitleNode)) {
     leftSideContentNode = (
-      <div className="EuiPageHeaderContent__bottom">
+      <div className="euiPageHeaderContent__bottom">
         <EuiSpacer />
         {children}
         {pageTitle && tabsNode}
@@ -248,7 +216,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     );
   }
 
-  let rightSideNode;
+  let rightSideFlexItem;
   if (rightSideContent && rightSideContent.length) {
     const wrapWithFlex = () => {
       return rightSideContent.map((item, index) => {
@@ -260,23 +228,51 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       });
     };
 
-    rightSideNode = (
-      <EuiPageHeaderSection>
+    rightSideFlexItem = (
+      <EuiFlexItem grow={false}>
         <EuiFlexGroup
-          className="EuiPageHeaderContent__rightSideContent"
+          className="euiPageHeaderContent__rightSideContent"
           wrap
           responsive={rightSideResponsive}>
           {wrapWithFlex()}
         </EuiFlexGroup>
-      </EuiPageHeaderSection>
+      </EuiFlexItem>
     );
   }
 
-  return (
-    <div className={classes} style={newStyle || style} {...rest}>
-      <EuiPageHeaderSection>{leftSideOrder}</EuiPageHeaderSection>
-      {rightSideNode}
+  return alignItems === 'top' || isResponsiveBreakpoint ? (
+    <div className={classes} {...rest}>
+      <EuiFlexGroup
+        responsive={!!responsive}
+        className="euiPageHeaderContent__top"
+        alignItems="flexStart"
+        gutterSize="l">
+        {isResponsiveBreakpoint && responsive === 'reverse' ? (
+          <>
+            {rightSideFlexItem}
+            <EuiFlexItem>{leftSideOrder}</EuiFlexItem>
+          </>
+        ) : (
+          <>
+            <EuiFlexItem>{leftSideOrder}</EuiFlexItem>
+            {rightSideFlexItem}
+          </>
+        )}
+      </EuiFlexGroup>
       {leftSideContentNode}
+    </div>
+  ) : (
+    <div className={classes} {...rest}>
+      <EuiFlexGroup
+        responsive={!!responsive}
+        className="euiPageHeaderContent__top"
+        alignItems={alignItems === 'bottom' ? 'flexEnd' : 'center'}
+        gutterSize="l">
+        <EuiFlexItem>
+          {leftSideOrder} {leftSideContentNode}
+        </EuiFlexItem>
+        {rightSideFlexItem}
+      </EuiFlexGroup>
     </div>
   );
 };

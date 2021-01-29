@@ -4,54 +4,32 @@ import {
   EuiPageHeader,
   EuiText,
   EuiButton,
-  EuiPageHeaderContent,
+  EuiCode,
 } from '../../../../src/components';
 
 export default () => (
-  <>
-    <EuiPageHeader
-      tabs={[
-        {
-          label: 'Tab 1',
-          isSelected: true,
-        },
-        {
-          label: 'Tab 2',
-        },
-      ]}
-      description="The right side, rightSideContent, allows for just a simple array of nodes which are placed within a flexbox row. This is usually in the form of multiple buttons, of which, at least one is primary. These items are also displayed in reverse order so that the first and primary action should be first in the list."
-      leftSideContent={
-        <EuiText>
-          <p>And some custom content</p>
-        </EuiText>
-      }
-      rightSideContent={[
-        <EuiButton fill>Add something</EuiButton>,
-        <EuiButton>Do something</EuiButton>,
-      ]}
-      alignItems="top"
-    />
-    <EuiPageHeaderContent
-      tabs={[
-        {
-          label: 'Tab 1',
-          isSelected: true,
-        },
-        {
-          label: 'Tab 2',
-        },
-      ]}
-      description="The right side, rightSideContent, allows for just a simple array of nodes which are placed within a flexbox row. This is usually in the form of multiple buttons, of which, at least one is primary. These items are also displayed in reverse order so that the first and primary action should be first in the list."
-      leftSideContent={
-        <EuiText>
-          <p>And some custom content</p>
-        </EuiText>
-      }
-      rightSideContent={[
-        <EuiButton fill>Add something</EuiButton>,
-        <EuiButton>Do something</EuiButton>,
-      ]}
-      alignItems="top"
-    />
-  </>
+  <EuiPageHeader
+    tabs={[
+      {
+        label: 'Tab 1',
+        isSelected: true,
+      },
+      {
+        label: 'Tab 2',
+      },
+    ]}
+    description="This description should be describing the currently selected tab. It has the grow prop set to false on the EuiText block so that it is the proper line length. And it will also never extend beneath the right side content (buttons)."
+    rightSideContent={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}>
+    <EuiText>
+      <p>
+        This custom content (children), on the other hand, exists below the
+        content above including below the right side content and therefore will
+        stretch beneath them. Unless you set the <EuiCode>alignItems</EuiCode>{' '}
+        prop to something other than <EuiCode>top</EuiCode>.
+      </p>
+    </EuiText>
+  </EuiPageHeader>
 );

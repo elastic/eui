@@ -25,10 +25,9 @@ import {
   ALIGN_ITEMS,
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
-  RESPONSIVE_ORDER,
 } from './page_header_content';
 
-const tabs: EuiPageHeaderContentProps['tabs'] = [
+export const tabs: EuiPageHeaderContentProps['tabs'] = [
   {
     label: 'Tab 1',
     isSelected: true,
@@ -38,7 +37,7 @@ const tabs: EuiPageHeaderContentProps['tabs'] = [
   },
 ];
 
-const rightSideContent: EuiPageHeaderContentProps['rightSideContent'] = [
+export const rightSideContent: EuiPageHeaderContentProps['rightSideContent'] = [
   <button>Button 1</button>,
   <button>Button 2</button>,
 ];
@@ -165,33 +164,17 @@ describe('EuiPageHeaderContent', () => {
       });
     });
 
-    describe('responsiveOrder', () => {
-      RESPONSIVE_ORDER.forEach((order) => {
-        it(`${order} is rendered`, () => {
-          const component = render(
-            <EuiPageHeaderContent
-              pageTitle="Page title"
-              rightSideContent={rightSideContent}
-              responsiveOrder={order}
-            />
-          );
-
-          expect(component).toMatchSnapshot();
-        });
-      });
-    });
-
     describe('responsive', () => {
       test('is rendered as false', () => {
         const component = render(<EuiPageHeaderContent responsive={false} />);
 
         expect(component).toMatchSnapshot();
       });
-    });
 
-    describe('restrictWidth', () => {
-      test('is rendered as true', () => {
-        const component = render(<EuiPageHeaderContent restrictWidth={true} />);
+      test('is rendered as reverse', () => {
+        const component = render(
+          <EuiPageHeaderContent responsive={'reverse'} />
+        );
 
         expect(component).toMatchSnapshot();
       });

@@ -196,7 +196,7 @@ export const PageExample = {
       text: (
         <>
           <p>
-            When using supplying <EuiCode>tabs</EuiCode> with a{' '}
+            When using supplying <EuiCode>tabs</EuiCode> without a{' '}
             <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
             promote those tabs as if they are the page title. This means that
             any <EuiCode>description</EuiCode>, or{' '}

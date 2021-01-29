@@ -105,7 +105,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     min-height: 460px;
   }
 
-  div {
+  > div,
+  > div > div {
     background: transparentize($euiColorPrimary, .9);
   }
 }

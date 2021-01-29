@@ -2,7 +2,11 @@
 
 import React from 'react';
 import { PropTypes } from 'react-view';
-import { EuiPageHeader, EuiButton } from '../../../../src/components/';
+import {
+  EuiPageHeaderContent,
+  EuiButton,
+  EuiText,
+} from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
@@ -25,9 +29,9 @@ const rightSideContent = [
 ];
 
 export default () => {
-  const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)
-    ? EuiPageHeader.__docgenInfo[0]
-    : EuiPageHeader.__docgenInfo;
+  const docgenInfo = Array.isArray(EuiPageHeaderContent.__docgenInfo)
+    ? EuiPageHeaderContent.__docgenInfo[0]
+    : EuiPageHeaderContent.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.iconType = iconValidator(propsToUse.iconType);
@@ -59,16 +63,27 @@ export default () => {
     type: PropTypes.Array,
   };
 
+  propsToUse.children = {
+    value: `<EuiText>
+    <p>
+      Any content children of <strong>EuiPageHeaderContent</strong> will appear here.
+    </p>
+  </EuiText>`,
+    type: PropTypes.ReactNode,
+    hidden: false,
+  };
+
   return {
     config: {
-      componentName: 'EuiPageHeader',
+      componentName: 'EuiPageHeaderContent',
       props: propsToUse,
       scope: {
-        EuiPageHeader,
+        EuiPageHeaderContent,
+        EuiText,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiPageHeader'],
+          named: ['EuiPageHeaderContent', 'EuiText'],
         },
       },
     },
