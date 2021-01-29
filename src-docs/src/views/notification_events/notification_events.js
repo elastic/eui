@@ -44,8 +44,8 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiPanel paddingSize="s" hasShadow={true} style={{ ...panelStyle }}>
         <EuiNotificationEventMeta
-          type="Alert"
-          severity="Critical"
+          type="This is a very long type"
+          severity="And a very long severity"
           badgeColor="danger"
           iconType="logoCloud"
           time={<span>2 min ago</span>}
@@ -62,7 +62,7 @@ export default () => {
       <EuiSpacer size="s" />
       <EuiPanel paddingSize="s" hasShadow={true} style={{ ...panelStyle }}>
         <EuiNotificationEventMeta
-          type="Cloud"
+          type="Cloud "
           badgeColor="warning"
           iconType="logoCloud"
           time={<span>2 min ago</span>}

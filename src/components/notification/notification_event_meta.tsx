@@ -98,7 +98,9 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         {iconType && <EuiIcon type={iconType} />}
 
         {type && (
-          <EuiBadge color={badgeColor}>
+          <EuiBadge
+            className="euiNotificationEventMeta__badge"
+            color={badgeColor}>
             {severity ? `${type}: ${severity}` : type}
           </EuiBadge>
         )}

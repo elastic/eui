@@ -8,7 +8,7 @@ exports[`EuiNotificationEventMeta is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft"
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
     >
       <span
         class="euiBadge__content"
@@ -43,7 +43,7 @@ exports[`EuiNotificationEventMeta props badgeColor  is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
-      class="euiBadge euiBadge--iconLeft"
+      class="euiBadge euiBadge--iconLeft euiNotificationEventMeta__badge"
       style="background-color:#6dccb1;color:#000"
     >
       <span
@@ -82,7 +82,7 @@ exports[`EuiNotificationEventMeta props contextMenuItems  are rendered 1`] = `
       data-euiicon-type="logoCloud"
     />
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft"
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
     >
       <span
         class="euiBadge__content"
@@ -155,7 +155,7 @@ exports[`EuiNotificationEventMeta props isRead  is rendered 1`] = `
       />
     </button>
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft"
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
     >
       <span
         class="euiBadge__content"
@@ -193,7 +193,7 @@ exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
       data-euiicon-type="logoCloud"
     />
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft"
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
     >
       <span
         class="euiBadge__content"
@@ -228,7 +228,7 @@ exports[`EuiNotificationEventMeta props severity is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft"
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
     >
       <span
         class="euiBadge__content"
