@@ -18,8 +18,8 @@
  */
 
 import React, { FunctionComponent, useState, ReactNode } from 'react';
-import { EuiIcon, IconType, IconColor } from '../icon';
-import { EuiBadge } from '../badge';
+import { EuiIcon, IconType } from '../icon';
+import { EuiBadge, EuiBadgeProps } from '../badge';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiContextMenuPanel, EuiContextMenuPanelProps } from '../context_menu';
