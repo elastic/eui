@@ -438,7 +438,6 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   onOpenPopover = () => {
-    console.log('onOpenPopover');
     clearTimeout(this.closingTransitionTimeout);
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
