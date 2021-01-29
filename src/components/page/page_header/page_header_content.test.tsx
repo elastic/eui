@@ -84,10 +84,12 @@ describe('EuiPageHeaderContent', () => {
       });
     });
 
-    describe('leftSideContent', () => {
+    describe('children', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiPageHeaderContent children={<p>Anything</p>} />
+          <EuiPageHeaderContent>
+            <p>Anything</p>
+          </EuiPageHeaderContent>
         );
 
         expect(component).toMatchSnapshot();

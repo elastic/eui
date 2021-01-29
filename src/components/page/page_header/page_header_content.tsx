@@ -27,11 +27,12 @@ import { EuiSpacer } from '../../spacer';
 import { EuiTitle } from '../../title';
 import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
+import { Props as EuiTabProps } from '../../../components/tabs/tab';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center'] as const;
 
 // Gets all the tab props including the button or link props
-type EuiTabProps = React.ComponentProps<typeof EuiTab> & {
+type Tab = EuiTabProps & {
   /**
    * Visible text of the tab
    */
@@ -56,7 +57,7 @@ export type EuiPageHeaderContentTabs = {
    * Accepts an array of `EuiTab` objects;
    * HELP: This is evaluating to `any[]` in the props table
    */
-  tabs?: EuiTabProps[];
+  tabs?: Tab[];
   /**
    * Any extras to apply to the outer tabs container.
    * Extends `EuiTabs`
@@ -184,9 +185,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     );
   }
 
-  let leftSideContentNode = children;
+  let bottomContentNode = children;
   if (children && (tabsNode || pageTitleNode)) {
-    leftSideContentNode = (
+    bottomContentNode = (
       <div className="euiPageHeaderContent__bottom">
         <EuiSpacer />
         {children}
@@ -259,7 +260,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
           </>
         )}
       </EuiFlexGroup>
-      {leftSideContentNode}
+      {bottomContentNode}
     </div>
   ) : (
     <div className={classes} {...rest}>
@@ -269,7 +270,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         alignItems={alignItems === 'bottom' ? 'flexEnd' : 'center'}
         gutterSize="l">
         <EuiFlexItem>
-          {leftSideOrder} {leftSideContentNode}
+          {leftSideOrder} {bottomContentNode}
         </EuiFlexItem>
         {rightSideFlexItem}
       </EuiFlexGroup>

@@ -155,6 +155,23 @@ exports[`EuiPageHeaderContent props children is rendered 1`] = `
       class="euiFlexItem"
     />
   </div>
+  <p>
+    Anything
+  </p>
+</div>
+`;
+
+exports[`EuiPageHeaderContent props children is rendered 2`] = `
+<div
+  class="euiPageHeaderContent"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+  >
+    <div
+      class="euiFlexItem"
+    />
+  </div>
   Child
 </div>
 `;
@@ -260,23 +277,6 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
-`;
-
-exports[`EuiPageHeaderContent props leftSideContent is rendered 1`] = `
-<div
-  class="euiPageHeaderContent"
->
-  <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
-  >
-    <div
-      class="euiFlexItem"
-    />
-  </div>
-  <p>
-    Anything
-  </p>
 </div>
 `;
 

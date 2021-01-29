@@ -2,11 +2,7 @@
 
 import React from 'react';
 import { PropTypes } from 'react-view';
-import {
-  EuiPageHeaderContent,
-  EuiButton,
-  EuiText,
-} from '../../../../src/components/';
+import { EuiPageHeader, EuiButton, EuiText } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
@@ -29,9 +25,9 @@ const rightSideContent = [
 ];
 
 export default () => {
-  const docgenInfo = Array.isArray(EuiPageHeaderContent.__docgenInfo)
-    ? EuiPageHeaderContent.__docgenInfo[0]
-    : EuiPageHeaderContent.__docgenInfo;
+  const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)
+    ? EuiPageHeader.__docgenInfo[0]
+    : EuiPageHeader.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.iconType = iconValidator(propsToUse.iconType);
@@ -42,11 +38,6 @@ export default () => {
     value: 'Page title',
   };
 
-  propsToUse.leftSideContent = {
-    ...propsToUse.leftSideContent,
-    type: PropTypes.String,
-  };
-
   // HELP: NOT WORKING
   propsToUse.alignItems = {
     ...propsToUse.alignItems,
@@ -55,6 +46,7 @@ export default () => {
 
   propsToUse.description = {
     ...propsToUse.description,
+    value: 'Example of a description.',
     type: PropTypes.String,
   };
 
@@ -64,26 +56,21 @@ export default () => {
   };
 
   propsToUse.children = {
-    value: `<EuiText>
-    <p>
-      Any content children of <strong>EuiPageHeaderContent</strong> will appear here.
-    </p>
-  </EuiText>`,
     type: PropTypes.ReactNode,
     hidden: false,
   };
 
   return {
     config: {
-      componentName: 'EuiPageHeaderContent',
+      componentName: 'EuiPageHeader',
       props: propsToUse,
       scope: {
-        EuiPageHeaderContent,
+        EuiPageHeader,
         EuiText,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiPageHeaderContent', 'EuiText'],
+          named: ['EuiPageHeader', 'EuiText'],
         },
       },
     },

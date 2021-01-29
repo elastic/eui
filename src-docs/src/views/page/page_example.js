@@ -153,8 +153,8 @@ export const PageExample = {
           <p>
             The left side allows you to pass any combination of{' '}
             <EuiCode>pageTitle</EuiCode>, <EuiCode>description</EuiCode>,{' '}
-            <EuiCode>tabs</EuiCode>, or any <EuiCode>leftSideContent</EuiCode>.
-            The order of which are determined by the particular combination.
+            <EuiCode>tabs</EuiCode>, or any <EuiCode>children</EuiCode>. The
+            order of which are determined by the particular combination.
           </p>
           <p>
             The right side, <EuiCode>rightSideContent</EuiCode>, allows for just
@@ -199,9 +199,8 @@ export const PageExample = {
             When using supplying <EuiCode>tabs</EuiCode> without a{' '}
             <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
             promote those tabs as if they are the page title. This means that
-            any <EuiCode>description</EuiCode>, or{' '}
-            <EuiCode>leftSideContent</EuiCode> will sit <strong>below</strong>{' '}
-            the tabs.
+            any <EuiCode>description</EuiCode>, or <EuiCode>children</EuiCode>{' '}
+            will sit <strong>below</strong> the tabs.
           </p>
         </>
       ),
@@ -232,10 +231,7 @@ export const PageExample = {
             completely optional and by nature, inflexible. If you need a layout
             that does not match these patterns you can simply pass in your own{' '}
             <EuiCode>children</EuiCode> utilizing the{' '}
-            <strong>EuiPageHeaderSection</strong> components. Do note, that when
-            supplying <EuiCode>children</EuiCode>,{' '}
-            <strong>EuiPageHeader</strong> will completely ignore any other
-            content props and only render the children.
+            <strong>EuiPageHeaderSection</strong> components.
           </p>
         </>
       ),
