@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 129,
+        "line": 135,
         "column": 4
       },
       "end": {
-        "line": 129,
+        "line": 135,
         "column": 66
       }
     },
@@ -789,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 134,
+        "line": 140,
         "column": 6
       },
       "end": {
-        "line": 138,
+        "line": 144,
         "column": 8
       }
     },
@@ -805,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 142,
+        "line": 148,
         "column": 6
       },
       "end": {
-        "line": 146,
+        "line": 152,
         "column": 8
       }
     },
@@ -821,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 264,
+        "line": 270,
         "column": 16
       },
       "end": {
-        "line": 267,
+        "line": 273,
         "column": 18
       }
     },
@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 275,
+        "line": 281,
         "column": 16
       },
       "end": {
-        "line": 275,
+        "line": 281,
         "column": 80
       }
     },
@@ -1013,11 +1013,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 86,
         "column": 32
       },
       "end": {
-        "line": 87,
+        "line": 89,
         "column": 3
       }
     },
@@ -1189,11 +1189,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 251,
+        "line": 258,
         "column": 4
       },
       "end": {
-        "line": 254,
+        "line": 261,
         "column": 46
       }
     },
@@ -1205,11 +1205,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
+        "line": 264,
         "column": 10
       },
       "end": {
-        "line": 259,
+        "line": 266,
         "column": 52
       }
     },
@@ -1221,11 +1221,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 953,
+        "line": 943,
         "column": 4
       },
       "end": {
-        "line": 962,
+        "line": 952,
         "column": 9
       }
     },
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 965,
+        "line": 955,
         "column": 10
       },
       "end": {
-        "line": 973,
+        "line": 963,
         "column": 15
       }
     },
@@ -1253,12 +1253,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1105,
-        "column": 28
+        "line": 1084,
+        "column": 30
       },
       "end": {
-        "line": 1108,
-        "column": 30
+        "line": 1087,
+        "column": 32
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
