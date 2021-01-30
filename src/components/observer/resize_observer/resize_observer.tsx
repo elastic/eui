@@ -30,7 +30,8 @@ interface Props {
 
 // IE11 and Safari don't support the `ResizeObserver` API at the time of writing
 const hasResizeObserver =
-  typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
+  typeof window !== 'undefined' &&
+  typeof (window as any).ResizeObserver !== 'undefined';
 
 const mutationObserverOptions = {
   // [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
@@ -69,7 +70,7 @@ export class EuiResizeObserver extends EuiObserver<Props> {
     // The superclass checks that childNode is not null before invoking
     // beginObserve()
     const childNode = this.childNode!;
-    this.observer = makeResizeObserver(childNode, this.onResize);
+    this.observer = makeResizeObserver(childNode, this.onResize)!;
   };
 }
 
@@ -91,8 +92,8 @@ const makeCompatibleObserver = (node: Element, callback: () => void) => {
 const makeResizeObserver = (node: Element, callback: () => void) => {
   let observer: Observer | undefined;
   if (hasResizeObserver) {
-    observer = new window.ResizeObserver(callback);
-    observer.observe(node);
+    observer = new (window as any).ResizeObserver(callback);
+    observer!.observe(node);
   } else {
     observer = makeCompatibleObserver(node, callback);
     requestAnimationFrame(callback); // Mimic ResizeObserver behavior of triggering a resize event on init
@@ -142,7 +143,7 @@ export const useResizeObserver = (
           width: boundingRect.width,
           height: boundingRect.height,
         });
-      });
+      })!;
 
       return () => observer.disconnect();
     } else {

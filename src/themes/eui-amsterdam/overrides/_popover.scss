@@ -68,13 +68,6 @@
   }
 }
 
-/**
- * Title specific overrides
- */
-
-.euiPopoverTitle {
-  text-transform: none;
-}
 
 // Mainly for specificity, but don't add padding to the title if
 // neither the the panel nor the title has a padding modifier (aka NONE)

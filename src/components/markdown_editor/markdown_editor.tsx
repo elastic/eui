@@ -56,6 +56,7 @@ import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import {
   defaultParsingPlugins,
   defaultProcessingPlugins,
+  defaultUiPlugins,
 } from './plugins/markdown_default_plugins';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
@@ -193,7 +194,7 @@ export const EuiMarkdownEditor = forwardRef<
       autoExpandPreview = true,
       parsingPluginList = defaultParsingPlugins,
       processingPluginList = defaultProcessingPlugins,
-      uiPlugins = [],
+      uiPlugins = defaultUiPlugins,
       onParse,
       errors = [],
       'aria-label': ariaLabel,
@@ -214,7 +215,14 @@ export const EuiMarkdownEditor = forwardRef<
       EuiMarkdownEditorUiPlugin | undefined
     >(undefined);
 
-    const toolbarPlugins = [MarkdownTooltip.plugin, ...uiPlugins];
+    const toolbarPlugins = [...uiPlugins];
+    // @ts-ignore __originatedFromEui is a custom property
+    if (!uiPlugins.__originatedFromEui) {
+      toolbarPlugins.unshift(MarkdownTooltip.plugin);
+      console.warn(
+        'Deprecation warning: uiPlugins passed to EuiMarkdownEditor does not include the tooltip plugin, which has been added for you. This automatic inclusion has been deprecated and will be removed in the future, see https://github.com/elastic/eui/pull/4383'
+      );
+    }
 
     const markdownActions = useMemo(
       () => new MarkdownActions(editorId, toolbarPlugins),

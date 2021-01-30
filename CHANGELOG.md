@@ -1,6 +1,32 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `isLoading` prop to `EuiConfirmModal`. Added support for always rendering `EuiConfirmModal` inside `EuiOverlayMask`  ([#4421](https://github.com/elastic/eui/pull/4421))
+
+**Bug fixes**
+
+- Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
+- Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
+
+## [`31.4.0`](https://github.com/elastic/eui/tree/v31.4.0)
+
+- Added `getDefaultEuiMarkdownProcessingPlugins` method for better control over `EuiMarkdownEditor`'s toolbar UI ([#4383](https://github.com/elastic/eui/pull/4383))
+- Changed `EuiOutsideClickDetector` events to be standard event types ([#4434](https://github.com/elastic/eui/pull/4434))
+- Added `EuiFieldTextProps` in type definitions for `EuiSuggestInput` ([#4452](https://github.com/elastic/eui/pull/4452))
+- Added virtualized cell rendering to `EuiDataGrid` ([#4170](https://github.com/elastic/eui/pull/4170))
+
+**Bug fixes**
+
+- Fixed heights of `append` and `prepend` in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4410))
+- Fixed `EuiResizableContainer` initialization timing based on DOM readiness ([#4447](https://github.com/elastic/eui/pull/4447))
+
+## [`31.3.0`](https://github.com/elastic/eui/tree/v31.3.0)
+
+- Added a `size` prop to `EuiContextMenu` and added a smaller size ([#4409](https://github.com/elastic/eui/pull/4409))
+- Added a `textSize` prop to `EuiHealth` ([#4420](https://github.com/elastic/eui/pull/4420))
+- Removed selected item of `EuiSelect` when `hasNoInitialSelection=true` and value reset to `undefined` ([#4428](https://github.com/elastic/eui/pull/4428))
+
+## [`31.2.0`](https://github.com/elastic/eui/tree/v31.2.0)
+
 - Added support for adjusting `buffer` for individual window sides of `EuiPopover`. ([#4417](https://github.com/elastic/eui/pull/4417))
 - Added `'full'` option to the `height` prop of `EuiMarkdownEditor`. Added `autoExpandPreview` and `maxHeight` props to `EuiMarkdownEditor` ([#4245](https://github.com/elastic/eui/pull/4245))
 
@@ -8,7 +34,7 @@
 
 - Reduced the size of the icons and clear button for compressed `EuiFormControlLayout` ([#4374](https://github.com/elastic/eui/pull/4374))
 - Added ability for text input updates in `EuiDatePicker` ([#4243](https://github.com/elastic/eui/pull/4243))
-- Fixed heights of `append` and `prepend` in `EuiFormControlLayout` ([#4410](https://github.com/elastic/eui/pull/4410))
+- **[REVERTED in 31.3.0]** Fixed heights of `append` and `prepend` in `EuiFormControlLayout` ([#4410](https://github.com/elastic/eui/pull/4410))
 
 **Bug fixes**
 
