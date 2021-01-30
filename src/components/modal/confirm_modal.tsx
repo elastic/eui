@@ -77,10 +77,6 @@ export interface EuiConfirmModalProps
    * Show loading spinner in confirm button
    */
   isLoading?: boolean;
-  /**
-   * Renders the modal inside an overlay mask
-   */
-  ownFocus?: boolean;
 }
 
 export const CONFIRM_BUTTON = 'confirm';
@@ -98,7 +94,6 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   buttonColor = 'primary',
   defaultFocusedButton,
   isLoading,
-  ownFocus,
   ...rest
 }) => {
   const [cancelButton, setCancelButton] = useState<
@@ -148,41 +143,37 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
     message = children;
   }
 
-  const modalComponent = (
-    <EuiModal className={classes} onClose={onCancel} {...rest}>
-      {modalTitle}
+  return (
+    <EuiOverlayMask>
+      <EuiModal className={classes} onClose={onCancel} {...rest}>
+        {modalTitle}
 
-      {message && (
-        <EuiModalBody>
-          <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
-        </EuiModalBody>
-      )}
+        {message && (
+          <EuiModalBody>
+            <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
+          </EuiModalBody>
+        )}
 
-      <EuiModalFooter>
-        <EuiButtonEmpty
-          data-test-subj="confirmModalCancelButton"
-          onClick={onCancel}
-          buttonRef={cancelRef}>
-          {cancelButtonText}
-        </EuiButtonEmpty>
+        <EuiModalFooter>
+          <EuiButtonEmpty
+            data-test-subj="confirmModalCancelButton"
+            onClick={onCancel}
+            buttonRef={cancelRef}>
+            {cancelButtonText}
+          </EuiButtonEmpty>
 
-        <EuiButton
-          data-test-subj="confirmModalConfirmButton"
-          onClick={onConfirm}
-          isLoading={isLoading}
-          fill
-          buttonRef={confirmRef}
-          color={buttonColor}
-          isDisabled={confirmButtonDisabled}>
-          {confirmButtonText}
-        </EuiButton>
-      </EuiModalFooter>
-    </EuiModal>
-  );
-
-  return ownFocus ? (
-    <EuiOverlayMask>{modalComponent}</EuiOverlayMask>
-  ) : (
-    modalComponent
+          <EuiButton
+            data-test-subj="confirmModalConfirmButton"
+            onClick={onConfirm}
+            isLoading={isLoading}
+            fill
+            buttonRef={confirmRef}
+            color={buttonColor}
+            isDisabled={confirmButtonDisabled}>
+            {confirmButtonText}
+          </EuiButton>
+        </EuiModalFooter>
+      </EuiModal>
+    </EuiOverlayMask>
   );
 };

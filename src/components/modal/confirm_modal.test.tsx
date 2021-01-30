@@ -75,22 +75,6 @@ describe('EuiConfirmModal', () => {
     ).toMatchSnapshot();
   });
 
-  test('renders EuiConfirmModal inside an EuiOverlayMask', () => {
-    const component = mount(
-      <EuiConfirmModal
-        onCancel={onCancel}
-        onConfirm={onConfirm}
-        ownFocus
-        cancelButtonText="Cancel Button Text"
-        confirmButtonText="Confirm Button Text"
-      />
-    );
-
-    expect(
-      takeMountedSnapshot(component, { hasArrayOutput: true })
-    ).toMatchSnapshot();
-  });
-
   test('onConfirm', () => {
     const component = mount(
       <EuiConfirmModal
