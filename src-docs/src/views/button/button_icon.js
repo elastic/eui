@@ -4,6 +4,7 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
 } from '../../../../src/components';
 
 const colors = [
@@ -29,16 +30,9 @@ export default () => (
           />
         </EuiFlexItem>
       ))}
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowRight"
-          aria-label="Next"
-          disabled
-        />
-      </EuiFlexItem>
     </EuiFlexGroup>
-    <EuiFlexGroup gutterSize="s">
+    <EuiSpacer size="m" />
+    <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
           onClick={() => window.alert('Button clicked')}
@@ -59,6 +53,35 @@ export default () => (
           onClick={() => window.alert('Button clicked')}
           iconType="arrowRight"
           display="default"
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          isDisabled={true}
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          display="fill"
+          isDisabled={true}
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          display="default"
+          isDisabled={true}
           aria-label="Next"
         />
       </EuiFlexItem>

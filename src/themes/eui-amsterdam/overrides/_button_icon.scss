@@ -1,14 +1,27 @@
+// Added exclusion of the `ghost` type of button
+// so as not to override those specific styles from default theme
+// And the only style that needs to change is the non-filled version
+
+.euiButtonIcon--fill,
+.euiButtonIcon--default {
+  &:disabled:not(.euiButtonIcon--ghost) {
+    &,
+    &:hover {
+      $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 90%);
+      background-color: transparentize($euiButtonColorDisabled, .9);
+      color: makeDisabledContrastColor($euiButtonColorDisabled, $backgroundColorSimulated);
+    }
+  }
+}
+
 // Change the hollow (bordered) buttons ("default" style) to have a transparent background
 // and no border
 @each $name, $color in $euiButtonTypes {
   .euiButtonIcon--#{$name} {
     border: none;
 
-    &.euiButtonIcon--default {
-      @include euiButtonDefaultStyle($color);
-    }
-
-    &.euiButtonIcon--fill:not([disabled]) {
+    &.euiButtonIcon--fill:not([disabled]),
+    &.euiButtonIcon--default:not([disabled]) {
       color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
       background-color: $color;
     }

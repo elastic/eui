@@ -27,6 +27,20 @@
       cursor: not-allowed;
     }
 
+    &.euiButtonIcon--fill {
+      // Only increase the contrast of background color to text to 2.0 for disabled
+      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+      background-color: $euiButtonColorDisabled;
+      border-color: $euiButtonColorDisabled;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: $euiButtonColorDisabled;
+        border-color: $euiButtonColorDisabled;
+      }
+    }
+
     &:hover,
     &:focus {
       background-color: transparent;
