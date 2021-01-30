@@ -2,7 +2,6 @@
 // so as not to override those specific styles from default theme
 // And the only style that needs to change is the non-filled version
 
-.euiButtonIcon--fill,
 .euiButtonIcon--default {
   &:disabled:not(.euiButtonIcon--ghost) {
     &,
@@ -20,8 +19,21 @@
   .euiButtonIcon--#{$name} {
     border: none;
 
-    &.euiButtonIcon--fill:not([disabled]),
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
+      color: makeHighContrastColor($color, $backgroundColorSimulated);
+    } @else {
+      &.euiButtonIcon--fill:focus {
+        outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);
+      }
+    }
+
     &.euiButtonIcon--default:not([disabled]) {
+      @include euiButtonDefaultStyle($color);
+    }
+
+    &.euiButtonIcon--fill:not([disabled]) {
       color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
       background-color: $color;
     }
