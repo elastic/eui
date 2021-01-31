@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a `display` prop to `EuiButtonIcon` ([#4466](https://github.com/elastic/eui/pull/4466))
+
 **Bug fixes**
 
 - Fixed heights of `append` and `prepend` in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4406))
