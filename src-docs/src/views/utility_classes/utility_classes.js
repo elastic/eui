@@ -20,7 +20,7 @@ const wrappingExampleStyle = {
 
 export default () => (
   <EuiText>
-    <h4>Display</h4>
+    <h2>Display</h2>
 
     <EuiCode className="eui-displayBlock">.eui-displayBlock</EuiCode>
 
@@ -42,7 +42,7 @@ export default () => (
 
     <EuiSpacer />
 
-    <h4>Text</h4>
+    <h2>Text</h2>
 
     <EuiSpacer />
 
@@ -105,7 +105,7 @@ export default () => (
 
     <EuiSpacer />
 
-    <h4>Overflows</h4>
+    <h2>Overflows</h2>
 
     <div
       style={{
@@ -141,6 +141,7 @@ export default () => (
         padding: 0,
       }}>
       <div
+        tabIndex="0"
         className="eui-xScrollWithShadows"
         style={{ padding: wrappingExampleStyle.padding }}>
         <EuiText size="s" style={{ width: '150%' }}>
@@ -155,7 +156,7 @@ export default () => (
     </div>
 
     <EuiSpacer />
-    <h4>Vertical alignment</h4>
+    <h2>Vertical alignment</h2>
     <EuiSpacer />
 
     <div>
@@ -190,7 +191,7 @@ export default () => (
 
     <EuiSpacer />
 
-    <h4>Responsive</h4>
+    <h2>Responsive</h2>
 
     <EuiCode className="eui-hideFor--xs">.eui-hideFor--xs</EuiCode>
     <EuiSpacer />
@@ -212,7 +213,7 @@ export default () => (
 
     <EuiSpacer />
 
-    <h5>Modifiers</h5>
+    <h3>Modifiers</h3>
     <p>
       The <EuiCode>.eui-showFor--[size]</EuiCode> classes will force display of{' '}
       <EuiCode>inline</EuiCode> when showing the element. You can modify this

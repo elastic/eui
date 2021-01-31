@@ -1,11 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
+- Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
+
+## [`31.4.0`](https://github.com/elastic/eui/tree/v31.4.0)
+
 - Added `getDefaultEuiMarkdownProcessingPlugins` method for better control over `EuiMarkdownEditor`'s toolbar UI ([#4383](https://github.com/elastic/eui/pull/4383))
 - Changed `EuiOutsideClickDetector` events to be standard event types ([#4434](https://github.com/elastic/eui/pull/4434))
+- Added `EuiFieldTextProps` in type definitions for `EuiSuggestInput` ([#4452](https://github.com/elastic/eui/pull/4452))
+- Added virtualized cell rendering to `EuiDataGrid` ([#4170](https://github.com/elastic/eui/pull/4170))
 
 **Bug fixes**
 
 - Fixed heights of `append` and `prepend` in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4410))
+- Fixed `EuiResizableContainer` initialization timing based on DOM readiness ([#4447](https://github.com/elastic/eui/pull/4447))
 
 ## [`31.3.0`](https://github.com/elastic/eui/tree/v31.3.0)
 
