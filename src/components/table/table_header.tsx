@@ -20,14 +20,23 @@
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 
-export const EuiTableHeader: FunctionComponent<CommonProps> = ({
+type Props = CommonProps & {
+  withInbuiltTag?: boolean;
+};
+
+export const EuiTableHeader: FunctionComponent<Props> = ({
   children,
   className,
+  withInbuiltTag = true,
   ...rest
 }) => {
   return (
     <thead className={className} {...rest}>
-      <tr>{children}</tr>
+      {withInbuiltTag ? (
+        <tr>{children}</tr>
+      ) : (
+        <React.Fragment>{children}</React.Fragment>
+      )}
     </thead>
   );
 };
