@@ -2,7 +2,8 @@
 // so as not to override those specific styles from default theme
 // And the only style that needs to change is the non-filled version
 
-.euiButtonIcon--default {
+.euiButtonIcon--default,
+.euiButtonIcon--fill {
   &:disabled:not(.euiButtonIcon--ghost) {
     &,
     &:hover {
@@ -35,7 +36,12 @@
 
     &.euiButtonIcon--fill:not([disabled]) {
       color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
-      background-color: $color;
+
+      &,
+      &:hover,
+      &:focus {
+        background-color: $color;
+      }
     }
   }
 }
