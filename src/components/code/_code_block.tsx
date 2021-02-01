@@ -109,7 +109,10 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   const code = useRef<HTMLElement | null>(null);
   const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
   const [innerTextRef, innerText] = useInnerText('');
-  const combinedRef = useCombinedRefs([innerTextRef, setWrapperRef]);
+  const combinedRef = useCombinedRefs<HTMLPreElement>([
+    innerTextRef,
+    setWrapperRef,
+  ]);
   const { width, height } = useResizeObserver(wrapperRef);
   const [codeFullScreen, setCodeFullScreen] = useState<HTMLElement | null>(
     null

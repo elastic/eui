@@ -4,6 +4,7 @@
 
 - Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
 - Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
+- Fixed `EuiCodeBlock` focus-state if content overflows ([#4463]https://github.com/elastic/eui/pull/4463)
 
 ## [`31.4.0`](https://github.com/elastic/eui/tree/v31.4.0)
 
