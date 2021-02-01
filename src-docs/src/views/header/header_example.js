@@ -343,8 +343,9 @@ export const HeaderExample = {
             <EuiCode>node</EuiCode> that will render inside a{' '}
             <strong>EuiBadgeNotification</strong> or pass{' '}
             <EuiCode>true</EuiCode> to render a simple dot. You can also animate
-            the button by passing <EuiCode>true</EuiCode> into the{' '}
-            <EuiCode>animation</EuiCode> prop.
+            the button by calling the <EuiCode>triggerAnimation()</EuiCode>{' '}
+            method on the <strong>EuiHeaderSectionItemButton</strong>{' '}
+            <EuiCode>ref</EuiCode>.
           </p>
 
           <p>
