@@ -21,6 +21,9 @@ import React, {
   ButtonHTMLAttributes,
   PropsWithChildren,
   forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
@@ -42,13 +45,9 @@ export type EuiHeaderSectionItemButtonProps = CommonProps &
      * Changes the color of the notification background
      */
     notificationColor?: EuiNotificationBadgeProps['color'];
-    /**
-     * Pass `true` to trigger an animation
-     */
-    animation?: boolean;
   };
 
-export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
+export type EuiHeaderSectionItemButtonRef = HTMLButtonElement | null;
 
 export const EuiHeaderSectionItemButton = forwardRef<
   EuiHeaderSectionItemButtonRef,
@@ -61,15 +60,147 @@ export const EuiHeaderSectionItemButton = forwardRef<
       className,
       notification,
       notificationColor = 'accent',
-      animation = false,
       ...rest
     },
     ref
   ) => {
+    const [buttonRef, setButtonRef] = useState<EuiHeaderSectionItemButtonRef>();
+    const animationTargetRef = useRef<HTMLSpanElement | null>(null);
+
+    useImperativeHandle<
+      EuiHeaderSectionItemButtonRef,
+      EuiHeaderSectionItemButtonRef
+    >(
+      ref,
+      () => {
+        if (buttonRef) {
+          (buttonRef as any).triggerAnimation = () => {
+            const keyframes: Keyframe[] = [
+              { transform: 'rotate(0)', offset: 0, easing: 'ease-in-out' },
+              {
+                transform: 'rotate(30deg)',
+                offset: 0.01,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-28deg)',
+                offset: 0.03,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(34deg)',
+                offset: 0.05,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-32deg)',
+                offset: 0.07,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(30deg)',
+                offset: 0.09,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-28deg)',
+                offset: 0.11,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(26deg)',
+                offset: 0.13,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-24deg)',
+                offset: 0.15,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(22deg)',
+                offset: 0.17,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-20deg)',
+                offset: 0.19,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(18deg)',
+                offset: 0.21,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-16deg)',
+                offset: 0.23,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(14deg)',
+                offset: 0.25,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-12deg)',
+                offset: 0.27,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(10deg)',
+                offset: 0.29,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-8deg)',
+                offset: 0.31,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(6deg)',
+                offset: 0.33,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-4deg)',
+                offset: 0.35,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(2deg)',
+                offset: 0.37,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-1deg)',
+                offset: 0.39,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(1deg)',
+                offset: 0.41,
+                easing: 'ease-in-out',
+              },
+              { transform: 'rotate(0)', offset: 0.43, easing: 'ease-in-out' },
+              { transform: 'rotate(0)', offset: 1, easing: 'ease-in-out' },
+            ];
+            animationTargetRef.current?.animate(keyframes, {
+              duration: 5000,
+            });
+          };
+          return buttonRef;
+        } else {
+          return null;
+        }
+      },
+      [buttonRef]
+    );
+
     const classes = classNames('euiHeaderSectionItemButton', className);
-    const animationClasses = classNames({
-      'euiHeaderSectionItemButton__content--isAnimating': animation,
-    });
+    const animationClasses = classNames([
+      'euiHeaderSectionItemButton__content',
+    ]);
 
     const notificationDot = (
       <EuiIcon
@@ -102,11 +233,13 @@ export const EuiHeaderSectionItemButton = forwardRef<
     return (
       <button
         className={classes}
-        ref={ref}
+        ref={setButtonRef}
         onClick={onClick}
         type="button"
         {...rest}>
-        <span className={animationClasses}>{children}</span>
+        <span ref={animationTargetRef} className={animationClasses}>
+          {children}
+        </span>
         {buttonNotification}
       </button>
     );
