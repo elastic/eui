@@ -34,7 +34,6 @@
 .euiHeaderSectionItemButton__content {
   // This element is a span and we're changing the display because inline elements can’t take a transform
   display: inline-block;
-  //animation: 5s euiButtonRinging ease-in-out;
 }
 
 @include euiBreakpoint('xs') {

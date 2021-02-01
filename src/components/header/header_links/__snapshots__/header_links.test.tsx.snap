@@ -84,7 +84,7 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
         type="button"
       >
         <span
-          class=""
+          class="euiHeaderSectionItemButton__content"
         >
           <span
             data-euiicon-type="bolt"
