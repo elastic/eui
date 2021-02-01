@@ -799,7 +799,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
-    gridDimensions.width,
+    // use clientWidth of the virtualization container to take scroll bar into account
+    // if that's not possible fall back to the size of the wrapper element
+    (resizeRef?.getElementsByClassName('euiDataGrid__virtualized')[0] as
+      | HTMLDivElement
+      | undefined)?.clientWidth || gridDimensions.width,
     leadingControlColumns,
     trailingControlColumns,
     orderedVisibleColumns
