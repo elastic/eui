@@ -2,24 +2,13 @@
 
 import React from 'react';
 import { PropTypes } from 'react-view';
-import template from '@babel/template';
 import { EuiPageHeader, EuiButton } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
   simulateFunction,
+  generateCustomProps,
 } from '../../services/playground';
-
-// HELP: Can we get a "simulate" toggle and pass ReactNodes?
-// const tabs = [
-//   {
-//     label: 'Tab 1',
-//     isSelected: true,
-//   },
-//   {
-//     label: 'Tab 2',
-//   },
-// ];
 
 const tabs = `[
   {
@@ -31,10 +20,10 @@ const tabs = `[
   },
 ]`;
 
-const rightSideContent = [
+const rightSideContent = `[
   <EuiButton fill>Button 1</EuiButton>,
   <EuiButton>Button 2</EuiButton>,
-];
+]`;
 
 export default () => {
   const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)
@@ -60,10 +49,12 @@ export default () => {
     type: PropTypes.String,
   };
 
-  propsToUse.rightSideContent = {
+  propsToUse.rightSideContent = simulateFunction({
     ...propsToUse.rightSideContent,
-    type: PropTypes.Array,
-  };
+    custom: {
+      value: rightSideContent,
+    },
+  });
 
   propsToUse.tabs = simulateFunction({
     ...propsToUse.tabs,
@@ -78,19 +69,14 @@ export default () => {
       props: propsToUse,
       scope: {
         EuiPageHeader,
+        EuiButton,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiPageHeader'],
+          named: ['EuiPageHeader', 'EuiButton'],
         },
       },
-      customProps: {
-        tabs: {
-          generate: (value) => {
-            return template.ast(String(value), { plugins: ['jsx'] }).expression;
-          },
-        },
-      },
+      customProps: generateCustomProps(['rightSideContent', 'tabs']),
     },
   };
 };
