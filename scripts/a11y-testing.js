@@ -24,9 +24,6 @@ const { AxePuppeteer } = require('axe-puppeteer');
 const docsPages = async (root, page) => {
   const pagesToSkip = [
     `${root}#/layout/resizable-container`,
-    `${root}#/navigation/button`,
-    `${root}#/navigation/tree-view`,
-    `${root}#/navigation/side-nav`,
     `${root}#/tabular-content/tables`,
     `${root}#/tabular-content/in-memory-tables`,
     `${root}#/display/aspect-ratio`,
@@ -50,21 +47,19 @@ const docsPages = async (root, page) => {
     `${root}#/tabular-content/data-grid-virtualization`,
     `${root}#/elastic-charts/creating-charts`,
     `${root}#/elastic-charts/part-to-whole-comparisons`,
-    `${root}#/utilities/css-utility-classes`,
-    `${root}#/utilities/focus-trap`,
   ];
 
   return [
     root,
-    ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
-  ].filter(link => !pagesToSkip.includes(link));
+    ...(await page.$$eval('nav a', (anchors) => anchors.map((a) => a.href))),
+  ].filter((link) => !pagesToSkip.includes(link));
 };
 
-const printResult = result =>
+const printResult = (result) =>
   console.log(`[${result.id}]: ${result.description}
   Help: ${chalk.blue(result.helpUrl)}
   Elements:
-    - ${result.nodes.map(node => node.target).join('\n    - ')}`);
+    - ${result.nodes.map((node) => node.target).join('\n    - ')}`);
 
 (async () => {
   let totalViolationsCount = 0;
@@ -122,7 +117,7 @@ const printResult = result =>
       console.log(chalk.red(`Errors on ${pageName}`));
     }
 
-    violations.forEach(result => {
+    violations.forEach((result) => {
       printResult(result);
     });
   }
@@ -144,4 +139,4 @@ Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
   } else {
     console.log(chalk.green('axe found no accessibility errors!'));
   }
-})().catch(e => console.error(e));
+})().catch((e) => console.error(e));

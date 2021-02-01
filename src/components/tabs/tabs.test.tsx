@@ -25,7 +25,7 @@ import { EuiTabs } from './tabs';
 
 describe('EuiTabs', () => {
   test('renders', () => {
-    const component = <EuiTabs {...requiredProps} />;
+    const component = <EuiTabs {...requiredProps}>children</EuiTabs>;
 
     expect(render(component)).toMatchSnapshot();
   });
@@ -33,21 +33,23 @@ describe('EuiTabs', () => {
   describe('props', () => {
     describe('size', () => {
       test('can be small', () => {
-        const component = render(<EuiTabs size="s" />);
+        const component = render(<EuiTabs size="s">children</EuiTabs>);
         expect(component).toMatchSnapshot();
       });
     });
 
     describe('display', () => {
       test('can be condensed', () => {
-        const component = render(<EuiTabs display="condensed" />);
+        const component = render(
+          <EuiTabs display="condensed">children</EuiTabs>
+        );
         expect(component).toMatchSnapshot();
       });
     });
 
     describe('expand', () => {
       test('is rendered', () => {
-        const component = render(<EuiTabs expand />);
+        const component = render(<EuiTabs expand>children</EuiTabs>);
         expect(component).toMatchSnapshot();
       });
     });
