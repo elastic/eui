@@ -14,7 +14,6 @@
 
 **Bug fixes**
 
-- Fixed `EuiInMemoryTable` unexpected error when search ends with equals sign or logical operator ([#4459](https://github.com/elastic/eui/pull/4459))
 - Fixed heights of `append` and `prepend` in `EuiComboBox` ([#4410](https://github.com/elastic/eui/pull/4410))
 - Fixed `EuiResizableContainer` initialization timing based on DOM readiness ([#4447](https://github.com/elastic/eui/pull/4447))
 
