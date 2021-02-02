@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `whiteSpace` prop to `EuiCodeBlockProps`. ([#4475](https://github.com/elastic/eui/pull/4475))
+
 **Bug fixes**
 
 - Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
