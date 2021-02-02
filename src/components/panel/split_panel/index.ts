@@ -17,5 +17,4 @@
  * under the License.
  */
 
-export { EuiPanel, EuiPanelProps, PanelPaddingSize, SIZES } from './panel';
 export { EuiSplitPanel, EuiSplitPanelProps } from './split_panel';

@@ -17,5 +17,16 @@
  * under the License.
  */
 
-export { EuiPanel, EuiPanelProps, PanelPaddingSize, SIZES } from './panel';
-export { EuiSplitPanel, EuiSplitPanelProps } from './split_panel';
+import React from 'react';
+import { render } from 'enzyme';
+import { requiredProps } from '../../../test/required_props';
+
+import { EuiSplitPanel } from './split_panel';
+
+describe('EuiSplitPanel', () => {
+  test('is rendered', () => {
+    const component = render(<EuiSplitPanel {...requiredProps} />);
+
+    expect(component).toMatchSnapshot();
+  });
+});

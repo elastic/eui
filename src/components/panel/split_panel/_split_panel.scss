@@ -1,0 +1,8 @@
+.euiSplitPanel {
+  overflow: hidden; // Hide backgrounds within border-radius
+
+  .euiSplitPanel__inner {
+    // remove border from inner panels
+    border: none;
+  }
+}

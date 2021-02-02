@@ -7,7 +7,7 @@ import {
   EuiSpacer,
   EuiCodeBlock,
   EuiErrorBoundary,
-  EuiHorizontalRule,
+  EuiTitle,
 } from '../../../../src/components';
 import Knobs from './knobs';
 import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
@@ -61,7 +61,6 @@ export default ({
     return (
       <GuideSectionExample
         ghostBackground={isGhost}
-        componentName={config.componentName}
         exampleCode={
           <>
             <div
@@ -85,11 +84,18 @@ export default ({
         }
         tabs={tabs}
         tabContent={
-          <EuiErrorBoundary>
-            <EuiHorizontalRule margin="none" />
-            {description}
-            <Knobs {...params.knobProps} />
-          </EuiErrorBoundary>
+          <>
+            {description ? (
+              description
+            ) : (
+              <EuiTitle size="s">
+                <h2>{config.componentName}</h2>
+              </EuiTitle>
+            )}
+            <EuiErrorBoundary>
+              <Knobs {...params.knobProps} />
+            </EuiErrorBoundary>
+          </>
         }
         playground={playgroundToggle}
       />

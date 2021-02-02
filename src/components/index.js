@@ -258,7 +258,7 @@ export {
 
 export { EuiPagination, EuiPaginationButton } from './pagination';
 
-export { EuiPanel } from './panel';
+export { EuiPanel, EuiSplitPanel } from './panel';
 
 export {
   EuiInputPopover,

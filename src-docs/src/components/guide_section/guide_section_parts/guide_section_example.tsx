@@ -3,15 +3,13 @@ import classNames from 'classnames';
 
 import { EuiTabs } from '../../../../../src/components/tabs';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
-import { EuiPanel } from '../../../../../src/components/panel/panel';
-import { EuiTitle } from '../../../../../src/components/title';
+import { EuiPanel, EuiSplitPanel } from '../../../../../src/components/panel';
 
 export interface GuideSectionExample {
   exampleCode: ReactNode;
   tabs?: ReactNode;
   tabContent?: ReactNode;
   playground?: any;
-  componentName?: string;
   ghostBackground?: boolean;
 }
 
@@ -20,45 +18,41 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   tabs,
   playground,
   tabContent,
-  componentName,
   ghostBackground = false,
 }) => {
-  const classes = classNames('guideDemoPanel', {
+  const classes = classNames({
     guideDemo__ghostBackground: ghostBackground,
   });
 
+  const tabClasses = classNames('guideDemo__tabs', {
+    'guideDemo__tabs--open': tabContent,
+  });
+
   return (
-    <EuiPanel paddingSize="none" grow={false} className={classes}>
-      <EuiPanel
-        hasShadow={false}
-        paddingSize="l"
-        color="transparent"
-        borderRadius="none"
-        className="guideDemoPanel_inner">
-        {exampleCode}
-      </EuiPanel>
-      <EuiPanel
-        paddingSize="s"
-        color="subdued"
-        hasShadow={false}
-        borderRadius="none"
-        className="guideDemoPanel_inner">
-        {tabs ? (
-          <EuiFlexGroup gutterSize="none" alignItems="center">
-            <EuiFlexItem>
-              <EuiTabs size="s" display="condensed">
-                {tabs}
-              </EuiTabs>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>{playground}</EuiFlexItem>
-          </EuiFlexGroup>
-        ) : (
-          <EuiTitle size="s">
-            <h2>{componentName}</h2>
-          </EuiTitle>
-        )}
-        {tabContent}
-      </EuiPanel>
-    </EuiPanel>
+    <EuiSplitPanel className={classes}>
+      {(panelProps) => (
+        <>
+          <EuiPanel {...panelProps}>{exampleCode}</EuiPanel>
+          <EuiPanel {...panelProps} paddingSize="none" color="subdued">
+            <EuiFlexGroup
+              className={tabClasses}
+              gutterSize="none"
+              alignItems="center">
+              <EuiFlexItem>
+                <EuiTabs size="s" display="condensed">
+                  {tabs}
+                </EuiTabs>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>{playground}</EuiFlexItem>
+            </EuiFlexGroup>
+            {tabContent && (
+              <EuiPanel {...panelProps} paddingSize="none" color="subdued">
+                {tabContent}
+              </EuiPanel>
+            )}
+          </EuiPanel>
+        </>
+      )}
+    </EuiSplitPanel>
   );
 };

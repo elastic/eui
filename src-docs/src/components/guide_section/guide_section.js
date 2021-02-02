@@ -27,6 +27,88 @@ import { GuideSectionExampleCode } from './guide_section_parts/guide_section_cod
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
 import playground from '../../services/playground/playground';
 
+export const renderPropsForComponent = (
+  componentName,
+  component,
+  descriptionOnly
+) => {
+  if (!component.__docgenInfo) {
+    return;
+  }
+
+  const docgenInfo = Array.isArray(component.__docgenInfo)
+    ? component.__docgenInfo[0]
+    : component.__docgenInfo;
+  const { description, props, extendedInterfaces } = docgenInfo;
+
+  if (!props && !description) {
+    return;
+  }
+
+  const extendedTypes = extendedInterfaces
+    ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
+    : [];
+  // if there is an HTMLAttributes type present among others, remove HTMLAttributes
+  if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
+    const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
+    extendedTypes.splice(htmlAttributesIndex, 1);
+  }
+  const extendedTypesElements = extendedTypes.map((type, index) => (
+    <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
+      <EuiLink href={extendedTypesInfo[type].url}>
+        {extendedTypesInfo[type].name}
+      </EuiLink>
+      {index + 1 < extendedTypes.length && ', '}
+    </Fragment>
+  ));
+
+  let descriptionElement;
+
+  if (description) {
+    descriptionElement = (
+      <>
+        <EuiText>
+          <p>{markup(description)}</p>
+        </EuiText>
+        <EuiSpacer />
+      </>
+    );
+  }
+
+  return (
+    <React.Fragment key={componentName}>
+      <EuiHorizontalRule margin="none" />
+      <EuiSpacer size="m" />
+      <EuiFlexGroup alignItems="baseline" wrap>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="s">
+            <h3 id={componentName}>{componentName}</h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        {extendedTypesElements.length > 0 && (
+          <EuiFlexItem>
+            <EuiText size="s">
+              <p>[ extends {extendedTypesElements} ]</p>
+            </EuiText>
+          </EuiFlexItem>
+        )}
+      </EuiFlexGroup>
+      <EuiSpacer size="s" />
+      {descriptionElement}
+      {!descriptionOnly && (
+        <PlaygroundProps
+          isPlayground={false}
+          config={{
+            componentName: componentName,
+            props: propUtilityForPlayground(docgenInfo.props),
+            scope: component,
+          }}
+        />
+      )}
+    </React.Fragment>
+  );
+};
+
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
@@ -186,83 +268,6 @@ export class GuideSection extends Component {
     ));
   }
 
-  renderPropsForComponent = (componentName, component, descriptionOnly) => {
-    if (!component.__docgenInfo) {
-      return;
-    }
-
-    const docgenInfo = Array.isArray(component.__docgenInfo)
-      ? component.__docgenInfo[0]
-      : component.__docgenInfo;
-    const { description, props, extendedInterfaces } = docgenInfo;
-
-    if (!props && !description) {
-      return;
-    }
-
-    const extendedTypes = extendedInterfaces
-      ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
-      : [];
-    // if there is an HTMLAttributes type present among others, remove HTMLAttributes
-    if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
-      const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
-      extendedTypes.splice(htmlAttributesIndex, 1);
-    }
-    const extendedTypesElements = extendedTypes.map((type, index) => (
-      <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
-        <EuiLink href={extendedTypesInfo[type].url}>
-          {extendedTypesInfo[type].name}
-        </EuiLink>
-        {index + 1 < extendedTypes.length && ', '}
-      </Fragment>
-    ));
-
-    let descriptionElement;
-
-    if (description) {
-      descriptionElement = (
-        <>
-          <EuiText>
-            <p>{markup(description)}</p>
-          </EuiText>
-          <EuiSpacer />
-        </>
-      );
-    }
-
-    return (
-      <React.Fragment key={componentName}>
-        <EuiSpacer size="m" />
-        <EuiFlexGroup alignItems="baseline" wrap>
-          <EuiFlexItem grow={false}>
-            <EuiTitle size="s">
-              <h3 id={componentName}>{componentName}</h3>
-            </EuiTitle>
-          </EuiFlexItem>
-          {extendedTypesElements.length > 0 && (
-            <EuiFlexItem>
-              <EuiText size="s">
-                <p>[ extends {extendedTypesElements} ]</p>
-              </EuiText>
-            </EuiFlexItem>
-          )}
-        </EuiFlexGroup>
-        <EuiSpacer size="s" />
-        {descriptionElement}
-        {!descriptionOnly && (
-          <PlaygroundProps
-            isPlayground={false}
-            config={{
-              componentName: componentName,
-              props: propUtilityForPlayground(docgenInfo.props),
-              scope: component,
-            }}
-          />
-        )}
-      </React.Fragment>
-    );
-  };
-
   renderProps() {
     const { props } = this.props;
     return this.componentNames
@@ -338,12 +343,7 @@ export class GuideSection extends Component {
         propsTable = this.renderProps();
       }
 
-      return (
-        <EuiErrorBoundary>
-          <EuiHorizontalRule margin="none" />
-          {propsTable}
-        </EuiErrorBoundary>
-      );
+      return <EuiErrorBoundary>{propsTable}</EuiErrorBoundary>;
     }
   }
 
@@ -438,6 +438,11 @@ export class GuideSection extends Component {
             tabContent={this.renderContent()}
             playground={this.renderPlaygroundToggle()}
             ghostBackground={this.props.ghostBackground}
+            tabContentPadding={
+              this.state.selectedTab && this.state.selectedTab.name === 'props'
+                ? 'm'
+                : 'none'
+            }
           />
         )}
         {this.props.extraContent}
