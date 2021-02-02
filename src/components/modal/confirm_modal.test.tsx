@@ -90,7 +90,7 @@ describe('EuiConfirmModal', () => {
     expect(onCancel).toHaveBeenCalledTimes(0);
   });
 
-  test('onConfirm loading', () => {
+  test('isLoading', () => {
     const component = mount(
       <EuiConfirmModal
         onCancel={onCancel}

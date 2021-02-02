@@ -74,7 +74,7 @@ export interface EuiConfirmModalProps
    */
   maxWidth?: boolean | number | string;
   /**
-   * Show loading spinner in confirm button
+   * Passes `isLoading` prop to the confirm button
    */
   isLoading?: boolean;
 }

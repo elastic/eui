@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `isLoading` prop to `EuiConfirmModal`. Added support for always rendering `EuiConfirmModal` inside `EuiOverlayMask`  ([#4421](https://github.com/elastic/eui/pull/4421))
+- Added `isLoading` prop and added `EuiOverlayMask` directly to `EuiConfirmModal` ([#4421](https://github.com/elastic/eui/pull/4421))
 
 **Bug fixes**
 
