@@ -32,6 +32,7 @@ interface OwnProps extends EuiCodeSharedProps {
   fontSize?: FontSize;
   overflowHeight?: number;
   isCopyable?: boolean;
+  whiteSpace?: 'pre' | 'pre-wrap';
 }
 
 export type EuiCodeBlockProps = CommonProps &
