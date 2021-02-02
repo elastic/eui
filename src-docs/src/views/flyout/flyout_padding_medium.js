@@ -30,9 +30,8 @@ export default () => {
           <EuiIcon type="help" />
         </EuiFlexItem>
         <EuiFlexItem>
-          {' '}
           <EuiTextColor color="subdued">
-            The banner left and right padding is small.
+            The banner left and right padding is medium.
           </EuiTextColor>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -45,17 +44,19 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        paddingSize="s"
-        id="flyoutSmallPadding"
-        aria-labelledby="flyoutSmallPaddingTitle">
+        paddingSize="m"
+        id="flyoutMediumPadding"
+        aria-labelledby="flyoutMediumPaddingTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutSmallPaddingTitle">A flyout with a small padding</h2>
+            <h2 id="flyoutMediumPaddingTitle">
+              A flyout with a medium padding
+            </h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody banner={callOut}>
           <EuiText>
-            <p>The padding around the content is small.</p>
+            <p>The padding around the content is medium.</p>
           </EuiText>
         </EuiFlyoutBody>
         <EuiFlyoutFooter>
@@ -82,11 +83,11 @@ export default () => {
     <div>
       <EuiButton
         onClick={showFlyout}
-        aria-controls="flyoutSmallPadding"
+        aria-controls="flyoutMediumPadding"
         aria-expanded={isFlyoutVisible}
         aria-haspopup="true"
         aria-label="Show flyout">
-        Show flyout with small padding
+        Show flyout with medium padding
       </EuiButton>
       {flyout}
     </div>

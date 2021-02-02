@@ -29,9 +29,9 @@ import FlyoutLarge from './flyout_large';
 const flyoutLargeSource = require('!!raw-loader!./flyout_large');
 const flyoutLargeHtml = renderToHtml(FlyoutLarge);
 
-import FlyoutPaddingSmall from './flyout_padding_small';
-const flyoutPaddingSmallSource = require('!!raw-loader!./flyout_padding_small');
-const flyoutPaddingSmallHtml = renderToHtml(FlyoutPaddingSmall);
+import FlyoutPaddingMedium from './flyout_padding_medium';
+const FlyoutPaddingMediumSource = require('!!raw-loader!./flyout_padding_medium');
+const FlyoutPaddingMediumHtml = renderToHtml(FlyoutPaddingMedium);
 
 import FlyoutMaxWidth from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
@@ -83,10 +83,12 @@ const flyoutSmallSnippet = `<EuiFlyout size="s" onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutSmallPaddingSnippet = `<EuiFlyout paddingSize="s" onClose={closeFlyout}>
+const flyoutMediumPaddingSnippet = `<EuiFlyout paddingSize="m" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
-      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
+      <h2 id={flyoutHeadingId}>
+        <!-- Defaults to medium size. Change the heading level based on your context. -->
+      </h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
@@ -262,25 +264,25 @@ export const FlyoutExample = {
       demo: <FlyoutLarge />,
     },
     {
-      title: 'Flyout with a small padding',
+      title: 'Flyout with a medium padding',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: flyoutPaddingSmallSource,
+          code: FlyoutPaddingMediumSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: flyoutPaddingSmallHtml,
+          code: FlyoutPaddingMediumHtml,
         },
       ],
       text: (
         <p>
           In this example, we set <EuiCode>paddingSize</EuiCode> to{' '}
-          <EuiCode>s</EuiCode>.
+          <EuiCode>m</EuiCode>.
         </p>
       ),
-      snippet: flyoutSmallPaddingSnippet,
-      demo: <FlyoutPaddingSmall />,
+      snippet: flyoutMediumPaddingSnippet,
+      demo: <FlyoutPaddingMedium />,
     },
     {
       title: 'Max width',
