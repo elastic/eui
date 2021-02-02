@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `whiteSpace` prop to `EuiCodeBlockProps`. ([#4475](https://github.com/elastic/eui/pull/4475))
+- Added `whiteSpace` prop to `EuiCodeBlock`. ([#4475](https://github.com/elastic/eui/pull/4475))
 
 **Bug fixes**
 
