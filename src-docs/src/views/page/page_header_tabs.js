@@ -2,15 +2,13 @@ import React from 'react';
 
 import {
   EuiPageHeader,
-  EuiCode,
   EuiText,
   EuiButton,
+  EuiCode,
 } from '../../../../src/components';
 
 export default () => (
   <EuiPageHeader
-    pageTitle="Page title"
-    iconType="logoKibana"
     tabs={[
       {
         label: 'Tab 1',
@@ -20,7 +18,7 @@ export default () => (
         label: 'Tab 2',
       },
     ]}
-    description="This description should be describing the current page as depicted by the page title. It has the grow prop set to false on the EuiText block so that it is the proper line length. And it will also never extend beneath the right side content (buttons)."
+    description="This description should be describing the currently selected tab. It has the grow prop set to false on the EuiText block so that it is the proper line length. And it will also never extend beneath the right side content (buttons)."
     rightSideContent={[
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,

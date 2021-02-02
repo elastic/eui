@@ -253,6 +253,7 @@ export {
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
   EuiPageHeader,
+  EuiPageHeaderContent,
   EuiPageHeaderSection,
   EuiPageSideBar,
 } from './page';

@@ -46,6 +46,7 @@ export default () => {
 
   propsToUse.description = {
     ...propsToUse.description,
+    value: 'Example of a description.',
     type: PropTypes.String,
   };
 
@@ -62,6 +63,11 @@ export default () => {
       value: tabs,
     },
   });
+
+  propsToUse.children = {
+    type: PropTypes.ReactNode,
+    hidden: false,
+  };
 
   return {
     config: {

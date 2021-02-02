@@ -7,7 +7,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiPageHeader>
+  <EuiPageHeader alignItems="center">
     <EuiPageHeaderSection>
       <EuiTitle size="l">
         <h1>Page title</h1>

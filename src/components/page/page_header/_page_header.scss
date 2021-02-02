@@ -25,10 +25,8 @@
   align-items: flex-end;
 }
 
-.euiPageHeader__titleIcon {
-  top: -$euiSizeXS;
-  position: relative;
-  margin-right: $euiSize;
+.euiPageHeader--tabsAtBottom {
+  padding-bottom: 0;
 }
 
 @include euiBreakpoint('xs', 's') {
@@ -37,34 +35,15 @@
     margin-bottom: 0;
   }
 
-  .euiPageHeader--responsive {
-    flex-direction: column;
-  }
-
-  // Match all around padding and spacers
-  .euiPageHeaderSection + .euiPageHeaderSection {
-    margin-top: $euiSizeL;
-  }
-
-  .euiPageHeader--responsiveReverse {
-    flex-direction: column-reverse;
-
-    .euiPageHeaderSection {
-      margin-top: $euiSizeL;
-    }
-
-    .euiPageHeaderSection + .euiPageHeaderSection {
-      margin-top: 0;
-    }
-  }
-}
-
-@include euiBreakpoint('m', 'l', 'xl') {
   .euiPageHeader--tabsAtBottom {
     padding-bottom: 0;
   }
 
-  .euiPageHeader__rightSideContent {
-    flex-direction: row-reverse;
+  .euiPageHeader--responsive {
+    flex-direction: column;
+  }
+
+  .euiPageHeader--responsiveReverse {
+    flex-direction: column-reverse;
   }
 }

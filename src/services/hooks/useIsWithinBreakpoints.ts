@@ -29,7 +29,10 @@ import { isWithinBreakpoints, EuiBreakpointSize } from '../breakpoint';
  * @param {EuiBreakpointSize[]} sizes An array of named breakpoints
  * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`
  */
-export function useIsWithinBreakpoints(sizes: EuiBreakpointSize[]) {
+export function useIsWithinBreakpoints(
+  sizes: EuiBreakpointSize[],
+  isActive: boolean = true
+) {
   const [isWithinBreakpointsValue, setIsWithinBreakpointsValue] = useState<
     boolean
   >(false);
@@ -41,12 +44,14 @@ export function useIsWithinBreakpoints(sizes: EuiBreakpointSize[]) {
       );
     }
 
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
+    if (isActive) {
+      window.removeEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
+      handleResize();
+    }
 
     return () => window.removeEventListener('resize', handleResize);
-  }, [sizes]);
+  }, [sizes, isActive]);
 
   return isWithinBreakpointsValue;
 }
