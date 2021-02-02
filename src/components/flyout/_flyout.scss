@@ -83,7 +83,9 @@ $flyoutSizes: (
 
     .euiFlyoutFooter {
       @if $paddingAmount == $euiSizeL {
-        padding: $euiSize $paddingAmount;
+        padding: ($paddingAmount / 1.5) $paddingAmount;
+      } @else if $paddingAmount == $euiSize {
+        padding: ($paddingAmount * .75) $paddingAmount;
       } @else {
         padding: $paddingAmount;
       }
