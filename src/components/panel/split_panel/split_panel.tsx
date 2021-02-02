@@ -17,5 +17,33 @@
  * under the License.
  */
 
-export { EuiPanel, EuiPanelProps, PanelPaddingSize, SIZES } from './panel';
-export { EuiSplitPanel, EuiSplitPanelProps } from './split_panel';
+import React, { FunctionComponent, ReactNode } from 'react';
+import classNames from 'classnames';
+import { EuiPanel, PanelProps } from '../panel';
+
+export type EuiSplitPanelProps = Omit<PanelProps, 'paddingSize'> & {
+  children?: (
+    panelProps: Omit<PanelProps, 'hasShadow' | 'borderRadius'>
+  ) => ReactNode;
+};
+
+export const EuiSplitPanel: FunctionComponent<EuiSplitPanelProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  const classes = classNames('euiSplitPanel', className);
+
+  const panelProps: PanelProps = {
+    hasShadow: false,
+    color: 'transparent',
+    borderRadius: 'none',
+    className: 'euiSplitPanel__inner',
+  };
+
+  return (
+    <EuiPanel paddingSize="none" grow={false} className={classes} {...rest}>
+      {children && children(panelProps)}
+    </EuiPanel>
+  );
+};
