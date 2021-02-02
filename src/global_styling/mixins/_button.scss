@@ -16,6 +16,9 @@
 @mixin euiButtonFocus {
   @include euiCanAnimate {
     transition: transform $euiAnimSpeedNormal ease-in-out, background $euiAnimSpeedNormal ease-in-out;
+    // The next 2 properties fixes Chrome's jitter of the button contents when residing within a centered layout
+    perspective: 1;
+    backface-visibility: hidden;
 
     &:hover:not([class*='isDisabled']) {
       transform: translateY(-1px);
