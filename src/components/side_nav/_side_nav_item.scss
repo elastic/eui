@@ -44,10 +44,11 @@
 }
 
 .euiSideNavItemButton__label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   flex-grow: 1;
+}
+
+.euiSideNavItemButton__label--truncated {
+  @include euiTextTruncate;
 }
 
 .euiSideNavItem--root {
@@ -123,7 +124,7 @@
 
   // If this is actually the last item, we don't want the vertical line to stretch all the way down
   &:last-of-type::after {
-    height: $euiSizeM + 1px;
+    height: $euiSizeM;
   }
 
   /**
@@ -137,7 +138,7 @@
     &:after {
       position: absolute; /* 2 */
       content: '';
-      top: 50%;
+      top: $euiSizeM;
       left: 0;
       width: $euiSizeXS;
       height: 1px;

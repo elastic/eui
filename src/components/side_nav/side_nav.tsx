@@ -57,6 +57,10 @@ export type EuiSideNavProps<T> = T &
      * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
      */
     renderItem?: RenderItem<T>;
+    /**
+     * Truncatates the text of all items to stick to a single line
+     */
+    truncate?: boolean;
   };
 
 export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
@@ -84,7 +88,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
   };
 
   renderTree = (items: Array<EuiSideNavItemType<T>>, depth = 0) => {
-    const { renderItem } = this.props;
+    const { renderItem, truncate } = this.props;
 
     return items.map((item) => {
       const {
@@ -120,6 +124,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           key={id}
           depth={depth}
           renderItem={renderItem}
+          truncate={truncate}
           {...rest}>
           {name}
         </EuiSideNavItem>
@@ -136,6 +141,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       mobileTitle,
       // Extract this one out so it isn't passed to <nav>
       renderItem,
+      truncate,
       ...rest
     } = this.props;
 

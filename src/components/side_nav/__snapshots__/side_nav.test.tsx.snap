@@ -117,7 +117,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
           class="euiSideNavItemButton__content"
         >
           <span
-            class="euiSideNavItemButton__label"
+            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
           >
             A
           </span>
@@ -127,16 +127,18 @@ exports[`EuiSideNav props items is rendered 1`] = `
         class="euiSideNavItem__items"
       >
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk class"
         >
           <div
+            aria-label="aria"
             class="euiSideNavItemButton"
+            data-test-sub="dts"
           >
             <span
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 B
               </span>
@@ -204,7 +206,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
           class="euiSideNavItemButton__content"
         >
           <span
-            class="euiSideNavItemButton__label"
+            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
           >
             A
           </span>
@@ -223,7 +225,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 B
               </span>
@@ -240,7 +242,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 C
               </span>
@@ -259,7 +261,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                   class="euiSideNavItemButton__content"
                 >
                   <span
-                    class="euiSideNavItemButton__label"
+                    class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
                   >
                     D
                   </span>
@@ -278,7 +280,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                       class="euiSideNavItemButton__content"
                     >
                       <span
-                        class="euiSideNavItemButton__label"
+                        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
                       >
                         E
                       </span>
@@ -331,7 +333,7 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
           class="euiSideNavItemButton__content"
         >
           <span
-            class="euiSideNavItemButton__label"
+            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
           >
             A
           </span>
@@ -351,7 +353,7 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 B
               </span>
@@ -400,7 +402,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
           class="euiSideNavItemButton__content"
         >
           <span
-            class="euiSideNavItemButton__label"
+            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
           >
             A
           </span>
@@ -419,7 +421,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 B
               </span>
@@ -436,7 +438,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 C
               </span>
@@ -487,7 +489,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
           class="euiSideNavItemButton__content"
         >
           <span
-            class="euiSideNavItemButton__label"
+            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
           >
             A
           </span>
@@ -506,7 +508,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 B
               </span>
@@ -523,7 +525,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
               class="euiSideNavItemButton__content"
             >
               <span
-                class="euiSideNavItemButton__label"
+                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
               >
                 C
               </span>
@@ -542,7 +544,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
                   class="euiSideNavItemButton__content"
                 >
                   <span
-                    class="euiSideNavItemButton__label"
+                    class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
                   >
                     D
                   </span>
@@ -559,7 +561,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
                   class="euiSideNavItemButton__content"
                 >
                   <span
-                    class="euiSideNavItemButton__label"
+                    class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
                   >
                     E
                   </span>

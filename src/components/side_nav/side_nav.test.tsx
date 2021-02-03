@@ -55,10 +55,14 @@ describe('EuiSideNav', () => {
             items: [
               {
                 name: 'B',
+                className: 'class',
+                'data-test-sub': 'dts',
+                'aria-label': 'aria',
                 id: 1,
               },
               {
                 name: 'C',
+                truncate: false,
                 id: 2,
                 items: [
                   {

@@ -31,6 +31,7 @@ import { EuiIcon } from '../icon';
 
 import { getSecureRelForTarget } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiInnerText } from '../inner_text';
 
 type ItemProps = CommonProps & {
   href?: string;
@@ -41,6 +42,7 @@ type ItemProps = CommonProps & {
 };
 
 interface SideNavItemProps {
+  truncate?: boolean;
   isOpen?: boolean;
   isSelected?: boolean;
   isParent?: boolean;
@@ -133,6 +135,7 @@ export function EuiSideNavItem<
   renderItem: RenderItem = DefaultRenderItem,
   depth = 0,
   className,
+  truncate = true,
   ...rest
 }: EuiSideNavItemProps<T>) {
   const isHrefValid = !_href || validateHref(_href);
@@ -179,7 +182,18 @@ export function EuiSideNavItem<
     <span className="euiSideNavItemButton__content">
       {buttonIcon}
 
-      <span className="euiSideNavItemButton__label">{children}</span>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            ref={ref}
+            title={truncate ? innerText : undefined}
+            className={classNames('euiSideNavItemButton__label', {
+              'euiSideNavItemButton__label--truncated': truncate,
+            })}>
+            {children}
+          </span>
+        )}
+      </EuiInnerText>
 
       {caret}
     </span>
