@@ -39,8 +39,7 @@ import {
   EuiDataGridColumn,
   EuiDataGridPopoverContent,
 } from './data_grid_types';
-import { EuiMutationObserver } from '../observer/mutation_observer';
-import { DataGridContext } from './data_grid_context';
+import { DataGridFocusContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
@@ -84,8 +83,6 @@ export interface EuiDataGridCellProps {
   columnId: string;
   columnType?: string | null;
   width?: number;
-  isFocused: boolean;
-  onCellFocus: Function;
   interactiveCellId: string;
   isExpandable: boolean;
   className?: string;
@@ -93,18 +90,23 @@ export interface EuiDataGridCellProps {
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+  setRowHeight?: (height: number) => void;
+  style?: React.CSSProperties;
 }
 
 interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
   popoverIsOpen: boolean; // is expansion popover open
+  renderPopoverOpen: boolean; // wait one render cycle to actually render the popover as open
+  isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
+  enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
 }
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus' | 'popoverContent'
+  'width' | 'interactiveCellId' | 'popoverContent'
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -125,22 +127,56 @@ const EuiDataGridCellContent: FunctionComponent<
   );
 });
 
+// TODO: TypeScript has added types for ResizeObserver but not yet released
+// https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/948
+// for now, marking ResizeObserver usage as `any`
+// and when EUI upgrades to a version of TS with ResizeObserver
+// the anys can be removed
+const hasResizeObserver =
+  typeof window !== 'undefined' &&
+  typeof (window as any).ResizeObserver !== 'undefined';
+
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
-  cellRef = createRef<HTMLDivElement>();
+  cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
+  observer!: any; // ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
     popoverIsOpen: false,
+    renderPopoverOpen: false,
+    isFocused: false,
     isEntered: false,
+    enableInteractions: false,
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
+  style = null;
 
-  static contextType = DataGridContext;
+  setCellRef = (ref: HTMLDivElement | null) => {
+    this.cellRef.current = ref;
+
+    // watch the first cell for size changes and use that to re-compute row heights
+    if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
+      if (ref && hasResizeObserver) {
+        this.observer = new (window as any).ResizeObserver(() => {
+          const rowHeight = this.cellRef.current!.getBoundingClientRect()
+            .height;
+          if (this.props.setRowHeight) {
+            this.props.setRowHeight(rowHeight);
+          }
+        });
+        this.observer.observe(ref);
+      } else if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
+  };
+
+  static contextType = DataGridFocusContext;
 
   getInteractables = () => {
     const tabbingRef = this.cellContentsRef;
@@ -154,11 +190,10 @@ export class EuiDataGridCell extends Component<
     return [];
   };
 
-  updateFocus = () => {
+  takeFocus = () => {
     const cell = this.cellRef.current;
-    const { isFocused } = this.props;
 
-    if (cell && isFocused) {
+    if (cell) {
       // only update focus if we are not already focused on something in this cell
       let element: Element | null = document.activeElement;
       while (element != null && element !== cell) {
@@ -181,21 +216,21 @@ export class EuiDataGridCell extends Component<
   componentDidMount() {
     this.unsubscribeCell = this.context.onFocusUpdate(
       [this.props.colIndex, this.props.visibleRowIndex],
-      this.updateFocus
+      this.onFocusUpdate
     );
   }
+
+  onFocusUpdate = (isFocused: boolean) => {
+    this.setState({ isFocused }, () => {
+      if (isFocused) {
+        this.takeFocus();
+      }
+    });
+  };
 
   componentWillUnmount() {
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
-    }
-  }
-
-  componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    const didFocusChange = prevProps.isFocused !== this.props.isFocused;
-
-    if (didFocusChange) {
-      this.updateFocus();
     }
   }
 
@@ -210,15 +245,27 @@ export class EuiDataGridCell extends Component<
     if (nextProps.columnType !== this.props.columnType) return true;
     if (nextProps.width !== this.props.width) return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
-    if (nextProps.onCellFocus !== this.props.onCellFocus) return true;
-    if (nextProps.isFocused !== this.props.isFocused) return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
     if (nextProps.popoverContent !== this.props.popoverContent) return true;
 
+    // respond to adjusted top/left
+    if (nextProps.style) {
+      if (!this.props.style) return true;
+      if (nextProps.style.top !== this.props.style.top) {
+        return true;
+      }
+      if (nextProps.style.left !== this.props.style.left) return true;
+    }
+
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
+    if (nextState.renderPopoverOpen !== this.state.renderPopoverOpen)
+      return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
+    if (nextState.isFocused !== this.state.isFocused) return true;
+    if (nextState.enableInteractions !== this.state.enableInteractions)
+      return true;
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
@@ -242,13 +289,8 @@ export class EuiDataGridCell extends Component<
     //  * if the cell children include portalled content React will bubble the focus
     //      event up, which can trigger the focus() call below, causing focus lock fighting
     if (this.cellRef.current === e.target) {
-      const {
-        onCellFocus,
-        colIndex,
-        visibleRowIndex,
-        isExpandable,
-      } = this.props;
-      onCellFocus([colIndex, visibleRowIndex]);
+      const { colIndex, visibleRowIndex, isExpandable } = this.props;
+      this.context.setFocusedCell([colIndex, visibleRowIndex]);
 
       const interactables = this.getInteractables();
       if (interactables.length === 1 && isExpandable === false) {
@@ -283,25 +325,41 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  closePopover = () => {
+    // due to a bug, popovers don't close properly wenn unmounted in open state.
+    // This "double set" makes sure to unmount the component in closed state.
+    this.setState({ popoverIsOpen: false }, () =>
+      this.setState(() => ({
+        renderPopoverOpen: false,
+      }))
+    );
+  };
+
   render() {
     const {
       width,
-      isFocused,
       isExpandable,
       popoverContent: PopoverContent,
       interactiveCellId,
       columnType,
-      onCellFocus,
       className,
       column,
+      style,
       ...rest
     } = this.props;
     const { colIndex, rowIndex } = rest;
+
+    const showCellButtons =
+      this.state.isFocused ||
+      this.state.isEntered ||
+      this.state.enableInteractions ||
+      this.state.popoverIsOpen;
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
+        ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
       },
       className
     );
@@ -315,12 +373,7 @@ export class EuiDataGridCell extends Component<
       className: classNames(cellClasses, this.state.cellProps.className),
     };
 
-    const widthStyle = width != null ? { width: `${width}px` } : {};
-    if (cellProps.hasOwnProperty('style')) {
-      cellProps.style = { ...cellProps.style, ...widthStyle };
-    } else {
-      cellProps.style = widthStyle;
-    }
+    cellProps.style = { ...style, width, ...cellProps.style };
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
@@ -331,7 +384,14 @@ export class EuiDataGridCell extends Component<
           case keys.ENTER:
           case keys.F2:
             event.preventDefault();
-            this.setState({ popoverIsOpen: true });
+            // due to a bug, popovers become unclosable if they are directly rendered
+            // with isOpen set to true. This "double set" makes sure to mount the component
+            // in closed state before opening it
+            this.setState({ popoverIsOpen: true }, () =>
+              this.setState(({ popoverIsOpen }) => ({
+                renderPopoverOpen: popoverIsOpen,
+              }))
+            );
             break;
         }
       } else {
@@ -396,9 +456,9 @@ export class EuiDataGridCell extends Component<
             tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
             defaults={['Row', 'Column']}>
             {([row, column]: ReactChild[]) => (
-              <span>
+              <>
                 {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
-              </span>
+              </>
             )}
           </EuiI18n>
         </p>
@@ -414,94 +474,112 @@ export class EuiDataGridCell extends Component<
         }}
         clickOutsideDisables={true}>
         <div className="euiDataGridRowCell__expandFlex">
-          <EuiMutationObserver
-            observerOptions={{ subtree: true, childList: true }}
-            onMutation={this.preventTabbing}>
-            {(mutationRef) => {
-              return (
-                <div
-                  ref={mutationRef}
-                  className="euiDataGridRowCell__expandContent">
-                  {screenReaderPosition}
-                  <div
-                    ref={this.setCellContentsRef}
-                    className="euiDataGridRowCell__truncate">
-                    <EuiDataGridCellContent {...cellContentProps} />
-                  </div>
-                </div>
-              );
-            }}
-          </EuiMutationObserver>
+          <div className="euiDataGridRowCell__expandContent">
+            {screenReaderPosition}
+            <div
+              ref={this.setCellContentsRef}
+              className="euiDataGridRowCell__truncate">
+              <EuiDataGridCellContent {...cellContentProps} />
+            </div>
+          </div>
         </div>
       </EuiFocusTrap>
     );
 
     if (isExpandable || (column && column.cellActions)) {
-      anchorContent = (
-        <div className="euiDataGridRowCell__expandFlex">
-          <EuiMutationObserver
-            observerOptions={{ subtree: true, childList: true }}
-            onMutation={this.preventTabbing}>
-            {(mutationRef) => {
-              return (
-                <div
-                  ref={mutationRef}
-                  className="euiDataGridRowCell__expandContent">
-                  {screenReaderPosition}
-                  <div
-                    ref={this.setCellContentsRef}
-                    className="euiDataGridRowCell__truncate">
-                    <EuiDataGridCellContent {...cellContentProps} />
-                  </div>
-                </div>
-              );
-            }}
-          </EuiMutationObserver>
-          <EuiDataGridCellButtons
-            rowIndex={rowIndex}
-            column={column}
-            popoverIsOpen={this.state.popoverIsOpen}
-            closePopover={() => this.setState({ popoverIsOpen: false })}
-            onExpandClick={() => {
-              this.setState(({ popoverIsOpen }) => ({
-                popoverIsOpen: !popoverIsOpen,
-              }));
-            }}
-          />
-        </div>
-      );
+      if (showCellButtons) {
+        anchorContent = (
+          <div className="euiDataGridRowCell__expandFlex">
+            <div className="euiDataGridRowCell__expandContent">
+              <div
+                ref={this.setCellContentsRef}
+                className="euiDataGridRowCell__truncate">
+                <EuiDataGridCellContent {...cellContentProps} />
+              </div>
+              {screenReaderPosition}
+            </div>
+            {showCellButtons && (
+              <EuiDataGridCellButtons
+                rowIndex={rowIndex}
+                column={column}
+                popoverIsOpen={this.state.popoverIsOpen}
+                closePopover={this.closePopover}
+                onExpandClick={() => {
+                  // due to a bug, popovers become unclosable if they are directly rendered
+                  // with isOpen set to true. This "double set" makes sure to mount the component
+                  // in closed state before opening it
+                  this.setState(
+                    ({ popoverIsOpen }) => ({
+                      popoverIsOpen: !popoverIsOpen,
+                    }),
+                    () =>
+                      this.setState(({ popoverIsOpen }) => ({
+                        renderPopoverOpen: popoverIsOpen,
+                      }))
+                  );
+                }}
+              />
+            )}
+          </div>
+        );
+      } else {
+        anchorContent = (
+          <div
+            ref={this.setCellContentsRef}
+            className="euiDataGridRowCell__truncate">
+            <EuiDataGridCellContent {...cellContentProps} />
+            {screenReaderPosition}
+          </div>
+        );
+      }
     }
 
     let innerContent = anchorContent;
     if (isExpandable || (column && column.cellActions)) {
-      innerContent = (
-        <div className="euiDataGridRowCell__content">
-          <EuiDataGridCellPopover
-            anchorContent={anchorContent}
-            cellContentProps={cellContentProps}
-            cellContentsRef={this.cellContentsRef}
-            closePopover={() => this.setState({ popoverIsOpen: false })}
-            column={column}
-            panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
-            popoverIsOpen={this.state.popoverIsOpen}
-            rowIndex={rowIndex}
-            updateFocus={this.updateFocus}
-            renderCellValue={rest.renderCellValue}
-            popoverContent={PopoverContent}
-          />
-        </div>
-      );
+      if (this.state.popoverIsOpen) {
+        innerContent = (
+          <div className="euiDataGridRowCell__content">
+            <EuiDataGridCellPopover
+              anchorContent={anchorContent}
+              cellContentProps={cellContentProps}
+              cellContentsRef={this.cellContentsRef}
+              closePopover={() => {
+                // due to a bug, popovers don't close properly wenn unmounted in open state.
+                // This "double set" makes sure to unmount the component in closed state.
+                this.setState({ popoverIsOpen: false }, () =>
+                  this.setState(() => ({
+                    renderPopoverOpen: false,
+                  }))
+                );
+              }}
+              column={column}
+              panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
+              popoverIsOpen={this.state.renderPopoverOpen}
+              rowIndex={rowIndex}
+              renderCellValue={rest.renderCellValue}
+              popoverContent={PopoverContent}
+            />
+          </div>
+        );
+      } else {
+        innerContent = anchorContent;
+      }
     }
 
     return (
       <div
         role="gridcell"
-        tabIndex={isFocused && !this.state.disableCellTabIndex ? 0 : -1}
-        ref={this.cellRef}
+        tabIndex={
+          this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
+        }
+        ref={this.setCellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
+        onMouseEnter={() => {
+          this.setState({ enableInteractions: true });
+        }}
         onBlur={this.onBlur}>
         {innerContent}
       </div>

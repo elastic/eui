@@ -125,18 +125,18 @@ describe('EuiFocusTrap', () => {
       // but that's where the click detector listener is,
       // pass the top-level mounted component's click event on to document
       const triggerDocumentMouseDown: EventHandler<any> = (
-        e: React.MouseEvent<any, EuiEvent>
+        e: React.MouseEvent
       ) => {
         const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
+        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
       const triggerDocumentMouseUp: EventHandler<any> = (
-        e: React.MouseEvent<any, EuiEvent>
+        e: React.MouseEvent
       ) => {
-        const event = new Event('mouseup') as EuiEvent;
-        event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
+        const event = new Event('mousedown') as EuiEvent;
+        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 

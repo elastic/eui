@@ -28,12 +28,19 @@ import { keys, htmlIdGenerator } from '../../services';
 import { EuiInnerText } from '../inner_text';
 
 const EuiTreeViewContext = createContext<string>('');
-const treeIdGenerator = htmlIdGenerator('euiTreeView');
 
 function hasAriaLabel(
   x: HTMLAttributes<HTMLUListElement>
 ): x is { 'aria-label': string } {
   return x.hasOwnProperty('aria-label');
+}
+
+function getTreeId(
+  propId: string | undefined,
+  contextId: string,
+  idGenerator: Function
+) {
+  return propId ?? (contextId === '' ? idGenerator() : contextId);
 }
 
 export interface Node {
@@ -109,6 +116,7 @@ export type EuiTreeViewProps = Omit<
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
 export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
+  treeIdGenerator = htmlIdGenerator('euiTreeView');
   static contextType = EuiTreeViewContext;
   isNested: boolean = !!this.context;
   state: EuiTreeViewState = {
@@ -124,9 +132,18 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
           )
           .filter((x) => x != null),
     activeItem: '',
-    treeID: this.context || treeIdGenerator(),
+    treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
     expandChildNodes: this.props.expandByDefault || false,
   };
+
+  componentDidUpdate(prevProps: EuiTreeViewProps) {
+    if (this.props.id !== prevProps.id) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
+      });
+    }
+  }
 
   buttonRef: Array<HTMLButtonElement | undefined> = [];
 
@@ -273,11 +290,12 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
           )}
           <ul
             className={classes}
-            id={this.state.treeID}
+            id={!this.isNested ? this.state.treeID : undefined}
             aria-describedby={!this.isNested ? instructionsId : undefined}
             {...rest}>
             {items.map((node, index) => {
-              const buttonId = `${this.state.treeID}--${index}--node`;
+              const buttonId = node.id;
+              const wrappingId = this.treeIdGenerator(buttonId);
 
               return (
                 <EuiInnerText
@@ -329,7 +347,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                             <li className={nodeClasses}>
                               <button
                                 id={buttonId}
-                                aria-controls={`euiNestedTreeView-${this.state.treeID}`}
+                                aria-controls={wrappingId}
                                 aria-expanded={this.isNodeOpen(node)}
                                 ref={(ref) => this.setButtonRef(ref, index)}
                                 data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
@@ -367,7 +385,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 </span>
                               </button>
                               <div
-                                id={`euiNestedTreeView-${this.state.treeID}`}
+                                id={wrappingId}
                                 onKeyDown={(event: React.KeyboardEvent) =>
                                   this.onChildrenKeydown(event, index)
                                 }>

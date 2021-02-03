@@ -34,6 +34,7 @@ import { EuiModalBody } from './modal_body';
 import { EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
+import { EuiOverlayMask } from '../overlay_mask';
 
 export interface EuiConfirmModalProps
   extends Omit<
@@ -72,6 +73,10 @@ export interface EuiConfirmModalProps
    * set to a string for a custom width in custom measurement.
    */
   maxWidth?: boolean | number | string;
+  /**
+   * Passes `isLoading` prop to the confirm button
+   */
+  isLoading?: boolean;
 }
 
 export const CONFIRM_BUTTON = 'confirm';
@@ -88,6 +93,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   className,
   buttonColor = 'primary',
   defaultFocusedButton,
+  isLoading,
   ...rest
 }) => {
   const [cancelButton, setCancelButton] = useState<
@@ -138,33 +144,36 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   }
 
   return (
-    <EuiModal className={classes} onClose={onCancel} {...rest}>
-      {modalTitle}
+    <EuiOverlayMask>
+      <EuiModal className={classes} onClose={onCancel} {...rest}>
+        {modalTitle}
 
-      {message && (
-        <EuiModalBody>
-          <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
-        </EuiModalBody>
-      )}
+        {message && (
+          <EuiModalBody>
+            <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
+          </EuiModalBody>
+        )}
 
-      <EuiModalFooter>
-        <EuiButtonEmpty
-          data-test-subj="confirmModalCancelButton"
-          onClick={onCancel}
-          buttonRef={cancelRef}>
-          {cancelButtonText}
-        </EuiButtonEmpty>
+        <EuiModalFooter>
+          <EuiButtonEmpty
+            data-test-subj="confirmModalCancelButton"
+            onClick={onCancel}
+            buttonRef={cancelRef}>
+            {cancelButtonText}
+          </EuiButtonEmpty>
 
-        <EuiButton
-          data-test-subj="confirmModalConfirmButton"
-          onClick={onConfirm}
-          fill
-          buttonRef={confirmRef}
-          color={buttonColor}
-          isDisabled={confirmButtonDisabled}>
-          {confirmButtonText}
-        </EuiButton>
-      </EuiModalFooter>
-    </EuiModal>
+          <EuiButton
+            data-test-subj="confirmModalConfirmButton"
+            onClick={onConfirm}
+            isLoading={isLoading}
+            fill
+            buttonRef={confirmRef}
+            color={buttonColor}
+            isDisabled={confirmButtonDisabled}>
+            {confirmButtonText}
+          </EuiButton>
+        </EuiModalFooter>
+      </EuiModal>
+    </EuiOverlayMask>
   );
 };

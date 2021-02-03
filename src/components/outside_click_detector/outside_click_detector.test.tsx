@@ -47,18 +47,18 @@ describe('EuiOutsideClickDetector', () => {
       // but that's where the click detector listener is,
       // pass the top-level mounted component's click event on to document
       const triggerDocumentMouseDown: EventHandler<any> = (
-        e: ReactMouseEvent<any, EuiEvent>
+        e: ReactMouseEvent
       ) => {
         const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
+        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
       const triggerDocumentMouseUp: EventHandler<any> = (
-        e: ReactMouseEvent<any, EuiEvent>
+        e: ReactMouseEvent
       ) => {
         const event = new Event('mouseup') as EuiEvent;
-        event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
+        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 

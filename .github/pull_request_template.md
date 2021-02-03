@@ -7,7 +7,7 @@ Provide a detailed summary of your PR. Explain how you arrived at your solution.
 - [ ] Check against **all themes** for compatibility in both light and dark modes
 - [ ] Checked in **mobile**
 - [ ] Checked in **Chrome**, **Safari**, **Edge**, and **Firefox**
-- [ ] Props have proper **autodocs**
+- [ ] Props have proper **autodocs** and **[playground toggles](https://github.com/elastic/eui/blob/master/wiki/documentation-guidelines.md#adding-playground-toggles)**
 - [ ] Added **[documentation](https://github.com/elastic/eui/blob/master/wiki/documentation-guidelines.md)**
 - [ ] Checked **[Code Sandbox](https://codesandbox.io/)** works for the any docs examples
 - [ ] Added or updated **[jest tests](https://github.com/elastic/eui/blob/master/wiki/testing.md)**
