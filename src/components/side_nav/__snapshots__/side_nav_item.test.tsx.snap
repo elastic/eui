@@ -1,6 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSideNavItem can have emphasized 1`] = `
+exports[`EuiSideNavItem can be disabled 1`] = `
+<div
+  class="euiSideNavItem euiSideNavItem--root"
+>
+  <button
+    class="euiSideNavItemButton"
+    disabled=""
+    type="button"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+      >
+        Children
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiSideNavItem can be emphasized 1`] = `
 <div
   class="euiSideNavItem euiSideNavItem--root euiSideNavItem--emphasized"
 >

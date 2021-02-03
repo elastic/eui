@@ -72,6 +72,7 @@ describe('EuiSideNav', () => {
                   },
                   {
                     name: 'E',
+                    disabled: true,
                     id: 4,
                   },
                 ],

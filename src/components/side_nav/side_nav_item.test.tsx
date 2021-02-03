@@ -52,9 +52,17 @@ describe('EuiSideNavItem', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('can have emphasized', () => {
+  test('can be emphasized', () => {
     const component = render(
       <EuiSideNavItem emphasize>Children</EuiSideNavItem>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('can be disabled', () => {
+    const component = render(
+      <EuiSideNavItem disabled>Children</EuiSideNavItem>
     );
 
     expect(component).toMatchSnapshot();

@@ -39,6 +39,7 @@ type ItemProps = CommonProps & {
   rel?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLElement>;
   children: ReactNode;
+  disabled?: boolean;
 };
 
 interface SideNavItemProps {
@@ -94,9 +95,10 @@ const DefaultRenderItem = ({
   onClick,
   className,
   children,
+  disabled,
   ...rest
 }: ItemProps) => {
-  if (href) {
+  if (href && !disabled) {
     const secureRel = getSecureRelForTarget({ href, rel, target });
     return (
       <a
@@ -111,9 +113,14 @@ const DefaultRenderItem = ({
     );
   }
 
-  if (onClick) {
+  if (onClick || disabled) {
     return (
-      <button type="button" className={className} onClick={onClick} {...rest}>
+      <button
+        type="button"
+        className={className}
+        onClick={onClick}
+        disabled={disabled}
+        {...rest}>
         {children}
       </button>
     );
