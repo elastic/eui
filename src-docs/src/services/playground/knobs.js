@@ -214,6 +214,7 @@ const Knob = ({
               isInvalid={error && error.length > 0}
               compressed
               fullWidth
+              hasNoInitialSelection={!valueKey && !defaultValue}
             />
           </EuiFormRow>
         );
@@ -250,16 +251,6 @@ const Knob = ({
                   compressed
                 />
               </>
-            );
-          case 'textarea':
-            return (
-              <EuiTextArea
-                placeholder={placeholder}
-                value={val}
-                onChange={(e) => {
-                  set(e.target.value);
-                }}
-              />
             );
         }
       }

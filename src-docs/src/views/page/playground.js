@@ -2,12 +2,18 @@
 
 import React from 'react';
 import { PropTypes } from 'react-view';
-import { EuiPageHeader, EuiButton } from '../../../../src/components/';
+import {
+  EuiPageHeader,
+  EuiButton,
+  EuiTabs,
+  EuiImage,
+} from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
   simulateFunction,
   generateCustomProps,
+  createOptionalEnum,
 } from '../../services/playground';
 
 const tabs = `[
@@ -20,10 +26,12 @@ const tabs = `[
   },
 ]`;
 
-const rightSideContent = `[
-  <EuiButton fill>Button 1</EuiButton>,
-  <EuiButton>Button 2</EuiButton>,
-]`;
+// const rightSideContent = `[
+//   <EuiButton fill>Button 1</EuiButton>,
+//   <EuiButton>Button 2</EuiButton>,
+// ]`;
+const rightSideContent =
+  '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)
@@ -37,11 +45,6 @@ export default () => {
     ...propsToUse.pageTitle,
     type: PropTypes.String,
     value: 'Page title',
-  };
-
-  propsToUse.leftSideContent = {
-    ...propsToUse.leftSideContent,
-    type: PropTypes.String,
   };
 
   propsToUse.description = {
@@ -70,6 +73,23 @@ export default () => {
     hidden: false,
   };
 
+  propsToUse.alignItems = createOptionalEnum(propsToUse.alignItems);
+
+  // propsToUse.alignItems = {
+  //   ...propsToUse.alignItems,
+  //   type: PropTypes.Enum,
+  //   defaultValue: '-- Choose --',
+  //   options: {
+  //     empty: '-- Choose --',
+  //     subdued: 'subdued',
+  //     secondary: 'secondary',
+  //     accent: 'accent',
+  //     danger: 'danger',
+  //     warning: 'warning',
+  //     ghost: 'ghost',
+  //   },
+  // };
+
   return {
     config: {
       componentName: 'EuiPageHeader',
@@ -77,10 +97,12 @@ export default () => {
       scope: {
         EuiPageHeader,
         EuiButton,
+        EuiTabs,
+        EuiImage,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiPageHeader', 'EuiButton'],
+          named: ['EuiPageHeader', 'EuiButton', 'EuiTabs', 'EuiImage'],
         },
       },
       customProps: generateCustomProps(['rightSideContent', 'tabs']),

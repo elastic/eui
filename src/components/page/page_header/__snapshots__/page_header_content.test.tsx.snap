@@ -31,7 +31,6 @@ exports[`EuiPageHeaderContent props alignItems bottom is rendered 1`] = `
       >
         Page title
       </h1>
-       
     </div>
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -74,7 +73,6 @@ exports[`EuiPageHeaderContent props alignItems center is rendered 1`] = `
       >
         Page title
       </h1>
-       
     </div>
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -155,9 +153,16 @@ exports[`EuiPageHeaderContent props children is rendered 1`] = `
       class="euiFlexItem"
     />
   </div>
-  <p>
-    Anything
-  </p>
+  <div
+    class="euiPageHeaderContent__bottom"
+  >
+    <div
+      class="euiSpacer euiSpacer--l"
+    />
+    <p>
+      Anything
+    </p>
+  </div>
 </div>
 `;
 
@@ -172,7 +177,14 @@ exports[`EuiPageHeaderContent props children is rendered 2`] = `
       class="euiFlexItem"
     />
   </div>
-  Child
+  <div
+    class="euiPageHeaderContent__bottom"
+  >
+    <div
+      class="euiSpacer euiSpacer--l"
+    />
+    Child
+  </div>
 </div>
 `;
 

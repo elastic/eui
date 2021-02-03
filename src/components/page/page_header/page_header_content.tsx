@@ -185,13 +185,19 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     );
   }
 
-  let bottomContentNode = children;
-  if (children && (tabsNode || pageTitleNode)) {
+  const childrenNode = children && (
+    <>
+      <EuiSpacer />
+      {children}
+    </>
+  );
+
+  let bottomContentNode;
+  if (childrenNode || (tabsNode && pageTitleNode)) {
     bottomContentNode = (
       <div className="euiPageHeaderContent__bottom">
-        <EuiSpacer />
-        {children}
-        {pageTitle && tabsNode}
+        {childrenNode}
+        {pageTitleNode && tabsNode}
       </div>
     );
   }
@@ -270,7 +276,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         alignItems={alignItems === 'bottom' ? 'flexEnd' : 'center'}
         gutterSize="l">
         <EuiFlexItem>
-          {leftSideOrder} {bottomContentNode}
+          {leftSideOrder}
+          {bottomContentNode}
         </EuiFlexItem>
         {rightSideFlexItem}
       </EuiFlexGroup>

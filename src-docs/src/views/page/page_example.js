@@ -163,7 +163,7 @@ export const PageExample = {
             which, at least one is primary (or{' '}
             <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
             also displayed in <strong>reverse order</strong> so that the first
-            and primary action should be first in the list.
+            and primary action will be displayed far right.
           </p>
           <p>
             You can further adjust the display of these content types with an
@@ -180,6 +180,18 @@ export const PageExample = {
         </div>
       ),
       props: { EuiPageHeader },
+      snippet: `<EuiPageHeader
+  pageTitle="Page title"
+  tabs={[
+    { label:"Tab 1" , isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
+  rightSideContent={[
+    <EuiButton fill>Button 1</EuiButton>,
+    <EuiButton>Button 2</EuiButton>
+  ]}
+/>`,
     },
     {
       title: 'Page header tabs',
@@ -210,6 +222,13 @@ export const PageExample = {
         </div>
       ),
       props: { EuiPageHeader },
+      snippet: `<EuiPageHeader
+  tabs={[
+    { label:"Tab 1" , isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
+/>`,
     },
     {
       title: 'Page header custom',
