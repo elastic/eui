@@ -1,6 +1,7 @@
 /**
  * 1. Text-align defaults to center, so we have to override that.
  * 2. Need this on the button element to color the underline.
+ * 3. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
  */
 .euiSideNavItemButton {
   @include euiFontSizeS;
@@ -44,11 +45,8 @@
   margin-right: $euiSizeS;
 }
 
-/**
-  * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
-  */
 .euiSideNavItemButton__labelContainer {
-  min-width: 0; /* 1 */
+  min-width: 0; /* 3 */
 }
 
 .euiSideNavItemButton__label {
@@ -57,23 +55,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   flex-grow: 1;
-}
-
-/**
- * 1. Draw the vertical line to group an expanded item's child items together.
- */
-.euiSideNavItem__items {
-  position: relative;
-
-  &:after { /* 1 */
-    position: absolute;
-    content: '';
-    top: 0;
-    bottom: $euiSizeM;
-    width: 1px;
-    background: $euiBorderColor;
-    left: 0;
-  }
 }
 
 .euiSideNavItem--root {
@@ -96,7 +77,6 @@
       @include euiTitle('xs');
     }
   }
-
 
   & > .euiSideNavItem__items {
     position: static;
@@ -131,15 +111,35 @@
 
 .euiSideNavItem--branch {
   /**
-   * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
+  * 1. Draw the vertical line to group an expanded item's child items together.
+  */
+  position: relative;
+
+  &::after { /* 1 */
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: $euiBorderColor;
+    left: 0;
+  }
+
+  // If this is actually the last item, we don't want the vertical line to stretch all the way down
+  &:last-of-type::after {
+    height: $euiSizeM + 1px;
+  }
+
+  /**
+   * 2. Absolutely position the horizontal tick connecting the item to the vertical line.
    */
   & > .euiSideNavItemButton {
-    position: relative; /* 1 */
+    position: relative; /* 2 */
     padding-left: $euiSizeS;
-    padding-right: $euiSizeS; /* 1 */
+    padding-right: $euiSizeS; /* 2 */
 
     &:after {
-      position: absolute; /* 1 */
+      position: absolute; /* 2 */
       content: '';
       top: 50%;
       left: 0;
