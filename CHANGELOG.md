@@ -4,6 +4,7 @@
 
 - Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
 - Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
+- Fixed issue in `EuiDataGrid` where the horizontal scrollbar was hidden behind pagination ([#4477](https://github.com/elastic/eui/pull/4477))
 
 ## [`31.4.0`](https://github.com/elastic/eui/tree/v31.4.0)
 
