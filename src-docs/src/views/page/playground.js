@@ -26,12 +26,14 @@ const tabs = `[
   },
 ]`;
 
-// const rightSideContent = `[
-//   <EuiButton fill>Button 1</EuiButton>,
-//   <EuiButton>Button 2</EuiButton>,
-// ]`;
-const rightSideContent =
-  '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
+const rightSideContent = `[
+  <EuiButton fill>Button 1</EuiButton>,
+  <EuiButton>Button 2</EuiButton>,
+]`;
+
+// TODO: Try later to find build a toggle that allows switching between different types of content to pass
+// const rightSideContent =
+//   '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)
@@ -74,21 +76,6 @@ export default () => {
   };
 
   propsToUse.alignItems = createOptionalEnum(propsToUse.alignItems);
-
-  // propsToUse.alignItems = {
-  //   ...propsToUse.alignItems,
-  //   type: PropTypes.Enum,
-  //   defaultValue: '-- Choose --',
-  //   options: {
-  //     empty: '-- Choose --',
-  //     subdued: 'subdued',
-  //     secondary: 'secondary',
-  //     accent: 'accent',
-  //     danger: 'danger',
-  //     warning: 'warning',
-  //     ghost: 'ghost',
-  //   },
-  // };
 
   return {
     config: {

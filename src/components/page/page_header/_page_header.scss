@@ -25,6 +25,10 @@
   align-items: flex-end;
 }
 
+.euiPageHeader--stretch {
+  align-items: stretch;
+}
+
 .euiPageHeader--tabsAtBottom {
   padding-bottom: 0;
 }

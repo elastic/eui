@@ -29,7 +29,7 @@ import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 import { Props as EuiTabProps } from '../../../components/tabs/tab';
 
-export const ALIGN_ITEMS = ['top', 'bottom', 'center'] as const;
+export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
 // Gets all the tab props including the button or link props
 type Tab = EuiTabProps & {
@@ -273,7 +273,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       <EuiFlexGroup
         responsive={!!responsive}
         className="euiPageHeaderContent__top"
-        alignItems={alignItems === 'bottom' ? 'flexEnd' : 'center'}
+        alignItems={alignItems === 'bottom' ? 'flexEnd' : alignItems}
         gutterSize="l">
         <EuiFlexItem>
           {leftSideOrder}

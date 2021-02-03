@@ -25,8 +25,6 @@ import {
   EuiPageHeaderContentProps,
 } from './page_header_content';
 
-export const ALIGN_ITEMS = ['top', 'bottom', 'center'] as const;
-
 export type EuiPageHeaderProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiPageHeaderContentProps & {

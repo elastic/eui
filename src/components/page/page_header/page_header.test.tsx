@@ -21,8 +21,23 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { ALIGN_ITEMS, EuiPageHeader } from './page_header';
-import { rightSideContent, tabs } from './page_header_content.test';
+import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
+import { ALIGN_ITEMS } from './page_header_content';
+
+export const tabs: EuiPageHeaderProps['tabs'] = [
+  {
+    label: 'Tab 1',
+    isSelected: true,
+  },
+  {
+    label: 'Tab 2',
+  },
+];
+
+export const rightSideContent: EuiPageHeaderProps['rightSideContent'] = [
+  <button>Button 1</button>,
+  <button>Button 2</button>,
+];
 
 describe('EuiPageHeader', () => {
   test('is rendered', () => {
