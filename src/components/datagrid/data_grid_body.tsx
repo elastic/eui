@@ -90,6 +90,8 @@ export interface EuiDataGridBodyProps {
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
 }
 
+export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
+
 const defaultComparator: NonNullable<
   EuiDataGridSchemaDetector['comparator']
 > = (a, b, direction) => {
@@ -581,7 +583,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
               <Grid
                 ref={gridRef}
                 innerElementType={InnerElement}
-                className="euiDataGrid__virtualized"
+                className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
                   leadingControlColumns.length +
                   columns.length +

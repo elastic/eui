@@ -59,7 +59,7 @@ import {
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
 import { keys, htmlIdGenerator } from '../../services';
-import { EuiDataGridBody } from './data_grid_body';
+import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './data_grid_body';
 import { useDataGridColumnSelector } from './column_selector';
 import { useDataGridStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
@@ -801,7 +801,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const defaultColumnWidth = useDefaultColumnWidth(
     // use clientWidth of the virtualization container to take scroll bar into account
     // if that's not possible fall back to the size of the wrapper element
-    (resizeRef?.getElementsByClassName('euiDataGrid__virtualized')[0] as
+    (resizeRef?.getElementsByClassName(VIRTUALIZED_CONTAINER_CLASS)[0] as
       | HTMLDivElement
       | undefined)?.clientWidth || gridDimensions.width,
     leadingControlColumns,
