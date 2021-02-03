@@ -149,8 +149,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   style,
   ...rest
 }) => {
-  checkValidColor(color);
-
+  const validColor = checkValidColor(color);
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
@@ -162,48 +161,49 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   let colorHex = null;
 
   // Check if a valid color name was provided
-  if (COLORS.indexOf(color) > -1) {
-    // Get the hex equivalent for the provided color name
-    colorHex = colorToHexMap[color];
+  if (validColor) {
+    if (COLORS.indexOf(color) > -1) {
+      // Get the hex equivalent for the provided color name
+      colorHex = colorToHexMap[color];
 
-    // Set dark or light text color based upon best contrast
-    textColor = setTextColor(colorHex);
+      // Set dark or light text color based upon best contrast
+      textColor = setTextColor(colorHex);
 
-    optionalCustomStyles = {
-      backgroundColor: colorHex,
-      color: textColor,
-      ...optionalCustomStyles,
-    };
-  } else if (color !== 'hollow') {
-    // This is a custom color that is neither from the base palette nor hollow
-    // Let's do our best to ensure that it provides sufficient contrast
+      optionalCustomStyles = {
+        backgroundColor: colorHex,
+        color: textColor,
+        ...optionalCustomStyles,
+      };
+    } else if (color !== 'hollow') {
+      // This is a custom color that is neither from the base palette nor hollow
+      // Let's do our best to ensure that it provides sufficient contrast
 
-    // Set dark or light text color based upon best contrast
-    textColor = setTextColor(color);
+      // Set dark or light text color based upon best contrast
+      textColor = setTextColor(color);
 
-    // Check the contrast
-    wcagContrast = getColorContrast(textColor, color);
+      // Check the contrast
+      wcagContrast = getColorContrast(textColor, color);
 
-    if (wcagContrast < wcagContrastBase) {
-      // It's low contrast, so lets show a warning in the console
-      console.warn(
-        'Warning: ',
-        color,
-        ' badge has low contrast of ',
-        wcagContrast.toFixed(2),
-        '. Should be above ',
-        wcagContrastBase,
-        '.'
-      );
+      if (wcagContrast < wcagContrastBase) {
+        // It's low contrast, so lets show a warning in the console
+        console.warn(
+          'Warning: ',
+          color,
+          ' badge has low contrast of ',
+          wcagContrast.toFixed(2),
+          '. Should be above ',
+          wcagContrastBase,
+          '.'
+        );
+      }
+
+      optionalCustomStyles = {
+        backgroundColor: color,
+        color: textColor,
+        ...optionalCustomStyles,
+      };
     }
-
-    optionalCustomStyles = {
-      backgroundColor: color,
-      color: textColor,
-      ...optionalCustomStyles,
-    };
   }
-
   const classes = classNames(
     'euiBadge',
     {
@@ -371,15 +371,15 @@ function setTextColor(bgColor: string) {
 }
 
 function checkValidColor(color: null | IconColor | string) {
-  const colorExists = !!color;
   const isNamedColor = (color && COLORS.includes(color)) || color === 'hollow';
   const isValidColorString = color && chromaValid(parseColor(color) || '');
-
-  if (!colorExists && !isNamedColor && !isValidColorString) {
+  if (!isNamedColor && !isValidColorString) {
     console.warn(
       'EuiBadge expects a valid color. This can either be a three or six ' +
         `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +
         `Instead got ${color}.`
     );
+    return false;
   }
+  return true;
 }
