@@ -18,6 +18,7 @@
  */
 
 import React, { FunctionComponent, useState, ReactNode } from 'react';
+import classNames from 'classnames';
 import { EuiIcon, IconType } from '../icon';
 import { EuiBadge, EuiBadgeProps } from '../badge';
 import { EuiPopover } from '../popover';
@@ -78,6 +79,9 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   contextMenuItems = [],
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const classes = classNames('euiNotificationEventMeta', {
+    'euiNotificationEventMeta--hasContextMenu': contextMenuItems.length > 0,
+  });
 
   const id = htmlIdGenerator()();
 
@@ -86,7 +90,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   };
 
   return (
-    <div className="euiNotificationEventMeta">
+    <div className={classes}>
       <div className="euiNotificationEventMeta__section">
         {typeof isRead === 'boolean' && (
           <EuiNotificationEventReadButton
@@ -108,8 +112,10 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
 
       <div className="euiNotificationEventMeta__section">
         <span className="euiNotificationEventMeta__time">{time}</span>
+      </div>
 
-        {contextMenuItems.length > 0 && (
+      {contextMenuItems.length > 0 && (
+        <div className="euiNotificationEventMeta__contextMenuWrapper">
           <EuiPopover
             id={id}
             ownFocus
@@ -129,7 +135,6 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                     aria-haspopup="true"
                     iconType="boxesVertical"
                     color="subdued"
-                    className="euiNotificationEventMeta__secondaryAction"
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     data-test-subj="notificationEventMetaButton"
                   />
@@ -139,8 +144,8 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
             closePopover={() => setIsPopoverOpen(false)}>
             <EuiContextMenuPanel items={contextMenuItems} />
           </EuiPopover>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

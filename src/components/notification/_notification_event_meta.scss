@@ -1,11 +1,24 @@
 .euiNotificationEventMeta {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 
+  &--hasContextMenu {
+    padding-right: $euiSizeL;
+  }
+
+  &__contextMenuWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
   &__section {
+    margin-right: $euiSizeS;
+
     > * + * {
       margin-left: $euiSizeS;
     }
@@ -15,15 +28,11 @@
       flex: 1;
       align-items: center;
     }
-
-    &:last-child {
-      margin-left: $euiSize;
-    }
   }
 
   &__badge {
     max-width: 100%;
-    display: inline-grid;
+    display: inline-grid; // forces truncation of the badge
   }
 
   &__time {

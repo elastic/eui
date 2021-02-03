@@ -48,7 +48,23 @@ export default () => {
           severity="And a very long severity"
           badgeColor="danger"
           iconType="logoCloud"
-          time="2 min ago"
+          time="This notification was received 1 min ago. You should check it."
+          isRead={isRead}
+          onRead={onRead}
+          contextMenuItems={contextMenuItems}
+        />
+      </EuiPanel>
+      <EuiSpacer />
+
+      <EuiTitle size="xs">
+        <h3>All props</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiPanel paddingSize="s" hasShadow={true} style={{ ...panelStyle }}>
+        <EuiNotificationEventMeta
+          type="Alert"
+          iconType="logoCloud"
+          time="This notification was received 1 min ago"
           isRead={isRead}
           onRead={onRead}
           contextMenuItems={contextMenuItems}
