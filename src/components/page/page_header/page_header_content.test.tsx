@@ -27,7 +27,7 @@ import {
   EuiPageHeaderContentProps,
 } from './page_header_content';
 
-export const tabs: EuiPageHeaderContentProps['tabs'] = [
+const tabs: EuiPageHeaderContentProps['tabs'] = [
   {
     label: 'Tab 1',
     isSelected: true,
@@ -37,7 +37,7 @@ export const tabs: EuiPageHeaderContentProps['tabs'] = [
   },
 ];
 
-export const rightSideContent: EuiPageHeaderContentProps['rightSideContent'] = [
+const rightSideContent: EuiPageHeaderContentProps['rightSideContent'] = [
   <button>Button 1</button>,
   <button>Button 2</button>,
 ];
