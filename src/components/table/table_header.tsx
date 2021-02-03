@@ -17,20 +17,21 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
-export type EuiTableHeaderProps = CommonProps & {
-  /**
-   * Children must be valid DOM structure residing within `<thead>`.
-   * Use `<td> | <th>` by default, or `<tr><th/></tr>` when `wrapWithTableRow=false`
-   */
-  children?: ReactNode;
-  /**
-   * Automatically adds a wrapping `<tr>` element around the children
-   */
-  wrapWithTableRow?: boolean;
-};
+export type EuiTableHeaderProps = CommonProps &
+  HTMLAttributes<HTMLElement> & {
+    /**
+     * Children must be valid DOM structure residing within `<thead>`.
+     * Use `<td> | <th>` by default, or `<tr><th/></tr>` when `wrapWithTableRow=false`
+     */
+    children?: ReactNode;
+    /**
+     * Automatically adds a wrapping `<tr>` element around the children
+     */
+    wrapWithTableRow?: boolean;
+  };
 
 export const EuiTableHeader: FunctionComponent<EuiTableHeaderProps> = ({
   children,
