@@ -18,7 +18,7 @@
  */
 
 import * as React from 'react';
-// import { css } from '@emotion/react';
+import { css } from '@emotion/react';
 import chroma from 'chroma-js';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
@@ -118,13 +118,18 @@ const View2 = () => {
 class Block extends React.Component<any> {
   render() {
     const { theme, ...props } = this.props;
+    const blockStyle = css`
+      color: ${theme.theme.colors.euiColorPrimary};
+      border-radius: ${theme.theme.borders.euiBorderRadiusSmall};
+      border: ${theme.theme.borders.euiBorderEditable};
+    `;
     return (
       <div {...props}>
         <EuiIcon
           aria-hidden="true"
           type="stopFilled"
           size="xxl"
-          css={{ color: theme.theme.colors.euiColorPrimary }}
+          css={blockStyle}
         />
       </div>
     );

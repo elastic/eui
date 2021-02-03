@@ -105,4 +105,9 @@ export type EuiThemeColorMode =
 // The actual shape of a theme is still in flux
 export interface EuiTheme {
   [key: string]: any;
+  // colors: { [key: string]: any };
+  // colorVis: { [key: string]: any };
+  // sizes: { [key: string]: any };
+  // borders: { [key: string]: any };
+  // buttons: { [key: string]: any };
 }
