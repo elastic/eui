@@ -63,6 +63,7 @@ describe('EuiSideNav', () => {
               {
                 name: 'C',
                 truncate: false,
+                emphasize: true,
                 id: 2,
                 items: [
                   {

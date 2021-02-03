@@ -52,6 +52,14 @@ describe('EuiSideNavItem', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('can have emphasized', () => {
+    const component = render(
+      <EuiSideNavItem emphasize>Children</EuiSideNavItem>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('isSelected', () => {
     test('defaults to false', () => {
       const component = render(

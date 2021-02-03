@@ -60,4 +60,13 @@ export interface EuiSideNavItemType<T> {
    * Function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
    */
   renderItem?: RenderItem<T>;
+  /**
+   * Enhances the whole item's section (including nested items) with
+   * a slight background and bold top item
+   */
+  emphasize?: boolean;
+  /**
+   * Restrict the item's text length to a single line
+   */
+  truncate?: boolean;
 }

@@ -146,7 +146,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
           </div>
         </div>
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--emphasized"
         >
           <div
             class="euiSideNavItemButton"

@@ -151,3 +151,18 @@
   }
 }
 
+.euiSideNavItem--emphasized {
+  background: $euiColorLightestShade;
+  box-shadow: -$euiSizeS 0 0 0 $euiColorLightestShade;
+  color: $euiTitleColor;
+
+  > .euiSideNavItemButton {
+    font-weight: $euiFontWeightBold;
+  }
+
+  // Remove any extra box-shadows from nested emphasized items
+  .euiSideNavItem--emphasized {
+    background: transparent;
+    box-shadow: none;
+  }
+}

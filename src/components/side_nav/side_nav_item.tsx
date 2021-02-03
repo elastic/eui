@@ -42,6 +42,14 @@ type ItemProps = CommonProps & {
 };
 
 interface SideNavItemProps {
+  /**
+   * Enhances the whole item's section (including nested items) with
+   * a slight background and bold top item
+   */
+  emphasize?: boolean;
+  /**
+   * Restrict the item's text length to a single line
+   */
   truncate?: boolean;
   isOpen?: boolean;
   isSelected?: boolean;
@@ -136,6 +144,7 @@ export function EuiSideNavItem<
   depth = 0,
   className,
   truncate = true,
+  emphasize,
   ...rest
 }: EuiSideNavItemProps<T>) {
   const isHrefValid = !_href || validateHref(_href);
@@ -162,6 +171,7 @@ export function EuiSideNavItem<
       'euiSideNavItem--trunk': depth === 1,
       'euiSideNavItem--branch': depth > 1,
       'euiSideNavItem--hasChildItems': !!childItems,
+      'euiSideNavItem--emphasized': emphasize,
     },
     className
   );
