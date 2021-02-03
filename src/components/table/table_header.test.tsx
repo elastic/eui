@@ -18,26 +18,29 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTableHeader } from './table_header';
 
 describe('EuiTableHeader', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableHeader {...requiredProps}>children</EuiTableHeader>
+    const component = (
+      <EuiTableHeader {...requiredProps}>
+        <td>children</td>
+      </EuiTableHeader>
     );
-
-    expect(component).toMatchSnapshot();
+    expect(render(component)).toMatchSnapshot();
   });
 
   test('is rendered without <tr>', () => {
-    const props = { ...requiredProps, withInbuiltTag: false };
-    const component = shallow(
-      <EuiTableHeader {...props}>children</EuiTableHeader>
+    const component = (
+      <EuiTableHeader wrapWithTableRow={false}>
+        <tr>
+          <td>children</td>
+        </tr>
+      </EuiTableHeader>
     );
-
-    expect(component).toMatchSnapshot();
+    expect(render(component)).toMatchSnapshot();
   });
 });
