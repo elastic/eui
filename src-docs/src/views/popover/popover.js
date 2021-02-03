@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { EuiPopover, EuiButton, EuiText } from '../../../../src/components';
 
 export default () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(true);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const onButtonClick = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
