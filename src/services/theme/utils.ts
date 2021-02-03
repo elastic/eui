@@ -20,6 +20,7 @@
 import { EuiTheme, EuiThemeColorMode } from './types';
 
 export const COLOR_MODE_KEY = 'colors';
+export const DEFAULT_COLOR_MODE = 'light';
 
 const isObject = (obj: any) => obj && typeof obj === 'object';
 
@@ -32,7 +33,7 @@ export const getColorMode = (
   parentColorMode?: EuiThemeColorMode
 ) => {
   if (colorMode == null) {
-    return parentColorMode || 'light';
+    return parentColorMode || DEFAULT_COLOR_MODE;
   } else if (isInverseColorMode(colorMode)) {
     return parentColorMode === 'dark' || parentColorMode === undefined
       ? 'light'
