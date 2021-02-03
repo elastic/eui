@@ -1,11 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`isSelected renders true when specified 1`] = `
+.emotion-0 {
+  background-color: #f6f7fb;
+}
+
+.emotion-0:hover {
+  background-color: #fafbfd;
+}
+
+.emotion-0+.euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+  background-color: #f6f7fb;
+}
+
+.emotion-0:hover,
+.emotion-0:hover+.euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+  background-color: #f2f4f9;
+}
+
+.emotion-1 {
+  color: #343741;
+}
+
 <tr
-  class="euiTableRow euiTableRow-isSelected"
+  class="euiTableRow euiTableRow-isSelected emotion-0"
 >
   <td
-    class="euiTableRowCell"
+    class="euiTableRowCell emotion-1"
   >
     <div
       class="euiTableCellContent"
@@ -19,13 +40,21 @@ exports[`isSelected renders true when specified 1`] = `
 `;
 
 exports[`renders EuiTableRow 1`] = `
+.emotion-0:hover {
+  background-color: #fafbfd;
+}
+
+.emotion-1 {
+  color: #343741;
+}
+
 <tr
   aria-label="aria-label"
-  class="euiTableRow testClass1 testClass2"
+  class="euiTableRow testClass1 testClass2 emotion-0"
   data-test-subj="test subject string"
 >
   <td
-    class="euiTableRowCell"
+    class="euiTableRowCell emotion-1"
   >
     <div
       class="euiTableCellContent"

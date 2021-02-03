@@ -10,7 +10,6 @@ exports[`ExpandedItemActions render 1`] = `
         "onClick": [Function],
       }
     }
-    className=""
     enabled={true}
     item={
       Object {
@@ -27,7 +26,6 @@ exports[`ExpandedItemActions render 1`] = `
         "render": [Function],
       }
     }
-    className=""
     enabled={true}
     index={1}
     item={

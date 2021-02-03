@@ -1,9 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders EuiTable 1`] = `
+.emotion-0 {
+  background-color: #FFF;
+}
+
+.emotion-1:hover {
+  background-color: #fafbfd;
+}
+
+.emotion-2 {
+  color: #343741;
+}
+
 <table
   aria-label="aria-label"
-  class="euiTable testClass1 testClass2 euiTable--responsive"
+  class="euiTable testClass1 testClass2 euiTable--responsive emotion-0"
   data-test-subj="test subject string"
   tabindex="-1"
 >
@@ -43,10 +55,10 @@ exports[`renders EuiTable 1`] = `
   </thead>
   <tbody>
     <tr
-      class="euiTableRow"
+      class="euiTableRow emotion-1"
     >
       <td
-        class="euiTableRowCell"
+        class="euiTableRowCell emotion-2"
       >
         <div
           class="euiTableCellContent"
@@ -60,10 +72,10 @@ exports[`renders EuiTable 1`] = `
       </td>
     </tr>
     <tr
-      class="euiTableRow"
+      class="euiTableRow emotion-1"
     >
       <td
-        class="euiTableRowCell"
+        class="euiTableRowCell emotion-2"
       >
         <div
           class="euiTableCellContent"

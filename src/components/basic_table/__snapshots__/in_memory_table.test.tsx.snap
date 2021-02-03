@@ -1,6 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiInMemoryTable behavior pagination 1`] = `
+.emotion-0 {
+  background-color: #FFF;
+}
+
+.emotion-1:hover {
+  background-color: #fafbfd;
+}
+
+.emotion-2 {
+  color: #343741;
+}
+
 <EuiInMemoryTable
   aria-label="aria-label"
   className="testClass1 testClass2"
@@ -131,7 +143,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           tableLayout="fixed"
         >
           <table
-            className="euiTable euiTable--responsive"
+            className="euiTable euiTable--responsive emotion-0"
             id="__table_generated-id"
             tabIndex={-1}
           >
@@ -187,90 +199,124 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 <EuiTableRow
                   isSelected={false}
                 >
-                  <tr
+                  <EmotionCssPropInternal
+                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRow"
+                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="tr"
                     className="euiTableRow"
                   >
-                    <EuiTableRowCell
-                      align="left"
-                      key="_data_column_name_2_0"
-                      mobileOptions={
-                        Object {
-                          "header": "Name",
-                          "render": undefined,
-                        }
-                      }
-                      setScopeRow={false}
-                      textOnly={true}
+                    <tr
+                      className="euiTableRow emotion-1"
                     >
-                      <td
-                        className="euiTableRowCell"
-                        style={
+                      <EuiTableRowCell
+                        align="left"
+                        key="_data_column_name_2_0"
+                        mobileOptions={
                           Object {
-                            "width": undefined,
+                            "header": "Name",
+                            "render": undefined,
                           }
                         }
+                        setScopeRow={false}
+                        textOnly={true}
                       >
-                        <div
-                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        <EmotionCssPropInternal
+                          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRowCell"
+                          __EMOTION_TYPE_PLEASE_DO_NOT_USE__="td"
+                          className="euiTableRowCell"
+                          style={
+                            Object {
+                              "width": undefined,
+                            }
+                          }
                         >
-                          Name
-                        </div>
-                        <div
-                          className="euiTableCellContent"
-                        >
-                          <span
-                            className="euiTableCellContent__text"
+                          <td
+                            className="euiTableRowCell emotion-2"
+                            style={
+                              Object {
+                                "width": undefined,
+                              }
+                            }
                           >
-                            name3
-                          </span>
-                        </div>
-                      </td>
-                    </EuiTableRowCell>
-                  </tr>
+                            <div
+                              className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                            >
+                              Name
+                            </div>
+                            <div
+                              className="euiTableCellContent"
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                              >
+                                name3
+                              </span>
+                            </div>
+                          </td>
+                        </EmotionCssPropInternal>
+                      </EuiTableRowCell>
+                    </tr>
+                  </EmotionCssPropInternal>
                 </EuiTableRow>
                 <EuiTableRow
                   isSelected={false}
                 >
-                  <tr
+                  <EmotionCssPropInternal
+                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRow"
+                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="tr"
                     className="euiTableRow"
                   >
-                    <EuiTableRowCell
-                      align="left"
-                      key="_data_column_name_3_0"
-                      mobileOptions={
-                        Object {
-                          "header": "Name",
-                          "render": undefined,
-                        }
-                      }
-                      setScopeRow={false}
-                      textOnly={true}
+                    <tr
+                      className="euiTableRow emotion-1"
                     >
-                      <td
-                        className="euiTableRowCell"
-                        style={
+                      <EuiTableRowCell
+                        align="left"
+                        key="_data_column_name_3_0"
+                        mobileOptions={
                           Object {
-                            "width": undefined,
+                            "header": "Name",
+                            "render": undefined,
                           }
                         }
+                        setScopeRow={false}
+                        textOnly={true}
                       >
-                        <div
-                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        <EmotionCssPropInternal
+                          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRowCell"
+                          __EMOTION_TYPE_PLEASE_DO_NOT_USE__="td"
+                          className="euiTableRowCell"
+                          style={
+                            Object {
+                              "width": undefined,
+                            }
+                          }
                         >
-                          Name
-                        </div>
-                        <div
-                          className="euiTableCellContent"
-                        >
-                          <span
-                            className="euiTableCellContent__text"
+                          <td
+                            className="euiTableRowCell emotion-2"
+                            style={
+                              Object {
+                                "width": undefined,
+                              }
+                            }
                           >
-                            name4
-                          </span>
-                        </div>
-                      </td>
-                    </EuiTableRowCell>
-                  </tr>
+                            <div
+                              className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                            >
+                              Name
+                            </div>
+                            <div
+                              className="euiTableCellContent"
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                              >
+                                name4
+                              </span>
+                            </div>
+                          </td>
+                        </EmotionCssPropInternal>
+                      </EuiTableRowCell>
+                    </tr>
+                  </EmotionCssPropInternal>
                 </EuiTableRow>
               </tbody>
             </EuiTableBody>
@@ -767,6 +813,35 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
 `;
 
 exports[`EuiInMemoryTable with initial selection 1`] = `
+.emotion-0 {
+  background-color: #FFF;
+}
+
+.emotion-1 {
+  background-color: #f6f7fb;
+}
+
+.emotion-1:hover {
+  background-color: #fafbfd;
+}
+
+.emotion-1+.euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+  background-color: #f6f7fb;
+}
+
+.emotion-1:hover,
+.emotion-1:hover+.euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+  background-color: #f2f4f9;
+}
+
+.emotion-2 {
+  color: #343741;
+}
+
+.emotion-3:hover {
+  background-color: #fafbfd;
+}
+
 <EuiInMemoryTable
   aria-label="aria-label"
   className="testClass1 testClass2"
@@ -938,7 +1013,7 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
           tableLayout="fixed"
         >
           <table
-            className="euiTable euiTable--responsive"
+            className="euiTable euiTable--responsive emotion-0"
             id="__table_generated-id"
             tabIndex={-1}
           >
@@ -1048,280 +1123,331 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                   isSelectable={true}
                   isSelected={true}
                 >
-                  <tr
+                  <EmotionCssPropInternal
+                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRow"
+                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="tr"
                     className="euiTableRow euiTableRow-isSelectable euiTableRow-isSelected"
                   >
-                    <EuiTableRowCellCheckbox
-                      key="_selection_column_1"
+                    <tr
+                      className="euiTableRow euiTableRow-isSelectable euiTableRow-isSelected emotion-1"
                     >
-                      <td
-                        className="euiTableRowCellCheckbox"
+                      <EuiTableRowCellCheckbox
+                        key="_selection_column_1"
                       >
-                        <div
-                          className="euiTableCellContent"
+                        <td
+                          className="euiTableRowCellCheckbox"
                         >
-                          <EuiI18n
-                            default="Select this row"
-                            token="euiBasicTable.selectThisRow"
+                          <div
+                            className="euiTableCellContent"
                           >
-                            <EuiCheckbox
-                              aria-label="Select this row"
-                              checked={true}
-                              compressed={false}
-                              data-test-subj="checkboxSelectRow-1"
-                              disabled={false}
-                              id="_selection_column_1-checkbox"
-                              indeterminate={false}
-                              onChange={[Function]}
-                              title="Select this row"
-                              type="inList"
+                            <EuiI18n
+                              default="Select this row"
+                              token="euiBasicTable.selectThisRow"
                             >
-                              <div
-                                className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                              <EuiCheckbox
+                                aria-label="Select this row"
+                                checked={true}
+                                compressed={false}
+                                data-test-subj="checkboxSelectRow-1"
+                                disabled={false}
+                                id="_selection_column_1-checkbox"
+                                indeterminate={false}
+                                onChange={[Function]}
+                                title="Select this row"
+                                type="inList"
                               >
-                                <input
-                                  aria-label="Select this row"
-                                  checked={true}
-                                  className="euiCheckbox__input"
-                                  data-test-subj="checkboxSelectRow-1"
-                                  disabled={false}
-                                  id="_selection_column_1-checkbox"
-                                  onChange={[Function]}
-                                  title="Select this row"
-                                  type="checkbox"
-                                />
                                 <div
-                                  className="euiCheckbox__square"
-                                />
-                              </div>
-                            </EuiCheckbox>
-                          </EuiI18n>
-                        </div>
-                      </td>
-                    </EuiTableRowCellCheckbox>
-                    <EuiTableRowCell
-                      align="left"
-                      key="_data_column_name_1_0"
-                      mobileOptions={
-                        Object {
-                          "header": "Name",
-                          "render": undefined,
-                        }
-                      }
-                      setScopeRow={false}
-                      textOnly={true}
-                    >
-                      <td
-                        className="euiTableRowCell"
-                        style={
+                                  className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                                >
+                                  <input
+                                    aria-label="Select this row"
+                                    checked={true}
+                                    className="euiCheckbox__input"
+                                    data-test-subj="checkboxSelectRow-1"
+                                    disabled={false}
+                                    id="_selection_column_1-checkbox"
+                                    onChange={[Function]}
+                                    title="Select this row"
+                                    type="checkbox"
+                                  />
+                                  <div
+                                    className="euiCheckbox__square"
+                                  />
+                                </div>
+                              </EuiCheckbox>
+                            </EuiI18n>
+                          </div>
+                        </td>
+                      </EuiTableRowCellCheckbox>
+                      <EuiTableRowCell
+                        align="left"
+                        key="_data_column_name_1_0"
+                        mobileOptions={
                           Object {
-                            "width": undefined,
+                            "header": "Name",
+                            "render": undefined,
                           }
                         }
+                        setScopeRow={false}
+                        textOnly={true}
                       >
-                        <div
-                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        <EmotionCssPropInternal
+                          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRowCell"
+                          __EMOTION_TYPE_PLEASE_DO_NOT_USE__="td"
+                          className="euiTableRowCell"
+                          style={
+                            Object {
+                              "width": undefined,
+                            }
+                          }
                         >
-                          Name
-                        </div>
-                        <div
-                          className="euiTableCellContent"
-                        >
-                          <span
-                            className="euiTableCellContent__text"
+                          <td
+                            className="euiTableRowCell emotion-2"
+                            style={
+                              Object {
+                                "width": undefined,
+                              }
+                            }
                           >
-                            name1
-                          </span>
-                        </div>
-                      </td>
-                    </EuiTableRowCell>
-                  </tr>
+                            <div
+                              className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                            >
+                              Name
+                            </div>
+                            <div
+                              className="euiTableCellContent"
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                              >
+                                name1
+                              </span>
+                            </div>
+                          </td>
+                        </EmotionCssPropInternal>
+                      </EuiTableRowCell>
+                    </tr>
+                  </EmotionCssPropInternal>
                 </EuiTableRow>
                 <EuiTableRow
                   isSelectable={true}
                   isSelected={false}
                 >
-                  <tr
+                  <EmotionCssPropInternal
+                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRow"
+                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="tr"
                     className="euiTableRow euiTableRow-isSelectable"
                   >
-                    <EuiTableRowCellCheckbox
-                      key="_selection_column_2"
+                    <tr
+                      className="euiTableRow euiTableRow-isSelectable emotion-3"
                     >
-                      <td
-                        className="euiTableRowCellCheckbox"
+                      <EuiTableRowCellCheckbox
+                        key="_selection_column_2"
                       >
-                        <div
-                          className="euiTableCellContent"
+                        <td
+                          className="euiTableRowCellCheckbox"
                         >
-                          <EuiI18n
-                            default="Select this row"
-                            token="euiBasicTable.selectThisRow"
+                          <div
+                            className="euiTableCellContent"
                           >
-                            <EuiCheckbox
-                              aria-label="Select this row"
-                              checked={false}
-                              compressed={false}
-                              data-test-subj="checkboxSelectRow-2"
-                              disabled={false}
-                              id="_selection_column_2-checkbox"
-                              indeterminate={false}
-                              onChange={[Function]}
-                              title="Select this row"
-                              type="inList"
+                            <EuiI18n
+                              default="Select this row"
+                              token="euiBasicTable.selectThisRow"
                             >
-                              <div
-                                className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                              <EuiCheckbox
+                                aria-label="Select this row"
+                                checked={false}
+                                compressed={false}
+                                data-test-subj="checkboxSelectRow-2"
+                                disabled={false}
+                                id="_selection_column_2-checkbox"
+                                indeterminate={false}
+                                onChange={[Function]}
+                                title="Select this row"
+                                type="inList"
                               >
-                                <input
-                                  aria-label="Select this row"
-                                  checked={false}
-                                  className="euiCheckbox__input"
-                                  data-test-subj="checkboxSelectRow-2"
-                                  disabled={false}
-                                  id="_selection_column_2-checkbox"
-                                  onChange={[Function]}
-                                  title="Select this row"
-                                  type="checkbox"
-                                />
                                 <div
-                                  className="euiCheckbox__square"
-                                />
-                              </div>
-                            </EuiCheckbox>
-                          </EuiI18n>
-                        </div>
-                      </td>
-                    </EuiTableRowCellCheckbox>
-                    <EuiTableRowCell
-                      align="left"
-                      key="_data_column_name_2_0"
-                      mobileOptions={
-                        Object {
-                          "header": "Name",
-                          "render": undefined,
-                        }
-                      }
-                      setScopeRow={false}
-                      textOnly={true}
-                    >
-                      <td
-                        className="euiTableRowCell"
-                        style={
+                                  className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                                >
+                                  <input
+                                    aria-label="Select this row"
+                                    checked={false}
+                                    className="euiCheckbox__input"
+                                    data-test-subj="checkboxSelectRow-2"
+                                    disabled={false}
+                                    id="_selection_column_2-checkbox"
+                                    onChange={[Function]}
+                                    title="Select this row"
+                                    type="checkbox"
+                                  />
+                                  <div
+                                    className="euiCheckbox__square"
+                                  />
+                                </div>
+                              </EuiCheckbox>
+                            </EuiI18n>
+                          </div>
+                        </td>
+                      </EuiTableRowCellCheckbox>
+                      <EuiTableRowCell
+                        align="left"
+                        key="_data_column_name_2_0"
+                        mobileOptions={
                           Object {
-                            "width": undefined,
+                            "header": "Name",
+                            "render": undefined,
                           }
                         }
+                        setScopeRow={false}
+                        textOnly={true}
                       >
-                        <div
-                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        <EmotionCssPropInternal
+                          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRowCell"
+                          __EMOTION_TYPE_PLEASE_DO_NOT_USE__="td"
+                          className="euiTableRowCell"
+                          style={
+                            Object {
+                              "width": undefined,
+                            }
+                          }
                         >
-                          Name
-                        </div>
-                        <div
-                          className="euiTableCellContent"
-                        >
-                          <span
-                            className="euiTableCellContent__text"
+                          <td
+                            className="euiTableRowCell emotion-2"
+                            style={
+                              Object {
+                                "width": undefined,
+                              }
+                            }
                           >
-                            name2
-                          </span>
-                        </div>
-                      </td>
-                    </EuiTableRowCell>
-                  </tr>
+                            <div
+                              className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                            >
+                              Name
+                            </div>
+                            <div
+                              className="euiTableCellContent"
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                              >
+                                name2
+                              </span>
+                            </div>
+                          </td>
+                        </EmotionCssPropInternal>
+                      </EuiTableRowCell>
+                    </tr>
+                  </EmotionCssPropInternal>
                 </EuiTableRow>
                 <EuiTableRow
                   isSelectable={true}
                   isSelected={false}
                 >
-                  <tr
+                  <EmotionCssPropInternal
+                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRow"
+                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="tr"
                     className="euiTableRow euiTableRow-isSelectable"
                   >
-                    <EuiTableRowCellCheckbox
-                      key="_selection_column_3"
+                    <tr
+                      className="euiTableRow euiTableRow-isSelectable emotion-3"
                     >
-                      <td
-                        className="euiTableRowCellCheckbox"
+                      <EuiTableRowCellCheckbox
+                        key="_selection_column_3"
                       >
-                        <div
-                          className="euiTableCellContent"
+                        <td
+                          className="euiTableRowCellCheckbox"
                         >
-                          <EuiI18n
-                            default="Select this row"
-                            token="euiBasicTable.selectThisRow"
+                          <div
+                            className="euiTableCellContent"
                           >
-                            <EuiCheckbox
-                              aria-label="Select this row"
-                              checked={false}
-                              compressed={false}
-                              data-test-subj="checkboxSelectRow-3"
-                              disabled={false}
-                              id="_selection_column_3-checkbox"
-                              indeterminate={false}
-                              onChange={[Function]}
-                              title="Select this row"
-                              type="inList"
+                            <EuiI18n
+                              default="Select this row"
+                              token="euiBasicTable.selectThisRow"
                             >
-                              <div
-                                className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                              <EuiCheckbox
+                                aria-label="Select this row"
+                                checked={false}
+                                compressed={false}
+                                data-test-subj="checkboxSelectRow-3"
+                                disabled={false}
+                                id="_selection_column_3-checkbox"
+                                indeterminate={false}
+                                onChange={[Function]}
+                                title="Select this row"
+                                type="inList"
                               >
-                                <input
-                                  aria-label="Select this row"
-                                  checked={false}
-                                  className="euiCheckbox__input"
-                                  data-test-subj="checkboxSelectRow-3"
-                                  disabled={false}
-                                  id="_selection_column_3-checkbox"
-                                  onChange={[Function]}
-                                  title="Select this row"
-                                  type="checkbox"
-                                />
                                 <div
-                                  className="euiCheckbox__square"
-                                />
-                              </div>
-                            </EuiCheckbox>
-                          </EuiI18n>
-                        </div>
-                      </td>
-                    </EuiTableRowCellCheckbox>
-                    <EuiTableRowCell
-                      align="left"
-                      key="_data_column_name_3_0"
-                      mobileOptions={
-                        Object {
-                          "header": "Name",
-                          "render": undefined,
-                        }
-                      }
-                      setScopeRow={false}
-                      textOnly={true}
-                    >
-                      <td
-                        className="euiTableRowCell"
-                        style={
+                                  className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                                >
+                                  <input
+                                    aria-label="Select this row"
+                                    checked={false}
+                                    className="euiCheckbox__input"
+                                    data-test-subj="checkboxSelectRow-3"
+                                    disabled={false}
+                                    id="_selection_column_3-checkbox"
+                                    onChange={[Function]}
+                                    title="Select this row"
+                                    type="checkbox"
+                                  />
+                                  <div
+                                    className="euiCheckbox__square"
+                                  />
+                                </div>
+                              </EuiCheckbox>
+                            </EuiI18n>
+                          </div>
+                        </td>
+                      </EuiTableRowCellCheckbox>
+                      <EuiTableRowCell
+                        align="left"
+                        key="_data_column_name_3_0"
+                        mobileOptions={
                           Object {
-                            "width": undefined,
+                            "header": "Name",
+                            "render": undefined,
                           }
                         }
+                        setScopeRow={false}
+                        textOnly={true}
                       >
-                        <div
-                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        <EmotionCssPropInternal
+                          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRowCell"
+                          __EMOTION_TYPE_PLEASE_DO_NOT_USE__="td"
+                          className="euiTableRowCell"
+                          style={
+                            Object {
+                              "width": undefined,
+                            }
+                          }
                         >
-                          Name
-                        </div>
-                        <div
-                          className="euiTableCellContent"
-                        >
-                          <span
-                            className="euiTableCellContent__text"
+                          <td
+                            className="euiTableRowCell emotion-2"
+                            style={
+                              Object {
+                                "width": undefined,
+                              }
+                            }
                           >
-                            name3
-                          </span>
-                        </div>
-                      </td>
-                    </EuiTableRowCell>
-                  </tr>
+                            <div
+                              className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                            >
+                              Name
+                            </div>
+                            <div
+                              className="euiTableCellContent"
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                              >
+                                name3
+                              </span>
+                            </div>
+                          </td>
+                        </EmotionCssPropInternal>
+                      </EuiTableRowCell>
+                    </tr>
+                  </EmotionCssPropInternal>
                 </EuiTableRow>
               </tbody>
             </EuiTableBody>

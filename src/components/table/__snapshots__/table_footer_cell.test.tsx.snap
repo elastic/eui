@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTableFooterCell align defaults to left 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
 >
   <div
     class="euiTableCellContent"
@@ -15,8 +19,12 @@ exports[`EuiTableFooterCell align defaults to left 1`] = `
 `;
 
 exports[`EuiTableFooterCell align renders center when specified 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
 >
   <div
     class="euiTableCellContent euiTableCellContent--alignCenter"
@@ -29,8 +37,12 @@ exports[`EuiTableFooterCell align renders center when specified 1`] = `
 `;
 
 exports[`EuiTableFooterCell align renders right when specified 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
 >
   <div
     class="euiTableCellContent euiTableCellContent--alignRight"
@@ -43,9 +55,13 @@ exports[`EuiTableFooterCell align renders right when specified 1`] = `
 `;
 
 exports[`EuiTableFooterCell is rendered 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
   aria-label="aria-label"
-  class="euiTableFooterCell testClass1 testClass2"
+  class="euiTableFooterCell testClass1 testClass2 emotion-0"
   data-test-subj="test subject string"
 >
   <div
@@ -61,8 +77,12 @@ exports[`EuiTableFooterCell is rendered 1`] = `
 `;
 
 exports[`EuiTableFooterCell width and style accepts style attribute 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
   style="width:20%"
 >
   <div
@@ -78,8 +98,12 @@ exports[`EuiTableFooterCell width and style accepts style attribute 1`] = `
 `;
 
 exports[`EuiTableFooterCell width and style accepts width attribute 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
   style="width:10%"
 >
   <div
@@ -95,8 +119,12 @@ exports[`EuiTableFooterCell width and style accepts width attribute 1`] = `
 `;
 
 exports[`EuiTableFooterCell width and style accepts width attribute as number 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
   style="width:100px"
 >
   <div
@@ -112,8 +140,12 @@ exports[`EuiTableFooterCell width and style accepts width attribute as number 1`
 `;
 
 exports[`EuiTableFooterCell width and style resolves style and width attribute 1`] = `
+.emotion-0 {
+  background-color: #F5F7FA;
+}
+
 <td
-  class="euiTableFooterCell"
+  class="euiTableFooterCell emotion-0"
   style="width:10%"
 >
   <div
