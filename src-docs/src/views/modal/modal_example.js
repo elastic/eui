@@ -5,12 +5,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCode,
-  EuiModal,
-  EuiConfirmModal,
-  EuiOverlayMask,
-} from '../../../../src/components';
+import { EuiCode, EuiModal, EuiConfirmModal } from '../../../../src/components';
 import Guidelines from './guidelines';
 
 import Modal from './modal';
@@ -80,7 +75,7 @@ export const ModalExample = {
           <Link to="/layout/modal/guidelines">modal usage guidelines</Link>.
         </p>
       ),
-      props: { EuiModal, EuiOverlayMask },
+      props: { EuiModal },
       snippet: modalSnippet,
       demo: <Modal />,
     },
