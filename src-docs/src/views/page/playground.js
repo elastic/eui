@@ -65,6 +65,7 @@ export default () => {
   });
 
   propsToUse.children = {
+    ...propsToUse.children,
     type: PropTypes.ReactNode,
     hidden: false,
   };
