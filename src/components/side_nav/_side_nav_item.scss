@@ -1,6 +1,6 @@
 /**
  * 1. Text-align defaults to center, so we have to override that.
- * 2. Need this on the button element to color the underline.
+ * 2. Color the text at the item level and then have the button inherit so overrides are easier
  * 3. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
  */
 .euiSideNavItemButton {
@@ -9,7 +9,7 @@
   display: block;
   width: 100%;
   padding: $euiSizeXS / 2 0;
-  color: $euiTextColor; /* 2 */
+  color: inherit; /* 2 */
 
   &.euiSideNavItemButton--isClickable {
     &:hover .euiSideNavItemButton__label {
@@ -24,15 +24,9 @@
   }
 
   &.euiSideNavItemButton-isSelected {
-    .euiSideNavItemButton__icon {
-      fill: $euiColorPrimary;
-    }
-
-    .euiSideNavItemButton__label {
-      color: $euiColorPrimary;
-      font-weight: $euiFontWeightBold;
-      text-decoration: underline;
-    }
+    color: $euiColorPrimary;
+    font-weight: $euiFontWeightBold;
+    text-decoration: underline;
   }
 }
 
@@ -50,7 +44,6 @@
 }
 
 .euiSideNavItemButton__label {
-  color: $euiTitleColor;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -93,6 +86,8 @@
 }
 
 .euiSideNavItem--trunk {
+  color: $euiTitleColor; /* 2 */
+
   /**
    * 1. Create padding around focus area without indenting the item itself.
    */
@@ -114,6 +109,7 @@
   * 1. Draw the vertical line to group an expanded item's child items together.
   */
   position: relative;
+  color: $euiTextSubduedColor; /* 2 */
 
   &::after { /* 1 */
     position: absolute;
@@ -151,14 +147,6 @@
 
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
-  }
-
-  .euiSideNavItemButton__icon {
-    fill: $euiTextSubduedColor;
-  }
-
-  .euiSideNavItemButton__label {
-    color: $euiTextSubduedColor;
   }
 }
 
