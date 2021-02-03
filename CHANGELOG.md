@@ -1,10 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `isLoading` prop and added `EuiOverlayMask` directly to `EuiConfirmModal` ([#4421](https://github.com/elastic/eui/pull/4421))
+- Added `wrapWithTableRow` to remove `<tr>` in `EuiTableHeader`([#4465](https://github.com/elastic/eui/pull/4465))
+
 **Bug fixes**
 
 - Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
 - Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
 - Fixed issue in `EuiDataGrid` where the horizontal scrollbar was hidden behind pagination ([#4477](https://github.com/elastic/eui/pull/4477))
+- Fixed `EuiPopover` with initial `isOpen` working with `EuiOutsideClickDetector` ([#4461](https://github.com/elastic/eui/pull/4461))
+- Fixed `EuiDataGridCellPopover` needing 2 state updates to close ([#4461](https://github.com/elastic/eui/pull/4461))
+- Fixed `EuiBadge` with `iconOnClick` from catching form submit events ([#4479](https://github.com/elastic/eui/pull/4479))
 
 ## [`31.4.0`](https://github.com/elastic/eui/tree/v31.4.0)
 
