@@ -48,10 +48,12 @@ export default () => {
           severity="And a very long severity"
           badgeColor="danger"
           iconType="logoCloud"
+          iconAriaLabel="cloud"
           time="This notification was received 1 min ago. You should check it."
           isRead={isRead}
           onRead={onRead}
           contextMenuItems={contextMenuItems}
+          eventName="event-01"
         />
       </EuiPanel>
       <EuiSpacer />
@@ -64,10 +66,12 @@ export default () => {
         <EuiNotificationEventMeta
           type="Alert"
           iconType="logoCloud"
+          iconAriaLabel="alert icon"
           time="This notification was received 1 min ago"
           isRead={isRead}
           onRead={onRead}
           contextMenuItems={contextMenuItems}
+          eventName="event-02"
         />
       </EuiPanel>
       <EuiSpacer />
@@ -84,6 +88,7 @@ export default () => {
           time={<span>2 min ago</span>}
           isRead={isRead}
           onRead={onRead}
+          eventName="event-03"
         />
       </EuiPanel>
       <EuiSpacer />
@@ -93,7 +98,11 @@ export default () => {
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiPanel paddingSize="s" hasShadow={true} style={{ ...panelStyle }}>
-        <EuiNotificationEventMeta type="Cloud" time={<span>2 min ago</span>} />
+        <EuiNotificationEventMeta
+          type="Cloud"
+          time={<span>2 min ago</span>}
+          eventName="event-04"
+        />
       </EuiPanel>
     </>
   );

@@ -19,44 +19,61 @@
 
 import React, { FunctionComponent } from 'react';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 import classNames from 'classnames';
 
 export type EuiNotificationEventReadButtonProps = Omit<
   EuiButtonIconProps,
   'iconType'
 > & {
+  /**
+   * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
+   */
   isRead: boolean;
   onClick: () => void;
+  /**
+   * A unique name for the event to be used in aria attributes.
+   */
+  eventName: string;
 };
 
 export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEventReadButtonProps> = ({
   isRead,
   onClick,
+  eventName,
   ...rest
 }) => {
   const classesReadState = classNames('euiNotificationEventReadButton', {
     'euiNotificationEventReadButton--isRead': isRead,
   });
 
+  const markAsRead = useEuiI18n(
+    'euiNotificationEventReadButton.markAsRead',
+    'Mark {eventName} as read.',
+    {
+      eventName,
+    }
+  );
+
+  const markAsUnread = useEuiI18n(
+    'euiNotificationEventReadButton.markAsUnread',
+    'Mark {eventName} as unread.',
+    {
+      eventName,
+    }
+  );
+
+  const buttonLabel = !isRead ? markAsRead : markAsUnread;
+
   return (
-    <EuiI18n
-      tokens={[
-        'euiNotificationEventReadButton.markAsRead',
-        'euiNotificationEventReadButton.markAsUnread',
-      ]}
-      defaults={['Mark as read', 'Mark as unread']}>
-      {([markAsRead, markAsUnread]: string[]) => (
-        <EuiButtonIcon
-          iconType="dot"
-          aria-label={!isRead ? markAsRead : markAsUnread}
-          title={!isRead ? markAsRead : markAsUnread}
-          className={classesReadState}
-          onClick={onClick}
-          data-test-subj="notificationEventReadButton"
-          {...rest}
-        />
-      )}
-    </EuiI18n>
+    <EuiButtonIcon
+      iconType="dot"
+      aria-label={buttonLabel}
+      title={buttonLabel}
+      className={classesReadState}
+      onClick={onClick}
+      data-test-subj="notificationEventReadButton"
+      {...rest}
+    />
   );
 };

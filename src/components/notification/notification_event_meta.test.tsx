@@ -25,7 +25,11 @@ import { EuiContextMenuItem } from '../context_menu';
 describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiNotificationEventMeta type="Alert" time={<span>2 min ago</span>} />
+      <EuiNotificationEventMeta
+        eventName="eventName"
+        type="Alert"
+        time={<span>2 min ago</span>}
+      />
     );
 
     expect(component).toMatchSnapshot();
@@ -38,6 +42,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           severity="severity"
+          eventName="eventName"
         />
       );
 
@@ -50,6 +55,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           isRead={true}
+          eventName="eventName"
         />
       );
 
@@ -62,6 +68,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           badgeColor="secondary"
+          eventName="eventName"
         />
       );
 
@@ -74,6 +81,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           iconType="logoCloud"
+          eventName="event04"
         />
       );
 
@@ -99,6 +107,7 @@ describe('EuiNotificationEventMeta', () => {
           time={<span>2 min ago</span>}
           iconType="logoCloud"
           contextMenuItems={contextMenuItems}
+          eventName="eventName"
         />
       );
 

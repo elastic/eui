@@ -53,12 +53,18 @@ export type EuiNotificationEventMetaProps = {
   iconType?: IconType;
 
   /**
-   * Indicates when was the event received
+   * Specify an `aria-label` for the icon.
+   * If no `aria-label` is passed we assume the icon is purely decorative.
+   */
+  iconAriaLabel?: string;
+
+  /**
+   * Indicates when the event was received.
    */
   time: ReactNode;
 
   /**
-   * Applies an `onClick` handler to the `read` indicator
+   * Applies an `onClick` handler to the `read` indicator.
    */
   onRead?: () => void;
 
@@ -66,6 +72,11 @@ export type EuiNotificationEventMetaProps = {
    * An array of context menu items. See #EuiContextMenuItem
    */
   contextMenuItems?: EuiContextMenuPanelProps['items'];
+
+  /**
+   * A unique name for the event to be used in aria attributes.
+   */
+  eventName: string;
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
@@ -77,6 +88,8 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   onRead,
   severity,
   contextMenuItems = [],
+  eventName,
+  iconAriaLabel,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const classes = classNames('euiNotificationEventMeta', {
@@ -89,6 +102,10 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
     onRead && onRead();
   };
 
+  const ariaAttribute = iconAriaLabel
+    ? { 'aria-label': iconAriaLabel }
+    : { 'aria-hidden': true };
+
   return (
     <div className={classes}>
       <div className="euiNotificationEventMeta__section">
@@ -96,10 +113,11 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
           <EuiNotificationEventReadButton
             isRead={isRead}
             onClick={onMarkAsRead}
+            eventName={eventName}
           />
         )}
 
-        {iconType && <EuiIcon type={iconType} />}
+        {iconType && <EuiIcon type={iconType} {...ariaAttribute} />}
 
         {type && (
           <EuiBadge
@@ -126,7 +144,10 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
             button={
               <EuiI18n
                 token="euiNotificationEventMeta.contextMenuButton"
-                default="Open menu">
+                default="Menu for {eventName}"
+                values={{
+                  eventName,
+                }}>
                 {(contextMenuButton: string) => (
                   <EuiButtonIcon
                     aria-label={contextMenuButton}

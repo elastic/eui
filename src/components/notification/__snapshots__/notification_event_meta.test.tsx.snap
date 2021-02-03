@@ -79,6 +79,7 @@ exports[`EuiNotificationEventMeta props contextMenuItems  are rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoCloud"
     />
     <span
@@ -120,7 +121,7 @@ exports[`EuiNotificationEventMeta props contextMenuItems  are rendered 1`] = `
           aria-controls="generated-id"
           aria-expanded="false"
           aria-haspopup="true"
-          aria-label="Open menu"
+          aria-label="Menu for eventName"
           class="euiButtonIcon euiButtonIcon--subdued"
           data-test-subj="notificationEventMetaButton"
           type="button"
@@ -145,10 +146,10 @@ exports[`EuiNotificationEventMeta props isRead  is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <button
-      aria-label="Mark as unread"
+      aria-label="Mark eventName as unread."
       class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
       data-test-subj="notificationEventReadButton"
-      title="Mark as unread"
+      title="Mark eventName as unread."
       type="button"
     >
       <span
@@ -193,6 +194,7 @@ exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoCloud"
     />
     <span
