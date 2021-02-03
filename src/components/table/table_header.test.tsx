@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTableHeader } from './table_header';
@@ -27,6 +27,15 @@ describe('EuiTableHeader', () => {
   test('is rendered', () => {
     const component = render(
       <EuiTableHeader {...requiredProps}>children</EuiTableHeader>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('is rendered without <tr>', () => {
+    const props = { ...requiredProps, withInbuiltTag: false };
+    const component = shallow(
+      <EuiTableHeader {...props}>children</EuiTableHeader>
     );
 
     expect(component).toMatchSnapshot();

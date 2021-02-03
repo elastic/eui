@@ -20,11 +20,14 @@
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 
-type Props = CommonProps & {
+export type EuiTableHeaderProps = CommonProps & {
+  /**
+   * Automatically adds a wrapping `<tr>` element around the children
+   */
   withInbuiltTag?: boolean;
 };
 
-export const EuiTableHeader: FunctionComponent<Props> = ({
+export const EuiTableHeader: FunctionComponent<EuiTableHeaderProps> = ({
   children,
   className,
   withInbuiltTag = true,
@@ -32,11 +35,7 @@ export const EuiTableHeader: FunctionComponent<Props> = ({
 }) => {
   return (
     <thead className={className} {...rest}>
-      {withInbuiltTag ? (
-        <tr>{children}</tr>
-      ) : (
-        <React.Fragment>{children}</React.Fragment>
-      )}
+      {withInbuiltTag ? <tr>{children}</tr> : { children }}
     </thead>
   );
 };

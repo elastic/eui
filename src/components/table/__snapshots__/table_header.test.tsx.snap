@@ -12,3 +12,13 @@ Array [
   "children",
 ]
 `;
+
+exports[`EuiTableHeader is rendered without <tr> 1`] = `
+<thead
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <Component />
+</thead>
+`;
