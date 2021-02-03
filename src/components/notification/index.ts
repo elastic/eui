@@ -17,5 +17,4 @@
  * under the License.
  */
 
-export { EuiNotificationEventMeta } from './notification_event_meta';
 export { EuiNotificationEventReadButton } from './notification_event_read_button';
