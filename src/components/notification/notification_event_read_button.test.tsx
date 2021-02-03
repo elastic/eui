@@ -26,7 +26,7 @@ describe('EuiNotificationEventReadButton', () => {
   test('is rendered', () => {
     const component = render(
       <EuiNotificationEventReadButton
-        eventName="event01"
+        eventName="eventName"
         isRead={true}
         onClick={() => {}}
       />
@@ -38,7 +38,7 @@ describe('EuiNotificationEventReadButton', () => {
   test('renders isRead to false', () => {
     const component = render(
       <EuiNotificationEventReadButton
-        eventName="event02"
+        eventName="eventName"
         isRead={false}
         onClick={() => {}}
       />
@@ -51,7 +51,7 @@ describe('EuiNotificationEventReadButton', () => {
     const handler = jest.fn();
     const component = mount(
       <EuiNotificationEventReadButton
-        eventName="event03"
+        eventName="eventName"
         isRead={false}
         onClick={handler}
       />

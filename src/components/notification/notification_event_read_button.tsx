@@ -24,15 +24,18 @@ import classNames from 'classnames';
 
 export type EuiNotificationEventReadButtonProps = Omit<
   EuiButtonIconProps,
-  'iconType'
+  'iconType' | 'isDisabled' | 'isSelected' | 'size'
 > & {
   /**
-   * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
+   * Shows an indicator of the read state of the event
    */
   isRead: boolean;
+  /**
+   * Applies an `onClick` handler to the `read` indicator.
+   */
   onClick: () => void;
   /**
-   * A unique name for the event to be used in aria attributes.
+   * A unique name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
    */
   eventName: string;
 };

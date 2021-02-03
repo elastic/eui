@@ -81,7 +81,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           iconType="logoCloud"
-          eventName="event04"
+          eventName="eventName"
         />
       );
 

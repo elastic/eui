@@ -3,6 +3,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import { EuiNotificationEventMeta } from '../../../../src/components/notification/notification_event_meta';
 import { EuiContextMenuItem } from '../../../../src/components/context_menu/';
+import { notificationEventReadButtonConfig } from './playground';
 
 import Notification from './notification_events';
 const notificationSource = require('!!raw-loader!./notification_events');
@@ -30,4 +31,5 @@ export const NotificationEventsExample = {
       demo: <Notification />,
     },
   ],
+  playground: notificationEventReadButtonConfig,
 };

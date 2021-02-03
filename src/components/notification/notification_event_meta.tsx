@@ -25,22 +25,28 @@ import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiContextMenuPanel, EuiContextMenuPanelProps } from '../context_menu';
 import { EuiI18n } from '../i18n';
-import { EuiNotificationEventReadButton } from './notification_event_read_button';
+import {
+  EuiNotificationEventReadButton,
+  EuiNotificationEventReadButtonProps,
+} from './notification_event_read_button';
 import { htmlIdGenerator } from '../../services';
 
-export type EuiNotificationEventMetaProps = {
+export type EuiNotificationEventMetaProps = Omit<
+  EuiNotificationEventReadButtonProps,
+  'isRead' | 'onClick'
+> & {
   /**
    * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
    */
   type: string;
   /**
-   * Type of severity (e.g. "Critical", "Warning", etc..). Shows as a text after the `type` following the format "Alert: Critical".
-   */
-  severity?: string;
-  /**
    * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
    */
   isRead?: boolean | undefined;
+  /**
+   * Type of severity (e.g. "Critical", "Warning", etc..). Shows as a text after the `type` following the format "Alert: Critical".
+   */
+  severity?: string;
 
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
@@ -64,19 +70,14 @@ export type EuiNotificationEventMetaProps = {
   time: ReactNode;
 
   /**
-   * Applies an `onClick` handler to the `read` indicator.
-   */
-  onRead?: () => void;
-
-  /**
    * An array of context menu items. See #EuiContextMenuItem
    */
   contextMenuItems?: EuiContextMenuPanelProps['items'];
 
   /**
-   * A unique name for the event to be used in aria attributes.
+   * Applies an `onClick` handler to the `read` indicator.
    */
-  eventName: string;
+  onRead?: () => void;
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
