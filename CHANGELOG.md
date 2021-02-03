@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `30.6.0`.
+**Note: this release is a backport containing changes originally made in `31.5.0`**
+
+**Bug fixes**
+
+- Fixed `EuiBadge` with `iconOnClick` from catching form submit events ([#4479](https://github.com/elastic/eui/pull/4479))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
