@@ -19,7 +19,7 @@
 
 const chalk = require('chalk');
 const puppeteer = require('puppeteer');
-const { AxePuppeteer } = require('axe-puppeteer');
+const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [

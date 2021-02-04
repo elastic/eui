@@ -745,6 +745,7 @@ export class EuiPopover extends Component<Props, State> {
               tabIndex={tabIndex}
               aria-live={ariaLive}
               role="dialog"
+              aria-label="Demo Tour"
               aria-modal="true"
               aria-describedby={ariaDescribedby}
               style={this.state.popoverStyles}>
