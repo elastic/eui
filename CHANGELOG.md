@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Migrated dependency `axe-puppeteer v1.1.1` to `@axe-core/puppeteer v4.1.1` ([#4482](https://github.com/elastic/eui/pull/4482))
 - Added `isLoading` prop and added `EuiOverlayMask` directly to `EuiConfirmModal` ([#4421](https://github.com/elastic/eui/pull/4421))
 
 **Bug fixes**
