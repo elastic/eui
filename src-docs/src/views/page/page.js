@@ -10,13 +10,30 @@ import {
   EuiPageHeader,
   EuiPageSideBar,
   EuiTitle,
+  EuiButton,
 } from '../../../../src/components';
 
 export default () => (
   <EuiPage>
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
     <EuiPageBody component="div">
-      <EuiPageHeader pageTitle="Page title" />
+      <EuiPageHeader
+        iconType="logoElastic"
+        pageTitle="Page title"
+        tabs={[
+          {
+            label: 'Section one',
+            isSelected: true,
+          },
+          {
+            label: 'Section two',
+          },
+        ]}
+        rightSideContent={[
+          <EuiButton fill>Add something</EuiButton>,
+          <EuiButton>Do something</EuiButton>,
+        ]}
+      />
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>
