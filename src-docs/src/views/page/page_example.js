@@ -91,16 +91,15 @@ export const PageExample = {
               <EuiCode>EuiPage</EuiCode> provides the overall wrapper.
             </li>
             <li>
-              <EuiCode>EuiPageHeader</EuiCode> provides a title, description and
-              section for actions.
+              <EuiCode>EuiPageHeader</EuiCode> provides a title, description,
+              tabs and section for actions.
             </li>
             <li>
               <EuiCode>EuiPageContent</EuiCode> and its family of related
               components provide the main content container.
             </li>
             <li>
-              <EuiCode>EuiPageSideBar</EuiCode> provides a way to provide a
-              menu.
+              <EuiCode>EuiPageSideBar</EuiCode> provides a way to add a menu.
             </li>
           </ul>
           <p>
