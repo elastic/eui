@@ -56,6 +56,28 @@ export default () => {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+            size="s"
+            color="ghost"
+            display
+            iconType="user"
+            onClick={() => {}}
+            aria-label="Your account"
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+            size="s"
+            color="ghost"
+            display="fill"
+            iconType="user"
+            onClick={() => {}}
+            aria-label="Your account"
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
           <EuiButton color="ghost" isLoading fill size="s">
             Loading&hellip;
           </EuiButton>

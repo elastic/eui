@@ -2,8 +2,7 @@
 // so as not to override those specific styles from default theme
 // And the only style that needs to change is the non-filled version
 
-.euiButtonIcon--default,
-.euiButtonIcon--fill {
+.euiButtonIcon:not(.euiButtonIcon--empty) {
   &:disabled:not(.euiButtonIcon--ghost) {
     &,
     &:hover {
@@ -30,7 +29,7 @@
       }
     }
 
-    &.euiButtonIcon--default:not([disabled]) {
+    &:not(.euiButtonIcon--fill):not(.euiButtonIcon--empty):not([disabled]) {
       @include euiButtonDefaultStyle($color);
     }
 

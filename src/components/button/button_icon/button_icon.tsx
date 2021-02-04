@@ -36,7 +36,6 @@ import {
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
-import { ButtonSize } from '../button';
 import { validateHref } from '../../../services/security/href_validator';
 
 export type EuiButtonIconColor =
@@ -50,7 +49,6 @@ export type EuiButtonIconColor =
   | 'warning';
 
 const displayToClassNameMap = {
-  default: 'euiButtonIcon--default',
   empty: 'euiButtonIcon--empty',
   fill: 'euiButtonIcon--fill',
 };
@@ -64,7 +62,7 @@ export interface EuiButtonIconProps extends CommonProps {
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
-  size?: ButtonSize;
+  size?: EuiButtonIconSizes;
   iconSize?: IconSize;
   /**
    * Applies the boolean state as the `aria-pressed` property to create a toggle button.
@@ -72,9 +70,9 @@ export interface EuiButtonIconProps extends CommonProps {
    */
   isSelected?: boolean;
   /**
-   * Sets the display style for the button. Defaults to empty.
+   * Sets the display style for the button. Defaults to `empty`.
    */
-  display?: EuiButtonIconDisplay;
+  display?: EuiButtonIconDisplay | null;
 }
 
 type EuiButtonIconPropsForAnchor = {
@@ -113,6 +111,16 @@ const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
 
 export const COLORS = keysOf(colorToClassNameMap);
 
+const sizeToClassNameMap = {
+  xs: null,
+  s: 'euiButtonIcon--small',
+  m: 'euiButtonIcon--medium',
+};
+
+export type EuiButtonIconSizes = keyof typeof sizeToClassNameMap;
+
+export const SIZES = keysOf(sizeToClassNameMap);
+
 export const EuiButtonIcon: FunctionComponent<Props> = ({
   className,
   iconType,
@@ -124,6 +132,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   display = 'empty',
   target,
   rel,
+  size = 'xs',
   buttonRef,
   isSelected,
   ...rest
@@ -143,7 +152,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   const classes = classNames(
     'euiButtonIcon',
     colorToClassNameMap[color],
-    displayToClassNameMap[display],
+    display && displayToClassNameMap[display],
+    size && sizeToClassNameMap[size],
     className
   );
 

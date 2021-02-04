@@ -57,7 +57,7 @@ const buttonIconSource = require('!!raw-loader!./button_icon');
 const buttonIconHtml = renderToHtml(ButtonIcon);
 const buttonIconSnippet = [
   `<EuiButtonIcon
-iconType={icon}
+  iconType={icon}
 />`,
   `<EuiButtonIcon
   display="fill"
@@ -309,11 +309,9 @@ export const ButtonExample = {
         <p>
           <strong>EuiButtonIcons</strong> are buttons that only contain an icon
           (no text). Use the <code>display</code> prop to change the appearance
-          of your <strong>EuiButtonIcon</strong>. Most of the time you&apos;ll
-          use the <code>empty</code> display. Pass <code>default</code> to get{' '}
-          <strong>EuiButton</strong>&apos;s default style and pass{' '}
-          <code>fill</code> to get the style of <strong>EuiButton</strong> when
-          fill is set to true.
+          of your <strong>EuiButtonIcon</strong>. If <code>display</code> is not
+          defined then <strong>EuiButton</strong>
+          &apos;s default style is applied.
         </p>
       ),
       props: { EuiButtonIcon },
