@@ -67,7 +67,7 @@ export const PageExample = {
   ),
   sections: [
     {
-      title: 'Page with everything on',
+      title: 'A full page layout with everything on',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -80,6 +80,27 @@ export const PageExample = {
       ],
       text: (
         <div>
+          <p>
+            EUI provides a family of components using the{' '}
+            <EuiCode>EuiPage</EuiCode> prefix that work together to build
+            consistent page layouts that work responsively. 
+          </p>
+          <ul>
+            <li>
+              <strong>EuiPage</strong> provides the overall wrapper.
+            </li>
+            <li>
+              <strong>EuiPageHeader</strong> provides a title, description,
+              section for actions and possible tabs.
+            </li>
+            <li>
+              <strong>EuiPageContent</strong> and its family of related
+              components provide the main content container.
+            </li>
+            <li>
+              <strong>EuiPageSideBar</strong> provides a way to add side navigation.
+            </li>
+          </ul>
           <p>
             By default, the entire page will always be 100% of the window&apos;s
             width; to max out the typical width and center the page, set the{' '}
@@ -107,7 +128,7 @@ export const PageExample = {
       ),
     },
     {
-      title: 'Simple page with title',
+      title: 'A simple page layout with a title',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -132,7 +153,75 @@ export const PageExample = {
       ),
     },
     {
-      title: 'Page header',
+      title: 'A simple page layout with content only',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageContentOnlySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageContentOnlyHtml,
+        },
+      ],
+      text: <p>We can further simplify pages by only showing the content.</p>,
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageContentOnly />
+        </div>
+      ),
+    },
+    {
+      title: 'A simple page layout with content centered',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageContentCenterSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageContentCenterHtml,
+        },
+      ],
+      text: (
+        <p>
+          The page content can be optionally centered either vertically or
+          horizontally. This is useful for various empty states.
+        </p>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageContentCenter />
+        </div>
+      ),
+    },
+    {
+      title: 'A simple page layout with content centered in a full layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageContentCenterWithSideBarSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageContentCenterWithSideBarHtml,
+        },
+      ],
+      text: (
+        <p>
+          Centering the content can happen regardless of layout configuration.
+          In this example, we&rsquo;re centering within a complex sidebar
+          layout.
+        </p>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageContentCenterWithSideBar />
+        </div>
+      ),
+    },
+    {
+      title: 'The page header in detail',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -146,24 +235,20 @@ export const PageExample = {
       text: (
         <>
           <p>
-            <strong>EuiPageHeader</strong> comes with some pre-determined
-            content that you can apply to the left and right sides of the
-            component.
-          </p>
-          <p>
-            The left side allows you to pass any combination of{' '}
+            <strong>EuiPageHeader</strong> provides props for opinionated,
+            consistant formatting of your header. Any combination of
             <EuiCode>pageTitle</EuiCode>, <EuiCode>description</EuiCode>,{' '}
-            <EuiCode>tabs</EuiCode>, or any <EuiCode>children</EuiCode>. The
-            order of which are determined by the particular combination.
+            <EuiCode>tabs</EuiCode>, or any <EuiCode>children</EuiCode> will
+            adjust the layout as needed.
           </p>
           <p>
-            The right side, <EuiCode>rightSideContent</EuiCode>, allows for just
-            a simple <strong>array of nodes</strong> which are placed within a
-            flexbox row. This is usually in the form of multiple buttons, of
-            which, at least one is primary (or{' '}
+            An additional prop <EuiCode>rightSideContent</EuiCode> allows for a
+            simple <strong>array of nodes</strong> which will layout in a
+            flexbox row. This is commonly used for adding multiple buttons, of
+            which, at least one should be primary (or{' '}
             <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
             also displayed in <strong>reverse order</strong> so that the first
-            and primary action will be displayed far right.
+            and primary array item will be displayed on the far right.
           </p>
           <p>
             You can further adjust the display of these content types with an
@@ -194,7 +279,7 @@ export const PageExample = {
 />`,
     },
     {
-      title: 'Page header tabs',
+      title: 'Tabs in the page header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -231,7 +316,7 @@ export const PageExample = {
 />`,
     },
     {
-      title: 'Page header custom',
+      title: 'Customizing the page header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -260,74 +345,6 @@ export const PageExample = {
         </div>
       ),
       props: { EuiPageHeader },
-    },
-    {
-      title: 'Page with content only',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageContentOnlySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageContentOnlyHtml,
-        },
-      ],
-      text: <p>We can further simplify pages by only showing the content.</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentOnly />
-        </div>
-      ),
-    },
-    {
-      title: 'Page content centered',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageContentCenterSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageContentCenterHtml,
-        },
-      ],
-      text: (
-        <p>
-          The page content can be optionally centered either vertically or
-          horizontally. This is useful for various empty states.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenter />
-        </div>
-      ),
-    },
-    {
-      title: 'Page content centered in a full layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarHtml,
-        },
-      ],
-      text: (
-        <p>
-          Centering the content can happen regardless of layout configuration.
-          In this example, we&rsquo;re centering within a complex sidebar
-          layout.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenterWithSideBar />
-        </div>
-      ),
     },
   ],
 };
