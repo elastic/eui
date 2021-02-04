@@ -105,6 +105,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -154,6 +155,7 @@ exports[`EuiPopover props buffer 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -201,6 +203,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -274,6 +277,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -322,6 +326,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -370,6 +375,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen euiPopover__panel-noArrow"
@@ -416,6 +422,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -464,6 +471,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
     >
       <div
         aria-describedby="generated-id"
+        aria-label="Demo Tour"
         aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
@@ -519,6 +527,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
@@ -566,6 +575,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
+        aria-label="Demo Tour"
         aria-live="assertive"
         aria-modal="true"
         class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
