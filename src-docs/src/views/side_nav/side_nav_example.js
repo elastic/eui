@@ -202,6 +202,7 @@ const sideNavEmphasisSnippet = `<EuiSideNav
 `;
 
 import { SideNavItem } from './props';
+import { EuiCallOut } from '../../../../src/components/call_out';
 
 export const SideNavExample = {
   title: 'Side nav',
@@ -292,12 +293,24 @@ export const SideNavExample = {
         },
       ],
       text: (
-        <p>
-          Adding the <EuiCode>emphasize = true</EuiCode> prop to a{' '}
-          <strong>EuiSideNav</strong> item will enhance the visual appearance of
-          that section and its nested items. This is helpful for when you need
-          to indicate a dynamic navigational item like a user-created object.
-        </p>
+        <>
+          <p>
+            Adding the <EuiCode>emphasize = true</EuiCode> prop to a{' '}
+            <strong>EuiSideNav</strong> item will enhance the visual appearance
+            of that section and its nested items. This is helpful for when you
+            need to indicate a dynamic navigational item like a user-created
+            object.
+          </p>
+          <EuiCallOut iconType="editorCodeBlock" title="Extra style needed">
+            <p>
+              The emphasized nav item&apos;s background color extends beyond the
+              horizontal bounds of the component to allow it to reach it&apos;s
+              parents bounds. Be sure to add{' '}
+              <EuiCode language="sass">{'overflow: hidden'}</EuiCode> to
+              whichever container you&apos;d like it to stop at.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       snippet: sideNavEmphasisSnippet,
       demo: <SideNavEmphasis />,

@@ -54,7 +54,7 @@ export default () => {
       toggleOpenOnMobile={toggleOpenOnMobile}
       isOpenOnMobile={isSideNavOpenOnMobile}
       items={sideNav}
-      style={{ width: 192 }}
+      style={{ width: 192, overflow: 'hidden' }}
     />
   );
 };
