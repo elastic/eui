@@ -22,10 +22,9 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-import { EuiIcon } from '../icon';
-
 import { EuiSideNavItem, RenderItem } from './side_nav_item';
 import { EuiSideNavItemType } from './side_nav_types';
+import { EuiButtonEmpty } from '../button';
 
 export type EuiSideNavProps<T> = T &
   CommonProps & {
@@ -154,21 +153,13 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     return (
       <nav className={classes} {...rest}>
         {/* Hidden from view, except in mobile */}
-        <button
-          type="button"
-          className="euiSideNav__mobileToggle euiLink"
-          onClick={toggleOpenOnMobile}>
-          <span className="euiSideNav__mobileWrap">
-            <span className="euiSideNav__mobileTitle">{mobileTitle}</span>
-
-            <EuiIcon
-              className="euiSideNav__mobileIcon"
-              type="apps"
-              size="m"
-              aria-hidden="true"
-            />
-          </span>
-        </button>
+        <EuiButtonEmpty
+          className="euiSideNav__mobileToggle"
+          onClick={toggleOpenOnMobile}
+          iconType="apps"
+          iconSide="right">
+          {mobileTitle}
+        </EuiButtonEmpty>
 
         {/* Hidden from view in mobile, but toggled from the button above */}
         <div className="euiSideNav__content">{nav}</div>

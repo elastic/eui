@@ -7,19 +7,18 @@ exports[`EuiSideNav is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -34,19 +33,18 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
   class="euiSideNav"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -61,19 +59,18 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
   class="euiSideNav euiSideNav-isOpenMobile"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -88,19 +85,18 @@ exports[`EuiSideNav props items is rendered 1`] = `
   class="euiSideNav"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -177,19 +173,18 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
   class="euiSideNav"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -302,19 +297,18 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
   class="euiSideNav"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -371,19 +365,18 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
   class="euiSideNav"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
@@ -460,19 +453,18 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
   class="euiSideNav"
 >
   <button
-    class="euiSideNav__mobileToggle euiLink"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiSideNav__mobileWrap"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
       <span
-        class="euiSideNav__mobileTitle"
+        class="euiButtonContent__icon"
+        data-euiicon-type="apps"
       />
       <span
-        aria-hidden="true"
-        class="euiSideNav__mobileIcon"
-        data-euiicon-type="apps"
+        class="euiButtonEmpty__text"
       />
     </span>
   </button>
