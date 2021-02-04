@@ -72,6 +72,7 @@
 
     .euiSideNavItemButton__label {
       @include euiTitle('xs');
+      color: inherit;
     }
   }
 
@@ -156,8 +157,12 @@
 
 .euiSideNavItem--emphasized {
   background: $euiColorLightestShade;
-  box-shadow: -$euiSizeS 0 0 0 $euiColorLightestShade;
   color: $euiTitleColor;
+
+  &:not(.euiSideNavItem--root) {
+    // For non-root sections we need to accomodate for the indent
+    box-shadow: -$euiSizeS 0 0 0 $euiColorLightestShade;
+  }
 
   > .euiSideNavItemButton {
     font-weight: $euiFontWeightBold;

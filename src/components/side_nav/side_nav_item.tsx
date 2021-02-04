@@ -33,16 +33,41 @@ import { getSecureRelForTarget } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiInnerText } from '../inner_text';
 
-type ItemProps = CommonProps & {
+/**
+ * The props that are exposed to, or altered for, the consumer
+ * for use in the object of items in `EuiSideNav`
+ * can be found in the `side_nave_types.ts` file.
+ */
+
+export type SideNavItemButtonProps = CommonProps & {
+  /**
+   * Is an optional string to be passed as the navigation item's `href` prop,
+   * and by default it will force rendering of the item as an `<a>`
+   */
   href?: string;
   target?: string;
   rel?: string;
+  /**
+   * Callback function to be passed as the navigation item's `onClick` prop,
+   * and by default it will force rendering of the item as a `<button>` instead of a link
+   */
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLElement>;
   children: ReactNode;
   disabled?: boolean;
 };
 
-interface SideNavItemProps {
+export interface SideNavItemProps {
+  /**
+   * React node which will be rendered as a small icon to the
+   * left of the navigation item text
+   */
+  icon?: ReactElement;
+  /**
+   * If set to true it will render the item in a visible
+   * "selected" state, and will force all ancestor navigation items
+   * to render in an "open" state
+   */
+  isSelected?: boolean;
   /**
    * Enhances the whole item's section (including nested items) with
    * a slight background and bold top item
@@ -52,11 +77,15 @@ interface SideNavItemProps {
    * Restrict the item's text length to a single line
    */
   truncate?: boolean;
-  isOpen?: boolean;
-  isSelected?: boolean;
-  isParent?: boolean;
-  icon?: ReactElement;
+  /**
+   * Passed to the actual `.euiSideNavItemButton` element
+   */
+  buttonClassName?: string;
+  // Exposed as different prop type to consumer
   items?: ReactNode;
+  // Not exposed to consumer
+  isOpen?: boolean;
+  isParent?: boolean;
   depth?: number;
 }
 
@@ -68,20 +97,9 @@ type OmitEuiSideNavItemProps<T> = {
   [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K];
 };
 
-interface GuaranteedRenderItemProps {
-  href?: string;
-  target?: string;
-  rel?: string;
-  onClick?: ItemProps['onClick'];
-  className: string;
-  /**
-   * ReactNode to render as this component's content
-   */
-  children: ReactNode;
-}
 export type RenderItem<T> = (
   // argument is the set of extra component props + GuaranteedRenderItemProps
-  props: OmitEuiSideNavItemProps<T> & GuaranteedRenderItemProps
+  props: OmitEuiSideNavItemProps<T> & SideNavItemButtonProps
 ) => JSX.Element;
 
 export type EuiSideNavItemProps<T> = T extends { renderItem: Function }
@@ -97,7 +115,7 @@ const DefaultRenderItem = ({
   children,
   disabled,
   ...rest
-}: ItemProps) => {
+}: SideNavItemButtonProps) => {
   if (href && !disabled) {
     const secureRel = getSecureRelForTarget({ href, rel, target });
     return (
@@ -134,7 +152,7 @@ const DefaultRenderItem = ({
 };
 
 export function EuiSideNavItem<
-  T extends ItemProps &
+  T extends SideNavItemButtonProps &
     SideNavItemProps & { renderItem?: (props: any) => JSX.Element }
 >({
   isOpen,
@@ -152,6 +170,7 @@ export function EuiSideNavItem<
   className,
   truncate = true,
   emphasize,
+  buttonClassName,
   ...rest
 }: EuiSideNavItemProps<T>) {
   const isHrefValid = !_href || validateHref(_href);
@@ -183,11 +202,15 @@ export function EuiSideNavItem<
     className
   );
 
-  const buttonClasses = classNames('euiSideNavItemButton', {
-    'euiSideNavItemButton--isClickable': onClick || href,
-    'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
-    'euiSideNavItemButton-isSelected': isSelected,
-  });
+  const buttonClasses = classNames(
+    'euiSideNavItemButton',
+    {
+      'euiSideNavItemButton--isClickable': onClick || href,
+      'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
+      'euiSideNavItemButton-isSelected': isSelected,
+    },
+    buttonClassName
+  );
 
   let caret;
 
@@ -216,7 +239,7 @@ export function EuiSideNavItem<
     </span>
   );
 
-  const renderItemProps: GuaranteedRenderItemProps = {
+  const renderItemProps: SideNavItemButtonProps = {
     href,
     rel,
     target,

@@ -18,5 +18,6 @@
  */
 
 export { EuiSideNav } from './side_nav';
+export { EuiSideNavItem } from './side_nav_item';
 
 export * from './side_nav_types';
