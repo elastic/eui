@@ -6,6 +6,7 @@ import React, {
   useState,
   createContext,
   useContext,
+  useRef,
 } from 'react';
 import { fake } from 'faker';
 
@@ -191,7 +192,7 @@ const trailingControlColumns = [
             ownFocus={true}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
-              <button onClick={() => {}} component="span">
+              <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -293,6 +294,10 @@ export default () => {
     };
   }, []);
 
+  const onColumnResize = useRef((eventData) => {
+    console.log(eventData);
+  });
+
   return (
     <DataContext.Provider value={raw_data}>
       <EuiDataGrid
@@ -310,9 +315,7 @@ export default () => {
           onChangeItemsPerPage: onChangeItemsPerPage,
           onChangePage: onChangePage,
         }}
-        onColumnResize={(eventData) => {
-          console.log(eventData);
-        }}
+        onColumnResize={onColumnResize.current}
       />
     </DataContext.Provider>
   );
