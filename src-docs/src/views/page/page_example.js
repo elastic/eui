@@ -83,23 +83,22 @@ export const PageExample = {
           <p>
             EUI provides a family of components using the{' '}
             <EuiCode>EuiPage</EuiCode> prefix that work together to build
-            consistant page layouts that work responsively. The below example
-            utilizes the following major components
+            consistent page layouts that work responsively. 
           </p>
           <ul>
             <li>
-              <EuiCode>EuiPage</EuiCode> provides the overall wrapper.
+              <strong>EuiPage</strong> provides the overall wrapper.
             </li>
             <li>
-              <EuiCode>EuiPageHeader</EuiCode> provides a title, description,
-              tabs and section for actions.
+              <strong>EuiPageHeader</strong> provides a title, description,
+              section for actions and possible tabs.
             </li>
             <li>
-              <EuiCode>EuiPageContent</EuiCode> and its family of related
+              <strong>EuiPageContent</strong> and its family of related
               components provide the main content container.
             </li>
             <li>
-              <EuiCode>EuiPageSideBar</EuiCode> provides a way to add a menu.
+              <strong>EuiPageSideBar</strong> provides a way to add side navigation.
             </li>
           </ul>
           <p>
@@ -222,7 +221,7 @@ export const PageExample = {
       ),
     },
     {
-      title: 'The EuiPageHeader component in more detail',
+      title: 'The page header in detail',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -246,7 +245,7 @@ export const PageExample = {
             An additional prop <EuiCode>rightSideContent</EuiCode> allows for a
             simple <strong>array of nodes</strong> which will layout in a
             flexbox row. This is commonly used for adding multiple buttons, of
-            which, at least should be primary (or{' '}
+            which, at least one should be primary (or{' '}
             <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
             also displayed in <strong>reverse order</strong> so that the first
             and primary array item will be displayed on the far right.
@@ -280,7 +279,7 @@ export const PageExample = {
 />`,
     },
     {
-      title: 'Adding tabs to EuiPageHeader',
+      title: 'Tabs in the page header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -317,7 +316,7 @@ export const PageExample = {
 />`,
     },
     {
-      title: 'Customizing EuiPageHeader',
+      title: 'Customizing the page header',
       source: [
         {
           type: GuideSectionTypes.JS,
