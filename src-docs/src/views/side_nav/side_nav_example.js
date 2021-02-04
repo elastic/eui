@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSideNav } from '../../../../src/components';
+import Playground from './playground';
 
 import SideNav from './side_nav';
 const sideNavSource = require('!!raw-loader!./side_nav');
@@ -160,10 +161,52 @@ const sideNavForceSnippet = `<EuiSideNav
 />
 `;
 
+import SideNavEmphasis from './side_nav_emphasis';
+const sideNavEmphasisSource = require('!!raw-loader!./side_nav_emphasis');
+const sideNavEmphasisHtml = renderToHtml(SideNavEmphasis);
+const sideNavEmphasisSnippet = `<EuiSideNav
+  mobileTitle="Navbar Items"
+  toggleOpenOnMobile={toggleOpenOnMobile}
+  isOpenOnMobile={isSideNavOpenOnMobile}
+  items={[
+    {
+      name: 'APM',
+      id: '1',
+      items: [
+        {
+          name: 'Services',
+          id: '2',
+          items: [
+            {
+              name: 'opbeans-java',
+              emphasize: true,
+              isOpen: true,
+              items: [
+                {
+                  name: 'Transactions',
+                  id: '0.1.1',
+                  onClick: () => selectItem('General'),
+                },
+                {
+                  name: 'Errors',
+                  id: '0.1.2',
+                  onClick: () => selectItem('Timelion'),
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ]}
+/>
+`;
+
 import { SideNavItem } from './props';
 
 export const SideNavExample = {
   title: 'Side nav',
+  playground: Playground,
   sections: [
     {
       source: [
@@ -210,8 +253,8 @@ export const SideNavExample = {
       ],
       text: (
         <p>
-          <strong>EuiSideNav</strong> also supports deeply-nested tree-based
-          data.
+          <strong>EuiSideNav</strong> also supports multiple top level sections
+          and deeply-nested tree-based data.
         </p>
       ),
       snippet: sideNavComplexSnippet,
@@ -237,6 +280,29 @@ export const SideNavExample = {
       ),
       snippet: sideNavForceSnippet,
       demo: <SideNavForceOpen />,
+    },
+    {
+      title: 'Emphasized side nav sections',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: sideNavEmphasisSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: sideNavEmphasisHtml,
+        },
+      ],
+      text: (
+        <p>
+          Adding the <EuiCode>emphasize = true</EuiCode> prop to a{' '}
+          <strong>EuiSideNav</strong> item will enhance the visual appearance of
+          that section and its nested items. This is helpful for when you need
+          to indicate a dynamic navigational item like a user-created object.
+        </p>
+      ),
+      snippet: sideNavEmphasisSnippet,
+      demo: <SideNavEmphasis />,
     },
   ],
 };
