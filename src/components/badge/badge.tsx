@@ -149,7 +149,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   style,
   ...rest
 }) => {
-  const validColor = checkValidColor(color);
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
@@ -161,7 +160,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   let colorHex = null;
 
   // Check if a valid color name was provided
-  if (validColor) {
+  try {
     if (COLORS.indexOf(color) > -1) {
       // Get the hex equivalent for the provided color name
       colorHex = colorToHexMap[color];
@@ -203,6 +202,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         ...optionalCustomStyles,
       };
     }
+  } catch (err) {
+    handleInvalidColor(color);
   }
   const classes = classNames(
     'euiBadge',
@@ -370,7 +371,7 @@ function setTextColor(bgColor: string) {
   return textColor;
 }
 
-function checkValidColor(color: null | IconColor | string) {
+function handleInvalidColor(color: null | IconColor | string) {
   const isNamedColor = (color && COLORS.includes(color)) || color === 'hollow';
   const isValidColorString = color && chromaValid(parseColor(color) || '');
   if (!isNamedColor && !isValidColorString) {
@@ -379,7 +380,5 @@ function checkValidColor(color: null | IconColor | string) {
         `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +
         `Instead got ${color}.`
     );
-    return false;
   }
-  return true;
 }
