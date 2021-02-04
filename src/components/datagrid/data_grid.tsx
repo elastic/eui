@@ -728,6 +728,30 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [resizeRef, gridDimensions]);
 
+  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
+  const virtualizeContainer = resizeRef?.getElementsByClassName(
+    VIRTUALIZED_CONTAINER_CLASS
+  )[0] as HTMLDivElement | null;
+
+  // re-render data grid on size changes
+  useResizeObserver(virtualizeContainer);
+
+  useEffect(() => {
+    if (virtualizeContainer?.clientWidth) {
+      setVirtualizeContainerWidth(virtualizeContainer.clientWidth);
+    }
+  }, [virtualizeContainer?.clientWidth]);
+
+  useEffect(() => {
+    // wait for layout to settle, then measuer virtualize container
+    setTimeout(() => {
+      if (virtualizeContainer?.clientWidth) {
+        const containerWidth = virtualizeContainer.clientWidth;
+        setVirtualizeContainerWidth(containerWidth);
+      }
+    }, 100);
+  }, [pagination?.pageSize, virtualizeContainer]);
+
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
@@ -801,9 +825,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const defaultColumnWidth = useDefaultColumnWidth(
     // use clientWidth of the virtualization container to take scroll bar into account
     // if that's not possible fall back to the size of the wrapper element
-    (resizeRef?.getElementsByClassName(VIRTUALIZED_CONTAINER_CLASS)[0] as
-      | HTMLDivElement
-      | undefined)?.clientWidth || gridDimensions.width,
+    virtualizeContainerWidth || gridDimensions.width,
     leadingControlColumns,
     trailingControlColumns,
     orderedVisibleColumns
