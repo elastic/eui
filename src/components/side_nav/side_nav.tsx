@@ -57,7 +57,7 @@ export type EuiSideNavProps<T> = T &
      */
     renderItem?: RenderItem<T>;
     /**
-     * Truncatates the text of all items to stick to a single line
+     * Truncates the text of all items to stick to a single line
      */
     truncate?: boolean;
   };

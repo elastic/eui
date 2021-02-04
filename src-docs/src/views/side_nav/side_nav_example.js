@@ -5,7 +5,6 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSideNav } from '../../../../src/components';
-import Playground from './playground';
 
 import SideNav from './side_nav';
 const sideNavSource = require('!!raw-loader!./side_nav');
@@ -206,7 +205,6 @@ import { SideNavItem } from './props';
 
 export const SideNavExample = {
   title: 'Side nav',
-  playground: Playground,
   sections: [
     {
       source: [
