@@ -21,7 +21,7 @@ const colors = [
 
 export default () => (
   <>
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       {colors.map((color) => (
         <EuiFlexItem key={color} grow={false}>
           <EuiButtonIcon
@@ -38,7 +38,7 @@ export default () => (
       <h3>Display</h3>
     </EuiTitle>
     <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
           onClick={() => window.alert('Button clicked')}
@@ -64,7 +64,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
     <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
           onClick={() => window.alert('Button clicked')}
@@ -96,7 +96,7 @@ export default () => (
     <EuiTitle size="xxs">
       <h3>Size</h3>
     </EuiTitle>
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
           onClick={() => window.alert('Button clicked')}
@@ -130,7 +130,7 @@ export default () => (
       <h3>Split buttons</h3>
     </EuiTitle>
     <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButton
           size="s"

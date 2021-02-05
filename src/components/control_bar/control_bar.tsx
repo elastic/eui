@@ -144,7 +144,7 @@ export interface IconButtonControlType
 
 export type IconControl = ExclusiveUnion<
   IconControlType,
-  IconButtonControlType
+  Omit<IconButtonControlType, 'size' | 'display'>
 >;
 
 export type Control = ExclusiveUnion<
