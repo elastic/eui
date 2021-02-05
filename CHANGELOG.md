@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
+
 **Bug fixes**
 
 - Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
