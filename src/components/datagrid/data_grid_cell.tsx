@@ -97,7 +97,6 @@ export interface EuiDataGridCellProps {
 interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
   popoverIsOpen: boolean; // is expansion popover open
-  renderPopoverOpen: boolean; // wait one render cycle to actually render the popover as open
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
@@ -147,7 +146,6 @@ export class EuiDataGridCell extends Component<
   state: EuiDataGridCellState = {
     cellProps: {},
     popoverIsOpen: false,
-    renderPopoverOpen: false,
     isFocused: false,
     isEntered: false,
     enableInteractions: false,
@@ -260,8 +258,6 @@ export class EuiDataGridCell extends Component<
 
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
-    if (nextState.renderPopoverOpen !== this.state.renderPopoverOpen)
-      return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
     if (nextState.enableInteractions !== this.state.enableInteractions)
@@ -326,13 +322,7 @@ export class EuiDataGridCell extends Component<
   };
 
   closePopover = () => {
-    // due to a bug, popovers don't close properly wenn unmounted in open state.
-    // This "double set" makes sure to unmount the component in closed state.
-    this.setState({ popoverIsOpen: false }, () =>
-      this.setState(() => ({
-        renderPopoverOpen: false,
-      }))
-    );
+    this.setState({ popoverIsOpen: false });
   };
 
   render() {
@@ -384,14 +374,7 @@ export class EuiDataGridCell extends Component<
           case keys.ENTER:
           case keys.F2:
             event.preventDefault();
-            // due to a bug, popovers become unclosable if they are directly rendered
-            // with isOpen set to true. This "double set" makes sure to mount the component
-            // in closed state before opening it
-            this.setState({ popoverIsOpen: true }, () =>
-              this.setState(({ popoverIsOpen }) => ({
-                renderPopoverOpen: popoverIsOpen,
-              }))
-            );
+            this.setState({ popoverIsOpen: true });
             break;
         }
       } else {
@@ -505,18 +488,9 @@ export class EuiDataGridCell extends Component<
                 popoverIsOpen={this.state.popoverIsOpen}
                 closePopover={this.closePopover}
                 onExpandClick={() => {
-                  // due to a bug, popovers become unclosable if they are directly rendered
-                  // with isOpen set to true. This "double set" makes sure to mount the component
-                  // in closed state before opening it
-                  this.setState(
-                    ({ popoverIsOpen }) => ({
-                      popoverIsOpen: !popoverIsOpen,
-                    }),
-                    () =>
-                      this.setState(({ popoverIsOpen }) => ({
-                        renderPopoverOpen: popoverIsOpen,
-                      }))
-                  );
+                  this.setState(({ popoverIsOpen }) => ({
+                    popoverIsOpen: !popoverIsOpen,
+                  }));
                 }}
               />
             )}
@@ -543,18 +517,10 @@ export class EuiDataGridCell extends Component<
               anchorContent={anchorContent}
               cellContentProps={cellContentProps}
               cellContentsRef={this.cellContentsRef}
-              closePopover={() => {
-                // due to a bug, popovers don't close properly wenn unmounted in open state.
-                // This "double set" makes sure to unmount the component in closed state.
-                this.setState({ popoverIsOpen: false }, () =>
-                  this.setState(() => ({
-                    renderPopoverOpen: false,
-                  }))
-                );
-              }}
+              closePopover={this.closePopover}
               column={column}
               panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
-              popoverIsOpen={this.state.renderPopoverOpen}
+              popoverIsOpen={this.state.popoverIsOpen}
               rowIndex={rowIndex}
               renderCellValue={rest.renderCellValue}
               popoverContent={PopoverContent}
