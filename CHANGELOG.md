@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `30.6.1`.
+
+## [`30.6.1`](https://github.com/elastic/eui/tree/v30.6.1)
+
 **Note: this release is a backport containing changes originally made in `31.5.0`**
 
 **Bug fixes**
