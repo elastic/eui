@@ -176,6 +176,10 @@ export interface EuiPopoverProps {
    * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
+  /**
+   * IDs used in ARIA and labels
+   */
+  ariaLabelledId?: string;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -659,6 +663,7 @@ export class EuiPopover extends Component<Props, State> {
       display,
       onTrapDeactivation,
       buffer,
+      ariaLabelledId,
       container,
       ...rest
     } = this.props;
@@ -745,7 +750,7 @@ export class EuiPopover extends Component<Props, State> {
               tabIndex={tabIndex}
               aria-live={ariaLive}
               role="dialog"
-              aria-label="Demo Tour"
+              aria-labelledby={ariaLabelledId}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
               style={this.state.popoverStyles}>

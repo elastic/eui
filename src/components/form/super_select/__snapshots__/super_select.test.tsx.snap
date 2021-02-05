@@ -166,7 +166,6 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      aria-label="Demo Tour"
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
@@ -441,7 +440,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      aria-label="Demo Tour"
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
@@ -603,7 +601,6 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      aria-label="Demo Tour"
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
