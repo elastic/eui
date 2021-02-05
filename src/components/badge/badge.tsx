@@ -250,6 +250,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       }
       optionalIcon = (
         <button
+          type="button"
           className="euiBadge__iconButton"
           aria-label={iconOnClickAriaLabel}
           disabled={isDisabled}
