@@ -2,6 +2,10 @@
 
 - Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
 
+**Bug fixes**
+
+- Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
+
 ## [`31.5.0`](https://github.com/elastic/eui/tree/v31.5.0)
 
 - Added `isLoading` prop and added `EuiOverlayMask` directly to `EuiConfirmModal` ([#4421](https://github.com/elastic/eui/pull/4421))
