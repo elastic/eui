@@ -67,7 +67,7 @@ export const renderPropsForComponent = (
   if (description) {
     descriptionElement = (
       <>
-        <EuiText>
+        <EuiText size="s">
           <p>{markup(description)}</p>
         </EuiText>
         <EuiSpacer />
@@ -79,22 +79,24 @@ export const renderPropsForComponent = (
     <React.Fragment key={componentName}>
       <EuiHorizontalRule margin="none" />
       <EuiSpacer size="m" />
-      <EuiFlexGroup alignItems="baseline" wrap>
-        <EuiFlexItem grow={false}>
-          <EuiTitle size="s">
-            <h3 id={componentName}>{componentName}</h3>
-          </EuiTitle>
-        </EuiFlexItem>
-        {extendedTypesElements.length > 0 && (
-          <EuiFlexItem>
-            <EuiText size="s">
-              <p>[ extends {extendedTypesElements} ]</p>
-            </EuiText>
+      <div className="guideSection__propsTableIntro">
+        <EuiFlexGroup alignItems="baseline" wrap>
+          <EuiFlexItem grow={false}>
+            <EuiTitle size="s">
+              <h3 id={componentName}>{componentName}</h3>
+            </EuiTitle>
           </EuiFlexItem>
-        )}
-      </EuiFlexGroup>
-      <EuiSpacer size="s" />
-      {descriptionElement}
+          {extendedTypesElements.length > 0 && (
+            <EuiFlexItem>
+              <EuiText size="s">
+                <p>[ extends {extendedTypesElements} ]</p>
+              </EuiText>
+            </EuiFlexItem>
+          )}
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+        {descriptionElement}
+      </div>
       {!descriptionOnly && (
         <PlaygroundProps
           isPlayground={false}
@@ -272,7 +274,7 @@ export class GuideSection extends Component {
     const { props } = this.props;
     return this.componentNames
       .map((componentName) =>
-        this.renderPropsForComponent(componentName, props[componentName])
+        renderPropsForComponent(componentName, props[componentName])
       )
       .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
   }
@@ -335,7 +337,7 @@ export class GuideSection extends Component {
       if (this.state.isPlayground) {
         const { componentName, scope } = this.props.playground().config;
 
-        propsTable = this.renderPropsForComponent(
+        propsTable = renderPropsForComponent(
           componentName,
           scope[componentName]
         );
@@ -402,7 +404,7 @@ export class GuideSection extends Component {
       playgroundClassName,
     } = this.props.playground();
 
-    const description = this.renderPropsForComponent(
+    const description = renderPropsForComponent(
       config.componentName,
       config.scope[config.componentName],
       true

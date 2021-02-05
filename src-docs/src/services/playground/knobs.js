@@ -436,7 +436,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
         <>
-          <EuiBadge color="hollow">
+          <EuiBadge color="hollow" className="eui-alignBaseline">
             Default: <code>{defaultValue.value}</code>
           </EuiBadge>
           {/* {defaultValue.comment && `(${defaultValue.comment})`} */}
@@ -453,7 +453,10 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           isMobileFullWidth={true}>
           <div>
             <EuiTitle size="xxs">
-              <span>{humanizedName}</span>
+              <span>
+                {humanizedName}
+                {defaultValueMarkup && <>&emsp; {defaultValueMarkup}</>}
+              </span>
             </EuiTitle>
             {state[name].description && (
               <>
@@ -469,15 +472,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`type__${name}-${idx}`}
           header="Type"
           textOnly={false}>
-          <div>
-            {typeMarkup}
-            {defaultValueMarkup && (
-              <>
-                <EuiSpacer size="xs" />
-                {defaultValueMarkup}
-              </>
-            )}
-          </div>
+          <div>{typeMarkup}</div>
         </EuiTableRowCell>
         {isPlayground && (
           <EuiTableRowCell
