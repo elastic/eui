@@ -65,6 +65,14 @@ No public interface changes since `31.5.0`.
 - Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
 - Upgraded to TypeScript v4.0 ([#4296](https://github.com/elastic/eui/pull/4296))
 
+## [`30.6.1`](https://github.com/elastic/eui/tree/v30.6.1)
+
+**Note: this release is a backport containing changes originally made in `31.5.0`**
+
+**Bug fixes**
+
+- Fixed `EuiBadge` with `iconOnClick` from catching form submit events ([#4479](https://github.com/elastic/eui/pull/4479))
+
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 
 - Adjusted the shadow in `EuiComment` ([#4321](https://github.com/elastic/eui/pull/4321))
