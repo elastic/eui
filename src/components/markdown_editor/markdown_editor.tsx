@@ -49,13 +49,14 @@ import {
   EuiMarkdownParseError,
   EuiMarkdownStringTagConfig,
 } from './markdown_types';
-import { EuiOverlayMask } from '../overlay_mask';
+
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import {
   defaultParsingPlugins,
   defaultProcessingPlugins,
+  defaultUiPlugins,
 } from './plugins/markdown_default_plugins';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
@@ -193,7 +194,7 @@ export const EuiMarkdownEditor = forwardRef<
       autoExpandPreview = true,
       parsingPluginList = defaultParsingPlugins,
       processingPluginList = defaultProcessingPlugins,
-      uiPlugins = [],
+      uiPlugins = defaultUiPlugins,
       onParse,
       errors = [],
       'aria-label': ariaLabel,
@@ -214,7 +215,14 @@ export const EuiMarkdownEditor = forwardRef<
       EuiMarkdownEditorUiPlugin | undefined
     >(undefined);
 
-    const toolbarPlugins = [MarkdownTooltip.plugin, ...uiPlugins];
+    const toolbarPlugins = [...uiPlugins];
+    // @ts-ignore __originatedFromEui is a custom property
+    if (!uiPlugins.__originatedFromEui) {
+      toolbarPlugins.unshift(MarkdownTooltip.plugin);
+      console.warn(
+        'Deprecation warning: uiPlugins passed to EuiMarkdownEditor does not include the tooltip plugin, which has been added for you. This automatic inclusion has been deprecated and will be removed in the future, see https://github.com/elastic/eui/pull/4383'
+      );
+    }
 
     const markdownActions = useMemo(
       () => new MarkdownActions(editorId, toolbarPlugins),
@@ -474,45 +482,43 @@ export const EuiMarkdownEditor = forwardRef<
             </EuiMarkdownEditorDropZone>
 
             {pluginEditorPlugin && (
-              <EuiOverlayMask>
-                <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
-                  {createElement(pluginEditorPlugin.editor!, {
-                    node:
+              <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
+                {createElement(pluginEditorPlugin.editor!, {
+                  node:
+                    selectedNode &&
+                    selectedNode.type === pluginEditorPlugin.name
+                      ? selectedNode
+                      : null,
+                  onCancel: () => setPluginEditorPlugin(undefined),
+                  onSave: (markdown, config) => {
+                    if (
                       selectedNode &&
                       selectedNode.type === pluginEditorPlugin.name
-                        ? selectedNode
-                        : null,
-                    onCancel: () => setPluginEditorPlugin(undefined),
-                    onSave: (markdown, config) => {
-                      if (
-                        selectedNode &&
-                        selectedNode.type === pluginEditorPlugin.name
-                      ) {
-                        // modifying an existing node
-                        textareaRef.current!.setSelectionRange(
-                          selectedNode.position.start.offset,
-                          selectedNode.position.end.offset
+                    ) {
+                      // modifying an existing node
+                      textareaRef.current!.setSelectionRange(
+                        selectedNode.position.start.offset,
+                        selectedNode.position.end.offset
+                      );
+                    } else {
+                      // creating a new node
+                      if (config.block) {
+                        // inject newlines if needed
+                        markdown = padWithNewlinesIfNeeded(
+                          textareaRef.current!,
+                          markdown
                         );
-                      } else {
-                        // creating a new node
-                        if (config.block) {
-                          // inject newlines if needed
-                          markdown = padWithNewlinesIfNeeded(
-                            textareaRef.current!,
-                            markdown
-                          );
-                        }
                       }
-                      insertText(textareaRef.current!, {
-                        text: markdown,
-                        selectionStart: undefined,
-                        selectionEnd: undefined,
-                      });
-                      setPluginEditorPlugin(undefined);
-                    },
-                  })}
-                </EuiModal>
-              </EuiOverlayMask>
+                    }
+                    insertText(textareaRef.current!, {
+                      text: markdown,
+                      selectionStart: undefined,
+                      selectionEnd: undefined,
+                    });
+                    setPluginEditorPlugin(undefined);
+                  },
+                })}
+              </EuiModal>
             )}
           </div>
         </div>
