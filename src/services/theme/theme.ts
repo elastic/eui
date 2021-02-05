@@ -343,7 +343,7 @@ const borders = {
   ),
 };
 
-export const unbuiltDefaultEuiTheme = {
+export const euiThemeDefault = {
   [COLOR_MODE_KEY]: {
     light,
     dark,
@@ -364,7 +364,4 @@ export const unbuiltDefaultEuiTheme = {
   },
 };
 
-export const DefaultEuiTheme = buildTheme(
-  unbuiltDefaultEuiTheme,
-  'DEFAULT_EUI_THEME'
-);
+export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');

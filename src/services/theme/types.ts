@@ -17,97 +17,46 @@
  * under the License.
  */
 
-// interface Store {
-//   parent: {
-//     child?: {
-//       age: number;
-//       siblings?: number;
-//     };
-//   };
-//   other: false;
-//   name?: string;
-// }
+import { euiThemeDefault } from './theme';
 
-// type primitive = string | number | boolean | undefined | null;
-
-// class Undefined<T> {
-//   constructor(private t: T) {}
-// }
-
-// type RequiredKeys<T> = {
-//   [K in keyof T]-?: {} extends Pick<T, K> ? never : K;
-// }[keyof T];
-// type Accessor<Shape, ForceOptional = false> = {
-//   [key in keyof Shape]-?: Shape[key] extends primitive
-//     ? key extends RequiredKeys<Shape>
-//       ? // required
-//         ForceOptional extends false
-//         ? Shape[key]
-//         : Shape[key] | undefined
-//       : // optional
-//         // Any `undefined` added here would be removed if --strictNullChecks mode is enabled
-//         // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html
-//         // >> Note that in --strictNullChecks mode, when a homomorphic mapped type removes a ? modifier from a property in the underlying type it also removes undefined from the type of that property:
-//         // instead, we can return a private class and convert it back to
-//         // `undefined` when the time comes to interpret the output type
-//         Undefined<Shape[key]> // note there is no `| undefined` here, as the type already includes it from being optional
-//     : key extends RequiredKeys<Shape>
-//     ? Accessor<Shape[key], ForceOptional> // required
-//     : Accessor<Shape[key], true>; // optional
-// };
-
-// type TypeFromAccessor<T> = T extends primitive
-//   ? T
-//   : T extends Undefined<infer U>
-//   ? U
-//   : T extends Accessor<infer Shape, infer ForceOptional>
-//   ? ForceOptional extends true
-//     ? Shape | undefined
-//     : Shape
-//   : never;
-
-// const storeAccessor: TypeFromAccessor<Accessor<Store>> = null as any;
-// storeAccessor.name; // string | undefined
-// storeAccessor.other; // false
-// storeAccessor.parent; // object
-// storeAccessor.parent.child; // object | undefined
-
-// const otherAccessor: TypeFromAccessor<Accessor<Store>['other']> = null as any; // false
-// const nameAccessor: TypeFromAccessor<Accessor<Store>['name']> = null as any; // string | undefined
-
-// const parentAccessor: TypeFromAccessor<Accessor<Store>['parent']> = null as any;
-// parentAccessor.child; // object | undefined
-
-// const childAccessor: TypeFromAccessor<
-//   Accessor<Store>['parent']['child']
-// > = null as any;
-// childAccessor.age; // good error - possibly undefined
-// childAccessor!.age; // number
-// childAccessor!.siblings; // number | undefined
-
-// const ageAccessor: TypeFromAccessor<
-//   Accessor<Store>['parent']['child']['age']
-// > = null as any;
-// ageAccessor; // number | undefined
-// ageAccessor.toString(); // good error - possibly undefined
-// const siblingsAccessor: TypeFromAccessor<
-//   Accessor<Store>['parent']['child']['siblings']
-// > = null as any;
-// siblingsAccessor; // number || undefined
-// siblingsAccessor.toString(); // good error
-
-export type EuiThemeInverseColorMode = 'inverse';
-export type EuiThemeStandardColorMode = 'light' | 'dark';
+type EuiThemeColorModeInverse = 'inverse';
+type EuiThemeColorModeStandard = 'light' | 'dark';
 export type EuiThemeColorMode =
   | string
-  | EuiThemeStandardColorMode
-  | EuiThemeInverseColorMode;
-// The actual shape of a theme is still in flux
-export interface EuiTheme {
-  [key: string]: any;
-  // colors: { [key: string]: any };
-  // colorVis: { [key: string]: any };
-  // sizes: { [key: string]: any };
-  // borders: { [key: string]: any };
-  // buttons: { [key: string]: any };
-}
+  | EuiThemeColorModeStandard
+  | EuiThemeColorModeInverse;
+
+export type EuiThemeShape = typeof euiThemeDefault;
+export type EuiThemeColor = EuiThemeShape['colors']['light'];
+
+export type EuiThemeSystem<T = {}> = {
+  root: EuiThemeShape & T;
+  model: EuiThemeShape & T;
+  key: string;
+};
+
+type DeepPartial<T> = T extends Function
+  ? T
+  : T extends object
+  ? { [P in keyof T]?: DeepPartial<T[P]> }
+  : T;
+export type EuiThemeOverrides<T = {}> = DeepPartial<EuiThemeShape & T>;
+
+type OmitDistributive<T, K extends PropertyKey> = T extends any
+  ? T extends object
+    ? OmitRecursively<T, K>
+    : T
+  : never;
+type OmitRecursively<T extends any, K extends PropertyKey> = Omit<
+  { [P in keyof T]: OmitDistributive<T[P], K> },
+  K
+>;
+
+type Colorless<T> = OmitRecursively<T, 'colors'>;
+export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {
+  colors: EuiThemeColor;
+  // I don't like this
+  buttons: Colorless<EuiThemeShape['buttons']> & {
+    colors: EuiThemeShape['buttons']['colors']['light'];
+  };
+};

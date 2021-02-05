@@ -28,7 +28,8 @@ import {
   withEuiTheme,
   EuiThemeProvider,
   computed,
-  // DefaultEuiTheme,
+  euiThemeDefault,
+  buildTheme,
 } from '../../../../src/services';
 
 const View = () => {
@@ -118,6 +119,7 @@ const View2 = () => {
 class Block extends React.Component<any> {
   render() {
     const { theme, ...props } = this.props;
+    // TODO: TS autocomplete not working
     const blockStyle = css`
       color: ${theme.theme.colors.euiColorPrimary};
       border-radius: ${theme.theme.borders.euiBorderRadiusSmall};
@@ -166,6 +168,14 @@ export default () => {
     );
   };
 
+  const newTheme = buildTheme(
+    {
+      ...euiThemeDefault,
+      custom: '#000',
+    },
+    'CUSTOM'
+  );
+
   return (
     <>
       <EuiThemeProvider
@@ -188,7 +198,9 @@ export default () => {
         <View />
         <View2 />
         <EuiSpacer />
-        <EuiThemeProvider colorMode="inverse">
+        <EuiThemeProvider<{ custom: string }>
+          theme={newTheme}
+          colorMode="inverse">
           <em>Inverse colorMode</em>
           <View3 />
           <em>withEuiTheme</em>

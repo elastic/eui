@@ -18,15 +18,20 @@
  */
 
 import { createContext } from 'react';
-import { EuiTheme, EuiThemeColorMode } from './types';
-import { DefaultEuiTheme } from './theme';
+import {
+  EuiThemeColorMode,
+  EuiThemeSystem,
+  EuiThemeOverrides,
+  EuiThemeComputed,
+} from './types';
+import { EuiThemeDefault } from './theme';
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
-export const EuiSystemContext = createContext<EuiTheme>(DefaultEuiTheme);
-export const EuiOverrideContext = createContext<EuiTheme>({});
+export const EuiSystemContext = createContext<EuiThemeSystem>(EuiThemeDefault);
+export const EuiOverrideContext = createContext<EuiThemeOverrides>({});
 export const EuiColorModeContext = createContext<EuiThemeColorMode>(
   DEFAULT_COLOR_MODE
 );
-export const EuiThemeContext = createContext<EuiTheme>(
-  getComputed(DefaultEuiTheme, {}, DEFAULT_COLOR_MODE)
+export const EuiThemeContext = createContext<EuiThemeComputed>(
+  getComputed(EuiThemeDefault, {}, DEFAULT_COLOR_MODE)
 );

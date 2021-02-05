@@ -22,7 +22,7 @@ import React, {
   useEffect,
   useRef,
   useState,
-  FunctionComponent,
+  PropsWithChildren,
 } from 'react';
 import isEqual from 'lodash/isEqual';
 
@@ -32,22 +32,22 @@ import {
   EuiOverrideContext,
   EuiColorModeContext,
 } from './context';
-import { getColorMode, mergeDeep, getComputed, buildTheme } from './utils';
-import { EuiTheme, EuiThemeColorMode } from './types';
+import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
+import { EuiThemeColorMode, EuiThemeSystem, EuiThemeOverrides } from './types';
 
-export interface EuiThemeProviderProps {
-  theme?: EuiTheme;
+export interface EuiThemeProviderProps<T> {
+  theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
-  overrides?: EuiTheme;
+  overrides?: EuiThemeOverrides<T>;
   children: any;
 }
 
-export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
+export function EuiThemeProvider<T = {}>({
   theme: _system,
   colorMode: _colorMode,
-  overrides: _overrides = {},
+  overrides: _overrides,
   children,
-}) => {
+}: PropsWithChildren<EuiThemeProviderProps<T>>) {
   const parentSystem = useContext(EuiSystemContext);
   const parentOverrides = useContext(EuiOverrideContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -56,12 +56,12 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
   const [system, setSystem] = useState(_system || parentSystem);
   const prevSystemKey = useRef(system.key);
 
-  const [overrides, setOverrides] = useState(
+  const [overrides, setOverrides] = useState<EuiThemeOverrides>(
     mergeDeep(parentOverrides, _overrides)
   );
   const prevOverrides = useRef(overrides);
 
-  const [colorMode, setColorMode] = useState(
+  const [colorMode, setColorMode] = useState<EuiThemeColorMode>(
     getColorMode(_colorMode, parentColorMode)
   );
   const prevColorMode = useRef(colorMode);
@@ -76,7 +76,11 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
   const [theme, setTheme] = useState(
     Object.keys(parentTheme).length
       ? parentTheme
-      : getComputed(system, buildTheme(overrides, `_${system.key}`), colorMode)
+      : getComputed(
+          system,
+          buildTheme(overrides, `_${system.key}`) as typeof system,
+          colorMode
+        )
   );
 
   useEffect(() => {
@@ -109,7 +113,11 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
   useEffect(() => {
     if (!isParentTheme.current) {
       setTheme(
-        getComputed(system, buildTheme(overrides, `_${system.key}`), colorMode)
+        getComputed(
+          system,
+          buildTheme(overrides, `_${system.key}`) as typeof system,
+          colorMode
+        )
       );
     }
   }, [colorMode, system, overrides]);
@@ -125,4 +133,4 @@ export const EuiThemeProvider: FunctionComponent<EuiThemeProviderProps> = ({
       </EuiSystemContext.Provider>
     </EuiColorModeContext.Provider>
   );
-};
+}

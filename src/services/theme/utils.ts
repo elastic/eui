@@ -17,7 +17,13 @@
  * under the License.
  */
 
-import { EuiTheme, EuiThemeColorMode } from './types';
+import {
+  EuiThemeColorMode,
+  EuiThemeOverrides,
+  EuiThemeSystem,
+  EuiThemeShape,
+  EuiThemeComputed,
+} from './types';
 
 export const COLOR_MODE_KEY = 'colors';
 export const DEFAULT_COLOR_MODE = 'light';
@@ -44,9 +50,9 @@ export const getColorMode = (
 };
 
 export const getOn = (
-  model: EuiTheme,
+  model: { [key: string]: any },
   _path: string,
-  colorMode?: EuiThemeColorMode
+  colorMode: EuiThemeColorMode
 ) => {
   const path = _path.split('.');
   let node = model;
@@ -55,7 +61,7 @@ export const getOn = (
     if (node.hasOwnProperty(segment) === false) {
       return undefined;
     }
-    if (colorMode && segment === COLOR_MODE_KEY) {
+    if (segment === COLOR_MODE_KEY) {
       if (node[segment].hasOwnProperty(colorMode) === false) {
         return undefined;
       } else {
@@ -73,7 +79,11 @@ export const getOn = (
   return node;
 };
 
-export const setOn = (model: EuiTheme, _path: string, value: any) => {
+export const setOn = (
+  model: { [key: string]: any },
+  _path: string,
+  value: any
+) => {
   const path = _path.split('.');
   const propertyName = path.pop()!;
   let node = model;
@@ -97,10 +107,10 @@ export class Computed<T> {
   ) {}
 
   getValue(
-    base: EuiTheme,
-    overrides: EuiTheme = {},
-    working: EuiTheme,
-    colorMode?: EuiThemeColorMode
+    base: EuiThemeSystem | EuiThemeShape,
+    overrides: EuiThemeOverrides = {},
+    working: EuiThemeComputed,
+    colorMode: EuiThemeColorMode
   ) {
     return this.computer(
       this.dependencies.map((dependency) => {
@@ -121,18 +131,22 @@ export const computed = <T>(
   return (new Computed(dependencies, computer) as unknown) as T;
 };
 
-export const getComputed = (
-  base: EuiTheme,
-  over: EuiTheme,
-  colorMode?: EuiThemeColorMode
-) => {
+export const getComputed = <T = EuiThemeShape>(
+  base: EuiThemeSystem<T>,
+  over: Partial<EuiThemeSystem<T>>,
+  colorMode: EuiThemeColorMode
+): EuiThemeComputed<T> => {
   const output = {};
 
-  function loop(base: EuiTheme, over: EuiTheme, path?: string) {
+  function loop(
+    base: { [key: string]: any },
+    over: { [key: string]: any },
+    path?: string
+  ) {
     Object.keys(base).forEach((key) => {
       const arr = path?.split('.') || [];
       const last = arr[arr.length - 1];
-      if (colorMode && last === COLOR_MODE_KEY && key !== colorMode) {
+      if (last === COLOR_MODE_KEY && key !== colorMode) {
         // Intentional no-op
       } else {
         const newPath = path ? `${path}.${key}` : `${key}`;
@@ -153,51 +167,62 @@ export const getComputed = (
     });
   }
   loop(base, over);
-  return !colorMode ? output : currentColorModeOnly(colorMode, output);
+  return currentColorModeOnly<T>(colorMode, output as T);
 };
 
-export const buildTheme = (model: EuiTheme, key: string) => {
-  const handler = {
-    getPrototypeOf(target: EuiTheme) {
+export const buildTheme = <T extends {}>(model: T, key: string) => {
+  const handler: ProxyHandler<EuiThemeSystem<T>> = {
+    getPrototypeOf(target) {
       return Reflect.getPrototypeOf(target.model);
     },
 
-    setPrototypeOf(target: EuiTheme, prototype: any) {
+    setPrototypeOf(target, prototype) {
       return Reflect.setPrototypeOf(target.model, prototype);
     },
 
-    isExtensible(target: EuiTheme) {
+    isExtensible(target) {
       return Reflect.isExtensible(target);
     },
 
-    preventExtensions(target: EuiTheme) {
+    preventExtensions(target) {
       return Reflect.preventExtensions(target.model);
     },
 
-    getOwnPropertyDescriptor(target: EuiTheme, key: string) {
+    getOwnPropertyDescriptor(target, key) {
       return Reflect.getOwnPropertyDescriptor(target.model, key);
     },
 
-    defineProperty(target: EuiTheme, property: string, attributes: any) {
+    defineProperty(target, property, attributes) {
       return Reflect.defineProperty(target.model, property, attributes);
     },
 
-    has(target: EuiTheme, property: string) {
+    has(target, property) {
       return Reflect.has(target.model, property);
     },
 
-    get(_target: EuiTheme, property: string): any {
+    get(_target, property) {
       if (property === 'key') {
         return _target[property];
       }
+
+      // prevent Safari from locking up when the proxy is used in dev tools
+      // as it doesn't support getPrototypeOf
+      if (property === '__proto__') return {};
+
       const target = property === 'root' ? _target : _target.model || _target;
-      if (typeof target[property] === 'object' && target[property] !== null) {
+      // @ts-ignore `string` index signature
+      const value = target[property];
+      if (typeof value === 'object' && value !== null) {
         return new Proxy(
-          { model: target[property], root: _target.root },
+          {
+            model: value,
+            root: _target.root,
+            key: `_${_target.key}`,
+          },
           handler
         );
       } else {
-        return target[property];
+        return value;
       }
     },
 
@@ -205,20 +230,20 @@ export const buildTheme = (model: EuiTheme, key: string) => {
       return target;
     },
 
-    deleteProperty(target: EuiTheme, property: string) {
-      return Reflect.deleteProperty(target.model, property);
+    deleteProperty(target: any) {
+      return target;
     },
 
-    ownKeys(target: EuiTheme) {
+    ownKeys(target) {
       return Reflect.ownKeys(target.model);
     },
 
-    apply(target: EuiTheme, thisArg: any, argumentList: any) {
-      return Reflect.apply(target.model, thisArg, argumentList);
+    apply(target: any) {
+      return target;
     },
 
-    construct(target: EuiTheme, argumentsList: any, newTarget: any) {
-      return Reflect.construct(target.model, argumentsList, newTarget);
+    construct(target: any) {
+      return target;
     },
   };
   const themeProxy = new Proxy({ model, root: model, key }, handler);
@@ -226,7 +251,10 @@ export const buildTheme = (model: EuiTheme, key: string) => {
   return themeProxy;
 };
 
-export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
+export const mergeDeep = (
+  _target: { [key: string]: any },
+  source: { [key: string]: any } = {}
+) => {
   const target = { ..._target };
 
   if (!isObject(target) || !isObject(source)) {
@@ -247,11 +275,11 @@ export const mergeDeep = (_target: EuiTheme, source: EuiTheme) => {
   return target;
 };
 
-export const currentColorModeOnly = (
+export const currentColorModeOnly = <T>(
   colorMode: EuiThemeColorMode,
-  _theme: EuiTheme
-) => {
-  const theme: EuiTheme = {};
+  _theme: { [key: string]: any }
+): EuiThemeComputed<T> => {
+  const theme: { [key: string]: any } = {};
 
   Object.keys(_theme).forEach((key) => {
     if (key === COLOR_MODE_KEY) {
@@ -267,5 +295,5 @@ export const currentColorModeOnly = (
     }
   });
 
-  return theme;
+  return theme as EuiThemeComputed<T>;
 };

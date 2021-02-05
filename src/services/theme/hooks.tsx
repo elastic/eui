@@ -24,21 +24,33 @@ import {
   EuiOverrideContext,
   EuiColorModeContext,
 } from './context';
-import { EuiTheme, EuiThemeColorMode } from './types';
+import {
+  EuiThemeColorMode,
+  EuiThemeOverrides,
+  EuiThemeComputed,
+} from './types';
 
-export const useEuiTheme = (): [EuiTheme, EuiThemeColorMode, EuiTheme] => {
+export const useEuiTheme = <T extends {}>(): [
+  EuiThemeComputed<T>,
+  EuiThemeColorMode,
+  EuiThemeOverrides<T>
+] => {
   const theme = useContext(EuiThemeContext);
   const overrides = useContext(EuiOverrideContext);
   const colorMode = useContext(EuiColorModeContext);
 
-  return [theme, colorMode, overrides];
+  return [
+    theme as EuiThemeComputed<T>,
+    colorMode,
+    overrides as EuiThemeOverrides<T>,
+  ];
 };
 
-export const withEuiTheme = <T extends {}>(
+export const withEuiTheme = <T extends {}, U extends {}>(
   Component: React.ComponentType<
     T & {
       theme: {
-        theme: EuiTheme;
+        theme: EuiThemeComputed<U>;
         colorMode: EuiThemeColorMode;
       };
     }
@@ -46,10 +58,9 @@ export const withEuiTheme = <T extends {}>(
 ) => {
   const componentName = Component.displayName || Component.name || 'Component';
   const Render = (props: T, ref: React.Ref<T>) => {
-    const [theme, colorMode] = useEuiTheme();
+    const [theme, colorMode] = useEuiTheme<U>();
     return (
       <Component
-        // TODO: Two props?
         theme={{
           theme,
           colorMode,

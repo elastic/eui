@@ -18,6 +18,7 @@
  */
 
 export {
+  EuiSystemContext,
   EuiThemeContext,
   EuiOverrideContext,
   EuiColorModeContext,
@@ -35,5 +36,12 @@ export {
   setOn,
   Computed,
 } from './utils';
-export { EuiTheme, EuiThemeColorMode } from './types';
-export { DefaultEuiTheme, unbuiltDefaultEuiTheme } from './theme';
+export {
+  EuiThemeColor,
+  EuiThemeColorMode,
+  EuiThemeComputed,
+  EuiThemeOverrides,
+  EuiThemeShape,
+  EuiThemeSystem,
+} from './types';
+export { EuiThemeDefault, euiThemeDefault } from './theme';
