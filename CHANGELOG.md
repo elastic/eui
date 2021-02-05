@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.5.0`.
+**Bug fixes**
+
+- Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
 
 ## [`31.5.0`](https://github.com/elastic/eui/tree/v31.5.0)
 
