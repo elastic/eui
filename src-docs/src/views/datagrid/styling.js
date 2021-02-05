@@ -17,6 +17,7 @@ import {
 const columns = [
   {
     id: 'avatar',
+    initialWidth: 40,
   },
   {
     id: 'name',
