@@ -53,6 +53,7 @@
   @include euiScrollBar;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @mixin euiXScroll {

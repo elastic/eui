@@ -7,7 +7,7 @@ import {
   EuiFlexItem,
   EuiButtonEmpty,
   EuiSideNav,
-  EuiSpacer,
+  EuiPageSideBar,
   EuiText,
   EuiButtonIcon,
   EuiPopover,
@@ -306,24 +306,27 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <div className="guideSideNav">
-        <div className="guideSideNav__identity">
-          {this.renderIdentity()}
-
-          <EuiSpacer size="m" />
-
-          <div className="guideSideNav__search">
+      <EuiPageSideBar style={{ minWidth: 240, overflow: 'hidden' }} sticky>
+        <EuiFlexGroup
+          style={{ height: '100%' }}
+          direction="column"
+          responsive={false}
+          gutterSize="none">
+          <EuiFlexItem grow={false} style={{ flexShrink: 0, padding: 24 }}>
             <EuiFieldSearch
               placeholder="Search"
               value={this.state.search}
               onChange={this.onSearchChange}
               aria-label="Search for a docs section"
             />
-          </div>
-        </div>
-
-        <div className="guideSideNav__content">{sideNavContent}</div>
-      </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="eui-yScroll"
+            style={{ paddingBottom: 24, paddingRight: 12, paddingLeft: 24 }}>
+            {sideNavContent}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPageSideBar>
     );
   }
 }
