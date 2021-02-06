@@ -39,61 +39,61 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 
   function renderGithub() {
     return (
-      <EuiHeaderSectionItemButton
-        aria-label="Elastic repo on GitHub"
-        // @ts-ignore TODO: FIX
-        href="https://github.com/elastic/eui">
-        <EuiToolTip content="Github">
+      <EuiToolTip content="Github">
+        <EuiHeaderSectionItemButton
+          aria-label="Elastic repo on GitHub"
+          // @ts-ignore TODO: FIX
+          href="https://github.com/elastic/eui">
           <EuiIcon type="logoGithub" aria-hidden="true" />
-        </EuiToolTip>
-      </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItemButton>
+      </EuiToolTip>
     );
   }
 
   function renderFigma() {
     return (
-      <EuiHeaderSectionItemButton
-        aria-label="Elastic UI Library on Figma"
-        // @ts-ignore TODO: FIX
-        href="https://www.figma.com/community/file/809845546262698150">
-        <EuiToolTip
-          title="Open Figma Design Library"
-          content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
+      <EuiToolTip
+        title="Open Figma Design Library"
+        content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
+        <EuiHeaderSectionItemButton
+          aria-label="Elastic UI Library on Figma"
+          // @ts-ignore TODO: FIX
+          href="https://www.figma.com/community/file/809845546262698150">
           <EuiIcon type={logoFigma} aria-hidden="true" />
-        </EuiToolTip>
-      </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItemButton>
+      </EuiToolTip>
     );
   }
 
   function renderSketch() {
     return (
-      <EuiHeaderSectionItemButton
-        aria-label="Elastic UI Library for Sketch"
-        // @ts-ignore TODO: FIX
-        href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-        <EuiToolTip
-          title="(Outdated) Download Sketch zip"
-          content="Import these sketch files into a new project as libraries.
-            This will provide symbols that match against their EUI component
-            counterparts.">
+      <EuiToolTip
+        title="(Outdated) Download Sketch zip"
+        content="Import these sketch files into a new project as libraries.
+          This will provide symbols that match against their EUI component
+          counterparts.">
+        <EuiHeaderSectionItemButton
+          aria-label="Elastic UI Library for Sketch"
+          // @ts-ignore TODO: FIX
+          href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
           <EuiIcon type="logoSketch" aria-hidden="true" />
-        </EuiToolTip>
-      </EuiHeaderSectionItemButton>
+        </EuiHeaderSectionItemButton>
+      </EuiToolTip>
     );
   }
 
   function renderCodeSandbox() {
     return (
-      <CodeSandboxLink>
-        <EuiHeaderSectionItemButton
-          aria-label="Codesandbox"
-          // @ts-ignore TODO: FIX
-          href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-          <EuiToolTip content="Codesandbox">
+      <EuiToolTip content="Codesandbox">
+        <CodeSandboxLink>
+          <EuiHeaderSectionItemButton
+            aria-label="Codesandbox"
+            // @ts-ignore TODO: FIX
+            href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
             <EuiIcon type="logoCodesandbox" aria-hidden="true" />
-          </EuiToolTip>
-        </EuiHeaderSectionItemButton>
-      </CodeSandboxLink>
+          </EuiHeaderSectionItemButton>
+        </CodeSandboxLink>
+      </EuiToolTip>
     );
   }
 
