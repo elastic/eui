@@ -63,8 +63,8 @@ export default () => {
         </EuiFormRow>
 
         <EuiSpacer />
-
         {button}
+        <EuiSpacer />
       </EuiForm>
     </Fragment>
   );
