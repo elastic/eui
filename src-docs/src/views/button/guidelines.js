@@ -21,9 +21,16 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import ContextMenu from '../context_menu/context_menu';
+import ContextMenu from '../context_menu/small';
 
-import imageButtonPlacement from '../../images/button_placement.png';
+import imageButtonPlacement from '../../images/button_placement.svg';
+import imageButtonPopover from '../../images/button_popover.svg';
+import imageButtonEmpty from '../../images/button_empty.svg';
+import imageButtonLeft from '../../images/button_left.svg';
+import imageButtonRight from '../../images/button_right.svg';
+import imageButtonTable from '../../images/button_table.svg';
+import imageButtonTypesBad from '../../images/button_types_bad.svg';
+import imageButtonTypes from '../../images/button_types.svg';
 
 export default () => (
   <>
@@ -134,23 +141,25 @@ export default () => (
         Placing buttons on the bottom right puts them right where users finish scanning.">
       <GuideRuleExample
         type="do"
-        text="In modals, the primary action is on the bottom right with the
-          secondary action on its left.">
+        text="Place the primary action on the bottom right with the
+          secondary action on its left in modals.">
         <div style={{ textAlign: 'center' }}>
           <EuiImage
             alt="button placement in an input modal"
             url={imageButtonPlacement}
+            height="252"
           />
         </div>
       </GuideRuleExample>
 
       <GuideRuleExample
         type="do"
-        text="Popovers should always use buttons positioned to the right.">
+        text="Always use buttons positioned to the right in popovers.">
         <div style={{ textAlign: 'center' }}>
           <EuiImage
-            alt="button placement in confirmation modal"
-            url="https://i.imgur.com/Jp3ln5t.png"
+            alt="button placement in popovers"
+            url={imageButtonPopover}
+            height="252"
           />
         </div>
       </GuideRuleExample>
@@ -163,20 +172,21 @@ export default () => (
         left with a lot of open space to the right. The user path is top to bottom, in an F-shaped pattern.">
       <GuideRuleExample
         type="do"
-        text="Because the user's eye never leaves the left side,
-          the buttons are on the bottom left. The primary action is in the leftmost position.">
+        text="Put the primary action in the leftmost position so the user's eye never has to leave the one side.">
         <EuiImage
           alt="button placement in form"
-          url="https://i.imgur.com/2nvcgEU.png"
+          url={imageButtonLeft}
+          height="252"
         />
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
-        text="Don't put the actions far away from the content.">
+        text="Put the actions far away from the content.">
         <EuiImage
           alt="form buttons go on the left, not right"
-          url="https://i.imgur.com/Y1rOaoN.png"
+          url={imageButtonRight}
+          height="252"
         />
       </GuideRuleExample>
     </GuideRule>
@@ -192,7 +202,8 @@ export default () => (
           at the top and ends at the bottom. Think of it as adding to a pile.">
         <EuiImage
           alt="button placement in upper right"
-          url="https://i.imgur.com/fJhWvK9.png"
+          url={imageButtonTable}
+          height="252"
         />
       </GuideRuleExample>
 
@@ -203,7 +214,8 @@ export default () => (
           and the content is fairly short, the title and the button should be center aligned.">
         <EuiImage
           alt="center-aligned button"
-          url="https://i.imgur.com/H2yzAEB.png"
+          url={imageButtonEmpty}
+          height="252"
         />
       </GuideRuleExample>
     </GuideRule>
@@ -219,93 +231,29 @@ export default () => (
           the one you want the user to eventually complete.">
         <EuiImage
           alt="one primary button per page"
-          url="https://i.imgur.com/QdTkIt6.png"
+          url={imageButtonTypes}
+          height="252"
         />
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
-        text="Using too many primary buttons confuses the user.">
+        text="Too many primary buttons will confuse the user.">
         <EuiImage
           alt="page without primary button"
-          url="https://i.imgur.com/rmVFU1C.png"
+          url={imageButtonTypesBad}
+          height="252"
         />
-        <EuiSpacer />
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRuleTitle>
-      Icons in buttons either stand on their own or add context
-    </GuideRuleTitle>
-
-    <GuideRule
-      description="Icon buttons can save space.
-        Limit icon buttons to groups of two&mdash;otherwise they lose meaning.">
-      <GuideRuleExample
-        panelColor="subdued"
-        type="do"
-        text="Use icon buttons for universal actions that are easy to understand.">
-        <div>
-          <EuiButtonIcon size="s" iconType="pencil" aria-label="Edit" />
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButtonIcon size="s" iconType="expand" aria-label="Expand" />
-        </div>
-      </GuideRuleExample>
-      <GuideRuleExample
-        panelColor="subdued"
-        type="dont"
-        text="Don't use icons alone in a standard button. It defeats the purpose of saving space.">
-        <div>
-          <EuiButton>
-            <EuiIcon type="pencil" aria-label="Edit" />
-          </EuiButton>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButton>
-            <EuiIcon type="expand" aria-label="Expand" />
-          </EuiButton>
-        </div>
       </GuideRuleExample>
     </GuideRule>
 
     <GuideRule
-      description="Icons can serve as a scanning aid in a text label, but keep to a minimum.
-        Icons work best on labels for binary actions, for example, Create and Delete, and final actions, such as Save.">
-      <GuideRuleExample
-        panelColor="subdued"
-        type="do"
-        text='Use icons to emphasize actions. The arrow on the Continue
-          button lets users know they still have items to fill out. Using the word "Complete"
-          with a rare check icon helps users understand that this is the
-          final action.'>
-        <EuiButton iconType="arrowRight" iconSide="right" fill>
-          Continue
-        </EuiButton>
-        <EuiButton iconType="check" color="secondary" fill>
-          Save and complete
-        </EuiButton>
-      </GuideRuleExample>
-      <GuideRuleExample
-        panelColor="subdued"
-        type="dont"
-        text="Icons often distract from the text.
-          This is especially true when the icon is positioned on the right,
-          with a hard to grok icon.">
-        <EuiButton iconType="indexOpen" iconSide="right" fill>
-          Create index pattern
-        </EuiButton>
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRuleTitle>
-      Minimize the mixing of color, size, and type
-    </GuideRuleTitle>
-
-    <GuideRule
-      description="When in doubt, use a blue button in the default size. Never put more than two
+      heading="Minimize the mixing of color, size, and type"
+      description="When in doubt, use a blue button in the default size and never put more than two
       visual styles next to each other.">
       <GuideRuleExample
         panelColor="subdued"
         type="do"
-        text="Stick to the default pattern: a filled, blue primary button paired with
+        text="Stick to the default pattern: a filled, primary button paired with
           an empty, but same-colored button.">
         <div>
           <EuiFlexGroup>
@@ -340,6 +288,71 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
+    <GuideRuleTitle>
+      Icons in buttons either stand on their own or add context
+    </GuideRuleTitle>
+
+    <GuideRule
+      description="Icon buttons can save space.
+        Limit icon buttons to groups of two, otherwise they lose meaning.">
+      <GuideRuleExample
+        panelColor="subdued"
+        type="do"
+        text="Use icon buttons for universal actions that are easy to understand.">
+        <div>
+          <EuiButtonIcon size="s" iconType="pencil" aria-label="Edit" />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <EuiButtonIcon size="s" iconType="expand" aria-label="Expand" />
+        </div>
+      </GuideRuleExample>
+      <GuideRuleExample
+        panelColor="subdued"
+        type="dont"
+        text="Icons alone in a standard button defeats the purpose of saving space.">
+        <div>
+          <EuiButton>
+            <EuiIcon type="pencil" aria-label="Edit" />
+          </EuiButton>
+          &nbsp;&nbsp;
+          <EuiButton>
+            <EuiIcon type="expand" aria-label="Expand" />
+          </EuiButton>
+        </div>
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      description="Icons can serve as a scanning aid in a text label, but keep to a minimum.
+        Icons work best on labels for binary actions, for example, Create and Delete, and final actions, such as Save.">
+      <GuideRuleExample
+        panelColor="subdued"
+        type="do"
+        text='Use icons to emphasize actions. The arrow on the Continue
+          button lets users know they still have more items to fill out.
+          Using the word "complete" with a rare check icon helps users
+          understand that this is the final action.'>
+        <div>
+          <EuiButton iconType="arrowRight" iconSide="right" fill>
+            Continue
+          </EuiButton>
+          &nbsp;&nbsp;
+          <EuiButton iconType="check" color="secondary" fill>
+            Save and complete
+          </EuiButton>
+        </div>
+      </GuideRuleExample>
+      <GuideRuleExample
+        panelColor="subdued"
+        type="dont"
+        text="Unnecessary icons often distract from the text.
+          This is especially true when the icon is positioned on the right,
+          with a hard to interpret icon.">
+        <EuiButton iconType="indexOpen" iconSide="right" fill>
+          Create index pattern
+        </EuiButton>
+      </GuideRuleExample>
+    </GuideRule>
+
     <GuideRuleTitle>Stack action sets into one button</GuideRuleTitle>
 
     <GuideRule
@@ -348,24 +361,24 @@ export default () => (
       <GuideRuleExample
         panelColor="subdued"
         type="do"
-        text="This example puts multiple actions in one button rather than showing them separately.">
+        text="Put multiple actions inside a menu triggered by a single rather than showing them separately.">
         <ContextMenu />
       </GuideRuleExample>
 
       <GuideRuleExample
         panelColor="subdued"
         type="dont"
-        text="When you have too many buttons, none matter.">
+        text="When there are many buttons, none matter.">
         <div>
           <EuiFlexGroup>
             <EuiFlexItem grow={false}>
-              <EuiButton>Show fullscreen</EuiButton>
+              <EuiButton iconType="copy">Copy</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButton>Display options</EuiButton>
+              <EuiButton iconType="pencil">Edit</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButton>Edit / add panels</EuiButton>
+              <EuiButton iconType="share">Share</EuiButton>
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>
