@@ -28,26 +28,23 @@ import React, {
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import hljs from 'highlight.js';
-
 import { EuiCopy } from '../copy';
-
 import { EuiButtonIcon } from '../button';
-
 import { EuiOverlayMask } from '../overlay_mask';
-
 import { EuiFocusTrap } from '../focus_trap';
-
 import { keys } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
-import { FontSize, PaddingSize } from './code_block';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
   l: 'euiCodeBlock--fontLarge',
 };
+
+type PaddingSize = 'none' | 's' | 'm' | 'l';
+type FontSize = 's' | 'm' | 'l';
 
 export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
@@ -60,7 +57,7 @@ const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-interface Props {
+export interface EuiCodeBlockImplProps {
   className?: string;
   fontSize?: FontSize;
 
@@ -76,6 +73,8 @@ interface Props {
 
   /**
    * Sets the syntax highlighting for a specific language
+   * @see http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
+   * for options
    */
   language?: string;
   overflowHeight?: number;
@@ -93,7 +92,7 @@ interface Props {
  * This is the base component extended by EuiCode and EuiCodeBlock.
  * These components share the same propTypes definition with EuiCodeBlockImpl.
  */
-export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
+export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   transparentBackground = false,
   paddingSize = 'l',
   fontSize = 's',
