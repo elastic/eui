@@ -81,7 +81,7 @@ GuideRuleExample.propTypes = {
   children: PropTypes.node,
   className: PropTypes.node,
   type: PropTypes.string.isRequired,
-  text: PropTypes.string,
+  text: PropTypes.node,
   minHeight: PropTypes.number,
   panelProps: PropTypes.any,
 };

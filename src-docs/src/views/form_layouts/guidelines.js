@@ -11,14 +11,13 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-// import imgFormRowGeneral from '../../images/form-row--00.png';
 import imgFormRowToggle from '../../images/form-row--toggle.gif';
-import imgFormRowGood from '../../images/form-row--01.png';
-import imgFormRowBad from '../../images/form-row--02.png';
-import imgFormRowSpacingGood from '../../images/form-row--03.png';
-import imgFormRowSpacingBad from '../../images/form-row--04.png';
-import imgFormRowPanelsBad from '../../images/form-row--05.png';
-import imgFormRowPanelsGood from '../../images/form-row--06.png';
+import imgFormRowGood from '../../images/form-row--01.svg';
+import imgFormRowBad from '../../images/form-row--02.svg';
+import imgFormRowSpacingGood from '../../images/form-row--03.svg';
+import imgFormRowSpacingBad from '../../images/form-row--04.svg';
+import imgFormRowPanelsBad from '../../images/form-row--05.svg';
+import imgFormRowPanelsGood from '../../images/form-row--06.svg';
 
 export default () => (
   <>
