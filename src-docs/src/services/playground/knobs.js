@@ -472,7 +472,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`type__${name}-${idx}`}
           header="Type"
           textOnly={false}>
-          <div>{typeMarkup}</div>
+          {typeMarkup}
         </EuiTableRowCell>
         {isPlayground && (
           <EuiTableRowCell
