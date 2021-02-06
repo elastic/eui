@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import imageIcons from '../../images/icons.svg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
@@ -11,130 +9,67 @@ import imageCards from '../../images/cards.svg';
 import imagePages from '../../images/page.svg';
 import imageText from '../../images/text.svg';
 import imageCharts from '../../images/charts.svg';
-import logoFigma from '../../images/logo-figma.svg';
+import homeIllustration from '../../images/home_illustration.svg';
 
 import {
   EuiCard,
-  EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
   EuiLink,
   EuiSpacer,
   EuiText,
   EuiTitle,
-  EuiToolTip,
-  EuiScreenReaderOnly,
+  EuiPanel,
+  EuiImage,
 } from '../../../../src/components';
-
-import { CodeSandboxLink } from '../../components/codesandbox';
-
-const pkg = require('../../../../package.json');
 
 export const HomeView = () => (
   <div>
-    <EuiFlexGroup alignItems="center">
-      <EuiFlexItem>
-        <EuiTitle size="l">
-          <h1>Elastic UI framework</h1>
-        </EuiTitle>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiLink href="https://github.com/elastic/eui">
-              <EuiScreenReaderOnly>
-                <span>Elastic repo on GitHub</span>
-              </EuiScreenReaderOnly>
-              <EuiIcon type="logoGithub" aria-hidden="true" />
-            </EuiLink>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
+    <EuiPanel color="subdued" paddingSize="none">
+      <EuiFlexGroup alignItems="center" gutterSize="none">
+        <EuiFlexItem style={{ padding: 24 }}>
+          <EuiTitle size="l">
+            <h1>Elastic UI</h1>
+          </EuiTitle>
+          <EuiSpacer />
+          <EuiSpacer />
+          <EuiTitle size="s">
+            <h2>The framework powering the Elastic Stack</h2>
+          </EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiText grow={false}>
             <p>
-              Version:{' '}
-              <Link
-                aria-label={`Version ${pkg.version}, View changelog`}
-                to="/package/changelog">
-                <strong>{pkg.version}</strong>
-              </Link>
+              The Elastic UI framework (EUI) is a design library in use at
+              Elastic to build internal products that need to share our
+              aesthetics. It distributes UI React components and static assets
+              for use in building web layouts.
             </p>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <p>Libraries:</p>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiLink href="https://www.figma.com/community/file/809845546262698150">
-              <EuiScreenReaderOnly>
-                <span>Elastic UI Library on Figma</span>
-              </EuiScreenReaderOnly>
-              <EuiToolTip
-                title="Open Figma Design Library"
-                postiion="down"
-                content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
-                <EuiIcon type={logoFigma} aria-hidden="true" />
-              </EuiToolTip>
-            </EuiLink>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiToolTip
-              title="Download zip"
-              postiion="down"
-              content="Import these sketch files into a new project as libraries.
-                This will provide symbols that match against their EUI component
-                counterparts.">
-              <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-                <EuiScreenReaderOnly>
-                  <span>Elastic UI Library for Sketch</span>
-                </EuiScreenReaderOnly>
-                <EuiIcon type="logoSketch" aria-hidden="true" />
+            <p>
+              <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
+                <strong>Getting started</strong>
               </EuiLink>
-            </EuiToolTip>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <CodeSandboxLink>
-              <EuiLink>
-                <strong>Codesandbox</strong>
+              &emsp;&emsp;
+              <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">
+                <strong>Kibana plugin development</strong>
               </EuiLink>
-            </CodeSandboxLink>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiIcon type="logoCodesandbox" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem className="eui-textRight">
+          <EuiImage alt="" url={homeIllustration} />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiPanel>
     <EuiSpacer />
-    <EuiText grow={false}>
-      <p>
-        The Elastic UI framework (EUI) is a design library in use at Elastic to
-        build internal products that need to share our aesthetics. It
-        distributes UI React components and static assets for use in building
-        web layouts. Alongside the React components is a SASS/CSS layer that can
-        be used independently on its own. If this is your first time using EUI
-        you might want to read up on{' '}
-        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
-          how to consume EUI
-        </EuiLink>{' '}
-        and{' '}
-        <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">
-          Kibana plugin development
-        </EuiLink>{' '}
-        in general.
-      </p>
-    </EuiText>
     <EuiSpacer />
-    <EuiFlexGrid gutterSize="l" columns={3}>
+    <EuiFlexGroup
+      gutterSize="l"
+      wrap
+      responsize={false}
+      justifyContent="spaceBetween">
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/display/icons"
           textAlign="left"
           image={imageIcons}
@@ -144,6 +79,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/navigation/button"
           textAlign="left"
           image={imageButtons}
@@ -153,6 +89,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/display/text"
           textAlign="left"
           image={imageText}
@@ -162,6 +99,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/layout/page"
           textAlign="left"
           image={imagePages}
@@ -171,6 +109,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/layout/flex"
           textAlign="left"
           image={imageFlexgrid}
@@ -180,6 +119,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/display/card"
           textAlign="left"
           image={imageCards}
@@ -189,6 +129,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/forms/form-layouts"
           textAlign="left"
           image={imageForms}
@@ -198,6 +139,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/tabular-content/tables"
           textAlign="left"
           image={imageTables}
@@ -207,6 +149,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          style={{ minWidth: 250, maxWidth: 316 }}
           href="#/elastic-charts/creating-charts"
           textAlign="left"
           image={imageCharts}
@@ -214,7 +157,7 @@ export const HomeView = () => (
           description="Learn charting best practices and how to integrate EUI with the Elastic Charts library"
         />
       </EuiFlexItem>
-    </EuiFlexGrid>
+    </EuiFlexGroup>
     <EuiSpacer />
     <EuiText grow={false}>
       <h2>Design goals</h2>

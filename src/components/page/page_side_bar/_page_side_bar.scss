@@ -13,3 +13,15 @@
   }
 }
 
+@include euiBreakpoint('m', 'l', 'xl') {
+  .euiPageSideBar--sticky {
+    @include euiScrollBar;
+    position: sticky;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-right: 0;
+    max-height: 100vh;
+    top: 0;
+  }
+}
+

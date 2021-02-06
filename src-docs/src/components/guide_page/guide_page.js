@@ -81,27 +81,25 @@ const GuidePageComponent = ({
   };
 
   return (
-    <Fragment>
-      <div>
-        <EuiFlexGroup justifyContent="spaceBetween">
+    <div className="guideMaxWidth">
+      <EuiFlexGroup justifyContent="spaceBetween">
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="l">
+            <h1>
+              {title} {betaBadge}
+            </h1>
+          </EuiTitle>
+        </EuiFlexItem>
+        {tabs.length > 1 && (
           <EuiFlexItem grow={false}>
-            <EuiTitle size="l">
-              <h1>
-                {title} {betaBadge}
-              </h1>
-            </EuiTitle>
+            <EuiTabs display="condensed">{renderTabs()}</EuiTabs>
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiTabs display="condensed">
-              {tabs.length > 1 && renderTabs()}
-            </EuiTabs>
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        )}
+      </EuiFlexGroup>
 
-        {tabs.length > 1 && <EuiHorizontalRule />}
+      <EuiHorizontalRule />
 
-        <EuiSpacer size="m" />
-      </div>
+      <EuiSpacer size="m" />
 
       <Switch>
         {playground && (
@@ -118,7 +116,7 @@ const GuidePageComponent = ({
 
       {/* Give some space between the bottom of long content and the bottom of the screen */}
       <EuiSpacer size="xl" />
-    </Fragment>
+    </div>
   );
 };
 

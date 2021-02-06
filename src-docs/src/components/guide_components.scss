@@ -3,12 +3,11 @@
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
-.guideBody {
-  background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
-
-  &--overflowHidden {
-    overflow: hidden;
-  }
+.guideMaxWidth {
+  // TODO: Swap with new var in different PR
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @include euiHeaderAffordForFixed;
@@ -33,37 +32,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guidePage {
-  padding: 0;
-}
-
-.guideSideNav {
-  width: $guideSideNavWidth;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-
-  .guideSideNav__identity {
-    border-bottom: $euiBorderThin;
-    padding: $euiSize;
-  }
-
-  .guideSideNav__theme {
-    font-size: $euiFontSizeS;
-    color: $euiColorDarkShade;
-  }
-
-  .guideSideNav__content {
-    @include euiScrollBar;
-
-    width: $guideSideNavWidth;
-    padding: $euiSize;
-    position: absolute;
-    bottom: 0;
-    top: 132px;
-    overflow-y: auto;
-  }
-}
 
 .guideSideNav__item {
   // Hate to do this, but it's the only way to get the badge to display correctly
@@ -251,6 +219,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 100%;
   left: 0;
   top: 0;
+  z-index: 2;
 }
 
 .euiDataGridRowCell--favoriteFranchise {
@@ -276,17 +245,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @import 'guide_rule/index';
 
 @include euiBreakpoint('xs', 's') {
-  .guidePage {
-    display: block; // Fixes IE
-  }
-
-  .guideBody {
-    background: none;
-  }
-
   .guideSideNav {
-    position: static;
-    width: auto;
+    width: 100%;
 
     // This is a temporary hack till we fix how classes pass into form controls
     .euiFormControlLayout,
