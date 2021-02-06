@@ -82,7 +82,7 @@ const GuidePageComponent = ({
 
   return (
     <Fragment>
-      <div className="guideSection__text">
+      <div>
         <EuiFlexGroup justifyContent="spaceBetween">
           <EuiFlexItem grow={false}>
             <EuiTitle size="l">
@@ -111,7 +111,7 @@ const GuidePageComponent = ({
           <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
         )}
         <Route path="">
-          <div className="guideSection__text">{intro}</div>
+          <div>{intro}</div>
           <>{children}</>
         </Route>
       </Switch>

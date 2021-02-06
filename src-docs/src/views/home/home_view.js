@@ -32,7 +32,7 @@ import { CodeSandboxLink } from '../../components/codesandbox';
 const pkg = require('../../../../package.json');
 
 export const HomeView = () => (
-  <div className="guideSection__text">
+  <div>
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem>
         <EuiTitle size="l">

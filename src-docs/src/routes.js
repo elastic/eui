@@ -318,10 +318,7 @@ const navigation = [
         name: 'Sass',
         component: SassGuidelines,
       },
-      {
-        name: 'Writing',
-        component: WritingGuidelines,
-      },
+      createExample(WritingGuidelines, 'Writing'),
     ],
   },
   {

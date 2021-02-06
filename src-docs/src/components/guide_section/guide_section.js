@@ -293,7 +293,7 @@ export class GuideSection extends Component {
       );
     }
     return (
-      <div className="guideSection__text">
+      <div>
         {title}
         {this.props.text && this.props.wrapText ? (
           <EuiText key="text">{this.props.text}</EuiText>
