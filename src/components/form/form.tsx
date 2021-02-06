@@ -42,7 +42,7 @@ export type EuiFormProps = CommonProps &
     /**
      * Where to display the callout with the list of errors
      */
-    invalidCallout?: 'above' | 'none';
+    invalidCallout?: 'above' | 'none' | 'below';
   };
 
 export const EuiForm: FunctionComponent<EuiFormProps> = ({
@@ -73,7 +73,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
 
   let optionalErrorAlert;
 
-  if (isInvalid && invalidCallout === 'above') {
+  if (isInvalid && (invalidCallout === 'above' || invalidCallout === 'below')) {
     optionalErrorAlert = (
       <EuiI18n
         token="euiForm.addressFormErrors"
@@ -93,11 +93,19 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   }
 
   const Element = component;
-
-  return (
-    <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
-      {optionalErrorAlert}
-      {children}
-    </Element>
-  );
+  if (invalidCallout === 'above') {
+    return (
+      <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
+        {optionalErrorAlert}
+        {children}
+      </Element>
+    );
+  } else {
+    return (
+      <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
+        {children}
+        {optionalErrorAlert}
+      </Element>
+    );
+  }
 };
