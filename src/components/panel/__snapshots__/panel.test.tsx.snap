@@ -22,13 +22,13 @@ exports[`EuiPanel props borderRadius none is rendered 1`] = `
 
 exports[`EuiPanel props color accent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--accent euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--accent"
 />
 `;
 
 exports[`EuiPanel props color danger is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--danger euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--danger"
 />
 `;
 
@@ -40,31 +40,31 @@ exports[`EuiPanel props color plain is rendered 1`] = `
 
 exports[`EuiPanel props color primary is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--primary euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--primary"
 />
 `;
 
 exports[`EuiPanel props color subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued"
 />
 `;
 
 exports[`EuiPanel props color success is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--success euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--success"
 />
 `;
 
 exports[`EuiPanel props color transparent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--transparent"
 />
 `;
 
 exports[`EuiPanel props color warning is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--warning euiPanel--shadow"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--warning"
 />
 `;
 

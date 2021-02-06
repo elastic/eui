@@ -25,7 +25,7 @@ const InnerPanel: FunctionComponent<Omit<
   PanelProps,
   'hasShadow' | 'borderRadius'
 >> = ({ children, className, ...rest }) => {
-  const classes = classNames('euiInnerPanel', className);
+  const classes = classNames('euiInnerSplitPanel', className);
 
   const panelProps: PanelProps = {
     hasShadow: false,

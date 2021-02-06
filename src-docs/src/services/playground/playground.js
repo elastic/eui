@@ -88,9 +88,11 @@ export default ({
             {description ? (
               description
             ) : (
-              <EuiTitle size="s">
-                <h2>{config.componentName}</h2>
-              </EuiTitle>
+              <div className="guideSection__propsTableIntro">
+                <EuiTitle size="s">
+                  <h2>{config.componentName}</h2>
+                </EuiTitle>
+              </div>
             )}
             <EuiErrorBoundary>
               <Knobs {...params.knobProps} />

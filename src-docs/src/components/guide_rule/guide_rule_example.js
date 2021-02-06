@@ -51,6 +51,7 @@ export const GuideRuleExample = ({
         style={styles}
         hasShadow={false}
         borderRadius="none"
+        color="transparent"
         {...rest}>
         {(InnerPanel) => (
           <figure>
