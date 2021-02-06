@@ -49,7 +49,7 @@ import {
   EuiMarkdownParseError,
   EuiMarkdownStringTagConfig,
 } from './markdown_types';
-import { EuiOverlayMask } from '../overlay_mask';
+
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
@@ -482,45 +482,43 @@ export const EuiMarkdownEditor = forwardRef<
             </EuiMarkdownEditorDropZone>
 
             {pluginEditorPlugin && (
-              <EuiOverlayMask>
-                <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
-                  {createElement(pluginEditorPlugin.editor!, {
-                    node:
+              <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
+                {createElement(pluginEditorPlugin.editor!, {
+                  node:
+                    selectedNode &&
+                    selectedNode.type === pluginEditorPlugin.name
+                      ? selectedNode
+                      : null,
+                  onCancel: () => setPluginEditorPlugin(undefined),
+                  onSave: (markdown, config) => {
+                    if (
                       selectedNode &&
                       selectedNode.type === pluginEditorPlugin.name
-                        ? selectedNode
-                        : null,
-                    onCancel: () => setPluginEditorPlugin(undefined),
-                    onSave: (markdown, config) => {
-                      if (
-                        selectedNode &&
-                        selectedNode.type === pluginEditorPlugin.name
-                      ) {
-                        // modifying an existing node
-                        textareaRef.current!.setSelectionRange(
-                          selectedNode.position.start.offset,
-                          selectedNode.position.end.offset
+                    ) {
+                      // modifying an existing node
+                      textareaRef.current!.setSelectionRange(
+                        selectedNode.position.start.offset,
+                        selectedNode.position.end.offset
+                      );
+                    } else {
+                      // creating a new node
+                      if (config.block) {
+                        // inject newlines if needed
+                        markdown = padWithNewlinesIfNeeded(
+                          textareaRef.current!,
+                          markdown
                         );
-                      } else {
-                        // creating a new node
-                        if (config.block) {
-                          // inject newlines if needed
-                          markdown = padWithNewlinesIfNeeded(
-                            textareaRef.current!,
-                            markdown
-                          );
-                        }
                       }
-                      insertText(textareaRef.current!, {
-                        text: markdown,
-                        selectionStart: undefined,
-                        selectionEnd: undefined,
-                      });
-                      setPluginEditorPlugin(undefined);
-                    },
-                  })}
-                </EuiModal>
-              </EuiOverlayMask>
+                    }
+                    insertText(textareaRef.current!, {
+                      text: markdown,
+                      selectionStart: undefined,
+                      selectionEnd: undefined,
+                    });
+                    setPluginEditorPlugin(undefined);
+                  },
+                })}
+              </EuiModal>
             )}
           </div>
         </div>

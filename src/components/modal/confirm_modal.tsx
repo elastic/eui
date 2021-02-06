@@ -72,6 +72,10 @@ export interface EuiConfirmModalProps
    * set to a string for a custom width in custom measurement.
    */
   maxWidth?: boolean | number | string;
+  /**
+   * Passes `isLoading` prop to the confirm button
+   */
+  isLoading?: boolean;
 }
 
 export const CONFIRM_BUTTON = 'confirm';
@@ -88,6 +92,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   className,
   buttonColor = 'primary',
   defaultFocusedButton,
+  isLoading,
   ...rest
 }) => {
   const [cancelButton, setCancelButton] = useState<
@@ -158,6 +163,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
         <EuiButton
           data-test-subj="confirmModalConfirmButton"
           onClick={onConfirm}
+          isLoading={isLoading}
           fill
           buttonRef={confirmRef}
           color={buttonColor}
