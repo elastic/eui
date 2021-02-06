@@ -3,7 +3,7 @@ import { EuiCode, EuiCodeBlock } from '../../../../src/components/code';
 import { EuiCopy } from '../../../../src/components/copy';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiText } from '../../../../src/components/text';
-import { EuiSplitPanel, EuiPanel } from '../../../../src/components/panel';
+import { EuiSplitPanel } from '../../../../src/components/panel';
 import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
@@ -40,11 +40,13 @@ export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = (
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
+        {/* @ts-ignore TODO: Fix TS type */}
         <EuiSplitPanel>
-          {(panelProps) => (
+          {/* @ts-ignore TODO: Fix TS type */}
+          {(InnerPanel) => (
             <>
-              <EuiPanel {...panelProps}>{example}</EuiPanel>
-              <EuiPanel {...panelProps} color="subdued">
+              <InnerPanel>{example}</InnerPanel>
+              <InnerPanel color="subdued">
                 {snippet && (
                   <EuiCodeBlock
                     isCopyable={true}
@@ -54,7 +56,7 @@ export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = (
                     {snippet}
                   </EuiCodeBlock>
                 )}
-              </EuiPanel>
+              </InnerPanel>
             </>
           )}
         </EuiSplitPanel>

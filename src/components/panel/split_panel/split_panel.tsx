@@ -21,10 +21,27 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiPanel, PanelProps } from '../panel';
 
+const InnerPanel: FunctionComponent<Omit<
+  PanelProps,
+  'hasShadow' | 'borderRadius'
+>> = ({ children, className, ...rest }) => {
+  const classes = classNames('euiInnerPanel', className);
+
+  const panelProps: PanelProps = {
+    hasShadow: false,
+    color: 'transparent',
+    borderRadius: 'none',
+  };
+
+  return (
+    <EuiPanel className={classes} {...panelProps} {...rest}>
+      {children}
+    </EuiPanel>
+  );
+};
+
 export type EuiSplitPanelProps = Omit<PanelProps, 'paddingSize'> & {
-  children?: (
-    panelProps: Omit<PanelProps, 'hasShadow' | 'borderRadius'>
-  ) => ReactNode;
+  children?: (panel: typeof InnerPanel) => ReactNode;
 };
 
 export const EuiSplitPanel: FunctionComponent<EuiSplitPanelProps> = ({
@@ -34,16 +51,9 @@ export const EuiSplitPanel: FunctionComponent<EuiSplitPanelProps> = ({
 }) => {
   const classes = classNames('euiSplitPanel', className);
 
-  const panelProps: PanelProps = {
-    hasShadow: false,
-    color: 'transparent',
-    borderRadius: 'none',
-    className: 'euiSplitPanel__inner',
-  };
-
   return (
     <EuiPanel paddingSize="none" grow={false} className={classes} {...rest}>
-      {children && children(panelProps)}
+      {children && children(InnerPanel)}
     </EuiPanel>
   );
 };
