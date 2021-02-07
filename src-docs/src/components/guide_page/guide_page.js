@@ -81,7 +81,7 @@ const GuidePageComponent = ({
   };
 
   return (
-    <div className="guideMaxWidth">
+    <>
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
           <EuiTitle size="l">
@@ -116,7 +116,7 @@ const GuidePageComponent = ({
 
       {/* Give some space between the bottom of long content and the bottom of the screen */}
       <EuiSpacer size="xl" />
-    </div>
+    </>
   );
 };
 

@@ -58,15 +58,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   color: $euiColorDarkShade;
 }
 
-.guidePageContent {
-  flex: 1 1 auto;
-  padding: $euiSize $euiSizeXL;
-  min-height: 100vh;
-  background-color: $euiColorEmptyShade;
-  border-left: $euiBorderThin;
-  max-width: 1000px;
-  margin-left: 240px;
-}
 
 .guideDemo__highlightLayout {
   .euiPageBody {
@@ -274,8 +265,22 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     }
   }
 
-  .guidePageContent {
-    margin-left: 0;
-    width: 100%;
+}
+
+.guideHomePage__blockformCard {
+  min-width: 200px;
+  flex-basis: 100% !important;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiBreakpoint('s', 'm') {
+    flex-basis: 45% !important; // sass-lint:disable-line no-important
+  }
+
+  @include euiBreakpoint('l') {
+    flex-basis: 30% !important; // sass-lint:disable-line no-important
+  }
+
+  @include euiBreakpoint('xl') {
+    flex-basis: 22% !important; // sass-lint:disable-line no-important
   }
 }
