@@ -32,6 +32,20 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+.guideSideNav {
+  min-width: $guideSideNavWidth;
+  overflow: hidden;
+}
+
+.guideSideNav__content {
+  @include euiYScroll;
+  padding: 0 $euiSizeL $euiSizeL;
+}
+
+.guideSideNav__search {
+  flex-shrink: 0;
+  padding: $euiSizeL;
+}
 
 .guideSideNav__item {
   // Hate to do this, but it's the only way to get the badge to display correctly
@@ -238,33 +252,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @include euiBreakpoint('xs', 's') {
   .guideSideNav {
     width: 100%;
-
-    // This is a temporary hack till we fix how classes pass into form controls
-    .euiFormControlLayout,
-    input[type='search'] {
-      max-width: 100%;
-    }
-
-    .guideSideNav__content {
-      position: relative;
-      width: auto;
-      top: auto;
-      bottom: auto;
-      padding: 0;
-      overflow-y: hidden;
-    }
-
-    .guideSideNav__identity {
-      position: relative;
-      width: auto;
-    }
-
-    .guideSideNav__mobileToggle {
-      background: $euiColorPrimary;
-      color: $euiColorEmptyShade !important;
-    }
   }
 
+  .guideSideNav__content {
+    padding: 0;
+    border-top: $euiBorderThin;
+  }
 }
 
 .guideHomePage__blockformCard {

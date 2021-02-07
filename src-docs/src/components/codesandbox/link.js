@@ -6,8 +6,6 @@ import {
   listExtraDeps,
 } from '../../services';
 
-import { EuiSpacer } from '../../../../src/components';
-
 const pkg = require('../../../../package.json');
 
 const getVersion = (packageName) => {
@@ -33,7 +31,7 @@ const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/di
   .default;
 
 /* 1 */
-export const CodeSandboxLink = ({ children, content }) => {
+export const CodeSandboxLink = ({ children, className, content }) => {
   let indexContent;
 
   if (!content) {
@@ -155,13 +153,10 @@ ${exampleClose}
       action="https://codesandbox.io/api/v1/sandboxes/define"
       method="POST"
       target="_blank"
-      className="eui-textRight">
+      className={className}>
       {/* 6 */}
       <input type="hidden" name="parameters" value={params} />
-
-      <EuiSpacer size="s" />
       {childWithSubmit}
-      <EuiSpacer size="s" />
     </form>
   );
 };

@@ -18,7 +18,9 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   codeSandbox,
 }) => {
   const codeSandboxLink = codeSandbox && language === 'javascript' && (
-    <CodeSandboxLink content={codeSandbox}>
+    <CodeSandboxLink
+      className="guideSectionExampleCode__link"
+      content={codeSandbox}>
       <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
         Try out this demo on Code Sandbox
       </EuiButtonEmpty>

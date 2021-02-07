@@ -23,7 +23,7 @@ export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
   return (
     <EuiSwitch
       compressed
-      label={<EuiTextColor color="ghost">Activate babelfish</EuiTextColor>}
+      label={<EuiTextColor color="ghost">Babelfish</EuiTextColor>}
       checked={selectedLocale === 'en-xa'}
       onChange={() => onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')}
     />
