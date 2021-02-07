@@ -5,17 +5,11 @@ import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonEmpty,
   EuiSideNav,
   EuiPageSideBar,
   EuiText,
-  EuiButtonIcon,
-  EuiPopover,
-  EuiPopoverTitle,
 } from '../../../../src/components';
 
-import { GuideLocaleSelector } from '../guide_locale_selector';
-import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
 
@@ -115,54 +109,6 @@ export class GuidePageChrome extends Component {
     this.setState({
       isPopoverOpen: false,
     });
-  }
-
-  renderIdentity() {
-    const button = (
-      <EuiButtonIcon
-        iconType="gear"
-        onClick={this.onButtonClick.bind(this)}
-        aria-label="Open EUI options menu"
-        color="text"
-      />
-    );
-    return (
-      <EuiFlexGroup
-        alignItems="center"
-        gutterSize="s"
-        justifyContent="spaceBetween"
-        responsive={false}
-        wrap>
-        <EuiFlexItem grow={false}>
-          <EuiButtonEmpty
-            href="#/"
-            aria-label="EUI home"
-            iconType="logoElastic"
-            size="l">
-            <strong>Elastic UI</strong>
-          </EuiButtonEmpty>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            id="guidePageChromeThemePopover"
-            button={button}
-            isOpen={this.state.isPopoverOpen}
-            closePopover={this.closePopover.bind(this)}>
-            <EuiPopoverTitle>Docs options</EuiPopoverTitle>
-            <div className="guideOptionsPopover">
-              <GuideThemeSelector />
-              {location.host === 'localhost:8030' ? ( // eslint-disable-line no-restricted-globals
-                <GuideLocaleSelector
-                  onToggleLocale={this.props.onToggleLocale}
-                  selectedLocale={this.props.selectedLocale}
-                />
-              ) : null}
-            </div>
-          </EuiPopover>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
   }
 
   renderSubSections = (href, subSections = [], searchTerm = '') => {
@@ -306,23 +252,22 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <EuiPageSideBar style={{ minWidth: 240, overflow: 'hidden' }} sticky>
+      <EuiPageSideBar className="guideSideNav" sticky>
         <EuiFlexGroup
           style={{ height: '100%' }}
           direction="column"
           responsive={false}
           gutterSize="none">
-          <EuiFlexItem grow={false} style={{ flexShrink: 0, padding: 24 }}>
+          <EuiFlexItem grow={false} className="guideSideNav__search">
             <EuiFieldSearch
+              fullWidth
               placeholder="Search"
               value={this.state.search}
               onChange={this.onSearchChange}
               aria-label="Search for a docs section"
             />
           </EuiFlexItem>
-          <EuiFlexItem
-            className="eui-yScroll"
-            style={{ paddingBottom: 24, paddingRight: 12, paddingLeft: 24 }}>
+          <EuiFlexItem className="guideSideNav__content">
             {sideNavContent}
           </EuiFlexItem>
         </EuiFlexGroup>
