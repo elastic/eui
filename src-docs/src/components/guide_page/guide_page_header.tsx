@@ -10,7 +10,6 @@ import { EuiIcon } from '../../../../src/components/icon';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPopover } from '../../../../src/components/popover';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
-import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import { EuiButtonEmpty } from '../../../../src/components/button';
 import logoFigma from '../../images/logo-figma.svg';
@@ -131,7 +130,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     return (
       location.host === 'localhost:8030' && ( // eslint-disable-line no-restricted-globals
         <div style={{ marginRight: 12 }}>
-          {isMobileSize && <EuiSpacer size="s" />}
           <GuideLocaleSelector
             onToggleLocale={onToggleLocale}
             selectedLocale={selectedLocale}
@@ -150,7 +148,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       <EuiHeaderSectionItemButton
         aria-label="Open EUI options menu"
         onClick={() => setMobilePopoverIsOpen((isOpen) => !isOpen)}>
-        <EuiIcon type="gear" aria-hidden="true" />
+        <EuiIcon type="apps" aria-hidden="true" />
       </EuiHeaderSectionItemButton>
     );
 
@@ -161,7 +159,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         isOpen={mobilePopoverIsOpen}
         closePopover={() => setMobilePopoverIsOpen(false)}>
         <div className="guideOptionsPopover">
-          <GuideThemeSelector />
           {renderInternationalization()}
           {renderGithub()}
           {renderSketch()}
@@ -173,7 +170,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   }
 
   const rightSideItems = isMobileSize
-    ? [renderMobileMenu()]
+    ? [<GuideThemeSelector />, renderMobileMenu()]
     : [
         renderInternationalization(),
         <GuideThemeSelector />,
