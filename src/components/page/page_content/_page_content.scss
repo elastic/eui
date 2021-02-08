@@ -1,5 +1,7 @@
 .euiPageContent {
   width: 100%;
+  // Make sure that inner flex layouts don't get larger than this container
+  overflow: hidden;
 
   &.euiPageContent--verticalCenter {
     align-self: center;

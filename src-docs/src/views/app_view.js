@@ -7,7 +7,6 @@ import { registerRouter, translateUsingPseudoLocale } from '../services';
 import {
   EuiErrorBoundary,
   EuiPage,
-  EuiPageBody,
   EuiContext,
   EuiPageContent,
 } from '../../../src/components';
@@ -68,22 +67,21 @@ export class AppView extends Component {
               selectedLocale={locale}
             />
           </EuiErrorBoundary>
-          <EuiPageBody>
-            <EuiPageContent borderRadius="none">
-              <div className="guideMaxWidth">
-                <EuiContext i18n={i18n}>
-                  <ThemeContext.Consumer>
-                    {(context) => {
-                      return React.cloneElement(children, {
-                        selectedTheme: context.theme,
-                        title: currentRoute.name,
-                      });
-                    }}
-                  </ThemeContext.Consumer>
-                </EuiContext>
-              </div>
-            </EuiPageContent>
-          </EuiPageBody>
+
+          <EuiPageContent borderRadius="none">
+            <div className="guideMaxWidth">
+              <EuiContext i18n={i18n}>
+                <ThemeContext.Consumer>
+                  {(context) => {
+                    return React.cloneElement(children, {
+                      selectedTheme: context.theme,
+                      title: currentRoute.name,
+                    });
+                  }}
+                </ThemeContext.Consumer>
+              </EuiContext>
+            </div>
+          </EuiPageContent>
         </EuiPage>
       </>
     );
