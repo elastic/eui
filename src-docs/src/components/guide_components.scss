@@ -12,18 +12,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 @include euiHeaderAffordForFixed;
 
-.euiBody--headerIsFixed {
-  .guideSideNav {
-    top: $euiHeaderHeightCompensation;
-  }
-}
-
 .euiBody--headerIsFixed--double {
   @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
-
-  .guideSideNav {
-    top: $euiHeaderHeightCompensation * 2;
-  }
 
   .euiHeader:not(.euiHeader--fixed) {
     // Force headers below the full screen.

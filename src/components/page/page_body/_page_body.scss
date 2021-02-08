@@ -5,9 +5,6 @@
   flex: 1 1 100%;
   // Make sure that inner flex layouts don't get larger than this container
   max-width: 100%;
-  overflow: hidden;
-  // TODO: FIX SHADOW
-  // padding: $euiSizeXS;
 
   &--restrictWidth-default,
   &--restrictWidth-custom {
