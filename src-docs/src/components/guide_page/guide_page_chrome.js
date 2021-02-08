@@ -13,20 +13,6 @@ import {
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
 
-const scrollTo = (position) => {
-  window.scrollTo({ top: position, behavior: 'smooth' });
-};
-
-export function scrollToSelector(selector, attempts = 5) {
-  const element = document.querySelector(selector);
-
-  if (element) {
-    scrollTo(element.offsetTop - 168); // Offset affords for the sticky contrast slider
-  } else if (attempts > 0) {
-    setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
-  }
-}
-
 export class GuidePageChrome extends Component {
   _isMounted = false;
 
@@ -86,17 +72,6 @@ export class GuidePageChrome extends Component {
     setTimeout(() => {
       this.scrollNavSectionIntoViewSync();
     }, 250);
-  };
-
-  onClickRoute = () => {
-    if (this._isMounted)
-      this.setState(
-        {
-          search: '',
-          isSideNavOpenOnMobile: false,
-        },
-        this.scrollNavSectionIntoView
-      );
   };
 
   onButtonClick() {
@@ -205,7 +180,6 @@ export class GuidePageChrome extends Component {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
-          onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
