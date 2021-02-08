@@ -269,7 +269,7 @@ export const PageExample = {
       snippet: `<EuiPageHeader
   pageTitle="Page title"
   tabs={[
-    { label:"Tab 1" , isSelected: true },
+    { label:"Tab 1", isSelected: true },
     { label:"Tab 2" }
   ]}
   description="Example of a description."
@@ -310,7 +310,7 @@ export const PageExample = {
       props: { EuiPageHeader },
       snippet: `<EuiPageHeader
   tabs={[
-    { label:"Tab 1" , isSelected: true },
+    { label:"Tab 1", isSelected: true },
     { label:"Tab 2" }
   ]}
   description="Example of a description."

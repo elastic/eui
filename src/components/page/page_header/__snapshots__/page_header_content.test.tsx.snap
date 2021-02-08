@@ -378,6 +378,32 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon 1`] = `
 </div>
 `;
 
+exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProps 1`] = `
+<div
+  class="euiPageHeaderContent"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <h1
+        class="euiTitle euiTitle--large"
+      >
+        <span
+          aria-label="aria-label"
+          class="euiPageHeaderContent__titleIcon testClass1 testClass2"
+          data-euiicon-type="logoKibana"
+          data-test-subj="test subject string"
+        />
+        Page title
+      </h1>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiPageHeaderContent props responsive is rendered as false 1`] = `
 <div
   class="euiPageHeaderContent"

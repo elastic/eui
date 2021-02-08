@@ -51,6 +51,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   // Page header content only props:
   pageTitle,
   iconType,
+  iconProps,
   tabs,
   tabsProps,
   description,
@@ -95,6 +96,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         responsive={responsive}
         pageTitle={pageTitle}
         iconType={iconType}
+        iconProps={iconProps}
         tabs={tabs}
         tabsProps={tabsProps}
         description={description}

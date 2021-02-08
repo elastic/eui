@@ -20,7 +20,7 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { EuiIcon, IconType } from '../../icon';
+import { EuiIcon, EuiIconProps, IconType } from '../../icon';
 import { EuiTab, EuiTabs, EuiTabsProps } from '../../tabs';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSpacer } from '../../spacer';
@@ -49,6 +49,10 @@ export type EuiPageHeaderContentTitle = {
    * Optional icon to place to the left of the title
    */
   iconType?: IconType;
+  /**
+   * Additional EuiIcon props to apply to the optional icon
+   */
+  iconProps?: Partial<EuiIconProps>;
 };
 
 export type EuiPageHeaderContentTabs = {
@@ -103,8 +107,7 @@ export type EuiPageHeaderContentProps = CommonProps &
      */
     rightSideResponsive?: boolean;
     /**
-     * Custom children will be rendered before the `tabs` unless no `pageTitle` is present,
-     * then it will be the last item
+     * Custom children will be rendered before the `tabs` unless no `pageTitle` is present, then it will be the last item
      */
     children?: ReactNode;
   };
@@ -113,6 +116,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   className,
   pageTitle,
   iconType,
+  iconProps,
   tabs,
   tabsProps,
   description,
@@ -146,9 +150,13 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   if (pageTitle) {
     const icon = iconType ? (
       <EuiIcon
-        className="euiPageHeaderContent__titleIcon"
-        type={iconType}
         size="xl"
+        {...iconProps}
+        type={iconType}
+        className={classNames(
+          'euiPageHeaderContent__titleIcon',
+          iconProps?.className
+        )}
       />
     ) : undefined;
 

@@ -66,6 +66,18 @@ describe('EuiPageHeaderContent', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('is rendered with icon and iconProps', () => {
+        const component = render(
+          <EuiPageHeaderContent
+            pageTitle="Page title"
+            iconType="logoKibana"
+            iconProps={requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('tabs', () => {

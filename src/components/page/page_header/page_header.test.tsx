@@ -55,6 +55,7 @@ describe('EuiPageHeader', () => {
           <EuiPageHeader
             pageTitle="Page title"
             iconType="logoKibana"
+            iconProps={requiredProps}
             tabs={tabs}
             tabsProps={requiredProps}
             description="Description"

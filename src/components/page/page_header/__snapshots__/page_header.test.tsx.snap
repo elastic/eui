@@ -211,8 +211,10 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           class="euiTitle euiTitle--large"
         >
           <span
-            class="euiPageHeaderContent__titleIcon"
+            aria-label="aria-label"
+            class="euiPageHeaderContent__titleIcon testClass1 testClass2"
             data-euiicon-type="logoKibana"
+            data-test-subj="test subject string"
           />
           Page title
         </h1>
