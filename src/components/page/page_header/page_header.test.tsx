@@ -60,7 +60,7 @@ describe('EuiPageHeader', () => {
             tabsProps={requiredProps}
             description="Description"
             rightSideItems={rightSideItems}
-            rightSideResponsive={true}>
+            rightSideGroupProps={{ responsive: true, ...requiredProps }}>
             <p>Anything</p>
           </EuiPageHeader>
         );

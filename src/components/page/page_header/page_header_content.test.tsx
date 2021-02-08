@@ -127,11 +127,11 @@ describe('EuiPageHeaderContent', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test('is rendered with rightSideResponsive as true', () => {
+      test('is rendered with rightSideGroupProps', () => {
         const component = render(
           <EuiPageHeaderContent
             rightSideItems={rightSideItems}
-            rightSideResponsive={true}
+            rightSideGroupProps={{ responsive: true, ...requiredProps }}
           />
         );
 

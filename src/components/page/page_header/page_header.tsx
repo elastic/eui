@@ -56,7 +56,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   tabsProps,
   description,
   rightSideItems,
-  rightSideResponsive,
+  rightSideGroupProps,
   ...rest
 }) => {
   let widthClassname;
@@ -101,7 +101,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         tabsProps={tabsProps}
         description={description}
         rightSideItems={rightSideItems}
-        rightSideResponsive={rightSideResponsive}>
+        rightSideGroupProps={rightSideGroupProps}>
         {children}
       </EuiPageHeaderContent>
     </header>

@@ -22,12 +22,12 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, EuiIconProps, IconType } from '../../icon';
 import { EuiTab, EuiTabs, EuiTabsProps } from '../../tabs';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { Props as EuiTabProps } from '../../tabs/tab';
+import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiTitle } from '../../title';
 import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
-import { Props as EuiTabProps } from '../../../components/tabs/tab';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
@@ -92,20 +92,20 @@ export type EuiPageHeaderContentProps = CommonProps &
      */
     responsive?: boolean | 'reverse';
     /**
+     * Vertical alignment of the left and right side content;
+     * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
+     */
+    alignItems?: typeof ALIGN_ITEMS[number];
+    /**
      * Pass custom an array of content to this side usually up to 3 buttons.
      * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
      * but first in the tab order
      */
     rightSideItems?: ReactNode[];
     /**
-     * Vertical alignment of the left and right side content;
-     * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
+     * Additional EuiFlexGroup props to pass to the container of the `rightSideItems`
      */
-    alignItems?: typeof ALIGN_ITEMS[number];
-    /**
-     * Whether the array of right side items should all break to their own line on small screens
-     */
-    rightSideResponsive?: boolean;
+    rightSideGroupProps?: Partial<EuiFlexGroupProps>;
     /**
      * Custom children will be rendered before the `tabs` unless no `pageTitle` is present, then it will be the last item
      */
@@ -120,10 +120,10 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   tabs,
   tabsProps,
   description,
-  rightSideItems,
   alignItems = 'top',
   responsive = true,
-  rightSideResponsive = false,
+  rightSideItems,
+  rightSideGroupProps,
   children,
   ...rest
 }) => {
@@ -246,9 +246,13 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     rightSideFlexItem = (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup
-          className="euiPageHeaderContent__rightSideItems"
           wrap
-          responsive={rightSideResponsive}>
+          responsive={false}
+          {...rightSideGroupProps}
+          className={classNames(
+            'euiPageHeaderContent__rightSideItems',
+            rightSideGroupProps?.className
+          )}>
           {wrapWithFlex()}
         </EuiFlexGroup>
       </EuiFlexItem>

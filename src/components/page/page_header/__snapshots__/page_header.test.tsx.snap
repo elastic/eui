@@ -233,7 +233,9 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiPageHeaderContent__rightSideItems"
+          aria-label="aria-label"
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiPageHeaderContent__rightSideItems testClass1 testClass2"
+          data-test-subj="test subject string"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"

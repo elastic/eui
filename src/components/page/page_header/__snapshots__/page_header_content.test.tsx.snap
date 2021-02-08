@@ -468,7 +468,7 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideResponsive as true 1`] = `
+exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideGroupProps 1`] = `
 <div
   class="euiPageHeaderContent"
 >
@@ -482,7 +482,9 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideRes
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <div
-        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiPageHeaderContent__rightSideItems"
+        aria-label="aria-label"
+        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiPageHeaderContent__rightSideItems testClass1 testClass2"
+        data-test-subj="test subject string"
       >
         <div
           class="euiFlexItem euiFlexItem--flexGrowZero"
