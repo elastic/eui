@@ -18,7 +18,6 @@ import {
 import { cleanEuiImports } from '../../services';
 
 import { extendedTypesInfo } from './guide_section_extends';
-import { EuiIcon } from '../../../../src/components/icon';
 
 import Knobs, { markup } from '../../services/playground/knobs';
 import { propUtilityForPlayground } from '../../services/playground';
@@ -131,11 +130,7 @@ export class GuideSection extends Component {
       this.tabs.push(
         {
           name: 'javascript',
-          displayName: (
-            <>
-              <EuiIcon type="editorCodeBlock" /> JS
-            </>
-          ),
+          displayName: 'React',
           isCode: true,
         },
         {
