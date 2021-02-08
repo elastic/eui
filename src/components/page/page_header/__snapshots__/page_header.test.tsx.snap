@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiPageHeader is rendered 1`] = `
-<div
+<header
   aria-label="aria-label"
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
   data-test-subj="test subject string"
 >
   Anything
-</div>
+</header>
 `;
 
 exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--bottom"
 >
   <div
@@ -53,11 +53,11 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</header>
 `;
 
 exports[`EuiPageHeader props alignItems center is rendered 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center"
 >
   <div
@@ -99,11 +99,11 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</header>
 `;
 
 exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--stretch"
 >
   <div
@@ -145,11 +145,11 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</header>
 `;
 
 exports[`EuiPageHeader props alignItems top is rendered 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--top"
 >
   <div
@@ -191,11 +191,11 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</header>
 `;
 
 exports[`EuiPageHeader props page content props are passed down is rendered 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--tabsAtBottom euiPageHeader--center"
 >
   <div
@@ -295,30 +295,30 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       </div>
     </div>
   </div>
-</div>
+</header>
 `;
 
 exports[`EuiPageHeader props responsive is rendered as false 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--center"
 />
 `;
 
 exports[`EuiPageHeader props responsive is rendered as reverse 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsiveReverse euiPageHeader--center"
 />
 `;
 
 exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center euiPageHeader--restrictWidth-custom"
   style="max-width:100px"
 />
 `;
 
 exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
-<div
+<header
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center euiPageHeader--restrictWidth-default"
 />
 `;

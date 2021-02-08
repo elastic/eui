@@ -26,7 +26,7 @@ import {
 } from './page_header_content';
 
 export type EuiPageHeaderProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
+  HTMLAttributes<HTMLElement> &
   EuiPageHeaderContentProps & {
     /**
      * Sets the max-width of the page,
@@ -82,14 +82,14 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
 
   if (!pageTitle && !tabs && !description && !rightSideContent) {
     return (
-      <div className={classes} style={newStyle || style} {...rest}>
+      <header className={classes} style={newStyle || style} {...rest}>
         {children}
-      </div>
+      </header>
     );
   }
 
   return (
-    <div className={classes} style={newStyle || style} {...rest}>
+    <header className={classes} style={newStyle || style} {...rest}>
       <EuiPageHeaderContent
         alignItems={alignItems}
         responsive={responsive}
@@ -102,6 +102,6 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         rightSideResponsive={rightSideResponsive}>
         {children}
       </EuiPageHeaderContent>
-    </div>
+    </header>
   );
 };

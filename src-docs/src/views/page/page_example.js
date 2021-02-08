@@ -83,7 +83,7 @@ export const PageExample = {
           <p>
             EUI provides a family of components using the{' '}
             <EuiCode>EuiPage</EuiCode> prefix that work together to build
-            consistent page layouts that work responsively. 
+            consistent page layouts that work responsively.
           </p>
           <ul>
             <li>
@@ -98,7 +98,8 @@ export const PageExample = {
               components provide the main content container.
             </li>
             <li>
-              <strong>EuiPageSideBar</strong> provides a way to add side navigation.
+              <strong>EuiPageSideBar</strong> provides a way to add side
+              navigation.
             </li>
           </ul>
           <p>
