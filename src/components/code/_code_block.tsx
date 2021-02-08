@@ -109,6 +109,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   const code = useRef<HTMLElement | null>(null);
   const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
   const [innerTextRef, innerText] = useInnerText('');
+  const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
   const combinedRef = useCombinedRefs<HTMLPreElement>([
     innerTextRef,
     setWrapperRef,
@@ -125,7 +126,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     const doesOverflow =
       scrollHeight > clientHeight || scrollWidth > clientWidth;
 
-    wrapperRef.setAttribute('tabindex', doesOverflow ? '0' : '-1');
+    setTabIndex(doesOverflow ? 0 : -1);
   };
 
   useMutationObserver(wrapperRef, doesOverflow, {
@@ -336,7 +337,11 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     <>
       {createPortal(children, codeTarget.current!)}
       <div {...wrapperProps}>
-        <pre ref={combinedRef} style={optionalStyles} className={preClasses}>
+        <pre
+          ref={combinedRef}
+          style={optionalStyles}
+          className={preClasses}
+          tabIndex={tabIndex}>
           {codeSnippet}
         </pre>
 
