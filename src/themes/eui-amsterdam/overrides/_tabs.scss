@@ -1,0 +1,14 @@
+.euiTab {
+  font-weight: $euiFontWeightMedium;
+  height: $euiSizeXXL + $euiSizeS;
+}
+
+// Adjust overall heights
+.euiTabs--small .euiTab {
+  height: $euiSizeXXL;
+}
+
+.euiTabs--large .euiTab {
+  @include fontSize($euiTabFontSizeL);
+  height: $euiSizeXXL + $euiSizeS;
+}
