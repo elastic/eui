@@ -179,7 +179,7 @@ export default () => {
             <EuiPageBody>
               <EuiPageHeader
                 pageTitle="My app"
-                rightSideContent={[
+                rightSideItems={[
                   <EuiButton
                     fill
                     onClick={() => setIsFullScreen(false)}

@@ -37,7 +37,7 @@ const tabs: EuiPageHeaderContentProps['tabs'] = [
   },
 ];
 
-const rightSideContent: EuiPageHeaderContentProps['rightSideContent'] = [
+const rightSideItems: EuiPageHeaderContentProps['rightSideItems'] = [
   <button>Button 1</button>,
   <button>Button 2</button>,
 ];
@@ -118,10 +118,10 @@ describe('EuiPageHeaderContent', () => {
       });
     });
 
-    describe('rightSideContent', () => {
+    describe('rightSideItems', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiPageHeaderContent rightSideContent={rightSideContent} />
+          <EuiPageHeaderContent rightSideItems={rightSideItems} />
         );
 
         expect(component).toMatchSnapshot();
@@ -130,7 +130,7 @@ describe('EuiPageHeaderContent', () => {
       test('is rendered with rightSideResponsive as true', () => {
         const component = render(
           <EuiPageHeaderContent
-            rightSideContent={rightSideContent}
+            rightSideItems={rightSideItems}
             rightSideResponsive={true}
           />
         );
@@ -153,7 +153,7 @@ describe('EuiPageHeaderContent', () => {
           <EuiPageHeaderContent
             pageTitle="Page title"
             tabs={tabs}
-            rightSideContent={rightSideContent}>
+            rightSideItems={rightSideItems}>
             Child
           </EuiPageHeaderContent>
         );
@@ -168,7 +168,7 @@ describe('EuiPageHeaderContent', () => {
           const component = render(
             <EuiPageHeaderContent
               pageTitle="Page title"
-              rightSideContent={rightSideContent}
+              rightSideItems={rightSideItems}
               alignItems={alignment}
             />
           );

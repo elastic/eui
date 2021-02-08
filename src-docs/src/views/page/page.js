@@ -20,7 +20,7 @@ export default () => (
       <EuiPageHeader
         iconType="logoElastic"
         pageTitle="Page title"
-        rightSideContent={[
+        rightSideItems={[
           <EuiButton fill>Add something</EuiButton>,
           <EuiButton>Do something</EuiButton>,
         ]}

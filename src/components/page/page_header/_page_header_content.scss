@@ -9,7 +9,7 @@
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {
-  .euiPageHeaderContent__rightSideContent {
+  .euiPageHeaderContent__rightSideItems {
     flex-direction: row-reverse;
   }
 }

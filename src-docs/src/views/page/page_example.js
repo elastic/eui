@@ -237,13 +237,13 @@ export const PageExample = {
         <>
           <p>
             <strong>EuiPageHeader</strong> provides props for opinionated,
-            consistant formatting of your header. Any combination of
+            consistent formatting of your header. Any combination of{' '}
             <EuiCode>pageTitle</EuiCode>, <EuiCode>description</EuiCode>,{' '}
             <EuiCode>tabs</EuiCode>, or any <EuiCode>children</EuiCode> will
             adjust the layout as needed.
           </p>
           <p>
-            An additional prop <EuiCode>rightSideContent</EuiCode> allows for a
+            An additional prop <EuiCode>rightSideItems</EuiCode> allows for a
             simple <strong>array of nodes</strong> which will layout in a
             flexbox row. This is commonly used for adding multiple buttons, of
             which, at least one should be primary (or{' '}
@@ -255,7 +255,7 @@ export const PageExample = {
             You can further adjust the display of these content types with an
             optional <EuiCode>iconType</EuiCode> placed to the left of the
             title, <EuiCode>alignItems</EuiCode> for adjusting the vertical
-            alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>
+            alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>{' '}
             to determine which content side to display first on smaller screens.
           </p>
         </>
@@ -273,7 +273,7 @@ export const PageExample = {
     { label:"Tab 2" }
   ]}
   description="Example of a description."
-  rightSideContent={[
+  rightSideItems={[
     <EuiButton fill>Button 1</EuiButton>,
     <EuiButton>Button 2</EuiButton>
   ]}

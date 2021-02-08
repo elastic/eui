@@ -55,7 +55,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   tabs,
   tabsProps,
   description,
-  rightSideContent,
+  rightSideItems,
   rightSideResponsive,
   ...rest
 }) => {
@@ -81,7 +81,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
     className
   );
 
-  if (!pageTitle && !tabs && !description && !rightSideContent) {
+  if (!pageTitle && !tabs && !description && !rightSideItems) {
     return (
       <header className={classes} style={newStyle || style} {...rest}>
         {children}
@@ -100,7 +100,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         tabs={tabs}
         tabsProps={tabsProps}
         description={description}
-        rightSideContent={rightSideContent}
+        rightSideItems={rightSideItems}
         rightSideResponsive={rightSideResponsive}>
         {children}
       </EuiPageHeaderContent>

@@ -34,7 +34,7 @@ export const tabs: EuiPageHeaderProps['tabs'] = [
   },
 ];
 
-export const rightSideContent: EuiPageHeaderProps['rightSideContent'] = [
+export const rightSideItems: EuiPageHeaderProps['rightSideItems'] = [
   <button>Button 1</button>,
   <button>Button 2</button>,
 ];
@@ -59,7 +59,7 @@ describe('EuiPageHeader', () => {
             tabs={tabs}
             tabsProps={requiredProps}
             description="Description"
-            rightSideContent={rightSideContent}
+            rightSideItems={rightSideItems}
             rightSideResponsive={true}>
             <p>Anything</p>
           </EuiPageHeader>
@@ -75,7 +75,7 @@ describe('EuiPageHeader', () => {
           const component = render(
             <EuiPageHeader
               pageTitle="Page title"
-              rightSideContent={rightSideContent}
+              rightSideItems={rightSideItems}
               alignItems={alignment}
             />
           );

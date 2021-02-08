@@ -96,7 +96,7 @@ export type EuiPageHeaderContentProps = CommonProps &
      * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
      * but first in the tab order
      */
-    rightSideContent?: ReactNode[];
+    rightSideItems?: ReactNode[];
     /**
      * Vertical alignment of the left and right side content;
      * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
@@ -120,7 +120,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   tabs,
   tabsProps,
   description,
-  rightSideContent,
+  rightSideItems,
   alignItems = 'top',
   responsive = true,
   rightSideResponsive = false,
@@ -232,9 +232,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   }
 
   let rightSideFlexItem;
-  if (rightSideContent && rightSideContent.length) {
+  if (rightSideItems && rightSideItems.length) {
     const wrapWithFlex = () => {
-      return rightSideContent.map((item, index) => {
+      return rightSideItems.map((item, index) => {
         return (
           <EuiFlexItem grow={false} key={index}>
             {item}
@@ -246,7 +246,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     rightSideFlexItem = (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup
-          className="euiPageHeaderContent__rightSideContent"
+          className="euiPageHeaderContent__rightSideItems"
           wrap
           responsive={rightSideResponsive}>
           {wrapWithFlex()}

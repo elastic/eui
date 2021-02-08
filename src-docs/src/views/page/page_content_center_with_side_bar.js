@@ -19,7 +19,7 @@ export default () => (
     <EuiPageBody component="div">
       <EuiPageHeader
         pageTitle="Page title"
-        rightSideContent={['Page abilities']}
+        rightSideItems={['Page abilities']}
         alignItems="center"
       />
       <EuiPageContent verticalPosition="center" horizontalPosition="center">

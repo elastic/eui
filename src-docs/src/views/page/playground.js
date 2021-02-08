@@ -26,13 +26,13 @@ const tabs = `[
   },
 ]`;
 
-const rightSideContent = `[
+const rightSideItems = `[
   <EuiButton fill>Button 1</EuiButton>,
   <EuiButton>Button 2</EuiButton>,
 ]`;
 
 // TODO: Try later to find build a toggle that allows switching between different types of content to pass
-// const rightSideContent =
+// const rightSideItems =
 //   '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
 
 export default () => {
@@ -55,10 +55,10 @@ export default () => {
     type: PropTypes.String,
   };
 
-  propsToUse.rightSideContent = simulateFunction({
-    ...propsToUse.rightSideContent,
+  propsToUse.rightSideItems = simulateFunction({
+    ...propsToUse.rightSideItems,
     custom: {
-      value: rightSideContent,
+      value: rightSideItems,
     },
   });
 
@@ -92,7 +92,7 @@ export default () => {
           named: ['EuiPageHeader', 'EuiButton', 'EuiTabs', 'EuiImage'],
         },
       },
-      customProps: generateCustomProps(['rightSideContent', 'tabs']),
+      customProps: generateCustomProps(['rightSideItems', 'tabs']),
     },
   };
 };

@@ -19,7 +19,7 @@ export default () => (
       },
     ]}
     description="This description should be describing the currently selected tab. It has the grow prop set to false on the EuiText block so that it is the proper line length. And it will also never extend beneath the right side content (buttons)."
-    rightSideContent={[
+    rightSideItems={[
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
     ]}>
