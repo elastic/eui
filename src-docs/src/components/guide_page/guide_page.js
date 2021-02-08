@@ -92,7 +92,7 @@ const GuidePageComponent = ({
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiTabs display="condensed">
+            <EuiTabs size="l" display="condensed">
               {tabs.length > 1 && renderTabs()}
             </EuiTabs>
           </EuiFlexItem>
