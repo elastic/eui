@@ -264,7 +264,7 @@ export const FlyoutExample = {
       demo: <FlyoutLarge />,
     },
     {
-      title: 'Flyout with a medium padding',
+      title: 'Flyout padding',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -277,8 +277,13 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example, we set <EuiCode>paddingSize</EuiCode> to{' '}
-          <EuiCode>m</EuiCode>.
+          All the inner flyout components inherit their{' '}
+          <EuiCode>padding</EuiCode> from the wrapping{' '}
+          <strong>EuiFlyout</strong> component. This ensures that all the
+          horizontal edges line up no matter the <EuiCode>paddingSize</EuiCode>.
+          When using the <EuiCode>{'"none"'}</EuiCode> size, you will need to
+          accomodate your content with some other way of creating distance to
+          the edges of the flyout.
         </p>
       ),
       snippet: flyoutMediumPaddingSnippet,
