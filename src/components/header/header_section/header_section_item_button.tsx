@@ -62,6 +62,9 @@ export const EuiHeaderSectionItemButton = forwardRef<
       notificationColor = 'accent',
       ...rest
     },
+    /**
+     * Allows for animating with .triggerAnimation()
+     */
     ref
   ) => {
     const [buttonRef, setButtonRef] = useState<EuiHeaderSectionItemButtonRef>();
@@ -211,24 +214,23 @@ export const EuiHeaderSectionItemButton = forwardRef<
       />
     );
 
-    const buttonNotification = (
-      <>
-        {notification && typeof notification === 'boolean' && notificationDot}
-
-        {notification && typeof notification !== 'boolean' && (
-          <>
-            <EuiHideFor sizes={['xs']}>
-              <EuiNotificationBadge
-                className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-                color={notificationColor}>
-                {notification}
-              </EuiNotificationBadge>
-            </EuiHideFor>
-            <EuiShowFor sizes={['xs']}>{notificationDot}</EuiShowFor>
-          </>
-        )}
-      </>
-    );
+    let buttonNotification;
+    if (notification === true) {
+      buttonNotification = notificationDot;
+    } else if (notification) {
+      buttonNotification = (
+        <>
+          <EuiHideFor sizes={['xs']}>
+            <EuiNotificationBadge
+              className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+              color={notificationColor}>
+              {notification}
+            </EuiNotificationBadge>
+          </EuiHideFor>
+          <EuiShowFor sizes={['xs']}>{notificationDot}</EuiShowFor>
+        </>
+      );
+    }
 
     return (
       <button

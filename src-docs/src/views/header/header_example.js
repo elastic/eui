@@ -37,6 +37,10 @@ import HeaderAlert from './header_alert';
 const headerAlertSource = require('!!raw-loader!./header_alert');
 const headerAlertHtml = renderToHtml(HeaderAlert);
 
+import HeaderAnimate from './header_animate';
+const headerAnimateSource = require('!!raw-loader!./header_animate');
+const headerAnimateHtml = renderToHtml(HeaderAnimate);
+
 import HeaderLinks from './header_links';
 const headerLinksSource = require('!!raw-loader!./header_links');
 const headerLinksHtml = renderToHtml(HeaderLinks);
@@ -122,13 +126,37 @@ const headerAlertSnippet = `<EuiHeader>
         aria-label="Open portal content"
         onClick={() => showPortalConten()}
         notification={showNotification}
-        animation={isAnimating}
       >
         <EuiIcon type="bell" />
       </EuiHeaderSectionItemButton>
     </EuiHeaderSectionItem>
   </EuiHeaderSection>
 </EuiHeader>`;
+
+const headerAnimateSnippet = `const bellRef = useRef();
+
+// we're passing passing the triggerAnimation callbacks to the EuiHeaderSectionItemButton that we want to animate
+const animate = useCallback(() => {
+  bellRef.current?.triggerAnimation();
+}, []);
+
+// we're using the useImperativeHandle which allows the child to expose a function to the parent
+useImperativeHandle(
+  ref,
+  () => ({
+    animate,
+  }),
+  [animate]
+);
+
+const bellButton = (
+  <EuiHeaderSectionItemButton
+    ref={bellRef}
+    aria-label={ariaLabel}
+    notification={notification}>
+    <EuiIcon type="bell" />
+  </EuiHeaderSectionItemButton>
+);`;
 
 export const HeaderExample = {
   title: 'Header',
@@ -304,7 +332,7 @@ export const HeaderExample = {
       demo: <HeaderDark theme={lightColors} />,
     },
     {
-      title: 'Portal content and buttons in the header',
+      title: 'Portal content in the header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -337,18 +365,6 @@ export const HeaderExample = {
             the <EuiCode>repositionOnScroll</EuiCode> prop to the popover.
           </p>
           <p>
-            To alert or notify users about the additional information they are
-            receiving, use the <strong>EuiHeaderSectionItemButton</strong>{' '}
-            <EuiCode>notification</EuiCode> prop. You can pass a{' '}
-            <EuiCode>node</EuiCode> that will render inside a{' '}
-            <strong>EuiBadgeNotification</strong> or pass{' '}
-            <EuiCode>true</EuiCode> to render a simple dot. You can also animate
-            the button by calling the <EuiCode>triggerAnimation()</EuiCode>{' '}
-            method on the <strong>EuiHeaderSectionItemButton</strong>{' '}
-            <EuiCode>ref</EuiCode>.
-          </p>
-
-          <p>
             The example below shows how to incorporate{' '}
             <strong>EuiHeaderAlert</strong> components to show a list of updates
             inside a{' '}
@@ -359,8 +375,7 @@ export const HeaderExample = {
             <Link to="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>{' '}
-            . It also shows how to animate and add different types of
-            notifications.
+            .
           </p>
         </>
       ),
@@ -370,6 +385,39 @@ export const HeaderExample = {
       },
       snippet: headerAlertSnippet,
       demo: <HeaderAlert />,
+    },
+    {
+      title: 'Header notifications',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerAnimateSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerAnimateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            To alert or notify users about the additional information they are
+            receiving, use the <strong>EuiHeaderSectionItemButton</strong>{' '}
+            <EuiCode>notification</EuiCode> prop. You can pass a{' '}
+            <EuiCode>node</EuiCode> that will render inside a{' '}
+            <strong>EuiBadgeNotification</strong> or pass{' '}
+            <EuiCode>true</EuiCode> to render a simple dot. You can also animate
+            the button by calling the <EuiCode>triggerAnimation()</EuiCode>{' '}
+            method on the <strong>EuiHeaderSectionItemButton</strong>{' '}
+            <EuiCode>ref</EuiCode>.
+          </p>
+        </>
+      ),
+      props: {
+        EuiHeaderSectionItemButton,
+      },
+      snippet: headerAnimateSnippet,
+      demo: <HeaderAnimate />,
     },
     {
       title: 'Stacked headers',
