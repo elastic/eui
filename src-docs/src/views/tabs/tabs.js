@@ -5,8 +5,8 @@ import {
   EuiTabs,
   EuiTab,
   EuiSpacer,
+  EuiTitle,
 } from '../../../../src/components';
-import { EuiTitle } from '../../../../src/components/title';
 
 const tabs = [
   {

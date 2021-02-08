@@ -1,9 +1,10 @@
+// Fixed heights ensure proper alignment with pixel grid
+
 .euiTab {
   font-weight: $euiFontWeightMedium;
   height: $euiSizeXXL + $euiSizeS;
 }
 
-// Adjust overall heights
 .euiTabs--small .euiTab {
   height: $euiSizeXXL;
 }
