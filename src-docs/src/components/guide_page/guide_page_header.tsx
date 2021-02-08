@@ -131,10 +131,13 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     return (
       location.host === 'localhost:8030' && ( // eslint-disable-line no-restricted-globals
         <div style={{ marginRight: 12 }}>
+          {isMobileSize && <EuiSpacer size="s" />}
           <GuideLocaleSelector
             onToggleLocale={onToggleLocale}
             selectedLocale={selectedLocale}
+            color={isMobileSize ? undefined : 'ghost'}
           />
+          {isMobileSize && <EuiHorizontalRule />}
         </div>
       )
     );
@@ -159,9 +162,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         closePopover={() => setMobilePopoverIsOpen(false)}>
         <div className="guideOptionsPopover">
           <GuideThemeSelector />
-          <EuiSpacer size="s" />
           {renderInternationalization()}
-          <EuiHorizontalRule />
           {renderGithub()}
           {renderSketch()}
           {renderFigma()}
