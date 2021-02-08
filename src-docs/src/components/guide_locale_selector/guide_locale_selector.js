@@ -19,11 +19,15 @@ moment.locale('en');
 
 import { EuiSwitch, EuiTextColor } from '../../../../src/components';
 
-export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
+export const GuideLocaleSelector = ({
+  selectedLocale,
+  onToggleLocale,
+  color,
+}) => {
   return (
     <EuiSwitch
       compressed
-      label={<EuiTextColor color="ghost">Babelfish</EuiTextColor>}
+      label={<EuiTextColor color={color}>Babelfish</EuiTextColor>}
       checked={selectedLocale === 'en-xa'}
       onChange={() => onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')}
     />
