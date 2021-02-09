@@ -74,6 +74,12 @@ export interface PanelProps extends CommonProps {
    */
   hasShadow?: boolean;
   /**
+   * Adds a slight 1px border on all edges.
+   * Only works when `color="plain | transparent"`
+   * Default is `undefined` and will default to that theme's panel style
+   */
+  hasBorder?: boolean;
+  /**
    * Padding for all four sides
    */
   paddingSize?: PanelPaddingSize;
@@ -125,6 +131,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   borderRadius = 'm',
   color = 'plain',
   hasShadow = true,
+  hasBorder,
   grow = true,
   panelRef,
   onClick,
@@ -133,13 +140,22 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   betaBadgeTitle,
   ...rest
 }) => {
+  // Shadows are only allowed when there's a white background (plain)
+  const canHaveShadow = color === 'plain';
+  const canHaveBorder = color === 'plain' || color === 'transparent';
+
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
     borderRadiusToClassNameMap[borderRadius],
     `euiPanel--${color}`,
     {
-      'euiPanel--shadow': color === 'plain' && hasShadow,
+      // The `no` classes turn off the option for default theme
+      // While the `has` classes turn it on for Amsterdam
+      'euiPanel--hasShadow': canHaveShadow && hasShadow === true,
+      'euiPanel--noShadow': !canHaveShadow || hasShadow === false,
+      'euiPanel--hasBorder': canHaveBorder && hasBorder === true,
+      'euiPanel--noBorder': !canHaveBorder || hasBorder === false,
       'euiPanel--flexGrowZero': !grow,
       'euiPanel--isClickable': onClick,
       'euiPanel--hasBetaBadge': betaBadgeLabel,
