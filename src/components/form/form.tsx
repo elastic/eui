@@ -73,7 +73,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
 
   let optionalErrorAlert;
 
-  if (isInvalid && (invalidCallout === 'above' || invalidCallout === 'below')) {
+  if (isInvalid && invalidCallout !== 'none') {
     optionalErrorAlert = (
       <EuiI18n
         token="euiForm.addressFormErrors"
@@ -93,19 +93,12 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   }
 
   const Element = component;
-  if (invalidCallout === 'above') {
-    return (
-      <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
-        {optionalErrorAlert}
-        {children}
-      </Element>
-    );
-  } else {
-    return (
-      <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
-        {children}
-        {optionalErrorAlert}
-      </Element>
-    );
-  }
+
+  return (
+    <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
+      {invalidCallout === 'above' && optionalErrorAlert}
+      {children}
+      {invalidCallout === 'below' && optionalErrorAlert}
+    </Element>
+  );
 };
