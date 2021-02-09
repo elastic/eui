@@ -70,7 +70,7 @@ export type PanelBorderRadius = typeof BORDER_RADII[number];
 export interface PanelProps extends CommonProps {
   /**
    * Adds a medium shadow to the panel;
-   * Clickable cards will still get a shadow on hover
+   * Only works when `color="plain"`
    */
   hasShadow?: boolean;
   /**
@@ -87,7 +87,6 @@ export interface PanelProps extends CommonProps {
   grow?: boolean;
   panelRef?: Ref<HTMLDivElement>;
   /**
-   * *AMSTERDAM ONLY*
    * Background color of the panel;
    * Usually a lightened form of the brand colors
    */
@@ -140,7 +139,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     borderRadiusToClassNameMap[borderRadius],
     `euiPanel--${color}`,
     {
-      'euiPanel--shadow': hasShadow,
+      'euiPanel--shadow': color === 'plain' && hasShadow,
       'euiPanel--flexGrowZero': !grow,
       'euiPanel--isClickable': onClick,
       'euiPanel--hasBetaBadge': betaBadgeLabel,

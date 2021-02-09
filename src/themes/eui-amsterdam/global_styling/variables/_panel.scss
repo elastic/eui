@@ -1,4 +1,5 @@
 $euiPanelBackgroundColorModifiers: (
+  'transparent': transparent,
   'plain':   $euiColorEmptyShade,
   'subdued': $euiColorLightestShade,
   'accent':  tintOrShade($euiColorAccent, 90%, 70%),
