@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
+- Fixed `EuiCodeBlock` focus-state if content overflows ([#4463]https://github.com/elastic/eui/pull/4463)
 
 ## [`31.5.0`](https://github.com/elastic/eui/tree/v31.5.0)
 
