@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
+- Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+- Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 
 **Bug fixes**
 
