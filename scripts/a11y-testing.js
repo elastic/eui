@@ -108,6 +108,7 @@ const printResult = (result) =>
           },
         ],
       })
+      .exclude('iframe *')
       .analyze();
 
     if (violations.length > 0) {
