@@ -62,7 +62,7 @@ export interface EuiFlyoutProps
    */
   size?: EuiFlyoutSize;
   /**
-   * Customize the padding around the content of the flyout header, body and footer.
+   * Customize the padding around the content of the flyout header, body and footer
    */
   paddingSize?: EuiFlyoutPaddingSize;
   /**
