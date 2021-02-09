@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.5.0`.
+- Migrated dependency `axe-puppeteer v1.1.1` to `@axe-core/puppeteer v4.1.1` ([#4482](https://github.com/elastic/eui/pull/4482))
+- Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
+
+**Bug fixes**
+
+- Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
+- Fixed `EuiCodeBlock` focus-state if content overflows ([#4463]https://github.com/elastic/eui/pull/4463)
 
 ## [`31.5.0`](https://github.com/elastic/eui/tree/v31.5.0)
 
@@ -64,6 +70,14 @@ No public interface changes since `31.5.0`.
 
 - Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
 - Upgraded to TypeScript v4.0 ([#4296](https://github.com/elastic/eui/pull/4296))
+
+## [`30.6.1`](https://github.com/elastic/eui/tree/v30.6.1)
+
+**Note: this release is a backport containing changes originally made in `31.5.0`**
+
+**Bug fixes**
+
+- Fixed `EuiBadge` with `iconOnClick` from catching form submit events ([#4479](https://github.com/elastic/eui/pull/4479))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 

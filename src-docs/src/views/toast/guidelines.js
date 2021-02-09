@@ -15,7 +15,6 @@ import {
   EuiModalFooter,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiOverlayMask,
   EuiCodeBlock,
   EuiTitle,
 } from '../../../../src/components';
@@ -35,38 +34,36 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
-        <EuiModal onClose={closeModal}>
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>
-              Your visualization has an error
-            </EuiModalHeaderTitle>
-          </EuiModalHeader>
+      <EuiModal onClose={closeModal}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>
+            Your visualization has an error
+          </EuiModalHeaderTitle>
+        </EuiModalHeader>
 
-          <EuiModalBody>
-            <EuiCallOut
-              title="The maximum bucket size of 200 was exceeded"
-              color="danger"
-              size="s"
-              iconType="alert"
-            />
-            <EuiSpacer size="s" />
-            <EuiCodeBlock>
-              {`--- FAKE ERROR ---
+        <EuiModalBody>
+          <EuiCallOut
+            title="The maximum bucket size of 200 was exceeded"
+            color="danger"
+            size="s"
+            iconType="alert"
+          />
+          <EuiSpacer size="s" />
+          <EuiCodeBlock>
+            {`--- FAKE ERROR ---
 An extremely long error trace can exist in a modal so you have time
 and space to read it properly. Alternatively just link to a full page.
 ---
                 `}
-            </EuiCodeBlock>
-          </EuiModalBody>
+          </EuiCodeBlock>
+        </EuiModalBody>
 
-          <EuiModalFooter>
-            <EuiButton onClick={closeModal} fill>
-              Close
-            </EuiButton>
-          </EuiModalFooter>
-        </EuiModal>
-      </EuiOverlayMask>
+        <EuiModalFooter>
+          <EuiButton onClick={closeModal} fill>
+            Close
+          </EuiButton>
+        </EuiModalFooter>
+      </EuiModal>
     );
   }
   return (
