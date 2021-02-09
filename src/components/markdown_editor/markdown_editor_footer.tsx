@@ -25,10 +25,14 @@ import React, {
   forwardRef,
 } from 'react';
 import { EuiLoadingSpinner } from '../loading';
-import { EuiButtonEmpty, EuiButtonIcon } from '../button';
-import { EuiOverlayMask } from '../overlay_mask';
+import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiTitle } from '../title';
-import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
+import {
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+} from '../modal';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import {
   EuiMarkdownDropHandler,
@@ -192,62 +196,65 @@ export const EuiMarkdownEditorFooter = forwardRef<
         onClick={() => setIsShowingHelp(!isShowingHelp)}
       />
       {isShowingHelp && (
-        <EuiOverlayMask onClick={() => setIsShowingHelp(false)}>
-          <EuiModal onClose={() => setIsShowingHelp(false)}>
-            <EuiModalHeader>
-              <EuiTitle>
-                <h3>
-                  <EuiI18n
-                    token="euiMarkdownEditorFooter.syntaxTitle"
-                    default="Syntax help"
-                  />
-                </h3>
-              </EuiTitle>
-            </EuiModalHeader>
-            <EuiModalBody>
-              <Fragment>
-                <EuiText>
-                  <EuiI18n
-                    tokens={[
-                      'euiMarkdownEditorFooter.descriptionPrefix',
-                      'euiMarkdownEditorFooter.descriptionSuffix',
-                    ]}
-                    defaults={[
-                      'This editor uses',
-                      'You can also utilize these additional syntax plugins to add rich content to your text.',
-                    ]}>
-                    {([descriptionPrefix, descriptionSuffix]: ReactChild[]) => (
-                      <p>
-                        {descriptionPrefix}{' '}
-                        <a
-                          href="https://github.github.com/gfm/"
-                          target="_blank">
-                          Github flavored markdown
-                        </a>
-                        . {descriptionSuffix}
-                      </p>
-                    )}
-                  </EuiI18n>
-                </EuiText>
-                <EuiHorizontalRule />
-                {uiPlugins
-                  .filter(({ helpText }) => !!helpText)
-                  .map(({ name, helpText }) => (
-                    <Fragment key={name}>
-                      <EuiTitle size="xxs">
-                        <p>
-                          <strong>{name}</strong>
-                        </p>
-                      </EuiTitle>
-                      <EuiSpacer size="s" />
-                      {helpText}
-                      <EuiSpacer size="l" />
-                    </Fragment>
-                  ))}
-              </Fragment>
-            </EuiModalBody>
-          </EuiModal>
-        </EuiOverlayMask>
+        <EuiModal onClose={() => setIsShowingHelp(false)}>
+          <EuiModalHeader>
+            <EuiTitle>
+              <h3>
+                <EuiI18n
+                  token="euiMarkdownEditorFooter.syntaxTitle"
+                  default="Syntax help"
+                />
+              </h3>
+            </EuiTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <EuiI18n
+                tokens={[
+                  'euiMarkdownEditorFooter.descriptionPrefix',
+                  'euiMarkdownEditorFooter.descriptionSuffix',
+                ]}
+                defaults={[
+                  'This editor uses',
+                  'You can also utilize these additional syntax plugins to add rich content to your text.',
+                ]}>
+                {([descriptionPrefix, descriptionSuffix]: ReactChild[]) => (
+                  <p>
+                    {descriptionPrefix}{' '}
+                    <a href="https://github.github.com/gfm/" target="_blank">
+                      Github flavored markdown
+                    </a>
+                    . {descriptionSuffix}
+                  </p>
+                )}
+              </EuiI18n>
+            </EuiText>
+            <EuiHorizontalRule />
+            {uiPlugins
+              .filter(({ helpText }) => !!helpText)
+              .map(({ name, helpText }) => (
+                <Fragment key={name}>
+                  <EuiTitle size="xxs">
+                    <p>
+                      <strong>{name}</strong>
+                    </p>
+                  </EuiTitle>
+                  <EuiSpacer size="s" />
+                  {helpText}
+                  <EuiSpacer size="l" />
+                </Fragment>
+              ))}
+            <EuiHorizontalRule />
+          </EuiModalBody>
+          <EuiModalFooter>
+            <EuiButton onClick={() => setIsShowingHelp(false)} fill>
+              <EuiI18n
+                token="euiMarkdownEditorFooter.closeButton"
+                default="Close"
+              />
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
       )}
     </div>
   );

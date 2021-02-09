@@ -20,31 +20,6 @@ import { EuiFormRow } from '../../../../src/components/form/form_row';
 
 const DataContext = createContext();
 
-const raw_data = [];
-
-for (let i = 1; i < 10000; i++) {
-  const email = fake('{{internet.email}}');
-  const name = fake('{{name.lastName}}, {{name.firstName}}');
-  const suffix = fake('{{name.suffix}}');
-  raw_data.push({
-    name: `${name} ${suffix}`,
-    email: <EuiLink href="">{email}</EuiLink>,
-    location: (
-      <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </Fragment>
-    ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{commerce.price}}'),
-    phone: fake('{{phone.phoneNumber}}'),
-    version: fake('{{system.semver}}'),
-  });
-}
-
 const columns = [
   {
     id: 'name',
@@ -79,6 +54,9 @@ const columns = [
   },
 ];
 
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data = [];
 function RenderCellValue({ rowIndex, columnId }) {
   const { data, adjustMountedCellCount } = useContext(DataContext);
 
@@ -86,6 +64,29 @@ function RenderCellValue({ rowIndex, columnId }) {
     adjustMountedCellCount(1);
     return () => adjustMountedCellCount(-1);
   }, [adjustMountedCellCount]);
+
+  if (data[rowIndex] == null) {
+    const email = fake('{{internet.email}}');
+    const name = fake('{{name.lastName}}, {{name.firstName}}');
+    const suffix = fake('{{name.suffix}}');
+    data[rowIndex] = {
+      name: `${name} ${suffix}`,
+      email: <EuiLink href="">{email}</EuiLink>,
+      location: (
+        <Fragment>
+          {`${fake('{{address.city}}')}, `}
+          <EuiLink href="https://google.com">
+            {fake('{{address.country}}')}
+          </EuiLink>
+        </Fragment>
+      ),
+      date: fake('{{date.past}}'),
+      account: fake('{{finance.account}}'),
+      amount: fake('${{commerce.price}}'),
+      phone: fake('{{phone.phoneNumber}}'),
+      version: fake('{{system.semver}}'),
+    };
+  }
 
   return data.hasOwnProperty(rowIndex) ? data[rowIndex][columnId] : null;
 }
@@ -185,7 +186,7 @@ export default () => {
           width={dimensionSizes[width]}
           columns={columns}
           columnVisibility={{ visibleColumns, setVisibleColumns }}
-          rowCount={raw_data.length}
+          rowCount={10000}
           renderCellValue={RenderCellValue}
           pagination={{
             ...pagination,

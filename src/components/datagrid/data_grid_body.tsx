@@ -88,6 +88,7 @@ export interface EuiDataGridBodyProps {
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
+  toolbarHeight: number;
 }
 
 const defaultComparator: NonNullable<
@@ -317,6 +318,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     handleHeaderMutation,
     setVisibleColumns,
     switchColumnPos,
+    toolbarHeight,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -560,7 +562,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   let finalHeight = IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight;
   let finalWidth = IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth;
   if (isFullScreen) {
-    finalHeight = window.innerHeight;
+    finalHeight =
+      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
     finalWidth = window.innerWidth;
   }
 

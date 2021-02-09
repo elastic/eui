@@ -34,7 +34,6 @@ import { EuiModalBody } from './modal_body';
 import { EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
-import { EuiOverlayMask } from '../overlay_mask';
 
 export interface EuiConfirmModalProps
   extends Omit<
@@ -144,36 +143,34 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   }
 
   return (
-    <EuiOverlayMask>
-      <EuiModal className={classes} onClose={onCancel} {...rest}>
-        {modalTitle}
+    <EuiModal className={classes} onClose={onCancel} {...rest}>
+      {modalTitle}
 
-        {message && (
-          <EuiModalBody>
-            <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
-          </EuiModalBody>
-        )}
+      {message && (
+        <EuiModalBody>
+          <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
+        </EuiModalBody>
+      )}
 
-        <EuiModalFooter>
-          <EuiButtonEmpty
-            data-test-subj="confirmModalCancelButton"
-            onClick={onCancel}
-            buttonRef={cancelRef}>
-            {cancelButtonText}
-          </EuiButtonEmpty>
+      <EuiModalFooter>
+        <EuiButtonEmpty
+          data-test-subj="confirmModalCancelButton"
+          onClick={onCancel}
+          buttonRef={cancelRef}>
+          {cancelButtonText}
+        </EuiButtonEmpty>
 
-          <EuiButton
-            data-test-subj="confirmModalConfirmButton"
-            onClick={onConfirm}
-            isLoading={isLoading}
-            fill
-            buttonRef={confirmRef}
-            color={buttonColor}
-            isDisabled={confirmButtonDisabled}>
-            {confirmButtonText}
-          </EuiButton>
-        </EuiModalFooter>
-      </EuiModal>
-    </EuiOverlayMask>
+        <EuiButton
+          data-test-subj="confirmModalConfirmButton"
+          onClick={onConfirm}
+          isLoading={isLoading}
+          fill
+          buttonRef={confirmRef}
+          color={buttonColor}
+          isDisabled={confirmButtonDisabled}>
+          {confirmButtonText}
+        </EuiButton>
+      </EuiModalFooter>
+    </EuiModal>
   );
 };
