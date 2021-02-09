@@ -176,6 +176,15 @@ export interface EuiPopoverProps {
    * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
+  /**
+   * Provide a name to the popover panel
+   */
+  'aria-label'?: string;
+  /**
+   * Alternative option to `aria-label` that takes an `id`.
+   * Usually takes the `id` of the popover title
+   */
+  'aria-labelledby'?: string;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -664,6 +673,8 @@ export class EuiPopover extends Component<Props, State> {
       display,
       onTrapDeactivation,
       buffer,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       container,
       ...rest
     } = this.props;
@@ -750,6 +761,8 @@ export class EuiPopover extends Component<Props, State> {
               tabIndex={tabIndex}
               aria-live={ariaLive}
               role="dialog"
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
               style={this.state.popoverStyles}>

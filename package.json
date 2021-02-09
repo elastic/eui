@@ -46,6 +46,7 @@
     "test-staged"
   ],
   "dependencies": {
+    "@axe-core/puppeteer": "^4.1.1",
     "@types/chroma-js": "^2.0.0",
     "@types/lodash": "^4.14.160",
     "@types/numeral": "^0.0.28",
@@ -115,7 +116,6 @@
     "argparse": "^2.0.1",
     "autoprefixer": "^9.8.6",
     "axe-core": "^4.1.1",
-    "axe-puppeteer": "^1.1.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.1.0",
