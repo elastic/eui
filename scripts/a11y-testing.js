@@ -106,9 +106,13 @@ const printResult = (result) =>
             id: 'scrollable-region-focusable',
             selector: '[data-skip-axe="scrollable-region-focusable"]',
           },
+          {
+            // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
+            id: 'region',
+            selector: 'iframe, #player,',
+          },
         ],
       })
-      .exclude('iframe *')
       .analyze();
 
     if (violations.length > 0) {
