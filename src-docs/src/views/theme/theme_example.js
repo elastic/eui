@@ -20,6 +20,18 @@ import { ConsumingHOC } from './consuming_hoc';
 const consumingHOCSource = require('!!raw-loader!./consuming_hoc');
 const consumingHOCHtml = renderToHtml(ConsumingHOC);
 
+import Inverse from './inverse';
+const InverseSource = require('!!raw-loader!./inverse');
+const InverseHtml = renderToHtml(Inverse);
+
+import OverrideSimple from './override_simple';
+const overrideSimpleSource = require('!!raw-loader!./override_simple');
+const overrideSimpleHtml = renderToHtml(OverrideSimple);
+
+import Computed from './computed';
+const computedSource = require('!!raw-loader!./computed');
+const computedHtml = renderToHtml(Computed);
+
 export const ThemeExample = {
   title: 'Theme provider',
   intro: (
@@ -94,6 +106,95 @@ export const ThemeExample = {
         </>
       ),
       demo: <ConsumingHOC />,
+    },
+    {
+      title: 'Rendering a specific color mode',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: InverseSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: InverseHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            While it is usually best to keep all components rendering in the
+            same light or dark color mode, some components benefit from an
+            exaggerated change in contrast from the current theme. For this you
+            can specify <strong>EuiThemeProvider</strong>&apos;s{' '}
+            <EuiCode>colorMode</EuiCode> to always be{' '}
+            <EuiCode>{'"light"'}</EuiCode>, <EuiCode>{'"dark"'}</EuiCode>, or{' '}
+            <EuiCode>{'"inverse"'}</EuiCode> which sets it to the opposite of
+            the current color mode.
+          </p>
+        </>
+      ),
+      demo: <Inverse />,
+    },
+    {
+      title: 'Simple instance overrides',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: overrideSimpleSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: overrideSimpleHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Usually, you won&apos;t need to actually override an EUI theme
+            variable at the instance level. Instead, you&apos;d just create a
+            new variable local to that component. However, if you cannot alter
+            the component that is using the EUI variable then you can wrap that
+            component with the <strong>EuiThemeProvider</strong> and pass your
+            custom <EuiCode>overrides</EuiCode> object.
+          </p>
+        </>
+      ),
+      demo: <OverrideSimple />,
+    },
+    {
+      title: 'Understanding computed values',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: computedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: computedHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            The benefit of EUI&apos;s theme structure is that it only hard-codes
+            a few color and size variables. The rest are computed values based
+            on this base few. Therefore, when you update a core variable, this
+            will cascade into the other computed values.
+          </p>
+          <p>
+            For instance, we compute text variants of our base colors. So
+            locally overriding the <EuiCode>euiColorPrimaryText</EuiCode> color
+            will automatically cascade to the{' '}
+            <EuiCode>euiColorPrimaryText</EuiCode>. You can however, directly
+            override computed values as well by passing a custom value to this
+            theme variable.
+          </p>
+          <p>
+            You can also create your own computed values as well by using ....
+          </p>
+        </>
+      ),
+      demo: <Computed />,
     },
   ],
 };
