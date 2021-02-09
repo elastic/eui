@@ -9,6 +9,10 @@
   z-index: 3;
 }
 
+.euiFlyoutBody__banner {
+  overflow-x: hidden;
+}
+
 /**
  * 1. Calculating the minimum width based on the screen takeover breakpoint
  */
@@ -46,7 +50,7 @@ $flyoutSizes: (
   .euiFlyout--#{$modifier} {
 
     .euiFlyoutHeader {
-      padding: $paddingAmount ($paddingAmount * 1.25) 0 $paddingAmount;
+      padding: $paddingAmount $paddingAmount 0;
     }
 
     .euiFlyoutHeader--hasBorder {
@@ -54,31 +58,17 @@ $flyoutSizes: (
     }
 
     .euiFlyout__closeButton {
-      @if $paddingAmount == $euiSizeS {
-        right: $paddingAmount;
-        top: $paddingAmount;
-      } @else if $paddingAmount == 0 {
-        right: $euiSizeS;
-        top: $euiSizeS;
-      } @else {
-        // The actual size of the X button in pixels is a bit fuzzy because of all the
-        // button padding so there is some pixel pushing here.
-        right: $paddingAmount - 7px;
-        top: $paddingAmount - 7px;
-      }
+      right: $euiSizeS;
+      top: $euiSizeS;
     }
 
     .euiFlyoutBody__overflowContent {
       padding: $paddingAmount;
     }
 
-    .euiFlyoutBody__banner {
-      overflow-x: hidden;
-
-      .euiCallOut {
-        padding-left: $paddingAmount;
-        padding-right: $paddingAmount;
-      }
+    .euiFlyoutBody__banner .euiCallOut {
+      padding-left: $paddingAmount;
+      padding-right: $paddingAmount;
     }
 
     .euiFlyoutFooter {
