@@ -121,7 +121,7 @@ export default () => {
               <HeaderUpdates
                 ref={headerUpdatesRef}
                 showNotification={showNotification}
-                setShowNotification={() => setShowNotification()}
+                setShowNotification={setShowNotification}
                 notificationsNumber={notificationsNumber}
               />,
             ],
