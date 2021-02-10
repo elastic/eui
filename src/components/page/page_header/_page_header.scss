@@ -1,9 +1,36 @@
 .euiPageHeader {
+  width: 100%;
   margin-bottom: $euiSize;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  &--restrictWidth-default,
+  &--restrictWidth-custom {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &--restrictWidth-default {
+    max-width: $euiPageDefaultMaxWidth;
+  }
+}
+
+.euiPageHeader--top {
+  align-items: flex-start;
+}
+
+.euiPageHeader--bottom {
+  align-items: flex-end;
+}
+
+.euiPageHeader--stretch {
+  align-items: stretch;
+}
+
+.euiPageHeader--tabsAtBottom {
+  padding-bottom: 0;
 }
 
 @include euiBreakpoint('xs', 's') {
@@ -12,7 +39,15 @@
     margin-bottom: 0;
   }
 
+  .euiPageHeader--tabsAtBottom {
+    padding-bottom: 0;
+  }
+
   .euiPageHeader--responsive {
     flex-direction: column;
+  }
+
+  .euiPageHeader--responsiveReverse {
+    flex-direction: column-reverse;
   }
 }

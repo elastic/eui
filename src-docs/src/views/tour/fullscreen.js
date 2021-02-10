@@ -10,7 +10,6 @@ import {
   EuiPage,
   EuiPageBody,
   EuiPageHeader,
-  EuiPageHeaderSection,
   EuiPageContent,
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
@@ -178,22 +177,18 @@ export default () => {
         <React.Fragment>
           <EuiPage className="guideFullScreenOverlay" style={{ zIndex: 9000 }}>
             <EuiPageBody>
-              <EuiPageHeader>
-                <EuiPageHeaderSection>
-                  <EuiTitle size="l">
-                    <h1>My app</h1>
-                  </EuiTitle>
-                </EuiPageHeaderSection>
-                <EuiPageHeaderSection>
+              <EuiPageHeader
+                pageTitle="My app"
+                rightSideItems={[
                   <EuiButton
                     fill
                     onClick={() => setIsFullScreen(false)}
                     iconType="exit"
                     aria-label="Exit fullscreen demo">
                     Exit fullscreen demo
-                  </EuiButton>
-                </EuiPageHeaderSection>
-              </EuiPageHeader>
+                  </EuiButton>,
+                ]}
+              />
               <EuiPageContent>
                 <EuiPageContentHeader>
                   <EuiPageContentHeaderSection>
