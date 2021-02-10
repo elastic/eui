@@ -220,7 +220,7 @@ export class EuiAccordion extends Component<
 
     let icon;
     let iconButton;
-    const buttonId = buttonProps?.id || htmlIdGenerator()();
+    const buttonId = buttonProps?.id ?? htmlIdGenerator()();
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
         <button
