@@ -47,7 +47,9 @@ export type EuiHeaderSectionItemButtonProps = CommonProps &
     notificationColor?: EuiNotificationBadgeProps['color'];
   };
 
-export type EuiHeaderSectionItemButtonRef = HTMLButtonElement | null;
+export type EuiHeaderSectionItemButtonRef =
+  | (HTMLButtonElement & { triggerAnimation: () => void })
+  | null;
 
 export const EuiHeaderSectionItemButton = forwardRef<
   EuiHeaderSectionItemButtonRef,
@@ -67,7 +69,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
      */
     ref
   ) => {
-    const [buttonRef, setButtonRef] = useState<EuiHeaderSectionItemButtonRef>();
+    const [buttonRef, setButtonRef] = useState<HTMLButtonElement | null>();
     const animationTargetRef = useRef<HTMLSpanElement | null>(null);
 
     useImperativeHandle<
@@ -192,7 +194,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
               duration: 5000,
             });
           };
-          return buttonRef;
+          return buttonRef as EuiHeaderSectionItemButtonRef;
         } else {
           return null;
         }
