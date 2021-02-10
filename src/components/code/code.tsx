@@ -24,7 +24,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiCodeBlockImpl, EuiCodeBlockImplProps } from './_code_block';
 
 export type EuiCodeProps = CommonProps &
-  Omit<EuiCodeBlockImplProps, 'inline'> &
+  Pick<EuiCodeBlockImplProps, 'language' | 'transparentBackground'> &
   HTMLAttributes<HTMLElement>;
 
 export const EuiCode: FunctionComponent<EuiCodeProps> = ({ ...rest }) => {
