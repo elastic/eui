@@ -136,7 +136,7 @@ const headerAlertSnippet = `<EuiHeader>
 const headerAnimateSnippet = `const bellRef = useRef();
 
     // wrapping the 'euiAnimate' methods to make them available through this component's 'ref'
-const animate = useCallback(() => {
+const euiAnimate = useCallback(() => {
   bellRef.current?.euiAnimate();
 }, []);
 
@@ -144,9 +144,9 @@ const animate = useCallback(() => {
 useImperativeHandle(
   ref,
   () => ({
-    animate,
+    euiAnimate,
   }),
-  [animate]
+  [euiAnimate]
 );
 
 const bellButton = (
