@@ -28,7 +28,7 @@ import classnames from 'classnames';
 
 import { keys, EuiWindowEvent } from '../../services';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
@@ -42,6 +42,17 @@ const sizeToClassNameMap: { [size in EuiFlyoutSize]: string } = {
   l: 'euiFlyout--large',
 };
 
+const paddingSizeToClassNameMap = {
+  none: 'euiFlyout--paddingNone',
+  s: 'euiFlyout--paddingSmall',
+  m: 'euiFlyout--paddingMedium',
+  l: 'euiFlyout--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+
+export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+
 export interface EuiFlyoutProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
@@ -50,6 +61,10 @@ export interface EuiFlyoutProps
    * Defines the width of the panel
    */
   size?: EuiFlyoutSize;
+  /**
+   * Customize the padding around the content of the flyout header, body and footer
+   */
+  paddingSize?: EuiFlyoutPaddingSize;
   /**
    * Hides the default close button. You must provide another close button somewhere within the flyout.
    */
@@ -87,6 +102,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   onClose,
   ownFocus = false,
   size = 'm',
+  paddingSize = 'l',
   closeButtonAriaLabel,
   maxWidth = false,
   style,
@@ -120,6 +136,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   const classes = classnames(
     'euiFlyout',
     sizeToClassNameMap[size!],
+    paddingSizeToClassNameMap[paddingSize],
     widthClassName,
     className
   );
