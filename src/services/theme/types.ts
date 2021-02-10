@@ -54,6 +54,7 @@ type OmitRecursively<T extends any, K extends PropertyKey> = Omit<
 
 type Colorless<T> = OmitRecursively<T, 'colors'>;
 export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {
+  themeName: string;
   colors: EuiThemeColor;
   // I don't like this
   buttons: Colorless<EuiThemeShape['buttons']> & {

@@ -174,11 +174,13 @@ describe('getComputed', () => {
     expect(getComputed(theme, {}, 'light')).toEqual({
       colors: { primary: '#000', secondary: '#000000' },
       sizes: { small: 8 },
+      themeName: 'minimal',
     });
     // @ts-ignore intentionally not using a full EUI theme definition
     expect(getComputed(theme, {}, 'dark')).toEqual({
       colors: { primary: '#FFF', secondary: '#FFFFFF' },
       sizes: { small: 8 },
+      themeName: 'minimal',
     });
   });
   it('respects simple overrides', () => {
@@ -188,6 +190,7 @@ describe('getComputed', () => {
     ).toEqual({
       colors: { primary: '#000', secondary: '#000000' },
       sizes: { small: 4 },
+      themeName: 'minimal',
     });
   });
   it('respects overrides in computation', () => {
@@ -201,6 +204,7 @@ describe('getComputed', () => {
     ).toEqual({
       colors: { primary: '#CCC', secondary: '#CCC000' },
       sizes: { small: 8 },
+      themeName: 'minimal',
     });
   });
 });
@@ -242,15 +246,18 @@ describe('currentColorModeOnly', () => {
     sizes: {
       small: 8,
     },
+    themeName: 'minimal',
   };
   it('object with only the current color mode colors', () => {
     expect(currentColorModeOnly('light', theme)).toEqual({
       colors: { primary: '#000' },
       sizes: { small: 8 },
+      themeName: 'minimal',
     });
     expect(currentColorModeOnly('dark', theme)).toEqual({
       colors: { primary: '#FFF' },
       sizes: { small: 8 },
+      themeName: 'minimal',
     });
   });
 });

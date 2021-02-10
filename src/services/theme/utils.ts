@@ -136,7 +136,7 @@ export const getComputed = <T = EuiThemeShape>(
   over: Partial<EuiThemeSystem<T>>,
   colorMode: EuiThemeColorMode
 ): EuiThemeComputed<T> => {
-  const output = {};
+  const output = { themeName: base.key };
 
   function loop(
     base: { [key: string]: any },
@@ -167,7 +167,7 @@ export const getComputed = <T = EuiThemeShape>(
     });
   }
   loop(base, over);
-  return currentColorModeOnly<T>(colorMode, output as T);
+  return currentColorModeOnly<T>(colorMode, (output as unknown) as T);
 };
 
 export const buildTheme = <T extends {}>(model: T, key: string) => {

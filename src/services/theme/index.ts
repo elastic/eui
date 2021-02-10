@@ -44,4 +44,9 @@ export {
   EuiThemeShape,
   EuiThemeSystem,
 } from './types';
-export { EuiThemeDefault, euiThemeDefault } from './theme';
+export {
+  EuiThemeDefault,
+  euiThemeDefault,
+  EuiThemeAmsterdam,
+  euiThemeAmsterdam,
+} from './theme';

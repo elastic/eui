@@ -24,8 +24,63 @@ export const tint = (color: string, ratio: number) =>
   chroma.mix(color, '#fff', ratio).hex();
 export const shade = (color: string, ratio: number) =>
   chroma.mix(color, '#000', ratio).hex();
+// TODO
 const makeHighContrastColor = (color: string) => color;
+// TODO
 const makeDisabledContrastColor = (color: string) => color;
+// TODO
+const transparentize = (color: string, ratio: number) =>
+  ratio ? color : color;
+
+const poles = {
+  euiColorGhost: '#FFF',
+  euiColorInk: '#000',
+};
+
+const graysLight = {
+  euiColorEmptyShade: '#FFF',
+  euiColorLightestShade: '#F5F7FA',
+  euiColorLightShade: '#D3DAE6',
+  euiColorMediumShade: '#98A2B3',
+  euiColorDarkShade: '#69707D',
+  euiColorDarkestShade: '#343741',
+  euiColorFullShade: '#000',
+};
+
+const textVariants = {
+  euiColorPrimaryText: computed(
+    ['colors.euiColorPrimary'],
+    ([euiColorPrimary]) => makeHighContrastColor(euiColorPrimary)
+  ),
+  euiColorSecondaryText: computed(
+    ['colors.euiColorSecondary'],
+    ([euiColorSecondary]) => makeHighContrastColor(euiColorSecondary)
+  ),
+  euiColorAccentText: computed(['colors.euiColorAccent'], ([euiColorAccent]) =>
+    makeHighContrastColor(euiColorAccent)
+  ),
+  euiColorWarningText: computed(
+    ['colors.euiColorWarning'],
+    ([euiColorWarning]) => makeHighContrastColor(euiColorWarning)
+  ),
+  euiColorDangerText: computed(['colors.euiColorDanger'], ([euiColorDanger]) =>
+    makeHighContrastColor(euiColorDanger)
+  ),
+  euiColorDisabledText: computed(
+    ['colors.euiColorDisabled'],
+    ([euiColorDisabled]) => makeDisabledContrastColor(euiColorDisabled)
+  ),
+  euiColorSuccessText: computed(
+    ['colors.euiColorSecondaryText'],
+    ([euiColorSecondaryText]) => euiColorSecondaryText
+  ),
+  euiLinkColor: computed(
+    ['colors.euiColorPrimaryText'],
+    ([euiColorPrimaryText]) => euiColorPrimaryText
+  ),
+};
+
+/* DEFAULT THEME */
 
 export const light = {
   euiColorPrimary: '#006BB4',
@@ -33,8 +88,7 @@ export const light = {
   euiColorAccent: '#DD0A73',
 
   // These colors stay the same no matter the theme
-  euiColorGhost: '#FFF',
-  euiColorInk: '#000',
+  ...poles,
 
   // Status
   euiColorSuccess: computed(
@@ -45,13 +99,7 @@ export const light = {
   euiColorWarning: '#F5A700',
 
   // Grays
-  euiColorEmptyShade: '#FFF',
-  euiColorLightestShade: '#F5F7FA',
-  euiColorLightShade: '#D3DAE6',
-  euiColorMediumShade: '#98A2B3',
-  euiColorDarkShade: '#69707D',
-  euiColorDarkestShade: '#343741',
-  euiColorFullShade: '#000',
+  ...graysLight,
 
   // Backgrounds
   euiPageBackgroundColor: computed(
@@ -77,36 +125,8 @@ export const light = {
   ),
 
   // Contrasty text variants
-  euiColorPrimaryText: computed(
-    ['colors.euiColorPrimary'],
-    ([euiColorPrimary]) => makeHighContrastColor(euiColorPrimary)
-  ),
-  euiColorSecondaryText: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => makeHighContrastColor(euiColorSecondary)
-  ),
-  euiColorAccentText: computed(['colors.euiColorAccent'], ([euiColorAccent]) =>
-    makeHighContrastColor(euiColorAccent)
-  ),
-  euiColorWarningText: computed(
-    ['colors.euiColorWarning'],
-    ([euiColorWarning]) => makeHighContrastColor(euiColorWarning)
-  ),
-  euiColorDangerText: computed(['colors.euiColorDanger'], ([euiColorDanger]) =>
-    makeHighContrastColor(euiColorDanger)
-  ),
-  euiColorDisabledText: computed(
-    ['colors.euiColorDisabled'],
-    ([euiColorDisabled]) => makeDisabledContrastColor(euiColorDisabled)
-  ),
-  euiColorSuccessText: computed(
-    ['colors.euiColorSecondaryText'],
-    ([euiColorSecondaryText]) => euiColorSecondaryText
-  ),
-  euiLinkColor: computed(
-    ['colors.euiColorPrimaryText'],
-    ([euiColorPrimaryText]) => euiColorPrimaryText
-  ),
+  ...textVariants,
+
   // State
   euiFocusTransparency: 0.1,
   euiFocusBackgroundColor: computed(
@@ -116,10 +136,19 @@ export const light = {
   ),
 };
 
+const graysDark = {
+  euiColorEmptyShade: '#1D1E24',
+  euiColorLightestShade: '#25262E',
+  euiColorLightShade: '#343741',
+  euiColorMediumShade: '#535966',
+  euiColorDarkShade: '#98A2B3',
+  euiColorDarkestShade: '#D4DAE5',
+  euiColorFullShade: '#FFF',
+};
+
 export const dark = {
   // These colors stay the same no matter the theme
-  euiColorGhost: '#FFF',
-  euiColorInk: '#000',
+  ...poles,
 
   // Core
   euiColorPrimary: '#1BA9F5',
@@ -135,13 +164,7 @@ export const dark = {
   euiColorDanger: '#F66',
 
   // Grays
-  euiColorEmptyShade: '#1D1E24',
-  euiColorLightestShade: '#25262E',
-  euiColorLightShade: '#343741',
-  euiColorMediumShade: '#535966',
-  euiColorDarkShade: '#98A2B3',
-  euiColorDarkestShade: '#D4DAE5',
-  euiColorFullShade: '#FFF',
+  ...graysDark,
 
   // Backgrounds
   euiPageBackgroundColor: computed(
@@ -165,36 +188,8 @@ export const dark = {
   ),
 
   // Contrasty text variants
-  euiColorPrimaryText: computed(
-    ['colors.euiColorPrimary'],
-    ([euiColorPrimary]) => makeHighContrastColor(euiColorPrimary)
-  ),
-  euiColorSecondaryText: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => makeHighContrastColor(euiColorSecondary)
-  ),
-  euiColorAccentText: computed(['colors.euiColorAccent'], ([euiColorAccent]) =>
-    makeHighContrastColor(euiColorAccent)
-  ),
-  euiColorWarningText: computed(
-    ['colors.euiColorWarning'],
-    ([euiColorWarning]) => makeHighContrastColor(euiColorWarning)
-  ),
-  euiColorDangerText: computed(['colors.euiColorDanger'], ([euiColorDanger]) =>
-    makeHighContrastColor(euiColorDanger)
-  ),
-  euiColorDisabledText: computed(
-    ['colors.euiColorDisabled'],
-    ([euiColorDisabled]) => makeDisabledContrastColor(euiColorDisabled)
-  ),
-  euiColorSuccessText: computed(
-    ['colors.euiColorSecondaryText'],
-    ([euiColorSecondaryText]) => euiColorSecondaryText
-  ),
-  euiLinkColor: computed(
-    ['colors.euiColorPrimaryText'],
-    ([euiColorPrimaryText]) => euiColorPrimaryText
-  ),
+  ...textVariants,
+
   // State
   euiFocusTransparency: 0.3,
   euiFocusBackgroundColor: computed(
@@ -276,40 +271,29 @@ const colorVis = {
   euiColorVis9_behindText: euiPaletteColorBlind.euiColorVis9.behindText,
 };
 
-// TODO: `calc()` probably not the right solution
 const sizes = {
-  euiSize: '16px',
-  euiSizeXS: computed(
-    ['sizes.euiSize'],
-    ([euiSize]) => `calc(${euiSize} * 0.25)`
-  ),
-  euiSizeS: computed(
-    ['sizes.euiSize'],
-    ([euiSize]) => `calc(${euiSize} * 0.5)`
-  ),
-  euiSizeM: computed(
-    ['sizes.euiSize'],
-    ([euiSize]) => `calc(${euiSize} * 0.75)`
-  ),
-  euiSizeL: computed(
-    ['sizes.euiSize'],
-    ([euiSize]) => `calc(${euiSize} * 1.5)`
-  ),
-  euiSizeXL: computed(['sizes.euiSize'], ([euiSize]) => `calc(${euiSize} * 2)`),
-  euiSizeXXL: computed(
-    ['sizes.euiSize'],
-    ([euiSize]) => `calc(${euiSize} * 2.5)`
-  ),
+  euiSize: 16,
+  euiSizeXS: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.25),
+  euiSizeS: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.5),
+  euiSizeM: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.75),
+  euiSizeL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 1.5),
+  euiSizeXL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 2),
+  euiSizeXXL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 2.5),
 
-  euiButtonMinWidth: computed(
-    ['sizes.euiSize'],
-    ([euiSize]) => `calc(${euiSize} * 7)`
-  ),
+  euiButtonMinWidth: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 7),
 
   euiScrollBar: computed(['sizes.euiSize'], ([euiSize]) => euiSize),
   euiScrollBarCorner: computed(
     ['sizes.euiSizeS'],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
+    ([euiSizeS]) => euiSizeS * 0.75
+  ),
+};
+
+const borderRadius = {
+  euiBorderRadius: 4,
+  euiBorderRadiusSmall: computed(
+    ['borders.euiBorderRadius'],
+    ([euiBorderRadius]) => euiBorderRadius * 0.5
   ),
 };
 
@@ -321,11 +305,7 @@ const borders = {
     ['colors.euiColorLightShade'],
     ([euiColorLightShade]) => euiColorLightShade
   ),
-  euiBorderRadius: '4px',
-  euiBorderRadiusSmall: computed(
-    ['borders.euiBorderRadius'],
-    ([euiBorderRadius]) => `calc(${euiBorderRadius} / 2)`
-  ),
+
   euiBorderThick: computed(
     ['borders.euiBorderWidthThick', 'borders.euiBorderColor'],
     ([euiBorderWidthThick, euiBorderColor]) =>
@@ -350,7 +330,10 @@ export const euiThemeDefault = {
   },
   colorVis,
   sizes,
-  borders,
+  borders: {
+    ...borderRadius,
+    ...borders,
+  },
   buttons: {
     [COLOR_MODE_KEY]: {
       light: {
@@ -365,3 +348,147 @@ export const euiThemeDefault = {
 };
 
 export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
+
+/* AMSTERDAM THEME */
+
+export const amsterdam_light = {
+  euiColorPrimary: '#07C',
+  euiColorSecondary: '#00BFB3',
+  euiColorAccent: '#F04E98',
+
+  // These colors stay the same no matter the theme
+  ...poles,
+
+  // Status
+  euiColorSuccess: computed(
+    ['colors.euiColorSecondary'],
+    ([euiColorSecondary]) => euiColorSecondary
+  ),
+  euiColorDanger: '#BD271E',
+  euiColorWarning: '#FEC514',
+  euiColorDisabled: '#ABB4C4',
+
+  // Grays
+  ...graysLight,
+
+  // Backgrounds
+  euiPageBackgroundColor: computed(
+    ['colors.euiColorLightestShade'],
+    ([euiColorLightestShade]) => tint(euiColorLightestShade, 0.5)
+  ),
+  euiColorHighlight: computed(['colors.euiColorWarning'], ([euiColorWarning]) =>
+    tint(euiColorWarning, 0.9)
+  ),
+
+  // Every color below must be based mathematically on the set above and in a particular order.
+  euiTextColor: computed(
+    ['colors.euiColorDarkestShade'],
+    ([euiColorDarkestShade]) => euiColorDarkestShade
+  ),
+  euiTitleColor: computed(['colors.euiTextColor'], ([euiTextColor]) =>
+    shade(euiTextColor, 0.5)
+  ),
+  euiTextSubduedColor: computed(
+    ['colors.euiColorDarkShade'],
+    ([euiColorDarkShade]) => euiColorDarkShade
+  ),
+
+  // Contrasty text variants
+  ...textVariants,
+
+  // State
+  euiFocusTransparency: 0.9,
+  euiFocusBackgroundColor: computed(
+    ['colors.euiColorPrimary', 'colors.euiFocusTransparency'],
+    ([euiColorPrimary, euiFocusTransparency]) =>
+      transparentize(euiColorPrimary, euiFocusTransparency)
+  ),
+};
+
+export const amsterdam_dark = {
+  // These colors stay the same no matter the theme
+  ...poles,
+
+  // Core
+  euiColorPrimary: '#36A2EF',
+  euiColorSecondary: '#7DDED8',
+  euiColorAccent: '#F68FBE',
+
+  // Status
+  euiColorSuccess: computed(
+    ['colors.euiColorSecondary'],
+    ([euiColorSecondary]) => euiColorSecondary
+  ),
+  euiColorWarning: '#F3D371',
+  euiColorDanger: '#F86B63',
+  euiColorDisabled: '#515761',
+
+  // Grays
+  ...graysDark,
+
+  // Backgrounds
+  euiPageBackgroundColor: computed(
+    ['colors.euiColorLightestShade'],
+    ([euiColorLightestShade]) => shade(euiColorLightestShade, 0.3)
+  ),
+  euiColorHighlight: '#2E2D25',
+
+  // Variations from core
+  euiTextColor: '#DFE5EF',
+  euiTitleColor: computed(
+    ['colors.euiTextColor'],
+    ([euiTextColor]) => euiTextColor
+  ),
+  euiTextSubduedColor: computed(
+    ['colors.euiColorMediumShade'],
+    ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
+  ),
+
+  // Contrasty text variants
+  ...textVariants,
+
+  // State
+  euiFocusTransparency: 0.7,
+  euiFocusBackgroundColor: computed(
+    ['colors.euiColorPrimary', 'colors.euiFocusTransparency'],
+    ([euiColorPrimary, euiFocusTransparency]) =>
+      transparentize(euiColorPrimary, euiFocusTransparency)
+  ),
+};
+
+const amsterdam_borderRadius = {
+  euiBorderRadius: computed(
+    ['sizes.euiSizeS'],
+    ([euiSizeS]) => euiSizeS * 0.75
+  ),
+  euiBorderRadiusSmall: computed(
+    ['sizes.euiSizeS'],
+    ([euiSizeS]) => euiSizeS * 0.5
+  ),
+};
+
+export const euiThemeAmsterdam = {
+  [COLOR_MODE_KEY]: {
+    light: amsterdam_light,
+    dark: amsterdam_dark,
+  },
+  colorVis,
+  sizes,
+  borders: {
+    ...amsterdam_borderRadius,
+    ...borders,
+  },
+  buttons: {
+    [COLOR_MODE_KEY]: {
+      light: {
+        custom: '#000',
+      },
+      dark: { custom: '#fff' },
+    },
+  },
+};
+
+export const EuiThemeAmsterdam = buildTheme(
+  euiThemeAmsterdam,
+  'EUI_THEME_AMSTERDAM'
+);

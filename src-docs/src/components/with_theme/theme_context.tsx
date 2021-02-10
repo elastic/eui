@@ -4,7 +4,8 @@ import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 import { applyTheme } from '../../services';
 import {
   EuiThemeProvider,
-  // DefaultEuiTheme
+  EuiThemeDefault,
+  EuiThemeAmsterdam,
 } from '../../../../src/services';
 
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
@@ -52,9 +53,10 @@ export class ThemeProvider extends React.Component<object, State> {
           changeTheme: this.changeTheme,
         }}>
         <EuiThemeProvider
-        // theme={DefaultEuiTheme}
-        // colorMode={theme.includes('light') ? 'light' : 'dark'}
-        >
+          theme={
+            theme.includes('amsterdam') ? EuiThemeAmsterdam : EuiThemeDefault
+          }
+          colorMode={theme.includes('light') ? 'light' : 'dark'}>
           {children}
         </EuiThemeProvider>
       </ThemeContext.Provider>

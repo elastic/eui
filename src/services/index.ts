@@ -137,6 +137,8 @@ export {
   Computed,
   euiThemeDefault,
   EuiThemeDefault,
+  EuiThemeAmsterdam,
+  euiThemeAmsterdam,
   EuiThemeColor,
   EuiThemeColorMode,
   EuiThemeComputed,

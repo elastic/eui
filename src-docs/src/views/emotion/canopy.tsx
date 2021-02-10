@@ -140,9 +140,9 @@ class Block extends React.Component<any> {
 const BlockWithTheme = withEuiTheme(Block);
 
 export default () => {
-  const [colorMode, setColorMode] = React.useState('light');
+  // const [colorMode, setColorMode] = React.useState('light');
   const toggleTheme = () => {
-    setColorMode((mode) => (mode === 'light' ? 'dark' : 'light'));
+    // setColorMode((mode) => (mode === 'light' ? 'dark' : 'light'));
   };
   const [overrides, setOverrides] = React.useState({});
   const lightColors = () => {
@@ -180,10 +180,11 @@ export default () => {
     <>
       <EuiThemeProvider
         // theme={DefaultEuiTheme}
-        colorMode={colorMode}
+        // colorMode={colorMode}
         overrides={overrides}>
         <button type="button" onClick={toggleTheme}>
-          Toggle Color Mode!
+          {/* @ts-ignore strike */}
+          <strike>Toggle Color Mode!</strike> Use global config
         </button>
         <EuiSpacer />
         <button type="button" onClick={lightColors}>
