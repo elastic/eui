@@ -301,7 +301,7 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
  * Returns the size of the cell container minus the scroll bar width.
  * To do so, this hook is listening for size changes of the container itself,
  * as well as pagination changes to make sure every update is caught.
- * 
+ *
  * This is necessary because there is no callback/event fired by the browser
  * indicating the scroll bar state has changed.
  * @param resizeRef the wrapper element containging the data grid
