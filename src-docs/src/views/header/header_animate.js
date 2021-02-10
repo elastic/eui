@@ -22,10 +22,10 @@ const HeaderUpdates = forwardRef(
     const bellRef = useRef();
     const cheerRef = useRef();
 
-    // wrapping the `triggerAnimation` methods to make them available through this component's `ref`
-    const animate = useCallback(() => {
-      bellRef.current?.triggerAnimation();
-      cheerRef.current?.triggerAnimation();
+    // wrapping the `euiAnimate` methods to make them available through this component's `ref`
+    const euiAnimate = useCallback(() => {
+      bellRef.current?.euiAnimate();
+      cheerRef.current?.euiAnimate();
     }, []);
 
     // we're using the `useImperativeHandle` which allows the child to expose a function to the parent
@@ -33,9 +33,9 @@ const HeaderUpdates = forwardRef(
     useImperativeHandle(
       ref,
       () => ({
-        animate,
+        euiAnimate,
       }),
-      [animate]
+      [euiAnimate]
     );
 
     const bellButton = (
@@ -83,7 +83,7 @@ export default () => {
       setNotificationsNumber(notificationsNumber + 1);
     }
 
-    headerUpdatesRef.current?.animate();
+    headerUpdatesRef.current?.euiAnimate();
   };
 
   return (

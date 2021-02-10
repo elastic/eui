@@ -135,9 +135,9 @@ const headerAlertSnippet = `<EuiHeader>
 
 const headerAnimateSnippet = `const bellRef = useRef();
 
-    // wrapping the `triggerAnimation` methods to make them available through this component's `ref`
+    // wrapping the 'euiAnimate' methods to make them available through this component's 'ref'
 const animate = useCallback(() => {
-  bellRef.current?.triggerAnimation();
+  bellRef.current?.euiAnimate();
 }, []);
 
 // we're using the useImperativeHandle which allows the child to expose a function to the parent
@@ -407,8 +407,8 @@ export const HeaderExample = {
             <EuiCode>node</EuiCode> that will render inside a{' '}
             <strong>EuiBadgeNotification</strong> or pass{' '}
             <EuiCode>true</EuiCode> to render a simple dot. You can also animate
-            the button by calling the <EuiCode>triggerAnimation()</EuiCode>{' '}
-            method on the <strong>EuiHeaderSectionItemButton</strong>{' '}
+            the button by calling the <EuiCode>euiAnimate()</EuiCode> method on
+            the <strong>EuiHeaderSectionItemButton</strong>{' '}
             <EuiCode>ref</EuiCode>.
           </p>
         </>

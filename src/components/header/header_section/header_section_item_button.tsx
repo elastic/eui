@@ -48,7 +48,7 @@ export type EuiHeaderSectionItemButtonProps = CommonProps &
   };
 
 export type EuiHeaderSectionItemButtonRef =
-  | (HTMLButtonElement & { triggerAnimation: () => void })
+  | (HTMLButtonElement & { euiAnimate: () => void })
   | null;
 
 export const EuiHeaderSectionItemButton = forwardRef<
@@ -65,7 +65,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
       ...rest
     },
     /**
-     * Allows for animating with .triggerAnimation()
+     * Allows for animating with .euiAnimate()
      */
     ref
   ) => {
@@ -79,7 +79,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
       ref,
       () => {
         if (buttonRef) {
-          (buttonRef as any).triggerAnimation = () => {
+          (buttonRef as any).euiAnimate = () => {
             const keyframes: Keyframe[] = [
               { transform: 'rotate(0)', offset: 0, easing: 'ease-in-out' },
               {

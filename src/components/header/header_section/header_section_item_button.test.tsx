@@ -89,7 +89,7 @@ describe('EuiHeaderSectionItemButton', () => {
       function testAnimation(element: EuiHeaderSectionItemButtonRef) {
         if (element) {
           expect(element.animate).toHaveBeenCalledTimes(0);
-          element.triggerAnimation();
+          element.euiAnimate();
           expect(element.animate).toHaveBeenCalledTimes(1);
         }
       }
