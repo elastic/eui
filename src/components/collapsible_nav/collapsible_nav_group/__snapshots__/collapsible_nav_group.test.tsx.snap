@@ -278,8 +278,11 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="id"
+    role="region"
+    tabindex="-1"
   >
     <div>
       <div

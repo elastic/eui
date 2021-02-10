@@ -38,6 +38,7 @@ export type EuiTabsDisplaySizes = keyof typeof displayToClassNameMap;
 const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
+  l: 'euiTabs--large',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
