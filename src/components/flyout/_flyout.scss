@@ -6,6 +6,8 @@
 .euiFlyout__closeButton {
   background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
+  right: $euiSizeS;
+  top: $euiSizeS;
   z-index: 3;
 }
 
@@ -55,11 +57,6 @@ $flyoutSizes: (
 
     .euiFlyoutHeader--hasBorder {
       padding-bottom: $paddingAmount;
-    }
-
-    .euiFlyout__closeButton {
-      right: $euiSizeS;
-      top: $euiSizeS;
     }
 
     .euiFlyoutBody__overflowContent {
