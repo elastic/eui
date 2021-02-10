@@ -8,20 +8,12 @@ export default () => {
   const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment().add(11, 'd'));
 
-  const handleChangeStart = (date) => {
-    setStartDate(date);
-  };
-
-  const handleChangeEnd = (date) => {
-    setEndDate(date);
-  };
-
   return (
     <EuiDatePickerRange
       startDateControl={
         <EuiDatePicker
           selected={startDate}
-          onChange={handleChangeStart}
+          onChange={setStartDate}
           startDate={startDate}
           endDate={endDate}
           isInvalid={startDate > endDate}
@@ -32,7 +24,7 @@ export default () => {
       endDateControl={
         <EuiDatePicker
           selected={endDate}
-          onChange={handleChangeEnd}
+          onChange={setEndDate}
           startDate={startDate}
           endDate={endDate}
           isInvalid={startDate > endDate}

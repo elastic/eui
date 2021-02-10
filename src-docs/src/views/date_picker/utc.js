@@ -21,10 +21,6 @@ export default () => {
     setUtcOffset(parseInt(e.target.value, 10));
   };
 
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
-
   const selected = startDate && startDate.clone().utcOffset(utcOffset);
 
   return (
@@ -33,7 +29,7 @@ export default () => {
         <EuiDatePicker
           selected={selected}
           showTimeSelect
-          onChange={handleChange}
+          onChange={setStartDate}
           utcOffset={utcOffset * 60}
         />
       </EuiFormRow>

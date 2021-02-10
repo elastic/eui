@@ -15,26 +15,6 @@ export default () => {
   const [startDate4, setStartDate4] = useState(moment().add(1, 'days'));
   const [startDate5, setStartDate5] = useState(moment());
 
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
-
-  const handleChange2 = (date) => {
-    setStartDate2(date);
-  };
-
-  const handleChange3 = (date) => {
-    setStartDate3(date);
-  };
-
-  const handleChange4 = (date) => {
-    setStartDate4(date);
-  };
-
-  const handleChange5 = (date) => {
-    setStartDate5(date);
-  };
-
   const isWeekday = (date) => {
     const day = date.day();
     return day !== 0 && day !== 6;
@@ -46,7 +26,7 @@ export default () => {
         <EuiDatePicker
           showTimeSelect
           selected={startDate}
-          onChange={handleChange}
+          onChange={setStartDate}
           minDate={moment().subtract(2, 'days')}
           maxDate={moment().add(5, 'days')}
         />
@@ -58,7 +38,7 @@ export default () => {
         <EuiDatePicker
           showTimeSelect
           selected={startDate2}
-          onChange={handleChange2}
+          onChange={setStartDate2}
           minTime={moment().hours(17).minutes(0)}
           maxTime={moment().hours(20).minutes(30)}
         />
@@ -70,8 +50,8 @@ export default () => {
         <EuiDatePicker
           showTimeSelect
           selected={startDate3}
-          onChange={handleChange3}
-          excludeDates={[moment(), moment().subtract(1, 'days')]}
+          onChange={setStartDate3}
+          excludeDates={[moment(), moment().add(1, 'days')]}
         />
       </EuiFormRow>
 
@@ -81,7 +61,7 @@ export default () => {
         <EuiDatePicker
           showTimeSelect
           selected={startDate4}
-          onChange={handleChange4}
+          onChange={setStartDate4}
           excludeTimes={[
             moment().hours(0).minutes(0),
             moment().hours(17).minutes(0),
@@ -95,7 +75,7 @@ export default () => {
         <EuiDatePicker
           showTimeSelect
           selected={startDate5}
-          onChange={handleChange5}
+          onChange={setStartDate5}
           filterDate={isWeekday}
         />
       </EuiFormRow>

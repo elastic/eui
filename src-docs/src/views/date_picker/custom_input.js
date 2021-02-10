@@ -26,13 +26,10 @@ ExampleCustomInput.propTypes = {
 export default () => {
   const [startDate, setStartDate] = useState(moment());
 
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
   return (
     <EuiDatePicker
       selected={startDate}
-      onChange={handleChange}
+      onChange={setStartDate}
       customInput={<ExampleCustomInput />}
     />
   );
