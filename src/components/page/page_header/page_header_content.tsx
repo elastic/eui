@@ -52,7 +52,7 @@ export type EuiPageHeaderContentTitle = {
   /**
    * Additional EuiIcon props to apply to the optional icon
    */
-  iconProps?: Partial<EuiIconProps>;
+  iconProps?: Partial<Omit<EuiIconProps, 'type'>>;
 };
 
 export type EuiPageHeaderContentTabs = {
