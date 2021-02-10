@@ -35,7 +35,7 @@ export type EuiNotificationEventReadButtonProps = Omit<
    */
   onClick: () => void;
   /**
-   * A unique name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
    */
   eventName: string;
 };
