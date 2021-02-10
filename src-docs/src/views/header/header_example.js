@@ -124,7 +124,7 @@ const headerAlertSnippet = `<EuiHeader>
         aria-controls={portalContentId}
         aria-expanded={isPortalContentVisible}
         aria-label="Open portal content"
-        onClick={() => showPortalConten()}
+        onClick={showPortalContent}
         notification={showNotification}
       >
         <EuiIcon type="bell" />
