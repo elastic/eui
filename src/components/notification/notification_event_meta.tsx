@@ -100,7 +100,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   const id = htmlIdGenerator()();
 
   const onMarkAsRead = () => {
-    onRead && onRead();
+    onRead?.();
   };
 
   const ariaAttribute = iconAriaLabel
