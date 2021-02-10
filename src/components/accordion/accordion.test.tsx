@@ -60,6 +60,16 @@ describe('EuiAccordion', () => {
       });
     });
 
+    describe('buttonProps', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} buttonProps={requiredProps} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('extraAction', () => {
       it('is rendered', () => {
         const component = render(

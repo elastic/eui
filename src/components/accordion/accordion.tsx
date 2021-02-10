@@ -48,6 +48,10 @@ export type EuiAccordionProps = CommonProps &
      */
     buttonClassName?: string;
     /**
+     * Apply more props to the triggering button
+     */
+    buttonProps?: CommonProps & HTMLAttributes<HTMLButtonElement>;
+    /**
      * Class that will apply to the trigger content for the accordion.
      */
     buttonContentClassName?: string;
@@ -170,6 +174,7 @@ export class EuiAccordion extends Component<
       forceState,
       isLoading,
       isLoadingMessage,
+      buttonProps,
       ...rest
     } = this.props;
 
@@ -196,7 +201,8 @@ export class EuiAccordion extends Component<
       {
         euiAccordion__buttonReverse: !extraAction && arrowDisplay === 'right',
       },
-      buttonClassName
+      buttonClassName,
+      buttonProps?.className
     );
 
     const iconClasses = classNames('euiAccordion__icon', {
@@ -214,7 +220,7 @@ export class EuiAccordion extends Component<
 
     let icon;
     let iconButton;
-    const buttonId = htmlIdGenerator()();
+    const buttonId = buttonProps?.id ?? htmlIdGenerator()();
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
         <button
@@ -267,6 +273,7 @@ export class EuiAccordion extends Component<
       <div className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
           <button
+            {...buttonProps}
             id={buttonId}
             aria-controls={id}
             aria-expanded={isOpen}

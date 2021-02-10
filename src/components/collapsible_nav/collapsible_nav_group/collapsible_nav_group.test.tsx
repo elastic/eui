@@ -119,6 +119,21 @@ describe('EuiCollapsibleNavGroup', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('accepts accordion props', () => {
+      const component = render(
+        <EuiCollapsibleNavGroup
+          isCollapsible={true}
+          initialIsOpen={false}
+          title="Title"
+          id="id"
+          {...requiredProps}
+          buttonProps={requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('throws a warning', () => {
