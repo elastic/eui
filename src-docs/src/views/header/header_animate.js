@@ -22,7 +22,7 @@ const HeaderUpdates = forwardRef(
     const bellRef = useRef();
     const cheerRef = useRef();
 
-    // we're passing passing the `triggerAnimation` callbacks to the `headerUpdatesRef` child components that we want to animate
+    // wrapping the `triggerAnimation` methods to make them available through this component's `ref`
     const animate = useCallback(() => {
       bellRef.current?.triggerAnimation();
       cheerRef.current?.triggerAnimation();
