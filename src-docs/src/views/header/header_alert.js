@@ -152,7 +152,7 @@ const HeaderUpdates = () => {
   const flyout = (
     <EuiPortal>
       <EuiFlyout
-        onClose={() => closeFlyout()}
+        onClose={closeFlyout}
         size="s"
         id="headerFlyoutNewsFeed"
         aria-labelledby="flyoutSmallTitle">
@@ -178,7 +178,7 @@ const HeaderUpdates = () => {
             <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 iconType="cross"
-                onClick={() => closeFlyout()}
+                onClick={closeFlyout}
                 flush="left">
                 Close
               </EuiButtonEmpty>
