@@ -18,9 +18,10 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount, render } from 'enzyme';
 import { EuiNotificationEventMeta } from './notification_event_meta';
-import { EuiContextMenuItem } from '../context_menu';
+import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';
+import { findTestSubject, takeMountedSnapshot } from '../../test';
 
 describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
@@ -88,7 +89,7 @@ describe('EuiNotificationEventMeta', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('contextMenuItems  are rendered', () => {
+    test('contextMenuItems are rendered', () => {
       const contextMenuItems = [
         <EuiContextMenuItem key="contextMenuItemA">
           Mark as read
@@ -101,7 +102,7 @@ describe('EuiNotificationEventMeta', () => {
         </EuiContextMenuItem>,
       ];
 
-      const component = render(
+      const component = mount(
         <EuiNotificationEventMeta
           type="Alert"
           time={<span>2 min ago</span>}
@@ -111,7 +112,37 @@ describe('EuiNotificationEventMeta', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.find(EuiContextMenuPanel)).toHaveLength(0);
+      findTestSubject(component, 'notificationEventMetaButton').simulate(
+        'click'
+      );
+      expect(component.find(EuiContextMenuPanel)).toHaveLength(1);
+
+      expect(
+        takeMountedSnapshot(component.find(EuiContextMenuPanel))
+      ).toMatchSnapshot();
+    });
+  });
+
+  describe('behavior', () => {
+    it('triggers the onRead callback', () => {
+      const onRead = jest.fn();
+
+      const component = mount(
+        <EuiNotificationEventMeta
+          eventName="eventName"
+          type="Alert"
+          time={<span>2 min ago</span>}
+          isRead={true}
+          onRead={onRead}
+        />
+      );
+
+      findTestSubject(component, 'notificationEventReadButton').simulate(
+        'click'
+      );
+
+      expect(onRead).toHaveBeenCalledTimes(1);
     });
   });
 });
