@@ -68,7 +68,7 @@ export class AppView extends Component {
             />
           </EuiErrorBoundary>
 
-          <EuiPageContent borderRadius="none">
+          <EuiPageContent className="guidePageContent" borderRadius="none">
             <div className="guideMaxWidth">
               <EuiContext i18n={i18n}>
                 <ThemeContext.Consumer>
