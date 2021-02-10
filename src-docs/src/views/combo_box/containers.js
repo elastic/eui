@@ -9,7 +9,6 @@ import {
   EuiModalBody,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiOverlayMask,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -122,15 +121,13 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
-        <EuiModal onClose={closeModal} style={{ width: '800px' }}>
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
-          </EuiModalHeader>
+      <EuiModal onClose={closeModal} style={{ width: '800px' }}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
+        </EuiModalHeader>
 
-          <EuiModalBody>{comboBox}</EuiModalBody>
-        </EuiModal>
-      </EuiOverlayMask>
+        <EuiModalBody>{comboBox}</EuiModalBody>
+      </EuiModal>
     );
   }
 

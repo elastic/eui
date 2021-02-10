@@ -718,7 +718,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   // enables/disables grid controls based on available width
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
+  const [toolbarRef, setToolbarRef] = useState<HTMLDivElement | null>(null);
   const gridDimensions = useResizeObserver(resizeRef, 'width');
+  const toolbarDemensions = useResizeObserver(toolbarRef, 'height');
   useEffect(() => {
     if (resizeRef) {
       const { width } = gridDimensions;
@@ -1022,6 +1024,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                           <>
                             {showToolbar ? (
                               <div
+                                ref={setToolbarRef}
                                 className="euiDataGrid__controls"
                                 data-test-sub="dataGridControls">
                                 {hasRoomForGridControls ? gridControls : null}
@@ -1073,6 +1076,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     columns={orderedVisibleColumns}
                                     columnWidths={columnWidths}
                                     defaultColumnWidth={defaultColumnWidth}
+                                    toolbarHeight={toolbarDemensions.height}
                                     leadingControlColumns={
                                       leadingControlColumns
                                     }
