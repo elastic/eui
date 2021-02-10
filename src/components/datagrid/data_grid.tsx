@@ -297,6 +297,47 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
   );
 }
 
+/**
+ * Returns the size of the cell container minus the scroll bar width.
+ * To do so, this hook is listening for size changes of the container itself,
+ * as well as pagination changes to make sure every update is caught.
+ * 
+ * This is necessary because there is no callback/event fired by the browser
+ * indicating the scroll bar state has changed.
+ * @param resizeRef the wrapper element containging the data grid
+ * @param pageSize the currently applied page size
+ */
+function useVirtualizeContainerWidth(
+  resizeRef: HTMLDivElement | null,
+  pageSize: number | undefined
+) {
+  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
+  const virtualizeContainer = resizeRef?.getElementsByClassName(
+    VIRTUALIZED_CONTAINER_CLASS
+  )[0] as HTMLDivElement | null;
+
+  // re-render data grid on size changes
+  useResizeObserver(virtualizeContainer);
+
+  useEffect(() => {
+    if (virtualizeContainer?.clientWidth) {
+      setVirtualizeContainerWidth(virtualizeContainer.clientWidth);
+    }
+  }, [virtualizeContainer?.clientWidth]);
+
+  useEffect(() => {
+    // wait for layout to settle, then measure virtualize container
+    setTimeout(() => {
+      if (virtualizeContainer?.clientWidth) {
+        const containerWidth = virtualizeContainer.clientWidth;
+        setVirtualizeContainerWidth(containerWidth);
+      }
+    }, 100);
+  }, [pageSize, virtualizeContainer]);
+
+  return virtualizeContainerWidth;
+}
+
 function useDefaultColumnWidth(
   gridWidth: number,
   leadingControlColumns: EuiDataGridControlColumn[],
@@ -730,29 +771,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [resizeRef, gridDimensions]);
 
-  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
-  const virtualizeContainer = resizeRef?.getElementsByClassName(
-    VIRTUALIZED_CONTAINER_CLASS
-  )[0] as HTMLDivElement | null;
-
-  // re-render data grid on size changes
-  useResizeObserver(virtualizeContainer);
-
-  useEffect(() => {
-    if (virtualizeContainer?.clientWidth) {
-      setVirtualizeContainerWidth(virtualizeContainer.clientWidth);
-    }
-  }, [virtualizeContainer?.clientWidth]);
-
-  useEffect(() => {
-    // wait for layout to settle, then measuer virtualize container
-    setTimeout(() => {
-      if (virtualizeContainer?.clientWidth) {
-        const containerWidth = virtualizeContainer.clientWidth;
-        setVirtualizeContainerWidth(containerWidth);
-      }
-    }, 100);
-  }, [pagination?.pageSize, virtualizeContainer]);
+  const virtualizeContainerWidth = useVirtualizeContainerWidth(
+    resizeRef,
+    pagination?.pageSize
+  );
 
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
