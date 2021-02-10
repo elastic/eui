@@ -151,7 +151,9 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
             iconType="cross"
             color="text"
             aria-label={closeButtonAriaLabel || closeAriaLabel}
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+            }}
             data-test-subj="euiFlyoutCloseButton"
           />
         )}
