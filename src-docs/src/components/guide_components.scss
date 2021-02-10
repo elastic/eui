@@ -96,7 +96,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   min-height: 100vh;
   background-color: $euiColorEmptyShade;
   border-left: $euiBorderThin;
-  max-width: 1000px;
+  max-width: $euiPageDefaultMaxWidth;
   margin-left: 240px;
 }
 
@@ -105,9 +105,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     min-height: 460px;
   }
 
-  div {
+  > div,
+  > div > div {
     background: transparentize($euiColorPrimary, .9);
   }
+}
+
+.guideDemo__highlightLayout--single {
+  background: transparentize($euiColorPrimary, .9);
 }
 
 .guideDemo__highlightSpacer {

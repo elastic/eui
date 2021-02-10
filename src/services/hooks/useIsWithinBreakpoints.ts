@@ -27,9 +27,13 @@ import { isWithinBreakpoints, EuiBreakpointSize } from '../breakpoint';
  * falls within any of the named breakpoints.
  *
  * @param {EuiBreakpointSize[]} sizes An array of named breakpoints
+ * @param {boolean} isActive Manages whether the resize handler should be active
  * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`
  */
-export function useIsWithinBreakpoints(sizes: EuiBreakpointSize[]) {
+export function useIsWithinBreakpoints(
+  sizes: EuiBreakpointSize[],
+  isActive: boolean = true
+) {
   const [isWithinBreakpointsValue, setIsWithinBreakpointsValue] = useState<
     boolean
   >(false);
@@ -41,12 +45,14 @@ export function useIsWithinBreakpoints(sizes: EuiBreakpointSize[]) {
       );
     }
 
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
+    if (isActive) {
+      window.removeEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
+      handleResize();
+    }
 
     return () => window.removeEventListener('resize', handleResize);
-  }, [sizes]);
+  }, [sizes, isActive]);
 
   return isWithinBreakpointsValue;
 }

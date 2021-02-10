@@ -8,7 +8,6 @@ import {
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
   EuiPageHeader,
-  EuiPageHeaderSection,
   EuiPageSideBar,
   EuiTitle,
 } from '../../../../src/components';
@@ -18,14 +17,11 @@ export default () => (
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
     {/* The EUI docs site  already has a wrapping <main> tag, so we've changed this example to a <div> for accessibility. You likely don't need to copy the `component` prop for your own usage. */}
     <EuiPageBody component="div">
-      <EuiPageHeader>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Page title</h1>
-          </EuiTitle>
-        </EuiPageHeaderSection>
-        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
-      </EuiPageHeader>
+      <EuiPageHeader
+        pageTitle="Page title"
+        rightSideItems={['Page abilities']}
+        alignItems="center"
+      />
       <EuiPageContent verticalPosition="center" horizontalPosition="center">
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>
