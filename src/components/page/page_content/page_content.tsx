@@ -40,6 +40,9 @@ const horizontalPositionToClassNameMap: {
 
 export type EuiPageContentProps = CommonProps &
   EuiPanelProps & {
+    /**
+     * **DEPRECATED: use `paddingSize` instead.**
+     */
     panelPaddingSize?: PanelPaddingSize;
     verticalPosition?: EuiPageContentVerticalPositions;
     horizontalPosition?: EuiPageContentHorizontalPositions;
