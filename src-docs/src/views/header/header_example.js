@@ -135,7 +135,7 @@ const headerAlertSnippet = `<EuiHeader>
 
 const headerAnimateSnippet = `const bellRef = useRef();
 
-// we're passing passing the triggerAnimation callbacks to the EuiHeaderSectionItemButton that we want to animate
+    // wrapping the `triggerAnimation` methods to make them available through this component's `ref`
 const animate = useCallback(() => {
   bellRef.current?.triggerAnimation();
 }, []);
