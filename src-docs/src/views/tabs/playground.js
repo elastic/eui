@@ -2,7 +2,7 @@ import {
   propUtilityForPlayground,
   dummyFunction,
 } from '../../services/playground';
-import { EuiTab } from '../../../../src/components/';
+import { EuiTab, EuiTabs } from '../../../../src/components/';
 import { PropTypes } from 'react-view';
 
 export const tabConfig = () => {
@@ -38,6 +38,38 @@ export const tabConfig = () => {
       imports: {
         '@elastic/eui': {
           named: ['EuiTab'],
+        },
+      },
+      customProps: {
+        onClick: dummyFunction,
+      },
+    },
+  };
+};
+
+export const tabsConfig = () => {
+  const docgenInfo = Array.isArray(EuiTabs.__docgenInfo)
+    ? EuiTabs.__docgenInfo[0]
+    : EuiTabs.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.children = {
+    value: '<EuiTab>Tab 1</EuiTab><EuiTab isSelected>Tab 2</EuiTab>',
+    type: PropTypes.ReactNode,
+    hidden: false,
+  };
+
+  return {
+    config: {
+      componentName: 'EuiTabs',
+      props: propsToUse,
+      scope: {
+        EuiTabs,
+        EuiTab,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiTabs', 'EuiTab'],
         },
       },
       customProps: {
