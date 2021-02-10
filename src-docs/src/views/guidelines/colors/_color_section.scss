@@ -2,7 +2,7 @@
   .guideColorsPage__stickySlider {
     position: sticky;
     top: $euiHeaderHeightCompensation;
-    z-index: $euiZLevel1;
+    z-index: $euiZLevel1 - 1; // Below header
   }
 }
 
