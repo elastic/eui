@@ -143,7 +143,7 @@ const HeaderUpdates = () => {
       aria-expanded={isPopoverVisible}
       aria-haspopup="true"
       aria-label={"News feed: Updates available'"}
-      onClick={() => showPopover()}
+      onClick={showPopover}
       notification={6}>
       <EuiIcon type="cheer" />
     </EuiHeaderSectionItemButton>
