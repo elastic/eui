@@ -142,6 +142,9 @@ export class EuiAccordion extends Component<
           isOpen: !prevState.isOpen,
         }),
         () => {
+          if (this.state.isOpen && this.childWrapper) {
+            this.childWrapper.focus();
+          }
           this.props.onToggle && this.props.onToggle(this.state.isOpen);
         }
       );
@@ -288,6 +291,9 @@ export class EuiAccordion extends Component<
           ref={(node) => {
             this.childWrapper = node;
           }}
+          tabIndex={-1}
+          role="region"
+          aria-labelledby={buttonId}
           id={id}>
           <EuiResizeObserver onResize={this.setChildContentHeight}>
             {(resizeRef) => (

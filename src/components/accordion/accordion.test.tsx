@@ -191,5 +191,19 @@ describe('EuiAccordion', () => {
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(false);
     });
+
+    it('moves focus to the content when expanded', () => {
+      const component = mount<EuiAccordion>(<EuiAccordion id={getId()} />);
+      const accordionClass = component.instance();
+      const childWrapper = accordionClass.childWrapper;
+
+      expect(childWrapper).not.toBeFalsy();
+      expect(childWrapper).not.toBe(document.activeElement);
+
+      // click button
+      component.find('button').simulate('click');
+
+      expect(childWrapper).toBe(document.activeElement);
+    });
   });
 });

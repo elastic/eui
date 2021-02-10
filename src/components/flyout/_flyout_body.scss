@@ -15,12 +15,5 @@
   .euiFlyoutBody__banner .euiCallOut {
     border: none; // Remove border from callout when it is a flyout banner
     border-radius: 0; // Ensures no border-radius in all themes
-    padding-left: $euiSizeL; // Align callout's content with flyout's title
-    padding-right: $euiSizeL; // Align callout's content with flyout's title
   }
-
-  .euiFlyoutBody__overflowContent {
-    padding: $euiSizeL;
-  }
-
 }

@@ -59,7 +59,7 @@ import {
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
 import { keys, htmlIdGenerator } from '../../services';
-import { EuiDataGridBody } from './data_grid_body';
+import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './data_grid_body';
 import { useDataGridColumnSelector } from './column_selector';
 import { useDataGridStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
@@ -295,6 +295,47 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
       }}
     </EuiI18n>
   );
+}
+
+/**
+ * Returns the size of the cell container minus the scroll bar width.
+ * To do so, this hook is listening for size changes of the container itself,
+ * as well as pagination changes to make sure every update is caught.
+ *
+ * This is necessary because there is no callback/event fired by the browser
+ * indicating the scroll bar state has changed.
+ * @param resizeRef the wrapper element containging the data grid
+ * @param pageSize the currently applied page size
+ */
+function useVirtualizeContainerWidth(
+  resizeRef: HTMLDivElement | null,
+  pageSize: number | undefined
+) {
+  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
+  const virtualizeContainer = resizeRef?.getElementsByClassName(
+    VIRTUALIZED_CONTAINER_CLASS
+  )[0] as HTMLDivElement | null;
+
+  // re-render data grid on size changes
+  useResizeObserver(virtualizeContainer);
+
+  useEffect(() => {
+    if (virtualizeContainer?.clientWidth) {
+      setVirtualizeContainerWidth(virtualizeContainer.clientWidth);
+    }
+  }, [virtualizeContainer?.clientWidth]);
+
+  useEffect(() => {
+    // wait for layout to settle, then measure virtualize container
+    setTimeout(() => {
+      if (virtualizeContainer?.clientWidth) {
+        const containerWidth = virtualizeContainer.clientWidth;
+        setVirtualizeContainerWidth(containerWidth);
+      }
+    }, 100);
+  }, [pageSize, virtualizeContainer]);
+
+  return virtualizeContainerWidth;
 }
 
 function useDefaultColumnWidth(
@@ -730,6 +771,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [resizeRef, gridDimensions]);
 
+  const virtualizeContainerWidth = useVirtualizeContainerWidth(
+    resizeRef,
+    pagination?.pageSize
+  );
+
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
@@ -801,7 +847,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
-    gridDimensions.width,
+    // use clientWidth of the virtualization container to take scroll bar into account
+    // if that's not possible fall back to the size of the wrapper element
+    virtualizeContainerWidth || gridDimensions.width,
     leadingControlColumns,
     trailingControlColumns,
     orderedVisibleColumns
