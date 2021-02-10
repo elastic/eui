@@ -25,7 +25,7 @@ import { keys } from '../../services';
 import { EuiButtonIcon } from '../button';
 
 import { EuiFocusTrap } from '../focus_trap';
-
+import { EuiOverlayMask } from '../overlay_mask';
 import { EuiI18n } from '../i18n';
 
 export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -80,30 +80,34 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   const classes = classnames('euiModal', widthClassName, className);
 
   return (
-    <EuiFocusTrap initialFocus={initialFocus}>
-      {
-        // Create a child div instead of applying these props directly to FocusTrap, or else
-        // fallbackFocus won't work.
-      }
-      <div
-        className={classes}
-        onKeyDown={onKeyDown}
-        tabIndex={0}
-        style={newStyle || style}
-        {...rest}>
-        <EuiI18n token="euiModal.closeModal" default="Closes this modal window">
-          {(closeModal: string) => (
-            <EuiButtonIcon
-              iconType="cross"
-              onClick={onClose}
-              className="euiModal__closeIcon"
-              color="text"
-              aria-label={closeModal}
-            />
-          )}
-        </EuiI18n>
-        <div className="euiModal__flex">{children}</div>
-      </div>
-    </EuiFocusTrap>
+    <EuiOverlayMask>
+      <EuiFocusTrap initialFocus={initialFocus}>
+        {
+          // Create a child div instead of applying these props directly to FocusTrap, or else
+          // fallbackFocus won't work.
+        }
+        <div
+          className={classes}
+          onKeyDown={onKeyDown}
+          tabIndex={0}
+          style={newStyle || style}
+          {...rest}>
+          <EuiI18n
+            token="euiModal.closeModal"
+            default="Closes this modal window">
+            {(closeModal: string) => (
+              <EuiButtonIcon
+                iconType="cross"
+                onClick={onClose}
+                className="euiModal__closeIcon"
+                color="text"
+                aria-label={closeModal}
+              />
+            )}
+          </EuiI18n>
+          <div className="euiModal__flex">{children}</div>
+        </div>
+      </EuiFocusTrap>
+    </EuiOverlayMask>
   );
 };

@@ -11,7 +11,6 @@ import {
   EuiModalFooter,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiOverlayMask,
   EuiRange,
   EuiSwitch,
   EuiCodeBlock,
@@ -125,29 +124,26 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
-        <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
-          </EuiModalHeader>
+      <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+        </EuiModalHeader>
 
-          <EuiModalBody>{formSample}</EuiModalBody>
+        <EuiModalBody>{formSample}</EuiModalBody>
 
-          <EuiModalFooter>
-            <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
+        <EuiModalFooter>
+          <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
 
-            <EuiButton onClick={closeModal} fill>
-              Save
-            </EuiButton>
-          </EuiModalFooter>
-        </EuiModal>
-      </EuiOverlayMask>
+          <EuiButton onClick={closeModal} fill>
+            Save
+          </EuiButton>
+        </EuiModalFooter>
+      </EuiModal>
     );
   }
   return (
     <div>
       <EuiButton onClick={showModal}>Show modal</EuiButton>
-
       {modal}
     </div>
   );
