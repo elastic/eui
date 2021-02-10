@@ -201,7 +201,7 @@ const HeaderUpdates = () => {
       repositionOnScroll
       button={cheerButton}
       isOpen={isPopoverVisible}
-      closePopover={() => closePopover()}
+      closePopover={closePopover}
       panelPaddingSize="none">
       <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
       <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
