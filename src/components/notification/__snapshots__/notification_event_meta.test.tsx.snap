@@ -71,68 +71,55 @@ exports[`EuiNotificationEventMeta props badgeColor  is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiNotificationEventMeta props contextMenuItems  are rendered 1`] = `
+exports[`EuiNotificationEventMeta props contextMenuItems are rendered 1`] = `
 <div
-  class="euiNotificationEventMeta euiNotificationEventMeta--hasContextMenu"
+  class="euiContextMenuPanel"
+  tabindex="0"
 >
-  <div
-    class="euiNotificationEventMeta__section"
-  >
-    <span
-      aria-hidden="true"
-      data-euiicon-type="logoCloud"
-    />
-    <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-    >
-      <span
-        class="euiBadge__content"
+  <div>
+    <div>
+      <button
+        class="euiContextMenuItem"
+        type="button"
       >
         <span
-          class="euiBadge__text"
-        >
-          Alert
-        </span>
-      </span>
-    </span>
-  </div>
-  <div
-    class="euiNotificationEventMeta__section"
-  >
-    <span
-      class="euiNotificationEventMeta__time"
-    >
-      <span>
-        2 min ago
-      </span>
-    </span>
-  </div>
-  <div
-    class="euiNotificationEventMeta__contextMenuWrapper"
-  >
-    <div
-      class="euiPopover euiPopover--anchorLeftUp"
-      id="generated-id"
-    >
-      <div
-        class="euiPopover__anchor"
-      >
-        <button
-          aria-controls="generated-id"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-label="Menu for eventName"
-          class="euiButtonIcon euiButtonIcon--subdued"
-          data-test-subj="notificationEventMetaButton"
-          type="button"
+          class="euiContextMenu__itemLayout"
         >
           <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            data-euiicon-type="boxesVertical"
-          />
-        </button>
-      </div>
+            class="euiContextMenuItem__text"
+          >
+            Mark as read
+          </span>
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            View messages like this
+          </span>
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            Don’t notify me about this
+          </span>
+        </span>
+      </button>
     </div>
   </div>
 </div>
