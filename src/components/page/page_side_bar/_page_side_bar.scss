@@ -10,6 +10,11 @@
 @include euiBreakpoint('xs', 's') {
   .euiPageSideBar {
     width: 100%;
+    margin-right: 0;
+
+    & + .euiPageBody {
+      padding-top: $euiSizeL;
+    }
   }
 }
 

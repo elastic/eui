@@ -23,17 +23,38 @@ import { CommonProps } from '../../common';
 
 export interface EuiPageContentBodyProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {}
+    HTMLAttributes<HTMLDivElement> {
+  /**
+   * Sets the max-width of the page,
+   * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
+   * set to `false` to not restrict the width,
+   * set to a number for a custom width in px,
+   * set to a string for a custom width in custom measurement.
+   */
+  restrictWidth?: boolean | number | string;
+}
 
 export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
   children,
+  restrictWidth = false,
+  style,
   className,
   ...rest
 }) => {
-  const classes = classNames('euiPageContentBody', className);
+  let widthClassname;
+  let newStyle;
+
+  if (restrictWidth === true) {
+    widthClassname = 'euiPageContentBody--restrictWidth-default';
+  } else if (restrictWidth !== false) {
+    widthClassname = 'euiPageContentBody--restrictWidth-custom';
+    newStyle = { ...style, maxWidth: restrictWidth };
+  }
+
+  const classes = classNames('euiPageContentBody', widthClassname, className);
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} style={newStyle || style} {...rest}>
       {children}
     </div>
   );

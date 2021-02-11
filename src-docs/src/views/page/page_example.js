@@ -17,16 +17,23 @@ import {
   EuiPageHeaderSection,
   EuiPageSideBar,
   EuiText,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import Page from './page';
 const pageSource = require('!!raw-loader!./page');
 const pageHtml = renderToHtml(Page);
 
+import PageNew from './page_new';
+const pageNewSource = require('!!raw-loader!./page_new');
+const pageNewHtml = renderToHtml(PageNew);
+
 import PageSimple from './page_simple';
 const pageSimpleSource = require('!!raw-loader!./page_simple');
 const pageSimpleHtml = renderToHtml(PageSimple);
+
+import PageSimpleNew from './page_simple_new';
+const pageSimpleNewSource = require('!!raw-loader!./page_simple_new');
+const pageSimpleNewHtml = renderToHtml(PageSimpleNew);
 
 import PageHeader from './page_header';
 const pageHeaderSource = require('!!raw-loader!./page_header');
@@ -42,7 +49,11 @@ const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
 
 import PageContentOnly from './page_content_only';
 const pageContentOnlySource = require('!!raw-loader!./page_content_only');
-const pageContentOnlyHtml = renderToHtml(Page);
+const pageContentOnlyHtml = renderToHtml(PageContentOnly);
+
+import PageCustomContent from './page_custom_content';
+const pageCustomContentSource = require('!!raw-loader!./page_custom_content');
+const pageCustomContentHtml = renderToHtml(Page);
 
 import PageContentCenter from './page_content_center';
 const pageContentCenterSource = require('!!raw-loader!./page_content_center');
@@ -51,6 +62,10 @@ const pageContentCenterHtml = renderToHtml(Page);
 import PageContentCenterWithSideBar from './page_content_center_with_side_bar';
 const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_center_with_side_bar');
 const PageContentCenterWithSideBarHtml = renderToHtml(Page);
+
+import PageContentCenterWithSideBarNew from './page_content_center_with_side_bar_new';
+const PageContentCenterWithSideBarNewSource = require('!!raw-loader!./page_content_center_with_side_bar_new');
+const PageContentCenterWithSideBarNewHtml = renderToHtml(Page);
 
 export const PageExample = {
   playground: Playground,
@@ -62,7 +77,6 @@ export const PageExample = {
         components as needed for the design. These examples are colored for
         illustrative purposes only.
       </p>
-      <EuiSpacer />
     </EuiText>
   ),
   sections: [
@@ -129,6 +143,38 @@ export const PageExample = {
       ),
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageNewSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageNewHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            The new default pattern is to place the EuiPageHeader within the
+            EuiPageContent when using alongside of the sidebar.
+          </p>
+        </div>
+      ),
+      props: {
+        EuiPage,
+        EuiPageContent,
+        EuiPageContentBody,
+        EuiPageHeader,
+        EuiPageSideBar,
+      },
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageNew />
+        </div>
+      ),
+    },
+    {
       title: 'A simple page layout with a title',
       source: [
         {
@@ -150,6 +196,24 @@ export const PageExample = {
       demo: (
         <div className="guideDemo__highlightLayout">
           <PageSimple />
+        </div>
+      ),
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageSimpleNewSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageSimpleNewHtml,
+        },
+      ],
+      text: <p>The new pattern..</p>,
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageSimpleNew />
         </div>
       ),
     },
@@ -197,7 +261,31 @@ export const PageExample = {
       ),
     },
     {
-      title: 'A simple page layout with content centered in a full layout',
+      title: 'A simple page layout with custom content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageCustomContentSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageCustomContentHtml,
+        },
+      ],
+      text: (
+        <p>
+          You can replace the inner parts of EuiPageBody with your own content,
+          with or without a page haeder.
+        </p>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageCustomContent />
+        </div>
+      ),
+    },
+    {
+      title: 'A full page layout with content centered',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -218,6 +306,24 @@ export const PageExample = {
       demo: (
         <div className="guideDemo__highlightLayout">
           <PageContentCenterWithSideBar />
+        </div>
+      ),
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageContentCenterWithSideBarNewSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageContentCenterWithSideBarNewHtml,
+        },
+      ],
+      text: <p>The new pattern is...</p>,
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageContentCenterWithSideBarNew />
         </div>
       ),
     },
@@ -345,7 +451,7 @@ export const PageExample = {
           <PageHeaderCustom />
         </div>
       ),
-      props: { EuiPageHeader },
+      props: { EuiPageHeader, EuiPageHeaderSection },
     },
   ],
 };

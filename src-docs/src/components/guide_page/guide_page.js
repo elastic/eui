@@ -80,6 +80,7 @@ const GuidePageComponent = ({
   return (
     <>
       <EuiPageHeader
+        restrictWidth
         pageTitle={
           <>
             {title} {betaBadge}
@@ -89,7 +90,7 @@ const GuidePageComponent = ({
         {intro}
       </EuiPageHeader>
 
-      <EuiPageContentBody>
+      <EuiPageContentBody restrictWidth>
         <Switch>
           {playground && (
             <Route path={`${match.path}/playground`}>{playground}</Route>

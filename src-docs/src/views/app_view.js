@@ -69,18 +69,16 @@ export class AppView extends Component {
           </EuiErrorBoundary>
 
           <EuiPageContent borderRadius="none">
-            <div className="guideMaxWidth">
-              <EuiContext i18n={i18n}>
-                <ThemeContext.Consumer>
-                  {(context) => {
-                    return React.cloneElement(children, {
-                      selectedTheme: context.theme,
-                      title: currentRoute.name,
-                    });
-                  }}
-                </ThemeContext.Consumer>
-              </EuiContext>
-            </div>
+            <EuiContext i18n={i18n}>
+              <ThemeContext.Consumer>
+                {(context) => {
+                  return React.cloneElement(children, {
+                    selectedTheme: context.theme,
+                    title: currentRoute.name,
+                  });
+                }}
+              </ThemeContext.Consumer>
+            </EuiContext>
           </EuiPageContent>
         </EuiPage>
       </>
