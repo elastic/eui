@@ -31,4 +31,5 @@ export {
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
+  EuiHeaderSectionItemButtonProps,
 } from './header_section';
