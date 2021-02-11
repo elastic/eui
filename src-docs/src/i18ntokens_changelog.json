@@ -1,5 +1,15 @@
 [
   {
+    "version": "31.6.0",
+    "changes": [
+      {
+        "token": "euiMarkdownEditorFooter.closeButton",
+        "changeType": "added",
+        "value": "Close"
+      }
+    ]
+  },
+  {
     "version": "31.0.0",
     "changes": [
       {

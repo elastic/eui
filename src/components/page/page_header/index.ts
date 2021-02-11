@@ -19,6 +19,10 @@
 
 export { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 export {
+  EuiPageHeaderContent,
+  EuiPageHeaderContentProps,
+} from './page_header_content';
+export {
   EuiPageHeaderSection,
   EuiPageHeaderSectionProps,
 } from './page_header_section';
