@@ -20,6 +20,10 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
+import {
+  EuiPageRestrictWidth,
+  setPropsForRestrictedPageWidth,
+} from './_restrict_width';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -32,20 +36,18 @@ export const SIZES = keysOf(paddingSizeToClassNameMap);
 
 export interface EuiPageProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  /**
-   * Sets the max-width of the page,
-   * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
-  restrictWidth?: boolean | number | string;
+    HTMLAttributes<HTMLDivElement>,
+    EuiPageRestrictWidth {
   /**
    * Adjust the padding.
-   * When using this setting it's best to be consistent throughout all similar usages.
+   * When using this setting it's best to be consistent throughout all similar usages
    */
   paddingSize?: typeof SIZES[number];
+  /**
+   * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
+   * Must be wrapped inside a flex group with `min-height: 100vh` to work
+   */
+  grow?: boolean;
 }
 
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
@@ -54,22 +56,21 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   style,
   className,
   paddingSize = 'm',
+  grow = true,
   ...rest
 }) => {
-  let widthClassname;
-  let newStyle;
-
-  if (restrictWidth === true) {
-    widthClassname = 'euiPage--restrictWidth-default';
-  } else if (restrictWidth !== false) {
-    widthClassname = 'euiPage--restrictWidth-custom';
-    newStyle = { ...style, maxWidth: restrictWidth };
-  }
+  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+    restrictWidth,
+    style
+  );
 
   const classes = classNames(
     'euiPage',
-    widthClassname,
     paddingSizeToClassNameMap[paddingSize],
+    {
+      'euiPage--grow': grow,
+      [`euiPage--${widthClassName}`]: widthClassName,
+    },
     className
   );
 

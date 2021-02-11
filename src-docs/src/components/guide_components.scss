@@ -3,6 +3,12 @@
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
+#guide { // sass-lint:disable-line no-ids
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$euiHeaderHeightCompensation});
+}
+
 @include euiHeaderAffordForFixed;
 
 .euiBody--headerIsFixed--double {

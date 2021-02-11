@@ -1,15 +1,11 @@
 .euiPage {
+  @include euiPageRestrictWidth;
   display: flex;
   background-color: $euiPageBackgroundColor;
+  min-height: 100%;
 
-  &--restrictWidth-default,
-  &--restrictWidth-custom {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  &--restrictWidth-default {
-    max-width: $euiPageDefaultMaxWidth;
+  &--grow {
+    flex-grow: 1;
   }
 
   @include euiBreakpoint('xs', 's') {
