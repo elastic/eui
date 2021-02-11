@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.6.0`.
+- Added `whiteSpace` prop to `EuiCodeBlock`. ([#4475](https://github.com/elastic/eui/pull/4475))
 
 ## [`31.6.0`](https://github.com/elastic/eui/tree/v31.6.0)
 
