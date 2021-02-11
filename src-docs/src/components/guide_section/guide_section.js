@@ -18,6 +18,7 @@ import {
 import { cleanEuiImports } from '../../services';
 
 import { extendedTypesInfo } from './guide_section_extends';
+import { EuiIcon } from '../../../../src/components/icon';
 
 import Knobs, { markup } from '../../services/playground/knobs';
 import { propUtilityForPlayground } from '../../services/playground';
@@ -130,7 +131,15 @@ export class GuideSection extends Component {
       this.tabs.push(
         {
           name: 'javascript',
-          displayName: 'React',
+          displayName: (
+            <>
+              <EuiIcon
+                style={{ verticalAlign: 'text-top', marginRight: 4 }}
+                type="editorCodeBlock"
+              />{' '}
+              JS
+            </>
+          ),
           isCode: true,
         },
         {
@@ -255,7 +264,6 @@ export class GuideSection extends Component {
   renderTabs() {
     return this.tabs.map((tab) => (
       <EuiTab
-        className="euiTab--small"
         onClick={() => this.onSelectedTabChanged(tab)}
         isSelected={tab === this.state.selectedTab}
         disabled={this.state.isPlayground}

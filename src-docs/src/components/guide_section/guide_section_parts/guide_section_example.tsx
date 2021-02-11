@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { EuiTabs } from '../../../../../src/components/tabs';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
 import { EuiSplitPanel } from '../../../../../src/components/panel';
-import { EuiIcon } from '../../../../../src/components/icon';
 
 export interface GuideSectionExample {
   exampleCode: ReactNode;
@@ -38,31 +37,15 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
           <InnerPanel>{exampleCode}</InnerPanel>
           <InnerPanel paddingSize="none" color="subdued">
             <EuiFlexGroup
-              responsive={Boolean(playground)}
               className={tabClasses}
               gutterSize="none"
               alignItems="center">
               <EuiFlexItem>
-                <EuiFlexGroup
-                  responsive={false}
-                  gutterSize="m"
-                  alignItems="center">
-                  <EuiFlexItem grow={false}>
-                    <EuiIcon type="editorCodeBlock" />
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiTabs
-                      className="eui-displayInlineBlock"
-                      size="s"
-                      display="condensed">
-                      {tabs}
-                    </EuiTabs>
-                  </EuiFlexItem>
-                </EuiFlexGroup>
+                <EuiTabs size="s" display="condensed">
+                  {tabs}
+                </EuiTabs>
               </EuiFlexItem>
-              {playground && (
-                <EuiFlexItem grow={false}>{playground}</EuiFlexItem>
-              )}
+              <EuiFlexItem grow={false}>{playground}</EuiFlexItem>
             </EuiFlexGroup>
             {tabContent && (
               <InnerPanel paddingSize="none" color="subdued">
