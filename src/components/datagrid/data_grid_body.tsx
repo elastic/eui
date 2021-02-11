@@ -513,8 +513,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
 
+  const rowCountToAffordFor = pagination
+    ? pagination.pageSize
+    : visibleRowIndices.length;
   const unconstrainedHeight =
-    rowHeight * visibleRowIndices.length + headerRowHeight + footerRowHeight;
+    rowHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;
