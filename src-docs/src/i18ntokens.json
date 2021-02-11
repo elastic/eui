@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 263,
         "column": 14
       },
       "end": {
-        "line": 254,
+        "line": 263,
         "column": 74
       }
     },
@@ -341,11 +341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 216,
+        "line": 238,
         "column": 10
       },
       "end": {
-        "line": 216,
+        "line": 238,
         "column": 66
       }
     },
@@ -1221,11 +1221,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 945,
+        "line": 993,
         "column": 4
       },
       "end": {
-        "line": 954,
+        "line": 1002,
         "column": 9
       }
     },
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 957,
+        "line": 1005,
         "column": 10
       },
       "end": {
-        "line": 965,
+        "line": 1013,
         "column": 15
       }
     },
@@ -1253,11 +1253,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1088,
+        "line": 1136,
         "column": 30
       },
       "end": {
-        "line": 1091,
+        "line": 1139,
         "column": 32
       }
     },
@@ -1701,11 +1701,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 130,
+        "line": 147,
         "column": 6
       },
       "end": {
-        "line": 130,
+        "line": 147,
         "column": 76
       }
     },
@@ -1877,11 +1877,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 85,
+        "line": 89,
         "column": 20
       },
       "end": {
-        "line": 88,
+        "line": 92,
         "column": 5
       }
     },
@@ -1893,11 +1893,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 93,
         "column": 21
       },
       "end": {
-        "line": 92,
+        "line": 96,
         "column": 5
       }
     },
@@ -1909,11 +1909,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 93,
+        "line": 97,
         "column": 25
       },
       "end": {
-        "line": 96,
+        "line": 100,
         "column": 5
       }
     },
@@ -1925,24 +1925,8 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 97,
-        "column": 24
-      },
-      "end": {
         "line": 101,
-        "column": 5
-      }
-    },
-    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
-  },
-  {
-    "token": "euiMarkdownEditorFooter.showSyntaxErrors",
-    "defString": "Show errors",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 102,
-        "column": 22
+        "column": 24
       },
       "end": {
         "line": 105,
@@ -1952,8 +1936,8 @@
     "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
   },
   {
-    "token": "euiMarkdownEditorFooter.showMarkdownHelp",
-    "defString": "Show markdown help",
+    "token": "euiMarkdownEditorFooter.showSyntaxErrors",
+    "defString": "Show errors",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1968,16 +1952,32 @@
     "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
   },
   {
+    "token": "euiMarkdownEditorFooter.showMarkdownHelp",
+    "defString": "Show markdown help",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 110,
+        "column": 22
+      },
+      "end": {
+        "line": 113,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
     "token": "euiMarkdownEditorFooter.errorsTitle",
     "defString": "Errors",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 169,
         "column": 12
       },
       "end": {
-        "line": 168,
+        "line": 172,
         "column": 14
       }
     },
@@ -1989,12 +1989,28 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 200,
-        "column": 18
+        "line": 203,
+        "column": 16
       },
       "end": {
-        "line": 203,
-        "column": 20
+        "line": 206,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.closeButton",
+    "defString": "Close",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 251,
+        "column": 14
+      },
+      "end": {
+        "line": 254,
+        "column": 16
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
@@ -2037,12 +2053,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
-        "column": 8
+        "line": 95,
+        "column": 10
       },
       "end": {
-        "line": 94,
-        "column": 80
+        "line": 97,
+        "column": 47
       }
     },
     "filepath": "src/components/modal/modal.tsx"
@@ -2197,11 +2213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 717,
+        "line": 728,
         "column": 14
       },
       "end": {
-        "line": 720,
+        "line": 731,
         "column": 16
       }
     },
