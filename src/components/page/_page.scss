@@ -9,7 +9,7 @@
   }
 
   &--restrictWidth-default {
-    max-width: 1000px;
+    max-width: $euiPageDefaultMaxWidth;
   }
 
   @include euiBreakpoint('xs', 's') {
