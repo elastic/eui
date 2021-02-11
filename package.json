@@ -46,7 +46,6 @@
     "test-staged"
   ],
   "dependencies": {
-    "@axe-core/puppeteer": "^4.1.1",
     "@types/chroma-js": "^2.0.0",
     "@types/lodash": "^4.14.160",
     "@types/numeral": "^0.0.28",
@@ -84,6 +83,7 @@
     "vfile": "^4.2.0"
   },
   "devDependencies": {
+    "@axe-core/puppeteer": "^4.1.1",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
