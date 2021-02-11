@@ -1,15 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import {
-  EuiTitle,
-  EuiSpacer,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiBetaBadge,
-  EuiTab,
-  EuiTabs,
-  EuiHorizontalRule,
+  EuiPageHeader,
+  EuiPageContentBody,
 } from '../../../../src/components';
 
 const GuidePageComponent = ({
@@ -61,61 +56,50 @@ const GuidePageComponent = ({
   const isPlaygroundView = location.pathname.includes('playground');
 
   const renderTabs = () => {
+    if (tabs.length < 2) {
+      return undefined;
+    }
+
     return tabs.map(({ id, handleClick, name }, index) => {
       let isSelected = false;
       if (id === 'playground') isSelected = isPlaygroundView;
       else if (id === 'guidelines') isSelected = isGuideLineView;
       else isSelected = !isGuideLineView && !isPlaygroundView;
 
-      return (
-        <EuiTab
-          onClick={() => {
-            if (handleClick) handleClick();
-          }}
-          isSelected={isSelected}
-          key={index}>
-          {name}
-        </EuiTab>
-      );
+      return {
+        onClick: () => {
+          if (handleClick) handleClick();
+        },
+        isSelected,
+        key: index,
+        label: name,
+      };
     });
   };
 
   return (
     <>
-      <EuiFlexGroup justifyContent="spaceBetween">
-        <EuiFlexItem grow={false}>
-          <EuiTitle size="l">
-            <h1>
-              {title} {betaBadge}
-            </h1>
-          </EuiTitle>
-        </EuiFlexItem>
-        {tabs.length > 1 && (
-          <EuiFlexItem grow={false}>
-            <EuiTabs display="condensed">{renderTabs()}</EuiTabs>
-          </EuiFlexItem>
-        )}
-      </EuiFlexGroup>
+      <EuiPageHeader
+        pageTitle={
+          <>
+            {title} {betaBadge}
+          </>
+        }
+        tabs={renderTabs()}>
+        {intro}
+      </EuiPageHeader>
 
-      <EuiHorizontalRule />
-
-      <EuiSpacer size="m" />
-
-      <Switch>
-        {playground && (
-          <Route path={`${match.path}/playground`}>{playground}</Route>
-        )}
-        {guidelines && (
-          <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-        )}
-        <Route path="">
-          <div className="guideSection__text">{intro}</div>
-          <>{children}</>
-        </Route>
-      </Switch>
-
-      {/* Give some space between the bottom of long content and the bottom of the screen */}
-      <EuiSpacer size="xl" />
+      <EuiPageContentBody>
+        <Switch>
+          {playground && (
+            <Route path={`${match.path}/playground`}>{playground}</Route>
+          )}
+          {guidelines && (
+            <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+          )}
+          <Route path="">{children}</Route>
+        </Switch>
+      </EuiPageContentBody>
     </>
   );
 };

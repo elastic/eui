@@ -1,6 +1,6 @@
 .euiPageHeader {
   width: 100%;
-  margin-bottom: $euiSize;
+  margin-bottom: $euiSizeL;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,8 +16,15 @@
     max-width: $euiPageDefaultMaxWidth;
   }
 
+  // When the page header is actually inside of the page content instead of a outside,
+  // We want to add some extra separation between it ad the content body
   .euiPageContent & {
+    padding-bottom: $euiSizeL;
     border-bottom: $euiBorderThin;
+
+    &.euiPageHeader--tabsAtBottom {
+      padding-bottom: 0;
+    }
   }
 }
 
@@ -41,10 +48,6 @@
   .euiPageHeader {
     padding: $euiSize 0;
     margin-bottom: 0;
-  }
-
-  .euiPageHeader--tabsAtBottom {
-    padding-bottom: 0;
   }
 
   .euiPageHeader--responsive {
