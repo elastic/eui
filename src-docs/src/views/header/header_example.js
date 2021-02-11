@@ -135,7 +135,7 @@ const headerAlertSnippet = `<EuiHeader>
 
 const headerAnimateSnippet = `const bellRef = useRef();
 
-    // wrapping the 'euiAnimate' methods to make them available through this component's 'ref'
+// wrapping the 'euiAnimate' methods to make them available through this component's 'ref'
 const euiAnimate = useCallback(() => {
   bellRef.current?.euiAnimate();
 }, []);
