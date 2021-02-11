@@ -10,7 +10,6 @@ import { EuiIcon } from '../../../../src/components/icon';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPopover } from '../../../../src/components/popover';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
-import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import { EuiButtonEmpty } from '../../../../src/components/button';
 import logoFigma from '../../images/logo-figma.svg';
 // import theme from '@elastic/eui/dist/eui_theme_dark.json';
@@ -19,8 +18,6 @@ import logoFigma from '../../images/logo-figma.svg';
 import { CodeSandboxLink } from '../../components/codesandbox/link';
 // @ts-ignore TODO: Convert to TS
 import { GuideThemeSelector } from '../guide_theme_selector';
-// @ts-ignore TODO: Convert to TS
-import { GuideLocaleSelector } from '../guide_locale_selector';
 
 const pkg = require('../../../../package.json');
 
@@ -126,21 +123,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     );
   }
 
-  function renderInternationalization() {
-    return (
-      location.host === 'localhost:8030' && ( // eslint-disable-line no-restricted-globals
-        <div style={{ marginRight: 12 }}>
-          <GuideLocaleSelector
-            onToggleLocale={onToggleLocale}
-            selectedLocale={selectedLocale}
-            color={isMobileSize ? undefined : 'ghost'}
-          />
-          {isMobileSize && <EuiHorizontalRule />}
-        </div>
-      )
-    );
-  }
-
   const [mobilePopoverIsOpen, setMobilePopoverIsOpen] = useState(false);
 
   function renderMobileMenu() {
@@ -159,7 +141,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         isOpen={mobilePopoverIsOpen}
         closePopover={() => setMobilePopoverIsOpen(false)}>
         <div className="guideOptionsPopover">
-          {renderInternationalization()}
           {renderGithub()}
           {renderSketch()}
           {renderFigma()}
@@ -170,10 +151,18 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   }
 
   const rightSideItems = isMobileSize
-    ? [<GuideThemeSelector />, renderMobileMenu()]
+    ? [
+        <GuideThemeSelector
+          onToggleLocale={onToggleLocale}
+          selectedLocale={selectedLocale}
+        />,
+        renderMobileMenu(),
+      ]
     : [
-        renderInternationalization(),
-        <GuideThemeSelector />,
+        <GuideThemeSelector
+          onToggleLocale={onToggleLocale}
+          selectedLocale={selectedLocale}
+        />,
         renderGithub(),
         renderSketch(),
         renderFigma(),

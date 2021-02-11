@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 
 import { EuiButton } from '../../../../src/components/button';
@@ -6,21 +7,36 @@ import {
   EuiContextMenuItem,
 } from '../../../../src/components/context_menu';
 import { EuiPopover } from '../../../../src/components/popover';
+import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
+import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';
-import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
+// @ts-ignore TODO: Convert to TS
+import { GuideLocaleSelector } from '../guide_locale_selector';
 
-export const GuideThemeSelector = () => {
+type GuideThemeSelectorProps = {
+  onToggleLocale: () => {};
+  selectedLocale: string;
+  context?: any;
+};
+
+export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps> = ({
+  ...rest
+}) => {
   return (
     <ThemeContext.Consumer>
-      {(context) => <GuideThemeSelectorComponent context={context} />}
+      {(context) => <GuideThemeSelectorComponent context={context} {...rest} />}
     </ThemeContext.Consumer>
   );
 };
 
 // @ts-ignore Context has no type
-const GuideThemeSelectorComponent = ({ context }) => {
+const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
+  context,
+  onToggleLocale,
+  selectedLocale,
+}) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [isPopoverOpen, setPopover] = useState(false);
 
@@ -74,6 +90,17 @@ const GuideThemeSelectorComponent = ({ context }) => {
       panelPaddingSize="none"
       anchorPosition="downRight">
       <EuiContextMenuPanel size="s" items={items} />
+      {location.host === 'localhost:8030' && (
+        <>
+          <EuiHorizontalRule margin="none" />
+          <div style={{ padding: 8 }}>
+            <GuideLocaleSelector
+              onToggleLocale={onToggleLocale}
+              selectedLocale={selectedLocale}
+            />
+          </div>
+        </>
+      )}
     </EuiPopover>
   );
 };

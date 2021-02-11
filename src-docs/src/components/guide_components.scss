@@ -22,10 +22,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guidePageContent {
-  max-width: calc(100% - #{$guideSideNavWidth});
-}
-
 .guideSideNav {
   min-width: $guideSideNavWidth;
   overflow: hidden;
@@ -233,10 +229,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @include euiBreakpoint('xs', 's') {
   .guideSideNav {
     width: 100%;
-  }
-
-  .guidePageContent {
-    max-width: 100%;
   }
 
   .guideSideNav__content {
