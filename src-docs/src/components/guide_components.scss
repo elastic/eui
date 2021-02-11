@@ -62,15 +62,19 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   color: $euiColorDarkShade;
 }
 
-
 .guideDemo__highlightLayout {
   .euiPageBody {
     min-height: 460px;
   }
 
-  div {
+  > div,
+  > div > div {
     background: transparentize($euiColorPrimary, .9);
   }
+}
+
+.guideDemo__highlightLayout--single {
+  background: transparentize($euiColorPrimary, .9);
 }
 
 .guideDemo__highlightSpacer {

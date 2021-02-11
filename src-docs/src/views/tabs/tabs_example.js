@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
@@ -9,7 +11,7 @@ import {
   EuiTab,
   EuiTabbedContent,
 } from '../../../../src/components';
-import { tabConfig } from './playground';
+import { tabConfig, tabsConfig } from './playground';
 
 import Tabs from './tabs';
 const tabsSource = require('!!raw-loader!./tabs');
@@ -50,9 +52,14 @@ export const TabsExample = {
       text: (
         <p>
           <strong>EuiTabs</strong> allow a <EuiCode>size</EuiCode> prop. In
-          general you should always use the default size, but in rare cases
-          (like putting tabs within a popover of other small menu) it is OK to
-          use the smaller sizing.
+          general you should always use the default (medium) size. The small
+          size is best for when placing inside popovers or other small
+          containers. Reserve using the large size for when using as primary
+          page navigation, like inside of{' '}
+          <Link to="/layout/page">
+            <strong>EuiPageHeader</strong>
+          </Link>
+          .
         </p>
       ),
       props: {
@@ -60,10 +67,16 @@ export const TabsExample = {
         EuiTab,
       },
       demo: <Tabs />,
-      snippet: `<EuiTabs>
+      snippet: [
+        `<EuiTabs>
   <EuiTab onClick={onClick}>Example 1</EuiTab>
   <EuiTab onClick={onClick}>Example 2</EuiTab>
 </EuiTabs>`,
+        `<EuiTabs size="s>
+  <EuiTab onClick={onClick}>Example 1</EuiTab>
+  <EuiTab onClick={onClick}>Example 2</EuiTab>
+</EuiTabs>`,
+      ],
     },
     {
       title: 'Condensed tabs',
@@ -162,5 +175,5 @@ export const TabsExample = {
       demo: <Controlled />,
     },
   ],
-  playground: tabConfig,
+  playground: [tabConfig, tabsConfig],
 };

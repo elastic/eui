@@ -19,7 +19,7 @@
 
 const chalk = require('chalk');
 const puppeteer = require('puppeteer');
-const { AxePuppeteer } = require('axe-puppeteer');
+const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
@@ -105,6 +105,11 @@ const printResult = (result) =>
           {
             id: 'scrollable-region-focusable',
             selector: '[data-skip-axe="scrollable-region-focusable"]',
+          },
+          {
+            // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
+            id: 'region',
+            selector: 'iframe, #player,',
           },
         ],
       })
