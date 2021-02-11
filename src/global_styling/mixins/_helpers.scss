@@ -24,7 +24,7 @@
 }
 
 // Set scroll bar appearance on Chrome (and firefox).
-@mixin euiScrollBar {
+@mixin euiScrollBar($thumbColor: $euiColorDarkShade, $trackBackgroundColor: transparent) {
   // Firefox's scrollbar coloring cascades, but the sizing does not,
   // so it's being added to this mixin for allowing support wherever custom scrollbars are
   // sass-lint:disable-block no-misspelled-properties
@@ -37,14 +37,14 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: transparentize($euiColorDarkShade, .5);
-    border: $euiScrollBarCorner solid transparent;
+    background-color: transparentize($thumbColor, .5);
+    border: $euiScrollBarCorner solid $trackBackgroundColor;
     background-clip: content-box;
   }
 
   &::-webkit-scrollbar-corner,
   &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: $trackBackgroundColor;
   }
 }
 
