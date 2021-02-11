@@ -1,7 +1,6 @@
 .euiPageContent {
   width: 100%;
-  // Make sure that inner flex layouts don't get larger than this container
-  // overflow: hidden;
+  min-width: 0; // Make sure that inner flex layouts don't get larger than this container
 
   &.euiPageContent--verticalCenter {
     align-self: center;
@@ -17,16 +16,4 @@
     margin-right: auto;
     flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
   }
-
-  /** TEMPORARILY REMOVING
-  // At small screens, the content extends edge to edge, so remove the side borders and shadow
-  @include euiBreakpoint('xs', 's') {
-    .euiPanel:not(.euiPageContent--horizontalCenter) { // Override panel styles without the need for !important
-      // border-radius: 0;
-      // border-left: none;
-      // border-right: none;
-      // box-shadow: none;
-    }
-  }
-  **/
 }
