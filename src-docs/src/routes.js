@@ -144,6 +144,8 @@ import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
 
+import { NotificationEventsExample } from './views/notification_events/notification_events_example';
+
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
@@ -389,9 +391,9 @@ const navigation = [
       ImageExample,
       ListGroupExample,
       LoadingExample,
+      NotificationEventsExample,
       ProgressExample,
       StatExample,
-
       TextExample,
       TitleExample,
       ToastExample,

@@ -1,0 +1,42 @@
+.euiNotificationEventMeta {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &--hasContextMenu {
+    padding-right: $euiSizeL;
+  }
+
+  &__contextMenuWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__section {
+    margin-right: $euiSizeS;
+
+    > * + * {
+      margin-left: $euiSizeS;
+    }
+
+    &:first-child {
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+  }
+
+  &__badge {
+    max-width: 100%;
+    display: inline-grid; // forces truncation of the badge
+  }
+
+  &__time {
+    font-size: $euiFontSizeXS;
+    color: $euiTextSubduedColor;
+  }
+}

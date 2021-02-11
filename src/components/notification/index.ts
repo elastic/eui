@@ -17,20 +17,4 @@
  * under the License.
  */
 
-export {
-  EuiContextMenu,
-  EuiContextMenuPanelDescriptor,
-  EuiContextMenuPanelItemDescriptor,
-} from './context_menu';
-
-export {
-  EuiContextMenuPanel,
-  EuiContextMenuPanelProps,
-} from './context_menu_panel';
-
-export {
-  EuiContextMenuItem,
-  EuiContextMenuItemProps,
-  EuiContextMenuItemIcon,
-  EuiContextMenuItemLayoutAlignment,
-} from './context_menu_item';
+export { EuiNotificationEventReadButton } from './notification_event_read_button';
