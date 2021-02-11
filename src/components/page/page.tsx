@@ -35,7 +35,7 @@ export interface EuiPageProps
     HTMLAttributes<HTMLDivElement> {
   /**
    * Sets the max-width of the page,
-   * set to `true` to use the default size of `1000px`,
+   * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
    * set to `false` to not restrict the width,
    * set to a number for a custom width in px,
    * set to a string for a custom width in custom measurement.
@@ -43,7 +43,7 @@ export interface EuiPageProps
   restrictWidth?: boolean | number | string;
   /**
    * Adjust the padding.
-   * When using this setting it's best to be consistent throught all similar usages.
+   * When using this setting it's best to be consistent throughout all similar usages.
    */
   paddingSize?: typeof SIZES[number];
 }
