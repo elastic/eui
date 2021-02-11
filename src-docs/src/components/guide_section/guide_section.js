@@ -601,8 +601,8 @@ export class GuideSection extends Component {
     if (name === 'javascript') {
       return (
         <div {...divProps} onScroll={memoScrollUtility}>
-          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
           {euiCodeBlock}
+          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
         </div>
       );
     }
@@ -643,7 +643,9 @@ export class GuideSection extends Component {
 
   renderCodeSandBoxButton() {
     return (
-      <CodeSandboxLink content={this.props.source[0].code.default}>
+      <CodeSandboxLink
+        className="guideSectionExampleCode__link"
+        content={this.props.source[0].code.default}>
         <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
           Try out this demo on Code Sandbox
         </EuiButtonEmpty>
