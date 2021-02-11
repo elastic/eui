@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` where the grid lost height when showing less rows on the last page ([#4509](https://github.com/elastic/eui/pull/4509))
+- Updated `euiPaletteForStatus` color sequence to use higher contrast postive and negative colors. ([#4508](https://github.com/elastic/eui/pull/4508))
 
 ## [`31.6.0`](https://github.com/elastic/eui/tree/v31.6.0)
 
