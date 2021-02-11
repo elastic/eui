@@ -283,27 +283,32 @@ export class GuideSection extends Component {
   }
 
   renderChrome() {
+    if (!this.props.title && !this.props.text) {
+      return;
+    }
+
     let title;
 
     if (this.props.title) {
       title = (
-        <Fragment>
+        <>
+          <EuiSpacer />
           <EuiTitle>
             <h2>{this.props.title}</h2>
           </EuiTitle>
-          <EuiSpacer size="m" key="textSpacer" />
-        </Fragment>
+          <EuiSpacer size="m" />
+        </>
       );
     }
     return (
-      <div>
+      <>
         {title}
         {this.props.text && this.props.wrapText ? (
           <EuiText key="text">{this.props.text}</EuiText>
         ) : (
           this.props.text
         )}
-      </div>
+      </>
     );
   }
 
@@ -428,8 +433,12 @@ export class GuideSection extends Component {
 
     return (
       <div className="guideSection" id={this.props.id}>
-        {chrome}
-        <EuiSpacer />
+        {chrome && (
+          <>
+            {chrome}
+            <EuiSpacer />
+          </>
+        )}
 
         {this.state.isPlayground && this.renderPlayground()}
         {!this.state.isPlayground && this.props.demo && (

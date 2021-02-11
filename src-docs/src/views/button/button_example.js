@@ -11,7 +11,6 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiCallOut,
-  EuiText,
   EuiTitle,
 } from '../../../../src/components';
 
@@ -152,16 +151,6 @@ const buttonGroupIconsSnippet = [
 
 export const ButtonExample = {
   title: 'Button',
-  intro: (
-    <EuiText>
-      <p>
-        <strong>EuiButton</strong> comes in two styles. The{' '}
-        <EuiCode>fill</EuiCode> style should be reserved for the main action and
-        limited in number for a single page. Be sure to read the full{' '}
-        <Link to="/guidelines/button">button usage guidelines</Link>.
-      </p>
-    </EuiText>
-  ),
   sections: [
     {
       source: [
@@ -174,6 +163,14 @@ export const ButtonExample = {
           code: buttonHtml,
         },
       ],
+      text: (
+        <p>
+          <strong>EuiButton</strong> comes in two styles. The{' '}
+          <EuiCode>fill</EuiCode> style should be reserved for the main action
+          and limited in number for a single page. Be sure to read the full{' '}
+          <Link to="/guidelines/button">button usage guidelines</Link>.
+        </p>
+      ),
       props: { EuiButton, EuiButtonEmpty },
       snippet: buttonSnippet,
       demo: <Button />,

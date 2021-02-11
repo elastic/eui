@@ -186,7 +186,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     tabsNode = (
       <>
         {pageTitleNode && <EuiSpacer />}
-        <EuiTabs {...tabsProps} display="condensed">
+        <EuiTabs {...tabsProps} display="condensed" size="l">
           {renderTabs()}
         </EuiTabs>
       </>

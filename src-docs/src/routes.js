@@ -262,12 +262,12 @@ const createExample = (example, customTitle) => {
     guidelines,
   } = example;
   sections.forEach((section) => {
-    section.id = slugify(section.title || title);
+    section.id = section.title ? slugify(section.title) : undefined;
   });
 
-  const renderedSections = sections.map((section) =>
+  const renderedSections = sections.map((section, index) =>
     createElement(GuideSection, {
-      key: section.title || title,
+      key: section.title || index,
       ...section,
     })
   );
