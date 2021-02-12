@@ -2,9 +2,19 @@
  * 1. Prevent side bar width from changing when content width changes.
  */
 .euiPageSideBar {
-  min-width: $euiSize * 12; /* 1 */
+  min-width: $euiPageSidebarMinWidth; /* 1 */
   flex: 0 1 0%; /* 1 */
   margin-right: $euiSizeL;
+
+  &--grow {
+    flex-basis: auto;
+  }
+
+  // If not contained within a page that has padding, remove the margin too
+  .euiPage:not([class*='euiPage--padding']) > & {
+    margin: 0;
+    min-width: $euiPageSidebarMinWidth + ($euiSizeL * 2);
+  }
 }
 
 @include euiBreakpoint('xs', 's') {

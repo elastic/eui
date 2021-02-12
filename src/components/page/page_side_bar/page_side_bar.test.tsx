@@ -29,4 +29,16 @@ describe('EuiPageSideBar', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('sticky is rendered', () => {
+    const component = render(<EuiPageSideBar sticky />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('grow is rendered', () => {
+    const component = render(<EuiPageSideBar grow />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

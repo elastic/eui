@@ -24,19 +24,28 @@ import { CommonProps } from '../../common';
 export interface EuiPageSideBarProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
+  /**
+   * Adds `position: sticky` and affords for any fixed position headers
+   */
   sticky?: boolean;
+  /**
+   * Allows the sidebar to adjust its width as the window grows wider.
+   */
+  grow?: boolean;
 }
 
 export const EuiPageSideBar: FunctionComponent<EuiPageSideBarProps> = ({
   children,
   className,
   sticky,
+  grow,
   ...rest
 }) => {
   const classes = classNames(
     'euiPageSideBar',
     {
       'euiPageSideBar--sticky': sticky,
+      'euiPageSideBar--grow': grow,
     },
     className
   );
