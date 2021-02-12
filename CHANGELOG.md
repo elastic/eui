@@ -1,10 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added source exports for `EuiBottomBarProps`, `EuiContextProps`, `EuiCopyProps`, `EuiDelayRenderProps`, `EuiImageProps`, `EuiMutationObserverProps`, `EuiResizeObserverProps`, `EuiOutsideClickDetectorProps`, `EuiPortal`. ([#4517](https://github.com/elastic/eui/pull/4517))
+- Added exports for all EUI component prps matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
 
 **Breaking changes**
 
-- Renamed `Props` export from `EuiBottomBar` to `EuiBottomBarProps` ([#4517](https://github.com/elastic/eui/pull/4517))
+- Renamed local component `Props` named exports to `EuiComponentProps` ([#4517](https://github.com/elastic/eui/pull/4517))
 
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 
