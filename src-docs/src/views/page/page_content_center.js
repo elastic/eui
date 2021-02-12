@@ -2,27 +2,26 @@ import React from 'react';
 
 import {
   EuiPage,
-  EuiPageBody,
   EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiTitle,
+  EuiEmptyPrompt,
+  EuiPageSideBar,
 } from '../../../../src/components';
 
-export default () => (
-  <EuiPage>
-    <EuiPageBody component="div">
-      <EuiPageContent verticalPosition="center" horizontalPosition="center">
-        <EuiPageContentHeader>
-          <EuiPageContentHeaderSection>
-            <EuiTitle>
-              <h2>Content title</h2>
-            </EuiTitle>
-          </EuiPageContentHeaderSection>
-        </EuiPageContentHeader>
-        <EuiPageContentBody>Content body</EuiPageContentBody>
+export default ({ button, content, sideNav }) => {
+  return (
+    <EuiPage paddingSize="none">
+      <EuiPageSideBar>{sideNav}</EuiPageSideBar>
+
+      <EuiPageContent
+        verticalPosition="center"
+        horizontalPosition="center"
+        paddingSize="none">
+        <EuiEmptyPrompt
+          title={<span>No spice</span>}
+          body={content}
+          actions={button}
+        />
       </EuiPageContent>
-    </EuiPageBody>
-  </EuiPage>
-);
+    </EuiPage>
+  );
+};

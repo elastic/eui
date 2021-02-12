@@ -226,7 +226,7 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <EuiPageSideBar className="guideSideNav" sticky grow>
+      <EuiPageSideBar className="guideSideNav" sticky>
         <EuiFlexGroup
           style={{ height: '100%' }}
           direction="column"

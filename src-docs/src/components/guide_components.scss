@@ -62,11 +62,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideDemo__highlightLayout {
   border: 1px solid transparentize($euiColorPrimary, .9);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 460px;
 
-  .euiPage {
-    min-height: 460px;
-  }
+  // .euiPageContentBody {
+  //   // Mimicking body overscroll
+  //   min-height: 400px;
+  // }
 
   > div,
   > div > div {
@@ -202,7 +205,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 1001;
+  overflow: auto;
+}
+
+.guideBody--overflowHidden {
+  overflow: hidden;
 }
 
 .euiDataGridRowCell--favoriteFranchise {

@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 import Playground from './playground';
+import { PageDemo } from './_page_demo';
 
 import {
   EuiCode,
@@ -11,26 +13,19 @@ import {
   EuiPageBody,
   EuiPageContent,
   EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
   EuiPageHeader,
   EuiPageHeaderSection,
   EuiPageSideBar,
   EuiText,
+  EuiEmptyPrompt,
 } from '../../../../src/components';
 
 import Page from './page';
-const pageSource = require('!!raw-loader!./page');
-const pageHtml = renderToHtml(Page);
-
 import PageNew from './page_new';
 const pageNewSource = require('!!raw-loader!./page_new');
 const pageNewHtml = renderToHtml(PageNew);
 
 import PageSimple from './page_simple';
-const pageSimpleSource = require('!!raw-loader!./page_simple');
-const pageSimpleHtml = renderToHtml(PageSimple);
-
 import PageSimpleNew from './page_simple_new';
 const pageSimpleNewSource = require('!!raw-loader!./page_simple_new');
 const pageSimpleNewHtml = renderToHtml(PageSimpleNew);
@@ -59,10 +54,6 @@ import PageContentCenter from './page_content_center';
 const pageContentCenterSource = require('!!raw-loader!./page_content_center');
 const pageContentCenterHtml = renderToHtml(Page);
 
-import PageContentCenterWithSideBar from './page_content_center_with_side_bar';
-const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_center_with_side_bar');
-const PageContentCenterWithSideBarHtml = renderToHtml(Page);
-
 import PageContentCenterWithSideBarNew from './page_content_center_with_side_bar_new';
 const PageContentCenterWithSideBarNewSource = require('!!raw-loader!./page_content_center_with_side_bar_new');
 const PageContentCenterWithSideBarNewHtml = renderToHtml(Page);
@@ -85,11 +76,11 @@ export const PageExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageSource,
+          code: pageNewSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageHtml,
+          code: pageNewHtml,
         },
       ],
       text: (
@@ -101,41 +92,58 @@ export const PageExample = {
           </p>
           <ul>
             <li>
-              <strong>EuiPage</strong> provides the overall wrapper.
+              <strong>EuiPage</strong> provides the overall wrapper with a
+              column flex display.
+            </li>
+            <li>
+              <strong>EuiPageSideBar</strong> provides a way to add side
+              navigation that can be made <EuiCode>sticky</EuiCode> to scroll
+              independent of the page content. See{' '}
+              <Link to="/navigation/side-nav">
+                <strong>EuiSideNav</strong>
+              </Link>{' '}
+              for contents.
+            </li>
+            <li>
+              <strong>EuiPageContent</strong> provides the main content
+              container and extends{' '}
+              <Link to="/layout/panel">
+                <strong>EuiPanel</strong>
+              </Link>
+              .
             </li>
             <li>
               <strong>EuiPageHeader</strong> provides a title, description,
               section for actions and possible tabs.
             </li>
             <li>
-              <strong>EuiPageContent</strong> and its family of related
-              components provide the main content container.
-            </li>
-            <li>
-              <strong>EuiPageSideBar</strong> provides a way to add side
-              navigation.
+              <strong>EuiPageContentBody</strong> wraps the content that comes
+              after the page header.
             </li>
           </ul>
-          <p>
-            By default, the entire page will always be 100% of the window&apos;s
-            width; to max out the typical width and center the page, set the{' '}
-            <EuiCode>restrictWidth</EuiCode> prop to <EuiCode>true</EuiCode>.
-            You can also pass an integer to this property to max out the width
-            at a custom pixel value or a string with a custom measurement.
-          </p>
         </div>
       ),
       props: {
         EuiPage,
-        EuiPageBody,
+        EuiPageSideBar,
+        EuiPageHeader,
         EuiPageContent,
         EuiPageContentBody,
-        EuiPageContentHeader,
-        EuiPageContentHeaderSection,
-        EuiPageHeader,
-        EuiPageHeaderSection,
-        EuiPageSideBar,
       },
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav) => (
+            <PageNew
+              button={<Button />}
+              content={<Content />}
+              sideNav={<SideNav />}
+            />
+          )}
+        </PageDemo>
+      ),
+    },
+    {
+      text: <p>TEMPORARY: Old version</p>,
       demo: (
         <div className="guideDemo__highlightLayout">
           <Page />
@@ -143,63 +151,7 @@ export const PageExample = {
       ),
     },
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageNewSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageNewHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            The new default pattern is to place the EuiPageHeader within the
-            EuiPageContent when using alongside of the sidebar.
-          </p>
-        </div>
-      ),
-      props: {
-        EuiPage,
-        EuiPageContent,
-        EuiPageContentBody,
-        EuiPageHeader,
-        EuiPageSideBar,
-      },
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageNew />
-        </div>
-      ),
-    },
-    {
-      title: 'A simple page layout with a title',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageSimpleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageSimpleHtml,
-        },
-      ],
-      text: (
-        <p>
-          Most pages don&rsquo;t have sidebars. A lot of our pages don&rsquo;t
-          have extra abilities next to the title. Simply exclude those
-          components and everything will still line up.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageSimple />
-        </div>
-      ),
-    },
-    {
+      title: 'A simple page with a title',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -210,15 +162,39 @@ export const PageExample = {
           code: pageSimpleNewHtml,
         },
       ],
-      text: <p>The new pattern..</p>,
+      text: (
+        <p>
+          Some pages don&rsquo;t have sidebars. In this case, we recommend a
+          slightly different configuration by pulling the page hader out of the
+          EuiPageContent. But you will need to include the change EuiPage&apos;s
+          direction to {'column'}.
+        </p>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content) => (
+            <PageSimpleNew button={<Button />} content={<Content />} />
+          )}
+        </PageDemo>
+      ),
+      props: {
+        EuiPage,
+        EuiPageBody,
+        EuiPageHeader,
+        EuiPageContent,
+        EuiPageContentBody,
+      },
+    },
+    {
+      text: <p>TEMPORARY: Old version</p>,
       demo: (
         <div className="guideDemo__highlightLayout">
-          <PageSimpleNew />
+          <PageSimple />
         </div>
       ),
     },
     {
-      title: 'A simple page layout with content only',
+      title: 'Restricting width',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -229,15 +205,37 @@ export const PageExample = {
           code: pageContentOnlyHtml,
         },
       ],
-      text: <p>We can further simplify pages by only showing the content.</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentOnly />
-        </div>
+      text: (
+        <p>
+          Most content does not scale well to the full width of the window. You
+          can restrict this to a typical width and center the page by setting
+          the <EuiCode>restrictWidth</EuiCode> prop to <EuiCode>true</EuiCode>{' '}
+          on <strong>EuiPageHeader</strong> and <strong>EuiPageContent</strong>.
+          You can also pass an integer to this property to max out the width at
+          a custom pixel value or a string with a custom measurement.
+        </p>
       ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav) => (
+            <PageContentOnly
+              button={<Button />}
+              content={<Content />}
+              sideNav={<SideNav />}
+            />
+          )}
+        </PageDemo>
+      ),
+      props: {
+        EuiPage,
+        EuiPageSideBar,
+        EuiPageHeader,
+        EuiPageContent,
+        EuiPageContentBody,
+      },
     },
     {
-      title: 'A simple page layout with content centered',
+      title: 'Centered content',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -250,14 +248,62 @@ export const PageExample = {
       ],
       text: (
         <p>
-          The page content can be optionally centered either vertically or
-          horizontally. This is useful for various empty states.
+          When the content for the page is minimal or in an empty/pre-setup
+          state, the page content can be centered vertically and horizontally.
+          We recommend then using the{' '}
+          <Link to="/display/empty-prompt">
+            <strong>EuiEmptyPrompt</strong>
+          </Link>{' '}
+          for the content. This setup works with or without the side bar.
         </p>
       ),
       demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenter />
-        </div>
+        <PageDemo centered>
+          {(Button, Content, SideNav) => (
+            <PageContentCenter
+              button={<Button />}
+              content={<Content />}
+              sideNav={<SideNav />}
+            />
+          )}
+        </PageDemo>
+      ),
+      props: {
+        EuiPage,
+        EuiPageSideBar,
+        EuiPageContent,
+        EuiEmptyPrompt,
+      },
+    },
+    {
+      title: 'Empty content with page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageContentCenterWithSideBarNewSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageContentCenterWithSideBarNewHtml,
+        },
+      ],
+      text: (
+        <p>
+          Similar to the previous example, you can create a centered panel to
+          emphasis incompleteness even with a page header. For this setup, we
+          recommend using nested <strong>EuiPageContent</strong> components for
+          the ease of props available.
+        </p>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav) => (
+            <PageContentCenterWithSideBarNew
+              button={<Button />}
+              sideNav={<SideNav />}
+            />
+          )}
+        </PageDemo>
       ),
     },
     {
@@ -275,57 +321,22 @@ export const PageExample = {
       text: (
         <p>
           You can replace the inner parts of EuiPageBody with your own content,
-          with or without a page haeder.
+          with or without a page header. This allows you to create dashboard
+          style layouts with lots of panels. It is not recommended, however, to
+          use this setup when you also have side nav.
         </p>
       ),
       demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageCustomContent />
-        </div>
+        <PageDemo>
+          {(Button) => <PageCustomContent button={<Button />} />}
+        </PageDemo>
       ),
-    },
-    {
-      title: 'A full page layout with content centered',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarHtml,
-        },
-      ],
-      text: (
-        <p>
-          Centering the content can happen regardless of layout configuration.
-          In this example, we&rsquo;re centering within a complex sidebar
-          layout.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenterWithSideBar />
-        </div>
-      ),
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarNewSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarNewHtml,
-        },
-      ],
-      text: <p>The new pattern is...</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenterWithSideBarNew />
-        </div>
-      ),
+      props: {
+        EuiPage,
+        EuiPageBody,
+        EuiPageHeader,
+        EuiPageContentBody,
+      },
     },
     {
       title: 'The page header in detail',

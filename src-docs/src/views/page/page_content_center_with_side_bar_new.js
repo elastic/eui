@@ -6,12 +6,11 @@ import {
   EuiEmptyPrompt,
   EuiPageHeader,
   EuiPageSideBar,
-  EuiButton,
 } from '../../../../src/components';
 
-export default () => (
+export default ({ button, sideNav }) => (
   <EuiPage paddingSize="none">
-    <EuiPageSideBar>SideBar nav</EuiPageSideBar>
+    <EuiPageSideBar>{sideNav}</EuiPageSideBar>
 
     <EuiPageContent
       borderRadius="none"
@@ -19,7 +18,7 @@ export default () => (
       <EuiPageHeader
         iconType="logoElastic"
         pageTitle="Page title"
-        rightSideItems={[<EuiButton fill>Add something</EuiButton>]}
+        rightSideItems={[button]}
       />
 
       <EuiPageContent
