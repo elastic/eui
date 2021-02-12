@@ -1,11 +1,16 @@
 .euiPageContentBody {
-  &--restrictWidth-default,
-  &--restrictWidth-custom {
-    margin-left: auto;
-    margin-right: auto;
-  }
+  @include euiPageRestrictWidth;
 
-  &--restrictWidth-default {
-    max-width: $euiPageDefaultMaxWidth;
+  // If there's a page header right beforehand, remove the top padding
+  .euiPageHeader + & {
+    padding-top: 0;
   }
 }
+
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPageContentBody--#{$modifier} {
+    padding: $amount;
+  }
+}
+
