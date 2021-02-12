@@ -28,7 +28,7 @@
   }
 
   // If contained inside an EuiPage that doesn't have padding, add it
-  .euiPage:not([class*='euiPage--padding']) > .euiPageBody > & {
+  .euiPage:not([class*='euiPage--padding']) > & {
     padding-top: $euiSizeL;
     padding-left: $euiSizeL;
     padding-right: $euiSizeL;

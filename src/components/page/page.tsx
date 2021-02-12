@@ -32,7 +32,13 @@ const paddingSizeToClassNameMap = {
   l: 'euiPage--paddingLarge',
 };
 
+const directionToClassNameMap = {
+  row: null,
+  column: 'euiPage--column',
+};
+
 export const SIZES = keysOf(paddingSizeToClassNameMap);
+export const DIRECTIONS = keysOf(directionToClassNameMap);
 
 export interface EuiPageProps
   extends CommonProps,
@@ -48,6 +54,11 @@ export interface EuiPageProps
    * Must be wrapped inside a flex group with `min-height: 100vh` to work
    */
   grow?: boolean;
+  /**
+   * Changes the `flex-direction` property.
+   * Flip to `column` when not including a sidebar.
+   */
+  direction?: 'row' | 'column';
 }
 
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
@@ -57,6 +68,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   className,
   paddingSize = 'm',
   grow = true,
+  direction = 'row',
   ...rest
 }) => {
   const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
@@ -67,6 +79,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   const classes = classNames(
     'euiPage',
     paddingSizeToClassNameMap[paddingSize],
+    directionToClassNameMap[direction],
     {
       'euiPage--grow': grow,
       [`euiPage--${widthClassName}`]: widthClassName,

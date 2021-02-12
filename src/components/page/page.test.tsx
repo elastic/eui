@@ -48,6 +48,14 @@ describe('EuiPage', () => {
     });
   });
 
+  describe('direction', () => {
+    test('can be row', () => {
+      const component = render(<EuiPage direction="row" />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('restrict width', () => {
     test('can be set to a default', () => {
       const component = render(<EuiPage restrictWidth={true} />);

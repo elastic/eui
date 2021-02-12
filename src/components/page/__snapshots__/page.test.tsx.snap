@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiPage direction can be row 1`] = `
+<div
+  class="euiPage euiPage--paddingMedium euiPage--grow"
+/>
+`;
+
 exports[`EuiPage grow can be false 1`] = `
 <div
   class="euiPage euiPage--paddingMedium"

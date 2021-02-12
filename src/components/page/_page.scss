@@ -8,6 +8,10 @@
     flex-grow: 1;
   }
 
+  &--column {
+    flex-direction: column;
+  }
+
   @include euiBreakpoint('xs', 's') {
     flex-direction: column;
   }
