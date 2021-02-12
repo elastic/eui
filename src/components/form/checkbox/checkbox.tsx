@@ -50,6 +50,10 @@ export interface EuiCheckboxProps
    */
   compressed?: boolean;
   indeterminate?: boolean;
+  /**
+   * Object of props passed to the <input/>
+   */
+  labelProps?: CommonProps & InputHTMLAttributes<HTMLInputElement>;
 }
 
 export class EuiCheckbox extends Component<EuiCheckboxProps> {
@@ -82,6 +86,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       compressed,
       indeterminate,
       inputRef,
+      labelProps,
       ...rest
     } = this.props;
 
@@ -92,7 +97,8 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
         'euiCheckbox--noLabel': !label,
         'euiCheckbox--compressed': compressed,
       },
-      className
+      className,
+      labelProps?.className
     );
 
     let optionalLabel;
@@ -108,6 +114,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
     return (
       <div className={classes}>
         <input
+          {...labelProps}
           className="euiCheckbox__input"
           type="checkbox"
           id={id}

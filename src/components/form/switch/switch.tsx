@@ -56,6 +56,10 @@ export type EuiSwitchProps = CommonProps &
     disabled?: boolean;
     compressed?: boolean;
     type?: 'submit' | 'reset' | 'button';
+    /**
+     * Object of props passed to the <button/>
+     */
+    labelProps?: CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
   };
 
 export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
@@ -68,6 +72,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   className,
   showLabel = true,
   type = 'button',
+  labelProps,
   ...rest
 }) => {
   const [switchId] = useState(id || htmlIdGenerator()());
@@ -91,7 +96,8 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     {
       'euiSwitch--compressed': compressed,
     },
-    className
+    className,
+    labelProps?.className
   );
 
   if (showLabel === false && typeof label !== 'string') {
@@ -103,6 +109,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   return (
     <div className={classes}>
       <button
+        {...labelProps}
         id={switchId}
         aria-checked={checked || false}
         className="euiSwitch__button"
