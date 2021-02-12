@@ -29,7 +29,7 @@ import { EuiI18n } from '../../i18n';
 export type PageChangeHandler = (pageIndex: number) => void;
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
-export interface Props {
+export interface EuiTablePaginationProps {
   activePage?: number;
   hidePerPageOptions?: boolean;
   itemsPerPage?: number;
@@ -47,7 +47,10 @@ interface State {
   isPopoverOpen: boolean;
 }
 
-export class EuiTablePagination extends Component<Props, State> {
+export class EuiTablePagination extends Component<
+  EuiTablePaginationProps,
+  State
+> {
   state = {
     isPopoverOpen: false,
   };

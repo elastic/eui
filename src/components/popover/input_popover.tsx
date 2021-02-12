@@ -33,7 +33,7 @@ import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
 
-interface EuiInputPopoverProps
+interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
   disableFocusTrap?: boolean;
   fullWidth?: boolean;
@@ -42,11 +42,11 @@ interface EuiInputPopoverProps
   onPanelResize?: (width?: number) => void;
 }
 
-type Props = CommonProps &
+export type EuiInputPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
-  EuiInputPopoverProps;
+  _EuiInputPopoverProps;
 
-export const EuiInputPopover: FunctionComponent<Props> = ({
+export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
   disableFocusTrap = false,

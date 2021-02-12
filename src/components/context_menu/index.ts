@@ -19,6 +19,7 @@
 
 export {
   EuiContextMenu,
+  EuiContextMenuProps,
   EuiContextMenuPanelDescriptor,
   EuiContextMenuPanelItemDescriptor,
 } from './context_menu';
@@ -30,6 +31,7 @@ export {
 
 export {
   EuiContextMenuItem,
+  EuiContextMenuItemProps,
   EuiContextMenuItemIcon,
   EuiContextMenuItemLayoutAlignment,
 } from './context_menu_item';
