@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPageSideBar grow is rendered 1`] = `
-<div
-  class="euiPageSideBar euiPageSideBar--grow"
-/>
-`;
-
 exports[`EuiPageSideBar is rendered 1`] = `
 <div
   aria-label="aria-label"

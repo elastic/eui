@@ -35,10 +35,4 @@ describe('EuiPageSideBar', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  test('grow is rendered', () => {
-    const component = render(<EuiPageSideBar grow />);
-
-    expect(component).toMatchSnapshot();
-  });
 });

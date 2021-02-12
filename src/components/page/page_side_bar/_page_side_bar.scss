@@ -6,10 +6,6 @@
   flex: 0 1 0%; /* 1 */
   margin-right: $euiSizeL;
 
-  &--grow {
-    flex-basis: auto;
-  }
-
   // If not contained within a page that has padding, remove the margin too
   .euiPage:not([class*='euiPage--padding']) > & {
     margin: 0;
