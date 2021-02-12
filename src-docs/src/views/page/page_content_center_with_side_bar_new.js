@@ -6,15 +6,14 @@ import {
   EuiEmptyPrompt,
   EuiPageHeader,
   EuiPageSideBar,
+  EuiPageBody,
 } from '../../../../src/components';
 
 export default ({ button, sideNav }) => (
   <EuiPage paddingSize="none">
     <EuiPageSideBar>{sideNav}</EuiPageSideBar>
 
-    <EuiPageContent
-      borderRadius="none"
-      style={{ display: 'flex', flexDirection: 'column' }}>
+    <EuiPageBody panelled>
       <EuiPageHeader
         iconType="logoElastic"
         pageTitle="Page title"
@@ -37,6 +36,6 @@ export default ({ button, sideNav }) => (
           }
         />
       </EuiPageContent>
-    </EuiPageContent>
+    </EuiPageBody>
   </EuiPage>
 );

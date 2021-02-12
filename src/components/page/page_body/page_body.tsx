@@ -19,11 +19,21 @@
 
 import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import {
   EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
+import { EuiPanel, EuiPanelProps } from '../../panel';
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiPageBody--paddingSmall',
+  m: 'euiPageBody--paddingMedium',
+  l: 'euiPageBody--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
@@ -34,6 +44,18 @@ export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
      * Sets the HTML element for `EuiPageBody`.
      */
     component?: T;
+    /**
+     * Uses an EuiPanel as the main component instead of a plain div
+     */
+    panelled?: boolean;
+    /**
+     * Extends any extra EuiPanel props if `panelled=true`
+     */
+    panelProps?: Omit<EuiPanelProps, 'paddingSize'>;
+    /**
+     * Adjusts the padding
+     */
+    paddingSize?: typeof PADDING_SIZES[number];
   };
 
 export const EuiPageBody = <T extends ComponentTypes>({
@@ -42,6 +64,9 @@ export const EuiPageBody = <T extends ComponentTypes>({
   style,
   className,
   component: Component = 'main' as T,
+  panelled,
+  panelProps,
+  paddingSize,
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
   const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
@@ -52,12 +77,25 @@ export const EuiPageBody = <T extends ComponentTypes>({
   const classes = classNames(
     'euiPageBody',
     {
+      [`${
+        paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]]
+      }`]: !panelled,
       [`euiPageBody--${widthClassName}`]: widthClassName,
     },
     className
   );
 
-  return (
+  return panelled ? (
+    <EuiPanel
+      className={classes}
+      style={newStyle || style}
+      borderRadius="none"
+      paddingSize={paddingSize || 'l'}
+      {...panelProps}
+      {...rest}>
+      {children}
+    </EuiPanel>
+  ) : (
     <Component className={classes} style={newStyle || style} {...rest}>
       {children}
     </Component>

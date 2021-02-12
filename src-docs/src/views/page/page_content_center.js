@@ -5,6 +5,7 @@ import {
   EuiPageContent,
   EuiEmptyPrompt,
   EuiPageSideBar,
+  EuiPageBody,
 } from '../../../../src/components';
 
 export default ({ button, content, sideNav }) => {
@@ -12,16 +13,18 @@ export default ({ button, content, sideNav }) => {
     <EuiPage paddingSize="none">
       <EuiPageSideBar>{sideNav}</EuiPageSideBar>
 
-      <EuiPageContent
-        verticalPosition="center"
-        horizontalPosition="center"
-        paddingSize="none">
-        <EuiEmptyPrompt
-          title={<span>No spice</span>}
-          body={content}
-          actions={button}
-        />
-      </EuiPageContent>
+      <EuiPageBody paddingSize="l">
+        <EuiPageContent
+          verticalPosition="center"
+          horizontalPosition="center"
+          paddingSize="none">
+          <EuiEmptyPrompt
+            title={<span>No spice</span>}
+            body={content}
+            actions={button}
+          />
+        </EuiPageContent>
+      </EuiPageBody>
     </EuiPage>
   );
 };

@@ -18,7 +18,7 @@
 
   // When the page header is actually inside of the page content instead of a outside,
   // We want to add some extra separation between it ad the content body
-  .euiPageContent > & {
+  .euiPanel > & {
     padding-bottom: $euiSizeL;
     border-bottom: $euiBorderThin;
 
@@ -27,19 +27,19 @@
     }
   }
 
-  // If contained inside an EuiPage that doesn't have padding, add it
-  .euiPage:not([class*='euiPage--padding']) > & {
-    padding-top: $euiSizeL;
-    padding-left: $euiSizeL;
-    padding-right: $euiSizeL;
-  }
+  // // If contained inside an EuiPage that doesn't have padding, add it
+  // .euiPage:not([class*='euiPage--padding']) > & {
+  //   padding-top: $euiSizeL;
+  //   padding-left: $euiSizeL;
+  //   padding-right: $euiSizeL;
+  // }
 
-  // If contained wihin an EuiPageContent that DOES have padding, remove it
-  .euiPageContent[class*='euiPanel--padding'] > & {
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
+  // // If contained wihin an EuiPageContent that DOES have padding, remove it
+  // .euiPanel[class*='euiPanel--padding'] > & {
+  //   padding-top: 0;
+  //   padding-left: 0;
+  //   padding-right: 0;
+  // }
 }
 
 .euiPageHeader--top {
