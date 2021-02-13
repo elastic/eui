@@ -26,11 +26,7 @@ export const pageTemplateConfig = () => {
   propsToUse.pageHeader = simulateFunction({
     ...propsToUse.pageHeader,
     custom: {
-      value: `{ pageTitle: "Page title",
-rightSideContent: [
-  <EuiButton fill>Button 1</EuiButton>,
-  <EuiButton>Button 2</EuiButton>,
-]}`,
+      value: '{ pageTitle: "Page title" }',
     },
   });
 

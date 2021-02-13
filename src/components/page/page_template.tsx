@@ -19,7 +19,7 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiPage, EuiPageProps } from './page';
+import { EuiPage, EuiPageProps, SIZES } from './page';
 import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
@@ -36,7 +36,7 @@ export const TEMPLATES = [
   'centeredContent',
 ] as const;
 
-export type EuiPageTemplateProps = EuiPageProps & {
+export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
   /**
    * Choose between 3 types of templates.
    * `default`: Typical layout with nothing centered
@@ -44,6 +44,12 @@ export type EuiPageTemplateProps = EuiPageProps & {
    * `centeredContent`: The content inside the panel is centered
    */
   template?: typeof TEMPLATES[number];
+  /**
+   *
+   * Padding size will not get applie to the over-arching EuiPage,
+   * but will propogate through all the components to keep them in sync
+   */
+  paddingSize?: typeof SIZES[number];
   /**
    * Optionally include EuiPageSideBar content.
    * The inclusion of this will affect the whole layout
@@ -74,6 +80,7 @@ export type EuiPageTemplateProps = EuiPageProps & {
 export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   template = 'default',
   restrictWidth = true,
+  paddingSize = 'l',
   children,
   className,
   pageSideBar,
@@ -100,13 +107,14 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody paddingSize="l" {...pageBodyProps}>
+          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
             <EuiPageContent
               verticalPosition="center"
               horizontalPosition="center"
+              paddingSize={paddingSize}
               {...pageContentProps}>
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
@@ -121,16 +129,17 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           <EuiPageBody paddingSize="none" {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
-                paddingSize="l"
+                paddingSize={paddingSize}
                 restrictWidth={restrictWidth}
                 {...pageHeader}
               />
             )}
             {/* Extra page body to get the correct alignment and padding of the centered EuiPageContent */}
-            <EuiPageBody paddingSize="l">
+            <EuiPageBody paddingSize={paddingSize}>
               <EuiPageContent
                 verticalPosition="center"
                 horizontalPosition="center"
+                paddingSize={paddingSize}
                 {...pageContentProps}>
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
@@ -154,7 +163,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody panelled={pageSideBar ? true : false} {...pageBodyProps}>
+          <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -163,6 +172,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               horizontalPosition="center"
               hasShadow={false}
               color="subdued"
+              paddingSize={paddingSize}
               {...pageContentProps}>
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
@@ -174,10 +184,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         </EuiPage>
       ) : (
         <EuiPage className={classes} paddingSize="none" {...rest}>
-          <EuiPageBody panelled={pageSideBar ? true : false} {...pageBodyProps}>
+          <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
-                paddingSize="l"
+                paddingSize={paddingSize}
                 restrictWidth={restrictWidth}
                 {...pageHeader}
               />
@@ -186,12 +196,14 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             <EuiPageContent
               borderRadius="none"
               hasShadow={false}
+              paddingSize={paddingSize}
               style={{ display: 'flex' }}>
               <EuiPageContent
                 verticalPosition="center"
                 horizontalPosition="center"
                 hasShadow={false}
                 color="subdued"
+                paddingSize={paddingSize}
                 {...pageContentProps}>
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
@@ -215,7 +227,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody panelled {...pageBodyProps}>
+          <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -239,7 +251,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageHeader && (
               <EuiPageHeader
                 restrictWidth={restrictWidth}
-                paddingSize="l"
+                paddingSize={paddingSize}
                 {...pageHeader}
               />
             )}
@@ -251,7 +263,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               {...pageContentProps}>
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
-                paddingSize="l"
+                paddingSize={paddingSize}
                 {...pageContentBodyProps}>
                 {children}
               </EuiPageContentBody>

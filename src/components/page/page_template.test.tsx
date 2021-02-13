@@ -52,9 +52,19 @@ describe('EuiPageTemplate', () => {
         expect(component).toMatchSnapshot();
       });
 
+      it('paddingSize is rendered', () => {
+        const component = render(
+          <EuiPageTemplate template={template} paddingSize="none" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
       describe('with pageSideBar', () => {
         test('is rendered', () => {
-          const component = render(<EuiPageTemplate pageSideBar="Side Bar" />);
+          const component = render(
+            <EuiPageTemplate template={template} pageSideBar="Side Bar" />
+          );
 
           expect(component).toMatchSnapshot();
         });
@@ -62,6 +72,7 @@ describe('EuiPageTemplate', () => {
         test('is rendered with pageSideBarProps', () => {
           const component = render(
             <EuiPageTemplate
+              template={template}
               pageSideBar="Side Bar"
               pageSideBarProps={requiredProps}
             />
@@ -74,6 +85,7 @@ describe('EuiPageTemplate', () => {
       test('is rendered with pageHeader', () => {
         const component = render(
           <EuiPageTemplate
+            template={template}
             pageHeader={{
               title: 'Page title',
               ...requiredProps,
@@ -86,7 +98,7 @@ describe('EuiPageTemplate', () => {
 
       test('is rendered with pageBodyProps', () => {
         const component = render(
-          <EuiPageTemplate pageBodyProps={requiredProps} />
+          <EuiPageTemplate template={template} pageBodyProps={requiredProps} />
         );
 
         expect(component).toMatchSnapshot();
@@ -94,7 +106,10 @@ describe('EuiPageTemplate', () => {
 
       test('is rendered with pageContentProps', () => {
         const component = render(
-          <EuiPageTemplate pageContentProps={requiredProps} />
+          <EuiPageTemplate
+            template={template}
+            pageContentProps={requiredProps}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -102,7 +117,10 @@ describe('EuiPageTemplate', () => {
 
       test('is rendered with pageContentBodyProps', () => {
         const component = render(
-          <EuiPageTemplate pageContentBodyProps={requiredProps} />
+          <EuiPageTemplate
+            template={template}
+            pageContentBodyProps={requiredProps}
+          />
         );
 
         expect(component).toMatchSnapshot();
