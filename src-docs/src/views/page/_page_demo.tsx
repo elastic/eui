@@ -12,18 +12,18 @@ import content from '../../images/content.svg';
 import contentCenter from '../../images/content_center.svg';
 import sideNav from '../../images/side_nav.svg';
 import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiSwitch } from '../../../../src/components/form';
 
 export const PageDemo: FunctionComponent<{
   children?: (
     button: typeof EuiButton,
     Content: ReactNode,
-    SideNav: ReactNode
+    SideNav: ReactNode,
+    showTemplate: boolean
   ) => ReactNode;
   centered?: boolean;
 }> = ({ children, centered }) => {
-  /**
-   * FullScreen for docs only
-   */
+  const [showTemplate, setShowTemplate] = useState(true);
   const [fullScreen, setFullScreen] = useState(false);
   useEffect(() => {
     if (fullScreen) {
@@ -63,15 +63,22 @@ export const PageDemo: FunctionComponent<{
   );
 
   return (
-    <EuiFocusTrap disabled={!fullScreen}>
-      <div
-        className={
-          fullScreen
-            ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
-            : 'guideDemo__highlightLayout'
-        }>
-        {children && children(Button, Content, SideNav)}
-      </div>
-    </EuiFocusTrap>
+    <>
+      <EuiSwitch
+        label="Showing template version"
+        checked={showTemplate}
+        onChange={() => setShowTemplate((showing) => !showing)}
+      />
+      <EuiFocusTrap disabled={!fullScreen}>
+        <div
+          className={
+            fullScreen
+              ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
+              : 'guideDemo__highlightLayout'
+          }>
+          {children && children(Button, Content, SideNav, showTemplate)}
+        </div>
+      </EuiFocusTrap>
+    </>
   );
 };

@@ -22,11 +22,13 @@ import {
 
 import Page from './page';
 import PageNew from './page_new';
+import PageTemplate from './page_template';
 const pageNewSource = require('!!raw-loader!./page_new');
 const pageNewHtml = renderToHtml(PageNew);
 
 import PageSimple from './page_simple';
 import PageSimpleNew from './page_simple_new';
+import PageSimpleNewTemplate from './page_simple_new_template';
 const pageSimpleNewSource = require('!!raw-loader!./page_simple_new');
 const pageSimpleNewHtml = renderToHtml(PageSimpleNew);
 
@@ -43,28 +45,34 @@ const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
 const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
 
 import PageContentOnly from './page_content_only';
+import PageContentOnlyTemplate from './page_content_only_template';
 const pageContentOnlySource = require('!!raw-loader!./page_content_only');
 const pageContentOnlyHtml = renderToHtml(PageContentOnly);
 
 import PageCustomContent from './page_custom_content';
+import PageCustomContentTemplate from './page_custom_content_template';
 const pageCustomContentSource = require('!!raw-loader!./page_custom_content');
 const pageCustomContentHtml = renderToHtml(PageCustomContent);
 
 import PageContentCenter from './page_content_center';
+import PageContentCenterTemplate from './page_content_center_template';
 const pageContentCenterSource = require('!!raw-loader!./page_content_center');
 const pageContentCenterHtml = renderToHtml(PageContentCenter);
 
 import PageContentCenterWithSideBar from './page_content_center_with_side_bar';
+import PageContentCenterWithSideBarTemplate from './page_content_center_with_side_bar_template';
 const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_center_with_side_bar');
 const PageContentCenterWithSideBarHtml = renderToHtml(
   PageContentCenterWithSideBar
 );
 
-import PageSimpleEmptyContent from './page_simplet_empty_content';
-const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simplet_empty_content');
+import PageSimpleEmptyContent from './page_simple_empty_content';
+import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
+const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simple_empty_content');
 const PageSimpleEmptyContentHtml = renderToHtml(PageSimpleEmptyContent);
 
 import PageContentCenterWithSideBarNew from './page_content_center_with_side_bar_new';
+import PageContentCenterWithSideBarNewTemplate from './page_content_center_with_side_bar_new_template';
 const PageContentCenterWithSideBarNewSource = require('!!raw-loader!./page_content_center_with_side_bar_new');
 const PageContentCenterWithSideBarNewHtml = renderToHtml(
   PageContentCenterWithSideBarNew
@@ -145,13 +153,21 @@ export const PageExample = {
       },
       demo: (
         <PageDemo>
-          {(Button, Content, SideNav) => (
-            <PageNew
-              button={<Button />}
-              content={<Content />}
-              sideNav={<SideNav />}
-            />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageNew
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
         </PageDemo>
       ),
     },
@@ -187,13 +203,21 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo>
-          {(Button, Content, SideNav) => (
-            <PageContentOnly
-              button={<Button />}
-              content={<Content />}
-              sideNav={<SideNav />}
-            />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageContentOnlyTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageContentOnly
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
         </PageDemo>
       ),
       props: {
@@ -229,13 +253,21 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo centered>
-          {(Button, Content, SideNav) => (
-            <PageContentCenterWithSideBar
-              button={<Button />}
-              content={<Content />}
-              sideNav={<SideNav />}
-            />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageContentCenterWithSideBarTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageContentCenterWithSideBar
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
         </PageDemo>
       ),
       props: {
@@ -267,15 +299,33 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo centered>
-          {(Button, Content, SideNav) => (
-            <PageContentCenterWithSideBarNew
-              button={<Button />}
-              content={<Content />}
-              sideNav={<SideNav />}
-            />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageContentCenterWithSideBarNewTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageContentCenterWithSideBarNew
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
         </PageDemo>
       ),
+      snippet: `<EuiPageTemplate
+  template="centeredContent"
+  sideNav={sideNav}
+  pageHeader={{
+    iconType: 'logoElastic',
+    pageTitle: 'Page title',
+    rightSideItems: [button],
+  }}>
+  <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
+</EuiPageTemplate>`,
     },
     {
       title: 'A simple page with a title',
@@ -299,9 +349,16 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo>
-          {(Button, Content) => (
-            <PageSimpleNew button={<Button />} content={<Content />} />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageSimpleNewTemplate
+                button={<Button />}
+                content={<Content />}
+              />
+            ) : (
+              <PageSimpleNew button={<Button />} content={<Content />} />
+            )
+          }
         </PageDemo>
       ),
       props: {
@@ -345,13 +402,16 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo centered>
-          {(Button, Content, SideNav) => (
-            <PageContentCenter
-              button={<Button />}
-              content={<Content />}
-              sideNav={<SideNav />}
-            />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageContentCenterTemplate
+                button={<Button />}
+                content={<Content />}
+              />
+            ) : (
+              <PageContentCenter button={<Button />} content={<Content />} />
+            )
+          }
         </PageDemo>
       ),
       props: {
@@ -383,9 +443,19 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo centered>
-          {(Button, Content) => (
-            <PageSimpleEmptyContent button={<Button />} content={<Content />} />
-          )}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageSimpleEmptyContentTemplate
+                button={<Button />}
+                content={<Content />}
+              />
+            ) : (
+              <PageSimpleEmptyContent
+                button={<Button />}
+                content={<Content />}
+              />
+            )
+          }
         </PageDemo>
       ),
     },
@@ -411,7 +481,13 @@ export const PageExample = {
       ),
       demo: (
         <PageDemo>
-          {(Button) => <PageCustomContent button={<Button />} />}
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageCustomContentTemplate button={<Button />} />
+            ) : (
+              <PageCustomContent button={<Button />} />
+            )
+          }
         </PageDemo>
       ),
       props: {
