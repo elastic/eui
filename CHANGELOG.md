@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox`. ([#4515](https://github.com/elastic/eui/pull/4515))
+- Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox`. ([#4516](https://github.com/elastic/eui/pull/4516))
 
 **Bug fixes**
 

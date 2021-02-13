@@ -19,6 +19,7 @@
 
 import React, {
   ButtonHTMLAttributes,
+  HTMLAttributes,
   FunctionComponent,
   ReactNode,
   useState,
@@ -57,9 +58,9 @@ export type EuiSwitchProps = CommonProps &
     compressed?: boolean;
     type?: 'submit' | 'reset' | 'button';
     /**
-     * Object of props passed to the <button/>
+     * Object of props passed to the <span/>
      */
-    labelProps?: CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
+    labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
 export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
@@ -96,10 +97,9 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     {
       'euiSwitch--compressed': compressed,
     },
-    className,
-    labelProps?.className
+    className
   );
-
+  const labelClasses = classNames('euiSwitch__label', labelProps?.className);
   if (showLabel === false && typeof label !== 'string') {
     console.warn(
       'EuiSwitch `label` must be a string when `showLabel` is false.'
@@ -109,7 +109,6 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   return (
     <div className={classes}>
       <button
-        {...labelProps}
         id={switchId}
         aria-checked={checked || false}
         className="euiSwitch__button"
@@ -142,7 +141,11 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         // <button> + <label> has poor screen reader support.
         // Click handler added to simulate natural, secondary <label> interactivity.
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        <span className="euiSwitch__label" id={labelId} onClick={onClick}>
+        <span
+          {...labelProps}
+          className={labelClasses}
+          id={labelId}
+          onClick={onClick}>
           {label}
         </span>
       )}
