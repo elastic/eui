@@ -11,6 +11,7 @@ import { EuiFocusTrap } from '../../../../src/components/focus_trap';
 import content from '../../images/content.svg';
 import contentCenter from '../../images/content_center.svg';
 import sideNav from '../../images/side_nav.svg';
+import { EuiSpacer } from '../../../../src/components/spacer';
 
 export const PageDemo: FunctionComponent<{
   children?: (
@@ -47,14 +48,27 @@ export const PageDemo: FunctionComponent<{
 
   const SideNav = () => <EuiImage alt="Fake side nav list" url={sideNav} />;
   const Content = () => (
-    <EuiImage alt="Fake paragraph" url={centered ? contentCenter : content} />
+    <>
+      <EuiImage alt="Fake paragraph" url={centered ? contentCenter : content} />
+      {!centered && (
+        <>
+          <EuiSpacer />
+          <EuiImage
+            alt="Fake paragraph"
+            url={centered ? contentCenter : content}
+          />
+        </>
+      )}
+    </>
   );
 
   return (
     <EuiFocusTrap disabled={!fullScreen}>
       <div
         className={
-          fullScreen ? 'guideFullScreenOverlay' : 'guideDemo__highlightLayout'
+          fullScreen
+            ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
+            : 'guideDemo__highlightLayout'
         }>
         {children && children(Button, Content, SideNav)}
       </div>

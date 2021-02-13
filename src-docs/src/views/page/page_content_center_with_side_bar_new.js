@@ -9,9 +9,9 @@ import {
   EuiPageBody,
 } from '../../../../src/components';
 
-export default ({ button, sideNav }) => (
+export default ({ button, content, sideNav }) => (
   <EuiPage paddingSize="none">
-    <EuiPageSideBar>{sideNav}</EuiPageSideBar>
+    <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
 
     <EuiPageBody panelled>
       <EuiPageHeader
@@ -26,15 +26,7 @@ export default ({ button, sideNav }) => (
         paddingSize="none"
         color="subdued"
         hasShadow={false}>
-        <EuiEmptyPrompt
-          title={<span>No spice</span>}
-          body={
-            <p>
-              Navigators use massive amounts of spice to gain a limited form of
-              prescience.{' '}
-            </p>
-          }
-        />
+        <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

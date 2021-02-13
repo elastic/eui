@@ -4,26 +4,33 @@ import {
   EuiPage,
   EuiPageContent,
   EuiEmptyPrompt,
-  EuiPageSideBar,
   EuiPageBody,
+  EuiPageHeader,
 } from '../../../../src/components';
 
-export default ({ button, content, sideNav }) => {
+export default ({ button, content }) => {
   return (
     <EuiPage paddingSize="none">
-      <EuiPageSideBar>{sideNav}</EuiPageSideBar>
+      <EuiPageBody>
+        <EuiPageHeader
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[button]}
+          paddingSize="l"
+        />
 
-      <EuiPageBody paddingSize="l">
-        <EuiPageContent
-          verticalPosition="center"
-          horizontalPosition="center"
-          paddingSize="none">
-          <EuiEmptyPrompt
-            title={<span>No spice</span>}
-            body={content}
-            actions={button}
-          />
-        </EuiPageContent>
+        <EuiPageBody paddingSize="l">
+          <EuiPageContent
+            verticalPosition="center"
+            horizontalPosition="center"
+            paddingSize="none">
+            <EuiEmptyPrompt
+              title={<span>No spice</span>}
+              body={content}
+              actions={button}
+            />
+          </EuiPageContent>
+        </EuiPageBody>
       </EuiPageBody>
     </EuiPage>
   );

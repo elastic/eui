@@ -66,6 +66,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   overflow-y: auto;
   height: 460px;
 
+  .euiPageSideBar--sticky {
+    top: 0;
+  }
+
   // .euiPageContentBody {
   //   // Mimicking body overscroll
   //   min-height: 400px;
@@ -205,8 +209,19 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 1001;
+  z-index: $euiZHeader + 1;
   overflow: auto;
+
+  &--withHeader {
+    top: $euiHeaderHeightCompensation;
+    bottom: 0;
+    height: auto;
+    z-index: $euiZHeader - 1;
+
+    .euiPageSideBar--sticky {
+      top: 0;
+    }
+  }
 }
 
 .guideBody--overflowHidden {

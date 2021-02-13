@@ -6,14 +6,15 @@ import {
   EuiPageContentBody,
   EuiPageHeader,
   EuiPageSideBar,
+  EuiPageBody,
 } from '../../../../src/components';
 
 export default ({ button, content, sideNav }) => {
   return (
     <EuiPage paddingSize="none">
-      <EuiPageSideBar>{sideNav}</EuiPageSideBar>
+      <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
 
-      <EuiPageContent borderRadius="none">
+      <EuiPageBody panelled>
         <EuiPageHeader
           restrictWidth={'75%'}
           iconType="logoElastic"
@@ -22,8 +23,16 @@ export default ({ button, content, sideNav }) => {
           description="Simulating a very narrow restricted width of 75%."
         />
 
-        <EuiPageContentBody restrictWidth={'75%'}>{content}</EuiPageContentBody>
-      </EuiPageContent>
+        <EuiPageContent
+          hasShadow={false}
+          paddingSize="none"
+          color="transparent"
+          borderRadius="none">
+          <EuiPageContentBody restrictWidth={'75%'}>
+            {content}
+          </EuiPageContentBody>
+        </EuiPageContent>
+      </EuiPageBody>
     </EuiPage>
   );
 };

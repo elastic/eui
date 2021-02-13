@@ -48,15 +48,27 @@ const pageContentOnlyHtml = renderToHtml(PageContentOnly);
 
 import PageCustomContent from './page_custom_content';
 const pageCustomContentSource = require('!!raw-loader!./page_custom_content');
-const pageCustomContentHtml = renderToHtml(Page);
+const pageCustomContentHtml = renderToHtml(PageCustomContent);
 
 import PageContentCenter from './page_content_center';
 const pageContentCenterSource = require('!!raw-loader!./page_content_center');
-const pageContentCenterHtml = renderToHtml(Page);
+const pageContentCenterHtml = renderToHtml(PageContentCenter);
+
+import PageContentCenterWithSideBar from './page_content_center_with_side_bar';
+const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_center_with_side_bar');
+const PageContentCenterWithSideBarHtml = renderToHtml(
+  PageContentCenterWithSideBar
+);
+
+import PageSimpleEmptyContent from './page_simplet_empty_content';
+const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simplet_empty_content');
+const PageSimpleEmptyContentHtml = renderToHtml(PageSimpleEmptyContent);
 
 import PageContentCenterWithSideBarNew from './page_content_center_with_side_bar_new';
 const PageContentCenterWithSideBarNewSource = require('!!raw-loader!./page_content_center_with_side_bar_new');
-const PageContentCenterWithSideBarNewHtml = renderToHtml(Page);
+const PageContentCenterWithSideBarNewHtml = renderToHtml(
+  PageContentCenterWithSideBarNew
+);
 
 export const PageExample = {
   playground: Playground,
@@ -65,8 +77,9 @@ export const PageExample = {
     <EuiText>
       <p>
         Page layouts are modular and have the ability to add or remove
-        components as needed for the design. These examples are colored for
-        illustrative purposes only.
+        components as needed for the design. These examples are small so we have
+        included a full screen view of each and is the only way to showcase the
+        sticky nature of the side bar.
       </p>
     </EuiText>
   ),
@@ -151,49 +164,6 @@ export const PageExample = {
       ),
     },
     {
-      title: 'A simple page with a title',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageSimpleNewSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageSimpleNewHtml,
-        },
-      ],
-      text: (
-        <p>
-          Some pages don&rsquo;t have sidebars. In this case, we recommend a
-          slightly different configuration by pulling the page hader out of the
-          EuiPageContent. But you will need to include the change EuiPage&apos;s
-          direction to {'column'}.
-        </p>
-      ),
-      demo: (
-        <PageDemo>
-          {(Button, Content) => (
-            <PageSimpleNew button={<Button />} content={<Content />} />
-          )}
-        </PageDemo>
-      ),
-      props: {
-        EuiPage,
-        EuiPageBody,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
-      },
-    },
-    {
-      text: <p>TEMPORARY: Old version</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageSimple />
-        </div>
-      ),
-    },
-    {
       title: 'Restricting width',
       source: [
         {
@@ -239,6 +209,122 @@ export const PageExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
+          code: PageContentCenterWithSideBarSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageContentCenterWithSideBarHtml,
+        },
+      ],
+      text: (
+        <p>
+          When the content for the page is minimal or in an empty/pre-setup
+          state, the page content can be centered vertically and horizontally.
+          We recommend then using the{' '}
+          <Link to="/display/empty-prompt">
+            <strong>EuiEmptyPrompt</strong>
+          </Link>{' '}
+          for the content. This setup works with or without the side bar.
+        </p>
+      ),
+      demo: (
+        <PageDemo centered>
+          {(Button, Content, SideNav) => (
+            <PageContentCenterWithSideBar
+              button={<Button />}
+              content={<Content />}
+              sideNav={<SideNav />}
+            />
+          )}
+        </PageDemo>
+      ),
+      props: {
+        EuiPage,
+        EuiPageSideBar,
+        EuiPageContent,
+        EuiEmptyPrompt,
+      },
+    },
+    {
+      title: 'Empty content with page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageContentCenterWithSideBarNewSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageContentCenterWithSideBarNewHtml,
+        },
+      ],
+      text: (
+        <p>
+          Similar to the previous example, you can create a centered panel to
+          emphasis incompleteness even with a page header. For this setup, we
+          recommend using nested <strong>EuiPageContent</strong> components for
+          the ease of props available.
+        </p>
+      ),
+      demo: (
+        <PageDemo centered>
+          {(Button, Content, SideNav) => (
+            <PageContentCenterWithSideBarNew
+              button={<Button />}
+              content={<Content />}
+              sideNav={<SideNav />}
+            />
+          )}
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'A simple page with a title',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageSimpleNewSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pageSimpleNewHtml,
+        },
+      ],
+      text: (
+        <p>
+          Some pages don&rsquo;t have sidebars. In this case, we recommend a
+          slightly different configuration by pulling the page hader out of the
+          EuiPageContent. But you will need to include the change EuiPage&apos;s
+          direction to {'column'}. This example has `restricedWidth` set to 75%.
+        </p>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content) => (
+            <PageSimpleNew button={<Button />} content={<Content />} />
+          )}
+        </PageDemo>
+      ),
+      props: {
+        EuiPage,
+        EuiPageBody,
+        EuiPageHeader,
+        EuiPageContent,
+        EuiPageContentBody,
+      },
+    },
+    {
+      text: <p>TEMPORARY: Old version</p>,
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <PageSimple />
+        </div>
+      ),
+    },
+    {
+      title: 'Simple layout with centered content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
           code: pageContentCenterSource,
         },
         {
@@ -276,15 +362,15 @@ export const PageExample = {
       },
     },
     {
-      title: 'Empty content with page header',
+      title: 'Simple layout with empty inner content',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarNewSource,
+          code: PageSimpleEmptyContentSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarNewHtml,
+          code: PageSimpleEmptyContentHtml,
         },
       ],
       text: (
@@ -296,12 +382,9 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav) => (
-            <PageContentCenterWithSideBarNew
-              button={<Button />}
-              sideNav={<SideNav />}
-            />
+        <PageDemo centered>
+          {(Button, Content) => (
+            <PageSimpleEmptyContent button={<Button />} content={<Content />} />
           )}
         </PageDemo>
       ),
@@ -458,7 +541,7 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <div className="guideDemo__highlightLayout">
+        <div className="guideDemo__highlightLayout--single">
           <PageHeaderCustom />
         </div>
       ),

@@ -2,39 +2,29 @@ import React from 'react';
 
 import {
   EuiPage,
-  EuiPageBody,
   EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiPageHeader,
+  EuiEmptyPrompt,
   EuiPageSideBar,
-  EuiTitle,
+  EuiPageBody,
 } from '../../../../src/components';
 
-export default () => (
-  <EuiPage>
-    <EuiPageSideBar>SideBar nav</EuiPageSideBar>
-    {/* The EUI docs site  already has a wrapping <main> tag, so we've changed this example to a <div> for accessibility. You likely don't need to copy the `component` prop for your own usage. */}
-    <EuiPageBody component="div">
-      <EuiPageHeader
-        pageTitle="Page title"
-        rightSideItems={['Page abilities']}
-        alignItems="center"
-      />
-      <EuiPageContent verticalPosition="center" horizontalPosition="center">
-        <EuiPageContentHeader>
-          <EuiPageContentHeaderSection>
-            <EuiTitle>
-              <h2>Content title</h2>
-            </EuiTitle>
-          </EuiPageContentHeaderSection>
-          <EuiPageContentHeaderSection>
-            Content abilities
-          </EuiPageContentHeaderSection>
-        </EuiPageContentHeader>
-        <EuiPageContentBody>Content body</EuiPageContentBody>
-      </EuiPageContent>
-    </EuiPageBody>
-  </EuiPage>
-);
+export default ({ button, content, sideNav }) => {
+  return (
+    <EuiPage paddingSize="none">
+      <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
+
+      <EuiPageBody paddingSize="l">
+        <EuiPageContent
+          verticalPosition="center"
+          horizontalPosition="center"
+          paddingSize="none">
+          <EuiEmptyPrompt
+            title={<span>No spice</span>}
+            body={content}
+            actions={button}
+          />
+        </EuiPageContent>
+      </EuiPageBody>
+    </EuiPage>
+  );
+};

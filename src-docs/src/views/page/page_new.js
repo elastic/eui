@@ -6,21 +6,27 @@ import {
   EuiPageContentBody,
   EuiPageHeader,
   EuiPageSideBar,
-  EuiButton,
+  EuiPageBody,
 } from '../../../../src/components';
 
 export default ({ button, content, sideNav }) => (
   <EuiPage paddingSize="none">
-    <EuiPageSideBar>{sideNav}</EuiPageSideBar>
+    <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
 
-    <EuiPageContent borderRadius="none">
+    <EuiPageBody panelled>
       <EuiPageHeader
         iconType="logoElastic"
         pageTitle="Page title"
-        rightSideItems={[button, <EuiButton>Do something</EuiButton>]}
+        rightSideItems={[button]}
+        tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
       />
-
-      <EuiPageContentBody>{content}</EuiPageContentBody>
-    </EuiPageContent>
+      <EuiPageContent
+        hasShadow={false}
+        paddingSize="none"
+        color="transparent"
+        borderRadius="none">
+        <EuiPageContentBody>{content}</EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
   </EuiPage>
 );
