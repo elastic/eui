@@ -107,7 +107,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             <EuiPageContent
               verticalPosition="center"
               horizontalPosition="center"
-              paddingSize="none"
               {...pageContentProps}>
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
@@ -132,7 +131,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageContent
                 verticalPosition="center"
                 horizontalPosition="center"
-                paddingSize="none"
                 {...pageContentProps}>
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
@@ -163,7 +161,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             <EuiPageContent
               verticalPosition="center"
               horizontalPosition="center"
-              paddingSize="none"
               hasShadow={false}
               color="subdued"
               {...pageContentProps}>
@@ -193,7 +190,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageContent
                 verticalPosition="center"
                 horizontalPosition="center"
-                paddingSize="none"
                 hasShadow={false}
                 color="subdued"
                 {...pageContentProps}>

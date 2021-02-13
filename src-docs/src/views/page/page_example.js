@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import Playground from './playground';
+import { pageTemplateConfig, pageHeaderConfig } from './playground';
 import { PageDemo } from './_page_demo';
 
 import {
@@ -79,7 +79,7 @@ const PageContentCenterWithSideBarNewHtml = renderToHtml(
 );
 
 export const PageExample = {
-  playground: Playground,
+  playground: [pageTemplateConfig, pageHeaderConfig],
   title: 'Page',
   intro: (
     <EuiText>
@@ -318,6 +318,7 @@ export const PageExample = {
       ),
       snippet: `<EuiPageTemplate
   template="centeredContent"
+  pageContentProps={{ paddingSize: 'none' }}
   sideNav={sideNav}
   pageHeader={{
     iconType: 'logoElastic',

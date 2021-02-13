@@ -3,6 +3,7 @@
 import React from 'react';
 import { PropTypes } from 'react-view';
 import {
+  EuiPageTemplate,
   EuiPageHeader,
   EuiButton,
   EuiTabs,
@@ -15,6 +16,61 @@ import {
   generateCustomProps,
   createOptionalEnum,
 } from '../../services/playground';
+
+export const pageTemplateConfig = () => {
+  const docgenInfo = Array.isArray(EuiPageTemplate.__docgenInfo)
+    ? EuiPageTemplate.__docgenInfo[0]
+    : EuiPageTemplate.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.pageHeader = simulateFunction({
+    ...propsToUse.pageHeader,
+    custom: {
+      value: `{ pageTitle: "Page title",
+rightSideContent: [
+  <EuiButton fill>Button 1</EuiButton>,
+  <EuiButton>Button 2</EuiButton>,
+]}`,
+    },
+  });
+
+  propsToUse.children = {
+    ...propsToUse.children,
+    value: 'Children',
+    type: PropTypes.ReactNode,
+    hidden: false,
+  };
+
+  propsToUse.pageSideBar = {
+    ...propsToUse.pageSideBar,
+    value: 'Side bar',
+    type: PropTypes.String,
+    hidden: false,
+  };
+
+  propsToUse.restrictWidth = {
+    ...propsToUse.restrictWidth,
+    type: PropTypes.String,
+  };
+
+  return {
+    config: {
+      componentName: 'EuiPageTemplate',
+      props: propsToUse,
+      scope: {
+        EuiPageTemplate,
+        EuiPageHeader,
+        EuiButton,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiPageTemplate', 'EuiPageHeader', 'EuiButton'],
+        },
+      },
+      customProps: generateCustomProps(['pageHeader']),
+    },
+  };
+};
 
 const tabs = `[
   {
@@ -35,7 +91,7 @@ const rightSideItems = `[
 // const rightSideItems =
 //   '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
 
-export default () => {
+export const pageHeaderConfig = () => {
   const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)
     ? EuiPageHeader.__docgenInfo[0]
     : EuiPageHeader.__docgenInfo;

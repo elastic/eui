@@ -6,11 +6,11 @@ export default ({ button, content }) => {
   return (
     <EuiPageTemplate
       template="centeredBody"
+      pageContentProps={{ paddingSize: 'none' }}
       pageHeader={{
         iconType: 'logoElastic',
         pageTitle: 'Page title',
         rightSideItems: [button],
-        paddingSize: 'l',
       }}>
       <EuiEmptyPrompt
         title={<span>No spice</span>}
