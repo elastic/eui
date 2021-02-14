@@ -123,25 +123,32 @@ export class GuideSection extends Component {
       });
     }
 
-    if (props.source) {
-      this.tabs.push(
-        {
-          name: 'javascript',
-          displayName: 'Demo JS',
-          isCode: true,
-        },
-        {
-          name: 'html',
-          displayName: 'Demo HTML',
-          isCode: true,
-        }
-      );
+    if (props.source?.find((tab) => tab.type === 'javascript')) {
+      this.tabs.push({
+        name: 'javascript',
+        displayName:
+          props.source?.find((tab) => tab.type === 'javascript')?.displayName ||
+          'Demo JS',
+        isCode: true,
+      });
     }
 
-    if (hasSnippet) {
+    if (props.source?.find((tab) => tab.type === 'html')) {
+      this.tabs.push({
+        name: 'html',
+        displayName:
+          props.source?.find((tab) => tab.type === 'html')?.displayName ||
+          'Demo HTML',
+        isCode: true,
+      });
+    }
+
+    if (props.source?.find((tab) => tab.type === 'snippet') || hasSnippet) {
       this.tabs.push({
         name: 'snippet',
-        displayName: 'Snippet',
+        displayName:
+          props.source.find((tab) => tab.type === 'snippet')?.displayName ||
+          'Snippet',
         isCode: true,
       });
     }
@@ -276,7 +283,11 @@ export class GuideSection extends Component {
   }
 
   renderSnippet() {
-    const { snippet } = this.props;
+    let { snippet } = this.props;
+
+    if (this.props.source?.find((tab) => tab.type === 'snippet')) {
+      snippet = this.props.source?.find((tab) => tab.type === 'snippet').code;
+    }
 
     if (!snippet) {
       return;

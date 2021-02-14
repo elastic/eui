@@ -73,6 +73,7 @@ const PageSimpleEmptyContentHtml = renderToHtml(PageSimpleEmptyContent);
 
 import PageContentCenterWithSideBarNew from './page_content_center_with_side_bar_new';
 import PageContentCenterWithSideBarNewTemplate from './page_content_center_with_side_bar_new_template';
+import { EuiSpacer } from '../../../../src/components/spacer';
 const PageContentCenterWithSideBarNewSource = require('!!raw-loader!./page_content_center_with_side_bar_new');
 const PageContentCenterWithSideBarNewHtml = renderToHtml(
   PageContentCenterWithSideBarNew
@@ -98,10 +99,25 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: pageNewSource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
           code: pageNewHtml,
+        },
+        {
+          type: GuideSectionTypes.SNIPPET,
+          displayName: 'Template',
+          code: `<EuiPageTemplate
+  pageSideBar={sideNav}
+  pageHeader={{
+    iconType: 'logoElastic',
+    pageTitle: 'Page title',
+    rightSideItems: [button],
+    tabs: [{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }],
+  }}>
+  {content}
+</EuiPageTemplate>`,
         },
       ],
       text: (
@@ -152,31 +168,30 @@ export const PageExample = {
         EuiPageContentBody,
       },
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageNew
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
-      ),
-    },
-    {
-      text: <p>TEMPORARY: Old version</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <Page />
-        </div>
+        <>
+          <PageDemo>
+            {(Button, Content, SideNav, showTemplate) =>
+              showTemplate ? (
+                <PageTemplate
+                  button={<Button />}
+                  content={<Content />}
+                  sideNav={<SideNav />}
+                />
+              ) : (
+                <PageNew
+                  button={<Button />}
+                  content={<Content />}
+                  sideNav={<SideNav />}
+                />
+              )
+            }
+          </PageDemo>
+          <EuiSpacer />
+          <p>TEMPORARY: Old version</p>
+          <div className="guideDemo__highlightLayout">
+            <Page />
+          </div>
+        </>
       ),
     },
     {
@@ -349,18 +364,25 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleNewTemplate
-                button={<Button />}
-                content={<Content />}
-              />
-            ) : (
-              <PageSimpleNew button={<Button />} content={<Content />} />
-            )
-          }
-        </PageDemo>
+        <>
+          <PageDemo>
+            {(Button, Content, SideNav, showTemplate) =>
+              showTemplate ? (
+                <PageSimpleNewTemplate
+                  button={<Button />}
+                  content={<Content />}
+                />
+              ) : (
+                <PageSimpleNew button={<Button />} content={<Content />} />
+              )
+            }
+          </PageDemo>
+          <EuiSpacer />
+          <p>TEMPORARY: Old version</p>
+          <div className="guideDemo__highlightLayout">
+            <PageSimple />
+          </div>
+        </>
       ),
       props: {
         EuiPage,
@@ -369,14 +391,6 @@ export const PageExample = {
         EuiPageContent,
         EuiPageContentBody,
       },
-    },
-    {
-      text: <p>TEMPORARY: Old version</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageSimple />
-        </div>
-      ),
     },
     {
       title: 'Simple layout with centered content',
