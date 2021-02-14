@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiPageTemplate } from '../../../../src/components';
 
-export default ({ button, content, sideNav }) => (
+export default ({ button = <></>, content, sideNav }) => (
   <EuiPageTemplate
     pageSideBar={sideNav}
     pageHeader={{

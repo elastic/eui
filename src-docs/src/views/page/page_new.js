@@ -9,12 +9,13 @@ import {
   EuiPageBody,
 } from '../../../../src/components';
 
-export default ({ button, content, sideNav }) => (
+export default ({ button = <></>, content, sideNav }) => (
   <EuiPage paddingSize="none">
     <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
 
     <EuiPageBody panelled>
       <EuiPageHeader
+        restrictWidth
         iconType="logoElastic"
         pageTitle="Page title"
         rightSideItems={[button]}
@@ -25,7 +26,7 @@ export default ({ button, content, sideNav }) => (
         paddingSize="none"
         color="transparent"
         borderRadius="none">
-        <EuiPageContentBody>{content}</EuiPageContentBody>
+        <EuiPageContentBody restrictWidth>{content}</EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

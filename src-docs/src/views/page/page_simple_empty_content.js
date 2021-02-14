@@ -8,10 +8,11 @@ import {
   EuiPageBody,
 } from '../../../../src/components';
 
-export default ({ button, content }) => (
+export default ({ button = <></>, content }) => (
   <EuiPage paddingSize="none">
     <EuiPageBody>
       <EuiPageHeader
+        restrictWidth
         iconType="logoElastic"
         pageTitle="Page title"
         rightSideItems={[button]}
@@ -22,6 +23,7 @@ export default ({ button, content }) => (
         hasShadow={false}
         style={{ display: 'flex' }}>
         <EuiPageContent
+          restrictWidth
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="none"

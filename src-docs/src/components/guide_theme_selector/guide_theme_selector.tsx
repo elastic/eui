@@ -84,6 +84,7 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
   return (
     <EuiPopover
       id="docsThemeSelector"
+      repositionOnScroll
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}

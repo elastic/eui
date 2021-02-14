@@ -64,8 +64,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideDemo__highlightLayout--playground,
 .guideDemo__highlightLayout--legacy {
   border: 1px solid transparentize($euiColorPrimary, .9);
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   height: 460px;
 
   .euiPageSideBar--sticky {

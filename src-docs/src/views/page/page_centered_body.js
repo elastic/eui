@@ -8,7 +8,7 @@ import {
   EuiPageBody,
 } from '../../../../src/components';
 
-export default ({ button, content, sideNav }) => {
+export default ({ button = <></>, content, sideNav }) => {
   return (
     <EuiPage paddingSize="none">
       <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>

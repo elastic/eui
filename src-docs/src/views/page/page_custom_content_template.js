@@ -8,7 +8,7 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-export default ({ button }) => (
+export default ({ button = <></> }) => (
   <EuiPageTemplate
     restrictWidth={false}
     pageHeader={{

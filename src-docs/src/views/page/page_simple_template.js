@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiPageTemplate } from '../../../../src/components';
 
-export default ({ button, content }) => (
+export default ({ button = <></>, content }) => (
   <EuiPageTemplate
     pageHeader={{
       pageTitle: 'Page title',

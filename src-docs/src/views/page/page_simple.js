@@ -2,28 +2,23 @@ import React from 'react';
 
 import {
   EuiPage,
-  EuiPageBody,
   EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
   EuiPageHeader,
-  EuiTitle,
+  EuiPageBody,
+  EuiPageContentBody,
 } from '../../../../src/components';
 
-export default () => (
-  <EuiPage>
-    <EuiPageBody component="div">
-      <EuiPageHeader pageTitle="Page title" />
-      <EuiPageContent>
-        <EuiPageContentHeader>
-          <EuiPageContentHeaderSection>
-            <EuiTitle>
-              <h2>Content title</h2>
-            </EuiTitle>
-          </EuiPageContentHeaderSection>
-        </EuiPageContentHeader>
-        <EuiPageContentBody>Content body</EuiPageContentBody>
+export default ({ button = <></>, content }) => (
+  <EuiPage paddingSize="none">
+    <EuiPageBody>
+      <EuiPageHeader
+        restrictWidth
+        paddingSize="l"
+        pageTitle="Page title"
+        rightSideItems={[button]}
+      />
+      <EuiPageContent borderRadius="none" hasShadow={false}>
+        <EuiPageContentBody restrictWidth>{content}</EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

@@ -2,10 +2,10 @@
   @include euiPageRestrictWidth;
   display: flex;
   background-color: $euiPageBackgroundColor;
-  min-height: 100%;
 
   &--grow {
     flex-grow: 1;
+    min-height: 100%;
   }
 
   &--column {

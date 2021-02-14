@@ -26,46 +26,55 @@ import PageTemplate from './page_template';
 const PageTemplateSource = require('!!raw-loader!./page_template');
 const PageTemplateHtml = renderToHtml(PageTemplate);
 
+import PageRestricingWidth from './page_restricting_width';
+const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
+import PageRestricingWidthTemplate from './page_restricting_width_template';
+const PageRestricingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+const PageRestricingWidthTemplateHtml = renderToHtml(
+  PageRestricingWidthTemplate
+);
+
+import PageCenteredBody from './page_centered_body';
+const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
+import PageCenteredBodyTemplate from './page_centered_body_template';
+const PageCenteredBodyTemplateSource = require('!!raw-loader!./page_centered_body_template');
+const PageCenteredBodyTemplateHtml = renderToHtml(PageCenteredBodyTemplate);
+
+import PageCenteredContent from './page_centered_content';
+const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
+import PageCenteredContentTemplate from './page_centered_content_template';
+const PageCenteredContentTemplateSource = require('!!raw-loader!./page_centered_content_template');
+const PageCenteredContentTemplateHtml = renderToHtml(
+  PageCenteredContentTemplate
+);
+
 import PageSimple from './page_simple';
-import PageSimpleNew from './page_simple_new';
-import PageSimpleNewTemplate from './page_simple_new_template';
-const pageSimpleNewSource = require('!!raw-loader!./page_simple_new');
-const pageSimpleNewHtml = renderToHtml(PageSimpleNew);
+const PageSimpleSource = require('!!raw-loader!./page_simple');
+import PageSimpleTemplate from './page_simple_template';
+const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
+const PageSimpleTemplateHtml = renderToHtml(PageSimpleTemplate);
 
-import PageContentOnly from './page_content_only';
-import PageContentOnlyTemplate from './page_content_only_template';
-const pageContentOnlySource = require('!!raw-loader!./page_content_only');
-const pageContentOnlyHtml = renderToHtml(PageContentOnly);
-
-import PageCustomContent from './page_custom_content';
-import PageCustomContentTemplate from './page_custom_content_template';
-const pageCustomContentSource = require('!!raw-loader!./page_custom_content');
-const pageCustomContentHtml = renderToHtml(PageCustomContent);
-
-import PageContentCenter from './page_content_center';
-import PageContentCenterTemplate from './page_content_center_template';
-const pageContentCenterSource = require('!!raw-loader!./page_content_center');
-const pageContentCenterHtml = renderToHtml(PageContentCenter);
-
-import PageContentCenterWithSideBar from './page_content_center_with_side_bar';
-import PageContentCenterWithSideBarTemplate from './page_content_center_with_side_bar_template';
-const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_center_with_side_bar');
-const PageContentCenterWithSideBarHtml = renderToHtml(
-  PageContentCenterWithSideBar
+import PageSimpleCenteredBody from './page_simple_content_body';
+const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
+import PageSimpleCenteredBodyTemplate from './page_simple_content_body_template';
+const PageSimpleCenteredBodyTemplateSource = require('!!raw-loader!./page_simple_content_body_template');
+const PageSimpleCenteredBodyTemplateHtml = renderToHtml(
+  PageSimpleCenteredBodyTemplate
 );
 
 import PageSimpleEmptyContent from './page_simple_empty_content';
-import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
 const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simple_empty_content');
-const PageSimpleEmptyContentHtml = renderToHtml(PageSimpleEmptyContent);
-
-import PageContentCenterWithSideBarNew from './page_content_center_with_side_bar_new';
-import PageContentCenterWithSideBarNewTemplate from './page_content_center_with_side_bar_new_template';
-import { EuiSpacer } from '../../../../src/components/spacer';
-const PageContentCenterWithSideBarNewSource = require('!!raw-loader!./page_content_center_with_side_bar_new');
-const PageContentCenterWithSideBarNewHtml = renderToHtml(
-  PageContentCenterWithSideBarNew
+import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
+const PageSimpleEmptyContentTemplateSource = require('!!raw-loader!./page_simple_empty_content_template');
+const PageSimpleEmptyContentTemplateHtml = renderToHtml(
+  PageSimpleEmptyContentTemplate
 );
+
+import PageCustomContent from './page_custom_content';
+const PageCustomContentSource = require('!!raw-loader!./page_custom_content');
+import PageCustomContentTemplate from './page_custom_content_template';
+const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_content_template');
+const PageCustomContentTemplateHtml = renderToHtml(PageCustomContentTemplate);
 
 import PageLegacy from './page';
 const PageLegacySource = require('!!raw-loader!./page');
@@ -176,15 +185,21 @@ export const PageExample = {
       ),
     },
     {
-      title: 'Restricting width',
+      title: 'Restricting page width',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageContentOnlySource,
+          code: PageRestricingWidthTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageRestricingWidthSource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageContentOnlyHtml,
+          code: PageRestricingWidthTemplateHtml,
         },
       ],
       text: (
@@ -201,13 +216,13 @@ export const PageExample = {
         <PageDemo>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
-              <PageContentOnlyTemplate
+              <PageRestricingWidthTemplate
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
               />
             ) : (
-              <PageContentOnly
+              <PageRestricingWidth
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
@@ -216,24 +231,23 @@ export const PageExample = {
           }
         </PageDemo>
       ),
-      props: {
-        EuiPage,
-        EuiPageSideBar,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
-      },
     },
     {
-      title: 'Centered content',
+      title: 'Centered body',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarSource,
+          code: PageCenteredBodyTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredBodySource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarHtml,
+          code: PageCenteredBodyTemplateHtml,
         },
       ],
       text: (
@@ -251,13 +265,13 @@ export const PageExample = {
         <PageDemo centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
-              <PageContentCenterWithSideBarTemplate
+              <PageCenteredBodyTemplate
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
               />
             ) : (
-              <PageContentCenterWithSideBar
+              <PageCenteredBody
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
@@ -266,23 +280,24 @@ export const PageExample = {
           }
         </PageDemo>
       ),
-      props: {
-        EuiPage,
-        EuiPageSideBar,
-        EuiPageContent,
-        EuiEmptyPrompt,
-      },
+      props: { EuiPageTemplate, EuiEmptyPrompt },
     },
     {
-      title: 'Empty content with page header',
+      title: 'Centered content',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarNewSource,
+          code: PageCenteredContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredContentSource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarNewHtml,
+          code: PageCenteredContentTemplateHtml,
         },
       ],
       text: (
@@ -297,13 +312,13 @@ export const PageExample = {
         <PageDemo centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
-              <PageContentCenterWithSideBarNewTemplate
+              <PageCenteredContentTemplate
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
               />
             ) : (
-              <PageContentCenterWithSideBarNew
+              <PageCenteredContent
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
@@ -312,28 +327,23 @@ export const PageExample = {
           }
         </PageDemo>
       ),
-      snippet: `<EuiPageTemplate
-  template="centeredContent"
-  pageContentProps={{ paddingSize: 'none' }}
-  sideNav={sideNav}
-  pageHeader={{
-    iconType: 'logoElastic',
-    pageTitle: 'Page title',
-    rightSideItems: [button],
-  }}>
-  <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
-</EuiPageTemplate>`,
     },
     {
       title: 'A simple page with a title',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageSimpleNewSource,
+          code: PageSimpleTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleSource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageSimpleNewHtml,
+          code: PageSimpleTemplateHtml,
         },
       ],
       text: (
@@ -345,44 +355,33 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <>
-          <PageDemo>
-            {(Button, Content, SideNav, showTemplate) =>
-              showTemplate ? (
-                <PageSimpleNewTemplate
-                  button={<Button />}
-                  content={<Content />}
-                />
-              ) : (
-                <PageSimpleNew button={<Button />} content={<Content />} />
-              )
-            }
-          </PageDemo>
-          <EuiSpacer />
-          <p>TEMPORARY: Old version</p>
-          <div className="guideDemo__highlightLayout">
-            <PageSimple />
-          </div>
-        </>
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageSimpleTemplate button={<Button />} content={<Content />} />
+            ) : (
+              <PageSimple button={<Button />} content={<Content />} />
+            )
+          }
+        </PageDemo>
       ),
-      props: {
-        EuiPage,
-        EuiPageBody,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
-      },
     },
     {
-      title: 'Simple layout with centered content',
+      title: 'Simple layout with centered body',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageContentCenterSource,
+          code: PageSimpleCenteredBodyTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleCenteredBodySource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageContentCenterHtml,
+          code: PageSimpleCenteredBodyTemplateHtml,
         },
       ],
       text: (
@@ -400,33 +399,36 @@ export const PageExample = {
         <PageDemo centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
-              <PageContentCenterTemplate
+              <PageSimpleCenteredBodyTemplate
                 button={<Button />}
                 content={<Content />}
               />
             ) : (
-              <PageContentCenter button={<Button />} content={<Content />} />
+              <PageSimpleCenteredBody
+                button={<Button />}
+                content={<Content />}
+              />
             )
           }
         </PageDemo>
       ),
-      props: {
-        EuiPage,
-        EuiPageSideBar,
-        EuiPageContent,
-        EuiEmptyPrompt,
-      },
     },
     {
-      title: 'Simple layout with empty inner content',
+      title: 'Simple layout with centered content',
       source: [
         {
           type: GuideSectionTypes.JS,
+          code: PageSimpleEmptyContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
           code: PageSimpleEmptyContentSource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: PageSimpleEmptyContentHtml,
+          code: PageSimpleEmptyContentTemplateHtml,
         },
       ],
       text: (
@@ -460,11 +462,17 @@ export const PageExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageCustomContentSource,
+          code: PageCustomContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCustomContentSource,
+          displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageCustomContentHtml,
+          code: PageCustomContentTemplateHtml,
         },
       ],
       text: (
@@ -486,12 +494,6 @@ export const PageExample = {
           }
         </PageDemo>
       ),
-      props: {
-        EuiPage,
-        EuiPageBody,
-        EuiPageHeader,
-        EuiPageContentBody,
-      },
     },
     {
       title: 'Legacy layout',

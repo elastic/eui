@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiPageTemplate, EuiEmptyPrompt } from '../../../../src/components';
 
-export default ({ button, content, sideNav }) => (
+export default ({ button = <></>, content, sideNav }) => (
   <EuiPageTemplate
     template="centeredContent"
     pageContentProps={{ paddingSize: 'none' }}

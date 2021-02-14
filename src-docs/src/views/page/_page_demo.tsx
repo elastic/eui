@@ -13,6 +13,7 @@ import contentCenter from '../../images/content_center.svg';
 import sideNav from '../../images/side_nav.svg';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiSwitch } from '../../../../src/components/form';
+import { EuiTextAlign } from '../../../../src/components/text';
 
 export const PageDemo: FunctionComponent<{
   children?: (
@@ -46,14 +47,21 @@ export const PageDemo: FunctionComponent<{
     );
   };
 
-  const SideNav = () => <EuiImage alt="Fake side nav list" url={sideNav} />;
+  const SideNav = () => (
+    <EuiImage size="fullWidth" alt="Fake side nav list" url={sideNav} />
+  );
   const Content = () => (
     <>
-      <EuiImage alt="Fake paragraph" url={centered ? contentCenter : content} />
+      <EuiImage
+        size="fullWidth"
+        alt="Fake paragraph"
+        url={centered ? contentCenter : content}
+      />
       {!centered && (
         <>
           <EuiSpacer />
           <EuiImage
+            size="fullWidth"
             alt="Fake paragraph"
             url={centered ? contentCenter : content}
           />
@@ -64,11 +72,6 @@ export const PageDemo: FunctionComponent<{
 
   return (
     <>
-      <EuiSwitch
-        label="Showing template version"
-        checked={showTemplate}
-        onChange={() => setShowTemplate((showing) => !showing)}
-      />
       <EuiFocusTrap disabled={!fullScreen}>
         <div
           className={
@@ -79,6 +82,14 @@ export const PageDemo: FunctionComponent<{
           {children && children(Button, Content, SideNav, showTemplate)}
         </div>
       </EuiFocusTrap>
+      <EuiTextAlign textAlign="right">
+        <EuiSpacer />
+        <EuiSwitch
+          label="Showing template version"
+          checked={showTemplate}
+          onChange={() => setShowTemplate((showing) => !showing)}
+        />
+      </EuiTextAlign>
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiPageTemplate } from '../../../../src/components';
 
-export default ({ button, content, sideNav }) => {
+export default ({ button = <></>, content, sideNav }) => {
   return (
     <EuiPageTemplate
       pageSideBar={sideNav}
@@ -11,7 +11,7 @@ export default ({ button, content, sideNav }) => {
         iconType: 'logoElastic',
         pageTitle: 'Page title',
         rightSideItems: [button],
-        description: 'Simulating a very narrow restricted width of 75%.',
+        description: 'Restricting the width to 75%.',
       }}>
       {content}
     </EuiPageTemplate>
