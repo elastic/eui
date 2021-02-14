@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import { pageTemplateConfig, pageHeaderConfig } from './playground';
+import { pageTemplateConfig } from './playground';
 import { PageDemo } from './_page_demo';
 
 import {
@@ -14,35 +14,23 @@ import {
   EuiPageContent,
   EuiPageContentBody,
   EuiPageHeader,
-  EuiPageHeaderSection,
   EuiPageSideBar,
   EuiText,
   EuiEmptyPrompt,
+  EuiPageTemplate,
 } from '../../../../src/components';
 
-import Page from './page';
 import PageNew from './page_new';
-import PageTemplate from './page_template';
 const pageNewSource = require('!!raw-loader!./page_new');
-const pageNewHtml = renderToHtml(PageNew);
+import PageTemplate from './page_template';
+const PageTemplateSource = require('!!raw-loader!./page_template');
+const PageTemplateHtml = renderToHtml(PageTemplate);
 
 import PageSimple from './page_simple';
 import PageSimpleNew from './page_simple_new';
 import PageSimpleNewTemplate from './page_simple_new_template';
 const pageSimpleNewSource = require('!!raw-loader!./page_simple_new');
 const pageSimpleNewHtml = renderToHtml(PageSimpleNew);
-
-import PageHeader from './page_header';
-const pageHeaderSource = require('!!raw-loader!./page_header');
-const pageHeaderHtml = renderToHtml(PageHeader);
-
-import PageHeaderTabs from './page_header_tabs';
-const pageHeaderTabsSource = require('!!raw-loader!./page_header_tabs');
-const pageHeaderTabsHtml = renderToHtml(PageHeaderTabs);
-
-import PageHeaderCustom from './page_header_custom';
-const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
-const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
 
 import PageContentOnly from './page_content_only';
 import PageContentOnlyTemplate from './page_content_only_template';
@@ -79,9 +67,13 @@ const PageContentCenterWithSideBarNewHtml = renderToHtml(
   PageContentCenterWithSideBarNew
 );
 
+import PageLegacy from './page';
+const PageLegacySource = require('!!raw-loader!./page');
+const PageLegacyHtml = renderToHtml(PageLegacy);
+
 export const PageExample = {
-  playground: [pageTemplateConfig, pageHeaderConfig],
   title: 'Page',
+  playground: [pageTemplateConfig],
   intro: (
     <EuiText>
       <p>
@@ -98,26 +90,17 @@ export const PageExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
+          code: PageTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
           code: pageNewSource,
           displayName: 'Custom JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageNewHtml,
-        },
-        {
-          type: GuideSectionTypes.SNIPPET,
-          displayName: 'Template',
-          code: `<EuiPageTemplate
-  pageSideBar={sideNav}
-  pageHeader={{
-    iconType: 'logoElastic',
-    pageTitle: 'Page title',
-    rightSideItems: [button],
-    tabs: [{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }],
-  }}>
-  {content}
-</EuiPageTemplate>`,
+          code: PageTemplateHtml,
         },
       ],
       text: (
@@ -150,8 +133,11 @@ export const PageExample = {
               .
             </li>
             <li>
-              <strong>EuiPageHeader</strong> provides a title, description,
-              section for actions and possible tabs.
+              <Link to="/layout/page-header">
+                <strong>EuiPageHeader</strong>
+              </Link>{' '}
+              provides a title, description, section for actions and possible
+              tabs.
             </li>
             <li>
               <strong>EuiPageContentBody</strong> wraps the content that comes
@@ -161,37 +147,32 @@ export const PageExample = {
         </div>
       ),
       props: {
+        EuiPageTemplate,
         EuiPage,
+        EuiPageBody,
         EuiPageSideBar,
         EuiPageHeader,
         EuiPageContent,
         EuiPageContentBody,
       },
       demo: (
-        <>
-          <PageDemo>
-            {(Button, Content, SideNav, showTemplate) =>
-              showTemplate ? (
-                <PageTemplate
-                  button={<Button />}
-                  content={<Content />}
-                  sideNav={<SideNav />}
-                />
-              ) : (
-                <PageNew
-                  button={<Button />}
-                  content={<Content />}
-                  sideNav={<SideNav />}
-                />
-              )
-            }
-          </PageDemo>
-          <EuiSpacer />
-          <p>TEMPORARY: Old version</p>
-          <div className="guideDemo__highlightLayout">
-            <Page />
-          </div>
-        </>
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageNew
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
+        </PageDemo>
       ),
     },
     {
@@ -513,130 +494,38 @@ export const PageExample = {
       },
     },
     {
-      title: 'The page header in detail',
+      title: 'Legacy layout',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageHeaderSource,
+          code: PageLegacySource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageHeaderHtml,
+          code: PageLegacyHtml,
         },
       ],
       text: (
-        <>
-          <p>
-            <strong>EuiPageHeader</strong> provides props for opinionated,
-            consistent formatting of your header. Any combination of{' '}
-            <EuiCode>pageTitle</EuiCode>, <EuiCode>description</EuiCode>,{' '}
-            <EuiCode>tabs</EuiCode>, or any <EuiCode>children</EuiCode> will
-            adjust the layout as needed.
-          </p>
-          <p>
-            An additional prop <EuiCode>rightSideItems</EuiCode> allows for a
-            simple <strong>array of nodes</strong> which will layout in a
-            flexbox row. This is commonly used for adding multiple buttons, of
-            which, at least one should be primary (or{' '}
-            <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
-            also displayed in <strong>reverse order</strong> so that the first
-            and primary array item will be displayed on the far right.
-          </p>
-          <p>
-            You can further adjust the display of these content types with an
-            optional <EuiCode>iconType</EuiCode> placed to the left of the
-            title, <EuiCode>alignItems</EuiCode> for adjusting the vertical
-            alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>{' '}
-            to determine which content side to display first on smaller screens.
-          </p>
-        </>
+        <p>
+          In previous versions of EUI, we emulated page layouts where the
+          EuiPageContent had margins all around created by padding on EuiPage.
+          This layout is still achievable but not through EuiPageTemplate. You
+          must use the EuiPage components manually as seen in this example.
+        </p>
       ),
       demo: (
-        <div className="guideDemo__highlightLayout--single">
-          <PageHeader />
+        <div className="guideDemo__highlightLayout--legacy">
+          <PageLegacy />
         </div>
       ),
-      props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  description="Example of a description."
-  rightSideItems={[
-    <EuiButton fill>Button 1</EuiButton>,
-    <EuiButton>Button 2</EuiButton>
-  ]}
-/>`,
-    },
-    {
-      title: 'Tabs in the page header',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageHeaderTabsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderTabsHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            When using supplying <EuiCode>tabs</EuiCode> without a{' '}
-            <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
-            promote those tabs as if they are the page title. This means that
-            any <EuiCode>description</EuiCode>, or <EuiCode>children</EuiCode>{' '}
-            will sit <strong>below</strong> the tabs.
-          </p>
-        </>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout--single">
-          <PageHeaderTabs />
-        </div>
-      ),
-      props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  description="Example of a description."
-/>`,
-    },
-    {
-      title: 'Customizing the page header',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageHeaderCustomSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderCustomHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            The page header content props mainly are helpful props to push
-            content into established Elastic page layout patterns. They are
-            completely optional and by nature, inflexible. If you need a layout
-            that does not match these patterns you can simply pass in your own{' '}
-            <EuiCode>children</EuiCode> utilizing the{' '}
-            <strong>EuiPageHeaderSection</strong> components.
-          </p>
-        </>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout--single">
-          <PageHeaderCustom />
-        </div>
-      ),
-      props: { EuiPageHeader, EuiPageHeaderSection },
+      props: {
+        EuiPage,
+        EuiPageBody,
+        EuiPageSideBar,
+        EuiPageHeader,
+        EuiPageContent,
+        EuiPageContentBody,
+      },
     },
   ],
 };

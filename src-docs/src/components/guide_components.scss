@@ -60,7 +60,9 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   color: $euiColorDarkShade;
 }
 
-.guideDemo__highlightLayout {
+.guideDemo__highlightLayout,
+.guideDemo__highlightLayout--playground,
+.guideDemo__highlightLayout--legacy {
   border: 1px solid transparentize($euiColorPrimary, .9);
   overflow-x: hidden;
   overflow-y: auto;
@@ -69,20 +71,18 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   .euiPageSideBar--sticky {
     top: 0;
   }
+}
 
-  // .euiPageContentBody {
-  //   // Mimicking body overscroll
-  //   min-height: 400px;
-  // }
+.guideDemo__highlightLayout--playground > div:not(.euiPage) {
+  height: 100%;
+  padding: 0 !important; // sass-lint:disable-line no-important
+}
 
+.guideDemo__highlightLayout--legacy {
   > div,
   > div > div {
     background: transparentize($euiColorPrimary, .9);
   }
-}
-
-.guideDemo__highlightLayout--single {
-  background: transparentize($euiColorPrimary, .9);
 }
 
 .guideDemo__highlightSpacer {
@@ -94,14 +94,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideDemo__highlightGrid {
   .euiFlexItem {
     background: transparentize($euiColorPrimary, .9);
-    padding: 16px;
+    padding: $euiSize;
   }
 }
 
 .guideDemo__highlightGridWrap {
   .euiFlexItem div {
     background: transparentize($euiColorPrimary, .9);
-    padding: 16px;
+    padding: $euiSize;
   }
 }
 
