@@ -82,7 +82,7 @@
           text-align: left;
           padding-left: $euiSizeXL + $euiSizeXS;
           padding-right: $euiSizeXL + $euiSizeXS;
-          color: $euiTextColor;
+          // color: $euiTextColor;
 
           &.react-datepicker__time-list-item--selected {
             color: $euiColorGhost;
