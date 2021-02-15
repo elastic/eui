@@ -22,16 +22,16 @@ export default ({ button = <></> }) => (
       <EuiPageContentBody paddingSize="l">
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>
-            <EuiPanel style={{ height: 150 }} />
+            <EuiPanel style={{ height: 200 }} />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiPanel style={{ height: 150 }} />
+            <EuiPanel style={{ height: 200 }} />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiPanel style={{ height: 150 }} />
+            <EuiPanel style={{ height: 200 }} />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiPanel style={{ height: 150 }} />
+            <EuiPanel style={{ height: 200 }} />
           </EuiFlexItem>
         </EuiFlexGrid>
       </EuiPageContentBody>

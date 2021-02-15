@@ -12,10 +12,6 @@
   .euiPanel > & {
     padding-bottom: $euiSizeL;
     border-bottom: $euiBorderThin;
-
-    &.euiPageHeader--tabsAtBottom {
-      padding-bottom: 0;
-    }
   }
 }
 
@@ -31,6 +27,14 @@
     .euiPanel > & {
       padding-bottom: $amount;
     }
+  }
+}
+
+.euiPageHeader--tabsAtBottom {
+  padding-bottom: 0;
+
+  .euiPageBody > & {
+    margin-bottom: 0;
   }
 }
 

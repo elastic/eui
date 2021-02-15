@@ -24,16 +24,16 @@ export default ({ button = <></> }) => (
     }}>
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
-        <EuiPanel style={{ height: 150 }} />
+        <EuiPanel style={{ height: 200 }} />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiPanel style={{ height: 150 }} />
+        <EuiPanel style={{ height: 200 }} />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiPanel style={{ height: 150 }} />
+        <EuiPanel style={{ height: 200 }} />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiPanel style={{ height: 150 }} />
+        <EuiPanel style={{ height: 200 }} />
       </EuiFlexItem>
     </EuiFlexGrid>
   </EuiPageTemplate>
