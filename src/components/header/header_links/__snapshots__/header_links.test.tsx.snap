@@ -80,12 +80,20 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
     >
       <button
         aria-label="Open menu"
-        class="euiHeaderSectionItem__button customButtonClass"
+        class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItem__button customButtonClass"
         type="button"
       >
         <span
-          data-euiicon-type="bolt"
-        />
+          class="euiButtonContent euiButtonEmpty__content"
+        >
+          <span
+            class="euiButtonEmpty__text"
+          >
+            <span
+              data-euiicon-type="bolt"
+            />
+          </span>
+        </span>
       </button>
     </div>
   </div>
