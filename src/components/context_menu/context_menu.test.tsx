@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiContextMenu } from './context_menu';
+import { EuiContextMenu, SIZES } from './context_menu';
 import { setTimeout } from 'timers';
 
 const panel3 = {
@@ -166,6 +166,18 @@ describe('EuiContextMenu', () => {
         await tick(20);
 
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        it(`${size} is rendered`, () => {
+          const component = render(
+            <EuiContextMenu panels={panels} initialPanelId={2} size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });

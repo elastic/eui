@@ -176,6 +176,15 @@ export interface EuiPopoverProps {
    * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
+  /**
+   * Provide a name to the popover panel
+   */
+  'aria-label'?: string;
+  /**
+   * Alternative option to `aria-label` that takes an `id`.
+   * Usually takes the `id` of the popover title
+   */
+  'aria-labelledby'?: string;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -346,7 +355,7 @@ export class EuiPopover extends Component<Props, State> {
       prevProps: {
         isOpen: props.isOpen,
       },
-      suppressingPopover: this.props.isOpen, // only suppress if created with isOpen=true
+      suppressingPopover: props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
       isOpening: false,
       popoverStyles: DEFAULT_POPOVER_STYLES,
@@ -437,11 +446,50 @@ export class EuiPopover extends Component<Props, State> {
     });
   }
 
+  onOpenPopover = () => {
+    clearTimeout(this.closingTransitionTimeout);
+    // We need to set this state a beat after the render takes place, so that the CSS
+    // transition can take effect.
+    this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
+      this.setState({
+        isOpening: true,
+      });
+    });
+
+    // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
+    const { durationMatch, delayMatch } = Array.prototype.slice
+      .call(this.panel ? this.panel.children : [])
+      .reduce(
+        ({ durationMatch, delayMatch }, element) => {
+          const transitionTimings = getTransitionTimings(element);
+
+          return {
+            durationMatch: Math.max(
+              durationMatch,
+              transitionTimings.durationMatch
+            ),
+            delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
+          };
+        },
+        { durationMatch: 0, delayMatch: 0 }
+      );
+
+    this.respositionTimeout = window.setTimeout(() => {
+      this.setState({ isOpenStable: true }, () => {
+        this.positionPopoverFixed();
+        this.updateFocus();
+      });
+    }, durationMatch + delayMatch);
+  };
+
   componentDidMount() {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
       // stop suppressing and start opening
-      this.setState({ suppressingPopover: false, isOpening: true }); // eslint-disable-line react/no-did-mount-set-state
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({ suppressingPopover: false, isOpening: true }, () => {
+        this.onOpenPopover();
+      });
     }
 
     if (this.props.repositionOnScroll) {
@@ -454,41 +502,7 @@ export class EuiPopover extends Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     // The popover is being opened.
     if (!prevProps.isOpen && this.props.isOpen) {
-      clearTimeout(this.closingTransitionTimeout);
-      // We need to set this state a beat after the render takes place, so that the CSS
-      // transition can take effect.
-      this.closingTransitionAnimationFrame = window.requestAnimationFrame(
-        () => {
-          this.setState({
-            isOpening: true,
-          });
-        }
-      );
-
-      // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
-      const { durationMatch, delayMatch } = Array.prototype.slice
-        .call(this.panel ? this.panel.children : [])
-        .reduce(
-          ({ durationMatch, delayMatch }, element) => {
-            const transitionTimings = getTransitionTimings(element);
-
-            return {
-              durationMatch: Math.max(
-                durationMatch,
-                transitionTimings.durationMatch
-              ),
-              delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
-            };
-          },
-          { durationMatch: 0, delayMatch: 0 }
-        );
-
-      this.respositionTimeout = window.setTimeout(() => {
-        this.setState({ isOpenStable: true }, () => {
-          this.positionPopoverFixed();
-          this.updateFocus();
-        });
-      }, durationMatch + delayMatch);
+      this.onOpenPopover();
     }
 
     // update scroll listener
@@ -659,6 +673,8 @@ export class EuiPopover extends Component<Props, State> {
       display,
       onTrapDeactivation,
       buffer,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       container,
       ...rest
     } = this.props;
@@ -745,6 +761,8 @@ export class EuiPopover extends Component<Props, State> {
               tabIndex={tabIndex}
               aria-live={ariaLive}
               role="dialog"
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
               style={this.state.popoverStyles}>

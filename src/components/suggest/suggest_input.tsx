@@ -21,32 +21,33 @@
 import React, { useState, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { EuiFieldText } from '../form';
+import { EuiFieldText, EuiFieldTextProps } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiInputPopover } from '../popover';
 import { EuiSuggestItemProps } from './suggest_item';
 
-export type EuiSuggestInputProps = CommonProps & {
-  tooltipContent?: string;
+export type EuiSuggestInputProps = CommonProps &
+  EuiFieldTextProps & {
+    tooltipContent?: string;
 
-  /**
-   * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
-   */
-  status?: 'unsaved' | 'saved' | 'unchanged' | 'loading';
+    /**
+     * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
+     */
+    status?: 'unsaved' | 'saved' | 'unchanged' | 'loading';
 
-  /**
-   * Element to be appended to the input bar.
-   */
-  append?: JSX.Element;
+    /**
+     * Element to be appended to the input bar.
+     */
+    append?: JSX.Element;
 
-  /**
-   * List of suggestions to display using 'suggestItem'.
-   */
-  suggestions: JSX.Element[] | EuiSuggestItemProps[];
+    /**
+     * List of suggestions to display using 'suggestItem'.
+     */
+    suggestions: JSX.Element[] | EuiSuggestItemProps[];
 
-  sendValue?: Function;
-};
+    sendValue?: Function;
+  };
 
 interface Status {
   icon?: string;

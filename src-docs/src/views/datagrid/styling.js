@@ -17,6 +17,7 @@ import {
 const columns = [
   {
     id: 'avatar',
+    initialWidth: 40,
   },
   {
     id: 'name',
@@ -42,7 +43,6 @@ for (let i = 1; i < 6; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        imageUrl={fake('{{internet.avatar}}')}
         name={fake('{{name.lastName}}, {{name.firstName}}')}
       />
     ),

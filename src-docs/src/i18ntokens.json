@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 263,
         "column": 14
       },
       "end": {
-        "line": 254,
+        "line": 263,
         "column": 74
       }
     },
@@ -341,11 +341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 216,
+        "line": 242,
         "column": 10
       },
       "end": {
-        "line": 216,
+        "line": 242,
         "column": 66
       }
     },
@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 129,
+        "line": 135,
         "column": 4
       },
       "end": {
-        "line": 129,
+        "line": 135,
         "column": 66
       }
     },
@@ -789,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 134,
+        "line": 140,
         "column": 6
       },
       "end": {
-        "line": 138,
+        "line": 144,
         "column": 8
       }
     },
@@ -805,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 142,
+        "line": 148,
         "column": 6
       },
       "end": {
-        "line": 146,
+        "line": 152,
         "column": 8
       }
     },
@@ -821,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 264,
+        "line": 270,
         "column": 16
       },
       "end": {
-        "line": 267,
+        "line": 273,
         "column": 18
       }
     },
@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 275,
+        "line": 281,
         "column": 16
       },
       "end": {
-        "line": 275,
+        "line": 281,
         "column": 80
       }
     },
@@ -1013,11 +1013,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 86,
         "column": 32
       },
       "end": {
-        "line": 87,
+        "line": 89,
         "column": 3
       }
     },
@@ -1189,11 +1189,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 251,
+        "line": 258,
         "column": 4
       },
       "end": {
-        "line": 254,
+        "line": 261,
         "column": 46
       }
     },
@@ -1205,11 +1205,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
+        "line": 264,
         "column": 10
       },
       "end": {
-        "line": 259,
+        "line": 266,
         "column": 52
       }
     },
@@ -1221,11 +1221,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 953,
+        "line": 993,
         "column": 4
       },
       "end": {
-        "line": 962,
+        "line": 1002,
         "column": 9
       }
     },
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 965,
+        "line": 1005,
         "column": 10
       },
       "end": {
-        "line": 973,
+        "line": 1013,
         "column": 15
       }
     },
@@ -1253,12 +1253,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1105,
-        "column": 28
+        "line": 1136,
+        "column": 30
       },
       "end": {
-        "line": 1108,
-        "column": 30
+        "line": 1139,
+        "column": 32
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -1701,11 +1701,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 130,
+        "line": 147,
         "column": 6
       },
       "end": {
-        "line": 130,
+        "line": 147,
         "column": 76
       }
     },
@@ -1877,11 +1877,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 89,
         "column": 20
       },
       "end": {
-        "line": 87,
+        "line": 92,
         "column": 5
       }
     },
@@ -1893,11 +1893,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 93,
         "column": 21
       },
       "end": {
-        "line": 91,
+        "line": 96,
         "column": 5
       }
     },
@@ -1909,11 +1909,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 92,
+        "line": 97,
         "column": 25
       },
       "end": {
-        "line": 95,
+        "line": 100,
         "column": 5
       }
     },
@@ -1925,11 +1925,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 96,
+        "line": 101,
         "column": 24
       },
       "end": {
-        "line": 100,
+        "line": 105,
         "column": 5
       }
     },
@@ -1941,11 +1941,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 106,
         "column": 22
       },
       "end": {
-        "line": 104,
+        "line": 109,
         "column": 5
       }
     },
@@ -1957,11 +1957,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 105,
+        "line": 110,
         "column": 22
       },
       "end": {
-        "line": 108,
+        "line": 113,
         "column": 5
       }
     },
@@ -1973,11 +1973,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 164,
+        "line": 169,
         "column": 12
       },
       "end": {
-        "line": 167,
+        "line": 172,
         "column": 14
       }
     },
@@ -1989,12 +1989,28 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
-        "column": 18
+        "line": 203,
+        "column": 16
       },
       "end": {
-        "line": 202,
-        "column": 20
+        "line": 206,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.closeButton",
+    "defString": "Close",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 251,
+        "column": 14
+      },
+      "end": {
+        "line": 254,
+        "column": 16
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
@@ -2005,12 +2021,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 191,
-        "column": 10
+        "line": 193,
+        "column": 12
       },
       "end": {
-        "line": 191,
-        "column": 78
+        "line": 193,
+        "column": 80
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
@@ -2021,12 +2037,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
-        "column": 10
+        "line": 201,
+        "column": 12
       },
       "end": {
-        "line": 202,
-        "column": 12
+        "line": 204,
+        "column": 14
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
@@ -2037,12 +2053,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
-        "column": 8
+        "line": 95,
+        "column": 10
       },
       "end": {
-        "line": 94,
-        "column": 80
+        "line": 97,
+        "column": 47
       }
     },
     "filepath": "src/components/modal/modal.tsx"
@@ -2197,11 +2213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 711,
+        "line": 728,
         "column": 14
       },
       "end": {
-        "line": 714,
+        "line": 731,
         "column": 16
       }
     },
@@ -2917,11 +2933,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 264,
+        "line": 281,
         "column": 12
       },
       "end": {
-        "line": 266,
+        "line": 283,
         "column": 77
       }
     },
@@ -2933,11 +2949,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 287,
+        "line": 305,
         "column": 20
       },
       "end": {
-        "line": 294,
+        "line": 312,
         "column": 25
       }
     },

@@ -3,14 +3,16 @@
   animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
 }
 
-// The actual size of the X button in pixels is a bit fuzzy because of all the
-// button padding so there is some pixel pushing here.
 .euiFlyout__closeButton {
   background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
-  right: $euiSizeL - 7px;
-  top: $euiSizeL - 7px;
+  right: $euiSizeS;
+  top: $euiSizeS;
   z-index: 3;
+}
+
+.euiFlyoutBody__banner {
+  overflow-x: hidden;
 }
 
 /**
@@ -42,6 +44,38 @@ $flyoutSizes: (
 
     &.euiFlyout--maxWidth-default {
       max-width: map-get($sizing, max);
+    }
+  }
+}
+
+@each $modifier, $paddingAmount in $euiFlyoutPaddingModifiers {
+  .euiFlyout--#{$modifier} {
+
+    .euiFlyoutHeader {
+      padding: $paddingAmount $paddingAmount 0;
+    }
+
+    .euiFlyoutHeader--hasBorder {
+      padding-bottom: $paddingAmount;
+    }
+
+    .euiFlyoutBody__overflowContent {
+      padding: $paddingAmount;
+    }
+
+    .euiFlyoutBody__banner .euiCallOut {
+      padding-left: $paddingAmount;
+      padding-right: $paddingAmount;
+    }
+
+    .euiFlyoutFooter {
+      @if $paddingAmount == $euiSizeL {
+        padding: ($paddingAmount / 1.5) $paddingAmount;
+      } @else if $paddingAmount == $euiSize {
+        padding: ($paddingAmount * .75) $paddingAmount;
+      } @else {
+        padding: $paddingAmount;
+      }
     }
   }
 }

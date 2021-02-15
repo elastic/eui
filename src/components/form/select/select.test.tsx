@@ -16,9 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/* eslint-disable no-irregular-whitespace */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelect } from './select';
@@ -31,7 +32,7 @@ jest.mock('../validatable_control', () => ({
 }));
 
 describe('EuiSelect', () => {
-  test('is rendered', () => {
+  it('is rendered', () => {
     const component = render(
       <EuiSelect id="id" name="name" {...requiredProps} />
     );
@@ -40,7 +41,7 @@ describe('EuiSelect', () => {
   });
 
   describe('props', () => {
-    test('options are rendered', () => {
+    it('options are rendered', () => {
       const component = render(
         <EuiSelect
           options={[
@@ -53,25 +54,25 @@ describe('EuiSelect', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('isInvalid is rendered', () => {
+    it('isInvalid is rendered', () => {
       const component = render(<EuiSelect isInvalid />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test('fullWidth is rendered', () => {
+    it('fullWidth is rendered', () => {
       const component = render(<EuiSelect fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test('isLoading is rendered', () => {
+    it('isLoading is rendered', () => {
       const component = render(<EuiSelect isLoading />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test('disabled options are rendered', () => {
+    it('disabled options are rendered', () => {
       const component = render(
         <EuiSelect
           options={[
@@ -84,7 +85,7 @@ describe('EuiSelect', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('value option is rendered', () => {
+    it('value option is rendered', () => {
       const component = render(
         <EuiSelect
           options={[
@@ -97,6 +98,70 @@ describe('EuiSelect', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('hasNoInitialSelection', () => {
+    it('renders with an extra option at the top', () => {
+      const component = mount(
+        <EuiSelect
+          hasNoInitialSelection
+          options={[
+            { value: '1', text: 'Option #1' },
+            { value: '2', text: 'Option #2' },
+          ]}
+          onChange={() => {}}
+        />
+      );
+
+      expect(component.find('option').length).toBe(3);
+      expect(component.find('option').at(0)).toMatchInlineSnapshot(`
+        <option
+          disabled={true}
+          hidden={true}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          value=""
+        >
+           
+        </option>
+`);
+    });
+
+    it('can be reset to an empty initial selection', () => {
+      const component = mount(
+        <EuiSelect
+          hasNoInitialSelection
+          value="1"
+          options={[
+            { value: '1', text: 'Option #1' },
+            { value: '2', text: 'Option #2' },
+          ]}
+          onChange={() => {}}
+        />
+      );
+
+      expect(
+        component.find('select').getDOMNode<HTMLSelectElement>().value
+      ).toBe('1');
+
+      component.setProps({ value: '' });
+      expect(
+        component.find('select').getDOMNode<HTMLSelectElement>().value
+      ).toBe('');
+
+      component.setProps({ value: '1' });
+      expect(
+        component.find('select').getDOMNode<HTMLSelectElement>().value
+      ).toBe('1');
+
+      component.setProps({ value: undefined });
+      expect(
+        component.find('select').getDOMNode<HTMLSelectElement>().value
+      ).toBe('');
     });
   });
 });

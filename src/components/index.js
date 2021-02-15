@@ -224,6 +224,7 @@ export {
   EuiMarkdownFormat,
   getDefaultEuiMarkdownParsingPlugins,
   getDefaultEuiMarkdownProcessingPlugins,
+  getDefaultEuiMarkdownUiPlugins,
 } from './markdown_editor';
 export { EuiMark } from './mark';
 
@@ -254,6 +255,7 @@ export {
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
   EuiPageHeader,
+  EuiPageHeaderContent,
   EuiPageHeaderSection,
   EuiPageSideBar,
 } from './page';

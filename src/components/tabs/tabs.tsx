@@ -38,6 +38,7 @@ export type EuiTabsDisplaySizes = keyof typeof displayToClassNameMap;
 const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
+  l: 'euiTabs--large',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
@@ -87,7 +88,11 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     );
 
     return (
-      <div ref={ref} role="tablist" className={classes} {...rest}>
+      <div
+        ref={ref}
+        className={classes}
+        {...(children && { role: 'tablist' })}
+        {...rest}>
         {children}
       </div>
     );

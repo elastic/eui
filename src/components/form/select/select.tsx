@@ -83,12 +83,16 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   hasNoInitialSelection = false,
   defaultValue,
   compressed = false,
-  value,
+  value: _value,
   prepend,
   append,
   onMouseUp,
   ...rest
 }) => {
+  // if this is injecting an empty option for `hasNoInitialSelection` then
+  // value needs to fallback to an empty string to interact properly with `defaultValue`
+  const value = hasNoInitialSelection ? _value ?? '' : _value;
+
   const handleMouseUp = (e: React.MouseEvent<HTMLSelectElement>) => {
     // Normalizes cross-browser mouse eventing by preventing propagation,
     // notably for use in conjunction with EuiOutsideClickDetector.
