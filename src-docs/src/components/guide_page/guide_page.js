@@ -4,6 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import {
   EuiBetaBadge,
   EuiPageHeader,
+  EuiPageContent,
   EuiPageContentBody,
 } from '../../../../src/components';
 
@@ -90,17 +91,25 @@ const GuidePageComponent = ({
         {intro}
       </EuiPageHeader>
 
-      <EuiPageContentBody restrictWidth>
-        <Switch>
-          {playground && (
-            <Route path={`${match.path}/playground`}>{playground}</Route>
-          )}
-          {guidelines && (
-            <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-          )}
-          <Route path="">{children}</Route>
-        </Switch>
-      </EuiPageContentBody>
+      <EuiPageContent
+        hasShadow={false}
+        paddingSize="none"
+        color="transparent"
+        borderRadius="none">
+        <EuiPageContentBody restrictWidth>
+          <main>
+            <Switch>
+              {playground && (
+                <Route path={`${match.path}/playground`}>{playground}</Route>
+              )}
+              {guidelines && (
+                <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+              )}
+              <Route path="">{children}</Route>
+            </Switch>
+          </main>
+        </EuiPageContentBody>
+      </EuiPageContent>
     </>
   );
 };

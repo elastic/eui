@@ -8,7 +8,7 @@ import {
   EuiErrorBoundary,
   EuiPage,
   EuiContext,
-  EuiPageContent,
+  EuiPageBody,
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
@@ -68,7 +68,7 @@ export class AppView extends Component {
             />
           </EuiErrorBoundary>
 
-          <EuiPageContent borderRadius="none">
+          <EuiPageBody panelled>
             <EuiContext i18n={i18n}>
               <ThemeContext.Consumer>
                 {(context) => {
@@ -79,7 +79,7 @@ export class AppView extends Component {
                 }}
               </ThemeContext.Consumer>
             </EuiContext>
-          </EuiPageContent>
+          </EuiPageBody>
         </EuiPage>
       </>
     );
