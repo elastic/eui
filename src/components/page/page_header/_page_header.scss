@@ -24,16 +24,17 @@
     // Use margin for the bottom in case there's a border
     margin-bottom: $amount;
 
-    .euiPanel > & {
+    .euiPanel > &:not(.euiPageHeader--tabsAtBottom) {
       padding-bottom: $amount;
     }
   }
 }
 
 .euiPageHeader--tabsAtBottom {
-  padding-bottom: 0;
+  padding-bottom: 0 !important; // sass-lint:disable-line no-important
 
-  .euiPageBody > & {
+  // TODO: I think this should be maintained by the template
+  .euiPageBody:not(.euiPanel) > & {
     margin-bottom: 0;
   }
 }
