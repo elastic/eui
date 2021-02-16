@@ -7,13 +7,15 @@ import React, {
 import { EuiImage } from '../../../../src/components/image';
 import { EuiButton } from '../../../../src/components/button';
 import { EuiFocusTrap } from '../../../../src/components/focus_trap';
+import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiSwitch } from '../../../../src/components/form';
+import { EuiTextAlign } from '../../../../src/components/text';
+import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 
 import content from '../../images/content.svg';
 import contentCenter from '../../images/content_center.svg';
 import sideNav from '../../images/side_nav.svg';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiTextAlign } from '../../../../src/components/text';
+import single from '../../images/single.svg';
 
 export const PageDemo: FunctionComponent<{
   children?: (
@@ -24,6 +26,7 @@ export const PageDemo: FunctionComponent<{
   ) => ReactNode;
   centered?: boolean;
 }> = ({ children, centered }) => {
+  const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [showTemplate, setShowTemplate] = useState(true);
   const [fullScreen, setFullScreen] = useState(false);
   useEffect(() => {
@@ -48,7 +51,11 @@ export const PageDemo: FunctionComponent<{
   };
 
   const SideNav = () => (
-    <EuiImage size="fullWidth" alt="Fake side nav list" url={sideNav} />
+    <EuiImage
+      size={isMobileSize ? 'original' : 'fullWidth'}
+      alt="Fake side nav list"
+      url={isMobileSize ? single : sideNav}
+    />
   );
   const Content = () => (
     <>

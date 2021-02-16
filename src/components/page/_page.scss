@@ -21,5 +21,16 @@
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPage--#{$modifier} {
     padding: $amount;
+
+    .euiPageSideBar {
+      min-width: $euiPageSidebarMinWidth;
+      margin-right: $amount;
+
+      // sass-lint:disable-block mixins-before-declarations
+      @include euiBreakpoint('xs', 's') {
+        margin-right: 0;
+        margin-bottom: $amount;
+      }
+    }
   }
 }

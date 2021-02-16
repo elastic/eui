@@ -1,36 +1,24 @@
 /**
+ * Note: Margin is added in _page.scss when EuiPage has `paddingSize`
  * 1. Prevent side bar width from changing when content width changes.
  */
 .euiPageSideBar {
-  min-width: $euiPageSidebarMinWidth; /* 1 */
+  min-width: $euiPageSidebarMinWidth + ($euiSizeL * 2);
   flex: 0 1 0%; /* 1 */
-  margin-right: $euiSizeL;
-
-  // If not contained within a page that has padding, remove the margin too
-  .euiPage:not([class*='euiPage--padding']) > & {
-    margin: 0;
-    min-width: $euiPageSidebarMinWidth + ($euiSizeL * 2);
-  }
 }
 
 @include euiBreakpoint('xs', 's') {
   .euiPageSideBar {
     width: 100%;
-    margin-right: 0;
-
-    & + .euiPageBody {
-      padding-top: $euiSizeL;
-    }
   }
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {
   .euiPageSideBar--sticky {
     @include euiScrollBar;
-    position: sticky;
-    flex-grow: 1;
     overflow-y: auto;
-    margin-right: 0;
+    flex-grow: 1;
+    position: sticky;
     max-height: 100vh;
     top: 0;
   }
