@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.7.0`.
+**Bug fixes**
+
+- Fixed blurry animation of popovers in Chrome ([#4527](https://github.com/elastic/eui/pull/4527))
 
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 
