@@ -19,10 +19,8 @@
 
 import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { css } from '@emotion/react';
 import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';
-import { useEuiTheme } from '../../services/theme';
 
 import { IconType, EuiIcon } from '../icon';
 
@@ -37,18 +35,6 @@ export const EuiTableHeaderButton: FunctionComponent<Props> = ({
   iconType,
   ...rest
 }) => {
-  const [theme] = useEuiTheme();
-  const styles = css`
-    &:hover,
-    &:focus {
-      & .euiTableCellContent__text {
-        color: ${theme.colors.euiColorPrimary};
-      }
-
-      & .euiTableSortIcon {
-        fill: ${theme.colors.euiColorPrimary};
-      }
-  `;
   const classes = classNames('euiTableHeaderButton', className);
 
   // Add an icon to the button if one exists.
@@ -66,7 +52,7 @@ export const EuiTableHeaderButton: FunctionComponent<Props> = ({
   }
 
   return (
-    <button type="button" css={styles} className={classes} {...rest}>
+    <button type="button" className={classes} {...rest}>
       <EuiInnerText>
         {(ref, innerText) => (
           <span title={innerText} ref={ref}>

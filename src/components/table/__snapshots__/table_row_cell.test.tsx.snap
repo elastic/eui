@@ -1,12 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`align defaults to left 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent"
@@ -19,12 +15,8 @@ exports[`align defaults to left 1`] = `
 `;
 
 exports[`align renders center when specified 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent euiTableCellContent--alignCenter"
@@ -37,12 +29,8 @@ exports[`align renders center when specified 1`] = `
 `;
 
 exports[`align renders right when specified 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent euiTableCellContent--alignRight"
@@ -55,12 +43,8 @@ exports[`align renders right when specified 1`] = `
 `;
 
 exports[`children's className merges new classnames into existing ones 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
@@ -73,13 +57,9 @@ exports[`children's className merges new classnames into existing ones 1`] = `
 `;
 
 exports[`renders EuiTableRowCell 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
   aria-label="aria-label"
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
   data-test-subj="test subject string"
 >
   <div
@@ -95,12 +75,8 @@ exports[`renders EuiTableRowCell 1`] = `
 `;
 
 exports[`textOnly defaults to true 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent"
@@ -113,12 +89,8 @@ exports[`textOnly defaults to true 1`] = `
 `;
 
 exports[`textOnly is rendered when specified 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent euiTableCellContent--overflowingContent"
@@ -127,12 +99,8 @@ exports[`textOnly is rendered when specified 1`] = `
 `;
 
 exports[`truncateText defaults to false 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent"
@@ -145,12 +113,8 @@ exports[`truncateText defaults to false 1`] = `
 `;
 
 exports[`truncateText is rendered when specified 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
 >
   <div
     class="euiTableCellContent euiTableCellContent--truncateText"
@@ -163,12 +127,8 @@ exports[`truncateText is rendered when specified 1`] = `
 `;
 
 exports[`width and style accepts style attribute 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
   style="width:20%"
 >
   <div
@@ -184,12 +144,8 @@ exports[`width and style accepts style attribute 1`] = `
 `;
 
 exports[`width and style accepts width attribute 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
   style="width:10%"
 >
   <div
@@ -205,12 +161,8 @@ exports[`width and style accepts width attribute 1`] = `
 `;
 
 exports[`width and style accepts width attribute as number 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
   style="width:100px"
 >
   <div
@@ -226,12 +178,8 @@ exports[`width and style accepts width attribute as number 1`] = `
 `;
 
 exports[`width and style resolves style and width attribute 1`] = `
-.emotion-0 {
-  color: #343741;
-}
-
 <td
-  class="euiTableRowCell emotion-0"
+  class="euiTableRowCell"
   style="width:10%"
 >
   <div

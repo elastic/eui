@@ -18,10 +18,8 @@
  */
 
 import React, { FunctionComponent, TdHTMLAttributes } from 'react';
-import { css } from '@emotion/react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services/theme';
 
 import {
   HorizontalAlignment,
@@ -46,10 +44,6 @@ export const EuiTableFooterCell: FunctionComponent<Props> = ({
   style,
   ...rest
 }) => {
-  const [theme] = useEuiTheme();
-  const styles = css`
-    background-color: ${theme.colors.euiColorLightestShade};
-  `;
   const classes = classNames('euiTableFooterCell', className);
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
@@ -58,7 +52,7 @@ export const EuiTableFooterCell: FunctionComponent<Props> = ({
   const styleObj = resolveWidthAsStyle(style, width);
 
   return (
-    <td css={styles} className={classes} style={styleObj} {...rest}>
+    <td className={classes} style={styleObj} {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>
