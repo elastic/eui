@@ -25,7 +25,7 @@ import {
   EuiPageHeaderContentProps,
 } from './page_header_content';
 import {
-  EuiPageRestrictWidth,
+  _EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
 
@@ -41,7 +41,7 @@ export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export type EuiPageHeaderProps = CommonProps &
   HTMLAttributes<HTMLElement> &
   EuiPageHeaderContentProps &
-  EuiPageRestrictWidth & {
+  _EuiPageRestrictWidth & {
     /**
      * Adjust the padding.
      * When using this setting it's best to be consistent throughout all similar usages

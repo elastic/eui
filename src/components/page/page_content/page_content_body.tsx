@@ -21,7 +21,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 import {
-  EuiPageRestrictWidth,
+  _EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
 
@@ -37,7 +37,7 @@ export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export interface EuiPageContentBodyProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement>,
-    EuiPageRestrictWidth {
+    _EuiPageRestrictWidth {
   /**
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages

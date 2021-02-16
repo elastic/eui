@@ -30,7 +30,7 @@
 
 import { CSSProperties } from 'react';
 
-export type EuiPageRestrictWidth = {
+export type _EuiPageRestrictWidth = {
   /**
    * Sets the max-width of the page,
    * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
@@ -42,7 +42,7 @@ export type EuiPageRestrictWidth = {
 };
 
 export function setPropsForRestrictedPageWidth(
-  restrictWidth: EuiPageRestrictWidth['restrictWidth'],
+  restrictWidth: _EuiPageRestrictWidth['restrictWidth'],
   style?: CSSProperties
 ): { widthClassName?: string; newStyle?: CSSProperties } {
   let widthClassName;

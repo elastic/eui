@@ -21,7 +21,7 @@ import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 import {
-  EuiPageRestrictWidth,
+  _EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
 import { EuiPanel, EuiPanelProps } from '../../panel';
@@ -39,7 +39,7 @@ type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
 export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
   ComponentProps<T> &
-  EuiPageRestrictWidth & {
+  _EuiPageRestrictWidth & {
     /**
      * Sets the HTML element for `EuiPageBody`.
      */
