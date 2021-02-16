@@ -18,3 +18,4 @@
  */
 
 export { EuiNotificationEventReadButton } from './notification_event_read_button';
+export { EuiNotificationEvents } from './notification_events';

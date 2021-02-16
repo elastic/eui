@@ -47,33 +47,28 @@ export type EuiNotificationEventMetaProps = Omit<
    * Type of severity (e.g. "Critical", "Warning", etc..). Shows as a text after the `type` following the format "Alert: Critical".
    */
   severity?: string;
-
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   badgeColor?: EuiBadgeProps['color'];
-
   /**
    * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
    */
   iconType?: IconType;
-
   /**
    * Specify an `aria-label` for the icon.
    * If no `aria-label` is passed we assume the icon is purely decorative.
    */
   iconAriaLabel?: string;
-
   /**
    * Indicates when the event was received.
    */
   time: ReactNode;
-
   /**
    * An array of context menu items. See #EuiContextMenuItem
    */
   contextMenuItems?: EuiContextMenuPanelProps['items'];
-
+  onOpenContextMenu?: () => void;
   /**
    * Applies an `onClick` handler to the `read` indicator.
    */
@@ -88,13 +83,15 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   badgeColor = 'hollow',
   onRead,
   severity,
-  contextMenuItems = [],
   eventName,
   iconAriaLabel,
+  onOpenContextMenu,
+  contextMenuItems = [],
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const classes = classNames('euiNotificationEventMeta', {
-    'euiNotificationEventMeta--hasContextMenu': contextMenuItems.length > 0,
+    'euiNotificationEventMeta--hasContextMenu':
+      onOpenContextMenu || contextMenuItems.length > 0,
   });
 
   const id = htmlIdGenerator()();
@@ -106,6 +103,11 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   const ariaAttribute = iconAriaLabel
     ? { 'aria-label': iconAriaLabel }
     : { 'aria-hidden': true };
+
+  const onOpenPopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+    onOpenContextMenu?.();
+  };
 
   return (
     <div className={classes}>
@@ -133,7 +135,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         <span className="euiNotificationEventMeta__time">{time}</span>
       </div>
 
-      {contextMenuItems.length > 0 && (
+      {(onOpenContextMenu !== undefined || contextMenuItems.length > 0) && (
         <div className="euiNotificationEventMeta__contextMenuWrapper">
           <EuiPopover
             id={id}
@@ -157,7 +159,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                     aria-haspopup="true"
                     iconType="boxesVertical"
                     color="subdued"
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    onClick={onOpenPopover}
                     data-test-subj="notificationEventMetaButton"
                   />
                 )}

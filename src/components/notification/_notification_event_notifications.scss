@@ -1,0 +1,14 @@
+.euiNotificationEventNotifications {
+  color: $euiColorDarkShade;
+  font-size: $euiFontSizeS;
+
+  &__accordion {
+    color: $euiColorDarkShade;
+  }
+
+  &__accordionContent {
+    > * {
+      padding-top: $euiSizeS;
+    }
+  }
+}

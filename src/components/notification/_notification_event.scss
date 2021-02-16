@@ -1,0 +1,41 @@
+.euiNotificationEvent {
+  padding: $euiSizeM $euiSizeS $euiSizeM $euiSize;
+  border-bottom: $euiBorderThin;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &--withReadState {
+    padding: $euiSizeM;
+
+    .euiNotificationEvent__content {
+      padding-left: $euiSizeL;
+    }
+  }
+
+  &--emptyState {
+    text-align: center;
+    justify-content: center;
+    padding-top: $euiSizeXXL * 2;
+
+    > * {
+      margin-top: $euiSizeL;
+    }
+  }
+}
+
+.euiNotificationEvent__content {
+  > * {
+    margin-top: $euiSizeS;
+  }
+}
+
+.euiNotificationEvent__title {
+  @include euiTitle('xs');
+  display: flex;
+
+  &--isRead {
+    color: $euiColorDarkShade !important; // sass-lint:disable-line no-important
+  }
+}
