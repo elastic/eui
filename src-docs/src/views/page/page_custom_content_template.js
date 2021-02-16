@@ -11,16 +11,11 @@ import {
 export default ({ button = <></> }) => (
   <EuiPageTemplate
     restrictWidth={false}
+    template="empty"
     pageHeader={{
       iconType: 'logoElastic',
       pageTitle: 'Page title',
       rightSideItems: [button, <EuiButton>Do something</EuiButton>],
-      style: {
-        marginBottom: 0,
-      },
-    }}
-    pageContentProps={{
-      color: 'transparent',
     }}>
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>

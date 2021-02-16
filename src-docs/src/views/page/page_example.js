@@ -18,6 +18,8 @@ import {
   EuiText,
   EuiEmptyPrompt,
   EuiPageTemplate,
+  EuiCallOut,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import PageNew from './page_new';
@@ -84,18 +86,30 @@ export const PageExample = {
   title: 'Page',
   playground: [pageTemplateConfig],
   intro: (
-    <EuiText>
-      <p>
-        Page layouts are modular and have the ability to add or remove
-        components as needed for the design. These examples are small so we have
-        included a full screen view of each and is the only way to showcase the
-        sticky nature of the side bar.
-      </p>
-    </EuiText>
+    <>
+      <EuiText>
+        <p>
+          Page layouts are modular and fit together in a precise manner, though
+          certain parts can also be added or removed as needed. EUI provides
+          both the indivdual page components and an over-arching template for
+          easily creating some pre-defined layouts.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        iconType="document"
+        title="The following examples showcase the both the template and custom built usages of the page components.">
+        <p>
+          You&apos;ll find the code for each in their own tab and if you go to
+          full screen, you can see how they would behave in a typical
+          applicaiton layout.
+        </p>
+      </EuiCallOut>
+    </>
   ),
   sections: [
     {
-      title: 'A full page layout with everything on',
+      title: 'A full page with everything',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -121,8 +135,8 @@ export const PageExample = {
           </p>
           <ul>
             <li>
-              <strong>EuiPage</strong> provides the overall wrapper with a
-              column flex display.
+              <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
+              the overall wrapper with a column flex display.
             </li>
             <li>
               <strong>EuiPageSideBar</strong> provides a way to add side
@@ -134,6 +148,13 @@ export const PageExample = {
               for contents.
             </li>
             <li>
+              <Link to="/layout/page-header">
+                <strong>EuiPageHeader</strong>
+              </Link>{' '}
+              provides a title, description, section for actions and possible
+              tabs.
+            </li>
+            <li>
               <strong>EuiPageContent</strong> provides the main content
               container and extends{' '}
               <Link to="/layout/panel">
@@ -142,17 +163,18 @@ export const PageExample = {
               .
             </li>
             <li>
-              <Link to="/layout/page-header">
-                <strong>EuiPageHeader</strong>
-              </Link>{' '}
-              provides a title, description, section for actions and possible
-              tabs.
-            </li>
-            <li>
               <strong>EuiPageContentBody</strong> wraps the content that comes
               after the page header.
             </li>
           </ul>
+          <p>
+            Or you can use the provided <strong>EuiPageTemplate</strong>, which
+            is simply a shortcut for creating the different types of page layout
+            patterns described in these docs. It is somewhat opinionated, but
+            still has the ability to customize most of the inner components with
+            props like <EuiCode>pageSideBarProps</EuiCode> and{' '}
+            <EuiCode>pageContentProps</EuiCode>.
+          </p>
         </div>
       ),
       props: {
@@ -203,14 +225,27 @@ export const PageExample = {
         },
       ],
       text: (
-        <p>
-          Most content does not scale well to the full width of the window. You
-          can restrict this to a typical width and center the page by setting
-          the <EuiCode>restrictWidth</EuiCode> prop to <EuiCode>true</EuiCode>{' '}
-          on <strong>EuiPageHeader</strong> and <strong>EuiPageContent</strong>.
-          You can also pass an integer to this property to max out the width at
-          a custom pixel value or a string with a custom measurement.
-        </p>
+        <>
+          <p>
+            Most content does not scale well to the full width of the window.
+            You can restrict this to a typical width and center the page by
+            setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
+            <EuiCode>true</EuiCode> on <strong>EuiPageHeader</strong> and{' '}
+            <strong>EuiPageContent</strong>. You can also pass an integer to
+            this property to max out the width at a custom pixel value or a
+            string with a custom measurement.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                The <strong>EuiPageTemplate</strong> allows setting this
+                property at the top level and defaults to{' '}
+                <EuiCode>true</EuiCode>.
+              </>
+            }
+          />
+        </>
       ),
       demo: (
         <PageDemo>
@@ -251,15 +286,26 @@ export const PageExample = {
         },
       ],
       text: (
-        <p>
-          When the content for the page is minimal or in an empty/pre-setup
-          state, the page content can be centered vertically and horizontally.
-          We recommend then using the{' '}
-          <Link to="/display/empty-prompt">
-            <strong>EuiEmptyPrompt</strong>
-          </Link>{' '}
-          for the content. This setup works with or without the side bar.
-        </p>
+        <>
+          <p>
+            When the content for the page is minimal or in an empty/pre-setup
+            state, the page content can be centered vertically and horizontally.
+            We recommend then using the{' '}
+            <Link to="/display/empty-prompt">
+              <strong>EuiEmptyPrompt</strong>
+            </Link>{' '}
+            for the content.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="centeredBody"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
       ),
       demo: (
         <PageDemo centered>
@@ -301,12 +347,23 @@ export const PageExample = {
         },
       ],
       text: (
-        <p>
-          Similar to the previous example, you can create a centered panel to
-          emphasis incompleteness even with a page header. For this setup, we
-          recommend using nested <strong>EuiPageContent</strong> components for
-          the ease of props available.
-        </p>
+        <>
+          <p>
+            Similar to the previous example, you can create a centered panel to
+            emphasize incompleteness even with a page header. For this setup, we
+            recommend using setting <strong>EuiPageContent</strong> to use the{' '}
+            <EuiCode>subdued</EuiCode> color as to not have nested shadows.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="centeredContent"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
       ),
       demo: (
         <PageDemo centered>
@@ -347,12 +404,25 @@ export const PageExample = {
         },
       ],
       text: (
-        <p>
-          Some pages don&rsquo;t have sidebars. In this case, we recommend a
-          slightly different configuration by pulling the page hader out of the
-          EuiPageContent. But you will need to include the change EuiPage&apos;s
-          direction to {'column'}. This example has `restricedWidth` set to 75%.
-        </p>
+        <>
+          <p>
+            When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
+            slightly different configuration by pulling the page hader out of
+            the
+            <strong>EuiPageContent</strong> and removing the shadow from{' '}
+            <strong>EuiPageContent</strong>.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout will automatically be achieved through{' '}
+                <strong>EuiPageTemplate</strong> by leaving{' '}
+                <EuiCode>pageSideBar</EuiCode> as <EuiCode>undefined</EuiCode>.
+              </>
+            }
+          />
+        </>
       ),
       demo: (
         <PageDemo>
@@ -386,13 +456,13 @@ export const PageExample = {
       ],
       text: (
         <p>
-          When the content for the page is minimal or in an empty/pre-setup
-          state, the page content can be centered vertically and horizontally.
-          We recommend then using the{' '}
+          Similar to the version with a side bar, when the content for the page
+          is minimal or in an empty/pre-setup state, the page content can be
+          centered vertically and horizontally. We recommend then using the{' '}
           <Link to="/display/empty-prompt">
             <strong>EuiEmptyPrompt</strong>
           </Link>{' '}
-          for the content. This setup works with or without the side bar.
+          for the content.
         </p>
       ),
       demo: (
@@ -433,10 +503,10 @@ export const PageExample = {
       ],
       text: (
         <p>
-          Similar to the previous example, you can create a centered panel to
-          emphasis incompleteness even with a page header. For this setup, we
-          recommend using nested <strong>EuiPageContent</strong> components for
-          the ease of props available.
+          Also similar to the previous examples, you can create a centered panel
+          to emphasis incompleteness even with a page header. For this setup,
+          You will need to use nested <strong>EuiPageContent</strong> components
+          in order for the centering to work.
         </p>
       ),
       demo: (
@@ -476,12 +546,23 @@ export const PageExample = {
         },
       ],
       text: (
-        <p>
-          You can replace the inner parts of EuiPageBody with your own content,
-          with or without a page header. This allows you to create dashboard
-          style layouts with lots of panels. It is not recommended, however, to
-          use this setup when you also have side nav.
-        </p>
+        <>
+          <p>
+            You can replace the inner parts of <strong>EuiPageBody</strong> with
+            your own content, with or without a page header. This allows you to
+            create dashboard style layouts with lots of panels. It is not
+            recommended, however, to use this setup when you also have side bar.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="empty"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
       ),
       demo: (
         <PageDemo>
@@ -509,10 +590,11 @@ export const PageExample = {
       ],
       text: (
         <p>
-          In previous versions of EUI, we emulated page layouts where the
-          EuiPageContent had margins all around created by padding on EuiPage.
-          This layout is still achievable but not through EuiPageTemplate. You
-          must use the EuiPage components manually as seen in this example.
+          In previous versions of EUI, we emulated page layouts where the{' '}
+          <strong>EuiPageContent</strong> had margins all around created by
+          padding on <strong>EuiPage</strong>. This layout is still achievable
+          but not through <strong>EuiPageTemplate</strong>. You must use the{' '}
+          <strong>EuiPage</strong> components manually as seen in this example.
         </p>
       ),
       demo: (

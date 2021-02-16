@@ -34,6 +34,7 @@ export const TEMPLATES = [
   'default',
   'centeredBody',
   'centeredContent',
+  'empty',
 ] as const;
 
 export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
@@ -42,6 +43,7 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
    * `default`: Typical layout with nothing centered
    * `centeredBody`: The panelled content is centered
    * `centeredContent`: The content inside the panel is centered
+   * `empty`: Removes the panneling of the page content
    */
   template?: typeof TEMPLATES[number];
   /**
@@ -212,6 +214,63 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
                   {children}
                 </EuiPageContentBody>
               </EuiPageContent>
+            </EuiPageContent>
+          </EuiPageBody>
+        </EuiPage>
+      );
+
+    /**
+     * DEFAULT
+     * Typical layout with nothing "centered"
+     */
+    case 'empty':
+      return pageSideBar ? (
+        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+          <EuiPageSideBar sticky {...pageSideBarProps}>
+            {pageSideBar}
+          </EuiPageSideBar>
+
+          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
+            {pageHeader && (
+              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+            )}
+            <EuiPageContent
+              hasShadow={false}
+              paddingSize={'none'}
+              color={'transparent'}
+              borderRadius={'none'}
+              {...pageContentProps}>
+              <EuiPageContentBody
+                restrictWidth={restrictWidth}
+                {...pageContentBodyProps}>
+                {children}
+              </EuiPageContentBody>
+            </EuiPageContent>
+          </EuiPageBody>
+        </EuiPage>
+      ) : (
+        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+          <EuiPageBody {...pageBodyProps}>
+            {pageHeader && (
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                paddingSize={paddingSize}
+                {...pageHeader}
+                style={{ marginBottom: 0, ...pageHeader?.style }}
+              />
+            )}
+            <EuiPageContent
+              hasShadow={false}
+              paddingSize={'none'}
+              color={'transparent'}
+              borderRadius={'none'}
+              {...pageContentProps}>
+              <EuiPageContentBody
+                restrictWidth={restrictWidth}
+                paddingSize={paddingSize}
+                {...pageContentBodyProps}>
+                {children}
+              </EuiPageContentBody>
             </EuiPageContent>
           </EuiPageBody>
         </EuiPage>
