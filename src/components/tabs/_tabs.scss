@@ -53,16 +53,6 @@
     }
   }
 
-  &.euiTab-isDisabled {
-    color: $euiColorMediumShade;
-
-    &:hover {
-      color: $euiColorMediumShade;
-      cursor: not-allowed;
-      text-decoration: none;
-    }
-  }
-
   &.euiTab-isSelected {
     color: $euiColorPrimary;
     cursor: default;
@@ -76,6 +66,20 @@
       left: 0;
       position: absolute;
       width: 100%;
+    }
+  }
+
+  &.euiTab-isDisabled {
+    color: $euiColorDisabledText;
+
+    &:hover {
+      color: $euiColorDisabledText;
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+
+    &::after {
+      background-color: $euiColorDisabledText;
     }
   }
 
@@ -107,6 +111,15 @@
     & + .euiTab {
       margin-left: $euiSize;
     }
+  }
+
+  .euiTabs--small.euiTabs--condensed & {
+    padding-top: ($euiSizeM / 2);
+    padding-bottom: ($euiSizeM / 2);
+  }
+
+  .euiTabs--large.euiTabs--condensed & + .euiTab {
+    margin-left: $euiSizeL;
   }
 
   // Expand Tabs Group Modifier

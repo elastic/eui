@@ -1,12 +1,42 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Migrated dependency `axe-puppeteer v1.1.1` to `@axe-core/puppeteer v4.1.1` ([#4482](https://github.com/elastic/eui/pull/4482))
-- Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
+**FEATURE: Emotion**
+
+*TODO*
+
+---
+
+## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
+
+- Added `whiteSpace` prop to `EuiCodeBlock`. ([#4475](https://github.com/elastic/eui/pull/4475))
+- Added a light background to `EuiDataGrid` and removed unnecessary height on its container ([#4509](https://github.com/elastic/eui/pull/4509))
 
 **Bug fixes**
 
+- Fixed bug in `EuiDataGrid` where the grid lost height when showing less rows on the last page ([#4509](https://github.com/elastic/eui/pull/4509))
+- Updated `euiPaletteForStatus` color sequence to use higher contrast postive and negative colors. ([#4508](https://github.com/elastic/eui/pull/4508))
+
+## [`31.6.0`](https://github.com/elastic/eui/tree/v31.6.0)
+
+- Migrated dependency `axe-puppeteer v1.1.1` to `@axe-core/puppeteer v4.1.1` ([#4482](https://github.com/elastic/eui/pull/4482))
+- Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
+- Added `paddingSize` prop to `EuiFlyout` ([#4448](https://github.com/elastic/eui/pull/4448))
+- Added `size='l'` prop to `EuiTabs` ([#4501](https://github.com/elastic/eui/pull/4501))
+- Added content-specific props (`pageTitle`, `description`, `tabs`, `rightSideItems`) to `EuiPageHeader` by creating a new `EuiPageHeaderContent` component ([#4451](https://github.com/elastic/eui/pull/4451))
+- Added `isActive` parameter to the `useIsWithinBreakpoints` hook ([#4451](https://github.com/elastic/eui/pull/4451))
+- Added `buttonProps` prop to `EuiAccordion` ([#4510](https://github.com/elastic/eui/pull/4510))
+
+**Bug fixes**
+
+- Fixed `onClose` invoking with unexpected parameter in `EuiFlyout` ([#4505](https://github.com/elastic/eui/pull/4505))
 - Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
-- Fixed `EuiCodeBlock` focus-state if content overflows ([#4463]https://github.com/elastic/eui/pull/4463)
+- Fixed `EuiCodeBlock` focus-state if content overflows [#4463](https://github.com/elastic/eui/pull/4463)
+- Fixed issues in `EuiDataGrid` around unnecessary scroll bars and container heights not updating ([#4468](https://github.com/elastic/eui/pull/4468))
+
+**Theme: Amsterdam**
+
+- Increased `EuiPage`'s default `restrictWidth` size to `1200px` (extra large breakpoint) ([#4451](https://github.com/elastic/eui/pull/4451))
+- Reduced size of `euiBottomShadowSmall` by one layer ([#4451](https://github.com/elastic/eui/pull/4451))
 
 ## [`31.5.0`](https://github.com/elastic/eui/tree/v31.5.0)
 

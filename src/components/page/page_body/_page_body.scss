@@ -13,7 +13,7 @@
   }
 
   &--restrictWidth-default {
-    max-width: 1000px;
+    max-width: $euiPageDefaultMaxWidth;
   }
 }
 

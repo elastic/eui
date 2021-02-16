@@ -214,6 +214,7 @@ const Knob = ({
               isInvalid={error && error.length > 0}
               compressed
               fullWidth
+              hasNoInitialSelection={!valueKey && !defaultValue}
             />
           </EuiFormRow>
         );
@@ -241,11 +242,11 @@ const Knob = ({
                 <EuiSwitch
                   id={name}
                   label={custom.label || ''}
-                  checked={typeof val !== 'undefined' && val}
+                  checked={typeof val !== 'undefined' && Boolean(val)}
                   onChange={(e) => {
                     const value = e.target.checked;
 
-                    set(value ? value : undefined);
+                    set(value ? custom.value ?? e.target.checked : undefined);
                   }}
                   compressed
                 />

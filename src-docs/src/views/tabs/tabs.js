@@ -5,6 +5,7 @@ import {
   EuiTabs,
   EuiTab,
   EuiSpacer,
+  EuiTitle,
 } from '../../../../src/components';
 
 const tabs = [
@@ -63,11 +64,24 @@ export default () => {
 
   return (
     <Fragment>
+      <EuiTitle size="xxs">
+        <span>Small</span>
+      </EuiTitle>
+      <EuiTabs size="s">{renderTabs()}</EuiTabs>
+
+      <EuiSpacer />
+      <EuiTitle size="xxs">
+        <span>Medium (default)</span>
+      </EuiTitle>
+
       <EuiTabs>{renderTabs()}</EuiTabs>
 
       <EuiSpacer />
+      <EuiTitle size="xxs">
+        <span>Large</span>
+      </EuiTitle>
 
-      <EuiTabs size="s">{renderTabs()}</EuiTabs>
+      <EuiTabs size="l">{renderTabs()}</EuiTabs>
     </Fragment>
   );
 };
