@@ -27,7 +27,7 @@ import {
 import { Link } from 'react-router-dom';
 
 export const HomeView = () => (
-  <div>
+  <main>
     <EuiPanel color="subdued" hasShadow={false} paddingSize="none">
       <EuiFlexGroup alignItems="center" gutterSize="none">
         <EuiFlexItem style={{ padding: 24 }}>
@@ -193,5 +193,5 @@ export const HomeView = () => (
         />
       </EuiFlexItem>
     </EuiFlexGroup>
-  </div>
+  </main>
 );
