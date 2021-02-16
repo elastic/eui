@@ -15,7 +15,6 @@ exports[`EuiPopover children is rendered 1`] = `
 
 exports[`EuiPopover is rendered 1`] = `
 <div
-  aria-label="aria-label"
   class="euiPopover euiPopover--anchorDownCenter testClass1 testClass2"
   data-test-subj="test subject string"
   id="0"

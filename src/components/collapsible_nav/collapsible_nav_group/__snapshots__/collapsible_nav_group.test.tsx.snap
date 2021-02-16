@@ -235,6 +235,72 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 </div>
 `;
 
+exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion props 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="id"
+      aria-expanded="false"
+      aria-label="aria-label"
+      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__heading testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <span
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span
+        class="euiIEFlexWrapFix"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        >
+          <div
+            class="euiFlexItem"
+          >
+            <h3
+              class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+              id="id__title"
+            >
+              Title
+            </h3>
+          </div>
+        </div>
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper"
+    id="id"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <div
+          class="euiCollapsibleNavGroup__children"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
   class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
@@ -278,8 +344,11 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     </button>
   </div>
   <div
+    aria-labelledby="generated-id"
     class="euiAccordion__childWrapper"
     id="id"
+    role="region"
+    tabindex="-1"
   >
     <div>
       <div

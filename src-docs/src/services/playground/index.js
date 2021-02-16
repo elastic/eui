@@ -6,3 +6,4 @@ export { iconValidator } from './iconValidator';
 export { createOptionalEnum } from './createOptionalEnum';
 export { dummyFunction } from './dummyFunction';
 export { simulateFunction } from './simulateFunction';
+export { generateAst, generateCustomProps } from './utils';

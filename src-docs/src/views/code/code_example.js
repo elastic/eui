@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCodeBlockImpl } from '../../../../src/components';
+import { EuiCode, EuiCodeBlock } from '../../../../src/components';
 import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
@@ -46,6 +46,7 @@ export const CodeExample = {
         </p>
       ),
       snippet: codeSnippet,
+      props: { EuiCode },
       demo: <Code />,
     },
     {
@@ -69,7 +70,7 @@ export const CodeExample = {
         </p>
       ),
       snippet: codeBlockSnippet,
-      props: { EuiCodeBlockImpl },
+      props: { EuiCodeBlock },
       demo: <CodeBlock />,
     },
     {
@@ -93,7 +94,7 @@ export const CodeExample = {
           line breaks are in the content.
         </p>
       ),
-      props: { EuiCodeBlockImpl },
+      props: { EuiCodeBlock },
       demo: <CodeBlockPre />,
     },
   ],
