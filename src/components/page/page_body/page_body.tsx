@@ -74,12 +74,16 @@ export const EuiPageBody = <T extends ComponentTypes>({
     style
   );
 
+  // Only add a special padding class if it's not passed to the EuiPanel
+  const paddingClass =
+    !panelled && paddingSize
+      ? paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]]
+      : '';
+
   const classes = classNames(
     'euiPageBody',
+    paddingClass,
     {
-      [`${
-        paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]]
-      }`]: !panelled,
       [`euiPageBody--${widthClassName}`]: widthClassName,
     },
     className

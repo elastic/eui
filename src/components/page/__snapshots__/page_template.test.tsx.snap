@@ -7,7 +7,7 @@ exports[`EuiPageTemplate is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -25,7 +25,7 @@ exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -44,7 +44,7 @@ exports[`EuiPageTemplate restrict width can be turned off 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -62,7 +62,7 @@ exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody null"
+    class="euiPageBody"
   >
     <main
       class="euiPageBody euiPageBody--paddingLarge"
@@ -84,7 +84,7 @@ exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -107,7 +107,7 @@ exports[`EuiPageTemplate template default is rendered 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -125,7 +125,7 @@ exports[`EuiPageTemplate template empty is rendered 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPageContent"
@@ -144,7 +144,7 @@ exports[`EuiPageTemplate template is rendered with pageBodyProps 1`] = `
 >
   <main
     aria-label="aria-label"
-    class="euiPageBody undefined testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2"
     data-test-subj="test subject string"
   >
     <div
@@ -164,7 +164,7 @@ exports[`EuiPageTemplate template is rendered with pageBodyProps 2`] = `
 >
   <main
     aria-label="aria-label"
-    class="euiPageBody null testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2"
     data-test-subj="test subject string"
   >
     <main
@@ -188,7 +188,7 @@ exports[`EuiPageTemplate template is rendered with pageBodyProps 3`] = `
 >
   <main
     aria-label="aria-label"
-    class="euiPageBody undefined testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2"
     data-test-subj="test subject string"
   >
     <div
@@ -213,7 +213,7 @@ exports[`EuiPageTemplate template is rendered with pageBodyProps 4`] = `
 >
   <main
     aria-label="aria-label"
-    class="euiPageBody undefined testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2"
     data-test-subj="test subject string"
   >
     <div
@@ -232,7 +232,7 @@ exports[`EuiPageTemplate template is rendered with pageContentBodyProps 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -252,7 +252,7 @@ exports[`EuiPageTemplate template is rendered with pageContentBodyProps 2`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody null"
+    class="euiPageBody"
   >
     <main
       class="euiPageBody euiPageBody--paddingLarge"
@@ -276,7 +276,7 @@ exports[`EuiPageTemplate template is rendered with pageContentBodyProps 3`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -301,7 +301,7 @@ exports[`EuiPageTemplate template is rendered with pageContentBodyProps 4`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPageContent"
@@ -321,7 +321,7 @@ exports[`EuiPageTemplate template is rendered with pageContentProps 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       aria-label="aria-label"
@@ -341,7 +341,7 @@ exports[`EuiPageTemplate template is rendered with pageContentProps 2`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody null"
+    class="euiPageBody"
   >
     <main
       class="euiPageBody euiPageBody--paddingLarge"
@@ -365,7 +365,7 @@ exports[`EuiPageTemplate template is rendered with pageContentProps 3`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -390,7 +390,7 @@ exports[`EuiPageTemplate template is rendered with pageContentProps 4`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       aria-label="aria-label"
@@ -410,7 +410,7 @@ exports[`EuiPageTemplate template is rendered with pageHeader 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <header
       aria-label="aria-label"
@@ -434,7 +434,7 @@ exports[`EuiPageTemplate template is rendered with pageHeader 2`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody null"
+    class="euiPageBody"
   >
     <header
       aria-label="aria-label"
@@ -462,7 +462,7 @@ exports[`EuiPageTemplate template is rendered with pageHeader 3`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <header
       aria-label="aria-label"
@@ -491,7 +491,7 @@ exports[`EuiPageTemplate template is rendered with pageHeader 4`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <header
       aria-label="aria-label"
@@ -516,7 +516,7 @@ exports[`EuiPageTemplate template paddingSize is rendered 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -534,10 +534,10 @@ exports[`EuiPageTemplate template paddingSize is rendered 2`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody null"
+    class="euiPageBody"
   >
     <main
-      class="euiPageBody null"
+      class="euiPageBody"
     >
       <div
         class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--shadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -556,7 +556,7 @@ exports[`EuiPageTemplate template paddingSize is rendered 3`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPageContent"
@@ -579,7 +579,7 @@ exports[`EuiPageTemplate template paddingSize is rendered 4`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <main
-    class="euiPageBody undefined"
+    class="euiPageBody"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPageContent"
