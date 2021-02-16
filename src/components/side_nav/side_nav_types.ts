@@ -21,13 +21,13 @@ import { ReactNode } from 'react';
 
 import {
   RenderItem,
-  SideNavItemButtonProps,
-  SideNavItemProps,
+  _EuiSideNavItemButtonProps,
+  _EuiSideNavItemProps,
 } from './side_nav_item';
 
 export interface EuiSideNavItemType<T>
-  extends Omit<SideNavItemButtonProps, 'children'>,
-    Omit<SideNavItemProps, 'isParent' | 'depth' | 'isOpen'> {
+  extends Omit<_EuiSideNavItemButtonProps, 'children'>,
+    Omit<_EuiSideNavItemProps, 'isParent' | 'depth' | 'isOpen'> {
   /**
    * A value that is passed to React as the `key` for this item
    */

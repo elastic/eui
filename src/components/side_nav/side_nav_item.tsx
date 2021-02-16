@@ -39,7 +39,7 @@ import { EuiInnerText } from '../inner_text';
  * can be found in the `side_nave_types.ts` file.
  */
 
-export type SideNavItemButtonProps = CommonProps & {
+export type _EuiSideNavItemButtonProps = CommonProps & {
   /**
    * Is an optional string to be passed as the navigation item's `href` prop,
    * and by default it will force rendering of the item as an `<a>`
@@ -56,7 +56,7 @@ export type SideNavItemButtonProps = CommonProps & {
   disabled?: boolean;
 };
 
-export interface SideNavItemProps {
+export interface _EuiSideNavItemProps {
   /**
    * React node which will be rendered as a small icon to the
    * left of the navigation item text
@@ -91,15 +91,15 @@ export interface SideNavItemProps {
 
 type ExcludeEuiSideNavItemProps<T> = Pick<
   T,
-  Exclude<keyof T, keyof SideNavItemProps | 'renderItem'>
+  Exclude<keyof T, keyof _EuiSideNavItemProps | 'renderItem'>
 >;
 type OmitEuiSideNavItemProps<T> = {
   [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K];
 };
 
 export type RenderItem<T> = (
-  // argument is the set of extra component props + GuaranteedRenderItemProps
-  props: OmitEuiSideNavItemProps<T> & SideNavItemButtonProps
+  // argument is the set of extra component props + _EuiSideNavItemButtonProps
+  props: OmitEuiSideNavItemProps<T> & _EuiSideNavItemButtonProps
 ) => JSX.Element;
 
 export type EuiSideNavItemProps<T> = T extends { renderItem: Function }
@@ -115,7 +115,7 @@ const DefaultRenderItem = ({
   children,
   disabled,
   ...rest
-}: SideNavItemButtonProps) => {
+}: _EuiSideNavItemButtonProps) => {
   if (href && !disabled) {
     const secureRel = getSecureRelForTarget({ href, rel, target });
     return (
@@ -152,8 +152,8 @@ const DefaultRenderItem = ({
 };
 
 export function EuiSideNavItem<
-  T extends SideNavItemButtonProps &
-    SideNavItemProps & { renderItem?: (props: any) => JSX.Element }
+  T extends _EuiSideNavItemButtonProps &
+    _EuiSideNavItemProps & { renderItem?: (props: any) => JSX.Element }
 >({
   isOpen,
   isSelected,
@@ -239,7 +239,7 @@ export function EuiSideNavItem<
     </span>
   );
 
-  const renderItemProps: SideNavItemButtonProps = {
+  const renderItemProps: _EuiSideNavItemButtonProps = {
     href,
     rel,
     target,
