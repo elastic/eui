@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import moment from 'moment';
 
@@ -8,60 +8,38 @@ import {
   EuiSelect,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const options = [
+    { value: -1, text: 'GMT -01:00' },
+    { value: -2, text: 'GMT -02:00' },
+    { value: -3, text: 'GMT -03:00' },
+  ];
+  const [startDate, setStartDate] = useState(moment());
+  const [utcOffset, setUtcOffset] = useState(options[1].value);
 
-    this.options = [
-      { value: -1, text: 'GMT -01:00' },
-      { value: -2, text: 'GMT -02:00' },
-      { value: -3, text: 'GMT -03:00' },
-    ];
-
-    this.state = {
-      startDate: moment(),
-      utcOffset: this.options[1].value,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.onSelectChange = this.onSelectChange.bind(this);
-  }
-
-  onSelectChange = (e) => {
-    this.setState({
-      utcOffset: parseInt(e.target.value, 10),
-    });
+  const onSelectChange = (e) => {
+    setUtcOffset(parseInt(e.target.value, 10));
   };
 
-  handleChange = (date) => {
-    this.setState({
-      startDate: date,
-    });
-  };
+  const selected = startDate && startDate.clone().utcOffset(utcOffset);
 
-  render() {
-    const selected =
-      this.state.startDate &&
-      this.state.startDate.clone().utcOffset(this.state.utcOffset);
-
-    return (
-      <div>
-        <EuiFormRow label="Select a date">
-          <EuiDatePicker
-            selected={selected}
-            showTimeSelect
-            onChange={this.handleChange}
-            utcOffset={this.state.utcOffset * 60}
-          />
-        </EuiFormRow>
-        <EuiFormRow label="UTC offset">
-          <EuiSelect
-            options={this.options}
-            value={this.state.utcOffset}
-            onChange={this.onSelectChange}
-          />
-        </EuiFormRow>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <EuiFormRow label="Select a date">
+        <EuiDatePicker
+          selected={selected}
+          showTimeSelect
+          onChange={setStartDate}
+          utcOffset={utcOffset * 60}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="UTC offset">
+        <EuiSelect
+          options={options}
+          value={utcOffset}
+          onChange={onSelectChange}
+        />
+      </EuiFormRow>
+    </div>
+  );
+};

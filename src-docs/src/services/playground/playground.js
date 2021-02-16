@@ -26,7 +26,15 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
       newCode = newCode.replace(/(\);)$/m, '');
     }
 
-    return format(newCode.trim(), ' '.repeat(4));
+    let formatted;
+    // TODO: Replace `html-format` with something better.
+    // Notably, something more jsx-friendly
+    try {
+      formatted = format(newCode.trim(), ' '.repeat(4));
+    } catch {
+      formatted = newCode.trim();
+    }
+    return formatted;
   };
 
   const Playground = () => {

@@ -17,37 +17,36 @@
  * under the License.
  */
 
+import classNames from 'classnames';
+import hljs from 'highlight.js';
 import React, {
+  CSSProperties,
   FunctionComponent,
   KeyboardEvent,
-  CSSProperties,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import classNames from 'classnames';
-import hljs from 'highlight.js';
-
-import { EuiCopy } from '../copy';
-
+import { keys, useCombinedRefs } from '../../services';
 import { EuiButtonIcon } from '../button';
-
-import { EuiOverlayMask } from '../overlay_mask';
-
-import { EuiFocusTrap } from '../focus_trap';
-
-import { keys } from '../../services';
-import { EuiI18n } from '../i18n';
-import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
-import { FontSize, PaddingSize } from './code_block';
+import { EuiCopy } from '../copy';
+import { EuiFocusTrap } from '../focus_trap';
+import { EuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
+import { useMutationObserver } from '../observer/mutation_observer';
+import { useResizeObserver } from '../observer/resize_observer';
+import { EuiOverlayMask } from '../overlay_mask';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
   l: 'euiCodeBlock--fontLarge',
 };
+
+type PaddingSize = 'none' | 's' | 'm' | 'l';
+type FontSize = 's' | 'm' | 'l';
 
 export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
@@ -60,7 +59,7 @@ const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-interface Props {
+export interface EuiCodeBlockImplProps {
   className?: string;
   fontSize?: FontSize;
 
@@ -76,6 +75,8 @@ interface Props {
 
   /**
    * Sets the syntax highlighting for a specific language
+   * @see http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
+   * for options
    */
   language?: string;
   overflowHeight?: number;
@@ -93,7 +94,7 @@ interface Props {
  * This is the base component extended by EuiCode and EuiCodeBlock.
  * These components share the same propTypes definition with EuiCodeBlockImpl.
  */
-export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
+export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   transparentBackground = false,
   paddingSize = 'l',
   fontSize = 's',
@@ -110,9 +111,34 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
   const codeTarget = useRef<HTMLDivElement | null>(null);
   const code = useRef<HTMLElement | null>(null);
+  const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
+  const [innerTextRef, innerText] = useInnerText('');
+  const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
+  const combinedRef = useCombinedRefs<HTMLPreElement>([
+    innerTextRef,
+    setWrapperRef,
+  ]);
+  const { width, height } = useResizeObserver(wrapperRef);
   const [codeFullScreen, setCodeFullScreen] = useState<HTMLElement | null>(
     null
   );
+
+  const doesOverflow = () => {
+    if (!wrapperRef) return;
+
+    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
+    const doesOverflow =
+      scrollHeight > clientHeight || scrollWidth > clientWidth;
+
+    setTabIndex(doesOverflow ? 0 : -1);
+  };
+
+  useMutationObserver(wrapperRef, doesOverflow, {
+    subtree: true,
+    childList: true,
+  });
+
+  useEffect(doesOverflow, [width, height, wrapperRef]);
 
   useEffect(() => {
     codeTarget.current = document.createElement('div');
@@ -292,11 +318,10 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
         <EuiOverlayMask>
           <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
-              <pre className={preClasses}>
+              <pre className={preClasses} tabIndex={0}>
                 <code
                   ref={setCodeFullScreen}
                   className={codeClasses}
-                  tabIndex={0}
                   onKeyDown={onKeyDown}
                 />
               </pre>
@@ -311,31 +336,26 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     return fullScreenDisplay;
   };
 
+  const codeBlockControls = getCodeBlockControls(innerText);
   return isPortalTargetReady ? (
     <>
       {createPortal(children, codeTarget.current!)}
-      <EuiInnerText fallback="">
-        {(innerTextRef, innerText) => {
-          const codeBlockControls = getCodeBlockControls(innerText);
-          return (
-            <div {...wrapperProps}>
-              <pre
-                ref={innerTextRef}
-                style={optionalStyles}
-                className={preClasses}>
-                {codeSnippet}
-              </pre>
+      <div {...wrapperProps}>
+        <pre
+          ref={combinedRef}
+          style={optionalStyles}
+          className={preClasses}
+          tabIndex={tabIndex}>
+          {codeSnippet}
+        </pre>
 
-              {/*
-                If the below fullScreen code renders, it actually attaches to the body because of
-                EuiOverlayMask's React portal usage.
-              */}
-              {codeBlockControls}
-              {getFullScreenDisplay(codeBlockControls)}
-            </div>
-          );
-        }}
-      </EuiInnerText>
+        {/*
+          If the below fullScreen code renders, it actually attaches to the body because of
+          EuiOverlayMask's React portal usage.
+        */}
+        {codeBlockControls}
+        {getFullScreenDisplay(codeBlockControls)}
+      </div>
     </>
   ) : null;
 };

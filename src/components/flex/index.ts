@@ -17,7 +17,11 @@
  * under the License.
  */
 
-export { EuiFlexGroup, EuiFlexGroupGutterSize } from './flex_group';
+export {
+  EuiFlexGroup,
+  EuiFlexGroupProps,
+  EuiFlexGroupGutterSize,
+} from './flex_group';
 
 export { EuiFlexGrid } from './flex_grid';
 

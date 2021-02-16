@@ -20,34 +20,90 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+import {
+  EuiPageHeaderContent,
+  EuiPageHeaderContentProps,
+} from './page_header_content';
 
-export interface EuiPageHeaderProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  /**
-   * Set to false if you don't want the children to stack
-   * at small screen sizes.
-   */
-  responsive?: boolean;
-}
+export type EuiPageHeaderProps = CommonProps &
+  HTMLAttributes<HTMLElement> &
+  EuiPageHeaderContentProps & {
+    /**
+     * Sets the max-width of the page,
+     * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
+     */
+    restrictWidth?: boolean | number | string;
+  };
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
-  children,
   className,
+  restrictWidth = false,
+  style,
+
+  // Page header content shared props:
+  alignItems,
   responsive = true,
+  children,
+
+  // Page header content only props:
+  pageTitle,
+  iconType,
+  iconProps,
+  tabs,
+  tabsProps,
+  description,
+  rightSideItems,
+  rightSideGroupProps,
   ...rest
 }) => {
+  let widthClassname;
+  let newStyle;
+
+  if (restrictWidth === true) {
+    widthClassname = 'euiPageHeader--restrictWidth-default';
+  } else if (restrictWidth !== false) {
+    widthClassname = 'euiPageHeader--restrictWidth-custom';
+    newStyle = { ...style, maxWidth: restrictWidth };
+  }
+
   const classes = classNames(
     'euiPageHeader',
     {
-      'euiPageHeader--responsive': responsive,
+      'euiPageHeader--responsive': responsive === true,
+      'euiPageHeader--responsiveReverse': responsive === 'reverse',
+      'euiPageHeader--tabsAtBottom': pageTitle && tabs,
     },
+    `euiPageHeader--${alignItems ?? 'center'}`,
+    widthClassname,
     className
   );
 
+  if (!pageTitle && !tabs && !description && !rightSideItems) {
+    return (
+      <header className={classes} style={newStyle || style} {...rest}>
+        {children}
+      </header>
+    );
+  }
+
   return (
-    <div className={classes} {...rest}>
-      {children}
-    </div>
+    <header className={classes} style={newStyle || style} {...rest}>
+      <EuiPageHeaderContent
+        alignItems={alignItems}
+        responsive={responsive}
+        pageTitle={pageTitle}
+        iconType={iconType}
+        iconProps={iconProps}
+        tabs={tabs}
+        tabsProps={tabsProps}
+        description={description}
+        rightSideItems={rightSideItems}
+        rightSideGroupProps={rightSideGroupProps}>
+        {children}
+      </EuiPageHeaderContent>
+    </header>
   );
 };
