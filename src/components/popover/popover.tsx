@@ -599,6 +599,7 @@ export class EuiPopover extends Component<Props, State> {
           ? anchorBoundingBox.left
           : left,
       zIndex,
+      willChange: 'transform, opacity',
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
