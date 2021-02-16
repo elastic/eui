@@ -386,7 +386,7 @@ export const PageExample = {
       ),
     },
     {
-      title: 'A simple page with a title',
+      title: 'A simple page with tabs',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -408,8 +408,7 @@ export const PageExample = {
           <p>
             When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
             slightly different configuration by pulling the page hader out of
-            the
-            <strong>EuiPageContent</strong> and removing the shadow from{' '}
+            the <strong>EuiPageContent</strong> and removing the shadow from{' '}
             <strong>EuiPageContent</strong>.
           </p>
           <EuiCallOut

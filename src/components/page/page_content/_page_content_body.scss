@@ -1,10 +1,5 @@
 .euiPageContentBody {
   @include euiPageRestrictWidth;
-
-  // If there's a page header right beforehand, remove the top padding
-  .euiPageHeader + & {
-    padding-top: 0;
-  }
 }
 
 // Uses the same values as EuiPanel

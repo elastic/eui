@@ -602,7 +602,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 1`] = `
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody euiPageBody--paddingLarge"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPageContent"
@@ -648,7 +648,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 3`] = `
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody euiPageBody--paddingLarge"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -696,7 +696,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody euiPageBody--paddingLarge"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPageContent"
@@ -746,7 +746,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--shadow euiPageBody euiPageBody--paddingLarge"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"

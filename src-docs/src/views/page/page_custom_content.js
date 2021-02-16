@@ -19,7 +19,7 @@ export default ({ button = <></> }) => (
         rightSideItems={[button, <EuiButton>Do something</EuiButton>]}
         paddingSize="l"
       />
-      <EuiPageContentBody paddingSize="l">
+      <EuiPageContentBody paddingSize="l" style={{ paddingTop: 0 }}>
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>
             <EuiPanel style={{ height: 200 }} />

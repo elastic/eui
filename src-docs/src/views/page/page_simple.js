@@ -14,11 +14,13 @@ export default ({ button = <></>, content }) => (
       <EuiPageHeader
         restrictWidth
         paddingSize="l"
-        pageTitle="Page title"
         rightSideItems={[button]}
+        tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
       />
-      <EuiPageContent borderRadius="none" hasShadow={false}>
-        <EuiPageContentBody restrictWidth>{content}</EuiPageContentBody>
+      <EuiPageContent borderRadius="none" hasShadow={false} paddingSize="none">
+        <EuiPageContentBody restrictWidth paddingSize="l">
+          {content}
+        </EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

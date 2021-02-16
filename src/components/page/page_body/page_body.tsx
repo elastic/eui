@@ -74,15 +74,13 @@ export const EuiPageBody = <T extends ComponentTypes>({
     style
   );
 
-  // Only add a special padding class if it's not passed to the EuiPanel
-  const paddingClass =
-    !panelled && paddingSize
-      ? paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]]
-      : '';
+  const nonBreakingDefaultPadding = panelled ? 'l' : 'none';
+  paddingSize = paddingSize || nonBreakingDefaultPadding;
 
   const classes = classNames(
     'euiPageBody',
-    paddingClass,
+    // This may duplicate the padding styles from EuiPanel, but allows for some nested configurations in the CSS
+    paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]],
     {
       [`euiPageBody--${widthClassName}`]: widthClassName,
     },
@@ -94,7 +92,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
       className={classes}
       style={newStyle || style}
       borderRadius="none"
-      paddingSize={paddingSize || 'l'}
+      paddingSize={paddingSize}
       {...panelProps}
       {...rest}>
       {children}

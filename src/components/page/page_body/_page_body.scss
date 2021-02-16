@@ -13,6 +13,21 @@
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPageBody--#{$modifier} {
     padding: $amount;
+
+    & > .euiPageHeader:not([class*='--padding']) {
+      // Match the body's padding for spacing if it doesn't have it's own
+      margin-bottom: $amount;
+    }
+
+    // When the page header is actually inside of a panelled page body,
+    // We want to add some extra separation between it and the content body
+    &.euiPanel > .euiPageHeader {
+      border-bottom: $euiBorderThin;
+
+      &:not(.euiPageHeader--tabsAtBottom) {
+        padding-bottom: $amount;
+      }
+    }
   }
 }
 
