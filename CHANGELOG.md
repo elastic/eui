@@ -2,9 +2,6 @@
 
 - Added exports for all EUI component props matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
 
-**Breaking changes**
-
-- Renamed local component `Props` named exports to `EuiComponentProps` ([#4517](https://github.com/elastic/eui/pull/4517))
 
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 
