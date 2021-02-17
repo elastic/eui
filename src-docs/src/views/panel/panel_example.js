@@ -207,7 +207,22 @@ export const PanelExample = {
           code: splitPanelHtml,
         },
       ],
-      text: <p>If you need to...</p>,
+      text: (
+        <>
+          <p>
+            <strong>EuiSplitPanel</strong> is a composition of an outer and
+            multiple inner <strong>EuiPanels</strong>. You can supply the same
+            panel props to both components with the exception of a few to ensure
+            the visual layout is correct. It also has two directions,{' '}
+            <EuiCode>column</EuiCode> (default) and <EuiCode>row</EuiCode>.
+          </p>
+          <p>
+            You can adjust at which breakpoints a <EuiCode>row</EuiCode> layout
+            will stack by passing a new array, or <EuiCode>false</EuiCode>, to
+            the <EuiCode>responsive</EuiCode> prop.
+          </p>
+        </>
+      ),
       props: { _EuiSplitPanelOuter, _EuiSplitPanelInner },
       snippet: splitPanelSnippet,
       demo: <SplitPanel />,
