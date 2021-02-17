@@ -8,6 +8,7 @@
 - Fixed nested indicator of last `EuiSideNav` item ([#4488](https://github.com/elastic/eui/pull/4488))
 - Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Fixed blurry animation of popovers in Chrome ([#4527](https://github.com/elastic/eui/pull/4527))
+- Fixed styles of `disabled` times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
 
 **Theme: Amsterdam**
 
