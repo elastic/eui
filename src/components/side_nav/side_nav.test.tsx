@@ -55,10 +55,15 @@ describe('EuiSideNav', () => {
             items: [
               {
                 name: 'B',
+                className: 'class',
+                'data-test-sub': 'dts',
+                'aria-label': 'aria',
                 id: 1,
               },
               {
                 name: 'C',
+                truncate: false,
+                emphasize: true,
                 id: 2,
                 items: [
                   {
@@ -67,6 +72,7 @@ describe('EuiSideNav', () => {
                   },
                   {
                     name: 'E',
+                    disabled: true,
                     id: 4,
                   },
                 ],
