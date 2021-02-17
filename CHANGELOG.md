@@ -7,6 +7,7 @@
 
 - Fixed nested indicator of last `EuiSideNav` item ([#4488](https://github.com/elastic/eui/pull/4488))
 - Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Fixed the bug of not seeing difference between the disabled/non-disabled times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
 
 **Theme: Amsterdam**
 
