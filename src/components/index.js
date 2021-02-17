@@ -293,7 +293,7 @@ export {
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable';
 
-export { EuiSideNav } from './side_nav';
+export { EuiSideNav, EuiSideNavProps } from './side_nav';
 
 export { EuiSpacer } from './spacer';
 
