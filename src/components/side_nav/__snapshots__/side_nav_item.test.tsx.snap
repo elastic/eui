@@ -1,5 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSideNavItem can be disabled 1`] = `
+<div
+  class="euiSideNavItem euiSideNavItem--root"
+>
+  <button
+    class="euiSideNavItemButton"
+    disabled=""
+    type="button"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+      >
+        Children
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiSideNavItem can be emphasized 1`] = `
+<div
+  class="euiSideNavItem euiSideNavItem--root euiSideNavItem--emphasized"
+>
+  <div
+    class="euiSideNavItemButton"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+      >
+        Children
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiSideNavItem can have truncation turned off 1`] = `
+<div
+  class="euiSideNavItem euiSideNavItem--root"
+>
+  <div
+    class="euiSideNavItemButton"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        Children
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`EuiSideNavItem href is rendered 1`] = `
 <div
   class="euiSideNavItem euiSideNavItem--root"
@@ -13,7 +75,7 @@ exports[`EuiSideNavItem href is rendered 1`] = `
       class="euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
       >
         <button />
       </span>
@@ -35,7 +97,7 @@ exports[`EuiSideNavItem href is rendered with rel 1`] = `
       class="euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
       >
         <button />
       </span>
@@ -55,7 +117,7 @@ exports[`EuiSideNavItem is rendered 1`] = `
       class="euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
       >
         <button
           aria-label="aria-label"
@@ -79,7 +141,7 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
       class="euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
       >
         <button />
       </span>
@@ -99,7 +161,7 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
       class="euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
       >
         <button />
       </span>
@@ -119,7 +181,7 @@ exports[`EuiSideNavItem preserves child's classes 1`] = `
       class="euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
       >
         <button
           class="test"

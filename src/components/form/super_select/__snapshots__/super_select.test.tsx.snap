@@ -170,7 +170,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
       aria-modal="true"
       class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
       role="dialog"
-      style="top: 8px; left: 0px; z-index: 2000;"
+      style="top: 8px; left: 0px; z-index: 2000; will-change: transform, opacity;"
     >
       <div
         class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -444,7 +444,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
       aria-modal="true"
       class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
       role="dialog"
-      style="top: 8px; left: 0px; z-index: 2000;"
+      style="top: 8px; left: 0px; z-index: 2000; will-change: transform, opacity;"
     >
       <div
         class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -605,7 +605,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
       aria-modal="true"
       class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
       role="dialog"
-      style="top: 8px; left: 0px; z-index: 2000;"
+      style="top: 8px; left: 0px; z-index: 2000; will-change: transform, opacity;"
     >
       <div
         class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
