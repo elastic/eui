@@ -30,13 +30,13 @@ import {
 
 import { resolveWidthAsStyle } from './utils';
 
-type Props = CommonProps &
+export type EuiTableFooterCellProps = CommonProps &
   TdHTMLAttributes<HTMLTableCellElement> & {
     align?: HorizontalAlignment;
     width?: string | number;
   };
 
-export const EuiTableFooterCell: FunctionComponent<Props> = ({
+export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   children,
   align = LEFT_ALIGNMENT,
   className,

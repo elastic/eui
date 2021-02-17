@@ -80,7 +80,7 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   visibility: 'hidden',
 };
 
-export interface Props {
+export interface EuiToolTipProps {
   /**
    * Passes onto the the trigger.
    */
@@ -133,7 +133,7 @@ interface State {
   id: string;
 }
 
-export class EuiToolTip extends Component<Props, State> {
+export class EuiToolTip extends Component<EuiToolTipProps, State> {
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
@@ -147,7 +147,7 @@ export class EuiToolTip extends Component<Props, State> {
     id: this.props.id || htmlIdGenerator()(),
   };
 
-  static defaultProps: Partial<Props> = {
+  static defaultProps: Partial<EuiToolTipProps> = {
     position: 'top',
     delay: 'regular',
   };
@@ -168,7 +168,7 @@ export class EuiToolTip extends Component<Props, State> {
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
+  componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
     }

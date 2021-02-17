@@ -18,17 +18,38 @@
  */
 
 export { EuiTable, EuiTableProps } from './table';
-export { EuiTableBody } from './table_body';
+export { EuiTableBody, EuiTableBodyProps } from './table_body';
 export { EuiTableFooter } from './table_footer';
-export { EuiTableFooterCell } from './table_footer_cell';
-export { EuiTableHeader } from './table_header';
-export { EuiTableHeaderButton } from './table_header_button';
-export { EuiTableHeaderCell } from './table_header_cell';
-export { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
-export { EuiTablePagination } from './table_pagination';
+export {
+  EuiTableFooterCell,
+  EuiTableFooterCellProps,
+} from './table_footer_cell';
+export { EuiTableHeader, EuiTableHeaderProps } from './table_header';
+export {
+  EuiTableHeaderButton,
+  EuiTableHeaderButtonProps,
+} from './table_header_button';
+export {
+  EuiTableHeaderCell,
+  EuiTableHeaderCellProps,
+} from './table_header_cell';
+export {
+  EuiTableHeaderCellCheckbox,
+  EuiTableHeaderCellCheckboxProps,
+} from './table_header_cell_checkbox';
+export {
+  EuiTablePagination,
+  EuiTablePaginationProps,
+} from './table_pagination';
 export { EuiTableHeaderMobile } from './mobile/table_header_mobile';
-export { EuiTableSortMobile } from './mobile/table_sort_mobile';
-export { EuiTableSortMobileItem } from './mobile/table_sort_mobile_item';
-export { EuiTableRow } from './table_row';
-export { EuiTableRowCell } from './table_row_cell';
+export {
+  EuiTableSortMobile,
+  EuiTableSortMobileProps,
+} from './mobile/table_sort_mobile';
+export {
+  EuiTableSortMobileItem,
+  EuiTableSortMobileItemProps,
+} from './mobile/table_sort_mobile_item';
+export { EuiTableRow, EuiTableRowProps } from './table_row';
+export { EuiTableRowCell, EuiTableRowCellProps } from './table_row_cell';
 export { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';

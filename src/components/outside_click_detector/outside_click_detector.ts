@@ -31,7 +31,7 @@ export interface EuiEvent extends Event {
   euiGeneratedBy: string[];
 }
 
-interface Props {
+export interface EuiOutsideClickDetectorProps {
   /**
    * ReactNode to render as this component's content
    */
@@ -44,7 +44,9 @@ interface Props {
   onTouchEnd?: (event: ReactMouseEvent) => void;
 }
 
-export class EuiOutsideClickDetector extends Component<Props> {
+export class EuiOutsideClickDetector extends Component<
+  EuiOutsideClickDetectorProps
+> {
   // We are working with the assumption that a click event is
   // equivalent to a sequential, compound press and release of
   // the pointing device (mouse, finger, stylus, etc.).
@@ -60,7 +62,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
 
   private capturedDownIds: string[];
 
-  constructor(props: Props) {
+  constructor(props: EuiOutsideClickDetectorProps) {
     super(props);
 
     // the id is used to identify which EuiOutsideClickDetector
