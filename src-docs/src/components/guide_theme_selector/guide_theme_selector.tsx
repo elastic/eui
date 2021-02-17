@@ -12,7 +12,7 @@ import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWith
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';
-// @ts-ignore TODO: Convert to TS
+// @ts-ignore Not TS
 import { GuideLocaleSelector } from '../guide_locale_selector';
 
 type GuideThemeSelectorProps = {

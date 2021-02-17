@@ -12,12 +12,13 @@ import { EuiPopover } from '../../../../src/components/popover';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { EuiButtonEmpty } from '../../../../src/components/button';
 
-// @ts-ignore TODO: Convert to TS
+// @ts-ignore Not TS
 import { CodeSandboxLink } from '../../components/codesandbox/link';
-// @ts-ignore TODO: Convert to TS
-import { GuideThemeSelector } from '../guide_theme_selector';
-import { GuideSketchLink } from '../guide_theme_selector/guide_sketch_link';
-import { GuideFigmaLink } from '../guide_theme_selector/guide_figma_link';
+import {
+  GuideThemeSelector,
+  GuideSketchLink,
+  GuideFigmaLink,
+} from '../guide_theme_selector';
 
 const pkg = require('../../../../package.json');
 

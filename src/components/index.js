@@ -257,6 +257,7 @@ export {
   EuiPageHeaderSection,
   EuiPageSideBar,
   EuiPageTemplate,
+  EuiPageTemplateProps,
 } from './page';
 
 export { EuiPagination, EuiPaginationButton } from './pagination';

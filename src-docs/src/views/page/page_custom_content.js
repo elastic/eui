@@ -6,9 +6,10 @@ import {
   EuiButton,
   EuiPageContentBody,
   EuiPageBody,
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiPanel,
 } from '../../../../src/components';
-import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
-import { EuiPanel } from '../../../../src/components/panel';
 
 export default ({ button = <></> }) => (
   <EuiPage paddingSize="none">
