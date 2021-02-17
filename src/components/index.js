@@ -314,10 +314,15 @@ export {
 
 export {
   EuiLoadingKibana,
+  EuiLoadingKibanaProps,
   EuiLoadingElastic,
+  EuiLoadingElasticProps,
   EuiLoadingChart,
+  EuiLoadingChartProps,
   EuiLoadingContent,
+  EuiLoadingContentProps,
   EuiLoadingSpinner,
+  EuiLoadingSpinnerProps,
 } from './loading';
 
 export {
