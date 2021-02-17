@@ -18,14 +18,7 @@
 .euiHeaderSectionItem__button {
   position: relative; // For positioning the notification
   min-width: $euiHeaderChildSize;
-
-  &:hover {
-    background: $euiColorLightestShade;
-  }
-
-  &:focus {
-    background: $euiFocusBackgroundColor;
-  }
+  height: $euiHeaderChildSize;
 }
 
 .euiHeaderSectionItem--borderLeft {
