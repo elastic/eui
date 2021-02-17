@@ -72,6 +72,21 @@ exports[`EuiRadio props label is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiRadio props labelProps is rendered 1`] = `
+<div
+  class="euiRadio euiRadio--noLabel testClass1 testClass2"
+>
+  <input
+    class="euiRadio__input"
+    id="id"
+    type="radio"
+  />
+  <div
+    class="euiRadio__circle"
+  />
+</div>
+`;
+
 exports[`EuiRadio props value is rendered 1`] = `
 <div
   class="euiRadio euiRadio--noLabel"

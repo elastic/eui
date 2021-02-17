@@ -58,7 +58,7 @@ export type EuiSwitchProps = CommonProps &
     compressed?: boolean;
     type?: 'submit' | 'reset' | 'button';
     /**
-     * Object of props passed to the <span/>
+     * Object of props passed to the label's <span/>
      */
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
@@ -77,7 +77,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   ...rest
 }) => {
   const [switchId] = useState(id || htmlIdGenerator()());
-  const [labelId] = useState(htmlIdGenerator()());
+  const [labelId] = useState(labelProps?.id || htmlIdGenerator()());
 
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {

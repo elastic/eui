@@ -44,3 +44,13 @@ describe('EuiSwitch', () => {
     expect(component).toMatchSnapshot();
   });
 });
+
+describe('labelProps', () => {
+  it('is rendered', () => {
+    const component = render(
+      <EuiSwitch {...props} labelProps={requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+});

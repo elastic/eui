@@ -72,6 +72,21 @@ exports[`EuiCheckbox props label is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCheckbox props labelProps is rendered 1`] = `
+<div
+  class="euiCheckbox euiCheckbox--noLabel"
+>
+  <input
+    class="euiCheckbox__input"
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  />
+</div>
+`;
+
 exports[`EuiCheckbox props type inList is rendered 1`] = `
 <div
   class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
