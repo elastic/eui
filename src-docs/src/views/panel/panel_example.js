@@ -9,6 +9,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiPanel,
+  EuiSplitPanel,
   EuiSpacer,
   EuiText,
   EuiCallOut,
@@ -35,6 +36,10 @@ const panelBadgeHtml = renderToHtml(PanelBadge);
 import PanelGrow from './panel_grow';
 const panelGrowSource = require('!!raw-loader!./panel_grow');
 const panelGrowHtml = renderToHtml(PanelGrow);
+
+import SplitPanel from './split_panel';
+const splitPanelSource = require('!!raw-loader!./split_panel');
+const splitPanelHtml = renderToHtml(SplitPanel);
 
 const panelSnippet = `<EuiPanel paddingSize="none">
   <!-- Panel with no padding -->
@@ -167,6 +172,23 @@ export const PanelExample = {
       props: { EuiPanel },
       snippet: panelGrowSnippet,
       demo: <PanelGrow />,
+    },
+    {
+      title: 'Split panels',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: splitPanelSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: splitPanelHtml,
+        },
+      ],
+      text: <p>If you need to...</p>,
+      props: { EuiSplitPanel },
+      // snippet: panelGrowSnippet,
+      demo: <SplitPanel />,
     },
     {
       title: 'Panels could be hoverable and have beta badges',
