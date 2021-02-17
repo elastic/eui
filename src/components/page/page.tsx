@@ -51,7 +51,7 @@ export interface EuiPageProps
   paddingSize?: typeof SIZES[number];
   /**
    * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
-   * Must be wrapped inside a flex group with `min-height: 100vh` to work
+   * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`
    */
   grow?: boolean;
   /**

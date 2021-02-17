@@ -66,6 +66,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   border: 1px solid transparentize($euiColorPrimary, .9);
   overflow: hidden;
   height: 460px;
+  display: flex;
 
   .euiPageSideBar--sticky {
     top: 0;
