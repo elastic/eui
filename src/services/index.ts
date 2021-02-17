@@ -117,3 +117,32 @@ export {
 export { EuiWindowEvent } from './window_event';
 
 export { useCombinedRefs, useDependentState } from './hooks';
+
+export {
+  EuiSystemContext,
+  EuiThemeContext,
+  EuiOverrideContext,
+  EuiColorModeContext,
+  useEuiTheme,
+  withEuiTheme,
+  EuiThemeProvider,
+  buildTheme,
+  computed,
+  isInverseColorMode,
+  getColorMode,
+  getComputed,
+  getOn,
+  mergeDeep,
+  setOn,
+  Computed,
+  euiThemeDefault,
+  EuiThemeDefault,
+  EuiThemeAmsterdam,
+  euiThemeAmsterdam,
+  EuiThemeColor,
+  EuiThemeColorMode,
+  EuiThemeComputed,
+  EuiThemeOverrides,
+  EuiThemeShape,
+  EuiThemeSystem,
+} from './theme';

@@ -47,6 +47,7 @@ const docsPages = async (root, page) => {
     `${root}#/tabular-content/data-grid-virtualization`,
     `${root}#/elastic-charts/creating-charts`,
     `${root}#/elastic-charts/part-to-whole-comparisons`,
+    `${root}#/temporary/canopy`,
   ];
 
   return [

@@ -54,9 +54,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
         onResize={[Function]}
       >
         <div>
-          <div
-            className=""
-          />
+          <div />
         </div>
       </EuiResizeObserver>
     </div>
@@ -118,9 +116,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
         onResize={[Function]}
       >
         <div>
-          <div
-            className=""
-          />
+          <div />
         </div>
       </EuiResizeObserver>
     </div>

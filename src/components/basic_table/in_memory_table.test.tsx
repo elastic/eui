@@ -1045,6 +1045,7 @@ describe('EuiInMemoryTable', () => {
         .find(
           '[data-test-subj*="tableHeaderCell_name_0"] [data-test-subj="tableHeaderSortButton"]'
         )
+        .at(0)
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({

@@ -17,7 +17,21 @@
  * under the License.
  */
 
-/* eslint-disable @typescript-eslint/triple-slash-reference */
-/// <reference types="@emotion/react/types/css-prop" />
-/// <reference path="./components/index.d.ts" />
-/// <reference path="./themes/index.d.ts" />
+import { createContext } from 'react';
+import {
+  EuiThemeColorMode,
+  EuiThemeSystem,
+  EuiThemeOverrides,
+  EuiThemeComputed,
+} from './types';
+import { EuiThemeDefault } from './theme';
+import { DEFAULT_COLOR_MODE, getComputed } from './utils';
+
+export const EuiSystemContext = createContext<EuiThemeSystem>(EuiThemeDefault);
+export const EuiOverrideContext = createContext<EuiThemeOverrides>({});
+export const EuiColorModeContext = createContext<EuiThemeColorMode>(
+  DEFAULT_COLOR_MODE
+);
+export const EuiThemeContext = createContext<EuiThemeComputed>(
+  getComputed(EuiThemeDefault, {}, DEFAULT_COLOR_MODE)
+);

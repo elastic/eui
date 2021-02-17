@@ -224,6 +224,11 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
+
+/** ! Temporary ! */
+
+import Canopy from './views/emotion/canopy';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -306,6 +311,18 @@ const createExample = (example, customTitle) => {
 };
 
 const navigation = [
+  {
+    name: 'Temporary',
+    items: [
+      createExample(
+        {
+          intro: <Canopy />,
+          sections: [],
+        },
+        'Canopy'
+      ),
+    ],
+  },
   {
     name: 'Guidelines',
     items: [
