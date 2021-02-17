@@ -17,11 +17,11 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiPanel, PanelProps } from '../panel';
 
-const InnerPanel: FunctionComponent<Omit<
+const Inner: FunctionComponent<Omit<
   PanelProps,
   'hasShadow' | 'borderRadius'
 >> = ({ children, className, ...rest }) => {
@@ -40,11 +40,7 @@ const InnerPanel: FunctionComponent<Omit<
   );
 };
 
-export type EuiSplitPanelProps = Omit<PanelProps, 'paddingSize'> & {
-  children?: (panel: typeof InnerPanel) => ReactNode;
-};
-
-export const EuiSplitPanel: FunctionComponent<EuiSplitPanelProps> = ({
+const Outer: FunctionComponent<Omit<PanelProps, 'paddingSize'>> = ({
   children,
   className,
   ...rest
@@ -53,7 +49,9 @@ export const EuiSplitPanel: FunctionComponent<EuiSplitPanelProps> = ({
 
   return (
     <EuiPanel paddingSize="none" grow={false} className={classes} {...rest}>
-      {children && children(InnerPanel)}
+      {children}
     </EuiPanel>
   );
 };
+
+export const EuiSplitPanel = { Outer, Inner };

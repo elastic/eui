@@ -18,4 +18,4 @@
  */
 
 export { EuiPanel, EuiPanelProps, PanelPaddingSize, SIZES } from './panel';
-export { EuiSplitPanel, EuiSplitPanelProps } from './split_panel';
+export { EuiSplitPanel } from './split_panel';

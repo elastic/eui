@@ -25,7 +25,7 @@ import { EuiSplitPanel } from './split_panel';
 
 describe('EuiSplitPanel', () => {
   test('is rendered', () => {
-    const component = render(<EuiSplitPanel {...requiredProps} />);
+    const component = render(<EuiSplitPanel.Outer {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
