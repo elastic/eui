@@ -68,6 +68,9 @@ export type EuiNotificationEventMetaProps = Omit<
    * An array of context menu items. See #EuiContextMenuItem
    */
   contextMenuItems?: EuiContextMenuPanelProps['items'];
+  /**
+   * Necessary to trigger onOpenContextMenu from EuiNotificationEvent
+   */
   onOpenContextMenu?: () => void;
   /**
    * Applies an `onClick` handler to the `read` indicator.
@@ -135,7 +138,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         <span className="euiNotificationEventMeta__time">{time}</span>
       </div>
 
-      {(onOpenContextMenu !== undefined || contextMenuItems.length > 0) && (
+      {(onOpenContextMenu || contextMenuItems.length > 0) && (
         <div className="euiNotificationEventMeta__contextMenuWrapper">
           <EuiPopover
             id={id}

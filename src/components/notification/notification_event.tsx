@@ -42,9 +42,19 @@ export type EuiNotificationEventProps = {
   isRead?: boolean | undefined;
   primaryAction?: EuiButtonEmptyProps;
   notifications: EuiNotificationEventNotificationsProps['notifications'];
-  onRead?: () => void;
+
+  /**
+   * Returns the `id` and `isRead` of the clicked event read button
+   */
+  onRead?: (id: string, isRead: boolean) => void;
+  /**
+   * An array of context menu items. See #EuiContextMenuItem
+   */
   contextMenuItems?: EuiContextMenuPanelProps['items'];
-  onOpenContextMenu?: () => void;
+  /**
+   * Returns the `id`, `isRead` ad `type` of the open context menu
+   */
+  onOpenContextMenu?: (id: string, isRead: boolean, type: string) => void;
 };
 
 export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> = ({
@@ -77,9 +87,13 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
         time={meta.time}
         isRead={isRead}
         contextMenuItems={contextMenuItems}
-        onOpenContextMenu={() => onOpenContextMenu?.()}
+        onOpenContextMenu={
+          onOpenContextMenu
+            ? () => onOpenContextMenu(id, isRead!, meta.type)
+            : undefined
+        }
         eventName={meta.eventName}
-        onRead={() => onRead?.()}
+        onRead={() => onRead?.(id, isRead!)}
       />
 
       <div className="euiNotificationEvent__content">

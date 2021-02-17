@@ -6,8 +6,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuPanelProps,
 } from '../../../../src/components/context_menu';
-import { EuiNotificationEvents } from '../../../../src/components/notification/notification_events';
-import { EuiNotificationEventMeta } from '../../../../src/components/notification/notification_event_meta';
+import { EuiNotificationEvent } from '../../../../src/components/notification/notification_event';
 
 export default () => {
   const notificationEventsData = [
@@ -102,30 +101,23 @@ export default () => {
     },
   ];
 
-  const [notifications, setNotifications] = useState(notificationEventsData);
+  const [events, setEvents] = useState(notificationEventsData);
   const [contextMenuItems, setContextMenuItems] = useState<
     EuiContextMenuPanelProps['items']
   >();
-  const [isRead, setIsRead] = useState(false);
-
-  const onReadEvent = () => {
-    setIsRead(!isRead);
-  };
 
   const onRead = (id: string, isRead: boolean) => {
-    const nextState = notifications.map((event) =>
-      event.id === id ? { ...event, isRead: isRead } : event
-    );
+    const nextState = events.map((event) => {
+      return event.id === id ? { ...event, isRead: !isRead } : event;
+    });
 
-    setNotifications(nextState);
+    setEvents(nextState);
   };
 
   const onFilterByType = (type: string) => {
-    const nextState = notifications.filter((event) =>
-      type.includes(event.meta.type)
-    );
+    const nextState = events.filter((event) => type.includes(event.meta.type));
 
-    setNotifications(nextState);
+    setEvents(nextState);
   };
 
   const onOpenContextMenu = (id: string, isRead: boolean, type: string) => {
@@ -150,42 +142,40 @@ export default () => {
     setContextMenuItems(nextContextMenus);
   };
 
-  const contextMenuItemsArray = [
-    <EuiContextMenuItem key="contextMenuItemA" onClick={onReadEvent}>
-      Mark as read
-    </EuiContextMenuItem>,
+  const notificationEvents = events.map((event) => {
+    return (
+      <EuiNotificationEvent
+        key={event.id}
+        id={event.id}
+        meta={event.meta}
+        title={event.title}
+        isRead={event.isRead}
+        primaryAction={event.primaryAction}
+        notifications={event.notifications}
+        onRead={onRead}
+        contextMenuItems={contextMenuItems}
+        onOpenContextMenu={onOpenContextMenu}
+      />
+    );
+  });
 
-    <EuiContextMenuItem key="contextMenuItemB" onClick={() => {}}>
-      View messages like this
-    </EuiContextMenuItem>,
-
-    <EuiContextMenuItem key="contextMenuItemC" onClick={() => {}}>
-      Don’t notify me about this
-    </EuiContextMenuItem>,
-  ];
+  const notificationEventsNoContextMenu = events.map((event) => {
+    return (
+      <EuiNotificationEvent
+        key={event.id}
+        id={event.id}
+        meta={event.meta}
+        title={event.title}
+        isRead={event.isRead}
+        primaryAction={event.primaryAction}
+        notifications={event.notifications}
+        onRead={onRead}
+      />
+    );
+  });
 
   return (
     <>
-      <EuiTitle size="xs">
-        <h3>All props</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiPanel paddingSize="s" hasShadow={true} style={{ maxWidth: '540px' }}>
-        <EuiNotificationEventMeta
-          type="This is a very long type"
-          severity="And a very long severity"
-          badgeColor="danger"
-          iconType="logoCloud"
-          iconAriaLabel="cloud"
-          time="This notification was received 1 min ago. You should check it."
-          isRead={isRead}
-          onRead={onReadEvent}
-          contextMenuItems={contextMenuItemsArray}
-          eventName="event-01"
-        />
-      </EuiPanel>
-      <EuiSpacer />
-
       <EuiTitle size="xs">
         <h3>Events</h3>
       </EuiTitle>
@@ -194,12 +184,7 @@ export default () => {
         paddingSize="none"
         hasShadow={true}
         style={{ maxWidth: '540px' }}>
-        <EuiNotificationEvents
-          events={notifications}
-          onRead={onRead}
-          // onOpenContextMenu={onOpenContextMenu}
-          // contextMenuItems={contextMenuItems}
-        />
+        {notificationEvents}
       </EuiPanel>
       <EuiSpacer />
 
@@ -211,7 +196,7 @@ export default () => {
         paddingSize="none"
         hasShadow={true}
         style={{ maxWidth: '540px' }}>
-        <EuiNotificationEvents events={notifications} onRead={onRead} />
+        {notificationEventsNoContextMenu}
       </EuiPanel>
     </>
   );
