@@ -1,7 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `truncate`, `disabled`, and `emphasize` props to `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Added `truncate` prop to `EuiSideNav` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 - Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+
+**Bug fixes**
+
+- Fixed nested indicator of last `EuiSideNav` item ([#4488](https://github.com/elastic/eui/pull/4488))
+- Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+
+**Theme: Amsterdam**
+
+- Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
 
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 

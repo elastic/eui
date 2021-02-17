@@ -43,7 +43,7 @@ export default () => {
       items: [
         createItem('Advanced settings', {
           items: [
-            createItem('General'),
+            createItem('General', { disabled: true }),
             createItem('Timelion', {
               items: [
                 createItem('Time stuff', {

@@ -1,37 +1,44 @@
 /**
  * 1. Text-align defaults to center, so we have to override that.
- * 2. Need this on the button element to color the underline.
+ * 2. Color the text at the item level and then have the button inherit so overrides are easier
+ * 3. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
+ * 4. Restrict the underline to the button __label so it doesn't affect other components that might live within
  */
+
+
 .euiSideNavItemButton {
   @include euiFontSizeS;
   text-align: left; /* 1 */
   display: block;
   width: 100%;
   padding: $euiSizeXS / 2 0;
-  color: $euiTextColor; /* 2 */
+  color: inherit; /* 2 */
 
-  &.euiSideNavItemButton--isClickable {
-    &:hover .euiSideNavItemButton__label {
-      text-decoration: underline;
+  &.euiSideNavItemButton--isClickable:not(:disabled) {
+    &:hover {
+      cursor: pointer;
     }
 
-    // Focus state background regardless of index/selected state.
+    &:hover,
     &:focus {
-      // sass-lint:disable-block no-important
-      background-color: $euiFocusBackgroundColor !important;
+      .euiSideNavItemButton__label {
+        // A lingering focus will stay underlined even if it doesn't get the `isSelected` prop
+        text-decoration: underline; /* 4 */
+      }
     }
   }
 
   &.euiSideNavItemButton-isSelected {
-    .euiSideNavItemButton__icon {
-      fill: $euiColorPrimary;
-    }
+    color: $euiSideNavSelectedTextcolor;
+    font-weight: $euiFontWeightBold;
 
     .euiSideNavItemButton__label {
-      color: $euiColorPrimary;
-      font-weight: $euiFontWeightBold;
-      text-decoration: underline;
+      text-decoration: underline; /* 4 */
     }
+  }
+
+  &:disabled {
+    @include euiDisabledState;
   }
 }
 
@@ -44,36 +51,16 @@
   margin-right: $euiSizeS;
 }
 
-/**
-  * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
-  */
 .euiSideNavItemButton__labelContainer {
-  min-width: 0; /* 1 */
+  min-width: 0; /* 3 */
 }
 
 .euiSideNavItemButton__label {
-  color: $euiTitleColor;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   flex-grow: 1;
 }
 
-/**
- * 1. Draw the vertical line to group an expanded item's child items together.
- */
-.euiSideNavItem__items {
-  position: relative;
-
-  &:after { /* 1 */
-    position: absolute;
-    content: '';
-    top: 0;
-    bottom: $euiSizeM;
-    width: 1px;
-    background: $euiBorderColor;
-    left: 0;
-  }
+.euiSideNavItemButton__label--truncated {
+  @include euiTextTruncate;
 }
 
 .euiSideNavItem--root {
@@ -94,9 +81,9 @@
 
     .euiSideNavItemButton__label {
       @include euiTitle('xs');
+      color: inherit;
     }
   }
-
 
   & > .euiSideNavItem__items {
     position: static;
@@ -113,6 +100,8 @@
 }
 
 .euiSideNavItem--trunk {
+  color: $euiSideNavRootTextcolor; /* 2 */
+
   /**
    * 1. Create padding around focus area without indenting the item itself.
    */
@@ -131,17 +120,38 @@
 
 .euiSideNavItem--branch {
   /**
-   * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
+  * 1. Draw the vertical line to group an expanded item's child items together.
+  */
+  position: relative;
+  color: $euiSideNavBranchTextcolor; /* 2 */
+
+  &::after { /* 1 */
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: $euiBorderColor;
+    left: 0;
+  }
+
+  // If this is actually the last item, we don't want the vertical line to stretch all the way down
+  &:last-of-type::after {
+    height: $euiSizeM;
+  }
+
+  /**
+   * 2. Absolutely position the horizontal tick connecting the item to the vertical line.
    */
   & > .euiSideNavItemButton {
-    position: relative; /* 1 */
+    position: relative; /* 2 */
     padding-left: $euiSizeS;
-    padding-right: $euiSizeS; /* 1 */
+    padding-right: $euiSizeS; /* 2 */
 
     &:after {
-      position: absolute; /* 1 */
+      position: absolute; /* 2 */
       content: '';
-      top: 50%;
+      top: $euiSizeM;
       left: 0;
       width: $euiSizeXS;
       height: 1px;
@@ -152,13 +162,21 @@
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
   }
-
-  .euiSideNavItemButton__icon {
-    fill: $euiTextSubduedColor;
-  }
-
-  .euiSideNavItemButton__label {
-    color: $euiTextSubduedColor;
-  }
 }
 
+.euiSideNavItem--emphasized {
+  background: $euiSideNavEmphasizedBackgroundColor;
+  color: $euiSideNavRootTextcolor;
+  // The large y values allow the shadow to stretch beyond the side nav bounds to it's parents container
+  box-shadow: 100px 0 0 0 $euiSideNavEmphasizedBackgroundColor, -100px 0 0 0 $euiSideNavEmphasizedBackgroundColor;
+
+  > .euiSideNavItemButton {
+    font-weight: $euiFontWeightBold;
+  }
+
+  // Remove any extra box-shadows from nested emphasized items
+  .euiSideNavItem--emphasized {
+    background: transparent;
+    box-shadow: none;
+  }
+}
