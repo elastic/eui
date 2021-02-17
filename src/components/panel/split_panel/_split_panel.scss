@@ -1,8 +1,19 @@
 .euiSplitPanel {
   overflow: hidden; // Hide backgrounds within border-radius
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  &--row {
+    flex-direction: row;
+
+    &.euiSplitPanel-isResponsive {
+      flex-direction: column;
+    }
+  }
 
   .euiSplitPanel__inner {
-    // remove border from inner panels
     border: none;
+    flex-basis: 0%; // Make sure they're evenly split
   }
 }

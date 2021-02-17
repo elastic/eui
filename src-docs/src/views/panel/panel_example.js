@@ -9,11 +9,14 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiPanel,
-  EuiSplitPanel,
   EuiSpacer,
   EuiText,
   EuiCallOut,
 } from '../../../../src/components';
+import {
+  _EuiSplitPanelOuter,
+  _EuiSplitPanelInner,
+} from '../../../../src/components/panel/split_panel/split_panel';
 
 import { panelConfig } from './playground';
 
@@ -56,6 +59,25 @@ const panelColorSnippet = `<EuiPanel color="subdued" borderRadius="none">
 const panelGrowSnippet = `<EuiPanel grow={false}>
   <!-- Panel whose height won't grow to match -->
 </EuiPanel>`;
+
+const splitPanelSnippet = [
+  `<EuiSplitPanel.Outer>
+  <EuiSplitPanel.Inner>
+    <!-- Top panel content -->
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner color="subdued">
+    <!-- Bottom panel content -->
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>`,
+  `<EuiSplitPanel.Outer direction="row">
+  <EuiSplitPanel.Inner>
+    <!-- Left panel content -->
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner color="subdued">
+    <!-- Right panel content -->
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>`,
+];
 
 export const PanelExample = {
   title: 'Panel',
@@ -186,8 +208,8 @@ export const PanelExample = {
         },
       ],
       text: <p>If you need to...</p>,
-      props: { EuiSplitPanel },
-      // snippet: panelGrowSnippet,
+      props: { _EuiSplitPanelOuter, _EuiSplitPanelInner },
+      snippet: splitPanelSnippet,
       demo: <SplitPanel />,
     },
     {

@@ -17,15 +17,23 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiPanel, PanelProps } from '../panel';
+import { EuiBreakpointSize } from '../../../services/breakpoint';
+import { useIsWithinBreakpoints } from '../../../services/hooks';
 
-const Inner: FunctionComponent<Omit<
+export type _EuiSplitPanelInnerProps = Omit<
   PanelProps,
   'hasShadow' | 'borderRadius'
->> = ({ children, className, ...rest }) => {
-  const classes = classNames('euiInnerPanel', className);
+>;
+
+export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  const classes = classNames('euiSplitPanel__inner', className);
 
   const panelProps: PanelProps = {
     hasShadow: false,
@@ -40,12 +48,41 @@ const Inner: FunctionComponent<Omit<
   );
 };
 
-const Outer: FunctionComponent<Omit<PanelProps, 'paddingSize'>> = ({
+export type _EuiSplitPanelOuterProps = {
+  /**
+   * Any number of #EuiSplitPanelInner components
+   */
+  children?: ReactNode;
+  /**
+   * Changes the flex-direction
+   */
+  direction?: 'column' | 'row';
+  /**
+   * Stacks row display on small screens
+   */
+  responsive?: false | EuiBreakpointSize[];
+} & Omit<PanelProps, 'paddingSize'>;
+
+export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = ({
   children,
   className,
+  direction = 'column',
+  responsive = ['xs', 's'],
   ...rest
 }) => {
-  const classes = classNames('euiSplitPanel', className);
+  const isResponsive = useIsWithinBreakpoints(
+    responsive as EuiBreakpointSize[],
+    !!responsive
+  );
+
+  const classes = classNames(
+    'euiSplitPanel',
+    {
+      'euiSplitPanel--row': direction === 'row',
+      'euiSplitPanel-isResponsive': isResponsive,
+    },
+    className
+  );
 
   return (
     <EuiPanel paddingSize="none" grow={false} className={classes} {...rest}>
@@ -54,4 +91,7 @@ const Outer: FunctionComponent<Omit<PanelProps, 'paddingSize'>> = ({
   );
 };
 
-export const EuiSplitPanel = { Outer, Inner };
+export const EuiSplitPanel = {
+  Outer: _EuiSplitPanelOuter,
+  Inner: _EuiSplitPanelInner,
+};
