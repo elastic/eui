@@ -1,0 +1,148 @@
+# JavaScript-based theming in EUI
+
+The style system to replace Sass and Sass-based design tokens in EUI.
+
+* Theme construction via a Proxy-based system with cascading and computed values
+  * Proxy-based: allows for the theme system to reference its own values (for reuse or for computational manipulation)
+  * Cascading: conceptually similar to Sass, where variable location and order are important
+  * Extendable: allows for appending style variables to the EUI theme structure, scoped to a React context provider
+  * Override-able: all theme tokens/variables can be altered by consumers
+* Theme consumption via React hook and HOC methods
+* Color mode support as first-class consideration
+  * "Light" and "dark" mode (or defined through extensions/overrides) accounting
+  * Theme consumption is scoped to the current color mode (set in the context provider)
+
+
+## Layers of the theme system
+
+### Unbuilt theme
+
+_See `euiThemeDefault`_
+An unbuilt theme is a composed object of style values or `computed` functions.
+
+#### Style values
+
+Think design tokens or CSS property values. Ready to be consumed as-is in an application environment, using some JavaScript method of applying styles (i.e., a CSS-in-JS library is not required).
+
+#### `computed` functions
+
+These properties specify that the value depends upon some other value in the theme, in the shape of:
+
+```js
+computed(
+  ['sizes.euiSize'], // dependency array, referencing other properties in the theme object
+  ([size]) => size * 2 // predicate. What to do with the dependency values
+)
+```
+
+### Theme system (built theme)
+
+_See `EuiThemeDefault`_
+A built theme by way of `buildTheme`, which transforms the object containing static style values and `computed` functions into a JavaScript Proxy object with handler traps. In this state, the theme is essentially inaccessible and immutable, that is, it requires `getComputed` to correctly order and access values and dependencies, and `set()` is disabled.
+
+### Computed theme
+
+_See `EuiThemeContext`_
+A consumable theme object in which all `computed` function values have been computed; all values are accessible and usable in an application environment.
+Returned from `getComputed`, in the shape of:
+
+```js
+getComputed(
+  EuiThemeDefault, // Theme system (Proxy)
+  {}, // Overrides object
+  'light' // Color mode
+)
+```
+
+#### Overrides
+
+Compute-time value overrides for theme property values. Because a theme system is unchangeable, this mechanism allows for changing values at certain points during consumption.
+The overrides object must match the partial shape of the theme system:
+
+```js
+{ 
+  sizes: {
+    euiSize: 4
+  }
+}
+```
+
+#### Color mode
+
+Think light and dark mode. A theme has built-in color mode support, using the `colors` property as a marker:
+
+```js
+colors: {
+  light: {...}
+  dark : {...}
+}
+```
+`getComputed` will only compute and return values in the specified current color mode.
+
+
+## React-specific context
+
+### EuiThemeProvider
+
+Umbrella provider component that holds the various top-level theme configuration option providers: theme system, color mode, overrides; as well as the primary output provider: computed theme.
+The actual computation for computed theme values takes place at this level, where the three inputs are known (theme system, color mode, overrides) and the output (computed theme) can be cached for consumption. Input changes are captured and the output is recomputed.
+
+```js
+<EuiThemeProvider
+  theme={DefaultEuiTheme}
+  colorMode="light"
+  overrides={{}}
+  />
+```
+
+All three props are optional. The default values for EUI will be used in the event that no configuration is provided. Note, however that colorMode switching will require consumers to maintain that app state.
+
+### useEuiTheme
+
+A custom React hook that is returns the computed theme. This hook it little more than a wrapper around the `useContext` hook, accessing three of the top-level providers: computed theme, color mode, and overrides.
+
+```js
+const [theme, colorMode, overrides] = useEuiTheme();
+```
+
+The `theme` variable has TypeScript support, which will result in IDE autocomplete availability.
+
+### WithEuiTheme
+A higher-order-component that wraps `useEuiTheme` for React class components.
+
+
+___
+
+
+## Emotion
+
+[Emotion](https://emotion.sh/docs/introduction) is the CSS-in-JS library currently selected for use in EUI. Nothing in the EUI theming system is dependent upon Emotion packages, but the Emotion ecosystem will have impacts on generated styles.
+
+### Composition
+
+* Prefer the use of [`css` prop](https://emotion.sh/docs/css-prop) construction over [styled-component-like](https://emotion.sh/docs/styled) component construction
+* Babel-based build accommodation
+
+### Testing
+
+Snapshot testing ([as currently configured](https://emotion.sh/docs/testing#writing-a-test)) will result in generic `emotion-${n}` class names with the generated style object as part of the snapshot.
+
+* This seems good for EUI, but it also affects consumers
+  * Consumers will need to use the `@emotion/jest` snapshot serializer to avoid class name churn.
+  * Not ideal; unsure of any other solutions
+* During the conversion process, the snapshot diffs will look less than ideal when using `shallow` (a single wrapper element; DOM itself is unchanged):
+
+```diff
+-  <div
+-    className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
++  <EmotionCssPropInternal
++    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="EuiTableRowCell"
++    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="td"
++    className="euiTableRowCell"
++    style={
++      Object {
++        "width": undefined,
++    }
++      }
+    >
+```
