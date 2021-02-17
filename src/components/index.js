@@ -241,7 +241,10 @@ export {
 
 export { EuiMutationObserver } from './observer/mutation_observer';
 
-export { EuiNotificationEventReadButton } from './notification';
+export {
+  EuiNotificationEventReadButton,
+  EuiNotificationEvent,
+} from './notification';
 
 export { EuiOutsideClickDetector } from './outside_click_detector';
 

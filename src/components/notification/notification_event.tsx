@@ -29,22 +29,41 @@ import {
 } from './notification_event_notifications';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiContextMenuPanelProps } from '../context_menu';
-import { EuiLink, EuiLinkProps } from '../link';
+import { EuiLink } from '../link';
 
-export type EuiNotificationEventTitleProps = EuiLinkProps & {
+export type EuiNotificationEventPrimaryActionProps = EuiButtonEmptyProps & {
   label: string;
 };
 
 export type EuiNotificationEventProps = {
   id: string;
-  meta: EuiNotificationEventMetaProps;
-  title: EuiNotificationEventTitleProps;
-  isRead?: boolean | undefined;
-  primaryAction?: EuiButtonEmptyProps;
-  notifications: EuiNotificationEventNotificationsProps['notifications'];
-
   /**
-   * Returns the `id` and `isRead` of the clicked event read button
+   * See #EuiNotificationEventMeta
+   */
+  meta: EuiNotificationEventMetaProps;
+  /**
+   * The title of the event
+   */
+  title: string;
+  /**
+   * Returns the `id` and applies an `onClick` handler to the title
+   */
+  onClickTitle: (id: string) => void;
+  /**
+   * Shows an indicator of the read state of the event
+   */
+  isRead?: boolean | undefined;
+  /**
+   * See #EuiNotificationEventPrimaryAction
+   */
+  primaryAction?: EuiNotificationEventPrimaryActionProps;
+  /**
+   * Returns the `id` and applies an `onClick` handler to the `primaryAction`
+   */
+  onClickPrimaryAction?: (id: string) => void;
+  notifications: EuiNotificationEventNotificationsProps['notifications'];
+  /**
+   * Returns the `id` and `isRead` state. Applies an `onClick` handler to the `read` indicator.
    */
   onRead?: (id: string, isRead: boolean) => void;
   /**
@@ -67,6 +86,8 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   onRead,
   contextMenuItems,
   onOpenContextMenu,
+  onClickTitle,
+  onClickPrimaryAction,
 }) => {
   const classes = classNames('euiNotificationEvent', {
     'euiNotificationEvent--withReadState': typeof isRead === 'boolean',
@@ -97,15 +118,21 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
       />
 
       <div className="euiNotificationEvent__content">
-        <EuiLink {...title} className={classesTitle}>
-          {title.label}
+        <EuiLink className={classesTitle} onClick={() => onClickTitle(id)}>
+          {title}
         </EuiLink>
 
         <EuiNotificationEventNotifications notifications={notifications} />
 
         {primaryAction && (
           <div className="euiNotificationEvent__primaryAction">
-            <EuiButtonEmpty flush="left" size="s" {...primaryAction} />
+            <EuiButtonEmpty
+              flush="left"
+              size="s"
+              {...primaryAction}
+              onClick={() => onClickPrimaryAction?.(id)}>
+              {primaryAction.label}
+            </EuiButtonEmpty>
           </div>
         )}
       </div>

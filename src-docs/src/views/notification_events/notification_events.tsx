@@ -19,16 +19,11 @@ export default () => {
         eventName: 'alert-critical-01',
         time: 'This notification was received 1 min ago. You should check it.',
       },
-      title: {
-        label:
-          '[APM 500 Server errors] is now active and the title is very long so it should wrap',
-        href: '#',
-      },
+      title:
+        '[APM 500 Server errors] is now active and the title is very long so it should wrap',
+
       primaryAction: {
-        onClick: () => {
-          console.log('go to');
-        },
-        children: 'View and go',
+        label: 'View and go',
       },
       notifications: [
         'The request completed at 12:32:33 GMT+4',
@@ -46,10 +41,7 @@ export default () => {
         eventName: 'alert-warning-01',
         time: 'This notification was received 1 min ago',
       },
-      title: {
-        label: '[Maps] Geo Alert',
-        href: '#',
-      },
+      title: '[Maps] Geo Alert',
       notifications: [
         'The request completed at 12:32:33 GMT+4',
         'The request completed at 12:32:33 GMT+4',
@@ -65,14 +57,10 @@ export default () => {
         eventName: 'report-01',
         time: '2 min ago',
       },
-      title: {
-        label: '[Error Monitoring Report] is generated',
-        href: '#',
-      },
+      title: '[Error Monitoring Report] is generated',
       primaryAction: {
-        href: 'http://www.elastic.co',
         iconType: 'download',
-        children: 'Download',
+        label: 'Download',
       },
       notifications: [
         'The reported was generated at 17:12:16 GMT+4 and due to a error it was was generated again at 17:13:17 GMT+4',
@@ -87,15 +75,7 @@ export default () => {
         eventName: 'report-01',
         time: '2 min ago',
       },
-      title: {
-        label: '[Error Monitoring Report] is generated',
-        href: '#',
-      },
-      primaryAction: {
-        href: 'http://www.elastic.co',
-        iconType: 'download',
-        children: 'Download',
-      },
+      title: '[Error Monitoring Report] is generated',
       notifications: ['The reported was generated at 17:12:16 GMT+4'],
       isRead: false,
     },
@@ -142,6 +122,14 @@ export default () => {
     setContextMenuItems(nextContextMenus);
   };
 
+  const onClickEventTitle = (id: string) => {
+    console.log(`title with id "${id}" was clicked`);
+  };
+
+  const onClickEventPrimaryAction = (id: string) => {
+    console.log(`primary action with id "${id}" was clicked`);
+  };
+
   const notificationEvents = events.map((event) => {
     return (
       <EuiNotificationEvent
@@ -155,6 +143,8 @@ export default () => {
         onRead={onRead}
         contextMenuItems={contextMenuItems}
         onOpenContextMenu={onOpenContextMenu}
+        onClickTitle={onClickEventTitle}
+        onClickPrimaryAction={onClickEventPrimaryAction}
       />
     );
   });
@@ -170,6 +160,8 @@ export default () => {
         primaryAction={event.primaryAction}
         notifications={event.notifications}
         onRead={onRead}
+        onClickTitle={onClickEventTitle}
+        onClickPrimaryAction={onClickEventPrimaryAction}
       />
     );
   });

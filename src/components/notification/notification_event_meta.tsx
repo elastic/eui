@@ -33,7 +33,7 @@ import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventMetaProps = Omit<
   EuiNotificationEventReadButtonProps,
-  'isRead' | 'onClick'
+  'isRead' | 'onClick' | 'color'
 > & {
   /**
    * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
