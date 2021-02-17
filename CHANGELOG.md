@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added exports for all EUI component prps matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
+- Added exports for all EUI component props matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
 
 **Breaking changes**
 
