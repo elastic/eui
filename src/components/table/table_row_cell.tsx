@@ -95,7 +95,7 @@ interface EuiTableRowCellMobileOptionsShape {
   width?: CSSProperties['width'];
 }
 
-interface EuiTableRowCellProps {
+export interface EuiTableRowCellProps {
   /**
    * Indicates if the column is dedicated to icon-only actions (currently
    * affects mobile only)

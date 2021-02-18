@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiExpression } from './expression';
+export { EuiExpression, EuiExpressionProps } from './expression';
