@@ -38,7 +38,6 @@ import {
   QuickSelect,
   QuickSelectPanel,
 } from '../../types';
-import { htmlIdGenerator } from '../../../../services';
 
 export interface EuiQuickSelectPopoverProps {
   applyRefreshInterval?: ApplyRefreshInterval;
@@ -183,7 +182,6 @@ export class EuiQuickSelectPopover extends Component<
 
     return (
       <EuiPopover
-        id={htmlIdGenerator()()}
         button={quickSelectButton}
         isOpen={isOpen}
         closePopover={this.closePopover}
