@@ -33,5 +33,18 @@ export default () => (
       initials="En"
       initialsLength={2}
     />
+    <EuiSpacer />
+    <EuiTitle size="xs">
+      <h4>Disabled Type</h4>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiAvatar
+      size="m"
+      type="space"
+      name="Disabled Button"
+      initials="Di"
+      initialsLength={2}
+      isDisabled={true}
+    />
   </div>
 );
