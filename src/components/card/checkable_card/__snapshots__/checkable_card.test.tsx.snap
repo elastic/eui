@@ -2,7 +2,7 @@
 
 exports[`EuiCheckableCard is rendered 1`] = `
 <div
-  class="euiCheckableCard euiCheckableCard--shadow euiCheckableCard--borderRadiusMedium testClass1 testClass2"
+  class="euiCheckableCard euiCheckableCard--hasShadow euiCheckableCard--borderRadiusMedium testClass1 testClass2"
 >
   <div
     class="euiCheckableCard__row"
@@ -37,7 +37,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
 
 exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 <div
-  class="euiCheckableCard euiCheckableCard--shadow euiCheckableCard--borderRadiusMedium testClass1 testClass2"
+  class="euiCheckableCard euiCheckableCard--hasShadow euiCheckableCard--borderRadiusMedium testClass1 testClass2"
 >
   <div
     class="euiCheckableCard__row"

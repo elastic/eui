@@ -23,6 +23,6 @@ export {
   EuiFlexGroupGutterSize,
 } from './flex_group';
 
-export { EuiFlexGrid } from './flex_grid';
+export { EuiFlexGrid, EuiFlexGridProps } from './flex_grid';
 
-export { EuiFlexItem } from './flex_item';
+export { EuiFlexItem, EuiFlexItemProps } from './flex_item';

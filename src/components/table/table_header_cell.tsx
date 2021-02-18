@@ -40,7 +40,7 @@ import { EuiI18n } from '../i18n';
 
 export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
-type Props = CommonProps &
+export type EuiTableHeaderCellProps = CommonProps &
   Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {
     align?: HorizontalAlignment;
     /**
@@ -81,7 +81,7 @@ type Props = CommonProps &
     width?: string | number;
   };
 
-export const EuiTableHeaderCell: FunctionComponent<Props> = ({
+export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   children,
   align = LEFT_ALIGNMENT,
   onSort,

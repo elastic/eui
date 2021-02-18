@@ -1,6 +1,23 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.7.0`.
+- Reverted part of [#4509](https://github.com/elastic/eui/pull/4509) and returned `EuiDataGrid`'s background content area to an empty shade ([#4542](https://github.com/elastic/eui/pull/4542))
+- Added exports for all EUI component props matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
+- Added `truncate`, `disabled`, and `emphasize` props to `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Added `truncate` prop to `EuiSideNav` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+- Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+
+**Bug fixes**
+
+- Fixed nested indicator of last `EuiSideNav` item ([#4488](https://github.com/elastic/eui/pull/4488))
+- Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Fixed blurry animation of popovers in Chrome ([#4527](https://github.com/elastic/eui/pull/4527))
+- Fixed styles of `disabled` times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
+- Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
+
+**Theme: Amsterdam**
+
+- Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
 
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 

@@ -74,7 +74,7 @@ type BadgeProps = {
   title?: string;
 } & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
-type EuiBetaBadgeProps = CommonProps &
+export type EuiBetaBadgeProps = CommonProps &
   Omit<HTMLAttributes<HTMLSpanElement>, 'title'> &
   BadgeProps;
 

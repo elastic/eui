@@ -17,7 +17,7 @@
  * under the License.
  */
 
-export { EuiHeaderSection } from './header_section';
+export { EuiHeaderSection, EuiHeaderSectionProps } from './header_section';
 
 export {
   EuiHeaderSectionItem,

@@ -24,12 +24,12 @@ import { EuiInnerText } from '../inner_text';
 
 import { IconType, EuiIcon } from '../icon';
 
-type Props = CommonProps &
+export type EuiTableHeaderButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     iconType?: IconType;
   };
 
-export const EuiTableHeaderButton: FunctionComponent<Props> = ({
+export const EuiTableHeaderButton: FunctionComponent<EuiTableHeaderButtonProps> = ({
   children,
   className,
   iconType,
