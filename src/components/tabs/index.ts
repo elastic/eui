@@ -17,7 +17,7 @@
  * under the License.
  */
 
-export { EuiTab } from './tab';
+export { EuiTab, EuiTabProps } from './tab';
 export { EuiTabs, EuiTabsProps } from './tabs';
 export {
   EuiTabbedContent,

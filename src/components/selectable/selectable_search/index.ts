@@ -17,4 +17,7 @@
  * under the License.
  */
 
-export { EuiSelectableSearch } from './selectable_search';
+export {
+  EuiSelectableSearch,
+  EuiSelectableSearchProps,
+} from './selectable_search';

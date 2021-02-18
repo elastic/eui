@@ -23,7 +23,7 @@ import { CommonProps } from '../../common';
 
 import { EuiContextMenuItem } from '../../context_menu';
 
-interface Props extends CommonProps {
+export interface EuiTableSortMobileItemProps extends CommonProps {
   /**
    * Callback to know when an item has been clicked
    */
@@ -40,7 +40,7 @@ interface Props extends CommonProps {
   ariaLabel?: string;
 }
 
-export const EuiTableSortMobileItem: FunctionComponent<Props> = ({
+export const EuiTableSortMobileItem: FunctionComponent<EuiTableSortMobileItemProps> = ({
   children,
   onSort,
   isSorted,
