@@ -180,8 +180,14 @@ export default () => {
   // Difference is due to automatic colorMode reduction during value computation.
   // Makes typing slightly inconvenient, but makes consuming values very convenient.
   type ExtensionsUncomputed = {
-    colors: { light: { myColor: string } };
-    custom: { colors: { light: { customColor: string } }; mySize: number };
+    colors: { light: { myColor: string }; dark: { myColor: string } };
+    custom: {
+      colors: {
+        light: { customColor: string };
+        dark: { customColor: string };
+      };
+      mySize: number;
+    };
   };
   type ExtensionsComputed = {
     colors: { myColor: string };
@@ -195,8 +201,18 @@ export default () => {
         euiColorPrimary: '#F56407',
         myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
       },
+      dark: {
+        euiColorPrimary: '#FA924F',
+        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+      },
     },
-    custom: { colors: { light: { customColor: '#080AEF' } }, mySize: 5 },
+    custom: {
+      colors: {
+        light: { customColor: '#080AEF' },
+        dark: { customColor: '#087EEF' },
+      },
+      mySize: 5,
+    },
   };
 
   const Extend = () => {
