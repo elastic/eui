@@ -1,7 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-<<<<<<< HEAD
-No public interface changes since `31.7.0`.
+- Added `below` as an option for `invalidCallout` prop of `EuiForm` to render callout at the bottom ([#4497](https://github.com/elastic/eui/pull/4497))
 
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 
@@ -16,9 +15,6 @@ No public interface changes since `31.7.0`.
 ## [`31.6.0`](https://github.com/elastic/eui/tree/v31.6.0)
 
 - Migrated dependency `axe-puppeteer v1.1.1` to `@axe-core/puppeteer v4.1.1` ([#4482](https://github.com/elastic/eui/pull/4482))
-=======
-- Added `below` as an option for `invalidCallout` prop of `EuiForm` to render callout at the bottom ([#4497](https://github.com/elastic/eui/pull/4497))
->>>>>>> updated docs
 - Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
 - Added `paddingSize` prop to `EuiFlyout` ([#4448](https://github.com/elastic/eui/pull/4448))
 - Added `size='l'` prop to `EuiTabs` ([#4501](https://github.com/elastic/eui/pull/4501))

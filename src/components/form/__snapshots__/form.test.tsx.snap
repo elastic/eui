@@ -63,7 +63,9 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     <div
       class="euiText euiText--small"
     >
-      <ul>
+      <ul
+        tabindex="-1"
+      >
         <li
           class="euiForm__error"
         >
@@ -107,7 +109,9 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     <div
       class="euiText euiText--small"
     >
-      <ul>
+      <ul
+        tabindex="-1"
+      >
         <li
           class="euiForm__error"
         >

@@ -8,7 +8,6 @@ import {
   EuiTextArea,
   EuiFieldText,
   EuiSpacer,
-  EuiButtonGroup,
 } from '../../../../src/components';
 
 export default () => {
@@ -33,25 +32,9 @@ export default () => {
     ];
   }
 
-  const [calloutPosition, setCalloutPosition] = useState('above');
-
   return (
     <Fragment>
-      <EuiButtonGroup
-        legend="sets callout position in the form"
-        options={[
-          { id: 'above', label: 'Show callout above form' },
-          { id: 'below', label: 'Show callout below form' },
-        ]}
-        idSelected={calloutPosition}
-        onChange={setCalloutPosition}
-      />
-      <EuiSpacer />
-
-      <EuiForm
-        isInvalid={showErrors}
-        error={errors}
-        invalidCallout={calloutPosition}>
+      <EuiForm isInvalid={showErrors} error={errors}>
         <EuiFormRow label="Validation only" isInvalid={showErrors}>
           <EuiFieldText name="first" isInvalid={showErrors} />
         </EuiFormRow>
@@ -80,8 +63,8 @@ export default () => {
         </EuiFormRow>
 
         <EuiSpacer />
+
         {button}
-        <EuiSpacer />
       </EuiForm>
     </Fragment>
   );
