@@ -7,6 +7,7 @@
 - Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 - Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 - Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox` ([#4516](https://github.com/elastic/eui/pull/4516))
+- Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4551](https://github.com/elastic/eui/pull/4551))
 
 **Bug fixes**
 
