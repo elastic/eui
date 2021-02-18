@@ -1,9 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Reverted part of [#4509](https://github.com/elastic/eui/pull/4509) and returned `EuiDataGrid`'s background content area to an empty shade ([#4542](https://github.com/elastic/eui/pull/4542))
 - Added exports for all EUI component props matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
 - Added `truncate`, `disabled`, and `emphasize` props to `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Added `truncate` prop to `EuiSideNav` ([#4488](https://github.com/elastic/eui/pull/4488))
-- Reverted part of [#4509](https://github.com/elastic/eui/pull/4509) and returned `EuiDataGrid`'s background content area to an empty shade ([#4542](https://github.com/elastic/eui/pull/4542))
+- Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+- Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 
 **Bug fixes**
 
