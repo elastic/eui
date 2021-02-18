@@ -11,6 +11,7 @@
 - Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Fixed blurry animation of popovers in Chrome ([#4527](https://github.com/elastic/eui/pull/4527))
 - Fixed styles of `disabled` times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
+- Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
 
 **Theme: Amsterdam**
 
