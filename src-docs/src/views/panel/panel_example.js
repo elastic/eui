@@ -129,9 +129,11 @@ export const PanelExample = {
             title="Certain allowed combinations of shadow, border, and color depend on the current theme.">
             <p>
               For instance, only plain or transparent panels can have a border
-              and/or shadow. And the Amsterdam theme doesn&apos;t allow
-              combining the <EuiCode>hasBorder</EuiCode> option with{' '}
-              <EuiCode>hasShadow</EuiCode>.
+              and/or shadow. The Amsterdam theme doesn&apos;t allow combining
+              the <EuiCode>hasBorder</EuiCode> option with{' '}
+              <EuiCode>hasShadow</EuiCode>. The default theme only allows
+              removing the border if both <EuiCode>hasShadow</EuiCode> and{' '}
+              <EuiCode>hasBorder</EuiCode> are set to <EuiCode>false</EuiCode>.
             </p>
           </EuiCallOut>
         </>
