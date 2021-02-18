@@ -21,14 +21,14 @@ import { createContext } from 'react';
 import {
   EuiThemeColorMode,
   EuiThemeSystem,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeComputed,
 } from './types';
 import { EuiThemeDefault } from './theme';
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
 export const EuiSystemContext = createContext<EuiThemeSystem>(EuiThemeDefault);
-export const EuiOverrideContext = createContext<EuiThemeOverrides>({});
+export const EuiModificationsContext = createContext<EuiThemeModifications>({});
 export const EuiColorModeContext = createContext<EuiThemeColorMode>(
   DEFAULT_COLOR_MODE
 );

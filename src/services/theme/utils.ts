@@ -19,7 +19,7 @@
 
 import {
   EuiThemeColorMode,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeSystem,
   EuiThemeShape,
   EuiThemeComputed,
@@ -108,7 +108,7 @@ export class Computed<T> {
 
   getValue(
     base: EuiThemeSystem | EuiThemeShape,
-    overrides: EuiThemeOverrides = {},
+    modifications: EuiThemeModifications = {},
     working: EuiThemeComputed,
     colorMode: EuiThemeColorMode
   ) {
@@ -116,7 +116,7 @@ export class Computed<T> {
       this.dependencies.map((dependency) => {
         return (
           getOn(working, dependency, colorMode) ??
-          getOn(overrides, dependency, colorMode) ??
+          getOn(modifications, dependency, colorMode) ??
           getOn(base, dependency, colorMode)
         );
       })

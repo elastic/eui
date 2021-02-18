@@ -36,7 +36,7 @@ export type EuiThemeSystem<T = {}> = {
   key: string;
 };
 
-export type EuiThemeOverrides<T = {}> = RecursivePartial<EuiThemeShape & T>;
+export type EuiThemeModifications<T = {}> = RecursivePartial<EuiThemeShape & T>;
 
 type Colorless<T> = RecursiveOmit<T, 'colors'>;
 // I don't like this.

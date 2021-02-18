@@ -30,7 +30,7 @@ import {
   computed,
   euiThemeDefault,
   buildTheme,
-  EuiThemeOverrides,
+  EuiThemeModifications,
 } from '../../../../src/services';
 
 const View = () => {
@@ -85,7 +85,7 @@ const View3 = () => {
       <View />
 
       <EuiSpacer />
-      <EuiThemeProvider overrides={overrides}>
+      <EuiThemeProvider modify={overrides}>
         <em>Overriding primary</em>
         <View />
       </EuiThemeProvider>
@@ -108,7 +108,7 @@ const View2 = () => {
   return (
     <>
       <EuiSpacer />
-      <EuiThemeProvider overrides={overrides}>
+      <EuiThemeProvider modify={overrides}>
         <em>Overriding secondary</em>
         <View />
       </EuiThemeProvider>
@@ -188,8 +188,8 @@ export default () => {
     custom: { colors: { customColor: string }; mySize: number };
   };
 
-  // Type (EuiThemeOverrides<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
-  const extend: EuiThemeOverrides<ExtensionsUncomputed> = {
+  // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
+  const extend: EuiThemeModifications<ExtensionsUncomputed> = {
     colors: {
       light: {
         euiColorPrimary: '#F56407',
@@ -247,7 +247,7 @@ export default () => {
       <EuiThemeProvider
         // theme={DefaultEuiTheme}
         // colorMode={colorMode}
-        overrides={overrides}>
+        modify={overrides}>
         <button type="button" onClick={toggleTheme}>
           <del>Toggle Color Mode!</del> Use global config
         </button>
@@ -275,7 +275,7 @@ export default () => {
       </EuiThemeProvider>
       <EuiSpacer />
       {/* Generic type is not necessary here. Note that it should be the uncomputed type */}
-      <EuiThemeProvider<ExtensionsUncomputed> overrides={extend}>
+      <EuiThemeProvider<ExtensionsUncomputed> modify={extend}>
         <em>Extensions</em>
         <Extend />
       </EuiThemeProvider>
