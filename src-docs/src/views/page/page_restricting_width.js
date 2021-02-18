@@ -24,6 +24,7 @@ export default ({ button = <></>, content, sideNav }) => {
         />
 
         <EuiPageContent
+          hasBorder={false}
           hasShadow={false}
           paddingSize="none"
           color="transparent"

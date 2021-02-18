@@ -95,6 +95,7 @@ const GuidePageComponent = ({
         hasShadow={false}
         paddingSize="none"
         color="transparent"
+        hasBorder={false}
         borderRadius="none">
         <EuiPageContentBody restrictWidth>
           <main>

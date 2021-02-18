@@ -235,6 +235,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
             <EuiPageContent
+              hasBorder={false}
               hasShadow={false}
               paddingSize={'none'}
               color={'transparent'}
@@ -260,6 +261,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               />
             )}
             <EuiPageContent
+              hasBorder={false}
               hasShadow={false}
               paddingSize={'none'}
               color={'transparent'}
@@ -293,6 +295,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             )}
             <EuiPageContent
               hasShadow={false}
+              hasBorder={false}
               paddingSize={'none'}
               color={'transparent'}
               borderRadius={'none'}
