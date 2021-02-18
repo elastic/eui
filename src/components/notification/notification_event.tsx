@@ -48,7 +48,7 @@ export type EuiNotificationEventProps = {
   /**
    * Returns the `id` and applies an `onClick` handler to the title
    */
-  onClickTitle: (id: string) => void;
+  onClickTitle?: (id: string) => void;
   /**
    * Shows an indicator of the read state of the event
    */
@@ -118,9 +118,13 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
       />
 
       <div className="euiNotificationEvent__content">
-        <EuiLink className={classesTitle} onClick={() => onClickTitle(id)}>
-          {title}
-        </EuiLink>
+        {onClickTitle ? (
+          <EuiLink className={classesTitle} onClick={() => onClickTitle(id)}>
+            {title}
+          </EuiLink>
+        ) : (
+          <span className={classesTitle}>{title}</span>
+        )}
 
         <EuiNotificationEventNotifications notifications={notifications} />
 

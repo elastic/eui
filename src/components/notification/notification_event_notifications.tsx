@@ -21,6 +21,7 @@ import React, { FunctionComponent } from 'react';
 import { EuiAccordion } from '../accordion';
 import { htmlIdGenerator } from '../../services';
 import { useEuiI18n } from '../i18n';
+import { EuiText } from '../text';
 
 export type EuiNotificationEventNotificationsProps = {
   /*
@@ -43,7 +44,9 @@ export const EuiNotificationEventNotifications: FunctionComponent<EuiNotificatio
   return (
     <div className="euiNotificationEventNotifications">
       {notifications && notifications.length === 1 ? (
-        notifications
+        <EuiText size="s">
+          <p>{notifications}</p>
+        </EuiText>
       ) : (
         <EuiAccordion
           id={htmlIdGenerator()()}

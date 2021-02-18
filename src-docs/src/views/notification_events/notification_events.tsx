@@ -63,20 +63,23 @@ export default () => {
         label: 'Download',
       },
       notifications: [
-        'The reported was generated at 17:12:16 GMT+4 and due to a error it was was generated again at 17:13:17 GMT+4',
+        'The reported was generated at 17:12:16 GMT+4 and due to an error it was was generated again at 17:13:17 GMT+4',
       ],
       isRead: false,
     },
     {
       id: 'notificationD',
       meta: {
-        type: 'Alert',
-        iconType: 'logoKibana',
-        eventName: 'report-01',
+        type: 'News',
+        iconType: 'logoElastic',
+        eventName: 'news-01',
         time: '2 min ago',
+        badgeColor: 'accent',
       },
-      title: '[Error Monitoring Report] is generated',
-      notifications: ['The reported was generated at 17:12:16 GMT+4'],
+      title: 'Search more, spend less',
+      notifications: [
+        'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
+      ],
       isRead: false,
     },
   ];
@@ -131,6 +134,9 @@ export default () => {
   };
 
   const notificationEvents = events.map((event) => {
+    const newsTitle =
+      event.meta.type === 'News' ? undefined : onClickEventTitle;
+
     return (
       <EuiNotificationEvent
         key={event.id}
@@ -143,8 +149,8 @@ export default () => {
         onRead={onRead}
         contextMenuItems={contextMenuItems}
         onOpenContextMenu={onOpenContextMenu}
-        onClickTitle={onClickEventTitle}
         onClickPrimaryAction={onClickEventPrimaryAction}
+        onClickTitle={newsTitle!}
       />
     );
   });
@@ -160,7 +166,7 @@ export default () => {
         primaryAction={event.primaryAction}
         notifications={event.notifications}
         onRead={onRead}
-        onClickTitle={onClickEventTitle}
+        // onClickTitle={onClickEventTitle}
         onClickPrimaryAction={onClickEventPrimaryAction}
       />
     );
