@@ -23,7 +23,6 @@ export default ({ button = <></>, content }) => (
         hasShadow={false}
         style={{ display: 'flex' }}>
         <EuiPageContent
-          restrictWidth
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="none"
