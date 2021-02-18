@@ -74,7 +74,7 @@ export function EuiThemeProvider<T = {}>({
   );
 
   const [theme, setTheme] = useState(
-    Object.keys(parentTheme).length
+    isParentTheme.current && Object.keys(parentTheme).length
       ? parentTheme
       : getComputed(
           system,
