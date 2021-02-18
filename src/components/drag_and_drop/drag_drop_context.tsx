@@ -30,13 +30,15 @@ import {
 
 type EuiDraggingType = string | null;
 
-interface EuiDraggingContext {
+export interface EuiDragDropContextProps {
   isDraggingType: EuiDraggingType;
 }
 
-export const EuiDragDropContextContext = createContext<EuiDraggingContext>({
-  isDraggingType: null,
-});
+export const EuiDragDropContextContext = createContext<EuiDragDropContextProps>(
+  {
+    isDraggingType: null,
+  }
+);
 
 export const EuiDragDropContext: FunctionComponent<DragDropContextProps> = ({
   onBeforeDragStart,

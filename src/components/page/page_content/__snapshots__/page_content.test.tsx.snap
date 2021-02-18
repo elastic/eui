@@ -3,7 +3,7 @@
 exports[`EuiPageContent is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--shadow euiPageContent testClass1 testClass2"
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

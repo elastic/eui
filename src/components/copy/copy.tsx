@@ -22,7 +22,7 @@ import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
-interface EuiCopyProps
+export interface EuiCopyProps
   extends CommonProps,
     Partial<Omit<EuiToolTipProps, 'children'>> {
   /**

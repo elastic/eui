@@ -39,7 +39,7 @@ export interface I18nShape {
 const I18nContext: React.Context<I18nShape> = createContext({});
 const { Provider: EuiI18nProvider, Consumer: EuiI18nConsumer } = I18nContext;
 
-interface EuiContextProps {
+export interface EuiContextProps {
   i18n: I18nShape;
   /**
    * ReactNode to render as this component's content

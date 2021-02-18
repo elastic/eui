@@ -17,9 +17,12 @@
  * under the License.
  */
 
-export { EuiDragDropContext } from './drag_drop_context';
-export { EuiDraggable } from './draggable';
-export { EuiDroppable } from './droppable';
+export {
+  EuiDragDropContext,
+  EuiDragDropContextProps,
+} from './drag_drop_context';
+export { EuiDraggable, EuiDraggableProps } from './draggable';
+export { EuiDroppable, EuiDroppableProps } from './droppable';
 export {
   euiDragDropCopy,
   euiDragDropMove,

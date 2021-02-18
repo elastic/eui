@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiContext, EuiI18nConsumer } from './context';
+export { EuiContext, EuiI18nConsumer, EuiContextProps } from './context';

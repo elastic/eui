@@ -17,4 +17,7 @@
  * under the License.
  */
 
-export { EuiOutsideClickDetector } from './outside_click_detector';
+export {
+  EuiOutsideClickDetector,
+  EuiOutsideClickDetectorProps,
+} from './outside_click_detector';
