@@ -319,6 +319,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               />
             )}
             <EuiPageContent
+              hasBorder={pageHeader === undefined ? false : undefined}
               hasShadow={false}
               paddingSize={'none'}
               color={'plain'}
