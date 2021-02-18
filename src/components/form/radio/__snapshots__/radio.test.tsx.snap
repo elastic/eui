@@ -74,7 +74,7 @@ exports[`EuiRadio props label is rendered 1`] = `
 
 exports[`EuiRadio props labelProps is rendered 1`] = `
 <div
-  class="euiRadio euiRadio--noLabel testClass1 testClass2"
+  class="euiRadio"
 >
   <input
     class="euiRadio__input"
@@ -84,6 +84,14 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
   <div
     class="euiRadio__circle"
   />
+  <label
+    aria-label="aria-label"
+    class="euiRadio__label testClass1 testClass2"
+    data-test-subj="test subject string"
+    for="id"
+  >
+    Label
+  </label>
 </div>
 `;
 

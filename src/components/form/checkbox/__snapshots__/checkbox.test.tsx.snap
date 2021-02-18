@@ -74,7 +74,7 @@ exports[`EuiCheckbox props label is rendered 1`] = `
 
 exports[`EuiCheckbox props labelProps is rendered 1`] = `
 <div
-  class="euiCheckbox euiCheckbox--noLabel"
+  class="euiCheckbox"
 >
   <input
     class="euiCheckbox__input"
@@ -84,6 +84,14 @@ exports[`EuiCheckbox props labelProps is rendered 1`] = `
   <div
     class="euiCheckbox__square"
   />
+  <label
+    aria-label="aria-label"
+    class="euiCheckbox__label testClass1 testClass2"
+    data-test-subj="test subject string"
+    for="id"
+  >
+    Label
+  </label>
 </div>
 `;
 

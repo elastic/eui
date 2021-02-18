@@ -67,7 +67,12 @@ describe('EuiRadio', () => {
 
     test('labelProps is rendered', () => {
       const component = render(
-        <EuiRadio id="id" onChange={() => {}} labelProps={requiredProps} />
+        <EuiRadio
+          id="id"
+          onChange={() => {}}
+          label="Label"
+          labelProps={requiredProps}
+        />
       );
 
       expect(component).toMatchSnapshot();

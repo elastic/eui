@@ -77,8 +77,7 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
       'euiRadio--noLabel': !label,
       'euiRadio--compressed': compressed,
     },
-    className,
-    labelProps?.className
+    className
   );
   const labelClasses = classNames('euiRadio__label', labelProps?.className);
   let optionalLabel;

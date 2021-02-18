@@ -63,7 +63,11 @@ describe('EuiCheckbox', () => {
 
     test('labelProps is rendered', () => {
       const component = render(
-        <EuiCheckbox {...checkboxRequiredProps} labelProps={requiredProps} />
+        <EuiCheckbox
+          {...checkboxRequiredProps}
+          label="Label"
+          labelProps={requiredProps}
+        />
       );
 
       expect(component).toMatchSnapshot();

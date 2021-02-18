@@ -84,7 +84,7 @@ exports[`EuiSwitch is rendered 1`] = `
 </div>
 `;
 
-exports[`labelProps is rendered 1`] = `
+exports[`EuiSwitch labelProps is rendered 1`] = `
 <div
   class="euiSwitch"
 >
