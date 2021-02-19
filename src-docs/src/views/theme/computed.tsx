@@ -1,20 +1,16 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { tint, shade } from '../../../../src/services/theme/theme';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiCode } from '../../../../src/components/code';
-import {
-  computed,
-  EuiThemeProvider,
-  useEuiTheme,
-} from '../../../../src/services';
+import { EuiText } from '../../../../src/components/text';
+import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const [theme] = useEuiTheme();
 
   return (
-    <div
+    <EuiText
       css={{
-        background: theme.colors.euiColorHighlight,
+        background: theme.colors.euiFocusBackgroundColor,
         padding: theme.sizes.euiSizeXL,
         color: theme.colors.euiColorPrimaryText,
       }}>
@@ -22,7 +18,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
         <EuiIcon type="stopFilled" color={theme.colors.euiColorPrimary} />{' '}
         {children}
       </p>
-    </div>
+    </EuiText>
   );
 };
 
@@ -31,22 +27,9 @@ export default () => {
     colors: {
       light: {
         euiColorPrimary: '#db1dde',
-        euiColorHighlight: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => tint(euiColorPrimary, 0.8)
-        ),
-        // Hmm, can't add a custom key?
-        euiColorPrimaryBackground: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => tint(euiColorPrimary, 0.8)
-        ),
       },
       dark: {
         euiColorPrimary: '#e378e4',
-        euiColorHighlight: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => shade(euiColorPrimary, 0.8)
-        ),
       },
     },
   };
@@ -56,13 +39,9 @@ export default () => {
       <EuiThemeProvider overrides={primaryOverrides}>
         <Box>
           The <EuiCode>euiColorPrimary</EuiCode> color has been changed to{' '}
-          <EuiCode>#db1dde</EuiCode> and so in turn has{' '}
-          <EuiCode>euiColorPrimaryText</EuiCode>.
-          <br />
-          <br />
-          The background of this div is an adjustment to the{' '}
-          <EuiCode>euiColorHighlight</EuiCode> key and is a computed value made
-          from the new <EuiCode>euiColorPrimary</EuiCode>.
+          <EuiCode>#db1dde</EuiCode> (<EuiCode>#e378e4</EuiCode> for dark mode)
+          and so the calculated values of <EuiCode>euiColorPrimaryText</EuiCode>{' '}
+          and <EuiCode>euiFocusBackgroundColor</EuiCode> have also been updated.
         </Box>
       </EuiThemeProvider>
     </div>

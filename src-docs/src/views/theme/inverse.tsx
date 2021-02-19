@@ -30,7 +30,7 @@ export default () => {
       <EuiSpacer />
       <EuiThemeProvider colorMode="dark">
         <Box>
-          <EuiIcon type="faceSad" /> The colors of this box are will always be
+          <EuiIcon type="faceHappy" /> The colors of this box are will always be
           in <strong>dark</strong> mode
         </Box>
       </EuiThemeProvider>

@@ -32,6 +32,10 @@ import Computed from './computed';
 const computedSource = require('!!raw-loader!./computed');
 const computedHtml = renderToHtml(Computed);
 
+import CreateComputed from './create_computed';
+const createComputedSource = require('!!raw-loader!./create_computed');
+const createComputedHtml = renderToHtml(CreateComputed);
+
 export const ThemeExample = {
   title: 'Theme provider',
   intro: (
@@ -177,24 +181,45 @@ export const ThemeExample = {
         <>
           <p>
             The benefit of EUI&apos;s theme structure is that it only hard-codes
-            a few color and size variables. The rest are computed values based
-            on this base few. Therefore, when you update a core variable, this
-            will cascade into the other computed values.
+            a few color and size variables. The rest are{' '}
+            <strong>computed</strong> values based on this base few. When you
+            update a core variable, this will cascade into the other computed
+            values.
           </p>
           <p>
             For instance, we compute text variants of our base colors. So
-            locally overriding the <EuiCode>euiColorPrimaryText</EuiCode> color
-            will automatically cascade to the{' '}
-            <EuiCode>euiColorPrimaryText</EuiCode>. You can however, directly
-            override computed values as well by passing a custom value to this
-            theme variable.
-          </p>
-          <p>
-            You can also create your own computed values as well by using ....
+            locally overriding the <EuiCode>euiColorPrimary</EuiCode> color will
+            automatically cascade to the <EuiCode>euiColorPrimaryText</EuiCode>.
+            You can however, directly override computed values as well by
+            passing a custom value to this theme variable.
           </p>
         </>
       ),
       demo: <Computed />,
+    },
+    {
+      title: 'Creating custom keys',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: createComputedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: createComputedHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Because of the computed values and possible cascade effects, it may
+            not be advisable to locally <strong>override</strong> any EUI
+            specific theme variables. Instead, you should append custom keys to
+            the theme.
+          </p>
+        </>
+      ),
+      demo: <CreateComputed />,
     },
   ],
 };
