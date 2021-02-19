@@ -20,8 +20,6 @@
 
 .euiAvatar--disabled {
   cursor: not-allowed;
-  color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2) !important; // sass-lint:disable-line no-important
-  background-color: $euiButtonColorDisabled !important; // sass-lint:disable-line no-important
   filter: grayscale(100%);
 }
 
