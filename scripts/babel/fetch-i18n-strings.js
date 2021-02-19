@@ -34,8 +34,8 @@ function handleHookPath(path) {
         highlighting,
         loc: path.node.loc,
       });
-    })
-    return symbols
+    });
+    return symbols;
   }
 
   if (arguments[0].type !== 'StringLiteral') return symbols;
