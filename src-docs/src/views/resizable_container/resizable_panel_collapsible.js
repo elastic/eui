@@ -9,6 +9,7 @@ import {
   EuiSpacer,
   EuiPage,
 } from '../../../../src/components';
+import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { fake } from 'faker';
 
 const texts = [];
@@ -52,6 +53,9 @@ export default () => {
     />
   ));
 
+  const isMobile = useIsWithinBreakpoints(['xs', 's']);
+  const style = isMobile ? { height: '100%' } : { minHeight: '100%' };
+
   return (
     <>
       <EuiText>
@@ -59,7 +63,9 @@ export default () => {
       </EuiText>
       <EuiSpacer />
       <EuiPage paddingSize="none">
-        <EuiResizableContainer style={{ height: '320px' }}>
+        <EuiResizableContainer
+          direction={isMobile ? 'vertical' : 'horizontal'}
+          style={{ height: '400px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
               <EuiResizablePanel
@@ -72,7 +78,7 @@ export default () => {
               <EuiResizableButton />
 
               <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
-                <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+                <EuiPanel paddingSize="l" style={style}>
                   <EuiTitle>
                     <p>{itemSelected.label}</p>
                   </EuiTitle>
