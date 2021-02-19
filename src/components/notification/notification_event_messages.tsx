@@ -23,38 +23,38 @@ import { htmlIdGenerator } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiText } from '../text';
 
-export type EuiNotificationEventNotificationsProps = {
+export type EuiNotificationEventMessagesProps = {
   /*
   An array of strings
   */
-  notifications: string[];
+  messages: string[];
 };
 
-export const EuiNotificationEventNotifications: FunctionComponent<EuiNotificationEventNotificationsProps> = ({
-  notifications,
+export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEventMessagesProps> = ({
+  messages,
 }) => {
   const accordionButtonText = useEuiI18n(
-    'euiNotificationEventNotifications.notificationsLength',
-    '+ {notificationsLength} notifications',
+    'euiNotificationEventMessages.messagesLength',
+    '+ {messagesLength} messages',
     {
-      notificationsLength: notifications.length,
+      messagesLength: messages.length,
     }
   );
 
   return (
-    <div className="euiNotificationEventNotifications">
-      {notifications && notifications.length === 1 ? (
+    <div className="euiNotificationEventMessages">
+      {messages && messages.length === 1 ? (
         <EuiText size="s">
-          <p>{notifications}</p>
+          <p>{messages}</p>
         </EuiText>
       ) : (
         <EuiAccordion
           id={htmlIdGenerator()()}
-          className="euiNotificationEventNotifications__accordion"
+          className="euiNotificationEventMessages__accordion"
           buttonContent={accordionButtonText}
           arrowDisplay="none">
-          <div className="euiNotificationEventNotifications__accordionContent">
-            {notifications.map((notification, index) => (
+          <div className="euiNotificationEventMessages__accordionContent">
+            {messages.map((notification, index) => (
               <p key={index}>{notification}</p>
             ))}
           </div>

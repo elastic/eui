@@ -24,9 +24,9 @@ import {
   EuiNotificationEventMetaProps,
 } from './notification_event_meta';
 import {
-  EuiNotificationEventNotifications,
-  EuiNotificationEventNotificationsProps,
-} from './notification_event_notifications';
+  EuiNotificationEventMessages,
+  EuiNotificationEventMessagesProps,
+} from './notification_event_messages';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiContextMenuPanelProps } from '../context_menu';
 import { EuiLink } from '../link';
@@ -61,7 +61,10 @@ export type EuiNotificationEventProps = {
    * Returns the `id` and applies an `onClick` handler to the `primaryAction`
    */
   onClickPrimaryAction?: (id: string) => void;
-  notifications: EuiNotificationEventNotificationsProps['notifications'];
+  /**
+   * Notification messages as an array of strings
+   */
+  messages: EuiNotificationEventMessagesProps['messages'];
   /**
    * Returns the `id` and `isRead` state. Applies an `onClick` handler to the `read` indicator.
    */
@@ -82,7 +85,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   title,
   isRead,
   primaryAction,
-  notifications,
+  messages,
   onRead,
   contextMenuItems,
   onOpenContextMenu,
@@ -126,7 +129,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
           <span className={classesTitle}>{title}</span>
         )}
 
-        <EuiNotificationEventNotifications notifications={notifications} />
+        <EuiNotificationEventMessages messages={messages} />
 
         {primaryAction && (
           <div className="euiNotificationEvent__primaryAction">

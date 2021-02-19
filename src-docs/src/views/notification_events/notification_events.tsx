@@ -25,7 +25,7 @@ export default () => {
       primaryAction: {
         label: 'View and go',
       },
-      notifications: [
+      messages: [
         'The request completed at 12:32:33 GMT+4',
         'The request completed at 12:32:33 GMT+4',
         'A background request started at 12:32:33 GMT+4',
@@ -42,7 +42,7 @@ export default () => {
         time: 'This notification was received 1 min ago',
       },
       title: '[Maps] Geo Alert',
-      notifications: [
+      messages: [
         'The request completed at 12:32:33 GMT+4',
         'The request completed at 12:32:33 GMT+4',
         'A background request started at 12:32:33 GMT+4',
@@ -62,7 +62,7 @@ export default () => {
         iconType: 'download',
         label: 'Download',
       },
-      notifications: [
+      messages: [
         'The reported was generated at 17:12:16 GMT+4 and due to an error it was was generated again at 17:13:17 GMT+4',
       ],
       isRead: false,
@@ -77,7 +77,7 @@ export default () => {
         badgeColor: 'accent',
       },
       title: 'Search more, spend less',
-      notifications: [
+      messages: [
         'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
       ],
       isRead: false,
@@ -145,7 +145,7 @@ export default () => {
         title={event.title}
         isRead={event.isRead}
         primaryAction={event.primaryAction}
-        notifications={event.notifications}
+        messages={event.messages}
         onRead={onRead}
         contextMenuItems={contextMenuItems}
         onOpenContextMenu={onOpenContextMenu}
@@ -164,7 +164,7 @@ export default () => {
         title={event.title}
         isRead={event.isRead}
         primaryAction={event.primaryAction}
-        notifications={event.notifications}
+        messages={event.messages}
         onRead={onRead}
         // onClickTitle={onClickEventTitle}
         onClickPrimaryAction={onClickEventPrimaryAction}
