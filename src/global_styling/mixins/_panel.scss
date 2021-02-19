@@ -12,8 +12,13 @@
         flex-grow: 0;
       }
 
-      &#{$selector}--shadow {
+      &#{$selector}--noBorder {
+        border: none;
+      }
+
+      &#{$selector}--hasShadow {
         @include euiBottomShadowSmall;
+        border: $euiBorderThin;
       }
 
       &#{$selector}--isClickable {
@@ -41,9 +46,9 @@
       }
 
       // Background colors
-      @each $modifier, $amount in $euiPanelBackgroundColorModifiers {
+      @each $modifier, $color in $euiPanelBackgroundColorModifiers {
         &#{$selector}--#{$modifier} {
-          background-color: $amount;
+          background-color: $color;
         }
       }
     }

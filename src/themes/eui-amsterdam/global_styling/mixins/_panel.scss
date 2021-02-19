@@ -9,8 +9,13 @@
         flex-grow: 0;
       }
 
-      &#{$selector}--shadow {
+      &#{$selector}--hasShadow {
         @include euiBottomShadowMedium;
+      }
+
+      &#{$selector}--hasBorder {
+        border: $euiBorderThin;
+        box-shadow: none;
       }
 
       &#{$selector}--isClickable {
