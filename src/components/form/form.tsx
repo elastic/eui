@@ -61,11 +61,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   if (error) {
     const errorTexts = Array.isArray(error) ? error : [error];
     optionalErrors = (
-      <ul
-        tabIndex={-1}
-        ref={(node) => {
-          node && node.focus();
-        }}>
+      <ul>
         {errorTexts.map((error, index) => (
           <li className="euiForm__error" key={index}>
             {error}
@@ -84,6 +80,10 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
         default="Please address the highlighted errors.">
         {(addressFormErrors: string) => (
           <EuiCallOut
+            tabIndex={-1}
+            ref={(node) => {
+              node && node.focus();
+            }}
             className="euiForm__errors"
             title={addressFormErrors}
             color="danger"
