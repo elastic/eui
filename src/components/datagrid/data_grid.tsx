@@ -941,7 +941,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   );
 
   // need to safely access those Web APIs
-  if (typeof window !== 'undefined') {
+  if (typeof document !== 'undefined') {
     // When data grid is full screen, we add a class to the body to remove the extra scrollbar
     if (isFullScreen) {
       document.body.classList.add('euiDataGrid__restrictBody');
