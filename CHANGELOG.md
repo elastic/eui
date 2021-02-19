@@ -16,6 +16,7 @@
 - Fixed styles of `disabled` times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
 - Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
 - Removed static `id` from `EuiQuickSelectPopover` ([#4543](https://github.com/elastic/eui/pull/4543))
+- Fixed support sever side rendering for `EuiDataGrid` ([#4540](https://github.com/elastic/eui/pull/4540))
 
 **Theme: Amsterdam**
 
