@@ -134,7 +134,7 @@ export const useContainerCallbacks = ({
     state: EuiResizableContainerState,
     action: EuiResizableContainerAction
   ): EuiResizableContainerState {
-    const getContainerSize = (isHorizontal?: boolean) => {
+    const getContainerSize = (isHorizontal: boolean) => {
       return isHorizontal
         ? containerRef.current!.getBoundingClientRect().width
         : containerRef.current!.getBoundingClientRect().height;
