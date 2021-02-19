@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { useMemo, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
@@ -58,7 +58,7 @@ export const EuiResizableCollapseButton: FunctionComponent<EuiResizableCollapseB
   isCollapsed,
   ...rest
 }) => {
-  const isHorizontal = direction === 'horizontal';
+  const isHorizontal = useMemo(() => direction === 'horizontal', [direction]);
 
   const classes = classNames(
     'euiResizableToggleButton',

@@ -21,6 +21,7 @@ import React, {
   ReactNode,
   ReactElement,
   useEffect,
+  useMemo,
   useRef,
   useCallback,
   CSSProperties,
@@ -101,7 +102,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isHorizontal = direction === containerDirections.horizontal;
+  const isHorizontal = useMemo(
+    () => direction === containerDirections.horizontal,
+    [direction]
+  );
 
   const classes = classNames(
     'euiResizableContainer',
@@ -118,14 +122,14 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     onPanelWidthChange,
   });
 
-  const initialize = useCallback(() => {
-    actions.initContainer();
-  }, [actions]);
-
   const containerSize = useResizeObserver(
     containerRef.current,
     isHorizontal ? 'width' : 'height'
   );
+
+  const initialize = useCallback(() => {
+    actions.initContainer(isHorizontal);
+  }, [actions, isHorizontal]);
 
   useEffect(() => {
     if (containerSize.width > 0 && containerSize.height > 0) {
