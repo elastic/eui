@@ -81,6 +81,9 @@ export default () => {
         'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
       ],
       isRead: false,
+      primaryAction: {
+        label: 'View and go',
+      },
     },
   ];
 
