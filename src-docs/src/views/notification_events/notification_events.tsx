@@ -134,7 +134,7 @@ export default () => {
   };
 
   const notificationEvents = events.map((event) => {
-    const newsTitle =
+    const onClickNoNewsTitles =
       event.meta.type === 'News' ? undefined : onClickEventTitle;
 
     return (
@@ -150,12 +150,15 @@ export default () => {
         contextMenuItems={contextMenuItems}
         onOpenContextMenu={onOpenContextMenu}
         onClickPrimaryAction={onClickEventPrimaryAction}
-        onClickTitle={newsTitle!}
+        onClickTitle={onClickNoNewsTitles!}
       />
     );
   });
 
   const notificationEventsNoContextMenu = events.map((event) => {
+    const onClickNoNewsTitles =
+      event.meta.type === 'News' ? undefined : onClickEventTitle;
+
     return (
       <EuiNotificationEvent
         key={event.id}
@@ -166,7 +169,7 @@ export default () => {
         primaryAction={event.primaryAction}
         messages={event.messages}
         onRead={onRead}
-        // onClickTitle={onClickEventTitle}
+        onClickTitle={onClickNoNewsTitles}
         onClickPrimaryAction={onClickEventPrimaryAction}
       />
     );
