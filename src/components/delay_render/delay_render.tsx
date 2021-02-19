@@ -19,7 +19,7 @@
 
 import { Component } from 'react';
 
-interface EuiDelayRenderProps {
+export interface EuiDelayRenderProps {
   delay: number;
 }
 

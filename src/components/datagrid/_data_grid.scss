@@ -33,7 +33,7 @@
   max-width: 100%;
   width: 100%;
   z-index: 2; // Sits above the pagination below it, but below the controls above it
-  background: $euiColorLightestShade;
+  background: $euiColorEmptyShade;
 }
 
 .euiDataGrid__controls {

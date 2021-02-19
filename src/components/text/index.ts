@@ -18,5 +18,5 @@
  */
 
 export { EuiText, EuiTextProps } from './text';
-export { EuiTextColor } from './text_color';
-export { EuiTextAlign } from './text_align';
+export { EuiTextColor, EuiTextColorProps } from './text_color';
+export { EuiTextAlign, EuiTextAlignProps } from './text_align';

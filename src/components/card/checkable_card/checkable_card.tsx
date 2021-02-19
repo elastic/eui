@@ -64,7 +64,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   const { id } = rest;
   const classes = classNames(
     'euiCheckableCard',
-    'euiCheckableCard--shadow', // For matching EuiPanel mixin
+    'euiCheckableCard--hasShadow', // For matching EuiPanel mixin
     'euiCheckableCard--borderRadiusMedium', // For matching EuiPanel mixin
     {
       'euiCheckableCard-isChecked': checked,

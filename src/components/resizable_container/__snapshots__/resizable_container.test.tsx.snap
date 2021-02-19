@@ -12,7 +12,7 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Testing
     </div>
@@ -30,7 +30,7 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--plain euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       123
     </div>
@@ -50,7 +50,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Testing
     </div>
@@ -68,7 +68,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       123
     </div>
@@ -88,7 +88,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     style="width:100%;height:50%"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Testing
     </div>
@@ -106,7 +106,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     style="width:100%;height:50%"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       123
     </div>
@@ -126,7 +126,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     style="width:33%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Testing
     </div>
@@ -144,7 +144,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     style="width:33%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       123
     </div>
@@ -162,7 +162,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     style="width:33%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       And again
     </div>
@@ -182,7 +182,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Testing
     </div>
@@ -200,7 +200,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       123
     </div>
@@ -220,7 +220,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
     style="width:20%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Sidebar
     </div>
@@ -238,7 +238,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
     style="width:80%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Sidebar content
     </div>
@@ -258,7 +258,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Testing
     </div>
@@ -276,7 +276,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
     style="width:50%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       123
     </div>
@@ -296,7 +296,7 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
     style="width:20%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Sidebar
     </div>
@@ -314,7 +314,7 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
     style="width:80%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable"
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
     >
       Sidebar content
     </div>

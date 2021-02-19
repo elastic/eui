@@ -83,3 +83,46 @@ exports[`EuiSwitch is rendered 1`] = `
   </span>
 </div>
 `;
+
+exports[`EuiSwitch labelProps is rendered 1`] = `
+<div
+  class="euiSwitch"
+>
+  <button
+    aria-checked="false"
+    aria-labelledby="generated-id"
+    class="euiSwitch__button"
+    id="generated-id"
+    role="switch"
+    type="button"
+  >
+    <span
+      class="euiSwitch__body"
+    >
+      <span
+        class="euiSwitch__thumb"
+      />
+      <span
+        class="euiSwitch__track"
+      >
+        <span
+          class="euiSwitch__icon"
+          data-euiicon-type="cross"
+        />
+        <span
+          class="euiSwitch__icon euiSwitch__icon--checked"
+          data-euiicon-type="check"
+        />
+      </span>
+    </span>
+  </button>
+  <span
+    aria-label="aria-label"
+    class="euiSwitch__label testClass1 testClass2"
+    data-test-subj="test subject string"
+    id="generated-id"
+  >
+    Label
+  </span>
+</div>
+`;
