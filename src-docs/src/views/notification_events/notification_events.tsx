@@ -108,7 +108,7 @@ export default () => {
       <EuiContextMenuItem
         key="contextMenuItemA"
         onClick={() => onRead(id, isRead)}>
-        Mark as read
+        {isRead ? ' Mark as unread' : 'Mark as read'}
       </EuiContextMenuItem>,
 
       <EuiContextMenuItem
