@@ -1,9 +1,0 @@
-$euiPanelBackgroundColorModifiers: (
-  'plain':   $euiColorEmptyShade,
-  'subdued': $euiColorLightestShade,
-  'accent':  tintOrShade($euiColorAccent, 90%, 70%),
-  'primary': tintOrShade($euiColorPrimary, 90%, 70%),
-  'success': tintOrShade($euiColorSecondary, 90%, 70%),
-  'warning': tintOrShade($euiColorWarning, 90%, 70%),
-  'danger':  tintOrShade($euiColorDanger, 90%, 70%),
-);
