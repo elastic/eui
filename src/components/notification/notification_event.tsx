@@ -131,7 +131,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
 
         <EuiNotificationEventMessages messages={messages} />
 
-        {primaryAction && (
+        {onClickPrimaryAction && primaryAction && (
           <div className="euiNotificationEvent__primaryAction">
             <EuiButtonEmpty
               flush="left"
