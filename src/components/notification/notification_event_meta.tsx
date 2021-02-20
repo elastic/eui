@@ -17,13 +17,22 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useState, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  ReactNode,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
 import { EuiIcon, IconType } from '../icon';
 import { EuiBadge, EuiBadgeProps } from '../badge';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
-import { EuiContextMenuPanel, EuiContextMenuPanelProps } from '../context_menu';
+import {
+  EuiContextMenuItem,
+  EuiContextMenuItemProps,
+  EuiContextMenuPanel,
+} from '../context_menu';
 import { EuiI18n } from '../i18n';
 import {
   EuiNotificationEventReadButton,
@@ -65,13 +74,11 @@ export type EuiNotificationEventMetaProps = Omit<
    */
   time: ReactNode;
   /**
-   * An array of context menu items. See #EuiContextMenuItem
-   */
-  contextMenuItems?: EuiContextMenuPanelProps['items'];
-  /**
    * Necessary to trigger onOpenContextMenu from EuiNotificationEvent
    */
-  onOpenContextMenu?: () => void;
+  onOpenContextMenu?: () => Array<
+    ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>
+  >;
   /**
    * Applies an `onClick` handler to the `read` indicator.
    */
@@ -89,13 +96,15 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   eventName,
   iconAriaLabel,
   onOpenContextMenu,
-  contextMenuItems = [],
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const classes = classNames('euiNotificationEventMeta', {
-    'euiNotificationEventMeta--hasContextMenu':
-      onOpenContextMenu || contextMenuItems.length > 0,
+    'euiNotificationEventMeta--hasContextMenu': onOpenContextMenu,
   });
+
+  const [contextMenuItems, setContextMenuItems] = useState<
+    ReturnType<NonNullable<typeof onOpenContextMenu>>
+  >([]);
 
   const id = htmlIdGenerator()();
 
@@ -109,7 +118,9 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
 
   const onOpenPopover = () => {
     setIsPopoverOpen(!isPopoverOpen);
-    onOpenContextMenu?.();
+    if (onOpenContextMenu) {
+      setContextMenuItems(onOpenContextMenu());
+    }
   };
 
   return (
@@ -138,7 +149,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         <span className="euiNotificationEventMeta__time">{time}</span>
       </div>
 
-      {(onOpenContextMenu || contextMenuItems.length > 0) && (
+      {onOpenContextMenu && (
         <div className="euiNotificationEventMeta__contextMenuWrapper">
           <EuiPopover
             id={id}
@@ -169,7 +180,9 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
               </EuiI18n>
             }
             closePopover={() => setIsPopoverOpen(false)}>
-            <EuiContextMenuPanel items={contextMenuItems} />
+            <div onClick={() => setIsPopoverOpen(false)}>
+              <EuiContextMenuPanel items={contextMenuItems} />
+            </div>
           </EuiPopover>
         </div>
       )}

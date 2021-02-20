@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiTitle } from '../../../../src/components/title';
 import { EuiSpacer } from '../../../../src/components/spacer';
-import {
-  EuiContextMenuItem,
-  EuiContextMenuPanelProps,
-} from '../../../../src/components/context_menu';
+import { EuiContextMenuItem } from '../../../../src/components/context_menu';
 import { EuiNotificationEvent } from '../../../../src/components/notification/notification_event';
 
 export default () => {
@@ -85,9 +82,6 @@ export default () => {
   ];
 
   const [events, setEvents] = useState(notificationEventsData);
-  const [contextMenuItems, setContextMenuItems] = useState<
-    EuiContextMenuPanelProps['items']
-  >();
 
   const onRead = (id: string, isRead: boolean) => {
     const nextState = events.map((event) => {
@@ -103,12 +97,17 @@ export default () => {
     setEvents(nextState);
   };
 
-  const onOpenContextMenu = (id: string, isRead: boolean, type: string) => {
-    const nextContextMenus = [
+  const onOpenContextMenu = (id: string) => {
+    const {
+      isRead,
+      meta: { type },
+    } = events.find(({ id: eventId }) => eventId === id)!;
+
+    return [
       <EuiContextMenuItem
         key="contextMenuItemA"
         onClick={() => onRead(id, isRead)}>
-        {isRead ? ' Mark as unread' : 'Mark as read'}
+        {isRead ? 'Mark as unread' : 'Mark as read'}
       </EuiContextMenuItem>,
 
       <EuiContextMenuItem
@@ -121,8 +120,6 @@ export default () => {
         Don’t notify me about this
       </EuiContextMenuItem>,
     ];
-
-    setContextMenuItems(nextContextMenus);
   };
 
   const onClickEventTitle = (id: string) => {
@@ -147,7 +144,6 @@ export default () => {
         primaryAction={event.primaryAction}
         messages={event.messages}
         onRead={onRead}
-        contextMenuItems={contextMenuItems}
         onOpenContextMenu={onOpenContextMenu}
         onClickPrimaryAction={onClickEventPrimaryAction}
         onClickTitle={onClickNoNewsTitles!}

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
 import {
   EuiNotificationEventMeta,
@@ -28,8 +28,8 @@ import {
   EuiNotificationEventMessagesProps,
 } from './notification_event_messages';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
-import { EuiContextMenuPanelProps } from '../context_menu';
 import { EuiLink } from '../link';
+import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
 
 export type EuiNotificationEventPrimaryActionProps = EuiButtonEmptyProps & {
   label: string;
@@ -70,13 +70,11 @@ export type EuiNotificationEventProps = {
    */
   onRead?: (id: string, isRead: boolean) => void;
   /**
-   * An array of context menu items. See #EuiContextMenuItem
+   * Provided the `id` of the event aand must return an array of #EuiContextMenuItem elements
    */
-  contextMenuItems?: EuiContextMenuPanelProps['items'];
-  /**
-   * Returns the `id`, `isRead` ad `type` of the open context menu
-   */
-  onOpenContextMenu?: (id: string, isRead: boolean, type: string) => void;
+  onOpenContextMenu?: (
+    id: string
+  ) => Array<ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>>;
 };
 
 export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> = ({
@@ -87,7 +85,6 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   primaryAction,
   messages,
   onRead,
-  contextMenuItems,
   onOpenContextMenu,
   onClickTitle,
   onClickPrimaryAction,
@@ -110,11 +107,8 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
         iconAriaLabel={meta.iconAriaLabel}
         time={meta.time}
         isRead={isRead}
-        contextMenuItems={contextMenuItems}
         onOpenContextMenu={
-          onOpenContextMenu
-            ? () => onOpenContextMenu(id, isRead!, meta.type)
-            : undefined
+          onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
         }
         eventName={meta.eventName}
         onRead={() => onRead?.(id, isRead!)}
