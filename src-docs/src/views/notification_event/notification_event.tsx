@@ -64,7 +64,7 @@ const notificationEventsData = [
 ];
 
 export default () => {
-  const [event, setEvent] = useState(notificationEventsData[0]);
+  const [event, setEvent] = useState<any>(notificationEventsData[0]);
   const [contextMenuItems, setContextMenuItems] = useState<
     EuiContextMenuPanelProps['items']
   >();
