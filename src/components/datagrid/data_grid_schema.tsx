@@ -101,13 +101,13 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
-        default="True-False"
+        default="False-True"
       />
     ),
     sortTextDesc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextDesc"
-        default="False-True"
+        default="True-False"
       />
     ),
   },
