@@ -35,7 +35,7 @@ export default () => (
     />
     <EuiSpacer />
     <EuiTitle size="xs">
-      <h4>Disabled Type</h4>
+      <h4>Disabled</h4>
     </EuiTitle>
     <EuiSpacer />
     <EuiAvatar
@@ -44,6 +44,22 @@ export default () => (
       name="Disabled Button"
       initials="Di"
       initialsLength={2}
+      isDisabled={true}
+    />
+    &emsp;
+    <EuiAvatar
+      size="m"
+      type="user"
+      name="User"
+      initials="En"
+      initialsLength={2}
+      isDisabled={true}
+    />
+    &emsp;
+    <EuiAvatar
+      size="m"
+      name="Cat"
+      imageUrl="https://source.unsplash.com/64x64/?cat"
       isDisabled={true}
     />
   </div>

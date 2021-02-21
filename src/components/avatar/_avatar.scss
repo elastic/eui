@@ -18,7 +18,7 @@
   border-radius: $euiBorderRadius;
 }
 
-.euiAvatar--disabled {
+.euiAvatar-isDisabled {
   cursor: not-allowed;
   filter: grayscale(100%);
 }
