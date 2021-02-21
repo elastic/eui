@@ -382,6 +382,11 @@ export class EuiSelectable<T = {}> extends Component<
     }
   };
 
+  scrollToItem = () => {
+    const optionsList = this.optionsListRef.current;
+    if (optionsList) return optionsList.setListRef(optionsList.listRef);
+  };
+
   render() {
     const {
       id,
