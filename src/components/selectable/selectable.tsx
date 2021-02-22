@@ -269,20 +269,6 @@ export class EuiSelectable<T = {}> extends Component<
         }
         break;
 
-      case keys.HOME:
-        event.preventDefault();
-        event.stopPropagation();
-        this.setState({ activeOptionIndex: 0 });
-        break;
-
-      case keys.END:
-        event.preventDefault();
-        event.stopPropagation();
-        this.setState({
-          activeOptionIndex: this.state.visibleOptions.length - 1,
-        });
-        break;
-
       default:
         this.setState({ activeOptionIndex: undefined }, this.onFocus);
         break;

@@ -21,6 +21,7 @@ import React, {
   FunctionComponent,
   ChangeEventHandler,
   HTMLAttributes,
+  LabelHTMLAttributes,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
@@ -37,6 +38,10 @@ export interface RadioProps {
   checked?: boolean;
   disabled?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  /**
+   * Object of props passed to the <label/>
+   */
+  labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
 
 interface idWithLabel extends RadioProps {
@@ -63,6 +68,7 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   disabled,
   compressed,
   autoFocus,
+  labelProps,
   ...rest
 }) => {
   const classes = classNames(
@@ -73,12 +79,12 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
     },
     className
   );
-
+  const labelClasses = classNames('euiRadio__label', labelProps?.className);
   let optionalLabel;
 
   if (label) {
     optionalLabel = (
-      <label className="euiRadio__label" htmlFor={id}>
+      <label {...labelProps} className={labelClasses} htmlFor={id}>
         {label}
       </label>
     );
@@ -97,7 +103,6 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
         disabled={disabled}
         autoFocus={autoFocus}
       />
-
       <div className="euiRadio__circle" />
 
       {optionalLabel}

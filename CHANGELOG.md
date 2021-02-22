@@ -6,14 +6,18 @@
 - Added `truncate` prop to `EuiSideNav` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 - Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+- Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox` ([#4516](https://github.com/elastic/eui/pull/4516))
 
 **Bug fixes**
 
+- Removed home and end key configured behavior from `EuiSelectable` ([#4560](https://github.com/elastic/eui/pull/4560))
 - Fixed nested indicator of last `EuiSideNav` item ([#4488](https://github.com/elastic/eui/pull/4488))
 - Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Fixed blurry animation of popovers in Chrome ([#4527](https://github.com/elastic/eui/pull/4527))
 - Fixed styles of `disabled` times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
 - Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
+- Removed static `id` from `EuiQuickSelectPopover` ([#4543](https://github.com/elastic/eui/pull/4543))
+- Fixed support sever side rendering for `EuiDataGrid` ([#4540](https://github.com/elastic/eui/pull/4540))
 
 **Theme: Amsterdam**
 

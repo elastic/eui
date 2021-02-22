@@ -22,6 +22,7 @@ import React, {
   ChangeEventHandler,
   ReactNode,
   InputHTMLAttributes,
+  LabelHTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -50,6 +51,10 @@ export interface EuiCheckboxProps
    */
   compressed?: boolean;
   indeterminate?: boolean;
+  /**
+   * Object of props passed to the <label/>
+   */
+  labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
 
 export class EuiCheckbox extends Component<EuiCheckboxProps> {
@@ -82,6 +87,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       compressed,
       indeterminate,
       inputRef,
+      labelProps,
       ...rest
     } = this.props;
 
@@ -94,12 +100,15 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       },
       className
     );
-
+    const labelClasses = classNames(
+      'euiCheckbox__label',
+      labelProps?.className
+    );
     let optionalLabel;
 
     if (label) {
       optionalLabel = (
-        <label className="euiCheckbox__label" htmlFor={id}>
+        <label {...labelProps} className={labelClasses} htmlFor={id}>
           {label}
         </label>
       );
