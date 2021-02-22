@@ -41,7 +41,7 @@ export default () => (
     <EuiAvatar
       size="m"
       type="space"
-      name="Disabled Button"
+      name="Disabled"
       initials="Di"
       initialsLength={2}
       isDisabled={true}
