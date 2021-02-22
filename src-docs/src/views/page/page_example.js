@@ -119,7 +119,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: pageNewSource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -217,7 +217,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageRestricingWidthSource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -278,7 +278,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageCenteredBodySource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -339,7 +339,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageCenteredContentSource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -396,7 +396,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageSimpleSource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -446,7 +446,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageSimpleCenteredBodySource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -493,7 +493,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageSimpleEmptyContentSource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,
@@ -537,7 +537,7 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageCustomContentSource,
-          displayName: 'Custom JS',
+          displayName: 'Component JS',
         },
         {
           type: GuideSectionTypes.HTML,

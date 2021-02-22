@@ -92,8 +92,8 @@ export const PageDemo: FunctionComponent<{
       <EuiTextAlign textAlign="right">
         <EuiSpacer />
         <EuiSwitch
-          label="Showing template version"
-          checked={showTemplate}
+          label="Show with individual components"
+          checked={!showTemplate}
           onChange={() => setShowTemplate((showing) => !showing)}
         />
       </EuiTextAlign>
