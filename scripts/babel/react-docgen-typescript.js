@@ -19,6 +19,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const gc = require('expose-gc/function');
+const fs = require('fs');
 const propsParser = require('react-docgen-typescript');
 const template = require('@babel/template');
 const ts = require('typescript');
@@ -49,12 +50,17 @@ function buildProgram() {
 buildProgram();
 
 if (isDevelopment) {
-  chokidar
-    .watch(['./src', './src-docs'], {
+  const watched = chokidar
+    .watch(['./src/**/*.(ts|tsx)', './src-docs/**/*.(ts|tsx)'], {
       ignoreInitial: true, // don't emit `add` event during file discovery
+      ignored: ['__snapshots__', /\.test\./],
     })
     .on('add', buildProgram)
-    .on('change', buildProgram);
+    .on('change', buildProgram)
+    .on('ready', () => {
+      console.log(watched.getWatched());
+      fs.writeFileSync('/Users/chanderprall/projects/eui/watched', JSON.stringify(watched.getWatched(), null, 2));
+    });
 }
 
 module.exports = function({ types }) {
