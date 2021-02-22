@@ -8,6 +8,7 @@ import {
   EuiTitle,
   EuiSpacer,
   EuiPage,
+  EuiCode,
 } from '../../../../src/components';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { fake } from 'faker';
@@ -63,9 +64,7 @@ export default () => {
       </EuiText>
       <EuiSpacer />
       <EuiPage paddingSize="none">
-        <EuiResizableContainer
-          direction={isMobile ? 'vertical' : 'horizontal'}
-          style={{ height: '400px' }}>
+        <EuiResizableContainer style={{ height: '320px' }}>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
               <EuiResizablePanel
@@ -78,7 +77,7 @@ export default () => {
               <EuiResizableButton />
 
               <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
-                <EuiPanel paddingSize="l" style={style}>
+                <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
                   <EuiTitle>
                     <p>{itemSelected.label}</p>
                   </EuiTitle>
@@ -154,6 +153,46 @@ export default () => {
 
               <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                  <EuiTitle>
+                    <p>{itemSelected.label}</p>
+                  </EuiTitle>
+                  <EuiSpacer />
+                  <EuiText>{itemSelected.text}</EuiText>
+                </EuiPanel>
+              </EuiResizablePanel>
+            </>
+          )}
+        </EuiResizableContainer>
+      </EuiPage>
+
+      <EuiSpacer />
+      <EuiText>
+        <h3>Responsive</h3>
+        <p>
+          It is possible to dynamically change the <EuiCode>direction</EuiCode>{' '}
+          prop to allow for adapting layouts to screen size. Resize the window
+          to see the panel orientation change.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+
+      <EuiPage paddingSize="none">
+        <EuiResizableContainer
+          direction={isMobile ? 'vertical' : 'horizontal'}
+          style={{ height: '400px' }}>
+          {(EuiResizablePanel, EuiResizableButton) => (
+            <>
+              <EuiResizablePanel
+                mode="collapsible"
+                initialSize={20}
+                minSize="10%">
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
+              </EuiResizablePanel>
+
+              <EuiResizableButton />
+
+              <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+                <EuiPanel paddingSize="l" style={style}>
                   <EuiTitle>
                     <p>{itemSelected.label}</p>
                   </EuiTitle>
