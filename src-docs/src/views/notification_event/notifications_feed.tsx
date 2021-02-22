@@ -8,35 +8,14 @@ import { EuiNotificationEvent } from '../../../../src/components/notification/no
 
 const notificationEventsData = [
   {
-    id: 'notificationA',
-    meta: {
-      type: 'This is a very long type',
-      iconType: 'logoObservability',
-      iconAriaLabel: 'alert icon',
-      eventName: 'alert-critical-01',
-      time: 'This notification was received 1 min ago. You should check it.',
-    },
-    title:
-      '[APM 500 Server errors] is now active and the title is very long so it should wrap',
-
-    primaryAction: {
-      label: 'View and go',
-    },
-    messages: [
-      'The request completed at 12:32:33 GMT+4',
-      'The request completed at 12:32:33 GMT+4',
-      'A background request started at 12:32:33 GMT+4',
-    ],
-    isRead: true,
-  },
-  {
-    id: 'notificationB',
+    id: 'alert-01',
     meta: {
       type: 'Alert',
+      severity: 'Warning',
       iconType: 'logoMaps',
       badgeColor: 'warning',
       eventName: 'alert-warning-01',
-      time: 'This notification was received 1 min ago',
+      time: '10 min ago',
     },
     title: '[Maps] Geo Alert',
     messages: [
@@ -47,12 +26,12 @@ const notificationEventsData = [
     isRead: false,
   },
   {
-    id: 'notificationC',
+    id: 'report-01',
     meta: {
       type: 'Report',
       iconType: 'logoKibana',
       eventName: 'report-01',
-      time: '2 min ago',
+      time: '6 min ago',
     },
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
@@ -65,12 +44,12 @@ const notificationEventsData = [
     isRead: false,
   },
   {
-    id: 'notificationD',
+    id: 'news-01',
     meta: {
       type: 'News',
       iconType: 'logoElastic',
       eventName: 'news-01',
-      time: '2 min ago',
+      time: '4 min ago',
       badgeColor: 'accent',
     },
     title: 'Search more, spend less',
@@ -81,6 +60,32 @@ const notificationEventsData = [
     primaryAction: {
       label: 'View and go',
     },
+  },
+  {
+    id: 'alert-02',
+    meta: {
+      type: 'Alert',
+      severity: 'Critical',
+      iconType: 'logoKibana',
+      badgeColor: 'danger',
+      eventName: 'alert-warning-01',
+      time: '2 min ago',
+    },
+    title: 'Index Threshold Alert',
+    messages: ['[prod-server-001] is above 700'],
+    isRead: false,
+  },
+  {
+    id: 'background-search-01',
+    meta: {
+      type: 'Background Search',
+      iconType: 'logoKibana',
+      eventName: 'alert-warning-01',
+      time: '1 min ago',
+    },
+    title: '[Flights] Flight Count and Average Ticket Price',
+    messages: ['The request completed at 12:32:33 GMT+4'],
+    isRead: false,
   },
 ];
 
