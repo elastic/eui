@@ -95,7 +95,7 @@ export default () => {
     setContextMenuItems(nextContextMenus);
   };
 
-  const [toggleIdSelected, setToggleIdSelected] = useState('alertButton');
+  const [toggleIdSelected, setToggleIdSelected] = useState('reportButton');
 
   const toggleButtons = [
     {
@@ -122,13 +122,14 @@ export default () => {
   return (
     <>
       <EuiButtonGroup
-        legend="This is a primary group"
+        legend="Pick an example"
         options={toggleButtons}
         onChange={onChangeButtonGroup}
         idSelected={toggleIdSelected}
         type="single"
+        color="primary"
       />
-      <EuiSpacer size="s" />
+      <EuiSpacer />
       <EuiPanel
         paddingSize="none"
         hasShadow={true}

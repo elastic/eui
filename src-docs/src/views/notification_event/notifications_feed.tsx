@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
+import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiButton } from '../../../../src/components/button';
 import {
   EuiContextMenuItem,
   EuiContextMenuPanelProps,
@@ -131,6 +133,10 @@ export default () => {
     setContextMenuItems(nextContextMenus);
   };
 
+  const onResetData = () => {
+    setEvents(notificationEventsData);
+  };
+
   const notificationEvents = events.map((event) => {
     // we want to make the news title unclickable
     const onClickTitle = event.meta.type === 'News' ? undefined : () => {};
@@ -154,8 +160,17 @@ export default () => {
   });
 
   return (
-    <EuiPanel paddingSize="none" hasShadow={true} style={{ maxWidth: '540px' }}>
-      {notificationEvents}
-    </EuiPanel>
+    <>
+      <EuiButton size="s" onClick={onResetData}>
+        Reset Data
+      </EuiButton>
+      <EuiSpacer />
+      <EuiPanel
+        paddingSize="none"
+        hasShadow={true}
+        style={{ maxWidth: '540px' }}>
+        {notificationEvents}
+      </EuiPanel>
+    </>
   );
 };
