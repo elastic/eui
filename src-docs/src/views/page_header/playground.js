@@ -32,7 +32,7 @@ const rightSideItems = `[
   <EuiButton>Button 2</EuiButton>,
 ]`;
 
-// TODO: Try later to find build a toggle that allows switching between different types of content to pass
+// TODO: Try later to build a toggle that allows switching between different types of content to pass
 // const rightSideItems =
 //   '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
 
