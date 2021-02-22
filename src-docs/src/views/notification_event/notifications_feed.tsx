@@ -162,7 +162,7 @@ export default () => {
   return (
     <>
       <EuiButton size="s" onClick={onResetData}>
-        Reset Data
+        Reset data
       </EuiButton>
       <EuiSpacer />
       <EuiPanel
