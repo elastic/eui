@@ -10,7 +10,6 @@ import {
   EuiPage,
   EuiCode,
 } from '../../../../src/components';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { fake } from 'faker';
 
 const texts = [];
@@ -53,9 +52,6 @@ export default () => {
       size="s"
     />
   ));
-
-  const isMobile = useIsWithinBreakpoints(['xs', 's']);
-  const style = isMobile ? { height: '100%' } : { minHeight: '100%' };
 
   return (
     <>
