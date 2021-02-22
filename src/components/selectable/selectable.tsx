@@ -38,6 +38,7 @@ import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
 import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
+import { Align } from 'react-window';
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -382,9 +383,8 @@ export class EuiSelectable<T = {}> extends Component<
     }
   };
 
-  scrollToItem = () => {
-    const optionsList = this.optionsListRef.current;
-    if (optionsList) return optionsList.setListRef(optionsList.listRef);
+  scrollToItem = (index: number, align?: Align) => {
+    this.optionsListRef.current?.listRef?.scrollToItem(index, align);
   };
 
   render() {
