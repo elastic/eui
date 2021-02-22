@@ -15,7 +15,7 @@ const notificationEventsData = [
       type: 'Report',
       iconType: 'logoKibana',
       eventName: 'report-01',
-      time: '2 min ago',
+      time: '1 min ago',
     },
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
@@ -32,7 +32,7 @@ const notificationEventsData = [
       iconType: 'logoMaps',
       badgeColor: 'warning',
       eventName: 'alert-warning-01',
-      time: 'This notification was received 1 min ago',
+      time: '2 min ago',
     },
     title: '[Maps] Geo Alert',
     messages: [
@@ -49,7 +49,7 @@ const notificationEventsData = [
       type: 'News',
       iconType: 'logoElastic',
       eventName: 'news-01',
-      time: '2 min ago',
+      time: '3 min ago',
       badgeColor: 'accent',
     },
     title: 'Search more, spend less',

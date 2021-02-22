@@ -15,7 +15,7 @@ const notificationEventsData = [
       iconType: 'logoMaps',
       badgeColor: 'warning',
       eventName: 'alert-warning-01',
-      time: '10 min ago',
+      time: '1 min ago',
     },
     title: '[Maps] Geo Alert',
     messages: [
@@ -31,7 +31,7 @@ const notificationEventsData = [
       type: 'Report',
       iconType: 'logoKibana',
       eventName: 'report-01',
-      time: '6 min ago',
+      time: '3 min ago',
     },
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
@@ -49,7 +49,7 @@ const notificationEventsData = [
       type: 'News',
       iconType: 'logoElastic',
       eventName: 'news-01',
-      time: '4 min ago',
+      time: '6 min ago',
       badgeColor: 'accent',
     },
     title: 'Search more, spend less',
@@ -69,7 +69,7 @@ const notificationEventsData = [
       iconType: 'logoKibana',
       badgeColor: 'danger',
       eventName: 'alert-warning-01',
-      time: '2 min ago',
+      time: '8 min ago',
     },
     title: 'Index Threshold Alert',
     messages: ['[prod-server-001] is above 700'],
@@ -81,7 +81,7 @@ const notificationEventsData = [
       type: 'Background Search',
       iconType: 'logoKibana',
       eventName: 'alert-warning-01',
-      time: '1 min ago',
+      time: '10 min ago',
     },
     title: '[Flights] Flight Count and Average Ticket Price',
     messages: ['The request completed at 12:32:33 GMT+4'],
@@ -131,17 +131,9 @@ export default () => {
     setContextMenuItems(nextContextMenus);
   };
 
-  const onClickEventTitle = (id: string) => {
-    console.log(`title with id "${id}" was clicked`);
-  };
-
-  const onClickEventPrimaryAction = (id: string) => {
-    console.log(`primary action with id "${id}" was clicked`);
-  };
-
   const notificationEvents = events.map((event) => {
-    const onClickNoNewsTitles =
-      event.meta.type === 'News' ? undefined : onClickEventTitle;
+    // we want to make the news title unclickable
+    const onClickTitle = event.meta.type === 'News' ? undefined : () => {};
 
     return (
       <EuiNotificationEvent
@@ -155,8 +147,8 @@ export default () => {
         onRead={onRead}
         contextMenuItems={contextMenuItems}
         onOpenContextMenu={onOpenContextMenu}
-        onClickPrimaryAction={onClickEventPrimaryAction}
-        onClickTitle={onClickNoNewsTitles!}
+        onClickPrimaryAction={() => {}}
+        onClickTitle={onClickTitle!}
       />
     );
   });

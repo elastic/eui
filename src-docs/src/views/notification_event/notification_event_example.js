@@ -78,8 +78,8 @@ export const NotificationEventExample = {
           <strong>EuiNotificationEvent</strong>&apos;s. These components should
           live inside a container without other components on the same level.
           This way, we ensure that feed styles are applied correctly. Consuming
-          applications should implement all the logic to filter or save read and
-          unread states.
+          applications should implement all the logic to filter and save
+          read/unread states.
         </p>
       ),
       props: {
