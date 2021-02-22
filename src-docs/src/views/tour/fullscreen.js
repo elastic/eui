@@ -174,8 +174,7 @@ export default () => {
               <EuiButton
                 fill
                 onClick={() => setIsFullScreen(false)}
-                iconType="exit"
-                aria-label="Exit fullscreen demo">
+                iconType="exit">
                 Exit fullscreen demo
               </EuiButton>,
             ],
