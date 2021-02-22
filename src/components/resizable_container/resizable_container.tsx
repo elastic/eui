@@ -21,7 +21,6 @@ import React, {
   ReactNode,
   ReactElement,
   useEffect,
-  useMemo,
   useRef,
   useCallback,
   CSSProperties,
@@ -102,10 +101,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isHorizontal = useMemo(
-    () => direction === containerDirections.horizontal,
-    [direction]
-  );
+  const isHorizontal = direction === containerDirections.horizontal;
 
   const classes = classNames(
     'euiResizableContainer',
