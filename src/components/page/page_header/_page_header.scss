@@ -10,6 +10,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0; // Ensures Safari doesn't shrink beyond contents
 }
 
 // Uses the same values as EuiPanel
