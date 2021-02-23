@@ -43,6 +43,10 @@ export type EuiButtonIconColor =
   | 'danger'
   | 'ghost'
   | 'primary'
+  /**
+   * Set for deprecation 2/23/21
+   * This color button is close enough to text to be duplicative
+   */
   | 'subdued'
   | 'success'
   | 'text'
@@ -58,11 +62,23 @@ type EuiButtonIconDisplay = keyof typeof displayToClassNameMap;
 
 export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
+  /**
+   * Any of the named color palette options.
+   * **`subdued` set to be DEPRECATED**
+   */
   color?: EuiButtonIconColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
+  /**
+   * Overall size of button.
+   * Matches the sizes of other EuiButtons
+   */
   size?: EuiButtonIconSizes;
+  /**
+   * Size of the icon only.
+   * This will not affect the overall size of the button
+   */
   iconSize?: IconSize;
   /**
    * Applies the boolean state as the `aria-pressed` property to create a toggle button.

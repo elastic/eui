@@ -9,15 +9,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-const colors = [
-  'primary',
-  'text',
-  'accent',
-  'subdued',
-  'success',
-  'warning',
-  'danger',
-];
+const colors = ['primary', 'text', 'accent', 'success', 'warning', 'danger'];
 
 export default () => (
   <>
@@ -40,54 +32,33 @@ export default () => (
     <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowRight"
-          aria-label="Next"
-        />
+        <EuiButtonIcon iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowRight"
-          display
-          aria-label="Next"
-        />
+        <EuiButtonIcon display={null} iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
-          display="fill"
-          iconType="arrowRight"
-          aria-label="Next"
-        />
+        <EuiButtonIcon display="fill" iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
     </EuiFlexGroup>
     <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
+        <EuiButtonIcon iconType="arrowRight" isDisabled aria-label="Next" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
+          display={null}
           iconType="arrowRight"
-          isDisabled={true}
+          isDisabled
           aria-label="Next"
         />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowRight"
-          display
-          isDisabled={true}
-          aria-label="Next"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
           iconType="arrowRight"
           display="fill"
-          isDisabled={true}
+          isDisabled
           aria-label="Next"
         />
       </EuiFlexItem>
@@ -98,29 +69,22 @@ export default () => (
     </EuiTitle>
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
-          iconType="arrowRight"
-          display
-          aria-label="Next"
-        />
+        <EuiButtonIcon display={null} iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
+          display={null}
           iconType="arrowRight"
           size="s"
-          display
           aria-label="Next"
         />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          onClick={() => window.alert('Button clicked')}
+          display={null}
           iconType="arrowRight"
           iconSize="l"
           size="m"
-          display
           aria-label="Next"
         />
       </EuiFlexItem>
@@ -132,20 +96,15 @@ export default () => (
     <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          size="s"
-          iconType="calendar"
-          onClick={() => window.alert('Button clicked')}
-          aria-label="Next">
+        <EuiButton size="s" iconType="calendar" aria-label="Next">
           Last 15 min
         </EuiButton>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
+          display={null}
           size="s"
-          onClick={() => window.alert('Button clicked')}
           iconType="clock"
-          display="default"
           aria-label="Next"
         />
       </EuiFlexItem>
