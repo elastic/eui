@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Reverted part of [#4509](https://github.com/elastic/eui/pull/4509) and returned `EuiDataGrid`'s background content area to an empty shade ([#4542](https://github.com/elastic/eui/pull/4542))
-- Added exports for all EUI component props matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
+- Added exports for all EUI component props matching `EuiComponentProps` name pattern ([#4517](https://github.com/elastic/eui/pull/4517))
 - Added `truncate`, `disabled`, and `emphasize` props to `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Added `truncate` prop to `EuiSideNav` ([#4488](https://github.com/elastic/eui/pull/4488))
 - Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
@@ -23,9 +23,26 @@
 
 - Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
 
+### Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
+
+- Added new `EuiPageTemplate` component as a shortcut for creating the different types of page layout patterns
+- Added props `grow` and `direction` to `EuiPage`
+- Added props `panelled`, `panelProps`, and `paddingSize` to `EuiPageBody`
+- Added props `restrictWidth` and `paddingSize` to `EuiPageBody`
+- Added prop `paddingSize` to `EuiPageHeader`
+- Updated `tabs` prop of `EuiPageHeaderContent` to render `large` size
+- Added prop `sticky` to `EuiPageSideBar`
+- Added Sass variable `$euiPageSidebarMinWidth` for changing default `min-width` of `EuiPageSideBar`
+- Added `href` and other anchor props to `EuiHeaderSectionItemButton`
+
+**Bug fixes**
+
+- Fixed horizontal overflow of `EuiPageContent`
+- Fixed horizontal overflow of `EuiBreadcrumbs`
+
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 
-- Added `whiteSpace` prop to `EuiCodeBlock`. ([#4475](https://github.com/elastic/eui/pull/4475))
+- Added `whiteSpace` prop to `EuiCodeBlock` ([#4475](https://github.com/elastic/eui/pull/4475))
 - Added a light background to `EuiDataGrid` and removed unnecessary height on its container ([#4509](https://github.com/elastic/eui/pull/4509))
 
 **Bug fixes**
