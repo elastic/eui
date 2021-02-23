@@ -940,11 +940,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     </Fragment>
   );
 
-  // When data grid is full screen, we add a class to the body to remove the extra scrollbar
-  if (isFullScreen) {
-    document.body.classList.add('euiDataGrid__restrictBody');
-  } else {
-    document.body.classList.remove('euiDataGrid__restrictBody');
+  // need to safely access those Web APIs
+  if (typeof document !== 'undefined') {
+    // When data grid is full screen, we add a class to the body to remove the extra scrollbar
+    if (isFullScreen) {
+      document.body.classList.add('euiDataGrid__restrictBody');
+    } else {
+      document.body.classList.remove('euiDataGrid__restrictBody');
+    }
   }
 
   const fullScreenSelector = (
