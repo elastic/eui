@@ -9,6 +9,7 @@ import {
   EuiIcon,
   EuiSwitch,
   EuiSpacer,
+  EuiPanel,
 } from '../../../../../src/components';
 import { ratingAAA, ratingAA18, ratingAA, ratingAll } from './_utilities';
 
@@ -94,43 +95,49 @@ export const ContrastSlider = ({
       className="guideSection__emptyBox guideColorsPage__stickySlider"
       justifyContent="center"
       {...rest}>
-      <EuiFlexItem className="guideSection__shadedBox">
-        <EuiFormRow
-          id="ratingsRange"
-          label="Minimum color contrast combinations to show">
-          <EuiRange
-            min={0}
-            max={7}
-            step={0.5}
-            value={value}
-            onChange={(e) => {
-              setValue(e.currentTarget.value);
-              onChange(e.currentTarget.value, checked);
-            }}
-            showTicks
-            showValue
-            ticks={ticks}
-            valueAppend="+"
-          />
-        </EuiFormRow>
-      </EuiFlexItem>
-      <EuiFlexItem className="guideSection__shadedBox">
-        <EuiFormRow
-          labelType="legend"
-          label="Use text variant variables of core colors for better text contrast"
-          hasChildLabel={false}>
-          <div>
-            <EuiSpacer size="s" />
-            <EuiSwitch
-              label="Show text variant"
-              checked={showTextVariants}
+      <EuiFlexItem>
+        <EuiPanel paddingSize="l" color="subdued">
+          <EuiFormRow
+            id="ratingsRange"
+            label="Minimum color contrast combinations to show"
+            fullWidth>
+            <EuiRange
+              min={0}
+              max={7}
+              step={0.5}
+              value={value}
               onChange={(e) => {
-                setChecked(e.target.checked);
-                onChange(value, e.target.checked);
+                setValue(e.currentTarget.value);
+                onChange(e.currentTarget.value, checked);
               }}
+              showTicks
+              showValue
+              ticks={ticks}
+              valueAppend="+"
+              fullWidth
             />
-          </div>
-        </EuiFormRow>
+          </EuiFormRow>
+        </EuiPanel>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiPanel paddingSize="l" color="subdued">
+          <EuiFormRow
+            labelType="legend"
+            label="Use text variant variables of core colors for better text contrast"
+            hasChildLabel={false}>
+            <div>
+              <EuiSpacer size="s" />
+              <EuiSwitch
+                label="Show text variant"
+                checked={showTextVariants}
+                onChange={(e) => {
+                  setChecked(e.target.checked);
+                  onChange(value, e.target.checked);
+                }}
+              />
+            </div>
+          </EuiFormRow>
+        </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGroup>
   );

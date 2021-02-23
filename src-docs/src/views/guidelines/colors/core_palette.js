@@ -7,6 +7,7 @@ import {
   EuiIcon,
   EuiCopy,
   EuiScreenReaderOnly,
+  EuiPanel,
 } from '../../../../../src/components';
 import { rgbToHex } from '../../../../../src/services';
 
@@ -67,14 +68,12 @@ export const CorePalette = ({ theme, colors }) => {
   }
 
   return (
-    <EuiFlexGroup
-      className="guideSection__shadedBox"
-      gutterSize="s"
-      wrap
-      responsive={false}>
-      {colors.map(function (color, index) {
-        return renderPaletteColor(palette, color, index);
-      })}
-    </EuiFlexGroup>
+    <EuiPanel paddingSize="l" color="subdued">
+      <EuiFlexGroup gutterSize="s" wrap responsive={false}>
+        {colors.map(function (color, index) {
+          return renderPaletteColor(palette, color, index);
+        })}
+      </EuiFlexGroup>
+    </EuiPanel>
   );
 };
