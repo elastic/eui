@@ -112,7 +112,7 @@ const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
 export const COLORS = keysOf(colorToClassNameMap);
 
 const sizeToClassNameMap = {
-  xs: null,
+  xs: 'euiButtonIcon--xSmall',
   s: 'euiButtonIcon--small',
   m: 'euiButtonIcon--medium',
 };
@@ -151,6 +151,9 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   }
   const classes = classNames(
     'euiButtonIcon',
+    {
+      'euiButtonIcon-isDisabled': isDisabled,
+    },
     colorToClassNameMap[color],
     display && displayToClassNameMap[display],
     size && sizeToClassNameMap[size],

@@ -1,15 +1,13 @@
+// This file has lots of modifiers and is somewhat nesty by nature
+// sass-lint:disable nesting-depth
+
 .euiButtonIcon {
   @include euiButton;
+  @include euiSlightShadow;
 
-  border: none;
-  background-color: transparent;
-  box-shadow: none;
-  height: $euiSizeL;
-  min-height: $euiSizeL;
-  min-width: $euiSizeL;
-  line-height: 0; // ensures the icon creates the line-height and so it's always vertically centered
-  padding: $euiSizeXS;
   border-radius: $euiBorderRadius;
+  width: $euiButtonHeight;
+  line-height: 0; // ensures the icon creates the line-height and so it's always vertically centered
 
   & > svg {
     // prevents the element and its children from receiving any pointer events to fix not bubbling click event in Safari
@@ -17,8 +15,9 @@
     pointer-events: none;
   }
 
-  &:not(.euiButtonIcon--empty) {
-    padding: $euiSizeXS * .5;
+  &.euiButtonIcon--xSmall {
+    height: $euiButtonHeightXSmall;
+    width: $euiButtonHeightXSmall;
   }
 
   &.euiButtonIcon--small {
@@ -26,20 +25,15 @@
     width: $euiButtonHeightSmall;
   }
 
-  &.euiButtonIcon--medium {
-    height: $euiButtonHeight;
-    width: $euiButtonHeight;
+  &.euiButtonIcon--empty {
+    box-shadow: none !important; // sass-lint:disable-line no-important
+    border: none;
   }
 
-  &:disabled {
+  &.euiButtonIcon-isDisabled {
+    @include euiButtonContentDisabled;
     color: $euiButtonColorDisabledText;
-    pointer-events: none;
     border-color: $euiButtonColorDisabled;
-
-    .euiButtonIcon__icon {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
 
     &.euiButtonIcon--fill {
       // Only increase the contrast of background color to text to 2.0 for disabled
@@ -56,8 +50,9 @@
     }
 
     &:hover,
-    &:focus {
-      background-color: transparent;
+    &:focus,
+    &:focus-within {
+      @include euiSlightShadow;
       text-decoration: none;
     }
   }
@@ -66,23 +61,18 @@
 // Create button modifiers based upon the map.
 @each $name, $color in $euiButtonIconTypes {
   .euiButtonIcon--#{$name} {
-    border: solid 1px $color;
-    color: $color;
-
-    &.euiButtonIcon--empty {
-      border: none;
-
-      &:focus {
-        background-color: transparentize($color, .9);
-      }
-
-      &:hover,
-      &:focus {
-        @if ($name == 'disabled') {
-          cursor: not-allowed;
-        }
-      }
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      color: $color;
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make the it the text color
+      color: $euiTextColor;
+    } @else {
+      // Other colors need to check their contrast against the page background color.
+      color: makeHighContrastColor($color, $euiPageBackgroundColor);
     }
+
+    border-color: $color;
 
     &.euiButtonIcon--fill {
       background-color: $color;
@@ -93,7 +83,7 @@
 
       color: $fillTextColor;
 
-      &:not([disabled]) {
+      &:not([class*='isDisabled']) {
         &:hover,
         &:focus,
         &:focus-within {
@@ -103,25 +93,40 @@
       }
     }
 
-    &:not(.euiButtonIcon--fill):not(.euiButtonIcon--empty) {
-      &:not([disabled]) {
-        $shadowColor: $euiShadowColor;
-        @if ($name == 'ghost') {
-          $shadowColor: $euiColorInk;
-        } @else if (lightness($euiTextColor) < 50) {
-          // Only if this is the light theme do we use the button variant color to colorize the shadow
-          $shadowColor: desaturate($color, 60%);
-        }
+    &:not([class*='isDisabled']) {
+      $shadowColor: $euiShadowColor;
+      @if ($name == 'ghost') {
+        $shadowColor: $euiColorInk;
+      } @else if (lightness($euiTextColor) < 50) {
+        // Only if this is the light theme do we use the button variant color to colorize the shadow
+        $shadowColor: desaturate($color, 60%);
+      }
 
-        @include euiSlightShadow($shadowColor);
+      @include euiSlightShadow($shadowColor);
 
-        &:hover,
-        &:focus,
-        &:focus-within {
-          @include euiSlightShadowHover($shadowColor);
-          background-color: transparentize($color, .9);
-        }
+      &:hover,
+      &:focus,
+      &:focus-within {
+        @include euiSlightShadowHover($shadowColor);
+        background-color: transparentize($color, .9);
       }
     }
+  }
+}
+
+// Fix ghost/disabled look specifically
+.euiButtonIcon.euiButtonIcon-isDisabled.euiButtonIcon--ghost {
+  &,
+  &:hover,
+  &:focus,
+  &:focus-within {
+    @include euiSlightShadow($euiColorInk);
+    color: $euiButtonColorGhostDisabled;
+    border-color: $euiButtonColorGhostDisabled;
+  }
+
+  &.euiButton--fill {
+    background-color: $euiButtonColorGhostDisabled;
+    color: makeHighContrastColor($euiButtonColorGhostDisabled, $euiButtonColorGhostDisabled, 2);
   }
 }
