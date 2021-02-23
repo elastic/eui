@@ -9,7 +9,7 @@ import {
   EuiSpacer,
   EuiPage,
 } from '../../../../src/components';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import { useIsWithinBreakpoints } from '../../../../src/services';
 import { fake } from 'faker';
 
 const texts = [];

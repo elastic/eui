@@ -8,6 +8,7 @@
 - Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 - Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox` ([#4516](https://github.com/elastic/eui/pull/4516))
 - Allowed dynamically changing the `direction` prop on `EuiResizableContainer` ([#4557](https://github.com/elastic/eui/pull/4557))
+- Exported `useIsWithinBreakpoints` hook ([#4557](https://github.com/elastic/eui/pull/4557))
 
 **Bug fixes**
 
