@@ -7,7 +7,11 @@
 
   border-radius: $euiBorderRadius;
   width: $euiButtonHeight;
-  line-height: 0; // ensures the icon creates the line-height and so it's always vertically centered
+
+  // Ensures center alignment of any sized icon inside buttons and anchors
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
 
   & > svg {
     // prevents the element and its children from receiving any pointer events to fix not bubbling click event in Safari
