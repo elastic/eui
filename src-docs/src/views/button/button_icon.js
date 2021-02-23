@@ -35,7 +35,7 @@ export default () => (
         <EuiButtonIcon iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon display={null} iconType="arrowRight" aria-label="Next" />
+        <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon display="fill" iconType="arrowRight" aria-label="Next" />
@@ -48,7 +48,7 @@ export default () => (
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          display={null}
+          display="base"
           iconType="arrowRight"
           isDisabled
           aria-label="Next"
@@ -69,11 +69,11 @@ export default () => (
     </EuiTitle>
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon display={null} iconType="arrowRight" aria-label="Next" />
+        <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          display={null}
+          display="base"
           iconType="arrowRight"
           size="s"
           aria-label="Next"
@@ -81,7 +81,7 @@ export default () => (
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          display={null}
+          display="base"
           iconType="arrowRight"
           iconSize="l"
           size="m"
@@ -102,7 +102,7 @@ export default () => (
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          display={null}
+          display="base"
           size="s"
           iconType="clock"
           aria-label="Next"

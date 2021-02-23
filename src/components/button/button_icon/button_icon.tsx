@@ -53,6 +53,7 @@ export type EuiButtonIconColor =
   | 'warning';
 
 const displayToClassNameMap = {
+  base: null,
   empty: 'euiButtonIcon--empty',
   fill: 'euiButtonIcon--fill',
 };
@@ -86,9 +87,12 @@ export interface EuiButtonIconProps extends CommonProps {
    */
   isSelected?: boolean;
   /**
-   * Sets the display style for the button. Defaults to `empty`.
+   * Sets the display style for matching other EuiButton types.
+   * `base` is equivelant to a typical EuiButton
+   * `fill` is equivelant to a filled EuiButton
+   * `empty` (default) is equivelant to an EuiButtonEmpty
    */
-  display?: EuiButtonIconDisplay | null;
+  display?: EuiButtonIconDisplay;
 }
 
 type EuiButtonIconPropsForAnchor = {
