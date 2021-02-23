@@ -43,10 +43,30 @@ const notificationEventSnippet = `<EuiNotificationEvent
   onClickTitle={() => {}}
 />`;
 
+const notificationEventFeedSnippet = `// we're looping through an array of objects to render multiple EuiNotificationEvent's
+const notificationEvents = events.map((event) => (
+  <EuiNotificationEvent
+    key={event.id}
+    id={event.id}
+    meta={event.meta}
+    title={event.title}
+    isRead={event.isRead}
+    primaryAction={event.primaryAction}
+    messages={event.messages}
+    onRead={onRead}
+    contextMenuItems={contextMenuItems}
+    onOpenContextMenu={onOpenContextMenu}
+    onClickPrimaryAction={onClickPrimaryAction}
+    onClickTitle={onClickTitle!}
+  />
+));
+`;
+
 const required = <EuiTextColor color="danger">(required)</EuiTextColor>;
 
 export const NotificationEventExample = {
   title: 'Notification event',
+  beta: true,
   isNew: true,
   intro: (
     <Fragment>
@@ -182,6 +202,7 @@ export const NotificationEventExample = {
         EuiNotificationEventPrimaryAction,
         EuiContextMenuItem,
       },
+      snippet: notificationEventFeedSnippet,
       demo: <NotificationsFeed />,
     },
   ],
