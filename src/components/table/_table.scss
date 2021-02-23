@@ -87,9 +87,6 @@
   }
 
   &.euiTableRow-isExpandedRow {
-    .euiTableRowCell {
-      background-color: $euiTableHoverColor;
-    }
 
     &.euiTableRow-isSelectable .euiTableCellContent {
       padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
@@ -237,11 +234,11 @@
 
 .euiTableRow-isClickable {
   &:hover {
-    background-color: $euiTableHoverClickableColor;
+    background-color: $euiTableHoverClickableColor !important; // sass-lint:disable-line no-important
     cursor: pointer;
   }
 
   &:focus {
-    background-color: $euiTableFocusClickableColor;
+    background-color: $euiTableFocusClickableColor !important; // sass-lint:disable-line no-important
   }
 }
