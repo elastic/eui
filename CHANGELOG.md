@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.8.0`.
+- Added a `display` and `size` props to `EuiButtonIcon` ([#4466](https://github.com/elastic/eui/pull/4466))
 
 ## [`31.8.0`](https://github.com/elastic/eui/tree/v31.8.0)
 
@@ -12,7 +12,6 @@ No public interface changes since `31.8.0`.
 - Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
 - Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox` ([#4516](https://github.com/elastic/eui/pull/4516))
 - Added `isDisabled` prop to `EuiAvatar` ([#4549](https://github.com/elastic/eui/pull/4549))
-- Added a `display` prop to `EuiButtonIcon` ([#4466](https://github.com/elastic/eui/pull/4466))
 
 **Bug fixes**
 
