@@ -63,6 +63,32 @@ const buttonIconSnippet = [
   display="fill"
   iconType={icon}
 />`,
+  `<EuiButtonIcon
+  display="base"
+  size="s"
+  iconType={icon}
+/>`,
+];
+
+import SplitButton from './split_button';
+const splitButtonSource = require('!!raw-loader!./split_button');
+const splitButtonHtml = renderToHtml(SplitButton);
+const splitButtonSnippet = [
+  `<EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+  <EuiFlexItem grow={false}>
+    <EuiButton size="s">
+      Primary action
+    </EuiButton>
+  </EuiFlexItem>
+  <EuiFlexItem grow={false}>
+    <EuiButtonIcon
+      display="base"
+      size="s"
+      iconType="boxesVertical"
+      aria-label="More"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>`,
 ];
 
 import ButtonGhost from './button_ghost';
@@ -306,17 +332,51 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiButtonIcons</strong> are buttons that only contain an icon
-          (no text). Use the <code>display</code> prop to change the appearance
-          of your <strong>EuiButtonIcon</strong>. If <code>display</code> is not
-          defined then <strong>EuiButton</strong>
-          &apos;s default style is applied.
-        </p>
+        <>
+          <p>
+            An <strong>EuiButtonIcon</strong> is a button that only contains an
+            icon (no text). Though it does require an{' '}
+            <EuiCode>aria-label</EuiCode> to express the meaning to screen
+            readers.
+          </p>
+          <p>
+            Use the <EuiCode>display</EuiCode> and <EuiCode>size</EuiCode> props
+            to match the appearance of your <strong>EuiButtonIcon</strong> other
+            standard buttons. By defaut they will appear as{' '}
+            <EuiCode>xs</EuiCode> <EuiCode>empty</EuiCode> buttons.
+          </p>
+        </>
       ),
       props: { EuiButtonIcon },
       snippet: buttonIconSnippet,
       demo: <ButtonIcon />,
+    },
+    {
+      title: 'Split buttons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: splitButtonSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: splitButtonHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            EUI does not support split buttons specifically. Instead, we
+            recommend using separate buttons for the main and overflow actions.
+            You can achieve this by simply using the <EuiCode>display</EuiCode>{' '}
+            and <EuiCode>size</EuiCode> props <strong>EuiButtonIcon</strong> to
+            match that of the primary action button.
+          </p>
+        </>
+      ),
+      props: { EuiButton, EuiButtonIcon },
+      snippet: splitButtonSnippet,
+      demo: <SplitButton />,
     },
     {
       title: 'Toggle buttons',

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  EuiButton,
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
@@ -85,26 +84,6 @@ export default () => (
           iconType="arrowRight"
           iconSize="l"
           size="m"
-          aria-label="Next"
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-    <EuiSpacer size="m" />
-    <EuiTitle size="xxs">
-      <h3>Split buttons</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButton size="s" iconType="calendar" aria-label="Next">
-          Last 15 min
-        </EuiButton>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          display="base"
-          size="s"
-          iconType="clock"
           aria-label="Next"
         />
       </EuiFlexItem>
