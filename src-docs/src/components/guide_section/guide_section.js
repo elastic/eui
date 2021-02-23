@@ -256,7 +256,7 @@ export class GuideSection extends Component {
       }
     }
 
-    this.setState({ selectedTab, renderedCode }, () => {
+    this.setState({ selectedTab, renderedCode, code }, () => {
       if (isCode === 'javascript') {
         requestAnimationFrame(() => {
           const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
@@ -619,7 +619,9 @@ export class GuideSection extends Component {
       return (
         <div {...divProps} onScroll={memoScrollUtility}>
           {euiCodeBlock}
-          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
+          {name === 'javascript'
+            ? this.renderCodeSandBoxButton(this.state.code)
+            : null}
         </div>
       );
     }
@@ -658,11 +660,15 @@ export class GuideSection extends Component {
     );
   }
 
-  renderCodeSandBoxButton() {
+  renderCodeSandBoxButton(code) {
+    if (!code) {
+      return;
+    }
+
     return (
       <CodeSandboxLink
         className="guideSectionExampleCode__link"
-        content={this.props.source[0].code.default}>
+        content={code.default}>
         <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
           Try out this demo on Code Sandbox
         </EuiButtonEmpty>
