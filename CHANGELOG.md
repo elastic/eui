@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.8.0`.
+**Bug fixes**
+
+- Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
 
 ## [`31.8.0`](https://github.com/elastic/eui/tree/v31.8.0)
 
@@ -23,7 +25,6 @@ No public interface changes since `31.8.0`.
 - Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
 - Removed static `id` from `EuiQuickSelectPopover` ([#4543](https://github.com/elastic/eui/pull/4543))
 - Fixed support sever side rendering for `EuiDataGrid` ([#4540](https://github.com/elastic/eui/pull/4540))
-- Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
 
 **Theme: Amsterdam**
 
