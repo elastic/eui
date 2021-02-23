@@ -35,7 +35,7 @@ export type TextColor = keyof typeof colorsToClassNameMap;
 
 export const COLORS = keysOf(colorsToClassNameMap);
 
-type Props = CommonProps &
+export type EuiTextColorProps = CommonProps &
   Omit<
     HTMLAttributes<HTMLDivElement> & HTMLAttributes<HTMLSpanElement>,
     'color'
@@ -47,7 +47,7 @@ type Props = CommonProps &
     component?: 'div' | 'span';
   };
 
-export const EuiTextColor: FunctionComponent<Props> = ({
+export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
   color = 'default',
   className,

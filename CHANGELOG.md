@@ -1,6 +1,64 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Reverted part of [#4509](https://github.com/elastic/eui/pull/4509) and returned `EuiDataGrid`'s background content area to an empty shade ([#4542](https://github.com/elastic/eui/pull/4542))
+- Added exports for all EUI component props matching `EuiComponentProps` name pattern. ([#4517](https://github.com/elastic/eui/pull/4517))
+- Added `truncate`, `disabled`, and `emphasize` props to `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Added `truncate` prop to `EuiSideNav` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Added support for all `color`s of `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+- Added `hasBorder` prop to `EuiPanel` ([#4504](https://github.com/elastic/eui/pull/4504))
+- Added `labelProps` prop to `EuiRadio`, `EuiSwitch` and `EuiCheckbox` ([#4516](https://github.com/elastic/eui/pull/4516))
+- Added `isDisabled` prop to `EuiAvatar` ([#4549](https://github.com/elastic/eui/pull/4549))
 - Added a `display` prop to `EuiButtonIcon` ([#4466](https://github.com/elastic/eui/pull/4466))
+
+**Bug fixes**
+
+- Removed home and end key configured behavior from `EuiSelectable` ([#4560](https://github.com/elastic/eui/pull/4560))
+- Fixed nested indicator of last `EuiSideNav` item ([#4488](https://github.com/elastic/eui/pull/4488))
+- Fixed override possibility of text `color` in `EuiSideNavItem` ([#4488](https://github.com/elastic/eui/pull/4488))
+- Fixed blurry animation of popovers in Chrome ([#4527](https://github.com/elastic/eui/pull/4527))
+- Fixed styles of `disabled` times in `EuiDatePicker` ([#4524](https://github.com/elastic/eui/pull/4524))
+- Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
+- Removed static `id` from `EuiQuickSelectPopover` ([#4543](https://github.com/elastic/eui/pull/4543))
+- Fixed support sever side rendering for `EuiDataGrid` ([#4540](https://github.com/elastic/eui/pull/4540))
+
+**Theme: Amsterdam**
+
+- Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
+
+## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
+
+- Added `whiteSpace` prop to `EuiCodeBlock`. ([#4475](https://github.com/elastic/eui/pull/4475))
+- Added a light background to `EuiDataGrid` and removed unnecessary height on its container ([#4509](https://github.com/elastic/eui/pull/4509))
+
+**Bug fixes**
+
+- Fixed bug in `EuiDataGrid` where the grid lost height when showing less rows on the last page ([#4509](https://github.com/elastic/eui/pull/4509))
+- Updated `euiPaletteForStatus` color sequence to use higher contrast postive and negative colors. ([#4508](https://github.com/elastic/eui/pull/4508))
+
+## [`31.6.0`](https://github.com/elastic/eui/tree/v31.6.0)
+
+- Migrated dependency `axe-puppeteer v1.1.1` to `@axe-core/puppeteer v4.1.1` ([#4482](https://github.com/elastic/eui/pull/4482))
+- Added `EuiOverlayMask` directly to `EuiModal` ([#4480](https://github.com/elastic/eui/pull/4480))
+- Added `paddingSize` prop to `EuiFlyout` ([#4448](https://github.com/elastic/eui/pull/4448))
+- Added `size='l'` prop to `EuiTabs` ([#4501](https://github.com/elastic/eui/pull/4501))
+- Added content-specific props (`pageTitle`, `description`, `tabs`, `rightSideItems`) to `EuiPageHeader` by creating a new `EuiPageHeaderContent` component ([#4451](https://github.com/elastic/eui/pull/4451))
+- Added `isActive` parameter to the `useIsWithinBreakpoints` hook ([#4451](https://github.com/elastic/eui/pull/4451))
+- Added `buttonProps` prop to `EuiAccordion` ([#4510](https://github.com/elastic/eui/pull/4510))
+
+**Bug fixes**
+
+- Fixed `onClose` invoking with unexpected parameter in `EuiFlyout` ([#4505](https://github.com/elastic/eui/pull/4505))
+- Fixed invalid color entry passed to `EuiBadge` color prop ([#4481](https://github.com/elastic/eui/pull/4481))
+- Fixed `EuiCodeBlock` focus-state if content overflows [#4463](https://github.com/elastic/eui/pull/4463)
+- Fixed issues in `EuiDataGrid` around unnecessary scroll bars and container heights not updating ([#4468](https://github.com/elastic/eui/pull/4468))
+
+**Theme: Amsterdam**
+
+- Increased `EuiPage`'s default `restrictWidth` size to `1200px` (extra large breakpoint) ([#4451](https://github.com/elastic/eui/pull/4451))
+- Reduced size of `euiBottomShadowSmall` by one layer ([#4451](https://github.com/elastic/eui/pull/4451))
+
+## [`31.5.0`](https://github.com/elastic/eui/tree/v31.5.0)
+
 - Added `isLoading` prop and added `EuiOverlayMask` directly to `EuiConfirmModal` ([#4421](https://github.com/elastic/eui/pull/4421))
 - Added `wrapWithTableRow` to remove `<tr>` in `EuiTableHeader`([#4465](https://github.com/elastic/eui/pull/4465))
 
@@ -8,6 +66,7 @@
 
 - Fixed `id` usage throughout `EuiTreeView` to respect custom ids and stop conflicts in generated ids ([#4435](https://github.com/elastic/eui/pull/4435))
 - Fixed `EuiTabs` `role` if no tabs are passed in ([#4435](https://github.com/elastic/eui/pull/4435))
+- Fixed issue in `EuiDataGrid` where the horizontal scrollbar was hidden behind pagination ([#4477](https://github.com/elastic/eui/pull/4477))
 - Fixed `EuiPopover` with initial `isOpen` working with `EuiOutsideClickDetector` ([#4461](https://github.com/elastic/eui/pull/4461))
 - Fixed `EuiDataGridCellPopover` needing 2 state updates to close ([#4461](https://github.com/elastic/eui/pull/4461))
 - Fixed `EuiBadge` with `iconOnClick` from catching form submit events ([#4479](https://github.com/elastic/eui/pull/4479))
@@ -60,6 +119,14 @@
 
 - Removed `size` prop from `EuiResizableButton` ([#3978](https://github.com/elastic/eui/pull/3978))
 - Upgraded to TypeScript v4.0 ([#4296](https://github.com/elastic/eui/pull/4296))
+
+## [`30.6.1`](https://github.com/elastic/eui/tree/v30.6.1)
+
+**Note: this release is a backport containing changes originally made in `31.5.0`**
+
+**Bug fixes**
+
+- Fixed `EuiBadge` with `iconOnClick` from catching form submit events ([#4479](https://github.com/elastic/eui/pull/4479))
 
 ## [`30.6.0`](https://github.com/elastic/eui/tree/v30.6.0)
 

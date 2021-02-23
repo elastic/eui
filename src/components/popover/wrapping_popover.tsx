@@ -21,7 +21,7 @@ import React, { Component } from 'react';
 import { EuiPopover, Props as EuiPopoverProps } from './popover';
 import { EuiPortal } from '../portal';
 
-interface Props extends EuiPopoverProps {
+export interface EuiWrappingPopoverProps extends EuiPopoverProps {
   button: HTMLElement;
 }
 
@@ -30,7 +30,7 @@ interface Props extends EuiPopoverProps {
  * then the button element is moved into the popover dom.
  * On unmount, the button is moved back to its original location.
  */
-export class EuiWrappingPopover extends Component<Props> {
+export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
   private portal: HTMLElement | null = null;
   private anchor: HTMLElement | null = null;
 

@@ -34,6 +34,8 @@ export {
 
 export {
   EuiPageHeader,
+  EuiPageHeaderContent,
+  EuiPageHeaderContentProps,
   EuiPageHeaderProps,
   EuiPageHeaderSection,
   EuiPageHeaderSectionProps,

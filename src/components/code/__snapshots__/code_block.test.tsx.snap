@@ -3,7 +3,7 @@
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 "<div>
   <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
-    <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\">
+    <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\" tabindex=\\"-1\\">
       <code class=\\"euiCodeBlock__code javascript hljs\\">
         <span class=\\"hljs-keyword\\">const</span>value =
         <span class=\\"hljs-string\\">'State 1'</span>
@@ -16,7 +16,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 "<div>
   <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
-    <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\">
+    <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\" tabindex=\\"-1\\">
       <code class=\\"euiCodeBlock__code javascript hljs\\">
         <span class=\\"hljs-keyword\\">const</span>value =
         <span class=\\"hljs-string\\">'State 2'</span>
@@ -32,6 +32,7 @@ exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -49,6 +50,7 @@ exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -66,6 +68,7 @@ exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -83,6 +86,7 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -123,6 +127,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code html hljs xml"
@@ -142,6 +147,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     style="max-height: 200px;"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -174,6 +180,7 @@ exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -191,6 +198,7 @@ exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -208,6 +216,7 @@ exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -225,6 +234,7 @@ exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -242,6 +252,7 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"
@@ -259,6 +270,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       aria-label="aria-label"

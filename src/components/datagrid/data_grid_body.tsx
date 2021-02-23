@@ -88,7 +88,10 @@ export interface EuiDataGridBodyProps {
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
+  toolbarHeight: number;
 }
+
+export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
 const defaultComparator: NonNullable<
   EuiDataGridSchemaDetector['comparator']
@@ -289,7 +292,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
 const INITIAL_ROW_HEIGHT = 34;
-const SCROLLBAR_HEIGHT = 15;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
@@ -317,6 +319,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     handleHeaderMutation,
     setVisibleColumns,
     switchColumnPos,
+    toolbarHeight,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -510,11 +513,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
 
+  const rowCountToAffordFor = pagination
+    ? pagination.pageSize
+    : visibleRowIndices.length;
   const unconstrainedHeight =
-    rowHeight * visibleRowIndices.length +
-    SCROLLBAR_HEIGHT +
-    headerRowHeight +
-    footerRowHeight;
+    rowHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;
@@ -522,10 +525,10 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
 
-  // reset height constraint when rowCount changes
+  // reset height constraint when rowCount or fullscreen setting changes
   useEffect(() => {
     setHeight(undefined);
-  }, [rowCount]);
+  }, [rowCount, isFullScreen]);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
@@ -560,7 +563,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   let finalHeight = IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight;
   let finalWidth = IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth;
   if (isFullScreen) {
-    finalHeight = window.innerHeight;
+    finalHeight =
+      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
     finalWidth = window.innerWidth;
   }
 
@@ -581,7 +585,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
               <Grid
                 ref={gridRef}
                 innerElementType={InnerElement}
-                className="euiDataGrid__virtualized"
+                className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
                   leadingControlColumns.length +
                   columns.length +

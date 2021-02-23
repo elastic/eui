@@ -35,7 +35,7 @@ import { EuiPanel } from '../panel';
 import {
   PanelPaddingSize,
   panelPaddingValues,
-  PanelProps,
+  _EuiPanelProps,
 } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
@@ -98,7 +98,7 @@ const paddingSizeToClassNameMap = {
   l: 'euiResizablePanel--paddingLarge',
 };
 export interface EuiResizablePanelProps
-  extends PanelProps,
+  extends _EuiPanelProps,
     CommonProps,
     Partial<EuiResizablePanelControls> {
   /**

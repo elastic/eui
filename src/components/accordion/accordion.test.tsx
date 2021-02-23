@@ -60,6 +60,16 @@ describe('EuiAccordion', () => {
       });
     });
 
+    describe('buttonProps', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} buttonProps={requiredProps} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('extraAction', () => {
       it('is rendered', () => {
         const component = render(
@@ -190,6 +200,20 @@ describe('EuiAccordion', () => {
       component.find('button').simulate('click');
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(false);
+    });
+
+    it('moves focus to the content when expanded', () => {
+      const component = mount<EuiAccordion>(<EuiAccordion id={getId()} />);
+      const accordionClass = component.instance();
+      const childWrapper = accordionClass.childWrapper;
+
+      expect(childWrapper).not.toBeFalsy();
+      expect(childWrapper).not.toBe(document.activeElement);
+
+      // click button
+      component.find('button').simulate('click');
+
+      expect(childWrapper).toBe(document.activeElement);
     });
   });
 });

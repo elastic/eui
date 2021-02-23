@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiProgress } from './progress';
+export { EuiProgress, EuiProgressProps } from './progress';

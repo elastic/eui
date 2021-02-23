@@ -8,20 +8,13 @@ import {
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
   EuiPageHeader,
-  EuiPageHeaderSection,
   EuiTitle,
 } from '../../../../src/components';
 
 export default () => (
   <EuiPage>
     <EuiPageBody component="div">
-      <EuiPageHeader>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Page title</h1>
-          </EuiTitle>
-        </EuiPageHeaderSection>
-      </EuiPageHeader>
+      <EuiPageHeader pageTitle="Page title" />
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>
