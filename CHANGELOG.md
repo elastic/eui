@@ -3,6 +3,10 @@
 - Allowed dynamically changing the `direction` prop on `EuiResizableContainer` ([#4557](https://github.com/elastic/eui/pull/4557))
 - Exported `useIsWithinBreakpoints` hook ([#4557](https://github.com/elastic/eui/pull/4557))
 
+**Bug fixes**
+
+- Fixed the return type of getDefaultEuiMarkdownUiPlugins method ([#4567](https://github.com/elastic/eui/pull/4567))
+
 ## [`31.8.0`](https://github.com/elastic/eui/tree/v31.8.0)
 
 - Reverted part of [#4509](https://github.com/elastic/eui/pull/4509) and returned `EuiDataGrid`'s background content area to an empty shade ([#4542](https://github.com/elastic/eui/pull/4542))
@@ -24,7 +28,6 @@
 - Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
 - Removed static `id` from `EuiQuickSelectPopover` ([#4543](https://github.com/elastic/eui/pull/4543))
 - Fixed support sever side rendering for `EuiDataGrid` ([#4540](https://github.com/elastic/eui/pull/4540))
--  Fixed the return type of getDefaultEuiMarkdownUiPlugins method ([#4544](https://github.com/elastic/eui/pull/4567))
 
 **Theme: Amsterdam**
 
