@@ -17,4 +17,10 @@
  * under the License.
  */
 
-export { EuiPanel, EuiPanelProps, PanelPaddingSize, SIZES } from './panel';
+export {
+  EuiPanel,
+  EuiPanelProps,
+  PanelProps,
+  PanelPaddingSize,
+  SIZES,
+} from './panel';
