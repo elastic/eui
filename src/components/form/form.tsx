@@ -56,7 +56,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   ...rest
 }) => {
   const handleFocus = useCallback((node) => {
-    node && node.focus();
+    node?.focus();
   }, []);
 
   const classes = classNames('euiForm', className);
