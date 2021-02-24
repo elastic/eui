@@ -115,3 +115,11 @@ exports[`EuiPanel props paddingSize s is rendered 1`] = `
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
 />
 `;
+
+exports[`EuiPanel props panelProps is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
