@@ -19,16 +19,6 @@
     pointer-events: none;
   }
 
-  &.euiButtonIcon--xSmall {
-    height: $euiButtonHeightXSmall;
-    width: $euiButtonHeightXSmall;
-  }
-
-  &.euiButtonIcon--small {
-    height: $euiButtonHeightSmall;
-    width: $euiButtonHeightSmall;
-  }
-
   &.euiButtonIcon--empty {
     box-shadow: none !important; // sass-lint:disable-line no-important
     border: none;
@@ -60,6 +50,16 @@
       text-decoration: none;
     }
   }
+}
+
+.euiButtonIcon--xSmall {
+  height: $euiButtonHeightXSmall;
+  width: $euiButtonHeightXSmall;
+}
+
+.euiButtonIcon--small {
+  height: $euiButtonHeightSmall;
+  width: $euiButtonHeightSmall;
 }
 
 // Create button modifiers based upon the map.

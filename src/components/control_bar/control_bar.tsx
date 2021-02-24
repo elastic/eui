@@ -352,7 +352,6 @@ export class EuiControlBar extends Component<
               color={color as EuiButtonIconProps['color']}
               {...(rest as IconButtonControlType)}
               iconType={iconType}
-              size="s"
             />
           ) : (
             <EuiIcon

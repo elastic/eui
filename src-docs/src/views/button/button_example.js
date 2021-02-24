@@ -341,9 +341,9 @@ export const ButtonExample = {
           </p>
           <p>
             Use the <EuiCode>display</EuiCode> and <EuiCode>size</EuiCode> props
-            to match the appearance of your <strong>EuiButtonIcon</strong> other
-            standard buttons. By defaut they will appear as{' '}
-            <EuiCode>xs</EuiCode> <EuiCode>empty</EuiCode> buttons.
+            to match the appearance of your <strong>EuiButtonIcon</strong> to
+            other standard buttons. By default they will appear as{' '}
+            <EuiCode>xs</EuiCode>, <EuiCode>empty</EuiCode> buttons.
           </p>
         </>
       ),
