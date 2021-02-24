@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.8.0`.
+- Added `panelProps` to `EuiPopover` and `EuiPanel` ([#4573](https://github.com/elastic/eui/pull/4573))
 
 ## [`31.8.0`](https://github.com/elastic/eui/tree/v31.8.0)
 
