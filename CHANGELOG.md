@@ -1,7 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Allowed dynamically changing the `direction` prop on `EuiResizableContainer` ([#4557](https://github.com/elastic/eui/pull/4557))
+- Exported `useIsWithinBreakpoints` hook ([#4557](https://github.com/elastic/eui/pull/4557))
+
 **Bug fixes**
 
+- Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 - Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
 
 ## [`31.8.0`](https://github.com/elastic/eui/tree/v31.8.0)
