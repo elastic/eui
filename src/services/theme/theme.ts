@@ -17,53 +17,41 @@
  * under the License.
  */
 
-import chroma from 'chroma-js';
 import { buildTheme, computed, COLOR_MODE_KEY } from './utils';
-
-export const tint = (color: string, ratio: number) =>
-  chroma.mix(color, '#fff', ratio).hex();
-export const shade = (color: string, ratio: number) =>
-  chroma.mix(color, '#000', ratio).hex();
-// TODO
-const makeHighContrastColor = (color: string) => color;
-// TODO
-const makeDisabledContrastColor = (color: string) => color;
-// TODO
-const transparentize = (color: string, ratio: number) =>
-  ratio ? color : color;
+import {
+  makeHighContrastColor,
+  makeDisabledContrastColor,
+  tint,
+  shade,
+  transparentize,
+} from '../../global_styling/functions/_colors';
+import { light_colors } from '../../global_styling/variables/_colors';
+import { dark_colors } from '../../global_styling/variables/_colors_dark';
+import { light_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
+import { dark_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors_dark';
 
 const poles = {
   ghost: '#FFF',
   ink: '#000',
 };
 
-const graysLight = {
-  emptyShade: '#FFF',
-  lightestShade: '#F5F7FA',
-  lightShade: '#D3DAE6',
-  mediumShade: '#98A2B3',
-  darkShade: '#69707D',
-  darkestShade: '#343741',
-  fullShade: '#000',
-};
-
 const textVariants = {
   textPrimary: computed(['colors.primary'], ([primary]) =>
     makeHighContrastColor(primary)
   ),
-  accentText: computed(['colors.accent'], ([accent]) =>
+  textAccent: computed(['colors.accent'], ([accent]) =>
     makeHighContrastColor(accent)
   ),
-  warningText: computed(['colors.warning'], ([warning]) =>
+  textWarning: computed(['colors.warning'], ([warning]) =>
     makeHighContrastColor(warning)
   ),
-  dangerText: computed(['colors.danger'], ([danger]) =>
+  textDanger: computed(['colors.danger'], ([danger]) =>
     makeHighContrastColor(danger)
   ),
-  disabledText: computed(['colors.disabled'], ([disabled]) =>
+  textDisabled: computed(['colors.disabled'], ([disabled]) =>
     makeDisabledContrastColor(disabled)
   ),
-  successText: computed(['colors.success'], ([success]) =>
+  textSuccess: computed(['colors.success'], ([success]) =>
     makeHighContrastColor(success)
   ),
   link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
@@ -72,36 +60,8 @@ const textVariants = {
 /* DEFAULT THEME */
 
 export const light = {
-  primary: '#006BB4',
-  accent: '#DD0A73',
-
-  // These colors stay the same no matter the theme
   ...poles,
-
-  // Status
-  success: '#017D73',
-  danger: '#BD271E',
-  warning: '#F5A700',
-
-  // Grays
-  ...graysLight,
-
-  // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    tint(lightestShade, 0.5)
-  ),
-  highlight: '#FFFCDD',
-
-  // Every color below must be based mathematically on the set above and in a particular order.
-  text: computed(['colors.darkestShade'], ([darkestShade]) => darkestShade),
-  title: computed(['colors.text'], ([text]) => shade(text, 0.5)),
-  subduedText: computed(
-    ['colors.euiColorMediumShade'],
-    ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
-  ),
-  disabled: computed(['colors.text'], ([text]) => tint(text, 0.7)),
-
-  // Contrasty text variants
+  ...light_colors,
   ...textVariants,
 
   // State
@@ -112,48 +72,9 @@ export const light = {
   ),
 };
 
-const graysDark = {
-  euiColorEmptyShade: '#1D1E24',
-  lightestShade: '#25262E',
-  lightShade: '#343741',
-  euiColorMediumShade: '#535966',
-  euiColorDarkShade: '#98A2B3',
-  darkestShade: '#D4DAE5',
-  euiColorFullShade: '#FFF',
-};
-
 export const dark = {
-  // These colors stay the same no matter the theme
   ...poles,
-
-  // Core
-  primary: '#1BA9F5',
-  accent: '#F990C0',
-
-  // Status
-  success: '#7DE2D1',
-  warning: '#FFCE7A',
-  danger: '#F66',
-
-  // Grays
-  ...graysDark,
-
-  // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    shade(lightestShade, 0.3)
-  ),
-  highlight: '#2E2D25',
-
-  // Variations from core
-  text: '#DFE5EF',
-  title: computed(['colors.text'], ([text]) => text),
-  subduedText: computed(
-    ['colors.euiColorMediumShade'],
-    ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
-  ),
-  disabled: computed(['colors.text'], ([text]) => shade(text, 0.7)),
-
-  // Contrasty text variants
+  ...dark_colors,
   ...textVariants,
 
   // State
@@ -311,40 +232,12 @@ export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 /* AMSTERDAM THEME */
 
 export const amsterdam_light = {
-  primary: '#07C',
-  accent: '#F04E98',
-
-  // These colors stay the same no matter the theme
   ...poles,
-
-  // Status
-  success: '#00BFB3',
-  danger: '#BD271E',
-  warning: '#FEC514',
-  disabled: '#ABB4C4',
-
-  // Grays
-  ...graysLight,
-
-  // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    tint(lightestShade, 0.5)
-  ),
-  highlight: computed(['colors.warning'], ([warning]) => tint(warning, 0.9)),
-
-  // Every color below must be based mathematically on the set above and in a particular order.
-  text: computed(['colors.darkestShade'], ([darkestShade]) => darkestShade),
-  title: computed(['colors.text'], ([text]) => shade(text, 0.5)),
-  subduedText: computed(
-    ['colors.euiColorDarkShade'],
-    ([euiColorDarkShade]) => euiColorDarkShade
-  ),
-
-  // Contrasty text variants
+  ...light_colors_ams,
   ...textVariants,
 
   // State
-  focusTransparency: 0.9,
+  focusTransparency: 0.1,
   focusBackground: computed(
     ['colors.primary', 'colors.focusTransparency'],
     ([primary, focusTransparency]) => transparentize(primary, focusTransparency)
@@ -352,41 +245,12 @@ export const amsterdam_light = {
 };
 
 export const amsterdam_dark = {
-  // These colors stay the same no matter the theme
   ...poles,
-
-  // Core
-  primary: '#36A2EF',
-  accent: '#F68FBE',
-
-  // Status
-  success: '#7DDED8',
-  warning: '#F3D371',
-  danger: '#F86B63',
-  disabled: '#515761',
-
-  // Grays
-  ...graysDark,
-
-  // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    shade(lightestShade, 0.3)
-  ),
-  highlight: '#2E2D25',
-
-  // Variations from core
-  text: '#DFE5EF',
-  title: computed(['colors.text'], ([text]) => text),
-  subduedText: computed(
-    ['colors.euiColorMediumShade'],
-    ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
-  ),
-
-  // Contrasty text variants
+  ...dark_colors_ams,
   ...textVariants,
 
   // State
-  focusTransparency: 0.7,
+  focusTransparency: 0.3,
   focusBackground: computed(
     ['colors.primary', 'colors.focusTransparency'],
     ([primary, focusTransparency]) => transparentize(primary, focusTransparency)
