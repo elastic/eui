@@ -5,7 +5,7 @@
 
 **Bug fixes**
 
-- Fixed the return type of getDefaultEuiMarkdownUiPlugins method ([#4567](https://github.com/elastic/eui/pull/4567))
+- Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 
 ## [`31.8.0`](https://github.com/elastic/eui/tree/v31.8.0)
 
