@@ -27,6 +27,7 @@ import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizablePanels from './resizable_panels';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
+import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
 
@@ -35,6 +36,7 @@ const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_conta
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
+const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
 
@@ -87,6 +89,28 @@ const ResizableContainerResetValuesHtml = renderToHtml(
 );
 const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
 const collapsibleSnippet = `<EuiResizableContainer>
+  {(EuiResizablePanel, EuiResizableButton) => (
+    <>
+      <EuiResizablePanel mode="collapsible" initialSize={20} minSize="5px">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+
+      <EuiResizableButton />
+
+      <EuiResizablePanel mode="main" initialSize={80} minSize="200px">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+    </>
+  )}
+</EuiResizableContainer>`;
+const ResizablePanelCollapsibleResponsiveHtml = renderToHtml(
+  ResizablePanelCollapsibleResponsive
+);
+const responsiveSnippet = `<EuiResizableContainer direction={isMobile ? 'vertical' : 'horizontal'}>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
       <EuiResizablePanel mode="collapsible" initialSize={20} minSize="5px">
@@ -365,6 +389,30 @@ export const ResizableContainerExample = {
       },
       demo: <ResizablePanelCollapsible />,
       snippet: collapsibleSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizablePanelCollapsibleResponsiveSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizablePanelCollapsibleResponsiveHtml,
+        },
+      ],
+      title: 'Responsive layout',
+      text: (
+        <div>
+          <p>
+            It is possible to dynamically change the{' '}
+            <EuiCode>direction</EuiCode> prop to allow for adapting layouts to
+            screen size. Resize the window to see the panel orientation change.
+          </p>
+        </div>
+      ),
+      snippet: responsiveSnippet,
+      demo: <ResizablePanelCollapsibleResponsive />,
     },
     {
       source: [
