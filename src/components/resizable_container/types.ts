@@ -75,6 +75,7 @@ interface ActionReset {
 
 interface ActionInit {
   type: 'EUI_RESIZABLE_CONTAINER_INIT';
+  payload: { isHorizontal: boolean };
 }
 
 export interface ActionDragStart {
@@ -169,7 +170,7 @@ export type EuiResizableContainerAction =
 
 export interface EuiResizableContainerActions {
   reset: () => void;
-  initContainer: () => void;
+  initContainer: (isHorizontal: boolean) => void;
   registerPanel: (panel: EuiResizablePanelController) => void;
   deregisterPanel: (panelId: EuiResizablePanelController['id']) => void;
   registerResizer: (resizer: EuiResizableButtonController) => void;
