@@ -107,7 +107,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           iconType="logoCloud"
-          contextMenuItems={contextMenuItems}
+          onOpenContextMenu={() => contextMenuItems}
           eventName="eventName"
         />
       );
