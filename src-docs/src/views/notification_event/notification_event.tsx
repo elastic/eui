@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiButtonGroup } from '../../../../src/components/button';
-import {
-  EuiContextMenuItem,
-  EuiContextMenuPanelProps,
-} from '../../../../src/components/context_menu';
+import { EuiContextMenuItem } from '../../../../src/components/context_menu';
 import { EuiNotificationEvent } from '../../../../src/components/notification/notification_event';
 
 const notificationEventsData = [
@@ -65,9 +62,6 @@ const notificationEventsData = [
 
 export default () => {
   const [event, setEvent] = useState<any>(notificationEventsData[0]);
-  const [contextMenuItems, setContextMenuItems] = useState<
-    EuiContextMenuPanelProps['items']
-  >();
 
   const onRead = (id: string, isRead: boolean) => {
     const nextState = { ...event, isRead: !isRead };
@@ -75,8 +69,10 @@ export default () => {
     setEvent(nextState);
   };
 
-  const onOpenContextMenu = (id: string, isRead: boolean) => {
-    const nextContextMenus = [
+  const onOpenContextMenu = (id: string) => {
+    const { isRead } = event;
+
+    return [
       <EuiContextMenuItem
         key="contextMenuItemA"
         onClick={() => onRead(id, isRead)}>
@@ -91,8 +87,6 @@ export default () => {
         Don’t notify me about this
       </EuiContextMenuItem>,
     ];
-
-    setContextMenuItems(nextContextMenus);
   };
 
   const [toggleIdSelected, setToggleIdSelected] = useState('reportButton');
@@ -143,7 +137,6 @@ export default () => {
           primaryAction={event.primaryAction}
           messages={event.messages}
           onRead={onRead}
-          contextMenuItems={contextMenuItems}
           onOpenContextMenu={onOpenContextMenu}
           onClickPrimaryAction={() => {}}
           onClickTitle={event.id !== 'news' ? () => {} : undefined}
