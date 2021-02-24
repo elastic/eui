@@ -33,116 +33,92 @@ const transparentize = (color: string, ratio: number) =>
   ratio ? color : color;
 
 const poles = {
-  euiColorGhost: '#FFF',
-  euiColorInk: '#000',
+  ghost: '#FFF',
+  ink: '#000',
 };
 
 const graysLight = {
-  euiColorEmptyShade: '#FFF',
-  euiColorLightestShade: '#F5F7FA',
-  euiColorLightShade: '#D3DAE6',
-  euiColorMediumShade: '#98A2B3',
-  euiColorDarkShade: '#69707D',
-  euiColorDarkestShade: '#343741',
-  euiColorFullShade: '#000',
+  emptyShade: '#FFF',
+  lightestShade: '#F5F7FA',
+  lightShade: '#D3DAE6',
+  mediumShade: '#98A2B3',
+  darkShade: '#69707D',
+  darkestShade: '#343741',
+  fullShade: '#000',
 };
 
 const textVariants = {
-  euiColorPrimaryText: computed(
-    ['colors.euiColorPrimary'],
-    ([euiColorPrimary]) => makeHighContrastColor(euiColorPrimary)
+  textPrimary: computed(['colors.primary'], ([primary]) =>
+    makeHighContrastColor(primary)
   ),
-  euiColorSecondaryText: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => makeHighContrastColor(euiColorSecondary)
+  accentText: computed(['colors.accent'], ([accent]) =>
+    makeHighContrastColor(accent)
   ),
-  euiColorAccentText: computed(['colors.euiColorAccent'], ([euiColorAccent]) =>
-    makeHighContrastColor(euiColorAccent)
+  warningText: computed(['colors.warning'], ([warning]) =>
+    makeHighContrastColor(warning)
   ),
-  euiColorWarningText: computed(
-    ['colors.euiColorWarning'],
-    ([euiColorWarning]) => makeHighContrastColor(euiColorWarning)
+  dangerText: computed(['colors.danger'], ([danger]) =>
+    makeHighContrastColor(danger)
   ),
-  euiColorDangerText: computed(['colors.euiColorDanger'], ([euiColorDanger]) =>
-    makeHighContrastColor(euiColorDanger)
+  disabledText: computed(['colors.disabled'], ([disabled]) =>
+    makeDisabledContrastColor(disabled)
   ),
-  euiColorDisabledText: computed(
-    ['colors.euiColorDisabled'],
-    ([euiColorDisabled]) => makeDisabledContrastColor(euiColorDisabled)
+  successText: computed(['colors.success'], ([success]) =>
+    makeHighContrastColor(success)
   ),
-  euiColorSuccessText: computed(
-    ['colors.euiColorSecondaryText'],
-    ([euiColorSecondaryText]) => euiColorSecondaryText
-  ),
-  euiLinkColor: computed(
-    ['colors.euiColorPrimaryText'],
-    ([euiColorPrimaryText]) => euiColorPrimaryText
-  ),
+  link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
 };
 
 /* DEFAULT THEME */
 
 export const light = {
-  euiColorPrimary: '#006BB4',
-  euiColorSecondary: '#017D73',
-  euiColorAccent: '#DD0A73',
+  primary: '#006BB4',
+  accent: '#DD0A73',
 
   // These colors stay the same no matter the theme
   ...poles,
 
   // Status
-  euiColorSuccess: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => euiColorSecondary
-  ),
-  euiColorDanger: '#BD271E',
-  euiColorWarning: '#F5A700',
+  success: '#017D73',
+  danger: '#BD271E',
+  warning: '#F5A700',
 
   // Grays
   ...graysLight,
 
   // Backgrounds
-  euiPageBackgroundColor: computed(
-    ['colors.euiColorLightestShade'],
-    ([euiColorLightestShade]) => tint(euiColorLightestShade, 0.5)
+  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
+    tint(lightestShade, 0.5)
   ),
-  euiColorHighlight: '#FFFCDD',
+  highlight: '#FFFCDD',
 
   // Every color below must be based mathematically on the set above and in a particular order.
-  euiTextColor: computed(
-    ['colors.euiColorDarkestShade'],
-    ([euiColorDarkestShade]) => euiColorDarkestShade
-  ),
-  euiTitleColor: computed(['colors.euiTextColor'], ([euiTextColor]) =>
-    shade(euiTextColor, 0.5)
-  ),
-  euiTextSubduedColor: computed(
+  text: computed(['colors.darkestShade'], ([darkestShade]) => darkestShade),
+  title: computed(['colors.text'], ([text]) => shade(text, 0.5)),
+  subduedText: computed(
     ['colors.euiColorMediumShade'],
     ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
   ),
-  euiColorDisabled: computed(['colors.euiTextColor'], ([euiTextColor]) =>
-    tint(euiTextColor, 0.7)
-  ),
+  disabled: computed(['colors.text'], ([text]) => tint(text, 0.7)),
 
   // Contrasty text variants
   ...textVariants,
 
   // State
-  euiFocusTransparency: 0.1,
-  euiFocusBackgroundColor: computed(
-    ['colors.euiColorPrimary', 'colors.euiFocusTransparency'],
-    ([euiColorPrimary, euiFocusTransparency]) =>
-      tint(euiColorPrimary, 1 - euiFocusTransparency)
+  focusTransparency: 0.1,
+  focusBackground: computed(
+    ['colors.primary', 'colors.focusTransparency'],
+    ([primary, focusTransparency]) => tint(primary, 1 - focusTransparency)
   ),
 };
 
 const graysDark = {
   euiColorEmptyShade: '#1D1E24',
-  euiColorLightestShade: '#25262E',
-  euiColorLightShade: '#343741',
+  lightestShade: '#25262E',
+  lightShade: '#343741',
   euiColorMediumShade: '#535966',
   euiColorDarkShade: '#98A2B3',
-  euiColorDarkestShade: '#D4DAE5',
+  darkestShade: '#D4DAE5',
   euiColorFullShade: '#FFF',
 };
 
@@ -151,51 +127,40 @@ export const dark = {
   ...poles,
 
   // Core
-  euiColorPrimary: '#1BA9F5',
-  euiColorSecondary: '#7DE2D1',
-  euiColorAccent: '#F990C0',
+  primary: '#1BA9F5',
+  accent: '#F990C0',
 
   // Status
-  euiColorSuccess: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => euiColorSecondary
-  ),
-  euiColorWarning: '#FFCE7A',
-  euiColorDanger: '#F66',
+  success: '#7DE2D1',
+  warning: '#FFCE7A',
+  danger: '#F66',
 
   // Grays
   ...graysDark,
 
   // Backgrounds
-  euiPageBackgroundColor: computed(
-    ['colors.euiColorLightestShade'],
-    ([euiColorLightestShade]) => shade(euiColorLightestShade, 0.3)
+  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
+    shade(lightestShade, 0.3)
   ),
-  euiColorHighlight: '#2E2D25',
+  highlight: '#2E2D25',
 
   // Variations from core
-  euiTextColor: '#DFE5EF',
-  euiTitleColor: computed(
-    ['colors.euiTextColor'],
-    ([euiTextColor]) => euiTextColor
-  ),
-  euiTextSubduedColor: computed(
+  text: '#DFE5EF',
+  title: computed(['colors.text'], ([text]) => text),
+  subduedText: computed(
     ['colors.euiColorMediumShade'],
     ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
   ),
-  euiColorDisabled: computed(['colors.euiTextColor'], ([euiTextColor]) =>
-    shade(euiTextColor, 0.7)
-  ),
+  disabled: computed(['colors.text'], ([text]) => shade(text, 0.7)),
 
   // Contrasty text variants
   ...textVariants,
 
   // State
-  euiFocusTransparency: 0.3,
-  euiFocusBackgroundColor: computed(
-    ['colors.euiColorPrimary', 'colors.euiFocusTransparency'],
-    ([euiColorPrimary, euiFocusTransparency]) =>
-      shade(euiColorPrimary, 1 - euiFocusTransparency)
+  focusTransparency: 0.3,
+  focusBackground: computed(
+    ['colors.primary', 'colors.focusTransparency'],
+    ([primary, focusTransparency]) => shade(primary, 1 - focusTransparency)
   ),
 };
 
@@ -301,10 +266,7 @@ const borders = {
   euiBorderWidthThin: '1px',
   euiBorderWidthThick: '2px',
 
-  euiBorderColor: computed(
-    ['colors.euiColorLightShade'],
-    ([euiColorLightShade]) => euiColorLightShade
-  ),
+  euiBorderColor: computed(['colors.lightShade'], ([lightShade]) => lightShade),
 
   euiBorderThick: computed(
     ['borders.euiBorderWidthThick', 'borders.euiBorderColor'],
@@ -337,10 +299,7 @@ export const euiThemeDefault = {
   buttons: {
     [COLOR_MODE_KEY]: {
       light: {
-        custom: computed(
-          ['colors.euiColorPrimary'],
-          ([primary]) => primary /*'#000'*/
-        ),
+        custom: computed(['colors.primary'], ([primary]) => primary /*'#000'*/),
       },
       dark: { custom: '#fff' },
     },
@@ -352,43 +311,31 @@ export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 /* AMSTERDAM THEME */
 
 export const amsterdam_light = {
-  euiColorPrimary: '#07C',
-  euiColorSecondary: '#00BFB3',
-  euiColorAccent: '#F04E98',
+  primary: '#07C',
+  accent: '#F04E98',
 
   // These colors stay the same no matter the theme
   ...poles,
 
   // Status
-  euiColorSuccess: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => euiColorSecondary
-  ),
-  euiColorDanger: '#BD271E',
-  euiColorWarning: '#FEC514',
-  euiColorDisabled: '#ABB4C4',
+  success: '#00BFB3',
+  danger: '#BD271E',
+  warning: '#FEC514',
+  disabled: '#ABB4C4',
 
   // Grays
   ...graysLight,
 
   // Backgrounds
-  euiPageBackgroundColor: computed(
-    ['colors.euiColorLightestShade'],
-    ([euiColorLightestShade]) => tint(euiColorLightestShade, 0.5)
+  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
+    tint(lightestShade, 0.5)
   ),
-  euiColorHighlight: computed(['colors.euiColorWarning'], ([euiColorWarning]) =>
-    tint(euiColorWarning, 0.9)
-  ),
+  highlight: computed(['colors.warning'], ([warning]) => tint(warning, 0.9)),
 
   // Every color below must be based mathematically on the set above and in a particular order.
-  euiTextColor: computed(
-    ['colors.euiColorDarkestShade'],
-    ([euiColorDarkestShade]) => euiColorDarkestShade
-  ),
-  euiTitleColor: computed(['colors.euiTextColor'], ([euiTextColor]) =>
-    shade(euiTextColor, 0.5)
-  ),
-  euiTextSubduedColor: computed(
+  text: computed(['colors.darkestShade'], ([darkestShade]) => darkestShade),
+  title: computed(['colors.text'], ([text]) => shade(text, 0.5)),
+  subduedText: computed(
     ['colors.euiColorDarkShade'],
     ([euiColorDarkShade]) => euiColorDarkShade
   ),
@@ -397,11 +344,10 @@ export const amsterdam_light = {
   ...textVariants,
 
   // State
-  euiFocusTransparency: 0.9,
-  euiFocusBackgroundColor: computed(
-    ['colors.euiColorPrimary', 'colors.euiFocusTransparency'],
-    ([euiColorPrimary, euiFocusTransparency]) =>
-      transparentize(euiColorPrimary, euiFocusTransparency)
+  focusTransparency: 0.9,
+  focusBackground: computed(
+    ['colors.primary', 'colors.focusTransparency'],
+    ([primary, focusTransparency]) => transparentize(primary, focusTransparency)
   ),
 };
 
@@ -410,36 +356,28 @@ export const amsterdam_dark = {
   ...poles,
 
   // Core
-  euiColorPrimary: '#36A2EF',
-  euiColorSecondary: '#7DDED8',
-  euiColorAccent: '#F68FBE',
+  primary: '#36A2EF',
+  accent: '#F68FBE',
 
   // Status
-  euiColorSuccess: computed(
-    ['colors.euiColorSecondary'],
-    ([euiColorSecondary]) => euiColorSecondary
-  ),
-  euiColorWarning: '#F3D371',
-  euiColorDanger: '#F86B63',
-  euiColorDisabled: '#515761',
+  success: '#7DDED8',
+  warning: '#F3D371',
+  danger: '#F86B63',
+  disabled: '#515761',
 
   // Grays
   ...graysDark,
 
   // Backgrounds
-  euiPageBackgroundColor: computed(
-    ['colors.euiColorLightestShade'],
-    ([euiColorLightestShade]) => shade(euiColorLightestShade, 0.3)
+  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
+    shade(lightestShade, 0.3)
   ),
-  euiColorHighlight: '#2E2D25',
+  highlight: '#2E2D25',
 
   // Variations from core
-  euiTextColor: '#DFE5EF',
-  euiTitleColor: computed(
-    ['colors.euiTextColor'],
-    ([euiTextColor]) => euiTextColor
-  ),
-  euiTextSubduedColor: computed(
+  text: '#DFE5EF',
+  title: computed(['colors.text'], ([text]) => text),
+  subduedText: computed(
     ['colors.euiColorMediumShade'],
     ([euiColorMediumShade]) => makeHighContrastColor(euiColorMediumShade)
   ),
@@ -448,11 +386,10 @@ export const amsterdam_dark = {
   ...textVariants,
 
   // State
-  euiFocusTransparency: 0.7,
-  euiFocusBackgroundColor: computed(
-    ['colors.euiColorPrimary', 'colors.euiFocusTransparency'],
-    ([euiColorPrimary, euiFocusTransparency]) =>
-      transparentize(euiColorPrimary, euiFocusTransparency)
+  focusTransparency: 0.7,
+  focusBackground: computed(
+    ['colors.primary', 'colors.focusTransparency'],
+    ([primary, focusTransparency]) => transparentize(primary, focusTransparency)
   ),
 };
 

@@ -48,7 +48,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.euiColorPrimary }}
+            css={{ color: theme.colors.primary }}
           />
         </h3>
         <h3>
@@ -56,7 +56,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.euiColorSecondary }}
+            css={{ color: theme.colors.accent }}
           />
         </h3>
         <h3>
@@ -64,7 +64,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.euiTextColor }}
+            css={{ color: theme.colors.text }}
           />
         </h3>
       </div>
@@ -75,8 +75,8 @@ const View = () => {
 const View3 = () => {
   const overrides = {
     colors: {
-      light: { euiColorPrimary: '#8A07BD' },
-      dark: { euiColorPrimary: '#bd07a5' },
+      light: { primary: '#8A07BD' },
+      dark: { primary: '#bd07a5' },
     },
   };
   return (
@@ -96,19 +96,16 @@ const View2 = () => {
   const overrides = {
     colors: {
       light: {
-        euiColorSecondary: computed(
-          ['colors.euiColorPrimary'],
-          () => '#85e89d'
-        ),
+        accent: computed(['colors.primary'], () => '#85e89d'),
       },
-      dark: { euiColorSecondary: '#f0fff4' },
+      dark: { accent: '#f0fff4' },
     },
   };
   return (
     <>
       <EuiSpacer />
       <EuiThemeProvider overrides={overrides}>
-        <em>Overriding secondary</em>
+        <em>Overriding accent</em>
         <View />
       </EuiThemeProvider>
     </>
@@ -121,7 +118,7 @@ class Block extends React.Component<any> {
     const { theme, ...props } = this.props;
     // TODO: TS autocomplete not working
     const blockStyle = css`
-      color: ${theme.theme.colors.euiColorPrimary};
+      color: ${theme.theme.colors.primary};
       border-radius: ${theme.theme.borders.euiBorderRadiusSmall};
       border: ${theme.theme.borders.euiBorderEditable};
     `;
@@ -150,7 +147,7 @@ export default () => {
       mergeDeep(overrides, {
         colors: {
           light: {
-            euiColorPrimary: chroma.random().hex(),
+            primary: chroma.random().hex(),
           },
         },
       })
@@ -161,7 +158,7 @@ export default () => {
       mergeDeep(overrides, {
         colors: {
           dark: {
-            euiColorPrimary: chroma.random().hex(),
+            primary: chroma.random().hex(),
           },
         },
       })
