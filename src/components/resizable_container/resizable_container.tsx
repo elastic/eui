@@ -118,14 +118,14 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     onPanelWidthChange,
   });
 
-  const initialize = useCallback(() => {
-    actions.initContainer();
-  }, [actions]);
-
   const containerSize = useResizeObserver(
     containerRef.current,
     isHorizontal ? 'width' : 'height'
   );
+
+  const initialize = useCallback(() => {
+    actions.initContainer(isHorizontal);
+  }, [actions, isHorizontal]);
 
   useEffect(() => {
     if (containerSize.width > 0 && containerSize.height > 0) {
