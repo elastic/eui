@@ -32,7 +32,7 @@
     "start-test-server": "BABEL_MODULES=false NODE_ENV=puppeteer NODE_OPTIONS=--max-old-space-size=4096 webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "yo-component": "yo ./generator-eui/app/component.js",
     "update-token-changelog": "node ./scripts/update-token-changelog.js",
-    "start-test-server-and-a11y-test": "start-server-and-test start-test-server http-get://localhost:9999 test-a11y",
+    "start-test-server-and-a11y-test": "cross-env WAIT_ON_TIMEOUT=600000 start-server-and-test start-test-server http-get://localhost:9999 test-a11y",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "release": "node ./scripts/release.js",
     "postinstall": "node ./scripts/postinstall.js",
