@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `panelProps` to `EuiPopover` and `EuiPanel` ([#4573](https://github.com/elastic/eui/pull/4573))
+- Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
 - Allowed dynamically changing the `direction` prop on `EuiResizableContainer` ([#4557](https://github.com/elastic/eui/pull/4557))
 - Exported `useIsWithinBreakpoints` hook ([#4557](https://github.com/elastic/eui/pull/4557))
 
