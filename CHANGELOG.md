@@ -17,7 +17,7 @@
 - Fixed `disabled` text color form fields in Safari ([#4538](https://github.com/elastic/eui/pull/4538))
 - Removed static `id` from `EuiQuickSelectPopover` ([#4543](https://github.com/elastic/eui/pull/4543))
 - Fixed support sever side rendering for `EuiDataGrid` ([#4540](https://github.com/elastic/eui/pull/4540))
-
+- Fixed redundant render caused in `EuiCard` when `description` is false ([#4546]https://github.com/elastic/eui/pull/4582)
 **Theme: Amsterdam**
 
 - Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
