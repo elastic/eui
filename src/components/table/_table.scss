@@ -86,7 +86,22 @@
     background-color: $euiTableHoverColor;
   }
 
+
+  &.euiTableRow-isClickable {
+    background-color: $euiColorEmptyShade !important; // sass-lint:disable-line no-important
+
+    &:hover {
+      background-color: $euiTableHoverClickableColor !important; // sass-lint:disable-line no-important
+      cursor: pointer;
+    }
+
+    &:focus {
+      background-color: $euiTableFocusClickableColor !important; // sass-lint:disable-line no-important
+    }
+  }
+
   &.euiTableRow-isExpandedRow {
+    background-color: $euiTableHoverColor;
 
     &.euiTableRow-isSelectable .euiTableCellContent {
       padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
@@ -232,13 +247,4 @@
   }
 }
 
-.euiTableRow-isClickable {
-  &:hover {
-    background-color: $euiTableHoverClickableColor !important; // sass-lint:disable-line no-important
-    cursor: pointer;
-  }
 
-  &:focus {
-    background-color: $euiTableFocusClickableColor !important; // sass-lint:disable-line no-important
-  }
-}
