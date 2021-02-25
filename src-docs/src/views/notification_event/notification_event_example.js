@@ -130,6 +130,10 @@ export const NotificationEventExample = {
                 <EuiCode>{'iconType'}</EuiCode>.
               </li>
               <li>
+                <EuiCode>{'isRead'}</EuiCode>: shows an indicator of the read
+                state of the event.
+              </li>
+              <li>
                 <EuiCode>{'messages'}</EuiCode> {required}: notification
                 messages as an array of strings. More than one message wraps in
                 an accordion.
