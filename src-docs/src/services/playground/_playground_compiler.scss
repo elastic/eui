@@ -1,4 +1,9 @@
 .playgroundCompiler {
+  background: $euiColorEmptyShade;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
   > div {
     justify-content: left !important; // sass-lint:disable-line no-important
     display: block !important; // sass-lint:disable-line no-important

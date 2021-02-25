@@ -24,10 +24,22 @@ const fieldTextConfig = () => {
 
   propsToUse.append.type = PropTypes.String;
   propsToUse.prepend.type = PropTypes.String;
-  // propsToUse.label = {
-  //   ...propsToUse.label,
-  //   type: PropTypes.String,
-  // };
+  propsToUse.label = {
+    ...propsToUse.label,
+    type: PropTypes.String,
+  };
+  propsToUse.labelAppend = {
+    ...propsToUse.labelAppend,
+    type: PropTypes.String,
+  };
+  propsToUse.helpText = {
+    ...propsToUse.helpText,
+    type: PropTypes.String,
+  };
+  propsToUse.error = {
+    ...propsToUse.error,
+    type: PropTypes.String,
+  };
 
   propsToUse.value = {
     ...propsToUse.value,

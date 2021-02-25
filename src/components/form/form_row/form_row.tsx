@@ -94,7 +94,14 @@ export type EuiFormRowCommonProps = CommonProps & {
   labelAppend?: ReactNode;
   id?: string;
   isInvalid?: boolean;
+  /**
+   * Error nodes will only show when `isInvalid` is true;
+   * Displayed after the input, before the `helpText`
+   */
   error?: ReactNode | ReactNode[];
+  /**
+   * Small text that displays below the input
+   */
   helpText?: ReactNode;
   /**
    * For use only in inline forms to align the inputs
