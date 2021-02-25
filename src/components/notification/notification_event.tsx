@@ -38,31 +38,31 @@ export type EuiNotificationEventPrimaryActionProps = EuiButtonEmptyProps & {
 export type EuiNotificationEventProps = {
   id: string;
   /**
-   * See #EuiNotificationEventMeta
+   * See #EuiNotificationEventMeta.
    */
   meta: EuiNotificationEventMetaProps;
   /**
-   * The title of the event
+   * The title of the event.
    */
   title: string;
   /**
-   * Returns the `id` and applies an `onClick` handler to the title
+   * Returns the `id` and applies an `onClick` handler to the title.
    */
   onClickTitle?: (id: string) => void;
   /**
-   * Shows an indicator of the read state of the event
+   * Shows an indicator of the read state of the event.
    */
   isRead?: boolean | undefined;
   /**
-   * See #EuiNotificationEventPrimaryAction
+   * See #EuiNotificationEventPrimaryAction.
    */
   primaryAction?: EuiNotificationEventPrimaryActionProps;
   /**
-   * Returns the `id` and applies an `onClick` handler to the `primaryAction`
+   * Returns the `id` and applies an `onClick` handler to the `primaryAction`.
    */
   onClickPrimaryAction?: (id: string) => void;
   /**
-   * Notification messages as an array of strings
+   * Notification messages as an array of strings. More than one message wraps in an accordion.
    */
   messages: EuiNotificationEventMessagesProps['messages'];
   /**
@@ -70,7 +70,7 @@ export type EuiNotificationEventProps = {
    */
   onRead?: (id: string, isRead: boolean) => void;
   /**
-   * Provided the `id` of the event must return an array of #EuiContextMenuItem elements
+   * Provided the `id` of the event must return an array of #EuiContextMenuItem elements.
    */
   onOpenContextMenu?: (
     id: string

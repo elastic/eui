@@ -128,7 +128,8 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>{'messages'}</EuiCode> {required}: notification
-                messages as an array of strings.
+                messages as an array of strings. More than one message wraps in
+                an accordion.
               </li>
             </ul>
           </EuiText>
