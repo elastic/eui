@@ -6,7 +6,6 @@ import {
 } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
-  simulateFunction,
   generateCustomProps,
 } from '../../services/playground';
 
@@ -16,12 +15,13 @@ export const pageTemplateConfig = () => {
     : EuiPageTemplate.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  propsToUse.pageHeader = simulateFunction({
-    ...propsToUse.pageHeader,
-    custom: {
-      value: '{ pageTitle: "Page title" }',
-    },
-  });
+  // TODO: Follow up on how to allow passing an object to a prop
+  // propsToUse.pageHeader = simulateFunction({
+  //   ...propsToUse.pageHeader,
+  //   custom: {
+  //     value: '{ pageTitle: "Page title" }',
+  //   },
+  // });
 
   propsToUse.children = {
     ...propsToUse.children,

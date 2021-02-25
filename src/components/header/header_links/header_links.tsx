@@ -90,8 +90,9 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
-  const onMenuButtonClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-    // @ts-ignore HELP
+  const onMenuButtonClick: MouseEventHandler<
+    HTMLButtonElement & HTMLAnchorElement
+  > = (e) => {
     _onClick && _onClick(e);
     setMobileMenuIsOpen(!mobileMenuIsOpen);
   };
@@ -112,7 +113,6 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   const button = (
     <EuiI18n token="euiHeaderLinks.openNavigationMenu" default="Open menu">
       {(openNavigationMenu: string) => (
-        // @ts-ignore HELP
         <EuiHeaderSectionItemButton
           aria-label={openNavigationMenu}
           onClick={onMenuButtonClick}
