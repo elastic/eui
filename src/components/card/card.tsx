@@ -387,12 +387,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
-        <EuiText
-          id={`${ariaId}Description`}
-          size="s"
-          className="euiCard__description">
-          <p>{description}</p>
-        </EuiText>
+        {description && (
+          <EuiText
+            id={`${ariaId}Description`}
+            size="s"
+            className="euiCard__description">
+            <p>{description}</p>
+          </EuiText>
+        )}
 
         {children}
       </div>
