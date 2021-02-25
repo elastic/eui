@@ -56,7 +56,7 @@ getComputed(
 
 #### Modifications
 
-Compute-time value overrides and extensions for theme property values. Because a theme system is unchangeable, this mechanism allows for changing values at certain points during consumption.
+Because the theme system (built theme) is immutable, modifications can only be made at compute time by providing overrides and extensions for theme property values. These modifications are passed to the `EuiThemeProvider` via the `modify` prop and should match the high-level object shape of the theme. 
 
 #### Color mode
 
