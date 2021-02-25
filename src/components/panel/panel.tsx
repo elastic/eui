@@ -66,9 +66,6 @@ export const COLORS = [
 export type PanelColor = typeof COLORS[number];
 export type PanelPaddingSize = typeof SIZES[number];
 export type PanelBorderRadius = typeof BORDER_RADII[number];
-export type PanelProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> &
-  HTMLAttributes<HTMLDivElement>;
 
 export interface _EuiPanelProps extends CommonProps {
   /**
@@ -115,7 +112,6 @@ export interface _EuiPanelProps extends CommonProps {
    * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
    */
   betaBadgeTitle?: string;
-  panelProps?: PanelProps;
 }
 
 interface Divlike
@@ -142,13 +138,11 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
-  panelProps,
   ...rest
 }) => {
   // Shadows are only allowed when there's a white background (plain)
   const canHaveShadow = color === 'plain';
   const canHaveBorder = color === 'plain' || color === 'transparent';
-
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
@@ -165,8 +159,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       'euiPanel--isClickable': onClick,
       'euiPanel--hasBetaBadge': betaBadgeLabel,
     },
-    className,
-    panelProps?.className
+    className
   );
 
   let optionalBetaBadge;
@@ -186,7 +179,6 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   if (onClick) {
     return (
       <button
-        {...panelProps}
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
         onClick={onClick}
@@ -196,10 +188,8 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       </button>
     );
   }
-
   return (
     <div
-      {...panelProps}
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
       {...(rest as HTMLAttributes<HTMLDivElement>)}>

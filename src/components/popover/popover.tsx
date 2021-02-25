@@ -43,7 +43,7 @@ import {
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { EuiPanel, PanelPaddingSize, PanelProps } from '../panel';
+import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../panel';
 
 import { EuiPortal } from '../portal';
 
@@ -148,7 +148,7 @@ export interface EuiPopoverProps {
   /**
    * Object of props passed to EuiPanel
    */
-  panelProps?: PanelProps;
+  panelProps?: EuiPanelProps;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
@@ -765,7 +765,6 @@ export class EuiPopover extends Component<Props, State> {
               className={panelClasses}
               hasShadow={false}
               paddingSize={panelPaddingSize}
-              panelProps={panelProps}
               tabIndex={tabIndex}
               aria-live={ariaLive}
               role="dialog"
@@ -773,7 +772,8 @@ export class EuiPopover extends Component<Props, State> {
               aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
-              style={this.state.popoverStyles}>
+              style={this.state.popoverStyles}
+              {...panelProps}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>

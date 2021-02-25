@@ -39,14 +39,6 @@ describe('EuiPanel', () => {
       });
     });
 
-    describe('panelProps', () => {
-      test('is rendered', () => {
-        const component = render(<EuiPanel panelProps={requiredProps} />);
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('grow', () => {
       test('can be false', () => {
         const component = render(<EuiPanel grow={false} />);
