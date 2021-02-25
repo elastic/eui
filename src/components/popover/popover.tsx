@@ -362,7 +362,7 @@ export class EuiPopover extends Component<Props, State> {
       suppressingPopover: props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
       isOpening: false,
-      popoverStyles: DEFAULT_POPOVER_STYLES,
+      popoverStyles: { ...DEFAULT_POPOVER_STYLES, ...props.panelProps?.style },
       arrowStyles: {},
       arrowPosition: null,
       openPosition: null, // once a stable position has been found, keep the contents on that side
@@ -774,7 +774,7 @@ export class EuiPopover extends Component<Props, State> {
               aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
-              style={panelProps?.style || this.state.popoverStyles}>
+              style={this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>
