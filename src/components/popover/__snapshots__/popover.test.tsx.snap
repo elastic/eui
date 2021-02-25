@@ -612,10 +612,9 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-label="aria-label"
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow testClass1 testClass2"
+        class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen testClass1 testClass2"
         data-test-subj="test subject string"
         role="dialog"
         style="top: 16px; left: -22px; z-index: 2000; will-change: transform, opacity;"

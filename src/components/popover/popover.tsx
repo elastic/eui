@@ -706,7 +706,8 @@ export class EuiPopover extends Component<Props, State> {
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
-      panelClassName
+      panelClassName,
+      panelProps?.className
     );
 
     let panel;
@@ -761,6 +762,7 @@ export class EuiPopover extends Component<Props, State> {
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }>
             <EuiPanel
+              {...panelProps}
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
@@ -772,8 +774,7 @@ export class EuiPopover extends Component<Props, State> {
               aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
-              style={this.state.popoverStyles}
-              {...panelProps}>
+              style={panelProps?.style || this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>

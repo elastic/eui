@@ -143,6 +143,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   // Shadows are only allowed when there's a white background (plain)
   const canHaveShadow = color === 'plain';
   const canHaveBorder = color === 'plain' || color === 'transparent';
+
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
@@ -188,6 +189,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       </button>
     );
   }
+
   return (
     <div
       ref={panelRef as Ref<HTMLDivElement>}
