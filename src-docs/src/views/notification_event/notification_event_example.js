@@ -26,10 +26,8 @@ const notificationEventSnippet = `<EuiNotificationEvent
   id={id}
   meta={{
     type: 'Alert',
-    severity: 'Warning',
     iconType: 'logoMaps',
-    badgeColor: 'warning',
-    eventName: 'alert-warning-01',
+    eventName: 'alert-maps-01',
     time: '1 min ago',
   }}
   title={title}
@@ -38,11 +36,11 @@ const notificationEventSnippet = `<EuiNotificationEvent
   messages={messages}
   onRead={onRead}
   onOpenContextMenu={onOpenContextMenu}
-  onClickPrimaryAction={() => {}}
-  onClickTitle={() => {}}
+  onClickPrimaryAction={onClickPrimaryAction}
+  onClickTitle={onClickTitle}
 />`;
 
-const notificationEventFeedSnippet = `// we're looping through an array of objects to render multiple EuiNotificationEvent's
+const notificationEventFeedSnippet = `// we're looping through an array of objects to render multiple EuiNotificationEvent
 const notificationEvents = events.map((event) => (
   <EuiNotificationEvent
     key={event.id}
@@ -55,9 +53,14 @@ const notificationEvents = events.map((event) => (
     onRead={onRead}
     onOpenContextMenu={onOpenContextMenu}
     onClickPrimaryAction={onClickPrimaryAction}
-    onClickTitle={onClickTitle!}
+    onClickTitle={onClickTitle}
   />
 ));
+
+// the multiple EuiNotificationEvent should live inside the same container
+<div>
+ {notificationEvents}
+</div>
 `;
 
 const required = <EuiTextColor color="danger">(required)</EuiTextColor>;
