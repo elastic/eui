@@ -74,7 +74,7 @@ export type EuiNotificationEventMetaProps = Omit<
    */
   time: ReactNode;
   /**
-   * Necessary to trigger `onOpenContextMenu` from EuiNotificationEvent
+   * Necessary to trigger `onOpenContextMenu` from #EuiNotificationEvent
    */
   onOpenContextMenu?: () => Array<
     ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>

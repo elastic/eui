@@ -193,9 +193,9 @@ export const NotificationEventExample = {
       text: (
         <p>
           You can create a notifications feed by rendering multiple{' '}
-          <strong>EuiNotificationEvent</strong>&apos;s. These components should
-          live inside a container without other components on the same level.
-          This way, we ensure that feed styles are applied correctly. Consuming
+          <strong>EuiNotificationEvent</strong>. These components should live
+          inside a container without other components on the same level. This
+          way, we ensure that feed styles are applied correctly. Consuming
           applications should implement all the logic to filter and save
           read/unread states.
         </p>
