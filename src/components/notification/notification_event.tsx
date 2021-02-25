@@ -116,7 +116,10 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
 
       <div className="euiNotificationEvent__content">
         {onClickTitle ? (
-          <EuiLink className={classesTitle} onClick={() => onClickTitle(id)}>
+          <EuiLink
+            className={classesTitle}
+            onClick={() => onClickTitle(id)}
+            data-test-subj="notificationEventTitle">
             {title}
           </EuiLink>
         ) : (
@@ -131,7 +134,8 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
               flush="left"
               size="s"
               {...primaryAction}
-              onClick={() => onClickPrimaryAction?.(id)}>
+              onClick={() => onClickPrimaryAction?.(id)}
+              data-test-subj="notificationEventPrimaryAction">
               {primaryAction.label}
             </EuiButtonEmpty>
           </div>

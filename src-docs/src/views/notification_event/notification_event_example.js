@@ -37,7 +37,6 @@ const notificationEventSnippet = `<EuiNotificationEvent
   primaryAction={primaryAction}
   messages={messages}
   onRead={onRead}
-  contextMenuItems={contextMenuItems}
   onOpenContextMenu={onOpenContextMenu}
   onClickPrimaryAction={() => {}}
   onClickTitle={() => {}}
@@ -54,7 +53,6 @@ const notificationEvents = events.map((event) => (
     primaryAction={event.primaryAction}
     messages={event.messages}
     onRead={onRead}
-    contextMenuItems={contextMenuItems}
     onOpenContextMenu={onOpenContextMenu}
     onClickPrimaryAction={onClickPrimaryAction}
     onClickTitle={onClickTitle!}
@@ -105,11 +103,11 @@ export const NotificationEventExample = {
           <EuiText>
             <p>
               A <strong>EuiNotificationEvent</strong> is comprised of different
-              props.
+              props:
             </p>
             <ul>
               <li>
-                <EuiCode>{'id'}</EuiCode> {required}: a unique id
+                <EuiCode>{'id'}</EuiCode> {required}: a unique id.
               </li>
               <li>
                 <EuiCode>{'meta'}</EuiCode> {required}: an object with multiple
@@ -120,21 +118,17 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>{'title'}</EuiCode> {required}: the{' '}
-                <EuiCode>{'title'}</EuiCode> of the event
+                <EuiCode>{'title'}</EuiCode> of the event.
               </li>
               <li>
                 <EuiCode>{'primaryAction'}</EuiCode>: an object with a{' '}
                 <EuiCode>{'label'}</EuiCode> and other{' '}
                 <EuiCode>{'EuiButtonEmptyProps'}</EuiCode> props like a{' '}
-                <EuiCode>{'iconType'}</EuiCode>
-              </li>
-              <li>
-                <EuiCode>{'contextMenuItems'}</EuiCode>: an array of{' '}
-                <EuiCode>{'<EuiContextMenuItem />'}</EuiCode>
+                <EuiCode>{'iconType'}</EuiCode>.
               </li>
               <li>
                 <EuiCode>{'messages'}</EuiCode> {required}: notification
-                messages as an array of strings
+                messages as an array of strings.
               </li>
             </ul>
           </EuiText>
@@ -143,19 +137,25 @@ export const NotificationEventExample = {
             <p>Methods for helping to deal to common action types:</p>
             <ul>
               <li>
-                <EuiCode>onOpenContextMenu</EuiCode>: returns the{' '}
-                <EuiCode>id</EuiCode>, <EuiCode>isRead</EuiCode> and{' '}
-                <EuiCode>type</EuiCode> of the open context menu
+                <EuiCode>onRead</EuiCode>: returns the <EuiCode>id</EuiCode>,{' '}
+                <EuiCode>isRead</EuiCode> and applies an{' '}
+                <EuiCode>onClick</EuiCode> handler to the{' '}
+                <EuiCode>read</EuiCode> indicator.
+              </li>
+              <li>
+                <EuiCode>onOpenContextMenu</EuiCode>: provided the{' '}
+                <EuiCode>id</EuiCode> of the event must return an array of{' '}
+                <EuiCode>EuiContextMenuItem</EuiCode> elements.
               </li>
               <li>
                 <EuiCode>onClickPrimaryAction</EuiCode>: returns the{' '}
                 <EuiCode>id</EuiCode> and applies an <EuiCode>onClick</EuiCode>{' '}
-                handler to the <EuiCode>primaryAction</EuiCode>
+                handler to the <EuiCode>primaryAction</EuiCode>.
               </li>
               <li>
                 <EuiCode>onClickTitle</EuiCode>: returns the{' '}
                 <EuiCode>id</EuiCode> and applies an <EuiCode>onClick</EuiCode>{' '}
-                handler to the <EuiCode>title</EuiCode>
+                handler to the <EuiCode>title</EuiCode>.
               </li>
             </ul>
           </EuiText>
