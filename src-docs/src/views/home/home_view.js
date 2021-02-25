@@ -9,7 +9,7 @@ import imageCards from '../../images/cards.svg';
 import imagePages from '../../images/page.svg';
 import imageText from '../../images/text.svg';
 import imageCharts from '../../images/charts.svg';
-import homeIllustration from '../../images/home_illustration.svg';
+import HomeIllustration from './home_illustration';
 
 import {
   EuiCard,
@@ -20,7 +20,6 @@ import {
   EuiText,
   EuiTitle,
   EuiPanel,
-  EuiImage,
   EuiIcon,
   EuiFlexGrid,
 } from '../../../../src/components';
@@ -67,7 +66,7 @@ export const HomeView = () => (
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem className="eui-textRight">
-          <EuiImage alt="" url={homeIllustration} />
+          <HomeIllustration />
         </EuiFlexItem>
       </EuiFlexGroup>
     </EuiPanel>
