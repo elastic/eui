@@ -319,7 +319,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   }
 
   let optionalSelectButton;
-  if (selectable) {
+  if (selectable && description) {
     optionalSelectButton = (
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaId}Description`}
@@ -337,7 +337,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let theTitle;
-  if (!isDisabled && href) {
+  if (!isDisabled && href && description) {
     theTitle = (
       <a
         className="euiCard__titleAnchor"
@@ -352,7 +352,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         {title}
       </a>
     );
-  } else if (isDisabled || onClick) {
+  } else if ((isDisabled || onClick) && description) {
     theTitle = (
       <button
         className="euiCard__titleButton"
