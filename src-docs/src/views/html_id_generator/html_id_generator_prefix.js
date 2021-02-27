@@ -6,7 +6,6 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiCode,
-  EuiFormRow,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -28,13 +27,12 @@ export const HtmlIdGeneratorPrefix = () => {
         gutterSize="m"
         alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiFormRow label="Prefix">
-            <EuiFieldText
-              value={prefix}
-              onChange={onSearchChange}
-              placeholder="Enter prefix"
-            />
-          </EuiFormRow>
+          <EuiFieldText
+            label="Prefix"
+            value={prefix}
+            onChange={onSearchChange}
+            placeholder="Enter prefix"
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />

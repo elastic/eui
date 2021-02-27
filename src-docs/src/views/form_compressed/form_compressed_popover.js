@@ -60,9 +60,12 @@ export default () => {
             isFullWidth
           />
         </EuiFormRow>
-        <EuiFormRow label="Text field" display="columnCompressed">
-          <EuiFieldText name="first" compressed />
-        </EuiFormRow>
+
+        <EuiFieldText
+          name="first"
+          label="Text field"
+          display="columnCompressed"
+        />
 
         <EuiFormRow label={'Select'} display="columnCompressed">
           <EuiSelect

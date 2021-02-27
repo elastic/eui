@@ -35,17 +35,19 @@ export default () => {
   return (
     <Fragment>
       <EuiForm isInvalid={showErrors} error={errors}>
-        <EuiFormRow label="Validation only" isInvalid={showErrors}>
-          <EuiFieldText name="first" isInvalid={showErrors} />
-        </EuiFormRow>
+        <EuiFieldText
+          label="Validation only"
+          name="first"
+          isInvalid={showErrors}
+        />
 
-        <EuiFormRow
+        <EuiFieldText
+          name="text"
+          isInvalid={showErrors}
           label="Validation with help text and errors"
           helpText="I am some friendly help text."
-          isInvalid={showErrors}
-          error={errors}>
-          <EuiFieldText name="text" isInvalid={showErrors} />
-        </EuiFormRow>
+          error={errors}
+        />
 
         <EuiFormRow label="Text area" isInvalid={showErrors}>
           <EuiTextArea name="area" isInvalid={showErrors} />

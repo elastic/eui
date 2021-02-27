@@ -297,21 +297,19 @@ export default () => (
       at the end of an action, an (s) at the end of a noun, or add parentheses
       (()).">
       <GuideRuleExample type="do" text='Do. Use an "s" or "es" to show plural.'>
-        <EuiFormRow
+        <EuiFieldText
           label="Airports"
-          helpText="Separate multiple names with a comma">
-          <EuiFieldText />
-        </EuiFormRow>
+          helpText="Separate multiple names with a comma"
+        />
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
         text="Don't. Use (s), a colon after labels, or parenthetical statements.">
-        <EuiFormRow
+        <EuiFieldText
           label="Airport(s):"
-          helpText="Separate multiple names with a comma (other characters are unsupported).">
-          <EuiFieldText />
-        </EuiFormRow>
+          helpText="Separate multiple names with a comma (other characters are unsupported)."
+        />
       </GuideRuleExample>
     </GuideRule>
 
@@ -334,7 +332,7 @@ export default () => (
 
     <GuideRule
       heading="Know when to use the ending period"
-      description="Use periods at the end of help text and complete sentences 
+      description="Use periods at the end of help text and complete sentences
       in body text. These are typically supplemental explanations and
       instructions. Avoid periods in titles and headings.">
       <GuideRuleExample
@@ -587,19 +585,19 @@ export default () => (
       <GuideRuleExample
         type="do"
         text="Do.  Explain new or difficult concepts.">
-        <EuiFormRow
+        <EuiFieldText
           label="Index template"
-          helpText="A template defines the settings, mappings, and aliases to apply when you create an index.">
-          <EuiFieldText />
-        </EuiFormRow>
+          helpText="A template defines the settings, mappings, and aliases to apply when you create an index."
+        />
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
         text="Don't. Provide explanations for common actions.">
-        <EuiFormRow label="Email" helpText="Please enter your email address.">
-          <EuiFieldText />
-        </EuiFormRow>
+        <EuiFieldText
+          label="Email"
+          helpText="Please enter your email address."
+        />
       </GuideRuleExample>
     </GuideRule>
 
@@ -619,9 +617,8 @@ export default () => (
             label="Combine values in other bucket"
           />
         </EuiFormRow>
-        <EuiFormRow label="Bucket label">
-          <EuiFieldText />
-        </EuiFormRow>
+
+        <EuiFieldText label="Bucket label" />
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="Don't. Use generic labels.">
         <EuiFormRow>
@@ -631,9 +628,8 @@ export default () => (
             label="Combine other"
           />
         </EuiFormRow>
-        <EuiFormRow label="Bucket label">
-          <EuiFieldText />
-        </EuiFormRow>
+
+        <EuiFieldText label="Bucket label" />
       </GuideRuleExample>
     </GuideRule>
 

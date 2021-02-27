@@ -60,12 +60,13 @@ export default () => {
   };
   return (
     <EuiPanel style={{ maxWidth: 300 }}>
-      <EuiFormRow
+      <EuiFieldText
+        name="first"
+        isLoading
         label="Text field"
         helpText="I am some friendly help text."
-        display="rowCompressed">
-        <EuiFieldText name="first" isLoading compressed />
-      </EuiFormRow>
+        compressed
+      />
 
       <EuiFormRow label="Select" display="rowCompressed">
         <EuiSelect

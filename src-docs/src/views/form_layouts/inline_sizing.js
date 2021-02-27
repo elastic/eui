@@ -18,9 +18,7 @@ export default () => (
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiFormRow label="Full name">
-        <EuiFieldText icon="user" placeholder="John Doe" />
-      </EuiFormRow>
+      <EuiFieldText label="Full name" icon="user" placeholder="John Doe" />
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiFormRow label="Avatar" display="center">

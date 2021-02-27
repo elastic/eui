@@ -49,6 +49,7 @@ const fieldTextSource = require('!!raw-loader!./field_text');
 const fieldTextHtml = renderToHtml(FieldText);
 const fieldTextSnippet = [
   `<EuiFieldText
+  lable="Text field"
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
@@ -186,6 +187,16 @@ export const FormControlsExample = {
   sections: [
     {
       title: 'Text field',
+      text: (
+        <>
+          <p>
+            EuiTextField is the first field component to allow for EuiFormRow
+            props directly. For instance, you can provide a{' '}
+            <EuiCode>label</EuiCode> prop directly to EuiFieldText and it will
+            automically wrap the itself in a EuiFormRow.
+          </p>
+        </>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,

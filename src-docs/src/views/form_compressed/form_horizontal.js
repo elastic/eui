@@ -26,12 +26,14 @@ export default () => {
 
   return (
     <EuiPanel style={{ maxWidth: 300 }}>
-      <EuiFormRow
+      <EuiFieldText
         label="Text field"
         helpText="I am some friendly help text."
-        display="columnCompressed">
-        <EuiFieldText name="first" isLoading compressed />
-      </EuiFormRow>
+        display="columnCompressed"
+        name="first"
+        isLoading
+        compressed
+      />
 
       <EuiFormRow label="Select" display="columnCompressed">
         <EuiSelect

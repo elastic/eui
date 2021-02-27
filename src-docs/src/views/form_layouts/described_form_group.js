@@ -34,15 +34,11 @@ export default () => {
             or any other type of content.
           </Fragment>
         }>
-        <EuiFormRow label="Text field">
-          <EuiFieldText name="first" aria-label="Example" />
-        </EuiFormRow>
+        <EuiFieldText label="Text field" name="first" aria-label="Example" />
       </EuiDescribedFormGroup>
 
       <EuiDescribedFormGroup title={<h3>No description</h3>}>
-        <EuiFormRow label="Text field">
-          <EuiFieldText name="first" />
-        </EuiFormRow>
+        <EuiFieldText label="Text field" name="first" />
       </EuiDescribedFormGroup>
 
       <EuiDescribedFormGroup
@@ -95,13 +91,12 @@ export default () => {
           />
         </EuiFormRow>
 
-        <EuiFormRow fullWidth>
-          <EuiFieldText
-            name="second"
-            fullWidth
-            aria-label="An example of EuiTextField with fullWidth"
-          />
-        </EuiFormRow>
+        <EuiFieldText
+          hasEmptyLabelSpace
+          name="second"
+          fullWidth
+          aria-label="An example of EuiTextField with fullWidth"
+        />
       </EuiDescribedFormGroup>
     </EuiForm>
   );

@@ -21,9 +21,7 @@ const repeatableForm = (
   <EuiForm>
     <EuiFlexGroup>
       <EuiFlexItem>
-        <EuiFormRow label="Username">
-          <EuiFieldText icon="user" placeholder="John" />
-        </EuiFormRow>
+        <EuiFieldText label="Username" icon="user" placeholder="John" />
       </EuiFlexItem>
 
       <EuiFlexItem>

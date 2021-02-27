@@ -60,9 +60,7 @@ export default () => {
           </EuiFormRow>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiFormRow label="Full name">
-            <EuiFieldText icon="user" placeholder="John Doe" />
-          </EuiFormRow>
+          <EuiFieldText label="Full name" icon="user" placeholder="John Doe" />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiFormRow hasEmptyLabelSpace>
@@ -95,9 +93,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="A text field">
-        <EuiFieldText name="popfirst" />
-      </EuiFormRow>
+      <EuiFieldText label="A text field" name="popfirst" />
 
       <EuiFormRow label="Range" helpText="Some help text for the range">
         <EuiRange min={0} max={100} name="poprange" />

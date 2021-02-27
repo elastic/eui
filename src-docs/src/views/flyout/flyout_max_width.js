@@ -69,11 +69,11 @@ export default () => {
           <EuiSpacer />
 
           <EuiForm>
-            <EuiFormRow
+            <EuiFieldText
               label="Text field"
-              helpText="I am some friendly help text.">
-              <EuiFieldText name="first" />
-            </EuiFormRow>
+              helpText="I am some friendly help text."
+              name="first"
+            />
 
             <EuiFormRow label="Select (with no initial selection)">
               <EuiSelect

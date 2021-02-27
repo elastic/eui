@@ -148,20 +148,16 @@ const Knob = ({
       }
 
       return (
-        <EuiFormRow
+        <EuiFieldText
           isInvalid={error && error.length > 0}
           error={error}
           fullWidth
-          helpText={custom && custom.helpText}>
-          <EuiFieldText
-            placeholder={placeholder}
-            aria-label={name}
-            isInvalid={error && error.length > 0}
-            compressed
-            fullWidth
-            {...knobProps}
-          />
-        </EuiFormRow>
+          helpText={custom && custom.helpText}
+          placeholder={placeholder}
+          aria-label={name}
+          compressed
+          {...knobProps}
+        />
       );
 
     case PropTypes.Boolean:
