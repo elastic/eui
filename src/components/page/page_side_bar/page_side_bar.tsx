@@ -24,6 +24,9 @@ import { CommonProps } from '../../common';
 export interface EuiPageSideBarProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
+  /**
+   * Adds `position: sticky` and affords for any fixed position headers
+   */
   sticky?: boolean;
 }
 

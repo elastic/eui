@@ -1,0 +1,785 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPageTemplate is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPage euiPage--grow euiPageTemplate testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-custom"
+        style="max-width:1024px"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate restrict width can be turned off 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      style="display:flex"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template default is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template empty is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageBodyProps 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    aria-label="aria-label"
+    class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageBodyProps 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    aria-label="aria-label"
+    class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageBodyProps 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    aria-label="aria-label"
+    class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      style="display:flex"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageBodyProps 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    aria-label="aria-label"
+    class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentBodyProps 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default testClass1 testClass2"
+        data-test-subj="test subject string"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentBodyProps 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          aria-label="aria-label"
+          class="euiPageContentBody euiPage--restrictWidth-default testClass1 testClass2"
+          data-test-subj="test subject string"
+        />
+      </div>
+    </main>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentBodyProps 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      style="display:flex"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          aria-label="aria-label"
+          class="euiPageContentBody euiPage--restrictWidth-default testClass1 testClass2"
+          data-test-subj="test subject string"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentBodyProps 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default testClass1 testClass2"
+        data-test-subj="test subject string"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentProps 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone testClass1 testClass2"
+      data-test-subj="test subject string"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentProps 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2"
+        data-test-subj="test subject string"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentProps 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      style="display:flex"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2"
+        data-test-subj="test subject string"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageContentProps 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone testClass1 testClass2"
+      data-test-subj="test subject string"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageHeader 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Page title"
+    />
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageHeader 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Page title"
+    />
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageHeader 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Page title"
+    />
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      style="display:flex"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template is rendered with pageHeader 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      style="margin-bottom:0"
+      title="Page title"
+    />
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template paddingSize is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template paddingSize is rendered 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone"
+    >
+      <div
+        class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template paddingSize is rendered 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      style="display:flex"
+    >
+      <div
+        class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template paddingSize is rendered 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    class="euiPageSideBar euiPageSideBar--sticky"
+  >
+    Side Bar
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    class="euiPageSideBar euiPageSideBar--sticky"
+  >
+    Side Bar
+  </div>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    class="euiPageSideBar euiPageSideBar--sticky"
+  >
+    Side Bar
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    class="euiPageSideBar euiPageSideBar--sticky"
+  >
+    Side Bar
+  </div>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarProps 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    aria-label="aria-label"
+    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Side Bar
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarProps 2`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    aria-label="aria-label"
+    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Side Bar
+  </div>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarProps 3`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    aria-label="aria-label"
+    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Side Bar
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarProps 4`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <div
+    aria-label="aria-label"
+    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Side Bar
+  </div>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;

@@ -3,11 +3,10 @@
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
-.guideMaxWidth {
-  // TODO: Swap with new var in different PR
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+#guide { // sass-lint:disable-line no-ids
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$euiHeaderHeightCompensation});
 }
 
 @include euiHeaderAffordForFixed;
@@ -24,7 +23,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideSideNav {
   min-width: $guideSideNavWidth;
-  overflow: hidden;
 }
 
 .guideSideNav__content {
@@ -62,19 +60,34 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   color: $euiColorDarkShade;
 }
 
-.guideDemo__highlightLayout {
-  .euiPageBody {
-    min-height: 460px;
-  }
+.guideDemo__highlightLayout,
+.guideDemo__highlightLayout--playground,
+.guideDemo__highlightLayout--legacy {
+  border: 1px solid transparentize($euiColorPrimary, .9);
+  overflow: hidden;
+  height: 460px;
+  display: flex;
 
+  .euiPageSideBar--sticky {
+    top: 0;
+  }
+}
+
+.guideDemo__highlightLayout--playground > div:not(.euiPage) {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important; // sass-lint:disable-line no-important
+
+  > .euiPage--grow {
+    height: 100%;
+  }
+}
+
+.guideDemo__highlightLayout--legacy {
   > div,
   > div > div {
     background: transparentize($euiColorPrimary, .9);
   }
-}
-
-.guideDemo__highlightLayout--single {
-  background: transparentize($euiColorPrimary, .9);
 }
 
 .guideDemo__highlightSpacer {
@@ -86,14 +99,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideDemo__highlightGrid {
   .euiFlexItem {
     background: transparentize($euiColorPrimary, .9);
-    padding: 16px;
+    padding: $euiSize;
   }
 }
 
 .guideDemo__highlightGridWrap {
   .euiFlexItem div {
     background: transparentize($euiColorPrimary, .9);
-    padding: 16px;
+    padding: $euiSize;
   }
 }
 
@@ -218,7 +231,25 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: $euiZHeader + 1;
+  overflow: auto;
+
+  &--withHeader {
+    top: $euiHeaderHeightCompensation;
+    bottom: 0;
+    height: auto;
+    z-index: $euiZHeader - 1;
+    display: flex;
+    flex-direction: column;
+
+    .euiPageSideBar--sticky {
+      top: 0;
+    }
+  }
+}
+
+.guideBody--overflowHidden {
+  overflow: hidden;
 }
 
 .euiDataGridRowCell--favoriteFranchise {

@@ -39,7 +39,7 @@ interface EuiI18nNumberValuesShape {
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 
-type EuiI18nNumberProps = ExclusiveUnion<
+export type EuiI18nNumberProps = ExclusiveUnion<
   EuiI18nNumberValueShape,
   EuiI18nNumberValuesShape
 >;

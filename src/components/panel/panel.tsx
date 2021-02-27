@@ -67,12 +67,18 @@ export type PanelColor = typeof COLORS[number];
 export type PanelPaddingSize = typeof SIZES[number];
 export type PanelBorderRadius = typeof BORDER_RADII[number];
 
-export interface PanelProps extends CommonProps {
+export interface _EuiPanelProps extends CommonProps {
   /**
    * Adds a medium shadow to the panel;
    * Only works when `color="plain"`
    */
   hasShadow?: boolean;
+  /**
+   * Adds a slight 1px border on all edges.
+   * Only works when `color="plain | transparent"`
+   * Default is `undefined` and will default to that theme's panel style
+   */
+  hasBorder?: boolean;
   /**
    * Padding for all four sides
    */
@@ -109,11 +115,11 @@ export interface PanelProps extends CommonProps {
 }
 
 interface Divlike
-  extends PanelProps,
+  extends _EuiPanelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'color'> {}
 
 interface Buttonlike
-  extends PanelProps,
+  extends _EuiPanelProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {}
 
 export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
@@ -125,6 +131,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   borderRadius = 'm',
   color = 'plain',
   hasShadow = true,
+  hasBorder,
   grow = true,
   panelRef,
   onClick,
@@ -133,13 +140,22 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   betaBadgeTitle,
   ...rest
 }) => {
+  // Shadows are only allowed when there's a white background (plain)
+  const canHaveShadow = color === 'plain';
+  const canHaveBorder = color === 'plain' || color === 'transparent';
+
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
     borderRadiusToClassNameMap[borderRadius],
     `euiPanel--${color}`,
     {
-      'euiPanel--shadow': color === 'plain' && hasShadow,
+      // The `no` classes turn off the option for default theme
+      // While the `has` classes turn it on for Amsterdam
+      'euiPanel--hasShadow': canHaveShadow && hasShadow === true,
+      'euiPanel--noShadow': !canHaveShadow || hasShadow === false,
+      'euiPanel--hasBorder': canHaveBorder && hasBorder === true,
+      'euiPanel--noBorder': !canHaveBorder || hasBorder === false,
       'euiPanel--flexGrowZero': !grow,
       'euiPanel--isClickable': onClick,
       'euiPanel--hasBetaBadge': betaBadgeLabel,

@@ -8,7 +8,7 @@ import {
   EuiErrorBoundary,
   EuiPage,
   EuiContext,
-  EuiPageContent,
+  EuiPageBody,
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
@@ -68,20 +68,18 @@ export class AppView extends Component {
             />
           </EuiErrorBoundary>
 
-          <EuiPageContent borderRadius="none">
-            <div className="guideMaxWidth">
-              <EuiContext i18n={i18n}>
-                <ThemeContext.Consumer>
-                  {(context) => {
-                    return React.cloneElement(children, {
-                      selectedTheme: context.theme,
-                      title: currentRoute.name,
-                    });
-                  }}
-                </ThemeContext.Consumer>
-              </EuiContext>
-            </div>
-          </EuiPageContent>
+          <EuiPageBody panelled>
+            <EuiContext i18n={i18n}>
+              <ThemeContext.Consumer>
+                {(context) => {
+                  return React.cloneElement(children, {
+                    selectedTheme: context.theme,
+                    title: currentRoute.name,
+                  });
+                }}
+              </ThemeContext.Consumer>
+            </EuiContext>
+          </EuiPageBody>
         </EuiPage>
       </>
     );

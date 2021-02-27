@@ -19,15 +19,15 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, PanelProps } from '../panel';
+import { EuiPanel, _EuiPanelProps } from '../panel';
 
 const InnerPanel: FunctionComponent<Omit<
-  PanelProps,
+  _EuiPanelProps,
   'hasShadow' | 'borderRadius'
 >> = ({ children, className, ...rest }) => {
   const classes = classNames('euiInnerSplitPanel', className);
 
-  const panelProps: PanelProps = {
+  const panelProps: _EuiPanelProps = {
     hasShadow: false,
     color: 'transparent',
     borderRadius: 'none',
@@ -40,7 +40,7 @@ const InnerPanel: FunctionComponent<Omit<
   );
 };
 
-export type EuiSplitPanelProps = Omit<PanelProps, 'paddingSize'> & {
+export type EuiSplitPanelProps = Omit<_EuiPanelProps, 'paddingSize'> & {
   children?: (panel: typeof InnerPanel) => ReactNode;
 };
 

@@ -160,15 +160,11 @@ const warmArray: HEX[] = [euiPaletteColorBlind()[7], euiPaletteColorBlind()[9]];
 
 export const euiPaletteForStatus = function (steps: number): EuiPalette {
   if (steps === 1) {
-    return [euiPaletteColorBlind()[0]];
+    return [positiveColor];
   }
   if (steps <= 3) {
     return euiPalette(
-      [
-        euiPaletteColorBlind()[0],
-        euiPaletteColorBlind()[5],
-        lightNegativeColor,
-      ],
+      [positiveColor, euiPaletteColorBlind()[5], negativeColor],
       steps,
       true
     );

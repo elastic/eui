@@ -71,7 +71,9 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
   dark: 'default',
 };
 
-interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
+export interface EuiImageProps
+  extends CommonProps,
+    HTMLAttributes<HTMLImageElement> {
   /**
    * Separate from the caption is a title on the alt tag itself.
    * This one is required for accessibility.

@@ -21,7 +21,7 @@ import { ReactNode, useEffect } from 'react';
 
 import { EuiObserver } from '../observer';
 
-interface Props {
+export interface EuiMutationObserverProps {
   /**
    * ReactNode to render as this component's content
    */
@@ -30,7 +30,7 @@ interface Props {
   observerOptions?: MutationObserverInit;
 }
 
-export class EuiMutationObserver extends EuiObserver<Props> {
+export class EuiMutationObserver extends EuiObserver<EuiMutationObserverProps> {
   name = 'EuiMutationObserver';
 
   // the `onMutation` prop may change while the observer is bound, abstracting

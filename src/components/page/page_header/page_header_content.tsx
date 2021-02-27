@@ -36,7 +36,7 @@ type Tab = EuiTabProps & {
   /**
    * Visible text of the tab
    */
-  label: string;
+  label: ReactNode;
 };
 
 export type EuiPageHeaderContentTitle = {
