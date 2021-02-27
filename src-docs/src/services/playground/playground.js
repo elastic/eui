@@ -54,7 +54,7 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
     );
 
     return (
-      <React.Fragment>
+      <div>
         <EuiTitle>
           <h3>{config.componentName}</h3>
         </EuiTitle>
@@ -74,7 +74,7 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
 
         <Knobs {...params.knobProps} />
         <EuiSpacer />
-      </React.Fragment>
+      </div>
     );
   };
 
