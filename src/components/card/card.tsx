@@ -254,6 +254,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   );
 
   const ariaId = htmlIdGenerator()();
+  const ariaDesc = description ? `${ariaId}Description` : '';
 
   /**
    * Top area containing image, icon or both
@@ -319,10 +320,10 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   }
 
   let optionalSelectButton;
-  if (selectable && description) {
+  if (selectable) {
     optionalSelectButton = (
       <EuiCardSelect
-        aria-describedby={`${ariaId}Title ${ariaId}Description`}
+        aria-describedby={`${ariaId}Title ${ariaDesc}`}
         {...selectable}
         buttonRef={(node) => {
           link = node;
@@ -337,14 +338,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let theTitle;
-  if (!isDisabled && href && description) {
+  if (!isDisabled && href) {
     theTitle = (
       <a
         className="euiCard__titleAnchor"
         onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
         href={href}
         target={target}
-        aria-describedby={`${ariaId}Description`}
+        aria-describedby={ariaDesc}
         rel={getSecureRelForTarget({ href, target, rel })}
         ref={(node) => {
           link = node;
@@ -352,13 +353,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         {title}
       </a>
     );
-  } else if ((isDisabled || onClick) && description) {
+  } else if (isDisabled || onClick) {
     theTitle = (
       <button
         className="euiCard__titleButton"
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
-        aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
+        aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
         ref={(node) => {
           link = node;
         }}>
