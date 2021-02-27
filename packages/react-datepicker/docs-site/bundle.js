@@ -26721,7 +26721,9 @@
 	        nextMonthButtonLabel: "Next month",
 	        renderDayContents: function renderDayContents(date) {
 	          return date;
-	        }
+	        },
+
+	        strictParsing: false
 	      };
 	    }
 	  }]);
@@ -26747,7 +26749,12 @@
 	        // transforming highlighted days (perhaps nested array)
 	        // to flat Map for faster access in day.jsx
 	        highlightDates: (0, _date_utils.getHightLightDaysMap)(_this.props.highlightDates),
-	        focused: false
+	        focused: false,
+	        // We attempt to handle focus trap activation manually,
+	        // but that is not possible with custom inputs like buttons.
+	        // Err on the side of a11y and trap focus when we can't be certain
+	        // that the trigger comoponent will work with our keyDown logic.
+	        enableFocusTrap: _this.props.customInput && _this.props.customInput.type !== 'input' ? true : false
 	      };
 	    };
 
@@ -26786,7 +26793,8 @@
 	        if (!open) {
 	          _this.setState(function (prev) {
 	            return {
-	              focused: skipSetBlur ? prev.focused : false
+	              focused: skipSetBlur ? prev.focused : false,
+	              enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
 	            };
 	          }, function () {
 	            !skipSetBlur && _this.setBlur();
@@ -26808,7 +26816,7 @@
 	    _this.handleFocus = function (event) {
 	      if (!_this.state.preventFocus) {
 	        _this.props.onFocus(event);
-	        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly && !_this.props.accessibleMode) {
+	        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly) {
 	          _this.setOpen(true);
 	        }
 	      }
@@ -26890,7 +26898,7 @@
 	      if (!_this.props.shouldCloseOnSelect || _this.props.showTimeSelect) {
 	        _this.setPreSelection(date);
 	      } else if (!_this.props.inline) {
-	        _this.setOpen(false);
+	        _this.setOpen(false, true);
 	      }
 	    };
 
@@ -26913,18 +26921,19 @@
 	        return;
 	      }
 
-	      if (!(0, _date_utils.isSameDay)(_this.props.selected, changedDate) || _this.props.allowSameDay) {
+	      if (changedDate !== null && _this.props.selected) {
+	        var selected = _this.props.selected;
+	        if (keepInput) selected = (0, _date_utils.newDate)(changedDate);
+	        changedDate = (0, _date_utils.setTime)((0, _date_utils.newDate)(changedDate), {
+	          hour: (0, _date_utils.getHour)(selected),
+	          minute: (0, _date_utils.getMinute)(selected),
+	          second: (0, _date_utils.getSecond)(selected),
+	          millisecond: (0, _date_utils.getMillisecond)(selected)
+	        });
+	      }
+
+	      if (!(0, _date_utils.isSameTime)(_this.props.selected, changedDate) || _this.props.allowSameDay) {
 	        if (changedDate !== null) {
-	          if (_this.props.selected) {
-	            var selected = _this.props.selected;
-	            if (keepInput) selected = (0, _date_utils.newDate)(changedDate);
-	            changedDate = (0, _date_utils.setTime)((0, _date_utils.newDate)(changedDate), {
-	              hour: (0, _date_utils.getHour)(selected),
-	              minute: (0, _date_utils.getMinute)(selected),
-	              second: (0, _date_utils.getSecond)(selected),
-	              millisecond: (0, _date_utils.getMillisecond)(selected)
-	            });
-	          }
 	          if (!_this.props.inline) {
 	            _this.setState({
 	              preSelection: changedDate
@@ -26960,13 +26969,18 @@
 	        millisecond: 0
 	      });
 
-	      _this.setState({
-	        preSelection: changedDate
-	      });
+	      if (!(0, _date_utils.isSameTime)(selected, changedDate)) {
+	        _this.setState({
+	          preSelection: changedDate
+	        });
 
-	      _this.props.onChange(changedDate);
+	        _this.props.onChange(changedDate);
+	      }
+
+	      _this.props.onSelect(changedDate);
+
 	      if (_this.props.shouldCloseOnSelect) {
-	        _this.setOpen(false);
+	        _this.setOpen(false, true);
 	      }
 	      _this.setState({ inputValue: null });
 	    };
@@ -26994,7 +27008,24 @@
 	      if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
 	        if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
 	          event.preventDefault();
-	          _this.onInputClick();
+	          _this.setState({ enableFocusTrap: true }, function () {
+	            _this.onInputClick();
+	          });
+	        }
+	        return;
+	      }
+	      if (_this.state.open && !_this.state.enableFocusTrap) {
+	        if (eventKey === "ArrowDown" || eventKey === "Tab") {
+	          event.preventDefault();
+	          _this.setState({ enableFocusTrap: true }, function () {
+	            _this.onInputClick();
+	          });
+	        } else if (eventKey === "Escape") {
+	          event.preventDefault();
+	          _this.setOpen(false, true);
+	        } else if (eventKey === "Enter") {
+	          event.preventDefault();
+	          _this.setOpen(false, true);
 	        }
 	        return;
 	      }
@@ -27005,12 +27036,12 @@
 	          _this.handleSelect(copy, event);
 	          !_this.props.shouldCloseOnSelect && _this.setPreSelection(copy);
 	        } else {
-	          _this.setOpen(false);
+	          _this.setOpen(false, true);
 	        }
 	      } else if (eventKey === "Escape") {
 	        event.preventDefault();
 
-	        _this.setOpen(false);
+	        _this.setOpen(false, true);
 	        if (!_this.inputOk()) {
 	          _this.props.onInputError({ code: 1, msg: INPUT_ERR_1 });
 	        }
@@ -27149,7 +27180,8 @@
 	          popperProps: _this.props.popperProps,
 	          renderDayContents: _this.props.renderDayContents,
 	          updateSelection: _this.updateSelection,
-	          accessibleMode: _this.props.accessibleMode
+	          accessibleMode: _this.props.accessibleMode,
+	          enableFocusTrap: _this.state.enableFocusTrap
 	        },
 	        _this.props.children
 	      );
@@ -27168,7 +27200,7 @@
 
 	      return _react2.default.cloneElement(customInput, (_React$cloneElement = {}, _React$cloneElement[customInputRef] = function (input) {
 	        _this.input = input;
-	      }, _React$cloneElement.value = inputValue, _React$cloneElement.onBlur = _this.handleBlur, _React$cloneElement.onChange = _this.handleChange, _React$cloneElement.onClick = _this.onInputClick, _React$cloneElement.onFocus = _this.handleFocus, _React$cloneElement.onKeyDown = _this.onInputKeyDown, _React$cloneElement.id = _this.props.id, _React$cloneElement.name = _this.props.name, _React$cloneElement.autoFocus = _this.props.autoFocus, _React$cloneElement.placeholder = _this.props.placeholderText, _React$cloneElement.disabled = _this.props.disabled, _React$cloneElement.autoComplete = _this.props.autoComplete, _React$cloneElement.className = className, _React$cloneElement.title = _this.props.title, _React$cloneElement.readOnly = _this.props.readOnly, _React$cloneElement.required = _this.props.required, _React$cloneElement.tabIndex = _this.props.tabIndex, _React$cloneElement["aria-label"] = inputValue, _React$cloneElement));
+	      }, _React$cloneElement.value = inputValue, _React$cloneElement.onBlur = _this.handleBlur, _React$cloneElement.onChange = _this.handleChange, _React$cloneElement.onClick = _this.onInputClick, _React$cloneElement.onFocus = _this.handleFocus, _React$cloneElement.onKeyDown = _this.onInputKeyDown, _React$cloneElement.id = _this.props.id, _React$cloneElement.name = _this.props.name, _React$cloneElement.autoFocus = _this.props.autoFocus, _React$cloneElement.placeholder = _this.props.placeholderText, _React$cloneElement.disabled = _this.props.disabled, _React$cloneElement.autoComplete = _this.props.autoComplete, _React$cloneElement.className = className, _React$cloneElement.title = _this.props.title, _React$cloneElement.readOnly = _this.props.readOnly, _React$cloneElement.required = _this.props.required, _React$cloneElement.tabIndex = _this.props.tabIndex, _React$cloneElement["aria-label"] = _this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.', _React$cloneElement));
 	    };
 
 	    _this.renderClearButton = function () {
@@ -27365,7 +27397,8 @@
 	  renderCustomHeader: _propTypes2.default.func,
 	  renderDayContents: _propTypes2.default.func,
 	  accessibleMode: _propTypes2.default.bool,
-	  accessibleModeButton: _propTypes2.default.element
+	  accessibleModeButton: _propTypes2.default.element,
+	  strictParsing: _propTypes2.default.bool // eslint-disable-line react/no-unused-prop-types
 	};
 	exports.default = DatePicker;
 
@@ -27623,7 +27656,10 @@
 	        onDropdownFocus: function onDropdownFocus() {},
 	        monthsShown: 1,
 	        forceShowMonthNavigation: false,
-	        timeCaption: "Time"
+	        timeCaption: "Time",
+	        previousMonthButtonLabel: "Previous Month",
+	        nextMonthButtonLabel: "Next Month",
+	        enableFocusTrap: true
 	      };
 	    }
 	  }]);
@@ -27632,6 +27668,30 @@
 	    _classCallCheck(this, Calendar);
 
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+
+	    _this.setMonthRef = function (node) {
+	      _this.monthRef = node;
+	    };
+
+	    _this.setYearRef = function (node) {
+	      _this.yearRef = node;
+	    };
+
+	    _this.handleOnDropdownToggle = function (isOpen, dropdown) {
+	      _this.setState({ pauseFocusTrap: isOpen });
+	      if (!isOpen) {
+	        var element = dropdown === 'month' ? _this.monthRef : _this.yearRef;
+	        if (element) {
+	          // The focus trap has been unpaused and will reinitialize focus
+	          // but does so on the wrong element (calendar)
+	          // This refocuses the previous element (dropdown button).
+	          // Duration arrived at by trial-and-error.
+	          setTimeout(function () {
+	            return element.focus();
+	          }, 25);
+	        }
+	      }
+	    };
 
 	    _this.handleClickOutside = function (event) {
 	      _this.props.onClickOutside(event);
@@ -27710,14 +27770,6 @@
 	    _this.handleMonthChange = function (date) {
 	      if (_this.props.onMonthChange) {
 	        _this.props.onMonthChange(date);
-	      }
-	      if (_this.props.adjustDateOnChange) {
-	        if (_this.props.onSelect) {
-	          _this.props.onSelect(date);
-	        }
-	        if (_this.props.setOpen) {
-	          _this.props.setOpen(true);
-	        }
 	      }
 	      if (_this.props.accessibleMode) {
 	        _this.handleSelectionChange(date);
@@ -27900,7 +27952,9 @@
 	        year: (0, _date_utils.getYear)(_this.state.date),
 	        scrollableYearDropdown: _this.props.scrollableYearDropdown,
 	        yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
-	        accessibleMode: _this.props.accessibleMode
+	        accessibleMode: _this.props.accessibleMode,
+	        onDropdownToggle: _this.handleOnDropdownToggle,
+	        buttonRef: _this.setYearRef
 	      });
 	    };
 
@@ -27917,7 +27971,9 @@
 	        onChange: _this.changeMonth,
 	        month: (0, _date_utils.getMonth)(_this.state.date),
 	        useShortMonthInDropdown: _this.props.useShortMonthInDropdown,
-	        accessibleMode: _this.props.accessibleMode
+	        accessibleMode: _this.props.accessibleMode,
+	        onDropdownToggle: _this.handleOnDropdownToggle,
+	        buttonRef: _this.setMonthRef
 	      });
 	    };
 
@@ -28099,8 +28155,11 @@
 	    _this.state = {
 	      date: _this.localizeDate(_this.getDateInView()),
 	      selectingDate: null,
-	      monthContainer: null
+	      monthContainer: null,
+	      pauseFocusTrap: false
 	    };
+	    _this.monthRef = _react2.default.createRef();
+	    _this.yearRef = _react2.default.createRef();
 	    return _this;
 	  }
 
@@ -28149,10 +28208,12 @@
 	        _react2.default.createElement(
 	          _focusTrapReact2.default,
 	          {
+	            paused: this.state.pauseFocusTrap,
+	            active: this.props.enableFocusTrap,
 	            tag: FocusTrapContainer,
 	            focusTrapOptions: {
 	              onDeactivate: function onDeactivate() {
-	                return _this3.props.setOpen(false);
+	                return _this3.props.setOpen(false, true);
 	              },
 	              initialFocus: initialFocusTarget
 	            }
@@ -28254,7 +28315,8 @@
 	  renderCustomHeader: _propTypes2.default.func,
 	  renderDayContents: _propTypes2.default.func,
 	  updateSelection: _propTypes2.default.func.isRequired,
-	  accessibleMode: _propTypes2.default.bool
+	  accessibleMode: _propTypes2.default.bool,
+	  enableFocusTrap: _propTypes2.default.bool
 	};
 	exports.default = Calendar;
 
@@ -28310,6 +28372,7 @@
 	      dropdownVisible: false
 	    }, _this.setReadViewRef = function (ref) {
 	      _this.readViewref = ref;
+	      _this.props.buttonRef(ref);
 	    }, _this.onReadViewKeyDown = function (event) {
 	      var eventKey = event.key;
 	      switch (eventKey) {
@@ -28402,24 +28465,15 @@
 	      _this.toggleDropdown();
 	      if (year === _this.props.year) return;
 	      _this.props.onChange(year);
-	    }, _this.toggleDropdown = function (event) {
+	    }, _this.toggleDropdown = function () {
+	      var isOpen = !_this.state.dropdownVisible;
 	      _this.setState({
-	        dropdownVisible: !_this.state.dropdownVisible
-	      }, function () {
-	        if (_this.props.adjustDateOnChange) {
-	          _this.handleYearChange(_this.props.date, event);
-	        }
+	        dropdownVisible: isOpen
 	      });
-	    }, _this.handleYearChange = function (date, event) {
-	      _this.onSelect(date, event);
-	      _this.setOpen();
+	      _this.props.onDropdownToggle(isOpen, 'year');
 	    }, _this.onSelect = function (date, event) {
 	      if (_this.props.onSelect) {
 	        _this.props.onSelect(date, event);
-	      }
-	    }, _this.setOpen = function () {
-	      if (_this.props.setOpen) {
-	        _this.props.setOpen(true);
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -28468,7 +28522,9 @@
 	  date: _propTypes2.default.object,
 	  onSelect: _propTypes2.default.func,
 	  setOpen: _propTypes2.default.func,
-	  accessibleMode: _propTypes2.default.bool
+	  accessibleMode: _propTypes2.default.bool,
+	  onDropdownToggle: _propTypes2.default.func,
+	  buttonRef: _propTypes2.default.func
 	};
 	exports.default = YearDropdown;
 
@@ -29912,6 +29968,7 @@
 	exports.isSameYear = isSameYear;
 	exports.isSameMonth = isSameMonth;
 	exports.isSameDay = isSameDay;
+	exports.isSameTime = isSameTime;
 	exports.isSameUtcOffset = isSameUtcOffset;
 	exports.isDayInRange = isDayInRange;
 	exports.getDaysDiff = getDaysDiff;
@@ -30006,9 +30063,10 @@
 
 	function parseDate(value, _ref) {
 	  var dateFormat = _ref.dateFormat,
-	      locale = _ref.locale;
+	      locale = _ref.locale,
+	      strictParsing = _ref.strictParsing;
 
-	  var m = (0, _moment2.default)(value, dateFormat, locale || _moment2.default.locale(), true);
+	  var m = (0, _moment2.default)(value, dateFormat, locale || _moment2.default.locale(), strictParsing);
 	  return m.isValid() ? m : null;
 	}
 
@@ -30212,6 +30270,14 @@
 	function isSameDay(moment1, moment2) {
 	  if (moment1 && moment2) {
 	    return moment1.isSame(moment2, "day");
+	  } else {
+	    return !moment1 && !moment2;
+	  }
+	}
+
+	function isSameTime(moment1, moment2) {
+	  if (moment1 && moment2) {
+	    return moment1.isSame(moment2, "second");
 	  } else {
 	    return !moment1 && !moment2;
 	  }
@@ -47127,6 +47193,7 @@
 
 	    _this.setReadViewRef = function (ref) {
 	      _this.readViewref = ref;
+	      _this.props.buttonRef(ref);
 	    };
 
 	    _this.onReadViewKeyDown = function (event) {
@@ -47229,9 +47296,11 @@
 	    };
 
 	    _this.toggleDropdown = function () {
-	      return _this.setState({
-	        dropdownVisible: !_this.state.dropdownVisible
+	      var isOpen = !_this.state.dropdownVisible;
+	      _this.setState({
+	        dropdownVisible: isOpen
 	      });
+	      _this.props.onDropdownToggle(isOpen, 'month');
 	    };
 
 	    _this.localeData = utils.getLocaleDataForLocale(_this.props.locale);
@@ -47298,7 +47367,9 @@
 	  month: _propTypes2.default.number.isRequired,
 	  onChange: _propTypes2.default.func.isRequired,
 	  useShortMonthInDropdown: _propTypes2.default.bool,
-	  accessibleMode: _propTypes2.default.bool
+	  accessibleMode: _propTypes2.default.bool,
+	  onDropdownToggle: _propTypes2.default.func,
+	  buttonRef: _propTypes2.default.func
 	};
 	exports.default = MonthDropdown;
 

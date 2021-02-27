@@ -1,6 +1,7 @@
 .euiButtonGroup {
   display: inline-block;
   max-width: 100%;
+  position: relative; // Ensures the EuiScreenReaderOnly component is positioned relative to this component
 }
 
 .euiButtonGroup--fullWidth {
@@ -21,21 +22,10 @@
   max-width: 100%;
   display: flex;
   overflow: hidden;
-  transition: all $euiAnimSpeedNormal ease-in-out;
-
-  &:hover,
-  &:active,
-  &:focus-within {
-    @include euiSlightShadowHover;
-  }
 }
 
 .euiButtonGroup--isDisabled .euiButtonGroup__buttons {
-  &:hover,
-  &:active,
-  &:focus-within {
-    box-shadow: none !important; // sass-lint:disable-line no-important
-  }
+  box-shadow: none;
 }
 
 .euiButtonGroup--compressed {
@@ -46,10 +36,5 @@
     height: $euiFormControlCompressedHeight;
     border: 1px solid $euiFormBorderColor;
     overflow: visible;
-  }
-
-  .euiButtonGroupButton {
-    // Add 2 to the border radius to account for the background-clip
-    border-radius: $euiFormControlCompressedBorderRadius + 2;
   }
 }

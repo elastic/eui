@@ -53,13 +53,6 @@ import {
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge/';
 
-const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string;
-} = {
-  top: 'euiComboBoxOptionsList--top',
-  bottom: 'euiComboBoxOptionsList--bottom',
-};
-
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps &
@@ -237,7 +230,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (
       singleSelection &&
       selectedOptions.length &&
-      selectedOptions[0].label === label
+      selectedOptions[0].label === label &&
+      selectedOptions[0].key === key
     ) {
       checked = 'on';
     }
@@ -302,7 +296,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       onScroll,
       optionRef,
       options,
-      position,
+      position = 'bottom',
       renderOption,
       rootId,
       rowHeight,
@@ -446,7 +440,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;
-    const height = numVisibleOptions * rowHeight;
+    const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
 
     // bounded by max-height of euiComboBoxOptionsList__rowWrap
     const boundedHeight = height > 200 ? 200 : height;
@@ -465,17 +459,23 @@ export class EuiComboBoxOptionsList<T> extends Component<
       </FixedSizeList>
     );
 
+    /**
+     * Reusing the EuiPopover__panel classes to help with consistency/maintenance.
+     * But this should really be converted to user the popover component.
+     */
     const classes = classNames(
       'euiComboBoxOptionsList',
-      position ? positionToClassNameMap[position] : '',
-      {
-        'euiComboBoxOptionsList--fullWidth': fullWidth,
-      }
+      'euiPopover__panel',
+      'euiPopover__panel-isAttached',
+      'euiPopover__panel-noArrow',
+      'euiPopover__panel-isOpen',
+      `euiPopover__panel--${position}`
     );
 
     return (
       <EuiPanel
         paddingSize="none"
+        hasShadow={false}
         className={classes}
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}

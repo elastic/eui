@@ -75,6 +75,7 @@ import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
+import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -149,6 +150,8 @@ import { OutsideClickDetectorExample } from './views/outside_click_detector/outs
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
+
+import { PageHeaderExample } from './views/page_header/page_header_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
 
@@ -334,6 +337,7 @@ const navigation = [
       HorizontalRuleExample,
       ModalExample,
       PageExample,
+      PageHeaderExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
@@ -368,6 +372,7 @@ const navigation = [
       DataGridStylingExample,
       DataGridControlColumnsExample,
       DataGridFooterRowExample,
+      DataGridVirtualizationExample,
       TableExample,
       TableInMemoryExample,
     ].map((example) => createExample(example)),
@@ -391,7 +396,6 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-
       TextExample,
       TitleExample,
       ToastExample,

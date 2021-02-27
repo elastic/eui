@@ -27,7 +27,6 @@ import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitew
 const options: EuiSelectableTemplateSitewideOption[] = [
   {
     label: 'Basic data application',
-    'data-test-subj': 'test-this',
     avatar: {
       name: 'Default Space',
     },
@@ -39,6 +38,7 @@ const options: EuiSelectableTemplateSitewideOption[] = [
     ],
     url: 'welcome-dashboards',
     ...requiredProps,
+    'data-test-subj': 'test-this',
   },
   {
     label: 'Platform with deployment highlighted',
@@ -83,11 +83,6 @@ const options: EuiSelectableTemplateSitewideOption[] = [
     ],
   },
 ];
-
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
 
 describe('EuiSelectableTemplateSitewide', () => {
   test('is rendered', () => {

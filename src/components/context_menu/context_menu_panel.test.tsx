@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
 
-import { EuiContextMenuPanel } from './context_menu_panel';
+import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
 import { EuiContextMenuItem } from './context_menu_item';
 
@@ -56,6 +56,18 @@ describe('EuiContextMenuPanel', () => {
         const component = render(<EuiContextMenuPanel title="Title" />);
 
         expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        it(`${size} is rendered`, () => {
+          const component = render(
+            <EuiContextMenuPanel title="Title" size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
 
@@ -172,6 +184,16 @@ describe('EuiContextMenuPanel', () => {
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
           document.activeElement
         );
+      });
+
+      it('sets focus on the panel when set to `-1`', async () => {
+        const component = mount(
+          <EuiContextMenuPanel items={items} initialFocusedItemIndex={-1} />
+        );
+
+        await tick(20);
+
+        expect(component.getDOMNode()).toBe(document.activeElement);
       });
     });
 

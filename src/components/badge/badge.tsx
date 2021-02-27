@@ -36,6 +36,7 @@ import {
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { chromaValid, parseColor } from '../color_picker/utils';
+import { validateHref } from '../../services/security/href_validator';
 
 type IconSide = 'left' | 'right';
 
@@ -136,7 +137,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   iconType,
   iconSide = 'left',
   className,
-  isDisabled,
+  isDisabled: _isDisabled,
   onClick,
   iconOnClick,
   onClickAriaLabel,
@@ -148,7 +149,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   style,
   ...rest
 }) => {
-  checkValidColor(color);
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = _isDisabled || !isHrefValid;
 
   let optionalCustomStyles: object | undefined = style;
   let textColor = null;
@@ -158,48 +160,51 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   let colorHex = null;
 
   // Check if a valid color name was provided
-  if (COLORS.indexOf(color) > -1) {
-    // Get the hex equivalent for the provided color name
-    colorHex = colorToHexMap[color];
+  try {
+    if (COLORS.indexOf(color) > -1) {
+      // Get the hex equivalent for the provided color name
+      colorHex = colorToHexMap[color];
 
-    // Set dark or light text color based upon best contrast
-    textColor = setTextColor(colorHex);
+      // Set dark or light text color based upon best contrast
+      textColor = setTextColor(colorHex);
 
-    optionalCustomStyles = {
-      backgroundColor: colorHex,
-      color: textColor,
-      ...optionalCustomStyles,
-    };
-  } else if (color !== 'hollow') {
-    // This is a custom color that is neither from the base palette nor hollow
-    // Let's do our best to ensure that it provides sufficient contrast
+      optionalCustomStyles = {
+        backgroundColor: colorHex,
+        color: textColor,
+        ...optionalCustomStyles,
+      };
+    } else if (color !== 'hollow') {
+      // This is a custom color that is neither from the base palette nor hollow
+      // Let's do our best to ensure that it provides sufficient contrast
 
-    // Set dark or light text color based upon best contrast
-    textColor = setTextColor(color);
+      // Set dark or light text color based upon best contrast
+      textColor = setTextColor(color);
 
-    // Check the contrast
-    wcagContrast = getColorContrast(textColor, color);
+      // Check the contrast
+      wcagContrast = getColorContrast(textColor, color);
 
-    if (wcagContrast < wcagContrastBase) {
-      // It's low contrast, so lets show a warning in the console
-      console.warn(
-        'Warning: ',
-        color,
-        ' badge has low contrast of ',
-        wcagContrast.toFixed(2),
-        '. Should be above ',
-        wcagContrastBase,
-        '.'
-      );
+      if (wcagContrast < wcagContrastBase) {
+        // It's low contrast, so lets show a warning in the console
+        console.warn(
+          'Warning: ',
+          color,
+          ' badge has low contrast of ',
+          wcagContrast.toFixed(2),
+          '. Should be above ',
+          wcagContrastBase,
+          '.'
+        );
+      }
+
+      optionalCustomStyles = {
+        backgroundColor: color,
+        color: textColor,
+        ...optionalCustomStyles,
+      };
     }
-
-    optionalCustomStyles = {
-      backgroundColor: color,
-      color: textColor,
-      ...optionalCustomStyles,
-    };
+  } catch (err) {
+    handleInvalidColor(color);
   }
-
   const classes = classNames(
     'euiBadge',
     {
@@ -215,6 +220,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     'euiBadge__icon',
     closeButtonProps && closeButtonProps.className
   );
+
   const Element = href && !isDisabled ? 'a' : 'button';
   const relObj: {
     href?: string;
@@ -244,6 +250,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       }
       optionalIcon = (
         <button
+          type="button"
           className="euiBadge__iconButton"
           aria-label={iconOnClickAriaLabel}
           disabled={isDisabled}
@@ -365,12 +372,10 @@ function setTextColor(bgColor: string) {
   return textColor;
 }
 
-function checkValidColor(color: null | IconColor | string) {
-  const colorExists = !!color;
+function handleInvalidColor(color: null | IconColor | string) {
   const isNamedColor = (color && COLORS.includes(color)) || color === 'hollow';
   const isValidColorString = color && chromaValid(parseColor(color) || '');
-
-  if (!colorExists && !isNamedColor && !isValidColorString) {
+  if (!isNamedColor && !isValidColorString) {
     console.warn(
       'EuiBadge expects a valid color. This can either be a three or six ' +
         `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +

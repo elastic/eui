@@ -19,6 +19,12 @@
 
 export { EuiTableHeaderMobile } from './table_header_mobile';
 
-export { EuiTableSortMobile } from './table_sort_mobile';
+export {
+  EuiTableSortMobile,
+  EuiTableSortMobileProps,
+} from './table_sort_mobile';
 
-export { EuiTableSortMobileItem } from './table_sort_mobile_item';
+export {
+  EuiTableSortMobileItem,
+  EuiTableSortMobileItemProps,
+} from './table_sort_mobile_item';

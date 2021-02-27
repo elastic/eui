@@ -27,11 +27,6 @@ import {
   takeMountedSnapshot,
 } from '../../test';
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 describe('EuiCodeEditor', () => {
   test('is rendered', () => {
     const component = mount(<EuiCodeEditor {...requiredProps} />);

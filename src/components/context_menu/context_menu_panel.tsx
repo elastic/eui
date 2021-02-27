@@ -27,11 +27,14 @@ import React, {
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps, NoArgCallback } from '../common';
+import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
-import { EuiContextMenuItem } from './context_menu_item';
+import {
+  EuiContextMenuItem,
+  EuiContextMenuItemProps,
+} from './context_menu_item';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -39,6 +42,13 @@ export type EuiContextMenuPanelTransitionDirection = 'next' | 'previous';
 export type EuiContextMenuPanelShowPanelCallback = (
   currentPanelIndex?: number
 ) => void;
+
+const titleSizeToClassNameMap = {
+  s: 'euiContextMenuPanelTitle--small',
+  m: null,
+};
+
+export const SIZES = keysOf(titleSizeToClassNameMap);
 
 export interface EuiContextMenuPanelProps {
   hasFocus?: boolean;
@@ -54,6 +64,10 @@ export interface EuiContextMenuPanelProps {
   transitionDirection?: EuiContextMenuPanelTransitionDirection;
   transitionType?: EuiContextMenuPanelTransitionType;
   watchedItemProps?: string[];
+  /**
+   * Alters the size of the items and the title
+   */
+  size?: typeof SIZES[number];
 }
 
 type Props = CommonProps &
@@ -228,6 +242,14 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
+      // `focusedItemIndex={-1}` specifies that the panel itself should be focused.
+      // This should only be used when the panel does not have `item`s
+      // and preventing autofocus is desired, which is an uncommon case.
+      if (this.panel && this.state.focusedItemIndex === -1) {
+        this.panel.focus();
+        return;
+      }
+
       // If there aren't any items then this is probably a form or something.
       if (!this.state.menuItems.length) {
         // If we've already focused on something inside the panel, everything's fine.
@@ -385,7 +407,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     this.updateFocus();
   }
 
-  menuItemRef = (index: number, node: HTMLElement) => {
+  menuItemRef = (index: number, node: HTMLElement | null) => {
     // There's a weird bug where if you navigate to a panel without items, then this callback
     // is still invoked, so we have to do a truthiness check.
     if (node) {
@@ -421,15 +443,21 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       initialFocusedItemIndex,
       showNextPanel,
       showPreviousPanel,
+      size,
       ...rest
     } = this.props;
     let panelTitle;
 
     if (title) {
+      const titleClasses = classNames(
+        'euiContextMenuPanelTitle',
+        size && titleSizeToClassNameMap[size]
+      );
+
       if (Boolean(onClose)) {
         panelTitle = (
           <button
-            className="euiContextMenuPanelTitle"
+            className={titleClasses}
             type="button"
             onClick={onClose}
             ref={(node) => {
@@ -449,7 +477,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         );
       } else {
         panelTitle = (
-          <div className="euiContextMenuPanelTitle">
+          <div className={titleClasses}>
             <span className="euiContextMenu__itemLayout">{title}</span>
           </div>
         );
@@ -470,13 +498,17 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     const content =
       items && items.length
-        ? items.map((MenuItem, index) =>
-            MenuItem.type === EuiContextMenuItem
-              ? cloneElement(MenuItem, {
-                  buttonRef: this.menuItemRef.bind(this, index),
-                })
-              : MenuItem
-          )
+        ? items.map((MenuItem, index) => {
+            const cloneProps: Partial<EuiContextMenuItemProps> = {
+              buttonRef: (node) => this.menuItemRef(index, node),
+            };
+            if (size) {
+              cloneProps.size = size;
+            }
+            return MenuItem.type === EuiContextMenuItem
+              ? cloneElement(MenuItem, cloneProps)
+              : MenuItem;
+          })
         : children;
 
     return (

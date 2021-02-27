@@ -17,6 +17,6 @@
  * under the License.
  */
 
-export { EuiHeaderLink } from './header_link';
+export { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 
-export { EuiHeaderLinks } from './header_links';
+export { EuiHeaderLinks, EuiHeaderLinksProps } from './header_links';

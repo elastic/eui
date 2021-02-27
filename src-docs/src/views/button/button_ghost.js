@@ -17,7 +17,10 @@ export default () => {
   };
 
   return (
-    <EuiPanel paddingSize="l" className="guideDemo__ghostBackground">
+    <EuiPanel
+      paddingSize="l"
+      color="ghost"
+      className="guideDemo__ghostBackground">
       <EuiFlexGroup wrap gutterSize="s" alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiButton color="ghost" onClick={() => {}}>

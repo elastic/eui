@@ -34,11 +34,6 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 let id = 0;
 const getId = () => `${id++}`;
 
@@ -332,6 +327,22 @@ describe('EuiPopover', () => {
             button={<button />}
             closePopover={() => {}}
             buffer={0}
+            isOpen
+          />
+        </div>
+      );
+
+      expect(component.render()).toMatchSnapshot();
+    });
+
+    test('buffer for all sides', () => {
+      const component = mount(
+        <div>
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            buffer={[20, 40, 60, 80]}
             isOpen
           />
         </div>

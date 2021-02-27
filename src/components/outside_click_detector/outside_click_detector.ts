@@ -31,20 +31,22 @@ export interface EuiEvent extends Event {
   euiGeneratedBy: string[];
 }
 
-interface Props {
+export interface EuiOutsideClickDetectorProps {
   /**
    * ReactNode to render as this component's content
    */
   children: ReactElement<any>;
-  onOutsideClick: (event: EuiEvent) => void;
+  onOutsideClick: (event: Event) => void;
   isDisabled?: boolean;
-  onMouseDown?: (event: ReactMouseEvent<any, EuiEvent>) => void;
-  onMouseUp?: (event: ReactMouseEvent<any, EuiEvent>) => void;
-  onTouchStart?: (event: ReactMouseEvent<any, EuiEvent>) => void;
-  onTouchEnd?: (event: ReactMouseEvent<any, EuiEvent>) => void;
+  onMouseDown?: (event: ReactMouseEvent) => void;
+  onMouseUp?: (event: ReactMouseEvent) => void;
+  onTouchStart?: (event: ReactMouseEvent) => void;
+  onTouchEnd?: (event: ReactMouseEvent) => void;
 }
 
-export class EuiOutsideClickDetector extends Component<Props> {
+export class EuiOutsideClickDetector extends Component<
+  EuiOutsideClickDetectorProps
+> {
   // We are working with the assumption that a click event is
   // equivalent to a sequential, compound press and release of
   // the pointing device (mouse, finger, stylus, etc.).
@@ -60,7 +62,7 @@ export class EuiOutsideClickDetector extends Component<Props> {
 
   private capturedDownIds: string[];
 
-  constructor(props: Props) {
+  constructor(props: EuiOutsideClickDetectorProps) {
     super(props);
 
     // the id is used to identify which EuiOutsideClickDetector
@@ -84,13 +86,15 @@ export class EuiOutsideClickDetector extends Component<Props> {
     this.capturedDownIds = [];
   }
 
-  onClickOutside: EventHandler<any> = (event: EuiEvent) => {
+  onClickOutside: EventHandler<any> = (e: Event) => {
     const { isDisabled, onOutsideClick } = this.props;
 
     if (isDisabled) {
       this.capturedDownIds = [];
       return;
     }
+
+    const event = (e as unknown) as EuiEvent;
 
     if (
       (event.euiGeneratedBy && event.euiGeneratedBy.includes(this.id)) ||
@@ -115,28 +119,29 @@ export class EuiOutsideClickDetector extends Component<Props> {
   }
 
   onChildClick = (
-    event: ReactMouseEvent<any, EuiEvent>,
-    cb: (event: ReactMouseEvent<any, EuiEvent>) => void
+    event: ReactMouseEvent,
+    cb: (event: ReactMouseEvent) => void
   ) => {
     // to support nested click detectors, build an array
-    // of detector ids that have been encountered
+    // of detector ids that have been encountered;
     if (event.nativeEvent.hasOwnProperty('euiGeneratedBy')) {
-      event.nativeEvent.euiGeneratedBy.push(this.id);
+      ((event.nativeEvent as unknown) as EuiEvent).euiGeneratedBy.push(this.id);
     } else {
-      event.nativeEvent.euiGeneratedBy = [this.id];
+      ((event.nativeEvent as unknown) as EuiEvent).euiGeneratedBy = [this.id];
     }
     if (cb) cb(event);
   };
 
-  onChildMouseDown = (event: ReactMouseEvent<any, EuiEvent>) => {
+  onChildMouseDown = (event: ReactMouseEvent) => {
     this.onChildClick(event, (e) => {
-      this.capturedDownIds = e.nativeEvent.euiGeneratedBy;
+      const nativeEvent = (e.nativeEvent as unknown) as EuiEvent;
+      this.capturedDownIds = nativeEvent.euiGeneratedBy;
       if (this.props.onMouseDown) this.props.onMouseDown(e);
       if (this.props.onTouchStart) this.props.onTouchStart(e);
     });
   };
 
-  onChildMouseUp = (event: ReactMouseEvent<any, EuiEvent>) => {
+  onChildMouseUp = (event: ReactMouseEvent) => {
     this.onChildClick(event, (e) => {
       if (this.props.onMouseUp) this.props.onMouseUp(e);
       if (this.props.onTouchEnd) this.props.onTouchEnd(e);

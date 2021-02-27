@@ -23,12 +23,16 @@ import { CommonProps } from '../common';
 
 export type LineRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-export const EuiLoadingContent: FunctionComponent<
-  CommonProps &
-    HTMLAttributes<HTMLDivElement> & {
-      lines?: LineRange;
-    }
-> = ({ lines = 3, className, ...rest }) => {
+export type EuiLoadingContentProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    lines?: LineRange;
+  };
+
+export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
+  lines = 3,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiLoadingContent', className);
   const lineElements = [];
 

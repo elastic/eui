@@ -1,8 +1,21 @@
 .euiMarkdownEditor {
-  transition:
-  box-shadow $euiAnimSpeedFast ease-in;
+  &--isPreviewing {
+    .euiMarkdownEditor__toggleContainer {
+      display: none;
+    }
+  }
 
-  &:focus-within {
-    @include euiSlightShadowHover;
+  &--fullHeight {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .euiMarkdownEditorTextArea {
+      resize: none;
+    }
+
+    .euiMarkdownEditorDropZone {
+      height: 100%;
+    }
   }
 }

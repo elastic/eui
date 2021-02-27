@@ -50,6 +50,9 @@ export interface FieldValueSelectionFilterConfigType {
   type: 'field_value_selection';
   field?: string;
   name: string;
+  /**
+   * See #FieldValueOptionType
+   */
   options: FieldValueOptionType[] | OptionsLoader;
   filterWith?: 'prefix' | 'includes' | OptionsFilter;
   cache?: number;

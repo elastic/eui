@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiFlyout, EuiFlyoutSize } from './flyout';
+import { EuiFlyout, EuiFlyoutSize, PADDING_SIZES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -37,14 +37,18 @@ describe('EuiFlyout', () => {
       <EuiFlyout {...requiredProps} onClose={() => {}} />
     );
 
-    expect(takeMountedSnapshot(component)).toMatchSnapshot();
+    expect(
+      takeMountedSnapshot(component, { hasArrayOutput: true })
+    ).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('close button is not rendered', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
 
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
     });
 
     describe('closeButtonLabel', () => {
@@ -73,7 +77,9 @@ describe('EuiFlyout', () => {
     test('accepts div props', () => {
       const component = mount(<EuiFlyout onClose={() => {}} id="imaflyout" />);
 
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
     });
 
     describe('size', () => {
@@ -81,7 +87,23 @@ describe('EuiFlyout', () => {
         it(`${size} is rendered`, () => {
           const component = mount(<EuiFlyout onClose={() => {}} size={size} />);
 
-          expect(takeMountedSnapshot(component)).toMatchSnapshot();
+          expect(
+            takeMountedSnapshot(component, { hasArrayOutput: true })
+          ).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('paddingSize', () => {
+      PADDING_SIZES.forEach((paddingSize) => {
+        it(`${paddingSize} is rendered`, () => {
+          const component = mount(
+            <EuiFlyout onClose={() => {}} paddingSize={paddingSize} />
+          );
+
+          expect(
+            takeMountedSnapshot(component, { hasArrayOutput: true })
+          ).toMatchSnapshot();
         });
       });
     });
@@ -92,7 +114,9 @@ describe('EuiFlyout', () => {
           <EuiFlyout onClose={() => {}} maxWidth={true} />
         );
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
 
       test('can be set to a custom number', () => {
@@ -100,7 +124,9 @@ describe('EuiFlyout', () => {
           <EuiFlyout onClose={() => {}} maxWidth={1024} />
         );
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
 
       test('can be set to a custom value and measurement', () => {
@@ -108,7 +134,9 @@ describe('EuiFlyout', () => {
           <EuiFlyout onClose={() => {}} maxWidth="24rem" />
         );
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
     });
 

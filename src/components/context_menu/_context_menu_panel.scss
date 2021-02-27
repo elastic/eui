@@ -1,6 +1,7 @@
 .euiContextMenuPanel {
   width: 100%;
   visibility: visible;
+  outline-offset: -$euiFocusRingSize;
 
   &.euiContextMenuPanel-txInLeft {
     pointer-events: none;
@@ -36,13 +37,18 @@
 .euiContextMenuPanelTitle {
   @include euiPopoverTitle;
   padding: $euiSizeM;
-
   width: 100%;
   text-align: left;
+  outline-offset: -$euiFocusRingSize;
 
   &:enabled:hover,
   &:enabled:focus {
     text-decoration: underline;
+  }
+
+  &--small {
+    @include euiPopoverTitle('s');
+    padding: ($euiSizeS * .75) $euiSizeS;
   }
 }
 

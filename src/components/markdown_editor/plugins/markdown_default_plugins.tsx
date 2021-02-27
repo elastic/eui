@@ -17,11 +17,28 @@
  * under the License.
  */
 
-import { PluggableList, Plugin } from 'unified';
+// Importing seemingly unused types from `unified` because the definitions
+// are exported for two versions of TypeScript (3.4, 4.0) and implicit
+// imports during eui.d.ts generation default to the incorrect version (3.4).
+// Explicit imports here resolve the version mismatch.
+import {
+  Plugin,
+  PluggableList,
+  // @ts-ignore See above comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Attacher,
+  // @ts-ignore See above comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Pluggable,
+  // @ts-ignore See above comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Settings,
+} from 'unified';
 import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
 import * as MarkdownTooltip from './markdown_tooltip';
 import * as MarkdownCheckbox from './markdown_checkbox';
+import { markdownLinkValidator } from './markdown_link_validator';
 import React, { createElement } from 'react';
 import { EuiLink } from '../../link';
 import { EuiCodeBlock, EuiCode } from '../../code';
@@ -30,6 +47,7 @@ import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
 import all from 'mdast-util-to-hast/lib/all';
 import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
+import { EuiMarkdownEditorUiPlugin } from './../markdown_types';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
@@ -37,6 +55,7 @@ export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [emoji, { emoticon: true }],
   [MarkdownTooltip.parser, {}],
   [MarkdownCheckbox.parser, {}],
+  [markdownLinkValidator, {}],
 ];
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
@@ -84,3 +103,12 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
 ];
 
 export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();
+
+export const getDefaultEuiMarkdownUiPlugins = (): EuiMarkdownEditorUiPlugin[] => {
+  const array = [MarkdownTooltip.plugin];
+  // @ts-ignore __originatedFromEui is a custom property
+  array.__originatedFromEui = true;
+  return array;
+};
+
+export const defaultUiPlugins = getDefaultEuiMarkdownUiPlugins();

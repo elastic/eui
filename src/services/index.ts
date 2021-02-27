@@ -39,6 +39,7 @@ export {
   BREAKPOINTS,
   BREAKPOINT_KEYS,
   getBreakpoint,
+  isWithinBreakpoints,
   isWithinMaxBreakpoint,
 } from './breakpoint';
 
@@ -115,4 +116,8 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export { useCombinedRefs, useDependentState } from './hooks';
+export {
+  useCombinedRefs,
+  useDependentState,
+  useIsWithinBreakpoints,
+} from './hooks';

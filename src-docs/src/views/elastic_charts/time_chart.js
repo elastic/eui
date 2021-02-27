@@ -77,7 +77,12 @@ export const TimeChart = () => {
       <EuiSpacer size="s" />
 
       <Chart size={{ height: 200 }}>
-        <Settings theme={theme} showLegend={multi} legendPosition="right" />
+        <Settings
+          theme={theme}
+          showLegend={multi}
+          legendPosition="right"
+          tooltip="cross"
+        />
         <ChartType
           id="financial"
           name="Financial"

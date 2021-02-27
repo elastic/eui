@@ -25,10 +25,6 @@ import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { keys, SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
 
-jest.mock('../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 interface BasicItem {
   id: number | string;
   name: string;
@@ -976,6 +972,33 @@ describe('EuiInMemoryTable', () => {
       component.setProps({});
 
       expect(component).toMatchSnapshot();
+    });
+
+    test('pagination with actions column and sorting set to true', async () => {
+      const props: EuiInMemoryTableProps<BasicItem> = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+          { id: '4', name: 'name4' },
+        ],
+        columns: [
+          {
+            name: 'Actions',
+            actions: [],
+          },
+        ],
+        sorting: true,
+        pagination: {
+          pageSizeOptions: [2, 4, 6],
+        },
+      };
+      const component = mount(<EuiInMemoryTable {...props} />);
+
+      component
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .simulate('click');
     });
 
     test('onTableChange callback', () => {

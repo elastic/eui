@@ -21,6 +21,7 @@ import React, {
   Fragment,
   useState,
   useMemo,
+  useCallback,
   ReactElement,
   ChangeEvent,
 } from 'react';
@@ -56,7 +57,7 @@ const getShowColumnSelectorValue = (
   return showColumnSelector[valueName] !== false;
 };
 
-export const useColumnSelector = (
+export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility,
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
@@ -82,18 +83,23 @@ export const useColumnSelector = (
   );
 
   const { visibleColumns, setVisibleColumns } = columnVisibility;
-  const visibleColumnIds = new Set(visibleColumns);
+  const visibleColumnIds = useMemo(() => new Set(visibleColumns), [
+    visibleColumns,
+  ]);
 
   const [isOpen, setIsOpen] = useState(false);
 
-  function setColumns(nextColumns: string[]) {
-    setSortedColumns(nextColumns);
+  const setColumns = useCallback(
+    (nextColumns: string[]) => {
+      setSortedColumns(nextColumns);
 
-    const nextVisibleColumns = nextColumns.filter((id) =>
-      visibleColumnIds.has(id)
-    );
-    setVisibleColumns(nextVisibleColumns);
-  }
+      const nextVisibleColumns = nextColumns.filter((id) =>
+        visibleColumnIds.has(id)
+      );
+      setVisibleColumns(nextVisibleColumns);
+    },
+    [setSortedColumns, setVisibleColumns, visibleColumnIds]
+  );
 
   function onDragEnd({
     source: { index: sourceIndex },
@@ -117,7 +123,10 @@ export const useColumnSelector = (
   });
 
   const filteredColumns = sortedColumns.filter(
-    (id) => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
+    (id) =>
+      (displayValues[id] || id)
+        .toLowerCase()
+        .indexOf(columnSearchText.toLowerCase()) !== -1
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
@@ -293,17 +302,20 @@ export const useColumnSelector = (
   /**
    * Used for moving columns left/right, available in the headers actions menu
    */
-  const switchColumnPos = (fromColId: string, toColId: string) => {
-    const moveFromIdx = sortedColumns.indexOf(fromColId);
-    const moveToIdx = sortedColumns.indexOf(toColId);
-    if (moveFromIdx === -1 || moveToIdx === -1) {
-      return;
-    }
-    const nextSortedColumns = [...sortedColumns];
-    nextSortedColumns.splice(moveFromIdx, 1);
-    nextSortedColumns.splice(moveToIdx, 0, fromColId);
-    setColumns(nextSortedColumns);
-  };
+  const switchColumnPos = useCallback(
+    (fromColId: string, toColId: string) => {
+      const moveFromIdx = sortedColumns.indexOf(fromColId);
+      const moveToIdx = sortedColumns.indexOf(toColId);
+      if (moveFromIdx === -1 || moveToIdx === -1) {
+        return;
+      }
+      const nextSortedColumns = [...sortedColumns];
+      nextSortedColumns.splice(moveFromIdx, 1);
+      nextSortedColumns.splice(moveToIdx, 0, fromColId);
+      setColumns(nextSortedColumns);
+    },
+    [setColumns, sortedColumns]
+  );
 
   return [
     columnSelector,

@@ -1,5 +1,68 @@
 [
   {
+    "version": "31.6.0",
+    "changes": [
+      {
+        "token": "euiMarkdownEditorFooter.closeButton",
+        "changeType": "added",
+        "value": "Close"
+      }
+    ]
+  },
+  {
+    "version": "31.0.0",
+    "changes": [
+      {
+        "token": "euiRecentlyUsed.legend",
+        "changeType": "added",
+        "value": "Recently used date ranges"
+      },
+      {
+        "token": "euiResizablePanel.toggleButtonAriaLabel",
+        "changeType": "added",
+        "value": "Press to toggle this panel"
+      }
+    ]
+  },
+  {
+    "version": "30.6.0",
+    "changes": [
+      {
+        "token": "euiStepStrings.loading",
+        "changeType": "added",
+        "value": "Step {number}: {title} is loading"
+      },
+      {
+        "token": "euiStepStrings.simpleLoading",
+        "changeType": "added",
+        "value": "Step {number} is loading"
+      }
+    ]
+  },
+  {
+    "version": "30.2.0",
+    "changes": [
+      {
+        "token": "euiColumnActions.sortAsc",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnActions.sortDesc",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnActions.sort",
+        "changeType": "added",
+        "value": "Sort {schemaLabel}"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
     "version": "30.0.0",
     "changes": [
       {

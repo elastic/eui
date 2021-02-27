@@ -42,6 +42,7 @@ export type EuiSelectableSearchProps<T> = Omit<
      * The id of the visible list to create the appropriate aria controls
      */
     listId?: string;
+    isPreFiltered: boolean;
   };
 
 export interface EuiSelectableSearchState {
@@ -68,7 +69,8 @@ export class EuiSelectableSearch<T> extends Component<
     const { searchValue } = this.state;
     const matchingOptions = getMatchingOptions<T>(
       this.props.options,
-      searchValue
+      searchValue,
+      this.props.isPreFiltered
     );
     this.props.onChange(matchingOptions, searchValue);
   }
@@ -78,7 +80,8 @@ export class EuiSelectableSearch<T> extends Component<
       this.setState({ searchValue: value }, () => {
         const matchingOptions = getMatchingOptions<T>(
           this.props.options,
-          value
+          value,
+          this.props.isPreFiltered
         );
         this.props.onChange(matchingOptions, value);
       });
@@ -93,6 +96,7 @@ export class EuiSelectableSearch<T> extends Component<
       defaultValue,
       listId,
       placeholder,
+      isPreFiltered,
       ...rest
     } = this.props;
 

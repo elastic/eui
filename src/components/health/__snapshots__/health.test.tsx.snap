@@ -3,7 +3,7 @@
 exports[`EuiHealth is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHealth testClass1 testClass2"
+  class="euiHealth euiHealth--textSizeS testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
@@ -13,6 +13,336 @@ exports[`EuiHealth is rendered 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <span
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color #000000 is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="#000000"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color accent is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="accent"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color danger is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="danger"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color default is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="default"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color ghost is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="ghost"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color primary is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="primary"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color secondary is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="secondary"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color subdued is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="subdued"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color success is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="success"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color text is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="text"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color warning is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="warning"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props textSize inherit is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeInherit"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="success"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props textSize m is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeM"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="success"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props textSize s is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="success"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props textSize xs is rendered 1`] = `
+<div
+  class="euiHealth euiHealth--textSizeXS"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <span
+        color="success"
         data-euiicon-type="dot"
       />
     </div>

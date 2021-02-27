@@ -42,6 +42,10 @@ export interface EuiButtonGroupOptionProps
    * The value of the radio input.
    */
   value?: any;
+  /**
+   * The type of the underlying HTML button
+   */
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export type EuiButtonGroupProps = CommonProps & {
@@ -117,7 +121,7 @@ export type EuiButtonGroupProps = CommonProps & {
       }
   );
 
-type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> &
+type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange' | 'color'> &
   EuiButtonGroupProps;
 
 const groupSizeToClassNameMap = {
@@ -179,7 +183,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               name={nameIfSingle}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
-              type={typeIsSingle ? 'label' : 'button'}
+              element={typeIsSingle ? 'label' : 'button'}
               isSelected={
                 typeIsSingle
                   ? option.id === idSelected

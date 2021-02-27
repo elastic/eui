@@ -5,12 +5,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCode,
-  EuiModal,
-  EuiConfirmModal,
-  EuiOverlayMask,
-} from '../../../../src/components';
+import { EuiCode, EuiModal, EuiConfirmModal } from '../../../../src/components';
 import Guidelines from './guidelines';
 
 import Modal from './modal';
@@ -74,13 +69,21 @@ export const ModalExample = {
         },
       ],
       text: (
-        <p>
-          Use a modal to temporarily interrupt a user’s current task and block
-          interactions to the content below it. Be sure to read the full{' '}
-          <Link to="/layout/modal/guidelines">modal usage guidelines</Link>.
-        </p>
+        <>
+          <p>
+            Use a modal to temporarily interrupt a user’s current task and block
+            interactions to the content below it. <strong>EuiModal</strong>{' '}
+            comes with a wrapping <strong>EuiOverlayMask</strong> to obscure the
+            content beneath. Unlike <Link to="/layout/flyout">flyouts</Link>,
+            modals cannot be dismissed by clicking on the overlay mask. This is
+            inline with our{' '}
+            <Link to="/layout/modal/guidelines">modal usage guidelines</Link>{' '}
+            which requires there to be a primary action button, even if that
+            button simply closes the modal.
+          </p>
+        </>
       ),
-      props: { EuiModal, EuiOverlayMask },
+      props: { EuiModal },
       snippet: modalSnippet,
       demo: <Modal />,
     },

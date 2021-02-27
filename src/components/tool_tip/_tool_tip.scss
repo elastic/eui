@@ -65,6 +65,10 @@
   *[disabled] {
     pointer-events: none;
   }
+
+  &.euiToolTipAnchor--displayBlock {
+    display: block;
+  }
 }
 
 // Keyframes to animate in the tooltip.

@@ -29,6 +29,10 @@ import FlyoutLarge from './flyout_large';
 const flyoutLargeSource = require('!!raw-loader!./flyout_large');
 const flyoutLargeHtml = renderToHtml(FlyoutLarge);
 
+import FlyoutPaddingMedium from './flyout_padding_medium';
+const FlyoutPaddingMediumSource = require('!!raw-loader!./flyout_padding_medium');
+const FlyoutPaddingMediumHtml = renderToHtml(FlyoutPaddingMedium);
+
 import FlyoutMaxWidth from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
@@ -71,6 +75,20 @@ const flyoutSmallSnippet = `<EuiFlyout size="s" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Flyout body content -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutMediumPaddingSnippet = `<EuiFlyout paddingSize="m" onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}>
+        <!-- Defaults to medium size. Change the heading level based on your context. -->
+      </h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
@@ -216,21 +234,9 @@ export const FlyoutExample = {
           <p>
             In this example, we set <EuiCode>size</EuiCode> to{' '}
             <EuiCode>s</EuiCode> and remove the <EuiCode>ownFocus</EuiCode>{' '}
-            prop. The latter not only removes the focus trap around the flyout,
-            but also removes the background overlay that reinforces your
-            boundaries.
+            prop. Removing <EuiCode>ownFocus</EuiCode> will hide the overlay
+            mask keeping the underlying page content visible and clickable.
           </p>
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <>
-                Removing <EuiCode>ownFocus</EuiCode> makes it difficult for
-                keyboard-only and screen reader users to navigate to and from
-                your flyout.
-              </>
-            }
-          />
         </>
       ),
       snippet: flyoutSmallSnippet,
@@ -256,6 +262,32 @@ export const FlyoutExample = {
       ),
       snippet: flyoutLargeSnippet,
       demo: <FlyoutLarge />,
+    },
+    {
+      title: 'Flyout padding',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: FlyoutPaddingMediumSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: FlyoutPaddingMediumHtml,
+        },
+      ],
+      text: (
+        <p>
+          All the inner flyout components inherit their{' '}
+          <EuiCode>padding</EuiCode> from the wrapping{' '}
+          <strong>EuiFlyout</strong> component. This ensures that all the
+          horizontal edges line up no matter the <EuiCode>paddingSize</EuiCode>.
+          When using the <EuiCode>{'"none"'}</EuiCode> size, you will need to
+          accomodate your content with some other way of creating distance to
+          the edges of the flyout.
+        </p>
+      ),
+      snippet: flyoutMediumPaddingSnippet,
+      demo: <FlyoutPaddingMedium />,
     },
     {
       title: 'Max width',

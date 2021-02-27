@@ -35,6 +35,36 @@ describe('EuiForm', () => {
 
     expect(component).toMatchSnapshot();
   });
+  test('renders with error callout when isInvalid is "true"', () => {
+    const component = render(<EuiForm {...requiredProps} isInvalid />);
+
+    expect(component).toMatchSnapshot();
+  });
+  test('renders with error callout when isInvalid is "true" and has one error', () => {
+    const component = render(
+      <EuiForm
+        {...requiredProps}
+        isInvalid
+        error={<span>This is one error</span>}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+  test('renders with error callout when isInvalid is "true" and has multiple errors', () => {
+    const component = render(
+      <EuiForm
+        {...requiredProps}
+        isInvalid
+        error={[
+          <span>This is one error</span>,
+          <span>This is another error</span>,
+        ]}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
   test('renders without error callout when invalidCallout is "none"', () => {
     const component = render(
       <EuiForm {...requiredProps} isInvalid invalidCallout="none" />

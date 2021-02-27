@@ -28,7 +28,7 @@ import classnames from 'classnames';
 
 import { keys, EuiWindowEvent } from '../../services';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
@@ -42,6 +42,17 @@ const sizeToClassNameMap: { [size in EuiFlyoutSize]: string } = {
   l: 'euiFlyout--large',
 };
 
+const paddingSizeToClassNameMap = {
+  none: 'euiFlyout--paddingNone',
+  s: 'euiFlyout--paddingSmall',
+  m: 'euiFlyout--paddingMedium',
+  l: 'euiFlyout--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+
+export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+
 export interface EuiFlyoutProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
@@ -51,12 +62,15 @@ export interface EuiFlyoutProps
    */
   size?: EuiFlyoutSize;
   /**
+   * Customize the padding around the content of the flyout header, body and footer
+   */
+  paddingSize?: EuiFlyoutPaddingSize;
+  /**
    * Hides the default close button. You must provide another close button somewhere within the flyout.
    */
   hideCloseButton?: boolean;
   /**
-   * Locks the mouse / keyboard focus to within the flyout,
-   * and shows an EuiOverlayMask
+   * Adds an EuiOverlayMask when set to `true`
    */
   ownFocus?: boolean;
   /**
@@ -88,6 +102,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   onClose,
   ownFocus = false,
   size = 'm',
+  paddingSize = 'l',
   closeButtonAriaLabel,
   maxWidth = false,
   style,
@@ -121,6 +136,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   const classes = classnames(
     'euiFlyout',
     sizeToClassNameMap[size!],
+    paddingSizeToClassNameMap[paddingSize],
     widthClassName,
     className
   );
@@ -135,7 +151,9 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
             iconType="cross"
             color="text"
             aria-label={closeButtonAriaLabel || closeAriaLabel}
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+            }}
             data-test-subj="euiFlyoutCloseButton"
           />
         )}
@@ -172,9 +190,17 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
     <Fragment>
       <EuiWindowEvent event="keydown" handler={onKeyDown} />
       {optionalOverlay}
-      {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
-        to the originating button */}
-      <EuiFocusTrap clickOutsideDisables={true}>{flyoutContent}</EuiFocusTrap>
+      {/*
+       * Trap focus even when `ownFocus={false}`, otherwise closing
+       * the flyout won't return focus to the originating button.
+       *
+       * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+       * to allow non-keyboard users the ability to interact with
+       * elements outside the flyout.
+       */}
+      <EuiFocusTrap clickOutsideDisables={!ownFocus}>
+        {flyoutContent}
+      </EuiFocusTrap>
     </Fragment>
   );
 };

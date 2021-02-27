@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  min-width: 0; // Ensure it shrinks if the window is narrow
 }
 
 .euiBreadcrumb {
@@ -47,7 +48,6 @@
 .euiBreadcrumbs--truncate {
   white-space: nowrap;
   flex-wrap: nowrap;
-  overflow: hidden;
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
     max-width: $euiBreadcrumbTruncateWidth;

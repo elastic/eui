@@ -71,10 +71,14 @@
     padding: 0 $euiSizeS;
     width: $euiSizeXL;
     border-radius: 0;
-    background-color: $euiFormInputGroupLabelBackground;
 
-    &:focus {
-      box-shadow: inset 0 0 0 2px $euiFocusRingColor;
+    &:not(:focus) {
+      background-color: $euiFormInputGroupLabelBackground;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $euiFocusRingColor;
+      outline-offset: -2px;
     }
   }
 
@@ -100,11 +104,11 @@
   .euiText {
     background-color: $euiFormInputGroupLabelBackground;
     padding: $euiFormControlPadding;
-    line-height: $euiFontSize !important;
+    line-height: $euiSize !important;
     cursor: default !important; // pointer cursor on some form labels but not others is confusing
 
     // If the next sibling is not the input, pull it closer to the text to reduce space
-    + *:not(.euiFormControlLayout__childrenWrapper) {
+    + *:not(.euiFormControlLayout__childrenWrapper):not(input) {
       margin-left: -$euiFormControlPadding;
     }
   }

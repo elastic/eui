@@ -6,6 +6,7 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code js hljs javascript"
@@ -20,6 +21,7 @@ exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       aria-label="aria-label"
@@ -39,6 +41,7 @@ exports[`EuiCodeBlockImpl block renders a pre block tag with a css class modifie
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePre"
+    tabindex="-1"
   >
     <code
       aria-label="aria-label"
@@ -58,6 +61,7 @@ exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
     <code
       class="euiCodeBlock__code"

@@ -29,10 +29,6 @@ const props = {
   onChange: () => {},
 };
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiSwitch', () => {
   test('is rendered', () => {
     const component = render(
@@ -46,5 +42,14 @@ describe('EuiSwitch', () => {
     const component = render(<EuiSwitch {...props} />);
 
     expect(component).toMatchSnapshot();
+  });
+  describe('labelProps', () => {
+    it('is rendered', () => {
+      const component = render(
+        <EuiSwitch {...props} labelProps={requiredProps} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

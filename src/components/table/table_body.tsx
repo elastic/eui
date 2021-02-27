@@ -20,11 +20,11 @@
 import React, { FunctionComponent, Ref } from 'react';
 import { CommonProps } from '../common';
 
-type Props = CommonProps & {
+export type EuiTableBodyProps = CommonProps & {
   bodyRef?: Ref<HTMLTableSectionElement>;
 };
 
-export const EuiTableBody: FunctionComponent<Props> = ({
+export const EuiTableBody: FunctionComponent<EuiTableBodyProps> = ({
   children,
   className,
   bodyRef,

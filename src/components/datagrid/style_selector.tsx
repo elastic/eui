@@ -49,7 +49,7 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
   },
 };
 
-export const useStyleSelector = (
+export const useDataGridStyleSelector = (
   initialStyles: EuiDataGridStyle
 ): [ReactElement, EuiDataGridStyle] => {
   // track styles specified by the user at run time
