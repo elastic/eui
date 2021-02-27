@@ -27,6 +27,22 @@ import { GuideSectionExampleCode } from './guide_section_parts/guide_section_cod
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
 import playground from '../../services/playground/playground';
 
+const slugify = (str) => {
+  const parts = str
+    .toLowerCase()
+    .replace(/[-]+/g, ' ')
+    .replace(/[^\w^\s]+/g, '')
+    .replace(/ +/g, ' ')
+    .split(' ');
+  return parts.join('-');
+};
+
+const tabDisplayNameMap = {
+  javascript: 'Demo JS',
+  html: 'Demo HTML',
+  snippet: 'Snippet',
+};
+
 export const renderPropsForComponent = (
   componentName,
   component,
@@ -128,26 +144,18 @@ export class GuideSection extends Component {
     // }
 
     if (props.source) {
-      this.tabs.push(
-        {
-          name: 'javascript',
-          displayName: (
-            <>
-              <EuiIcon
-                style={{ verticalAlign: 'text-top', marginRight: 4 }}
-                type="editorCodeBlock"
-              />{' '}
-              JS
-            </>
-          ),
-          isCode: true,
-        },
-        {
-          name: 'html',
-          displayName: 'HTML',
-          isCode: true,
-        }
-      );
+      props.source.map((source) => {
+        this.tabs.push({
+          name:
+            (source.displayName && slugify(source.displayName)) ||
+            tabDisplayNameMap[source.type] ||
+            'tab',
+          displayName:
+            source.displayName || tabDisplayNameMap[source.type] || 'Tab',
+          isCode: source.type || true,
+          code: source.code,
+        });
+      });
     }
 
     if (hasSnippet) {
@@ -176,16 +184,13 @@ export class GuideSection extends Component {
   }
 
   onSelectedTabChanged = (selectedTab) => {
-    const { name } = selectedTab;
+    const { isCode, code } = selectedTab;
     let renderedCode = null;
 
-    if (name === 'html' || name === 'javascript') {
-      const { code } = this.props.source.find(
-        (sourceObject) => sourceObject.type === name
-      );
+    if (isCode === 'html' || isCode === 'javascript') {
       renderedCode = code;
 
-      if (name === 'javascript') {
+      if (isCode === 'javascript') {
         renderedCode = renderedCode.default
           .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
@@ -231,14 +236,17 @@ export class GuideSection extends Component {
           len = renderedCode.replace('\n\n\n', '\n\n').length;
         }
         renderedCode = cleanEuiImports(renderedCode);
-      } else if (name === 'html') {
+      } else if (isCode === 'html') {
         renderedCode = code.render();
       }
     }
 
     this.setState(
       (prevState) => {
-        if (prevState.selectedTab && prevState.selectedTab.name === name) {
+        if (
+          prevState.selectedTab &&
+          prevState.selectedTab.name === selectedTab.name
+        ) {
           // Unselect tabs if clicking the same one that is currently open
           return {
             selectedTab: undefined,
@@ -248,7 +256,7 @@ export class GuideSection extends Component {
         return { selectedTab, renderedCode };
       },
       () => {
-        if (name === 'javascript') {
+        if (isCode === 'javascript') {
           requestAnimationFrame(() => {
             const pre = this.refs.javascript.querySelector(
               '.euiCodeBlock__pre'
