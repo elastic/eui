@@ -574,3 +574,34 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
   </div>
 </fieldset>
 `;
+
+exports[`EuiFormRow props label with labelProps rendered 1`] = `
+<div
+  className="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    className="euiFormRow__labelWrapper"
+  >
+    <EuiFormLabel
+      aria-label="aria-label"
+      className="testClass1 testClass2"
+      data-test-subj="test subject string"
+      htmlFor="generated-id"
+      isFocused={false}
+      type="label"
+    >
+      label
+    </EuiFormLabel>
+  </div>
+  <div
+    className="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
+</div>
+`;

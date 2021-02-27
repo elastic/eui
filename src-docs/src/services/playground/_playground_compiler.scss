@@ -1,7 +1,7 @@
 .playgroundCompiler {
   background: $euiColorEmptyShade;
   position: sticky;
-  top: 0;
+  top: $euiHeaderHeightCompensation;
   z-index: 5;
 
   > div {

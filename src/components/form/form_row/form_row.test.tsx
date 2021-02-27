@@ -78,6 +78,16 @@ describe('EuiFormRow', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('label with labelProps rendered', () => {
+      const component = shallow(
+        <EuiFormRow label="label" labelProps={requiredProps}>
+          <input />
+        </EuiFormRow>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('label append is rendered', () => {
       const component = shallow(
         <EuiFormRow label="label" labelAppend="append">

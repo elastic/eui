@@ -103,6 +103,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   error,
   label,
   labelAppend,
+  labelProps,
   hasEmptyLabelSpace,
   describedByIds,
   display = 'row',
@@ -139,15 +140,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
 
   const formControlLayout = (
     <EuiFormControlLayout
-      icon={
-        isInvalid
-          ? {
-              type: 'alert',
-              color: 'danger',
-              side: 'right',
-            }
-          : icon
-      }
+      icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
@@ -167,6 +160,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     error,
     label,
     labelAppend,
+    labelProps,
     hasEmptyLabelSpace,
     describedByIds: id ? [id] : undefined,
     display,

@@ -87,6 +87,10 @@ export type EuiFormRowCommonProps = CommonProps & {
   children: ReactElement;
   label?: ReactNode;
   /**
+   * Pass some common props to the `<label>` or `<legend>` element
+   */
+  labelProps?: CommonProps;
+  /**
    * Adds an extra node to the right of the form label without
    * being contained inside the form label. Good for things
    * like documentation links.
@@ -180,6 +184,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       label,
       labelType,
       labelAppend,
+      labelProps: _labelProps,
       hasEmptyLabelSpace,
       fullWidth,
       className,
@@ -236,10 +241,12 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       let labelProps = {};
       if (isLegend) {
         labelProps = {
+          ..._labelProps,
           type: labelType,
         };
       } else {
         labelProps = {
+          ..._labelProps,
           htmlFor: hasChildLabel ? id : undefined,
           isFocused: this.state.isFocused,
           type: labelType,
