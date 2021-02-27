@@ -20,7 +20,7 @@ import { ContrastSlider } from './colors/contrast_slider';
 
 export default ({ selectedTheme }) => {
   const [showTextVariants, setShowTextVariants] = useState(true);
-  const [contrastValue, setContrastValue] = useState(3);
+  const [contrastValue, setContrastValue] = useState(4.5);
   const selectedThemeIsDark = selectedTheme.includes('dark');
 
   return (
