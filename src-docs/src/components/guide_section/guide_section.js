@@ -26,6 +26,7 @@ import { GuideSectionSnippets } from './guide_section_parts/guide_section_snippe
 import { GuideSectionExampleCode } from './guide_section_parts/guide_section_code';
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
 import playground from '../../services/playground/playground';
+import { GuideSectionExampleText } from './guide_section_parts/guide_section_text';
 
 const slugify = (str) => {
   const parts = str
@@ -281,15 +282,6 @@ export class GuideSection extends Component {
     ));
   }
 
-  renderProps() {
-    const { props } = this.props;
-    return this.componentNames
-      .map((componentName) =>
-        renderPropsForComponent(componentName, props[componentName])
-      )
-      .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
-  }
-
   renderChrome() {
     if (!this.props.title && !this.props.text) {
       return;
@@ -358,7 +350,14 @@ export class GuideSection extends Component {
           scope[componentName]
         );
       } else {
-        propsTable = this.renderProps();
+        propsTable = this.componentNames
+          .map((componentName) =>
+            renderPropsForComponent(
+              componentName,
+              this.props.props[componentName]
+            )
+          )
+          .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
       }
 
       return <EuiErrorBoundary>{propsTable}</EuiErrorBoundary>;
@@ -437,16 +436,16 @@ export class GuideSection extends Component {
   }
 
   render() {
+    const { title, text, wrapText } = this.props;
     const chrome = this.renderChrome();
 
     return (
       <div className="guideSection" id={this.props.id}>
-        {chrome && (
-          <>
-            {chrome}
-            <EuiSpacer />
-          </>
-        )}
+        <GuideSectionExampleText
+          title={title}
+          text={text}
+          wrapText={wrapText}
+        />
 
         {this.state.isPlayground && this.renderPlayground()}
         {!this.state.isPlayground && this.props.demo && (

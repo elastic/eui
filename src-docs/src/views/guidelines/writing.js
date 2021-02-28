@@ -83,8 +83,6 @@ export default {
         </EuiFlexItem>
       </EuiFlexGrid>
       <EuiSpacer size="xl" />
-
-      <EuiHorizontalRule margin="xl" />
     </>
   ),
   sections: [
