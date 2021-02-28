@@ -282,36 +282,6 @@ export class GuideSection extends Component {
     ));
   }
 
-  renderChrome() {
-    if (!this.props.title && !this.props.text) {
-      return;
-    }
-
-    let title;
-
-    if (this.props.title) {
-      title = (
-        <>
-          <EuiSpacer />
-          <EuiTitle>
-            <h2>{this.props.title}</h2>
-          </EuiTitle>
-          <EuiSpacer size="m" />
-        </>
-      );
-    }
-    return (
-      <>
-        {title}
-        {this.props.text && this.props.wrapText ? (
-          <EuiText key="text">{this.props.text}</EuiText>
-        ) : (
-          this.props.text
-        )}
-      </>
-    );
-  }
-
   renderContent() {
     if (typeof this.state.selectedTab === 'undefined') {
       return;
@@ -437,7 +407,6 @@ export class GuideSection extends Component {
 
   render() {
     const { title, text, wrapText } = this.props;
-    const chrome = this.renderChrome();
 
     return (
       <div className="guideSection" id={this.props.id}>
