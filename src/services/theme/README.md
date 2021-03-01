@@ -49,23 +49,14 @@ Returned from `getComputed`, in the shape of:
 ```js
 getComputed(
   EuiThemeDefault, // Theme system (Proxy)
-  {}, // Overrides object
+  {}, // Modifications object
   'light' // Color mode
 )
 ```
 
-#### Overrides
+#### Modifications
 
-Compute-time value overrides for theme property values. Because a theme system is unchangeable, this mechanism allows for changing values at certain points during consumption.
-The overrides object must match the partial shape of the theme system:
-
-```js
-{ 
-  sizes: {
-    euiSize: 4
-  }
-}
-```
+Because the theme system (built theme) is immutable, modifications can only be made at compute time by providing overrides and extensions for theme property values. These modifications are passed to the `EuiThemeProvider` via the `modify` prop and should match the high-level object shape of the theme. 
 
 #### Color mode
 
@@ -84,14 +75,14 @@ colors: {
 
 ### EuiThemeProvider
 
-Umbrella provider component that holds the various top-level theme configuration option providers: theme system, color mode, overrides; as well as the primary output provider: computed theme.
-The actual computation for computed theme values takes place at this level, where the three inputs are known (theme system, color mode, overrides) and the output (computed theme) can be cached for consumption. Input changes are captured and the output is recomputed.
+Umbrella provider component that holds the various top-level theme configuration option providers: theme system, color mode, modifications; as well as the primary output provider: computed theme.
+The actual computation for computed theme values takes place at this level, where the three inputs are known (theme system, color mode, modifications) and the output (computed theme) can be cached for consumption. Input changes are captured and the output is recomputed.
 
 ```js
 <EuiThemeProvider
   theme={DefaultEuiTheme}
   colorMode="light"
-  overrides={{}}
+  modify={{}}
   />
 ```
 
@@ -99,10 +90,10 @@ All three props are optional. The default values for EUI will be used in the eve
 
 ### useEuiTheme
 
-A custom React hook that is returns the computed theme. This hook it little more than a wrapper around the `useContext` hook, accessing three of the top-level providers: computed theme, color mode, and overrides.
+A custom React hook that returns the computed theme. This hook is little more than a wrapper around the `useContext` hook, accessing three of the top-level providers: computed theme, color mode, and modifications.
 
 ```js
-const [theme, colorMode, overrides] = useEuiTheme();
+const [theme, colorMode, modifications] = useEuiTheme();
 ```
 
 The `theme` variable has TypeScript support, which will result in IDE autocomplete availability.

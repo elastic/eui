@@ -207,6 +207,61 @@ describe('getComputed', () => {
       themeName: 'minimal',
     });
   });
+  it('respects property extensions', () => {
+    expect(
+      getComputed(
+        // @ts-ignore intentionally not using a full EUI theme definition
+        theme,
+        buildTheme({ colors: { light: { tertiary: '#333' } } }, ''),
+        'light'
+      )
+    ).toEqual({
+      colors: { primary: '#000', secondary: '#000000', tertiary: '#333' },
+      sizes: { small: 8 },
+      themeName: 'minimal',
+    });
+  });
+  it('respects section extensions', () => {
+    expect(
+      getComputed(
+        // @ts-ignore intentionally not using a full EUI theme definition
+        theme,
+        buildTheme({ custom: { myProp: '#333' } }, ''),
+        'light'
+      )
+    ).toEqual({
+      colors: { primary: '#000', secondary: '#000000' },
+      sizes: { small: 8 },
+      custom: { myProp: '#333' },
+      themeName: 'minimal',
+    });
+  });
+  it('respects extensions in computation', () => {
+    expect(
+      getComputed(
+        // @ts-ignore intentionally not using a full EUI theme definition
+        theme,
+        buildTheme(
+          {
+            colors: {
+              light: {
+                tertiary: computed(
+                  ['colors.primary'],
+                  ([primary]) => `${primary}333`
+                ),
+              },
+            },
+          },
+          ''
+        ),
+        'light'
+      )
+    ).toEqual({
+      colors: { primary: '#000', secondary: '#000000', tertiary: '#000333' },
+      sizes: { small: 8 },
+      themeName: 'minimal',
+    });
+  });
 });
 
 describe('buildTheme', () => {
@@ -246,18 +301,15 @@ describe('currentColorModeOnly', () => {
     sizes: {
       small: 8,
     },
-    themeName: 'minimal',
   };
   it('object with only the current color mode colors', () => {
     expect(currentColorModeOnly('light', theme)).toEqual({
       colors: { primary: '#000' },
       sizes: { small: 8 },
-      themeName: 'minimal',
     });
     expect(currentColorModeOnly('dark', theme)).toEqual({
       colors: { primary: '#FFF' },
       sizes: { small: 8 },
-      themeName: 'minimal',
     });
   });
 });

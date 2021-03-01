@@ -125,7 +125,7 @@ export {
 export {
   EuiSystemContext,
   EuiThemeContext,
-  EuiOverrideContext,
+  EuiModificationsContext,
   EuiColorModeContext,
   useEuiTheme,
   withEuiTheme,
@@ -146,7 +146,7 @@ export {
   EuiThemeColor,
   EuiThemeColorMode,
   EuiThemeComputed,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeShape,
   EuiThemeSystem,
 } from './theme';
