@@ -5,8 +5,8 @@ import { EuiSplitPanel } from '../../../../../src/components/panel';
 export interface GuideSectionExample {
   example: ReactNode;
   tabs?: ReactNode;
+  /** Forces display of a certain content (playground props table) */
   tabContent?: ReactNode;
-  playground?: any;
   ghostBackground?: boolean;
 }
 
@@ -14,6 +14,7 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   example,
   tabs,
   ghostBackground = false,
+  tabContent,
 }) => {
   const classes = classNames({
     guideDemo__ghostBackground: ghostBackground,
@@ -28,6 +29,7 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
           <InnerPanel>{example}</InnerPanel>
           <InnerPanel paddingSize="none" color="subdued">
             {tabs}
+            {tabContent}
           </InnerPanel>
         </>
       )}

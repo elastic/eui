@@ -35,14 +35,14 @@ export const GuideSectionPropsTable: FunctionComponent<GuideSectionPropsTable> =
   }
 
   const extendedTypes = extendedInterfaces
-    ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
+    ? extendedInterfaces.filter((type: any) => !!extendedTypesInfo[type])
     : [];
   // if there is an HTMLAttributes type present among others, remove HTMLAttributes
   if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
     const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
     extendedTypes.splice(htmlAttributesIndex, 1);
   }
-  const extendedTypesElements = extendedTypes.map((type, index) => (
+  const extendedTypesElements = extendedTypes.map((type: any, index: any) => (
     <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
       <EuiLink href={extendedTypesInfo[type].url}>
         {extendedTypesInfo[type].name}
@@ -100,7 +100,7 @@ export const GuideSectionPropsTable: FunctionComponent<GuideSectionPropsTable> =
   );
 };
 
-const PlaygroundProps = ({ config, isPlayground }) => {
+const PlaygroundProps: FunctionComponent<any> = ({ config, isPlayground }) => {
   const params = useView(config);
 
   return <Knobs {...params.knobProps} isPlayground={isPlayground} />;

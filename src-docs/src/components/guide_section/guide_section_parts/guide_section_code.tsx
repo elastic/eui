@@ -11,23 +11,22 @@ export const LANGUAGES = ['javascript', 'html'] as const;
 type GuideSectionExampleCode = {
   language: typeof LANGUAGES[number];
   code: any;
-  codeSandbox?: any;
 };
 
 export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode> = ({
   language = 'javascript',
   code,
-  codeSandbox,
 }) => {
-  const codeSandboxLink = codeSandbox && language === 'javascript' && (
-    <CodeSandboxLink
-      className="guideSectionExampleCode__link"
-      content={codeSandbox}>
-      <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
-        Try out this demo on Code Sandbox
-      </EuiButtonEmpty>
-    </CodeSandboxLink>
-  );
+  const codeSandboxLink =
+    language === 'javascript' ? (
+      <CodeSandboxLink
+        className="guideSectionExampleCode__link"
+        content={code.default}>
+        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
+          Try out this demo on Code Sandbox
+        </EuiButtonEmpty>
+      </CodeSandboxLink>
+    ) : undefined;
 
   const renderedCode =
     language === 'javascript' ? renderJsSourceCode(code) : code.render();

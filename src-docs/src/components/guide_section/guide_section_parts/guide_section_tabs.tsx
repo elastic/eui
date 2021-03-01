@@ -33,20 +33,17 @@ export type GuideSectionExampleTabsProps = {
   tabs: GuideSectionExampleTabType[];
   /** Renders any content to the right of the tabs (playground toggle) */
   rightSideControl?: ReactNode;
-  /** Forces display of a certain content (playground props table) */
-  tabContent?: ReactNode;
 };
 
 export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsProps> = ({
   tabs,
   rightSideControl,
-  tabContent,
 }) => {
-  const [selectedTabId, setSelectedTabId] = useState();
+  const [selectedTabId, setSelectedTabId] = useState('');
 
-  const onSelectedTabChanged = (id) => {
+  const onSelectedTabChanged = (id: string) => {
     if (id === selectedTabId) {
-      setSelectedTabId(undefined);
+      setSelectedTabId('');
     } else {
       setSelectedTabId(id);
     }
@@ -64,11 +61,11 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
 
           return (
             <EuiTab
+              {...rest}
               name={name}
               onClick={() => onSelectedTabChanged(name)}
               isSelected={name === selectedTabId}
-              key={index}
-              {...rest}>
+              key={index}>
               {tab.displayName}
             </EuiTab>
           );
@@ -83,7 +80,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     const selectedTab = tabs.find((tab) => tab.name === selectedTabId);
 
     // SNIPPET
-    if (selectedTabId === 'snippet') {
+    if (selectedTab && selectedTabId === 'snippet') {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
@@ -91,30 +88,27 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
         </EuiErrorBoundary>
       );
       // SOURCE CODE BLOCK
-    } else if (selectedTab.code) {
+    } else if (selectedTab && selectedTab.code) {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
           <GuideSectionExampleCode
             language={selectedTab.type}
             code={selectedTab.code}
-            // codeSandbox={this.props.source[0].code.default}
           />
         </EuiErrorBoundary>
       );
       // PROPS TABLE
-    } else if (selectedTab.props) {
+    } else if (selectedTab && selectedTab.props) {
       const components = Object.keys(selectedTab.props);
 
-      return components
-        .map((component) => (
-          <GuideSectionPropsTable
-            key={component}
-            componentName={component}
-            component={selectedTab.props[component]}
-          />
-        ))
-        .reduce((a, b) => a.concat(b), []); // Flatten the resulting array;
+      return components.map((component) => (
+        <GuideSectionPropsTable
+          key={component}
+          componentName={component}
+          component={selectedTab.props[component]}
+        />
+      ));
     }
   };
 
@@ -127,9 +121,9 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
         <EuiFlexItem>{renderTabs()}</EuiFlexItem>
         <EuiFlexItem grow={false}>{rightSideControl}</EuiFlexItem>
       </EuiFlexGroup>
-      {(selectedTabId || tabContent) && (
+      {selectedTabId && (
         <EuiPanel paddingSize="none" color="subdued">
-          {renderContent() || tabContent}
+          {renderContent()}
         </EuiPanel>
       )}
     </>

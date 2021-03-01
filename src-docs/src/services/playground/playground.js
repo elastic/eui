@@ -16,7 +16,6 @@ export default ({
   config,
   setGhostBackground,
   playgroundClassName,
-  playgroundToggle,
   description,
   tabs,
 }) => {
