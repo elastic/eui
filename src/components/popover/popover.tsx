@@ -762,7 +762,7 @@ export class EuiPopover extends Component<Props, State> {
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }>
             <EuiPanel
-              {...panelProps}
+              {...(panelProps as EuiPanelProps)}
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
