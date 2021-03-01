@@ -12,5 +12,10 @@ $euiPanelBorderRadiusModifiers: (
 $euiPanelBackgroundColorModifiers: (
   'transparent': transparent,
   'plain': $euiColorEmptyShade,
-  'subdued': $euiColorLightestShade,
+  'subdued': $euiPageBackgroundColor,
+  'accent':  tintOrShade($euiColorAccent, 90%, 70%),
+  'primary': tintOrShade($euiColorPrimary, 90%, 70%),
+  'success': tintOrShade($euiColorSecondary, 90%, 70%),
+  'warning': tintOrShade($euiColorWarning, 90%, 70%),
+  'danger':  tintOrShade($euiColorDanger, 90%, 70%),
 ) !default;

@@ -7,11 +7,12 @@ import { registerRouter, translateUsingPseudoLocale } from '../services';
 import {
   EuiErrorBoundary,
   EuiPage,
-  EuiPageBody,
   EuiContext,
+  EuiPageBody,
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
+import { GuidePageHeader } from '../components/guide_page/guide_page_header';
 
 export class AppView extends Component {
   constructor(...args) {
@@ -52,17 +53,22 @@ export class AppView extends Component {
     };
 
     return (
-      <EuiPage restrictWidth={1240} className="guidePage">
-        <EuiPageBody>
+      <>
+        <GuidePageHeader
+          onToggleLocale={toggleLocale}
+          selectedLocale={locale}
+        />
+        <EuiPage paddingSize="none">
           <EuiErrorBoundary>
             <GuidePageChrome
               currentRoute={currentRoute}
+              navigation={navigation}
               onToggleLocale={toggleLocale}
               selectedLocale={locale}
-              navigation={navigation}
             />
           </EuiErrorBoundary>
-          <div className="guidePageContent">
+
+          <EuiPageBody panelled>
             <EuiContext i18n={i18n}>
               <ThemeContext.Consumer>
                 {(context) => {
@@ -73,14 +79,14 @@ export class AppView extends Component {
                 }}
               </ThemeContext.Consumer>
             </EuiContext>
-          </div>
-        </EuiPageBody>
-      </EuiPage>
+          </EuiPageBody>
+        </EuiPage>
+      </>
     );
   }
 
   render() {
-    return <div className="guide">{this.renderContent()}</div>;
+    return this.renderContent();
   }
 
   onKeydown = (event) => {

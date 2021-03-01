@@ -17,4 +17,8 @@
  * under the License.
  */
 
-export { EuiResizeObserver, useResizeObserver } from './resize_observer';
+export {
+  EuiResizeObserver,
+  EuiResizeObserverProps,
+  useResizeObserver,
+} from './resize_observer';

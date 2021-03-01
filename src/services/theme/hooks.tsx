@@ -21,28 +21,28 @@ import React, { forwardRef, useContext } from 'react';
 
 import {
   EuiThemeContext,
-  EuiOverrideContext,
+  EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
 import {
   EuiThemeColorMode,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeComputed,
 } from './types';
 
 export const useEuiTheme = <T extends {}>(): [
   EuiThemeComputed<T>,
   EuiThemeColorMode,
-  EuiThemeOverrides<T>
+  EuiThemeModifications<T>
 ] => {
   const theme = useContext(EuiThemeContext);
-  const overrides = useContext(EuiOverrideContext);
+  const modifications = useContext(EuiModificationsContext);
   const colorMode = useContext(EuiColorModeContext);
 
   return [
     theme as EuiThemeComputed<T>,
     colorMode,
-    overrides as EuiThemeOverrides<T>,
+    modifications as EuiThemeModifications<T>,
   ];
 };
 

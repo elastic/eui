@@ -47,6 +47,19 @@ describe('EuiPanel', () => {
       });
     });
 
+    describe('hasBorder', () => {
+      test('can be false', () => {
+        const component = render(<EuiPanel hasBorder={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+      test('can be true', () => {
+        const component = render(<EuiPanel hasBorder={true} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {

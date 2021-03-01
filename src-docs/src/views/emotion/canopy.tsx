@@ -30,6 +30,7 @@ import {
   computed,
   euiThemeDefault,
   buildTheme,
+  EuiThemeModifications,
 } from '../../../../src/services';
 
 const View = () => {
@@ -76,7 +77,7 @@ const View3 = () => {
   const overrides = {
     colors: {
       light: { euiColorPrimary: '#8A07BD' },
-      dark: { euiColorPrimary: '#bd07a5' },
+      dark: { euiColorPrimary: '#BD07A5' },
     },
   };
   return (
@@ -84,7 +85,7 @@ const View3 = () => {
       <View />
 
       <EuiSpacer />
-      <EuiThemeProvider overrides={overrides}>
+      <EuiThemeProvider modify={overrides}>
         <em>Overriding primary</em>
         <View />
       </EuiThemeProvider>
@@ -98,16 +99,16 @@ const View2 = () => {
       light: {
         euiColorSecondary: computed(
           ['colors.euiColorPrimary'],
-          () => '#85e89d'
+          () => '#85E89d'
         ),
       },
-      dark: { euiColorSecondary: '#f0fff4' },
+      dark: { euiColorSecondary: '#F0FFF4' },
     },
   };
   return (
     <>
       <EuiSpacer />
-      <EuiThemeProvider overrides={overrides}>
+      <EuiThemeProvider modify={overrides}>
         <em>Overriding secondary</em>
         <View />
       </EuiThemeProvider>
@@ -176,15 +177,95 @@ export default () => {
     'CUSTOM'
   );
 
+  // Difference is due to automatic colorMode reduction during value computation.
+  // Makes typing slightly inconvenient, but makes consuming values very convenient.
+  type ExtensionsUncomputed = {
+    colors: { light: { myColor: string }; dark: { myColor: string } };
+    custom: {
+      colors: {
+        light: { customColor: string };
+        dark: { customColor: string };
+      };
+      mySize: number;
+    };
+  };
+  type ExtensionsComputed = {
+    colors: { myColor: string };
+    custom: { colors: { customColor: string }; mySize: number };
+  };
+
+  // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
+  const extend: EuiThemeModifications<ExtensionsUncomputed> = {
+    colors: {
+      light: {
+        euiColorPrimary: '#F56407',
+        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+      },
+      dark: {
+        euiColorPrimary: '#FA924F',
+        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+      },
+    },
+    custom: {
+      colors: {
+        light: { customColor: '#080AEF' },
+        dark: { customColor: '#087EEF' },
+      },
+      mySize: 5,
+    },
+  };
+
+  const Extend = () => {
+    // Generic type (ExtensionsComputed) necessary if accessing extensions/custom properties
+    const [{ colors, custom }, colorMode] = useEuiTheme<ExtensionsComputed>();
+    return (
+      <div css={{ display: 'flex' }}>
+        <div>
+          {colorMode}
+          <pre>
+            <code>{JSON.stringify({ colors, custom }, null, 2)}</code>
+          </pre>
+        </div>
+        <div>
+          <h3>
+            <EuiIcon
+              aria-hidden="true"
+              type="stopFilled"
+              size="xxl"
+              css={{ color: colors.myColor }}
+            />
+          </h3>
+          <h3>
+            <EuiIcon
+              aria-hidden="true"
+              type="stopFilled"
+              size="xxl"
+              css={{ color: colors.myColor }}
+            />
+          </h3>
+          <h3>
+            <EuiIcon
+              aria-hidden="true"
+              type="stopFilled"
+              size="xxl"
+              css={{
+                color: custom.colors.customColor,
+              }}
+            />
+          </h3>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <EuiThemeProvider
         // theme={DefaultEuiTheme}
         // colorMode={colorMode}
-        overrides={overrides}>
+        modify={overrides}>
         <button type="button" onClick={toggleTheme}>
-          {/* @ts-ignore strike */}
-          <strike>Toggle Color Mode!</strike> Use global config
+          <del>Toggle Color Mode!</del> Use global config
         </button>
         <EuiSpacer />
         <button type="button" onClick={lightColors}>
@@ -209,6 +290,11 @@ export default () => {
         </EuiThemeProvider>
       </EuiThemeProvider>
       <EuiSpacer />
+      {/* Generic type is not necessary here. Note that it should be the uncomputed type */}
+      <EuiThemeProvider<ExtensionsUncomputed> modify={extend}>
+        <em>Extensions</em>
+        <Extend />
+      </EuiThemeProvider>
     </>
   );
 };
