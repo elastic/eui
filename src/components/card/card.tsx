@@ -231,7 +231,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
-    'euiCard--shadow', // For matching EuiPanel mixin
+    'euiCard--hasShadow', // For matching EuiPanel mixin
     'euiCard--borderRadiusMedium', // For matching EuiPanel mixin
     paddingSizeToClassNameMap[paddingSize],
     displayToClassNameMap[display],

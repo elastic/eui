@@ -17,5 +17,5 @@
  * under the License.
  */
 
-export { EuiHideFor } from './hide_for';
-export { EuiShowFor } from './show_for';
+export { EuiHideFor, EuiHideForProps } from './hide_for';
+export { EuiShowFor, EuiShowForProps } from './show_for';

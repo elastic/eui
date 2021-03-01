@@ -110,6 +110,10 @@ a:hover, button, [role='button'] {
 input {
   margin: 0;
   padding: 0;
+
+  &:disabled {
+    opacity: 1; /* required on iOS */
+  }
 }
 
 button {

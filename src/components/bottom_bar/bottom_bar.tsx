@@ -36,7 +36,7 @@ export const paddingSizeToClassNameMap: {
   l: 'euiBottomBar--paddingLarge',
 };
 
-interface Props extends CommonProps {
+export interface EuiBottomBarProps extends CommonProps {
   /**
    * Padding applied to the bar. Default is 'm'.
    */
@@ -59,7 +59,7 @@ interface Props extends CommonProps {
   landmarkHeading?: string;
 }
 
-export class EuiBottomBar extends Component<Props> {
+export class EuiBottomBar extends Component<EuiBottomBarProps> {
   static defaultProps = {
     paddingSize: 'm',
     affordForDisplacement: true,
@@ -78,7 +78,7 @@ export class EuiBottomBar extends Component<Props> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: EuiBottomBarProps) {
     if (prevProps.affordForDisplacement !== this.props.affordForDisplacement) {
       if (this.props.affordForDisplacement) {
         // start affording for displacement

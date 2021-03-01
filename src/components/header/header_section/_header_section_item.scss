@@ -17,18 +17,8 @@
 
 .euiHeaderSectionItem__button {
   position: relative; // For positioning the notification
-  height: $euiHeaderChildSize;
   min-width: $euiHeaderChildSize;
-  text-align: center;
-  font-size: 0; // aligns icons better vertically
-
-  &:hover {
-    background: $euiColorLightestShade;
-  }
-
-  &:focus {
-    background: $euiFocusBackgroundColor;
-  }
+  height: $euiHeaderChildSize;
 }
 
 .euiHeaderSectionItem--borderLeft {

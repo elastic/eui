@@ -42,7 +42,7 @@ export const INSERT_POSITIONS: EuiPortalInsertPosition[] = keysOf(
 
 type EuiPortalInsertPosition = keyof typeof insertPositions;
 
-interface EuiPortalProps {
+export interface EuiPortalProps {
   /**
    * ReactNode to render as this component's content
    */

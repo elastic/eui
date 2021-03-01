@@ -3,7 +3,7 @@
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned testClass1 testClass2"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
@@ -29,7 +29,7 @@ exports[`EuiCard is rendered 1`] = `
 
 exports[`EuiCard props a null icon 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -54,7 +54,7 @@ exports[`EuiCard props a null icon 1`] = `
 
 exports[`EuiCard props children 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--hasChildren"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--hasChildren"
 >
   <div
     class="euiCard__content"
@@ -80,7 +80,7 @@ exports[`EuiCard props children 1`] = `
 
 exports[`EuiCard props display 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--plain euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--plain euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -105,7 +105,7 @@ exports[`EuiCard props display 1`] = `
 
 exports[`EuiCard props footer 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -137,7 +137,7 @@ exports[`EuiCard props footer 1`] = `
 
 exports[`EuiCard props horizontal 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--horizontal"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--horizontal"
 >
   <div
     class="euiCard__content"
@@ -167,7 +167,7 @@ exports[`EuiCard props href supports href as a link 1`] = `
   title="Hoi"
 >
   <div
-    className="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--isClickable"
+    className="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--isClickable"
     onClick={[Function]}
   >
     <div
@@ -213,7 +213,7 @@ exports[`EuiCard props href supports href as a link 1`] = `
 
 exports[`EuiCard props icon 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--hasIcon"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--hasIcon"
 >
   <div
     class="euiCard__top"
@@ -246,7 +246,7 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props paddingSize l is applied 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingLarge euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingLarge euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -271,7 +271,7 @@ exports[`EuiCard props paddingSize l is applied 1`] = `
 
 exports[`EuiCard props paddingSize m is applied 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -296,7 +296,7 @@ exports[`EuiCard props paddingSize m is applied 1`] = `
 
 exports[`EuiCard props paddingSize none is applied 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingNone euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingNone euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -321,7 +321,7 @@ exports[`EuiCard props paddingSize none is applied 1`] = `
 
 exports[`EuiCard props paddingSize s is applied 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingSmall euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingSmall euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -346,7 +346,7 @@ exports[`EuiCard props paddingSize s is applied 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
 >
   <div
     class="euiCard__content"
@@ -388,7 +388,7 @@ exports[`EuiCard props selectable 1`] = `
 
 exports[`EuiCard props textAlign 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--rightAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--rightAligned"
 >
   <div
     class="euiCard__content"
@@ -413,7 +413,7 @@ exports[`EuiCard props textAlign 1`] = `
 
 exports[`EuiCard props titleElement 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -438,7 +438,7 @@ exports[`EuiCard props titleElement 1`] = `
 
 exports[`EuiCard props titleSize 1`] = `
 <div
-  class="euiCard euiCard--shadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
 >
   <div
     class="euiCard__content"

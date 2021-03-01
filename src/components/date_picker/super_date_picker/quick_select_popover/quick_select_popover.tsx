@@ -182,7 +182,6 @@ export class EuiQuickSelectPopover extends Component<
 
     return (
       <EuiPopover
-        id="QuickSelectPopover"
         button={quickSelectButton}
         isOpen={isOpen}
         closePopover={this.closePopover}

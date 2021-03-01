@@ -599,6 +599,8 @@ export class EuiPopover extends Component<Props, State> {
           ? anchorBoundingBox.left
           : left,
       zIndex,
+      // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
+      willChange: 'transform, opacity',
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
