@@ -21,14 +21,14 @@ import { buildTheme, computed, COLOR_MODE_KEY } from './utils';
 import {
   makeHighContrastColor,
   makeDisabledContrastColor,
-  tint,
-  shade,
   transparentize,
+  tint,
 } from '../../global_styling/functions/_colors';
 import { light_colors } from '../../global_styling/variables/_colors';
 import { dark_colors } from '../../global_styling/variables/_colors_dark';
 import { light_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
 import { dark_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors_dark';
+import { focus } from '../../global_styling/variables/_states';
 
 const poles = {
   ghost: '#FFF',
@@ -63,26 +63,14 @@ export const light = {
   ...poles,
   ...light_colors,
   ...textVariants,
-
-  // State
-  focusTransparency: 0.1,
-  focusBackground: computed(
-    ['colors.primary', 'colors.focusTransparency'],
-    ([primary, focusTransparency]) => tint(primary, 1 - focusTransparency)
-  ),
+  ...focus.light,
 };
 
 export const dark = {
   ...poles,
   ...dark_colors,
   ...textVariants,
-
-  // State
-  focusTransparency: 0.3,
-  focusBackground: computed(
-    ['colors.primary', 'colors.focusTransparency'],
-    ([primary, focusTransparency]) => shade(primary, 1 - focusTransparency)
-  ),
+  ...focus.dark,
 };
 
 // Visualization colors
@@ -211,11 +199,19 @@ export const euiThemeDefault = {
     light,
     dark,
   },
-  colorVis,
+  // colorVis,
   sizes,
   borders: {
     ...borderRadius,
     ...borders,
+  },
+  focus: {
+    colors: {
+      light: {
+        ...focus.light,
+      },
+      dark: { custom: '#fff' },
+    },
   },
   buttons: {
     [COLOR_MODE_KEY]: {
@@ -248,6 +244,7 @@ export const amsterdam_dark = {
   ...poles,
   ...dark_colors_ams,
   ...textVariants,
+  ...focus.light,
 
   // State
   focusTransparency: 0.3,
@@ -273,6 +270,7 @@ export const euiThemeAmsterdam = {
     light: amsterdam_light,
     dark: amsterdam_dark,
   },
+  focus,
   colorVis,
   sizes,
   borders: {

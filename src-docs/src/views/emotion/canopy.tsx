@@ -64,7 +64,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.focusBackground }}
+            // css={{ color: theme.colors.focus.background }}
           />
         </h3>
       </div>
