@@ -406,10 +406,10 @@ export class GuideSection extends Component {
   }
 
   render() {
-    const { title, text, wrapText } = this.props;
+    const { title, text, wrapText, id } = this.props;
 
     return (
-      <div className="guideSection" id={this.props.id}>
+      <div className="guideSection" id={id}>
         <GuideSectionExampleText
           title={title}
           text={text}
@@ -435,7 +435,6 @@ export class GuideSection extends Component {
             }
           />
         )}
-        {this.props.extraContent}
       </div>
     );
   }
