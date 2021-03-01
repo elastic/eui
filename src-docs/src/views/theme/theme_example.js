@@ -159,7 +159,7 @@ export const ThemeExample = {
             new variable local to that component. However, if you cannot alter
             the component that is using the EUI variable then you can wrap that
             component with the <strong>EuiThemeProvider</strong> and pass your
-            custom <EuiCode>overrides</EuiCode> object.
+            custom object to <EuiCode>modify</EuiCode>.
           </p>
         </>
       ),

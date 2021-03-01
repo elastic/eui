@@ -36,7 +36,7 @@ export default () => {
 
   return (
     <div>
-      <EuiThemeProvider overrides={primaryOverrides}>
+      <EuiThemeProvider modify={primaryOverrides}>
         <Box>
           The <EuiCode>euiColorPrimary</EuiCode> color has been changed to{' '}
           <EuiCode>#db1dde</EuiCode> (<EuiCode>#e378e4</EuiCode> for dark mode)

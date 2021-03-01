@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <div>
-      <EuiThemeProvider overrides={overrides}>
+      <EuiThemeProvider modify={overrides}>
         <Box>
           The background of this box is using the locally overridden value of{' '}
           <EuiCode>theme.colors.euiColorLightShade</EuiCode>

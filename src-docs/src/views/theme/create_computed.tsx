@@ -15,12 +15,12 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   return (
     <EuiText
       css={{
-        background: theme.colors.euiColorHighlight,
+        background: theme.colors.customColorPrimaryHighlight,
         padding: theme.sizes.euiSizeXL,
-        color: theme.colors.euiColorPrimaryText,
+        color: theme.colors.customColorPrimaryText,
       }}>
       <p>
-        <EuiIcon type="faceSad" color={theme.colors.euiColorPrimary} />{' '}
+        <EuiIcon type="stopFilled" color={theme.colors.customColorPrimary} />{' '}
         {children}
       </p>
     </EuiText>
@@ -31,31 +31,27 @@ export default () => {
   const primaryOverrides = {
     colors: {
       light: {
-        euiColorPrimary: 'rgb(29, 222, 204)',
-        // Just waiting for this ability to be merged first
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => tint(euiColorPrimary, 0.8)
+          ['colors.customColorPrimary'],
+          ([customColorPrimary]) => tint(customColorPrimary, 0.8)
         ),
         // Need a global contrast function
         customColorPrimaryText: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => shade(euiColorPrimary, 0.8)
+          ['colors.customColorPrimary'],
+          ([customColorPrimary]) => shade(customColorPrimary, 0.8)
         ),
       },
       dark: {
-        euiColorPrimary: 'rgb(29, 222, 204)',
-        // Just waiting for this ability to be merged first
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => shade(euiColorPrimary, 0.8)
+          ['colors.customColorPrimary'],
+          ([customColorPrimary]) => shade(customColorPrimary, 0.8)
         ),
         // Need a global contrast function
         customColorPrimaryText: computed(
-          ['colors.euiColorPrimary'],
-          ([euiColorPrimary]) => tint(euiColorPrimary, 0.8)
+          ['colors.customColorPrimary'],
+          ([customColorPrimary]) => tint(customColorPrimary, 0.8)
         ),
       },
     },
@@ -63,7 +59,7 @@ export default () => {
 
   return (
     <div>
-      <EuiThemeProvider overrides={primaryOverrides}>
+      <EuiThemeProvider modify={primaryOverrides}>
         <Box>
           A new key of <EuiCode>customColorPrimary</EuiCode> has been added as
           <EuiCode>rgb(29, 222, 204)</EuiCode>.
