@@ -274,7 +274,7 @@ export default () => {
             ]}
           />
 
-          <EuiPage className="guideFullScreenOverlay" />
+          <EuiPage />
         </React.Fragment>
       )}
     </GuideFullScreen>

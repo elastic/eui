@@ -23,6 +23,21 @@ function handleHookPath(path) {
 
   const arguments = path.node.arguments;
 
+  if (arguments[0].type === 'ArrayExpression' && arguments[1].type === 'ArrayExpression') {
+    const tokens = arguments[0].elements.map(({value}) => value);
+    const defaults = arguments[1].elements.map(({value}) => value);
+    const highlighting = 'string';
+    tokens.forEach((token, i) => {
+      symbols.push({
+        token,
+        defString: defaults[i],
+        highlighting,
+        loc: path.node.loc,
+      });
+    });
+    return symbols;
+  }
+
   if (arguments[0].type !== 'StringLiteral') return symbols;
 
   const token = arguments[0].value;
@@ -78,6 +93,27 @@ function handleJSXPath(path) {
       highlighting,
       loc: path.node.loc
     });
+  } else if (attributes.hasOwnProperty('tokens') && attributes.hasOwnProperty('defaults')) {
+    const tokensNode = attributes.tokens;
+    const defsStringNode = attributes.defaults;
+    const tokensString = getCodeForExpression(tokensNode.expression);
+    const defsString = getCodeForExpression(defsStringNode.expression);
+    const highlighting = 'string';
+    try {
+      const tokens = eval(tokensString);
+      const defs = eval(defsString);
+      tokens.forEach((token, i) => {
+        symbols.push({
+          token: token,
+          defString: defs[i],
+          highlighting,
+          loc: path.node.loc
+        });
+      });
+    } catch (e) {
+      console.error(`Unable to parse JSX expression tokens:\n${tokensString}\ndefaults:\n${defsString}\n`);
+      process.exit(1);
+    }
   }
 
   return symbols;

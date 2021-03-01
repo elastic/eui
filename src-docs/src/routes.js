@@ -151,6 +151,8 @@ import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
 
+import { PageHeaderExample } from './views/page_header/page_header_example';
+
 import { PaginationExample } from './views/pagination/pagination_example';
 
 import { PanelExample } from './views/panel/panel_example';
@@ -335,6 +337,7 @@ const navigation = [
       HorizontalRuleExample,
       ModalExample,
       PageExample,
+      PageHeaderExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
@@ -393,7 +396,6 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-
       TextExample,
       TitleExample,
       ToastExample,

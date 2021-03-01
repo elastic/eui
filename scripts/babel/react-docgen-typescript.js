@@ -50,8 +50,9 @@ buildProgram();
 
 if (isDevelopment) {
   chokidar
-    .watch(['./src', './src-docs'], {
+    .watch(['./src/**/*.(ts|tsx)', './src-docs/**/*.(ts|tsx)'], {
       ignoreInitial: true, // don't emit `add` event during file discovery
+      ignored: ['__snapshots__', /\.test\./],
     })
     .on('add', buildProgram)
     .on('change', buildProgram);
