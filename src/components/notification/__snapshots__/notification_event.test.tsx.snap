@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiNotificationEvent is rendered 1`] = `
-<div
+<article
+  aria-labelledby="generated-id"
   class="euiNotificationEvent"
 >
   <div
@@ -37,11 +38,12 @@ exports[`EuiNotificationEvent is rendered 1`] = `
   <div
     class="euiNotificationEvent__content"
   >
-    <span
+    <h2
       class="euiNotificationEvent__title"
+      id="generated-id"
     >
       title
-    </span>
+    </h2>
     <div
       class="euiNotificationEventMessages"
     >
@@ -54,7 +56,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</article>
 `;
 
 exports[`EuiNotificationEvent props contextMenuItems are rendered and id is returned 1`] = `
@@ -111,8 +113,68 @@ exports[`EuiNotificationEvent props contextMenuItems are rendered and id is retu
 </div>
 `;
 
+exports[`EuiNotificationEvent props headingLevel  is rendered 1`] = `
+<article
+  aria-labelledby="generated-id"
+  class="euiNotificationEvent"
+>
+  <div
+    class="euiNotificationEventMeta"
+  >
+    <div
+      class="euiNotificationEventMeta__section"
+    >
+      <span
+        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+      >
+        <span
+          class="euiBadge__content"
+        >
+          <span
+            class="euiBadge__text"
+          >
+            Alert
+          </span>
+        </span>
+      </span>
+    </div>
+    <div
+      class="euiNotificationEventMeta__section"
+    >
+      <span
+        class="euiNotificationEventMeta__time"
+      >
+        1 min ago
+      </span>
+    </div>
+  </div>
+  <div
+    class="euiNotificationEvent__content"
+  >
+    <h4
+      class="euiNotificationEvent__title"
+      id="generated-id"
+    >
+      title
+    </h4>
+    <div
+      class="euiNotificationEventMessages"
+    >
+      <div
+        class="euiText euiText--small"
+      >
+        <p>
+          message
+        </p>
+      </div>
+    </div>
+  </div>
+</article>
+`;
+
 exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
-<div
+<article
+  aria-labelledby="generated-id"
   class="euiNotificationEvent euiNotificationEvent--withReadState"
 >
   <div
@@ -161,11 +223,12 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
   <div
     class="euiNotificationEvent__content"
   >
-    <span
+    <h2
       class="euiNotificationEvent__title euiNotificationEvent__title--isRead"
+      id="generated-id"
     >
       title
-    </span>
+    </h2>
     <div
       class="euiNotificationEventMessages"
     >
@@ -178,11 +241,12 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</article>
 `;
 
 exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
-<div
+<article
+  aria-labelledby="generated-id"
   class="euiNotificationEvent"
 >
   <div
@@ -218,11 +282,12 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
   <div
     class="euiNotificationEvent__content"
   >
-    <span
+    <h2
       class="euiNotificationEvent__title"
+      id="generated-id"
     >
       title
-    </span>
+    </h2>
     <div
       class="euiNotificationEventMessages"
     >
@@ -276,5 +341,5 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</article>
 `;

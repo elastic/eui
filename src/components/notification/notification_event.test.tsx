@@ -77,6 +77,24 @@ describe('EuiNotificationEvent', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('headingLevel  is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          meta={{
+            type: 'Alert',
+            eventName: 'alert-warning-01',
+            time: '1 min ago',
+          }}
+          title="title"
+          headingLevel="h4"
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('contextMenuItems are rendered and id is returned', () => {
       const onOpenContextMenu = (id: string) => {
         return [

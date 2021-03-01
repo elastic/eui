@@ -162,6 +162,7 @@ export default () => {
       </EuiButton>
       <EuiSpacer />
       <EuiPanel
+        role="feed"
         paddingSize="none"
         hasShadow={true}
         style={{ maxWidth: '540px' }}>

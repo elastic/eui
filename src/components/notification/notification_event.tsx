@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement, createElement } from 'react';
 import classNames from 'classnames';
 import {
   EuiNotificationEventMeta,
@@ -30,10 +30,19 @@ import {
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiLink } from '../link';
 import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
+import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventPrimaryActionProps = EuiButtonEmptyProps & {
   label: string;
 };
+
+export type EuiNotificationHeadingLevel =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6';
 
 export type EuiNotificationEventProps = {
   id: string;
@@ -45,6 +54,10 @@ export type EuiNotificationEventProps = {
    * The title of the event.
    */
   title: string;
+  /**
+   * The heading level of the title.
+   */
+  headingLevel?: EuiNotificationHeadingLevel;
   /**
    * Returns the `id` and applies an `onClick` handler to the title.
    */
@@ -88,6 +101,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   onOpenContextMenu,
   onClickTitle,
   onClickPrimaryAction,
+  headingLevel = 'h2',
 }) => {
   const classes = classNames('euiNotificationEvent', {
     'euiNotificationEvent--withReadState': typeof isRead === 'boolean',
@@ -97,8 +111,15 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
     'euiNotificationEvent__title--isRead': isRead,
   });
 
+  const randomHeadingId = htmlIdGenerator()();
+
+  const titleProps = {
+    id: randomHeadingId,
+    className: classesTitle,
+  };
+
   return (
-    <div className={classes} key={id}>
+    <article aria-labelledby={randomHeadingId} className={classes} key={id}>
       <EuiNotificationEventMeta
         type={meta.type}
         severity={meta.severity}
@@ -120,10 +141,10 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
             className={classesTitle}
             onClick={() => onClickTitle(id)}
             data-test-subj="notificationEventTitle">
-            {title}
+            {createElement(headingLevel, null, title)}
           </EuiLink>
         ) : (
-          <span className={classesTitle}>{title}</span>
+          createElement(headingLevel, titleProps, title)
         )}
 
         <EuiNotificationEventMessages messages={messages} />
@@ -141,6 +162,6 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 };
