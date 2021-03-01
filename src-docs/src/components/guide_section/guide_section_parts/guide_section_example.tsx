@@ -1,12 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-
-import { EuiTabs } from '../../../../../src/components/tabs';
-import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
 import { EuiSplitPanel } from '../../../../../src/components/panel';
 
 export interface GuideSectionExample {
-  exampleCode: ReactNode;
+  example: ReactNode;
   tabs?: ReactNode;
   tabContent?: ReactNode;
   playground?: any;
@@ -14,18 +11,12 @@ export interface GuideSectionExample {
 }
 
 export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
-  exampleCode,
+  example,
   tabs,
-  playground,
-  tabContent,
   ghostBackground = false,
 }) => {
   const classes = classNames({
     guideDemo__ghostBackground: ghostBackground,
-  });
-
-  const tabClasses = classNames('guideDemo__tabs', {
-    'guideDemo__tabs--open': tabContent,
   });
 
   return (
@@ -34,24 +25,9 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
       {/* @ts-ignore TODO: Fix TS type */}
       {(InnerPanel) => (
         <>
-          <InnerPanel>{exampleCode}</InnerPanel>
+          <InnerPanel>{example}</InnerPanel>
           <InnerPanel paddingSize="none" color="subdued">
-            <EuiFlexGroup
-              className={tabClasses}
-              gutterSize="none"
-              alignItems="center">
-              <EuiFlexItem>
-                <EuiTabs size="s" display="condensed">
-                  {tabs}
-                </EuiTabs>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>{playground}</EuiFlexItem>
-            </EuiFlexGroup>
-            {tabContent && (
-              <InnerPanel paddingSize="none" color="subdued">
-                {tabContent}
-              </InnerPanel>
-            )}
+            {tabs}
           </InnerPanel>
         </>
       )}

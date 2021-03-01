@@ -11,7 +11,7 @@ export const LANGUAGES = ['javascript', 'html'] as const;
 type UtilityClassesSection = {
   code: string;
   description?: ReactNode;
-  example?: GuideSectionExample['exampleCode'];
+  example?: GuideSectionExample['example'];
   snippet?: GuideSectionExample['tabContent'];
 };
 

@@ -269,7 +269,8 @@ const createExample = (example, customTitle) => {
 
   const renderedSections = sections.map((section, index) =>
     createElement(GuideSection, {
-      key: section.title || index,
+      // Using index as the key because not all require a `title`
+      key: index,
       ...section,
     })
   );

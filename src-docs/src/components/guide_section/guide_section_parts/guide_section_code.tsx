@@ -3,12 +3,14 @@ import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiButtonEmpty } from '../../../../../src/components/button';
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../codesandbox';
+// @ts-ignore Not TS
+import { renderJsSourceCode } from '../_utils';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
 type GuideSectionExampleCode = {
   language: typeof LANGUAGES[number];
-  code: string;
+  code: any;
   codeSandbox?: any;
 };
 
@@ -27,10 +29,13 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
     </CodeSandboxLink>
   );
 
+  const renderedCode =
+    language === 'javascript' ? renderJsSourceCode(code) : code.render();
+
   return (
     <>
       <EuiCodeBlock language={language} overflowHeight={400} isCopyable>
-        {code}
+        {renderedCode}
       </EuiCodeBlock>
       {codeSandboxLink}
     </>

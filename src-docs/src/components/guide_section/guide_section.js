@@ -27,6 +27,8 @@ import { GuideSectionExampleCode } from './guide_section_parts/guide_section_cod
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
 import playground from '../../services/playground/playground';
 import { GuideSectionExampleText } from './guide_section_parts/guide_section_text';
+import { GuideSectionExampleTabs } from './guide_section_parts/guide_section_tabs';
+import { GuideSectionPropsTable } from './guide_section_parts/guide_section_props_table';
 
 const slugify = (str) => {
   const parts = str
@@ -43,295 +45,68 @@ const tabDisplayNameMap = {
   html: 'Demo HTML',
   snippet: 'Snippet',
 };
-
-export const renderPropsForComponent = (
-  componentName,
-  component,
-  descriptionOnly
-) => {
-  if (!component.__docgenInfo) {
-    return;
-  }
-
-  const docgenInfo = Array.isArray(component.__docgenInfo)
-    ? component.__docgenInfo[0]
-    : component.__docgenInfo;
-  const { description, props, extendedInterfaces } = docgenInfo;
-
-  if (!props && !description) {
-    return;
-  }
-
-  const extendedTypes = extendedInterfaces
-    ? extendedInterfaces.filter((type) => !!extendedTypesInfo[type])
-    : [];
-  // if there is an HTMLAttributes type present among others, remove HTMLAttributes
-  if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
-    const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
-    extendedTypes.splice(htmlAttributesIndex, 1);
-  }
-  const extendedTypesElements = extendedTypes.map((type, index) => (
-    <Fragment key={`extendedTypeValue-${extendedTypesInfo[type].name}`}>
-      <EuiLink href={extendedTypesInfo[type].url}>
-        {extendedTypesInfo[type].name}
-      </EuiLink>
-      {index + 1 < extendedTypes.length && ', '}
-    </Fragment>
-  ));
-
-  let descriptionElement;
-
-  if (description) {
-    descriptionElement = (
-      <>
-        <EuiText size="s">
-          <p>{markup(description)}</p>
-        </EuiText>
-        <EuiSpacer />
-      </>
-    );
-  }
-
-  return (
-    <React.Fragment key={componentName}>
-      <EuiHorizontalRule margin="none" />
-      <EuiSpacer size="m" />
-      <div className="guideSection__propsTableIntro">
-        <EuiFlexGroup alignItems="baseline" wrap>
-          <EuiFlexItem grow={false}>
-            <EuiTitle size="s">
-              <h3 id={componentName}>{componentName}</h3>
-            </EuiTitle>
-          </EuiFlexItem>
-          {extendedTypesElements.length > 0 && (
-            <EuiFlexItem>
-              <EuiText size="s">
-                <p>[ extends {extendedTypesElements} ]</p>
-              </EuiText>
-            </EuiFlexItem>
-          )}
-        </EuiFlexGroup>
-        <EuiSpacer size="s" />
-        {descriptionElement}
-      </div>
-      {!descriptionOnly && (
-        <PlaygroundProps
-          isPlayground={false}
-          config={{
-            componentName: componentName,
-            props: propUtilityForPlayground(docgenInfo.props),
-            scope: component,
-          }}
-        />
-      )}
-    </React.Fragment>
-  );
-};
-
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
 
     this.componentNames = Object.keys(props.props);
-    const hasSnippet = 'snippet' in props;
 
-    this.tabs = [];
+    this.state = {
+      selectedTab: undefined,
+      sortedComponents: {},
+      isPlayground: false,
+    };
+  }
 
-    // if (props.demo) {
-    //   this.tabs.push({
-    //     name: 'demo',
-    //     displayName: 'Demo',
-    //   });
-    // }
+  renderTabs() {
+    const { source, snippet, props } = this.props;
 
-    if (props.source) {
-      props.source.map((source) => {
-        this.tabs.push({
+    const hasSnippet = !!snippet;
+
+    // Don't duplicate in case this function is run multiple times
+    if (hasSnippet && !source.find((tab) => tab.name === 'snippet')) {
+      source.push({
+        name: 'snippet',
+        displayName: 'Snippet',
+        code: this.props.snippet,
+      });
+    }
+
+    if (
+      this.componentNames.length &&
+      !source.find((tab) => tab.name === 'props') // Don't duplicate in case this function is run multiple times
+    ) {
+      source.push({
+        name: 'props',
+        displayName: 'Props',
+        props: props,
+        isSelected: this.state.isPlayground,
+      });
+    }
+
+    const tabs = [];
+
+    if (source) {
+      source.map((source) => {
+        tabs.push({
           name:
             (source.displayName && slugify(source.displayName)) ||
             tabDisplayNameMap[source.type] ||
             'tab',
           displayName:
             source.displayName || tabDisplayNameMap[source.type] || 'Tab',
-          isCode: source.type || true,
-          code: source.code,
+          disabled: this.state.isPlayground,
+          ...source,
         });
       });
     }
 
-    if (hasSnippet) {
-      this.tabs.push({
-        name: 'snippet',
-        displayName: 'Snippet',
-        isCode: true,
-      });
-    }
-
-    if (this.componentNames.length) {
-      this.tabs.push({
-        name: 'props',
-        displayName: 'Props',
-      });
-    }
-
-    this.state = {
-      selectedTab: undefined,
-      renderedCode: null,
-      sortedComponents: {},
-      isPlayground: false,
-    };
-
-    this.memoScroll = 0;
-  }
-
-  onSelectedTabChanged = (selectedTab) => {
-    const { isCode, code } = selectedTab;
-    let renderedCode = null;
-
-    if (isCode === 'html' || isCode === 'javascript') {
-      renderedCode = code;
-
-      if (isCode === 'javascript') {
-        renderedCode = renderedCode.default
-          .replace(
-            /(from )'(..\/)+src\/services(\/?';)/g,
-            "from '@elastic/eui/lib/services';"
-          )
-          .replace(
-            /(from )'(..\/)+src\/components\/.*?';/g,
-            "from '@elastic/eui';"
-          );
-        renderedCode = renderedCode.split('\n');
-        const linesWithImport = [];
-        // eslint-disable-next-line guard-for-in
-        for (const idx in renderedCode) {
-          const line = renderedCode[idx];
-          if (
-            line.includes('import') &&
-            line.includes("from '@elastic/eui';")
-          ) {
-            linesWithImport.push(line);
-            renderedCode[idx] = '';
-          }
-        }
-        if (linesWithImport.length > 1) {
-          linesWithImport[0] = linesWithImport[0].replace(
-            " } from '@elastic/eui';",
-            ','
-          );
-          for (let i = 1; i < linesWithImport.length - 1; i++) {
-            linesWithImport[i] = linesWithImport[i]
-              .replace('import {', '')
-              .replace(" } from '@elastic/eui';", ',');
-          }
-          linesWithImport[linesWithImport.length - 1] = linesWithImport[
-            linesWithImport.length - 1
-          ].replace('import {', '');
-        }
-        const newImport = linesWithImport.join('');
-        renderedCode.unshift(newImport);
-        renderedCode = renderedCode.join('\n');
-        let len = renderedCode.replace('\n\n\n', '\n\n').length;
-        while (len < renderedCode.length) {
-          renderedCode = renderedCode.replace('\n\n\n', '\n\n');
-          len = renderedCode.replace('\n\n\n', '\n\n').length;
-        }
-        renderedCode = cleanEuiImports(renderedCode);
-      } else if (isCode === 'html') {
-        renderedCode = code.render();
-      }
-    }
-
-    this.setState(
-      (prevState) => {
-        if (
-          prevState.selectedTab &&
-          prevState.selectedTab.name === selectedTab.name
-        ) {
-          // Unselect tabs if clicking the same one that is currently open
-          return {
-            selectedTab: undefined,
-            renderedCode: null,
-          };
-        }
-        return { selectedTab, renderedCode };
-      },
-      () => {
-        if (isCode === 'javascript') {
-          requestAnimationFrame(() => {
-            const pre = this.refs.javascript.querySelector(
-              '.euiCodeBlock__pre'
-            );
-            if (!pre) return;
-            pre.scrollTop = this.memoScroll;
-          });
-        }
-      }
+    return (
+      <GuideSectionExampleTabs
+        tabs={tabs}
+        rightSideControl={this.renderPlaygroundToggle()}
+      />
     );
-  };
-
-  renderTabs() {
-    return this.tabs.map((tab) => (
-      <EuiTab
-        onClick={() => this.onSelectedTabChanged(tab)}
-        isSelected={tab === this.state.selectedTab}
-        disabled={this.state.isPlayground}
-        key={tab.name}>
-        {tab.displayName}
-      </EuiTab>
-    ));
-  }
-
-  renderContent() {
-    if (typeof this.state.selectedTab === 'undefined') {
-      return;
-    }
-
-    if (this.state.selectedTab.name === 'snippet') {
-      return (
-        <EuiErrorBoundary>
-          <EuiHorizontalRule margin="none" />
-          <GuideSectionSnippets snippets={this.props.snippet} />
-        </EuiErrorBoundary>
-      );
-    }
-
-    if (this.state.selectedTab.isCode) {
-      return (
-        <EuiErrorBoundary>
-          <EuiHorizontalRule margin="none" />
-          <GuideSectionExampleCode
-            language={this.state.selectedTab.name}
-            code={this.state.renderedCode}
-            codeSandbox={this.props.source[0].code.default}
-          />
-        </EuiErrorBoundary>
-      );
-    }
-
-    if (this.state.selectedTab.name === 'props') {
-      let propsTable;
-
-      if (this.state.isPlayground) {
-        const { componentName, scope } = this.props.playground().config;
-
-        propsTable = renderPropsForComponent(
-          componentName,
-          scope[componentName]
-        );
-      } else {
-        propsTable = this.componentNames
-          .map((componentName) =>
-            renderPropsForComponent(
-              componentName,
-              this.props.props[componentName]
-            )
-          )
-          .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
-      }
-
-      return <EuiErrorBoundary>{propsTable}</EuiErrorBoundary>;
-    }
   }
 
   renderPlaygroundToggle() {
@@ -346,25 +121,9 @@ export class GuideSection extends Component {
       return (
         <EuiSwitch
           onChange={() => {
-            this.setState(
-              (prevState) => ({
-                isPlayground: !prevState.isPlayground,
-              }),
-              () => {
-                if (
-                  this.state.isPlayground &&
-                  (!this.state.selectedTab ||
-                    (this.state.selectedTab &&
-                      this.state.selectedTab.name !== 'props'))
-                ) {
-                  this.onSelectedTabChanged(
-                    this.tabs.find((tab) => tab.name === 'props')
-                  );
-                } else if (!this.state.isPlayground) {
-                  this.setState({ selectedTab: undefined });
-                }
-              }
-            );
+            this.setState((prevState) => ({
+              isPlayground: !prevState.isPlayground,
+            }));
           }}
           checked={this.state.isPlayground}
           compressed
@@ -389,10 +148,12 @@ export class GuideSection extends Component {
       playgroundClassName,
     } = this.props.playground();
 
-    const description = renderPropsForComponent(
-      config.componentName,
-      config.scope[config.componentName],
-      true
+    const description = (
+      <GuideSectionPropsTable
+        componentName={config.componentName}
+        component={config.scope[config.componentName]}
+        descriptionOnly
+      />
     );
 
     return playground({
@@ -419,20 +180,13 @@ export class GuideSection extends Component {
         {this.state.isPlayground && this.renderPlayground()}
         {!this.state.isPlayground && this.props.demo && (
           <GuideSectionExample
-            exampleCode={
+            example={
               <EuiErrorBoundary>
                 <div>{this.props.demo}</div>
               </EuiErrorBoundary>
             }
             tabs={this.renderTabs()}
-            tabContent={this.renderContent()}
-            playground={this.renderPlaygroundToggle()}
             ghostBackground={this.props.ghostBackground}
-            tabContentPadding={
-              this.state.selectedTab && this.state.selectedTab.name === 'props'
-                ? 'm'
-                : 'none'
-            }
           />
         )}
       </div>
@@ -459,10 +213,4 @@ GuideSection.propTypes = {
 GuideSection.defaultProps = {
   props: {},
   wrapText: true,
-};
-
-const PlaygroundProps = ({ config, isPlayground }) => {
-  const params = useView(config);
-
-  return <Knobs {...params.knobProps} isPlayground={isPlayground} />;
 };

@@ -69,7 +69,7 @@ export default ({
     return (
       <GuideSectionExample
         ghostBackground={isGhost}
-        exampleCode={
+        example={
           <>
             <div
               className={classNames('playgroundWrapper', playgroundClassName)}>
@@ -107,7 +107,6 @@ export default ({
             </EuiErrorBoundary>
           </>
         }
-        playground={playgroundToggle}
       />
     );
   };
