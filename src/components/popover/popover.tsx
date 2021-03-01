@@ -148,7 +148,7 @@ export interface EuiPopoverProps {
   /**
    * Object of props passed to EuiPanel
    */
-  panelProps?: EuiPanelProps;
+  panelProps?: Omit<EuiPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
@@ -362,7 +362,7 @@ export class EuiPopover extends Component<Props, State> {
       suppressingPopover: props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
       isOpening: false,
-      popoverStyles: { ...DEFAULT_POPOVER_STYLES, ...props.panelProps?.style },
+      popoverStyles: DEFAULT_POPOVER_STYLES,
       arrowStyles: {},
       arrowPosition: null,
       openPosition: null, // once a stable position has been found, keep the contents on that side
