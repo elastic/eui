@@ -1,44 +1,18 @@
-import React, { Component, Fragment } from 'react';
-import { useView } from 'react-view';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  EuiHorizontalRule,
   EuiErrorBoundary,
-  EuiSpacer,
-  EuiTab,
   EuiText,
-  EuiTitle,
-  EuiLink,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiSwitch,
 } from '../../../../src/components';
+import { slugify } from '../../../../src/services';
 
-import { cleanEuiImports } from '../../services';
-
-import { extendedTypesInfo } from './guide_section_extends';
-import { EuiIcon } from '../../../../src/components/icon';
-
-import Knobs, { markup } from '../../services/playground/knobs';
-import { propUtilityForPlayground } from '../../services/playground';
-import { GuideSectionSnippets } from './guide_section_parts/guide_section_snippets';
-import { GuideSectionExampleCode } from './guide_section_parts/guide_section_code';
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
 import playground from '../../services/playground/playground';
 import { GuideSectionExampleText } from './guide_section_parts/guide_section_text';
 import { GuideSectionExampleTabs } from './guide_section_parts/guide_section_tabs';
 import { GuideSectionPropsTable } from './guide_section_parts/guide_section_props_table';
-
-const slugify = (str) => {
-  const parts = str
-    .toLowerCase()
-    .replace(/[-]+/g, ' ')
-    .replace(/[^\w^\s]+/g, '')
-    .replace(/ +/g, ' ')
-    .split(' ');
-  return parts.join('-');
-};
 
 const tabDisplayNameMap = {
   javascript: 'Demo JS',
@@ -72,9 +46,11 @@ export class GuideSection extends Component {
       });
     }
 
+    const hasPropsTabAlready = source.find((tab) => tab.name === 'props');
+
     if (
       this.componentNames.length &&
-      !source.find((tab) => tab.name === 'props') // Don't duplicate in case this function is run multiple times
+      !hasPropsTabAlready // Don't duplicate in case this function is run multiple times
     ) {
       source.push({
         name: 'props',
@@ -82,6 +58,8 @@ export class GuideSection extends Component {
         props: props,
         isSelected: this.state.isPlayground,
       });
+    } else if (hasPropsTabAlready) {
+      hasPropsTabAlready.isSelected = this.state.isPlayground;
     }
 
     const tabs = [];

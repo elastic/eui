@@ -17,6 +17,26 @@
  * under the License.
  */
 
-export { toInitials } from './to_initials';
-export { toSentenceCase } from './to_case';
-export { slugify } from './slugify';
+import { slugify } from './slugify';
+
+describe('slugify', () => {
+  const STRINGS = [
+    'Single',
+    'Two words',
+    'More Than Two Words',
+    'lowercase words',
+  ];
+
+  const SLUGIFIED = [
+    'single',
+    'two-words',
+    'more-than-two-words',
+    'lowercase-words',
+  ];
+
+  STRINGS.forEach((string, index) => {
+    it(`should a lowercased, hypened string '${string}'`, () => {
+      expect(slugify(string)).toBe(SLUGIFIED[index]);
+    });
+  });
+});

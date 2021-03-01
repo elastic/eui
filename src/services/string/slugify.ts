@@ -17,6 +17,21 @@
  * under the License.
  */
 
-export { toInitials } from './to_initials';
-export { toSentenceCase } from './to_case';
-export { slugify } from './slugify';
+/**
+ * Lowercases input and replaces spaces with hyphens:
+ * e.g. 'GridView Example' -> 'gridview-example'
+ *
+ * @param {string} string The starting string
+ * @returns {string} Lowercase, dashed version of the starting staring
+ */
+
+export function slugify(str: string): string {
+  // Calculate the number of initials to show, maxing out at MAX_INITIALS
+  const parts = str
+    .toLowerCase()
+    .replace(/[-]+/g, ' ')
+    .replace(/[^\w^\s]+/g, '')
+    .replace(/ +/g, ' ')
+    .split(' ');
+  return parts.join('-');
+}

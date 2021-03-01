@@ -1,4 +1,5 @@
 import React, { createElement, Fragment } from 'react';
+import { slugify } from '../../src/services';
 
 import { GuidePage, GuideSection } from './components';
 
@@ -226,19 +227,6 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
-/**
- * Lowercases input and replaces spaces with hyphens:
- * e.g. 'GridView Example' -> 'gridview-example'
- */
-const slugify = (str) => {
-  const parts = str
-    .toLowerCase()
-    .replace(/[-]+/g, ' ')
-    .replace(/[^\w^\s]+/g, '')
-    .replace(/ +/g, ' ')
-    .split(' ');
-  return parts.join('-');
-};
 
 const createExample = (example, customTitle) => {
   if (!example) {
