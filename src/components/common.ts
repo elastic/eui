@@ -103,13 +103,13 @@ export type DistributivePick<T, K extends UnionKeys<T>> = T extends any
 export type DistributiveOmit<T, K extends UnionKeys<T>> = T extends any
   ? Omit<T, Extract<keyof T, K>>
   : never;
-type AltDistributiveOmit<T, K extends PropertyKey> = T extends any
+type RecursiveDistributiveOmit<T, K extends PropertyKey> = T extends any
   ? T extends object
     ? RecursiveOmit<T, K>
     : T
   : never;
 export type RecursiveOmit<T, K extends PropertyKey> = Omit<
-  { [P in keyof T]: AltDistributiveOmit<T[P], K> },
+  { [P in keyof T]: RecursiveDistributiveOmit<T[P], K> },
   K
 >;
 
