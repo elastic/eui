@@ -88,6 +88,14 @@ describe('EuiAvatar', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('isDisabled', () => {
+      it('is rendered', () => {
+        const component = render(<EuiAvatar name="name" isDisabled={true} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   test('should throw error if color is not a hex', () => {

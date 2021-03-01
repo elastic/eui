@@ -58,7 +58,8 @@ Note that `yarn link` currently does not work with Kibana. You'll need to manual
 2. Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap --no-validate`.
     * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
     * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
-3. Regardless of the method you decide run Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't use a previously cached version of EUI.
+3. Rebuild Kibana's shared-ui-deps by running `yarn kbn:bootstrap` inside of `kibana/packages/kbn-ui-shared-deps/`.
+4. Run Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't use a previously cached version of EUI.
 
 ## Principles
 

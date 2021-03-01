@@ -268,7 +268,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       />
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--condensed testClass1 testClass2"
+        class="euiTabs euiTabs--condensed euiTabs--large testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -316,13 +316,13 @@ exports[`EuiPageHeader props responsive is rendered as reverse 1`] = `
 
 exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
 <header
-  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center euiPageHeader--restrictWidth-custom"
+  class="euiPageHeader euiPageHeader--responsive euiPage--restrictWidth-custom euiPageHeader--center"
   style="max-width:100px"
 />
 `;
 
 exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
 <header
-  class="euiPageHeader euiPageHeader--responsive euiPageHeader--center euiPageHeader--restrictWidth-default"
+  class="euiPageHeader euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center"
 />
 `;

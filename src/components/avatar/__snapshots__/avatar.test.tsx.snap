@@ -86,6 +86,21 @@ exports[`EuiAvatar props initialsLength is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiAvatar props isDisabled is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar-isDisabled"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
+  title="name"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
 exports[`EuiAvatar props size l is rendered 1`] = `
 <div
   aria-label="name"

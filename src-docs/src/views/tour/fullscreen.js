@@ -7,19 +7,10 @@ import {
   EuiButtonEmpty,
   EuiColorPicker,
   EuiColorPickerSwatch,
-  EuiPage,
-  EuiPageBody,
-  EuiPageHeader,
-  EuiPageContent,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiPageContentBody,
+  EuiPageTemplate,
   EuiSpacer,
   EuiStat,
-  EuiTab,
-  EuiTabs,
   EuiTextArea,
-  EuiTitle,
   EuiTourStep,
   useEuiTour,
 } from '../../../../src/components';
@@ -174,55 +165,39 @@ export default () => {
   return (
     <GuideFullScreen onOpen={onReset}>
       {(setIsFullScreen) => (
-        <React.Fragment>
-          <EuiPage className="guideFullScreenOverlay" style={{ zIndex: 9000 }}>
-            <EuiPageBody>
-              <EuiPageHeader
-                pageTitle="My app"
-                rightSideItems={[
-                  <EuiButton
-                    fill
-                    onClick={() => setIsFullScreen(false)}
-                    iconType="exit"
-                    aria-label="Exit fullscreen demo">
-                    Exit fullscreen demo
-                  </EuiButton>,
-                ]}
-              />
-              <EuiPageContent>
-                <EuiPageContentHeader>
-                  <EuiPageContentHeaderSection>
-                    <EuiTitle>
-                      <h2>A new feature to demo</h2>
-                    </EuiTitle>
-                  </EuiPageContentHeaderSection>
-                </EuiPageContentHeader>
-                <EuiPageContentBody>
-                  <EuiTabs>
-                    {tabs.map((tab, index) => (
-                      <EuiTab
-                        id={tab.id}
-                        onClick={() => onTabClick(tab.id)}
-                        isSelected={tab.id === selectedTabId}
-                        key={index}>
-                        {tab.name}
-                      </EuiTab>
-                    ))}
-                  </EuiTabs>
-                  {tabs.map((tab, index) => (
-                    <Fragment key={index}>
-                      {tab.id === selectedTabId && (
-                        <div role="tabpanel" aria-labelledby={tab.id}>
-                          {tab.content}
-                        </div>
-                      )}
-                    </Fragment>
-                  ))}
-                </EuiPageContentBody>
-              </EuiPageContent>
-            </EuiPageBody>
-          </EuiPage>
-        </React.Fragment>
+        <EuiPageTemplate
+          className="guideFullScreenOverlay guideFullScreenOverlay--withHeader"
+          style={{ zIndex: 9000 }}
+          pageHeader={{
+            pageTitle: 'My app',
+            rightSideItems: [
+              <EuiButton
+                fill
+                onClick={() => setIsFullScreen(false)}
+                iconType="exit">
+                Exit fullscreen demo
+              </EuiButton>,
+            ],
+            tabs: tabs.map((tab, index) => {
+              return {
+                key: index,
+                label: tab.name,
+                id: tab.id,
+                onClick: () => onTabClick(tab.id),
+                isSelected: tab.id === selectedTabId,
+              };
+            }),
+          }}>
+          {tabs.map((tab, index) => (
+            <Fragment key={index}>
+              {tab.id === selectedTabId && (
+                <div role="tabpanel" aria-labelledby={tab.id}>
+                  {tab.content}
+                </div>
+              )}
+            </Fragment>
+          ))}
+        </EuiPageTemplate>
       )}
     </GuideFullScreen>
   );
