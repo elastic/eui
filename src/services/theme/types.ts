@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { RecursiveOmit, RecursivePartial } from '../../components/common';
 import { euiThemeDefault } from './theme';
 
 type EuiThemeColorModeInverse = 'inverse';
@@ -35,29 +36,16 @@ export type EuiThemeSystem<T = {}> = {
   key: string;
 };
 
-type DeepPartial<T> = T extends Function
-  ? T
-  : T extends object
-  ? { [P in keyof T]?: DeepPartial<T[P]> }
-  : T;
-export type EuiThemeOverrides<T = {}> = DeepPartial<EuiThemeShape & T>;
+export type EuiThemeModifications<T = {}> = RecursivePartial<EuiThemeShape & T>;
 
-type OmitDistributive<T, K extends PropertyKey> = T extends any
-  ? T extends object
-    ? OmitRecursively<T, K>
-    : T
-  : never;
-type OmitRecursively<T extends any, K extends PropertyKey> = Omit<
-  { [P in keyof T]: OmitDistributive<T[P], K> },
-  K
->;
-
-type Colorless<T> = OmitRecursively<T, 'colors'>;
+type Colorless<T> = RecursiveOmit<T, 'colors'>;
+// I don't like this.
+// Requires manually maintaining sections (e.g., `buttons`) containing colorMode options.
+// Also cannot account for extended theme sections (`T`) that use colorMode options.
 export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {
   themeName: string;
   colors: EuiThemeColor;
-  // I don't like this
   buttons: Colorless<EuiThemeShape['buttons']> & {
     colors: EuiThemeShape['buttons']['colors']['light'];
   };
-};
+} & T;

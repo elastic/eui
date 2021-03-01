@@ -9,6 +9,7 @@ import {
   EuiSpacer,
   EuiText,
   EuiFlexGrid,
+  EuiPanel,
 } from '../../../../../src/components';
 import {
   getHexValueFromColorName,
@@ -62,36 +63,33 @@ export const ColorSection = ({
 
       <EuiSpacer />
 
-      <EuiText size="xs">
-        <EuiFlexGrid
-          columns={2}
-          className="guideSection__shadedBox"
-          direction="column"
-          gutterSize="s">
-          {showTextVariants && colorIsCore(color) && (
-            <ColorsContrastItem
-              foreground={`${color}Text`}
-              background={'euiPageBackgroundColor'}
-              minimumContrast={minimumContrast}
-            />
-          )}
-
-          {colorsForContrast.map((color2) => {
-            if (colorIsCore(color) && colorIsCore(color2)) {
-              // i.e. don't render if both are core colors
-              return;
-            }
-            return (
+      <EuiPanel color="subdued">
+        <EuiText size="xs">
+          <EuiFlexGrid columns={2} direction="column" gutterSize="s">
+            {showTextVariants && colorIsCore(color) && (
               <ColorsContrastItem
-                foreground={color2}
-                background={color}
-                key={color2}
+                foreground={`${color}Text`}
+                background={'euiPageBackgroundColor'}
                 minimumContrast={minimumContrast}
               />
-            );
-          })}
-        </EuiFlexGrid>
-      </EuiText>
+            )}
+            {colorsForContrast.map((color2) => {
+              if (colorIsCore(color) && colorIsCore(color2)) {
+                // i.e. don't render if both are core colors
+                return;
+              }
+              return (
+                <ColorsContrastItem
+                  foreground={color2}
+                  background={color}
+                  key={color2}
+                  minimumContrast={minimumContrast}
+                />
+              );
+            })}
+          </EuiFlexGrid>
+        </EuiText>
+      </EuiPanel>
     </>
   );
 };

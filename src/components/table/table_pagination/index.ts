@@ -17,4 +17,7 @@
  * under the License.
  */
 
-export { EuiTablePagination } from './table_pagination';
+export {
+  EuiTablePagination,
+  EuiTablePaginationProps,
+} from './table_pagination';

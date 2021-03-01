@@ -21,7 +21,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-interface EuiTableRowProps {
+export interface EuiTableRowProps {
   /**
    * Indicates if the table has a single column of checkboxes for selecting
    * rows (affects mobile only)

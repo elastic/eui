@@ -66,6 +66,7 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
         <EuiTitle>
           <h3>{config.componentName}</h3>
         </EuiTitle>
+        <EuiSpacer />
         <div className={compilerClasses}>
           <Compiler
             {...params.compilerProps}

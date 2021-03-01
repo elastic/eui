@@ -29,37 +29,41 @@ import isEqual from 'lodash/isEqual';
 import {
   EuiSystemContext,
   EuiThemeContext,
-  EuiOverrideContext,
+  EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
-import { EuiThemeColorMode, EuiThemeSystem, EuiThemeOverrides } from './types';
+import {
+  EuiThemeColorMode,
+  EuiThemeSystem,
+  EuiThemeModifications,
+} from './types';
 
 export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
-  overrides?: EuiThemeOverrides<T>;
+  modify?: EuiThemeModifications<T>;
   children: any;
 }
 
 export function EuiThemeProvider<T = {}>({
   theme: _system,
   colorMode: _colorMode,
-  overrides: _overrides,
+  modify: _modifications,
   children,
 }: PropsWithChildren<EuiThemeProviderProps<T>>) {
   const parentSystem = useContext(EuiSystemContext);
-  const parentOverrides = useContext(EuiOverrideContext);
+  const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
   const parentTheme = useContext(EuiThemeContext);
 
   const [system, setSystem] = useState(_system || parentSystem);
   const prevSystemKey = useRef(system.key);
 
-  const [overrides, setOverrides] = useState<EuiThemeOverrides>(
-    mergeDeep(parentOverrides, _overrides)
+  const [modifications, setModifications] = useState<EuiThemeModifications>(
+    mergeDeep(parentModifications, _modifications)
   );
-  const prevOverrides = useRef(overrides);
+  const prevModifications = useRef(modifications);
 
   const [colorMode, setColorMode] = useState<EuiThemeColorMode>(
     getColorMode(_colorMode, parentColorMode)
@@ -70,15 +74,15 @@ export function EuiThemeProvider<T = {}>({
   const isParentTheme = useRef(
     prevSystemKey.current === parentSystem.key &&
       colorMode === parentColorMode &&
-      isEqual(parentOverrides, overrides)
+      isEqual(parentModifications, modifications)
   );
 
   const [theme, setTheme] = useState(
-    Object.keys(parentTheme).length
+    isParentTheme.current && Object.keys(parentTheme).length
       ? parentTheme
       : getComputed(
           system,
-          buildTheme(overrides, `_${system.key}`) as typeof system,
+          buildTheme(modifications, `_${system.key}`) as typeof system,
           colorMode
         )
   );
@@ -93,13 +97,13 @@ export function EuiThemeProvider<T = {}>({
   }, [_system, parentSystem]);
 
   useEffect(() => {
-    const newOverrides = mergeDeep(parentOverrides, _overrides);
-    if (!isEqual(prevOverrides.current, newOverrides)) {
-      setOverrides(newOverrides);
-      prevOverrides.current = newOverrides;
+    const newModifications = mergeDeep(parentModifications, _modifications);
+    if (!isEqual(prevModifications.current, newModifications)) {
+      setModifications(newModifications);
+      prevModifications.current = newModifications;
       isParentTheme.current = false;
     }
-  }, [_overrides, parentOverrides]);
+  }, [_modifications, parentModifications]);
 
   useEffect(() => {
     const newColorMode = getColorMode(_colorMode, parentColorMode);
@@ -115,21 +119,21 @@ export function EuiThemeProvider<T = {}>({
       setTheme(
         getComputed(
           system,
-          buildTheme(overrides, `_${system.key}`) as typeof system,
+          buildTheme(modifications, `_${system.key}`) as typeof system,
           colorMode
         )
       );
     }
-  }, [colorMode, system, overrides]);
+  }, [colorMode, system, modifications]);
 
   return (
     <EuiColorModeContext.Provider value={colorMode}>
       <EuiSystemContext.Provider value={system}>
-        <EuiOverrideContext.Provider value={overrides}>
+        <EuiModificationsContext.Provider value={modifications}>
           <EuiThemeContext.Provider value={theme}>
             {children}
           </EuiThemeContext.Provider>
-        </EuiOverrideContext.Provider>
+        </EuiModificationsContext.Provider>
       </EuiSystemContext.Provider>
     </EuiColorModeContext.Provider>
   );
