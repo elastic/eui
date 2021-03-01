@@ -12,22 +12,25 @@ import { GuideSectionExampleCode } from './guide_section_code';
 import { GuideSectionPropsTable } from './guide_section_props_table';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
 import { EuiPanel } from '../../../../../src/components/panel';
+import { ExclusiveUnion } from '../../../../../src/components/common';
 
-export const GuideSectionCodeTypesMap = {
-  JS: 'javascript',
-  HTML: 'html',
-  SNIPPET: 'snippet',
+export type GuideSectionExampleTabCodeType = GuideSectionExampleCode;
+export type GuideSectionExampleTabSnippetType = GuideSectionSnippets;
+export type GuideSectionExampleTabPropsTableType = {
+  props: {};
 };
 
-type GuideSectionCodeType = keyof typeof GuideSectionCodeTypesMap;
-
-export interface GuideSectionExampleTabType extends EuiTabProps {
-  type?: GuideSectionCodeType | string;
-  code?: {} | string | string[];
-  displayName: string;
-  name: string;
-  props?: any;
-}
+export type GuideSectionExampleTabType = EuiTabProps &
+  ExclusiveUnion<
+    GuideSectionExampleTabCodeType,
+    ExclusiveUnion<
+      GuideSectionExampleTabSnippetType,
+      GuideSectionExampleTabPropsTableType
+    >
+  > & {
+    displayName: string;
+    name: string;
+  };
 
 export type GuideSectionExampleTabsProps = {
   tabs: GuideSectionExampleTabType[];
@@ -57,7 +60,15 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     return (
       <EuiTabs size="s" display="condensed">
         {tabs.map((tab, index) => {
-          const { displayName, code, type, name, ...rest } = tab;
+          const {
+            displayName,
+            code,
+            language,
+            name,
+            props,
+            snippets,
+            ...rest
+          } = tab;
 
           return (
             <EuiTab
@@ -80,11 +91,11 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     const selectedTab = tabs.find((tab) => tab.name === selectedTabId);
 
     // SNIPPET
-    if (selectedTab && selectedTabId === 'snippet') {
+    if (selectedTab && selectedTab.snippets) {
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          <GuideSectionSnippets snippets={selectedTab.code} />
+          <GuideSectionSnippets snippets={selectedTab.snippets} />
         </EuiErrorBoundary>
       );
       // SOURCE CODE BLOCK
@@ -93,7 +104,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
           <GuideSectionExampleCode
-            language={selectedTab.type}
+            language={selectedTab.language}
             code={selectedTab.code}
           />
         </EuiErrorBoundary>

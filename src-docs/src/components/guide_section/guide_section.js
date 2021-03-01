@@ -14,11 +14,27 @@ import { GuideSectionExampleText } from './guide_section_parts/guide_section_tex
 import { GuideSectionExampleTabs } from './guide_section_parts/guide_section_tabs';
 import { GuideSectionPropsTable } from './guide_section_parts/guide_section_props_table';
 
-const tabDisplayNameMap = {
-  javascript: 'Demo JS',
-  html: 'Demo HTML',
-  snippet: 'Snippet',
+export const GuideSectionCodeTypesMap = {
+  JS: {
+    name: 'demoJS',
+    language: 'javascript',
+    displayName: 'Demo JS',
+  },
+  HTML: {
+    name: 'demoHtml',
+    language: 'html',
+    displayName: 'Demo HTML',
+  },
+  SNIPPET: {
+    name: 'snippet',
+    displayName: 'Snippet',
+  },
+  PROPS: {
+    name: 'props',
+    displayName: 'Props',
+  },
 };
+
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
@@ -40,9 +56,8 @@ export class GuideSection extends Component {
     // Don't duplicate in case this function is run multiple times
     if (hasSnippet && !source.find((tab) => tab.name === 'snippet')) {
       source.push({
-        name: 'snippet',
-        displayName: 'Snippet',
-        code: this.props.snippet,
+        ...GuideSectionCodeTypesMap.SNIPPET,
+        snippets: this.props.snippet,
       });
     }
 
@@ -53,8 +68,7 @@ export class GuideSection extends Component {
       !hasPropsTabAlready // Don't duplicate in case this function is run multiple times
     ) {
       source.push({
-        name: 'props',
-        displayName: 'Props',
+        ...GuideSectionCodeTypesMap.PROPS,
         props: props,
         isSelected: this.state.isPlayground,
       });
@@ -67,12 +81,11 @@ export class GuideSection extends Component {
     if (source) {
       source.map((source) => {
         tabs.push({
-          name:
-            (source.displayName && slugify(source.displayName)) ||
-            tabDisplayNameMap[source.type] ||
-            'tab',
-          displayName:
-            source.displayName || tabDisplayNameMap[source.type] || 'Tab',
+          ...GuideSectionCodeTypesMap[source.type],
+          // Make sure the `name` is unique in case there are multiple source languages
+          name: source.displayName
+            ? slugify(source.displayName)
+            : GuideSectionCodeTypesMap[source.type].name,
           disabled: this.state.isPlayground,
           ...source,
         });

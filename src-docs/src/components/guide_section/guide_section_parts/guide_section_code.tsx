@@ -8,9 +8,9 @@ import { renderJsSourceCode } from '../_utils';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
-type GuideSectionExampleCode = {
-  language: typeof LANGUAGES[number];
+export type GuideSectionExampleCode = {
   code: any;
+  language?: typeof LANGUAGES[number];
 };
 
 export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode> = ({
