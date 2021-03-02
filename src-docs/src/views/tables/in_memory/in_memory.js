@@ -1,5 +1,11 @@
-import React, { useState, useMemo } from 'react';
-import { EuiInMemoryTable, EuiButtonIcon } from '../../../../../src/components';
+import React from 'react';
+import { formatDate } from '../../../../../src/services/format';
+import { createDataStore } from '../data_store';
+import {
+  EuiInMemoryTable,
+  EuiLink,
+  EuiHealth,
+} from '../../../../../src/components';
 
 /*
 Example user object:
@@ -23,59 +29,71 @@ Example country object:
 }
 */
 
-let tableCounter = 0;
+const store = createDataStore();
 
 export const Table = () => {
-  const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState({});
-
-  const toggleDetails = (item) => {
-    const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
-    if (itemIdToExpandedRowMapValues[item.id]) {
-      delete itemIdToExpandedRowMapValues[item.id];
-    } else {
-      itemIdToExpandedRowMapValues[item.id] = <Table />;
-    }
-    setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
-  };
-
   const columns = [
     {
-      field: 'row',
-      name: 'Row Name',
-      width: '4em',
+      field: 'firstName',
+      name: 'First Name',
+      sortable: true,
+      truncateText: true,
     },
     {
-      isExpander: true,
-      width: '1em',
-      render: (item) => (
-        <EuiButtonIcon
-          aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
-          iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
-        />
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+    },
+    {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">
+          {username}
+        </EuiLink>
       ),
+    },
+    {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong'),
+      sortable: true,
+    },
+    {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      },
+    },
+    {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+      sortable: true,
     },
   ];
 
-  const items = useMemo(() => {
-    function createItems(count) {
-      let index = 0;
-      tableCounter++;
-      return Array.apply(0, Array(count)).map(() => ({
-        id: `${++index}`,
-        row: `row ${index} in table ${tableCounter}`,
-      }));
-    }
-    return createItems(5);
-  }, []);
+  const sorting = {
+    sort: {
+      field: 'dateOfBirth',
+      direction: 'desc',
+    },
+  };
 
   return (
     <EuiInMemoryTable
-      items={items}
-      itemId="id"
-      itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-      isExpandable={true}
+      items={store.users}
       columns={columns}
-      rowProps={(row) => ({ onClick: () => toggleDetails(row) })}
+      pagination={true}
+      sorting={sorting}
     />
   );
 };
