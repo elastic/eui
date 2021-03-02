@@ -304,6 +304,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
           <button
             aria-controls="generated-id"
             aria-expanded="false"
+            aria-label="+ 3 messages for alert-warning-01"
             class="euiAccordion__button"
             id="generated-id"
             type="button"
@@ -311,7 +312,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
             <span
               class="euiIEFlexWrapFix"
             >
-              + 3 messages for alert-warning-01
+              + 3 messages
             </span>
           </button>
         </div>
