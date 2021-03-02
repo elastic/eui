@@ -49,6 +49,7 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
     hasShadow: false,
     color: 'transparent',
     borderRadius: 'none',
+    hasBorder: false,
   };
 
   return (

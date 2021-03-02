@@ -17,7 +17,7 @@ exports[`EuiSplitPanel inner children are rendered 1`] = `
   class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiSplitPanel__inner"
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
   />
 </div>
 `;
