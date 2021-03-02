@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, Ref, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
@@ -54,59 +54,65 @@ const sizeToClassNameMap: { [size in Size]: string } = {
   m: '',
 };
 
-export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
-  title,
-  color = 'primary',
-  size = 'm',
-  iconType,
-  children,
-  className,
-  heading,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiCallOut',
-    colorToClassNameMap[color],
-    sizeToClassNameMap[size],
-    className
-  );
-
-  let headerIcon;
-
-  if (iconType) {
-    headerIcon = (
-      <EuiIcon
-        className="euiCallOutHeader__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
+export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
+  (
+    {
+      title,
+      color = 'primary',
+      size = 'm',
+      iconType,
+      children,
+      className,
+      heading,
+      ...rest
+    },
+    ref: Ref<HTMLDivElement>
+  ) => {
+    const classes = classNames(
+      'euiCallOut',
+      colorToClassNameMap[color],
+      sizeToClassNameMap[size],
+      className
     );
-  }
 
-  let optionalChildren;
-  if (children && size === 's') {
-    optionalChildren = <EuiText size="xs">{children}</EuiText>;
-  } else if (children) {
-    optionalChildren = <EuiText size="s">{children}</EuiText>;
-  }
+    let headerIcon;
 
-  const H: any = heading ? `${heading}` : 'span';
-  let header;
+    if (iconType) {
+      headerIcon = (
+        <EuiIcon
+          className="euiCallOutHeader__icon"
+          type={iconType}
+          size="m"
+          aria-hidden="true"
+        />
+      );
+    }
 
-  if (title) {
-    header = (
-      <div className="euiCallOutHeader">
-        {headerIcon}
-        <H className="euiCallOutHeader__title">{title}</H>
+    let optionalChildren;
+    if (children && size === 's') {
+      optionalChildren = <EuiText size="xs">{children}</EuiText>;
+    } else if (children) {
+      optionalChildren = <EuiText size="s">{children}</EuiText>;
+    }
+
+    const H: any = heading ? `${heading}` : 'span';
+    let header;
+
+    if (title) {
+      header = (
+        <div className="euiCallOutHeader">
+          {headerIcon}
+          <H className="euiCallOutHeader__title">{title}</H>
+        </div>
+      );
+    }
+    return (
+      <div className={classes} ref={ref} {...rest}>
+        {header}
+
+        {optionalChildren}
       </div>
     );
   }
-  return (
-    <div className={classes} {...rest}>
-      {header}
-
-      {optionalChildren}
-    </div>
-  );
-};
+);
+EuiCallOut.displayName = 'EuiCallOut';
