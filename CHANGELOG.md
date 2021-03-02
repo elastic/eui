@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added focus state to `EuiCallout` ([#4497](https://github.com/elastic/eui/pull/4497))
+- Added focus to `EuiForm` error `EuiCallout` ([#4497](https://github.com/elastic/eui/pull/4497))
 - Allowed dynamically changing the `direction` prop on `EuiResizableContainer` ([#4557](https://github.com/elastic/eui/pull/4557))
 - Exported `useIsWithinBreakpoints` hook ([#4557](https://github.com/elastic/eui/pull/4557))
 
