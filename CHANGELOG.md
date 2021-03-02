@@ -15,7 +15,7 @@ No public interface changes since `31.9.0`.
 - Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 - Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
 
-## Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
+### Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
 
 - Added new `EuiPageTemplate` component as a shortcut for creating the different types of page layout patterns
 - Added props `grow` and `direction` to `EuiPage`
