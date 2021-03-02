@@ -166,23 +166,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guideDemo__tabs {
-  padding: $euiSizeXS $euiSize;
-
-  &--open {
-    padding-bottom: 0;
-  }
-}
-
-.guideDemo__icon {
-  text-align: center;
-
-  svg,
-  img {
-    margin-bottom: $euiSizeS;
-  }
-}
-
 .dpTest__purpleCal {
   background: $euiColorVis3;
 }

@@ -19,3 +19,15 @@
   padding-top: $euiSizeS;
   padding-bottom: $euiSizeS;
 }
+
+.guideSectionTabs {
+  padding: $euiSizeXS $euiSizeM;
+
+  &--open {
+    padding-bottom: 0;
+  }
+}
+
+.guideSectionTabs__tab {
+  font-weight: $euiFontWeightMedium !important; // sass-lint:disable-line no-important
+}

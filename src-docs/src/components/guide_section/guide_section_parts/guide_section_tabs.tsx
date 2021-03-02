@@ -11,13 +11,12 @@ import { GuideSectionSnippets } from './guide_section_snippets';
 import { GuideSectionExampleCode } from './guide_section_code';
 import { GuideSectionPropsTable } from './guide_section_props_table';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
-import { EuiPanel } from '../../../../../src/components/panel';
 import { ExclusiveUnion } from '../../../../../src/components/common';
 
 export type GuideSectionExampleTabCodeType = GuideSectionExampleCode;
 export type GuideSectionExampleTabSnippetType = GuideSectionSnippets;
 export type GuideSectionExampleTabPropsTableType = {
-  props: {};
+  props: any;
 };
 
 export type GuideSectionExampleTabType = EuiTabProps &
@@ -52,8 +51,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     }
   };
 
-  const tabClasses = classNames('guideDemo__tabs', {
-    'guideDemo__tabs--open': selectedTabId,
+  const tabClasses = classNames('guideSectionTabs', {
+    'guideSectionTabs--open': selectedTabId,
   });
 
   const renderTabs = () => {
@@ -73,6 +72,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
           return (
             <EuiTab
               {...rest}
+              className="guideSectionTabs__tab"
               name={name}
               onClick={() => onSelectedTabChanged(name)}
               isSelected={name === selectedTabId}
@@ -132,11 +132,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
         <EuiFlexItem>{renderTabs()}</EuiFlexItem>
         <EuiFlexItem grow={false}>{rightSideControl}</EuiFlexItem>
       </EuiFlexGroup>
-      {selectedTabId && (
-        <EuiPanel paddingSize="none" color="subdued">
-          {renderContent()}
-        </EuiPanel>
-      )}
+      {selectedTabId && renderContent()}
     </>
   );
 };

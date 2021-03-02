@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiButtonEmpty } from '../../../../../src/components/button';
 // @ts-ignore Not TS
@@ -17,6 +17,17 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   language = 'javascript',
   code,
 }) => {
+  const [codeToRender, setCodeToRender] = useState();
+
+  useEffect(() => {
+    setCodeToRender(
+      language === 'html' ? code.render() : renderJsSourceCode(code)
+    );
+    return () => {
+      setCodeToRender(undefined);
+    };
+  }, [language, code]);
+
   const codeSandboxLink =
     language === 'javascript' ? (
       <CodeSandboxLink
@@ -28,13 +39,10 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
       </CodeSandboxLink>
     ) : undefined;
 
-  const renderedCode =
-    language === 'javascript' ? renderJsSourceCode(code) : code.render();
-
   return (
     <>
       <EuiCodeBlock language={language} overflowHeight={400} isCopyable>
-        {renderedCode}
+        {codeToRender}
       </EuiCodeBlock>
       {codeSandboxLink}
     </>
