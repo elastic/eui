@@ -163,13 +163,13 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   paddingSize?: CardPaddingSize;
 } & (
     | {
-        // description is required if children is omitted
-        description: NonNullable<ReactNode>;
-      }
-    | {
         // description becomes optional when children is present
         description?: NonNullable<ReactNode>;
         children: ReactNode;
+      }
+    | {
+        // description is required if children is omitted
+        description: NonNullable<ReactNode>;
       }
   );
 
