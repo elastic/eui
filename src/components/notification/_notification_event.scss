@@ -25,17 +25,22 @@
   }
 }
 
-.euiNotificationEvent__content {
-  > * {
-    margin-top: $euiSizeS;
-  }
-}
-
 .euiNotificationEvent__title {
   @include euiTitle('xs');
   display: flex;
 
+  // ensure links get the right color
+  &.euiLink {
+    color: $euiLinkColor;
+  }
+
   &--isRead {
     color: $euiColorDarkShade !important; // sass-lint:disable-line no-important
+  }
+}
+
+.euiNotificationEvent__content {
+  > * {
+    margin-top: $euiSizeS;
   }
 }

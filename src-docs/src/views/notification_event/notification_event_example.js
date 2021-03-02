@@ -9,14 +9,20 @@ import {
   EuiContextMenuItem,
   EuiSpacer,
   EuiCode,
-  EuiTextColor,
+  EuiAccordion,
+  EuiCodeBlock,
 } from '../../../../src/components';
 import { notificationEventReadButtonConfig } from './playground';
 import { EuiNotificationEventPrimaryAction } from './props';
+import NotificationEventPropsMethods from './notification_event_props_methods';
 
 import NotificationEvent from './notification_event';
 const notificationEventSource = require('!!raw-loader!./notification_event');
 const notificationEventHtml = renderToHtml(NotificationEvent);
+
+import NotificationEventFlexible from './notification_event_flexible';
+const notificationEventFlexibleSource = require('!!raw-loader!./notification_event_flexible');
+const notificationEventFlexibleHtml = renderToHtml(NotificationEventFlexible);
 
 import NotificationsFeed from './notifications_feed';
 const notificationsFeedSource = require('!!raw-loader!./notifications_feed');
@@ -63,30 +69,24 @@ const notificationEvents = events.map((event) => (
 </div>
 `;
 
-const required = <EuiTextColor color="danger">(required)</EuiTextColor>;
-
 export const NotificationEventExample = {
   title: 'Notification event',
   beta: true,
   isNew: true,
   intro: (
-    <Fragment>
-      <EuiText>
-        <p>
-          Use <strong>EuiNotificationEvent</strong> to display notifications
-          about new events in your product like alerts, support, or news. This
-          component is meant to live inside a{' '}
-          <strong>
-            <Link to="/layout/flyout/">EuiFlyout</Link>
-          </strong>{' '}
-          so that users can quickly be informed or take action. The{' '}
-          <strong>EuiNotificationEvent</strong> takes into account that an event
-          can be purely informative or actionable. It&apos;s flexible enough and
-          adapts the design according to the passed props.
-        </p>
-      </EuiText>
-      <EuiSpacer />
-    </Fragment>
+    <EuiText>
+      <p>
+        Use <strong>EuiNotificationEvent</strong> to display notifications about
+        new events in your product like alerts, support, or news. This component
+        is meant to live inside a{' '}
+        <strong>
+          <Link to="/layout/flyout/">EuiFlyout</Link>
+        </strong>{' '}
+        so that users can quickly be informed or take action. The{' '}
+        <strong>EuiNotificationEvent</strong> takes into account that an event
+        can be purely informative or actionable.
+      </p>
+    </EuiText>
   ),
   sections: [
     {
@@ -100,76 +100,97 @@ export const NotificationEventExample = {
           code: notificationEventHtml,
         },
       ],
-      title: 'Props and methods',
+      props: {
+        EuiNotificationEvent,
+        EuiNotificationEventMeta,
+        EuiNotificationEventPrimaryAction,
+        EuiContextMenuItem,
+      },
+      snippet: notificationEventSnippet,
+      demo: <NotificationEvent />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: notificationEventFlexibleSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: notificationEventFlexibleHtml,
+        },
+      ],
+      title: 'A flexible component',
       text: (
         <>
           <EuiText>
             <p>
-              A <strong>EuiNotificationEvent</strong> is comprised of different
-              props:
+              A <strong>EuiNotificationEvent</strong> is flexible enough and
+              adapts the design according to the passed props.
             </p>
-            <ul>
+          </EuiText>
+          <EuiSpacer />
+          <NotificationEventPropsMethods />
+          <EuiSpacer size="xs" />
+          <EuiAccordion
+            id="propsSnippet"
+            buttonContent={<small>Code snippet</small>}>
+            <EuiSpacer size="xs" />
+            <EuiCodeBlock language="ts" isCopyable paddingSize="s">
+              {notificationEventSnippet}
+            </EuiCodeBlock>
+          </EuiAccordion>
+          <EuiSpacer />
+          <EuiText>
+            <ul style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>{'id'}</EuiCode> {required}: a unique id.
+                <EuiCode>isRead</EuiCode>: Use this prop to show a button that
+                indicates the current <EuiCode>isRead</EuiCode> state of the
+                event. Use the <EuiCode>onRead</EuiCode> to allow users to
+                toggle between read and unread states.
               </li>
               <li>
-                <EuiCode>{'meta'}</EuiCode> {required}: an object with multiple
-                props like <EuiCode>{'type'}</EuiCode>,{' '}
-                <EuiCode>{'severity'}</EuiCode>,{' '}
-                <EuiCode>{'badgeColor'}</EuiCode>,{' '}
-                <EuiCode>{'iconType'}</EuiCode> and <EuiCode>{'time'}</EuiCode>.
+                <EuiCode>meta</EuiCode> (required): Provides important
+                information about the event, like when it was received and the
+                type of notification. You can also provide more details like
+                severity and visually enhance by changing the badge color or
+                adding an icon or logo representing the type of notification.
               </li>
               <li>
-                <EuiCode>{'title'}</EuiCode> {required}: the{' '}
-                <EuiCode>{'title'}</EuiCode> of the event.
+                <EuiCode>onContextMenu</EuiCode>: Use this prop when you have
+                multiple events, and you need to add individual actions to each
+                event. You can add filters based on the event type or a more
+                descriptive read/unread action as an alternative to the read
+                indicator (A).
               </li>
               <li>
-                <EuiCode>{'primaryAction'}</EuiCode>: an object with a{' '}
-                <EuiCode>{'label'}</EuiCode> and other{' '}
-                <EuiCode>{'EuiButtonEmptyProps'}</EuiCode> props like a{' '}
-                <EuiCode>{'iconType'}</EuiCode>.
+                <EuiCode>title</EuiCode> (required): The title of the
+                notification event. It should be descriptive enough so that
+                users don&apos;t need to navigate away. But use it in
+                conjunction with an <EuiCode>onClickTitle</EuiCode> to direct
+                users to the respective app in case they need more information
+                about the notification.
               </li>
               <li>
-                <EuiCode>{'isRead'}</EuiCode>: shows an indicator of the read
-                state of the event.
+                <EuiCode>messages</EuiCode>: Use this prop to provide more
+                details about the event, so users don&apos;t need to navigate
+                away. You can provide multiple messages.
               </li>
               <li>
-                <EuiCode>{'messages'}</EuiCode> {required}: notification
-                messages as an array of strings. More than one message wraps in
-                an accordion.
+                <EuiCode>primaryAction</EuiCode>: Use this prop if you need to
+                provide a call to action like download a report or you want to
+                make users navigate away. Most of the time, the clickable title
+                is enough.
               </li>
             </ul>
           </EuiText>
           <EuiSpacer />
           <EuiText>
-            <p>Methods for helping to deal to common action types:</p>
-            <ul>
-              <li>
-                <EuiCode>onRead</EuiCode>: returns the <EuiCode>id</EuiCode>,{' '}
-                <EuiCode>isRead</EuiCode> and applies an{' '}
-                <EuiCode>onClick</EuiCode> handler to the{' '}
-                <EuiCode>read</EuiCode> indicator.
-              </li>
-              <li>
-                <EuiCode>onOpenContextMenu</EuiCode>: provided the{' '}
-                <EuiCode>id</EuiCode> of the event must return an array of{' '}
-                <EuiCode>EuiContextMenuItem</EuiCode> elements.
-              </li>
-              <li>
-                <EuiCode>onClickPrimaryAction</EuiCode>: returns the{' '}
-                <EuiCode>id</EuiCode> and applies an <EuiCode>onClick</EuiCode>{' '}
-                handler to the <EuiCode>primaryAction</EuiCode>.
-              </li>
-              <li>
-                <EuiCode>onClickTitle</EuiCode>: returns the{' '}
-                <EuiCode>id</EuiCode> and applies an <EuiCode>onClick</EuiCode>{' '}
-                handler to the <EuiCode>title</EuiCode>.
-              </li>
-            </ul>
-          </EuiText>
-          <EuiSpacer />
-          <EuiText>
-            <p>See the snippet and props table for full details.</p>
+            <p>
+              The following demo shows how you can combine different props to
+              create different types of events like a report, alert, or even
+              news.
+            </p>
           </EuiText>
         </>
       ),
@@ -180,7 +201,7 @@ export const NotificationEventExample = {
         EuiContextMenuItem,
       },
       snippet: notificationEventSnippet,
-      demo: <NotificationEvent />,
+      demo: <NotificationEventFlexible />,
     },
     {
       source: [
