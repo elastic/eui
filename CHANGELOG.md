@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.9.0`.
+- Added `EuiSplitPanel` component ([#4539](https://github.com/elastic/eui/pull/4539))
 
 ## [`31.9.0`](https://github.com/elastic/eui/tree/v31.9.0)
 
