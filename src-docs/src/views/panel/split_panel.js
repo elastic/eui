@@ -1,29 +1,16 @@
 import React from 'react';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
-import { EuiSplitPanel } from '../../../../src/components/panel';
-import { EuiText } from '../../../../src/components/text';
-import { EuiCode } from '../../../../src/components/code';
+import {
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSplitPanel,
+  EuiText,
+  EuiCode,
+} from '../../../../src/components';
 
 export default () => (
   <>
     <EuiFlexGroup gutterSize="l">
-      <EuiFlexItem>
-        <EuiSplitPanel.Outer grow={false}>
-          <EuiSplitPanel.Inner>
-            <EuiText>
-              <p>
-                Outer panel has <EuiCode>{'grow={false}'}</EuiCode>
-              </p>
-            </EuiText>
-          </EuiSplitPanel.Inner>
-          <EuiSplitPanel.Inner grow={false} color="subdued">
-            <EuiText>
-              <p>Bottom panel</p>
-            </EuiText>
-          </EuiSplitPanel.Inner>
-        </EuiSplitPanel.Outer>
-      </EuiFlexItem>
       <EuiFlexItem>
         <EuiSplitPanel.Outer grow>
           <EuiSplitPanel.Inner>
@@ -36,6 +23,22 @@ export default () => (
               <p>
                 Bottom panel has <EuiCode>{'grow={false}'}</EuiCode>
               </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+        </EuiSplitPanel.Outer>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiSplitPanel.Outer grow={false}>
+          <EuiSplitPanel.Inner>
+            <EuiText>
+              <p>
+                Outer panel has <EuiCode>{'grow={false}'}</EuiCode>
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner grow={false} color="subdued">
+            <EuiText>
+              <p>Bottom panel</p>
             </EuiText>
           </EuiSplitPanel.Inner>
         </EuiSplitPanel.Outer>
