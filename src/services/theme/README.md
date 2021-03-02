@@ -93,10 +93,10 @@ All three props are optional. The default values for EUI will be used in the eve
 A custom React hook that returns the computed theme. This hook is little more than a wrapper around the `useContext` hook, accessing three of the top-level providers: computed theme, color mode, and modifications.
 
 ```js
-const [theme, colorMode, modifications] = useEuiTheme();
+const {euiTheme, colorMode, modifications} = useEuiTheme();
 ```
 
-The `theme` variable has TypeScript support, which will result in IDE autocomplete availability.
+The `euiTheme` variable has TypeScript support, which will result in IDE autocomplete availability.
 
 ### WithEuiTheme
 A higher-order-component that wraps `useEuiTheme` for React class components.
