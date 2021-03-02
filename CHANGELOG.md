@@ -4,6 +4,7 @@
 - Allowed dynamically changing the `direction` prop on `EuiResizableContainer` ([#4557](https://github.com/elastic/eui/pull/4557))
 - Exported `useIsWithinBreakpoints` hook ([#4557](https://github.com/elastic/eui/pull/4557))
 - Added focus to `EuiForm` error `EuiCallout` ([#4497](https://github.com/elastic/eui/pull/4497))
+- Added a `display` and `size` props to `EuiButtonIcon` ([#4466](https://github.com/elastic/eui/pull/4466))
 
 **Bug fixes**
 

@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiButtonIcon, COLORS } from './button_icon';
+import { EuiButtonIcon, COLORS, DISPLAYS, SIZES } from './button_icon';
 
 describe('EuiButtonIcon', () => {
   test('is rendered', () => {
@@ -71,6 +71,34 @@ describe('EuiButtonIcon', () => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiButtonIcon iconType="user" aria-label="button" color={color} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('display', () => {
+      DISPLAYS.forEach((display) => {
+        test(`${display} is rendered`, () => {
+          const component = render(
+            <EuiButtonIcon
+              iconType="user"
+              aria-label="button"
+              display={display}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiButtonIcon iconType="user" aria-label="button" size={size} />
           );
 
           expect(component).toMatchSnapshot();
