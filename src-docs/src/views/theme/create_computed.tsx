@@ -15,12 +15,18 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   return (
     <EuiText
       css={{
+        // @ts-ignore Needs to be fixed in types
         background: theme.colors.customColorPrimaryHighlight,
         padding: theme.sizes.euiSizeXL,
+        // @ts-ignore Needs to be fixed in types
         color: theme.colors.customColorPrimaryText,
       }}>
       <p>
-        <EuiIcon type="stopFilled" color={theme.colors.customColorPrimary} />{' '}
+        <EuiIcon
+          type="stopFilled"
+          // @ts-ignore Needs to be fixed in types
+          color={theme.colors.customColorPrimary}
+        />{' '}
         {children}
       </p>
     </EuiText>
