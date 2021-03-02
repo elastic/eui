@@ -44,7 +44,7 @@ export type EuiButtonIconColor =
   | 'ghost'
   | 'primary'
   /**
-   * Set for deprecation 2/23/21
+   * Set for deprecation 3/2/21
    * This color button is close enough to text to be duplicative
    */
   | 'subdued'
