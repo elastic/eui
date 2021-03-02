@@ -50,18 +50,19 @@ export default () => {
   ];
 
   const renderSearch = (
-    <EuiHeaderSectionItemButton aria-label="Sitewide search">
+    <EuiHeaderSectionItemButton disabled aria-label="Sitewide search">
       <EuiIcon type="search" size="m" />
     </EuiHeaderSectionItemButton>
   );
   const renderUser = (
-    <EuiHeaderSectionItemButton aria-label="Account menu">
+    <EuiHeaderSectionItemButton disabled aria-label="Account menu">
       <EuiAvatar name="John Username" size="s" />
     </EuiHeaderSectionItemButton>
   );
 
   const renderApps = (
     <EuiHeaderSectionItemButton
+      disabled
       aria-label="Apps menu with 1 new app"
       notification="1">
       <EuiIcon type="apps" size="m" />
