@@ -21,7 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPage } from './page';
+import { EuiPage, SIZES } from './page';
 
 describe('EuiPage', () => {
   test('is rendered', () => {
@@ -30,26 +30,48 @@ describe('EuiPage', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('paddingSize', () => {
+    SIZES.forEach((size) => {
+      it(`${size} is rendered`, () => {
+        const component = render(<EuiPage paddingSize={size} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('grow', () => {
+    test('can be false', () => {
+      const component = render(<EuiPage grow={false} />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('direction', () => {
+    test('can be row', () => {
+      const component = render(<EuiPage direction="row" />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('restrict width', () => {
     test('can be set to a default', () => {
-      const component = render(
-        <EuiPage {...requiredProps} restrictWidth={true} />
-      );
+      const component = render(<EuiPage restrictWidth={true} />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
-      const component = render(
-        <EuiPage {...requiredProps} restrictWidth={1024} />
-      );
+      const component = render(<EuiPage restrictWidth={1024} />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test('can be set to a custom value and measurement', () => {
+    test('can be set to a custom value and does not override custom style', () => {
       const component = render(
-        <EuiPage {...requiredProps} restrictWidth="24rem" />
+        <EuiPage restrictWidth="24rem" style={{ color: 'red ' }} />
       );
 
       expect(component).toMatchSnapshot();

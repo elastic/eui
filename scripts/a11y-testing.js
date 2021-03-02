@@ -24,6 +24,7 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 const docsPages = async (root, page) => {
   const pagesToSkip = [
     `${root}#/layout/resizable-container`,
+    `${root}#/layout/page`, // Has duplicate `<main>` element
     `${root}#/tabular-content/tables`,
     `${root}#/tabular-content/in-memory-tables`,
     `${root}#/display/aspect-ratio`,

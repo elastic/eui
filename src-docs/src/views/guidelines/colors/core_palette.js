@@ -7,9 +7,19 @@ import {
   EuiIcon,
   EuiCopy,
   EuiScreenReaderOnly,
+  EuiPanel,
 } from '../../../../../src/components';
 import { rgbToHex } from '../../../../../src/services';
-import { scrollToSelector } from '../../../components/guide_page/guide_page_chrome';
+
+export function scrollToSelector(selector, attempts = 5) {
+  const element = document.querySelector(selector);
+
+  if (element) {
+    window.scrollTo({ top: element.offsetTop - 168, behavior: 'smooth' }); // Offset affords for the sticky contrast slider
+  } else if (attempts > 0) {
+    setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
+  }
+}
 
 export const CorePalette = ({ theme, colors }) => {
   const palette = getSassVars(theme);
@@ -58,14 +68,12 @@ export const CorePalette = ({ theme, colors }) => {
   }
 
   return (
-    <EuiFlexGroup
-      className="guideSection__shadedBox"
-      gutterSize="s"
-      wrap
-      responsive={false}>
-      {colors.map(function (color, index) {
-        return renderPaletteColor(palette, color, index);
-      })}
-    </EuiFlexGroup>
+    <EuiPanel paddingSize="l" color="subdued">
+      <EuiFlexGroup gutterSize="s" wrap responsive={false}>
+        {colors.map(function (color, index) {
+          return renderPaletteColor(palette, color, index);
+        })}
+      </EuiFlexGroup>
+    </EuiPanel>
   );
 };
