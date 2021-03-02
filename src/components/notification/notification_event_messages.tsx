@@ -39,7 +39,7 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
   eventName,
 }) => {
   const accordionButtonText = useEuiI18n(
-    'euiNotificationEventMessages.messagesLength',
+    'euiNotificationEventMessages.accordionButtonText',
     '+ {messagesLength} messages',
     {
       messagesLength: messages.length,
@@ -47,7 +47,7 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
   );
 
   const accordionAriaLabelButtonText = useEuiI18n(
-    'euiNotificationEventMessages.ariaLabelMessagesLength',
+    'euiNotificationEventMessages.accordionAriaLabelButtonText',
     '+ {messagesLength} messages for {eventName}',
     {
       messagesLength: messages.length,
