@@ -35,7 +35,7 @@ export default () => {
         meta={{
           type: 'Report',
           iconType: 'logoKibana',
-          eventName: 'report-01',
+          iconAriaLabel: 'Kibana',
           time: '1 min ago',
         }}
         title="[Error Monitoring Report] is generated"

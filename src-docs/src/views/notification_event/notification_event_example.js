@@ -33,8 +33,8 @@ const notificationEventSnippet = `<EuiNotificationEvent
   meta={{
     type: 'Alert',
     iconType: 'logoMaps',
-    eventName: 'alert-maps-01',
     time: '1 min ago',
+    iconAriaLabel: 'Maps',
   }}
   title={title}
   isRead={isRead}

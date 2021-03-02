@@ -116,6 +116,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   const titleProps = {
     id: randomHeadingId,
     className: classesTitle,
+    'data-test-subj': 'notificationEventTitle',
   };
 
   return (
@@ -131,23 +132,23 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
         onOpenContextMenu={
           onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
         }
-        eventName={meta.eventName}
+        eventName={meta.eventName ?? title}
         onRead={() => onRead?.(id, isRead!)}
       />
 
       <div className="euiNotificationEvent__content">
         {onClickTitle ? (
-          <EuiLink
-            className={classesTitle}
-            onClick={() => onClickTitle(id)}
-            data-test-subj="notificationEventTitle">
+          <EuiLink onClick={() => onClickTitle(id)} {...titleProps}>
             {createElement(headingLevel, null, title)}
           </EuiLink>
         ) : (
           createElement(headingLevel, titleProps, title)
         )}
 
-        <EuiNotificationEventMessages messages={messages} />
+        <EuiNotificationEventMessages
+          messages={messages}
+          eventName={meta.eventName ?? title}
+        />
 
         {onClickPrimaryAction && primaryAction && (
           <div className="euiNotificationEvent__primaryAction">

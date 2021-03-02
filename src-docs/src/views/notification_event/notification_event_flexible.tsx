@@ -11,7 +11,7 @@ const notificationEventsData = [
     meta: {
       type: 'Report',
       iconType: 'logoKibana',
-      eventName: 'report-01',
+      iconAriaLabel: 'Kibana',
       time: '1 min ago',
     },
     title: '[Error Monitoring Report] is generated',
@@ -27,8 +27,8 @@ const notificationEventsData = [
     meta: {
       type: 'Alert',
       iconType: 'logoMaps',
+      iconAriaLabel: 'Maps',
       badgeColor: 'warning',
-      eventName: 'alert-warning-01',
       time: '2 min ago',
     },
     title: '[Maps] Geo Alert',
@@ -45,7 +45,7 @@ const notificationEventsData = [
     meta: {
       type: 'News',
       iconType: 'logoElastic',
-      eventName: 'news-01',
+      iconAriaLabel: 'Elastic',
       time: '3 min ago',
       badgeColor: 'accent',
     },

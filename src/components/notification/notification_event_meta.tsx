@@ -42,12 +42,16 @@ import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventMetaProps = Omit<
   EuiNotificationEventReadButtonProps,
-  'isRead' | 'onClick' | 'color'
+  'isRead' | 'onClick' | 'color' | 'eventName'
 > & {
   /**
    * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
    */
   type: string;
+  /**
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..). If nothing is passed it gets the title from #EuiNotificationEvent.
+   */
+  eventName?: string;
   /**
    * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
    */
@@ -130,7 +134,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
           <EuiNotificationEventReadButton
             isRead={isRead}
             onClick={onMarkAsRead}
-            eventName={eventName}
+            eventName={eventName!}
           />
         )}
 

@@ -28,16 +28,22 @@ export type EuiNotificationEventMessagesProps = {
   An array of strings
   */
   messages: string[];
+  /**
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..). If nothing is passed it gets the title from #EuiNotificationEvent.
+   */
+  eventName: string;
 };
 
 export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEventMessagesProps> = ({
   messages,
+  eventName,
 }) => {
   const accordionButtonText = useEuiI18n(
     'euiNotificationEventMessages.messagesLength',
-    '+ {messagesLength} messages',
+    '+ {messagesLength} messages for {eventName}',
     {
       messagesLength: messages.length,
+      eventName,
     }
   );
 

@@ -40,6 +40,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
   >
     <h2
       class="euiNotificationEvent__title"
+      data-test-subj="notificationEventTitle"
       id="generated-id"
     >
       title
@@ -153,6 +154,7 @@ exports[`EuiNotificationEvent props headingLevel  is rendered 1`] = `
   >
     <h4
       class="euiNotificationEvent__title"
+      data-test-subj="notificationEventTitle"
       id="generated-id"
     >
       title
@@ -225,6 +227,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
   >
     <h2
       class="euiNotificationEvent__title euiNotificationEvent__title--isRead"
+      data-test-subj="notificationEventTitle"
       id="generated-id"
     >
       title
@@ -284,6 +287,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
   >
     <h2
       class="euiNotificationEvent__title"
+      data-test-subj="notificationEventTitle"
       id="generated-id"
     >
       title
@@ -307,7 +311,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
             <span
               class="euiIEFlexWrapFix"
             >
-              + 3 messages
+              + 3 messages for alert-warning-01
             </span>
           </button>
         </div>
