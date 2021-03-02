@@ -151,17 +151,19 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>meta</EuiCode> (required): Provides important
-                information about the event, like when it was received and the
-                type of notification. You can also provide more details like
-                severity and visually enhance by changing the badge color or
-                adding an icon or logo representing the type of notification.
+                information about the event, like when it was received, the type
+                of event, and its severity. Use the{' '}
+                <EuiCode>badgeColor</EuiCode> in conjunction with the{' '}
+                <EuiCode>severity</EuiCode> to better indicate the level of
+                urgency. You can also pass an icon/logo to help users quickly
+                identify an event.
               </li>
               <li>
                 <EuiCode>onContextMenu</EuiCode>: Use this prop when you have
                 multiple events, and you need to add individual actions to each
                 event. You can add filters based on the event type or a more
                 descriptive read/unread action as an alternative to the read
-                indicator (A).
+                indicator.
               </li>
               <li>
                 <EuiCode>title</EuiCode> (required): The title of the
@@ -173,8 +175,7 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>messages</EuiCode>: Use this prop to provide more
-                details about the event, so users don&apos;t need to navigate
-                away. You can provide multiple messages.
+                details about the event. Tou can also provide multiple messages.
               </li>
               <li>
                 <EuiCode>primaryAction</EuiCode>: Use this prop if you need to

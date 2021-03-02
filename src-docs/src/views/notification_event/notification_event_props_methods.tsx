@@ -25,6 +25,7 @@ export default () => {
             <EuiButtonIcon
               iconType="dot"
               className="euiNotificationEventReadButton"
+              aria-hidden="true"
             />
           </div>
           <div className="guideDemo__notificationEventMeta guideDemo__notificationEventHighlight">
@@ -40,7 +41,11 @@ export default () => {
           </div>
           <div className="guideDemo__notificationEventHighlight">
             <CircleIndicator name="C" />
-            <EuiButtonIcon iconType="boxesVertical" color="subdued" />
+            <EuiButtonIcon
+              aria-hidden="true"
+              iconType="boxesVertical"
+              color="subdued"
+            />
           </div>
         </div>
         <div className="guideDemo__notificationEventSections">
