@@ -175,13 +175,14 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>messages</EuiCode>: Use this prop to provide more
-                details about the event. Tou can also provide multiple messages.
+                details about the event. You can provide just one message or
+                multiple messages when the event executes in various steps.
               </li>
               <li>
-                <EuiCode>primaryAction</EuiCode>: Use this prop if you need to
-                provide a call to action like download a report or you want to
-                make users navigate away. Most of the time, the clickable title
-                is enough.
+                <EuiCode>primaryAction</EuiCode>: Use this prop to provide a
+                call to action, like download a report or link to a page where
+                an action is required. Most of the time, the clickable title is
+                enough.
               </li>
             </ul>
           </EuiText>
