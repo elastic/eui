@@ -55,6 +55,7 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
         </EuiText>
       ) : (
         <EuiAccordion
+          buttonProps={{'aria-label': accordionAriaLabelbuttonText}}
           id={htmlIdGenerator()()}
           className="euiNotificationEventMessages__accordion"
           buttonContent={accordionButtonText}
