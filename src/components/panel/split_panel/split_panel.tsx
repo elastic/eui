@@ -17,17 +17,27 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, _EuiPanelProps } from '../panel';
+import { EuiPanel, _EuiPanelProps, EuiPanelProps } from '../panel';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 
-export type _EuiSplitPanelInnerProps = Omit<
-  _EuiPanelProps,
-  'hasShadow' | 'borderRadius'
->;
+export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
+  Omit<
+    _EuiPanelProps,
+    | 'hasShadow'
+    | 'hasBorder'
+    | 'borderRadius'
+    | 'betaBadgeLabel'
+    | 'betaBadgeTooltipContent'
+    | 'betaBadgeTitle'
+  >;
 
+/**
+ * Consumed via `EuiSplitPanel.Inner`.
+ * Extends most `EuiPanelProps`.
+ */
 export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = ({
   children,
   className,
@@ -42,13 +52,13 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
   };
 
   return (
-    <EuiPanel className={classes} {...panelProps} {...rest}>
+    <EuiPanel className={classes} {...panelProps} {...(rest as EuiPanelProps)}>
       {children}
     </EuiPanel>
   );
 };
 
-export type _EuiSplitPanelOuterProps = {
+export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
   /**
    * Any number of #EuiSplitPanelInner components
    */
@@ -58,11 +68,22 @@ export type _EuiSplitPanelOuterProps = {
    */
   direction?: 'column' | 'row';
   /**
-   * Stacks row display on small screens
+   * Stacks row display on small screens.
+   * Remove completely with `false` or provide your own list of breakpoint sizes to stack on.
    */
   responsive?: false | EuiBreakpointSize[];
-} & Omit<_EuiPanelProps, 'paddingSize'>;
+} & Omit<
+    _EuiPanelProps,
+    | 'paddingSize'
+    | 'betaBadgeLabel'
+    | 'betaBadgeTooltipContent'
+    | 'betaBadgeTitle'
+  >;
 
+/**
+ * Consumed via `EuiSplitPanel.Outer`.
+ * Extends most `EuiPanelProps`.
+ */
 export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = ({
   children,
   className,
@@ -85,7 +106,11 @@ export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = 
   );
 
   return (
-    <EuiPanel paddingSize="none" grow={false} className={classes} {...rest}>
+    <EuiPanel
+      paddingSize="none"
+      grow={false}
+      className={classes}
+      {...(rest as EuiPanelProps)}>
       {children}
     </EuiPanel>
   );

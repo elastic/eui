@@ -40,16 +40,16 @@ describe('EuiSplitPanel', () => {
 
       expect(component).toMatchSnapshot();
     });
+  });
 
-    test('accept panel props', () => {
-      const component = render(
-        <EuiSplitPanel.Outer color="primary">
-          <EuiSplitPanel.Inner color="success" {...requiredProps} />
-        </EuiSplitPanel.Outer>
-      );
+  test('accepts panel props', () => {
+    const component = render(
+      <EuiSplitPanel.Outer color="primary">
+        <EuiSplitPanel.Inner color="success" {...requiredProps} />
+      </EuiSplitPanel.Outer>
+    );
 
-      expect(component).toMatchSnapshot();
-    });
+    expect(component).toMatchSnapshot();
   });
 
   test('renders as row', () => {
