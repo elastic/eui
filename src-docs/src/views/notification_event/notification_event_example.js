@@ -33,8 +33,8 @@ const notificationEventSnippet = `<EuiNotificationEvent
   meta={{
     type: 'Alert',
     iconType: 'logoMaps',
-    time: '1 min ago',
     iconAriaLabel: 'Maps',
+    time: '1 min ago',
   }}
   title={title}
   isRead={isRead}
@@ -82,9 +82,7 @@ export const NotificationEventExample = {
         <strong>
           <Link to="/layout/flyout/">EuiFlyout</Link>
         </strong>{' '}
-        so that users can quickly be informed or take action. The{' '}
-        <strong>EuiNotificationEvent</strong> takes into account that an event
-        can be purely informative or actionable.
+        so that users can quickly be informed or take action.
       </p>
     </EuiText>
   ),
@@ -125,8 +123,10 @@ export const NotificationEventExample = {
         <>
           <EuiText>
             <p>
-              A <strong>EuiNotificationEvent</strong> is flexible enough and
-              adapts the design according to the passed props.
+              The <strong>EuiNotificationEvent</strong> takes into account that
+              an event can be purely informative or actionable. It&apos;s
+              flexible enough and adapts the design according to the props
+              passed.
             </p>
           </EuiText>
           <EuiSpacer />
