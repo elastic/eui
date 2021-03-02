@@ -48,7 +48,6 @@ describe('EuiNotificationEvent', () => {
           id="id"
           meta={{
             type: 'Alert',
-            eventName: 'alert-warning-01',
             time: '1 min ago',
           }}
           title="title"
@@ -65,7 +64,6 @@ describe('EuiNotificationEvent', () => {
           id="id"
           meta={{
             type: 'Alert',
-            eventName: 'alert-warning-01',
             time: '1 min ago',
           }}
           isRead={true}
@@ -83,7 +81,6 @@ describe('EuiNotificationEvent', () => {
           id="id"
           meta={{
             type: 'Alert',
-            eventName: 'alert-warning-01',
             time: '1 min ago',
           }}
           title="title"
@@ -95,7 +92,7 @@ describe('EuiNotificationEvent', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('contextMenuItems are rendered and id is returned', () => {
+    test('contextMenuItems are rendered', () => {
       const onOpenContextMenu = (id: string) => {
         return [
           <EuiContextMenuItem key="contextMenuItemA">

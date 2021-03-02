@@ -60,7 +60,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
 </article>
 `;
 
-exports[`EuiNotificationEvent props contextMenuItems are rendered and id is returned 1`] = `
+exports[`EuiNotificationEvent props contextMenuItems are rendered 1`] = `
 <div
   class="euiContextMenuPanel"
   tabindex="0"
@@ -186,10 +186,10 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       class="euiNotificationEventMeta__section"
     >
       <button
-        aria-label="Mark alert-warning-01 as unread."
+        aria-label="Mark title as unread."
         class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
         data-test-subj="notificationEventReadButton"
-        title="Mark alert-warning-01 as unread."
+        title="Mark title as unread."
         type="button"
       >
         <span
@@ -304,7 +304,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
           <button
             aria-controls="generated-id"
             aria-expanded="false"
-            aria-label="+ 3 messages for alert-warning-01"
+            aria-label="+ 3 messages for title"
             class="euiAccordion__button"
             id="generated-id"
             type="button"

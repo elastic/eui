@@ -108,7 +108,6 @@ describe('EuiNotificationEventMeta', () => {
           time={<span>2 min ago</span>}
           iconType="logoCloud"
           onOpenContextMenu={() => contextMenuItems}
-          eventName="eventName"
         />
       );
 
@@ -130,11 +129,11 @@ describe('EuiNotificationEventMeta', () => {
 
       const component = mount(
         <EuiNotificationEventMeta
-          eventName="eventName"
           type="Alert"
           time={<span>2 min ago</span>}
           isRead={true}
           onRead={onRead}
+          eventName="eventName"
         />
       );
 
