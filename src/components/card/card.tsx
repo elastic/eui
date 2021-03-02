@@ -87,9 +87,9 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   titleSize?: 's' | 'xs';
 
   /**
-   * Card's are required to have at least a title and description
+   * Card's are required to have a title and either description or children
    */
-  description: NonNullable<ReactNode>;
+  description?: NonNullable<ReactNode>;
 
   /**
    * Accepts an `<EuiIcon>` node or `null`
@@ -161,7 +161,17 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
    * Padding applied around the content of the card
    */
   paddingSize?: CardPaddingSize;
-};
+} & (
+    | {
+        // description is required if children is omitted
+        description: NonNullable<ReactNode>;
+      }
+    | {
+        // description becomes optional when children is present
+        description?: NonNullable<ReactNode>;
+        children: ReactNode;
+      }
+  );
 
 const paddingSizeToClassNameMap: {
   [paddingSize in CardPaddingSize]: string;
