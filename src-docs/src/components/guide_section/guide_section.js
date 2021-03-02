@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -9,8 +9,8 @@ import {
 import { slugify } from '../../../../src/services';
 
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
-import playground from '../../services/playground/playground';
 import { GuideSectionExampleText } from './guide_section_parts/guide_section_text';
+import playgroundService from '../../services/playground/playground';
 import { GuideSectionExampleTabs } from './guide_section_parts/guide_section_tabs';
 import { GuideSectionPropsTable } from './guide_section_parts/guide_section_props_table';
 
@@ -35,45 +35,41 @@ export const GuideSectionCodeTypesMap = {
   },
 };
 
-export class GuideSection extends Component {
-  constructor(props) {
-    super(props);
+export const GuideSection = ({
+  id,
+  title,
+  text,
+  demo,
+  source,
+  props,
+  playground,
+  ghostBackground,
+  wrapText,
+  snippet,
+}) => {
+  const [renderingPlayground, setRenderingPlayground] = useState(false);
 
-    this.componentNames = Object.keys(props.props);
-
-    this.state = {
-      selectedTab: undefined,
-      sortedComponents: {},
-      isPlayground: false,
-    };
-  }
-
-  renderTabs() {
-    const { source, snippet, props } = this.props;
-
+  const renderTabs = () => {
     const hasSnippet = !!snippet;
 
     // Don't duplicate in case this function is run multiple times
     if (hasSnippet && !source.find((tab) => tab.name === 'snippet')) {
       source.push({
         ...GuideSectionCodeTypesMap.SNIPPET,
-        snippets: this.props.snippet,
+        snippets: snippet,
       });
     }
 
     const hasPropsTabAlready = source.find((tab) => tab.name === 'props');
 
     if (
-      this.componentNames.length &&
+      Object.keys(props).length &&
       !hasPropsTabAlready // Don't duplicate in case this function is run multiple times
     ) {
       source.push({
         ...GuideSectionCodeTypesMap.PROPS,
         props: props,
-        isSelected: this.state.isPlayground,
       });
-    } else if (hasPropsTabAlready) {
-      hasPropsTabAlready.isSelected = this.state.isPlayground;
     }
 
     const tabs = [];
@@ -86,7 +82,7 @@ export class GuideSection extends Component {
           name: source.displayName
             ? slugify(source.displayName)
             : GuideSectionCodeTypesMap[source.type].name,
-          disabled: this.state.isPlayground,
+          disabled: renderingPlayground,
           ...source,
         });
       });
@@ -95,28 +91,25 @@ export class GuideSection extends Component {
     return (
       <GuideSectionExampleTabs
         tabs={tabs}
-        rightSideControl={this.renderPlaygroundToggle()}
+        rightSideControl={renderPlaygroundToggle()}
       />
     );
-  }
+  };
 
-  renderPlaygroundToggle() {
+  const renderPlaygroundToggle = () => {
     const isPlaygroundUnsupported =
-      // Check for IE11 -- TODO: NOT WORKING IN HERE
       typeof window !== 'undefined' &&
       typeof document !== 'undefined' &&
       !!window.MSInputMethodContext &&
       !!document.documentMode;
 
-    if (!isPlaygroundUnsupported && this.props.playground) {
+    if (!isPlaygroundUnsupported && !!playground) {
       return (
         <EuiSwitch
           onChange={() => {
-            this.setState((prevState) => ({
-              isPlayground: !prevState.isPlayground,
-            }));
+            setRenderingPlayground((rendering) => !rendering);
           }}
-          checked={this.state.isPlayground}
+          checked={renderingPlayground}
           compressed
           label={
             <EuiText component="span" size="xs">
@@ -126,18 +119,10 @@ export class GuideSection extends Component {
         />
       );
     }
-  }
+  };
 
-  renderPlayground() {
-    if (!this.props.playground) {
-      return;
-    }
-
-    const {
-      config,
-      setGhostBackground,
-      playgroundClassName,
-    } = this.props.playground();
+  const renderPlayground = () => {
+    const { config, setGhostBackground, playgroundClassName } = playground();
 
     const description = (
       <GuideSectionPropsTable
@@ -147,43 +132,35 @@ export class GuideSection extends Component {
       />
     );
 
-    return playground({
+    return playgroundService({
       config,
       setGhostBackground,
       playgroundClassName,
-      playgroundToggle: this.renderPlaygroundToggle(),
-      tabs: this.renderTabs(),
+      playgroundToggle: renderPlaygroundToggle(),
+      tabs: renderTabs(),
       description,
     });
-  }
+  };
 
-  render() {
-    const { title, text, wrapText, id } = this.props;
+  return (
+    <div className="guideSection" id={id}>
+      <GuideSectionExampleText title={title} text={text} wrapText={wrapText} />
 
-    return (
-      <div className="guideSection" id={id}>
-        <GuideSectionExampleText
-          title={title}
-          text={text}
-          wrapText={wrapText}
+      {renderingPlayground && renderPlayground()}
+      {!renderingPlayground && demo && (
+        <GuideSectionExample
+          example={
+            <EuiErrorBoundary>
+              <div>{demo}</div>
+            </EuiErrorBoundary>
+          }
+          tabs={renderTabs()}
+          ghostBackground={ghostBackground}
         />
-
-        {this.state.isPlayground && this.renderPlayground()}
-        {!this.state.isPlayground && this.props.demo && (
-          <GuideSectionExample
-            example={
-              <EuiErrorBoundary>
-                <div>{this.props.demo}</div>
-              </EuiErrorBoundary>
-            }
-            tabs={this.renderTabs()}
-            ghostBackground={this.props.ghostBackground}
-          />
-        )}
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
 
 GuideSection.propTypes = {
   title: PropTypes.string,
