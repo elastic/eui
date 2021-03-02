@@ -19,8 +19,11 @@
 }
 
 .euiButtonIcon--empty.euiButtonIcon-isDisabled:not(.euiButtonIcon--ghost) {
-  background-color: transparent;
-  color: makeDisabledContrastColor($euiButtonColorDisabled, $euiPageBackgroundColor);
+  &,
+  &:hover {
+    background-color: transparent;
+    color: makeDisabledContrastColor($euiButtonColorDisabled, $euiPageBackgroundColor);
+  }
 }
 
 .euiButton--small,

@@ -335,16 +335,24 @@ export const ButtonExample = {
         <>
           <p>
             An <strong>EuiButtonIcon</strong> is a button that only contains an
-            icon (no text). Though it does require an{' '}
-            <EuiCode>aria-label</EuiCode> to express the meaning to screen
-            readers.
+            icon (no text). Use the <EuiCode>display</EuiCode> and{' '}
+            <EuiCode>size</EuiCode> props to match the appearance of your{' '}
+            <strong>EuiButtonIcon</strong> to other standard buttons. By default
+            they will appear as <EuiCode>xs</EuiCode>, <EuiCode>empty</EuiCode>{' '}
+            buttons.
           </p>
-          <p>
-            Use the <EuiCode>display</EuiCode> and <EuiCode>size</EuiCode> props
-            to match the appearance of your <strong>EuiButtonIcon</strong> to
-            other standard buttons. By default they will appear as{' '}
-            <EuiCode>xs</EuiCode>, <EuiCode>empty</EuiCode> buttons.
-          </p>
+          <EuiCallOut
+            size="s"
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                <strong>EuiButtonIcon</strong> requires an{' '}
+                <EuiCode>aria-label</EuiCode> to express the meaning to screen
+                readers.
+              </>
+            }
+          />
         </>
       ),
       props: { EuiButtonIcon },
