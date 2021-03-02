@@ -243,9 +243,12 @@ export const PanelExample = {
         <>
           <p>
             <strong>EuiSplitPanel</strong> is a composition of an outer and
-            multiple inner <strong>EuiPanels</strong>. You can supply the same
-            panel props to both components with the exception of a few to ensure
-            the visual layout is correct. It also has two directions,{' '}
+            multiple inner <strong>EuiPanels</strong>. It is a namespaced
+            component that you consume using{' '}
+            <EuiCode>EuiSplitPanel.Outer</EuiCode> and{' '}
+            <EuiCode>EuiSplitPanel.Inner</EuiCode> respectively. You can supply
+            the same panel props to both components with the exception of a few
+            to ensure the visual layout is correct. It also has two directions,{' '}
             <EuiCode>column</EuiCode> (default) and <EuiCode>row</EuiCode>.
           </p>
           <p>
