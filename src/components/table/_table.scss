@@ -88,15 +88,14 @@
 
 
   &.euiTableRow-isClickable {
-    background-color: $euiColorEmptyShade !important; // sass-lint:disable-line no-important
 
     &:hover {
-      background-color: $euiTableHoverClickableColor !important; // sass-lint:disable-line no-important
+      background-color: $euiTableHoverClickableColor;
       cursor: pointer;
     }
 
     &:focus {
-      background-color: $euiTableFocusClickableColor !important; // sass-lint:disable-line no-important
+      background-color: $euiTableFocusClickableColor;
     }
   }
 
@@ -246,5 +245,3 @@
     max-height: unset;
   }
 }
-
-
