@@ -82,6 +82,9 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     onOptionEnterKey?: OptionHandler<T>;
     onScroll?: ListProps['onScroll'];
     optionRef: (index: number, node: RefInstance<EuiFilterSelectItem>) => void;
+    /**
+     * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
+     */
     options: Array<EuiComboBoxOptionOption<T>>;
     position?: EuiComboBoxOptionsListPosition;
     renderOption?: (
