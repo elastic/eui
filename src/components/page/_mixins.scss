@@ -1,0 +1,11 @@
+@mixin euiPageRestrictWidth {
+  &--restrictWidth-default,
+  &--restrictWidth-custom {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &--restrictWidth-default {
+    max-width: $euiPageDefaultMaxWidth;
+  }
+}

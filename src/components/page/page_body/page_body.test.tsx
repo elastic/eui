@@ -30,6 +30,22 @@ describe('EuiPageBody', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('panelled', () => {
+    test('can be set to true', () => {
+      const component = render(<EuiPageBody panelled={true} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('also accepts panelProps', () => {
+      const component = render(
+        <EuiPageBody panelled={true} panelProps={{ color: 'subdued' }} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('restrict width', () => {
     test('can be set to a default', () => {
       const component = render(

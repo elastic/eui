@@ -36,7 +36,7 @@ type Tab = EuiTabProps & {
   /**
    * Visible text of the tab
    */
-  label: string;
+  label: ReactNode;
 };
 
 export type EuiPageHeaderContentTitle = {
@@ -186,7 +186,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     tabsNode = (
       <>
         {pageTitleNode && <EuiSpacer />}
-        <EuiTabs {...tabsProps} display="condensed">
+        <EuiTabs {...tabsProps} display="condensed" size="l">
           {renderTabs()}
         </EuiTabs>
       </>

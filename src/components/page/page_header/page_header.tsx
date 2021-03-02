@@ -19,28 +19,43 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import {
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
 } from './page_header_content';
+import {
+  _EuiPageRestrictWidth,
+  setPropsForRestrictedPageWidth,
+} from '../_restrict_width';
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiPageHeader--paddingSmall',
+  m: 'euiPageHeader--paddingMedium',
+  l: 'euiPageHeader--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export type EuiPageHeaderProps = CommonProps &
   HTMLAttributes<HTMLElement> &
-  EuiPageHeaderContentProps & {
+  EuiPageHeaderContentProps &
+  _EuiPageRestrictWidth & {
     /**
-     * Sets the max-width of the page,
-     * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
-     * set to `false` to not restrict the width,
-     * set to a number for a custom width in px,
-     * set to a string for a custom width in custom measurement.
+     * Adjust the padding.
+     * When using this setting it's best to be consistent throughout all similar usages
      */
-    restrictWidth?: boolean | number | string;
+    paddingSize?: typeof PADDING_SIZES[number];
+    /**
+     * Adds a bottom border to separate it from the content after
+     */
   };
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,
   restrictWidth = false,
+  paddingSize = 'none',
   style,
 
   // Page header content shared props:
@@ -59,25 +74,21 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   rightSideGroupProps,
   ...rest
 }) => {
-  let widthClassname;
-  let newStyle;
-
-  if (restrictWidth === true) {
-    widthClassname = 'euiPageHeader--restrictWidth-default';
-  } else if (restrictWidth !== false) {
-    widthClassname = 'euiPageHeader--restrictWidth-custom';
-    newStyle = { ...style, maxWidth: restrictWidth };
-  }
+  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+    restrictWidth,
+    style
+  );
 
   const classes = classNames(
     'euiPageHeader',
+    paddingSizeToClassNameMap[paddingSize],
     {
       'euiPageHeader--responsive': responsive === true,
       'euiPageHeader--responsiveReverse': responsive === 'reverse',
       'euiPageHeader--tabsAtBottom': pageTitle && tabs,
+      [`euiPage--${widthClassName}`]: widthClassName,
     },
     `euiPageHeader--${alignItems ?? 'center'}`,
-    widthClassname,
     className
   );
 
