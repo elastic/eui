@@ -1011,7 +1011,7 @@ Array [
             >
               <div
                 class="euiDataGrid__virtualized"
-                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+                style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
                   style="height:102px;width:200px"
@@ -1346,7 +1346,7 @@ Array [
             >
               <div
                 class="euiDataGrid__virtualized"
-                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+                style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
                   style="height:102px;width:300px"
@@ -1978,7 +1978,7 @@ Array [
             >
               <div
                 class="euiDataGrid__virtualized"
-                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+                style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
                   style="height:102px;width:200px"
@@ -2312,7 +2312,7 @@ Array [
             >
               <div
                 class="euiDataGrid__virtualized"
-                style="position:relative;height:500px;width:500px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+                style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
               >
                 <div
                   style="height:102px;width:200px"
