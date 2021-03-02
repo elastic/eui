@@ -23,7 +23,7 @@ export {
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
-export { useEuiTheme, withEuiTheme } from './hooks';
+export { useEuiTheme, withEuiTheme, WithEuiThemeProps } from './hooks';
 export { EuiThemeProvider } from './provider';
 export {
   buildTheme,
