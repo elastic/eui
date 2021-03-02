@@ -19,12 +19,12 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, PanelProps } from '../panel';
+import { EuiPanel, _EuiPanelProps } from '../panel';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 
 export type _EuiSplitPanelInnerProps = Omit<
-  PanelProps,
+  _EuiPanelProps,
   'hasShadow' | 'borderRadius'
 >;
 
@@ -35,7 +35,7 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
 }) => {
   const classes = classNames('euiSplitPanel__inner', className);
 
-  const panelProps: PanelProps = {
+  const panelProps: _EuiPanelProps = {
     hasShadow: false,
     color: 'transparent',
     borderRadius: 'none',
@@ -61,7 +61,7 @@ export type _EuiSplitPanelOuterProps = {
    * Stacks row display on small screens
    */
   responsive?: false | EuiBreakpointSize[];
-} & Omit<PanelProps, 'paddingSize'>;
+} & Omit<_EuiPanelProps, 'paddingSize'>;
 
 export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = ({
   children,
