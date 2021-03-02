@@ -5,8 +5,12 @@ const ScrollToHash: FunctionComponent = () => {
   const location = useLocation();
   useEffect(() => {
     const element = document.getElementById(location.hash.replace('#', ''));
+    const headerOffset = 72;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({
+        top: element.offsetTop - headerOffset,
+        behavior: 'smooth',
+      });
     } else {
       window.scrollTo({
         behavior: 'auto',

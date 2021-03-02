@@ -1,30 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="150" viewBox="0 0 300 150">
-  <defs>
-    <path id="forms-a" d="M13.0688508,5.15725038 L8.38423975,9.76827428 C8.17054415,9.97861308 7.82999214,9.97914095 7.61576025,9.76827428 L2.93114915,5.15725038 C2.7181359,4.94758321 2.37277319,4.94758321 2.15975994,5.15725038 C1.94674669,5.36691756 1.94674669,5.70685522 2.15975994,5.9165224 L6.84437104,10.5275463 C7.48517424,11.1582836 8.51644979,11.1566851 9.15562896,10.5275463 L13.8402401,5.9165224 C14.0532533,5.70685522 14.0532533,5.36691756 13.8402401,5.15725038 C13.6272268,4.94758321 13.2818641,4.94758321 13.0688508,5.15725038 Z"/>
-  </defs>
-  <g fill="none" fill-rule="evenodd">
-    <rect width="300" height="150" fill="#5A77AD" opacity=".18"/>
-    <rect width="93" height="24" fill="#FFF" transform="translate(26 63)"/>
-    <g transform="translate(26 102)">
-      <rect width="72" height="24" fill="#017D73" rx="2"/>
-      <polygon fill="#FFF" points="8 8 64 8 64 16 8 16" opacity=".343"/>
-    </g>
-    <g transform="translate(26 24)">
-      <rect width="250" height="24" fill="#FFF"/>
-      <polygon fill="#69707D" points="8 8 144 8 144 16 8 16"/>
-      <rect width="1" height="18" x="147" y="3" fill="#000"/>
-    </g>
-    <g transform="translate(131 63)">
-      <rect width="145" height="24" fill="#FFF"/>
-      <g transform="translate(122 4)">
-        <mask id="forms-b" fill="#fff">
-          <use xlink:href="#forms-a"/>
-        </mask>
-        <use fill="#3F3F3F" fill-rule="nonzero" xlink:href="#forms-a"/>
-        <g fill="#3F3F3F" mask="url(#forms-b)">
-          <rect width="16" height="16"/>
-        </g>
-      </g>
-    </g>
-  </g>
+<svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.18" d="M300 0H0V150H300V0Z" fill="#5A77AD"/>
+<rect x="25" y="16" width="66.0526" height="6" rx="2" fill="#7D869C" fill-opacity="0.5"/>
+<rect x="25" y="30" width="250" height="24" rx="2" fill="white"/>
+<rect x="25.5" y="30.5" width="249" height="23" rx="1.5" stroke="#7D869C" stroke-opacity="0.5"/>
+<rect x="25" y="70" width="120" height="24" rx="2" fill="white"/>
+<rect x="25.5" y="70.5" width="119" height="23" rx="1.5" stroke="#7D869C" stroke-opacity="0.5"/>
+<rect x="169" y="70" width="106" height="24" rx="2" fill="white"/>
+<rect x="169.5" y="70.5" width="105" height="23" rx="1.5" stroke="#7D869C" stroke-opacity="0.5"/>
+<path d="M266.379 80.1048L263.256 83.1788C263.114 83.3191 262.887 83.3194 262.744 83.1788L259.621 80.1048C259.479 79.9651 259.249 79.9651 259.107 80.1048C258.964 80.2446 258.964 80.4712 259.107 80.611L262.23 83.685C262.657 84.1055 263.344 84.1045 263.77 83.685L266.893 80.611C267.036 80.4712 267.036 80.2446 266.893 80.1048C266.751 79.9651 266.521 79.9651 266.379 80.1048Z" fill="#7D869C" fill-opacity="0.5"/>
+<rect x="25" y="110" width="72" height="24" rx="3.64534" fill="#0077CC"/>
+<rect x="43" y="120" width="36" height="4" rx="1.2" fill="white"/>
 </svg>
