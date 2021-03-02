@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import Playground from './playground';
+import { pageTemplateConfig } from './playground';
+import { PageDemo } from './_page_demo';
 
 import {
   EuiCode,
@@ -11,71 +13,117 @@ import {
   EuiPageBody,
   EuiPageContent,
   EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
   EuiPageHeader,
-  EuiPageHeaderSection,
   EuiPageSideBar,
   EuiText,
+  EuiEmptyPrompt,
+  EuiPageTemplate,
+  EuiCallOut,
   EuiSpacer,
 } from '../../../../src/components';
 
-import Page from './page';
-const pageSource = require('!!raw-loader!./page');
-const pageHtml = renderToHtml(Page);
+import PageNew from './page_new';
+const pageNewSource = require('!!raw-loader!./page_new');
+import PageTemplate from './page_template';
+const PageTemplateSource = require('!!raw-loader!./page_template');
+const PageTemplateHtml = renderToHtml(PageTemplate);
+
+import PageRestricingWidth from './page_restricting_width';
+const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
+import PageRestricingWidthTemplate from './page_restricting_width_template';
+const PageRestricingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+const PageRestricingWidthTemplateHtml = renderToHtml(
+  PageRestricingWidthTemplate
+);
+
+import PageCenteredBody from './page_centered_body';
+const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
+import PageCenteredBodyTemplate from './page_centered_body_template';
+const PageCenteredBodyTemplateSource = require('!!raw-loader!./page_centered_body_template');
+const PageCenteredBodyTemplateHtml = renderToHtml(PageCenteredBodyTemplate);
+
+import PageCenteredContent from './page_centered_content';
+const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
+import PageCenteredContentTemplate from './page_centered_content_template';
+const PageCenteredContentTemplateSource = require('!!raw-loader!./page_centered_content_template');
+const PageCenteredContentTemplateHtml = renderToHtml(
+  PageCenteredContentTemplate
+);
 
 import PageSimple from './page_simple';
-const pageSimpleSource = require('!!raw-loader!./page_simple');
-const pageSimpleHtml = renderToHtml(PageSimple);
+const PageSimpleSource = require('!!raw-loader!./page_simple');
+import PageSimpleTemplate from './page_simple_template';
+const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
+const PageSimpleTemplateHtml = renderToHtml(PageSimpleTemplate);
 
-import PageHeader from './page_header';
-const pageHeaderSource = require('!!raw-loader!./page_header');
-const pageHeaderHtml = renderToHtml(PageHeader);
+import PageSimpleCenteredBody from './page_simple_content_body';
+const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
+import PageSimpleCenteredBodyTemplate from './page_simple_content_body_template';
+const PageSimpleCenteredBodyTemplateSource = require('!!raw-loader!./page_simple_content_body_template');
+const PageSimpleCenteredBodyTemplateHtml = renderToHtml(
+  PageSimpleCenteredBodyTemplate
+);
 
-import PageHeaderTabs from './page_header_tabs';
-const pageHeaderTabsSource = require('!!raw-loader!./page_header_tabs');
-const pageHeaderTabsHtml = renderToHtml(PageHeaderTabs);
+import PageSimpleEmptyContent from './page_simple_empty_content';
+const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simple_empty_content');
+import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
+const PageSimpleEmptyContentTemplateSource = require('!!raw-loader!./page_simple_empty_content_template');
+const PageSimpleEmptyContentTemplateHtml = renderToHtml(
+  PageSimpleEmptyContentTemplate
+);
 
-import PageHeaderCustom from './page_header_custom';
-const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
-const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
+import PageCustomContent from './page_custom_content';
+const PageCustomContentSource = require('!!raw-loader!./page_custom_content');
+import PageCustomContentTemplate from './page_custom_content_template';
+const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_content_template');
+const PageCustomContentTemplateHtml = renderToHtml(PageCustomContentTemplate);
 
-import PageContentOnly from './page_content_only';
-const pageContentOnlySource = require('!!raw-loader!./page_content_only');
-const pageContentOnlyHtml = renderToHtml(Page);
-
-import PageContentCenter from './page_content_center';
-const pageContentCenterSource = require('!!raw-loader!./page_content_center');
-const pageContentCenterHtml = renderToHtml(Page);
-
-import PageContentCenterWithSideBar from './page_content_center_with_side_bar';
-const PageContentCenterWithSideBarSource = require('!!raw-loader!./page_content_center_with_side_bar');
-const PageContentCenterWithSideBarHtml = renderToHtml(Page);
+import PageLegacy from './page';
+const PageLegacySource = require('!!raw-loader!./page');
+const PageLegacyHtml = renderToHtml(PageLegacy);
 
 export const PageExample = {
-  playground: Playground,
   title: 'Page',
+  playground: [pageTemplateConfig],
   intro: (
-    <EuiText>
-      <p>
-        Page layouts are modular and have the ability to add or remove
-        components as needed for the design. These examples are colored for
-        illustrative purposes only.
-      </p>
+    <>
+      <EuiText>
+        <p>
+          Page layouts are modular and fit together in a precise manner, though
+          certain parts can also be added or removed as needed. EUI provides
+          both the indivdual page components and an over-arching template for
+          easily creating some pre-defined layouts.
+        </p>
+      </EuiText>
       <EuiSpacer />
-    </EuiText>
+      <EuiCallOut
+        iconType="document"
+        title="The following examples showcase the both the template and custom built usages of the page components.">
+        <p>
+          You&apos;ll find the code for each in their own tab and if you go to
+          full screen, you can see how they would behave in a typical
+          applicaiton layout.
+        </p>
+      </EuiCallOut>
+    </>
   ),
   sections: [
     {
-      title: 'A full page layout with everything on',
+      title: 'A full page with everything',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: pageSource,
+          code: PageTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: pageNewSource,
+          displayName: 'Components JS',
         },
         {
           type: GuideSectionTypes.HTML,
-          code: pageHtml,
+          code: PageTemplateHtml,
         },
       ],
       text: (
@@ -87,265 +135,480 @@ export const PageExample = {
           </p>
           <ul>
             <li>
-              <strong>EuiPage</strong> provides the overall wrapper.
-            </li>
-            <li>
-              <strong>EuiPageHeader</strong> provides a title, description,
-              section for actions and possible tabs.
-            </li>
-            <li>
-              <strong>EuiPageContent</strong> and its family of related
-              components provide the main content container.
+              <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
+              the overall wrapper with a column flex display.
             </li>
             <li>
               <strong>EuiPageSideBar</strong> provides a way to add side
-              navigation.
+              navigation that can be made <EuiCode>sticky</EuiCode> to scroll
+              independent of the page content. See{' '}
+              <Link to="/navigation/side-nav">
+                <strong>EuiSideNav</strong>
+              </Link>{' '}
+              for contents.
+            </li>
+            <li>
+              <Link to="/layout/page-header">
+                <strong>EuiPageHeader</strong>
+              </Link>{' '}
+              provides a title, description, section for actions and possible
+              tabs.
+            </li>
+            <li>
+              <strong>EuiPageContent</strong> provides the main content
+              container and extends{' '}
+              <Link to="/layout/panel">
+                <strong>EuiPanel</strong>
+              </Link>
+              .
+            </li>
+            <li>
+              <strong>EuiPageContentBody</strong> wraps the content that comes
+              after the page header.
             </li>
           </ul>
           <p>
-            By default, the entire page will always be 100% of the window&apos;s
-            width; to max out the typical width and center the page, set the{' '}
-            <EuiCode>restrictWidth</EuiCode> prop to <EuiCode>true</EuiCode>.
-            You can also pass an integer to this property to max out the width
-            at a custom pixel value or a string with a custom measurement.
+            Or you can use the provided <strong>EuiPageTemplate</strong>, which
+            is simply a shortcut for creating the different types of page layout
+            patterns described in these docs. It is somewhat opinionated, but
+            still has the ability to customize most of the inner components with
+            props like <EuiCode>pageSideBarProps</EuiCode> and{' '}
+            <EuiCode>pageContentProps</EuiCode>.
           </p>
+        </div>
+      ),
+      props: {
+        EuiPageTemplate,
+        EuiPage,
+        EuiPageBody,
+        EuiPageSideBar,
+        EuiPageHeader,
+        EuiPageContent,
+        EuiPageContentBody,
+      },
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageNew
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Restricting page width',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageRestricingWidthTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageRestricingWidthSource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageRestricingWidthTemplateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Most content does not scale well to the full width of the window.
+            You can restrict this to a typical width and center the page by
+            setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
+            <EuiCode>true</EuiCode> on <strong>EuiPageHeader</strong> and{' '}
+            <strong>EuiPageContent</strong>. You can also pass an integer to
+            this property to max out the width at a custom pixel value or a
+            string with a custom measurement.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                The <strong>EuiPageTemplate</strong> allows setting this
+                property at the top level and defaults to{' '}
+                <EuiCode>true</EuiCode>.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageRestricingWidthTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageRestricingWidth
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Centered body',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredBodyTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredBodySource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageCenteredBodyTemplateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When the content for the page is minimal or in an empty/pre-setup
+            state, the page content can be centered vertically and horizontally.
+            We recommend then using the{' '}
+            <Link to="/display/empty-prompt">
+              <strong>EuiEmptyPrompt</strong>
+            </Link>{' '}
+            for the content.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="centeredBody"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo centered>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageCenteredBodyTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageCenteredBody
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+      props: { EuiPageTemplate, EuiEmptyPrompt },
+    },
+    {
+      title: 'Centered content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredContentSource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageCenteredContentTemplateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Similar to the previous example, you can create a centered panel to
+            emphasize incompleteness even with a page header. For this setup, we
+            recommend using setting <strong>EuiPageContent</strong> to use the{' '}
+            <EuiCode>subdued</EuiCode> color as to not have nested shadows.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="centeredContent"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo centered>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageCenteredContentTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            ) : (
+              <PageCenteredContent
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'A simple page with tabs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleSource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageSimpleTemplateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
+            slightly different configuration by pulling the page hader out of
+            the <strong>EuiPageContent</strong> and removing the shadow from{' '}
+            <strong>EuiPageContent</strong>.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout will automatically be achieved through{' '}
+                <strong>EuiPageTemplate</strong> by leaving{' '}
+                <EuiCode>pageSideBar</EuiCode> as <EuiCode>undefined</EuiCode>.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageSimpleTemplate button={<Button />} content={<Content />} />
+            ) : (
+              <PageSimple button={<Button />} content={<Content />} />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Simple layout with centered body',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleCenteredBodyTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleCenteredBodySource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageSimpleCenteredBodyTemplateHtml,
+        },
+      ],
+      text: (
+        <p>
+          Similar to the version with a side bar, when the content for the page
+          is minimal or in an empty/pre-setup state, the page content can be
+          centered vertically and horizontally. We recommend then using the{' '}
+          <Link to="/display/empty-prompt">
+            <strong>EuiEmptyPrompt</strong>
+          </Link>{' '}
+          for the content.
+        </p>
+      ),
+      demo: (
+        <PageDemo centered>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageSimpleCenteredBodyTemplate
+                button={<Button />}
+                content={<Content />}
+              />
+            ) : (
+              <PageSimpleCenteredBody
+                button={<Button />}
+                content={<Content />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Simple layout with centered content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleEmptyContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageSimpleEmptyContentSource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageSimpleEmptyContentTemplateHtml,
+        },
+      ],
+      text: (
+        <p>
+          Also similar to the previous examples, you can create a centered panel
+          to emphasis incompleteness even with a page header. For this setup,
+          You will need to use nested <strong>EuiPageContent</strong> components
+          in order for the centering to work.
+        </p>
+      ),
+      demo: (
+        <PageDemo centered>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageSimpleEmptyContentTemplate
+                button={<Button />}
+                content={<Content />}
+              />
+            ) : (
+              <PageSimpleEmptyContent
+                button={<Button />}
+                content={<Content />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'A simple page layout with custom content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCustomContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCustomContentSource,
+          displayName: 'Components JS',
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageCustomContentTemplateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            You can replace the inner parts of <strong>EuiPageBody</strong> with
+            your own content, with or without a page header. This allows you to
+            create dashboard style layouts with lots of panels. It is not
+            recommended, however, to use this setup when you also have side bar.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="empty"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageCustomContentTemplate button={<Button />} />
+            ) : (
+              <PageCustomContent button={<Button />} />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Legacy layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageLegacySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PageLegacyHtml,
+        },
+      ],
+      text: (
+        <p>
+          In previous versions of EUI, we emulated page layouts where the{' '}
+          <strong>EuiPageContent</strong> had margins all around created by
+          padding on <strong>EuiPage</strong>. This layout is still achievable
+          but not through <strong>EuiPageTemplate</strong>. You must use the{' '}
+          <strong>EuiPage</strong> components manually as seen in this example.
+        </p>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout--legacy">
+          <PageLegacy />
         </div>
       ),
       props: {
         EuiPage,
         EuiPageBody,
+        EuiPageSideBar,
+        EuiPageHeader,
         EuiPageContent,
         EuiPageContentBody,
-        EuiPageContentHeader,
-        EuiPageContentHeaderSection,
-        EuiPageHeader,
-        EuiPageHeaderSection,
-        EuiPageSideBar,
       },
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <Page />
-        </div>
-      ),
-    },
-    {
-      title: 'A simple page layout with a title',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageSimpleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageSimpleHtml,
-        },
-      ],
-      text: (
-        <p>
-          Most pages don&rsquo;t have sidebars. A lot of our pages don&rsquo;t
-          have extra abilities next to the title. Simply exclude those
-          components and everything will still line up.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageSimple />
-        </div>
-      ),
-    },
-    {
-      title: 'A simple page layout with content only',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageContentOnlySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageContentOnlyHtml,
-        },
-      ],
-      text: <p>We can further simplify pages by only showing the content.</p>,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentOnly />
-        </div>
-      ),
-    },
-    {
-      title: 'A simple page layout with content centered',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageContentCenterSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageContentCenterHtml,
-        },
-      ],
-      text: (
-        <p>
-          The page content can be optionally centered either vertically or
-          horizontally. This is useful for various empty states.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenter />
-        </div>
-      ),
-    },
-    {
-      title: 'A simple page layout with content centered in a full layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageContentCenterWithSideBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageContentCenterWithSideBarHtml,
-        },
-      ],
-      text: (
-        <p>
-          Centering the content can happen regardless of layout configuration.
-          In this example, we&rsquo;re centering within a complex sidebar
-          layout.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContentCenterWithSideBar />
-        </div>
-      ),
-    },
-    {
-      title: 'The page header in detail',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageHeaderSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            <strong>EuiPageHeader</strong> provides props for opinionated,
-            consistent formatting of your header. Any combination of{' '}
-            <EuiCode>pageTitle</EuiCode>, <EuiCode>description</EuiCode>,{' '}
-            <EuiCode>tabs</EuiCode>, or any <EuiCode>children</EuiCode> will
-            adjust the layout as needed.
-          </p>
-          <p>
-            An additional prop <EuiCode>rightSideItems</EuiCode> allows for a
-            simple <strong>array of nodes</strong> which will layout in a
-            flexbox row. This is commonly used for adding multiple buttons, of
-            which, at least one should be primary (or{' '}
-            <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
-            also displayed in <strong>reverse order</strong> so that the first
-            and primary array item will be displayed on the far right.
-          </p>
-          <p>
-            You can further adjust the display of these content types with an
-            optional <EuiCode>iconType</EuiCode> placed to the left of the
-            title, <EuiCode>alignItems</EuiCode> for adjusting the vertical
-            alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>{' '}
-            to determine which content side to display first on smaller screens.
-          </p>
-        </>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout--single">
-          <PageHeader />
-        </div>
-      ),
-      props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  description="Example of a description."
-  rightSideItems={[
-    <EuiButton fill>Button 1</EuiButton>,
-    <EuiButton>Button 2</EuiButton>
-  ]}
-/>`,
-    },
-    {
-      title: 'Tabs in the page header',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageHeaderTabsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderTabsHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            When using supplying <EuiCode>tabs</EuiCode> without a{' '}
-            <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
-            promote those tabs as if they are the page title. This means that
-            any <EuiCode>description</EuiCode>, or <EuiCode>children</EuiCode>{' '}
-            will sit <strong>below</strong> the tabs.
-          </p>
-        </>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout--single">
-          <PageHeaderTabs />
-        </div>
-      ),
-      props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  description="Example of a description."
-/>`,
-    },
-    {
-      title: 'Customizing the page header',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageHeaderCustomSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderCustomHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            The page header content props mainly are helpful props to push
-            content into established Elastic page layout patterns. They are
-            completely optional and by nature, inflexible. If you need a layout
-            that does not match these patterns you can simply pass in your own{' '}
-            <EuiCode>children</EuiCode> utilizing the{' '}
-            <strong>EuiPageHeaderSection</strong> components.
-          </p>
-        </>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageHeaderCustom />
-        </div>
-      ),
-      props: { EuiPageHeader },
     },
   ],
 };

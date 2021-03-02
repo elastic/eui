@@ -3,28 +3,16 @@
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
-.guideBody {
-  background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
-
-  &--overflowHidden {
-    overflow: hidden;
-  }
+#guide { // sass-lint:disable-line no-ids
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$euiHeaderHeightCompensation});
 }
 
 @include euiHeaderAffordForFixed;
 
-.euiBody--headerIsFixed {
-  .guideSideNav {
-    top: $euiHeaderHeightCompensation;
-  }
-}
-
 .euiBody--headerIsFixed--double {
   @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
-
-  .guideSideNav {
-    top: $euiHeaderHeightCompensation * 2;
-  }
 
   .euiHeader:not(.euiHeader--fixed) {
     // Force headers below the full screen.
@@ -33,36 +21,18 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guidePage {
-  padding: 0;
+.guideSideNav {
+  min-width: $guideSideNavWidth;
 }
 
-.guideSideNav {
-  width: $guideSideNavWidth;
-  position: fixed;
-  top: 0;
-  bottom: 0;
+.guideSideNav__content {
+  @include euiYScroll;
+  padding: 0 $euiSizeL $euiSizeL;
+}
 
-  .guideSideNav__identity {
-    border-bottom: $euiBorderThin;
-    padding: $euiSize;
-  }
-
-  .guideSideNav__theme {
-    font-size: $euiFontSizeS;
-    color: $euiColorDarkShade;
-  }
-
-  .guideSideNav__content {
-    @include euiScrollBar;
-
-    width: $guideSideNavWidth;
-    padding: $euiSize;
-    position: absolute;
-    bottom: 0;
-    top: 132px;
-    overflow-y: auto;
-  }
+.guideSideNav__search {
+  flex-shrink: 0;
+  padding: $euiSizeL;
 }
 
 .guideSideNav__item {
@@ -90,29 +60,34 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   color: $euiColorDarkShade;
 }
 
-.guidePageContent {
-  flex: 1 1 auto;
-  padding: $euiSize $euiSizeXL;
-  min-height: 100vh;
-  background-color: $euiColorEmptyShade;
-  border-left: $euiBorderThin;
-  max-width: $euiPageDefaultMaxWidth;
-  margin-left: 240px;
+.guideDemo__highlightLayout,
+.guideDemo__highlightLayout--playground,
+.guideDemo__highlightLayout--legacy {
+  border: 1px solid transparentize($euiColorPrimary, .9);
+  overflow: hidden;
+  height: 460px;
+  display: flex;
+
+  .euiPageSideBar--sticky {
+    top: 0;
+  }
 }
 
-.guideDemo__highlightLayout {
-  .euiPageBody {
-    min-height: 460px;
-  }
+.guideDemo__highlightLayout--playground > div:not(.euiPage) {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important; // sass-lint:disable-line no-important
 
+  > .euiPage--grow {
+    height: 100%;
+  }
+}
+
+.guideDemo__highlightLayout--legacy {
   > div,
   > div > div {
     background: transparentize($euiColorPrimary, .9);
   }
-}
-
-.guideDemo__highlightLayout--single {
-  background: transparentize($euiColorPrimary, .9);
 }
 
 .guideDemo__highlightSpacer {
@@ -124,14 +99,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideDemo__highlightGrid {
   .euiFlexItem {
     background: transparentize($euiColorPrimary, .9);
-    padding: 16px;
+    padding: $euiSize;
   }
 }
 
 .guideDemo__highlightGridWrap {
   .euiFlexItem div {
     background: transparentize($euiColorPrimary, .9);
-    padding: 16px;
+    padding: $euiSize;
   }
 }
 
@@ -239,6 +214,25 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 100%;
   left: 0;
   top: 0;
+  z-index: $euiZHeader + 1;
+  overflow: auto;
+
+  &--withHeader {
+    top: $euiHeaderHeightCompensation;
+    bottom: 0;
+    height: auto;
+    z-index: $euiZHeader - 1;
+    display: flex;
+    flex-direction: column;
+
+    .euiPageSideBar--sticky {
+      top: 0;
+    }
+  }
+}
+
+.guideBody--overflowHidden {
+  overflow: hidden;
 }
 
 .euiDataGridRowCell--favoriteFranchise {
@@ -264,46 +258,30 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @import 'guide_rule/index';
 
 @include euiBreakpoint('xs', 's') {
-  .guidePage {
-    display: block; // Fixes IE
-  }
-
-  .guideBody {
-    background: none;
-  }
-
   .guideSideNav {
-    position: static;
-    width: auto;
-
-    // This is a temporary hack till we fix how classes pass into form controls
-    .euiFormControlLayout,
-    input[type='search'] {
-      max-width: 100%;
-    }
-
-    .guideSideNav__content {
-      position: relative;
-      width: auto;
-      top: auto;
-      bottom: auto;
-      padding: 0;
-      overflow-y: hidden;
-    }
-
-    .guideSideNav__identity {
-      position: relative;
-      width: auto;
-    }
-
-    .guideSideNav__mobileToggle {
-      background: $euiColorPrimary;
-      color: $euiColorEmptyShade !important;
-    }
+    width: 100%;
   }
 
-  .guidePageContent {
-    margin-left: 0;
-    width: 100%;
+  .guideSideNav__content {
+    padding: 0;
+    border-top: $euiBorderThin;
+  }
+}
+
+.guideHomePage__blockformCard {
+  min-width: 200px;
+  flex-basis: 100% !important;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiBreakpoint('s', 'm') {
+    flex-basis: 45% !important; // sass-lint:disable-line no-important
+  }
+
+  @include euiBreakpoint('l') {
+    flex-basis: 30% !important; // sass-lint:disable-line no-important
+  }
+
+  @include euiBreakpoint('xl') {
+    flex-basis: 22% !important; // sass-lint:disable-line no-important
   }
 }
