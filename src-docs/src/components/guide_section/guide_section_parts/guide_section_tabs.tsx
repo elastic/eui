@@ -114,11 +114,13 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
       const components = Object.keys(selectedTab.props);
 
       return components.map((component) => (
-        <GuideSectionPropsTable
-          key={component}
-          componentName={component}
-          component={selectedTab.props[component]}
-        />
+        <EuiErrorBoundary>
+          <GuideSectionPropsTable
+            key={component}
+            componentName={component}
+            component={selectedTab.props[component]}
+          />
+        </EuiErrorBoundary>
       ));
     }
   };
