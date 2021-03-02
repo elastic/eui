@@ -7,6 +7,7 @@
 
 - Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 - Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
+- Fixed highlighting issue if input text in `EuiComboBox`  
 
 ## Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
 
