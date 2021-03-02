@@ -48,9 +48,9 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
 
   const accordionAriaLabelButtonText = useEuiI18n(
     'euiNotificationEventMessages.ariaLabelMessagesLength',
-    '+ {ariaLabelMessagesLength} messages for {eventName}',
+    '+ {messagesLength} messages for {eventName}',
     {
-      ariaLabelMessagesLength: messages.length,
+      messagesLength: messages.length,
       eventName,
     }
   );
