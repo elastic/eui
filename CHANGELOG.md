@@ -6,7 +6,7 @@
 
 **Bug fixes**
 
-- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4564597))
+- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4597))
 
 ## [`31.9.0`](https://github.com/elastic/eui/tree/v31.9.0)
 
