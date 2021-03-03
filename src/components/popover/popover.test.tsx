@@ -266,6 +266,24 @@ describe('EuiPopover', () => {
       });
     });
 
+    describe('panelProps', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              panelProps={requiredProps}
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
+
     describe('offset', () => {
       test('with arrow', () => {
         const component = mount(

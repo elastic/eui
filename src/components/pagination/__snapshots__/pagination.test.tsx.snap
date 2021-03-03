@@ -8,7 +8,7 @@ exports[`EuiPagination is rendered 1`] = `
 >
   <button
     aria-label="Previous page, 1"
-    class="euiButtonIcon euiButtonIcon--text"
+    class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
     data-test-subj="pagination-button-previous"
     type="button"
   >
@@ -45,7 +45,7 @@ exports[`EuiPagination is rendered 1`] = `
   </ul>
   <button
     aria-label="Next page, 3"
-    class="euiButtonIcon euiButtonIcon--text"
+    class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
     data-test-subj="pagination-button-next"
     type="button"
   >
