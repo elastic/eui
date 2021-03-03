@@ -4,14 +4,14 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-  const [theme] = useEuiTheme();
+  const { euiTheme } = useEuiTheme();
 
   return (
     <div
       css={{
-        background: theme.colors.euiColorLightShade,
-        padding: theme.sizes.euiSizeXL,
-        color: theme.colors.euiTextColor,
+        background: euiTheme.colors.euiColorLightShade,
+        padding: euiTheme.sizes.euiSizeXL,
+        color: euiTheme.colors.euiTextColor,
       }}>
       <p>{children}</p>
     </div>

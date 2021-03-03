@@ -9,24 +9,26 @@ import {
   useEuiTheme,
 } from '../../../../src/services';
 
+interface ThemeExtensions {
+  colors: {
+    customColorPrimary: string;
+    customColorPrimaryHighlight: string;
+    customColorPrimaryText: string;
+  };
+}
+
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-  const [theme] = useEuiTheme();
+  const { euiTheme } = useEuiTheme<ThemeExtensions>();
 
   return (
     <EuiText
       css={{
-        // @ts-ignore Needs to be fixed in types
-        background: theme.colors.customColorPrimaryHighlight,
-        padding: theme.sizes.euiSizeXL,
-        // @ts-ignore Needs to be fixed in types
-        color: theme.colors.customColorPrimaryText,
+        background: euiTheme.colors.customColorPrimaryHighlight,
+        padding: euiTheme.sizes.euiSizeXL,
+        color: euiTheme.colors.customColorPrimaryText,
       }}>
       <p>
-        <EuiIcon
-          type="stopFilled"
-          // @ts-ignore Needs to be fixed in types
-          color={theme.colors.customColorPrimary}
-        />{' '}
+        <EuiIcon type="stopFilled" color={euiTheme.colors.customColorPrimary} />{' '}
         {children}
       </p>
     </EuiText>

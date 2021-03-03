@@ -193,6 +193,9 @@ export const ThemeExample = {
             You can however, directly override computed values as well by
             passing a custom value to this theme variable.
           </p>
+          <p>
+            <em>TODO: Indicate type support for custom keys.</em>
+          </p>
         </>
       ),
       demo: <Computed />,
