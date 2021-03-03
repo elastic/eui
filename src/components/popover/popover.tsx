@@ -43,7 +43,7 @@ import {
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { EuiPanel, PanelPaddingSize } from '../panel';
+import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../panel';
 
 import { EuiPortal } from '../portal';
 
@@ -145,6 +145,10 @@ export interface EuiPopoverProps {
    * Standard DOM `style` attribute. Passed to the EuiPanel
    */
   panelStyle?: CSSProperties;
+  /**
+   * Object of props passed to EuiPanel
+   */
+  panelProps?: Omit<EuiPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
@@ -663,6 +667,7 @@ export class EuiPopover extends Component<Props, State> {
       closePopover,
       panelClassName,
       panelPaddingSize,
+      panelProps,
       panelRef,
       panelStyle,
       popoverRef,
@@ -701,7 +706,8 @@ export class EuiPopover extends Component<Props, State> {
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
-      panelClassName
+      panelClassName,
+      panelProps?.className
     );
 
     let panel;
@@ -756,6 +762,7 @@ export class EuiPopover extends Component<Props, State> {
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }>
             <EuiPanel
+              {...(panelProps as EuiPanelProps)}
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
