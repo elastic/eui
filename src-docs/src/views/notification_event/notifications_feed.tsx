@@ -71,7 +71,10 @@ const notificationEventsData = [
       time: '8 min ago',
     },
     title: 'Index Threshold Alert',
-    messages: ['[prod-server-001] is above 700'],
+    messages: [
+      '[prod-server-001] is above 300',
+      '[prod-server-001] is above 700',
+    ],
     isRead: false,
   },
   {

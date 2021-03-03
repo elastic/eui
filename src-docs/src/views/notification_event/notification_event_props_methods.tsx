@@ -33,7 +33,11 @@ export default () => {
             <div className="euiNotificationEventMeta">
               <div className="euiNotificationEventMeta__section">
                 <EuiIcon type="logoElastic" />
-                <EuiBadge color="hollow">meta.type: meta.severity</EuiBadge>
+                <EuiBadge
+                  className="euiNotificationEventMeta__badge"
+                  color="hollow">
+                  meta.type: meta.severity
+                </EuiBadge>
               </div>
 
               <div className="euiNotificationEventMeta__section">meta.time</div>

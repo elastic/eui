@@ -296,30 +296,37 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
+        class="euiText euiText--small"
+      >
+        <p>
+          message 1
+        </p>
+      </div>
+      <div
         class="euiAccordion euiNotificationEventMessages__accordion"
       >
         <div
           class="euiAccordion__triggerWrapper"
         >
           <button
-            aria-controls="generated-id"
+            aria-controls="euiNotificationEventMessagesAccordion_generated-id"
             aria-expanded="false"
-            aria-label="+ 3 messages for title"
-            class="euiAccordion__button"
+            aria-label="+ 2 messages for title"
+            class="euiAccordion__button euiNotificationEventMessages__accordionButton"
             id="generated-id"
             type="button"
           >
             <span
               class="euiIEFlexWrapFix"
             >
-              + 3 messages
+              + 2 more
             </span>
           </button>
         </div>
         <div
           aria-labelledby="generated-id"
           class="euiAccordion__childWrapper"
-          id="generated-id"
+          id="euiNotificationEventMessagesAccordion_generated-id"
           role="region"
           tabindex="-1"
         >
@@ -330,15 +337,20 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
               <div
                 class="euiNotificationEventMessages__accordionContent"
               >
-                <p>
-                  message 1
-                </p>
-                <p>
-                  message 2
-                </p>
-                <p>
-                  message 3
-                </p>
+                <div
+                  class="euiText euiText--small"
+                >
+                  <p>
+                    message 2
+                  </p>
+                </div>
+                <div
+                  class="euiText euiText--small"
+                >
+                  <p>
+                    message 3
+                  </p>
+                </div>
               </div>
             </div>
           </div>

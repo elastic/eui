@@ -243,12 +243,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideDemo__notificationEventCircleIndicator {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: $euiSize;
+  height: $euiSize;
   background: $euiColorPrimary;
   color: $euiColorEmptyShade;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: $euiSizeM;
+  line-height: $euiSize;
   text-align: center;
   border-radius: 50%;
 }

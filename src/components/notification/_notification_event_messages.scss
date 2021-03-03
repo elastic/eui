@@ -6,6 +6,10 @@
     color: $euiColorDarkShade;
   }
 
+  &__accordionButton {
+    color: $euiLinkColor;
+  }
+
   &__accordionContent {
     > * {
       padding-top: $euiSizeS;
