@@ -256,6 +256,7 @@ export {
   EuiPageHeaderContent,
   EuiPageHeaderSection,
   EuiPageSideBar,
+  EuiPageTemplate,
 } from './page';
 
 export { EuiPagination, EuiPaginationButton } from './pagination';
@@ -293,7 +294,7 @@ export {
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable';
 
-export { EuiSideNav, EuiSideNavProps } from './side_nav';
+export { EuiSideNav } from './side_nav';
 
 export { EuiSpacer } from './spacer';
 

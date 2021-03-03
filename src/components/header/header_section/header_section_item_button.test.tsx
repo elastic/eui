@@ -40,6 +40,12 @@ describe('EuiHeaderSectionItemButton', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('renders a link', () => {
+    const component = render(<EuiHeaderSectionItemButton href="#" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('renders notification', () => {
     test('as a badge', () => {
       const component = render(<EuiHeaderSectionItemButton notification="1" />);

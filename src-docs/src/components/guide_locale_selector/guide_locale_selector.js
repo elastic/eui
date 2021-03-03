@@ -17,19 +17,20 @@ moment.defineLocale('en-xa', {
 // Reset default moment locale after using `defineLocale`
 moment.locale('en');
 
-import { EuiSwitch, EuiFormRow } from '../../../../src/components';
+import { EuiSwitch, EuiToolTip } from '../../../../src/components';
 
 export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
   return (
-    <EuiFormRow label="Translations for development" hasChildLabel={false}>
+    <EuiToolTip delay="long" position="left" content="Simulates localization">
       <EuiSwitch
-        label="Activate babelfish"
+        compressed
+        label={'Babelfish'}
         checked={selectedLocale === 'en-xa'}
         onChange={() =>
           onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')
         }
       />
-    </EuiFormRow>
+    </EuiToolTip>
   );
 };
 

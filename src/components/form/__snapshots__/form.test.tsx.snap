@@ -26,6 +26,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
     aria-live="assertive"
     class="euiCallOut euiCallOut--danger euiForm__errors"
     role="alert"
+    tabindex="-1"
   >
     <div
       class="euiCallOutHeader"
@@ -50,6 +51,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     aria-live="assertive"
     class="euiCallOut euiCallOut--danger euiForm__errors"
     role="alert"
+    tabindex="-1"
   >
     <div
       class="euiCallOutHeader"
@@ -94,6 +96,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     aria-live="assertive"
     class="euiCallOut euiCallOut--danger euiForm__errors"
     role="alert"
+    tabindex="-1"
   >
     <div
       class="euiCallOutHeader"
