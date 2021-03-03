@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed hover effect of nested clickable rows in `EuiBasicTable` ([#4566](https://github.com/elastic/eui/pull/4566))
+- Fixed visual bug in drag&drop sections when nested in an popover ([#4590](https://github.com/elastic/eui/pull/4590))
 
 ## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
 

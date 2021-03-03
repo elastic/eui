@@ -462,7 +462,7 @@ export class EuiPopover extends Component<Props, State> {
 
     // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
     const { durationMatch, delayMatch } = Array.prototype.slice
-      .call(this.panel ? this.panel.children : [])
+      .call(this.panel ? [this.panel, ...Array.from(this.panel.children)] : [])
       .reduce(
         ({ durationMatch, delayMatch }, element) => {
           const transitionTimings = getTransitionTimings(element);
@@ -603,8 +603,6 @@ export class EuiPopover extends Component<Props, State> {
           ? anchorBoundingBox.left
           : left,
       zIndex,
-      // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
-      willChange: 'transform, opacity',
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
@@ -774,7 +772,13 @@ export class EuiPopover extends Component<Props, State> {
               aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
-              style={this.state.popoverStyles}>
+              style={{
+                ...this.state.popoverStyles,
+                // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
+                willChange: !this.state.isOpenStable
+                  ? 'transform, opacity'
+                  : undefined,
+              }}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>
