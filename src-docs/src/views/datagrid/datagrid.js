@@ -280,6 +280,13 @@ export default () => {
             });
           }
         }
+        return () => {
+          setCellProps({
+            style: {
+              backgroundColor: 'transparent',
+            },
+          });
+        };
       }, [rowIndex, columnId, setCellProps, data]);
 
       function getFormatted() {

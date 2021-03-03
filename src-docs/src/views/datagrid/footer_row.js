@@ -92,6 +92,13 @@ export default () => {
             });
           }
         }
+        return () => {
+          setCellProps({
+            style: {
+              backgroundColor: 'transparent',
+            },
+          });
+        };
       }, [rowIndex, columnId, setCellProps]);
 
       return raw_data.hasOwnProperty(rowIndex)
