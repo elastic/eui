@@ -151,7 +151,7 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>meta</EuiCode> (required): Provides important
-                information about the event, like when it was received, the type
+                information about the event, like the <EuiCode>time</EuiCode> it was received, the <EuiCode>type</EuiCode>
                 of event, and its severity. Use the{' '}
                 <EuiCode>badgeColor</EuiCode> in conjunction with the{' '}
                 <EuiCode>severity</EuiCode> to better indicate the level of
