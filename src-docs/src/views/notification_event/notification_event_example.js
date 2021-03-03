@@ -160,7 +160,7 @@ export const NotificationEventExample = {
               </li>
               <li>
                 <EuiCode>onContextMenu</EuiCode>: Use this prop when you have
-                multiple events, and you need to add individual actions to each
+                multiple events and you need to add individual actions to each
                 event. You can add filters based on the event type or a more
                 descriptive read/unread actions as an alternative to the read
                 indicator.
