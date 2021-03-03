@@ -25,7 +25,7 @@ import { EuiText } from '../text';
 
 export type EuiNotificationEventMessagesProps = {
   /*
-  An array of strings
+  * An array of strings that get individually wrapped in `<p>` tags
   */
   messages: string[];
   /**
