@@ -155,7 +155,7 @@ export const NotificationEventExample = {
                 of event, and its severity. Use the{' '}
                 <EuiCode>badgeColor</EuiCode> in conjunction with the{' '}
                 <EuiCode>severity</EuiCode> to better indicate the level of
-                urgency. You can also pass an icon/logo to help users quickly
+                urgency. You can also pass an <EuiCode>iconType</EuiCode> to help users quickly
                 identify an event.
               </li>
               <li>
