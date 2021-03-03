@@ -23,7 +23,6 @@ const markdownFormatSinkHtml = renderToHtml(MarkdownFormatSink);
 export const MarkdownFormatExample = {
   title: 'Markdown format',
   beta: true,
-  isNew: true,
   intro: (
     <Fragment>
       <EuiText>

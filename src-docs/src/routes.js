@@ -215,6 +215,8 @@ import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
+import { ThemeExample } from './views/theme/theme_example';
+
 /** Elastic Charts */
 
 import { ElasticChartsThemingExample } from './views/elastic_charts/theming_example';
@@ -484,6 +486,7 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
+      ThemeExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
   },
