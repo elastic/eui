@@ -184,6 +184,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
               </EuiI18n>
             }
             closePopover={() => setIsPopoverOpen(false)}>
+            {/* The EuiContextMenu is wrapped with a div so it closes after an item is clicked */}
             <div onClick={() => setIsPopoverOpen(false)}>
               <EuiContextMenuPanel items={contextMenuItems} />
             </div>
