@@ -1,8 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
+
 **Bug fixes**
 
+- Fixed hover effect of nested clickable rows in `EuiBasicTable` ([#4566](https://github.com/elastic/eui/pull/4566))
 - Fixed visual bug in drag&drop sections when nested in an popover ([#4590](https://github.com/elastic/eui/pull/4590))
+
+## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
+
+**Bug fixes**
+
+- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4597))
 
 ## [`31.9.0`](https://github.com/elastic/eui/tree/v31.9.0)
 
@@ -17,7 +26,7 @@
 - Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 - Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
 
-## Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
+### Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
 
 - Added new `EuiPageTemplate` component as a shortcut for creating the different types of page layout patterns
 - Added props `grow` and `direction` to `EuiPage`
