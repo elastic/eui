@@ -7,7 +7,7 @@ No public interface changes since `31.9.1`.
 **Bug fixes**
 
 - Fixed the ability to navigate through the docs pages using the left/right keyboard arrows ([#4600](https://github.com/elastic/eui/pull/4600))
-- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4564597))
+- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4597))
 
 ## [`31.9.0`](https://github.com/elastic/eui/tree/v31.9.0)
 
