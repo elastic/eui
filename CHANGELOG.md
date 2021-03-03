@@ -7,6 +7,7 @@
 
 - Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 - Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
+- Fixed the problem of the sub-tables not showing the hover effect in `EuiBasicTable`. ([#4566](https://github.com/elastic/eui/pull/4566))
 
 ## Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
 
