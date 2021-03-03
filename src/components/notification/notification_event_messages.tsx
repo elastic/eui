@@ -29,7 +29,7 @@ export type EuiNotificationEventMessagesProps = {
    */
   messages: string[];
   /**
-   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..). If nothing is passed it gets the title from #EuiNotificationEvent.
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
    */
   eventName: string;
 };

@@ -278,6 +278,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
   > * {
     position: relative;
+    margin-right: $euiSizeXS;
   }
 
   .guideDemo__notificationEventCircleIndicator {
@@ -305,6 +306,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   > * {
     margin-top: $euiSizeS;
   }
+}
+
+.guideDemo__notificationEventBadge {
+  flex: 1;
 }
 
 .euiDataGridRowCell--favoriteFranchise {

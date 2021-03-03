@@ -44,12 +44,11 @@ export type EuiNotificationHeadingLevel =
   | 'h5'
   | 'h6';
 
-export type EuiNotificationEventProps = {
+export type EuiNotificationEventProps = Omit<
+  EuiNotificationEventMetaProps,
+  'isRead' | 'onOpenContextMenu' | 'onRead'
+> & {
   id: string;
-  /**
-   * See #EuiNotificationEventMeta.
-   */
-  meta: EuiNotificationEventMetaProps;
   /**
    * The title of the event.
    */
@@ -92,8 +91,14 @@ export type EuiNotificationEventProps = {
 
 export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> = ({
   id,
-  meta,
+  type,
+  severity,
+  badgeColor,
+  iconType,
+  iconAriaLabel,
+  time,
   title,
+  eventName,
   isRead,
   primaryAction,
   messages,
@@ -122,17 +127,17 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   return (
     <article aria-labelledby={randomHeadingId} className={classes} key={id}>
       <EuiNotificationEventMeta
-        type={meta.type}
-        severity={meta.severity}
-        badgeColor={meta.badgeColor}
-        iconType={meta.iconType}
-        iconAriaLabel={meta.iconAriaLabel}
-        time={meta.time}
+        type={type}
+        severity={severity}
+        badgeColor={badgeColor}
+        iconType={iconType}
+        iconAriaLabel={iconAriaLabel}
+        time={time}
         isRead={isRead}
         onOpenContextMenu={
           onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
         }
-        eventName={meta.eventName ?? title}
+        eventName={eventName ?? title}
         onRead={() => onRead?.(id, isRead!)}
       />
 
@@ -147,7 +152,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
 
         <EuiNotificationEventMessages
           messages={messages}
-          eventName={meta.eventName ?? title}
+          eventName={eventName ?? title}
         />
 
         {onClickPrimaryAction && primaryAction && (

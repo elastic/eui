@@ -8,14 +8,13 @@ import { EuiNotificationEvent } from '../../../../src/components/notification/no
 const notificationEventsData = [
   {
     id: 'alert-01',
-    meta: {
-      type: 'Alert',
-      severity: 'Warning',
-      iconType: 'logoMaps',
-      iconAriaLabel: 'Maps',
-      badgeColor: 'warning',
-      time: '1 min ago',
-    },
+    type: 'Alert',
+    severity: 'Warning',
+    iconType: 'logoMaps',
+    iconAriaLabel: 'Maps',
+    badgeColor: 'warning',
+    time: '1 min ago',
+    eventName: 'alert-warning-01',
     title: '[Maps] Geo Alert',
     messages: [
       'The request completed at 12:32:33 GMT+4',
@@ -26,12 +25,11 @@ const notificationEventsData = [
   },
   {
     id: 'report-01',
-    meta: {
-      type: 'Report',
-      iconType: 'logoKibana',
-      iconAriaLabel: 'Kibana',
-      time: '3 min ago',
-    },
+    type: 'Report',
+    iconType: 'logoKibana',
+    iconAriaLabel: 'Kibana',
+    time: '3 min ago',
+    eventName: 'report-01',
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
       iconType: 'download',
@@ -44,13 +42,12 @@ const notificationEventsData = [
   },
   {
     id: 'news-01',
-    meta: {
-      type: 'News',
-      iconType: 'logoElastic',
-      iconAriaLabel: 'Elastic',
-      time: '6 min ago',
-      badgeColor: 'accent',
-    },
+    type: 'News',
+    iconType: 'logoElastic',
+    iconAriaLabel: 'Elastic',
+    time: '6 min ago',
+    eventName: 'news-01',
+    badgeColor: 'accent',
     title: 'Search more, spend less',
     messages: [
       'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
@@ -62,14 +59,13 @@ const notificationEventsData = [
   },
   {
     id: 'alert-02',
-    meta: {
-      type: 'Alert',
-      severity: 'Critical',
-      iconType: 'logoKibana',
-      iconAriaLabel: 'Kibana',
-      badgeColor: 'danger',
-      time: '8 min ago',
-    },
+    type: 'Alert',
+    severity: 'Critical',
+    iconType: 'logoKibana',
+    iconAriaLabel: 'Kibana',
+    badgeColor: 'danger',
+    time: '8 min ago',
+    eventName: 'alert-critical-01',
     title: 'Index Threshold Alert',
     messages: [
       '[prod-server-001] is above 300',
@@ -79,12 +75,11 @@ const notificationEventsData = [
   },
   {
     id: 'background-search-01',
-    meta: {
-      type: 'Background Search',
-      iconType: 'logoKibana',
-      iconAriaLabel: 'Kibana',
-      time: '10 min ago',
-    },
+    type: 'Background Search',
+    iconType: 'logoKibana',
+    iconAriaLabel: 'Kibana',
+    time: '10 min ago',
+    eventName: 'background-search-01',
     title: '[Flights] Flight Count and Average Ticket Price',
     messages: ['The request completed at 12:32:33 GMT+4'],
     isRead: false,
@@ -103,16 +98,13 @@ export default () => {
   };
 
   const onFilterByType = (type: string) => {
-    const nextState = events.filter((event) => type.includes(event.meta.type));
+    const nextState = events.filter((event) => type.includes(event.type));
 
     setEvents(nextState);
   };
 
   const onOpenContextMenu = (id: string) => {
-    const {
-      isRead,
-      meta: { type },
-    } = events.find(({ id: eventId }) => eventId === id)!;
+    const { isRead, type } = events.find(({ id: eventId }) => eventId === id)!;
 
     return [
       <EuiContextMenuItem
@@ -139,13 +131,17 @@ export default () => {
 
   const notificationEvents = events.map((event) => {
     // we want to make the news title unclickable
-    const onClickTitle = event.meta.type === 'News' ? undefined : () => {};
+    const onClickTitle = event.type === 'News' ? undefined : () => {};
 
     return (
       <EuiNotificationEvent
         key={event.id}
         id={event.id}
-        meta={event.meta}
+        type={event.type}
+        iconType={event.iconType}
+        iconAriaLabel={event.iconAriaLabel}
+        time={event.time}
+        eventName={event.eventName}
         title={event.title}
         isRead={event.isRead}
         primaryAction={event.primaryAction}

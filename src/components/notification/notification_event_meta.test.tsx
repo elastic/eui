@@ -27,9 +27,9 @@ describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
     const component = render(
       <EuiNotificationEventMeta
-        eventName="eventName"
         type="Alert"
         time={<span>2 min ago</span>}
+        eventName="eventName"
       />
     );
 
@@ -55,8 +55,8 @@ describe('EuiNotificationEventMeta', () => {
         <EuiNotificationEventMeta
           type="Alert"
           time={<span>2 min ago</span>}
-          isRead={true}
           eventName="eventName"
+          isRead={true}
         />
       );
 
@@ -68,8 +68,8 @@ describe('EuiNotificationEventMeta', () => {
         <EuiNotificationEventMeta
           type="Alert"
           time={<span>2 min ago</span>}
-          badgeColor="secondary"
           eventName="eventName"
+          badgeColor="secondary"
         />
       );
 
@@ -107,6 +107,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           iconType="logoCloud"
+          eventName="eventName"
           onOpenContextMenu={() => contextMenuItems}
         />
       );
@@ -131,9 +132,9 @@ describe('EuiNotificationEventMeta', () => {
         <EuiNotificationEventMeta
           type="Alert"
           time={<span>2 min ago</span>}
+          eventName="eventName"
           isRead={true}
           onRead={onRead}
-          eventName="eventName"
         />
       );
 

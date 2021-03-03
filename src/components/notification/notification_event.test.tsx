@@ -28,11 +28,9 @@ describe('EuiNotificationEvent', () => {
     const component = render(
       <EuiNotificationEvent
         id="id"
-        meta={{
-          type: 'Alert',
-          eventName: 'alert-warning-01',
-          time: '1 min ago',
-        }}
+        type="Alert"
+        eventName="alert-1"
+        time="1 min ago"
         title="title"
         messages={['message']}
       />
@@ -46,10 +44,9 @@ describe('EuiNotificationEvent', () => {
       const component = render(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           title="title"
           messages={['message 1', 'message 2', 'message 3']}
         />
@@ -62,10 +59,9 @@ describe('EuiNotificationEvent', () => {
       const component = render(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           isRead={true}
           title="title"
           messages={['message']}
@@ -79,10 +75,9 @@ describe('EuiNotificationEvent', () => {
       const component = render(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           title="title"
           headingLevel="h4"
           messages={['message']}
@@ -110,11 +105,9 @@ describe('EuiNotificationEvent', () => {
       const component = mount(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            eventName: 'alert-warning-01',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           title="title"
           messages={['message']}
           onOpenContextMenu={onOpenContextMenu}
@@ -140,11 +133,9 @@ describe('EuiNotificationEvent', () => {
       const component = mount(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            eventName: 'alert-warning-01',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           isRead={true}
           onRead={onRead}
           title="title"
@@ -165,11 +156,9 @@ describe('EuiNotificationEvent', () => {
       const component = mount(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            eventName: 'alert-warning-01',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           isRead={true}
           onClickPrimaryAction={onClickPrimaryAction}
           primaryAction={{
@@ -193,11 +182,9 @@ describe('EuiNotificationEvent', () => {
       const component = mount(
         <EuiNotificationEvent
           id="id"
-          meta={{
-            type: 'Alert',
-            eventName: 'alert-warning-01',
-            time: '1 min ago',
-          }}
+          type="Alert"
+          time="1 min ago"
+          eventName="alert-1"
           onClickTitle={onClickTitle}
           title="title"
           messages={['message']}

@@ -12,7 +12,6 @@ import {
   EuiAccordion,
   EuiCodeBlock,
 } from '../../../../src/components';
-import { notificationEventReadButtonConfig } from './playground';
 import { EuiNotificationEventPrimaryAction } from './props';
 import NotificationEventPropsMethods from './notification_event_props_methods';
 
@@ -30,12 +29,11 @@ const notificationsFeedHtml = renderToHtml(NotificationsFeed);
 
 const notificationEventSnippet = `<EuiNotificationEvent
   id={id}
-  meta={{
-    type: 'Alert',
-    iconType: 'logoMaps',
-    iconAriaLabel: 'Maps',
-    time: '1 min ago',
-  }}
+  type="Alert"
+  iconType= "logoMaps"
+  iconAriaLabel="Maps"
+  time={time}
+  eventName={eventName}
   title={title}
   isRead={isRead}
   primaryAction={primaryAction}
@@ -51,7 +49,11 @@ const notificationEvents = events.map((event) => (
   <EuiNotificationEvent
     key={event.id}
     id={event.id}
-    meta={event.meta}
+    type={event.type}
+    iconType={event.iconType}
+    iconAriaLabel={event.iconAriaLabel}
+    time={event.time}
+    eventName={event.eventName}
     title={event.title}
     isRead={event.isRead}
     primaryAction={event.primaryAction}
@@ -150,14 +152,20 @@ export const NotificationEventExample = {
                 between read and unread states.
               </li>
               <li>
-                <EuiCode>meta</EuiCode> (required): Provides important
-                information about the event, like the <EuiCode>time</EuiCode> it
-                was received, the <EuiCode>type</EuiCode>
-                of event, and its severity. Use the{' '}
+                <EuiCode>iconType</EuiCode> An <EuiCode>iconType</EuiCode> to
+                help users quickly identify an event.
+              </li>
+              <li>
+                <EuiCode>type</EuiCode> (required): Use this prop to show a
+                badge with the <EuiCode>type</EuiCode> of event and its{' '}
+                <EuiCode>severity</EuiCode>. Use the{' '}
                 <EuiCode>badgeColor</EuiCode> in conjunction with the{' '}
                 <EuiCode>severity</EuiCode> to better indicate the level of
-                urgency. You can also pass an <EuiCode>iconType</EuiCode> to
-                help users quickly identify an event.
+                urgency.
+              </li>
+              <li>
+                <EuiCode>time</EuiCode> (required): Use this prop to indicate
+                the time the event was received.
               </li>
               <li>
                 <EuiCode>onContextMenu</EuiCode>: Use this prop when you have
@@ -238,5 +246,4 @@ export const NotificationEventExample = {
       demo: <NotificationsFeed />,
     },
   ],
-  playground: notificationEventReadButtonConfig,
 };

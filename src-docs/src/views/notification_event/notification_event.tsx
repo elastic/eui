@@ -32,12 +32,11 @@ export default () => {
     <EuiPanel paddingSize="none" hasShadow={true} style={{ maxWidth: '540px' }}>
       <EuiNotificationEvent
         id="report"
-        meta={{
-          type: 'Report',
-          iconType: 'logoKibana',
-          iconAriaLabel: 'Kibana',
-          time: '1 min ago',
-        }}
+        type="Report"
+        iconType="logoKibana"
+        iconAriaLabel="Kibana"
+        time="1 min ago"
+        eventName="report-01"
         title="[Error Monitoring Report] is generated"
         primaryAction={{
           iconType: 'download',

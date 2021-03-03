@@ -49,9 +49,9 @@ export type EuiNotificationEventMetaProps = Omit<
    */
   type: string;
   /**
-   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..). If nothing is passed it gets the title from #EuiNotificationEvent.
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
    */
-  eventName?: string;
+  eventName: string;
   /**
    * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
    */
@@ -134,7 +134,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
           <EuiNotificationEventReadButton
             isRead={isRead}
             onClick={onMarkAsRead}
-            eventName={eventName!}
+            eventName={eventName}
           />
         )}
 

@@ -8,12 +8,11 @@ import { EuiNotificationEvent } from '../../../../src/components/notification/no
 const notificationEventsData = [
   {
     id: 'report',
-    meta: {
-      type: 'Report',
-      iconType: 'logoKibana',
-      iconAriaLabel: 'Kibana',
-      time: '1 min ago',
-    },
+    type: 'Report',
+    iconType: 'logoKibana',
+    iconAriaLabel: 'Kibana',
+    time: '1 min ago',
+    eventName: 'report-01',
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
       iconType: 'download',
@@ -24,13 +23,12 @@ const notificationEventsData = [
   },
   {
     id: 'alert',
-    meta: {
-      type: 'Alert',
-      iconType: 'logoMaps',
-      iconAriaLabel: 'Maps',
-      badgeColor: 'warning',
-      time: '2 min ago',
-    },
+    type: 'Alert',
+    iconType: 'logoMaps',
+    iconAriaLabel: 'Maps',
+    badgeColor: 'warning',
+    time: '2 min ago',
+    eventName: 'alert-warning-01',
     title: '[Maps] Geo Alert',
     messages: [
       'The request completed at 12:32:33 GMT+4',
@@ -42,13 +40,12 @@ const notificationEventsData = [
 
   {
     id: 'news',
-    meta: {
-      type: 'News',
-      iconType: 'logoElastic',
-      iconAriaLabel: 'Elastic',
-      time: '3 min ago',
-      badgeColor: 'accent',
-    },
+    type: 'News',
+    iconType: 'logoElastic',
+    iconAriaLabel: 'Elastic',
+    time: '3 min ago',
+    eventName: 'news-01',
+    badgeColor: 'accent',
     title: 'Search more, spend less',
     messages: [
       'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
@@ -131,7 +128,11 @@ export default () => {
         <EuiNotificationEvent
           key={event.id}
           id={event.id}
-          meta={event.meta}
+          type={event.type}
+          iconType={event.iconType}
+          iconAriaLabel={event.iconAriaLabel}
+          time={event.time}
+          eventName={event.eventName}
           title={event.title}
           isRead={event.isRead}
           primaryAction={event.primaryAction}
