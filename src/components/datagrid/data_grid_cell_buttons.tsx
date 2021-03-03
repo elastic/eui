@@ -52,8 +52,9 @@ export const EuiDataGridCellButtons = ({
       default="Click or hit enter to interact with cell content">
       {(expandButtonTitle: string) => (
         <EuiButtonIcon
+          display="fill"
           className={buttonIconClasses}
-          color="ghost"
+          color="primary"
           iconSize="s"
           iconType="expandMini"
           aria-hidden

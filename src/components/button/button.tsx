@@ -50,10 +50,6 @@ export type ButtonColor =
   | 'warning'
   | 'danger'
   | 'ghost'
-  /**
-   * Set for deprecation 2/26/20
-   * This color button can easily be confused with disabled, it should not be used
-   */
   | 'text';
 
 export type ButtonSize = 's' | 'm';

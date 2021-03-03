@@ -132,7 +132,6 @@ const uiPluginConcepts = [
 export const MarkdownPluginExample = {
   title: 'Markdown plugins',
   beta: true,
-  isNew: true,
   intro: (
     <Fragment>
       <EuiText>

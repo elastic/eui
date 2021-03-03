@@ -53,7 +53,6 @@ const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
-  isNew: true,
   beta: true,
   intro: (
     <EuiText>
