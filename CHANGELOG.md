@@ -2,6 +2,10 @@
 
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
 
+**Bug fixes**
+
+- Fixed hover effect of nested clickable rows in `EuiBasicTable` ([#4566](https://github.com/elastic/eui/pull/4566))
+
 ## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
 
 **Bug fixes**
@@ -20,7 +24,6 @@
 
 - Fixed the return type of `getDefaultEuiMarkdownUiPlugins` ([#4567](https://github.com/elastic/eui/pull/4567))
 - Fixed inverse handling of boolean sorting in `EuiDataGrid` ([#4561](https://github.com/elastic/eui/pull/4561))
-- Fixed the problem of the sub-tables not showing the hover effect in `EuiBasicTable`. ([#4566](https://github.com/elastic/eui/pull/4566))
 
 ### Feature: EuiPageTemplate ([#4517](https://github.com/elastic/eui/pull/4517))
 
