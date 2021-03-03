@@ -2,6 +2,10 @@
 
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
 
+**Bug fixes**
+
+- Fixed an errant export of `EuiSideNavProps` type from JS code ([#4604](https://github.com/elastic/eui/pull/4604))
+
 ## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
 
 **Bug fixes**
