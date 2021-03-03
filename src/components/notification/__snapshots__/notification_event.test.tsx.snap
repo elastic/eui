@@ -186,10 +186,10 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       class="euiNotificationEventMeta__section"
     >
       <button
-        aria-label="Mark alert-1 as unread."
+        aria-label="Mark title as unread"
         class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
         data-test-subj="notificationEventReadButton"
-        title="Mark alert-1 as unread."
+        title="Mark {eventName} as unread"
         type="button"
       >
         <span
@@ -311,7 +311,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
           <button
             aria-controls="euiNotificationEventMessagesAccordion_generated-id"
             aria-expanded="false"
-            aria-label="+ 2 messages for alert-1"
+            aria-label="+ 2 messages for title"
             class="euiAccordion__button euiNotificationEventMessages__accordionButton"
             id="generated-id"
             type="button"

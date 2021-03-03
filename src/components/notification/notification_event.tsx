@@ -46,7 +46,7 @@ export type EuiNotificationHeadingLevel =
 
 export type EuiNotificationEventProps = Omit<
   EuiNotificationEventMetaProps,
-  'isRead' | 'onOpenContextMenu' | 'onRead'
+  'onOpenContextMenu' | 'onRead' | 'eventName'
 > & {
   id: string;
   /**
@@ -61,10 +61,6 @@ export type EuiNotificationEventProps = Omit<
    * Returns the `id` and applies an `onClick` handler to the title.
    */
   onClickTitle?: (id: string) => void;
-  /**
-   * Shows an indicator of the read state of the event.
-   */
-  isRead?: boolean | undefined;
   /**
    * See #EuiNotificationEventPrimaryAction.
    */
@@ -98,7 +94,6 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   iconAriaLabel,
   time,
   title,
-  eventName,
   isRead,
   primaryAction,
   messages,
@@ -137,7 +132,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
         onOpenContextMenu={
           onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
         }
-        eventName={eventName ?? title}
+        eventName={title}
         onRead={() => onRead?.(id, isRead!)}
       />
 
@@ -150,10 +145,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
           createElement(headingLevel, titleProps, title)
         )}
 
-        <EuiNotificationEventMessages
-          messages={messages}
-          eventName={eventName ?? title}
-        />
+        <EuiNotificationEventMessages messages={messages} eventName={title} />
 
         {onClickPrimaryAction && primaryAction && (
           <div className="euiNotificationEvent__primaryAction">
