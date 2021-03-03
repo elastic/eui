@@ -1,5 +1,7 @@
 import React, { createElement, Fragment } from 'react';
 
+import { createHashHistory } from 'history';
+
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
@@ -500,6 +502,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
+  history: createHashHistory(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: (path) => {
