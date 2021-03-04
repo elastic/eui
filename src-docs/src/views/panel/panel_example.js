@@ -252,9 +252,11 @@ export const PanelExample = {
             <EuiCode>column</EuiCode> (default) and <EuiCode>row</EuiCode>.
           </p>
           <p>
-            You can adjust at which breakpoints a <EuiCode>row</EuiCode> layout
-            will stack by passing a new array, or <EuiCode>false</EuiCode>, to
-            the <EuiCode>responsive</EuiCode> prop.
+            For custom responsiveness, you can adjust at which breakpoints a{' '}
+            <EuiCode>row</EuiCode> layout will stack by passing a new array of
+            breakpoint names <EuiCode>{"['xs', 's']"}</EuiCode> to the{' '}
+            <EuiCode>responsive</EuiCode> prop, or completely turn it off with{' '}
+            <EuiCode>false</EuiCode>.
           </p>
         </>
       ),
