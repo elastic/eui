@@ -36,7 +36,6 @@ export default () => {
         iconType="logoKibana"
         iconAriaLabel="Kibana"
         time="1 min ago"
-        eventName="report-01"
         title="[Error Monitoring Report] is generated"
         primaryAction={{
           iconType: 'download',

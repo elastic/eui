@@ -14,7 +14,6 @@ const notificationEventsData = [
     iconAriaLabel: 'Maps',
     badgeColor: 'warning',
     time: '1 min ago',
-    eventName: 'alert-warning-01',
     title: '[Maps] Geo Alert',
     messages: [
       'The request completed at 12:32:33 GMT+4',
@@ -29,7 +28,6 @@ const notificationEventsData = [
     iconType: 'logoKibana',
     iconAriaLabel: 'Kibana',
     time: '3 min ago',
-    eventName: 'report-01',
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
       iconType: 'download',
@@ -46,7 +44,6 @@ const notificationEventsData = [
     iconType: 'logoElastic',
     iconAriaLabel: 'Elastic',
     time: '6 min ago',
-    eventName: 'news-01',
     badgeColor: 'accent',
     title: 'Search more, spend less',
     messages: [
@@ -65,7 +62,6 @@ const notificationEventsData = [
     iconAriaLabel: 'Kibana',
     badgeColor: 'danger',
     time: '8 min ago',
-    eventName: 'alert-critical-01',
     title: 'Index Threshold Alert',
     messages: [
       '[prod-server-001] is above 300',
@@ -79,7 +75,6 @@ const notificationEventsData = [
     iconType: 'logoKibana',
     iconAriaLabel: 'Kibana',
     time: '10 min ago',
-    eventName: 'background-search-01',
     title: '[Flights] Flight Count and Average Ticket Price',
     messages: ['The request completed at 12:32:33 GMT+4'],
     isRead: false,
@@ -141,7 +136,6 @@ export default () => {
         iconType={event.iconType}
         iconAriaLabel={event.iconAriaLabel}
         time={event.time}
-        eventName={event.eventName}
         title={event.title}
         isRead={event.isRead}
         primaryAction={event.primaryAction}

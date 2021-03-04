@@ -33,7 +33,6 @@ const notificationEventSnippet = `<EuiNotificationEvent
   iconType= "logoMaps"
   iconAriaLabel="Maps"
   time={time}
-  eventName={eventName}
   title={title}
   isRead={isRead}
   primaryAction={primaryAction}
@@ -53,7 +52,6 @@ const notificationEvents = events.map((event) => (
     iconType={event.iconType}
     iconAriaLabel={event.iconAriaLabel}
     time={event.time}
-    eventName={event.eventName}
     title={event.title}
     isRead={event.isRead}
     primaryAction={event.primaryAction}

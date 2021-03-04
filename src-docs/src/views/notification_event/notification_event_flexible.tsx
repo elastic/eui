@@ -12,7 +12,6 @@ const notificationEventsData = [
     iconType: 'logoKibana',
     iconAriaLabel: 'Kibana',
     time: '1 min ago',
-    eventName: 'report-01',
     title: '[Error Monitoring Report] is generated',
     primaryAction: {
       iconType: 'download',
@@ -28,7 +27,6 @@ const notificationEventsData = [
     iconAriaLabel: 'Maps',
     badgeColor: 'warning',
     time: '2 min ago',
-    eventName: 'alert-warning-01',
     title: '[Maps] Geo Alert',
     messages: [
       'The request completed at 12:32:33 GMT+4',
@@ -44,7 +42,6 @@ const notificationEventsData = [
     iconType: 'logoElastic',
     iconAriaLabel: 'Elastic',
     time: '3 min ago',
-    eventName: 'news-01',
     badgeColor: 'accent',
     title: 'Search more, spend less',
     messages: [
@@ -132,7 +129,6 @@ export default () => {
           iconType={event.iconType}
           iconAriaLabel={event.iconAriaLabel}
           time={event.time}
-          eventName={event.eventName}
           title={event.title}
           isRead={event.isRead}
           primaryAction={event.primaryAction}
