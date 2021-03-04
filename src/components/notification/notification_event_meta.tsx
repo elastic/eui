@@ -138,7 +138,13 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
           />
         )}
 
-        {iconType && <EuiIcon type={iconType} {...ariaAttribute} />}
+        {iconType && (
+          <EuiIcon
+            className="euiNotificationEventMeta__icon"
+            type={iconType}
+            {...ariaAttribute}
+          />
+        )}
 
         {type && (
           <EuiBadge

@@ -182,6 +182,7 @@ exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
   >
     <span
       aria-hidden="true"
+      class="euiNotificationEventMeta__icon"
       data-euiicon-type="logoCloud"
     />
     <span

@@ -19,10 +19,6 @@
   &__section {
     margin-right: $euiSizeS;
 
-    > * + * {
-      margin-left: $euiSizeS;
-    }
-
     &:first-child {
       display: flex;
       flex: 1;
@@ -33,6 +29,7 @@
   &__badge {
     max-width: 100%;
     display: inline-grid; // forces truncation of the badge
+    margin-left: $euiSizeS;
   }
 
   &__time {
