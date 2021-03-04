@@ -68,7 +68,52 @@ describe('EuiNotificationEvent', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('headingLevel  is rendered', () => {
+    test('severity  is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          type="Alert"
+          time="1 min ago"
+          severity="severity"
+          title="title"
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('badgeColor is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          type="Alert"
+          time="1 min ago"
+          badgeColor="warning"
+          title="title"
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('iconType is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          type="Alert"
+          time="1 min ago"
+          iconType="logoCloud"
+          title="title"
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('headingLevel is rendered', () => {
       const component = render(
         <EuiNotificationEvent
           id="id"
@@ -76,6 +121,22 @@ describe('EuiNotificationEvent', () => {
           time="1 min ago"
           title="title"
           headingLevel="h4"
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('iconAriaLabel is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          type="Alert"
+          time="1 min ago"
+          title="title"
+          iconType="logoCloud"
+          iconAriaLabel="my icon aria label"
           messages={['message']}
         />
       );

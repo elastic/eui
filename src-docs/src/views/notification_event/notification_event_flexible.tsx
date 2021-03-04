@@ -24,6 +24,7 @@ const notificationEventsData = [
     id: 'alert',
     type: 'Alert',
     iconType: 'logoMaps',
+    severity: 'Warning',
     iconAriaLabel: 'Maps',
     badgeColor: 'warning',
     time: '2 min ago',
@@ -126,6 +127,8 @@ export default () => {
           key={event.id}
           id={event.id}
           type={event.type}
+          severity={event.severity}
+          badgeColor={event.badgeColor}
           iconType={event.iconType}
           iconAriaLabel={event.iconAriaLabel}
           time={event.time}

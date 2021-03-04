@@ -26,10 +26,13 @@
     }
   }
 
+  &__icon {
+    margin-right: $euiSizeS;
+  }
+
   &__badge {
     max-width: 100%;
     display: inline-grid; // forces truncation of the badge
-    margin-left: $euiSizeS;
   }
 
   &__time {
