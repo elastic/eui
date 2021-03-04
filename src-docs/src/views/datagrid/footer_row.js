@@ -93,11 +93,7 @@ export default () => {
           }
         }
         return () => {
-          setCellProps({
-            style: {
-              backgroundColor: 'transparent',
-            },
-          });
+          setCellProps({});
         };
       }, [rowIndex, columnId, setCellProps]);
 
