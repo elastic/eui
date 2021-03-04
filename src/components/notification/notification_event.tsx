@@ -70,7 +70,7 @@ export type EuiNotificationEventProps = Omit<
      */
     primaryAction?: string;
     /**
-     * Apply more props to the `primaryAction button`. See #EuiButtonEmpty
+     * Apply more props to the `primaryAction` button. See #EuiPrimaryActionProps.
      */
     primaryActionProps?: EuiButtonEmptyProps;
     /**

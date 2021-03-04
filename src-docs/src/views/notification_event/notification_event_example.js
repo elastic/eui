@@ -11,7 +11,7 @@ import {
   EuiCode,
   EuiAccordion,
   EuiCodeBlock,
-  EuiButtonEmpty,
+  EuiButtonEmpty as EuiPrimaryActionProps,
 } from '../../../../src/components';
 import NotificationEventPropsMethods from './notification_event_props_methods';
 
@@ -102,7 +102,7 @@ export const NotificationEventExample = {
         EuiNotificationEvent,
         EuiNotificationEventMeta,
         EuiContextMenuItem,
-        EuiButtonEmpty,
+        EuiPrimaryActionProps,
       },
       snippet: notificationEventSnippet,
       demo: <NotificationEvent />,
@@ -208,7 +208,7 @@ export const NotificationEventExample = {
         EuiNotificationEvent,
         EuiNotificationEventMeta,
         EuiContextMenuItem,
-        EuiButtonEmpty,
+        EuiPrimaryActionProps,
       },
       snippet: notificationEventSnippet,
       demo: <NotificationEventFlexible />,
@@ -239,7 +239,7 @@ export const NotificationEventExample = {
         EuiNotificationEvent,
         EuiNotificationEventMeta,
         EuiContextMenuItem,
-        EuiButtonEmpty,
+        EuiPrimaryActionProps,
       },
       snippet: notificationEventFeedSnippet,
       demo: <NotificationsFeed />,

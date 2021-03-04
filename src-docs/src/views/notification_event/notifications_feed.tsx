@@ -9,23 +9,18 @@ const notificationEventsData = [
   {
     id: 'alert-01',
     type: 'Alert',
-    severity: 'Warning curabitur vulputate nisl nunc',
+    severity: 'Warning',
     iconType: 'logoMaps',
     iconAriaLabel: 'Maps',
     badgeColor: 'warning',
-    time: 'Received yesterday at 17:12:16 GMT+4 and mauris posuere',
-    title:
-      '[Maps] Geo Alert and scelerisque maximus lorem, vel ornare ante dictum eget',
+    time: '1 min ago',
+    title: '[Maps] Geo Alert',
     messages: [
       'The request completed at 12:32:33 GMT+4',
       'The request completed at 12:32:33 GMT+4',
       'A background request started at 12:32:33 GMT+4',
     ],
     isRead: false,
-    primaryAction: 'Download',
-    primaryActionProps: {
-      iconType: 'download',
-    },
   },
   {
     id: 'report-01',
