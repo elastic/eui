@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { fake } from 'faker';
 
 import {
   EuiDataGrid,
-  EuiButtonIcon,
   EuiImage,
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components/';
-import { iconTypes } from '../icon/icons';
 
 const columns = [
   {
@@ -104,25 +102,21 @@ const Franchise = (props) => {
   );
 };
 
-export default class DataGridSchema extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data,
-      sortingColumns: [{ id: 'custom', direction: 'asc' }],
-
-      pagination: {
-        pageIndex: 0,
-        pageSize: 10,
-      },
-
-      visibleColumns: columns.map(({ id }) => id),
-    };
-  }
-
-  setSorting = (sortingColumns) => {
-    const data = [...this.state.data].sort((a, b) => {
+const DataGridSchema = () => {
+  const [dataState, setDataState] = useState(data);
+  console.log(dataState);
+  const [sortingColumns, setSortingColumns] = useState([
+    { id: 'custom', direction: 'asc' },
+  ]);
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [visibleColumns, setVisibleColumnsState] = useState(
+    columns.map(({ id }) => id)
+  );
+  const setSorting = (sortingColumns) => {
+    const dataState = [...dataState].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
         const column = sortingColumns[i];
         const aValue = a[column.id];
@@ -134,93 +128,80 @@ export default class DataGridSchema extends Component {
 
       return 0;
     });
-
-    this.setState({ data, sortingColumns });
+    setDataState(dataState);
+    setSortingColumns(sortingColumns);
   };
 
-  setPageIndex = (pageIndex) =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageIndex },
-    }));
+  const setPageIndex = (pageIndex) =>
+    setPagination({ ...pagination, pageIndex });
 
-  setPageSize = (pageSize) =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageSize, pageIndex: 0 },
-    }));
+  const setPageSize = (pageSize) =>
+    setPagination({ ...pagination, pageIndex: 0, pageSize });
 
-  setVisibleColumns = (visibleColumns) => this.setState({ visibleColumns });
+  const setVisibleColumns = (visibleColumns) =>
+    setVisibleColumnsState(visibleColumns);
 
-  dummyIcon = () => (
-    <EuiButtonIcon
-      aria-label="dummy icon"
-      iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+  return (
+    <EuiDataGrid
+      aria-label="Top EUI contributors"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={dataState.length}
+      inMemory={{ level: 'sorting' }}
+      renderCellValue={({ rowIndex, columnId, isDetails }) => {
+        const value = dataState[rowIndex][columnId];
+
+        if (columnId === 'custom' && isDetails) {
+          return <Franchise name={value} />;
+        }
+
+        return value;
+      }}
+      sorting={{ columns: sortingColumns, onSort: setSorting }}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [5, 10, 25],
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+      schemaDetectors={[
+        {
+          type: 'favoriteFranchise',
+          detector(value) {
+            return value.toLowerCase() === 'star wars' ||
+              value.toLowerCase() === 'star trek'
+              ? 1
+              : 0;
+          },
+          comparator(a, b, direction) {
+            const aValue = a.toLowerCase() === 'star wars';
+            const bValue = b.toLowerCase() === 'star wars';
+            if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+            if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+            return 0;
+          },
+          sortTextAsc: 'Star wars-Star trek',
+          sortTextDesc: 'Star trek-Star wars',
+          icon: 'starFilled',
+          color: '#800080',
+        },
+      ]}
+      popoverContents={{
+        numeric: ({ cellContentsElement }) => {
+          // want to process the already-rendered cell value
+          const stringContents = cellContentsElement.textContent;
+
+          // extract the groups-of-three digits that are right-aligned
+          return stringContents.replace(/((\d{3})+)$/, (match) =>
+            // then replace each group of xyz digits with ,xyz
+            match.replace(/(\d{3})/g, ',$1')
+          );
+        },
+      }}
     />
   );
-
-  render() {
-    const { data, pagination, sortingColumns } = this.state;
-
-    return (
-      <EuiDataGrid
-        aria-label="Top EUI contributors"
-        columns={columns}
-        columnVisibility={{
-          visibleColumns: this.state.visibleColumns,
-          setVisibleColumns: this.setVisibleColumns,
-        }}
-        rowCount={data.length}
-        inMemory={{ level: 'sorting' }}
-        renderCellValue={({ rowIndex, columnId, isDetails }) => {
-          const value = data[rowIndex][columnId];
-
-          if (columnId === 'custom' && isDetails) {
-            return <Franchise name={value} />;
-          }
-
-          return value;
-        }}
-        sorting={{ columns: sortingColumns, onSort: this.setSorting }}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [5, 10, 25],
-          onChangeItemsPerPage: this.setPageSize,
-          onChangePage: this.setPageIndex,
-        }}
-        schemaDetectors={[
-          {
-            type: 'favoriteFranchise',
-            detector(value) {
-              return value.toLowerCase() === 'star wars' ||
-                value.toLowerCase() === 'star trek'
-                ? 1
-                : 0;
-            },
-            comparator(a, b, direction) {
-              const aValue = a.toLowerCase() === 'star wars';
-              const bValue = b.toLowerCase() === 'star wars';
-              if (aValue < bValue) return direction === 'asc' ? 1 : -1;
-              if (aValue > bValue) return direction === 'asc' ? -1 : 1;
-              return 0;
-            },
-            sortTextAsc: 'Star wars-Star trek',
-            sortTextDesc: 'Star trek-Star wars',
-            icon: 'starFilled',
-            color: '#800080',
-          },
-        ]}
-        popoverContents={{
-          numeric: ({ cellContentsElement }) => {
-            // want to process the already-rendered cell value
-            const stringContents = cellContentsElement.textContent;
-
-            // extract the groups-of-three digits that are right-aligned
-            return stringContents.replace(/((\d{3})+)$/, (match) =>
-              // then replace each group of xyz digits with ,xyz
-              match.replace(/(\d{3})/g, ',$1')
-            );
-          },
-        }}
-      />
-    );
-  }
-}
+};
+export default DataGridSchema;
