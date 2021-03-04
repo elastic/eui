@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
+- Added `src` prop to `EuiImage` as an alternative to `url` ([#4611](https://github.com/elastic/eui/pull/4611))
 
 **Bug fixes**
 
