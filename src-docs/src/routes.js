@@ -502,7 +502,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: createHashHistory(), // eslint-disable-line react-hooks/rules-of-hooks
+  history: createHashHistory(),
   navigation,
 
   getRouteForPath: (path) => {
