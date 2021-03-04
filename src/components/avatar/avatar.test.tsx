@@ -47,6 +47,14 @@ describe('EuiAvatar', () => {
       });
     });
 
+    describe('iconType', () => {
+      it('is rendered', () => {
+        const component = render(<EuiAvatar name="name" iconType="bolt" />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {

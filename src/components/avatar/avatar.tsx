@@ -18,14 +18,14 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
 import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
+import { IconType, EuiIcon } from '../icon';
 
 const sizeToClassNameMap = {
-  none: null,
   s: 'euiAvatar--s',
   m: 'euiAvatar--m',
   l: 'euiAvatar--l',
@@ -43,8 +43,43 @@ const typeToClassNameMap = {
 export const TYPES = keysOf(typeToClassNameMap);
 export type EuiAvatarType = keyof typeof typeToClassNameMap;
 
+/**
+ * The avatar can only display one type of content,
+ * initials, or image, or iconType
+ */
+type _EuiAvatarContent = ExclusiveUnion<
+  ExclusiveUnion<
+    {
+      /**
+       * Custom initials (max 2 characters).
+       * By default will take the first character (of each word).
+       */
+      initials?: string;
+
+      /**
+       * Specify how many characters to show (1 or 2).
+       * By default, will show based on number of words (max first 2).
+       */
+      initialsLength?: 1 | 2;
+    },
+    {
+      /**
+       * Path to an image to dispaly instead of initials
+       */
+      imageUrl?: string;
+    }
+  >,
+  {
+    /**
+     * Any EUI glyph, logo or custom icon to display instead of initials
+     */
+    iconType?: IconType;
+  }
+>;
+
 export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
-  CommonProps & {
+  CommonProps &
+  _EuiAvatarContent & {
     /**
      * Full name of avatar for title attribute and calculating initial if not provided
      */
@@ -56,22 +91,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     color?: string;
 
     /**
-     * Custom initials (max 2 characters).
-     * By default will take the first character (of each word).
-     */
-    initials?: string;
-
-    /**
-     * Specify how many characters to show (max 2 allowed).
-     * By default, will show based on number of words.
-     */
-    initialsLength?: 1 | 2;
-
-    /**
      * The type of avatar this is displaying
      */
     type?: EuiAvatarType;
-    imageUrl?: string;
     size?: EuiAvatarSize;
 
     /**
@@ -86,6 +108,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   imageUrl,
   initials,
   initialsLength,
+  iconType,
   name,
   size = 'm',
   type = 'user',
@@ -107,11 +130,20 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   checkValidColor(color);
   checkValidInitials(initials);
 
-  let optionalInitial;
-  if (name && !imageUrl) {
+  let content;
+  if (!imageUrl && !iconType) {
     // Create the initials
     const calculatedInitials = toInitials(name, initialsLength, initials);
-    optionalInitial = <span aria-hidden="true">{calculatedInitials}</span>;
+    content = <span aria-hidden="true">{calculatedInitials}</span>;
+  } else if (iconType) {
+    content = (
+      <EuiIcon
+        className="euiAvatar__icon"
+        size={size}
+        type={iconType}
+        aria-label={name}
+      />
+    );
   }
 
   const assignedColor =
@@ -121,7 +153,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     : '#000000';
 
   const avatarStyle = {
-    backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
+    backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
     backgroundColor: assignedColor,
     color: textColor,
   };
@@ -133,7 +165,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
       aria-label={name}
       title={name}
       {...rest}>
-      {optionalInitial}
+      {content}
     </div>
   );
 };

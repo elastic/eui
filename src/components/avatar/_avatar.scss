@@ -1,6 +1,8 @@
 .euiAvatar {
   flex-shrink: 0; // Ensures it never scales down below its intended size
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background-size: cover;
   text-align: center;
   vertical-align: middle;
