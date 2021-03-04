@@ -47,6 +47,53 @@ exports[`EuiAvatar props color is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user"
+  style="background-color:#e4a6c7;color:#000000"
+  title="name"
+>
+  <span
+    aria-label="name"
+    class="euiAvatar__icon"
+    data-euiicon-type="bolt"
+  />
+</div>
+`;
+
+exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user"
+  style="background-color:#e4a6c7;color:#000000"
+  title="name"
+>
+  <span
+    aria-label="name"
+    class="euiAvatar__icon"
+    color="primary"
+    data-euiicon-type="bolt"
+  />
+</div>
+`;
+
+exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user"
+  style="background-color:#e4a6c7;color:#000000"
+  title="name"
+>
+  <span
+    aria-label="name"
+    class="euiAvatar__icon"
+    color="#000000"
+    data-euiicon-type="bolt"
+  />
+</div>
+`;
+
 exports[`EuiAvatar props iconType is rendered 1`] = `
 <div
   aria-label="name"
@@ -57,6 +104,7 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
   <span
     aria-label="name"
     class="euiAvatar__icon"
+    color="#000000"
     data-euiicon-type="bolt"
   />
 </div>

@@ -28,5 +28,12 @@ export default () => (
       imageUrl="https://source.unsplash.com/64x64/?cat"
       isDisabled={true}
     />
+    &emsp;
+    <EuiAvatar
+      size="m"
+      name="Management"
+      iconType="managementApp"
+      isDisabled={true}
+    />
   </div>
 );

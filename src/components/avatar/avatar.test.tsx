@@ -53,6 +53,30 @@ describe('EuiAvatar', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      it('and iconSize is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconSize="xl" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconColor is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconColor="primary" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconColor as null is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconColor={null} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('size', () => {

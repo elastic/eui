@@ -23,7 +23,7 @@ import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
 import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
-import { IconType, EuiIcon } from '../icon';
+import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 const sizeToClassNameMap = {
   s: 'euiAvatar--s',
@@ -74,6 +74,14 @@ type _EuiAvatarContent = ExclusiveUnion<
      * Any EUI glyph, logo or custom icon to display instead of initials
      */
     iconType?: IconType;
+    /**
+     * Manually change icon color
+     */
+    iconSize?: IconSize;
+    /**
+     * Manually change icon size
+     */
+    iconColor?: IconColor | null;
   }
 >;
 
@@ -109,6 +117,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   initials,
   initialsLength,
   iconType,
+  iconSize,
+  iconColor,
   name,
   size = 'm',
   type = 'user',
@@ -130,22 +140,6 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   checkValidColor(color);
   checkValidInitials(initials);
 
-  let content;
-  if (!imageUrl && !iconType) {
-    // Create the initials
-    const calculatedInitials = toInitials(name, initialsLength, initials);
-    content = <span aria-hidden="true">{calculatedInitials}</span>;
-  } else if (iconType) {
-    content = (
-      <EuiIcon
-        className="euiAvatar__icon"
-        size={size}
-        type={iconType}
-        aria-label={name}
-      />
-    );
-  }
-
   const assignedColor =
     color || visColors[Math.floor(name.length % visColors.length)];
   const textColor = isColorDark(...hexToRgb(assignedColor))
@@ -157,6 +151,28 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     backgroundColor: assignedColor,
     color: textColor,
   };
+
+  let content;
+  if (!imageUrl && !iconType) {
+    // Create the initials
+    const calculatedInitials = toInitials(name, initialsLength, initials);
+    content = <span aria-hidden="true">{calculatedInitials}</span>;
+  } else if (iconType) {
+    // Allow consumers to let the icons keep their default color (like app icons)
+    // when passing `iconColor = null`, otherwise continue to pass on `iconColor` or adjust with textColor
+    const iconCustomColor =
+      iconColor || iconColor === null ? iconColor : textColor;
+
+    content = (
+      <EuiIcon
+        className="euiAvatar__icon"
+        size={iconSize || size}
+        type={iconType}
+        aria-label={name}
+        color={iconCustomColor === null ? undefined : iconCustomColor}
+      />
+    );
+  }
 
   return (
     <div
