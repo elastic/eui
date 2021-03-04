@@ -17,4 +17,8 @@
  * under the License.
  */
 
-export { EuiSplitPanel } from './split_panel';
+export {
+  EuiSplitPanel,
+  _EuiSplitPanelInnerProps,
+  _EuiSplitPanelOuterProps,
+} from './split_panel';

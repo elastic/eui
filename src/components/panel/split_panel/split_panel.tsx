@@ -61,7 +61,7 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
 
 export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
   /**
-   * Any number of #EuiSplitPanelInner components
+   * Any number of #_EuiSplitPanelInner components
    */
   children?: ReactNode;
   /**
