@@ -74,12 +74,12 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
 type _EuiImageSrcOrUrl = ExclusiveUnion<
   {
     /**
-     * Requires either `url` or `src` but defaults to using `url` if both are provided
+     * Requires either `src` or `url` but defaults to using `src` if both are provided
      */
-    url: string;
+    src: string;
   },
   {
-    src: string;
+    url: string;
   }
 >;
 
@@ -229,7 +229,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}>
               <img
-                src={url || src}
+                src={src || url}
                 alt={alt}
                 className="euiImage-isFullScreen__img"
                 {...rest}
@@ -264,7 +264,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           onClick={openFullScreen}>
           <img
             style={customStyle}
-            src={url || src}
+            src={src || url}
             alt={alt}
             className="euiImage__img"
             {...rest}
@@ -280,7 +280,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
       <figure className={classes} aria-label={optionalCaptionText}>
         <img
           style={customStyle}
-          src={url || src}
+          src={src || url}
           className="euiImage__img"
           alt={alt}
           {...rest}
