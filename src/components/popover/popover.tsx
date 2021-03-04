@@ -313,7 +313,7 @@ type PropsWithDefaults = Props & {
 export class EuiPopover extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
-    ownFocus: false,
+    ownFocus: true,
     anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
     hasArrow: true,
