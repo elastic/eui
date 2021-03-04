@@ -279,6 +279,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   > * {
     position: relative;
     margin-right: $euiSizeXS;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   .guideDemo__notificationEventIcon {

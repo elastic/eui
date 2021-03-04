@@ -34,16 +34,9 @@ import {
   EuiContextMenuPanel,
 } from '../context_menu';
 import { EuiI18n } from '../i18n';
-import {
-  EuiNotificationEventReadButton,
-  EuiNotificationEventReadButtonProps,
-} from './notification_event_read_button';
 import { htmlIdGenerator } from '../../services';
 
-export type EuiNotificationEventMetaProps = Omit<
-  EuiNotificationEventReadButtonProps,
-  'isRead' | 'onClick' | 'color' | 'eventName'
-> & {
+export type EuiNotificationEventMetaProps = {
   /**
    * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
    */
@@ -90,12 +83,10 @@ export type EuiNotificationEventMetaProps = Omit<
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
-  isRead,
   iconType,
   type,
   time,
   badgeColor = 'hollow',
-  onRead,
   severity,
   eventName,
   iconAriaLabel,
@@ -112,10 +103,6 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
 
   const id = htmlIdGenerator()();
 
-  const onMarkAsRead = () => {
-    onRead?.();
-  };
-
   const ariaAttribute = iconAriaLabel
     ? { 'aria-label': iconAriaLabel }
     : { 'aria-hidden': true };
@@ -130,14 +117,6 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
   return (
     <div className={classes}>
       <div className="euiNotificationEventMeta__section">
-        {typeof isRead === 'boolean' && (
-          <EuiNotificationEventReadButton
-            isRead={isRead}
-            onClick={onMarkAsRead}
-            eventName={eventName}
-          />
-        )}
-
         {iconType && (
           <EuiIcon
             className="euiNotificationEventMeta__icon"

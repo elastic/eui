@@ -6,38 +6,38 @@ exports[`EuiNotificationEvent is rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"
@@ -66,39 +66,39 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiBadge euiBadge--iconLeft euiNotificationEventMeta__badge"
-        style="background-color:#f1d86f;color:#000"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--iconLeft euiNotificationEventMeta__badge"
+          style="background-color:#f1d86f;color:#000"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"
@@ -181,38 +181,38 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h4
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"
@@ -241,43 +241,43 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        aria-label="my icon aria label"
-        class="euiNotificationEventMeta__icon"
-        data-euiicon-type="logoCloud"
-      />
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          aria-label="my icon aria label"
+          class="euiNotificationEventMeta__icon"
+          data-euiicon-type="logoCloud"
+        />
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"
@@ -306,43 +306,43 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        aria-hidden="true"
-        class="euiNotificationEventMeta__icon"
-        data-euiicon-type="logoCloud"
-      />
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          aria-hidden="true"
+          class="euiNotificationEventMeta__icon"
+          data-euiicon-type="logoCloud"
+        />
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"
@@ -371,51 +371,55 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
   class="euiNotificationEvent euiNotificationEvent--withReadState"
 >
   <div
-    class="euiNotificationEventMeta"
+    class="euiNotificationEvent__readButton"
   >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <button
-        aria-label="Mark title as unread"
-        class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
-        data-test-subj="notificationEventReadButton"
-        title="Mark as unread"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          data-euiicon-type="dot"
-        />
-      </button>
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
+    <button
+      aria-label="Mark title as unread"
+      class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
+      data-test-subj="notificationEventReadButton"
+      title="Mark as unread"
+      type="button"
     >
       <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="dot"
+      />
+    </button>
   </div>
   <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title euiNotificationEvent__title--isRead"
       data-test-subj="notificationEventTitle"
@@ -444,38 +448,38 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"
@@ -558,38 +562,38 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
   class="euiNotificationEvent"
 >
   <div
-    class="euiNotificationEventMeta"
-  >
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-      >
-        <span
-          class="euiBadge__content"
-        >
-          <span
-            class="euiBadge__text"
-          >
-            Alert: severity
-          </span>
-        </span>
-      </span>
-    </div>
-    <div
-      class="euiNotificationEventMeta__section"
-    >
-      <span
-        class="euiNotificationEventMeta__time"
-      >
-        1 min ago
-      </span>
-    </div>
-  </div>
-  <div
     class="euiNotificationEvent__content"
   >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert: severity
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
     <h2
       class="euiNotificationEvent__title"
       data-test-subj="notificationEventTitle"

@@ -27,6 +27,10 @@ import {
   EuiNotificationEventMessages,
   EuiNotificationEventMessagesProps,
 } from './notification_event_messages';
+import {
+  EuiNotificationEventReadButton,
+  EuiNotificationEventReadButtonProps,
+} from './notification_event_read_button';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiLink } from '../link';
 import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
@@ -47,43 +51,53 @@ export type EuiNotificationHeadingLevel =
 export type EuiNotificationEventProps = Omit<
   EuiNotificationEventMetaProps,
   'onOpenContextMenu' | 'onRead' | 'eventName'
-> & {
-  id: string;
-  /**
-   * The title of the event.
-   */
-  title: string;
-  /**
-   * The heading level of the title.
-   */
-  headingLevel?: EuiNotificationHeadingLevel;
-  /**
-   * Returns the `id` and applies an `onClick` handler to the title.
-   */
-  onClickTitle?: (id: string) => void;
-  /**
-   * See #EuiNotificationEventPrimaryAction.
-   */
-  primaryAction?: EuiNotificationEventPrimaryActionProps;
-  /**
-   * Returns the `id` and applies an `onClick` handler to the `primaryAction`.
-   */
-  onClickPrimaryAction?: (id: string) => void;
-  /**
-   * Notification messages as an array of strings. More than one message wraps in an accordion.
-   */
-  messages: EuiNotificationEventMessagesProps['messages'];
-  /**
-   * Returns the `id` and `isRead` state. Applies an `onClick` handler to the `read` indicator.
-   */
-  onRead?: (id: string, isRead: boolean) => void;
-  /**
-   * Provided the `id` of the event must return an array of #EuiContextMenuItem elements.
-   */
-  onOpenContextMenu?: (
-    id: string
-  ) => Array<ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>>;
-};
+> &
+  Omit<
+    EuiNotificationEventReadButtonProps,
+    'onClick' | 'color' | 'eventName' | 'isRead'
+  > & {
+    id: string;
+    /**
+     * The title of the event.
+     */
+    title: string;
+    /**
+     * The heading level of the title.
+     */
+    headingLevel?: EuiNotificationHeadingLevel;
+    /**
+     * Returns the `id` and applies an `onClick` handler to the title.
+     */
+    onClickTitle?: (id: string) => void;
+    /**
+     * See #EuiNotificationEventPrimaryAction.
+     */
+    primaryAction?: EuiNotificationEventPrimaryActionProps | undefined;
+    /**
+     * Returns the `id` and applies an `onClick` handler to the `primaryAction`.
+     */
+    onClickPrimaryAction?: (id: string) => void;
+    /**
+     * Notification messages as an array of strings. More than one message wraps in an accordion.
+     */
+    messages: EuiNotificationEventMessagesProps['messages'];
+    /**
+     * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
+     */
+    isRead?: boolean | undefined;
+    /**
+     * Returns the `id` and `isRead` state. Applies an `onClick` handler to the `read` indicator.
+     */
+    onRead?: (id: string, isRead: boolean) => void;
+    /**
+     * Provided the `id` of the event must return an array of #EuiContextMenuItem elements.
+     */
+    onOpenContextMenu?: (
+      id: string
+    ) => Array<
+      ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>
+    >;
+  };
 
 export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> = ({
   id,
@@ -121,22 +135,31 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
 
   return (
     <article aria-labelledby={randomHeadingId} className={classes} key={id}>
-      <EuiNotificationEventMeta
-        type={type}
-        severity={severity}
-        badgeColor={badgeColor}
-        iconType={iconType}
-        iconAriaLabel={iconAriaLabel}
-        time={time}
-        isRead={isRead}
-        onOpenContextMenu={
-          onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
-        }
-        eventName={title}
-        onRead={() => onRead?.(id, isRead!)}
-      />
+      {typeof isRead === 'boolean' && (
+        <div className="euiNotificationEvent__readButton">
+          <EuiNotificationEventReadButton
+            isRead={isRead}
+            onClick={() => onRead?.(id, isRead)}
+            eventName={title}
+          />
+        </div>
+      )}
 
       <div className="euiNotificationEvent__content">
+        <EuiNotificationEventMeta
+          type={type}
+          severity={severity}
+          badgeColor={badgeColor}
+          iconType={iconType}
+          iconAriaLabel={iconAriaLabel}
+          time={time}
+          onOpenContextMenu={
+            onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
+          }
+          eventName={title}
+          onRead={() => onRead?.(id, isRead!)}
+        />
+
         {onClickTitle ? (
           <EuiLink onClick={() => onClickTitle(id)} {...titleProps}>
             {createElement(headingLevel, null, title)}

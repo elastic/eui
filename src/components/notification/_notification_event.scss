@@ -1,5 +1,6 @@
 .euiNotificationEvent {
-  padding: $euiSizeM $euiSizeS $euiSizeM $euiSize;
+  display: flex;
+  padding: $euiSizeM 0 $euiSizeM $euiSizeM;
   border-bottom: $euiBorderThin;
 
   &:last-child {
@@ -7,21 +8,7 @@
   }
 
   &--withReadState {
-    padding: $euiSizeM;
-
-    .euiNotificationEvent__content {
-      padding-left: $euiSizeL;
-    }
-  }
-
-  &--emptyState {
-    text-align: center;
-    justify-content: center;
-    padding-top: $euiSizeXXL * 2;
-
-    > * {
-      margin-top: $euiSizeL;
-    }
+    padding: $euiSizeM 0 $euiSizeM $euiSizeS;
   }
 }
 
@@ -39,8 +26,15 @@
   }
 }
 
+.euiNotificationEvent__readButton {
+  margin-right: $euiSizeS;
+}
+
 .euiNotificationEvent__content {
-  > * {
+  flex: 1;
+
+  > * + * {
     margin-top: $euiSizeS;
+    margin-right: $euiSizeM;
   }
 }

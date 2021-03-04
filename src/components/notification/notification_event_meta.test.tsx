@@ -123,26 +123,4 @@ describe('EuiNotificationEventMeta', () => {
       ).toMatchSnapshot();
     });
   });
-
-  describe('behavior', () => {
-    it('triggers the onRead callback', () => {
-      const onRead = jest.fn();
-
-      const component = mount(
-        <EuiNotificationEventMeta
-          type="Alert"
-          time={<span>2 min ago</span>}
-          eventName="eventName"
-          isRead={true}
-          onRead={onRead}
-        />
-      );
-
-      findTestSubject(component, 'notificationEventReadButton').simulate(
-        'click'
-      );
-
-      expect(onRead).toHaveBeenCalledTimes(1);
-    });
-  });
 });

@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  margin-right: $euiSizeXS;
 
   &--hasContextMenu {
     padding-right: $euiSizeL;
