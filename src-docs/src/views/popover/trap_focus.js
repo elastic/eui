@@ -23,6 +23,7 @@ export default () => {
 
   return (
     <EuiPopover
+      ownFocus={false}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
