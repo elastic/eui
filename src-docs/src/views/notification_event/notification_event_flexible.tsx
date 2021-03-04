@@ -13,9 +13,9 @@ const notificationEventsData = [
     iconAriaLabel: 'Kibana',
     time: '1 min ago',
     title: '[Error Monitoring Report] is generated',
-    primaryAction: {
+    primaryAction: 'Download',
+    primaryActionProps: {
       iconType: 'download',
-      label: 'Download',
     },
     messages: ['The reported was generated at 17:12:16 GMT+4'],
     isRead: false,
@@ -49,9 +49,7 @@ const notificationEventsData = [
       'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
     ],
     isRead: false,
-    primaryAction: {
-      label: 'View and go',
-    },
+    primaryAction: 'View and go',
   },
 ];
 
@@ -135,6 +133,7 @@ export default () => {
           title={event.title}
           isRead={event.isRead}
           primaryAction={event.primaryAction}
+          primaryActionProps={event.primaryActionProps}
           messages={event.messages}
           onRead={onRead}
           onOpenContextMenu={onOpenContextMenu}

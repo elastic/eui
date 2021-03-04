@@ -556,6 +556,168 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
 </article>
 `;
 
+exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
+<article
+  aria-labelledby="generated-id"
+  class="euiNotificationEvent"
+>
+  <div
+    class="euiNotificationEvent__content"
+  >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
+    <h2
+      class="euiNotificationEvent__title"
+      data-test-subj="notificationEventTitle"
+      id="generated-id"
+    >
+      title
+    </h2>
+    <div
+      class="euiNotificationEventMessages"
+    >
+      <div
+        class="euiText euiText--small"
+      >
+        <p>
+          message
+        </p>
+      </div>
+    </div>
+    <div
+      class="euiNotificationEvent__primaryAction"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiButtonEmpty--flushLeft"
+        data-test-subj="notificationEventPrimaryAction"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButtonEmpty__content"
+        >
+          <span
+            class="euiButtonEmpty__text"
+          >
+            primaryAction label
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</article>
+`;
+
+exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
+<article
+  aria-labelledby="generated-id"
+  class="euiNotificationEvent"
+>
+  <div
+    class="euiNotificationEvent__content"
+  >
+    <div
+      class="euiNotificationEventMeta"
+    >
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+        >
+          <span
+            class="euiBadge__content"
+          >
+            <span
+              class="euiBadge__text"
+            >
+              Alert
+            </span>
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiNotificationEventMeta__section"
+      >
+        <span
+          class="euiNotificationEventMeta__time"
+        >
+          1 min ago
+        </span>
+      </div>
+    </div>
+    <h2
+      class="euiNotificationEvent__title"
+      data-test-subj="notificationEventTitle"
+      id="generated-id"
+    >
+      title
+    </h2>
+    <div
+      class="euiNotificationEventMessages"
+    >
+      <div
+        class="euiText euiText--small"
+      >
+        <p>
+          message
+        </p>
+      </div>
+    </div>
+    <div
+      class="euiNotificationEvent__primaryAction"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiButtonEmpty--flushLeft"
+        data-test-subj="notificationEventPrimaryAction"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButtonEmpty__content"
+        >
+          <span
+            class="euiButtonContent__icon"
+            data-euiicon-type="download"
+          />
+          <span
+            class="euiButtonEmpty__text"
+          >
+            primaryAction
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</article>
+`;
+
 exports[`EuiNotificationEvent props severity  is rendered 1`] = `
 <article
   aria-labelledby="generated-id"

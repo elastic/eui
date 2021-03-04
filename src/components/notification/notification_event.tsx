@@ -36,10 +36,6 @@ import { EuiLink } from '../link';
 import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
 import { htmlIdGenerator } from '../../services';
 
-export type EuiNotificationEventPrimaryActionProps = EuiButtonEmptyProps & {
-  label: string;
-};
-
 export type EuiNotificationHeadingLevel =
   | 'h1'
   | 'h2'
@@ -70,9 +66,13 @@ export type EuiNotificationEventProps = Omit<
      */
     onClickTitle?: (id: string) => void;
     /**
-     * See #EuiNotificationEventPrimaryAction.
+     * The label of the primary action
      */
-    primaryAction?: EuiNotificationEventPrimaryActionProps | undefined;
+    primaryAction?: string;
+    /**
+     * Apply more props to the `primaryAction button`. See #EuiButtonEmpty
+     */
+    primaryActionProps?: EuiButtonEmptyProps;
     /**
      * Returns the `id` and applies an `onClick` handler to the `primaryAction`.
      */
@@ -110,6 +110,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   title,
   isRead,
   primaryAction,
+  primaryActionProps,
   messages,
   onRead,
   onOpenContextMenu,
@@ -175,10 +176,10 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
             <EuiButtonEmpty
               flush="left"
               size="s"
-              {...primaryAction}
+              {...primaryActionProps}
               onClick={() => onClickPrimaryAction?.(id)}
               data-test-subj="notificationEventPrimaryAction">
-              {primaryAction.label}
+              {primaryAction}
             </EuiButtonEmpty>
           </div>
         )}

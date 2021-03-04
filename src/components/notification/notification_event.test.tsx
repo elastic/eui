@@ -144,6 +144,39 @@ describe('EuiNotificationEvent', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('primaryAction is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          type="Alert"
+          time="1 min ago"
+          title="title"
+          primaryAction="primaryAction label"
+          onClickPrimaryAction={() => {}}
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('primaryActionProps is rendered', () => {
+      const component = render(
+        <EuiNotificationEvent
+          id="id"
+          type="Alert"
+          time="1 min ago"
+          title="title"
+          primaryAction="primaryAction"
+          primaryActionProps={{ iconType: 'download' }}
+          onClickPrimaryAction={() => {}}
+          messages={['message']}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('contextMenuItems are rendered', () => {
       const onOpenContextMenu = (id: string) => {
         return [
@@ -215,9 +248,7 @@ describe('EuiNotificationEvent', () => {
           time="1 min ago"
           isRead={true}
           onClickPrimaryAction={onClickPrimaryAction}
-          primaryAction={{
-            label: 'primary action label',
-          }}
+          primaryAction="primary action label"
           title="title"
           messages={['message']}
         />

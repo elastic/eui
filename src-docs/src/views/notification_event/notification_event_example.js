@@ -11,8 +11,8 @@ import {
   EuiCode,
   EuiAccordion,
   EuiCodeBlock,
+  EuiButtonEmpty,
 } from '../../../../src/components';
-import { EuiNotificationEventPrimaryAction } from './props';
 import NotificationEventPropsMethods from './notification_event_props_methods';
 
 import NotificationEvent from './notification_event';
@@ -101,8 +101,8 @@ export const NotificationEventExample = {
       props: {
         EuiNotificationEvent,
         EuiNotificationEventMeta,
-        EuiNotificationEventPrimaryAction,
         EuiContextMenuItem,
+        EuiButtonEmpty,
       },
       snippet: notificationEventSnippet,
       demo: <NotificationEvent />,
@@ -186,9 +186,10 @@ export const NotificationEventExample = {
                 multiple messages when the event executes in various steps.
               </li>
               <li>
-                <EuiCode>primaryAction</EuiCode>: Use this prop to provide a
-                call to action, like download a report or link to a page where
-                an action is required. Most of the time, the clickable title is
+                <EuiCode>primaryAction</EuiCode>: Use this prop in conjunction
+                with <EuiCode>onClickPrimaryAction</EuiCode> to provide a call
+                to action, like download a report or link to a page where an
+                action is required. Most of the time, the clickable title is
                 enough.
               </li>
             </ul>
@@ -206,8 +207,8 @@ export const NotificationEventExample = {
       props: {
         EuiNotificationEvent,
         EuiNotificationEventMeta,
-        EuiNotificationEventPrimaryAction,
         EuiContextMenuItem,
+        EuiButtonEmpty,
       },
       snippet: notificationEventSnippet,
       demo: <NotificationEventFlexible />,
@@ -237,8 +238,8 @@ export const NotificationEventExample = {
       props: {
         EuiNotificationEvent,
         EuiNotificationEventMeta,
-        EuiNotificationEventPrimaryAction,
         EuiContextMenuItem,
+        EuiButtonEmpty,
       },
       snippet: notificationEventFeedSnippet,
       demo: <NotificationsFeed />,

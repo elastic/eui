@@ -9,18 +9,23 @@ const notificationEventsData = [
   {
     id: 'alert-01',
     type: 'Alert',
-    severity: 'Warning',
+    severity: 'Warning curabitur vulputate nisl nunc',
     iconType: 'logoMaps',
     iconAriaLabel: 'Maps',
     badgeColor: 'warning',
-    time: '1 min ago',
-    title: '[Maps] Geo Alert',
+    time: 'Received yesterday at 17:12:16 GMT+4 and mauris posuere',
+    title:
+      '[Maps] Geo Alert and scelerisque maximus lorem, vel ornare ante dictum eget',
     messages: [
       'The request completed at 12:32:33 GMT+4',
       'The request completed at 12:32:33 GMT+4',
       'A background request started at 12:32:33 GMT+4',
     ],
     isRead: false,
+    primaryAction: 'Download',
+    primaryActionProps: {
+      iconType: 'download',
+    },
   },
   {
     id: 'report-01',
@@ -29,9 +34,9 @@ const notificationEventsData = [
     iconAriaLabel: 'Kibana',
     time: '3 min ago',
     title: '[Error Monitoring Report] is generated',
-    primaryAction: {
+    primaryAction: 'Download',
+    primaryActionProps: {
       iconType: 'download',
-      label: 'Download',
     },
     messages: [
       'The reported was generated at 17:12:16 GMT+4 and due to an error it was was generated again at 17:13:17 GMT+4',
@@ -50,9 +55,7 @@ const notificationEventsData = [
       'Retain and search more data with searchable snapshots on low-cost object stores + a new cold data tier in 7.11.',
     ],
     isRead: false,
-    primaryAction: {
-      label: 'View and go',
-    },
+    primaryAction: 'View and go',
   },
   {
     id: 'alert-02',

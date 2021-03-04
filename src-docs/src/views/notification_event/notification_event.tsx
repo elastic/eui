@@ -37,9 +37,9 @@ export default () => {
         iconAriaLabel="Kibana"
         time="1 min ago"
         title="[Error Monitoring Report] is generated"
-        primaryAction={{
+        primaryAction="Download"
+        primaryActionProps={{
           iconType: 'download',
-          label: 'Download',
         }}
         messages={['The reported was generated at 17:12:16 GMT+4']}
         isRead={isRead}
