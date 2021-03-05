@@ -135,6 +135,8 @@ const webpackConfig = {
         }),
         disableHostCheck: true,
         historyApiFallback: true,
+        // prevent file watching while running on CI
+        // /app/ represents the entire docker environment
         watchOptions: isPuppeteer
           ? {
               ignored: /app/,
