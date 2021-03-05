@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useCallback } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -253,7 +253,7 @@ const DataGrid = () => {
   const [footerSelected, setFooterSelected] = useState('overline');
   const [showSortSelector, setShowSortSelector] = useState(true);
   const [showStyleSelector, setShowStyleSelector] = useState(true);
-  const [showColumnSelectorState, setShowColumnSelectorState] = useState(true);
+  const [showColumnSelector, setShowColumnSelector] = useState(true);
   const [allowHideColumns, setAllowHideColumns] = useState(true);
   const [allowOrderingColumns, setAllowOrderingColumns] = useState(true);
   const [showFullScreenSelector, setShowFullScreenSelector] = useState(true);
@@ -265,7 +265,7 @@ const DataGrid = () => {
     pageIndex: 0,
     pageSize: 50,
   });
-  const [visibleColumns, setVisibleColumnsState] = useState(
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
@@ -306,7 +306,7 @@ const DataGrid = () => {
   };
 
   const onShowColumnSelectorChange = (optionId) => {
-    setShowColumnSelectorState(optionId === 'true');
+    setShowColumnSelector(optionId === 'true');
   };
 
   const onAllowHideColumnsChange = (optionId) => {
@@ -345,14 +345,22 @@ const DataGrid = () => {
     setIsToolbarPopoverOpen(false);
   };
 
-  const setPageIndex = (pageIndex) =>
-    setPagination({ ...pagination, pageIndex });
+  const setPageIndex = useCallback(
+    (pageIndex) => {
+      setPagination({ ...pagination, pageIndex });
+    },
+    [setPagination]
+  );
 
-  const setPageSize = (pageSize) =>
-    setPagination({ ...pagination, pageSize, pageIndex: 0 });
+  const setPageSize = useCallback(
+    (pageSize) => {
+      setPagination({ ...pagination, pageSize, pageIndex: 0 });
+    },
+    [setPagination]
+  );
 
-  const setVisibleColumns = (visibleColumns) =>
-    setVisibleColumnsState(visibleColumns);
+  const handleVisibleColumns = (visibleColumns) =>
+    setVisibleColumns(visibleColumns);
 
   const styleButton = (
     <EuiButton
@@ -373,19 +381,19 @@ const DataGrid = () => {
       toolbarVisibility options
     </EuiButton>
   );
-  let showColumnSelector = showColumnSelectorState;
+  let displayColumnSelector = showColumnSelector;
   if (
-    showColumnSelector === true &&
+    displayColumnSelector === true &&
     (allowHideColumns === false || allowOrderingColumns === false)
   ) {
-    showColumnSelector = {
+    displayColumnSelector = {
       allowHide: allowHideColumns,
       allowReorder: allowOrderingColumns,
     };
   }
 
   const toolbarVisibilityOptions = {
-    showColumnSelector: showColumnSelector,
+    showColumnSelector: displayColumnSelector,
     showStyleSelector: showStyleSelector,
     showSortSelector: showSortSelector,
     showFullScreenSelector: showFullScreenSelector,
@@ -558,11 +566,11 @@ const DataGrid = () => {
                       buttonSize="compressed"
                       legend="Border"
                       options={showColumnSelectorOptions}
-                      idSelected={showColumnSelector.toString()}
+                      idSelected={displayColumnSelector.toString()}
                       onChange={onShowColumnSelectorChange}
                     />
                   </EuiFormRow>
-                  {showColumnSelector && (
+                  {displayColumnSelector && (
                     <>
                       <EuiFormRow
                         display="columnCompressed"
@@ -628,7 +636,7 @@ const DataGrid = () => {
         columns={columns}
         columnVisibility={{
           visibleColumns: visibleColumns,
-          setVisibleColumns: setVisibleColumns,
+          setVisibleColumns: handleVisibleColumns,
         }}
         rowCount={data.length}
         gridStyle={{

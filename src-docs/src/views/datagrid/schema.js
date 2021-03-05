@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -35,7 +35,7 @@ const columns = [
   },
 ];
 
-const data = [];
+const storeData = [];
 
 for (let i = 1; i < 5; i++) {
   let json;
@@ -61,7 +61,7 @@ for (let i = 1; i < 5; i++) {
     ]);
   }
 
-  data.push({
+  storeData.push({
     default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     boolean: fake('{{random.boolean}}'),
     numeric: fake('{{finance.account}}'),
@@ -103,8 +103,8 @@ const Franchise = (props) => {
 };
 
 const DataGridSchema = () => {
-  const [dataState, setDataState] = useState(data);
-  console.log(dataState);
+  const [data, setData] = useState(storeData);
+
   const [sortingColumns, setSortingColumns] = useState([
     { id: 'custom', direction: 'asc' },
   ]);
@@ -112,11 +112,12 @@ const DataGridSchema = () => {
     pageIndex: 0,
     pageSize: 10,
   });
-  const [visibleColumns, setVisibleColumnsState] = useState(
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
+
   const setSorting = (sortingColumns) => {
-    const dataState = [...dataState].sort((a, b) => {
+    const sortedData = [...data].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
         const column = sortingColumns[i];
         const aValue = a[column.id];
@@ -128,18 +129,27 @@ const DataGridSchema = () => {
 
       return 0;
     });
-    setDataState(dataState);
+
+    setData(sortedData);
     setSortingColumns(sortingColumns);
   };
 
-  const setPageIndex = (pageIndex) =>
-    setPagination({ ...pagination, pageIndex });
+  const setPageIndex = useCallback(
+    (pageIndex) => {
+      setPagination({ ...pagination, pageIndex });
+    },
+    [setPagination]
+  );
 
-  const setPageSize = (pageSize) =>
-    setPagination({ ...pagination, pageIndex: 0, pageSize });
+  const setPageSize = useCallback(
+    (pageSize) => {
+      setPagination({ ...pagination, pageIndex: 0, pageSize });
+    },
+    [setPagination]
+  );
 
-  const setVisibleColumns = (visibleColumns) =>
-    setVisibleColumnsState(visibleColumns);
+  const handleVisibleColumns = (visibleColumns) =>
+    setVisibleColumns(visibleColumns);
 
   return (
     <EuiDataGrid
@@ -147,12 +157,12 @@ const DataGridSchema = () => {
       columns={columns}
       columnVisibility={{
         visibleColumns: visibleColumns,
-        setVisibleColumns: setVisibleColumns,
+        setVisibleColumns: handleVisibleColumns,
       }}
-      rowCount={dataState.length}
+      rowCount={data.length}
       inMemory={{ level: 'sorting' }}
       renderCellValue={({ rowIndex, columnId, isDetails }) => {
-        const value = dataState[rowIndex][columnId];
+        const value = data[rowIndex][columnId];
 
         if (columnId === 'custom' && isDetails) {
           return <Franchise name={value} />;
