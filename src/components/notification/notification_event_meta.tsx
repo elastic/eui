@@ -37,6 +37,7 @@ import { EuiI18n } from '../i18n';
 import { htmlIdGenerator } from '../../services';
 
 export type EuiNotificationEventMetaProps = {
+  id: string;
   /**
    * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
    */
@@ -83,6 +84,7 @@ export type EuiNotificationEventMetaProps = {
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
+  id,
   iconType,
   type,
   time,
@@ -101,7 +103,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
     ReturnType<NonNullable<typeof onOpenContextMenu>>
   >([]);
 
-  const id = htmlIdGenerator()();
+  const randomPopoverId = htmlIdGenerator()();
 
   const ariaAttribute = iconAriaLabel
     ? { 'aria-label': iconAriaLabel }
@@ -141,7 +143,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
       {onOpenContextMenu && (
         <div className="euiNotificationEventMeta__contextMenuWrapper">
           <EuiPopover
-            id={id}
+            id={randomPopoverId}
             ownFocus
             repositionOnScroll
             isOpen={isPopoverOpen}
@@ -157,13 +159,13 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                 {(contextMenuButton: string) => (
                   <EuiButtonIcon
                     aria-label={contextMenuButton}
-                    aria-controls={id}
+                    aria-controls={randomPopoverId}
                     aria-expanded={isPopoverOpen}
                     aria-haspopup="true"
                     iconType="boxesVertical"
                     color="subdued"
                     onClick={onOpenPopover}
-                    data-test-subj="notificationEventMetaButton"
+                    data-test-subj={`${id}-notificationEventMetaButton`}
                   />
                 )}
               </EuiI18n>

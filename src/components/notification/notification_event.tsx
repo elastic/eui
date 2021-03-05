@@ -40,12 +40,15 @@ export type EuiNotificationHeadingLevel = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export type EuiNotificationEventProps = Omit<
   EuiNotificationEventMetaProps,
-  'onOpenContextMenu' | 'onRead' | 'eventName'
+  'onOpenContextMenu' | 'onRead' | 'eventName' | 'id'
 > &
   Omit<
     EuiNotificationEventReadButtonProps,
-    'onClick' | 'color' | 'eventName' | 'isRead'
+    'onClick' | 'color' | 'eventName' | 'isRead' | 'id'
   > & {
+    /**
+     * A unique identifier
+     */
     id: string;
     /**
      * The title of the event.
@@ -125,7 +128,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   const titleProps = {
     id: randomHeadingId,
     className: classesTitle,
-    'data-test-subj': 'notificationEventTitle',
+    'data-test-subj': `${id}-notificationEventTitle`,
   };
 
   return (
@@ -136,12 +139,14 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
             isRead={isRead}
             onClick={() => onRead?.(id, isRead)}
             eventName={title}
+            id={id}
           />
         </div>
       )}
 
       <div className="euiNotificationEvent__content">
         <EuiNotificationEventMeta
+          id={id}
           type={type}
           severity={severity}
           badgeColor={badgeColor}
@@ -172,7 +177,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
               size="s"
               {...primaryActionProps}
               onClick={() => onClickPrimaryAction?.(id)}
-              data-test-subj="notificationEventPrimaryAction">
+              data-test-subj={`${id}-notificationEventPrimaryAction`}>
               {primaryAction}
             </EuiButtonEmpty>
           </div>

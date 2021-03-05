@@ -204,7 +204,7 @@ describe('EuiNotificationEvent', () => {
       );
 
       expect(component.find(EuiContextMenuPanel)).toHaveLength(0);
-      findTestSubject(component, 'notificationEventMetaButton').simulate(
+      findTestSubject(component, 'id-notificationEventMetaButton').simulate(
         'click'
       );
       expect(component.find(EuiContextMenuPanel)).toHaveLength(1);
@@ -231,7 +231,7 @@ describe('EuiNotificationEvent', () => {
         />
       );
 
-      findTestSubject(component, 'notificationEventReadButton').simulate(
+      findTestSubject(component, 'id-notificationEventReadButton').simulate(
         'click'
       );
 
@@ -254,7 +254,7 @@ describe('EuiNotificationEvent', () => {
         />
       );
 
-      findTestSubject(component, 'notificationEventPrimaryAction').simulate(
+      findTestSubject(component, 'id-notificationEventPrimaryAction').simulate(
         'click'
       );
 
@@ -275,7 +275,7 @@ describe('EuiNotificationEvent', () => {
         />
       );
 
-      findTestSubject(component, 'notificationEventTitle').simulate('click');
+      findTestSubject(component, 'id-notificationEventTitle').simulate('click');
 
       expect(onClickTitle).toHaveBeenCalledTimes(1);
     });

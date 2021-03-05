@@ -27,6 +27,7 @@ describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
     const component = render(
       <EuiNotificationEventMeta
+        id="id"
         type="Alert"
         time={<span>2 min ago</span>}
         eventName="eventName"
@@ -40,6 +41,7 @@ describe('EuiNotificationEventMeta', () => {
     test('severity is rendered', () => {
       const component = render(
         <EuiNotificationEventMeta
+          id="id"
           type="Alert"
           time={<span>2 min ago</span>}
           severity="severity"
@@ -53,6 +55,7 @@ describe('EuiNotificationEventMeta', () => {
     test('isRead  is rendered', () => {
       const component = render(
         <EuiNotificationEventMeta
+          id="id"
           type="Alert"
           time={<span>2 min ago</span>}
           eventName="eventName"
@@ -66,6 +69,7 @@ describe('EuiNotificationEventMeta', () => {
     test('badgeColor  is rendered', () => {
       const component = render(
         <EuiNotificationEventMeta
+          id="id"
           type="Alert"
           time={<span>2 min ago</span>}
           eventName="eventName"
@@ -79,6 +83,7 @@ describe('EuiNotificationEventMeta', () => {
     test('logoCloud  is rendered', () => {
       const component = render(
         <EuiNotificationEventMeta
+          id="id"
           type="Alert"
           time={<span>2 min ago</span>}
           iconType="logoCloud"
@@ -104,6 +109,7 @@ describe('EuiNotificationEventMeta', () => {
 
       const component = mount(
         <EuiNotificationEventMeta
+          id="id"
           type="Alert"
           time={<span>2 min ago</span>}
           iconType="logoCloud"
@@ -113,7 +119,7 @@ describe('EuiNotificationEventMeta', () => {
       );
 
       expect(component.find(EuiContextMenuPanel)).toHaveLength(0);
-      findTestSubject(component, 'notificationEventMetaButton').simulate(
+      findTestSubject(component, 'id-notificationEventMetaButton').simulate(
         'click'
       );
       expect(component.find(EuiContextMenuPanel)).toHaveLength(1);

@@ -26,6 +26,7 @@ export type EuiNotificationEventReadButtonProps = Omit<
   EuiButtonIconProps,
   'iconType' | 'isDisabled' | 'isSelected' | 'size'
 > & {
+  id: string;
   /**
    * Shows an indicator of the read state of the event
    */
@@ -41,6 +42,7 @@ export type EuiNotificationEventReadButtonProps = Omit<
 };
 
 export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEventReadButtonProps> = ({
+  id,
   isRead,
   onClick,
   eventName,
@@ -86,7 +88,7 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
       title={buttonTitle}
       className={classesReadState}
       onClick={onClick}
-      data-test-subj="notificationEventReadButton"
+      data-test-subj={`${id}-notificationEventReadButton`}
       {...rest}
     />
   );
