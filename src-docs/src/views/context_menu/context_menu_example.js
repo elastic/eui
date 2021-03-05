@@ -120,7 +120,7 @@ export const ContextMenuExample = {
         </p>
       ),
       snippet: smallSnippet,
-      demo: <SinglePanel />,
+      demo: <Small />,
     },
     {
       title: 'With single panel',
@@ -142,7 +142,7 @@ export const ContextMenuExample = {
         </p>
       ),
       snippet: singlePanelSnippet,
-      demo: <Small />,
+      demo: <SinglePanel />,
     },
     {
       title: 'Displaying custom elements',
