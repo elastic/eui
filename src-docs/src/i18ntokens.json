@@ -352,6 +352,38 @@
     "filepath": "src/components/code/_code_block.tsx"
   },
   {
+    "token": "euiCodeBlock.fullscreenCollapse",
+    "defString": "Collapse",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 267,
+        "column": 6
+      },
+      "end": {
+        "line": 272,
+        "column": 42
+      }
+    },
+    "filepath": "src/components/code/_code_block.tsx"
+  },
+  {
+    "token": "euiCodeBlock.fullscreenExpand",
+    "defString": "Expand",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 267,
+        "column": 6
+      },
+      "end": {
+        "line": 272,
+        "column": 42
+      }
+    },
+    "filepath": "src/components/code/_code_block.tsx"
+  },
+  {
     "token": "euiCollapsibleNav.closeButtonLabel",
     "defString": "close",
     "highlighting": "string",
@@ -366,6 +398,54 @@
       }
     },
     "filepath": "src/components/collapsible_nav/collapsible_nav.tsx"
+  },
+  {
+    "token": "euiColorPicker.colorLabel",
+    "defString": "Color value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 444,
+        "column": 4
+      },
+      "end": {
+        "line": 450,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorPicker.colorErrorMessage",
+    "defString": "Invalid color value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 444,
+        "column": 4
+      },
+      "end": {
+        "line": 450,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorPicker.transparent",
+    "defString": "Transparent",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 444,
+        "column": 4
+      },
+      "end": {
+        "line": 450,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
   },
   {
     "token": "euiColorPicker.swatchAriaLabel",
@@ -400,6 +480,54 @@
     "filepath": "src/components/color_picker/color_picker.tsx"
   },
   {
+    "token": "euiColorPicker.openLabel",
+    "defString": "Press the escape key to close the popover",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 602,
+        "column": 10
+      },
+      "end": {
+        "line": 612,
+        "column": 15
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorPicker.closeLabel",
+    "defString": "Press the down key to open a popover containing color options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 602,
+        "column": 10
+      },
+      "end": {
+        "line": 612,
+        "column": 15
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorPicker.transparent",
+    "defString": "Transparent",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 602,
+        "column": 10
+      },
+      "end": {
+        "line": 612,
+        "column": 15
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
     "token": "euiColorPicker.screenReaderAnnouncement",
     "defString": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup.",
     "highlighting": "string",
@@ -416,6 +544,38 @@
     "filepath": "src/components/color_picker/color_picker.tsx"
   },
   {
+    "token": "euiColorStopThumb.buttonAriaLabel",
+    "defString": "Press the Enter key to modify this stop. Press Escape to focus the group",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 275,
+        "column": 8
+      },
+      "end": {
+        "line": 283,
+        "column": 13
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
+  },
+  {
+    "token": "euiColorStopThumb.buttonTitle",
+    "defString": "Click to edit, drag to reposition",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 275,
+        "column": 8
+      },
+      "end": {
+        "line": 283,
+        "column": 13
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
+  },
+  {
     "token": "euiColorStopThumb.screenReaderAnnouncement",
     "defString": "A popup with a color stop edit form opened.\n            Tab forward to cycle through form controls or press\n            escape to close this popup.",
     "highlighting": "string",
@@ -427,6 +587,38 @@
       "end": {
         "line": 324,
         "column": 14
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
+  },
+  {
+    "token": "euiColorStopThumb.stopLabel",
+    "defString": "Stop value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 329,
+        "column": 12
+      },
+      "end": {
+        "line": 334,
+        "column": 65
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
+  },
+  {
+    "token": "euiColorStopThumb.stopErrorMessage",
+    "defString": "Value is out of range",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 329,
+        "column": 12
+      },
+      "end": {
+        "line": 334,
+        "column": 65
       }
     },
     "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
@@ -533,11 +725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 324,
+        "line": 327,
         "column": 12
       },
       "end": {
-        "line": 327,
+        "line": 330,
         "column": 14
       }
     },
@@ -549,11 +741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 337,
+        "line": 340,
         "column": 16
       },
       "end": {
-        "line": 341,
+        "line": 344,
         "column": 18
       }
     },
@@ -565,11 +757,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 355,
+        "line": 358,
         "column": 16
       },
       "end": {
-        "line": 361,
+        "line": 364,
         "column": 18
       }
     },
@@ -581,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 390,
+        "line": 393,
         "column": 20
       },
       "end": {
-        "line": 396,
+        "line": 399,
         "column": 22
       }
     },
@@ -597,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 407,
+        "line": 410,
         "column": 12
       },
       "end": {
-        "line": 411,
+        "line": 414,
         "column": 14
       }
     },
@@ -613,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 418,
+        "line": 421,
         "column": 10
       },
       "end": {
-        "line": 421,
+        "line": 424,
         "column": 12
       }
     },
@@ -629,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 427,
+        "line": 430,
         "column": 10
       },
       "end": {
-        "line": 430,
+        "line": 433,
         "column": 12
       }
     },
@@ -645,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 435,
+        "line": 434,
         "column": 6
       },
       "end": {
-        "line": 437,
+        "line": 436,
         "column": 38
       }
     },
@@ -661,11 +853,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 470,
+        "line": 469,
         "column": 14
       },
       "end": {
-        "line": 474,
+        "line": 473,
         "column": 16
       }
     },
@@ -677,11 +869,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 476,
+        "line": 475,
         "column": 14
       },
       "end": {
-        "line": 479,
+        "line": 478,
         "column": 16
       }
     },
@@ -816,6 +1008,38 @@
     "filepath": "src/components/datagrid/column_selector.tsx"
   },
   {
+    "token": "euiColumnSelector.search",
+    "defString": "Search",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 179,
+        "column": 12
+      },
+      "end": {
+        "line": 184,
+        "column": 54
+      }
+    },
+    "filepath": "src/components/datagrid/column_selector.tsx"
+  },
+  {
+    "token": "euiColumnSelector.searchcolumns",
+    "defString": "Search columns",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 179,
+        "column": 12
+      },
+      "end": {
+        "line": 184,
+        "column": 54
+      }
+    },
+    "filepath": "src/components/datagrid/column_selector.tsx"
+  },
+  {
     "token": "euiColumnSelector.selectAll",
     "defString": "Show all",
     "highlighting": "string",
@@ -917,15 +1141,47 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 155,
+        "line": 154,
         "column": 14
       },
       "end": {
-        "line": 157,
+        "line": 156,
         "column": 60
       }
     },
     "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
+  },
+  {
+    "token": "euiColumnSorting.button",
+    "defString": "Sort fields",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 148,
+        "column": 8
+      },
+      "end": {
+        "line": 150,
+        "column": 54
+      }
+    },
+    "filepath": "src/components/datagrid/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.buttonActive",
+    "defString": "fields sorted",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 148,
+        "column": 8
+      },
+      "end": {
+        "line": 150,
+        "column": 54
+      }
+    },
+    "filepath": "src/components/datagrid/column_sorting.tsx"
   },
   {
     "token": "euiColumnSorting.emptySorting",
@@ -1008,6 +1264,38 @@
     "filepath": "src/components/datagrid/data_grid_cell_buttons.tsx"
   },
   {
+    "token": "euiDataGridCell.row",
+    "defString": "Row",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 438,
+        "column": 10
+      },
+      "end": {
+        "line": 440,
+        "column": 41
+      }
+    },
+    "filepath": "src/components/datagrid/data_grid_cell.tsx"
+  },
+  {
+    "token": "euiDataGridCell.column",
+    "defString": "Column",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 438,
+        "column": 10
+      },
+      "end": {
+        "line": 440,
+        "column": 41
+      }
+    },
+    "filepath": "src/components/datagrid/data_grid_cell.tsx"
+  },
+  {
     "token": "euiDataGridHeaderCell.headerActions",
     "defString": "Header actions",
     "highlighting": "string",
@@ -1025,7 +1313,7 @@
   },
   {
     "token": "euiDataGridSchema.booleanSortTextAsc",
-    "defString": "True-False",
+    "defString": "False-True",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1041,7 +1329,7 @@
   },
   {
     "token": "euiDataGridSchema.booleanSortTextDesc",
-    "defString": "False-True",
+    "defString": "True-False",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1216,6 +1504,38 @@
     "filepath": "src/components/datagrid/data_grid.tsx"
   },
   {
+    "token": "euiDataGrid.fullScreenButton",
+    "defString": "Full screen",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 954,
+        "column": 4
+      },
+      "end": {
+        "line": 959,
+        "column": 53
+      }
+    },
+    "filepath": "src/components/datagrid/data_grid.tsx"
+  },
+  {
+    "token": "euiDataGrid.fullScreenButtonActive",
+    "defString": "Exit full screen",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 954,
+        "column": 4
+      },
+      "end": {
+        "line": 959,
+        "column": 53
+      }
+    },
+    "filepath": "src/components/datagrid/data_grid.tsx"
+  },
+  {
     "token": "euiDataGrid.ariaLabel",
     "defString": "{label}; Page {page} of {pageCount}.",
     "highlighting": "string",
@@ -1278,6 +1598,102 @@
       }
     },
     "filepath": "src/components/datagrid/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.buttonLegend",
+    "defString": "Select the display density for the data grid",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 96,
+        "column": 6
+      },
+      "end": {
+        "line": 108,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.labelExpanded",
+    "defString": "Expanded density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 96,
+        "column": 6
+      },
+      "end": {
+        "line": 108,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.labelNormal",
+    "defString": "Normal density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 96,
+        "column": 6
+      },
+      "end": {
+        "line": 108,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.labelCompact",
+    "defString": "Compact density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 96,
+        "column": 6
+      },
+      "end": {
+        "line": 108,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/style_selector.tsx"
+  },
+  {
+    "token": "euiRelativeTab.numberInputError",
+    "defString": "Must be >= 0",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 135,
+        "column": 12
+      },
+      "end": {
+        "line": 140,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
+  },
+  {
+    "token": "euiRelativeTab.numberInputLabel",
+    "defString": "Time span amount",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 135,
+        "column": 12
+      },
+      "end": {
+        "line": 140,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
     "token": "euiRelativeTab.unitInputLabel",
@@ -1712,6 +2128,70 @@
     "filepath": "src/components/flyout/flyout.tsx"
   },
   {
+    "token": "euiFieldPassword.showPassword",
+    "defString": "Show password as plain text. Note: this will visually expose your password on the screen.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 99,
+        "column": 49
+      },
+      "end": {
+        "line": 105,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/form/field_password/field_password.tsx"
+  },
+  {
+    "token": "euiFieldPassword.maskPassword",
+    "defString": "Mask password",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 99,
+        "column": 49
+      },
+      "end": {
+        "line": 105,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/form/field_password/field_password.tsx"
+  },
+  {
+    "token": "euiFilePicker.clearSelectedFiles",
+    "defString": "Clear selected files",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 128,
+        "column": 6
+      },
+      "end": {
+        "line": 133,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/form/file_picker/file_picker.tsx"
+  },
+  {
+    "token": "euiFilePicker.filesSelected",
+    "defString": "files selected",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 128,
+        "column": 6
+      },
+      "end": {
+        "line": 133,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/form/file_picker/file_picker.tsx"
+  },
+  {
     "token": "euiFormControlLayoutClearButton.label",
     "defString": "Clear input",
     "highlighting": "string",
@@ -1733,11 +2213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 78,
+        "line": 83,
         "column": 6
       },
       "end": {
-        "line": 80,
+        "line": 85,
         "column": 57
       }
     },
@@ -1781,11 +2261,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 110,
+        "line": 114,
         "column": 4
       },
       "end": {
-        "line": 110,
+        "line": 114,
         "column": 75
       }
     },
@@ -1797,11 +2277,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 123,
+        "line": 127,
         "column": 4
       },
       "end": {
-        "line": 123,
+        "line": 127,
         "column": 69
       }
     },
@@ -1870,6 +2350,38 @@
       }
     },
     "filepath": "src/components/link/link.tsx"
+  },
+  {
+    "token": "euiPinnableListGroup.pinExtraActionLabel",
+    "defString": "Pin item",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 132,
+        "column": 4
+      },
+      "end": {
+        "line": 137,
+        "column": 44
+      }
+    },
+    "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
+  },
+  {
+    "token": "euiPinnableListGroup.pinnedExtraActionLabel",
+    "defString": "Unpin item",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 132,
+        "column": 4
+      },
+      "end": {
+        "line": 137,
+        "column": 44
+      }
+    },
+    "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
   },
   {
     "token": "euiMarkdownEditorFooter.uploadingFiles",
@@ -1995,6 +2507,38 @@
       "end": {
         "line": 206,
         "column": 18
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.descriptionPrefix",
+    "defString": "This editor uses",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 212,
+        "column": 14
+      },
+      "end": {
+        "line": 220,
+        "column": 19
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
+  },
+  {
+    "token": "euiMarkdownEditorFooter.descriptionSuffix",
+    "defString": "You can also utilize these additional syntax plugins to add rich content to your text.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 212,
+        "column": 14
+      },
+      "end": {
+        "line": 220,
+        "column": 19
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
@@ -2240,6 +2784,38 @@
     "filepath": "src/components/progress/progress.tsx"
   },
   {
+    "token": "euiResizableButton.horizontalResizerAriaLabel",
+    "defString": "Press left or right to adjust panels size",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 124,
+        "column": 4
+      },
+      "end": {
+        "line": 132,
+        "column": 9
+      }
+    },
+    "filepath": "src/components/resizable_container/resizable_button.tsx"
+  },
+  {
+    "token": "euiResizableButton.verticalResizerAriaLabel",
+    "defString": "Press up or down to adjust panels size",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 124,
+        "column": 4
+      },
+      "end": {
+        "line": 132,
+        "column": 9
+      }
+    },
+    "filepath": "src/components/resizable_container/resizable_button.tsx"
+  },
+  {
     "token": "euiResizablePanel.toggleButtonAriaLabel",
     "defString": "Press to toggle this panel",
     "highlighting": "string",
@@ -2320,6 +2896,22 @@
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
+    "token": "euiSelectableTemplateSitewide.searchPlaceholder",
+    "defString": "Search for anything...",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 126,
+        "column": 30
+      },
+      "end": {
+        "line": 129,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
+  },
+  {
     "token": "euiSelectableTemplateSitewide.loadingResults",
     "defString": "Loading results",
     "highlighting": "string",
@@ -2373,11 +2965,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 447,
+        "line": 452,
         "column": 16
       },
       "end": {
-        "line": 450,
+        "line": 455,
         "column": 18
       }
     },
@@ -2389,11 +2981,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 469,
+        "line": 474,
         "column": 14
       },
       "end": {
-        "line": 473,
+        "line": 478,
         "column": 16
       }
     },
@@ -2405,11 +2997,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 488,
+        "line": 493,
         "column": 14
       },
       "end": {
-        "line": 491,
+        "line": 496,
         "column": 16
       }
     },
@@ -2421,11 +3013,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 555,
+        "line": 560,
         "column": 6
       },
       "end": {
-        "line": 555,
+        "line": 560,
         "column": 78
       }
     },
@@ -2437,11 +3029,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 585,
+        "line": 590,
         "column": 6
       },
       "end": {
-        "line": 585,
+        "line": 590,
         "column": 78
       }
     },
@@ -2926,6 +3518,54 @@
       }
     },
     "filepath": "src/components/tour/tour_step_indicator.tsx"
+  },
+  {
+    "token": "euiTourStep.endTour",
+    "defString": "End tour",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 187,
+        "column": 10
+      },
+      "end": {
+        "line": 193,
+        "column": 58
+      }
+    },
+    "filepath": "src/components/tour/tour_step.tsx"
+  },
+  {
+    "token": "euiTourStep.skipTour",
+    "defString": "Skip tour",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 187,
+        "column": 10
+      },
+      "end": {
+        "line": 193,
+        "column": 58
+      }
+    },
+    "filepath": "src/components/tour/tour_step.tsx"
+  },
+  {
+    "token": "euiTourStep.closeTour",
+    "defString": "Close",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 187,
+        "column": 10
+      },
+      "end": {
+        "line": 193,
+        "column": 58
+      }
+    },
+    "filepath": "src/components/tour/tour_step.tsx"
   },
   {
     "token": "euiTreeView.listNavigationInstructions",

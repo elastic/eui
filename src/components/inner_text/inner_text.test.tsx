@@ -20,7 +20,7 @@
 import React, { useState, useEffect } from 'react';
 import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
-import { findTestSubject, requiredProps, sleep } from '../../test';
+import { findTestSubject, requiredProps } from '../../test';
 
 import { useInnerText, EuiInnerText } from './inner_text';
 import { EuiBadge } from '../badge';
@@ -63,7 +63,8 @@ describe('useInnerText', () => {
     expect(innerText).toEqual(fallback);
   });
 
-  test('handles updated elements', async () => {
+  test('handles updated elements', () => {
+    jest.useFakeTimers();
     const timeout = 500;
     const first = 'First';
     const second = 'Second';
@@ -94,12 +95,13 @@ describe('useInnerText', () => {
 
     expect(innerText).toEqual(first);
 
-    await sleep(timeout + 10);
+    jest.advanceTimersByTime(timeout + 10);
 
     expect(innerText).toEqual(second);
   });
 
-  test('handles updated content', async () => {
+  test('handles updated content', () => {
+    jest.useFakeTimers();
     const timeout = 500;
     const first = 'First';
     const second = 'Second';
@@ -127,7 +129,7 @@ describe('useInnerText', () => {
 
     // MutationObserver polyfill institutes a 30ms mutation timeout period
     const mutationObserverPolyfillPeriod = 30;
-    await sleep(timeout + mutationObserverPolyfillPeriod + 10);
+    jest.advanceTimersByTime(timeout + mutationObserverPolyfillPeriod + 10);
 
     expect(innerText).toEqual(second);
   });

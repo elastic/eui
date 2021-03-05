@@ -112,7 +112,6 @@ export default () => {
     <div>
       <EuiPopover
         id="inlineFormPopover"
-        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}>
@@ -121,7 +120,6 @@ export default () => {
       &emsp;
       <EuiPopover
         id="formPopover"
-        ownFocus
         button={button2}
         isOpen={isPopover2Open}
         closePopover={closePopover2}>

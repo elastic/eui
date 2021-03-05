@@ -183,7 +183,6 @@ const collapsibleExtSnippet = `<EuiResizableContainer style={{ height: '400px' }
 
 export const ResizableContainerExample = {
   title: 'Resizable container',
-  isNew: true,
   intro: (
     <EuiText>
       <p>

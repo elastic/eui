@@ -25,7 +25,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </span>
     <button
       aria-label="Pin Label with iconType to the top"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
       title="Pin Label with iconType to the top"
       type="button"
     >
@@ -51,7 +51,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
       <span
@@ -78,7 +78,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </a>
     <button
       aria-label="Pin Active link to the top"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
       title="Pin Active link to the top"
       type="button"
     >
@@ -105,7 +105,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
     <button
       aria-label="Unpin Button with onClick to the top"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned"
       title="Unpin Button with onClick to the top"
       type="button"
     >
@@ -133,7 +133,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </a>
     <button
       aria-label="Pin Link with href to the top"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
       title="Pin Link with href to the top"
       type="button"
     >
@@ -188,7 +188,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
       title="Pin item"
       type="button"
     >
@@ -214,7 +214,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
       <span
@@ -241,7 +241,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </a>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
       title="Pin item"
       type="button"
     >
@@ -268,7 +268,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
     <button
       aria-label="Unpin item"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned"
       title="Unpin item"
       type="button"
     >
@@ -296,7 +296,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </a>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
       title="Pin item"
       type="button"
     >

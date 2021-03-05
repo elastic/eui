@@ -67,7 +67,7 @@ const commentActionsSnippet = `<EuiComment username="janed" actions={customActio
   {body}
 </EuiComment>`;
 
-const commentListSnippet = `<EuiCommentList 
+const commentListSnippet = `<EuiCommentList
   comments={[
     {
       username: username,
@@ -80,7 +80,6 @@ const commentListSnippet = `<EuiCommentList
 
 export const CommentListExample = {
   title: 'Comment list',
-  isNew: true,
   sections: [
     {
       source: [

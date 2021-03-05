@@ -21,16 +21,16 @@ import { ButtonHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
 // note similarity to `Option` in `components/selectable/types.tsx`
-export type EuiComboBoxOptionOption<
+export interface EuiComboBoxOptionOption<
   T = string | number | string[] | undefined
-> = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> & {
-    isGroupLabelOption?: boolean;
-    label: string;
-    key?: string;
-    options?: Array<EuiComboBoxOptionOption<T>>;
-    value?: T;
-  };
+> extends CommonProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
+  isGroupLabelOption?: boolean;
+  label: string;
+  key?: string;
+  options?: Array<EuiComboBoxOptionOption<T>>;
+  value?: T;
+}
 
 export type UpdatePositionHandler = (
   listElement?: RefInstance<HTMLDivElement>
