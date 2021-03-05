@@ -125,7 +125,7 @@ export const NotificationEventExample = {
             <p>
               The <strong>EuiNotificationEvent</strong> takes into account that
               an event can be purely informative or actionable. It is
-              flexible enough and adapts the design according to the props
+              flexible and adapts the design according to the props
               passed.
             </p>
           </EuiText>
