@@ -138,14 +138,14 @@ const DataGridSchema = () => {
     (pageIndex) => {
       setPagination({ ...pagination, pageIndex });
     },
-    [setPagination]
+    [pagination, setPagination]
   );
 
   const setPageSize = useCallback(
     (pageSize) => {
       setPagination({ ...pagination, pageIndex: 0, pageSize });
     },
-    [setPagination]
+    [pagination, setPagination]
   );
 
   const handleVisibleColumns = (visibleColumns) =>
