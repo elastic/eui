@@ -82,7 +82,7 @@ const notificationEventsData = [
 export default () => {
   const [events, setEvents] = useState(notificationEventsData);
 
-  const onRead = (id: string, isRead: boolean) => {
+  const onRead = (id, isRead) => {
     const nextState = events.map((event) => {
       return event.id === id ? { ...event, isRead: !isRead } : event;
     });
@@ -90,14 +90,14 @@ export default () => {
     setEvents(nextState);
   };
 
-  const onFilterByType = (type: string) => {
+  const onFilterByType = (type) => {
     const nextState = events.filter((event) => type.includes(event.type));
 
     setEvents(nextState);
   };
 
-  const onOpenContextMenu = (id: string) => {
-    const { isRead, type } = events.find(({ id: eventId }) => eventId === id)!;
+  const onOpenContextMenu = (id) => {
+    const { isRead, type } = events.find(({ id: eventId }) => eventId === id);
 
     return [
       <EuiContextMenuItem
@@ -143,7 +143,7 @@ export default () => {
         onRead={onRead}
         onOpenContextMenu={onOpenContextMenu}
         onClickPrimaryAction={() => {}}
-        onClickTitle={onClickTitle!}
+        onClickTitle={onClickTitle}
       />
     );
   });

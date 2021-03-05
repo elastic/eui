@@ -1,14 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiIcon } from '../../../../src/components/icon';
 
-type CircleIndicatorProps = {
-  name: string;
-};
-
-const CircleIndicator: FunctionComponent<CircleIndicatorProps> = ({ name }) => (
+const CircleIndicator = ({ name }) => (
   <span className="guideDemo__notificationEventCircleIndicator">{name}</span>
 );
 

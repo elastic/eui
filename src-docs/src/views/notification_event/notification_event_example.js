@@ -153,12 +153,10 @@ export const NotificationEventExample = {
                 users quickly identify where the event originated.
               </li>
               <li>
-                <EuiCode>type</EuiCode> (required): Use this prop to show a
-                badge with the <EuiCode>type</EuiCode> of event and its{' '}
-                <EuiCode>severity</EuiCode>. Use the{' '}
-                <EuiCode>badgeColor</EuiCode> in conjunction with the{' '}
-                <EuiCode>severity</EuiCode> to better indicate the level of
-                urgency.
+                <EuiCode>type</EuiCode> (required): Shows inside a badge
+                denoting what type of event it is. Use in conjunction with{' '}
+                <EuiCode>severity</EuiCode> and <EuiCode>badgeColor</EuiCode> to
+                indicate the level of urgency.
               </li>
               <li>
                 <EuiCode>time</EuiCode> (required): Indicates the time the event

@@ -6,11 +6,11 @@ import { EuiNotificationEvent } from '../../../../src/components/notification/no
 export default () => {
   const [isRead, setIsRead] = useState(false);
 
-  const onRead = (id: string, isRead: boolean) => {
+  const onRead = (id, isRead) => {
     setIsRead(!isRead);
   };
 
-  const onOpenContextMenu = (id: string) => {
+  const onOpenContextMenu = (id) => {
     return [
       <EuiContextMenuItem
         key="contextMenuItemA"

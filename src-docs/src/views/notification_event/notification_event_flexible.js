@@ -54,15 +54,15 @@ const notificationEventsData = [
 ];
 
 export default () => {
-  const [event, setEvent] = useState<any>(notificationEventsData[0]);
+  const [event, setEvent] = useState(notificationEventsData[0]);
 
-  const onRead = (id: string, isRead: boolean) => {
+  const onRead = (id, isRead) => {
     const nextState = { ...event, isRead: !isRead };
 
     setEvent(nextState);
   };
 
-  const onOpenContextMenu = (id: string) => {
+  const onOpenContextMenu = (id) => {
     const { isRead } = event;
 
     return [
@@ -99,7 +99,7 @@ export default () => {
     },
   ];
 
-  const onChangeButtonGroup = (optionId: string) => {
+  const onChangeButtonGroup = (optionId) => {
     setToggleIdSelected(optionId);
     const eventId = optionId.replace('Button', '');
     const event = notificationEventsData.find((event) => event.id === eventId);
