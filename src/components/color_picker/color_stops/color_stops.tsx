@@ -39,12 +39,15 @@ import {
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
-import { getChromaColor } from '../utils';
+import { getChromaColor, getFixedLinearGradient } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
+import chroma from 'chroma-js';
+// import { colorPalette } from '../../../services/color/color_palette';
+// import { EuiColorPaletteDisplayFixed } from '../color_palette_display/color_palette_display_fixed';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
@@ -62,7 +65,8 @@ export interface EuiColorStopsProps extends CommonProps {
   max?: number;
   min?: number;
   label: string;
-  stopType?: 'fixed' | 'gradient';
+  stopType?: 'fixed' | 'gradient' | 'stepped';
+  stepNumber: number;
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
   showAlpha?: EuiColorPickerProps['showAlpha'];
@@ -125,6 +129,14 @@ function getRangeMax(colorStops: ColorStop[], max?: number) {
   return DEFAULT_MAX;
 }
 
+const getSteppedGradient = function (colors: ColorStop[], steps: number) {
+  // This function also trims the first color so white/black is never a color
+  console.log(colors);
+  const color = ['#98A2B3', ...colors.map((item) => item.color)];
+  console.log(color);
+  return chroma.scale(color).colors(steps);
+};
+
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   addColor = DEFAULT_VISUALIZATION_COLOR,
   max,
@@ -139,6 +151,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   className,
   label,
   stopType = 'gradient',
+  stepNumber = 10,
   swatches,
   showAlpha = false,
 }) => {
@@ -291,7 +304,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     if (isNotInteractive || isTargetAThumb(e.target) || !wrapperRef) return;
     const newStop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const newColorStops = addDefinedStop(colorStops, newStop, addColor);
-
     setFocusStopOnUpdate(newStop);
     handleOnChange(newColorStops);
   };
@@ -440,10 +452,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       )}`;
     }
   };
-  const linearGradient = sortedStops.map(
-    stopType === 'gradient' ? gradientStop : fixedStop
-  );
-  const background = `linear-gradient(to right,${linearGradient})`;
+
+  let gradient: string[] = [];
+
+  if (stopType === 'stepped') {
+    gradient = getSteppedGradient(colorStops, stepNumber);
+  } else {
+    gradient = sortedStops.map(
+      stopType === 'gradient' ? gradientStop : fixedStop
+    );
+  }
 
   return (
     <EuiRangeWrapper
@@ -483,8 +501,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
           max={max || rangeMax}
           lowerValue={min || rangeMin}
           upperValue={max || rangeMax}
-          background={background}
+          background={gradient}
           compressed={compressed}
+          stepped={stopType === 'stepped' ? true : false}
         />
         <div
           data-test-subj="euiColorStopsAdd"

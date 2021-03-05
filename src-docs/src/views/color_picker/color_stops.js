@@ -81,6 +81,16 @@ export default () => {
           stopType="fixed"
         />
       </EuiFormRow>
+      <EuiFormRow label="Stepped color segments">
+        <EuiColorStops
+          label="Stepped color segments"
+          onChange={setColorStops}
+          colorStops={colorStops}
+          min={0}
+          max={100}
+          stopType="stepped"
+        />
+      </EuiFormRow>
     </React.Fragment>
   );
 };

@@ -40,7 +40,10 @@ export const addDefinedStop = (
     stop,
     color,
   };
-  return [...colorStops, newStop];
+  colorStops = [...colorStops, newStop];
+  // eslint-disable-next-line no-nested-ternary
+  colorStops.sort((a, b) => (a.stop > b.stop ? 1 : b.stop > a.stop ? -1 : 0));
+  return colorStops;
 };
 
 export const addStop = (
