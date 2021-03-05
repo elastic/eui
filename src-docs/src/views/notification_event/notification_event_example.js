@@ -181,9 +181,9 @@ export const NotificationEventExample = {
                 about the notification.
               </li>
               <li>
-                <EuiCode>messages</EuiCode>: Use this prop to provide more
-                details about the event. You can provide just one message or
-                multiple messages when the event executes in various steps.
+                <EuiCode>messages</EuiCode>: Provides more
+                details about the event. You can provide a single message or
+                multiple messages if the event executes in various steps.
               </li>
               <li>
                 <EuiCode>primaryAction</EuiCode>: Use this prop in conjunction
