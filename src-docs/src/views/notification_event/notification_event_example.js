@@ -198,7 +198,7 @@ export const NotificationEventExample = {
           <EuiText>
             <p>
               The following demo shows how you can combine different props to
-              create different types of events like a report, alert, or even
+              create different types of events like a report, alert, or simply
               news.
             </p>
           </EuiText>
