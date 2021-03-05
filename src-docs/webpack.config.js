@@ -135,13 +135,18 @@ const webpackConfig = {
         }),
         disableHostCheck: true,
         historyApiFallback: true,
+        hot: !isPuppeteer,
+        liveReload: !isPuppeteer,
+        watchOptions: isPuppeteer
+          ? {
+              ignored: '/app/',
+            }
+          : undefined,
       }
     : undefined,
   node: {
     fs: 'empty',
   },
-
-  watch: isDevelopment && !isPuppeteer,
 };
 
 // Inspired by `get-port-sync`, but propogates options
