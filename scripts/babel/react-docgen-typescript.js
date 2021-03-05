@@ -28,6 +28,8 @@ const { SyntaxKind } = require('typescript');
 const chokidar = require('chokidar');
 
 const { NODE_ENV, CI } = process.env;
+console.log('__NODE_ENV__:', NODE_ENV);
+console.log('__CI__:', CI);
 const isDevelopment = NODE_ENV !== 'production' && CI == null;
 
 /**
