@@ -162,8 +162,9 @@ export const NotificationEventExample = {
                 urgency.
               </li>
               <li>
-                <EuiCode>time</EuiCode> (required): Use this prop to indicate
-                the time the event was received.
+                <EuiCode>time</EuiCode> (required): Indicates
+                the time the event was received. It is recommended 
+                to display a relative time format like '2 hours ago'.
               </li>
               <li>
                 <EuiCode>onContextMenu</EuiCode>: Use this prop when you have
