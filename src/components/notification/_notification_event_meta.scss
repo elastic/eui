@@ -6,6 +6,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin-right: $euiSizeXS;
+  min-height: $euiSizeL; // ensures the same size of the read button to properly center align
 
   &--hasContextMenu {
     padding-right: $euiSizeL;

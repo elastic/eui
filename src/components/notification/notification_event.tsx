@@ -36,13 +36,7 @@ import { EuiLink } from '../link';
 import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
 import { htmlIdGenerator } from '../../services';
 
-export type EuiNotificationHeadingLevel =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6';
+export type EuiNotificationHeadingLevel = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export type EuiNotificationEventProps = Omit<
   EuiNotificationEventMetaProps,

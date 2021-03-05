@@ -43,13 +43,15 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
 
   const accordionButtonText = useEuiI18n(
     'euiNotificationEventMessages.accordionButtonText',
-    '+ 2 more'
+    '+ {messagesLength} more',
+    { messagesLength: messagesLength - 1 }
   );
 
   const accordionAriaLabelButtonText = useEuiI18n(
     'euiNotificationEventMessages.accordionAriaLabelButtonText',
-    '+ 2 messages for {eventName}',
+    '+ {messagesLength} messages for {eventName}',
     {
+      messagesLength: messagesLength - 1,
       eventName,
     }
   );
@@ -66,39 +68,33 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
   return (
     <div className="euiNotificationEventMessages">
       {messages && messagesLength === 1 ? (
-        <EuiText size="s">
+        <EuiText size="s" color="subdued">
           <p>{messages}</p>
         </EuiText>
       ) : (
         <>
-          <EuiText size="s">
+          <EuiText size="s" color="subdued">
             <p>{messages[0]}</p>
           </EuiText>
 
-          {messagesLength <= 2 ? (
-            <EuiText size="s">
-              <p>{messages[1]}</p>
-            </EuiText>
-          ) : (
-            <EuiAccordion
-              onToggle={setIsOpen}
-              buttonProps={{ 'aria-label': accordionAriaLabelButtonText }}
-              id={htmlIdGenerator('euiNotificationEventMessagesAccordion')()}
-              className="euiNotificationEventMessages__accordion"
-              buttonContent={buttonContentText}
-              buttonClassName="euiNotificationEventMessages__accordionButton"
-              arrowDisplay="none">
-              <div className="euiNotificationEventMessages__accordionContent">
-                {messages
-                  .map((notification, index) => (
-                    <EuiText size="s" key={index}>
-                      <p>{notification}</p>
-                    </EuiText>
-                  ))
-                  .slice(1)}
-              </div>
-            </EuiAccordion>
-          )}
+          <EuiAccordion
+            onToggle={setIsOpen}
+            buttonProps={{ 'aria-label': accordionAriaLabelButtonText }}
+            id={htmlIdGenerator('euiNotificationEventMessagesAccordion')()}
+            className="euiNotificationEventMessages__accordion"
+            buttonContent={buttonContentText}
+            buttonClassName="euiNotificationEventMessages__accordionButton"
+            arrowDisplay="none">
+            <div className="euiNotificationEventMessages__accordionContent">
+              {messages
+                .map((notification, index) => (
+                  <EuiText size="s" key={index} color="subdued">
+                    <p>{notification}</p>
+                  </EuiText>
+                ))
+                .slice(1)}
+            </div>
+          </EuiAccordion>
         </>
       )}
     </div>

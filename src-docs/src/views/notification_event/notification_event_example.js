@@ -124,9 +124,8 @@ export const NotificationEventExample = {
           <EuiText>
             <p>
               The <strong>EuiNotificationEvent</strong> takes into account that
-              an event can be purely informative or actionable. It is
-              flexible and adapts the design according to the props
-              passed.
+              an event can be purely informative or actionable. It is flexible
+              and adapts the design according to the props passed.
             </p>
           </EuiText>
           <EuiSpacer />
@@ -144,14 +143,14 @@ export const NotificationEventExample = {
           <EuiText>
             <ul style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>isRead</EuiCode>: Shows a button that
-                indicates the current <EuiCode>isRead</EuiCode> state of the
-                event. Use <EuiCode>onRead</EuiCode> to allow users to toggle
-                between read and unread states.
+                <EuiCode>isRead</EuiCode>: Shows a button that indicates the
+                current <EuiCode>isRead</EuiCode> state of the event. Use{' '}
+                <EuiCode>onRead</EuiCode> to allow users to toggle between read
+                and unread states.
               </li>
               <li>
-                <EuiCode>iconType</EuiCode>: Display an icon or logo to
-                help users quickly identify where the event originated.
+                <EuiCode>iconType</EuiCode>: Display an icon or logo to help
+                users quickly identify where the event originated.
               </li>
               <li>
                 <EuiCode>type</EuiCode> (required): Use this prop to show a
@@ -162,9 +161,9 @@ export const NotificationEventExample = {
                 urgency.
               </li>
               <li>
-                <EuiCode>time</EuiCode> (required): Indicates
-                the time the event was received. It is recommended 
-                to display a relative time format like '2 hours ago'.
+                <EuiCode>time</EuiCode> (required): Indicates the time the event
+                was received. It is recommended to display a relative time
+                format like &apos;2 hours ago&apos;.
               </li>
               <li>
                 <EuiCode>onContextMenu</EuiCode>: Use this prop when you have
@@ -182,9 +181,9 @@ export const NotificationEventExample = {
                 about the notification.
               </li>
               <li>
-                <EuiCode>messages</EuiCode>: Provides more
-                details about the event. You can provide a single message or
-                multiple messages if the event executes in various steps.
+                <EuiCode>messages</EuiCode>: Provides more details about the
+                event. You can provide a single message or multiple messages if
+                the event executes in various steps.
               </li>
               <li>
                 <EuiCode>primaryAction</EuiCode>: Use this prop in conjunction

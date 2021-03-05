@@ -51,9 +51,13 @@ exports[`EuiNotificationEvent is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -112,9 +116,13 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -226,9 +234,13 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -291,9 +303,13 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -356,9 +372,13 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -433,9 +453,13 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -493,9 +517,13 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message 1
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message 1
+          </p>
+        </div>
       </div>
       <div
         class="euiAccordion euiNotificationEventMessages__accordion"
@@ -535,16 +563,24 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
                 <div
                   class="euiText euiText--small"
                 >
-                  <p>
-                    message 2
-                  </p>
+                  <div
+                    class="euiTextColor euiTextColor--subdued"
+                  >
+                    <p>
+                      message 2
+                    </p>
+                  </div>
                 </div>
                 <div
                   class="euiText euiText--small"
                 >
-                  <p>
-                    message 3
-                  </p>
+                  <div
+                    class="euiTextColor euiTextColor--subdued"
+                  >
+                    <p>
+                      message 3
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -607,9 +643,13 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
     <div
@@ -686,9 +726,13 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
     <div
@@ -769,9 +813,13 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
       <div
         class="euiText euiText--small"
       >
-        <p>
-          message
-        </p>
+        <div
+          class="euiTextColor euiTextColor--subdued"
+        >
+          <p>
+            message
+          </p>
+        </div>
       </div>
     </div>
   </div>
