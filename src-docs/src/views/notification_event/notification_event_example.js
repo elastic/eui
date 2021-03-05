@@ -150,8 +150,8 @@ export const NotificationEventExample = {
                 between read and unread states.
               </li>
               <li>
-                <EuiCode>iconType</EuiCode> An <EuiCode>iconType</EuiCode> to
-                help users quickly identify an event.
+                <EuiCode>iconType</EuiCode>: Display an icon or logo to
+                help users quickly identify where the event originated.
               </li>
               <li>
                 <EuiCode>type</EuiCode> (required): Use this prop to show a
