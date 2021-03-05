@@ -132,9 +132,14 @@ function getRangeMax(colorStops: ColorStop[], max?: number) {
 const getSteppedGradient = function (colors: ColorStop[], steps: number) {
   // This function also trims the first color so white/black is never a color
   console.log(colors);
-  const color = ['#98A2B3', ...colors.map((item) => item.color)];
-  console.log(color);
-  return chroma.scale(color).colors(steps);
+  const finalStops = [0, ...colors.map((item) => item.stop / 100), 1];
+  const color = [
+    colors[0].color,
+    ...colors.map((item) => item.color),
+    colors[colors.length - 1].color,
+  ];
+  console.log(color, finalStops);
+  return chroma.scale(color).domain(finalStops).colors(steps);
 };
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
