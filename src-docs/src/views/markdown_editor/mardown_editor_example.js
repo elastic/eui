@@ -66,7 +66,6 @@ const markdownEditorHeightSnippet = [
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
   beta: true,
-  isNew: true,
   intro: (
     <Fragment>
       <EuiText>
