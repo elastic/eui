@@ -5,12 +5,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiAccordion,
-  EuiCode,
-  EuiCallOut,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiAccordion, EuiCode, EuiCallOut } from '../../../../src/components';
 
 import { accordionConfig } from './playground';
 
@@ -146,8 +141,6 @@ export const AccordionExample = {
           groups.
         </p>
       </EuiCallOut>
-
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

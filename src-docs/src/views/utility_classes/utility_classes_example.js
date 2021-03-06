@@ -16,8 +16,6 @@ export const UtilityClassesExample = {
         The following CSS-only classes are provided as helper utilities. They
         are useful for making micro-adjustments to existing React components.
       </p>
-
-      <EuiSpacer size="l" />
     </EuiText>
   ),
   sections: [

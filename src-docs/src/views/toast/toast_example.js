@@ -11,7 +11,6 @@ import {
   EuiGlobalToastList,
   EuiGlobalToastListItem,
   EuiText,
-  EuiSpacer,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
 import toastConfig from './playground';
@@ -102,7 +101,6 @@ export const ToastExample = {
         Be sure to read the full{' '}
         <Link to="/guidelines/toast">toast usage guidelines</Link>.
       </p>
-      <EuiSpacer />
     </EuiText>
   ),
   sections: [

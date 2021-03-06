@@ -4,7 +4,7 @@ import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
 import { EuiText } from '../../../../src/components/text';
 import { EuiSwitch } from '../../../../src/components/form';
 
-import { slugify } from '../../../../src/services';
+import { slugify } from '../../../../src/services/string/slugify';
 
 // @ts-ignore Not TS yet
 import playgroundService from '../../services/playground/playground';
@@ -20,7 +20,7 @@ import { GuideSectionPropsDescription } from './guide_section_parts/guide_sectio
 export interface GuideSection {
   id?: string;
   title?: string;
-  text?: string;
+  text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
   // routes?: object.isRequired;
@@ -163,7 +163,9 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
   return (
     <div className="guideSection" id={id}>
-      <GuideSectionExampleText title={title} text={text} wrapText={wrapText} />
+      <GuideSectionExampleText title={title} wrapText={wrapText}>
+        {text}
+      </GuideSectionExampleText>
 
       {renderingPlayground && renderPlayground()}
       {!renderingPlayground && demo && (

@@ -10,7 +10,6 @@ import {
   EuiLink,
   EuiCode,
   EuiComboBox,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
 
@@ -209,8 +208,6 @@ export const ComboBoxExample = {
           predetermined list.
         </p>
       </EuiText>
-
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

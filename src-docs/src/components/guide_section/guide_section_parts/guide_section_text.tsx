@@ -7,13 +7,13 @@ export const LANGUAGES = ['javascript', 'html'] as const;
 
 type GuideSectionExampleText = {
   title?: ReactNode;
-  text?: ReactNode;
+  children?: ReactNode;
   wrapText?: boolean;
 };
 
 export const GuideSectionExampleText: FunctionComponent<GuideSectionExampleText> = ({
   title,
-  text,
+  children,
   wrapText = true,
 }) => {
   let titleNode;
@@ -30,10 +30,10 @@ export const GuideSectionExampleText: FunctionComponent<GuideSectionExampleText>
     );
   }
 
-  let textNode = text;
+  let textNode = children;
 
-  if (text && wrapText) {
-    textNode = <EuiText>{text}</EuiText>;
+  if (children && wrapText) {
+    textNode = <EuiText>{children}</EuiText>;
   }
 
   return (
