@@ -1,6 +1,8 @@
 import React, { createElement, Fragment } from 'react';
 import { slugify } from '../../src/services';
 
+import { createHashHistory } from 'history';
+
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
@@ -486,6 +488,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
+  history: createHashHistory(),
   navigation,
 
   getRouteForPath: (path) => {

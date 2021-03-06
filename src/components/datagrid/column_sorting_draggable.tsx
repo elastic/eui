@@ -121,7 +121,6 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
                 {(removeSortLabel: ReactChild) => (
                   <EuiButtonIcon
                     color="text"
-                    size="s"
                     className="euiDataGridColumnSorting__button"
                     aria-label={`${removeSortLabel} ${id}`}
                     iconType="cross"

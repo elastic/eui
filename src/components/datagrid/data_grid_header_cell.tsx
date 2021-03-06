@@ -340,7 +340,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             className="euiDataGridHeaderCell__popover"
             panelPaddingSize="none"
             anchorPosition="downRight"
-            ownFocus
             button={
               <EuiIcon
                 type="arrowDown"

@@ -106,7 +106,7 @@ console.log(some);
       >
         <button
           aria-label="Copy"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
@@ -161,7 +161,7 @@ console.log(some);
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--text euiCodeBlock__fullScreenButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
       type="button"
     >
       <span
