@@ -25,6 +25,12 @@ export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
   setColumnWidth: (columnId: string, width: number) => void;
+  uppercase: (column: { id: string }) => string[];
+  lowercase: (column: { id: string }) => string[];
+  capitalize: (column: { id: string }) => string[];
+  capital: string[];
+  upper: string[];
+  lower: string[];
 }
 
 interface EuiDataGridColumnResizerState {

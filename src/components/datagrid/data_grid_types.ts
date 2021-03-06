@@ -113,6 +113,20 @@ export interface EuiDataGridColumnActions {
    * Show/hide/configure the action to sort descending by the actual column, provided EuiListGroupItemProps are merged
    */
   showSortDesc?: boolean | EuiListGroupItemProps;
+  showUpperCase?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to upper case the actual column, provided EuiListGroupItemProps are merged
+   */
+
+  showLowerCase?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to lower case the actual column, provided EuiListGroupItemProps are merged
+   */
+
+  showCapitalize?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to capitalize the actual column, provided EuiListGroupItemProps are merged
+   */
   /**
    * Append additional actions
    */

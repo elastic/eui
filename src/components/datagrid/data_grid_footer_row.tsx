@@ -45,6 +45,12 @@ export type EuiDataGridFooterRowProps = CommonProps &
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
+    uppercase: (column: { id: string }) => string[];
+    lowercase: (column: { id: string }) => string[];
+    capitalize: (column: { id: string }) => string[];
+    capital: string[];
+    upper: string[];
+    lower: string[];
   };
 
 const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
@@ -68,6 +74,12 @@ const EuiDataGridFooterRow = memo(
         interactiveCellId,
         'data-test-subj': _dataTestSubj,
         visibleRowIndex = rowIndex,
+        lower,
+        upper,
+        capital,
+        lowercase,
+        uppercase,
+        capitalize,
         ...rest
       },
       ref
@@ -88,6 +100,12 @@ const EuiDataGridFooterRow = memo(
           {...rest}>
           {leadingControlColumns.map(({ id, width }, i) => (
             <EuiDataGridCell
+              lower={lower}
+              upper={upper}
+              capital={capital}
+              capitalize={capitalize}
+              uppercase={uppercase}
+              lowercase={lowercase}
               key={`${id}-${rowIndex}`}
               rowIndex={rowIndex}
               visibleRowIndex={visibleRowIndex}
@@ -112,6 +130,12 @@ const EuiDataGridFooterRow = memo(
 
             return (
               <EuiDataGridCell
+                lower={lower}
+                upper={upper}
+                capital={capital}
+                capitalize={capitalize}
+                uppercase={uppercase}
+                lowercase={lowercase}
                 key={`${id}-${rowIndex}`}
                 rowIndex={rowIndex}
                 visibleRowIndex={visibleRowIndex}
@@ -132,6 +156,12 @@ const EuiDataGridFooterRow = memo(
 
             return (
               <EuiDataGridCell
+                lower={lower}
+                upper={upper}
+                capital={capital}
+                capitalize={capitalize}
+                uppercase={uppercase}
+                lowercase={lowercase}
                 key={`${id}-${rowIndex}`}
                 rowIndex={rowIndex}
                 visibleRowIndex={visibleRowIndex}

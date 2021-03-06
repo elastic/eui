@@ -38,7 +38,13 @@ export function getColumnActions(
   setVisibleColumns: (columnId: string[]) => void,
   setIsPopoverOpen: (value: boolean) => void,
   sorting: EuiDataGridSorting | undefined,
-  switchColumnPos: (colFromId: string, colToId: string) => void
+  switchColumnPos: (colFromId: string, colToId: string) => void,
+  uppercase: (column: { id: string }) => String[],
+  lowercase: (column: { id: string }) => String[],
+  capitalize: (column: { id: string }) => String[],
+  capital: String[],
+  upper: String[],
+  lower: String[]
 ) {
   if (column.actions === false) {
     return [];
@@ -109,6 +115,15 @@ export function getColumnActions(
     if (targetCol) {
       switchColumnPos(column.id, targetCol.id);
     }
+  };
+  const clickCapitalize = () => {
+    capitalize(column);
+  };
+  const clickUppercase = () => {
+    uppercase(column);
+  };
+  const clickLowercase = () => {
+    lowercase(column);
   };
 
   const result: EuiListGroupItemProps[] = [];
@@ -220,6 +235,69 @@ export function getColumnActions(
     } as EuiListGroupItemProps;
     if (typeof column.actions?.showMoveRight === 'object') {
       result.push({ ...option, ...column.actions.showMoveRight });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showCapitalize !== false) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.capitalize" default="Capitalize" />
+      ),
+      iconType: 'capitalize',
+      size: 'xs',
+      color: 'text',
+      onClick: clickCapitalize,
+      isDisabled: colIdx === columns.length - 1,
+      className: capital?.includes(column.id)
+        ? 'euiDataGridHeader__action--selected'
+        : '',
+    } as EuiListGroupItemProps;
+    if (typeof column.actions?.showCapitalize === 'object') {
+      result.push({ ...option, ...column.actions.showCapitalize });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showLowerCase !== false) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.lowercase" default="Lower-Case" />
+      ),
+      iconType: 'lowerCase',
+      size: 'xs',
+      color: 'text',
+      onClick: clickLowercase,
+      isDisabled: colIdx === columns.length - 1,
+      className: lower?.includes(column.id)
+        ? 'euiDataGridHeader__action--selected'
+        : '',
+    } as EuiListGroupItemProps;
+    if (typeof column.actions?.showLowerCase === 'object') {
+      result.push({ ...option, ...column.actions.showLowerCase });
+    } else {
+      result.push(option);
+    }
+  }
+
+  if (column.actions?.showUpperCase !== false) {
+    const option = {
+      label: (
+        <EuiI18n token="euiColumnActions.uppercase" default="Upper-Case" />
+      ),
+      iconType: 'upperCase',
+      size: 'xs',
+      color: 'text',
+      onClick: clickUppercase,
+      isDisabled: colIdx === columns.length - 1,
+      className: upper?.includes(column.id)
+        ? 'euiDataGridHeader__action--selected'
+        : '',
+    } as EuiListGroupItemProps;
+    if (typeof column.actions?.showUpperCase === 'object') {
+      result.push({ ...option, ...column.actions.showUpperCase });
     } else {
       result.push(option);
     }

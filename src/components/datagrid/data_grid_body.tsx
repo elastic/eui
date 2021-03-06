@@ -89,6 +89,12 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
+  uppercase: (column: { id: string }) => string[];
+  lowercase: (column: { id: string }) => string[];
+  capitalize: (column: { id: string }) => string[];
+  capital: string[];
+  upper: string[];
+  lower: string[];
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
@@ -145,6 +151,12 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     renderCellValue,
     interactiveCellId,
     setRowHeight,
+    capital,
+    lower,
+    upper,
+    uppercase,
+    lowercase,
+    capitalize,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -183,6 +195,12 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
+        capital={capital}
+        capitalize={capitalize}
+        uppercase={uppercase}
+        lowercase={lowercase}
+        upper={upper}
+        lower={lower}
         rowIndex={rowIndex}
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
@@ -208,6 +226,12 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
+        capital={capital}
+        capitalize={capitalize}
+        uppercase={uppercase}
+        lowercase={lowercase}
+        upper={upper}
+        lower={lower}
         rowIndex={rowIndex}
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
@@ -243,6 +267,12 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
+        capital={capital}
+        capitalize={capitalize}
+        uppercase={uppercase}
+        lowercase={lowercase}
+        upper={upper}
+        lower={lower}
         rowIndex={rowIndex}
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
@@ -320,6 +350,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     toolbarHeight,
+    capitalize,
+    uppercase,
+    lowercase,
+    lower,
+    upper,
+    capital,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -414,6 +450,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const headerRow = useMemo(() => {
     return (
       <EuiDataGridHeaderRow
+        upper={upper}
+        lower={lower}
+        capital={capital}
+        capitalize={capitalize}
+        lowercase={lowercase}
+        uppercase={uppercase}
         ref={setHeaderRowRef}
         switchColumnPos={switchColumnPos}
         setVisibleColumns={setVisibleColumns}
@@ -440,12 +482,24 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     schema,
     schemaDetectors,
     headerIsInteractive,
+    upper,
+    lower,
+    capital,
+    lowercase,
+    uppercase,
+    capitalize,
   ]);
 
   const footerRow = useMemo(() => {
     if (renderFooterCellValue == null) return null;
     return (
       <EuiDataGridFooterRow
+        upper={upper}
+        lower={lower}
+        capital={capital}
+        capitalize={capitalize}
+        lowercase={lowercase}
+        uppercase={uppercase}
         ref={setFooterRowRef}
         leadingControlColumns={leadingControlColumns}
         trailingControlColumns={trailingControlColumns}
@@ -471,6 +525,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     schema,
     trailingControlColumns,
     visibleRowIndices.length,
+    upper,
+    lower,
+    capital,
+    lowercase,
+    uppercase,
+    capitalize,
   ]);
 
   const gridRef = useRef<Grid>(null);
@@ -567,13 +627,20 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
     finalWidth = window.innerWidth;
   }
-
+  // here i have added 'a' and 'b' to keys just to make the key unique
   return (
     <EuiMutationObserver
       observerOptions={{ subtree: true, childList: true }}
       onMutation={preventTabbing}>
       {(mutationRef) => (
         <div
+          key={[
+            ...props.lower,
+            'a',
+            ...props.upper,
+            'b',
+            ...props.capital,
+          ].toString()}
           style={{ width: '100%', height: '100%', overflow: 'hidden' }}
           ref={(el) => {
             wrapperRef.current = el;
@@ -610,6 +677,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   defaultColumnWidth,
                   renderCellValue,
                   interactiveCellId,
+                  capitalize,
+                  uppercase,
+                  lowercase,
+                  lower,
+                  upper,
+                  capital,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0

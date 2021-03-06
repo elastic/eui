@@ -690,6 +690,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
+  const [upper, setUpper] = useState<string[]>([]);
+  const [capital, setCapital] = useState<string[]>([]);
+  const [lower, setLower] = useState<string[]>([]);
 
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
@@ -987,6 +990,80 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       onFocusUpdate,
     };
   }, [setFocusedCell, onFocusUpdate]);
+  const capitalize = (column: { id: string }) => {
+    const searchUpperArray = [...upper];
+    const upperIndex = searchUpperArray.indexOf(column.id);
+    if (upperIndex > -1) {
+      searchUpperArray.splice(upperIndex, 1);
+      setUpper(searchUpperArray);
+    }
+
+    const searchLowerArray = [...lower];
+    const lowerIndex = searchLowerArray.indexOf(column.id);
+    if (lowerIndex > -1) {
+      searchLowerArray.splice(lowerIndex, 1);
+      setLower(searchLowerArray);
+    }
+    const capitalIndex = capital.indexOf(column.id);
+    const capitalArray = [...capital];
+    if (capitalArray.length === 0 || capitalIndex === -1) {
+      capitalArray.push(column.id);
+      console.log(
+        'capital is',
+        capital,
+        'lower is ',
+        lower,
+        'upper is ',
+        upper
+      );
+      setCapital(capitalArray);
+    }
+    return capitalArray;
+  };
+
+  const lowercase = (column: { id: string }) => {
+    const searchUpperArray = [...upper];
+    const upperIndex = searchUpperArray.indexOf(column.id);
+    if (upperIndex > -1) {
+      searchUpperArray.splice(upperIndex, 1);
+      setUpper(searchUpperArray);
+    }
+    const searchCapitalArray = [...capital];
+    const capitalIndex = searchCapitalArray.indexOf(column.id);
+    if (capitalIndex > -1) {
+      searchCapitalArray.splice(capitalIndex, 1);
+      setCapital(searchCapitalArray);
+    }
+    const lowerIndex = lower.indexOf(column.id);
+    const lowercaseArray = [...lower];
+    if (lowercaseArray.length === 0 || lowerIndex === -1) {
+      lowercaseArray.push(column.id);
+      setLower(lowercaseArray);
+    }
+    return lowercaseArray;
+  };
+
+  const uppercase = (column: { id: string }) => {
+    const searchCapitalArray = [...capital];
+    const capitalIndex = searchCapitalArray.indexOf(column.id);
+    if (capitalIndex > -1) {
+      searchCapitalArray.splice(capitalIndex, 1);
+      setCapital(searchCapitalArray);
+    }
+    const searchLowerArray = [...lower];
+    const lowerIndex = searchLowerArray.indexOf(column.id);
+    if (lowerIndex > -1) {
+      searchLowerArray.splice(lowerIndex, 1);
+      setLower(searchLowerArray);
+    }
+    const upperIndex = upper.indexOf(column.id);
+    const uppercaseArray = [...upper];
+    if (uppercaseArray.length === 0 || upperIndex === -1) {
+      uppercaseArray.push(column.id);
+      setUpper(uppercaseArray);
+    }
+    return uppercaseArray;
+  };
 
   const gridIds = htmlIdGenerator();
   const gridId = gridIds();
@@ -1125,6 +1202,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                                     }
                                     rowCount={rowCount}
                                     interactiveCellId={interactiveCellId}
+                                    capitalize={capitalize}
+                                    lowercase={lowercase}
+                                    uppercase={uppercase}
+                                    lower={lower}
+                                    upper={upper}
+                                    capital={capital}
                                   />
                                 </div>
                               </div>

@@ -101,9 +101,11 @@
 
   &.euiDataGridRowCell--boolean {
     text-transform: capitalize;
-  }
-
-  // We only truncate if the cell is not a control column.
+  }&.euiDataGridRowCell--uppercase {
+    text-transform: uppercase;
+  }&.euiDataGridRowCell--lowercase {
+    text-transform: lowercase;
+  }// We only truncate if the cell is not a control column.
   &:not(.euiDataGridRowCell--controlColumn) {
     .euiDataGridRowCell__content,
     .euiDataGridRowCell__truncate,

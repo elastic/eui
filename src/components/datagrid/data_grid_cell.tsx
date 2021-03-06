@@ -92,6 +92,12 @@ export interface EuiDataGridCellProps {
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   style?: React.CSSProperties;
+  uppercase: (column: { id: string }) => string[];
+  lowercase: (column: { id: string }) => string[];
+  capitalize: (column: { id: string }) => string[];
+  capital: string[];
+  upper: string[];
+  lower: string[];
 }
 
 interface EuiDataGridCellState {
@@ -101,6 +107,9 @@ interface EuiDataGridCellState {
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
+  capital: string[];
+  upper: string[];
+  lower: string[];
 }
 
 export type EuiDataGridCellValueProps = Omit<
@@ -150,6 +159,9 @@ export class EuiDataGridCell extends Component<
     isEntered: false,
     enableInteractions: false,
     disableCellTabIndex: false,
+    capital: [],
+    upper: [],
+    lower: [],
   };
   unsubscribeCell?: Function = () => {};
   style = null;
@@ -238,6 +250,7 @@ export class EuiDataGridCell extends Component<
   ) {
     if (nextProps.rowIndex !== this.props.rowIndex) return true;
     if (nextProps.visibleRowIndex !== this.props.visibleRowIndex) return true;
+    if (nextProps.lower !== this.props.lower) return true;
     if (nextProps.colIndex !== this.props.colIndex) return true;
     if (nextProps.columnId !== this.props.columnId) return true;
     if (nextProps.columnType !== this.props.columnType) return true;
@@ -334,6 +347,7 @@ export class EuiDataGridCell extends Component<
       columnType,
       className,
       column,
+      columnId,
       style,
       ...rest
     } = this.props;
@@ -360,7 +374,26 @@ export class EuiDataGridCell extends Component<
         'dataGridRowCell',
         this.state.cellProps['data-test-subj']
       ),
-      className: classNames(cellClasses, this.state.cellProps.className),
+
+      className: classNames(
+        cellClasses,
+        this.props.upper.map((element) => {
+          if (element === columnId) {
+            return 'euiDataGridRowCell--uppercase';
+          }
+        }),
+        this.props.capital.map((element) => {
+          if (element === columnId) {
+            return 'euiDataGridRowCell--boolean';
+          }
+        }),
+        this.props.lower.map((element) => {
+          if (element === columnId) {
+            return 'euiDataGridRowCell--lowercase';
+          }
+        }),
+        this.state.cellProps.className
+      ),
     };
 
     cellProps.style = { ...style, width, ...cellProps.style };
@@ -426,6 +459,7 @@ export class EuiDataGridCell extends Component<
       ...rest,
       setCellProps: this.setCellProps,
       column,
+      columnId,
       columnType: columnType,
       isExpandable,
       isExpanded: this.state.popoverIsOpen,

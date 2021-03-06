@@ -53,6 +53,12 @@ export interface EuiDataGridHeaderCellProps
   column: EuiDataGridColumn;
   index: number;
   className?: string;
+  uppercase: (column: { id: string }) => string[];
+  lowercase: (column: { id: string }) => string[];
+  capitalize: (column: { id: string }) => string[];
+  capital: string[];
+  upper: string[];
+  lower: string[];
 }
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = (
@@ -71,6 +77,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     switchColumnPos,
     headerIsInteractive,
     className,
+    lower,
+    uppercase,
+    upper,
+    lowercase,
+    capitalize,
+    capital,
   } = props;
   const { id, display, displayAsText } = column;
 
@@ -285,7 +297,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     setVisibleColumns,
     setIsPopoverOpen,
     sorting,
-    switchColumnPos
+    switchColumnPos,
+    uppercase,
+    lowercase,
+    capitalize,
+    capital,
+    upper,
+    lower
   );
 
   const showColumnActions = columnActions && columnActions.length > 0;
@@ -310,6 +328,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       style={width != null ? { width: `${width}px` } : {}}>
       {column.isResizable !== false && width != null ? (
         <EuiDataGridColumnResizer
+          uppercase={uppercase}
+          lowercase={lowercase}
+          capitalize={capitalize}
+          capital={capital}
+          upper={upper}
+          lower={lower}
           columnId={id}
           columnWidth={width}
           setColumnWidth={setColumnWidth}

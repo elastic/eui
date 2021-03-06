@@ -44,6 +44,12 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
   headerIsInteractive: boolean;
+  uppercase: (column: { id: string }) => string[];
+  lowercase: (column: { id: string }) => string[];
+  capitalize: (column: { id: string }) => string[];
+  capital: string[];
+  upper: string[];
+  lower: string[];
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -68,6 +74,12 @@ const EuiDataGridHeaderRow = forwardRef<
     switchColumnPos,
     headerIsInteractive,
     'data-test-subj': _dataTestSubj,
+    upper,
+    lower,
+    capital,
+    capitalize,
+    lowercase,
+    uppercase,
     ...rest
   } = props;
 
@@ -92,6 +104,12 @@ const EuiDataGridHeaderRow = forwardRef<
       ))}
       {columns.map((column, index) => (
         <EuiDataGridHeaderCell
+          upper={upper}
+          lower={lower}
+          capital={capital}
+          capitalize={capitalize}
+          lowercase={lowercase}
+          uppercase={uppercase}
           key={column.id}
           column={column}
           columns={columns}
