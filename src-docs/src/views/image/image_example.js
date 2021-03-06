@@ -5,6 +5,8 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiImage } from '../../../../src/components';
+EuiImage.__docgenInfo.props.src.required = true;
+
 import imageConfig from './playground';
 
 import Image from './image';
