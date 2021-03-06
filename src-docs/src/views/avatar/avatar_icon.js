@@ -1,46 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../components';
 
 import { EuiAvatar, EuiSpacer, EuiTitle } from '../../../../src/components';
 
-export default () => (
-  <div>
-    <EuiTitle size="xs">
-      <h2>Avatar colors and sizes</h2>
-    </EuiTitle>
-    <EuiSpacer />
-    <EuiAvatar size="s" name="Management" iconType="managementApp" />
-    &emsp;
-    <EuiAvatar size="m" name="Management app" iconType="managementApp" />
-    &emsp;
-    <EuiAvatar
-      size="l"
-      name="Management application"
-      iconType="managementApp"
-    />
-    &emsp;
-    <EuiAvatar size="xl" name="Manage" iconType="managementApp" />
-    <EuiSpacer />
-    <EuiTitle size="xs">
-      <h2>Icon colors and sizes</h2>
-    </EuiTitle>
-    <EuiSpacer />
-    <EuiAvatar name="Avatar color" iconType="managementApp" color="#BD10E0" />
-    &emsp;
-    <EuiAvatar
-      name="Custom iconColor"
-      iconType="managementApp"
-      color="#e6f1fa"
-      iconColor="primary"
-    />
-    &emsp;
-    <EuiAvatar
-      name="Null iconColor"
-      iconType="managementApp"
-      color="#FAFBFD"
-      iconColor={null}
-    />
-    &emsp;
-    <EuiAvatar name="Large iconSize" iconType="managementApp" iconSize="l" />
-    &emsp;
-  </div>
-);
+export default () => {
+  const themeContext = useContext(ThemeContext);
+
+  /**
+   * Setup theme based on current light/dark theme
+   */
+  const isDarkTheme = themeContext.theme.includes('dark');
+
+  return (
+    <div>
+      <EuiTitle size="xs">
+        <h2>Avatar colors and sizes</h2>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiAvatar size="s" name="Management" iconType="managementApp" />
+      &emsp;
+      <EuiAvatar size="m" name="Management app" iconType="managementApp" />
+      &emsp;
+      <EuiAvatar
+        size="l"
+        name="Management application"
+        iconType="managementApp"
+      />
+      &emsp;
+      <EuiAvatar size="xl" name="Manage" iconType="managementApp" />
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h2>Icon colors and sizes</h2>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiAvatar name="Avatar color" iconType="managementApp" color="#BD10E0" />
+      &emsp;
+      <EuiAvatar
+        name="Custom iconColor"
+        iconType="managementApp"
+        color={isDarkTheme ? '#103148' : '#E6F1FA'}
+        iconColor="primary"
+      />
+      &emsp;
+      <EuiAvatar
+        name="Null iconColor"
+        iconType="managementApp"
+        color={isDarkTheme ? '#343741' : '#D3DAE6'}
+        iconColor={null}
+      />
+      &emsp;
+      <EuiAvatar name="Large iconSize" iconType="managementApp" iconSize="l" />
+      &emsp;
+    </div>
+  );
+};
