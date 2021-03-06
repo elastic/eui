@@ -166,8 +166,8 @@ export const AvatarExample = {
             <EuiCode>iconSize</EuiCode> and <EuiCode>iconColor</EuiCode>.
           </p>
           <p>
-            If your icon is multi- or custom-colored like a logo, you can keep
-            the default <EuiCode>iconColor</EuiCode> by passing{' '}
+            If your icon has multiples or custom colors like a logo, you can
+            keep the default <EuiCode>iconColor</EuiCode> by passing{' '}
             <EuiCode>null</EuiCode>. Otherwise it will get the appropriate
             contrast acceptable variant. Just ensure that you also are providing
             an accesible background color to match that of the icon&apos;s
@@ -194,9 +194,10 @@ export const AvatarExample = {
       text: (
         <div>
           <p>
-            While EuiAvatar doesn&apos;t accept any interactive behaviors
-            themselves. You can ensure a visual change if placed within a
-            disabled element by passing the disabled prop.
+            While <strong>EuiAvatar</strong> doesn&apos;t accept any interactive
+            behaviors itself, you can create a visually presented disabled
+            avatar by adding <EuiCode>isDisabled</EuiCode> when placed within a
+            disabled element
           </p>
         </div>
       ),
