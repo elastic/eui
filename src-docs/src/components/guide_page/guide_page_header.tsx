@@ -42,7 +42,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   }
 
   function renderVersion() {
-    const isLocalDev = location.host.includes('803');
+    const isLocalDev = window.location.host.includes('803');
 
     return (
       <EuiBadge
