@@ -23,6 +23,7 @@ export interface GuideSection {
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
+  demoPanelProps?: GuideSectionExample['demoPanelProps'];
   // routes?: object.isRequired;
   props?: object;
   playground?: any;
@@ -62,6 +63,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   playground,
   ghostBackground,
   wrapText = true,
+  demoPanelProps,
   snippet,
 }) => {
   const [renderingPlayground, setRenderingPlayground] = useState(false);
@@ -177,6 +179,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
           }
           tabs={renderTabs()}
           ghostBackground={ghostBackground}
+          demoPanelProps={demoPanelProps}
         />
       )}
     </div>
