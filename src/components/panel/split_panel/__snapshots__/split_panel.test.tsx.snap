@@ -3,7 +3,7 @@
 exports[`EuiSplitPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--shadow euiPanel--flexGrowZero euiSplitPanel testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
