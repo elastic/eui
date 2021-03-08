@@ -22,6 +22,8 @@ import React, {
   ReactElement,
   ReactNode,
   isValidElement,
+  useRef,
+  MutableRefObject,
 } from 'react';
 import classNames from 'classnames';
 
@@ -201,16 +203,41 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 }) => {
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
+  const link = useRef<HTMLAnchorElement | HTMLButtonElement>();
 
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
    * without having to make the whole card a button or anchor tag.
-   * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/*
+   * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/ *
    */
-  let link: HTMLAnchorElement | HTMLButtonElement | null = null;
-  const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (link && link !== e.target) {
-      link.click();
+  const outerOnClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (link.current && link.current !== event.target) {
+      let newEvent;
+      if ('MouseEvent' in window && typeof MouseEvent === 'function') {
+        const {
+          button,
+          metaKey,
+          altKey,
+          ctrlKey,
+          shiftKey,
+          relatedTarget,
+        } = event;
+
+        newEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          button,
+          metaKey,
+          altKey,
+          ctrlKey,
+          shiftKey,
+          relatedTarget,
+        });
+      }
+
+      if (newEvent) {
+        link.current.dispatchEvent(newEvent);
+      }
     }
   };
 
@@ -324,9 +351,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaId}Description`}
         {...selectable}
-        buttonRef={(node) => {
-          link = node;
-        }}
+        buttonRef={(node) => (link.current = node || undefined)}
       />
     );
   }
@@ -346,9 +371,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         target={target}
         aria-describedby={`${ariaId}Description`}
         rel={getSecureRelForTarget({ href, target, rel })}
-        ref={(node) => {
-          link = node;
-        }}>
+        ref={link as MutableRefObject<HTMLAnchorElement>}>
         {title}
       </a>
     );
@@ -359,9 +382,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
-        ref={(node) => {
-          link = node;
-        }}>
+        ref={link as MutableRefObject<HTMLButtonElement>}>
         {title}
       </button>
     );
