@@ -833,7 +833,7 @@ exports[`renders stepped stop EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background-image:linear-gradient(#ff0000 , #ff0000), linear-gradient(#8e7100 , #8e7100), linear-gradient(#1ce300 , #1ce300), linear-gradient(#002bd5 , #002bd5), linear-gradient(#0000ff , #0000ff), linear-gradient(#0000ff , #0000ff), linear-gradient(#0000ff , #0000ff), linear-gradient(#0000ff , #0000ff), linear-gradient(#0000ff , #0000ff), linear-gradient(#0000ff , #0000ff);background-size:10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100%;background-repeat:no-repeat;margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,#ff0000 0% 10%, #8e7100 10% 20%, #1ce300 20% 30%, #002bd5 30% 40%, #0000ff 40% 50%, #0000ff 50% 60%, #0000ff 60% 70%, #0000ff 70% 80%, #0000ff 80% 90%, #0000ff 90% 100%);margin-left:0%;width:100%"
       />
     </div>
     <div

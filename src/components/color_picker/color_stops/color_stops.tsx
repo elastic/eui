@@ -444,14 +444,28 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   };
 
-  let gradient: string[] = [];
+  let gradient: string = '';
 
   if (stopType === 'stepped') {
-    gradient = getSteppedGradient(colorStops, stepNumber);
+    const steppedColors = getSteppedGradient(colorStops, stepNumber);
+    console.log(steppedColors);
+    let steppedGradient = '';
+    const percentage = 100 / steppedColors.length;
+    let percentageSteps = 100 / steppedColors.length;
+
+    steppedColors.forEach((color) => {
+      steppedGradient = steppedGradient.concat(
+        `${color} ${percentageSteps - percentage}% ${percentageSteps}%, `
+      );
+      percentageSteps = percentageSteps + percentage;
+    });
+    steppedGradient = steppedGradient.substring(0, steppedGradient.length - 2);
+    gradient = `linear-gradient(to right,${steppedGradient})`;
   } else {
-    gradient = sortedStops.map(
+    const linearGradient = sortedStops.map(
       stopType === 'gradient' ? gradientStop : fixedStop
     );
+    gradient = `linear-gradient(to right,${linearGradient})`;
   }
 
   return (
@@ -494,7 +508,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
           upperValue={max || rangeMax}
           background={gradient}
           compressed={compressed}
-          stepped={stopType === 'stepped' ? true : false}
         />
         <div
           data-test-subj="euiColorStopsAdd"

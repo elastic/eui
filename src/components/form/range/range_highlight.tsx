@@ -22,7 +22,7 @@ import classNames from 'classnames';
 
 export interface EuiRangeHighlightProps {
   className?: string;
-  background?: string[];
+  background?: string;
   compressed?: boolean;
   hasFocus?: boolean;
   showTicks?: boolean;
@@ -31,7 +31,6 @@ export interface EuiRangeHighlightProps {
   max: number;
   min: number;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  stepped?: boolean;
 }
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
@@ -45,53 +44,14 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   compressed,
   background,
   onClick,
-  stepped = false,
 }) => {
   // Calculate the width the range based on value
   // const rangeWidth = (value - min) / (max - min);
   const leftPosition = (lowerValue - min) / (max - min);
   const rangeWidth = (upperValue - lowerValue) / (max - min);
 
-  let backgroundStyles;
-
-  if (stepped) {
-    let backgroundImageStepped: string = '';
-    let backgroundSizeStepped: string = '';
-    let percentageSteps = 0;
-    if (background) {
-      percentageSteps = 100 / background.length;
-    }
-    background?.forEach((backgroundItem) => {
-      backgroundImageStepped = backgroundImageStepped.concat(
-        `linear-gradient(${backgroundItem} , ${backgroundItem}), `
-      );
-      backgroundSizeStepped = backgroundSizeStepped.concat(
-        `${percentageSteps}%, `
-      );
-      percentageSteps = percentageSteps + 100 / background?.length;
-    });
-
-    backgroundStyles = {
-      backgroundImage: backgroundImageStepped.substring(
-        0,
-        backgroundImageStepped.length - 2
-      ),
-      backgroundSize: backgroundSizeStepped.substring(
-        0,
-        backgroundSizeStepped.length - 2
-      ),
-      backgroundRepeat: 'no-repeat',
-    };
-  } else {
-    if (background) {
-      backgroundStyles = {
-        background: `linear-gradient(to right,${background})`,
-      };
-    }
-  }
-
   const rangeWidthStyle = {
-    ...backgroundStyles,
+    background,
     marginLeft: `${leftPosition * 100}%`,
     width: `${rangeWidth * 100}%`,
   };
