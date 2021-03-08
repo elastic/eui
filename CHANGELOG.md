@@ -10,6 +10,7 @@
 - Fixed visual bug in drag&drop sections when nested in an popover ([#4590](https://github.com/elastic/eui/pull/4590))
 - Fixed an errant export of `EuiSideNavProps` type from JS code ([#4604](https://github.com/elastic/eui/pull/4604))
 - Fixed misaligned `EuiComboBox` options list ([#4607](https://github.com/elastic/eui/pull/4607))
+- Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
 
 ## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
 
