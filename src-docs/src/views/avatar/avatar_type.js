@@ -5,7 +5,7 @@ import { EuiAvatar, EuiTitle, EuiSpacer } from '../../../../src/components';
 export default () => (
   <div>
     <EuiTitle size="xs">
-      <h4>Spaces</h4>
+      <h3>Spaces</h3>
     </EuiTitle>
     <EuiSpacer />
     <EuiAvatar size="s" type="space" name="Kibana" />
