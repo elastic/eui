@@ -3,6 +3,8 @@
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
 - Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4551](https://github.com/elastic/eui/pull/4551))
 - Added `src` prop to `EuiImage` as an alternative to `url` ([#4611](https://github.com/elastic/eui/pull/4611))
+- Added `iconType`, `iconColor`, and `iconSize` props to `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+- Added `'plain'` and `null` as `color` options of `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
 
 **Bug fixes**
 
