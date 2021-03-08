@@ -25,6 +25,10 @@
   filter: grayscale(100%);
 }
 
+.euiAvatar--plain {
+  background-color: $euiColorEmptyShade;
+}
+
 // Modifiers for sizing.
 $avatarSizing: (
   s: (

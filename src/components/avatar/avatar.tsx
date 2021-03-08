@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
 
@@ -64,7 +64,7 @@ type _EuiAvatarContent = ExclusiveUnion<
     },
     {
       /**
-       * Path to an image to dispaly instead of initials
+       * Path to an image to display instead of initials
        */
       imageUrl?: string;
     }
@@ -75,11 +75,11 @@ type _EuiAvatarContent = ExclusiveUnion<
      */
     iconType?: IconType;
     /**
-     * Manually change icon color
+     * Manually change icon size
      */
     iconSize?: IconSize;
     /**
-     * Manually change icon size
+     * Manually change icon color
      */
     iconColor?: IconColor | null;
   }
@@ -94,12 +94,15 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     name: string;
 
     /**
-     * Accepts hex value `#FFFFFF`, `#000` otherwise a viz palette color will be assigned
+     * Accepts hex values like `#FFFFFF`, `#000` otherwise a viz palette color will be assigned.
+     * Or pass `'plain'` for an empty shade or `null` to remove entirely and the text/icon color will `inherit`
      */
-    color?: string;
+    color?: string | 'plain' | null;
 
     /**
-     * The type of avatar this is displaying
+     * The type of avatar mainly controlling the shape.
+     * `user` = circle
+     * `space` = rounded square
      */
     type?: EuiAvatarType;
     size?: EuiAvatarSize;
@@ -123,6 +126,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   size = 'm',
   type = 'user',
   isDisabled = false,
+  style,
   ...rest
 }) => {
   const visColors = euiPaletteColorBlindBehindText();
@@ -133,24 +137,37 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     typeToClassNameMap[type],
     {
       'euiAvatar-isDisabled': isDisabled,
+      'euiAvatar--plain': color === 'plain',
     },
     className
   );
 
-  checkValidColor(color);
   checkValidInitials(initials);
 
-  const assignedColor =
-    color || visColors[Math.floor(name.length % visColors.length)];
-  const textColor = isColorDark(...hexToRgb(assignedColor))
-    ? '#FFFFFF'
-    : '#000000';
+  const avatarStyle: CSSProperties = style || {};
+  let iconCustomColor = iconColor;
 
-  const avatarStyle = {
-    backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
-    backgroundColor: assignedColor,
-    color: textColor,
-  };
+  const isNamedColor = color === 'plain' || color === null;
+  if (!isNamedColor) {
+    checkValidColor(color);
+
+    const assignedColor =
+      color || visColors[Math.floor(name.length % visColors.length)];
+    const textColor = isColorDark(...hexToRgb(assignedColor))
+      ? '#FFFFFF'
+      : '#000000';
+
+    avatarStyle.backgroundColor = assignedColor;
+    avatarStyle.color = textColor;
+
+    // Allow consumers to let the icons keep their default color (like app icons)
+    // when passing `iconColor = null`, otherwise continue to pass on `iconColor` or adjust with textColor
+    iconCustomColor = iconColor || iconColor === null ? iconColor : textColor;
+  }
+
+  if (imageUrl) {
+    avatarStyle.backgroundImage = `url(${imageUrl})`;
+  }
 
   let content;
   if (!imageUrl && !iconType) {
@@ -158,11 +175,6 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     const calculatedInitials = toInitials(name, initialsLength, initials);
     content = <span aria-hidden="true">{calculatedInitials}</span>;
   } else if (iconType) {
-    // Allow consumers to let the icons keep their default color (like app icons)
-    // when passing `iconColor = null`, otherwise continue to pass on `iconColor` or adjust with textColor
-    const iconCustomColor =
-      iconColor || iconColor === null ? iconColor : textColor;
-
     content = (
       <EuiIcon
         className="euiAvatar__icon"
@@ -188,7 +200,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
 // TODO: Migrate to a service
 export const checkValidColor = (color: EuiAvatarProps['color']) => {
-  const validHex = color && isValidHex(color);
+  const validHex = (color && isValidHex(color)) || color === 'plain';
   if (color && !validHex) {
     throw new Error(
       'EuiAvatar needs to pass a valid color. This can either be a three ' +

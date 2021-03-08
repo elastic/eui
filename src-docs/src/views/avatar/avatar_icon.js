@@ -17,17 +17,18 @@ export default () => {
         <h2>Avatar colors and sizes</h2>
       </EuiTitle>
       <EuiSpacer />
-      <EuiAvatar size="s" name="Management" iconType="managementApp" />
+      <EuiAvatar size="s" name="Small size" iconType="managementApp" />
       &emsp;
-      <EuiAvatar size="m" name="Management app" iconType="managementApp" />
+      <EuiAvatar size="m" name="Medium size" iconType="managementApp" />
+      &emsp;
+      <EuiAvatar size="l" name="Large" iconType="managementApp" />
       &emsp;
       <EuiAvatar
-        size="l"
-        name="Management application"
+        size="xl"
+        color="plain"
+        name="Plain color"
         iconType="managementApp"
       />
-      &emsp;
-      <EuiAvatar size="xl" name="Manage" iconType="managementApp" />
       <EuiSpacer />
       <EuiTitle size="xs">
         <h2>Icon colors and sizes</h2>

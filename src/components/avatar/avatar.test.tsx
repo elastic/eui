@@ -114,8 +114,20 @@ describe('EuiAvatar', () => {
     });
 
     describe('color', () => {
-      it('is rendered', () => {
+      it('as string is rendered', () => {
         const component = render(<EuiAvatar name="name" color="#000" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('as null is rendered', () => {
+        const component = render(<EuiAvatar name="name" color={null} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('as plain is rendered', () => {
+        const component = render(<EuiAvatar name="name" color="plain" />);
 
         expect(component).toMatchSnapshot();
       });

@@ -32,7 +32,35 @@ exports[`EuiAvatar is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiAvatar props color is rendered 1`] = `
+exports[`EuiAvatar props color as null is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user"
+  title="name"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props color as plain is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--plain"
+  title="name"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props color as string is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user"
@@ -114,7 +142,7 @@ exports[`EuiAvatar props imageUrl is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user"
-  style="background-image:url(image url);background-color:#e4a6c7;color:#000000"
+  style="background-color:#e4a6c7;color:#000000;background-image:url(image url)"
   title="name"
 />
 `;

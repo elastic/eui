@@ -197,7 +197,7 @@ export const AvatarExample = {
             While <strong>EuiAvatar</strong> doesn&apos;t accept any interactive
             behaviors itself, you can create a visually presented disabled
             avatar by adding <EuiCode>isDisabled</EuiCode> when placed within a
-            disabled element
+            disabled element.
           </p>
         </div>
       ),
