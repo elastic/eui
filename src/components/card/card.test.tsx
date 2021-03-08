@@ -91,7 +91,11 @@ describe('EuiCard', () => {
         const component = mount(
           <EuiCard title="Hoi" description="There" href="#" onClick={handler} />
         );
+        // title click
         component.find('a').simulate('click');
+        expect(handler.mock.calls.length).toEqual(1);
+        // card body click
+        component.simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
 
@@ -100,7 +104,11 @@ describe('EuiCard', () => {
         const component = mount(
           <EuiCard title="Hoi" description="There" onClick={handler} />
         );
+        // title click
         component.find('button').simulate('click');
+        expect(handler.mock.calls.length).toEqual(1);
+        // card body click
+        component.simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
     });
