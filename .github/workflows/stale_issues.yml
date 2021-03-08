@@ -10,7 +10,7 @@ jobs:
       - uses: actions/stale@v3
         with:
           stale-issue-message: '👋 Hey there. This issue hasn''t had any activity for 180 days. We''ll automatically close it if that trend continues for another week. If you feel this issue is still valid and needs attention please let us know with a comment.'
-          stale-pr-message: '👋 Hey there. This PR hasn''t had any activity for 90 days. We''l automatically close it if that trend continues for another week. If you feel this issue is still valid and needs attention please let us know with a comment.'
+          stale-pr-message: '👋 Hey there. This PR hasn''t had any activity for 90 days. We''ll automatically close it if that trend continues for another week. If you feel this issue is still valid and needs attention please let us know with a comment.'
           close-issue-message: '❌ We''re automatically closing this issue due to lack of activity. Please comment if you feel this was done in error.'
           close-pr-message: '❌ We''re automatically closing this PR due to lack of activity. Please comment if you feel this was done in error.'
           days-before-pr-stale: 90
