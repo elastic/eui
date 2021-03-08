@@ -39,13 +39,12 @@ import {
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
-import { getChromaColor, getFixedLinearGradient } from '../utils';
+import { getChromaColor, getSteppedGradient } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
-import chroma from 'chroma-js';
 // import { colorPalette } from '../../../services/color/color_palette';
 // import { EuiColorPaletteDisplayFixed } from '../color_palette_display/color_palette_display_fixed';
 
@@ -66,7 +65,7 @@ export interface EuiColorStopsProps extends CommonProps {
   min?: number;
   label: string;
   stopType?: 'fixed' | 'gradient' | 'stepped';
-  stepNumber: number;
+  stepNumber?: number;
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
   showAlpha?: EuiColorPickerProps['showAlpha'];
@@ -128,19 +127,6 @@ function getRangeMax(colorStops: ColorStop[], max?: number) {
   }
   return DEFAULT_MAX;
 }
-
-const getSteppedGradient = function (colors: ColorStop[], steps: number) {
-  // This function also trims the first color so white/black is never a color
-  console.log(colors);
-  const finalStops = [0, ...colors.map((item) => item.stop / 100), 1];
-  const color = [
-    colors[0].color,
-    ...colors.map((item) => item.color),
-    colors[colors.length - 1].color,
-  ];
-  console.log(color, finalStops);
-  return chroma.scale(color).domain(finalStops).colors(steps);
-};
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   addColor = DEFAULT_VISUALIZATION_COLOR,

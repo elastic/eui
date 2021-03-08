@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-import { EuiColorStops, EuiFormRow } from '../../../../src/components';
+import {
+  EuiColorStops,
+  EuiFormRow,
+  EuiRange,
+} from '../../../../src/components';
 
 import { useColorStopsState } from '../../../../src/services';
 
@@ -12,6 +16,8 @@ export default () => {
     addRandomColor,
   ] = useColorStopsState(true);
   const [fixedColorStops, setFixedColorStops] = useColorStopsState(true);
+  const [steppedColorStops, setSteppedColorStops] = useColorStopsState(true);
+  const [value, setValue] = useState(10);
 
   const [extendedColorStops, setExtendedColorStops] = useState([
     {
@@ -90,13 +96,22 @@ export default () => {
       <EuiFormRow label="Stepped color segments">
         <EuiColorStops
           label="Stepped color segments"
-          onChange={setColorStops}
-          colorStops={colorStops}
+          onChange={setSteppedColorStops}
+          colorStops={steppedColorStops}
+          stepNumber={value}
           min={0}
           max={100}
           stopType="stepped"
         />
       </EuiFormRow>
+      <EuiRange
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        showInput
+        aria-label="An example of EuiRange"
+        min={2}
+        max={20}
+      />
     </React.Fragment>
   );
 };

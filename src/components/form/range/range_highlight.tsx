@@ -57,7 +57,10 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   if (stepped) {
     let backgroundImageStepped: string = '';
     let backgroundSizeStepped: string = '';
-    let percentageSteps = 100 / background?.length;
+    let percentageSteps = 0;
+    if (background) {
+      percentageSteps = 100 / background.length;
+    }
     background?.forEach((backgroundItem) => {
       backgroundImageStepped = backgroundImageStepped.concat(
         `linear-gradient(${backgroundItem} , ${backgroundItem}), `
@@ -80,11 +83,12 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
       backgroundRepeat: 'no-repeat',
     };
   } else {
-    backgroundStyles = {
-      backgroundImage: `linear-gradient(to right, ${background})`,
-    };
+    if (background) {
+      backgroundStyles = {
+        background: `linear-gradient(to right,${background})`,
+      };
+    }
   }
-  console.log(backgroundStyles);
 
   const rangeWidthStyle = {
     ...backgroundStyles,

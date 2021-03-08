@@ -172,6 +172,22 @@ test('renders fixed stop EuiColorStops', () => {
   expect(colorStops).toMatchSnapshot();
 });
 
+test('renders stepped stop EuiColorStops', () => {
+  const colorStops = render(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={colorStopsArray}
+      min={0}
+      max={100}
+      stopType="stepped"
+      stepNumber={10}
+      {...requiredProps}
+    />
+  );
+  expect(colorStops).toMatchSnapshot();
+});
+
 test('renders empty EuiColorStops', () => {
   const colorStops = render(
     <EuiColorStops
