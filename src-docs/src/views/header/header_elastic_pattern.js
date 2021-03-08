@@ -146,7 +146,6 @@ export default ({ theme }) => {
   const userMenu = (
     <EuiPopover
       id="guideHeaderUserMenuExample"
-      ownFocus
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
@@ -182,7 +181,6 @@ export default ({ theme }) => {
   const spacesMenu = (
     <EuiPopover
       id="guideHeaderSpacesMenuExample"
-      ownFocus
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
@@ -218,7 +216,6 @@ export default ({ theme }) => {
   const deploymentMenu = (
     <EuiPopover
       id="guideHeaderDeploymentMenuExample"
-      ownFocus
       repositionOnScroll
       button={
         <EuiBadge
