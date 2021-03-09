@@ -79,6 +79,7 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
+    readOnly?: boolean;
   };
 
 export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
@@ -98,6 +99,8 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   isMobileHeader,
   hideForMobile,
   style,
+  // here the readOnly prop can be accessed for styling the header in view and edit mode
+  readOnly,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
