@@ -65,7 +65,8 @@ directly in the code. And unit test coverage for the UI components allows us to 
 ### Consumption
 
 * [Consuming EUI][consuming]
-* [Using EUI with react-router](wiki/react-router.md)
+* [Using EUI with react-router](react-router)
+* [Theming](theming)
 
 ### Maintenance / Contributing
 
@@ -76,7 +77,6 @@ directly in the code. And unit test coverage for the UI components allows us to 
   * [Creating components manually](wiki/creating-components-manually.md)
   * [Creating components with Yeoman](wiki/creating-components-yeoman.md)
 * [Creating icons](wiki/creating-icons.md)
-* [Theming](wiki/theming.md)
 * [Testing](wiki/testing.md)
   * [Accessibility Testing](wiki/automated-accessibility-testing.md)
 * [Documentation](wiki/documentation-guidelines.md)
@@ -88,5 +88,7 @@ directly in the code. And unit test coverage for the UI components allows us to 
 
 [license]: LICENSE
 [faq]: FAQ.md
-[consuming]: wiki/consuming.md
+[theming]: src-docs/src/views/getting_started/theming.md
+[consuming]: src-docs/src/views/getting_started/consuming.md
+[react-router]: src-docs/src/views/getting_started/react-router.md
 [docs]: https://elastic.github.io/eui/

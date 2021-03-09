@@ -14,6 +14,7 @@ import { playgroundCreator } from './services/playground';
 const Setup = require('!!raw-loader!./views/getting_started/setup.md');
 const Consuming = require('!!raw-loader!./views/getting_started/consuming.md');
 const Theming = require('!!raw-loader!./views/getting_started/theming.md');
+const ReactRouter = require('!!raw-loader!./views/getting_started/react-router.md');
 
 // Guidelines
 
@@ -322,6 +323,7 @@ const navigation = [
       createMarkdownExample(Setup, 'Setup'),
       createMarkdownExample(Consuming, 'Consuming'),
       createMarkdownExample(Theming, 'Theming'),
+      createMarkdownExample(ReactRouter, 'React-router'),
     ],
   },
   {
