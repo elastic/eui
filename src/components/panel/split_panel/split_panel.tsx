@@ -17,43 +17,107 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, _EuiPanelProps } from '../panel';
+import { EuiPanel, _EuiPanelProps, EuiPanelProps } from '../panel';
+import { EuiBreakpointSize } from '../../../services/breakpoint';
+import { useIsWithinBreakpoints } from '../../../services/hooks';
 
-const InnerPanel: FunctionComponent<Omit<
-  _EuiPanelProps,
-  'hasShadow' | 'borderRadius'
->> = ({ children, className, ...rest }) => {
-  const classes = classNames('euiInnerSplitPanel', className);
+export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
+  Omit<
+    _EuiPanelProps,
+    | 'hasShadow'
+    | 'hasBorder'
+    | 'borderRadius'
+    | 'betaBadgeLabel'
+    | 'betaBadgeTooltipContent'
+    | 'betaBadgeTitle'
+  >;
+
+/**
+ * Consumed via `EuiSplitPanel.Inner`.
+ * Extends most `EuiPanelProps`.
+ */
+export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  const classes = classNames('euiSplitPanel__inner', className);
 
   const panelProps: _EuiPanelProps = {
     hasShadow: false,
     color: 'transparent',
     borderRadius: 'none',
+    hasBorder: false,
   };
 
   return (
-    <EuiPanel className={classes} {...panelProps} {...rest}>
+    <EuiPanel className={classes} {...panelProps} {...(rest as EuiPanelProps)}>
       {children}
     </EuiPanel>
   );
 };
 
-export type EuiSplitPanelProps = Omit<_EuiPanelProps, 'paddingSize'> & {
-  children?: (panel: typeof InnerPanel) => ReactNode;
-};
+export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
+  /**
+   * Any number of _EuiSplitPanelInner components
+   */
+  children?: ReactNode;
+  /**
+   * Changes the flex-direction
+   */
+  direction?: 'column' | 'row';
+  /**
+   * Stacks row display on small screens.
+   * Remove completely with `false` or provide your own list of breakpoint sizes to stack on.
+   */
+  responsive?: false | EuiBreakpointSize[];
+} & Omit<
+    _EuiPanelProps,
+    | 'paddingSize'
+    | 'betaBadgeLabel'
+    | 'betaBadgeTooltipContent'
+    | 'betaBadgeTitle'
+  >;
 
-export const EuiSplitPanel: FunctionComponent<EuiSplitPanelProps> = ({
+/**
+ * Consumed via `EuiSplitPanel.Outer`.
+ * Extends most `EuiPanelProps`.
+ */
+export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = ({
   children,
   className,
+  direction = 'column',
+  responsive = ['xs', 's'],
   ...rest
 }) => {
-  const classes = classNames('euiSplitPanel', className);
+  const isResponsive = useIsWithinBreakpoints(
+    responsive as EuiBreakpointSize[],
+    !!responsive
+  );
+
+  const classes = classNames(
+    'euiSplitPanel',
+    {
+      'euiSplitPanel--row': direction === 'row',
+      'euiSplitPanel-isResponsive': isResponsive,
+    },
+    className
+  );
 
   return (
-    <EuiPanel paddingSize="none" grow={false} className={classes} {...rest}>
-      {children && children(InnerPanel)}
+    <EuiPanel
+      paddingSize="none"
+      grow={false}
+      className={classes}
+      {...(rest as EuiPanelProps)}>
+      {children}
     </EuiPanel>
   );
+};
+
+export const EuiSplitPanel = {
+  Outer: _EuiSplitPanelOuter,
+  Inner: _EuiSplitPanelInner,
 };

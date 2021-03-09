@@ -1,9 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import {
-  EuiSplitPanel,
-  EuiPanelProps,
-} from '../../../../../src/components/panel';
+import { EuiSplitPanel } from '../../../../../src/components/panel';
+import { _EuiSplitPanelInnerProps } from '../../../../../src/components/panel/split_panel/';
 
 export interface GuideSectionExample {
   example: ReactNode;
@@ -11,7 +9,7 @@ export interface GuideSectionExample {
   /** Forces display of a certain content (playground props table) */
   tabContent?: ReactNode;
   ghostBackground?: boolean;
-  demoPanelProps?: EuiPanelProps;
+  demoPanelProps?: _EuiSplitPanelInnerProps;
 }
 
 export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
@@ -25,19 +23,15 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
     guideDemo__ghostBackground: ghostBackground,
   });
 
+  console.log('demoPanelProps', demoPanelProps);
+
   return (
-    // @ts-ignore TODO: Fix TS type
-    <EuiSplitPanel className={classes}>
-      {/* @ts-ignore TODO: Fix TS type */}
-      {(InnerPanel) => (
-        <>
-          <InnerPanel {...demoPanelProps}>{example}</InnerPanel>
-          <InnerPanel paddingSize="none" color="subdued">
-            {tabs}
-            {tabContent}
-          </InnerPanel>
-        </>
-      )}
-    </EuiSplitPanel>
+    <EuiSplitPanel.Outer className={classes}>
+      <EuiSplitPanel.Inner {...demoPanelProps}>{example}</EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+        {tabs}
+        {tabContent}
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
   );
 };
