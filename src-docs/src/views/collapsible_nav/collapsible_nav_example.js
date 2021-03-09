@@ -112,6 +112,9 @@ export const CollapsibleNavExample = {
         EuiCollapsibleNavGroup,
       },
       demo: <CollapsibleNavGroup />,
+      demoPanelProps: {
+        paddingSize: 'none',
+      },
       snippet: `<EuiCollapsibleNavGroup
   title="Nav group"
   iconType="logo"
