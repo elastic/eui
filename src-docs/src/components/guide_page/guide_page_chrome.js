@@ -152,10 +152,18 @@ export class GuidePageChrome extends Component {
         }
       });
 
-      if (matchingItems.length === 1) {
-        const item = matchingItems[0];
-        const { name, path } = item;
+      const items = matchingItems.map((item) => {
+        const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
+
+        let newBadge;
+        if (isNew) {
+          newBadge = (
+            <EuiBadge color="accent" className="guideSideNav__newBadge">
+              NEW
+            </EuiBadge>
+          );
+        }
 
         let visibleName = name;
         if (searchTerm) {
@@ -168,58 +176,27 @@ export class GuidePageChrome extends Component {
           );
         }
 
-        sideNavSections.push({
+        return {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
-        });
-      } else {
-        const items = matchingItems.map((item) => {
-          const { name, path, sections, isNew } = item;
-          const href = `#/${path}`;
+          items: this.renderSubSections(href, sections, searchTerm),
+          isSelected: item.path === this.props.currentRoute.path,
+          forceOpen: !!(searchTerm && hasMatchingSubItem),
+          className: 'guideSideNav__item',
+          icon: newBadge,
+        };
+      });
 
-          let newBadge;
-          if (isNew) {
-            newBadge = (
-              <EuiBadge color="accent" className="guideSideNav__newBadge">
-                NEW
-              </EuiBadge>
-            );
-          }
-
-          let visibleName = name;
-          if (searchTerm) {
-            visibleName = (
-              <EuiHighlight
-                className="guideSideNav__item--inSearch"
-                search={searchTerm}>
-                {name}
-              </EuiHighlight>
-            );
-          }
-
-          return {
-            id: `${section.type}-${path}`,
-            name: visibleName,
-            href,
-            items: this.renderSubSections(href, sections, searchTerm),
-            isSelected: item.path === this.props.currentRoute.path,
-            forceOpen: !!(searchTerm && hasMatchingSubItem),
-            className: 'guideSideNav__item',
-            icon: newBadge,
-          };
-        });
-
-        if (!items.length) {
-          return;
-        }
-
-        sideNavSections.push({
-          name: section.name,
-          id: section.type,
-          items,
-        });
+      if (!items.length) {
+        return;
       }
+
+      sideNavSections.push({
+        name: section.name,
+        id: section.type,
+        items,
+      });
     });
 
     return sideNavSections;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GuideRule, GuideRuleTitle, GuideRuleExample } from '../../components';
+import { GuideRule, GuideRuleTitle, GuideRuleExample } from '../../components/';
 
 import {
   EuiText,

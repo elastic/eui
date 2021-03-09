@@ -493,15 +493,9 @@ const navigation = [
   name,
   type: slugify(name),
   items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
-    // if name and itemName are the same is because is not a nav tree but only a link
-    const itemPath =
-      name !== itemName
-        ? `${slugify(name)}/${slugify(itemName)}`
-        : `${slugify(name)}`;
-
     const item = {
       name: itemName,
-      path: itemPath,
+      path: `${slugify(name)}/${slugify(itemName)}`,
       ...rest,
     };
 

@@ -46,34 +46,32 @@ export const GuideRuleExample = ({
 
   return (
     <EuiFlexItem>
-      <EuiSplitPanel
+      <EuiSplitPanel.Outer
         className={classes}
         style={styles}
         hasShadow={false}
         borderRadius="none"
         color="transparent"
         {...rest}>
-        {(InnerPanel) => (
-          <figure>
-            <InnerPanel
-              className={classNames('guideRule__example__panel', {
-                'guideRule__example__panel--flex': panelDisplay === 'flex',
-              })}
-              style={panelStyles}
-              color={panelColor}
-              {...panelProps}>
-              {children}
-            </InnerPanel>
-            <InnerPanel color="transparent">
-              <EuiText color={type === 'do' ? 'secondary' : 'danger'} size="s">
-                <p>
-                  {doOrDont && <strong>{doOrDont}.</strong>} {text}
-                </p>
-              </EuiText>
-            </InnerPanel>
-          </figure>
-        )}
-      </EuiSplitPanel>
+        <figure>
+          <EuiSplitPanel.Inner
+            className={classNames('guideRule__example__panel', {
+              'guideRule__example__panel--flex': panelDisplay === 'flex',
+            })}
+            style={panelStyles}
+            color={panelColor}
+            {...panelProps}>
+            {children}
+          </EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner color="transparent">
+            <EuiText color={type === 'do' ? 'secondary' : 'danger'} size="s">
+              <p>
+                {doOrDont && <strong>{doOrDont}.</strong>} {text}
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+        </figure>
+      </EuiSplitPanel.Outer>
     </EuiFlexItem>
   );
 };

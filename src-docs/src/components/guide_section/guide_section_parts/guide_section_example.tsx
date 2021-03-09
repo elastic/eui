@@ -23,8 +23,6 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
     guideDemo__ghostBackground: ghostBackground,
   });
 
-  console.log('demoPanelProps', demoPanelProps);
-
   return (
     <EuiSplitPanel.Outer className={classes}>
       <EuiSplitPanel.Inner {...demoPanelProps}>{example}</EuiSplitPanel.Inner>
