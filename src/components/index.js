@@ -17,7 +17,7 @@
  * under the License.
  */
 
-export { EuiAccordion } from './accordion';
+export { EuiAccordion, EuiAccordionProps } from './accordion';
 
 export { EuiAspectRatio } from './aspect_ratio';
 
