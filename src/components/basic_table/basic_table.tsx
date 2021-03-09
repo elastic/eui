@@ -282,6 +282,10 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
    * Applied to table cells => Any cell using render function will set this to be false, leading to unnecessary word breaks. Apply textOnly: true in order to ensure it breaks properly
    */
   textOnly?: boolean;
+  /**
+   * If true, we can disable click event associated with column sorting in edit mode in header cell
+   */
+  readOnly?: boolean;
 }
 
 type BasicTableWithPaginationProps<T> = Omit<
@@ -299,6 +303,7 @@ export type EuiBasicTableProps<T> = CommonProps &
 interface State<T> {
   initialSelectionRendered: boolean;
   selection: T[];
+  readOnly?: boolean;
 }
 
 interface SortOptions {
@@ -363,6 +368,7 @@ export class EuiBasicTable<T = any> extends Component<
       // used for checking if  initial selection is rendered
       initialSelectionRendered: false,
       selection: [],
+      readOnly: false,
     };
   }
 
@@ -395,6 +401,7 @@ export class EuiBasicTable<T = any> extends Component<
     ) {
       this.setState({ selection: this.props.selection.initialSelected });
       this.setState({ initialSelectionRendered: true });
+      this.setState({ readOnly: this.props.readOnly });
     }
   }
 
@@ -847,6 +854,7 @@ export class EuiBasicTable<T = any> extends Component<
             width={width}
             mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${name}_${index}`}
+            readOnly={this.state.readOnly}
             {...sorting}>
             {name}
           </EuiTableHeaderCell>
@@ -889,6 +897,7 @@ export class EuiBasicTable<T = any> extends Component<
           hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
+          readOnly={this.state.readOnly}
           {...sorting}>
           {name}
         </EuiTableHeaderCell>
