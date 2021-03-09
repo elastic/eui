@@ -11,7 +11,9 @@ import { playgroundCreator } from './services/playground';
 
 // Getting Started
 
-const GettingStarted = require('!!raw-loader!./views/getting_started/getting_started.md');
+const Setup = require('!!raw-loader!./views/getting_started/setup.md');
+const Consuming = require('!!raw-loader!./views/getting_started/consuming.md');
+const Theming = require('!!raw-loader!./views/getting_started/theming.md');
 
 // Guidelines
 
@@ -316,7 +318,11 @@ const createMarkdownExample = (example, customTitle) => {
 const navigation = [
   {
     name: 'Getting started',
-    items: [createMarkdownExample(GettingStarted, 'Getting started')],
+    items: [
+      createMarkdownExample(Setup, 'Setup'),
+      createMarkdownExample(Consuming, 'Consuming'),
+      createMarkdownExample(Theming, 'Theming'),
+    ],
   },
   {
     name: 'Guidelines',
