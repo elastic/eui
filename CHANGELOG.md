@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `31.10.0`.
+
+## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
+
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
 - Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4551](https://github.com/elastic/eui/pull/4551))
 - Added `src` prop to `EuiImage` as an alternative to `url` ([#4611](https://github.com/elastic/eui/pull/4611))
