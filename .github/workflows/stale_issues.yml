@@ -24,5 +24,4 @@ jobs:
           exempt-pr-labels: 'skip-stale-check'
           operations-per-run: 1000
           remove-stale-when-updated: true
-          debug-only: true
           enable-statistics: true
