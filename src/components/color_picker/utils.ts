@@ -258,16 +258,3 @@ export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
     return fixedLinearGradientWidthAuto;
   }
 };
-
-export const getSteppedGradient = function (
-  colors: ColorStop[],
-  steps: number
-) {
-  const finalStops = [0, ...colors.map((item) => item.stop / 100), 1];
-  const color = [
-    colors[0].color,
-    ...colors.map((item) => item.color),
-    colors[colors.length - 1].color,
-  ];
-  return chroma.scale(color).domain(finalStops).colors(steps);
-};

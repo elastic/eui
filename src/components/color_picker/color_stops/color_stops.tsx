@@ -27,7 +27,11 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { keys, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+import {
+  keys,
+  DEFAULT_VISUALIZATION_COLOR,
+  getSteppedGradient,
+} from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
   addStop,
@@ -39,7 +43,7 @@ import {
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
-import { getChromaColor, getSteppedGradient } from '../utils';
+import { getChromaColor } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
@@ -447,12 +451,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   let gradient: string = '';
 
   if (stopType === 'stepped') {
+    const trailingPercentage = colorStops[0].stop;
     const steppedColors = getSteppedGradient(colorStops, stepNumber);
-    console.log(steppedColors);
     let steppedGradient = '';
-    const percentage = 100 / steppedColors.length;
-    let percentageSteps = 100 / steppedColors.length;
-
+    const percentage = (100 - trailingPercentage) / steppedColors.length;
+    let percentageSteps =
+      (100 - trailingPercentage) / steppedColors.length + trailingPercentage;
     steppedColors.forEach((color) => {
       steppedGradient = steppedGradient.concat(
         `${color} ${percentageSteps - percentage}% ${percentageSteps}%, `
@@ -460,7 +464,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       percentageSteps = percentageSteps + percentage;
     });
     steppedGradient = steppedGradient.substring(0, steppedGradient.length - 2);
-    gradient = `linear-gradient(to right,${steppedGradient})`;
+    gradient = `linear-gradient(to right, currentColor ${trailingPercentage}%, ${steppedGradient})`;
   } else {
     const linearGradient = sortedStops.map(
       stopType === 'gradient' ? gradientStop : fixedStop
