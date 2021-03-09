@@ -17,28 +17,35 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useState, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  ReactNode,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
 import { EuiIcon, IconType } from '../icon';
 import { EuiBadge, EuiBadgeProps } from '../badge';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
-import { EuiContextMenuPanel, EuiContextMenuPanelProps } from '../context_menu';
-import { EuiI18n } from '../i18n';
 import {
-  EuiNotificationEventReadButton,
-  EuiNotificationEventReadButtonProps,
-} from './notification_event_read_button';
+  EuiContextMenuItem,
+  EuiContextMenuItemProps,
+  EuiContextMenuPanel,
+} from '../context_menu';
+import { EuiI18n } from '../i18n';
 import { htmlIdGenerator } from '../../services';
 
-export type EuiNotificationEventMetaProps = Omit<
-  EuiNotificationEventReadButtonProps,
-  'isRead' | 'onClick'
-> & {
+export type EuiNotificationEventMetaProps = {
+  id: string;
   /**
    * Type of event (e.g. "Alert", "Cloud", etc..). Shows inside a badge.
    */
   type: string;
+  /**
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
+   */
+  eventName: string;
   /**
    * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
    */
@@ -47,33 +54,29 @@ export type EuiNotificationEventMetaProps = Omit<
    * Type of severity (e.g. "Critical", "Warning", etc..). Shows as a text after the `type` following the format "Alert: Critical".
    */
   severity?: string;
-
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   badgeColor?: EuiBadgeProps['color'];
-
   /**
    * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
    */
   iconType?: IconType;
-
   /**
    * Specify an `aria-label` for the icon.
    * If no `aria-label` is passed we assume the icon is purely decorative.
    */
   iconAriaLabel?: string;
-
   /**
    * Indicates when the event was received.
    */
   time: ReactNode;
-
   /**
-   * An array of context menu items. See #EuiContextMenuItem
+   * Necessary to trigger `onOpenContextMenu` from #EuiNotificationEvent
    */
-  contextMenuItems?: EuiContextMenuPanelProps['items'];
-
+  onOpenContextMenu?: () => Array<
+    ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>
+  >;
   /**
    * Applies an `onClick` handler to the `read` indicator.
    */
@@ -81,44 +84,48 @@ export type EuiNotificationEventMetaProps = Omit<
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({
-  isRead,
+  id,
   iconType,
   type,
   time,
   badgeColor = 'hollow',
-  onRead,
   severity,
-  contextMenuItems = [],
   eventName,
   iconAriaLabel,
+  onOpenContextMenu,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const classes = classNames('euiNotificationEventMeta', {
-    'euiNotificationEventMeta--hasContextMenu': contextMenuItems.length > 0,
+    'euiNotificationEventMeta--hasContextMenu': onOpenContextMenu,
   });
 
-  const id = htmlIdGenerator()();
+  const [contextMenuItems, setContextMenuItems] = useState<
+    ReturnType<NonNullable<typeof onOpenContextMenu>>
+  >([]);
 
-  const onMarkAsRead = () => {
-    onRead?.();
-  };
+  const randomPopoverId = htmlIdGenerator()();
 
   const ariaAttribute = iconAriaLabel
     ? { 'aria-label': iconAriaLabel }
     : { 'aria-hidden': true };
 
+  const onOpenPopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+    if (onOpenContextMenu) {
+      setContextMenuItems(onOpenContextMenu());
+    }
+  };
+
   return (
     <div className={classes}>
       <div className="euiNotificationEventMeta__section">
-        {typeof isRead === 'boolean' && (
-          <EuiNotificationEventReadButton
-            isRead={isRead}
-            onClick={onMarkAsRead}
-            eventName={eventName}
+        {iconType && (
+          <EuiIcon
+            className="euiNotificationEventMeta__icon"
+            type={iconType}
+            {...ariaAttribute}
           />
         )}
-
-        {iconType && <EuiIcon type={iconType} {...ariaAttribute} />}
 
         {type && (
           <EuiBadge
@@ -133,10 +140,10 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         <span className="euiNotificationEventMeta__time">{time}</span>
       </div>
 
-      {contextMenuItems.length > 0 && (
+      {onOpenContextMenu && (
         <div className="euiNotificationEventMeta__contextMenuWrapper">
           <EuiPopover
-            id={id}
+            id={randomPopoverId}
             ownFocus
             repositionOnScroll
             isOpen={isPopoverOpen}
@@ -152,19 +159,22 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                 {(contextMenuButton: string) => (
                   <EuiButtonIcon
                     aria-label={contextMenuButton}
-                    aria-controls={id}
+                    aria-controls={randomPopoverId}
                     aria-expanded={isPopoverOpen}
                     aria-haspopup="true"
                     iconType="boxesVertical"
                     color="subdued"
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                    data-test-subj="notificationEventMetaButton"
+                    onClick={onOpenPopover}
+                    data-test-subj={`${id}-notificationEventMetaButton`}
                   />
                 )}
               </EuiI18n>
             }
             closePopover={() => setIsPopoverOpen(false)}>
-            <EuiContextMenuPanel items={contextMenuItems} />
+            {/* The EuiContextMenu is wrapped with a div so it closes after an item is clicked */}
+            <div onClick={() => setIsPopoverOpen(false)}>
+              <EuiContextMenuPanel items={contextMenuItems} />
+            </div>
           </EuiPopover>
         </div>
       )}

@@ -132,19 +132,6 @@ exports[`EuiNotificationEventMeta props isRead  is rendered 1`] = `
   <div
     class="euiNotificationEventMeta__section"
   >
-    <button
-      aria-label="Mark eventName as unread."
-      class="euiButtonIcon euiButtonIcon--primary euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
-      data-test-subj="notificationEventReadButton"
-      title="Mark eventName as unread."
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        data-euiicon-type="dot"
-      />
-    </button>
     <span
       class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
     >
@@ -182,6 +169,7 @@ exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
   >
     <span
       aria-hidden="true"
+      class="euiNotificationEventMeta__icon"
       data-euiicon-type="logoCloud"
     />
     <span

@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiNotificationEventReadButton } from './notification_event_read_button';
+export { EuiNotificationEvent } from './notification_event';

@@ -26,6 +26,7 @@ export type EuiNotificationEventReadButtonProps = Omit<
   EuiButtonIconProps,
   'iconType' | 'isDisabled' | 'isSelected' | 'size'
 > & {
+  id: string;
   /**
    * Shows an indicator of the read state of the event
    */
@@ -41,6 +42,7 @@ export type EuiNotificationEventReadButtonProps = Omit<
 };
 
 export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEventReadButtonProps> = ({
+  id,
   isRead,
   onClick,
   eventName,
@@ -50,32 +52,43 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
     'euiNotificationEventReadButton--isRead': isRead,
   });
 
-  const markAsRead = useEuiI18n(
-    'euiNotificationEventReadButton.markAsRead',
-    'Mark {eventName} as read.',
+  const markAsReadAria = useEuiI18n(
+    'euiNotificationEventReadButton.markAsReadAria',
+    'Mark {eventName} as read',
     {
       eventName,
     }
+  );
+
+  const markAsUnreadAria = useEuiI18n(
+    'euiNotificationEventReadButton.markAsUnreadAria',
+    'Mark {eventName} as unread',
+    {
+      eventName,
+    }
+  );
+
+  const markAsRead = useEuiI18n(
+    'euiNotificationEventReadButton.markAsRead',
+    'Mark as read'
   );
 
   const markAsUnread = useEuiI18n(
     'euiNotificationEventReadButton.markAsUnread',
-    'Mark {eventName} as unread.',
-    {
-      eventName,
-    }
+    'Mark as unread'
   );
 
-  const buttonLabel = !isRead ? markAsRead : markAsUnread;
+  const buttonAriaLabel = !isRead ? markAsReadAria : markAsUnreadAria;
+  const buttonTitle = !isRead ? markAsRead : markAsUnread;
 
   return (
     <EuiButtonIcon
       iconType="dot"
-      aria-label={buttonLabel}
-      title={buttonLabel}
+      aria-label={buttonAriaLabel}
+      title={buttonTitle}
       className={classesReadState}
       onClick={onClick}
-      data-test-subj="notificationEventReadButton"
+      data-test-subj={`${id}-notificationEventReadButton`}
       {...rest}
     />
   );
