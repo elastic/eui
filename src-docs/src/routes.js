@@ -5,9 +5,13 @@ import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection } from './components';
 
-import { EuiErrorBoundary } from '../../src/components';
+import { EuiErrorBoundary, EuiMarkdownFormat } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
+
+// Getting Started
+
+const GettingStarted = require('!!raw-loader!./views/getting_started/getting_started.md');
 
 // Guidelines
 
@@ -298,7 +302,22 @@ const createExample = (example, customTitle) => {
   };
 };
 
+const createMarkdownExample = (example, customTitle) => {
+  return {
+    name: customTitle,
+    component: () => (
+      <GuidePage title={customTitle}>
+        <EuiMarkdownFormat>{example.default}</EuiMarkdownFormat>
+      </GuidePage>
+    ),
+  };
+};
+
 const navigation = [
+  {
+    name: 'Getting started',
+    items: [createMarkdownExample(GettingStarted, 'Getting started')],
+  },
   {
     name: 'Guidelines',
     items: [
@@ -466,9 +485,15 @@ const navigation = [
   name,
   type: slugify(name),
   items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
+    // if name and itemName are the same is because is not a nav tree but only a link
+    const itemPath =
+      name !== itemName
+        ? `${slugify(name)}/${slugify(itemName)}`
+        : `${slugify(name)}`;
+
     const item = {
       name: itemName,
-      path: `${slugify(name)}/${slugify(itemName)}`,
+      path: itemPath,
       ...rest,
     };
 
