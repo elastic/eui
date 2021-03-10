@@ -49,8 +49,6 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
-// import { colorPalette } from '../../../services/color/color_palette';
-// import { EuiColorPaletteDisplayFixed } from '../color_palette_display/color_palette_display_fixed';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
