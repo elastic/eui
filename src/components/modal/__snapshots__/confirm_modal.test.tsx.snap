@@ -27,7 +27,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--text euiModal__closeIcon"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
         type="button"
       >
         <span
@@ -139,7 +139,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--text euiModal__closeIcon"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
         type="button"
       >
         <span

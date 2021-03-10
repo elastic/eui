@@ -5,7 +5,13 @@ import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 import { useColorStopsState } from '../../../../src/services';
 
 export default () => {
-  const [colorStops, setColorStops, addColor] = useColorStopsState(true);
+  const [standardColorStops, setStandardColorStops] = useColorStopsState(true);
+  const [
+    randomColorStops,
+    setRandomColorStops,
+    addRandomColor,
+  ] = useColorStopsState(true);
+  const [fixedColorStops, setFixedColorStops] = useColorStopsState(true);
 
   const [extendedColorStops, setExtendedColorStops] = useState([
     {
@@ -46,8 +52,8 @@ export default () => {
       <EuiFormRow label="Standard">
         <EuiColorStops
           label="Standard"
-          onChange={setColorStops}
-          colorStops={colorStops}
+          onChange={setStandardColorStops}
+          colorStops={standardColorStops}
           min={0}
           max={100}
         />
@@ -55,11 +61,11 @@ export default () => {
       <EuiFormRow label="Random new color">
         <EuiColorStops
           label="Random new color"
-          onChange={setColorStops}
-          colorStops={colorStops}
+          onChange={setRandomColorStops}
+          colorStops={randomColorStops}
           min={0}
           max={100}
-          addColor={addColor}
+          addColor={addRandomColor}
         />
       </EuiFormRow>
       <EuiFormRow label="Extended range">
@@ -74,8 +80,8 @@ export default () => {
       <EuiFormRow label="Fixed color segments">
         <EuiColorStops
           label="Fixed color segments"
-          onChange={setColorStops}
-          colorStops={colorStops}
+          onChange={setFixedColorStops}
+          colorStops={fixedColorStops}
           min={0}
           max={100}
           stopType="fixed"

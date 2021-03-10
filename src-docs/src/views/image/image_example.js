@@ -5,6 +5,8 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiImage } from '../../../../src/components';
+EuiImage.__docgenInfo.props.src.required = true;
+
 import imageConfig from './playground';
 
 import Image from './image';
@@ -12,7 +14,7 @@ const imageSource = require('!!raw-loader!./image');
 const imageHtml = renderToHtml(Image);
 const imageSnippet = `<EuiImage
   alt={description}
-  url={someUrl}
+  src={someSrc}
 />
 `;
 
@@ -22,7 +24,7 @@ const imageSizesHtml = renderToHtml(ImageSizes);
 const imageSizesSnippet = `<EuiImage
   size="l"
   alt={description}
-  url={someUrl}
+  src={someSrc}
 />
 `;
 
@@ -32,7 +34,7 @@ const imageZoomHtml = renderToHtml(ImageZoom);
 const imageZoomSnippet = `<EuiImage
   allowFullScreen
   alt={description}
-  url={someUrl}
+  src={someSrc}
 />
 `;
 
@@ -43,7 +45,7 @@ const imageFloatSource = require('!!raw-loader!./float');
 const imageFloatHtml = renderToHtml(ImageFloat);
 const imageFloatSnippet = `<EuiImage
   alt={description}
-  url={someUrl}
+  src={someSrc}
   float="left"
   margin="l"
 />

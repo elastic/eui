@@ -3,7 +3,7 @@
 exports[`EuiButtonIcon is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonIcon euiButtonIcon--primary testClass1 testClass2"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
 >
@@ -18,7 +18,7 @@ exports[`EuiButtonIcon is rendered 1`] = `
 exports[`EuiButtonIcon props color accent is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--accent"
+  class="euiButtonIcon euiButtonIcon--accent euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -32,7 +32,7 @@ exports[`EuiButtonIcon props color accent is rendered 1`] = `
 exports[`EuiButtonIcon props color danger is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--danger"
+  class="euiButtonIcon euiButtonIcon--danger euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -46,7 +46,7 @@ exports[`EuiButtonIcon props color danger is rendered 1`] = `
 exports[`EuiButtonIcon props color ghost is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--ghost"
+  class="euiButtonIcon euiButtonIcon--ghost euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -60,7 +60,7 @@ exports[`EuiButtonIcon props color ghost is rendered 1`] = `
 exports[`EuiButtonIcon props color primary is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -74,7 +74,7 @@ exports[`EuiButtonIcon props color primary is rendered 1`] = `
 exports[`EuiButtonIcon props color subdued is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--subdued"
+  class="euiButtonIcon euiButtonIcon--subdued euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -88,7 +88,7 @@ exports[`EuiButtonIcon props color subdued is rendered 1`] = `
 exports[`EuiButtonIcon props color success is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--success"
+  class="euiButtonIcon euiButtonIcon--success euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -102,7 +102,7 @@ exports[`EuiButtonIcon props color success is rendered 1`] = `
 exports[`EuiButtonIcon props color text is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--text"
+  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -116,7 +116,49 @@ exports[`EuiButtonIcon props color text is rendered 1`] = `
 exports[`EuiButtonIcon props color warning is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--warning"
+  class="euiButtonIcon euiButtonIcon--warning euiButtonIcon--empty euiButtonIcon--xSmall"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props display base is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--xSmall"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props display empty is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props display fill is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--fill euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -130,7 +172,7 @@ exports[`EuiButtonIcon props color warning is rendered 1`] = `
 exports[`EuiButtonIcon props href secures the rel attribute when the target is _blank 1`] = `
 <a
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   href="#"
   rel="noopener noreferrer"
   target="_blank"
@@ -146,7 +188,7 @@ exports[`EuiButtonIcon props href secures the rel attribute when the target is _
 exports[`EuiButtonIcon props iconType is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -160,7 +202,7 @@ exports[`EuiButtonIcon props iconType is rendered 1`] = `
 exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   disabled=""
   type="button"
 >
@@ -175,7 +217,7 @@ exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
 exports[`EuiButtonIcon props isDisabled renders a button even when href is defined 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   disabled=""
   type="button"
 >
@@ -191,7 +233,7 @@ exports[`EuiButtonIcon props isSelected is rendered as false 1`] = `
 <button
   aria-label="button"
   aria-pressed="false"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span
@@ -206,7 +248,49 @@ exports[`EuiButtonIcon props isSelected is rendered as true 1`] = `
 <button
   aria-label="button"
   aria-pressed="true"
-  class="euiButtonIcon euiButtonIcon--primary"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props size m is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--medium"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props size s is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--small"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="user"
+  />
+</button>
+`;
+
+exports[`EuiButtonIcon props size xs is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall"
   type="button"
 >
   <span

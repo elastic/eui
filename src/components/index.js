@@ -258,11 +258,12 @@ export {
   EuiPageHeaderContent,
   EuiPageHeaderSection,
   EuiPageSideBar,
+  EuiPageTemplate,
 } from './page';
 
 export { EuiPagination, EuiPaginationButton } from './pagination';
 
-export { EuiPanel } from './panel';
+export { EuiPanel, EuiSplitPanel } from './panel';
 
 export {
   EuiInputPopover,

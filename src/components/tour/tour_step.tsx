@@ -216,6 +216,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       button={children}
       closePopover={closePopover}
       isOpen={isStepOpen}
+      ownFocus={false}
       panelClassName={classes}
       panelStyle={newStyle || style}
       offset={hasBeacon ? 10 : 0}

@@ -21,7 +21,7 @@ import React, { FunctionComponent } from 'react';
 
 import { PropsOf } from '../common';
 import { EuiIcon, IconSize, IconType } from '../icon';
-import { EuiToolTip, Props as EuiToolTipProps } from './tool_tip';
+import { EuiToolTip, EuiToolTipProps } from './tool_tip';
 
 export interface EuiIconTipProps {
   /**

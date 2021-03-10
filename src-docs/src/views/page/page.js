@@ -5,18 +5,17 @@ import {
   EuiPageBody,
   EuiPageContent,
   EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
   EuiPageHeader,
   EuiPageSideBar,
   EuiTitle,
   EuiButton,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
   <EuiPage>
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
-    <EuiPageBody component="div">
+    <EuiPageBody>
       <EuiPageHeader
         iconType="logoElastic"
         pageTitle="Page title"
@@ -26,16 +25,10 @@ export default () => (
         ]}
       />
       <EuiPageContent>
-        <EuiPageContentHeader>
-          <EuiPageContentHeaderSection>
-            <EuiTitle>
-              <h2>Content title</h2>
-            </EuiTitle>
-          </EuiPageContentHeaderSection>
-          <EuiPageContentHeaderSection>
-            Content abilities
-          </EuiPageContentHeaderSection>
-        </EuiPageContentHeader>
+        <EuiTitle>
+          <h2>Content title</h2>
+        </EuiTitle>
+        <EuiSpacer />
         <EuiPageContentBody>Content body</EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>

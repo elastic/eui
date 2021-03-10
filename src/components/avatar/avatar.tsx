@@ -73,6 +73,11 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     type?: EuiAvatarType;
     imageUrl?: string;
     size?: EuiAvatarSize;
+
+    /**
+     * Grays out the avatar to simulate being disabled
+     */
+    isDisabled?: boolean;
   };
 
 export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
@@ -84,6 +89,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   name,
   size = 'm',
   type = 'user',
+  isDisabled = false,
   ...rest
 }) => {
   const visColors = euiPaletteColorBlindBehindText();
@@ -92,6 +98,9 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     'euiAvatar',
     sizeToClassNameMap[size],
     typeToClassNameMap[type],
+    {
+      'euiAvatar-isDisabled': isDisabled,
+    },
     className
   );
 

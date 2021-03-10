@@ -1,5 +1,7 @@
 import React, { createElement, Fragment } from 'react';
 
+import { createHashHistory } from 'history';
+
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
@@ -152,6 +154,8 @@ import { OutsideClickDetectorExample } from './views/outside_click_detector/outs
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
+
+import { PageHeaderExample } from './views/page_header/page_header_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
 
@@ -337,6 +341,7 @@ const navigation = [
       HorizontalRuleExample,
       ModalExample,
       PageExample,
+      PageHeaderExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
@@ -500,6 +505,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
+  history: createHashHistory(),
   navigation,
 
   getRouteForPath: (path) => {

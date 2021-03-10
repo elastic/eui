@@ -560,8 +560,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [wrapperRef]);
 
-  let finalHeight = IS_JEST_ENVIRONMENT ? 500 : height || unconstrainedHeight;
-  let finalWidth = IS_JEST_ENVIRONMENT ? 500 : width || unconstrainedWidth;
+  let finalHeight = IS_JEST_ENVIRONMENT
+    ? Number.MAX_SAFE_INTEGER
+    : height || unconstrainedHeight;
+  let finalWidth = IS_JEST_ENVIRONMENT
+    ? Number.MAX_SAFE_INTEGER
+    : width || unconstrainedWidth;
   if (isFullScreen) {
     finalHeight =
       window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;

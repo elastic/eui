@@ -6,8 +6,6 @@ import {
   listExtraDeps,
 } from '../../services';
 
-import { EuiSpacer } from '../../../../src/components';
-
 const pkg = require('../../../../package.json');
 
 const getVersion = (packageName) => {
@@ -28,19 +26,48 @@ const getVersion = (packageName) => {
  * 5. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
  * 6. We pass the files and dependencies as params to CS through a POST call.
  * */
+import { ThemeContext } from '../with_theme';
 
 const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles')
   .default;
 
+export const CodeSandboxLink = ({ ...rest }) => {
+  return (
+    <ThemeContext.Consumer>
+      {(context) => <CodeSandboxLinkComponent context={context} {...rest} />}
+    </ThemeContext.Consumer>
+  );
+};
+
 /* 1 */
-export const CodeSandboxLink = ({ children, content }) => {
+export const CodeSandboxLinkComponent = ({
+  children,
+  className,
+  content,
+  context,
+}) => {
+  let cssFile;
+  switch (context.theme) {
+    case 'amsterdam-light':
+      cssFile = '@elastic/eui/dist/eui_theme_amsterdam_light.css';
+      break;
+    case 'amsterdam-dark':
+      cssFile = '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
+      break;
+    case 'dark':
+      cssFile = '@elastic/eui/dist/eui_theme_dark.css';
+      break;
+    default:
+      cssFile = '@elastic/eui/dist/eui_theme_light.css';
+      break;
+  }
+
   let indexContent;
 
   if (!content) {
     /* 2 */
     indexContent = `import ReactDOM from 'react-dom';
-import '@elastic/eui/dist/eui_theme_light.css'
-// import '@elastic/eui/dist/eui_theme_dark.css'
+import '${cssFile}';
 import React from 'react';
 
 import {
@@ -82,8 +109,7 @@ ReactDOM.render(
     // The Code Sanbbox demo needs to import CSS at the top of the document. CS has trouble
     // with our dynamic imports so we need to warn the user for now
     const exampleStart = `import ReactDOM from 'react-dom';
-// import '@elastic/eui/dist/eui_theme_dark.css';
-import '@elastic/eui/dist/eui_theme_light.css'`;
+import '${cssFile}';`;
 
     // Concat the three pieces of the example into a single string to use for index.js
     const cleanedContent = `${exampleStart}
@@ -155,13 +181,10 @@ ${exampleClose}
       action="https://codesandbox.io/api/v1/sandboxes/define"
       method="POST"
       target="_blank"
-      className="eui-textRight">
+      className={className}>
       {/* 6 */}
       <input type="hidden" name="parameters" value={params} />
-
-      <EuiSpacer size="s" />
       {childWithSubmit}
-      <EuiSpacer size="s" />
     </form>
   );
 };
