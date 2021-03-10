@@ -66,14 +66,14 @@ type _EuiAvatarContent = ExclusiveUnion<
       /**
        * Path to an image to display instead of initials
        */
-      imageUrl?: string;
+      imageUrl: string;
     }
   >,
   {
     /**
      * Any EUI glyph, logo or custom icon to display instead of initials
      */
-    iconType?: IconType;
+    iconType: IconType;
     /**
      * Manually change icon size
      */
