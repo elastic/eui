@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderSectionItemButton } from './header_section_item_button';
@@ -92,6 +92,26 @@ describe('EuiHeaderSectionItemButton', () => {
       $button.simulate('click');
 
       expect(onClickHandler).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('ref', () => {
+    it('is the button element', () => {
+      const ref = jest.fn();
+      const component = mount(<EuiHeaderSectionItemButton ref={ref} />);
+
+      expect(ref).toHaveBeenCalledTimes(1);
+      expect(ref).toHaveBeenCalledWith(component.find('button').getDOMNode());
+    });
+
+    it('is the anchor element', () => {
+      const ref = jest.fn();
+      const component = mount(
+        <EuiHeaderSectionItemButton href="#" ref={ref} />
+      );
+
+      expect(ref).toHaveBeenCalledTimes(1);
+      expect(ref).toHaveBeenCalledWith(component.find('a').getDOMNode());
     });
   });
 });

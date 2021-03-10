@@ -101,11 +101,50 @@ interface FooProps extends HTMLAttributes<HTMLDivElement> {
 }
 ```
 
-If your component forwards the `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
+If your component forwards a `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
 
 ```ts
 // passes extra props and forwards the ref to a button
 interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   title: string
 }
+```
+
+### forwardRef
+
+As needed, React's `forwardRef` should be used to provide access to an element created by a component, with few exceptions this should be the component's outermost element. We impose two additional requirements when using `forwardRef`:
+
+1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://www.npmjs.com/package/react-docgen-typescript) does not understand it and the component's props will not be rendered in our documentation
+2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
+
+```ts
+interface MyComponentProps {...}
+
+export const MyComponent = forwardRef<
+  HTMLDivElement, // type of element or component the ref will be passed to
+  MyComponentProps // what properties apart from `ref` the component accepts
+>(
+  (
+    { destructure, props, here, ...rest },
+    ref
+  ) => {
+    return (
+      <div ref={ref}>
+        ...
+      </div>
+    );
+  }
+);
+
+MyComponent.displayName = 'MyComponent';
+```
+
+These should be used as needed (or as that need is expected), otherwise the ref's value could conflate with additional methods or values and be difficult to implement or consume. For example, **EuiMarkdownEditor**'s ref includes both its textarea element and a method for interacting with the abstract syntax tree. https://github.com/elastic/eui/blob/v31.10.0/src/components/markdown_editor/markdown_editor.tsx#L331
+
+```ts
+useImperativeHandle(
+  ref,
+  () => ({ textarea: textareaRef.current, replaceNode }),
+  [replaceNode]
+);
 ```
