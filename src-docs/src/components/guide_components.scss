@@ -281,6 +281,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   fill: $euiColorLightShade;
 }
 
+.guideHomePage__illustrationEmptyShade {
+  fill: $euiColorEmptyShade;
+}
+
 .guideHomePage__illustrationDots,
 .guideHomePage__illustrationComponents {
   position: absolute;

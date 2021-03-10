@@ -48,7 +48,12 @@ function Icon() {
         className="guideHomePage__illustrationLightShade"
         d="M466.5 304.587H298.624V136.711c92.669.112 167.764 75.207 167.876 167.876z"
       />
-      <circle cx="300" cy="300" r="85.314" fill="#fff" />
+      <circle
+        cx="300"
+        cy="300"
+        r="85.314"
+        className="guideHomePage__illustrationEmptyShade"
+      />
       <g clipPath="url(#clip0)">
         <path
           fill="#fff"
