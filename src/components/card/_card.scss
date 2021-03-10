@@ -10,20 +10,15 @@
 
 // EuiCard specific
 .euiCard {
-  background-color: $euiColorEmptyShade;
   display: flex;
   flex-direction: column;
   min-height: 1px; /* 2 */
-
-  &--plain {
-    border: none;
-  }
 
   &.euiCard-isDisabled {
     cursor: not-allowed; // duplicate property due to Chrome bug
     box-shadow: none;
 
-    &:not(.euiCard--transparent) {
+    &:not(.euiCard--plain) {
       background-color: $euiColorLightestShade;
     }
 
