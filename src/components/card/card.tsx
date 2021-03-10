@@ -62,7 +62,7 @@ type CardDisplay = 'panel' | 'plain';
 
 const displayToClassNameMap: { [display in CardDisplay]: string } = {
   panel: '',
-  plain: 'euiCard--plain',
+  plain: 'euiCard--transparent',
 };
 
 export const DISPLAYS = keysOf(displayToClassNameMap);
@@ -231,13 +231,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
-    'euiCard--hasShadow', // For matching EuiPanel mixin
     'euiCard--borderRadiusMedium', // For matching EuiPanel mixin
     paddingSizeToClassNameMap[paddingSize],
     displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {
+      'euiCard--hasShadow': display !== 'plain', // For matching EuiPanel mixin
       'euiCard--isClickable':
         (!isDisabled && onClick) ||
         href ||

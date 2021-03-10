@@ -95,6 +95,8 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (source) {
       source.map((source) => {
+        // Forever skipping the HTML tab
+        if (source.type === 'HTML') return;
         tabs.push({
           // @ts-ignore Complicated
           ...GuideSectionCodeTypesMap[source.type],

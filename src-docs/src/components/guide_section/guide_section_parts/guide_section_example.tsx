@@ -19,13 +19,15 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   tabContent,
   demoPanelProps,
 }) => {
-  const classes = classNames({
+  const classes = classNames(demoPanelProps?.className, {
     guideDemo__ghostBackground: ghostBackground,
   });
 
   return (
-    <EuiSplitPanel.Outer className={classes}>
-      <EuiSplitPanel.Inner {...demoPanelProps}>{example}</EuiSplitPanel.Inner>
+    <EuiSplitPanel.Outer hasBorder hasShadow={false}>
+      <EuiSplitPanel.Inner {...demoPanelProps} className={classes}>
+        {example}
+      </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
         {tabs}
         {tabContent}
