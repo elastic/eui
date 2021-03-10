@@ -3,20 +3,14 @@ import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
-import { GuidePage, GuideSection } from './components';
+import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
-import { EuiErrorBoundary, EuiMarkdownFormat } from '../../src/components';
+import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
 
-// Getting Started
-
-const Setup = require('!!raw-loader!./views/getting_started/setup.md');
-const Consuming = require('!!raw-loader!./views/getting_started/consuming.md');
-const Theming = require('!!raw-loader!./views/getting_started/theming.md');
-const ReactRouter = require('!!raw-loader!./views/getting_started/react-router.md');
-
 // Guidelines
+const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -305,30 +299,33 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createMarkdownExample = (example, customTitle) => {
+const createMarkdownExample = (example, title) => {
+  const headings = example.default.match(/^(##) (.*)/gm);
+
+  const sections = headings.map((heading) => {
+    const title = heading.replace('## ', '');
+
+    return { id: slugify(title), title: title };
+  });
+
   return {
-    name: customTitle,
+    name: title,
     component: () => (
-      <GuidePage title={customTitle}>
-        <EuiMarkdownFormat>{example.default}</EuiMarkdownFormat>
+      <GuidePage title={title}>
+        <GuideMarkdownFormat title={title}>
+          {example.default}
+        </GuideMarkdownFormat>
       </GuidePage>
     ),
+    sections: sections,
   };
 };
 
 const navigation = [
   {
-    name: 'Getting started',
-    items: [
-      createMarkdownExample(Setup, 'Setup'),
-      createMarkdownExample(Consuming, 'Consuming'),
-      createMarkdownExample(Theming, 'Theming'),
-      createMarkdownExample(ReactRouter, 'React-router'),
-    ],
-  },
-  {
     name: 'Guidelines',
     items: [
+      createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
