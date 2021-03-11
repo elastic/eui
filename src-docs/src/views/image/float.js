@@ -13,7 +13,7 @@ export default () => (
       caption="Random nature image"
       allowFullScreen
       alt="Random nature image"
-      url="https://picsum.photos/800/500"
+      src="https://picsum.photos/800/500"
     />
     <p>{fake('{{lorem.paragraphs}}')}</p>
     <p>{fake('{{lorem.paragraphs}}')}</p>
@@ -26,7 +26,7 @@ export default () => (
       allowFullScreen
       caption="Another random image"
       alt="Random nature image"
-      url="https://picsum.photos/300/300"
+      src="https://picsum.photos/300/300"
     />
     <p>{fake('{{lorem.paragraphs}}')}</p>
     <p>{fake('{{lorem.paragraphs}}')}</p>

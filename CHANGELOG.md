@@ -1,12 +1,27 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `31.10.0`.
+
+## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
+
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
+- Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4551](https://github.com/elastic/eui/pull/4551))
+- Added `src` prop to `EuiImage` as an alternative to `url` ([#4611](https://github.com/elastic/eui/pull/4611))
+- Added `EuiSplitPanel` component ([#4539](https://github.com/elastic/eui/pull/4539))
+
+**Bug fixes**
+
+- Fixed hover effect of nested clickable rows in `EuiBasicTable` ([#4566](https://github.com/elastic/eui/pull/4566))
+- Fixed visual bug in drag&drop sections when nested in an popover ([#4590](https://github.com/elastic/eui/pull/4590))
+- Fixed an errant export of `EuiSideNavProps` type from JS code ([#4604](https://github.com/elastic/eui/pull/4604))
+- Fixed misaligned `EuiComboBox` options list ([#4607](https://github.com/elastic/eui/pull/4607))
+- Fixed missing `forwardRef` on `EuiHeaderSectionItemButton` ([#4631](https://github.com/elastic/eui/pull/4631))
 
 ## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
 
 **Bug fixes**
 
-- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4564597))
+- Fixed an errant export of two non-existant values ([#4597](https://github.com/elastic/eui/pull/4597))
 
 ## [`31.9.0`](https://github.com/elastic/eui/tree/v31.9.0)
 

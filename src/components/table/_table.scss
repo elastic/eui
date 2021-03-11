@@ -86,10 +86,21 @@
     background-color: $euiTableHoverColor;
   }
 
-  &.euiTableRow-isExpandedRow {
-    .euiTableRowCell {
-      background-color: $euiTableHoverColor;
+
+  &.euiTableRow-isClickable {
+
+    &:hover {
+      background-color: $euiTableHoverClickableColor;
+      cursor: pointer;
     }
+
+    &:focus {
+      background-color: $euiTableFocusClickableColor;
+    }
+  }
+
+  &.euiTableRow-isExpandedRow {
+    background-color: $euiTableHoverColor;
 
     &.euiTableRow-isSelectable .euiTableCellContent {
       padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
@@ -232,16 +243,5 @@
 
   100% {
     max-height: unset;
-  }
-}
-
-.euiTableRow-isClickable {
-  &:hover {
-    background-color: $euiTableHoverClickableColor;
-    cursor: pointer;
-  }
-
-  &:focus {
-    background-color: $euiTableFocusClickableColor;
   }
 }

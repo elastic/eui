@@ -150,7 +150,6 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             panelStyle={{ minWidth: 380 }}
-            ownFocus
             button={button}
             isOpen={isPopoverOpen}
             closePopover={closePopover}>
