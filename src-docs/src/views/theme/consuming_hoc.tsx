@@ -1,17 +1,17 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { withEuiTheme } from '../../../../src/services';
+import { withEuiTheme, WithEuiThemeProps } from '../../../../src/services';
 import { EuiIcon } from '../../../../src/components/icon';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Block extends React.Component<any> {
+class Block extends React.Component<WithEuiThemeProps> {
   render() {
     const { theme } = this.props;
 
     const divStyle = css`
-      background: ${theme.theme.colors.euiColorLightShade};
-      padding: ${theme.theme.sizes.euiSizeXL};
-      border-radius: ${theme.theme.borders.euiBorderRadius};
+      background: ${theme.euiTheme.colors.euiColorLightShade};
+      padding: ${theme.euiTheme.sizes.euiSizeXL};
+      border-radius: ${theme.euiTheme.borders.euiBorderRadius};
     `;
 
     return (

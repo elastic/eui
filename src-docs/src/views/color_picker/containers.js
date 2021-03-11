@@ -95,7 +95,6 @@ export default () => {
       <EuiFormRow label="Unruly focus management">
         <EuiPopover
           id="popover"
-          ownFocus={true}
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}>

@@ -26,6 +26,7 @@ import {
   mergeDeep,
   useEuiTheme,
   withEuiTheme,
+  WithEuiThemeProps,
   EuiThemeProvider,
   computed,
   euiThemeDefault,
@@ -34,13 +35,13 @@ import {
 } from '../../../../src/services';
 
 const View = () => {
-  const [theme, colorMode] = useEuiTheme();
+  const { euiTheme, colorMode } = useEuiTheme();
   return (
     <div css={{ display: 'flex' }}>
       <div>
         {colorMode}
         <pre>
-          <code>{JSON.stringify(theme, null, 2)}</code>
+          <code>{JSON.stringify(euiTheme, null, 2)}</code>
         </pre>
       </div>
       <div>
@@ -49,7 +50,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.euiColorPrimary }}
+            css={{ color: euiTheme.colors.euiColorPrimary }}
           />
         </h3>
         <h3>
@@ -57,7 +58,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.euiColorSecondary }}
+            css={{ color: euiTheme.colors.euiColorSecondary }}
           />
         </h3>
         <h3>
@@ -65,7 +66,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.euiTextColor }}
+            css={{ color: euiTheme.colors.euiTextColor }}
           />
         </h3>
       </div>
@@ -116,22 +117,28 @@ const View2 = () => {
   );
 };
 
+interface BlockProps extends WithEuiThemeProps {
+  size?: 'xxl' | 'xl';
+}
 // eslint-disable-next-line react/prefer-stateless-function
-class Block extends React.Component<any> {
+class Block extends React.Component<BlockProps> {
   render() {
-    const { theme, ...props } = this.props;
-    // TODO: TS autocomplete not working
+    const {
+      theme: { euiTheme },
+      size = 'xxl',
+      ...props
+    } = this.props;
     const blockStyle = css`
-      color: ${theme.theme.colors.euiColorPrimary};
-      border-radius: ${theme.theme.borders.euiBorderRadiusSmall};
-      border: ${theme.theme.borders.euiBorderEditable};
+      color: ${euiTheme.colors.euiColorPrimary};
+      border-radius: ${euiTheme.borders.euiBorderRadiusSmall};
+      border: ${euiTheme.borders.euiBorderEditable};
     `;
     return (
       <div {...props}>
         <EuiIcon
           aria-hidden="true"
           type="stopFilled"
-          size="xxl"
+          size={size}
           css={blockStyle}
         />
       </div>
@@ -217,7 +224,10 @@ export default () => {
 
   const Extend = () => {
     // Generic type (ExtensionsComputed) necessary if accessing extensions/custom properties
-    const [{ colors, custom }, colorMode] = useEuiTheme<ExtensionsComputed>();
+    const {
+      euiTheme: { colors, custom },
+      colorMode,
+    } = useEuiTheme<ExtensionsComputed>();
     return (
       <div css={{ display: 'flex' }}>
         <div>
@@ -286,7 +296,7 @@ export default () => {
           <em>Inverse colorMode</em>
           <View3 />
           <em>withEuiTheme</em>
-          <BlockWithTheme />
+          <BlockWithTheme size="xxl" />
         </EuiThemeProvider>
       </EuiThemeProvider>
       <EuiSpacer />

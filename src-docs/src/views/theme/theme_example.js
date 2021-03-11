@@ -77,13 +77,31 @@ export const ThemeExample = {
         <>
           <p>
             Using the react hook <strong>useEuiTheme()</strong> makes it very
-            easy to consume the EUI static variables like colors and sizing. It
-            will also automatically update based on the currently used theme.
+            easy to consume the EUI static and computed variables like colors
+            and sizing. It simply passes back an object of the current theme
+            which includes
           </p>
+          <ul>
+            <li>
+              <EuiCode language="ts">euiTheme: EuiThemeComputed</EuiCode> All
+              the calculated keys including any modifications
+            </li>
+            <li>
+              <EuiCode language="ts">colorMode: EuiThemeColorMode</EuiCode>{' '}
+              Simply {"'light'"} or {"'dark'"}
+            </li>
+            <li>
+              <EuiCode language="ts">
+                modifications: EuiThemeModifications
+              </EuiCode>{' '}
+              Only the modification keys
+            </li>
+          </ul>
           <p>
-            You&apos;ll want to pass these theme variables via the{' '}
-            <EuiCode>css</EuiCode> property to take advantage of Emotion&apos;s
-            compilation.
+            When consuming the theme&apos;s keys like{' '}
+            <EuiCode>euiTheme.colors.primary</EuiCode>, you&apos;ll want to pass
+            them via the <EuiCode>css</EuiCode> property to take advantage of
+            Emotion&apos;s compilation.
           </p>
         </>
       ),
@@ -216,6 +234,9 @@ export const ThemeExample = {
             not be advisable to locally <strong>override</strong> any EUI
             specific theme variables. Instead, you should append custom keys to
             the theme.
+          </p>
+          <p>
+            <em>TODO: Indicate type support for custom keys.</em>
           </p>
         </>
       ),

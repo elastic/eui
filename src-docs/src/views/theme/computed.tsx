@@ -5,17 +5,17 @@ import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-  const [theme] = useEuiTheme();
+  const { euiTheme } = useEuiTheme();
 
   return (
     <EuiText
       css={{
-        background: theme.colors.euiFocusBackgroundColor,
-        padding: theme.sizes.euiSizeXL,
-        color: theme.colors.euiColorPrimaryText,
+        background: euiTheme.colors.euiFocusBackgroundColor,
+        padding: euiTheme.sizes.euiSizeXL,
+        color: euiTheme.colors.euiColorPrimaryText,
       }}>
       <p>
-        <EuiIcon type="stopFilled" color={theme.colors.euiColorPrimary} />{' '}
+        <EuiIcon type="stopFilled" color={euiTheme.colors.euiColorPrimary} />{' '}
         {children}
       </p>
     </EuiText>

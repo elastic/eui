@@ -3,13 +3,13 @@ import { EuiCode } from '../../../../src/components/code';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-  const [theme] = useEuiTheme();
+  const { euiTheme } = useEuiTheme();
 
   return (
     <div
       css={{
-        background: theme.colors.euiColorLightShade,
-        padding: theme.sizes.euiSizeXL,
+        background: euiTheme.colors.euiColorLightShade,
+        padding: euiTheme.sizes.euiSizeXL,
       }}>
       <p>{children}</p>
     </div>

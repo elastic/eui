@@ -48,6 +48,14 @@ describe('EuiImage', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with src', () => {
+    const component = render(
+      <EuiImage alt="alt" float="left" src="/cat.jpg" />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('is rendered with a float', () => {
     const component = render(
       <EuiImage alt="alt" float="left" url="/cat.jpg" />
