@@ -40,7 +40,7 @@ export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = (
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiSplitPanel.Outer>
+        <EuiSplitPanel.Outer style={{ overflow: 'hidden' }}>
           <EuiSplitPanel.Inner>{example}</EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner color="subdued">
             {snippet && (
