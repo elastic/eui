@@ -254,7 +254,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         (selectable && !selectable.isDisabled),
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
-      'euiCard--hasChildren': children,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
       'euiCard-isDisabled': isDisabled,
@@ -407,7 +406,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           </EuiText>
         )}
 
-        {children}
+        {children && <div className="euiCard__children">{children}</div>}
       </div>
 
       {/* Beta badge should always be after the title/description but before any footer buttons */}
