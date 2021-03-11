@@ -1,9 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-### Feature: Notification ([#4513](https://github.com/elastic/eui/pull/4513))
-
-- Added `EuiNotificationEvent` component
-- Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref
+- Added `EuiNotificationEvent` component ([#4513](https://github.com/elastic/eui/pull/4513))
+- Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref ([#4513](https://github.com/elastic/eui/pull/4513))
 
 ## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
 
