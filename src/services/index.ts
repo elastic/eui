@@ -129,6 +129,7 @@ export {
   EuiColorModeContext,
   useEuiTheme,
   withEuiTheme,
+  WithEuiThemeProps,
   EuiThemeProvider,
   buildTheme,
   computed,
