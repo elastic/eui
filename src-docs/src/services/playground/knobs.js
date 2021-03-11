@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { assertUnreachable, PropTypes } from 'react-view';
+import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import {
   EuiTitle,
   EuiCodeBlock,
@@ -22,7 +23,7 @@ import {
   EuiFormRow,
   EuiLink,
   EuiText,
-  EuiBadge,
+  EuiPanel,
 } from '../../../../src/components/';
 
 export const markup = (text) => {
@@ -419,7 +420,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
     let defaultValueMarkup;
 
     if (
-      !isPlayground &&
+      // !isPlayground &&
       state[name].custom &&
       state[name].custom.origin &&
       state[name].custom.origin.defaultValue
@@ -427,10 +428,11 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
         <>
-          <EuiBadge color="hollow" className="eui-alignBaseline">
-            Default: <code>{defaultValue.value}</code>
-          </EuiBadge>
-          {/* {defaultValue.comment && `(${defaultValue.comment})`} */}
+          <EuiText size="xs">
+            <br />
+            <strong>Default:</strong> <EuiCode>{defaultValue.value}</EuiCode>
+            {defaultValue.comment && ` (${defaultValue.comment})`}
+          </EuiText>
         </>
       );
     }
@@ -444,10 +446,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           isMobileFullWidth={true}>
           <div>
             <EuiTitle size="xxs">
-              <span>
-                {humanizedName}
-                {defaultValueMarkup && <>&emsp; {defaultValueMarkup}</>}
-              </span>
+              <span>{humanizedName}</span>
             </EuiTitle>
             {state[name].description && (
               <>
@@ -463,7 +462,10 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`type__${name}-${idx}`}
           header="Type"
           textOnly={false}>
-          {typeMarkup}
+          <div>
+            {typeMarkup}
+            {defaultValueMarkup}
+          </div>
         </EuiTableRowCell>
         {isPlayground && (
           <EuiTableRowCell
@@ -496,6 +498,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
 };
 
 const Knobs = ({ state, set, error, isPlayground = true }) => {
+  const isMobile = useIsWithinBreakpoints(['xs', 's']);
   const knobNames = Object.keys(state);
 
   const columns = [
@@ -518,27 +521,33 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
     });
 
   return (
-    <EuiTable style={{ background: 'transparent' }}>
-      <EuiTableHeader>
-        {columns.map(({ name, width }, id) => {
-          return (
-            <EuiTableHeaderCell width={width} key={id}>
-              {name}
-            </EuiTableHeaderCell>
-          );
-        })}
-      </EuiTableHeader>
+    <EuiPanel
+      color="transparent"
+      paddingSize={isMobile ? 's' : 'none'}
+      hasBorder={false}
+      hasShadow={false}>
+      <EuiTable style={{ background: 'transparent' }}>
+        <EuiTableHeader>
+          {columns.map(({ name, width }, id) => {
+            return (
+              <EuiTableHeaderCell width={width} key={id}>
+                {name}
+              </EuiTableHeaderCell>
+            );
+          })}
+        </EuiTableHeader>
 
-      <EuiTableBody>
-        <KnobColumn
-          isPlayground={isPlayground}
-          state={state}
-          knobNames={knobNames}
-          set={set}
-          error={error}
-        />
-      </EuiTableBody>
-    </EuiTable>
+        <EuiTableBody>
+          <KnobColumn
+            isPlayground={isPlayground}
+            state={state}
+            knobNames={knobNames}
+            set={set}
+            error={error}
+          />
+        </EuiTableBody>
+      </EuiTable>
+    </EuiPanel>
   );
 };
 

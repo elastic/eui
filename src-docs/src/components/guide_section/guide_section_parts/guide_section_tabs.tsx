@@ -59,15 +59,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     return (
       <EuiTabs size="s" display="condensed">
         {tabs.map((tab, index) => {
-          const {
-            displayName,
-            code,
-            language,
-            name,
-            props,
-            snippets,
-            ...rest
-          } = tab;
+          const { displayName, code, name, props, snippets, ...rest } = tab;
 
           return (
             <EuiTab
@@ -103,10 +95,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          <GuideSectionExampleCode
-            language={selectedTab.language}
-            code={selectedTab.code}
-          />
+          <GuideSectionExampleCode code={selectedTab.code} />
         </EuiErrorBoundary>
       );
       // PROPS TABLE

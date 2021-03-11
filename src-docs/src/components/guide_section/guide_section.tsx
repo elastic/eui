@@ -35,13 +35,7 @@ export interface GuideSection {
 export const GuideSectionCodeTypesMap = {
   JS: {
     name: 'demoJS',
-    language: 'javascript',
     displayName: 'Demo JS',
-  },
-  HTML: {
-    name: 'demoHtml',
-    language: 'html',
-    displayName: 'Demo HTML',
   },
   SNIPPET: {
     name: 'snippet',

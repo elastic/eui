@@ -22,7 +22,7 @@ export const GuideSectionSnippets: FunctionComponent<GuideSectionSnippets> = ({
         <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
           {snip}
         </EuiCodeBlock>
-        {index < snippets.length && <EuiSpacer size="m" />}
+        {index < snippets.length - 1 && <EuiSpacer size="xs" />}
       </React.Fragment>
     ));
   }
