@@ -32,6 +32,7 @@ export default () => (
             ...wrappingExampleStyle,
           }}>
           <EuiText
+            tabIndex="0"
             className="eui-yScrollWithShadows"
             size="s"
             style={{ padding: 16 }}>
@@ -58,7 +59,10 @@ export default () => (
       }
       snippet={`<BodyContent
   style={{ height: 200, overflowY: 'hidden' }}>
-  <BodyScroll className="eui-yScrollWithShadows" />
+  <BodyScroll
+    className="eui-yScrollWithShadows"
+    tabIndex="0"
+  />
 </BodyContent>`}
     />
     <EuiSpacer />
@@ -77,7 +81,7 @@ export default () => (
       }
       example={
         <div style={wrappingExampleStyle}>
-          <div className="eui-xScrollWithShadows">
+          <div tabIndex="0" className="eui-xScrollWithShadows">
             <EuiText size="s" style={{ width: '150%', padding: 16 }}>
               <p>
                 Orbiting this at a distance of roughly ninety-two million miles
@@ -89,7 +93,9 @@ export default () => (
           </div>
         </div>
       }
-      snippet={`<BodyScroll className="eui-xScrollWithShadows">
+      snippet={`<BodyScroll
+  className="eui-xScrollWithShadows"
+  tabIndex="0">
   <BodyContent style={{ width: '150%', padding: 16 }} />
 </BodyScroll>`}
     />

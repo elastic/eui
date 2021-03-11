@@ -40,26 +40,20 @@ export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = (
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
-        {/* @ts-ignore TODO: Fix TS type */}
-        <EuiSplitPanel>
-          {/* @ts-ignore TODO: Fix TS type */}
-          {(InnerPanel) => (
-            <>
-              <InnerPanel>{example}</InnerPanel>
-              <InnerPanel color="subdued">
-                {snippet && (
-                  <EuiCodeBlock
-                    isCopyable={true}
-                    paddingSize="none"
-                    transparentBackground={true}
-                    language="html">
-                    {snippet}
-                  </EuiCodeBlock>
-                )}
-              </InnerPanel>
-            </>
-          )}
-        </EuiSplitPanel>
+        <EuiSplitPanel.Outer>
+          <EuiSplitPanel.Inner>{example}</EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner color="subdued">
+            {snippet && (
+              <EuiCodeBlock
+                isCopyable={true}
+                paddingSize="none"
+                transparentBackground={true}
+                language="html">
+                {snippet}
+              </EuiCodeBlock>
+            )}
+          </EuiSplitPanel.Inner>
+        </EuiSplitPanel.Outer>
       </EuiFlexItem>
     </EuiFlexGroup>
   );

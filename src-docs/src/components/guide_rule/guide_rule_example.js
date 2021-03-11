@@ -52,6 +52,7 @@ export const GuideRuleExample = ({
         hasShadow={false}
         borderRadius="none"
         color="transparent"
+        hasBorder={false}
         {...rest}>
         <figure>
           <EuiSplitPanel.Inner

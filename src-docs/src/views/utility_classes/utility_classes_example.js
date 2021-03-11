@@ -2,6 +2,9 @@ import React from 'react';
 
 import { EuiSpacer, EuiText } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+import { EuiCallOut } from '../../../../src/components/call_out';
+import { EuiCode } from '../../../../src/components/code';
+import { EuiLink } from '../../../../src/components/link';
 import UtilityClassesDisplay from './utility_classes';
 import UtilityClassesText from './utility_classes_text';
 import UtilityClassesOverflows from './utility_classes_overflow';
@@ -48,6 +51,20 @@ export const UtilityClassesExample = {
       wrapText: false,
       text: (
         <>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="Scrollable regions must be focusable">
+            <p>
+              To ensure keyboard-only users have access to the scrollable
+              regions, the optimal solution is to apply{' '}
+              <EuiCode>{'tabIndex="0"'}</EuiCode> to the region.{' '}
+              <EuiLink href="https://dequeuniversity.com/rules/axe/4.1/scrollable-region-focusable">
+                Learn more about the{' '}
+                <EuiCode>scrollable-region-focusable</EuiCode> rule at Deque.
+              </EuiLink>
+            </p>
+          </EuiCallOut>
           <EuiSpacer />
           <UtilityClassesOverflows />
           <EuiSpacer />

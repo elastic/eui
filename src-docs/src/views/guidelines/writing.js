@@ -791,40 +791,46 @@ export default {
       title: 'Verifying your text',
       wrapText: false,
       text: (
-        <EuiFlexGrid columns={3}>
-          <EuiFlexItem>
-            <EuiCard
-              display="plain"
-              titleSize="xs"
-              layout="horizontal"
-              title="Work with a writer"
-              description="A writer can help determine where you need text and what it should
+        <>
+          <EuiSpacer />
+          <EuiFlexGrid gutterSize="xl" columns={3}>
+            <EuiFlexItem>
+              <EuiCard
+                paddingSize="none"
+                display="plain"
+                titleSize="xs"
+                layout="horizontal"
+                title="Work with a writer"
+                description="A writer can help determine where you need text and what it should
               say."
-            />
-          </EuiFlexItem>
+              />
+            </EuiFlexItem>
 
-          <EuiFlexItem>
-            <EuiCard
-              display="plain"
-              titleSize="xs"
-              layout="horizontal"
-              title="Read your text out loud"
-              description="Word flow has a natural feel to it. Read your text out loud, make
+            <EuiFlexItem>
+              <EuiCard
+                paddingSize="none"
+                display="plain"
+                titleSize="xs"
+                layout="horizontal"
+                title="Read your text out loud"
+                description="Word flow has a natural feel to it. Read your text out loud, make
               changes, and then repeat until the flow of your text feels
               natural."
-            />
-          </EuiFlexItem>
+              />
+            </EuiFlexItem>
 
-          <EuiFlexItem>
-            <EuiCard
-              display="plain"
-              titleSize="xs"
-              layout="horizontal"
-              title="Use spell check"
-              description="Run your text through a spelling and grammar checker."
-            />
-          </EuiFlexItem>
-        </EuiFlexGrid>
+            <EuiFlexItem>
+              <EuiCard
+                paddingSize="none"
+                display="plain"
+                titleSize="xs"
+                layout="horizontal"
+                title="Use spell check"
+                description="Run your text through a spelling and grammar checker."
+              />
+            </EuiFlexItem>
+          </EuiFlexGrid>
+        </>
       ),
     },
   ],
