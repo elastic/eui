@@ -71,7 +71,7 @@ type CardPaddingSize = 'none' | 's' | 'm' | 'l';
 
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
-   * Card's are required to have at least a title and description
+   * Cards are required to have at least a title and a description and/or children
    */
   title: NonNullable<ReactNode>;
 
@@ -87,7 +87,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   titleSize?: 's' | 'xs';
 
   /**
-   * Card's are required to have a title and either description or children
+   * Placed within a small EuiText `<p>` tag
    */
   description?: NonNullable<ReactNode>;
 
@@ -102,7 +102,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   image?: string | ReactElement;
 
   /**
-   * Content to be rendered between the description and the footer
+   * Custom children
    */
   children?: ReactNode;
 
