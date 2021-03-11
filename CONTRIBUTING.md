@@ -30,6 +30,10 @@ EUI has strict quality and testing standards due to its large downstream footpri
 
 If you have a preference, let us know when you make your PR, but never feel guilty about just handing it off. We're here to help.
 
+### We utilize Github actions to keep the repo tidy
+
+We use Github actions for some automation tasks to keep this repo tidy. Specifically we close out issues and PRs using [the actions/stale workflow](https://github.com/actions/stale) when we notice a lack of activity over a long period of time. This is done as much to remind us of older issues that need attention as it is to keep our total issue count managable. These action counters can easily be soft reset by commenting on the issues/PRs directly.
+
 ## Helpful documents
 
 * [Component design](wiki/component-design.md)

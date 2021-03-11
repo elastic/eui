@@ -13,6 +13,10 @@ import {
   EuiText,
   EuiCallOut,
 } from '../../../../src/components';
+import {
+  _EuiSplitPanelOuter,
+  _EuiSplitPanelInner,
+} from '../../../../src/components/panel/split_panel/split_panel';
 
 import { panelConfig } from './playground';
 
@@ -35,6 +39,10 @@ const panelBadgeHtml = renderToHtml(PanelBadge);
 import PanelGrow from './panel_grow';
 const panelGrowSource = require('!!raw-loader!./panel_grow');
 const panelGrowHtml = renderToHtml(PanelGrow);
+
+import SplitPanel from './split_panel';
+const splitPanelSource = require('!!raw-loader!./split_panel');
+const splitPanelHtml = renderToHtml(SplitPanel);
 
 const panelSnippet = `<EuiPanel paddingSize="none">
   <!-- Panel with no padding -->
@@ -61,6 +69,25 @@ const panelColorSnippet = [
 const panelGrowSnippet = `<EuiPanel grow={false}>
   <!-- Panel whose height won't grow to match -->
 </EuiPanel>`;
+
+const splitPanelSnippet = [
+  `<EuiSplitPanel.Outer>
+  <EuiSplitPanel.Inner>
+    <!-- Top panel content -->
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner color="subdued">
+    <!-- Bottom panel content -->
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>`,
+  `<EuiSplitPanel.Outer direction="row">
+  <EuiSplitPanel.Inner>
+    <!-- Left panel content -->
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner color="subdued">
+    <!-- Right panel content -->
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>`,
+];
 
 export const PanelExample = {
   title: 'Panel',
@@ -199,6 +226,43 @@ export const PanelExample = {
       props: { EuiPanel },
       snippet: panelGrowSnippet,
       demo: <PanelGrow />,
+    },
+    {
+      title: 'Split panels',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: splitPanelSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: splitPanelHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiSplitPanel</strong> is a composition of an outer and
+            multiple inner <strong>EuiPanels</strong>. It is a namespaced
+            component that you consume using{' '}
+            <EuiCode>EuiSplitPanel.Outer</EuiCode> and{' '}
+            <EuiCode>EuiSplitPanel.Inner</EuiCode> respectively. You can supply
+            the same panel props to both components with the exception of a few
+            to ensure the visual layout is correct. It also has two directions,{' '}
+            <EuiCode>column</EuiCode> (default) and <EuiCode>row</EuiCode>.
+          </p>
+          <p>
+            For custom responsiveness, you can adjust at which breakpoints a{' '}
+            <EuiCode>row</EuiCode> layout will stack by passing a new array of
+            breakpoint names <EuiCode>{"['xs', 's']"}</EuiCode> to the{' '}
+            <EuiCode>responsive</EuiCode> prop, or completely turn it off with{' '}
+            <EuiCode>false</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { _EuiSplitPanelOuter, _EuiSplitPanelInner },
+      snippet: splitPanelSnippet,
+      demo: <SplitPanel />,
     },
     {
       title: 'Panels could be hoverable and have beta badges',
