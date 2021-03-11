@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import {
   EuiCode,
@@ -40,7 +41,7 @@ const slugify = (str) => {
 };
 
 export const markup = (text) => {
-  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
+  const regex = /(^#[a-zA-Z]+)|(?<=\s)(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split('\n').map((token) => {
     const values = token.split(regex).map((token, index) => {
       if (!token) {
@@ -387,9 +388,6 @@ export class GuideSection extends Component {
       ];
       const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
 
-      const typeMarkup = (
-        <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
-      );
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
       if (defaultValue) {
@@ -405,31 +403,30 @@ export class GuideSection extends Component {
 
       let defaultTypeCell = (
         <EuiTableRowCell key="type" header="Type" textOnly={false}>
-          <EuiCodeBlock {...codeBlockProps}>{typeMarkup}</EuiCodeBlock>
+          <EuiCodeBlock
+            {...codeBlockProps}
+            className={classNames(
+              codeBlockProps.className,
+              'eui-textBreakNormal'
+            )}>
+            {humanizedType}
+          </EuiCodeBlock>
         </EuiTableRowCell>
       );
       if (functionMatches.length > 0) {
-        const elements = [];
+        let elements = '';
         let j = 0;
         for (let i = 0; i < types.length; i++) {
           if (functionMatches[j]) {
-            elements.push(
-              <Fragment key={`type-${i}`}>
-                {types[i]} <br />
-              </Fragment>
-            );
-            elements.push(
-              <Fragment key={`function-${i}`}>
-                {functionMatches[j][0]} <br />
-              </Fragment>
-            );
+            elements =
+              `${elements}` +
+              `${types[i]}` +
+              '\n' +
+              `${functionMatches[j][0]}` +
+              '\n';
             j++;
           } else {
-            elements.push(
-              <Fragment key={`type-${i}`}>
-                {types[i]} <br />
-              </Fragment>
-            );
+            elements = `${elements}` + `${types[i]}` + '\n';
           }
         }
         defaultTypeCell = (

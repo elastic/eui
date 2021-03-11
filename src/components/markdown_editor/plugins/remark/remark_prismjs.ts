@@ -16,19 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/* eslint-disable import/no-duplicates */
 
-declare module 'remark-emoji' {
-  import { Plugin } from 'unified';
-  const RemarkEmoji: Plugin;
-  export = RemarkEmoji;
-}
+import refractor from 'refractor';
+import visit from 'unist-util-visit';
+import { Plugin } from 'unified';
 
-declare module 'mdast-util-to-hast/lib/all' {
-  // eslint-disable-next-line import/no-unresolved
-  import { Node } from 'unist';
-  import { H } from 'mdast-util-to-hast';
+const attacher: Plugin = () => {
+  return (ast) => visit(ast, 'code', visitor);
 
-  const all: (h: H, node: Node) => Node[];
-  export = all;
-}
+  function visitor(node: any) {
+    const { data = {}, lang: language } = node;
+
+    if (!language) {
+      return;
+    }
+
+    node.data = data;
+    data.hChildren = refractor.highlight(node.value, language);
+    data.hProperties = {
+      ...data.hProperties,
+      language,
+      className: [
+        'prismjs',
+        ...(data.hProperties?.className || []),
+        `language-${language}`,
+      ],
+    };
+  }
+};
+
+export default attacher;

@@ -1,3 +1,5 @@
+$tokenRegex: #E90;
+
 .euiCodeBlock {
   max-width: 100%;
   display: block;
@@ -164,7 +166,7 @@
     background: transparent;
   }
 
-  .hljs > *::selection {
+  .prismjs > *::selection {
     // Only change the color if the variable IS a color
     // or else no highlight color shows up at all
     @if type-of($euiCodeBlockSelectedBackgroundColor) == color {
@@ -172,112 +174,74 @@
     }
   }
 
-  .hljs-comment,
-  .hljs-quote {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
     color: $euiCodeBlockCommentColor;
     font-style: italic;
   }
 
-  .hljs-selector-tag {
-    color: $euiCodeBlockSelectorTagColor;
-    font-weight: $euiCodeFontWeightBold;
+  .token.punctuation {
+    opacity: .7;
   }
 
-  .hljs-string,
-  .hljs-subst,
-  .hljs-doctag {
-    color: $euiCodeBlockStringColor;
+  .token.namespace {
+    opacity: .7;
   }
 
-  .hljs-number,
-  .hljs-literal,
-  .hljs-regexp,
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-tag .hljs-attr {
-    color: $euiCodeBlockNumberColor;
-  }
-
-  .hljs-keyword {
-    color: $euiCodeBlockKeywordColor;
-  }
-
-  .hljs-function > .hljs-title {
-    color: $euiCodeBlockFunctionTitleColor;
-  }
-
-  .hljs-tag {
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
     color: $euiCodeBlockTagColor;
   }
 
-  .hljs-name {
-    color: $euiCodeBlockNameColor;
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: $euiCodeBlockStringColor;
   }
 
-  .hljs-type,
-  .hljs-class .hljs-title {
-    color: $euiCodeBlockTypeColor;
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string,
+  .token.variable {
+    color: inherit;
   }
 
-  .hljs-attribute {
-    color: $euiCodeBlockAttributeColor;
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: $euiCodeBlockKeywordColor;
   }
 
-  .hljs-symbol,
-  .hljs-bullet,
-  .hljs-built_in,
-  .hljs-builtin-name,
-  .hljs-link {
-    color: $euiCodeBlockSymbolColor;
+  .token.regex,
+  .token.important {
+    color: $tokenRegex;
   }
 
-  .hljs-params {
-    color: $euiCodeBlockParamsColor;
+  .token.important,
+  .token.bold {
+    font-weight: $euiFontWeightBold;
   }
 
-  .hljs-meta {
-    color: $euiCodeBlockMetaColor;
-  }
-
-  .hljs-title {
-    color: $euiCodeBlockTitleColor;
-  }
-
-  .hljs-section {
-    color: $euiCodeBlockSectionColor;
-  }
-
-  .hljs-addition,
-  .hljs-deletion {
-    padding-left: $euiSizeXS;
-    margin-left: -$euiSizeXS;
-  }
-
-  .hljs-addition {
-    box-shadow: -$euiSizeXS 0 $euiCodeBlockAdditionColor;
-  }
-
-  .hljs-deletion {
-    box-shadow: -$euiSizeXS 0 $euiCodeBlockDeletionColor;
-  }
-
-  .hljs-selector-class {
-    color: $euiCodeBlockSelectorClassColor;
-  }
-
-  .hljs-selector-id {
-    color: $euiCodeBlockSelectorIdColor;
-  }
-
-  .hljs-emphasis {
+  .token.italic {
     font-style: italic;
   }
 
-  .hljs-strong {
-    font-weight: $euiCodeFontWeightBold;
+  .token.entity {
+    cursor: help;
   }
 
-  .hljs-link {
-    text-decoration: underline;
+  .token.deleted {
+    color: $euiCodeBlockDeletionColor;
   }
 }
