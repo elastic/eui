@@ -116,11 +116,15 @@ export interface _EuiPanelProps extends CommonProps {
 
 interface Divlike
   extends _EuiPanelProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'color'> {}
+    Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+  element?: 'div';
+}
 
 interface Buttonlike
   extends _EuiPanelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {}
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
+  element?: 'button';
+}
 
 export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
 
@@ -134,10 +138,10 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   hasBorder,
   grow = true,
   panelRef,
-  onClick,
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
+  element,
   ...rest
 }) => {
   // Shadows are only allowed when there's a white background (plain)
@@ -157,7 +161,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       'euiPanel--hasBorder': canHaveBorder && hasBorder === true,
       'euiPanel--noBorder': !canHaveBorder || hasBorder === false,
       'euiPanel--flexGrowZero': !grow,
-      'euiPanel--isClickable': onClick,
+      'euiPanel--isClickable': rest.onClick,
       'euiPanel--hasBetaBadge': betaBadgeLabel,
     },
     className
@@ -177,12 +181,11 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     );
   }
 
-  if (onClick) {
+  if (rest.onClick && element !== 'div') {
     return (
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
-        onClick={onClick}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
         {optionalBetaBadge}
         {children}

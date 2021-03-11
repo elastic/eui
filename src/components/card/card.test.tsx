@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiCard, SIZES } from './card';
+import { EuiCard } from './card';
 
 import { EuiIcon } from '../icon';
 
@@ -187,22 +187,6 @@ describe('EuiCard', () => {
       );
 
       expect(component).toMatchSnapshot();
-    });
-
-    describe('paddingSize', () => {
-      SIZES.forEach((size) => {
-        test(`${size} is applied`, () => {
-          const component = render(
-            <EuiCard
-              title="Card title"
-              description="Card description"
-              paddingSize={size}
-            />
-          );
-
-          expect(component).toMatchSnapshot();
-        });
-      });
     });
   });
 });

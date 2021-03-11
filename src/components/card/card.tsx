@@ -38,6 +38,7 @@ import {
 } from './card_select';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiPanel, PanelPaddingSize } from '../panel';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -66,8 +67,6 @@ const displayToClassNameMap: { [display in CardDisplay]: string } = {
 };
 
 export const DISPLAYS = keysOf(displayToClassNameMap);
-
-type CardPaddingSize = 'none' | 's' | 'm' | 'l';
 
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
@@ -160,19 +159,8 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Padding applied around the content of the card
    */
-  paddingSize?: CardPaddingSize;
+  paddingSize?: PanelPaddingSize;
 };
-
-const paddingSizeToClassNameMap: {
-  [paddingSize in CardPaddingSize]: string;
-} = {
-  none: 'euiCard--paddingNone',
-  s: 'euiCard--paddingSmall',
-  m: 'euiCard--paddingMedium',
-  l: 'euiCard--paddingLarge',
-};
-
-export const SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
@@ -201,6 +189,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 }) => {
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
+  const isClickable =
+    (!isDisabled && onClick) || href || (selectable && !selectable.isDisabled);
 
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
@@ -231,17 +221,11 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
-    'euiCard--hasShadow', // For matching EuiPanel mixin
-    'euiCard--borderRadiusMedium', // For matching EuiPanel mixin
-    paddingSizeToClassNameMap[paddingSize],
-    displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
+    displayToClassNameMap[display],
     {
-      'euiCard--isClickable':
-        (!isDisabled && onClick) ||
-        href ||
-        (selectable && !selectable.isDisabled),
+      'euiCard--isClickable': isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
@@ -376,7 +360,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const TitleElement = titleElement;
 
   return (
-    <div className={classes} onClick={outerOnClick} {...rest}>
+    <EuiPanel
+      element="div"
+      className={classes}
+      onClick={isClickable ? outerOnClick : undefined}
+      hasShadow={isDisabled || display === 'plain' ? false : true}
+      hasBorder={display === 'plain' ? false : undefined}
+      paddingSize={paddingSize}
+      {...rest}>
       {optionalCardTop}
 
       <div className="euiCard__content">
@@ -404,6 +395,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         <div className="euiCard__footer">{footer}</div>
       )}
       {optionalSelectButton}
-    </div>
+    </EuiPanel>
   );
 };

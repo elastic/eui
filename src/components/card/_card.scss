@@ -1,5 +1,5 @@
 // Start with a base of EuiPanel styles
-@include euiPanel($selector: '.euiCard');
+// @include euiPanel($selector: '.euiCard');
 
 /**
  * 1. Footer is always at the bottom.
@@ -48,7 +48,8 @@
   }
 
   &.euiCard--isClickable {
-    display: flex; // Override panel mixin
+    display: flex; // Override panel
+    width: 100%;
 
     &:not(.euiCard-isDisabled) {
       // Progressive Enhancement Only
@@ -110,8 +111,8 @@
   position: relative;
 }
 
-@each $modifier, $paddingAmount in $euiCardPaddingModifiers {
-  .euiCard--#{$modifier} {
+@each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
+  .euiCard[class*='#{$modifier}'] {
     padding: $paddingAmount;
 
     &.euiCard--isSelectable {
@@ -141,6 +142,7 @@
   flex-grow: 0; /* 1 */
   position: relative;
   min-height: 1px; /* 2 */
+  font-size: 0;
 
   .euiCard__image {
     position: relative;
@@ -219,26 +221,27 @@
 }
 
 .euiCard.euiCard--horizontal {
-  .euiCard__content {
+  .euiCard__content,
+  .euiCard__titleButton {
     text-align: left; /* 3 */
   }
-}
 
-// Only change the flex direction if the card has an icon
-// otherwise the button tag won't properly align contents to top
-.euiCard.euiCard--horizontal.euiCard--hasIcon {
-  flex-direction: row;
-  // sass-lint:disable-block no-important
-  align-items: flex-start !important; /* 3 */
+  // Only change the flex direction if the card has an icon
+  // otherwise the button tag won't properly align contents to top
+  &.euiCard--hasIcon {
+    flex-direction: row;
+    // sass-lint:disable-block no-important
+    align-items: flex-start !important; /* 3 */
 
-  .euiCard__top,
-  .euiCard__content {
-    width: auto; // Makes sure the top shrinks and the content grows
-    margin-top: 0;
-  }
+    .euiCard__top,
+    .euiCard__content {
+      width: auto; // Makes sure the top shrinks and the content grows
+      margin-top: 0;
+    }
 
-  .euiCard__top .euiCard__icon {
-    margin-top: 0;
-    margin-right: $euiSize;
+    .euiCard__top .euiCard__icon {
+      margin-top: 0;
+      margin-right: $euiSize;
+    }
   }
 }
