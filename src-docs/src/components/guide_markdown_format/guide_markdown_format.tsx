@@ -28,7 +28,21 @@ export const GuideMarkdownFormat: FunctionComponent<GuideMarkdownFormatProps> = 
   };
 
   rehype2reactConfig.components.p = ({ children }) => (
-    <EuiText grow={false}>{children}</EuiText>
+    <EuiText grow={false}>
+      <p>{children}</p>
+    </EuiText>
+  );
+
+  rehype2reactConfig.components.ul = ({ children }) => (
+    <EuiText grow={false}>
+      <ul>{children}</ul>
+    </EuiText>
+  );
+
+  rehype2reactConfig.components.ol = ({ children }) => (
+    <EuiText grow={false}>
+      <ol>{children}</ol>
+    </EuiText>
   );
 
   return (
