@@ -203,7 +203,7 @@ export const ButtonExample = {
           <Link to="/guidelines/button">button usage guidelines</Link>.
         </p>
       ),
-      props: { EuiButton, EuiButtonEmpty },
+      props: { EuiButton },
       snippet: buttonSnippet,
       demo: <Button />,
       playground: Playground,
