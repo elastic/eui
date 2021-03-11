@@ -378,23 +378,13 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
         let j = 0;
         for (let i = 0; i < types.length; i++) {
           if (functionMatches[j]) {
+            elements.push(<div key={`type-${i}`}>{types[i]}</div>);
             elements.push(
-              <React.Fragment key={`type-${i}`}>
-                {types[i]} <br />
-              </React.Fragment>
-            );
-            elements.push(
-              <React.Fragment key={`function-${i}`}>
-                {functionMatches[j][0]} <br />
-              </React.Fragment>
+              <div key={`function-${i}`}>{functionMatches[j][0]}</div>
             );
             j++;
           } else {
-            elements.push(
-              <React.Fragment key={`type-${i}`}>
-                {types[i]} <br />
-              </React.Fragment>
-            );
+            elements.push(<div key={`type-${i}`}>{types[i]}</div>);
           }
         }
         typeMarkup = (
