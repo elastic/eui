@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.10.0`.
+### Feature: Notification ([#4513](https://github.com/elastic/eui/pull/4513))
+
+- Added `EuiNotificationEvent` component
+- Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref
 
 ## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
 
