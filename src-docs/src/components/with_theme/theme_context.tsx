@@ -53,6 +53,7 @@ export class ThemeProvider extends React.Component<object, State> {
           changeTheme: this.changeTheme,
         }}>
         <EuiThemeProvider
+          // @ts-ignore TODO
           theme={
             theme.includes('amsterdam') ? EuiThemeAmsterdam : EuiThemeDefault
           }

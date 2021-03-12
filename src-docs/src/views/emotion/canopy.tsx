@@ -50,7 +50,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme.colors.euiColorPrimary }}
+            css={{ color: euiTheme.colors.primary }}
           />
         </h3>
         <h3>
@@ -58,7 +58,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme.colors.euiColorSecondary }}
+            css={{ color: euiTheme.colors.success }}
           />
         </h3>
         <h3>
@@ -66,7 +66,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme.colors.euiTextColor }}
+            css={{ color: euiTheme.colors.text }}
           />
         </h3>
       </div>
@@ -77,8 +77,8 @@ const View = () => {
 const View3 = () => {
   const overrides = {
     colors: {
-      light: { euiColorPrimary: '#8A07BD' },
-      dark: { euiColorPrimary: '#BD07A5' },
+      light: { primary: '#8A07BD' },
+      dark: { primary: '#BD07A5' },
     },
   };
   return (
@@ -98,19 +98,16 @@ const View2 = () => {
   const overrides = {
     colors: {
       light: {
-        euiColorSecondary: computed(
-          ['colors.euiColorPrimary'],
-          () => '#85E89d'
-        ),
+        success: computed(['colors.primary'], () => '#85E89d'),
       },
-      dark: { euiColorSecondary: '#F0FFF4' },
+      dark: { success: '#F0FFF4' },
     },
   };
   return (
     <>
       <EuiSpacer />
       <EuiThemeProvider modify={overrides}>
-        <em>Overriding secondary</em>
+        <em>Overriding success</em>
         <View />
       </EuiThemeProvider>
     </>
@@ -129,7 +126,7 @@ class Block extends React.Component<BlockProps> {
       ...props
     } = this.props;
     const blockStyle = css`
-      color: ${euiTheme.colors.euiColorPrimary};
+      color: ${euiTheme.colors.primary};
       border-radius: ${euiTheme.borders.euiBorderRadiusSmall};
       border: ${euiTheme.borders.euiBorderEditable};
     `;
@@ -158,7 +155,7 @@ export default () => {
       mergeDeep(overrides, {
         colors: {
           light: {
-            euiColorPrimary: chroma.random().hex(),
+            primary: chroma.random().hex(),
           },
         },
       })
@@ -169,7 +166,7 @@ export default () => {
       mergeDeep(overrides, {
         colors: {
           dark: {
-            euiColorPrimary: chroma.random().hex(),
+            primary: chroma.random().hex(),
           },
         },
       })
@@ -205,11 +202,11 @@ export default () => {
   const extend: EuiThemeModifications<ExtensionsUncomputed> = {
     colors: {
       light: {
-        euiColorPrimary: '#F56407',
+        primary: '#F56407',
         myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
       },
       dark: {
-        euiColorPrimary: '#FA924F',
+        primary: '#FA924F',
         myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
       },
     },

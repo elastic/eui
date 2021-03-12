@@ -22,7 +22,6 @@ import {
   makeHighContrastColor,
   makeDisabledContrastColor,
   transparentize,
-  tint,
 } from '../../global_styling/functions/_colors';
 import { light_colors } from '../../global_styling/variables/_colors';
 import { dark_colors } from '../../global_styling/variables/_colors_dark';

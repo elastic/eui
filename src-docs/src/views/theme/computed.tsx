@@ -10,13 +10,12 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   return (
     <EuiText
       css={{
-        background: euiTheme.colors.euiFocusBackgroundColor,
+        // background: euiTheme.colors.euiFocusBackgroundColor,
         padding: euiTheme.sizes.euiSizeXL,
-        color: euiTheme.colors.euiColorPrimaryText,
+        color: euiTheme.colors.textPrimary,
       }}>
       <p>
-        <EuiIcon type="stopFilled" color={euiTheme.colors.euiColorPrimary} />{' '}
-        {children}
+        <EuiIcon type="stopFilled" color={euiTheme.colors.primary} /> {children}
       </p>
     </EuiText>
   );
@@ -26,10 +25,10 @@ export default () => {
   const primaryOverrides = {
     colors: {
       light: {
-        euiColorPrimary: '#db1dde',
+        primary: '#db1dde',
       },
       dark: {
-        euiColorPrimary: '#e378e4',
+        primary: '#e378e4',
       },
     },
   };

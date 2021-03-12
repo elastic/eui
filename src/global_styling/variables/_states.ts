@@ -17,7 +17,6 @@
  * under the License.
  */
 
-import { ThemeContext } from '@emotion/react';
 import { computed } from '../../services/theme/utils';
 import { shade, tint } from '../functions/_colors';
 
@@ -32,8 +31,6 @@ const focus_ring = {
   sizeLarge: '$euiSizeXS',
   size: '$euiFocusRingSizeLarge * .75',
 };
-
-const
 
 export const focus = {
   light: {

@@ -1,5 +1,4 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { tint, shade } from '../../../../src/services/theme/theme';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiText } from '../../../../src/components/text';
@@ -8,6 +7,7 @@ import {
   EuiThemeProvider,
   useEuiTheme,
 } from '../../../../src/services';
+import { shade, tint } from '../../../../src/global_styling/functions/_colors';
 
 interface ThemeExtensions {
   colors: {
