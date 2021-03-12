@@ -20,10 +20,10 @@
 export {
   EuiSystemContext,
   EuiThemeContext,
-  EuiOverrideContext,
+  EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
-export { useEuiTheme, withEuiTheme } from './hooks';
+export { useEuiTheme, withEuiTheme, WithEuiThemeProps } from './hooks';
 export { EuiThemeProvider } from './provider';
 export {
   buildTheme,
@@ -40,7 +40,7 @@ export {
   EuiThemeColor,
   EuiThemeColorMode,
   EuiThemeComputed,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeShape,
   EuiThemeSystem,
 } from './types';

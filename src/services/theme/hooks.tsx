@@ -21,52 +21,54 @@ import React, { forwardRef, useContext } from 'react';
 
 import {
   EuiThemeContext,
-  EuiOverrideContext,
+  EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
 import {
   EuiThemeColorMode,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeComputed,
 } from './types';
 
-export const useEuiTheme = <T extends {}>(): [
-  EuiThemeComputed<T>,
-  EuiThemeColorMode,
-  EuiThemeOverrides<T>
-] => {
+export const useEuiTheme = <T extends {} = {}>(): {
+  euiTheme: EuiThemeComputed<T>;
+  colorMode: EuiThemeColorMode;
+  modifications: EuiThemeModifications<T>;
+} => {
   const theme = useContext(EuiThemeContext);
-  const overrides = useContext(EuiOverrideContext);
   const colorMode = useContext(EuiColorModeContext);
+  const modifications = useContext(EuiModificationsContext);
 
-  return [
-    theme as EuiThemeComputed<T>,
+  return {
+    euiTheme: theme as EuiThemeComputed<T>,
     colorMode,
-    overrides as EuiThemeOverrides<T>,
-  ];
+    modifications: modifications as EuiThemeModifications<T>,
+  };
 };
 
-export const withEuiTheme = <T extends {}, U extends {}>(
-  Component: React.ComponentType<
-    T & {
-      theme: {
-        theme: EuiThemeComputed<U>;
-        colorMode: EuiThemeColorMode;
-      };
-    }
-  >
+export interface WithEuiThemeProps<P = {}> {
+  theme: {
+    euiTheme: EuiThemeComputed<P>;
+    colorMode: EuiThemeColorMode;
+  };
+}
+export const withEuiTheme = <T extends {} = {}, U extends {} = {}>(
+  Component: React.ComponentType<T & WithEuiThemeProps<U>>
 ) => {
   const componentName = Component.displayName || Component.name || 'Component';
-  const Render = (props: T, ref: React.Ref<T>) => {
-    const [theme, colorMode] = useEuiTheme<U>();
+  const Render = (
+    props: Omit<T, keyof WithEuiThemeProps<U>>,
+    ref: React.Ref<Omit<T, keyof WithEuiThemeProps<U>>>
+  ) => {
+    const { euiTheme, colorMode } = useEuiTheme<U>();
     return (
       <Component
         theme={{
-          theme,
+          euiTheme,
           colorMode,
         }}
         ref={ref}
-        {...props}
+        {...(props as T)}
       />
     );
   };

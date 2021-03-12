@@ -17,38 +17,34 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react';
+import React, { forwardRef, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
 import {
   EuiNotificationBadgeProps,
   EuiNotificationBadge,
 } from '../../badge/notification_badge/badge_notification';
 import { EuiIcon } from '../../icon';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 
-export type EuiHeaderSectionItemButtonProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    /**
-     * Inserts the node into a EuiBadgeNotification and places it appropriately against the button.
-     * Or pass `true` to render a simple dot
-     */
-    notification?: EuiNotificationBadgeProps['children'] | boolean;
-    /**
-     * Changes the color of the notification background
-     */
-    notificationColor?: EuiNotificationBadgeProps['color'];
-  };
+export type EuiHeaderSectionItemButtonProps = EuiButtonEmptyProps & {
+  /**
+   * Inserts the node into a EuiBadgeNotification and places it appropriately against the button.
+   * Or pass `true` to render a simple dot
+   */
+  notification?: EuiNotificationBadgeProps['children'] | boolean;
+  /**
+   * Changes the color of the notification background
+   */
+  notificationColor?: EuiNotificationBadgeProps['color'];
+};
 
-export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
-
-export const EuiHeaderSectionItemButton = React.forwardRef<
-  EuiHeaderSectionItemButtonRef,
+export const EuiHeaderSectionItemButton = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
   PropsWithChildren<EuiHeaderSectionItemButtonProps>
 >(
   (
     {
-      onClick,
       children,
       className,
       notification,
@@ -82,15 +78,14 @@ export const EuiHeaderSectionItemButton = React.forwardRef<
     }
 
     return (
-      <button
+      <EuiButtonEmpty
+        buttonRef={ref}
         className={classes}
-        ref={ref}
-        onClick={onClick}
-        type="button"
+        color="text"
         {...rest}>
         {children}
         {notificationBadge}
-      </button>
+      </EuiButtonEmpty>
     );
   }
 );

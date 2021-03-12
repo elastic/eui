@@ -1,5 +1,7 @@
 import React, { createElement, Fragment } from 'react';
 
+import { createHashHistory } from 'history';
+
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
@@ -151,6 +153,8 @@ import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
 
+import { PageHeaderExample } from './views/page_header/page_header_example';
+
 import { PaginationExample } from './views/pagination/pagination_example';
 
 import { PanelExample } from './views/panel/panel_example';
@@ -212,6 +216,8 @@ import { Changelog } from './views/package/changelog';
 import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
+
+import { ThemeExample } from './views/theme/theme_example';
 
 /** Elastic Charts */
 
@@ -352,6 +358,7 @@ const navigation = [
       HorizontalRuleExample,
       ModalExample,
       PageExample,
+      PageHeaderExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
@@ -410,7 +417,6 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-
       TextExample,
       TitleExample,
       ToastExample,
@@ -482,6 +488,7 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
+      ThemeExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
   },
@@ -515,6 +522,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
+  history: createHashHistory(),
   navigation,
 
   getRouteForPath: (path) => {

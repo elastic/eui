@@ -13,6 +13,10 @@ import {
   EuiText,
   EuiCallOut,
 } from '../../../../src/components';
+import {
+  _EuiSplitPanelOuter,
+  _EuiSplitPanelInner,
+} from '../../../../src/components/panel/split_panel/split_panel';
 
 import { panelConfig } from './playground';
 
@@ -36,21 +40,54 @@ import PanelGrow from './panel_grow';
 const panelGrowSource = require('!!raw-loader!./panel_grow');
 const panelGrowHtml = renderToHtml(PanelGrow);
 
+import SplitPanel from './split_panel';
+const splitPanelSource = require('!!raw-loader!./split_panel');
+const splitPanelHtml = renderToHtml(SplitPanel);
+
 const panelSnippet = `<EuiPanel paddingSize="none">
   <!-- Panel with no padding -->
 </EuiPanel>`;
 
-const panelShadowSnippet = `<EuiPanel hasShadow={true}>
-  <!-- Panel with shadow -->
-</EuiPanel>`;
+const panelShadowSnippet = [
+  `<EuiPanel hasShadow={false}>
+  <!-- Panel without shadow -->
+</EuiPanel>`,
+  `<EuiPanel hasBorder={false}>
+  <!-- Panel without border -->
+</EuiPanel>`,
+];
 
-const panelColorSnippet = `<EuiPanel color="subdued" borderRadius="none">
+const panelColorSnippet = [
+  `<EuiPanel color="subdued" borderRadius="none">
   <!-- Panel with gray background and no rounded corners -->
-</EuiPanel>`;
+</EuiPanel>`,
+  `<EuiPanel color="transparent" hasBorder={false}>
+  <!-- Transparent panel -->
+</EuiPanel>`,
+];
 
 const panelGrowSnippet = `<EuiPanel grow={false}>
   <!-- Panel whose height won't grow to match -->
 </EuiPanel>`;
+
+const splitPanelSnippet = [
+  `<EuiSplitPanel.Outer>
+  <EuiSplitPanel.Inner>
+    <!-- Top panel content -->
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner color="subdued">
+    <!-- Bottom panel content -->
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>`,
+  `<EuiSplitPanel.Outer direction="row">
+  <EuiSplitPanel.Inner>
+    <!-- Left panel content -->
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner color="subdued">
+    <!-- Right panel content -->
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>`,
+];
 
 export const PanelExample = {
   title: 'Panel',
@@ -95,7 +132,7 @@ export const PanelExample = {
       demo: <Panel />,
     },
     {
-      title: 'Shadow',
+      title: 'Shadow and border',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -107,10 +144,26 @@ export const PanelExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiPanel</strong> can give depth to your container with{' '}
-          <EuiCode>hasShadow</EuiCode>.
-        </p>
+        <>
+          <p>
+            <strong>EuiPanel</strong> can give depth to your container with{' '}
+            <EuiCode>hasShadow</EuiCode> while <EuiCode>hasBorder</EuiCode> can
+            add containment. Just be sure not to include too many nested panels
+            with these settings.
+          </p>
+          <EuiCallOut
+            color="warning"
+            title="Certain allowed combinations of shadow, border, and color depend on the current theme.">
+            <p>
+              For instance, only plain or transparent panels can have a border
+              and/or shadow. The Amsterdam theme doesn&apos;t allow combining
+              the <EuiCode>hasBorder</EuiCode> option with{' '}
+              <EuiCode>hasShadow</EuiCode>. The default theme only allows
+              removing the border if both <EuiCode>hasShadow</EuiCode> and{' '}
+              <EuiCode>hasBorder</EuiCode> are set to <EuiCode>false</EuiCode>.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       props: { EuiPanel },
       snippet: panelShadowSnippet,
@@ -129,13 +182,19 @@ export const PanelExample = {
         },
       ],
       text: (
-        <p>
-          Use <EuiCode>color</EuiCode> to add background shading to your panel
-          and provide an additional helpful aesthetic to your container in
-          context. Be mindful to use color sparingly. You can also remove the
-          rounded corners depending on the placement of your panel with{' '}
-          <EuiCode language="tsx">{'borderRadius="none"'}</EuiCode>
-        </p>
+        <>
+          <p>
+            Use <EuiCode>color</EuiCode> to add background shading to your panel
+            and provide an additional helpful aesthetic to your container in
+            context. Be mindful to use color sparingly. You can also remove the
+            rounded corners depending on the placement of your panel with{' '}
+            <EuiCode language="tsx">{'borderRadius="none"'}</EuiCode>
+          </p>
+          <p>
+            Passing <EuiCode language="ts">{'color="transparent"'}</EuiCode> can
+            give you a quick empty box simply for adding padding to all sides.
+          </p>
+        </>
       ),
       props: { EuiPanel },
       snippet: panelColorSnippet,
@@ -167,6 +226,43 @@ export const PanelExample = {
       props: { EuiPanel },
       snippet: panelGrowSnippet,
       demo: <PanelGrow />,
+    },
+    {
+      title: 'Split panels',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: splitPanelSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: splitPanelHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiSplitPanel</strong> is a composition of an outer and
+            multiple inner <strong>EuiPanels</strong>. It is a namespaced
+            component that you consume using{' '}
+            <EuiCode>EuiSplitPanel.Outer</EuiCode> and{' '}
+            <EuiCode>EuiSplitPanel.Inner</EuiCode> respectively. You can supply
+            the same panel props to both components with the exception of a few
+            to ensure the visual layout is correct. It also has two directions,{' '}
+            <EuiCode>column</EuiCode> (default) and <EuiCode>row</EuiCode>.
+          </p>
+          <p>
+            For custom responsiveness, you can adjust at which breakpoints a{' '}
+            <EuiCode>row</EuiCode> layout will stack by passing a new array of
+            breakpoint names <EuiCode>{"['xs', 's']"}</EuiCode> to the{' '}
+            <EuiCode>responsive</EuiCode> prop, or completely turn it off with{' '}
+            <EuiCode>false</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { _EuiSplitPanelOuter, _EuiSplitPanelInner },
+      snippet: splitPanelSnippet,
+      demo: <SplitPanel />,
     },
     {
       title: 'Panels could be hoverable and have beta badges',

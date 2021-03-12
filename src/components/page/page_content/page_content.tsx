@@ -53,12 +53,17 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   horizontalPosition,
   panelPaddingSize,
   paddingSize = 'l',
+  borderRadius,
   children,
   className,
   ...rest
 }) => {
+  const borderRadiusClass =
+    borderRadius === 'none' ? 'euiPageContent--borderRadiusNone' : '';
+
   const classes = classNames(
     'euiPageContent',
+    borderRadiusClass,
     verticalPosition ? verticalPositionToClassNameMap[verticalPosition] : null,
     horizontalPosition
       ? horizontalPositionToClassNameMap[horizontalPosition]
@@ -70,6 +75,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     <EuiPanel
       className={classes}
       paddingSize={panelPaddingSize ?? paddingSize}
+      borderRadius={borderRadius}
       {...rest}>
       {children}
     </EuiPanel>

@@ -1,35 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiPage direction can be row 1`] = `
+<div
+  class="euiPage euiPage--paddingMedium euiPage--grow"
+/>
+`;
+
+exports[`EuiPage grow can be false 1`] = `
+<div
+  class="euiPage euiPage--paddingMedium"
+/>
+`;
+
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage euiPage--paddingMedium testClass1 testClass2"
+  class="euiPage euiPage--paddingMedium euiPage--grow testClass1 testClass2"
   data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiPage paddingSize l is rendered 1`] = `
+<div
+  class="euiPage euiPage--paddingLarge euiPage--grow"
+/>
+`;
+
+exports[`EuiPage paddingSize m is rendered 1`] = `
+<div
+  class="euiPage euiPage--paddingMedium euiPage--grow"
+/>
+`;
+
+exports[`EuiPage paddingSize none is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow"
+/>
+`;
+
+exports[`EuiPage paddingSize s is rendered 1`] = `
+<div
+  class="euiPage euiPage--paddingSmall euiPage--grow"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom number 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiPage euiPage--restrictWidth-custom euiPage--paddingMedium testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiPage euiPage--paddingMedium euiPage--grow euiPage--restrictWidth-custom"
   style="max-width:1024px"
 />
 `;
 
-exports[`EuiPage restrict width can be set to a custom value and measurement 1`] = `
+exports[`EuiPage restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiPage euiPage--restrictWidth-custom euiPage--paddingMedium testClass1 testClass2"
-  data-test-subj="test subject string"
-  style="max-width:24rem"
+  class="euiPage euiPage--paddingMedium euiPage--grow euiPage--restrictWidth-custom"
+  style="color:red;max-width:24rem"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a default 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiPage euiPage--restrictWidth-default euiPage--paddingMedium testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiPage euiPage--paddingMedium euiPage--grow euiPage--restrictWidth-default"
 />
 `;

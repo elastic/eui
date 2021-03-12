@@ -18,6 +18,11 @@
   border-radius: $euiBorderRadius;
 }
 
+.euiAvatar-isDisabled {
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
 // Modifiers for sizing.
 $avatarSizing: (
   s: (

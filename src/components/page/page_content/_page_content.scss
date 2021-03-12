@@ -1,5 +1,13 @@
 .euiPageContent {
   width: 100%;
+  min-width: 0; // Make sure that inner flex layouts don't get larger than this container
+
+  // Assumes that in the default theme, the borders are touching the edge of the EuiPage so remove them.
+  &.euiPageContent--borderRadiusNone { // Nested for specificity
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+  }
 
   &.euiPageContent--verticalCenter {
     align-self: center;
@@ -15,16 +23,4 @@
     margin-right: auto;
     flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
   }
-
-  /** TEMPORARILY REMOVING
-  // At small screens, the content extends edge to edge, so remove the side borders and shadow
-  @include euiBreakpoint('xs', 's') {
-    .euiPanel:not(.euiPageContent--horizontalCenter) { // Override panel styles without the need for !important
-      // border-radius: 0;
-      // border-left: none;
-      // border-right: none;
-      // box-shadow: none;
-    }
-  }
-  **/
 }

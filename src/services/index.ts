@@ -116,15 +116,20 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export { useCombinedRefs, useDependentState } from './hooks';
+export {
+  useCombinedRefs,
+  useDependentState,
+  useIsWithinBreakpoints,
+} from './hooks';
 
 export {
   EuiSystemContext,
   EuiThemeContext,
-  EuiOverrideContext,
+  EuiModificationsContext,
   EuiColorModeContext,
   useEuiTheme,
   withEuiTheme,
+  WithEuiThemeProps,
   EuiThemeProvider,
   buildTheme,
   computed,
@@ -142,7 +147,7 @@ export {
   EuiThemeColor,
   EuiThemeColorMode,
   EuiThemeComputed,
-  EuiThemeOverrides,
+  EuiThemeModifications,
   EuiThemeShape,
   EuiThemeSystem,
 } from './theme';

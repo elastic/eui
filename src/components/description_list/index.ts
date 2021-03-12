@@ -17,7 +17,10 @@
  * under the License.
  */
 
-export { EuiDescriptionList } from './description_list';
+export {
+  EuiDescriptionList,
+  EuiDescriptionListProps,
+} from './description_list';
 
 export { EuiDescriptionListTitle } from './description_list_title';
 

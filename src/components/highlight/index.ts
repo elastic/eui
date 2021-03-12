@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiHighlight } from './highlight';
+export { EuiHighlight, EuiHighlightProps } from './highlight';

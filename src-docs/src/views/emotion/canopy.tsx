@@ -26,20 +26,22 @@ import {
   mergeDeep,
   useEuiTheme,
   withEuiTheme,
+  WithEuiThemeProps,
   EuiThemeProvider,
   computed,
   euiThemeDefault,
   buildTheme,
+  EuiThemeModifications,
 } from '../../../../src/services';
 
 const View = () => {
-  const [theme, colorMode] = useEuiTheme();
+  const { euiTheme, colorMode } = useEuiTheme();
   return (
     <div css={{ display: 'flex' }}>
       <div>
         {colorMode}
         <pre>
-          <code>{JSON.stringify(theme, null, 2)}</code>
+          <code>{JSON.stringify(euiTheme, null, 2)}</code>
         </pre>
       </div>
       <div>
@@ -48,7 +50,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.primary }}
+            css={{ color: euiTheme.colors.euiColorPrimary }}
           />
         </h3>
         <h3>
@@ -56,7 +58,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: theme.colors.accent }}
+            css={{ color: euiTheme.colors.euiColorSecondary }}
           />
         </h3>
         <h3>
@@ -64,7 +66,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            // css={{ color: theme.colors.focus.background }}
+            css={{ color: euiTheme.colors.euiTextColor }}
           />
         </h3>
       </div>
@@ -75,8 +77,8 @@ const View = () => {
 const View3 = () => {
   const overrides = {
     colors: {
-      light: { primary: '#8A07BD' },
-      dark: { primary: '#bd07a5' },
+      light: { euiColorPrimary: '#8A07BD' },
+      dark: { euiColorPrimary: '#BD07A5' },
     },
   };
   return (
@@ -84,7 +86,7 @@ const View3 = () => {
       <View />
 
       <EuiSpacer />
-      <EuiThemeProvider overrides={overrides}>
+      <EuiThemeProvider modify={overrides}>
         <em>Overriding primary</em>
         <View />
       </EuiThemeProvider>
@@ -96,38 +98,47 @@ const View2 = () => {
   const overrides = {
     colors: {
       light: {
-        accent: computed(['colors.primary'], () => '#85e89d'),
+        euiColorSecondary: computed(
+          ['colors.euiColorPrimary'],
+          () => '#85E89d'
+        ),
       },
-      dark: { accent: '#f0fff4' },
+      dark: { euiColorSecondary: '#F0FFF4' },
     },
   };
   return (
     <>
       <EuiSpacer />
-      <EuiThemeProvider overrides={overrides}>
-        <em>Overriding accent</em>
+      <EuiThemeProvider modify={overrides}>
+        <em>Overriding secondary</em>
         <View />
       </EuiThemeProvider>
     </>
   );
 };
 
+interface BlockProps extends WithEuiThemeProps {
+  size?: 'xxl' | 'xl';
+}
 // eslint-disable-next-line react/prefer-stateless-function
-class Block extends React.Component<any> {
+class Block extends React.Component<BlockProps> {
   render() {
-    const { theme, ...props } = this.props;
-    // TODO: TS autocomplete not working
+    const {
+      theme: { euiTheme },
+      size = 'xxl',
+      ...props
+    } = this.props;
     const blockStyle = css`
-      color: ${theme.theme.colors.primary};
-      border-radius: ${theme.theme.borders.euiBorderRadiusSmall};
-      border: ${theme.theme.borders.euiBorderEditable};
+      color: ${euiTheme.colors.euiColorPrimary};
+      border-radius: ${euiTheme.borders.euiBorderRadiusSmall};
+      border: ${euiTheme.borders.euiBorderEditable};
     `;
     return (
       <div {...props}>
         <EuiIcon
           aria-hidden="true"
           type="stopFilled"
-          size="xxl"
+          size={size}
           css={blockStyle}
         />
       </div>
@@ -147,7 +158,7 @@ export default () => {
       mergeDeep(overrides, {
         colors: {
           light: {
-            primary: chroma.random().hex(),
+            euiColorPrimary: chroma.random().hex(),
           },
         },
       })
@@ -158,7 +169,7 @@ export default () => {
       mergeDeep(overrides, {
         colors: {
           dark: {
-            primary: chroma.random().hex(),
+            euiColorPrimary: chroma.random().hex(),
           },
         },
       })
@@ -173,15 +184,98 @@ export default () => {
     'CUSTOM'
   );
 
+  // Difference is due to automatic colorMode reduction during value computation.
+  // Makes typing slightly inconvenient, but makes consuming values very convenient.
+  type ExtensionsUncomputed = {
+    colors: { light: { myColor: string }; dark: { myColor: string } };
+    custom: {
+      colors: {
+        light: { customColor: string };
+        dark: { customColor: string };
+      };
+      mySize: number;
+    };
+  };
+  type ExtensionsComputed = {
+    colors: { myColor: string };
+    custom: { colors: { customColor: string }; mySize: number };
+  };
+
+  // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
+  const extend: EuiThemeModifications<ExtensionsUncomputed> = {
+    colors: {
+      light: {
+        euiColorPrimary: '#F56407',
+        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+      },
+      dark: {
+        euiColorPrimary: '#FA924F',
+        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+      },
+    },
+    custom: {
+      colors: {
+        light: { customColor: '#080AEF' },
+        dark: { customColor: '#087EEF' },
+      },
+      mySize: 5,
+    },
+  };
+
+  const Extend = () => {
+    // Generic type (ExtensionsComputed) necessary if accessing extensions/custom properties
+    const {
+      euiTheme: { colors, custom },
+      colorMode,
+    } = useEuiTheme<ExtensionsComputed>();
+    return (
+      <div css={{ display: 'flex' }}>
+        <div>
+          {colorMode}
+          <pre>
+            <code>{JSON.stringify({ colors, custom }, null, 2)}</code>
+          </pre>
+        </div>
+        <div>
+          <h3>
+            <EuiIcon
+              aria-hidden="true"
+              type="stopFilled"
+              size="xxl"
+              css={{ color: colors.myColor }}
+            />
+          </h3>
+          <h3>
+            <EuiIcon
+              aria-hidden="true"
+              type="stopFilled"
+              size="xxl"
+              css={{ color: colors.myColor }}
+            />
+          </h3>
+          <h3>
+            <EuiIcon
+              aria-hidden="true"
+              type="stopFilled"
+              size="xxl"
+              css={{
+                color: custom.colors.customColor,
+              }}
+            />
+          </h3>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <EuiThemeProvider
         // theme={DefaultEuiTheme}
         // colorMode={colorMode}
-        overrides={overrides}>
+        modify={overrides}>
         <button type="button" onClick={toggleTheme}>
-          {/* @ts-ignore strike */}
-          <strike>Toggle Color Mode!</strike> Use global config
+          <del>Toggle Color Mode!</del> Use global config
         </button>
         <EuiSpacer />
         <button type="button" onClick={lightColors}>
@@ -202,10 +296,15 @@ export default () => {
           <em>Inverse colorMode</em>
           <View3 />
           <em>withEuiTheme</em>
-          <BlockWithTheme />
+          <BlockWithTheme size="xxl" />
         </EuiThemeProvider>
       </EuiThemeProvider>
       <EuiSpacer />
+      {/* Generic type is not necessary here. Note that it should be the uncomputed type */}
+      <EuiThemeProvider<ExtensionsUncomputed> modify={extend}>
+        <em>Extensions</em>
+        <Extend />
+      </EuiThemeProvider>
     </>
   );
 };

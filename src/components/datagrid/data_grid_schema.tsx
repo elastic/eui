@@ -93,21 +93,21 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     comparator(a, b, direction) {
       const aValue = a.toLowerCase() === 'true';
       const bValue = b.toLowerCase() === 'true';
-      if (aValue < bValue) return direction === 'asc' ? 1 : -1;
-      if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
       return 0;
     },
     icon: 'tokenBoolean',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
-        default="True-False"
+        default="False-True"
       />
     ),
     sortTextDesc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextDesc"
-        default="False-True"
+        default="True-False"
       />
     ),
   },

@@ -31,12 +31,12 @@ export type TextAlignment = keyof typeof alignmentToClassNameMap;
 
 export const ALIGNMENTS = keysOf(alignmentToClassNameMap);
 
-type Props = CommonProps &
+export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     textAlign?: TextAlignment;
   };
 
-export const EuiTextAlign: FunctionComponent<Props> = ({
+export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
   className,
   textAlign = 'left',

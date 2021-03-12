@@ -31,16 +31,18 @@ export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiLoadingChartSize = keyof typeof sizeToClassNameMap;
 
-export const EuiLoadingChart: FunctionComponent<
-  CommonProps &
-    HTMLAttributes<HTMLDivElement> & {
-      /**
-       * Makes the loader animation black and white
-       */
-      mono?: boolean;
-      size?: EuiLoadingChartSize;
-    }
-> = ({ size = 'm', mono = false, className, ...rest }) => {
+export type EuiLoadingChartProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    size?: EuiLoadingChartSize;
+    mono?: boolean;
+  };
+
+export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
+  size = 'm',
+  mono = false,
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiLoadingChart',
     { 'euiLoadingChart--mono': mono },

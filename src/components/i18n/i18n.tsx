@@ -98,7 +98,7 @@ interface I18nTokensShape<T extends any[]> {
   children: (x: Array<T[number]>) => ReactChild;
 }
 
-type EuiI18nProps<
+export type EuiI18nProps<
   T,
   DEFAULT extends Renderable<T>,
   DEFAULTS extends any[]

@@ -144,7 +144,7 @@ export interface IconButtonControlType
 
 export type IconControl = ExclusiveUnion<
   IconControlType,
-  IconButtonControlType
+  Omit<IconButtonControlType, 'size' | 'display'>
 >;
 
 export type Control = ExclusiveUnion<
@@ -352,7 +352,6 @@ export class EuiControlBar extends Component<
               color={color as EuiButtonIconProps['color']}
               {...(rest as IconButtonControlType)}
               iconType={iconType}
-              size="s"
             />
           ) : (
             <EuiIcon

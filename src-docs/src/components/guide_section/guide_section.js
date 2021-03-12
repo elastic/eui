@@ -29,6 +29,16 @@ import { cleanEuiImports } from '../../services';
 
 import { extendedTypesInfo } from './guide_section_extends';
 
+const slugify = (str) => {
+  const parts = str
+    .toLowerCase()
+    .replace(/[-]+/g, ' ')
+    .replace(/[^\w^\s]+/g, '')
+    .replace(/ +/g, ' ')
+    .split(' ');
+  return parts.join('-');
+};
+
 export const markup = (text) => {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split('\n').map((token) => {
@@ -107,6 +117,12 @@ const nameToCodeClassMap = {
   html: 'html',
 };
 
+const tabDisplayNameMap = {
+  javascript: 'Demo JS',
+  html: 'Demo HTML',
+  snippet: 'Snippet',
+};
+
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
@@ -124,18 +140,18 @@ export class GuideSection extends Component {
     }
 
     if (props.source) {
-      this.tabs.push(
-        {
-          name: 'javascript',
-          displayName: 'Demo JS',
-          isCode: true,
-        },
-        {
-          name: 'html',
-          displayName: 'Demo HTML',
-          isCode: true,
-        }
-      );
+      props.source.map((source) => {
+        this.tabs.push({
+          name:
+            (source.displayName && slugify(source.displayName)) ||
+            tabDisplayNameMap[source.type] ||
+            'tab',
+          displayName:
+            source.displayName || tabDisplayNameMap[source.type] || 'Tab',
+          isCode: source.type || true,
+          code: source.code,
+        });
+      });
     }
 
     if (hasSnippet) {
@@ -183,16 +199,13 @@ export class GuideSection extends Component {
   };
 
   onSelectedTabChanged = (selectedTab) => {
-    const { name } = selectedTab;
+    const { isCode, code } = selectedTab;
     let renderedCode = null;
 
-    if (name === 'html' || name === 'javascript') {
-      const { code } = this.props.source.find(
-        (sourceObject) => sourceObject.type === name
-      );
+    if (isCode === 'html' || isCode === 'javascript') {
       renderedCode = code;
 
-      if (name === 'javascript') {
+      if (isCode === 'javascript') {
         renderedCode = renderedCode.default
           .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
@@ -238,13 +251,13 @@ export class GuideSection extends Component {
           len = renderedCode.replace('\n\n\n', '\n\n').length;
         }
         renderedCode = cleanEuiImports(renderedCode);
-      } else if (name === 'html') {
+      } else if (isCode === 'html') {
         renderedCode = code.render();
       }
     }
 
-    this.setState({ selectedTab, renderedCode }, () => {
-      if (name === 'javascript') {
+    this.setState({ selectedTab, renderedCode, code }, () => {
+      if (isCode === 'javascript') {
         requestAnimationFrame(() => {
           const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
           if (!pre) return;
@@ -276,7 +289,11 @@ export class GuideSection extends Component {
   }
 
   renderSnippet() {
-    const { snippet } = this.props;
+    let { snippet } = this.props;
+
+    if (this.props.source?.find((tab) => tab.type === 'snippet')) {
+      snippet = this.props.source?.find((tab) => tab.type === 'snippet').code;
+    }
 
     if (!snippet) {
       return;
@@ -601,8 +618,10 @@ export class GuideSection extends Component {
     if (name === 'javascript') {
       return (
         <div {...divProps} onScroll={memoScrollUtility}>
-          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
           {euiCodeBlock}
+          {name === 'javascript'
+            ? this.renderCodeSandBoxButton(this.state.code)
+            : null}
         </div>
       );
     }
@@ -622,7 +641,7 @@ export class GuideSection extends Component {
     if (this.state.selectedTab.isCode) {
       return (
         <EuiErrorBoundary>
-          {this.renderCode(this.state.selectedTab.name)}
+          {this.renderCode(this.state.selectedTab.isCode)}
         </EuiErrorBoundary>
       );
     }
@@ -641,9 +660,15 @@ export class GuideSection extends Component {
     );
   }
 
-  renderCodeSandBoxButton() {
+  renderCodeSandBoxButton(code) {
+    if (!code) {
+      return;
+    }
+
     return (
-      <CodeSandboxLink content={this.props.source[0].code.default}>
+      <CodeSandboxLink
+        className="guideSectionExampleCode__link"
+        content={code.default}>
         <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
           Try out this demo on Code Sandbox
         </EuiButtonEmpty>
