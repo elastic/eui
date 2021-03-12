@@ -450,11 +450,14 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   if (stopType === 'stepped') {
     const trailingPercentage = colorStops[0].stop;
+    const endingPercentage = colorStops[colorStops.length - 1].stop;
     const steppedColors = getSteppedGradient(colorStops, stepNumber);
     let steppedGradient = '';
-    const percentage = (100 - trailingPercentage) / steppedColors.length;
+    const percentage =
+      (endingPercentage - trailingPercentage) / steppedColors.length;
     let percentageSteps =
-      (100 - trailingPercentage) / steppedColors.length + trailingPercentage;
+      (endingPercentage - trailingPercentage) / steppedColors.length +
+      trailingPercentage;
     steppedColors.forEach((color) => {
       steppedGradient = steppedGradient.concat(
         `${color} ${percentageSteps - percentage}% ${percentageSteps}%, `
