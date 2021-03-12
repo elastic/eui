@@ -54,3 +54,46 @@ export const light_colors = {
     makeHighContrastColor(mediumShade)
   ),
 };
+
+export const dark_colors = {
+  // Brand
+  primary: '#1BA9F5',
+  accent: '#F990C0',
+
+  // Status
+  success: '#7DE2D1',
+  warning: '#FFCE7A',
+  danger: '#F66',
+
+  // Grays
+  emptyShade: '#1D1E24',
+  lightestShade: '#25262E',
+  lightShade: '#343741',
+  mediumShade: '#535966',
+  darkShade: '#98A2B3',
+  darkestShade: '#D4DAE5',
+  fullShade: '#FFF',
+
+  // Backgrounds
+  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
+    shade(lightestShade, 0.3)
+  ),
+  highlight: '#2E2D25',
+
+  // Every color below must be based mathematically on the set above and in a particular order.
+  text: '#DFE5EF',
+  title: computed(['colors.text'], ([text]) => text),
+  disabled: computed(['colors.text'], ([text]) => shade(text, 0.7)),
+
+  textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
+    makeHighContrastColor(mediumShade)
+  ),
+
+  // // Charts
+  // $euiColorChartLines: $euiColorLightShade;
+  // $euiColorChartBand: tint($euiColorLightestShade, 2.5%);
+
+  // // Shadows
+  // $euiShadowColor: #000;
+  // $euiShadowColorLarge: #000;
+};

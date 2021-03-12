@@ -24,11 +24,19 @@ import {
   makeHighContrastColor,
   makeDisabledContrastColor,
 } from '../../global_styling/functions/_colors';
-import { light_colors } from '../../global_styling/variables/_colors';
-import { dark_colors } from '../../global_styling/variables/_colors_dark';
-import { light_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
-import { dark_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors_dark';
+import {
+  light_colors,
+  dark_colors,
+} from '../../global_styling/variables/_colors';
+import {
+  light_colors_ams,
+  dark_colors_ams,
+} from '../../themes/eui-amsterdam/global_styling/variables/_colors';
+
 import { focus } from '../../global_styling/variables/_states';
+
+import { border } from '../../global_styling/variables/_borders';
+import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
 /**
  * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
@@ -97,46 +105,6 @@ const textVariants = {
   link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
 };
 
-const borderRadius = {
-  euiBorderRadius: '4px',
-  euiBorderRadiusSmall: computed(
-    ['borders.euiBorderRadius'],
-    ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`
-  ),
-};
-
-const borders = {
-  euiBorderWidthThin: '1px',
-  euiBorderWidthThick: '2px',
-
-  euiBorderColor: computed(['colors.lightShade'], ([lightShade]) => lightShade),
-
-  euiBorderThick: computed(
-    [
-      `${COLOR_MODE_KEY}.borders.euiBorderWidthThick`,
-      `${COLOR_MODE_KEY}.borders.euiBorderColor`,
-    ],
-    ([euiBorderWidthThick, euiBorderColor]) =>
-      `${euiBorderWidthThick} solid ${euiBorderColor}`
-  ),
-  euiBorderThin: computed(
-    [
-      `${COLOR_MODE_KEY}.borders.euiBorderWidthThin`,
-      `${COLOR_MODE_KEY}.borders.euiBorderColor`,
-    ],
-    ([euiBorderWidthThin, euiBorderColor]) =>
-      `${euiBorderWidthThin} solid ${euiBorderColor}`
-  ),
-  euiBorderEditable: computed(
-    [
-      `${COLOR_MODE_KEY}.borders.euiBorderWidthThick`,
-      `${COLOR_MODE_KEY}.borders.euiBorderColor`,
-    ],
-    ([euiBorderWidthThick, euiBorderColor]) =>
-      `${euiBorderWidthThick} dotted ${euiBorderColor}`
-  ),
-};
-
 /* DEFAULT THEME */
 
 export const light = {
@@ -146,10 +114,7 @@ export const light = {
   ...focus.light,
   base,
   sizes,
-  borders: {
-    ...borderRadius,
-    ...borders,
-  },
+  border,
 };
 
 export const dark = {
@@ -159,10 +124,7 @@ export const dark = {
   ...focus.dark,
   base,
   sizes,
-  borders: {
-    ...borderRadius,
-    ...borders,
-  },
+  border,
 };
 
 export const euiThemeDefault = {
@@ -197,29 +159,13 @@ export const euiThemeDefault = {
 
 export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 
-/* AMSTERDAM THEME */
-
-const amsterdam_borderRadius = {
-  euiBorderRadius: computed(
-    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
-  ),
-  euiBorderRadiusSmall: computed(
-    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.5)`
-  ),
-};
-
 export const amsterdam_light = {
   ...poles,
   ...light_colors_ams,
   ...textVariants,
   base,
   sizes,
-  borders: {
-    ...amsterdam_borderRadius,
-    ...borders,
-  },
+  border: border_ams,
 };
 
 export const amsterdam_dark = {
@@ -228,10 +174,7 @@ export const amsterdam_dark = {
   ...textVariants,
   base,
   sizes,
-  borders: {
-    ...amsterdam_borderRadius,
-    ...borders,
-  },
+  border: border_ams,
 };
 
 export const euiThemeAmsterdam = {

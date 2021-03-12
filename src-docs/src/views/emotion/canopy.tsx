@@ -128,8 +128,8 @@ class Block extends React.Component<BlockProps> {
     } = this.props;
     const blockStyle = css`
       color: ${euiTheme.colors.primary};
-      border-radius: ${euiTheme[COLOR_MODE_KEY].borders.euiBorderRadiusSmall};
-      border: ${euiTheme[COLOR_MODE_KEY].borders.euiBorderEditable};
+      border-radius: ${euiTheme[COLOR_MODE_KEY].border.radiusSmall};
+      border: ${euiTheme[COLOR_MODE_KEY].border.editable};
     `;
     return (
       <div {...props}>
