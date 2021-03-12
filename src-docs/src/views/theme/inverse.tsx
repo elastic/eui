@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
+import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
@@ -10,7 +11,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <div
       css={{
         background: euiTheme.colors.lightShade,
-        padding: euiTheme.sizes.euiSizeXL,
+        padding: euiTheme[COLOR_MODE_KEY].sizes.euiSizeXL,
         color: euiTheme.colors.text,
       }}>
       <p>{children}</p>

@@ -3,6 +3,7 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiCode } from '../../../../src/components/code';
 import { useEuiTheme } from '../../../../src/services';
+import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
@@ -20,7 +21,7 @@ export default () => {
       <div
         css={{
           background: euiTheme.colors.lightShade,
-          padding: `calc(${euiTheme.sizes.euiSize} * 2)`,
+          padding: `calc(${euiTheme[COLOR_MODE_KEY].sizes.euiSize} * 2)`,
         }}>
         <p>
           The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}

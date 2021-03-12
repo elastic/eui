@@ -33,6 +33,7 @@ import {
   buildTheme,
   EuiThemeModifications,
 } from '../../../../src/services';
+import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 const View = () => {
   const { euiTheme, colorMode } = useEuiTheme();
@@ -50,7 +51,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme.colors.primary }}
+            css={{ color: euiTheme[COLOR_MODE_KEY].primary }}
           />
         </h3>
         <h3>
@@ -58,7 +59,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme.colors.success }}
+            css={{ color: euiTheme[COLOR_MODE_KEY].success }}
           />
         </h3>
         <h3>
@@ -66,7 +67,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme.colors.text }}
+            css={{ color: euiTheme[COLOR_MODE_KEY].text }}
           />
         </h3>
       </div>
@@ -76,7 +77,7 @@ const View = () => {
 
 const View3 = () => {
   const overrides = {
-    colors: {
+    [COLOR_MODE_KEY]: {
       light: { primary: '#8A07BD' },
       dark: { primary: '#BD07A5' },
     },
@@ -96,7 +97,7 @@ const View3 = () => {
 
 const View2 = () => {
   const overrides = {
-    colors: {
+    [COLOR_MODE_KEY]: {
       light: {
         success: computed(['colors.primary'], () => '#85E89d'),
       },
@@ -127,8 +128,8 @@ class Block extends React.Component<BlockProps> {
     } = this.props;
     const blockStyle = css`
       color: ${euiTheme.colors.primary};
-      border-radius: ${euiTheme.borders.euiBorderRadiusSmall};
-      border: ${euiTheme.borders.euiBorderEditable};
+      border-radius: ${euiTheme[COLOR_MODE_KEY].borders.euiBorderRadiusSmall};
+      border: ${euiTheme[COLOR_MODE_KEY].borders.euiBorderEditable};
     `;
     return (
       <div {...props}>
@@ -153,9 +154,10 @@ export default () => {
   const lightColors = () => {
     setOverrides(
       mergeDeep(overrides, {
-        colors: {
+        [COLOR_MODE_KEY]: {
           light: {
             primary: chroma.random().hex(),
+            base: Math.floor(Math.random() * Math.floor(16)),
           },
         },
       })
@@ -164,7 +166,7 @@ export default () => {
   const darkColors = () => {
     setOverrides(
       mergeDeep(overrides, {
-        colors: {
+        [COLOR_MODE_KEY]: {
           dark: {
             primary: chroma.random().hex(),
           },
@@ -184,9 +186,9 @@ export default () => {
   // Difference is due to automatic colorMode reduction during value computation.
   // Makes typing slightly inconvenient, but makes consuming values very convenient.
   type ExtensionsUncomputed = {
-    colors: { light: { myColor: string }; dark: { myColor: string } };
+    [COLOR_MODE_KEY]: { light: { myColor: string }; dark: { myColor: string } };
     custom: {
-      colors: {
+      [COLOR_MODE_KEY]: {
         light: { customColor: string };
         dark: { customColor: string };
       };
@@ -194,13 +196,13 @@ export default () => {
     };
   };
   type ExtensionsComputed = {
-    colors: { myColor: string };
-    custom: { colors: { customColor: string }; mySize: number };
+    [COLOR_MODE_KEY]: { myColor: string };
+    custom: { [COLOR_MODE_KEY]: { customColor: string }; mySize: number };
   };
 
   // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
   const extend: EuiThemeModifications<ExtensionsUncomputed> = {
-    colors: {
+    [COLOR_MODE_KEY]: {
       light: {
         primary: '#F56407',
         myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
@@ -211,7 +213,7 @@ export default () => {
       },
     },
     custom: {
-      colors: {
+      [COLOR_MODE_KEY]: {
         light: { customColor: '#080AEF' },
         dark: { customColor: '#087EEF' },
       },

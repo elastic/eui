@@ -38,6 +38,7 @@ const createComputedHtml = renderToHtml(CreateComputed);
 
 export const ThemeExample = {
   title: 'Theme provider',
+  isNew: true,
   intro: (
     <>
       <EuiText>

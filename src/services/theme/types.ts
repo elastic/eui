@@ -45,7 +45,7 @@ type Colorless<T> = RecursiveOmit<T, 'colors'>;
 export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {
   themeName: string;
   colors: EuiThemeColor;
-  buttons: Colorless<EuiThemeShape['buttons']> & {
-    colors: EuiThemeShape['buttons']['colors']['light'];
-  };
+  // buttons: Colorless<EuiThemeShape['buttons']> & {
+  //   colors: EuiThemeShape['buttons']['colors']['light'];
+  // };
 } & T;

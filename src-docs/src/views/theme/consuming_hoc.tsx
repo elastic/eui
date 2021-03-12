@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { withEuiTheme, WithEuiThemeProps } from '../../../../src/services';
 import { EuiIcon } from '../../../../src/components/icon';
+import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Block extends React.Component<WithEuiThemeProps> {
@@ -10,8 +11,8 @@ class Block extends React.Component<WithEuiThemeProps> {
 
     const divStyle = css`
       background: ${theme.euiTheme.colors.lightShade};
-      padding: ${theme.euiTheme.sizes.euiSizeXL};
-      border-radius: ${theme.euiTheme.borders.euiBorderRadius};
+      padding: ${theme.euiTheme[COLOR_MODE_KEY].sizes.euiSizeXL};
+      border-radius: ${theme.euiTheme[COLOR_MODE_KEY].borders.euiBorderRadius};
     `;
 
     return (

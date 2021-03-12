@@ -17,17 +17,58 @@
  * under the License.
  */
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { buildTheme, computed, COLOR_MODE_KEY } from './utils';
 import {
   makeHighContrastColor,
   makeDisabledContrastColor,
-  transparentize,
 } from '../../global_styling/functions/_colors';
 import { light_colors } from '../../global_styling/variables/_colors';
 import { dark_colors } from '../../global_styling/variables/_colors_dark';
 import { light_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
 import { dark_colors_ams } from '../../themes/eui-amsterdam/global_styling/variables/_colors_dark';
 import { focus } from '../../global_styling/variables/_states';
+
+/**
+ * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
+ * anything using the `color.` key will remain under `color`
+ */
+
+const base = 16;
+
+const sizes = {
+  euiSize: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base}px`),
+  euiSizeXS: computed(
+    [`${COLOR_MODE_KEY}.base`],
+    ([base]) => `${base * 0.25}px`
+  ),
+  euiSizeS: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.5}px`),
+  euiSizeM: computed(
+    [`${COLOR_MODE_KEY}.base`],
+    ([base]) => `${base * 0.75}px`
+  ),
+  euiSizeL: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 1.5}px`),
+  euiSizeXL: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 2}px`),
+  euiSizeXXL: computed(
+    [`${COLOR_MODE_KEY}.base`],
+    ([base]) => `${base * 2.5}px`
+  ),
+
+  euiButtonMinWidth: computed(
+    [`${COLOR_MODE_KEY}.base`],
+    ([base]) => `${base * 7}px`
+  ),
+
+  euiScrollBar: computed(
+    [`${COLOR_MODE_KEY}.sizes.euiSize`],
+    ([euiSize]) => euiSize
+  ),
+  euiScrollBarCorner: computed(
+    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
+    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)` // All our variables should try to evaulate to an actual PX if possible
+  ),
+};
 
 const poles = {
   ghost: '#FFF',
@@ -56,114 +97,6 @@ const textVariants = {
   link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
 };
 
-/* DEFAULT THEME */
-
-export const light = {
-  ...poles,
-  ...light_colors,
-  ...textVariants,
-  ...focus.light,
-};
-
-export const dark = {
-  ...poles,
-  ...dark_colors,
-  ...textVariants,
-  ...focus.dark,
-};
-
-// Visualization colors
-
-// Maps allow for easier JSON usage
-// Use map_merge(euiColorVisColors, $yourMap) to change individual colors after importing ths file
-// The `behindText` variant is a direct copy of the hex output by the JS euiPaletteColorBlindBehindText() function
-const euiPaletteColorBlind = {
-  euiColorVis0: {
-    graphic: '#54B399',
-    behindText: '#6DCCB1',
-  },
-  euiColorVis1: {
-    graphic: '#6092C0',
-    behindText: '#79AAD9',
-  },
-  euiColorVis2: {
-    graphic: '#D36086',
-    behindText: '#EE789D',
-  },
-  euiColorVis3: {
-    graphic: '#9170B8',
-    behindText: '#A987D1',
-  },
-  euiColorVis4: {
-    graphic: '#CA8EAE',
-    behindText: '#E4A6C7',
-  },
-  euiColorVis5: {
-    graphic: '#D6BF57',
-    behindText: '#F1D86F',
-  },
-  euiColorVis6: {
-    graphic: '#B9A888',
-    behindText: '#D2C0A0',
-  },
-  euiColorVis7: {
-    graphic: '#DA8B45',
-    behindText: '#F5A35C',
-  },
-  euiColorVis8: {
-    graphic: '#AA6556',
-    behindText: '#C47C6C',
-  },
-  euiColorVis9: {
-    graphic: '#E7664C',
-    behindText: '#FF7E62',
-  },
-};
-
-const colorVis = {
-  euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,
-  euiColorVis1: euiPaletteColorBlind.euiColorVis1.graphic,
-  euiColorVis2: euiPaletteColorBlind.euiColorVis2.graphic,
-  euiColorVis3: euiPaletteColorBlind.euiColorVis3.graphic,
-  euiColorVis4: euiPaletteColorBlind.euiColorVis4.graphic,
-  euiColorVis5: euiPaletteColorBlind.euiColorVis5.graphic,
-  euiColorVis6: euiPaletteColorBlind.euiColorVis6.graphic,
-  euiColorVis7: euiPaletteColorBlind.euiColorVis7.graphic,
-  euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
-  euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
-
-  euiColorVis0_behindText: euiPaletteColorBlind.euiColorVis0.behindText,
-  euiColorVis1_behindText: euiPaletteColorBlind.euiColorVis1.behindText,
-  euiColorVis2_behindText: euiPaletteColorBlind.euiColorVis2.behindText,
-  euiColorVis3_behindText: euiPaletteColorBlind.euiColorVis3.behindText,
-  euiColorVis4_behindText: euiPaletteColorBlind.euiColorVis4.behindText,
-  euiColorVis5_behindText: euiPaletteColorBlind.euiColorVis5.behindText,
-  euiColorVis6_behindText: euiPaletteColorBlind.euiColorVis6.behindText,
-  euiColorVis7_behindText: euiPaletteColorBlind.euiColorVis7.behindText,
-  euiColorVis8_behindText: euiPaletteColorBlind.euiColorVis8.behindText,
-  euiColorVis9_behindText: euiPaletteColorBlind.euiColorVis9.behindText,
-};
-
-const base = 16;
-
-const sizes = {
-  euiSize: computed(['base'], ([base]) => `${base}px`),
-  euiSizeXS: computed(['base'], ([base]) => `${base * 0.25}px`),
-  euiSizeS: computed(['base'], ([base]) => `${base * 0.5}px`),
-  euiSizeM: computed(['base'], ([base]) => `${base * 0.75}px`),
-  euiSizeL: computed(['base'], ([base]) => `${base * 1.5}px`),
-  euiSizeXL: computed(['base'], ([base]) => `${base * 2}px`),
-  euiSizeXXL: computed(['base'], ([base]) => `${base * 2.5}px`),
-
-  euiButtonMinWidth: computed(['base'], ([base]) => `${base * 7}px`),
-
-  euiScrollBar: computed(['sizes.euiSize'], ([euiSize]) => euiSize),
-  euiScrollBarCorner: computed(
-    ['sizes.euiSizeS'],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
-  ),
-};
-
 const borderRadius = {
   euiBorderRadius: '4px',
   euiBorderRadiusSmall: computed(
@@ -179,20 +112,57 @@ const borders = {
   euiBorderColor: computed(['colors.lightShade'], ([lightShade]) => lightShade),
 
   euiBorderThick: computed(
-    ['borders.euiBorderWidthThick', 'borders.euiBorderColor'],
+    [
+      `${COLOR_MODE_KEY}.borders.euiBorderWidthThick`,
+      `${COLOR_MODE_KEY}.borders.euiBorderColor`,
+    ],
     ([euiBorderWidthThick, euiBorderColor]) =>
       `${euiBorderWidthThick} solid ${euiBorderColor}`
   ),
   euiBorderThin: computed(
-    ['borders.euiBorderWidthThin', 'borders.euiBorderColor'],
+    [
+      `${COLOR_MODE_KEY}.borders.euiBorderWidthThin`,
+      `${COLOR_MODE_KEY}.borders.euiBorderColor`,
+    ],
     ([euiBorderWidthThin, euiBorderColor]) =>
       `${euiBorderWidthThin} solid ${euiBorderColor}`
   ),
   euiBorderEditable: computed(
-    ['borders.euiBorderWidthThick', 'borders.euiBorderColor'],
+    [
+      `${COLOR_MODE_KEY}.borders.euiBorderWidthThick`,
+      `${COLOR_MODE_KEY}.borders.euiBorderColor`,
+    ],
     ([euiBorderWidthThick, euiBorderColor]) =>
       `${euiBorderWidthThick} dotted ${euiBorderColor}`
   ),
+};
+
+/* DEFAULT THEME */
+
+export const light = {
+  ...poles,
+  ...light_colors,
+  ...textVariants,
+  ...focus.light,
+  base,
+  sizes,
+  borders: {
+    ...borderRadius,
+    ...borders,
+  },
+};
+
+export const dark = {
+  ...poles,
+  ...dark_colors,
+  ...textVariants,
+  ...focus.dark,
+  base,
+  sizes,
+  borders: {
+    ...borderRadius,
+    ...borders,
+  },
 };
 
 export const euiThemeDefault = {
@@ -201,70 +171,67 @@ export const euiThemeDefault = {
     dark,
   },
   // colorVis,
-  base,
-  sizes,
-  borders: {
-    ...borderRadius,
-    ...borders,
-  },
-  focus: {
-    colors: {
-      light: {
-        ...focus.light,
-      },
-      dark: { custom: '#fff' },
-    },
-  },
-  buttons: {
-    [COLOR_MODE_KEY]: {
-      light: {
-        custom: computed(['colors.primary'], ([primary]) => primary /*'#000'*/),
-      },
-      dark: { custom: '#fff' },
-    },
-  },
+  // base,
+  // sizes,
+  // borders: {
+  //   ...borderRadius,
+  //   ...borders,
+  // },
+  // focus: {
+  //   colors: {
+  //     light: {
+  //       ...focus.light,
+  //     },
+  //     dark: { custom: '#fff' },
+  //   },
+  // },
+  // buttons: {
+  //   [COLOR_MODE_KEY]: {
+  //     light: {
+  //       custom: computed(['colors.primary'], ([primary]) => primary /*'#000'*/),
+  //     },
+  //     dark: { custom: '#fff' },
+  //   },
+  // },
 };
 
 export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 
 /* AMSTERDAM THEME */
 
+const amsterdam_borderRadius = {
+  euiBorderRadius: computed(
+    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
+    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
+  ),
+  euiBorderRadiusSmall: computed(
+    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
+    ([euiSizeS]) => `calc(${euiSizeS} * 0.5)`
+  ),
+};
+
 export const amsterdam_light = {
   ...poles,
   ...light_colors_ams,
   ...textVariants,
-
-  // State
-  focusTransparency: 0.1,
-  focusBackground: computed(
-    ['colors.primary', 'colors.focusTransparency'],
-    ([primary, focusTransparency]) => transparentize(primary, focusTransparency)
-  ),
+  base,
+  sizes,
+  borders: {
+    ...amsterdam_borderRadius,
+    ...borders,
+  },
 };
 
 export const amsterdam_dark = {
   ...poles,
   ...dark_colors_ams,
   ...textVariants,
-  ...focus.light,
-
-  // State
-  focusTransparency: 0.3,
-  focusBackground: computed(
-    ['colors.primary', 'colors.focusTransparency'],
-    ([primary, focusTransparency]) => transparentize(primary, focusTransparency)
-  ),
-};
-
-const amsterdam_borderRadius = {
-  euiBorderRadius: computed(
-    ['sizes.euiSizeS'],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
-  ),
-  euiBorderRadiusSmall: computed(
-    ['sizes.euiSizeS'],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.5)`
-  ),
+  base,
+  sizes,
+  borders: {
+    ...amsterdam_borderRadius,
+    ...borders,
+  },
 };
 
 export const euiThemeAmsterdam = {
@@ -272,22 +239,20 @@ export const euiThemeAmsterdam = {
     light: amsterdam_light,
     dark: amsterdam_dark,
   },
-  focus,
-  colorVis,
-  base,
-  sizes,
-  borders: {
-    ...amsterdam_borderRadius,
-    ...borders,
-  },
-  buttons: {
-    [COLOR_MODE_KEY]: {
-      light: {
-        custom: '#000',
-      },
-      dark: { custom: '#fff' },
-    },
-  },
+  // focus,
+  // colorVis,
+  // borders: {
+  //   ...amsterdam_borderRadius,
+  //   ...borders,
+  // },
+  // buttons: {
+  //   [COLOR_MODE_KEY]: {
+  //     light: {
+  //       custom: '#000',
+  //     },
+  //     dark: { custom: '#fff' },
+  //   },
+  // },
 };
 
 export const EuiThemeAmsterdam = buildTheme(
