@@ -25,7 +25,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <EuiText
       css={{
         background: euiTheme.colors.customColorPrimaryHighlight,
-        padding: euiTheme[COLOR_MODE_KEY].sizes.euiSizeXL,
+        padding: euiTheme[COLOR_MODE_KEY].size.xl,
         color: euiTheme.colors.customColorPrimaryText,
       }}>
       <p>

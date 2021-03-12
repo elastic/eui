@@ -10,7 +10,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <div
       css={{
         background: euiTheme.colors.lightShade,
-        padding: euiTheme[COLOR_MODE_KEY].sizes.euiSizeXL,
+        padding: euiTheme[COLOR_MODE_KEY].size.xl,
       }}>
       <p>{children}</p>
     </div>

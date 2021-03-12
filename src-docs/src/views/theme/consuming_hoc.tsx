@@ -11,7 +11,7 @@ class Block extends React.Component<WithEuiThemeProps> {
 
     const divStyle = css`
       background: ${theme.euiTheme.colors.lightShade};
-      padding: ${theme.euiTheme[COLOR_MODE_KEY].sizes.euiSizeXL};
+      padding: ${theme.euiTheme[COLOR_MODE_KEY].size.xl};
       border-radius: ${theme.euiTheme[COLOR_MODE_KEY].border.radius};
     `;
 

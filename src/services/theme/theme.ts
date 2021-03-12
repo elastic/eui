@@ -33,6 +33,8 @@ import {
   dark_colors_ams,
 } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
 
+import { base, size } from '../../global_styling/variables/_size';
+
 import { focus } from '../../global_styling/variables/_states';
 
 import { border } from '../../global_styling/variables/_borders';
@@ -42,41 +44,6 @@ import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/
  * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
  * anything using the `color.` key will remain under `color`
  */
-
-const base = 16;
-
-const sizes = {
-  euiSize: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base}px`),
-  euiSizeXS: computed(
-    [`${COLOR_MODE_KEY}.base`],
-    ([base]) => `${base * 0.25}px`
-  ),
-  euiSizeS: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.5}px`),
-  euiSizeM: computed(
-    [`${COLOR_MODE_KEY}.base`],
-    ([base]) => `${base * 0.75}px`
-  ),
-  euiSizeL: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 1.5}px`),
-  euiSizeXL: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 2}px`),
-  euiSizeXXL: computed(
-    [`${COLOR_MODE_KEY}.base`],
-    ([base]) => `${base * 2.5}px`
-  ),
-
-  euiButtonMinWidth: computed(
-    [`${COLOR_MODE_KEY}.base`],
-    ([base]) => `${base * 7}px`
-  ),
-
-  euiScrollBar: computed(
-    [`${COLOR_MODE_KEY}.sizes.euiSize`],
-    ([euiSize]) => euiSize
-  ),
-  euiScrollBarCorner: computed(
-    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)` // All our variables should try to evaulate to an actual PX if possible
-  ),
-};
 
 const poles = {
   ghost: '#FFF',
@@ -113,7 +80,7 @@ export const light = {
   ...textVariants,
   ...focus.light,
   base,
-  sizes,
+  size,
   border,
 };
 
@@ -123,7 +90,7 @@ export const dark = {
   ...textVariants,
   ...focus.dark,
   base,
-  sizes,
+  size,
   border,
 };
 
@@ -164,7 +131,7 @@ export const amsterdam_light = {
   ...light_colors_ams,
   ...textVariants,
   base,
-  sizes,
+  size,
   border: border_ams,
 };
 
@@ -173,7 +140,7 @@ export const amsterdam_dark = {
   ...dark_colors_ams,
   ...textVariants,
   base,
-  sizes,
+  size,
   border: border_ams,
 };
 

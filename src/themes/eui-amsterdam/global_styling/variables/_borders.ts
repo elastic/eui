@@ -26,7 +26,7 @@ export const border_ams = {
   radius: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.375}px`),
   // Or we're ok with `calc()` at the global level
   radiusSmall: computed(
-    [`${COLOR_MODE_KEY}.sizes.euiSizeS`],
-    ([euiSizeS]) => `calc(${euiSizeS} * 0.5)`
+    [`${COLOR_MODE_KEY}.size.s`],
+    ([sizeS]) => `calc(${sizeS} * 0.5)`
   ),
 };
