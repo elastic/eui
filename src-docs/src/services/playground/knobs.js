@@ -180,6 +180,7 @@ const Knob = ({
         </EuiFormRow>
       );
 
+    case PropTypes.ReactNode:
     case PropTypes.String:
     case PropTypes.Date:
       if (custom && custom.validator) {

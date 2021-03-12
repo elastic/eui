@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {
   EuiAccordion,
-  EuiText,
+  EuiPanel,
   EuiButtonGroup,
   EuiSpacer,
 } from '../../../../src/components';
@@ -20,7 +20,7 @@ export default () => {
     },
     {
       id: `${idPrefix}--closed`,
-      label: 'Close',
+      label: 'Closed',
     },
   ];
 
@@ -45,16 +45,14 @@ export default () => {
       />
       <EuiSpacer />
       <EuiAccordion
-        id="accordion--forceState"
+        id={htmlIdGenerator()()}
         forceState={trigger}
         onToggle={onToggle}
-        buttonContent="I am controlled via prop">
-        <EuiText>
-          <p>
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here.
-          </p>
-        </EuiText>
+        buttonContent="I am a controlled accordion"
+        padding="l">
+        <EuiPanel color="subdued">
+          Any content inside of <strong>EuiAccordion</strong> will appear here.
+        </EuiPanel>
       </EuiAccordion>
     </div>
   );
