@@ -51,7 +51,7 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme[COLOR_MODE_KEY].primary }}
+            css={{ color: euiTheme.colors.primary }}
           />
         </h3>
         <h3>

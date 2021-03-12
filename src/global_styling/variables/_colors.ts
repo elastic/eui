@@ -88,12 +88,4 @@ export const dark_colors = {
   textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
     makeHighContrastColor(mediumShade)
   ),
-
-  // // Charts
-  // $euiColorChartLines: $euiColorLightShade;
-  // $euiColorChartBand: tint($euiColorLightestShade, 2.5%);
-
-  // // Shadows
-  // $euiShadowColor: #000;
-  // $euiShadowColorLarge: #000;
 };

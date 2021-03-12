@@ -35,8 +35,6 @@ import {
 
 import { base, size } from '../../global_styling/variables/_size';
 
-import { focus } from '../../global_styling/variables/_states';
-
 import { border } from '../../global_styling/variables/_borders';
 import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
@@ -45,6 +43,8 @@ import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/
  * anything using the `color.` key will remain under `color`
  */
 
+// For some reason removing this causes a type error:
+// TypeError: 'getOwnPropertyDescriptor' on proxy: trap reported non-configurability for property 'length' which is either non-existent or configurable in the proxy target
 const poles = {
   ghost: '#FFF',
   ink: '#000',
@@ -73,12 +73,13 @@ const textVariants = {
 };
 
 /* DEFAULT THEME */
+// TODO: All theme files need to be imported here or else they error out.
+// Creation of the themes shouldn't be restricted to a particular file
 
 export const light = {
   ...poles,
   ...light_colors,
   ...textVariants,
-  ...focus.light,
   base,
   size,
   border,
@@ -88,7 +89,6 @@ export const dark = {
   ...poles,
   ...dark_colors,
   ...textVariants,
-  ...focus.dark,
   base,
   size,
   border,
@@ -99,32 +99,11 @@ export const euiThemeDefault = {
     light,
     dark,
   },
-  // colorVis,
-  // base,
-  // sizes,
-  // borders: {
-  //   ...borderRadius,
-  //   ...borders,
-  // },
-  // focus: {
-  //   colors: {
-  //     light: {
-  //       ...focus.light,
-  //     },
-  //     dark: { custom: '#fff' },
-  //   },
-  // },
-  // buttons: {
-  //   [COLOR_MODE_KEY]: {
-  //     light: {
-  //       custom: computed(['colors.primary'], ([primary]) => primary /*'#000'*/),
-  //     },
-  //     dark: { custom: '#fff' },
-  //   },
-  // },
 };
 
 export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
+
+/* AMSTERDAM THEME */
 
 export const amsterdam_light = {
   ...poles,
@@ -149,20 +128,6 @@ export const euiThemeAmsterdam = {
     light: amsterdam_light,
     dark: amsterdam_dark,
   },
-  // focus,
-  // colorVis,
-  // borders: {
-  //   ...amsterdam_borderRadius,
-  //   ...borders,
-  // },
-  // buttons: {
-  //   [COLOR_MODE_KEY]: {
-  //     light: {
-  //       custom: '#000',
-  //     },
-  //     dark: { custom: '#fff' },
-  //   },
-  // },
 };
 
 export const EuiThemeAmsterdam = buildTheme(
