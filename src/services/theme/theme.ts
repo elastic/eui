@@ -35,6 +35,9 @@ import {
 
 import { base, size } from '../../global_styling/variables/_size';
 
+import fonts from '../../global_styling/variables/_typography';
+import fonts_ams from '../../themes/eui-amsterdam/global_styling/variables/_typography';
+
 import { border } from '../../global_styling/variables/_borders';
 import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
@@ -82,6 +85,7 @@ export const light = {
   ...textVariants,
   base,
   size,
+  ...fonts,
   border,
 };
 
@@ -91,6 +95,7 @@ export const dark = {
   ...textVariants,
   base,
   size,
+  ...fonts,
   border,
 };
 
@@ -111,6 +116,7 @@ export const amsterdam_light = {
   ...textVariants,
   base,
   size,
+  ...fonts_ams,
   border: border_ams,
 };
 
@@ -120,6 +126,7 @@ export const amsterdam_dark = {
   ...textVariants,
   base,
   size,
+  ...fonts_ams,
   border: border_ams,
 };
 

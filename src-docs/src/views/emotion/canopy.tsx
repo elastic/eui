@@ -34,43 +34,51 @@ import {
   EuiThemeModifications,
 } from '../../../../src/services';
 import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
+import { EuiCodeBlock } from '../../../../src/components/code';
+import { EuiButton } from '../../../../src/components/button';
 
 const View = () => {
   const { euiTheme, colorMode } = useEuiTheme();
   return (
-    <div css={{ display: 'flex' }}>
-      <div>
-        {colorMode}
-        <pre>
-          <code>{JSON.stringify(euiTheme, null, 2)}</code>
-        </pre>
-      </div>
-      <div>
-        <h3>
+    <div>
+      <div
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          fontFamily: euiTheme[COLOR_MODE_KEY].font?.family,
+        }}>
+        <div
+          css={{
+            fontSize: euiTheme[COLOR_MODE_KEY].fontSize.l,
+            // lineHeight: euiTheme[COLOR_MODE_KEY].lineHeight.large,
+          }}>
+          <strong>colorMode:</strong> {colorMode}
+        </div>
+        <div>
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
             css={{ color: euiTheme.colors.primary }}
           />
-        </h3>
-        <h3>
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
             css={{ color: euiTheme[COLOR_MODE_KEY].success }}
           />
-        </h3>
-        <h3>
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
             css={{ color: euiTheme[COLOR_MODE_KEY].text }}
           />
-        </h3>
+        </div>
       </div>
+
+      <EuiSpacer />
+      <EuiCodeBlock>{JSON.stringify(euiTheme, null, 2)}</EuiCodeBlock>
     </div>
   );
 };
@@ -146,10 +154,6 @@ class Block extends React.Component<BlockProps> {
 const BlockWithTheme = withEuiTheme(Block);
 
 export default () => {
-  // const [colorMode, setColorMode] = React.useState('light');
-  const toggleTheme = () => {
-    // setColorMode((mode) => (mode === 'light' ? 'dark' : 'light'));
-  };
   const [overrides, setOverrides] = React.useState({});
   const lightColors = () => {
     setOverrides(
@@ -158,6 +162,9 @@ export default () => {
           light: {
             primary: chroma.random().hex(),
             base: Math.floor(Math.random() * Math.floor(16)),
+            font: {
+              family: 'Times',
+            },
           },
         },
       })
@@ -273,17 +280,10 @@ export default () => {
         // theme={DefaultEuiTheme}
         // colorMode={colorMode}
         modify={overrides}>
-        <button type="button" onClick={toggleTheme}>
-          <del>Toggle Color Mode!</del> Use global config
-        </button>
-        <EuiSpacer />
-        <button type="button" onClick={lightColors}>
-          Randomize Light Primary!
-        </button>
-        {'    '}
-        <button type="button" onClick={darkColors}>
+        <EuiButton onClick={lightColors}>Randomize Light Primary!</EuiButton>
+        <EuiButton color="text" onClick={darkColors}>
           Randomize Dark Primary!
-        </button>
+        </EuiButton>
         <EuiSpacer />
         <em>Default view</em>
         <View />
