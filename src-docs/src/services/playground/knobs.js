@@ -132,6 +132,7 @@ const Knob = ({
   custom,
   state,
   hidden,
+  helpText,
 }) => {
   const [error, setError] = useState(errorMsg);
 
@@ -165,6 +166,7 @@ const Knob = ({
         <EuiFormRow
           isInvalid={error && error.length > 0}
           error={error}
+          helpText={helpText}
           fullWidth>
           <EuiFieldNumber
             placeholder={placeholder}
@@ -208,7 +210,17 @@ const Knob = ({
           isInvalid={error && error.length > 0}
           error={error}
           fullWidth
-          helpText={custom && custom.helpText}>
+          helpText={
+            <>
+              {helpText}
+              {custom && custom.helpText && (
+                <>
+                  <br />
+                  {custom.helpText}
+                </>
+              )}
+            </>
+          }>
           <EuiFieldText
             placeholder={placeholder}
             aria-label={description}
@@ -222,7 +234,11 @@ const Knob = ({
 
     case PropTypes.Boolean:
       return (
-        <>
+        <EuiFormRow
+          fullWidth
+          helpText={helpText}
+          isInvalid={error && error.length > 0}
+          error={error}>
           <EuiSwitch
             id={name}
             label=""
@@ -232,8 +248,7 @@ const Knob = ({
             }}
             compressed
           />
-          {error && <div>error {error}</div>}
-        </>
+        </EuiFormRow>
       );
 
     case PropTypes.Enum:
@@ -276,6 +291,7 @@ const Knob = ({
         return (
           <EuiFormRow
             isInvalid={error && error.length > 0}
+            helpText={helpText}
             error={error}
             fullWidth>
             <EuiSelect
@@ -416,9 +432,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
     /**
      * Default value
      */
-
     let defaultValueMarkup;
-
     if (
       // !isPlayground &&
       state[name].custom &&
@@ -427,13 +441,15 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
     ) {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
-        <>
-          <EuiText size="xs">
-            <br />
-            <strong>Default:</strong> <EuiCode>{defaultValue.value}</EuiCode>
-            {defaultValue.comment && ` (${defaultValue.comment})`}
-          </EuiText>
-        </>
+        <EuiText size="xs">
+          {isPlayground && 'Default: '}
+          <EuiCode>{defaultValue.value}</EuiCode>
+          {defaultValue.comment && (
+            <>
+              <br />({defaultValue.comment})
+            </>
+          )}
+        </EuiText>
       );
     }
 
@@ -443,7 +459,10 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`prop__${name}-${idx}`}
           header="Prop"
           textOnly={false}
-          isMobileFullWidth={true}>
+          mobileOptions={{
+            header: false,
+            fullWidth: true,
+          }}>
           <div>
             <EuiTitle size="xxs">
               <span>{humanizedName}</span>
@@ -462,17 +481,14 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`type__${name}-${idx}`}
           header="Type"
           textOnly={false}>
-          <div>
-            {typeMarkup}
-            {defaultValueMarkup}
-          </div>
+          <div>{typeMarkup}</div>
         </EuiTableRowCell>
-        {isPlayground && (
-          <EuiTableRowCell
-            key={`modify__${name}-${idx}`}
-            header="Modify"
-            textOnly={false}
-            className="playgroundKnobs__rowCell">
+        <EuiTableRowCell
+          key={`modify__${name}-${idx}`}
+          header={isPlayground ? 'Modify' : 'Default value'}
+          textOnly={false}
+          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}>
+          {isPlayground ? (
             <Knob
               key={name}
               name={name}
@@ -489,9 +505,12 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
               custom={state[name] && state[name].custom}
               state={state}
               orgSet={set}
+              helpText={defaultValueMarkup}
             />
-          </EuiTableRowCell>
-        )}
+          ) : (
+            defaultValueMarkup
+          )}
+        </EuiTableRowCell>
       </EuiTableRow>
     );
   });
@@ -505,7 +524,6 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
     {
       field: 'prop',
       name: 'Prop',
-      // sortable: true,
     },
     {
       field: 'type',
@@ -513,12 +531,11 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
     },
   ];
 
-  if (isPlayground)
-    columns.push({
-      field: 'modify',
-      name: 'Modify',
-      width: 200,
-    });
+  columns.push({
+    field: isPlayground ? 'modify' : 'default',
+    name: isPlayground ? 'Modify' : 'Default value',
+    width: 200,
+  });
 
   return (
     <EuiPanel

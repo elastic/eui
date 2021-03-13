@@ -118,6 +118,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     <>
       <EuiFlexGroup
         className={tabClasses}
+        responsive={false}
+        wrap
         gutterSize="none"
         alignItems="center">
         <EuiFlexItem>{renderTabs()}</EuiFlexItem>
