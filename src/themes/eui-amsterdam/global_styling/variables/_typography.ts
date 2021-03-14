@@ -17,7 +17,6 @@
  * under the License.
  */
 
-import { COLOR_MODE_KEY, computed } from '../../../../services/theme/utils';
 import fontBase from '../../../../global_styling/variables/_typography';
 
 const font = {
@@ -38,7 +37,7 @@ const font = {
 export default {
   ...fontBase,
   font,
-  fontSize: fontBase.fontScale.small,
+  // fontSize: fontBase.fontScale.small,
   // lineHeight: fontBase.lineHeight,
   // lineHeightBody: fontBase.lineHeightBody,
   // baseline: fontBase.baseline,

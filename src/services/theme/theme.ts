@@ -41,6 +41,9 @@ import fonts_ams from '../../themes/eui-amsterdam/global_styling/variables/_typo
 import { border } from '../../global_styling/variables/_borders';
 import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
+import { titles } from '../../global_styling/variables/title';
+import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
+
 /**
  * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
  * anything using the `color.` key will remain under `color`
@@ -87,6 +90,7 @@ export const light = {
   size,
   ...fonts,
   border,
+  titles, // TODO: Rename to `title` when it doesn't conflict with colors.title
 };
 
 export const dark = {
@@ -97,6 +101,7 @@ export const dark = {
   size,
   ...fonts,
   border,
+  titles,
 };
 
 export const euiThemeDefault = {
@@ -118,6 +123,7 @@ export const amsterdam_light = {
   size,
   ...fonts_ams,
   border: border_ams,
+  titles: titles_ams,
 };
 
 export const amsterdam_dark = {
@@ -128,6 +134,7 @@ export const amsterdam_dark = {
   size,
   ...fonts_ams,
   border: border_ams,
+  titles: titles_ams,
 };
 
 export const euiThemeAmsterdam = {

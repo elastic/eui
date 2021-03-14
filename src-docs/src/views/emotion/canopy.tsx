@@ -49,10 +49,11 @@ const View = () => {
           fontFamily: euiTheme[COLOR_MODE_KEY].font?.family,
         }}>
         <div
-          css={{
-            fontSize: euiTheme[COLOR_MODE_KEY].fontSize.l,
-            // lineHeight: euiTheme[COLOR_MODE_KEY].lineHeight.large,
-          }}>
+          // TODO: FOr docs, add in what a function vs array does in `css`
+          css={[
+            euiTheme[COLOR_MODE_KEY].titles.xxl,
+            { color: euiTheme[COLOR_MODE_KEY].success },
+          ]}>
           <strong>colorMode:</strong> {colorMode}
         </div>
         <div>
@@ -212,11 +213,11 @@ export default () => {
     [COLOR_MODE_KEY]: {
       light: {
         primary: '#F56407',
-        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+        myColor: computed(['colors.primary'], ([primary]) => primary),
       },
       dark: {
         primary: '#FA924F',
-        myColor: computed(['colors.euiColorPrimary'], ([primary]) => primary),
+        myColor: computed(['colors.primary'], ([primary]) => primary),
       },
     },
     custom: {
@@ -235,31 +236,26 @@ export default () => {
       colorMode,
     } = useEuiTheme<ExtensionsComputed>();
     return (
-      <div css={{ display: 'flex' }}>
-        <div>
-          {colorMode}
-          <pre>
-            <code>{JSON.stringify({ colors, custom }, null, 2)}</code>
-          </pre>
-        </div>
-        <div>
-          <h3>
+      <div>
+        <div
+          css={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            fontFamily: colors.font.family,
+          }}>
+          <div
+            // TODO: FOr docs, add in what a function vs array does in `css`
+            css={[colors.titles.xxl, { color: colors.success }]}>
+            <strong>colorMode:</strong> {colorMode}
+          </div>
+          <div>
             <EuiIcon
               aria-hidden="true"
               type="stopFilled"
               size="xxl"
               css={{ color: colors.myColor }}
             />
-          </h3>
-          <h3>
-            <EuiIcon
-              aria-hidden="true"
-              type="stopFilled"
-              size="xxl"
-              css={{ color: colors.myColor }}
-            />
-          </h3>
-          <h3>
             <EuiIcon
               aria-hidden="true"
               type="stopFilled"
@@ -268,8 +264,13 @@ export default () => {
                 color: custom.colors.customColor,
               }}
             />
-          </h3>
+          </div>
         </div>
+
+        <EuiSpacer />
+        <EuiCodeBlock>
+          {JSON.stringify({ colors, custom }, null, 2)}
+        </EuiCodeBlock>
       </div>
     );
   };

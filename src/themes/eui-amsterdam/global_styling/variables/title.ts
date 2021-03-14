@@ -17,26 +17,22 @@
  * under the License.
  */
 
-// Typography functions
-// TODO: Can we automatically get some of these values without needing them manually?
+import { titles } from '../../../../global_styling/variables/title';
+import { SCALES } from '../../../../global_styling/variables/_typography';
+import { COLOR_MODE_KEY, computed } from '../../../../services/theme/utils';
 
-// Calculates the line-height to the closest multiple of the baseline
-// EX: A proper line-height for text is 1.5 times the font-size.
-//     If our base font size (euiFontSize) is 16, and our baseline is 4. To ensure the
-//     text stays on the baseline, we pass a multiplier to calculate a line-height.
+// For Amsterdam, change all font-weights to bold and remover letter-spacing
 
-export function fontSizeFromScale(base: number, scale: number) {
-  return `${Math.round(base * scale)}px`;
-}
-
-export function lineHeightFromBaseline(
-  base: number,
-  scale: number,
-  baseline: number,
-  lineHeightMultiplier: number
-) {
-  return `${
-    Math.floor(Math.round(base * scale * lineHeightMultiplier) / baseline) *
-    baseline
-  }px`;
-}
+export const titles_ams: {
+  [mapType in EuiFontScale]: string;
+} = SCALES.reduce((acc, elem) => {
+  acc[elem] = {
+    ...titles[elem],
+    fontWeight: computed(
+      [`${COLOR_MODE_KEY}.fontWeight.bold`],
+      ([fontWeight]) => fontWeight
+    ),
+    letterSpacing: undefined,
+  };
+  return acc;
+}, {});
