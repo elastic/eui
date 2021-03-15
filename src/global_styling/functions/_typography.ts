@@ -17,6 +17,8 @@
  * under the License.
  */
 
+import { EuiFont } from '../variables/_typography';
+
 // Typography functions
 // TODO: Can we automatically get some of these values without needing them manually?
 
@@ -26,17 +28,19 @@
 //     text stays on the baseline, we pass a multiplier to calculate a line-height.
 
 export function fontSizeFromScale(base: number, scale: number) {
-  return `${Math.round(base * scale)}px`;
+  const pixelValue = Math.round(base * scale);
+  return `${pixelValue / base}rem`;
 }
 
 export function lineHeightFromBaseline(
   base: number,
-  scale: number,
-  baseline: number,
-  lineHeightMultiplier: number
+  font: EuiFont,
+  scale: number
 ) {
-  return `${
+  const { lineHeightMultiplier, baseline } = font;
+
+  const pixelValue =
     Math.floor(Math.round(base * scale * lineHeightMultiplier) / baseline) *
-    baseline
-  }px`;
+    baseline;
+  return `${pixelValue / base}rem`;
 }

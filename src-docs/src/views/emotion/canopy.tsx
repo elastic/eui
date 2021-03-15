@@ -49,10 +49,10 @@ const View = () => {
           fontFamily: euiTheme[COLOR_MODE_KEY].font?.family,
         }}>
         <div
-          // TODO: FOr docs, add in what a function vs array does in `css`
+          // TODO: FOr docs, add in what a function vs array does in `css` and how to tell if a theme key is returning a single value or a set of properties
           css={[
             euiTheme[COLOR_MODE_KEY].titles.xxl,
-            { color: euiTheme[COLOR_MODE_KEY].success },
+            { color: euiTheme[COLOR_MODE_KEY].primary },
           ]}>
           <strong>colorMode:</strong> {colorMode}
         </div>
@@ -281,9 +281,9 @@ export default () => {
         // theme={DefaultEuiTheme}
         // colorMode={colorMode}
         modify={overrides}>
-        <EuiButton onClick={lightColors}>Randomize Light Primary!</EuiButton>
+        <EuiButton onClick={lightColors}>Randomize Light!</EuiButton>{' '}
         <EuiButton color="text" onClick={darkColors}>
-          Randomize Dark Primary!
+          Randomize Dark!
         </EuiButton>
         <EuiSpacer />
         <em>Default view</em>

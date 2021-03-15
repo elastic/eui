@@ -19,6 +19,11 @@
 
 import { COLOR_MODE_KEY, computed } from '../../services/theme/utils';
 
+// HELP: Can we provide the base within this function?
+export function sizeToPixel(base: number, scale: number) {
+  return `${base * scale}px`;
+}
+
 export const base = 16;
 
 export const size = {

@@ -25,7 +25,7 @@ import {
 } from '../functions/_typography';
 
 // Typographic scale -- loosely based on Major Third (1.250)
-// TODO: Doesn't seem to like arrays
+// TODO: Doesn't seem to like arrays -- Not necessary for this specific key anymore though
 // scale: [2.25, 1.75, 1.25, 1.125, 1, 0.875, 0.75],
 const scale = {
   xxxs: 0.5625,
@@ -44,8 +44,17 @@ export type EuiFontScale = typeof SCALES[number];
 const baseline = 4;
 const lineHeightMultiplier = 1.5;
 
+export type EuiFont = {
+  family: string;
+  familyCode?: string;
+  featureSettings?: string;
+  baseline: number;
+  lineHeightMultiplier: number;
+  scale: { [key in EuiFontScale]: number };
+};
+
 // Families & base font settings
-const font = {
+const font: EuiFont = {
   family:
     "'Inter UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
   familyCode: "'Roboto Mono', Consolas, Menlo, Courier, monospace",
@@ -67,29 +76,21 @@ const fontWeight = {
   bold: '700',
 };
 
+// @ts-ignore HELP needed with TS
 const fontSize: {
   [mapType in EuiFontScale]: string;
 } = SCALES.reduce((acc, elem) => {
-  acc[elem] = computed(
-    [`${COLOR_MODE_KEY}.base`, `${COLOR_MODE_KEY}.font.scale.${elem}`],
-    ([base, scale]) => fontSizeFromScale(base, scale)
-  );
-  return acc;
-}, {});
-
-const lineHeight: {
-  [mapType in EuiFontScale]: string;
-} = SCALES.reduce((acc, elem) => {
-  acc[elem] = computed(
-    [
-      `${COLOR_MODE_KEY}.base`,
-      `${COLOR_MODE_KEY}.font.scale.${elem}`,
-      `${COLOR_MODE_KEY}.font.baseline`,
-      `${COLOR_MODE_KEY}.font.lineHeightMultiplier`,
-    ],
-    ([base, scale, baseline, lineHeightMultiplier]) =>
-      lineHeightFromBaseline(base, scale, baseline, lineHeightMultiplier)
-  );
+  // @ts-ignore HELP needed with TS
+  acc[elem] = {
+    fontSize: computed(
+      [`${COLOR_MODE_KEY}.base`, `${COLOR_MODE_KEY}.font.scale.${elem}`],
+      ([base, scale]) => fontSizeFromScale(base, scale)
+    ),
+    lineHeight: computed(
+      [`${COLOR_MODE_KEY}.base`, `${COLOR_MODE_KEY}.font`],
+      ([base, font]) => lineHeightFromBaseline(base, font, font.scale[elem])
+    ),
+  };
   return acc;
 }, {});
 
@@ -101,5 +102,4 @@ export default {
   font,
   fontSize,
   fontWeight,
-  lineHeight,
 };

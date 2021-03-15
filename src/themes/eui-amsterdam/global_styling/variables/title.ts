@@ -18,14 +18,19 @@
  */
 
 import { titles } from '../../../../global_styling/variables/title';
-import { SCALES } from '../../../../global_styling/variables/_typography';
+import {
+  EuiFontScale,
+  SCALES,
+} from '../../../../global_styling/variables/_typography';
 import { COLOR_MODE_KEY, computed } from '../../../../services/theme/utils';
 
 // For Amsterdam, change all font-weights to bold and remover letter-spacing
 
+// @ts-ignore TS help
 export const titles_ams: {
   [mapType in EuiFontScale]: string;
 } = SCALES.reduce((acc, elem) => {
+  // @ts-ignore TS help
   acc[elem] = {
     ...titles[elem],
     fontWeight: computed(

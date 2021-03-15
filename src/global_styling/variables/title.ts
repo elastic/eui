@@ -25,15 +25,14 @@ import { COLOR_MODE_KEY, computed } from '../../services/theme/utils';
 // The map allows for tokenization and easier customization per theme, otherwise you'd have to override the selectors themselves
 export const titles = {
   xxxs: {
-    //HELP: the `color` key is getting removed?
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.xxxs`],
-      ([fontSize]) => fontSize
+      ([fontSize]) => fontSize.fontSize
     ),
     lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.xxxs`],
-      ([lineHeight]) => lineHeight
+      [`${COLOR_MODE_KEY}.fontSize.xxxs`],
+      ([lineHeight]) => lineHeight.lineHeight
     ),
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.bold`],
@@ -41,64 +40,42 @@ export const titles = {
     ),
   },
   xxs: {
-    color: computed(['color.title'], ([color]) => color),
-    fontSize: computed(
-      [`${COLOR_MODE_KEY}.fontSize.xxs`],
-      ([fontSize]) => fontSize
-    ),
-    lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.xxs`],
-      ([lineHeight]) => lineHeight
-    ),
-
+    color: computed(['colors.title'], ([color]) => color),
+    // HELP: Spreading doesn't work
+    // ...computed([`${COLOR_MODE_KEY}.fontSize.xxs`], ([fontSize]) => fontSize),
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.bold`],
       ([fontWeight]) => fontWeight
     ),
   },
   xs: {
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.xs`],
       ([fontSize]) => fontSize
     ),
-    lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.xs`],
-      ([lineHeight]) => lineHeight
-    ),
-
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.bold`],
       ([fontWeight]) => fontWeight
     ),
   },
   s: {
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.s`],
       ([fontSize]) => fontSize
     ),
-    lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.s`],
-      ([lineHeight]) => lineHeight
-    ),
-
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.bold`],
       ([fontWeight]) => fontWeight
     ),
   },
   m: {
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.m`],
       ([fontSize]) => fontSize
     ),
-    lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.m`],
-      ([lineHeight]) => lineHeight
-    ),
-
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.semiBold`],
       ([fontWeight]) => fontWeight
@@ -106,14 +83,10 @@ export const titles = {
     letterSpacing: '-.02em',
   },
   l: {
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.l`],
       ([fontSize]) => fontSize
-    ),
-    lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.l`],
-      ([lineHeight]) => lineHeight
     ),
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.medium`],
@@ -122,14 +95,10 @@ export const titles = {
     letterSpacing: '-.025em',
   },
   xl: {
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.xl`],
       ([fontSize]) => fontSize
-    ),
-    lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.xl`],
-      ([lineHeight]) => lineHeight
     ),
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.light`],
@@ -138,14 +107,14 @@ export const titles = {
     letterSpacing: '-.04em',
   },
   xxl: {
-    color: computed(['color.title'], ([color]) => color),
+    color: computed(['colors.title'], ([color]) => color),
     fontSize: computed(
       [`${COLOR_MODE_KEY}.fontSize.xxl`],
-      ([fontSize]) => fontSize
+      ([font]) => font.fontSize
     ),
     lineHeight: computed(
-      [`${COLOR_MODE_KEY}.lineHeight.xxl`],
-      ([lineHeight]) => lineHeight
+      [`${COLOR_MODE_KEY}.fontSize.xxl`],
+      ([font]) => font.lineHeight
     ),
     fontWeight: computed(
       [`${COLOR_MODE_KEY}.fontWeight.light`],

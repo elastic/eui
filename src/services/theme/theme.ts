@@ -49,7 +49,7 @@ import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/
  * anything using the `color.` key will remain under `color`
  */
 
-// For some reason removing this causes a type error:
+// HELP: For some reason removing this causes a type error:
 // TypeError: 'getOwnPropertyDescriptor' on proxy: trap reported non-configurability for property 'length' which is either non-existent or configurable in the proxy target
 const poles = {
   ghost: '#FFF',
@@ -90,7 +90,7 @@ export const light = {
   size,
   ...fonts,
   border,
-  titles, // TODO: Rename to `title` when it doesn't conflict with colors.title
+  titles, // TODO: Rename to `title` when it doesn't conflict with colors.title and move to component-specific file
 };
 
 export const dark = {
