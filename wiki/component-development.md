@@ -101,7 +101,7 @@ interface FooProps extends HTMLAttributes<HTMLDivElement> {
 }
 ```
 
-If your component forwards a `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
+If your component forwards a `ref` through to an underlying element, the interface needs to be further extended with `DetailedHTMLProps`
 
 ```ts
 // passes extra props and forwards the ref to a button
@@ -118,6 +118,8 @@ React's `forwardRef` should be used to provide access to the component's outermo
 2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
 
 ```ts
+import React, { createRef } from 'react';
+
 interface MyComponentProps {...}
 
 export const MyComponent = forwardRef<
@@ -139,12 +141,26 @@ export const MyComponent = forwardRef<
 MyComponent.displayName = 'MyComponent';
 ```
 
-These should be used as needed (or as that need is expected), otherwise the ref's value could conflate with additional methods or values and be difficult to implement or consume. For example, **EuiMarkdownEditor**'s ref includes both its textarea element and a method for interacting with the abstract syntax tree. https://github.com/elastic/eui/blob/v31.10.0/src/components/markdown_editor/markdown_editor.tsx#L331
+`forwardRef`s should be used as needed, otherwise the ref's value could conflate with additional methods or values and be difficult to implement or consume. For example, **EuiMarkdownEditor**'s ref includes both its textarea element and the `replaceNode` method for interacting with the abstract syntax tree. https://github.com/elastic/eui/blob/v31.10.0/src/components/markdown_editor/markdown_editor.tsx#L331
 
 ```ts
-useImperativeHandle(
-  ref,
-  () => ({ textarea: textareaRef.current, replaceNode }),
-  [replaceNode]
+import React, { useImperativeHandle } from 'react';
+
+export const EuiMarkdownEditor = forwardRef<
+  EuiMarkdownEditorRef,
+  EuiMarkdownEditorProps
+  >(
+  (props, ref) => {
+    ...
+
+    // combines the textarea element & `replaceNode` into a single object, which is then passed back to the owning component's ref value
+    useImperativeHandle(
+      ref,
+      () => ({ textarea: textareaRef.current, replaceNode }),
+      [replaceNode]
+    );
+
+    ...
+  }
 );
 ```
