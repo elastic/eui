@@ -19,11 +19,7 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { buildTheme, computed, COLOR_MODE_KEY } from './utils';
-import {
-  makeHighContrastColor,
-  makeDisabledContrastColor,
-} from '../../global_styling/functions/_colors';
+import { buildTheme, COLOR_MODE_KEY } from './utils';
 import {
   light_colors,
   dark_colors,
@@ -56,28 +52,6 @@ const poles = {
   ink: '#000',
 };
 
-const textVariants = {
-  textPrimary: computed(['colors.primary'], ([primary]) =>
-    makeHighContrastColor(primary)
-  ),
-  textAccent: computed(['colors.accent'], ([accent]) =>
-    makeHighContrastColor(accent)
-  ),
-  textWarning: computed(['colors.warning'], ([warning]) =>
-    makeHighContrastColor(warning)
-  ),
-  textDanger: computed(['colors.danger'], ([danger]) =>
-    makeHighContrastColor(danger)
-  ),
-  textDisabled: computed(['colors.disabled'], ([disabled]) =>
-    makeDisabledContrastColor(disabled)
-  ),
-  textSuccess: computed(['colors.success'], ([success]) =>
-    makeHighContrastColor(success)
-  ),
-  link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
-};
-
 /* DEFAULT THEME */
 // TODO: All theme files need to be imported here or else they error out.
 // Creation of the themes shouldn't be restricted to a particular file
@@ -85,7 +59,6 @@ const textVariants = {
 export const light = {
   ...poles,
   ...light_colors,
-  ...textVariants,
   base,
   size,
   ...fonts,
@@ -96,7 +69,6 @@ export const light = {
 export const dark = {
   ...poles,
   ...dark_colors,
-  ...textVariants,
   base,
   size,
   ...fonts,
@@ -118,7 +90,6 @@ export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 export const amsterdam_light = {
   ...poles,
   ...light_colors_ams,
-  ...textVariants,
   base,
   size,
   ...fonts_ams,
@@ -129,7 +100,6 @@ export const amsterdam_light = {
 export const amsterdam_dark = {
   ...poles,
   ...dark_colors_ams,
-  ...textVariants,
   base,
   size,
   ...fonts_ams,

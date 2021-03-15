@@ -18,7 +18,34 @@
  */
 
 import { computed } from '../../services/theme/utils';
-import { makeHighContrastColor, shade, tint } from '../functions/_colors';
+import {
+  makeDisabledContrastColor,
+  makeHighContrastColor,
+  shade,
+  tint,
+} from '../functions/_colors';
+
+const textVariants = {
+  textPrimary: computed(['colors.primary'], ([primary]) =>
+    makeHighContrastColor(primary)
+  ),
+  textAccent: computed(['colors.accent'], ([accent]) =>
+    makeHighContrastColor(accent)
+  ),
+  textSuccess: computed(['colors.success'], ([success]) =>
+    makeHighContrastColor(success)
+  ),
+  textWarning: computed(['colors.warning'], ([warning]) =>
+    makeHighContrastColor(warning)
+  ),
+  textDanger: computed(['colors.danger'], ([danger]) =>
+    makeHighContrastColor(danger)
+  ),
+  textDisabled: computed(['colors.disabled'], ([disabled]) =>
+    makeDisabledContrastColor(disabled)
+  ),
+  link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
+};
 
 export const light_colors = {
   // Brand
@@ -53,6 +80,8 @@ export const light_colors = {
   textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
     makeHighContrastColor(mediumShade)
   ),
+
+  ...textVariants,
 };
 
 export const dark_colors = {
@@ -88,4 +117,6 @@ export const dark_colors = {
   textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
     makeHighContrastColor(mediumShade)
   ),
+
+  ...textVariants,
 };
