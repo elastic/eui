@@ -112,7 +112,7 @@ interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElem
 
 ### forwardRef
 
-As needed, React's `forwardRef` should be used to provide access to an element created by a component, with few exceptions this should be the component's outermost element. We impose two additional requirements when using `forwardRef`:
+React's `forwardRef` should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
 
 1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://www.npmjs.com/package/react-docgen-typescript) does not understand it and the component's props will not be rendered in our documentation
 2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
