@@ -129,7 +129,7 @@ export const MyComponent = forwardRef<
     ref
   ) => {
     return (
-      <div ref={ref}>
+      <div ref={ref} {...rest}>
         ...
       </div>
     );
