@@ -153,7 +153,7 @@ export const EuiMarkdownEditor = forwardRef<
   (props, ref) => {
     ...
 
-    // combines the textarea element & `replaceNode` into a single object, which is then passed back to the owning component's ref value
+    // combines the textarea element & `replaceNode` into a single object, which is then passed back to the forwarded `ref`
     useImperativeHandle(
       ref,
       () => ({ textarea: textareaRef.current, replaceNode }),
