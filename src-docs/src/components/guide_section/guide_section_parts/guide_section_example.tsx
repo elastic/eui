@@ -28,10 +28,12 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
       <EuiSplitPanel.Inner {...demoPanelProps} className={classes}>
         {example}
       </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-        {tabs}
-        {tabContent}
-      </EuiSplitPanel.Inner>
+      {(tabs || tabContent) && (
+        <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+          {tabs}
+          {tabContent}
+        </EuiSplitPanel.Inner>
+      )}
     </EuiSplitPanel.Outer>
   );
 };

@@ -379,9 +379,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
 
     if (humanizedType) {
       typeMarkup = humanizedType && (
-        <EuiCodeBlock {...codeBlockProps}>
-          <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
-        </EuiCodeBlock>
+        <EuiCodeBlock {...codeBlockProps}>{markup(humanizedType)}</EuiCodeBlock>
       );
 
       const functionMatches = [
@@ -405,9 +403,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           }
         }
         typeMarkup = (
-          <EuiCodeBlock whiteSpace="pre" {...codeBlockProps}>
-            {elements}
-          </EuiCodeBlock>
+          <EuiCodeBlock {...codeBlockProps}>{elements}</EuiCodeBlock>
         );
       }
     }
