@@ -142,6 +142,12 @@ describe('EuiCard', () => {
     });
 
     test('children', () => {
+      const component = render(<EuiCard title="Card title">Child</EuiCard>);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('children with description', () => {
       const component = render(
         <EuiCard title="Card title" description="Card description">
           Child

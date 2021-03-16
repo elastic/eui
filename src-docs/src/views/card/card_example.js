@@ -351,9 +351,11 @@ export const CardExample = {
       text: (
         <Fragment>
           <p>
-            In the event that you need more than just paragraph text for the
-            description, you can pass anything you need as the{' '}
-            <EuiCode>children</EuiCode> of the component.
+            In the event that you need <strong>more than</strong> just paragraph
+            text for the <EuiCode>description</EuiCode>, you can suppliment with
+            anything you need as the <EuiCode>children</EuiCode> of the
+            component. You can also completely replace the description with
+            custom children, but <strong>EuiCard</strong> at least one of these.
           </p>
         </Fragment>
       ),
@@ -404,7 +406,7 @@ export const CardExample = {
       demo: <CardDisplay />,
       snippet: `<EuiCard
   title="title"
-  description="description" 
+  description="description"
   display="plain"
 />`,
     },
