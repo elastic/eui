@@ -142,7 +142,7 @@ export {
   Computed,
   euiThemeDefault,
   EuiThemeDefault,
-  EuiThemeAmsterdam,
+  // EuiThemeAmsterdam,
   euiThemeAmsterdam,
   EuiThemeColor,
   EuiThemeColorMode,

@@ -5,8 +5,9 @@ import { applyTheme } from '../../services';
 import {
   EuiThemeProvider,
   EuiThemeDefault,
-  EuiThemeAmsterdam,
+  // EuiThemeAmsterdam,
 } from '../../../../src/services';
+import { EuiThemeAmsterdam } from '../../../../src/themes/eui-amsterdam/theme';
 
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 

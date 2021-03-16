@@ -45,19 +45,11 @@ import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/
  * anything using the `color.` key will remain under `color`
  */
 
-// HELP: For some reason removing this causes a type error:
-// TypeError: 'getOwnPropertyDescriptor' on proxy: trap reported non-configurability for property 'length' which is either non-existent or configurable in the proxy target
-const poles = {
-  ghost: '#FFF',
-  ink: '#000',
-};
-
 /* DEFAULT THEME */
 // TODO: All theme files need to be imported here or else they error out.
 // Creation of the themes shouldn't be restricted to a particular file
 
 export const light = {
-  ...poles,
   ...light_colors,
   base,
   size,
@@ -67,7 +59,6 @@ export const light = {
 };
 
 export const dark = {
-  ...poles,
   ...dark_colors,
   base,
   size,
@@ -88,17 +79,16 @@ export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 /* AMSTERDAM THEME */
 
 export const amsterdam_light = {
-  ...poles,
   ...light_colors_ams,
   base,
   size,
   ...fonts_ams,
   border: border_ams,
   titles: titles_ams,
+  // array: [1, 2, 3],
 };
 
 export const amsterdam_dark = {
-  ...poles,
   ...dark_colors_ams,
   base,
   size,
@@ -114,7 +104,7 @@ export const euiThemeAmsterdam = {
   },
 };
 
-export const EuiThemeAmsterdam = buildTheme(
-  euiThemeAmsterdam,
-  'EUI_THEME_AMSTERDAM'
-);
+// export const EuiThemeAmsterdam = buildTheme(
+//   euiThemeAmsterdam,
+//   'EUI_THEME_AMSTERDAM'
+// );

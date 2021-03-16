@@ -17,36 +17,9 @@
  * under the License.
  */
 
-export {
-  EuiSystemContext,
-  EuiThemeContext,
-  EuiModificationsContext,
-  EuiColorModeContext,
-} from './context';
-export { useEuiTheme, withEuiTheme, WithEuiThemeProps } from './hooks';
-export { EuiThemeProvider } from './provider';
-export {
-  buildTheme,
-  computed,
-  isInverseColorMode,
-  getColorMode,
-  getComputed,
-  getOn,
-  mergeDeep,
-  setOn,
-  Computed,
-} from './utils';
-export {
-  EuiThemeColor,
-  EuiThemeColorMode,
-  EuiThemeComputed,
-  EuiThemeModifications,
-  EuiThemeShape,
-  EuiThemeSystem,
-} from './types';
-export {
-  EuiThemeDefault,
-  euiThemeDefault,
-  // EuiThemeAmsterdam,
+import { buildTheme, euiThemeAmsterdam } from '../../../src/services/theme';
+
+export const EuiThemeAmsterdam = buildTheme(
   euiThemeAmsterdam,
-} from './theme';
+  'EUI_THEME_AMSTERDAM'
+);
