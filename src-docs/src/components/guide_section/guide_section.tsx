@@ -24,7 +24,6 @@ export interface GuideSection {
   source?: any[];
   demo?: ReactNode;
   demoPanelProps?: GuideSectionExample['demoPanelProps'];
-  // routes?: object.isRequired;
   props?: object;
   playground?: any;
   ghostBackground?: boolean;
