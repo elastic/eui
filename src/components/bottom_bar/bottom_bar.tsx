@@ -18,7 +18,8 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, HTMLAttributes, useRef } from 'react';
+import React, { forwardRef, HTMLAttributes, useEffect, useState } from 'react';
+import { useCombinedRefs } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -46,12 +47,12 @@ export interface EuiBottomBarProps
   /**
    * Padding applied to the bar. Default is 'm'.
    */
-  paddingSize: BottomBarPaddingSize;
+  paddingSize?: BottomBarPaddingSize;
   /**
    * Whether the component should apply padding on the document body element to afford for its own displacement height.
-   * Default is true.
+   * Only works if `usePortal` is true.
    */
-  affordForDisplacement: boolean;
+  affordForDisplacement?: boolean;
   /**
    * Optional class applied to the body element on mount
    */
@@ -61,7 +62,7 @@ export interface EuiBottomBarProps
    */
   landmarkHeading?: string;
   /**
-   * Helper that positions the bottom against the its parent
+   * How to position the bottom bar against its parent
    */
   position?: _BottomBarPosition;
   /**
@@ -77,7 +78,7 @@ export const EuiBottomBar = forwardRef<
   (
     {
       paddingSize = 'm',
-      // affordForDisplacement = true,
+      affordForDisplacement = true,
       children,
       className,
       bodyClassName,
@@ -88,52 +89,30 @@ export const EuiBottomBar = forwardRef<
     },
     ref
   ) => {
-    // private bar: HTMLElement | null = null;
+    // This snippet is simplistic and obviously isn’t working… hooks and all, but now I need to conditionally add/remove padding to the body tag if a certain prop is true. I know the rule is to
+    const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
+    const setRef = useCombinedRefs([setResizeRef, ref]);
+    const dimensions = useResizeObserver(resizeRef);
 
-    // componentDidMount() {
-    //   if (this.props.affordForDisplacement) {
-    //     const height = this.bar ? this.bar.clientHeight : -1;
-    //     document.body.style.paddingBottom = `${height}px`;
-    //   }
+    useEffect(() => {
+      if (affordForDisplacement && usePortal) {
+        document.body.style.paddingBottom = `${dimensions.height}px`;
+      }
 
-    //   if (this.props.bodyClassName) {
-    //     document.body.classList.add(this.props.bodyClassName);
-    //   }
-    // }
+      if (bodyClassName) {
+        document.body.classList.add(bodyClassName);
+      }
 
-    // componentDidUpdate(prevProps: EuiBottomBarProps) {
-    //   if (prevProps.affordForDisplacement !== this.props.affordForDisplacement) {
-    //     if (this.props.affordForDisplacement) {
-    //       // start affording for displacement
-    //       const height = this.bar ? this.bar.clientHeight : -1;
-    //       document.body.style.paddingBottom = `${height}px`;
-    //     } else {
-    //       // stop affording for displacement
-    //       document.body.style.paddingBottom = '';
-    //     }
-    //   }
+      return () => {
+        if (affordForDisplacement && usePortal) {
+          document.body.style.paddingBottom = '';
+        }
 
-    //   if (prevProps.bodyClassName !== this.props.bodyClassName) {
-    //     if (prevProps.bodyClassName) {
-    //       document.body.classList.remove(prevProps.bodyClassName);
-    //     }
-    //     if (this.props.bodyClassName) {
-    //       document.body.classList.add(this.props.bodyClassName);
-    //     }
-    //   }
-    // }
-
-    // componentWillUnmount() {
-    //   if (this.props.affordForDisplacement) {
-    //     document.body.style.paddingBottom = '';
-    //   }
-
-    //   if (this.props.bodyClassName) {
-    //     document.body.classList.remove(this.props.bodyClassName);
-    //   }
-    // }
-    const resizeRef = useRef<HTMLElement | null>(null);
-    const dimensions = useResizeObserver(resizeRef.current);
+        if (bodyClassName) {
+          document.body.classList.remove(bodyClassName);
+        }
+      };
+    }, [affordForDisplacement, usePortal, dimensions, bodyClassName]);
 
     const classes = classNames(
       'euiBottomBar',
@@ -155,7 +134,7 @@ export const EuiBottomBar = forwardRef<
                 landmarkHeading ? landmarkHeading : screenReaderHeading
               }
               className={classes}
-              ref={resizeRef}
+              ref={setRef}
               {...rest}>
               <EuiScreenReaderOnly>
                 <h2>
