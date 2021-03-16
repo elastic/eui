@@ -18,11 +18,10 @@ jobs:
           days-before-close: 7
           stale-issue-label: 'stale-issue'
           close-issue-label: 'stale-issue-closed'
-          exempt-issue-labels: 'bug,skip-stale-check'
+          exempt-issue-labels: 'bug,skip-stale-check,meta'
           stale-pr-label: 'stale-pr'
           close-pr-label: 'stale-pr-closed'
-          exempt-pr-labels: 'skip-stale-check'
+          exempt-pr-labels: 'skip-stale-check,meta'
           operations-per-run: 1000
           remove-stale-when-updated: true
-          debug-only: true
           enable-statistics: true
