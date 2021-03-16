@@ -125,41 +125,6 @@ exports[`EuiNotificationEventMeta props contextMenuItems are rendered 1`] = `
 </div>
 `;
 
-exports[`EuiNotificationEventMeta props isRead  is rendered 1`] = `
-<div
-  class="euiNotificationEventMeta"
->
-  <div
-    class="euiNotificationEventMeta__section"
-  >
-    <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
-    >
-      <span
-        class="euiBadge__content"
-      >
-        <span
-          class="euiBadge__text"
-        >
-          Alert
-        </span>
-      </span>
-    </span>
-  </div>
-  <div
-    class="euiNotificationEventMeta__section"
-  >
-    <span
-      class="euiNotificationEventMeta__time"
-    >
-      <span>
-        2 min ago
-      </span>
-    </span>
-  </div>
-</div>
-`;
-
 exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
 <div
   class="euiNotificationEventMeta"

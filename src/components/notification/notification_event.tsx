@@ -157,7 +157,6 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
             onOpenContextMenu ? () => onOpenContextMenu(id) : undefined
           }
           eventName={title}
-          onRead={() => onRead?.(id, isRead!)}
         />
 
         {onClickTitle ? (

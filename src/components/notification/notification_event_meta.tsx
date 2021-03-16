@@ -47,10 +47,6 @@ export type EuiNotificationEventMetaProps = {
    */
   eventName: string;
   /**
-   * Shows an indicator of the read state of the event. Leave as `undefined` to hide the indicator.
-   */
-  isRead?: boolean | undefined;
-  /**
    * Type of severity (e.g. "Critical", "Warning", etc..). Shows as a text after the `type` following the format "Alert: Critical".
    */
   severity?: string;
@@ -77,10 +73,6 @@ export type EuiNotificationEventMetaProps = {
   onOpenContextMenu?: () => Array<
     ReactElement<EuiContextMenuItemProps, typeof EuiContextMenuItem>
   >;
-  /**
-   * Applies an `onClick` handler to the `read` indicator.
-   */
-  onRead?: () => void;
 };
 
 export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMetaProps> = ({

@@ -52,20 +52,6 @@ describe('EuiNotificationEventMeta', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('isRead  is rendered', () => {
-      const component = render(
-        <EuiNotificationEventMeta
-          id="id"
-          type="Alert"
-          time={<span>2 min ago</span>}
-          eventName="eventName"
-          isRead={true}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
     test('badgeColor  is rendered', () => {
       const component = render(
         <EuiNotificationEventMeta
