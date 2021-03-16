@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `31.11.0`.
+
+## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
+
 - Added `EuiNotificationEvent` component ([#4513](https://github.com/elastic/eui/pull/4513))
 - Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref ([#4513](https://github.com/elastic/eui/pull/4513))
 - Made `description` prop of `EuiCard` optional ([#4546](https://github.com/elastic/eui/pull/4582))
