@@ -8,14 +8,13 @@ import { Sparklines } from './sparklines';
 const sparklinesSource = require('!!raw-loader!./sparklines');
 const sparklinesHtml = renderToHtml(Sparklines);
 
-import { EuiSpacer, EuiCode, EuiCodeBlock } from '../../../../src/components';
+import { EuiCode, EuiCodeBlock } from '../../../../src/components';
 
 export const ElasticChartsSparklinesExample = {
   title: 'Sizing',
   intro: (
     <Fragment>
       <ExternalBadge />
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

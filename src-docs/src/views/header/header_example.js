@@ -188,6 +188,9 @@ export const HeaderExample = {
       },
       snippet: headerSnippet,
       demo: <Header />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
     },
     {
       title: 'Sections',

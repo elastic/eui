@@ -153,16 +153,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideDemo__ghostBackground {
   @if (lightness($euiTextColor) < 50) {
-    background: $euiColorDarkestShade;
-  }
-}
-
-.guideDemo__icon {
-  text-align: center;
-
-  svg,
-  img {
-    margin-bottom: $euiSizeS;
+    background: $euiColorDarkestShade !important; // Override EuiPanel specificity
   }
 }
 
@@ -364,4 +355,125 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   @include euiBreakpoint('xl') {
     flex-basis: 22% !important; // sass-lint:disable-line no-important
   }
+}
+
+.guideHomePage__illustrationLightShade {
+  fill: $euiColorLightShade;
+}
+
+.guideHomePage__illustrationEmptyShade {
+  fill: $euiColorEmptyShade;
+}
+
+.guideHomePage__illustrationDots,
+.guideHomePage__illustrationComponents {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.guideHomePage__illustrationEffect {
+  display: block;
+  height: auto;
+  position: relative;
+  width: auto;
+
+  .guideHomePage__illustrationEffectParts {
+    height: auto;
+    transform: perspective(1600px);
+    transform-style: preserve-3d;
+    transition: all .3s ease-in-out;
+    width: 100%;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .guideHomePage__illustrationEffectPartsDots,
+  .guideHomePage__illustrationEffectPartsComps {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateZ(16px) scale(.9);
+    transition: all .4s ease;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .guideHomePage__illustrationTopLeftCorner {
+    height: 50%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    z-index: 300;
+
+    &:hover ~ .guideHomePage__illustrationEffectParts {
+      transform: perspective(1600px) rotateX(-5deg) rotateY(5deg);
+
+      .guideHomePage__illustrationEffectPartsDots {
+        transform: translate3d(-.1px, -.1px, 16px) scale(.9);
+      }
+    }
+  }
+
+  .guideHomePage__illustrationTopRightCorner {
+    height: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    z-index: 300;
+
+    &:hover ~ .guideHomePage__illustrationEffectParts  {
+      transform: perspective(1600px) rotateX(-5deg) rotateY(-5deg);
+
+      .guideHomePage__illustrationEffectPartsDots {
+        transform: translate3d(.1px, -.1px, 16px) scale(.9);
+      }
+    }
+  }
+
+  .guideHomePage__illustrationBottomLeftCorner {
+    bottom: 0;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    width: 50%;
+    z-index: 300;
+
+    &:hover ~ .guideHomePage__illustrationEffectParts {
+      transform: perspective(1600px) rotateX(5deg) rotateY(5deg);
+
+      .guideHomePage__illustrationEffectPartsDots {
+        transform: translate3d(-.1px, .1px, 1px) scale(.9);
+      }
+    }
+  }
+
+  .guideHomePage__illustrationBottomRightCorner {
+    bottom: 0;
+    height: 50%;
+    position: absolute;
+    right: 0;
+    width: 50%;
+    z-index: 300;
+
+    &:hover ~ .guideHomePage__illustrationEffectParts  {
+      transform: perspective(1600px) rotateX(5deg) rotateY(-5deg);
+
+
+      .guideHomePage__illustrationEffectPartsDots {
+        transform: translate3d(.1px, .1px, 1px) scale(.9);
+      }
+    }
+	}
 }

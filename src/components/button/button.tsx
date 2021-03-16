@@ -83,7 +83,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   fill?: boolean;
   /**
-   * Any of our named colors. `text` color is set for deprecation
+   * Any of our named colors
    */
   color?: ButtonColor;
   /**

@@ -1,5 +1,46 @@
-# Consuming EUI
+## Installation
 
+To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
+
+```js
+yarn add @elastic/eui
+```
+
+Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project. You can read more about other ways to [consume EUI][consuming].
+
+```js
+yarn add @elastic/eui @elastic/datemath moment prop-types
+```
+
+
+## Running Locally
+
+### Node
+
+We depend upon the version of node defined in [.nvmrc](.nvmrc).
+
+You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
+
+To install and use the correct node version with `nvm`:
+
+```js
+nvm install
+```
+
+### Documentation
+
+You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
+
+```js
+yarn
+yarn start
+```
+
+If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
+
+```js
+yarn start --port 9000
+```
 ## Requirements and dependencies
 
 EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
@@ -166,7 +207,7 @@ appendIconComponentCache({
 });
 ```
 
-## Customizing with `className`
+## Customizing with custom classes
 
 We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
 
@@ -178,7 +219,7 @@ We do not recommend customizing EUI components by applying styles directly to EU
 <button class="euiButton myCustomClass__button" />
 ```
 
-## Using the `test-env` build
+## Using the test environment build
 
 EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
 

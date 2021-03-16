@@ -84,7 +84,6 @@ const PageLegacyHtml = renderToHtml(PageLegacy);
 
 export const PageExample = {
   title: 'Page',
-  playground: [pageTemplateConfig],
   intro: (
     <>
       <EuiText>
@@ -186,6 +185,7 @@ export const PageExample = {
         EuiPageContent,
         EuiPageContentBody,
       },
+      playground: pageTemplateConfig,
       demo: (
         <PageDemo>
           {(Button, Content, SideNav, showTemplate) =>

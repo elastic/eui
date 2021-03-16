@@ -84,6 +84,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <Card />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -126,6 +129,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardLayout />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   layout="horizontal"
   icon={icon}
@@ -172,6 +178,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardImage />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   textAlign="left"
   image="https://source.unsplash.com/400x200/?Nature"
@@ -215,6 +224,9 @@ export const CardExample = {
       ),
       components: { EuiCard },
       demo: <CardFooter />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -246,6 +258,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardBeta />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -287,6 +302,9 @@ export const CardExample = {
       ),
       props: { EuiCardSelect },
       demo: <CardSelectable />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -335,6 +353,9 @@ export const CardExample = {
         EuiCheckableCard,
       },
       demo: <CardCheckable />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
     },
     {
       title: 'Custom children',
@@ -361,6 +382,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardChildren />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   textAlign="left"
   title="title"
@@ -404,6 +428,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardDisplay />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   title="title"
   description="description"
