@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.10.0`.
+- Made `description` prop of `EuiCard` optional ([#4546](https://github.com/elastic/eui/pull/4582))
 
 ## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
 
