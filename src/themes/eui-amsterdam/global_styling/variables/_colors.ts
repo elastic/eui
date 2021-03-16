@@ -23,8 +23,11 @@ import {
   shade,
   tint,
 } from '../../../../global_styling/functions/_colors';
+import { poles } from '../../../../global_styling/variables/_colors';
 
 export const light_colors_ams = {
+  ...poles,
+
   // Brand
   primary: '#07C',
   accent: '#F04E98',
@@ -60,6 +63,8 @@ export const light_colors_ams = {
 };
 
 export const dark_colors_ams = {
+  ...poles,
+
   // Brand
   primary: '#36A2EF',
   accent: '#F68FBE',

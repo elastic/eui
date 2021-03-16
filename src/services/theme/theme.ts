@@ -24,40 +24,32 @@ import {
   light_colors,
   dark_colors,
 } from '../../global_styling/variables/_colors';
-import {
-  light_colors_ams,
-  dark_colors_ams,
-} from '../../themes/eui-amsterdam/global_styling/variables/_colors';
+// import {
+//   light_colors_ams,
+//   dark_colors_ams,
+// } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
 
 import { base, size } from '../../global_styling/variables/_size';
 
 import fonts from '../../global_styling/variables/_typography';
-import fonts_ams from '../../themes/eui-amsterdam/global_styling/variables/_typography';
+// import fonts_ams from '../../themes/eui-amsterdam/global_styling/variables/_typography';
 
 import { border } from '../../global_styling/variables/_borders';
-import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
+// import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
 import { titles } from '../../global_styling/variables/title';
-import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
+// import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
 
 /**
  * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
  * anything using the `color.` key will remain under `color`
  */
 
-// HELP: For some reason removing this causes a type error:
-// TypeError: 'getOwnPropertyDescriptor' on proxy: trap reported non-configurability for property 'length' which is either non-existent or configurable in the proxy target
-const poles = {
-  ghost: '#FFF',
-  ink: '#000',
-};
-
 /* DEFAULT THEME */
 // TODO: All theme files need to be imported here or else they error out.
 // Creation of the themes shouldn't be restricted to a particular file
 
 export const light = {
-  ...poles,
   ...light_colors,
   base,
   size,
@@ -67,7 +59,6 @@ export const light = {
 };
 
 export const dark = {
-  ...poles,
   ...dark_colors,
   base,
   size,
@@ -87,34 +78,33 @@ export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 
 /* AMSTERDAM THEME */
 
-export const amsterdam_light = {
-  ...poles,
-  ...light_colors_ams,
-  base,
-  size,
-  ...fonts_ams,
-  border: border_ams,
-  titles: titles_ams,
-};
+// export const amsterdam_light = {
+//   ...light_colors_ams,
+//   base,
+//   size,
+//   ...fonts_ams,
+//   border: border_ams,
+//   titles: titles_ams,
+//   // array: [1, 2, 3],
+// };
 
-export const amsterdam_dark = {
-  ...poles,
-  ...dark_colors_ams,
-  base,
-  size,
-  ...fonts_ams,
-  border: border_ams,
-  titles: titles_ams,
-};
+// export const amsterdam_dark = {
+//   ...dark_colors_ams,
+//   base,
+//   size,
+//   ...fonts_ams,
+//   border: border_ams,
+//   titles: titles_ams,
+// };
 
-export const euiThemeAmsterdam = {
-  [COLOR_MODE_KEY]: {
-    light: amsterdam_light,
-    dark: amsterdam_dark,
-  },
-};
+// export const euiThemeAmsterdam = {
+//   [COLOR_MODE_KEY]: {
+//     light: amsterdam_light,
+//     dark: amsterdam_dark,
+//   },
+// };
 
-export const EuiThemeAmsterdam = buildTheme(
-  euiThemeAmsterdam,
-  'EUI_THEME_AMSTERDAM'
-);
+// export const EuiThemeAmsterdam = buildTheme(
+//   euiThemeAmsterdam,
+//   'EUI_THEME_AMSTERDAM'
+// );

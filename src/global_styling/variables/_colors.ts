@@ -25,6 +25,11 @@ import {
   tint,
 } from '../functions/_colors';
 
+export const poles = {
+  ghost: '#FFF',
+  ink: '#000',
+};
+
 const textVariants = {
   textPrimary: computed(['colors.primary'], ([primary]) =>
     makeHighContrastColor(primary)
@@ -48,6 +53,8 @@ const textVariants = {
 };
 
 export const light_colors = {
+  ...poles,
+
   // Brand
   primary: '#006BB4',
   accent: '#DD0A73',
@@ -85,6 +92,8 @@ export const light_colors = {
 };
 
 export const dark_colors = {
+  ...poles,
+
   // Brand
   primary: '#1BA9F5',
   accent: '#F990C0',

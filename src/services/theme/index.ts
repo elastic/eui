@@ -46,7 +46,5 @@ export {
 } from './types';
 export {
   EuiThemeDefault,
-  euiThemeDefault,
-  EuiThemeAmsterdam,
-  euiThemeAmsterdam,
+  euiThemeDefault, // EuiThemeAmsterdam, // euiThemeAmsterdam,
 } from './theme';

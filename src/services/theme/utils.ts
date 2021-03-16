@@ -161,7 +161,7 @@ export const getComputed = <T = EuiThemeShape>(
             over[key] instanceof Computed
               ? over[key].getValue(base.root, over.root, output, colorMode)
               : over[key];
-          if (isObject(baseValue)) {
+          if (isObject(baseValue) && !Array.isArray(baseValue)) {
             loop(baseValue, overValue ?? {}, checkExisting, newPath);
           } else {
             setOn(output, newPath, overValue ?? baseValue);
@@ -219,7 +219,7 @@ export const buildTheme = <T extends {}>(model: T, key: string) => {
       const target = property === 'root' ? _target : _target.model || _target;
       // @ts-ignore `string` index signature
       const value = target[property];
-      if (typeof value === 'object' && value !== null) {
+      if (isObject(value) && !Array.isArray(value)) {
         return new Proxy(
           {
             model: value,

@@ -39,7 +39,7 @@ const scale = {
 };
 
 export const SCALES = keysOf(scale);
-export type EuiFontScale = typeof SCALES[number];
+export type EuiFontScale = keyof typeof scale;
 
 const baseline = 4;
 const lineHeightMultiplier = 1.5;
@@ -76,11 +76,13 @@ const fontWeight = {
   bold: '700',
 };
 
-// @ts-ignore HELP needed with TS
-const fontSize: {
-  [mapType in EuiFontScale]: string;
-} = SCALES.reduce((acc, elem) => {
-  // @ts-ignore HELP needed with TS
+type EuiFontSize = {
+  [mapType in EuiFontScale]: {
+    fontSize: string;
+    lineHeight: string;
+  };
+};
+const fontSize = SCALES.reduce((acc, elem) => {
   acc[elem] = {
     fontSize: computed(
       [`${COLOR_MODE_KEY}.base`, `${COLOR_MODE_KEY}.font.scale.${elem}`],
@@ -92,7 +94,7 @@ const fontSize: {
     ),
   };
   return acc;
-}, {});
+}, {} as EuiFontSize);
 
 // TODO -> MOVE TO COMPONENT
 // $euiCodeFontWeightRegular:  400;
