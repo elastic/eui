@@ -24,21 +24,21 @@ import {
   light_colors,
   dark_colors,
 } from '../../global_styling/variables/_colors';
-import {
-  light_colors_ams,
-  dark_colors_ams,
-} from '../../themes/eui-amsterdam/global_styling/variables/_colors';
+// import {
+//   light_colors_ams,
+//   dark_colors_ams,
+// } from '../../themes/eui-amsterdam/global_styling/variables/_colors';
 
 import { base, size } from '../../global_styling/variables/_size';
 
 import fonts from '../../global_styling/variables/_typography';
-import fonts_ams from '../../themes/eui-amsterdam/global_styling/variables/_typography';
+// import fonts_ams from '../../themes/eui-amsterdam/global_styling/variables/_typography';
 
 import { border } from '../../global_styling/variables/_borders';
-import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
+// import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
 import { titles } from '../../global_styling/variables/title';
-import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
+// import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
 
 /**
  * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
@@ -78,31 +78,31 @@ export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
 
 /* AMSTERDAM THEME */
 
-export const amsterdam_light = {
-  ...light_colors_ams,
-  base,
-  size,
-  ...fonts_ams,
-  border: border_ams,
-  titles: titles_ams,
-  // array: [1, 2, 3],
-};
+// export const amsterdam_light = {
+//   ...light_colors_ams,
+//   base,
+//   size,
+//   ...fonts_ams,
+//   border: border_ams,
+//   titles: titles_ams,
+//   // array: [1, 2, 3],
+// };
 
-export const amsterdam_dark = {
-  ...dark_colors_ams,
-  base,
-  size,
-  ...fonts_ams,
-  border: border_ams,
-  titles: titles_ams,
-};
+// export const amsterdam_dark = {
+//   ...dark_colors_ams,
+//   base,
+//   size,
+//   ...fonts_ams,
+//   border: border_ams,
+//   titles: titles_ams,
+// };
 
-export const euiThemeAmsterdam = {
-  [COLOR_MODE_KEY]: {
-    light: amsterdam_light,
-    dark: amsterdam_dark,
-  },
-};
+// export const euiThemeAmsterdam = {
+//   [COLOR_MODE_KEY]: {
+//     light: amsterdam_light,
+//     dark: amsterdam_dark,
+//   },
+// };
 
 // export const EuiThemeAmsterdam = buildTheme(
 //   euiThemeAmsterdam,
