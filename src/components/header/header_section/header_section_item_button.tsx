@@ -17,15 +17,21 @@
  * under the License.
  */
 
-import React, { forwardRef, PropsWithChildren } from 'react';
+import React, {
+  PropsWithChildren,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
-
 import {
   EuiNotificationBadgeProps,
   EuiNotificationBadge,
 } from '../../badge/notification_badge/badge_notification';
 import { EuiIcon } from '../../icon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
+import { EuiHideFor, EuiShowFor } from '../../responsive';
 
 export type EuiHeaderSectionItemButtonProps = EuiButtonEmptyProps & {
   /**
@@ -39,8 +45,12 @@ export type EuiHeaderSectionItemButtonProps = EuiButtonEmptyProps & {
   notificationColor?: EuiNotificationBadgeProps['color'];
 };
 
+export type EuiHeaderSectionItemButtonRef =
+  | (HTMLButtonElement & { euiAnimate: () => void })
+  | null;
+
 export const EuiHeaderSectionItemButton = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
+  EuiHeaderSectionItemButtonRef,
   PropsWithChildren<EuiHeaderSectionItemButtonProps>
 >(
   (
@@ -51,40 +61,188 @@ export const EuiHeaderSectionItemButton = forwardRef<
       notificationColor = 'accent',
       ...rest
     },
+    /**
+     * Allows for animating with .euiAnimate()
+     */
     ref
   ) => {
-    const classes = classNames('euiHeaderSectionItem__button', className);
+    const [buttonRef, setButtonRef] = useState<
+      HTMLAnchorElement | HTMLButtonElement | null
+    >();
+    const animationTargetRef = useRef<HTMLSpanElement | null>(null);
 
-    let notificationBadge;
-    if (notification) {
-      if (notification === true) {
-        notificationBadge = (
-          <EuiIcon
-            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-            color={notificationColor}
-            type="dot"
-            size="l"
-          />
-        );
-      } else {
-        notificationBadge = (
-          <EuiNotificationBadge
-            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-            color={notificationColor}>
-            {notification}
-          </EuiNotificationBadge>
-        );
-      }
+    useImperativeHandle<
+      EuiHeaderSectionItemButtonRef,
+      EuiHeaderSectionItemButtonRef
+    >(
+      ref,
+      () => {
+        if (buttonRef) {
+          (buttonRef as any).euiAnimate = () => {
+            const keyframes: Keyframe[] = [
+              { transform: 'rotate(0)', offset: 0, easing: 'ease-in-out' },
+              {
+                transform: 'rotate(30deg)',
+                offset: 0.01,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-28deg)',
+                offset: 0.03,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(34deg)',
+                offset: 0.05,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-32deg)',
+                offset: 0.07,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(30deg)',
+                offset: 0.09,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-28deg)',
+                offset: 0.11,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(26deg)',
+                offset: 0.13,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-24deg)',
+                offset: 0.15,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(22deg)',
+                offset: 0.17,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-20deg)',
+                offset: 0.19,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(18deg)',
+                offset: 0.21,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-16deg)',
+                offset: 0.23,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(14deg)',
+                offset: 0.25,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-12deg)',
+                offset: 0.27,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(10deg)',
+                offset: 0.29,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-8deg)',
+                offset: 0.31,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(6deg)',
+                offset: 0.33,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-4deg)',
+                offset: 0.35,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(2deg)',
+                offset: 0.37,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(-1deg)',
+                offset: 0.39,
+                easing: 'ease-in-out',
+              },
+              {
+                transform: 'rotate(1deg)',
+                offset: 0.41,
+                easing: 'ease-in-out',
+              },
+              { transform: 'rotate(0)', offset: 0.43, easing: 'ease-in-out' },
+              { transform: 'rotate(0)', offset: 1, easing: 'ease-in-out' },
+            ];
+            animationTargetRef.current?.animate(keyframes, {
+              duration: 5000,
+            });
+          };
+          return buttonRef as EuiHeaderSectionItemButtonRef;
+        } else {
+          return null;
+        }
+      },
+      [buttonRef]
+    );
+
+    const classes = classNames('euiHeaderSectionItemButton', className);
+    const animationClasses = classNames([
+      'euiHeaderSectionItemButton__content',
+    ]);
+
+    const notificationDot = (
+      <EuiIcon
+        className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+        color={notificationColor}
+        type="dot"
+        size="l"
+      />
+    );
+
+    let buttonNotification;
+    if (notification === true) {
+      buttonNotification = notificationDot;
+    } else if (notification) {
+      buttonNotification = (
+        <>
+          <EuiHideFor sizes={['xs']}>
+            <EuiNotificationBadge
+              className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+              color={notificationColor}>
+              {notification}
+            </EuiNotificationBadge>
+          </EuiHideFor>
+          <EuiShowFor sizes={['xs']}>{notificationDot}</EuiShowFor>
+        </>
+      );
     }
 
     return (
       <EuiButtonEmpty
-        buttonRef={ref}
         className={classes}
         color="text"
+        buttonRef={setButtonRef}
         {...rest}>
-        {children}
-        {notificationBadge}
+        <span ref={animationTargetRef} className={animationClasses}>
+          {children}
+        </span>
+        {buttonNotification}
       </EuiButtonEmpty>
     );
   }

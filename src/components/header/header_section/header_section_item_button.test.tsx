@@ -18,10 +18,13 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiHeaderSectionItemButton } from './header_section_item_button';
+import {
+  EuiHeaderSectionItemButton,
+  EuiHeaderSectionItemButtonRef,
+} from './header_section_item_button';
 
 describe('EuiHeaderSectionItemButton', () => {
   test('is rendered', () => {
@@ -70,6 +73,32 @@ describe('EuiHeaderSectionItemButton', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('animation', () => {
+    const animate = HTMLElement.prototype.animate;
+    beforeAll(() => {
+      HTMLElement.prototype.animate = jest.fn();
+    });
+    afterAll(() => {
+      HTMLElement.prototype.animate = animate;
+    });
+
+    it('renders animation', () => {
+      expect.assertions(2);
+
+      mount(
+        <EuiHeaderSectionItemButton ref={testAnimation} notification={true} />
+      );
+
+      function testAnimation(element: EuiHeaderSectionItemButtonRef) {
+        if (element) {
+          expect(element.animate).toHaveBeenCalledTimes(0);
+          element.euiAnimate();
+          expect(element.animate).toHaveBeenCalledTimes(1);
+        }
+      }
     });
   });
 

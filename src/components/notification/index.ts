@@ -17,24 +17,4 @@
  * under the License.
  */
 
-export { EuiHeader, EuiHeaderProps, EuiHeaderSections } from './header';
-
-export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
-
-export { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
-
-export {
-  EuiHeaderLink,
-  EuiHeaderLinkProps,
-  EuiHeaderLinks,
-  EuiHeaderLinksProps,
-} from './header_links';
-
-export { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
-
-export {
-  EuiHeaderSection,
-  EuiHeaderSectionItem,
-  EuiHeaderSectionItemButton,
-  EuiHeaderSectionItemButtonProps,
-} from './header_section';
+export { EuiNotificationEvent } from './notification_event';
