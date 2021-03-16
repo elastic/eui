@@ -78,8 +78,8 @@ export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEv
     'Mark as unread'
   );
 
-  const buttonAriaLabel = !isRead ? markAsReadAria : markAsUnreadAria;
-  const buttonTitle = !isRead ? markAsRead : markAsUnread;
+  const buttonAriaLabel = isRead ? markAsUnreadAria : markAsReadAria;
+  const buttonTitle = isRead ? markAsUnread : markAsRead;
 
   return (
     <EuiButtonIcon
