@@ -8,38 +8,29 @@
  * 3. Horizontal layouts should always top left align no matter the textAlign prop
  */
 
-// EuiCard specific
+// EuiCard inherits most from EuiPanel, these styles are for content or other states
+
 .euiCard {
   display: flex;
   flex-direction: column;
   min-height: 1px; /* 2 */
 
   &.euiCard-isDisabled {
-    cursor: not-allowed; // duplicate property due to Chrome bug
-    box-shadow: none;
+    // sass-lint:disable-block no-important
+    cursor: not-allowed !important; // duplicate property due to Chrome bug
+    transform: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    color: $euiColorDisabledText;
 
-    .euiCard__title,
-    .euiCard__description,
     .euiCard__top {
-      color: $euiColorDarkShade;
-    }
-
-    .euiCard__top svg,
-    .euiCard__top img {
       filter: grayscale(100%);
     }
 
     .euiCard__titleAnchor,
     .euiCard__titleButton {
+      color: $euiColorDisabledText;
       cursor: inherit;
-    }
-
-    &:hover,
-    &:focus {
-      cursor: not-allowed; // duplicate property due to Chrome bug
-      transform: none;
-      box-shadow: none;
-      text-decoration: none;
     }
   }
 
@@ -176,7 +167,7 @@
 }
 
 @each $name, $color in $euiCardSelectButtonBorders {
-  .euiCard--isSelectable--#{$name}.euiCard-isSelected {
+  .euiCard--isSelectable--#{$name}.euiCard-isSelected:not(.euiCard-isDisabled) {
     // Override .euiPanel.has--Border
     border-color: $color !important; // sass-lint:disable-line no-important
   }

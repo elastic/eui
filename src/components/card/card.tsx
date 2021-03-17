@@ -192,7 +192,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
   const isClickable =
-    (!isDisabled && onClick) || href || (selectable && !selectable.isDisabled);
+    !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
