@@ -4,11 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiMarkdownFormat,
-  EuiText,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiMarkdownFormat, EuiText } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
 
@@ -36,7 +32,6 @@ export const MarkdownFormatExample = {
           <Link to="/editors-syntax/markdown-plugins">markdown plugins</Link>.
         </p>
       </EuiText>
-      <EuiSpacer size="xxl" />
     </Fragment>
   ),
   sections: [

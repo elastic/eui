@@ -48,17 +48,31 @@
   }
 }
 
+/**
+ * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.
+ *    Browser's supporting `:focus-visible` will still show outline on keyboard focus only.
+ *    Others like Safari, won't show anything at all.
+ */
+
 // Just overflow and scrollbars
 @mixin euiYScroll {
   @include euiScrollBar;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
 }
 
 @mixin euiXScroll {
   @include euiScrollBar;
   overflow-x: auto;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
 }
 
 // The full overflow with shadow

@@ -81,8 +81,6 @@ export const SelectableExample = {
         menus; i.e. the spaces menu in the{' '}
         <Link to="/layout/header">header</Link>.
       </p>
-
-      <EuiSpacer size="s" />
     </EuiText>
   ),
   sections: [

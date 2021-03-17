@@ -174,10 +174,6 @@
   margin-top: $euiCardSpacing;
 }
 
-.euiCard--hasChildren .euiCard__description {
-  margin-bottom: $euiCardSpacing;
-}
-
 // Selectable cards don't work well without a border
 .euiCard--plain:not(.euiCard--isSelectable) {
   border: none;
@@ -203,7 +199,8 @@
 .euiCard__content {
   flex-grow: 1; /* 1 */
 
-  .euiCard__description {
+  .euiCard__description,
+  .euiCard__children {
     margin-top: $euiCardSpacing / 2;
   }
 

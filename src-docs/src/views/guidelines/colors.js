@@ -20,12 +20,12 @@ import { ContrastSlider } from './colors/contrast_slider';
 
 export default ({ selectedTheme }) => {
   const [showTextVariants, setShowTextVariants] = useState(true);
-  const [contrastValue, setContrastValue] = useState(3);
+  const [contrastValue, setContrastValue] = useState(4.5);
   const selectedThemeIsDark = selectedTheme.includes('dark');
 
   return (
     <GuidePage title="Color guidelines">
-      <EuiText grow={false} className="guideSection__text">
+      <EuiText grow={false}>
         <h2>Elastic UI builds with a very limited palette.</h2>
         <p>
           We use a core set of three colors, combined with a green / orange /
@@ -41,7 +41,7 @@ export default ({ selectedTheme }) => {
 
       <EuiSpacer size="xxl" />
 
-      <EuiText grow={false} className="guideSection__text">
+      <EuiText grow={false}>
         <h2>Variable naming</h2>
         <p>
           We use the same variable names of each color in all themes. That means
@@ -53,7 +53,7 @@ export default ({ selectedTheme }) => {
 
       <EuiSpacer size="xxl" />
 
-      <EuiText grow={false} className="guideSection__text">
+      <EuiText grow={false}>
         <h2>Accessible text contrast</h2>
         <p>
           <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
@@ -307,7 +307,7 @@ export default ({ selectedTheme }) => {
       <EuiSpacer size="xxl" />
       <EuiSpacer size="xxl" />
 
-      <EuiText grow={false} className="guideSection__text">
+      <EuiText grow={false}>
         <h2>Categorical visualization palette</h2>
         <p>
           The following colors are color-blind safe and should be used in

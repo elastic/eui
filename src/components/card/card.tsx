@@ -70,7 +70,7 @@ export const DISPLAYS = keysOf(displayToClassNameMap);
 
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
-   * Card's are required to have at least a title and description
+   * Cards are required to have at least a title and a description and/or children
    */
   title: NonNullable<ReactNode>;
 
@@ -86,9 +86,9 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   titleSize?: 's' | 'xs';
 
   /**
-   * Card's are required to have at least a title and description
+   * Placed within a small EuiText `<p>` tag
    */
-  description: NonNullable<ReactNode>;
+  description?: NonNullable<ReactNode>;
 
   /**
    * Accepts an `<EuiIcon>` node or `null`
@@ -101,7 +101,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   image?: string | ReactElement;
 
   /**
-   * Content to be rendered between the description and the footer
+   * Custom children
    */
   children?: ReactNode;
 
@@ -160,7 +160,17 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
    * Padding applied around the content of the card
    */
   paddingSize?: PanelPaddingSize;
-};
+} & (
+    | {
+        // description becomes optional when children is present
+        description?: NonNullable<ReactNode>;
+        children: ReactNode;
+      }
+    | {
+        // description is required if children is omitted
+        description: NonNullable<ReactNode>;
+      }
+  );
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
@@ -228,7 +238,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       'euiCard--isClickable': isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
-      'euiCard--hasChildren': children,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
       'euiCard-isDisabled': isDisabled,
@@ -238,6 +247,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   );
 
   const ariaId = htmlIdGenerator()();
+  const ariaDesc = description ? `${ariaId}Description` : '';
 
   /**
    * Top area containing image, icon or both
@@ -306,7 +316,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   if (selectable) {
     optionalSelectButton = (
       <EuiCardSelect
-        aria-describedby={`${ariaId}Title ${ariaId}Description`}
+        aria-describedby={`${ariaId}Title ${ariaDesc}`}
         {...selectable}
         buttonRef={(node) => {
           link = node;
@@ -328,7 +338,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
         href={href}
         target={target}
-        aria-describedby={`${ariaId}Description`}
+        aria-describedby={ariaDesc}
         rel={getSecureRelForTarget({ href, target, rel })}
         ref={(node) => {
           link = node;
@@ -342,7 +352,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         className="euiCard__titleButton"
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
-        aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
+        aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
         ref={(node) => {
           link = node;
         }}>
@@ -378,14 +388,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
-        <EuiText
-          id={`${ariaId}Description`}
-          size="s"
-          className="euiCard__description">
-          <p>{description}</p>
-        </EuiText>
+        {description && (
+          <EuiText id={ariaDesc} size="s" className="euiCard__description">
+            <p>{description}</p>
+          </EuiText>
+        )}
 
-        {children}
+        {children && <div className="euiCard__children">{children}</div>}
       </div>
 
       {/* Beta badge should always be after the title/description but before any footer buttons */}

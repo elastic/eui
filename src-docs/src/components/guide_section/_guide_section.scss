@@ -1,11 +1,7 @@
 .guideSection {
   & + .guideSection {
-    margin-top: $euiSizeXL * 2;
+    margin-top: $euiSizeXL;
   }
-}
-
-.guideSection__space {
-  height: $euiSizeL;
 }
 
 .guideSection__tableCodeBlock {
@@ -13,8 +9,25 @@
   padding-right: $euiSizeXS;
 }
 
+.guideSection__propsTableIntro {
+  padding-left: $euiSizeS;
+  padding-right: $euiSizeS;
+}
+
 .guideSectionExampleCode__link {
   text-align: right;
   padding-top: $euiSizeS;
   padding-bottom: $euiSizeS;
+}
+
+.guideSectionTabs {
+  padding: $euiSizeXS $euiSizeM;
+
+  &--open {
+    padding-bottom: 0;
+  }
+}
+
+.guideSectionTabs__tab {
+  font-weight: $euiFontWeightMedium !important; // sass-lint:disable-line no-important
 }

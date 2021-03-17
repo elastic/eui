@@ -1,5 +1,5 @@
 import { PropTypes } from 'react-view';
-import { EuiCard } from '../../../../src/components/';
+import { EuiCard, EuiIcon } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
@@ -29,6 +29,29 @@ export default () => {
     type: PropTypes.String,
   };
 
+  propsToUse.icon = {
+    ...propsToUse.icon,
+    type: PropTypes.ReactNode,
+    value: '<EuiIcon type="logoElastic" size="xl" />',
+    hidden: false,
+  };
+
+  propsToUse.children = {
+    ...propsToUse.children,
+    type: PropTypes.ReactNode,
+    hidden: false,
+  };
+
+  propsToUse.footer = {
+    ...propsToUse.footer,
+    type: PropTypes.String,
+  };
+
+  propsToUse.betaBadgeTooltipContent = {
+    ...propsToUse.betaBadgeTooltipContent,
+    type: PropTypes.String,
+  };
+
   propsToUse.onClick = simulateFunction(propsToUse.onClick);
 
   return {
@@ -37,10 +60,11 @@ export default () => {
       props: propsToUse,
       scope: {
         EuiCard,
+        EuiIcon,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiCard'],
+          named: ['EuiCard', 'EuiIcon'],
         },
       },
       customProps: {

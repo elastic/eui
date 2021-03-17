@@ -91,7 +91,7 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
       panelPaddingSize="none"
       anchorPosition="downRight">
       <EuiContextMenuPanel size="s" items={items} />
-      {location.host === 'localhost:8030' && (
+      {location.host.includes('803') && (
         <>
           <EuiHorizontalRule margin="none" />
           <div style={{ padding: 8 }}>
