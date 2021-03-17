@@ -19,21 +19,21 @@
 
 import { computed } from '../../services/theme/utils';
 
-// HELP: Can we provide the base within this function?
-export function sizeToPixel(base: number, scale: number) {
-  return `${base * scale}px`;
-}
+// `sizeToPixel(euiTheme)(scale)`
+export const sizeToPixel = (scale: number = 1) => {
+  return ({ base }: { base: number }) => `${base * scale}px`;
+};
 
 export const base = 16;
 
 export const size = {
-  xs: computed(['base'], ([base]) => `${base * 0.25}px`),
-  s: computed(['base'], ([base]) => `${base * 0.5}px`),
-  m: computed(['base'], ([base]) => `${base * 0.75}px`),
-  base: computed(['base'], ([base]) => `${base}px`),
-  l: computed(['base'], ([base]) => `${base * 1.5}px`),
-  xl: computed(['base'], ([base]) => `${base * 2}px`),
-  xxl: computed(['base'], ([base]) => `${base * 2.5}px`),
+  xs: computed([], sizeToPixel(0.25)),
+  s: computed([], sizeToPixel(0.5)),
+  m: computed([], sizeToPixel(0.75)),
+  base: computed([], sizeToPixel()),
+  l: computed([], sizeToPixel(1.5)),
+  xl: computed([], sizeToPixel(2)),
+  xxl: computed([], sizeToPixel(2.5)),
 };
 
 // $euiButtonMinWidth: $euiSize * 7 !default;

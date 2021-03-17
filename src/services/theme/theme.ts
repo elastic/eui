@@ -38,7 +38,7 @@ import { border } from '../../global_styling/variables/_borders';
 import { title } from '../../global_styling/variables/title';
 // import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
 
-/**
+/*
  * Anything using `COLOR_MODE_KEY` directly, is something that should be top level, while
  * anything using the `color.` key will remain under `color`
  */

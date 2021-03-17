@@ -64,7 +64,7 @@ export const getOn = (
     if (node.hasOwnProperty(segment) === false) {
       return undefined;
     }
-    // TODO
+    // TODO: Necessary?
     // if (colorMode && segment === COLOR_MODE_KEY) {
     //   if (node[segment].hasOwnProperty(colorMode) === false) {
     //     return undefined;
@@ -137,20 +137,23 @@ export class Computed<T> {
 //   return (new Computed(dependencies, computer) as unknown) as T;
 // };
 
-function computed<T>(
+// TODO: API; empty array vs. single param
+export function computed<T>(
   dependencies: [],
-  // TODO
+  // TODO: Static interfacce for EuiThemeShape
   // computer: (value: EuiThemeShape) => T
   computer: (value: any) => T
 ): T;
-function computed<T>(dependencies: string[], computer: (value: any[]) => T): T;
-function computed<T>(
-  param1: [] | string[],
-  param2: ((value: T) => T) | ((value: any[]) => T)
+export function computed<T>(
+  dependencies: string[],
+  computer: (value: any[]) => T
+): T;
+export function computed<T>(
+  dep: [] | string[],
+  comp: ((value: T) => T) | ((value: any[]) => T)
 ) {
-  return (new Computed<T>(param1, param2) as unknown) as T;
+  return (new Computed<T>(dep, comp) as unknown) as T;
 }
-export { computed };
 
 export const getComputed = <T = EuiThemeShape>(
   base: EuiThemeSystem<T>,
