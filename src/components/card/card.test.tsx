@@ -24,6 +24,7 @@ import { requiredProps } from '../../test';
 import { EuiCard } from './card';
 
 import { EuiIcon } from '../icon';
+import { COLORS, SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
@@ -169,16 +170,36 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('display', () => {
-      const component = render(
-        <EuiCard
-          title="Card title"
-          description="Card description"
-          display="plain"
-        />
-      );
+    describe('paddingSize', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              paddingSize={size}
+            />
+          );
 
-      expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('display', () => {
+      COLORS.forEach((color) => {
+        test(`${color} is rendered`, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              display={color}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
 
     test('selectable', () => {

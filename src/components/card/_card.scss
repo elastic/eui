@@ -18,10 +18,6 @@
     cursor: not-allowed; // duplicate property due to Chrome bug
     box-shadow: none;
 
-    &:not(.euiCard--plain) {
-      background-color: $euiColorLightestShade;
-    }
-
     .euiCard__title,
     .euiCard__description,
     .euiCard__top {
@@ -174,20 +170,15 @@
   margin-top: $euiCardSpacing;
 }
 
-// Selectable cards don't work well without a border
-.euiCard--plain:not(.euiCard--isSelectable) {
-  border: none;
-  box-shadow: none;
-
-  .euiCard__image {
-    // Without a border, the image should stand on it's own so it needs to have all corners rounded
-    border-radius: $euiBorderRadius;
-  }
+// Without a border, the image should stand on it's own so it needs to have all corners rounded
+.euiCard[class*='transparent'] .euiCard__image {
+  border-radius: $euiBorderRadius;
 }
 
 @each $name, $color in $euiCardSelectButtonBorders {
   .euiCard--isSelectable--#{$name}.euiCard-isSelected {
-    border-color: $color;
+    // Override .euiPanel.has--Border
+    border-color: $color !important; // sass-lint:disable-line no-important
   }
 }
 

@@ -38,7 +38,7 @@ import {
 } from './card_select';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
-import { EuiPanel, PanelPaddingSize } from '../panel';
+import { EuiPanel, EuiPanelProps } from '../panel';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -58,15 +58,6 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 };
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
-
-type CardDisplay = 'panel' | 'plain';
-
-const displayToClassNameMap: { [display in CardDisplay]: string } = {
-  panel: '',
-  plain: 'euiCard--plain',
-};
-
-export const DISPLAYS = keysOf(displayToClassNameMap);
 
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
@@ -152,14 +143,15 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   selectable?: EuiCardSelectProps;
 
   /**
-   * Visual display of the card. Display as 'panel' or 'plain'.
-   * Selectable cards will always display as 'panel'.
+   * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
+   * Leave as `undefined` to display as a default panel.
+   * Selectable cards will always display as a default panel.
    */
-  display?: CardDisplay;
+  display?: EuiPanelProps['color'];
   /**
    * Padding applied around the content of the card
    */
-  paddingSize?: PanelPaddingSize;
+  paddingSize?: EuiPanelProps['paddingSize'];
 } & (
     | {
         // description becomes optional when children is present
@@ -193,7 +185,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeTitle,
   layout = 'vertical',
   selectable,
-  display = 'panel',
+  display,
   paddingSize = 'm',
   ...rest
 }) => {
@@ -233,7 +225,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     'euiCard',
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
-    displayToClassNameMap[display],
     {
       'euiCard--isClickable': isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
@@ -374,8 +365,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       element="div"
       className={classes}
       onClick={isClickable ? outerOnClick : undefined}
-      hasShadow={isDisabled || display === 'plain' ? false : true}
-      hasBorder={display === 'plain' ? false : undefined}
+      color={display}
+      hasShadow={isDisabled || display ? false : true}
+      hasBorder={display ? false : undefined}
       paddingSize={paddingSize}
       {...rest}>
       {optionalCardTop}
