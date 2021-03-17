@@ -2,10 +2,10 @@
 
 exports[`EuiCheckableCard is rendered 1`] = `
 <div
-  class="euiCheckableCard euiCheckableCard--hasShadow euiCheckableCard--borderRadiusMedium testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2"
 >
   <div
-    class="euiCheckableCard__row"
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel__inner"
   >
     <div
       class="euiCheckableCard__control"
@@ -25,6 +25,10 @@ exports[`EuiCheckableCard is rendered 1`] = `
         />
       </div>
     </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+  >
     <label
       class="euiCheckableCard__label"
       for="id"
@@ -37,10 +41,10 @@ exports[`EuiCheckableCard is rendered 1`] = `
 
 exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 <div
-  class="euiCheckableCard euiCheckableCard--hasShadow euiCheckableCard--borderRadiusMedium testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2"
 >
   <div
-    class="euiCheckableCard__row"
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel__inner"
   >
     <div
       class="euiCheckableCard__control"
@@ -60,6 +64,129 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
         />
       </div>
     </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+  >
+    <label
+      class="euiCheckableCard__label"
+      for="id"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`EuiCheckableCard renders children 1`] = `
+<div
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard"
+>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel__inner"
+  >
+    <div
+      class="euiCheckableCard__control"
+    >
+      <div
+        class="euiRadio euiRadio--noLabel"
+      >
+        <input
+          class="euiRadio__input"
+          id="id"
+          type="radio"
+        />
+        <div
+          class="euiRadio__circle"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+  >
+    <label
+      aria-describedby="id-details"
+      class="euiCheckableCard__label"
+      for="id"
+    >
+      Label
+    </label>
+    <div
+      class="euiCheckableCard__children"
+      id="id-details"
+    >
+      Child
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCheckableCard renders disabled 1`] = `
+<div
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard euiCheckableCard-isDisabled"
+>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel__inner"
+  >
+    <div
+      class="euiCheckableCard__control"
+    >
+      <div
+        class="euiRadio euiRadio--noLabel"
+      >
+        <input
+          class="euiRadio__input"
+          disabled=""
+          id="id"
+          type="radio"
+        />
+        <div
+          class="euiRadio__circle"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+  >
+    <label
+      class="euiCheckableCard__label euiCheckableCard__label-isDisabled"
+      for="id"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`EuiCheckableCard renders panel props 1`] = `
+<div
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard"
+>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel__inner"
+  >
+    <div
+      class="euiCheckableCard__control"
+    >
+      <div
+        class="euiRadio euiRadio--noLabel"
+      >
+        <input
+          class="euiRadio__input"
+          id="id"
+          type="radio"
+        />
+        <div
+          class="euiRadio__circle"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+  >
     <label
       class="euiCheckableCard__label"
       for="id"

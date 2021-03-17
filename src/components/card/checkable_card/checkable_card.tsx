@@ -26,10 +26,14 @@ import {
   EuiCheckbox,
   EuiCheckboxProps,
 } from '../../form';
+import { EuiSplitPanel } from '../../panel';
+import { _EuiSplitPanelOuterProps } from '../../panel/split_panel';
 
 interface EuiCheckableCardBaseProps {
   id: string;
   label: ReactNode;
+  hasShadow?: _EuiSplitPanelOuterProps['hasShadow'];
+  hasBorder?: _EuiSplitPanelOuterProps['hasBorder'];
 }
 
 // if `checkableType` is left out or set to 'radio', use EuiRadioProps
@@ -59,13 +63,13 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   label,
   checked,
   disabled,
+  hasShadow,
+  hasBorder = true,
   ...rest
 }) => {
   const { id } = rest;
   const classes = classNames(
     'euiCheckableCard',
-    'euiCheckableCard--hasShadow', // For matching EuiPanel mixin
-    'euiCheckableCard--borderRadiusMedium', // For matching EuiPanel mixin
     {
       'euiCheckableCard-isChecked': checked,
       'euiCheckableCard-isDisabled': disabled,
@@ -93,25 +97,28 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   });
 
   return (
-    <div className={classes}>
-      <div className="euiCheckableCard__row">
+    <EuiSplitPanel.Outer
+      responsive={false}
+      hasShadow={hasShadow}
+      hasBorder={hasBorder}
+      direction="row"
+      className={classes}>
+      <EuiSplitPanel.Inner color={checked ? 'primary' : 'subdued'} grow={false}>
         <div className="euiCheckableCard__control">{checkableElement}</div>
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner>
         <label
           className={labelClasses}
           htmlFor={id}
           aria-describedby={children ? `${id}-details` : undefined}>
           {label}
         </label>
-      </div>
-      {children && (
-        <div className="euiCheckableCard__row">
-          {/* Empty div for left side background color only */}
-          <div className="euiCheckableCard__control" />
+        {children && (
           <div id={`${id}-details`} className="euiCheckableCard__children">
             {children}
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
   );
 };

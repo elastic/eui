@@ -374,9 +374,6 @@ export const CardExample = {
         EuiCheckableCard,
       },
       demo: <CardCheckable />,
-      demoPanelProps: {
-        color: 'subdued',
-      },
     },
     {
       title: 'Custom children',
