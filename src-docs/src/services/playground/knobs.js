@@ -312,9 +312,10 @@ const Knob = ({
       }
 
     case PropTypes.ReactNode:
-      if (name === 'children' && !hidden) {
+      if (!hidden) {
         return (
           <EuiTextArea
+            compressed
             placeholder={placeholder}
             value={val}
             onChange={(e) => {

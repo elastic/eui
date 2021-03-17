@@ -4,6 +4,7 @@ import {
   propUtilityForPlayground,
   dummyFunction,
   simulateFunction,
+  createOptionalEnum,
 } from '../../services/playground';
 
 export default () => {
@@ -33,7 +34,7 @@ export default () => {
     ...propsToUse.icon,
     type: PropTypes.ReactNode,
     value: '<EuiIcon type="logoElastic" size="xl" />',
-    hidden: false,
+    // hidden: false,
   };
 
   propsToUse.children = {
@@ -53,6 +54,7 @@ export default () => {
   };
 
   propsToUse.onClick = simulateFunction(propsToUse.onClick);
+  propsToUse.display = createOptionalEnum(propsToUse.display);
 
   return {
     config: {

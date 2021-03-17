@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -9,6 +10,7 @@ import {
   EuiCard,
   EuiCallOut,
   EuiCheckableCard,
+  EuiText,
 } from '../../../../src/components';
 import cardConfig from './playground';
 
@@ -52,6 +54,20 @@ const cardDisplayHtml = renderToHtml(CardDisplay);
 
 export const CardExample = {
   title: 'Card',
+  intro: (
+    <>
+      <EuiText>
+        <p>
+          <strong>EuiCard</strong> is a content-oriented component built on top
+          of{' '}
+          <Link to="/layout/panel">
+            <strong>EuiPanel</strong>
+          </Link>
+          . Be sure to check out the guidelines for properly nesting panels.
+        </p>
+      </EuiText>
+    </>
+  ),
   sections: [
     {
       title: 'Basic card',
@@ -93,6 +109,7 @@ export const CardExample = {
   description="description"
   onClick={handleClick}
 />`,
+      playground: cardConfig,
     },
     {
       title: 'Layout',
@@ -399,7 +416,7 @@ export const CardExample = {
 </EuiCard>`,
     },
     {
-      title: 'Plain cards',
+      title: 'Plain and other colors',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -416,9 +433,10 @@ export const CardExample = {
             If you need a card with no borders or shadows pass{' '}
             <EuiCode language="ts">{'display="plain"'}</EuiCode>. This is a good
             option to avoid nested panels. Adding an interaction to the card
-            will provide the clickable styling on hover. Note that{' '}
-            <EuiCode>plain</EuiCode> display is not available for
-            <EuiCode>selectable</EuiCode> cards.
+            will provide the clickable styling on hover. The{' '}
+            <EuiCode language="ts">display</EuiCode> prop also accepts all other{' '}
+            <strong>EuiPanel</strong> colors like{' '}
+            <EuiCode language="ts">{"'transparent'"}</EuiCode>.
           </p>
           <p>
             For non-interactive cards, reduce or eliminate the padding as needed
@@ -428,9 +446,6 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardDisplay />,
-      demoPanelProps: {
-        color: 'subdued',
-      },
       snippet: `<EuiCard
   title="title"
   description="description"
@@ -438,5 +453,4 @@ export const CardExample = {
 />`,
     },
   ],
-  playground: cardConfig,
 };
