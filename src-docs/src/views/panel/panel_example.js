@@ -31,10 +31,6 @@ import PanelColor from './panel_color';
 const panelColorSource = require('!!raw-loader!./panel_color');
 const panelColorHtml = renderToHtml(PanelColor);
 
-import PanelBadge from './panel_badge';
-const panelBadgeSource = require('!!raw-loader!./panel_badge');
-const panelBadgeHtml = renderToHtml(PanelBadge);
-
 import PanelGrow from './panel_grow';
 const panelGrowSource = require('!!raw-loader!./panel_grow');
 const panelGrowHtml = renderToHtml(PanelGrow);
@@ -127,6 +123,7 @@ export const PanelExample = {
       props: { EuiPanel },
       snippet: panelSnippet,
       demo: <Panel />,
+      playground: panelConfig,
     },
     {
       title: 'Shadow and border',
@@ -261,33 +258,5 @@ export const PanelExample = {
       snippet: splitPanelSnippet,
       demo: <SplitPanel />,
     },
-    {
-      title: 'Panels could be hoverable and have beta badges',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: panelBadgeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: panelBadgeHtml,
-        },
-      ],
-      text: (
-        <EuiCallOut color="warning" title="Deprecation notice">
-          <p>
-            The ability to add <EuiCode>onClick</EuiCode> and{' '}
-            <Link to="/display/badge">beta badges</Link> is being deprecated. We
-            strongly advise using{' '}
-            <Link to="/display/card">
-              <strong>EuiCard</strong>
-            </Link>{' '}
-            for this type of functionality.
-          </p>
-        </EuiCallOut>
-      ),
-      demo: <PanelBadge />,
-    },
   ],
-  playground: panelConfig,
 };

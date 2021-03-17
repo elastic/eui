@@ -24,15 +24,7 @@ import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 
 export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
-  Omit<
-    _EuiPanelProps,
-    | 'hasShadow'
-    | 'hasBorder'
-    | 'borderRadius'
-    | 'betaBadgeLabel'
-    | 'betaBadgeTooltipContent'
-    | 'betaBadgeTitle'
-  >;
+  Omit<_EuiPanelProps, 'hasShadow' | 'hasBorder' | 'borderRadius'>;
 
 /**
  * Consumed via `EuiSplitPanel.Inner`.
@@ -73,13 +65,7 @@ export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
    * Remove completely with `false` or provide your own list of breakpoint sizes to stack on.
    */
   responsive?: false | EuiBreakpointSize[];
-} & Omit<
-    _EuiPanelProps,
-    | 'paddingSize'
-    | 'betaBadgeLabel'
-    | 'betaBadgeTooltipContent'
-    | 'betaBadgeTitle'
-  >;
+} & Omit<_EuiPanelProps, 'paddingSize'>;
 
 /**
  * Consumed via `EuiSplitPanel.Outer`.
