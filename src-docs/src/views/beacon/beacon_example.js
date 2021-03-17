@@ -38,7 +38,7 @@ export const BeaconExample = {
       props: { EuiBeacon },
       snippet: beaconSnippet,
       demo: <Beacon />,
+      playground: beaconConfig,
     },
   ],
-  playground: beaconConfig,
 };

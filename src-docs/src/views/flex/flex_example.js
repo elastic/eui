@@ -8,7 +8,6 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiCallOut,
-  EuiSpacer,
   EuiCode,
   EuiFlexGroup,
   EuiFlexItem,
@@ -190,8 +189,6 @@ export const FlexExample = {
           additional components or classes if you need it.
         </p>
       </EuiCallOut>
-
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

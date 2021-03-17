@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiNotificationEventMeta is rendered 1`] = `
+<div
+  class="euiNotificationEventMeta"
+>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+    >
+      <span
+        class="euiBadge__content"
+      >
+        <span
+          class="euiBadge__text"
+        >
+          Alert
+        </span>
+      </span>
+    </span>
+  </div>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiNotificationEventMeta__time"
+    >
+      <span>
+        2 min ago
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiNotificationEventMeta props badgeColor  is rendered 1`] = `
+<div
+  class="euiNotificationEventMeta"
+>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiBadge euiBadge--iconLeft euiNotificationEventMeta__badge"
+      style="background-color:#6dccb1;color:#000"
+    >
+      <span
+        class="euiBadge__content"
+      >
+        <span
+          class="euiBadge__text"
+        >
+          Alert
+        </span>
+      </span>
+    </span>
+  </div>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiNotificationEventMeta__time"
+    >
+      <span>
+        2 min ago
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiNotificationEventMeta props contextMenuItems are rendered 1`] = `
+<div
+  class="euiContextMenuPanel"
+  tabindex="0"
+>
+  <div>
+    <div>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            Mark as read
+          </span>
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            View messages like this
+          </span>
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            Don’t notify me about this
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
+<div
+  class="euiNotificationEventMeta"
+>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      aria-hidden="true"
+      class="euiNotificationEventMeta__icon"
+      data-euiicon-type="logoCloud"
+    />
+    <span
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+    >
+      <span
+        class="euiBadge__content"
+      >
+        <span
+          class="euiBadge__text"
+        >
+          Alert
+        </span>
+      </span>
+    </span>
+  </div>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiNotificationEventMeta__time"
+    >
+      <span>
+        2 min ago
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiNotificationEventMeta props severity is rendered 1`] = `
+<div
+  class="euiNotificationEventMeta"
+>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+    >
+      <span
+        class="euiBadge__content"
+      >
+        <span
+          class="euiBadge__text"
+        >
+          Alert: severity
+        </span>
+      </span>
+    </span>
+  </div>
+  <div
+    class="euiNotificationEventMeta__section"
+  >
+    <span
+      class="euiNotificationEventMeta__time"
+    >
+      <span>
+        2 min ago
+      </span>
+    </span>
+  </div>
+</div>
+`;
