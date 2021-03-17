@@ -8,7 +8,6 @@ import {
   useEuiTheme,
 } from '../../../../src/services';
 import { shade, tint } from '../../../../src/global_styling/functions/_colors';
-import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 interface ThemeExtensions {
   colors: {
@@ -25,7 +24,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <EuiText
       css={{
         background: euiTheme.colors.customColorPrimaryHighlight,
-        padding: euiTheme[COLOR_MODE_KEY].size.xl,
+        padding: euiTheme.size.xl,
         color: euiTheme.colors.customColorPrimaryText,
       }}>
       <p>

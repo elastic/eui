@@ -20,8 +20,14 @@
 import { RecursiveOmit, RecursivePartial } from '../../components/common';
 import { euiThemeDefault } from './theme';
 
-type EuiThemeColorModeInverse = 'inverse';
-type EuiThemeColorModeStandard = 'light' | 'dark';
+export const COLOR_MODES_STANDARD = {
+  light: 'light',
+  dark: 'dark',
+} as const;
+export const COLOR_MODES_INVERSE = 'inverse' as const;
+
+type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
+type EuiThemeColorModeStandard = keyof typeof COLOR_MODES_STANDARD;
 export type EuiThemeColorMode =
   | string
   | EuiThemeColorModeStandard

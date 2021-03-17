@@ -3,7 +3,6 @@ import { EuiIcon } from '../../../../src/components/icon';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
-import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
@@ -12,7 +11,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <EuiText
       css={{
         background: euiTheme.colors.highlight,
-        padding: euiTheme[COLOR_MODE_KEY].size.xl,
+        padding: euiTheme.size.xl,
         color: euiTheme.colors.textPrimary,
       }}>
       <p>

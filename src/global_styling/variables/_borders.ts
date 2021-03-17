@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { COLOR_MODE_KEY, computed } from '../../services/theme/utils';
+import { computed } from '../../services/theme/utils';
 
 export const border = {
   widthThin: '1px',
@@ -25,19 +25,19 @@ export const border = {
   color: computed(['colors.lightShade'], ([lightShade]) => lightShade),
   radius: '4px',
   radiusSmall: computed(
-    [`${COLOR_MODE_KEY}.border.radius`],
+    ['border.radius'],
     ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`
   ),
   thin: computed(
-    [`${COLOR_MODE_KEY}.border.widthThin`, `${COLOR_MODE_KEY}.border.color`],
+    ['border.widthThin', 'border.color'],
     ([widthThin, color]) => `${widthThin} solid ${color}`
   ),
   thick: computed(
-    [`${COLOR_MODE_KEY}.border.widthThick`, `${COLOR_MODE_KEY}.border.color`],
+    ['border.widthThick', 'border.color'],
     ([widthThick, color]) => `${widthThick} solid ${color}`
   ),
   editable: computed(
-    [`${COLOR_MODE_KEY}.border.widthThick`, `${COLOR_MODE_KEY}.border.color`],
+    ['border.widthThick', 'border.color'],
     ([widthThick, color]) => `${widthThick} dotted ${color}`
   ),
 };

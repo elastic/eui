@@ -33,7 +33,6 @@ import {
   buildTheme,
   EuiThemeModifications,
 } from '../../../../src/services';
-import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 import { EuiCodeBlock } from '../../../../src/components/code';
 import { EuiButton } from '../../../../src/components/button';
 
@@ -46,14 +45,11 @@ const View = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          fontFamily: euiTheme[COLOR_MODE_KEY].font?.family,
+          fontFamily: euiTheme.font.family,
         }}>
         <div
           // TODO: FOr docs, add in what a function vs array does in `css` and how to tell if a theme key is returning a single value or a set of properties
-          css={[
-            euiTheme[COLOR_MODE_KEY].titles.xxl,
-            { color: euiTheme[COLOR_MODE_KEY].primary },
-          ]}>
+          css={[euiTheme.title.xxl, { color: euiTheme.colors.primary }]}>
           <strong>colorMode:</strong> {colorMode}
         </div>
         <div>
@@ -67,13 +63,13 @@ const View = () => {
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme[COLOR_MODE_KEY].success }}
+            css={{ color: euiTheme.colors.success }}
           />
           <EuiIcon
             aria-hidden="true"
             type="stopFilled"
             size="xxl"
-            css={{ color: euiTheme[COLOR_MODE_KEY].text }}
+            css={{ color: euiTheme.colors.text }}
           />
         </div>
       </div>
@@ -86,7 +82,7 @@ const View = () => {
 
 const View3 = () => {
   const overrides = {
-    [COLOR_MODE_KEY]: {
+    colors: {
       light: { primary: '#8A07BD' },
       dark: { primary: '#BD07A5' },
     },
@@ -106,7 +102,7 @@ const View3 = () => {
 
 const View2 = () => {
   const overrides = {
-    [COLOR_MODE_KEY]: {
+    colors: {
       light: {
         success: computed(['colors.primary'], () => '#85E89d'),
       },
@@ -137,8 +133,8 @@ class Block extends React.Component<BlockProps> {
     } = this.props;
     const blockStyle = css`
       color: ${euiTheme.colors.primary};
-      border-radius: ${euiTheme[COLOR_MODE_KEY].border.radiusSmall};
-      border: ${euiTheme[COLOR_MODE_KEY].border.editable};
+      border-radius: ${euiTheme.border.radiusSmall};
+      border: ${euiTheme.border.editable};
     `;
     return (
       <div {...props}>
@@ -159,14 +155,14 @@ export default () => {
   const lightColors = () => {
     setOverrides(
       mergeDeep(overrides, {
-        [COLOR_MODE_KEY]: {
+        colors: {
           light: {
             primary: chroma.random().hex(),
-            base: Math.floor(Math.random() * Math.floor(16)),
-            font: {
-              family: 'Times',
-            },
           },
+        },
+        base: Math.floor(Math.random() * Math.floor(16)),
+        font: {
+          family: 'Times',
         },
       })
     );
@@ -174,7 +170,7 @@ export default () => {
   const darkColors = () => {
     setOverrides(
       mergeDeep(overrides, {
-        [COLOR_MODE_KEY]: {
+        colors: {
           dark: {
             primary: chroma.random().hex(),
           },
@@ -194,9 +190,9 @@ export default () => {
   // Difference is due to automatic colorMode reduction during value computation.
   // Makes typing slightly inconvenient, but makes consuming values very convenient.
   type ExtensionsUncomputed = {
-    [COLOR_MODE_KEY]: { light: { myColor: string }; dark: { myColor: string } };
+    colors: { light: { myColor: string }; dark: { myColor: string } };
     custom: {
-      [COLOR_MODE_KEY]: {
+      colors: {
         light: { customColor: string };
         dark: { customColor: string };
       };
@@ -204,13 +200,13 @@ export default () => {
     };
   };
   type ExtensionsComputed = {
-    [COLOR_MODE_KEY]: { myColor: string };
-    custom: { [COLOR_MODE_KEY]: { customColor: string }; mySize: number };
+    colors: { myColor: string };
+    custom: { colors: { customColor: string }; mySize: number };
   };
 
   // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
   const extend: EuiThemeModifications<ExtensionsUncomputed> = {
-    [COLOR_MODE_KEY]: {
+    colors: {
       light: {
         primary: '#F56407',
         myColor: computed(['colors.primary'], ([primary]) => primary),
@@ -221,7 +217,7 @@ export default () => {
       },
     },
     custom: {
-      [COLOR_MODE_KEY]: {
+      colors: {
         light: { customColor: '#080AEF' },
         dark: { customColor: '#087EEF' },
       },
@@ -232,7 +228,7 @@ export default () => {
   const Extend = () => {
     // Generic type (ExtensionsComputed) necessary if accessing extensions/custom properties
     const {
-      euiTheme: { colors, custom },
+      euiTheme: { font, colors, custom, title },
       colorMode,
     } = useEuiTheme<ExtensionsComputed>();
     return (
@@ -242,11 +238,11 @@ export default () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            fontFamily: colors.font.family,
+            fontFamily: font.family,
           }}>
           <div
             // TODO: FOr docs, add in what a function vs array does in `css`
-            css={[colors.titles.xxl, { color: colors.success }]}>
+            css={[title.xxl, { color: colors.success }]}>
             <strong>colorMode:</strong> {colorMode}
           </div>
           <div>

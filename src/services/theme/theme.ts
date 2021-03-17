@@ -17,9 +17,7 @@
  * under the License.
  */
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import { buildTheme, COLOR_MODE_KEY } from './utils';
+import { buildTheme } from './utils';
 import {
   light_colors,
   dark_colors,
@@ -37,7 +35,7 @@ import fonts from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
 // import { border_ams } from '../../themes/eui-amsterdam/global_styling/variables/_borders';
 
-import { titles } from '../../global_styling/variables/title';
+import { title } from '../../global_styling/variables/title';
 // import { titles_ams } from '../../themes/eui-amsterdam/global_styling/variables/title';
 
 /**
@@ -46,32 +44,39 @@ import { titles } from '../../global_styling/variables/title';
  */
 
 /* DEFAULT THEME */
-// TODO: All theme files need to be imported here or else they error out.
-// Creation of the themes shouldn't be restricted to a particular file
 
-export const light = {
-  ...light_colors,
-  base,
-  size,
-  ...fonts,
-  border,
-  titles, // TODO: Rename to `title` when it doesn't conflict with colors.title and move to component-specific file
-};
+// export const light = {
+//   colors: {
+//     ...light_colors,
+//   },
+//   base,
+//   size,
+//   ...fonts,
+//   border,
+//   title, // TODO: Rename to `title` when it doesn't conflict with colors.title and move to component-specific file
+// };
 
-export const dark = {
-  ...dark_colors,
-  base,
-  size,
-  ...fonts,
-  border,
-  titles,
-};
+// export const dark = {
+//   colors: {
+//     ...dark_colors,
+//   },
+//   base,
+//   size,
+//   ...fonts,
+//   border,
+//   title,
+// };
 
 export const euiThemeDefault = {
-  [COLOR_MODE_KEY]: {
-    light,
-    dark,
+  colors: {
+    light: light_colors,
+    dark: dark_colors,
   },
+  base,
+  size,
+  ...fonts,
+  border,
+  title,
 };
 
 export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');

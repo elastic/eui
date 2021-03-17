@@ -31,8 +31,8 @@ export const poles = {
 };
 
 const textVariants = {
-  textPrimary: computed(['colors.primary'], ([primary]) =>
-    makeHighContrastColor(primary)
+  textPrimary: computed([], (theme) =>
+    makeHighContrastColor(theme.colors.primary)
   ),
   textAccent: computed(['colors.accent'], ([accent]) =>
     makeHighContrastColor(accent)

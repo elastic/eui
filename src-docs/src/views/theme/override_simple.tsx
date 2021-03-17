@@ -1,7 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
-import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
@@ -10,7 +9,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <div
       css={{
         background: euiTheme.colors.lightShade,
-        padding: euiTheme[COLOR_MODE_KEY].size.xl,
+        padding: euiTheme.size.xl,
       }}>
       <p>{children}</p>
     </div>
