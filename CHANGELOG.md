@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.11.0`.
+- Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))
 
 ## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
 
