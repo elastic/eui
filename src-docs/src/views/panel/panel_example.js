@@ -18,6 +18,7 @@ import {
 } from '../../../../src/components/panel/split_panel/split_panel';
 
 import { panelConfig } from './playground';
+import Guidelines from './guidelines';
 
 import Panel from './panel';
 const panelSource = require('!!raw-loader!./panel');
@@ -86,20 +87,26 @@ const splitPanelSnippet = [
 
 export const PanelExample = {
   title: 'Panel',
+  guidelines: <Guidelines />,
   intro: (
     <>
       <EuiText>
         <p>
-          <strong>EuiPanel</strong> is a building block component. It is
-          commonly used as a base for other larger components like{' '}
+          <strong>EuiPanel</strong> is a building block component. Use it as a
+          layout helper for containing content. It is also commonly used as a
+          base for other larger components like{' '}
           <Link to="/layout/page">
             <strong>EuiPage</strong>
-          </Link>{' '}
-          and{' '}
+          </Link>
+          ,{' '}
           <Link to="/layout/popover">
             <strong>EuiPopover</strong>
           </Link>
-          . Use it as a layout helper for containing content.
+          and{' '}
+          <Link to="/display/card">
+            <strong>EuiCard</strong>
+          </Link>
+          .
         </p>
       </EuiText>
     </>

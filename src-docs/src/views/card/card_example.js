@@ -63,7 +63,11 @@ export const CardExample = {
           <Link to="/layout/panel">
             <strong>EuiPanel</strong>
           </Link>
-          . Be sure to check out the guidelines for properly nesting panels.
+          . Be sure to check out the{' '}
+          <Link to="/layout/panel/guidelines">
+            guidelines for properly nesting panels
+          </Link>
+          .
         </p>
       </EuiText>
     </>
