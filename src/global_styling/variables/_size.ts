@@ -19,9 +19,13 @@
 
 import { computed } from '../../services/theme/utils';
 
-// `sizeToPixel(euiTheme)(scale)`
-export const sizeToPixel = (scale: number = 1) => {
-  return ({ base }: { base: number }) => `${base * scale}px`;
+// const usingFullTheme = `sizeToPixel({ base: 16, [...] })(0.25)`
+// const usingBaseValue = `sizeToPixel(16)(0.25)`
+export const sizeToPixel = (scale: number = 1) => (
+  themeOrBase: number | { base: number; [key: string]: any }
+) => {
+  const base = typeof themeOrBase === 'object' ? themeOrBase.base : themeOrBase;
+  return `${base * scale}px`;
 };
 
 export const base = 16;
