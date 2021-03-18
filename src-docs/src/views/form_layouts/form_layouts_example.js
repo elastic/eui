@@ -10,7 +10,6 @@ import {
   EuiForm,
   EuiFormRow,
   EuiText,
-  EuiSpacer,
   EuiDescribedFormGroup,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
@@ -46,7 +45,6 @@ export const FormLayoutsExample = {
         Be sure to read the full{' '}
         <Link to="/guidelines/form-layouts">forms usage guidelines</Link>.
       </p>
-      <EuiSpacer />
     </EuiText>
   ),
   sections: [

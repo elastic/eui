@@ -84,6 +84,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <Card />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -126,6 +129,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardLayout />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   layout="horizontal"
   icon={icon}
@@ -172,6 +178,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardImage />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   textAlign="left"
   image="https://source.unsplash.com/400x200/?Nature"
@@ -215,6 +224,9 @@ export const CardExample = {
       ),
       components: { EuiCard },
       demo: <CardFooter />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -246,6 +258,9 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardBeta />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -287,6 +302,9 @@ export const CardExample = {
       ),
       props: { EuiCardSelect },
       demo: <CardSelectable />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   icon={icon}
   title="title"
@@ -335,6 +353,9 @@ export const CardExample = {
         EuiCheckableCard,
       },
       demo: <CardCheckable />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
     },
     {
       title: 'Custom children',
@@ -351,14 +372,19 @@ export const CardExample = {
       text: (
         <Fragment>
           <p>
-            In the event that you need more than just paragraph text for the
-            description, you can pass anything you need as the{' '}
-            <EuiCode>children</EuiCode> of the component.
+            In the event that you need <strong>more than</strong> just paragraph
+            text for the <EuiCode>description</EuiCode>, you can suppliment with
+            anything you need as the <EuiCode>children</EuiCode> of the
+            component. You can also completely replace the description with
+            custom children, but <strong>EuiCard</strong> at least one of these.
           </p>
         </Fragment>
       ),
       props: { EuiCard },
       demo: <CardChildren />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   textAlign="left"
   title="title"
@@ -402,9 +428,12 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardDisplay />,
+      demoPanelProps: {
+        color: 'subdued',
+      },
       snippet: `<EuiCard
   title="title"
-  description="description" 
+  description="description"
   display="plain"
 />`,
     },

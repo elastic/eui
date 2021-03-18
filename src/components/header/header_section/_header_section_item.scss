@@ -15,12 +15,6 @@
   }
 }
 
-.euiHeaderSectionItem__button {
-  position: relative; // For positioning the notification
-  min-width: $euiHeaderChildSize;
-  height: $euiHeaderChildSize;
-}
-
 .euiHeaderSectionItem--borderLeft {
   &:after {
     left: 0;
@@ -36,25 +30,8 @@
   }
 }
 
-.euiHeaderSectionItemButton__notification {
-  position: absolute;
-}
-
-.euiHeaderSectionItemButton__notification--badge {
-  top: 9%;
-  right: 9%;
-  box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
-}
-
-.euiHeaderSectionItemButton__notification--dot {
-  top: 0;
-  right: 0;
-  stroke: $euiHeaderBackgroundColor;
-}
-
 @include euiBreakpoint('xs') {
-  .euiHeaderSectionItem,
-  .euiHeaderSectionItem__button {
+  .euiHeaderSectionItem {
     min-width: $euiHeaderChildSize * .75;
   }
 
@@ -63,21 +40,5 @@
     &:after {
       display: none;
     }
-  }
-
-  // On small screens just show a small dot indicating there are notifications
-  .euiHeaderSectionItemButton__notification--badge {
-    @include size($euiSizeS);
-    top: 20%;
-    min-width: 0;
-    border-radius: $euiSizeS;
-    color: $euiColorAccent;
-    overflow: hidden;
-  }
-
-  // Using specificty to override the default icon size
-  .euiHeaderSectionItemButton__notification.euiHeaderSectionItemButton__notification--dot {
-    @include size($euiSize);
-    top: 9%;
   }
 }

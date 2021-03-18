@@ -8,7 +8,7 @@ import {
 
 export default () => (
   <div>
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false} wrap>
       <EuiFlexItem grow={false}>
         <EuiButton onClick={() => {}}>Primary</EuiButton>
       </EuiFlexItem>
@@ -32,7 +32,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false} wrap>
       <EuiFlexItem grow={false}>
         <EuiButton color="secondary" onClick={() => {}}>
           Secondary
@@ -58,7 +58,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false} wrap>
       <EuiFlexItem grow={false}>
         <EuiButton color="warning" onClick={() => {}}>
           Warning
@@ -84,7 +84,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false} wrap>
       <EuiFlexItem grow={false}>
         <EuiButton color="danger" onClick={() => {}}>
           Danger
@@ -110,7 +110,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false} wrap>
       <EuiFlexItem grow={false}>
         <EuiButton color="text" onClick={() => {}}>
           Text
@@ -136,7 +136,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false} wrap>
       <EuiFlexItem grow={false}>
         <EuiButton isDisabled onClick={() => {}}>
           Disabled

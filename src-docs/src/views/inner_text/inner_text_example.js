@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../src/components';
+import { EuiCode, EuiText } from '../../../../src/components';
 
 import InnerText from './inner_text';
 const innerTextSource = require('!!raw-loader!./inner_text');
@@ -48,7 +48,6 @@ export const InnerTextExample = {
           <EuiCode>innerText</EuiCode> value to use as needed.
         </p>
       </EuiText>
-      <EuiSpacer />
     </React.Fragment>
   ),
   sections: [

@@ -53,7 +53,6 @@ export default () => {
         <EuiCard
           textAlign="left"
           title="Form controls"
-          description="Add any controls you need."
           footer={
             <EuiFlexGroup justifyContent="flexEnd">
               <EuiFlexItem grow={false}>

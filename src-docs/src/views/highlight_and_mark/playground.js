@@ -15,11 +15,7 @@ export const highlightConfig = () => {
     value: 'The quick brown fox jumped over the lazy dog',
   };
 
-  propsToUse.search = {
-    ...propsToUse.search,
-    type: PropTypes.String,
-    hidden: false,
-  };
+  propsToUse.search.value = 'quick';
 
   return {
     config: {
@@ -43,7 +39,7 @@ export const markConfig = () => {
     : EuiMark.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  propsToUse.children.value = 'mark';
+  propsToUse.children.value = 'Mark';
 
   return {
     config: {
