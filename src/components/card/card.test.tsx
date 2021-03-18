@@ -184,6 +184,14 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('isDisabled', () => {
+      const component = render(
+        <EuiCard title="Card title" description="Card description" isDisabled />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
