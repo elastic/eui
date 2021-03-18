@@ -130,6 +130,20 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('accepts div props', () => {
+      test('like style', () => {
+        const component = render(
+          <EuiCard
+            title="Card title"
+            description="Card description"
+            style={{ minWidth: 0 }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     test('footer', () => {
       const component = render(
         <EuiCard

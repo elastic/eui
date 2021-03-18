@@ -22,6 +22,7 @@ import React, {
   ReactElement,
   ReactNode,
   isValidElement,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -59,100 +60,101 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
-export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
-  /**
-   * Cards are required to have at least a title and a description and/or children
-   */
-  title: NonNullable<ReactNode>;
+export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
+    /**
+     * Cards are required to have at least a title and a description and/or children
+     */
+    title: NonNullable<ReactNode>;
 
-  /**
-   * Determines the title's heading element
-   */
-  titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+    /**
+     * Determines the title's heading element
+     */
+    titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 
-  /**
-   * Determines the title's size, matching that of EuiTitle.
-   * Though, card titles can't be too large or small relative to the description text.
-   */
-  titleSize?: 's' | 'xs';
+    /**
+     * Determines the title's size, matching that of EuiTitle.
+     * Though, card titles can't be too large or small relative to the description text.
+     */
+    titleSize?: 's' | 'xs';
 
-  /**
-   * Placed within a small EuiText `<p>` tag
-   */
-  description?: NonNullable<ReactNode>;
+    /**
+     * Placed within a small EuiText `<p>` tag
+     */
+    description?: NonNullable<ReactNode>;
 
-  /**
-   * Accepts an `<EuiIcon>` node or `null`
-   */
-  icon?: ReactElement<EuiIconProps> | null;
+    /**
+     * Accepts an `<EuiIcon>` node or `null`
+     */
+    icon?: ReactElement<EuiIconProps> | null;
 
-  /**
-   * Accepts a url in string form or ReactElement for a custom image component
-   */
-  image?: string | ReactElement;
+    /**
+     * Accepts a url in string form or ReactElement for a custom image component
+     */
+    image?: string | ReactElement;
 
-  /**
-   * Custom children
-   */
-  children?: ReactNode;
+    /**
+     * Custom children
+     */
+    children?: ReactNode;
 
-  /**
-   * Accepts any combination of elements
-   */
-  footer?: ReactNode;
+    /**
+     * Accepts any combination of elements
+     */
+    footer?: ReactNode;
 
-  /**
-   * Use only if you want to forego a button in the footer and make the whole card clickable
-   */
-  onClick?:
-    | React.MouseEventHandler<HTMLButtonElement>
-    | React.MouseEventHandler<HTMLAnchorElement>;
-  isDisabled?: boolean;
-  href?: string;
-  target?: string;
-  rel?: string;
+    /**
+     * Use only if you want to forego a button in the footer and make the whole card clickable
+     */
+    onClick?:
+      | React.MouseEventHandler<HTMLButtonElement>
+      | React.MouseEventHandler<HTMLAnchorElement>;
+    isDisabled?: boolean;
+    href?: string;
+    target?: string;
+    rel?: string;
 
-  /**
-   * Changes alignment of the title and description
-   */
-  textAlign?: CardAlignment;
+    /**
+     * Changes alignment of the title and description
+     */
+    textAlign?: CardAlignment;
 
-  /**
-   * Change to "horizontal" if you need the icon to be left of the content
-   */
-  layout?: CardLayout;
+    /**
+     * Change to "horizontal" if you need the icon to be left of the content
+     */
+    layout?: CardLayout;
 
-  /**
-   * Add a badge to the card to label it as "Beta" or other non-GA state
-   */
-  betaBadgeLabel?: string;
+    /**
+     * Add a badge to the card to label it as "Beta" or other non-GA state
+     */
+    betaBadgeLabel?: string;
 
-  /**
-   * Add a description to the beta badge (will appear in a tooltip)
-   */
-  betaBadgeTooltipContent?: ReactNode;
+    /**
+     * Add a description to the beta badge (will appear in a tooltip)
+     */
+    betaBadgeTooltipContent?: ReactNode;
 
-  /**
-   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
-   */
-  betaBadgeTitle?: string;
+    /**
+     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+     */
+    betaBadgeTitle?: string;
 
-  /**
-   * Adds a button to the bottom of the card to allow for in-place selection
-   */
-  selectable?: EuiCardSelectProps;
+    /**
+     * Adds a button to the bottom of the card to allow for in-place selection
+     */
+    selectable?: EuiCardSelectProps;
 
-  /**
-   * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
-   * Leave as `undefined` to display as a default panel.
-   * Selectable cards will always display as a default panel.
-   */
-  display?: EuiPanelProps['color'];
-  /**
-   * Padding applied around the content of the card
-   */
-  paddingSize?: EuiPanelProps['paddingSize'];
-} & (
+    /**
+     * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
+     * Leave as `undefined` to display as a default panel.
+     * Selectable cards will always display as a default panel.
+     */
+    display?: EuiPanelProps['color'];
+    /**
+     * Padding applied around the content of the card
+     */
+    paddingSize?: EuiPanelProps['paddingSize'];
+  } & (
     | {
         // description becomes optional when children is present
         description?: NonNullable<ReactNode>;
