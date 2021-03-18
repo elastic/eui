@@ -37,7 +37,7 @@ const columns = [
     render({ defString, highlighting }) {
       return (
         <EuiCodeBlock
-          language={highlighting === 'code' ? 'javascript' : 'text'}
+          language={highlighting === 'code' ? 'javascript' : undefined}
           paddingSize="none"
           transparentBackground
           fontSize="s">
