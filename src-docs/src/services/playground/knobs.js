@@ -27,7 +27,7 @@ import {
 } from '../../../../src/components/';
 
 export const markup = (text) => {
-  const regex = /(^#[a-zA-Z]+)|(?<=\s)(#[a-zA-Z]+)|(`[^`]+`)/g;
+  const regex = /(\B#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split('\n').map((token) => {
     const values = token.split(regex).map((token, index) => {
       if (!token) {
