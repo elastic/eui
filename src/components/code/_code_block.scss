@@ -40,6 +40,10 @@ $tokenRegex: #E90;
     margin-top: $euiSizeXS;
   }
 
+  .euiCodeBlock__line {
+    display: block;
+  }
+
   &.euiCodeBlock-isFullScreen {
     position: fixed;
     top: 0;

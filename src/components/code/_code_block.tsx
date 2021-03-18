@@ -65,6 +65,22 @@ const nodeToHtml = (
   return node.value;
 };
 
+const highlightByLine = (code: string, language: string): RefractorNode[] => {
+  const lines = code.split('\n');
+  // Trim lines from end
+  while (lines[lines.length - 1] === '') {
+    lines.splice(-1, 1);
+  }
+  return lines.map((line) => ({
+    type: 'element',
+    tagName: 'span',
+    properties: {
+      className: ['euiCodeBlock__line'],
+    },
+    children: highlight(line ? line : '\n', language),
+  }));
+};
+
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
@@ -147,9 +163,11 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     if (!language || typeof children !== 'string') {
       return children;
     }
-    const nodes = highlight(children, language);
+    const nodes = inline
+      ? highlight(children, language)
+      : highlightByLine(children, language);
     return nodes.length === 0 ? children : nodes.map(nodeToHtml);
-  }, [children, language]);
+  }, [children, language, inline]);
 
   const doesOverflow = () => {
     if (!wrapperRef) return;
