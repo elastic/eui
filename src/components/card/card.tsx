@@ -188,7 +188,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   layout = 'vertical',
   selectable,
   display,
-  paddingSize = 'm',
+  paddingSize,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -295,6 +295,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         />
       </span>
     );
+
+    // Increase padding size when there is a beta badge unless it's already determined
+    paddingSize = paddingSize || 'l';
   }
 
   /**

@@ -398,7 +398,6 @@ exports[`EuiCard props href supports href as a link 1`] = `
     element="div"
     hasShadow={true}
     onClick={[Function]}
-    paddingSize="m"
   >
     <div
       className="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--isClickable"
