@@ -88,6 +88,6 @@ directly in the code. And unit test coverage for the UI components allows us to 
 
 [license]: LICENSE
 [faq]: FAQ.md
-[consuming]: src-docs/src/views/getting_started/consuming.md
+[consuming]: wiki/consuming.md
 [react-router]: wiki/react-router.md
 [docs]: https://elastic.github.io/eui/
