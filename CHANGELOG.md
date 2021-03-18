@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))
+- Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting ([#4638](https://github.com/elastic/eui/pull/4638))
 
 ## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
 
