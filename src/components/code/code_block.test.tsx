@@ -19,7 +19,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { mount, ReactWrapper } from 'enzyme';
+import { mount, render } from 'enzyme';
 import html from 'html';
 import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
@@ -27,34 +27,26 @@ import { requiredProps } from '../../test/required_props';
 import { EuiCodeBlock } from './code_block';
 import { FONT_SIZES, PADDING_SIZES } from './_code_block';
 
-function snapshotCodeBlock(component: ReactWrapper) {
-  // Get the Portal's sibling and return its html
-  const renderedHtml = component.find('Portal + *').html();
-  const container = document.createElement('div');
-  container.innerHTML = renderedHtml;
-  return container.firstChild;
-}
-
 const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCodeBlock', () => {
   test('renders a code block', () => {
-    const component = mount(
+    const component = render(
       <EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>
     );
 
-    expect(snapshotCodeBlock(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('transparentBackground', () => {
       it('is rendered', () => {
-        const component = mount(
+        const component = render(
           <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
         );
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -62,38 +54,38 @@ describe('EuiCodeBlock', () => {
       it('is rendered', () => {
         const component = mount(<EuiCodeBlock isCopyable>{code}</EuiCodeBlock>);
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('overflowHeight', () => {
       it('is rendered', () => {
-        const component = mount(
+        const component = render(
           <EuiCodeBlock overflowHeight={200}>{code}</EuiCodeBlock>
         );
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('language', () => {
       it('is rendered', () => {
-        const component = mount(
+        const component = render(
           <EuiCodeBlock language="html">{code}</EuiCodeBlock>
         );
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('fontSize', () => {
       FONT_SIZES.forEach((fontSize) => {
         test(`${fontSize} is rendered`, () => {
-          const component = mount(
+          const component = render(
             <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
           );
 
-          expect(snapshotCodeBlock(component)).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -101,11 +93,11 @@ describe('EuiCodeBlock', () => {
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
-          const component = mount(
+          const component = render(
             <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
           );
 
-          expect(snapshotCodeBlock(component)).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -131,7 +123,7 @@ describe('EuiCodeBlock', () => {
         const [value, setValue] = useState('State 1');
 
         useEffect(() => {
-          // Wait a tick for EuiCodeBlock internal state to update on mount
+          // Wait a tick for EuiCodeBlock internal state to update on render
           setTimeout(() => {
             takeSnapshot();
             act(() => {
