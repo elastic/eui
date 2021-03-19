@@ -76,6 +76,25 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('image', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          image={
+            <div>
+              <img
+                src="https://source.unsplash.com/400x200/?Nature"
+                alt="Nature"
+              />
+            </div>
+          }
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('href', () => {
       it('supports href as a link', () => {
         const component = mount(

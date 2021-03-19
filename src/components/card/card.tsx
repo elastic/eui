@@ -26,7 +26,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
@@ -60,8 +60,41 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
+/**
+ * Certain props are only allowed when the layout is vertical
+ */
+type EuiCardPropsLayout = ExclusiveUnion<
+  {
+    layout?: 'vertical';
+    /**
+     * Changes alignment of the title and description
+     */
+    textAlign?: CardAlignment;
+    /**
+     * Accepts any combination of elements
+     */
+    footer?: ReactNode;
+    /**
+     * Accepts a url in string form or ReactElement for a custom image component
+     */
+    image?: string | ReactElement;
+    /**
+     * Adds a button to the bottom of the card to allow for in-place selection
+     */
+    selectable?: EuiCardSelectProps;
+  },
+  {
+    /**
+     * Change to "horizontal" if you need the icon to be left of the content.
+     * Horizontal layouts cannot be used in conjunction with `image`, `footer`, or `textAlign`.
+     */
+    layout: 'horizontal';
+  }
+>;
+
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
-  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
+  EuiCardPropsLayout & {
     /**
      * Cards are required to have at least a title and a description and/or children
      */
@@ -89,19 +122,9 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     icon?: ReactElement<EuiIconProps> | null;
 
     /**
-     * Accepts a url in string form or ReactElement for a custom image component
-     */
-    image?: string | ReactElement;
-
-    /**
      * Custom children
      */
     children?: ReactNode;
-
-    /**
-     * Accepts any combination of elements
-     */
-    footer?: ReactNode;
 
     /**
      * Use only if you want to forego a button in the footer and make the whole card clickable
@@ -113,16 +136,6 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     href?: string;
     target?: string;
     rel?: string;
-
-    /**
-     * Changes alignment of the title and description
-     */
-    textAlign?: CardAlignment;
-
-    /**
-     * Change to "horizontal" if you need the icon to be left of the content
-     */
-    layout?: CardLayout;
 
     /**
      * Add a badge to the card to label it as "Beta" or other non-GA state
@@ -138,12 +151,6 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
      */
     betaBadgeTitle?: string;
-
-    /**
-     * Adds a button to the bottom of the card to allow for in-place selection
-     */
-    selectable?: EuiCardSelectProps;
-
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
      * Leave as `undefined` to display as a default panel.
@@ -209,9 +216,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   };
 
   if (layout === 'horizontal') {
-    if (image || footer) {
+    if (image || footer || textAlign !== 'center' || selectable) {
       throw new Error(
-        "EuiCard: layout = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'."
+        "EuiCard: layout = horizontal' cannot be used in conjunction with 'image', 'footer', 'textAlign', or 'selectable'."
       );
     }
   }
