@@ -18,6 +18,9 @@ import { flexGroupConfig, flexGridConfig } from './playground';
 import FlexGroup from './flex_group';
 const flexGroupSource = require('!!raw-loader!./flex_group');
 
+import FlexItem from './flex_item';
+const flexItemSource = require('!!raw-loader!./flex_item');
+
 import FlexGroupWrap from './flex_group_wrap';
 const flexGroupWrapSource = require('!!raw-loader!./flex_group_wrap');
 
@@ -189,24 +192,42 @@ export const FlexExample = {
       snippet: flexSnippet,
     },
     {
-      title: 'Wrapping flex items',
+      title: 'Flex items are also flex',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: flexGroupWrapSource,
+          code: flexItemSource,
         },
       ],
       text: (
-        <p>
-          You can set <EuiCode>wrap</EuiCode> on <strong>EuiFlexGroup</strong>{' '}
-          if it contains <strong>EuiFlexItems</strong> with minimum widths,
-          which you want to wrap as the container becomes narrower.
-        </p>
+        <>
+          <p>
+            To allow for continued stretching of nested{' '}
+            <strong>EuiFlexGroup</strong>&apos;s and its items, each{' '}
+            <strong>EuiFlexItem</strong> also has the property of{' '}
+            <EuiCode language="sass">display: flex</EuiCode>. This can cause
+            unwanted layouts of your content when there are multiple elements or
+            if the element itself also has some specific{' '}
+            <EuiCode language="sass">display</EuiCode> property.
+          </p>
+          <p>
+            To alleviate this, the simplest method is to wrap your inner
+            children with a simple HTML element like a{' '}
+            <EuiCode language="html">{'<div />'}</EuiCode> or{' '}
+            <EuiCode language="html">{'<span />'}</EuiCode>.
+          </p>
+        </>
       ),
-      snippet: flexGroupWrap,
+      snippet: `<EuiFlexGroup>
+  <EuiFlexItem>
+    <div>
+      <EuiButton>Wrap them</EuiButton>
+    </div>
+  </EuiFlexItem>
+</EuiFlexGroup>`,
       demo: (
         <div className="guideDemo__highlightGrid">
-          <FlexGroupWrap />
+          <FlexItem />
         </div>
       ),
     },
@@ -324,6 +345,28 @@ export const FlexExample = {
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexJustify />
+        </div>
+      ),
+    },
+    {
+      title: 'Allowing flex items to wrap',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGroupWrapSource,
+        },
+      ],
+      text: (
+        <p>
+          You can set <EuiCode>wrap</EuiCode> on <strong>EuiFlexGroup</strong>{' '}
+          if it contains <strong>EuiFlexItems</strong> with minimum widths,
+          which you want to wrap as the container becomes narrower.
+        </p>
+      ),
+      snippet: flexGroupWrap,
+      demo: (
+        <div className="guideDemo__highlightGrid">
+          <FlexGroupWrap />
         </div>
       ),
     },
