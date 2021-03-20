@@ -99,7 +99,15 @@ export type EuiFormRowCommonProps = CommonProps & {
    * like documentation links.
    */
   labelAppend?: ReactNode;
+  /**
+   * Used to generate the wrapper `id`s and will be passed plainly to the child (input) if `inputId` is not supplied.
+   * If not provided, one will be generated
+   */
   id?: string;
+  /**
+   * Specific `id` passed to the label as the `htmlFor` attribute.
+   * If not provided, one will be generated
+   */
   inputId?: string;
   isInvalid?: boolean;
   /**

@@ -26,6 +26,7 @@ import {
   EuiSwitch,
   EuiTextArea,
   EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 import {
@@ -185,20 +186,22 @@ export const FormControlsExample = {
             <EuiCode language="html">{'<input type="text" >'}</EuiCode>.
           </p>
           <EuiCallOut>
-            <p>
-              <strong>EuiTextField</strong> is <strong>currently</strong> the
-              only field component to accept{' '}
-              <Link to="/forms/form-layouts#form-and-form-rows">
-                <strong>EuiFormRow</strong>
-              </Link>{' '}
-              props directly. For instance, when providing the{' '}
-              <EuiCode>label</EuiCode> prop, it will automically wrap itself in
-              a <strong>EuiFormRow</strong>. Other promoted props include{' '}
-              <EuiCode>helpText</EuiCode>, <EuiCode>error</EuiCode> , and{' '}
-              <EuiCode>display</EuiCode>. Providing form row props at this level
-              also decreases the need for duplicate props like{' '}
-              <EuiCode>isInvalid</EuiCode> and <EuiCode>fullWidth</EuiCode>.
-            </p>
+            <EuiText size="m">
+              <p>
+                <strong>EuiTextField</strong> is <strong>currently</strong> the
+                only field component to accept{' '}
+                <Link to="/forms/form-layouts#form-and-form-rows">
+                  <strong>EuiFormRow</strong>
+                </Link>{' '}
+                props directly. For instance, when providing the{' '}
+                <EuiCode>label</EuiCode> prop, it will automically wrap itself
+                in a <strong>EuiFormRow</strong>. Other promoted props include{' '}
+                <EuiCode>helpText</EuiCode>, <EuiCode>error</EuiCode> , and{' '}
+                <EuiCode>display</EuiCode>. Providing form row props at this
+                level also decreases the need for duplicate props like{' '}
+                <EuiCode>isInvalid</EuiCode> and <EuiCode>fullWidth</EuiCode>.
+              </p>
+            </EuiText>
           </EuiCallOut>
         </>
       ),

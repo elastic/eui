@@ -43,7 +43,7 @@ type EuiFieldTextSupportedRowDisplays =
 
 export type EuiFieldTextProps = Omit<
   EuiFormRowCommonProps,
-  'children' | 'display' | 'hasChildLabel' | 'describedByIds'
+  'children' | 'display' | 'hasChildLabel' | 'describedByIds' | 'inputId'
 > &
   InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
