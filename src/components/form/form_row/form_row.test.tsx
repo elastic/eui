@@ -67,6 +67,39 @@ describe('EuiFormRow', () => {
     );
   });
 
+  test('ties together parts for accessibility if input has its own id', () => {
+    const props = {
+      label: 'Label',
+      helpText: 'Help text',
+      isInvalid: true,
+      error: ['Error one', 'Error two'],
+    };
+
+    const tree = shallow(
+      <EuiFormRow inputId="inputId" {...requiredProps} {...props}>
+        <input id="inputId" />
+      </EuiFormRow>
+    );
+
+    // Input is labeled by the label.
+    expect(tree.find('input').prop('id')).toEqual('inputId');
+    expect(tree.find('EuiFormLabel').prop('htmlFor')).toEqual('inputId');
+
+    // Input is described by help and error text.
+    expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
+      'generated-id-help'
+    );
+    expect(tree.find('EuiFormErrorText').at(0).prop('id')).toEqual(
+      'generated-id-error-0'
+    );
+    expect(tree.find('EuiFormErrorText').at(1).prop('id')).toEqual(
+      'generated-id-error-1'
+    );
+    expect(tree.find('input').prop('aria-describedby')).toEqual(
+      'generated-id-help generated-id-error-0 generated-id-error-1'
+    );
+  });
+
   describe('props', () => {
     test('label is rendered', () => {
       const component = shallow(

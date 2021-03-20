@@ -36,7 +36,7 @@ import {
 
 import { htmlIdGenerator } from '../../../services';
 
-type EuiFieldTextSupportedRowDisplays =
+export type _EuiFieldTextSupportedRowDisplays =
   | 'row'
   | 'rowCompressed'
   | 'columnCompressed';
@@ -82,7 +82,7 @@ export type EuiFieldTextProps = Omit<
     /**
      * Custom list of supported row displays
      */
-    display?: EuiFieldTextSupportedRowDisplays;
+    display?: _EuiFieldTextSupportedRowDisplays;
   };
 
 export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
