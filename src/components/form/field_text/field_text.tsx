@@ -27,11 +27,14 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiFormRow } from '../form_row';
+
 import {
+  EuiFormRow,
   EuiFormRowCommonProps,
   euiFormRowDisplayIsCompressed,
 } from '../form_row/form_row';
+
+import { htmlIdGenerator } from '../../../services';
 
 type EuiFieldTextSupportedRowDisplays =
   | 'row'
@@ -40,7 +43,7 @@ type EuiFieldTextSupportedRowDisplays =
 
 export type EuiFieldTextProps = Omit<
   EuiFormRowCommonProps,
-  'children' | 'display' | 'hasChildLabel'
+  'children' | 'display' | 'hasChildLabel' | 'describedByIds'
 > &
   InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -105,10 +108,12 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   labelAppend,
   labelProps,
   hasEmptyLabelSpace,
-  describedByIds,
   display = 'row',
   ...rest
 }) => {
+  // Force an id if one was not passed
+  id = id || htmlIdGenerator('euiFieldText')();
+
   // Force compressed if `display` is compressed
   compressed = euiFormRowDisplayIsCompressed(display) || compressed;
 
@@ -156,13 +161,13 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     return formControlLayout;
 
   const formRowProps = {
+    inputId: id,
     helpText,
     error,
     label,
     labelAppend,
     labelProps,
     hasEmptyLabelSpace,
-    describedByIds: id ? [id] : undefined,
     display,
     fullWidth,
     isInvalid,

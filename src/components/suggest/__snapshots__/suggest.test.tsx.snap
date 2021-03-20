@@ -19,6 +19,7 @@ exports[`EuiSuggest is rendered 1`] = `
               aria-label="aria-label"
               class="euiFieldText euiFieldText--fullWidth"
               data-test-subj="test subject string"
+              id="euiFieldText_generated-id"
               type="text"
               value=""
             />

@@ -22,6 +22,27 @@ export const FieldTextConfig = () => {
     : EuiFieldText.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
+  propsToUse.label = {
+    ...propsToUse.label,
+    type: PropTypes.String,
+    value: 'Text field label',
+  };
+
+  propsToUse.error = {
+    ...propsToUse.error,
+    type: PropTypes.String,
+  };
+
+  propsToUse.labelAppend = {
+    ...propsToUse.labelAppend,
+    type: PropTypes.String,
+  };
+
+  propsToUse.helpText = {
+    ...propsToUse.helpText,
+    type: PropTypes.String,
+  };
+
   propsToUse.append = {
     ...propsToUse.append,
     type: PropTypes.String,

@@ -25,6 +25,7 @@ exports[`EuiFieldText props controlOnly is rendered 1`] = `
 <eui-validatable-control>
   <input
     class="euiFieldText"
+    id="euiFieldText_generated-id"
     type="text"
   />
 </eui-validatable-control>
@@ -33,10 +34,12 @@ exports[`EuiFieldText props controlOnly is rendered 1`] = `
 exports[`EuiFieldText props fullWidth is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="true"
+  inputid="euiFieldText_generated-id"
 >
   <eui-validatable-control>
     <input
       class="euiFieldText euiFieldText--fullWidth"
+      id="euiFieldText_generated-id"
       type="text"
     />
   </eui-validatable-control>
@@ -46,12 +49,14 @@ exports[`EuiFieldText props fullWidth is rendered 1`] = `
 exports[`EuiFieldText props isInvalid is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
+  inputid="euiFieldText_generated-id"
 >
   <eui-validatable-control
     isinvalid="true"
   >
     <input
       class="euiFieldText"
+      id="euiFieldText_generated-id"
       type="text"
     />
   </eui-validatable-control>
@@ -61,11 +66,13 @@ exports[`EuiFieldText props isInvalid is rendered 1`] = `
 exports[`EuiFieldText props isLoading is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
+  inputid="euiFieldText_generated-id"
   isloading="true"
 >
   <eui-validatable-control>
     <input
       class="euiFieldText euiFieldText-isLoading"
+      id="euiFieldText_generated-id"
       type="text"
     />
   </eui-validatable-control>
@@ -75,11 +82,13 @@ exports[`EuiFieldText props isLoading is rendered 1`] = `
 exports[`EuiFieldText props readOnly is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
+  inputid="euiFieldText_generated-id"
   readonly="true"
 >
   <eui-validatable-control>
     <input
       class="euiFieldText"
+      id="euiFieldText_generated-id"
       readonly=""
       type="text"
     />

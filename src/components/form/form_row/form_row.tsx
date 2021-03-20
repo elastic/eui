@@ -85,9 +85,12 @@ export type EuiFormRowCommonProps = CommonProps & {
    * ReactElement to render as this component's content
    */
   children: ReactElement;
+  /**
+   * The content for the `<label>` (or `<legend>`) element
+   */
   label?: ReactNode;
   /**
-   * Pass some common props to the `<label>` or `<legend>` element
+   * Pass some common props to the `<label>` (or `<legend>`) element
    */
   labelProps?: CommonProps;
   /**
@@ -97,6 +100,7 @@ export type EuiFormRowCommonProps = CommonProps & {
    */
   labelAppend?: ReactNode;
   id?: string;
+  inputId?: string;
   isInvalid?: boolean;
   /**
    * Error nodes will only show when `isInvalid` is true;
@@ -192,6 +196,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       display,
       hasChildLabel,
       id: propsId,
+      inputId,
       ...rest
     } = this.props;
 
@@ -247,7 +252,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       } else {
         labelProps = {
           ..._labelProps,
-          htmlFor: hasChildLabel ? id : undefined,
+          htmlFor: hasChildLabel ? inputId || id : undefined,
           isFocused: this.state.isFocused,
           type: labelType,
         };
@@ -286,7 +291,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     }
 
     const field = cloneElement(Children.only(children), {
-      id,
+      id: inputId ? undefined : id,
+      ...children.props,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,
