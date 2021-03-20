@@ -5,6 +5,7 @@
 .euiComboBoxOptionsList {
   // Remove transforms from popover panel
   transform: none !important; // sass-lint:disable-line no-important
+  top: 0;
 
   &.euiPopover__panel-isAttached.euiComboBoxOptionsList--top { /* 1 */
     @include euiBottomShadowFlat;

@@ -22,6 +22,7 @@ import React, {
   ReactNode,
   HTMLAttributes,
   FormHTMLAttributes,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
@@ -54,6 +55,10 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   invalidCallout = 'above',
   ...rest
 }) => {
+  const handleFocus = useCallback((node) => {
+    node?.focus();
+  }, []);
+
   const classes = classNames('euiForm', className);
 
   let optionalErrors: JSX.Element | null = null;
@@ -80,6 +85,8 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
         default="Please address the highlighted errors.">
         {(addressFormErrors: string) => (
           <EuiCallOut
+            tabIndex={-1}
+            ref={handleFocus}
             className="euiForm__errors"
             title={addressFormErrors}
             color="danger"

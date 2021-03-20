@@ -241,6 +241,8 @@ export {
 
 export { EuiMutationObserver } from './observer/mutation_observer';
 
+export { EuiNotificationEvent } from './notification';
+
 export { EuiOutsideClickDetector } from './outside_click_detector';
 
 export { EuiOverlayMask } from './overlay_mask';
@@ -256,14 +258,12 @@ export {
   EuiPageHeaderContent,
   EuiPageHeaderSection,
   EuiPageSideBar,
-  EuiPageSideBarProps,
   EuiPageTemplate,
-  EuiPageTemplateProps,
 } from './page';
 
 export { EuiPagination, EuiPaginationButton } from './pagination';
 
-export { EuiPanel } from './panel';
+export { EuiPanel, EuiSplitPanel } from './panel';
 
 export {
   EuiInputPopover,
@@ -296,7 +296,7 @@ export {
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable';
 
-export { EuiSideNav, EuiSideNavProps } from './side_nav';
+export { EuiSideNav } from './side_nav';
 
 export { EuiSpacer } from './spacer';
 

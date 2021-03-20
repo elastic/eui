@@ -30,7 +30,16 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import playgrounds from './playground';
+import {
+  FieldTextConfig,
+  FieldSearchConfig,
+  FieldNumberConfig,
+  FieldPasswordConfig,
+  TextAreaConfig,
+  CheckboxConfig,
+  RadioConfig,
+  SwitchConfig,
+} from './playground';
 
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
@@ -212,6 +221,7 @@ export const FormControlsExample = {
         EuiFieldText,
       },
       demo: <FieldText />,
+      playground: FieldTextConfig,
     },
     {
       title: 'Search field',
@@ -230,6 +240,7 @@ export const FormControlsExample = {
         EuiFieldSearch,
       },
       demo: <FieldSearch />,
+      playground: FieldSearchConfig,
     },
     {
       title: 'Number field',
@@ -248,6 +259,7 @@ export const FormControlsExample = {
         EuiFieldNumber,
       },
       demo: <FieldNumber />,
+      playground: FieldNumberConfig,
     },
     {
       title: 'Password field',
@@ -266,6 +278,7 @@ export const FormControlsExample = {
         EuiFieldPassword,
       },
       demo: <FieldPassword />,
+      playground: FieldPasswordConfig,
     },
     {
       title: 'Select',
@@ -319,6 +332,7 @@ export const FormControlsExample = {
         EuiTextArea,
       },
       demo: <TextArea />,
+      playground: TextAreaConfig,
     },
     {
       title: 'File Picker',
@@ -369,6 +383,7 @@ export const FormControlsExample = {
         EuiCheckbox,
       },
       demo: <Checkbox />,
+      playground: CheckboxConfig,
     },
     {
       title: 'Checkbox group',
@@ -414,6 +429,7 @@ export const FormControlsExample = {
         EuiRadio,
       },
       demo: <Radio />,
+      playground: RadioConfig,
     },
     {
       title: 'Radio group',
@@ -463,6 +479,7 @@ export const FormControlsExample = {
         EuiSwitch,
       },
       demo: <Switch />,
+      playground: SwitchConfig,
     },
     {
       title: 'Fieldset and legend',
@@ -645,5 +662,4 @@ export const FormControlsExample = {
       demo: <FormControlLayoutRange />,
     },
   ],
-  playground: playgrounds,
 };

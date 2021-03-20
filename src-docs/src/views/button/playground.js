@@ -15,13 +15,24 @@ export default () => {
 
   propsToUse.children = {
     value: 'Button',
-    type: PropTypes.ReactNode,
-    description: 'Label of the button',
+    type: PropTypes.String,
+    description: 'Visible label',
+    hidden: false,
   };
 
   propsToUse.minWidth = {
     ...propsToUse.minWidth,
     type: PropTypes.Number,
+  };
+
+  propsToUse.color = {
+    ...propsToUse.color,
+    defaultValue: 'primary',
+  };
+
+  propsToUse.size = {
+    ...propsToUse.size,
+    defaultValue: 'm',
   };
 
   const setGhostBackground = {

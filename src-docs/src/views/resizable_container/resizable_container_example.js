@@ -11,7 +11,6 @@ import {
   EuiCodeBlock,
   EuiLink,
   EuiResizableContainer,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
 // eslint-disable-next-line
@@ -183,7 +182,6 @@ const collapsibleExtSnippet = `<EuiResizableContainer style={{ height: '400px' }
 
 export const ResizableContainerExample = {
   title: 'Resizable container',
-  isNew: true,
   intro: (
     <EuiText>
       <p>
@@ -201,8 +199,6 @@ export const ResizableContainerExample = {
         <strong>EuiResizablePanel</strong> component and put the{' '}
         <strong>EuiResizableButton</strong> component between.
       </p>
-
-      <EuiSpacer size="l" />
     </EuiText>
   ),
   sections: [

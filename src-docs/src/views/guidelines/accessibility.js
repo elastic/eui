@@ -15,6 +15,7 @@ import {
   EuiTitle,
   EuiAspectRatio,
   EuiIcon,
+  EuiTextColor,
 } from '../../../../src/components';
 
 const codeBlockProps = {
@@ -27,7 +28,7 @@ export default {
   title: 'Accessibility guidelines',
   intro: (
     <>
-      <EuiText className="guideSection__text" grow={false}>
+      <EuiText grow={false}>
         <p>
           EUI provides a strong start to building accessibility into your apps.
           The components provided strive to meet{' '}
@@ -72,6 +73,7 @@ export default {
   sections: [
     {
       title: 'Headings and landmarks',
+      wrapText: false,
       text: (
         <>
           <EuiText grow={false}>
@@ -92,18 +94,16 @@ export default {
               </li>
               <li>Doesn&apos;t duplicate content</li>
             </ul>
+            <h3>Heading examples</h3>
           </EuiText>
-
-          <h3>Heading examples</h3>
 
           <GuideRule>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="do"
-              text="Do. Descend through headings as you work your way through the document."
-              panelStyles={{ justifyContent: 'flex-start' }}>
-              <EuiCodeBlock {...codeBlockProps}>
+              text="Descend through headings as you work your way through the document."
+              panelStyles={{ justifyContent: 'flex-start' }}
+              panelProps={{ color: 'subdued' }}>
+              <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiText>
   <h1>Discover your data</h1>
   <p>Some content</p>
@@ -115,12 +115,11 @@ export default {
             </GuideRuleExample>
 
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="dont"
-              text="Don’t. This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation."
-              panelStyles={{ justifyContent: 'flex-start' }}>
-              <EuiCodeBlock {...codeBlockProps}>
+              text="This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation."
+              panelStyles={{ justifyContent: 'flex-start' }}
+              panelProps={{ color: 'subdued' }}>
+              <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiText>
   <EuiScreenReaderOnly>
     <h1>Discover your data</h1>
@@ -135,14 +134,14 @@ export default {
               </EuiCodeBlock>
             </GuideRuleExample>
           </GuideRule>
+
           <GuideRule>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="do"
-              text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context."
-              panelStyles={{ justifyContent: 'flex-start' }}>
-              <EuiCodeBlock {...codeBlockProps}>
+              text="This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context."
+              panelStyles={{ justifyContent: 'flex-start' }}
+              panelProps={{ color: 'subdued' }}>
+              <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
 <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
 <EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
@@ -151,24 +150,25 @@ export default {
             </GuideRuleExample>
           </GuideRule>
 
-          <EuiSpacer size="xxl" />
+          <EuiSpacer size="xl" />
 
-          <EuiText className="guideSection__text" grow={false}>
-            <EuiCallOut
-              iconType="bell"
-              size="s"
-              title={
-                <span>
-                  <Link to="/display/title">
-                    <strong>EuiTitle</strong>
-                  </Link>{' '}
-                  gives you a way to separate your presentation from your
-                  semantic markup.
-                </span>
-              }
-            />
+          <EuiCallOut
+            iconType="bell"
+            size="s"
+            title={
+              <span>
+                <Link to="/display/title">
+                  <strong>EuiTitle</strong>
+                </Link>{' '}
+                gives you a way to separate your presentation from your semantic
+                markup.
+              </span>
+            }
+          />
 
-            <EuiSpacer />
+          <EuiSpacer size="xl" />
+
+          <EuiText grow={false}>
             <p>
               <strong>Landmarks</strong> are another way for screen readers to
               navigate pages. A benefit of landmarks is that they offer more
@@ -188,18 +188,16 @@ export default {
               inside of the landmark (even if it is visually hidden) and
               referenced by <EuiCode>aria-labelledby</EuiCode> is preferred.
             </p>
+            <h3>Landmarks example</h3>
           </EuiText>
-
-          <h3>Landmarks example</h3>
 
           <GuideRule>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="do"
-              text="Do. Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements."
-              panelStyles={{ justifyContent: 'flex-start' }}>
-              <EuiCodeBlock {...codeBlockProps}>{`<body>
+              text="Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements."
+              panelStyles={{ justifyContent: 'flex-start' }}
+              panelProps={{ color: 'subdued' }}>
+              <EuiCodeBlock {...codeBlockProps} transparentBackground>{`<body>
   <header className="appHeader">
     <!-- content -->
   </header>
@@ -210,12 +208,11 @@ export default {
 </body>`}</EuiCodeBlock>
             </GuideRuleExample>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="dont"
-              text="Don’t. Classes provide no semantic meaning and not all elements provide semantic meaning either."
-              panelStyles={{ justifyContent: 'flex-start' }}>
-              <EuiCodeBlock {...codeBlockProps}>{`<body>
+              text="Classes provide no semantic meaning and not all elements provide semantic meaning either."
+              panelStyles={{ justifyContent: 'flex-start' }}
+              panelProps={{ color: 'subdued' }}>
+              <EuiCodeBlock {...codeBlockProps} transparentBackground>{`<body>
   <div className="appHeader"></div>
   <discover-app></discover-app>
   <ul className="appFooter"></ul>
@@ -224,16 +221,18 @@ export default {
           </GuideRule>
           {/* This spacer is hacks because GuideRuleExamples can't have multi-line captions */}
           <EuiSpacer size="xxl" />
-          <h3>Headings and named landmarks example</h3>
+          <EuiTitle size="s">
+            <h3>Headings and named landmarks example</h3>
+          </EuiTitle>
           <GuideRule>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="do"
-              text="Do. Use landmarks and headings together to build complex pages."
-              panelStyles={{ justifyContent: 'flex-start' }}>
+              text="Use landmarks and headings together to build complex pages."
+              panelStyles={{ justifyContent: 'flex-start' }}
+              panelProps={{ color: 'subdued' }}>
               <EuiCodeBlock
-                {...codeBlockProps}>{`<header aria-labelledby="pageHeading">
+                {...codeBlockProps}
+                transparentBackground>{`<header aria-labelledby="pageHeading">
   <h1 id="pageHeading">Discover your data</h1>
   <form role="search" aria-label="Site search"> <!-- input + label go in here --> </form>
 <header>
@@ -246,7 +245,7 @@ export default {
             </GuideRuleExample>
           </GuideRule>
           <EuiSpacer size="l" />
-          <EuiText className="guideSection__text" size="s" grow={false}>
+          <EuiText size="s" grow={false}>
             <h3 id="further-reading">Further reading</h3>
             <ul aria-labelledby="landmarks-headings further-reading">
               <li>
@@ -281,6 +280,7 @@ export default {
     },
     {
       title: 'Page titles',
+      wrapText: false,
       text: (
         <>
           <EuiText grow={false}>
@@ -292,7 +292,7 @@ export default {
             </p>
           </EuiText>
           <EuiSpacer />
-          <EuiFlexGroup gutterSize="s">
+          <EuiFlexGroup alignItems="center" gutterSize="s">
             <EuiFlexItem grow={false}>
               <EuiIcon type="checkInCircleFilled" size="l" color="secondary" />
             </EuiFlexItem>
@@ -307,11 +307,9 @@ export default {
           </EuiFlexGroup>
           <GuideRule>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="do"
               minHeight={200}
-              text="Do. These are good example of page titles.">
+              text="These are good example of page titles.">
               <div>
                 <strong className="eui-textCenter eui-displayBlock">
                   Discover - Kibana
@@ -323,11 +321,16 @@ export default {
               </div>
             </GuideRuleExample>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="dont"
               minHeight={200}
-              text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
+              text={
+                <>
+                  Though unique, this does not provide enough context. <br />{' '}
+                  <EuiTextColor color="secondary">
+                    <strong>Use:</strong> Watchers - Management - Kibana
+                  </EuiTextColor>
+                </>
+              }>
               <strong className="eui-textCenter eui-displayBlock">
                 Watchers
               </strong>
@@ -335,11 +338,17 @@ export default {
           </GuideRule>
           <GuideRule>
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="dont"
               minHeight={200}
-              text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
+              text={
+                <>
+                  Although it provides all the context, putting the most
+                  important bit at the end is hard to find. <br />{' '}
+                  <EuiTextColor color="secondary">
+                    <strong>Use:</strong> Spaces - Management - Kibana
+                  </EuiTextColor>
+                </>
+              }>
               <strong className="eui-textCenter eui-displayBlock">
                 Elastic Kibana - Spaces
               </strong>
@@ -347,20 +356,26 @@ export default {
             {/* This spacer is hacks because code blocks can't have multi-line captions */}
             <EuiSpacer size="xl" />
             <GuideRuleExample
-              panel={false}
-              frame="frame"
               type="dont"
               minHeight={200}
-              text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
+              text={
+                <>
+                  Although this provides all the context and in a good order, a
+                  title is not the place for any extra words. <br />{' '}
+                  <EuiTextColor color="secondary">
+                    <strong>Use:</strong> Reporting - Management - Kibana
+                  </EuiTextColor>
+                </>
+              }>
               <strong className="eui-textCenter eui-displayBlock">
                 This is the Reporting page of the Management section of Kibana.
               </strong>
             </GuideRuleExample>
           </GuideRule>
-          <EuiSpacer size="xl" />
+
           <EuiSpacer size="xl" />
 
-          <EuiText className="guideSection__text" size="s" grow={false}>
+          <EuiText size="s" grow={false}>
             <h3>Further reading</h3>
             <ul aria-labelledby="titles further-reading">
               <li>
@@ -375,9 +390,10 @@ export default {
     },
     {
       title: 'Focus management',
+      wrapText: false,
       text: (
         <>
-          <EuiText className="guideSection__text" grow={false}>
+          <EuiText grow={false}>
             <h3>Where is the focus state right now?</h3>
             <p>
               Focus states are an important part of design because they let
@@ -467,6 +483,7 @@ export default {
     },
     {
       title: 'Naming',
+      wrapText: false,
       text: (
         <>
           <EuiText grow={false}>
@@ -626,9 +643,10 @@ export default {
     },
     {
       title: 'Testing considerations',
+      wrapText: false,
       text: (
         <>
-          <EuiText className="guideSection__text" grow={false}>
+          <EuiText grow={false}>
             <p>
               There are a lot of aspects to accessibility, and covering all the
               bases can be a lot to keep in mind. By relying on standards, you
@@ -718,9 +736,10 @@ export default {
     },
     {
       title: 'Learning resources',
+      wrapText: false,
       text: (
         <>
-          <EuiText className="guideSection__text" grow={false}>
+          <EuiText grow={false}>
             <ul>
               <li>
                 A wide-reaching{' '}

@@ -95,3 +95,15 @@ exports[`EuiImage is rendered with custom size 1`] = `
   />
 </figure>
 `;
+
+exports[`EuiImage is rendered with src 1`] = `
+<figure
+  class="euiImage euiImage--floatLeft euiImage--original"
+>
+  <img
+    alt="alt"
+    class="euiImage__img"
+    src="/cat.jpg"
+  />
+</figure>
+`;

@@ -9,7 +9,6 @@ import {
   EuiCode,
   EuiCollapsibleNav,
   EuiText,
-  EuiSpacer,
   EuiCallOut,
   EuiCollapsibleNavGroup,
 } from '../../../../src/components';
@@ -32,18 +31,12 @@ const collapsibleNavAllHtml = renderToHtml(CollapsibleNavAll);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
-  isNew: true,
   intro: (
     <EuiText>
       <p>
         This is a high level component that creates a flyout-style navigational
-        pane. It is the next evolution of{' '}
-        <Link to="/layout/nav-drawer">
-          <strong>EuiNavDrawer</strong>
-        </Link>{' '}
-        which will be deprecated soon.
+        pane.
       </p>
-      <EuiSpacer size="m" />
     </EuiText>
   ),
   sections: [
@@ -119,6 +112,9 @@ export const CollapsibleNavExample = {
         EuiCollapsibleNavGroup,
       },
       demo: <CollapsibleNavGroup />,
+      demoPanelProps: {
+        paddingSize: 'none',
+      },
       snippet: `<EuiCollapsibleNavGroup
   title="Nav group"
   iconType="logo"

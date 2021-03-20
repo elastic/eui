@@ -113,7 +113,7 @@ export class AppView extends Component {
       const route = getRoute(currentRoute.name);
 
       if (route) {
-        routes.history.push(route.path);
+        routes.history.push(`/${route.path}`);
       }
     }
   };
