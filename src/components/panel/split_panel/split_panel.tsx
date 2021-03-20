@@ -19,7 +19,7 @@
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, _EuiPanelProps, EuiPanelProps } from '../panel';
+import { EuiPanel, _EuiPanelProps } from '../panel';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 
@@ -45,7 +45,11 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
   };
 
   return (
-    <EuiPanel className={classes} {...panelProps} {...(rest as EuiPanelProps)}>
+    <EuiPanel
+      element="div"
+      className={classes}
+      {...panelProps}
+      {...(rest as _EuiPanelProps)}>
       {children}
     </EuiPanel>
   );
@@ -97,7 +101,7 @@ export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = 
       paddingSize="none"
       grow={false}
       className={classes}
-      {...(rest as EuiPanelProps)}>
+      {...(rest as _EuiPanelProps)}>
       {children}
     </EuiPanel>
   );

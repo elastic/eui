@@ -103,8 +103,13 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       hasBorder={hasBorder}
       direction="row"
       className={classes}>
-      <EuiSplitPanel.Inner color={checked ? 'primary' : 'subdued'} grow={false}>
-        <div className="euiCheckableCard__control">{checkableElement}</div>
+      <EuiSplitPanel.Inner
+        // Bubbles up the change event when clicking on the whole div for extra affordance
+        // @ts-ignore `onChange` doesn't match that of HTMLInput?
+        onClick={disabled ? undefined : () => rest.onChange()}
+        color={checked ? 'primary' : 'subdued'}
+        grow={false}>
+        {checkableElement}
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner>
         <label
