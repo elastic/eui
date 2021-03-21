@@ -21,10 +21,11 @@ import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
+import { EuiFormControlLayoutProps } from '../form_control_layout';
 import {
-  EuiFormControlLayout,
-  EuiFormControlLayoutProps,
-} from '../form_control_layout';
+  EuiFormControlLayoutUpdated,
+  renderSideNode,
+} from '../form_control_layout/form_control_layout_updated';
 
 import { EuiValidatableControl } from '../validatable_control';
 
@@ -109,10 +110,24 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   labelProps,
   hasEmptyLabelSpace,
   display = 'row',
+  'aria-describedby': ariaDescribedBy,
   ...rest
 }) => {
   // Force an id if one was not passed
   id = id || htmlIdGenerator('euiFieldText')();
+
+  const { finalNodes: prependNodes, finalNodeIDs: prependIDs } = renderSideNode(
+    'prepend',
+    id,
+    prepend
+  );
+  const { finalNodes: appendNodes, finalNodeIDs: appendIDs } = renderSideNode(
+    'append',
+    id,
+    append
+  );
+
+  // console.log(prependIDs);
 
   // Force compressed if `display` is compressed
   compressed = euiFormRowDisplayIsCompressed(display) || compressed;
@@ -136,6 +151,9 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
         value={value}
         ref={inputRef}
         readOnly={readOnly}
+        aria-describedby={
+          classNames(ariaDescribedBy, prependIDs, appendIDs) || undefined
+        }
         {...rest}
       />
     </EuiValidatableControl>
@@ -144,17 +162,17 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   if (controlOnly) return control;
 
   const formControlLayout = (
-    <EuiFormControlLayout
+    <EuiFormControlLayoutUpdated
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
       readOnly={readOnly}
-      prepend={prepend}
-      append={append}
+      prepend={prependNodes}
+      append={appendNodes}
       inputId={id}>
       {control}
-    </EuiFormControlLayout>
+    </EuiFormControlLayoutUpdated>
   );
 
   if (!label && !error && !helpText && !hasEmptyLabelSpace)

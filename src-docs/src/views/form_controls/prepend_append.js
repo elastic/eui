@@ -179,6 +179,16 @@ export default () => {
         readOnly={isReadOnly}
         aria-label="Use aria labels when no actual label is in use"
       />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="String and button icon in tooltip & button icon in popover and string "
+        prepend={['String', 'String 2']}
+        append={['String', 'String 2']}
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </Fragment>
   );
 };
