@@ -65,7 +65,7 @@ directly in the code. And unit test coverage for the UI components allows us to 
 ### Consumption
 
 * [Consuming EUI][consuming]
-* [Using EUI with react-router](react-router)
+* [Using EUI with react-router](wiki/react-router.md)
 
 ### Maintenance / Contributing
 
@@ -88,6 +88,5 @@ directly in the code. And unit test coverage for the UI components allows us to 
 
 [license]: LICENSE
 [faq]: FAQ.md
-[consuming]: src-docs/src/views/getting_started/consuming.md
-[react-router]: wiki/react-router.md
+[consuming]: wiki/consuming.md
 [docs]: https://elastic.github.io/eui/

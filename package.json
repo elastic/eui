@@ -57,7 +57,7 @@
     "chroma-js": "^2.1.0",
     "classnames": "^2.2.6",
     "highlight.js": "^9.18.5",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
     "react-ace": "^7.0.5",
@@ -78,7 +78,7 @@
     "tabbable": "^3.0.0",
     "text-diff": "^1.0.1",
     "unified": "^9.2.0",
-    "url-parse": "^1.4.7",
+    "url-parse": "^1.5.0",
     "uuid": "^8.3.0",
     "vfile": "^4.2.0"
   },
