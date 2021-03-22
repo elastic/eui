@@ -497,7 +497,7 @@ exports[`EuiPageTemplate template is rendered with pageHeader 4`] = `
       aria-label="aria-label"
       class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
       data-test-subj="test subject string"
-      style="margin-bottom:0"
+      style="padding-bottom:0"
       title="Page title"
     />
     <div
@@ -602,15 +602,20 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 1`] = `
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone"
   >
-    <div
-      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+      role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
-      />
-    </div>
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
   </div>
 </div>
 `;
@@ -696,15 +701,20 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone"
   >
-    <div
-      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    <main
+      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+      role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
-      />
-    </div>
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+      >
+        <div
+          class="euiPageContentBody euiPage--restrictWidth-default"
+        />
+      </div>
+    </main>
   </div>
 </div>
 `;
@@ -780,6 +790,42 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
         class="euiPageContentBody euiPage--restrictWidth-default"
       />
     </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+    <section
+      aria-label="Page level controls"
+      class="euiBottomBar euiBottomBar--sticky"
+      style="left:0;right:0;bottom:0"
+    >
+      <h2
+        class="euiScreenReaderOnly"
+      >
+        Page level controls
+      </h2>
+      Bottom Bar
+    </section>
+    <p
+      aria-live="assertive"
+      class="euiScreenReaderOnly"
+    >
+      There is a new region landmark with page level controls at the end of the document.
+    </p>
   </main>
 </div>
 `;

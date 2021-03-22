@@ -14,10 +14,6 @@
     border-right-width: 0;
     border-bottom-width: 0;
   }
-
-  &.euiPanel > .euiPageHeader .euiPageHeaderContent {
-    border-bottom: $euiBorderThin;
-  }
 }
 
 // Uses the same values as EuiPanel
@@ -28,15 +24,8 @@
     & > .euiPageHeader:not([class*='--padding']) {
       // Match the body's padding for spacing if it doesn't have it's own
       margin-bottom: $amount;
-    }
-
-    // When the page header is actually inside of a panelled page body,
-    // We want to add some extra separation between it and the content body
-    &.euiPanel > .euiPageHeader .euiPageHeaderContent {
-      border-bottom: none;
-    }
-
-    &.euiPanel > .euiPageHeader {
+      // When the page header is actually inside of a panelled page body,
+      // We want to add some extra separation between it and the content body
       border-bottom: $euiBorderThin;
 
       &:not(.euiPageHeader--tabsAtBottom) {
