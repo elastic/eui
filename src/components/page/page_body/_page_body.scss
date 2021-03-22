@@ -14,6 +14,10 @@
     border-right-width: 0;
     border-bottom-width: 0;
   }
+
+  &.euiPanel > .euiPageHeader .euiPageHeaderContent {
+    border-bottom: $euiBorderThin;
+  }
 }
 
 // Uses the same values as EuiPanel
@@ -28,6 +32,10 @@
 
     // When the page header is actually inside of a panelled page body,
     // We want to add some extra separation between it and the content body
+    &.euiPanel > .euiPageHeader .euiPageHeaderContent {
+      border-bottom: none;
+    }
+
     &.euiPanel > .euiPageHeader {
       border-bottom: $euiBorderThin;
 
