@@ -38,7 +38,6 @@ export const ElasticChartsThemingExample = {
           Elastic.
         </p>
       </EuiText>
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

@@ -17,6 +17,7 @@ const confirmModalSource = require('!!raw-loader!./confirm_modal');
 const confirmModalHtml = renderToHtml(ConfirmModal);
 
 import OverflowTest from './overflow_test';
+import { EuiText } from '../../../../src/components/text';
 const overflowTestSource = require('!!raw-loader!./overflow_test');
 const overflowTestHtml = renderToHtml(OverflowTest);
 
@@ -56,8 +57,19 @@ const confirmModalSnippet = [
 
 export const ModalExample = {
   title: 'Modal',
+  intro: (
+    <EuiText>
+      <p>
+        Use a modal to temporarily interrupt a user’s current task and block
+        interactions to the content below it. <strong>EuiModal</strong> comes
+        with a wrapping <strong>EuiOverlayMask</strong> to obscure the content
+        beneath.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
+      title: 'Form modal',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -71,12 +83,8 @@ export const ModalExample = {
       text: (
         <>
           <p>
-            Use a modal to temporarily interrupt a user’s current task and block
-            interactions to the content below it. <strong>EuiModal</strong>{' '}
-            comes with a wrapping <strong>EuiOverlayMask</strong> to obscure the
-            content beneath. Unlike <Link to="/layout/flyout">flyouts</Link>,
-            modals cannot be dismissed by clicking on the overlay mask. This is
-            inline with our{' '}
+            Unlike <Link to="/layout/flyout">flyouts</Link>, modals cannot be
+            dismissed by clicking on the overlay mask. This is inline with our{' '}
             <Link to="/layout/modal/guidelines">modal usage guidelines</Link>{' '}
             which requires there to be a primary action button, even if that
             button simply closes the modal.

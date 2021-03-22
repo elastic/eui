@@ -1,18 +1,45 @@
 .euiSplitPanel {
-  overflow: hidden; // Hide backgrounds within border-radius
   display: flex;
   flex-direction: column;
   min-width: 0;
 
-  &--row {
-    flex-direction: row;
-
-    &.euiSplitPanel-isResponsive {
-      flex-direction: column;
-    }
-  }
-
   .euiSplitPanel__inner {
     flex-basis: 0%; // Make sure they're evenly split
+  }
+
+  @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+    &.euiPanel--#{$modifier} .euiSplitPanel__inner {
+      &:first-child {
+        border-top-left-radius: $amount - 1;
+        border-top-right-radius: $amount - 1;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: $amount - 1;
+        border-bottom-right-radius: $amount - 1;
+      }
+    }
+  }
+}
+
+.euiSplitPanel--row {
+  flex-direction: row;
+
+  &.euiSplitPanel-isResponsive {
+    flex-direction: column;
+  }
+
+  @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+    &.euiPanel--#{$modifier} .euiSplitPanel__inner {
+      &:first-child {
+        border-top-left-radius: $amount - 1;
+        border-bottom-left-radius: $amount - 1;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: $amount - 1;
+        border-top-right-radius: $amount - 1;
+      }
+    }
   }
 }

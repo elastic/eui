@@ -100,9 +100,11 @@ module.exports = {
         loader: 'file-loader',
       },
     ],
+    strictExportPresence: isProduction,
   },
 
   plugins,
+
   optimization: {
     minimizer: isProduction ? [terserPlugin] : [],
   },

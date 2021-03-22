@@ -9,7 +9,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiPanel,
-  EuiSpacer,
   EuiText,
   EuiCallOut,
 } from '../../../../src/components';
@@ -107,8 +106,6 @@ export const PanelExample = {
           . Use it as a layout helper for containing content.
         </p>
       </EuiText>
-
-      <EuiSpacer size="l" />
     </>
   ),
   sections: [

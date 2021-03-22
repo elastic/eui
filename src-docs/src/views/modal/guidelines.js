@@ -24,7 +24,7 @@ import {
 
 export default () => (
   <>
-    <EuiText grow={false} className="guideSection__text">
+    <EuiText grow={false}>
       <p>
         A modal says “pay attention to me and nothing else.” A modal works best
         for focusing users&apos; attention on a <strong>short</strong> amount of
@@ -107,10 +107,8 @@ export default () => (
       ">
       <GuideRuleExample
         type="do"
-        text="Do. A save action is a good use case for a modal. The
-        meaning is clear and the content is simple."
-        panel={false}
-        frame>
+        text="A save action is a good use case for a modal. The
+        meaning is clear and the content is simple.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -136,10 +134,8 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don't. Modals aren't the best design solution for multiple steps or complex user input.
-        An in-page form is more appropriate."
-        panel={false}
-        frame>
+        text="Modals aren't the best design solution for multiple steps or complex user input.
+        An in-page form is more appropriate.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -219,10 +215,8 @@ export default () => (
       and restate the action in the button label.">
       <GuideRuleExample
         type="do"
-        text="Do. Use a modal for confirmation when the user might lose data. For the body
-        text, use one to two short sentences that explain the consequences."
-        panel={false}
-        frame>
+        text="Use a modal for confirmation when the user might lose data. For the body
+        text, use one to two short sentences that explain the consequences.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -247,11 +241,9 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don't.  Confirmations aren't good for messages.
+        text=" Confirmations aren't good for messages.
           Toasts are best for success messages because they are less disruptive.
-          Error and warning messages often appear directly on the page."
-        panel={false}
-        frame>
+          Error and warning messages often appear directly on the page.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -276,9 +268,7 @@ export default () => (
       description='If the modal header is "Refresh this field?" then the button text should be "Refresh."'>
       <GuideRuleExample
         type="do"
-        text="Do. Use the same action verbs in the header and button text."
-        panel={false}
-        frame>
+        text="Use the same action verbs in the header and button text.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -301,9 +291,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text='Don&apos;t use a vague header such as "Are you sure?" or the button labels "Yes" and "No."'
-        panel={false}
-        frame>
+        text='Don&apos;t use a vague header such as "Are you sure?" or the button labels "Yes" and "No."'>
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -334,10 +322,8 @@ export default () => (
       }>
       <GuideRuleExample
         type="do"
-        text="Do. Asking users to delete a single item should include the item name in the title, if possible.
-        Use single quotes around the name if it helps clarify meaning."
-        panel={false}
-        frame>
+        text="Asking users to delete a single item should include the item name in the title, if possible.
+        Use single quotes around the name if it helps clarify meaning.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -364,9 +350,7 @@ export default () => (
 
       <GuideRuleExample
         type="do"
-        text="Do. For bulk actions, include the number of items in the title."
-        panel={false}
-        frame>
+        text="For bulk actions, include the number of items in the title.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -395,10 +379,8 @@ export default () => (
       description="You can omit the body if users understand the decision from the header and button text alone.">
       <GuideRuleExample
         type="do"
-        text="Do. Here the header and body are enough.
-        The modal asks the user whether to remove an index pattern &mdash; data won't be lost."
-        panel={false}
-        frame>
+        text="Here the header and body are enough.
+        The modal asks the user whether to remove an index pattern &mdash; data won't be lost.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -418,9 +400,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don't write body text that simply repeats the title. It doesn't add value."
-        panel={false}
-        frame>
+        text="Don't write body text that simply repeats the title. It doesn't add value.">
         <EuiPanel
           paddingSize="none"
           style={{ maxWidth: 400, transform: 'scale(.75)' }}>

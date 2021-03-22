@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.10.0`.
+- Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))
+- Added `iconType`, `iconColor`, and `iconSize` props to `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+- Added `'plain'` and `null` as `color` options of `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+
+## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
+
+- Added `EuiNotificationEvent` component ([#4513](https://github.com/elastic/eui/pull/4513))
+- Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref ([#4513](https://github.com/elastic/eui/pull/4513))
+- Made `description` prop of `EuiCard` optional ([#4546](https://github.com/elastic/eui/pull/4582))
 
 ## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
 

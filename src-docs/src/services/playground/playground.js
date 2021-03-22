@@ -3,10 +3,22 @@ import classNames from 'classnames';
 import format from 'html-format';
 
 import { useView, Compiler, Placeholder } from 'react-view';
-import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiSpacer,
+  EuiCodeBlock,
+  EuiErrorBoundary,
+  EuiTitle,
+} from '../../../../src/components';
 import Knobs from './knobs';
+import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
 
-export default ({ config, setGhostBackground, playgroundClassName }) => {
+export default ({
+  config,
+  setGhostBackground,
+  playgroundClassName,
+  description,
+  tabs,
+}) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
@@ -53,37 +65,48 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
       }
     }, [params.knobProps]);
 
-    const compilerClasses = classNames(
-      'playgroundCompiler',
-      {
-        playgroundCompiler__ghostBackground: isGhost,
-      },
-      playgroundClassName
-    );
-
     return (
-      <React.Fragment>
-        <EuiTitle>
-          <h3>{config.componentName}</h3>
-        </EuiTitle>
-        <EuiSpacer />
-        <div className={compilerClasses}>
-          <Compiler
-            {...params.compilerProps}
-            minHeight={62}
-            placeholder={Placeholder}
-          />
-        </div>
-        <EuiSpacer />
-
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-          {getSnippet(params.editorProps.code)}
-        </EuiCodeBlock>
-        <EuiSpacer />
-
-        <Knobs {...params.knobProps} />
-        <EuiSpacer />
-      </React.Fragment>
+      <GuideSectionExample
+        ghostBackground={isGhost}
+        example={
+          <>
+            <div
+              className={classNames('playgroundWrapper', playgroundClassName)}>
+              <Compiler
+                {...params.compilerProps}
+                minHeight={0}
+                placeholder={Placeholder}
+                className={playgroundClassName}
+              />
+            </div>
+            <EuiSpacer />
+            <EuiCodeBlock
+              language="html"
+              fontSize="m"
+              paddingSize="m"
+              isCopyable>
+              {getSnippet(params.editorProps.code)}
+            </EuiCodeBlock>
+          </>
+        }
+        tabs={tabs}
+        tabContent={
+          <>
+            {description ? (
+              description
+            ) : (
+              <div className="guideSection__propsTableIntro">
+                <EuiTitle size="s">
+                  <h2>{config.componentName}</h2>
+                </EuiTitle>
+              </div>
+            )}
+            <EuiErrorBoundary>
+              <Knobs {...params.knobProps} />
+            </EuiErrorBoundary>
+          </>
+        }
+      />
     );
   };
 

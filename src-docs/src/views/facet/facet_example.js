@@ -58,6 +58,7 @@ export const FacetExample = {
       props: { EuiFacetButton },
       snippet: facetSnippet,
       demo: <Facet />,
+      playground: facetButtonConfig,
     },
     {
       title: 'Facet layout',
@@ -98,7 +99,7 @@ export const FacetExample = {
         `// Horizontal
 <EuiFacetGroup layout="horizontal" gutterSize="l">{facets}</EuiFacetGroup>`,
       ],
+      playground: facetLayoutConfig,
     },
   ],
-  playground: [facetButtonConfig, facetLayoutConfig],
 };

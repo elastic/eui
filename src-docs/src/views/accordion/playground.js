@@ -1,5 +1,6 @@
 import { PropTypes } from 'react-view';
 import { EuiAccordion, EuiText } from '../../../../src/components/';
+import { htmlIdGenerator } from '../../../../src/services';
 import {
   propUtilityForPlayground,
   createOptionalEnum,
@@ -17,6 +18,11 @@ export const accordionConfig = () => {
     ...propsToUse.buttonContent,
     value: 'Click me to toggle',
     type: PropTypes.String,
+  };
+
+  propsToUse.id = {
+    ...propsToUse.id,
+    value: htmlIdGenerator('generated')(),
   };
 
   propsToUse.children = {
