@@ -6,6 +6,7 @@ Array [
     aria-label="aria-label"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2"
     data-test-subj="test subject string"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -28,6 +29,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -48,6 +50,7 @@ exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
 <section
   aria-label="Page level controls"
   class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+  style="left: 0px; right: 0px; bottom: 0px;"
 >
   <h2
     class="euiScreenReaderOnly"
@@ -62,6 +65,7 @@ Array [
   <section
     aria-label="This should have been label"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -83,6 +87,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -104,6 +109,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -125,6 +131,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -146,6 +153,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -167,6 +175,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -188,6 +197,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -209,6 +219,29 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props style is customized 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="top:12px;right:12px;bottom:12px;left:12px"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -230,6 +263,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"

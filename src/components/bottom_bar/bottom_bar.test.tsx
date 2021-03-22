@@ -93,5 +93,13 @@ describe('EuiBottomBar', () => {
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
       expect(document.body.classList.contains('customClass')).toBe(true);
     });
+
+    test('style is customized', () => {
+      const component = render(
+        <EuiBottomBar style={{ top: 12, right: 12, bottom: 12, left: 12 }} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

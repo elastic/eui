@@ -6,6 +6,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiBottomBar, EuiCode } from '../../../../src/components';
 
+import { bottomBarConfig } from './playground';
+
 import BottomBar from './bottom_bar';
 const bottomBarSource = require('!!raw-loader!./bottom_bar');
 const bottomBarHtml = renderToHtml(BottomBar);
@@ -56,6 +58,7 @@ export const BottomBarExample = {
       props: { EuiBottomBar },
       snippet: bottomBarSnippet,
       demo: <BottomBar />,
+      playground: bottomBarConfig,
     },
     {
       title: 'Displacement',
@@ -75,8 +78,9 @@ export const BottomBarExample = {
             There is an <EuiCode>affordForDisplacement</EuiCode> prop
             (defaulting to <EuiCode>true</EuiCode>), which determines whether
             the component makes room for itself by adding bottom padding
-            equivalent to its own height on the document body element. Setting
-            this to <EuiCode>false</EuiCode> can be useful to minimize scrollbar
+            equivalent to its own height on the document{' '}
+            <EuiCode language="html">{'<body>'}</EuiCode> element. Setting this
+            to <EuiCode>false</EuiCode> can be useful to minimize scrollbar
             visibility but will cause the bottom bar to overlap body content.
           </p>
         </>

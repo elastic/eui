@@ -18,10 +18,16 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, HTMLAttributes, useEffect, useState } from 'react';
+import React, {
+  CSSProperties,
+  forwardRef,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import { useCombinedRefs } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -41,35 +47,49 @@ export const paddingSizeToClassNameMap: {
 export const POSITIONS = ['static', 'fixed', 'sticky'] as const;
 export type _BottomBarPosition = typeof POSITIONS[number];
 
-export interface EuiBottomBarProps
-  extends CommonProps,
-    HTMLAttributes<HTMLElement> {
-  /**
-   * Padding applied to the bar. Default is 'm'.
-   */
-  paddingSize?: BottomBarPaddingSize;
-  /**
-   * Whether the component should apply padding on the document body element to afford for its own displacement height.
-   * Only works if `usePortal` is true.
-   */
-  affordForDisplacement?: boolean;
-  /**
-   * Optional class applied to the body element on mount
-   */
-  bodyClassName?: string;
-  /**
-   * Customize the screen reader heading that helps users find this control. Default is 'Page level controls'.
-   */
-  landmarkHeading?: string;
-  /**
-   * How to position the bottom bar against its parent
-   */
-  position?: _BottomBarPosition;
-  /**
-   * Whether to wrap in an EuiPortal which appends the component to the body element
-   */
-  usePortal?: boolean;
-}
+type _BottomBarExclusivePositions = ExclusiveUnion<
+  {
+    position?: 'fixed';
+    /**
+     * Whether to wrap in an EuiPortal which appends the component to the body element
+     * Only works if `position` is `fixed`.
+     */
+    usePortal?: boolean;
+    /**
+     * Whether the component should apply padding on the document body element to afford for its own displacement height.
+     * Only works if `usePortal` is true.
+     */
+    affordForDisplacement?: boolean;
+  },
+  {
+    /**
+     * How to position the bottom bar against its parent
+     */
+    position?: 'static' | 'sticky';
+  }
+>;
+export type EuiBottomBarProps = CommonProps &
+  HTMLAttributes<HTMLElement> &
+  _BottomBarExclusivePositions & {
+    /**
+     * Padding applied to the bar. Default is 'm'.
+     */
+    paddingSize?: BottomBarPaddingSize;
+    /**
+     * Optional class applied to the body element on mount
+     */
+    bodyClassName?: string;
+    /**
+     * Customize the screen reader heading that helps users find this control. Default is 'Page level controls'.
+     */
+    landmarkHeading?: string;
+    /**
+     * Full set of CSS properties but also contains the location of the positioned element.
+     * To adjust the default location, simply pass in location style attributes.
+     * Default is `{ left: 0, right: 0, bottom: 0 }`
+     */
+    style?: CSSProperties;
+  };
 
 export const EuiBottomBar = forwardRef<
   HTMLElement, // type of element or component the ref will be passed to
@@ -77,6 +97,7 @@ export const EuiBottomBar = forwardRef<
 >(
   (
     {
+      position = 'fixed',
       paddingSize = 'm',
       affordForDisplacement = true,
       children,
@@ -84,14 +105,19 @@ export const EuiBottomBar = forwardRef<
       bodyClassName,
       landmarkHeading,
       usePortal = true,
-      position = 'fixed',
+      style = {},
       ...rest
     },
     ref
   ) => {
-    // This snippet is simplistic and obviously isn’t working… hooks and all, but now I need to conditionally add/remove padding to the body tag if a certain prop is true. I know the rule is to
+    // Force some props if `fixed` position, but not if the user has supplied these
+    affordForDisplacement =
+      position !== 'fixed' ? false : affordForDisplacement;
+    usePortal = position !== 'fixed' ? false : usePortal;
+
     const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
     const setRef = useCombinedRefs([setResizeRef, ref]);
+    // TODO: Allow this hooke to be conditional
     const dimensions = useResizeObserver(resizeRef);
 
     useEffect(() => {
@@ -121,6 +147,10 @@ export const EuiBottomBar = forwardRef<
       className
     );
 
+    style.left = style?.left || 0;
+    style.right = style?.right || 0;
+    style.bottom = style?.bottom || 0;
+
     const bar = (
       <>
         <EuiI18n
@@ -135,6 +165,7 @@ export const EuiBottomBar = forwardRef<
               }
               className={classes}
               ref={setRef}
+              style={style}
               {...rest}>
               <EuiScreenReaderOnly>
                 <h2>
