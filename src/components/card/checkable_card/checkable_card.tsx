@@ -111,6 +111,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       direction="row"
       className={classes}>
       <EuiSplitPanel.Inner
+        // Bubbles up the change event when clicking on the whole div for extra affordance
         onClick={disabled ? undefined : onChangeAffordance}
         color={checked ? 'primary' : 'subdued'}
         grow={false}>
