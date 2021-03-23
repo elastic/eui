@@ -26,14 +26,17 @@ export const GuideSectionPropsDescription: FunctionComponent<GuideSectionPropsDe
 
   const { description, extendedInterfaces } = docgenInfo;
 
-  const extendedTypes = extendedInterfaces
+  const extendedTypes: string[] = extendedInterfaces
     ? extendedInterfaces.filter((type: any) => !!extendedTypesInfo[type])
     : [];
 
+  // if all extendedTypes are HTMLAttributes, show them all
   // if there is an HTMLAttributes type present among others, remove HTMLAttributes
-  if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
-    const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
-    extendedTypes.splice(htmlAttributesIndex, 1);
+  if (!extendedTypes.every((type) => type.indexOf('HTMLAttributes') > -1)) {
+    if (extendedTypes.includes('HTMLAttributes') && extendedTypes.length > 1) {
+      const htmlAttributesIndex = extendedTypes.indexOf('HTMLAttributes');
+      extendedTypes.splice(htmlAttributesIndex, 1);
+    }
   }
 
   const extendedTypesElements = extendedTypes.map((type: any, index: any) => (
