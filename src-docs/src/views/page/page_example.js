@@ -88,7 +88,7 @@ export const PageExample = {
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
           full screen, you can see how they would behave in a typical
-          applicaiton layout.
+          application layout.
         </p>
       </EuiCallOut>
     </>
@@ -267,7 +267,7 @@ export const PageExample = {
         <>
           <p>
             Adding an{' '}
-            <Link>
+            <Link to="/layout/bottom-bar">
               <strong>EuiBottomBar</strong>
             </Link>{' '}
             can be tricky to use and account for any side bars.{' '}

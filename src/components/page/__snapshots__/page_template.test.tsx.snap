@@ -818,7 +818,11 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
       >
         Page level controls
       </h2>
-      Bottom Bar
+      <div
+        class="euiPageContentBody euiPage--restrictWidth-default"
+      >
+        Bottom Bar
+      </div>
     </section>
     <p
       aria-live="assertive"

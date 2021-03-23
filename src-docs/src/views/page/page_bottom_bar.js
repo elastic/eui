@@ -35,7 +35,10 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
           </EuiPageContent>
         </EuiPageBody>
         <EuiBottomBar paddingSize="l" position="sticky">
-          {bottomBar}
+          {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
+          <EuiPageContentBody paddingSize={'none'} restrictWidth>
+            {bottomBar}
+          </EuiPageContentBody>
         </EuiBottomBar>
       </EuiPageBody>
     </EuiPage>

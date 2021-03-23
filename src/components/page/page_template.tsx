@@ -124,7 +124,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       paddingSize={paddingSize}
       position="sticky"
       {...(bottomBarProps as EuiBottomBarProps)}>
-      {bottomBar}
+      {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
+      <EuiPageContentBody paddingSize={'none'} restrictWidth={restrictWidth}>
+        {bottomBar}
+      </EuiPageContentBody>
     </EuiBottomBar>
   ) : undefined;
 
