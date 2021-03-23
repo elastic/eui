@@ -51,13 +51,13 @@ type _BottomBarExclusivePositions = ExclusiveUnion<
   {
     position?: 'fixed';
     /**
-     * Whether to wrap in an EuiPortal which appends the component to the body element
+     * Whether to wrap in an EuiPortal which appends the component to the body element.
      * Only works if `position` is `fixed`.
      */
     usePortal?: boolean;
     /**
      * Whether the component should apply padding on the document body element to afford for its own displacement height.
-     * Only works if `usePortal` is true.
+     * Only works if `usePortal` is true and `position` is `fixed`.
      */
     affordForDisplacement?: boolean;
   },
@@ -88,7 +88,10 @@ export type EuiBottomBarProps = CommonProps &
      * To adjust the default location, simply pass in location style attributes.
      * Default is `{ left: 0, right: 0, bottom: 0 }`
      */
-    style?: CSSProperties;
+    left?: CSSProperties['left'];
+    right?: CSSProperties['right'];
+    bottom?: CSSProperties['bottom'];
+    top?: CSSProperties['top'];
   };
 
 export const EuiBottomBar = forwardRef<
@@ -105,7 +108,11 @@ export const EuiBottomBar = forwardRef<
       bodyClassName,
       landmarkHeading,
       usePortal = true,
-      style = {},
+      left = 0,
+      right = 0,
+      bottom = 0,
+      top,
+      style,
       ...rest
     },
     ref
@@ -147,9 +154,13 @@ export const EuiBottomBar = forwardRef<
       className
     );
 
-    style.left = style?.left || 0;
-    style.right = style?.right || 0;
-    style.bottom = style?.bottom || 0;
+    const newStyle = {
+      left,
+      right,
+      bottom,
+      top,
+      ...style,
+    };
 
     const bar = (
       <>
@@ -165,7 +176,7 @@ export const EuiBottomBar = forwardRef<
               }
               className={classes}
               ref={setRef}
-              style={style}
+              style={newStyle}
               {...rest}>
               <EuiScreenReaderOnly>
                 <h2>

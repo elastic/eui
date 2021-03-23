@@ -192,6 +192,28 @@ Array [
 ]
 `;
 
+exports[`EuiBottomBar props position props are altered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:30px;right:30px;bottom:30px;top:30px"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
 exports[`EuiBottomBar props position static is rendered 1`] = `
 Array [
   <section
@@ -241,7 +263,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
-    style="top:12px;right:12px;bottom:12px;left:12px"
+    style="left:12px;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"

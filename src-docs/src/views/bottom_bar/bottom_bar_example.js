@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiBottomBar, EuiCode } from '../../../../src/components';
@@ -10,19 +8,12 @@ import { bottomBarConfig } from './playground';
 
 import BottomBar from './bottom_bar';
 const bottomBarSource = require('!!raw-loader!./bottom_bar');
-const bottomBarHtml = renderToHtml(BottomBar);
-
-const bottomBarSnippet = `<EuiBottomBar paddingSize="s">
-  <!-- Content goes here -->
-</EuiBottomBar>`;
 
 import BottomBarDisplacement from './bottom_bar_displacement';
 const bottomBarDisplacementSource = require('!!raw-loader!./bottom_bar_displacement');
-const bottomBarDisplacementHtml = renderToHtml(BottomBarDisplacement);
 
-const bottomBarDisplacementSnippet = `<EuiBottomBar affordForDisplacement={false}>
-  <!-- Content goes here -->
-</EuiBottomBar>`;
+import BottomBarPosition from './bottom_bar_position';
+const bottomBarPositionSource = require('!!raw-loader!./bottom_bar_position');
 
 export const BottomBarExample = {
   title: 'Bottom bar',
@@ -32,10 +23,6 @@ export const BottomBarExample = {
         {
           type: GuideSectionTypes.JS,
           code: bottomBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: bottomBarHtml,
         },
       ],
       text: (
@@ -56,9 +43,42 @@ export const BottomBarExample = {
         </>
       ),
       props: { EuiBottomBar },
-      snippet: bottomBarSnippet,
       demo: <BottomBar />,
       playground: bottomBarConfig,
+      snippet: `<EuiBottomBar paddingSize="s">
+  <!-- Content goes here -->
+</EuiBottomBar>`,
+    },
+    {
+      title: 'Positions',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: bottomBarPositionSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Bottom bars default to being fixed position, in a portal at the
+            bottom of the browser window. You can remove the portal or the
+            displacement affordance when <EuiCode>fixed</EuiCode> position.
+            Alternatively, you can change the <EuiCode>position</EuiCode> to{' '}
+            <EuiCode>sticky</EuiCode> where it render in place but stick to the
+            window only as the window edge nears. The <EuiCode>static</EuiCode>{' '}
+            position reverts back to default DOM behavior.
+          </p>
+          <p>
+            You can also apply a different set of positioning locations just by
+            adjusting them in the <EuiCode>style</EuiCode> prop.
+          </p>
+        </>
+      ),
+      props: { EuiBottomBar },
+      demo: <BottomBarPosition />,
+      snippet: `<EuiBottomBar position="sticky" bottom={10}>
+  <!-- Content goes here -->
+</EuiBottomBar>`,
     },
     {
       title: 'Displacement',
@@ -66,10 +86,6 @@ export const BottomBarExample = {
         {
           type: GuideSectionTypes.JS,
           code: bottomBarDisplacementSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: bottomBarDisplacementHtml,
         },
       ],
       text: (
@@ -86,8 +102,10 @@ export const BottomBarExample = {
         </>
       ),
       props: { EuiBottomBar },
-      snippet: bottomBarDisplacementSnippet,
       demo: <BottomBarDisplacement />,
+      snippet: `<EuiBottomBar affordForDisplacement={false}>
+  <!-- Content goes here -->
+</EuiBottomBar>`,
     },
   ],
 };

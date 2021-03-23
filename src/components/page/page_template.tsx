@@ -50,7 +50,7 @@ type _EuiPageTemplateTypes = ExclusiveUnion<
     /**
      * Gets passed along to the #EuiBottomBar component if `bottomBar` has contents
      */
-    bottomBarProps?: Partial<EuiBottomBarProps>;
+    bottomBarProps?: EuiBottomBarProps;
   },
   {
     /**
@@ -123,7 +123,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     <EuiBottomBar
       paddingSize={paddingSize}
       position="sticky"
-      {...(bottomBarProps as EuiBottomBarProps)}>
+      {...bottomBarProps}>
       {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
       <EuiPageContentBody paddingSize={'none'} restrictWidth={restrictWidth}>
         {bottomBar}

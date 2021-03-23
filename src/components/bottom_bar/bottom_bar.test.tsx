@@ -95,8 +95,14 @@ describe('EuiBottomBar', () => {
     });
 
     test('style is customized', () => {
+      const component = render(<EuiBottomBar style={{ left: 12 }} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('position props are altered', () => {
       const component = render(
-        <EuiBottomBar style={{ top: 12, right: 12, bottom: 12, left: 12 }} />
+        <EuiBottomBar top={30} right={30} bottom={30} left={30} />
       );
 
       expect(component).toMatchSnapshot();

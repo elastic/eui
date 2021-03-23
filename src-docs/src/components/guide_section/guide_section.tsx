@@ -167,11 +167,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       {renderingPlayground && renderPlayground()}
       {!renderingPlayground && demo && (
         <GuideSectionExample
-          example={
-            <EuiErrorBoundary>
-              <div>{demo}</div>
-            </EuiErrorBoundary>
-          }
+          example={<EuiErrorBoundary>{demo}</EuiErrorBoundary>}
           tabs={renderTabs()}
           ghostBackground={ghostBackground}
           demoPanelProps={demoPanelProps}
