@@ -234,11 +234,11 @@ const DataGrid = () => {
 
   const toolbarPropTypeIsBooleanOptions = [
     {
-      id: 'boolean',
+      id: 'true',
       label: 'Boolean',
     },
     {
-      id: 'object',
+      id: 'false',
       label: 'Object',
     },
   ];
@@ -326,7 +326,7 @@ const DataGrid = () => {
   };
 
   const onToolbarPropTypeIsBooleanChange = (optionId) => {
-    setToolbarPropTypeIsBoolean(optionId === 'boolean');
+    setToolbarPropTypeIsBoolean(optionId === 'true');
   };
 
   const onPopoverButtonClick = () => {
@@ -513,9 +513,7 @@ const DataGrid = () => {
                   buttonSize="compressed"
                   legend="Border"
                   options={toolbarPropTypeIsBooleanOptions}
-                  idSelected={
-                    toolbarPropTypeIsBoolean.toString() ? 'boolean' : 'object'
-                  }
+                  idSelected={toolbarPropTypeIsBoolean.toString()}
                   onChange={onToolbarPropTypeIsBooleanChange}
                 />
               </EuiFormRow>
