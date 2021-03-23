@@ -63,9 +63,9 @@ type _BottomBarExclusivePositions = ExclusiveUnion<
   },
   {
     /**
-     * How to position the bottom bar against its parent
+     * How to position the bottom bar against its parent.
      */
-    position?: 'static' | 'sticky';
+    position: 'static' | 'sticky';
   }
 >;
 export type EuiBottomBarProps = CommonProps &
@@ -76,7 +76,7 @@ export type EuiBottomBarProps = CommonProps &
      */
     paddingSize?: BottomBarPaddingSize;
     /**
-     * Optional class applied to the body element on mount
+     * Optional class applied to the body element on mount.
      */
     bodyClassName?: string;
     /**
@@ -84,14 +84,27 @@ export type EuiBottomBarProps = CommonProps &
      */
     landmarkHeading?: string;
     /**
-     * Full set of CSS properties but also contains the location of the positioned element.
-     * To adjust the default location, simply pass in location style attributes.
-     * Default is `{ left: 0, right: 0, bottom: 0 }`
+     * Starting vertical position when `fixed` position.
+     * Offset from the top of the window when `sticky` position.
+     * Has no affect on `static` positions.
+     */
+    top?: CSSProperties['top'];
+    /**
+     * Ending horizontal position when `fixed` position.
+     * Has no affect on `static` or `sticky` positions.
+     */
+    right?: CSSProperties['right'];
+    /**
+     * Starting vertical position when `fixed` position.
+     * Offset from the bottom of the window when `sticky` position.
+     * Has no affect on `static` positions.
+     */
+    bottom?: CSSProperties['bottom'];
+    /**
+     * Starting horizontal position when `fixed` position.
+     * Has no affect on `static` or `sticky` positions.
      */
     left?: CSSProperties['left'];
-    right?: CSSProperties['right'];
-    bottom?: CSSProperties['bottom'];
-    top?: CSSProperties['top'];
   };
 
 export const EuiBottomBar = forwardRef<

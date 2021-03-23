@@ -61,16 +61,16 @@ export const BottomBarExample = {
         <>
           <p>
             Bottom bars default to being fixed position, in a portal at the
-            bottom of the browser window. You can remove the portal or the
-            displacement affordance when <EuiCode>fixed</EuiCode> position.
-            Alternatively, you can change the <EuiCode>position</EuiCode> to{' '}
-            <EuiCode>sticky</EuiCode> where it render in place but stick to the
-            window only as the window edge nears. The <EuiCode>static</EuiCode>{' '}
-            position reverts back to default DOM behavior.
+            bottom of the browser window. Alternatively, you can change the{' '}
+            <EuiCode>position</EuiCode> to <EuiCode>sticky</EuiCode> where it
+            will render in place but stick to the window only as the window edge
+            nears. The <EuiCode>static</EuiCode> position reverts back to
+            default DOM behavior.
           </p>
           <p>
             You can also apply a different set of positioning locations just by
-            adjusting them in the <EuiCode>style</EuiCode> prop.
+            adjusting them in with the{' '}
+            <EuiCode>top | right | bottom | left</EuiCode> props.
           </p>
         </>
       ),
