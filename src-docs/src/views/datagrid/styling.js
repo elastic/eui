@@ -566,7 +566,7 @@ const DataGrid = () => {
                       buttonSize="compressed"
                       legend="Border"
                       options={showColumnSelectorOptions}
-                      idSelected={displayColumnSelector.toString()}
+                      idSelected={displayColumnSelector ? 'true' : 'false'}
                       onChange={onShowColumnSelectorChange}
                     />
                   </EuiFormRow>
