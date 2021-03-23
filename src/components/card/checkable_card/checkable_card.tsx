@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, useRef } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -68,6 +68,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   ...rest
 }) => {
   const { id } = rest;
+  const labelEl = useRef<HTMLLabelElement>(null);
   const classes = classNames(
     'euiCheckableCard',
     {
@@ -96,6 +97,12 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     'euiCheckableCard__label-isDisabled': disabled,
   });
 
+  const onChangeAffordance = () => {
+    if (labelEl.current) {
+      labelEl.current.click();
+    }
+  };
+
   return (
     <EuiSplitPanel.Outer
       responsive={false}
@@ -104,15 +111,14 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       direction="row"
       className={classes}>
       <EuiSplitPanel.Inner
-        // Bubbles up the change event when clicking on the whole div for extra affordance
-        // @ts-ignore `onChange` doesn't match that of HTMLInput?
-        onClick={disabled ? undefined : () => rest.onChange()}
+        onClick={disabled ? undefined : onChangeAffordance}
         color={checked ? 'primary' : 'subdued'}
         grow={false}>
         {checkableElement}
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner>
         <label
+          ref={labelEl}
           className={labelClasses}
           htmlFor={id}
           aria-describedby={children ? `${id}-details` : undefined}>
