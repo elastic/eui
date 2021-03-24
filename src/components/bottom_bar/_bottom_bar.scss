@@ -1,6 +1,6 @@
 .euiBottomBar {
   @include euiBottomShadowFlat($euiShadowColorLarge);
-  background: lightOrDarkTheme(shade($euiColorDarkestShade, 28%), shade($euiColorLightestShade, 50%));
+  background: $euiHeaderDarkBackgroundColor;
   color: $euiColorEmptyShade;
 
   // sass-lint:disable-block mixins-before-declarations
