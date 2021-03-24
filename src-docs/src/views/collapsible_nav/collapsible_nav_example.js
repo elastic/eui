@@ -26,6 +26,7 @@ const collapsibleNavListSource = require('!!raw-loader!./collapsible_nav_list');
 const collapsibleNavListHtml = renderToHtml(CollapsibleNavList);
 
 import CollapsibleNavAll from './collapsible_nav_all';
+import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 const collapsibleNavAllSource = require('!!raw-loader!./collapsible_nav_all');
 const collapsibleNavAllHtml = renderToHtml(CollapsibleNavAll);
 
@@ -152,7 +153,15 @@ export const CollapsibleNavExample = {
           <p>Below are a few established patterns to use.</p>
         </>
       ),
-      demo: <CollapsibleNavList />,
+      demo: (
+        <div>
+          <CollapsibleNavList />
+          <EuiHorizontalRule margin="none" />
+        </div>
+      ),
+      demoPanelProps: {
+        paddingSize: 'none',
+      },
       snippet: `<EuiCollapsibleNavGroup
   title="Kibana"
   iconType="logoKibana"
