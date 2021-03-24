@@ -5,11 +5,11 @@ import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 export default () => (
   <EuiFlexGroup>
     <EuiFlexItem>
-      <EuiButton>Buttons will widen</EuiButton>
+      <EuiButton fill>Buttons will widen</EuiButton>
     </EuiFlexItem>
     <EuiFlexItem>
       <div>
-        <EuiButton>Unless you wrap them</EuiButton>
+        <EuiButton fill>Unless you wrap them</EuiButton>
       </div>
     </EuiFlexItem>
   </EuiFlexGroup>
