@@ -22,6 +22,7 @@ export default ({ button = <></>, content, sideNav }) => (
       />
 
       <EuiPageContent
+        role="main"
         verticalPosition="center"
         horizontalPosition="center"
         paddingSize="none"

@@ -24,7 +24,7 @@ export default () => (
           <EuiButton>Do something</EuiButton>,
         ]}
       />
-      <EuiPageContent>
+      <EuiPageContent role="main">
         <EuiTitle>
           <h2>Content title</h2>
         </EuiTitle>

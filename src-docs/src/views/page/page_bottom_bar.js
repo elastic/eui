@@ -17,7 +17,7 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
 
       {/* Double EuiPageBody to accomodate for the bottom bar */}
       <EuiPageBody panelled paddingSize="none">
-        <EuiPageBody role="main" paddingSize="l">
+        <EuiPageBody paddingSize="l">
           <EuiPageHeader
             bottomBorder
             restrictWidth
@@ -26,6 +26,7 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
             rightSideItems={[button]}
           />
           <EuiPageContent
+            role="main"
             hasBorder={false}
             hasShadow={false}
             paddingSize="none"
