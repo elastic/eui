@@ -1,6 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.12.0`.
+- Added `position`, `usePortal`, `top`, `right`, `bottom`, and `left` props to `EuiBottomBar` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `bottomBar` and `bottomBarProps` to `EuiPageTemplate` when `template = 'default'` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `role="main"` to the `EuiPageContent` component inside of `EuiPageTemplate` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `bottomBorder` props to `EuiPageHeader` ([#4662](https://github.com/elastic/eui/pull/4662))
+
+**Breaking changes**
+
+- Changed `EuiBottomBar` positioning styles from being applied at the CSS layer to the `style` property  ([#4662](https://github.com/elastic/eui/pull/4662))
 
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
 
