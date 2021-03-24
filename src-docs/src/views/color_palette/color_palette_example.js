@@ -6,12 +6,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import { qualitativePropsInfo, palettePropsInfo } from './props_info';
 
-import {
-  EuiCode,
-  EuiText,
-  EuiSpacer,
-  EuiCallOut,
-} from '../../../../src/components';
+import { EuiCode, EuiText, EuiCallOut } from '../../../../src/components';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
@@ -35,7 +30,6 @@ export const ColorPaletteExample = {
           hexadecimal color for use in other EUI components or charts.
         </p>
       </EuiText>
-      <EuiSpacer />
     </>
   ),
   sections: [

@@ -17,15 +17,15 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps, keysOf } from '../common';
+import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
 import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
+import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 const sizeToClassNameMap = {
-  none: null,
   s: 'euiAvatar--s',
   m: 'euiAvatar--m',
   l: 'euiAvatar--l',
@@ -43,35 +43,68 @@ const typeToClassNameMap = {
 export const TYPES = keysOf(typeToClassNameMap);
 export type EuiAvatarType = keyof typeof typeToClassNameMap;
 
+/**
+ * The avatar can only display one type of content,
+ * initials, or image, or iconType
+ */
+type _EuiAvatarContent = ExclusiveUnion<
+  ExclusiveUnion<
+    {
+      /**
+       * Custom initials (max 2 characters).
+       * By default will take the first character (of each word).
+       */
+      initials?: string;
+
+      /**
+       * Specify how many characters to show (1 or 2).
+       * By default, will show based on number of words (max first 2).
+       */
+      initialsLength?: 1 | 2;
+    },
+    {
+      /**
+       * Path to an image to display instead of initials
+       */
+      imageUrl: string;
+    }
+  >,
+  {
+    /**
+     * Any EUI glyph, logo or custom icon to display instead of initials
+     */
+    iconType: IconType;
+    /**
+     * Manually change icon size
+     */
+    iconSize?: IconSize;
+    /**
+     * Manually change icon color
+     */
+    iconColor?: IconColor | null;
+  }
+>;
+
 export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
-  CommonProps & {
+  CommonProps &
+  _EuiAvatarContent & {
     /**
      * Full name of avatar for title attribute and calculating initial if not provided
      */
     name: string;
 
     /**
-     * Accepts hex value `#FFFFFF`, `#000` otherwise a viz palette color will be assigned
+     * Accepts hex values like `#FFFFFF`, `#000` otherwise a viz palette color will be assigned.
+     * Or pass `'plain'` for an empty shade or `null` to remove entirely and the text/icon color will `inherit`
      */
-    color?: string;
+    color?: string | 'plain' | null;
 
     /**
-     * Custom initials (max 2 characters).
-     * By default will take the first character (of each word).
-     */
-    initials?: string;
-
-    /**
-     * Specify how many characters to show (max 2 allowed).
-     * By default, will show based on number of words.
-     */
-    initialsLength?: 1 | 2;
-
-    /**
-     * The type of avatar this is displaying
+     * The type of avatar mainly controlling the shape.
+     * `user` = circle
+     * `space` = rounded square
      */
     type?: EuiAvatarType;
-    imageUrl?: string;
     size?: EuiAvatarSize;
 
     /**
@@ -86,10 +119,14 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   imageUrl,
   initials,
   initialsLength,
+  iconType,
+  iconSize,
+  iconColor,
   name,
   size = 'm',
   type = 'user',
   isDisabled = false,
+  style,
   ...rest
 }) => {
   const visColors = euiPaletteColorBlindBehindText();
@@ -100,31 +137,54 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     typeToClassNameMap[type],
     {
       'euiAvatar-isDisabled': isDisabled,
+      'euiAvatar--plain': color === 'plain',
     },
     className
   );
 
-  checkValidColor(color);
   checkValidInitials(initials);
 
-  let optionalInitial;
-  if (name && !imageUrl) {
-    // Create the initials
-    const calculatedInitials = toInitials(name, initialsLength, initials);
-    optionalInitial = <span aria-hidden="true">{calculatedInitials}</span>;
+  const avatarStyle: CSSProperties = style || {};
+  let iconCustomColor = iconColor;
+
+  const isNamedColor = color === 'plain' || color === null;
+  if (!isNamedColor) {
+    checkValidColor(color);
+
+    const assignedColor =
+      color || visColors[Math.floor(name.length % visColors.length)];
+    const textColor = isColorDark(...hexToRgb(assignedColor))
+      ? '#FFFFFF'
+      : '#000000';
+
+    avatarStyle.backgroundColor = assignedColor;
+    avatarStyle.color = textColor;
+
+    // Allow consumers to let the icons keep their default color (like app icons)
+    // when passing `iconColor = null`, otherwise continue to pass on `iconColor` or adjust with textColor
+    iconCustomColor = iconColor || iconColor === null ? iconColor : textColor;
   }
 
-  const assignedColor =
-    color || visColors[Math.floor(name.length % visColors.length)];
-  const textColor = isColorDark(...hexToRgb(assignedColor))
-    ? '#FFFFFF'
-    : '#000000';
+  if (imageUrl) {
+    avatarStyle.backgroundImage = `url(${imageUrl})`;
+  }
 
-  const avatarStyle = {
-    backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
-    backgroundColor: assignedColor,
-    color: textColor,
-  };
+  let content;
+  if (!imageUrl && !iconType) {
+    // Create the initials
+    const calculatedInitials = toInitials(name, initialsLength, initials);
+    content = <span aria-hidden="true">{calculatedInitials}</span>;
+  } else if (iconType) {
+    content = (
+      <EuiIcon
+        className="euiAvatar__icon"
+        size={iconSize || size}
+        type={iconType}
+        aria-label={name}
+        color={iconCustomColor === null ? undefined : iconCustomColor}
+      />
+    );
+  }
 
   return (
     <div
@@ -133,14 +193,14 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
       aria-label={name}
       title={name}
       {...rest}>
-      {optionalInitial}
+      {content}
     </div>
   );
 };
 
 // TODO: Migrate to a service
 export const checkValidColor = (color: EuiAvatarProps['color']) => {
-  const validHex = color && isValidHex(color);
+  const validHex = (color && isValidHex(color)) || color === 'plain';
   if (color && !validHex) {
     throw new Error(
       'EuiAvatar needs to pass a valid color. This can either be a three ' +

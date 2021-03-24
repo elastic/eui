@@ -11,7 +11,6 @@ import {
   EuiColorPaletteDisplay,
   EuiColorPalettePicker,
   EuiColorStops,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
 import {
@@ -321,7 +320,6 @@ export const ColorPickerExample = {
           <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
-      <EuiSpacer />
     </React.Fragment>
   ),
   sections: [

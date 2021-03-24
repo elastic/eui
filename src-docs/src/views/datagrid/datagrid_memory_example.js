@@ -96,7 +96,6 @@ export const DataGridMemoryExample = {
           <EuiCode>renderCellValue</EuiCode>.
         </p>
       </EuiText>
-      <EuiSpacer />
     </Fragment>
   ),
   sections: [

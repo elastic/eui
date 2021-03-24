@@ -27,8 +27,9 @@ const util = require('util');
 const { SyntaxKind } = require('typescript');
 const chokidar = require('chokidar');
 
-const { NODE_ENV, CI } = process.env;
-const isDevelopment = NODE_ENV !== 'production' && CI == null;
+const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
+const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
+const bypassWatch = NODE_ENV === 'puppeteer' || NODE_ENV === 'production';
 
 /**
  * To support extended props from tsx files.
@@ -48,7 +49,7 @@ function buildProgram() {
 }
 buildProgram();
 
-if (isDevelopment) {
+if (isDevelopment && !bypassWatch) {
   chokidar
     .watch(['./src/**/*.(ts|tsx)', './src-docs/**/*.(ts|tsx)'], {
       ignoreInitial: true, // don't emit `add` event during file discovery

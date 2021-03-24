@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EuiFlexItem, EuiPanel } from '../../../../src/components';
+import {
+  EuiFlexItem,
+  EuiText,
+  EuiSplitPanel,
+} from '../../../../src/components';
 
 const typeToClassNameMap = {
   do: 'guideRule__example--do',
@@ -10,7 +14,7 @@ const typeToClassNameMap = {
 
 const typeToSubtitleTextMap = {
   do: 'Do',
-  dont: "Don't",
+  dont: 'Don’t',
 };
 
 export const GuideRuleExample = ({
@@ -18,54 +22,70 @@ export const GuideRuleExample = ({
   className,
   type,
   text,
-  panel,
-  frame,
   minHeight,
   style,
+  panelProps,
   panelStyles,
+  panelDisplay = 'flex',
+  panelColor,
   ...rest
 }) => {
   const classes = classNames(
     'guideRule__example',
     typeToClassNameMap[type],
-    {
-      'guideRule__example--frame': frame,
-    },
     className
   );
 
-  const ChildrenComponent = panel ? EuiPanel : 'div';
-
   const styles = { ...style, minHeight };
 
+  if (type && !panelColor) {
+    panelColor = type === 'do' ? 'success' : 'danger';
+  }
+
+  const doOrDont = type && typeToSubtitleTextMap[type];
+
   return (
-    <EuiFlexItem
-      component="figure"
-      className={classes}
-      style={styles}
-      {...rest}>
-      <ChildrenComponent
-        className="guideRule__example__panel"
-        style={panelStyles}>
-        {children}
-      </ChildrenComponent>
-      <figcaption className="guideRule__caption">
-        {text || typeToSubtitleTextMap[type]}
-      </figcaption>
+    <EuiFlexItem>
+      <EuiSplitPanel.Outer
+        className={classes}
+        style={styles}
+        hasShadow={false}
+        borderRadius="none"
+        color="transparent"
+        hasBorder={false}
+        {...rest}>
+        <figure>
+          <EuiSplitPanel.Inner
+            className={classNames('guideRule__example__panel', {
+              'guideRule__example__panel--flex': panelDisplay === 'flex',
+            })}
+            style={panelStyles}
+            color={panelColor}
+            {...panelProps}>
+            {children}
+          </EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner color="transparent">
+            <EuiText color={type === 'do' ? 'secondary' : 'danger'} size="s">
+              <p>
+                {doOrDont && <strong>{doOrDont}.</strong>} {text}
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+        </figure>
+      </EuiSplitPanel.Outer>
     </EuiFlexItem>
   );
 };
 
 GuideRuleExample.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
+  className: PropTypes.node,
   type: PropTypes.string.isRequired,
-  text: PropTypes.string,
-  panel: PropTypes.bool,
+  text: PropTypes.node,
   minHeight: PropTypes.number,
+  panelProps: PropTypes.any,
 };
 
 GuideRuleExample.defaultProps = {
   type: 'do',
-  panel: true,
 };

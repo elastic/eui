@@ -1,5 +1,50 @@
 [
   {
+    "version": "31.11.0",
+    "changes": [
+      {
+        "token": "euiNotificationEventMessages.accordionButtonText",
+        "changeType": "added",
+        "value": "+ {messagesLength} more"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionAriaLabelButtonText",
+        "changeType": "added",
+        "value": "+ {messagesLength} messages for {eventName}"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionHideText",
+        "changeType": "added",
+        "value": "hide"
+      },
+      {
+        "token": "euiNotificationEventMeta.contextMenuButton",
+        "changeType": "added",
+        "value": "Menu for {eventName}"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsReadAria",
+        "changeType": "added",
+        "value": "Mark {eventName} as read"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnreadAria",
+        "changeType": "added",
+        "value": "Mark {eventName} as unread"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsRead",
+        "changeType": "added",
+        "value": "Mark as read"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnread",
+        "changeType": "added",
+        "value": "Mark as unread"
+      }
+    ]
+  },
+  {
     "version": "31.9.0",
     "changes": [
       {

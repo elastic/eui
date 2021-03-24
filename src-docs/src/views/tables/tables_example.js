@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiSpacer, EuiCallOut } from '../../../../src/components';
+import { EuiCallOut } from '../../../../src/components';
 
 import { section as basicSection } from './basic';
 import { section as autoSection } from './auto';
@@ -33,7 +33,6 @@ export const TableExample = {
           <strong>at the bottom of this page</strong>.
         </p>
       </EuiCallOut>
-      <EuiSpacer />
     </div>
   ),
   sections: [
