@@ -31,13 +31,13 @@ export const sizeToPixel = (scale: number = 1) => (
 export const base = 16;
 
 export const size = {
-  xs: computed([], sizeToPixel(0.25)),
-  s: computed([], sizeToPixel(0.5)),
-  m: computed([], sizeToPixel(0.75)),
-  base: computed([], sizeToPixel()),
-  l: computed([], sizeToPixel(1.5)),
-  xl: computed([], sizeToPixel(2)),
-  xxl: computed([], sizeToPixel(2.5)),
+  xs: computed(sizeToPixel(0.25)),
+  s: computed(sizeToPixel(0.5)),
+  m: computed(sizeToPixel(0.75)),
+  base: computed(sizeToPixel()),
+  l: computed(sizeToPixel(1.5)),
+  xl: computed(sizeToPixel(2)),
+  xxl: computed(sizeToPixel(2.5)),
 };
 
 // $euiButtonMinWidth: $euiSize * 7 !default;

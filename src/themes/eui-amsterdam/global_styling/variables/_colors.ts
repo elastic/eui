@@ -47,19 +47,19 @@ export const light_colors_ams = {
   fullShade: '#000',
 
   // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    tint(lightestShade, 0.5)
-  ),
-  highlight: computed(['colors.warning'], ([warning]) => tint(warning, 0.9)),
+  pageBackground: computed(([lightestShade]) => tint(lightestShade, 0.5), [
+    'colors.lightestShade',
+  ]),
+  highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
 
   // Every color below must be based mathematically on the set above and in a particular order.
-  text: computed(['colors.darkestShade'], ([darkestShade]) => darkestShade),
-  title: computed(['colors.text'], ([text]) => shade(text, 0.5)),
+  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
+  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
   disabled: '#ABB4C4',
 
-  textSubdued: computed(['colors.darkShade'], ([darkShade]) =>
-    makeHighContrastColor(darkShade)
-  ),
+  textSubdued: computed(([darkShade]) => makeHighContrastColor(darkShade), [
+    'colors.darkShade',
+  ]),
 };
 
 export const dark_colors_ams = {
@@ -84,17 +84,17 @@ export const dark_colors_ams = {
   fullShade: '#FFF',
 
   // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    shade(lightestShade, 0.3)
-  ),
+  pageBackground: computed(([lightestShade]) => shade(lightestShade, 0.3), [
+    'colors.lightestShade',
+  ]),
   highlight: '#2E2D25',
 
   // Every color below must be based mathematically on the set above and in a particular order.
   text: '#DFE5EF',
-  title: computed(['colors.text'], ([text]) => text),
+  title: computed(([text]) => text, ['colors.text']),
   disabled: '#515761',
 
-  textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
-    makeHighContrastColor(mediumShade)
-  ),
+  textSubdued: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
+    'colors.mediumShade',
+  ]),
 };

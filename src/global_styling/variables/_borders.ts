@@ -22,22 +22,22 @@ import { computed } from '../../services/theme/utils';
 export const border = {
   widthThin: '1px',
   widthThick: '2px',
-  color: computed(['colors.lightShade'], ([lightShade]) => lightShade),
+  color: computed(([lightShade]) => lightShade, ['colors.lightShade']),
   radius: '4px',
   radiusSmall: computed(
-    ['border.radius'],
-    ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`
+    ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`,
+    ['border.radius']
   ),
-  thin: computed(
-    ['border.widthThin', 'border.color'],
-    ([widthThin, color]) => `${widthThin} solid ${color}`
-  ),
-  thick: computed(
-    ['border.widthThick', 'border.color'],
-    ([widthThick, color]) => `${widthThick} solid ${color}`
-  ),
-  editable: computed(
-    ['border.widthThick', 'border.color'],
-    ([widthThick, color]) => `${widthThick} dotted ${color}`
-  ),
+  thin: computed(([widthThin, color]) => `${widthThin} solid ${color}`, [
+    'border.widthThin',
+    'border.color',
+  ]),
+  thick: computed(([widthThick, color]) => `${widthThick} solid ${color}`, [
+    'border.widthThick',
+    'border.color',
+  ]),
+  editable: computed(([widthThick, color]) => `${widthThick} dotted ${color}`, [
+    'border.widthThick',
+    'border.color',
+  ]),
 };

@@ -27,7 +27,6 @@ import {
   getComputed,
   buildTheme,
   mergeDeep,
-  currentColorModeOnly,
 } from './utils';
 
 describe('isInverseColorMode', () => {
@@ -91,7 +90,7 @@ describe('getOn', () => {
     expect(getOn(obj, 'other.thing.number', '')).toEqual(0);
     expect(getOn(obj, 'other.thing.func', '')).toBeInstanceOf(Function);
   });
-  it('does can shortcut color modes', () => {
+  it('can shortcut color modes', () => {
     expect(getOn(obj, 'colors.primary', 'light')).toEqual('#000');
     expect(getOn(obj, 'colors.primary', 'dark')).toEqual('#FFF');
     expect(getOn(obj, 'colors.primary', 'custom')).toEqual('#333');
@@ -142,11 +141,17 @@ describe('setOn', () => {
 });
 
 describe('computed', () => {
-  it('should transform to Computed', () => {
-    const output = computed(['path.to'], ([path]) => path);
+  it('should transform to Computed with dependencies array', () => {
+    const output = computed(([path]) => path, ['path.to']);
     expect(output).toBeInstanceOf(Computed);
     expect(output.computer).toBeInstanceOf(Function);
     expect(output.dependencies).toEqual(['path.to']);
+  });
+  it('should transform to Computed without dependencies array', () => {
+    const output = computed((path) => path);
+    expect(output).toBeInstanceOf(Computed);
+    expect(output.computer).toBeInstanceOf(Function);
+    expect(output.dependencies).toEqual([]);
   });
 });
 
@@ -155,11 +160,11 @@ const theme = buildTheme(
     colors: {
       light: {
         primary: '#000',
-        secondary: computed(['colors.primary'], ([primary]) => `${primary}000`),
+        secondary: computed(([primary]) => `${primary}000`, ['colors.primary']),
       },
       dark: {
         primary: '#FFF',
-        secondary: computed(['colors.primary'], ([primary]) => `${primary}FFF`),
+        secondary: computed((theme) => `${theme.colors.primary}FFF`),
       },
     },
     sizes: {
@@ -245,10 +250,9 @@ describe('getComputed', () => {
           {
             colors: {
               light: {
-                tertiary: computed(
-                  ['colors.primary'],
-                  ([primary]) => `${primary}333`
-                ),
+                tertiary: computed(([primary]) => `${primary}333`, [
+                  'colors.primary',
+                ]),
               },
             },
           },
@@ -285,31 +289,5 @@ describe('mergeDeep', () => {
     expect(
       mergeDeep({ a: 1, b: { c: { d: 3 } } }, { b: { c: { e: 5 } } })
     ).toEqual({ a: 1, b: { c: { d: 3, e: 5 } } });
-  });
-});
-
-describe('currentColorModeOnly', () => {
-  const theme = {
-    colors: {
-      light: {
-        primary: '#000',
-      },
-      dark: {
-        primary: '#FFF',
-      },
-    },
-    sizes: {
-      small: 8,
-    },
-  };
-  it('object with only the current color mode colors', () => {
-    expect(currentColorModeOnly('light', theme)).toEqual({
-      colors: { primary: '#000' },
-      sizes: { small: 8 },
-    });
-    expect(currentColorModeOnly('dark', theme)).toEqual({
-      colors: { primary: '#FFF' },
-      sizes: { small: 8 },
-    });
   });
 });

@@ -84,11 +84,13 @@ type EuiFontSize = {
 };
 const fontSize = SCALES.reduce((acc, elem) => {
   acc[elem] = {
-    fontSize: computed(['base', `font.scale.${elem}`], ([base, scale]) =>
-      fontSizeFromScale(base, scale)
-    ),
-    lineHeight: computed(['base', 'font'], ([base, font]) =>
-      lineHeightFromBaseline(base, font, font.scale[elem])
+    fontSize: computed(([base, scale]) => fontSizeFromScale(base, scale), [
+      'base',
+      `font.scale.${elem}`,
+    ]),
+    lineHeight: computed(
+      ([base, font]) => lineHeightFromBaseline(base, font, font.scale[elem]),
+      ['base', 'font']
     ),
   };
   return acc;

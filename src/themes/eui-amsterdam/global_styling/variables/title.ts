@@ -33,7 +33,7 @@ export const title_ams: {
   // @ts-ignore TS help
   acc[elem] = {
     ...title[elem],
-    fontWeight: computed(['fontWeight.bold'], ([fontWeight]) => fontWeight),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
     letterSpacing: undefined,
   };
   return acc;

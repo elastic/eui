@@ -33,6 +33,7 @@ export type EuiThemeColorMode =
   | EuiThemeColorModeStandard
   | EuiThemeColorModeInverse;
 
+// TODO: Make static interface
 export type EuiThemeShape = typeof euiThemeDefault;
 export type EuiThemeColor = EuiThemeShape['colors']['light'];
 
@@ -45,7 +46,7 @@ export type EuiThemeSystem<T = {}> = {
 export type EuiThemeModifications<T = {}> = RecursivePartial<EuiThemeShape & T>;
 
 type Colorless<T> = RecursiveOmit<T, 'colors'>;
-// I don't like this.
+// TODO: Refactor after static shape interface is determined
 // Requires manually maintaining sections (e.g., `buttons`) containing colorMode options.
 // Also cannot account for extended theme sections (`T`) that use colorMode options.
 export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {

@@ -106,8 +106,8 @@ export const setOn = (
 
 export class Computed<T> {
   constructor(
-    public dependencies: string[],
-    public computer: (...values: any[]) => T
+    public computer: (...values: any[]) => T,
+    public dependencies: string[] = []
   ) {}
 
   getValue(
@@ -130,29 +130,20 @@ export class Computed<T> {
   }
 }
 
-// export const computed = <T>(
-//   dependencies: string[],
-//   computer: (values: any[]) => T
-// ) => {
-//   return (new Computed(dependencies, computer) as unknown) as T;
-// };
-
-// TODO: API; empty array vs. single param
 export function computed<T>(
-  dependencies: [],
-  // TODO: Static interfacce for EuiThemeShape
+  // TODO: Static interface for EuiThemeShape
   // computer: (value: EuiThemeShape) => T
   computer: (value: any) => T
 ): T;
 export function computed<T>(
-  dependencies: string[],
-  computer: (value: any[]) => T
+  computer: (value: any[]) => T,
+  dependencies: string[]
 ): T;
 export function computed<T>(
-  dep: [] | string[],
-  comp: ((value: T) => T) | ((value: any[]) => T)
+  comp: ((value: T) => T) | ((value: any[]) => T),
+  dep?: string[]
 ) {
-  return (new Computed<T>(dep, comp) as unknown) as T;
+  return new Computed<T>(comp, dep);
 }
 
 export const getComputed = <T = EuiThemeShape>(
@@ -309,26 +300,3 @@ export const mergeDeep = (
 
   return target;
 };
-
-// export const currentColorModeOnly = <T>(
-//   colorMode: EuiThemeColorMode,
-//   _theme: { [key: string]: any }
-// ): EuiThemeComputed<T> => {
-//   const theme: { [key: string]: any } = {};
-
-//   Object.keys(_theme).forEach((key) => {
-//     if (key === COLOR_MODE_KEY) {
-//       theme[key] = _theme[key][colorMode];
-//     } else {
-//       const themeValue = _theme[key];
-
-//       if (isObject(themeValue)) {
-//         theme[key] = currentColorModeOnly(colorMode, themeValue);
-//       } else {
-//         theme[key] = themeValue;
-//       }
-//     }
-//   });
-
-//   return theme as EuiThemeComputed<T>;
-// };

@@ -31,25 +31,23 @@ export const poles = {
 };
 
 const textVariants = {
-  textPrimary: computed([], (theme) =>
-    makeHighContrastColor(theme.colors.primary)
-  ),
-  textAccent: computed(['colors.accent'], ([accent]) =>
-    makeHighContrastColor(accent)
-  ),
-  textSuccess: computed(['colors.success'], ([success]) =>
-    makeHighContrastColor(success)
-  ),
-  textWarning: computed(['colors.warning'], ([warning]) =>
-    makeHighContrastColor(warning)
-  ),
-  textDanger: computed(['colors.danger'], ([danger]) =>
-    makeHighContrastColor(danger)
-  ),
-  textDisabled: computed(['colors.disabled'], ([disabled]) =>
-    makeDisabledContrastColor(disabled)
-  ),
-  link: computed(['colors.textPrimary'], ([textPrimary]) => textPrimary),
+  textPrimary: computed((theme) => makeHighContrastColor(theme.colors.primary)),
+  textAccent: computed(([accent]) => makeHighContrastColor(accent), [
+    'colors.accent',
+  ]),
+  textSuccess: computed(([success]) => makeHighContrastColor(success), [
+    'colors.success',
+  ]),
+  textWarning: computed(([warning]) => makeHighContrastColor(warning), [
+    'colors.warning',
+  ]),
+  textDanger: computed(([danger]) => makeHighContrastColor(danger), [
+    'colors.danger',
+  ]),
+  textDisabled: computed(([disabled]) => makeDisabledContrastColor(disabled), [
+    'colors.disabled',
+  ]),
+  link: computed(([textPrimary]) => textPrimary, ['colors.textPrimary']),
 };
 
 export const light_colors = {
@@ -74,19 +72,19 @@ export const light_colors = {
   fullShade: '#000',
 
   // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    tint(lightestShade, 0.5)
-  ),
+  pageBackground: computed(([lightestShade]) => tint(lightestShade, 0.5), [
+    'colors.lightestShade',
+  ]),
   highlight: '#FFFCDD',
 
   // Every color below must be based mathematically on the set above and in a particular order.
-  text: computed(['colors.darkestShade'], ([darkestShade]) => darkestShade),
-  title: computed(['colors.text'], ([text]) => shade(text, 0.5)),
-  disabled: computed(['colors.text'], ([text]) => tint(text, 0.7)),
+  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
+  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
+  disabled: computed(([text]) => tint(text, 0.7), ['colors.text']),
 
-  textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
-    makeHighContrastColor(mediumShade)
-  ),
+  textSubdued: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
+    'colors.mediumShade',
+  ]),
 
   ...textVariants,
 };
@@ -113,19 +111,19 @@ export const dark_colors = {
   fullShade: '#FFF',
 
   // Backgrounds
-  pageBackground: computed(['colors.lightestShade'], ([lightestShade]) =>
-    shade(lightestShade, 0.3)
-  ),
+  pageBackground: computed(([lightestShade]) => shade(lightestShade, 0.3), [
+    'colors.lightestShade',
+  ]),
   highlight: '#2E2D25',
 
   // Every color below must be based mathematically on the set above and in a particular order.
   text: '#DFE5EF',
-  title: computed(['colors.text'], ([text]) => text),
-  disabled: computed(['colors.text'], ([text]) => shade(text, 0.7)),
+  title: computed(([text]) => text, ['colors.text']),
+  disabled: computed(([text]) => shade(text, 0.7), ['colors.text']),
 
-  textSubdued: computed(['colors.mediumShade'], ([mediumShade]) =>
-    makeHighContrastColor(mediumShade)
-  ),
+  textSubdued: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
+    'colors.mediumShade',
+  ]),
 
   ...textVariants,
 };

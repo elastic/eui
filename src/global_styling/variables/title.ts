@@ -25,53 +25,52 @@ import { computed } from '../../services/theme/utils';
 // The map allows for tokenization and easier customization per theme, otherwise you'd have to override the selectors themselves
 export const title = {
   xxxs: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.xxxs'], ([fontSize]) => fontSize.fontSize),
-    lineHeight: computed(
-      ['fontSize.xxxs'],
-      ([lineHeight]) => lineHeight.lineHeight
-    ),
-    fontWeight: computed(['fontWeight.bold'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([fontSize]) => fontSize.fontSize, ['fontSize.xxxs']),
+    lineHeight: computed(([lineHeight]) => lineHeight.lineHeight, [
+      'fontSize.xxxs',
+    ]),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
   },
   xxs: {
-    color: computed(['colors.title'], ([color]) => color),
+    color: computed(([color]) => color, ['colors.title']),
     // HELP: Spreading doesn't work
-    // ...computed([`fontSize.xxs`], ([fontSize]) => fontSize),
-    fontWeight: computed(['fontWeight.bold'], ([fontWeight]) => fontWeight),
+    // ...computed(([fontSize]) => fontSize, [`fontSize.xxs`]),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
   },
   xs: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.xs'], ([fontSize]) => fontSize),
-    fontWeight: computed(['fontWeight.bold'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([fontSize]) => fontSize, ['fontSize.xs']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
   },
   s: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.s'], ([fontSize]) => fontSize),
-    fontWeight: computed(['fontWeight.bold'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([fontSize]) => fontSize, ['fontSize.s']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
   },
   m: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.m'], ([fontSize]) => fontSize),
-    fontWeight: computed(['fontWeight.semiBold'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([fontSize]) => fontSize, ['fontSize.m']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.semiBold']),
     letterSpacing: '-.02em',
   },
   l: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.l'], ([fontSize]) => fontSize),
-    fontWeight: computed(['fontWeight.medium'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([fontSize]) => fontSize, ['fontSize.l']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.medium']),
     letterSpacing: '-.025em',
   },
   xl: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.xl'], ([fontSize]) => fontSize),
-    fontWeight: computed(['fontWeight.light'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([fontSize]) => fontSize, ['fontSize.xl']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.light']),
     letterSpacing: '-.04em',
   },
   xxl: {
-    color: computed(['colors.title'], ([color]) => color),
-    fontSize: computed(['fontSize.xxl'], ([font]) => font.fontSize),
-    lineHeight: computed(['fontSize.xxl'], ([font]) => font.lineHeight),
-    fontWeight: computed(['fontWeight.light'], ([fontWeight]) => fontWeight),
+    color: computed(([color]) => color, ['colors.title']),
+    fontSize: computed(([font]) => font.fontSize, ['fontSize.xxl']),
+    lineHeight: computed(([font]) => font.lineHeight, ['fontSize.xxl']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.light']),
     letterSpacing: '-.03em',
   },
 };
