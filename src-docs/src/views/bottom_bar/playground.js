@@ -9,9 +9,31 @@ export const bottomBarConfig = () => {
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.children = {
-    type: PropTypes.String,
+    type: PropTypes.ReactNode,
     value: '<EuiButton color="ghost">Save</EuiButton>',
-    hidden: true,
+  };
+
+  propsToUse.top = {
+    ...propsToUse.top,
+    type: PropTypes.Number,
+  };
+
+  propsToUse.right = {
+    ...propsToUse.right,
+    type: PropTypes.Number,
+    value: '0',
+  };
+
+  propsToUse.bottom = {
+    ...propsToUse.bottom,
+    type: PropTypes.Number,
+    value: '0',
+  };
+
+  propsToUse.left = {
+    ...propsToUse.left,
+    type: PropTypes.Number,
+    value: '0',
   };
 
   return {
