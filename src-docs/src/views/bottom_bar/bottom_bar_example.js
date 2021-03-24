@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -13,10 +14,22 @@ import BottomBarDisplacement from './bottom_bar_displacement';
 const bottomBarDisplacementSource = require('!!raw-loader!./bottom_bar_displacement');
 
 import BottomBarPosition from './bottom_bar_position';
+import { EuiCallOut } from '../../../../src/components/call_out';
 const bottomBarPositionSource = require('!!raw-loader!./bottom_bar_position');
 
 export const BottomBarExample = {
   title: 'Bottom bar',
+  intro: (
+    <EuiCallOut>
+      <p>
+        <strong>EuiPageTemplate</strong> offers a quick way to{' '}
+        <Link to="/layout/page#showing-a-bottom-bar">
+          apply a bottom bar to your page layouts
+        </Link>
+        .
+      </p>
+    </EuiCallOut>
+  ),
   sections: [
     {
       source: [
