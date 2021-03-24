@@ -20,9 +20,9 @@ export default () => {
       <EuiCollapsibleNav
         isOpen={navIsOpen}
         isDocked={navIsDocked}
-        maskProps={{ style: 'opacity: 0' }}
+        useOverlayMask={false}
         button={
-          <EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>
+          <EuiButton onClick={() => setNavIsOpen((isOpen) => !isOpen)}>
             Toggle nav
           </EuiButton>
         }

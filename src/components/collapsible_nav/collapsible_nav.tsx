@@ -35,6 +35,7 @@ import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
@@ -75,6 +76,10 @@ export type EuiCollapsibleNavProps = CommonProps &
     /**
      * Adjustments to the EuiOverlayMask
      */
+    useOverlayMask?: boolean;
+    /**
+     * Adjustments to the EuiOverlayMask
+     */
     maskProps?: EuiOverlayMaskProps;
   };
 
@@ -90,6 +95,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   closeButtonProps,
   onClose,
   id,
+  useOverlayMask = true,
   maskProps,
   ...rest
 }) => {
@@ -149,7 +155,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   );
 
   let optionalOverlay;
-  if (!navIsDocked) {
+  if (!navIsDocked && useOverlayMask) {
     optionalOverlay = (
       <EuiOverlayMask
         onClick={collapse}
@@ -169,6 +175,15 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'aria-controls': flyoutID,
           'aria-expanded': isOpen,
           'aria-pressed': isOpen,
+          onClick: (e) => {
+            console.log(e, isOpen);
+            if (isOpen && !isDocked) {
+              // collapse();
+              e.preventDefault();
+            } else {
+              button.props.onClick?.(e);
+            }
+          },
           className: classNames(
             button.props.className,
             'euiCollapsibleNav__toggle'
@@ -198,12 +213,22 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       {optionalOverlay}
       {/* Trap focus only when docked={false} */}
       <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
-        <nav id={flyoutID} className={classes} {...rest}>
-          {children}
-          {closeButton}
-        </nav>
+        <EuiOutsideClickDetector isDisabled={!isOpen} onOutsideClick={collapse}>
+          <nav id={flyoutID} className={classes} {...rest}>
+            {children}
+            {closeButton}
+          </nav>
+        </EuiOutsideClickDetector>
       </EuiFocusTrap>
     </>
+  );
+
+  const flyoutWithOutsideClick = useOverlayMask ? (
+    flyout
+  ) : (
+    <EuiOutsideClickDetector isDisabled={!isOpen} onOutsideClick={collapse}>
+      {flyout}
+    </EuiOutsideClickDetector>
   );
 
   return (
