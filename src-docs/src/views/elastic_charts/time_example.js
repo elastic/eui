@@ -3,14 +3,13 @@ import React, { Fragment } from 'react';
 import { ExternalBadge } from './shared';
 import { TimeChart } from './time_chart';
 
-import { EuiSpacer, EuiCode } from '../../../../src/components';
+import { EuiCode } from '../../../../src/components';
 
 export const ElasticChartsTimeExample = {
   title: 'Time series',
   intro: (
     <Fragment>
       <ExternalBadge />
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

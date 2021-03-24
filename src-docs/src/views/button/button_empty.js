@@ -11,7 +11,7 @@ const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
 export default () => (
   <div>
     {buttons.map((value) => (
-      <>
+      <React.Fragment key={value}>
         <EuiFlexGroup gutterSize="s" key={value} alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
@@ -45,7 +45,7 @@ export default () => (
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
-      </>
+      </React.Fragment>
     ))}
 
     <EuiFlexGroup gutterSize="s" alignItems="center">

@@ -1,8 +1,27 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
+
+## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
+
+- Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))
+- Added `iconType`, `iconColor`, and `iconSize` props to `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+- Added `'plain'` and `null` as `color` options of `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+
+## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
+
+- Added `EuiNotificationEvent` component ([#4513](https://github.com/elastic/eui/pull/4513))
+- Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref ([#4513](https://github.com/elastic/eui/pull/4513))
+- Made `description` prop of `EuiCard` optional ([#4546](https://github.com/elastic/eui/pull/4582))
+
+## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
+
 - Added `panelProps` to `EuiPopover` ([#4573](https://github.com/elastic/eui/pull/4573))
 - Updated the default of the `EuiPopover`s `ownFocus` prop from `false` to `true` ([#4551](https://github.com/elastic/eui/pull/4551))
 - Added `src` prop to `EuiImage` as an alternative to `url` ([#4611](https://github.com/elastic/eui/pull/4611))
+- Added `EuiSplitPanel` component ([#4539](https://github.com/elastic/eui/pull/4539))
 
 **Bug fixes**
 
@@ -10,7 +29,7 @@
 - Fixed visual bug in drag&drop sections when nested in an popover ([#4590](https://github.com/elastic/eui/pull/4590))
 - Fixed an errant export of `EuiSideNavProps` type from JS code ([#4604](https://github.com/elastic/eui/pull/4604))
 - Fixed misaligned `EuiComboBox` options list ([#4607](https://github.com/elastic/eui/pull/4607))
-- Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
+- Fixed missing `forwardRef` on `EuiHeaderSectionItemButton` ([#4631](https://github.com/elastic/eui/pull/4631))
 
 ## [`31.9.1`](https://github.com/elastic/eui/tree/v31.9.1)
 

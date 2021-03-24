@@ -100,7 +100,6 @@ export const IconExample = {
           it will get by default an <EuiCode language="js">aria-hidden=true</EuiCode>.
         </p>
       </EuiCallOut>
-      <EuiSpacer />
     </div>
   ),
   sections: [

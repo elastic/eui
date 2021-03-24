@@ -41,6 +41,19 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     );
   }
 
+  function renderVersion() {
+    const isLocalDev = window.location.host.includes('803');
+
+    return (
+      <EuiBadge
+        href="#/package/changelog"
+        aria-label={`Version ${pkg.version}, View changelog`}
+        color={isLocalDev ? 'accent' : 'default'}>
+        {isLocalDev ? 'Local' : `v.${pkg.version}`}
+      </EuiBadge>
+    );
+  }
+
   function renderGithub() {
     const href = 'https://github.com/elastic/eui';
     const label = 'EUI GitHub repo';
@@ -131,15 +144,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       theme="dark"
       sections={[
         {
-          items: [
-            renderLogo(),
-            <EuiBadge
-              href="#/package/changelog"
-              aria-label={`Version ${pkg.version}, View changelog`}
-              color="default">
-              v.{pkg.version}
-            </EuiBadge>,
-          ],
+          items: [renderLogo(), renderVersion()],
           borders: 'none',
         },
         {

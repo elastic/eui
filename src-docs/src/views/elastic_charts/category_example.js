@@ -2,14 +2,13 @@ import React, { Fragment } from 'react';
 import { ExternalBadge } from './shared';
 import { CategoryChart } from './category_chart';
 
-import { EuiSpacer, EuiCode } from '../../../../src/components';
+import { EuiCode } from '../../../../src/components';
 
 export const ElasticChartsCategoryExample = {
   title: 'Categorical',
   intro: (
     <Fragment>
       <ExternalBadge />
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

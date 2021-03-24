@@ -54,7 +54,29 @@ exports[`EuiCard props a null icon 1`] = `
 
 exports[`EuiCard props children 1`] = `
 <div
-  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned euiCard--hasChildren"
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiCard__children"
+    >
+      Child
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props children with description 1`] = `
+<div
+  class="euiCard euiCard--hasShadow euiCard--borderRadiusMedium euiCard--paddingMedium euiCard--centerAligned"
 >
   <div
     class="euiCard__content"
@@ -73,7 +95,11 @@ exports[`EuiCard props children 1`] = `
         Card description
       </p>
     </div>
-    Child
+    <div
+      class="euiCard__children"
+    >
+      Child
+    </div>
   </div>
 </div>
 `;

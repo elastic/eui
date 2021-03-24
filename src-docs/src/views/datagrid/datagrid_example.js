@@ -289,8 +289,22 @@ const gridConcepts = [
 
 export const DataGridExample = {
   title: 'Data grid',
+  intro: (
+    <EuiText>
+      <p>
+        <strong>EuiDataGrid</strong> is for displaying large amounts of tabular
+        data. It is a better choice over{' '}
+        <Link to="/tabular-content/tables/">EUI tables</Link> when there are
+        many columns, the data in those columns is fairly uniform, and when
+        schemas and sorting are important for comparison. Although it is similar
+        to traditional spreedsheet software, EuiDataGrid&apos;s current
+        strengths are in rendering rather than creating content.{' '}
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
+      title: 'Core concepts',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -303,16 +317,6 @@ export const DataGridExample = {
       ],
       text: (
         <Fragment>
-          <p>
-            <strong>EuiDataGrid</strong> is for displaying large amounts of
-            tabular data. It is a better choice over{' '}
-            <Link to="/tabular-content/tables/">EUI tables</Link> when there are
-            many columns, the data in those columns is fairly uniform, and when
-            schemas and sorting are important for comparison. Although it is
-            similar to traditional spreedsheet software, EuiDataGrid&apos;s
-            current strengths are in rendering rather than creating content.{' '}
-          </p>
-          <h2>Core concepts</h2>
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
@@ -379,11 +383,13 @@ export const DataGridExample = {
           <DataGrid />
         </Fragment>
       ),
-      extraContent: (
+    },
+    {
+      title: 'Snippet with every feature in use',
+      wrapText: false,
+      text: (
         <Fragment>
-          <EuiSpacer size="xxl" />
           <EuiText>
-            <h2>Snippet with every feature in use</h2>
             <p>
               Here is a complicated data grid example meant to give you an idea
               of the data structure and callbacks you&apos;ll need to provide if
@@ -394,9 +400,15 @@ export const DataGridExample = {
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {gridSnippet}
           </EuiCodeBlock>
-          <EuiSpacer size="xl" />
+        </Fragment>
+      ),
+    },
+    {
+      title: 'General props explanation',
+      wrapText: false,
+      text: (
+        <Fragment>
           <EuiText>
-            <h3>General props explanation</h3>
             <p>
               Please check the props tab in the example above for more
               explanation on the lower level object types. The majority of the

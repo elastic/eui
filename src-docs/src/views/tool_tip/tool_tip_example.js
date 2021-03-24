@@ -11,7 +11,6 @@ import {
   EuiToolTip,
   EuiIconTip,
   EuiSpacer,
-  EuiText,
   EuiTitle,
 } from '../../../../src/components';
 import toolTipConfig from './playground';
@@ -47,81 +46,74 @@ const infoTipSnippet = `<EuiIconTip
 export const ToolTipExample = {
   title: 'Tooltip',
   intro: (
-    <Fragment>
-      <EuiCallOut title="EuiToolTip only applies to inline elements">
-        <p>
-          EuiToolTip wraps its children in a span element, so if you pass in a
-          block-level child (e.g. a div) the resulting DOM will be in violation
-          of the HTML5 spec.
-        </p>
-      </EuiCallOut>
-
-      <EuiSpacer size="l" />
-
-      <EuiText>
-        Wrap <strong>EuiToolTip</strong> around any item that you need a tooltip
-        for. The <EuiCode>position</EuiCode> prop will take a suggested
-        position, but will change it if the tooltip gets too close to the edge
-        of the screen.
-      </EuiText>
-
-      <EuiSpacer size="l" />
-
-      <EuiTitle size="xs">
-        <h2>Applying tooltips to custom components</h2>
-      </EuiTitle>
-
-      <EuiSpacer size="s" />
-
-      <EuiText>
-        Internally, <strong>EuiToolTip</strong> applies{' '}
-        <EuiCode>onFocus</EuiCode>, <EuiCode>onBlur</EuiCode>,{' '}
-        <EuiCode>onMouseOver</EuiCode>, and <EuiCode>onMouseOut</EuiCode> props
-        to whatever you pass as <EuiCode>children</EuiCode>. If you pass in a
-        custom component, then you&rsquo;ll need to make sure these props are
-        applied to the root element rendered by your component. The best way to
-        do that is to follow{' '}
-        <a href="https://github.com/elastic/eui/blob/master/wiki/component-design.md#pass-through-props">
-          EUI&rsquo;s guidelines on pass-through props
-        </a>
-        .
-      </EuiText>
-
-      <EuiSpacer size="l" />
-
-      <EuiCallOut
-        iconType="accessibility"
-        color="warning"
-        title={
-          <>
-            Anchoring a tooltip to a non-interactive element makes it difficult
-            for keyboard-only and screen reader users to read.
-          </>
-        }
-      />
-
-      <EuiSpacer size="l" />
-
-      <EuiCallOut
-        iconType="accessibility"
-        color="warning"
-        title={
-          <>
-            Putting anything other than plain text in a tooltip is lost on
-            screen readers. Consider switching to{' '}
-            <Link to="/layout/popover">
-              <strong>EuiPopover</strong>
-            </Link>{' '}
-            if you need more content inside a tooltip.
-          </>
-        }
-      />
-
-      <EuiSpacer size="l" />
-    </Fragment>
+    <EuiCallOut title="EuiToolTip only applies to inline elements">
+      <p>
+        EuiToolTip wraps its children in a span element, so if you pass in a
+        block-level child (e.g. a div) the resulting DOM will be in violation of
+        the HTML5 spec.
+      </p>
+    </EuiCallOut>
   ),
   sections: [
     {
+      text: (
+        <>
+          <p>
+            Wrap <strong>EuiToolTip</strong> around any item that you need a
+            tooltip for. The <EuiCode>position</EuiCode> prop will take a
+            suggested position, but will change it if the tooltip gets too close
+            to the edge of the screen.
+          </p>
+
+          <EuiTitle size="xs">
+            <h2>
+              <small>Applying tooltips to custom components</small>
+            </h2>
+          </EuiTitle>
+
+          <p>
+            Internally, <strong>EuiToolTip</strong> applies{' '}
+            <EuiCode>onFocus</EuiCode>, <EuiCode>onBlur</EuiCode>,{' '}
+            <EuiCode>onMouseOver</EuiCode>, and <EuiCode>onMouseOut</EuiCode>{' '}
+            props to whatever you pass as <EuiCode>children</EuiCode>. If you
+            pass in a custom component, then you&rsquo;ll need to make sure
+            these props are applied to the root element rendered by your
+            component. The best way to do that is to follow{' '}
+            <a href="https://github.com/elastic/eui/blob/master/wiki/component-design.md#pass-through-props">
+              EUI&rsquo;s guidelines on pass-through props
+            </a>
+            .
+          </p>
+
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <>
+                Anchoring a tooltip to a non-interactive element makes it
+                difficult for keyboard-only and screen reader users to read.
+              </>
+            }
+          />
+
+          <EuiSpacer size="l" />
+
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <>
+                Putting anything other than plain text in a tooltip is lost on
+                screen readers. Consider switching to{' '}
+                <Link to="/layout/popover">
+                  <strong>EuiPopover</strong>
+                </Link>{' '}
+                if you need more content inside a tooltip.
+              </>
+            }
+          />
+        </>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,

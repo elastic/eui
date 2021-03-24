@@ -8,7 +8,6 @@ import {
   EuiCallOut,
   EuiDualRange,
   EuiRange,
-  EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
 
@@ -63,7 +62,6 @@ export const RangeControlExample = {
           or use a <strong>EuiFieldNumber</strong> instead.
         </p>
       </EuiCallOut>
-      <EuiSpacer />
     </Fragment>
   ),
   sections: [
