@@ -42,6 +42,7 @@ import { markdownLinkValidator } from './markdown_link_validator';
 import React, { createElement } from 'react';
 import { EuiLink } from '../../link';
 import { EuiCodeBlock, EuiCode } from '../../code';
+import { EuiHorizontalRule } from '../../horizontal_rule';
 import markdown from 'remark-parse';
 import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
@@ -95,6 +96,20 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
           ) : (
             <EuiCode {...props} />
           ),
+        // When we use block code "fences" the code tag is replaced by the `EuiCodeBlock`
+        // But there's a pre tag that appears and wraps all the `EuiCodeBlock`
+        // We want to replace this pre tag with a div because the EuiCodeBlock already as a children pre tag
+        // this way we avoid unnecessary EuiText pre styles
+        pre: (props) => (
+          <div {...props} className="euiMarkdownFormat__codeblockWrapper" />
+        ),
+        blockquote: (props) => (
+          <blockquote {...props} className="euiMarkdownFormat__blockquote" />
+        ),
+        table: (props) => (
+          <table className="euiMarkdownFormat__table" {...props} />
+        ),
+        hr: (props) => <EuiHorizontalRule {...props} />,
         tooltipPlugin: MarkdownTooltip.renderer,
         checkboxPlugin: MarkdownCheckbox.renderer,
       },

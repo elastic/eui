@@ -20,6 +20,7 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import unified, { PluggableList } from 'unified';
 import { VFileContents } from 'vfile';
+import { EuiText } from '../text/text';
 import {
   defaultProcessingPlugins,
   defaultParsingPlugins,
@@ -52,5 +53,9 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
       return children;
     }
   }, [children, processor]);
-  return <div className="euiMarkdownFormat">{result}</div>;
+  return (
+    <div className="euiMarkdownFormat">
+      <EuiText>{result}</EuiText>
+    </div>
+  );
 };

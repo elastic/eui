@@ -1,14 +1,6 @@
-// Default styles for Markdown Format
-// 1. Headings
-// 2. Images
-// 3. Blockquotes
-// 4. Horizontal rules
-// 5. Lists
-// 6. Tables
-// 7. Code
-
 // The Markdown Format uses by default a few EUI components
-// to render elements: EuiLink and EuiCode.
+// Uses the EuiText to wrap all the content
+// Uses the EuiLink and EuiCode.
 
 $browserDefaultFontSize: 16px;
 
@@ -58,17 +50,23 @@ $browserDefaultFontSize: 16px;
     color: $euiColorLightestShade;
   }
 
-  > div > *:first-child {
-    // sass-lint:disable-block no-important
-    margin-top: 0 !important;
+
+  // Blockquotes
+  .euiMarkdownFormat__blockquote {
+    padding: 0 1em;
+    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
+    margin-bottom: $euiMarkdownFontSize;
   }
 
-  > div > * {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+  &--reversed .euiMarkdownFormat__blockquote {
+    border-left-color: $euiMarkdownAlphaLightShadeReversed;
   }
 
-  > div > *:last-child,
+  .euiHorizontalRule {
+    background-color: $euiMarkdownAlphaLightShade;
+  }
+
+  // Checkboxes
   .euiCheckbox {
     // sass-lint:disable-block no-important
     margin-bottom: 0 !important;
@@ -78,158 +76,7 @@ $browserDefaultFontSize: 16px;
     margin-top: $euiMarkdownSize;
   }
 
-  p,
-  blockquote,
-  ul,
-  ol,
-  dl,
-  pre,
-  table {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
-    line-height: 1.5em;
-  }
-
-  strong {
-    font-weight: 600;
-  }
-
-  // 2. Headings
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSizeXS;
-  }
-
-  h1 {
-    font-size: $euiMarkdownFontSizeXXL;
-    line-height: 1.333333em;
-    font-weight: 300;
-  }
-
-  h2 {
-    font-size: $euiMarkdownFontSizeXL;
-    line-height: 1.428571em;
-    font-weight: 300;
-  }
-
-  h3 {
-    font-size: $euiMarkdownFontSizeL;
-    line-height: 1.6em;
-    font-weight: 600;
-  }
-
-  h4 {
-    font-size: $euiMarkdownSize;
-    line-height: 1.5em;
-    font-weight: 600;
-  }
-
-  h5 {
-    font-size: $euiMarkdownFontSizeS;
-    line-height: 1.142857em;
-    font-weight: 700;
-  }
-
-  h6 {
-    font-size: $euiMarkdownFontSizeXS;
-    line-height: 1.333333em;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  // 3. Images
-  img {
-    max-width: 100%;
-    box-sizing: content-box;
-    border-style: none;
-  }
-
-  // 4. Blockquotes
-  blockquote {
-    padding: 0 1em;
-    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
-  }
-
-  &--reversed blockquote {
-    border-left-color: $euiMarkdownAlphaLightShadeReversed;
-  }
-
-  // 5. Horizontal rules
-  hr {
-    border: none;
-    height: 1px;
-    background-color: $euiMarkdownAlphaLightShade;
-    margin: $euiMarkdownSizeL 0;
-  }
-
-  hr::before {
-    display: table;
-    content: '';
-  }
-
-  hr::after {
-    display: table;
-    clear: both;
-    content: '';
-  }
-
-  // 6. Lists
-  ul,
-  ol {
-    padding-left: $euiMarkdownSizeL;
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
-  }
-
-  ul {
-    list-style-type: disc;
-  }
-
-  ol {
-    list-style-type: decimal;
-  }
-
-  ul ul {
-    list-style-type: circle;
-  }
-
-  ol ol,
-  ul ol {
-    list-style-type: lower-roman;
-  }
-
-  ul ul ol,
-  ul ol ol,
-  ol ul ol,
-  ol ol ol {
-    list-style-type: lower-alpha;
-  }
-
-  dd {
-    margin-left: 0;
-  }
-
-  ul ul,
-  ul ol,
-  ol ol,
-  ol ul {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  li > p {
-    margin-bottom: $euiMarkdownSizeXS;
-  }
-
-  li + li {
-    margin-top: $euiMarkdownSizeXXS;
-  }
-
+  // Task list
   .task-list-item {
     list-style-type: none;
   }
@@ -243,23 +90,28 @@ $browserDefaultFontSize: 16px;
     vertical-align: middle;
   }
 
-  // 7. Tables
-  table {
+  // Code block
+  .euiMarkdownFormat__codeblockWrapper {
+    margin-bottom: $euiMarkdownSize;
+  }
+
+  // Tables
+  .euiMarkdownFormat__table {
     display: block;
     width: 100%;
     overflow: auto;
     border-left: 1px solid $euiMarkdownAlphaLightShade;
     border-spacing: 0;
     border-collapse: collapse;
+    margin-bottom: $euiMarkdownSize;
+
+    &:last-child {
+      margin-bottom: $euiMarkdownSize;
+    }
   }
 
-  td,
-  th {
-    padding: 0;
-  }
-
-  table th,
-  table td {
+  .euiMarkdownFormat__table th,
+  .euiMarkdownFormat__table td {
     padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
     border-top: 1px solid $euiMarkdownAlphaLightShade;
     border-bottom: 1px solid $euiMarkdownAlphaLightShade;
@@ -269,7 +121,7 @@ $browserDefaultFontSize: 16px;
     }
   }
 
-  table tr {
+  .euiMarkdownFormat__table tr {
     background-color: transparent;
     border-top: 1px solid $euiMarkdownAlphaLightShade;
   }

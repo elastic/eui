@@ -12,6 +12,10 @@
   img,
   pre {
     margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   ul,
@@ -137,7 +141,7 @@
     list-style: decimal;
   }
 
-  blockquote {
+  blockquote:not(.euiMarkdownFormat__blockquote) {
     position: relative;
     text-align: center;
     margin-left: auto;
