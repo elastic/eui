@@ -16,6 +16,10 @@ import MarkdownFormatSink from './markdown_format_sink';
 const markdownFormatSinkSource = require('!!raw-loader!./markdown_format_sink');
 const markdownFormatSinkHtml = renderToHtml(MarkdownFormatSink);
 
+import MarkdownFormatStyles from './markdown_format_styles';
+const markdownFormatStylesSource = require('!!raw-loader!./markdown_format_styles');
+const markdownFormatStylesHtml = renderToHtml(MarkdownFormatStyles);
+
 export const MarkdownFormatExample = {
   title: 'Markdown format',
   beta: true,
@@ -62,6 +66,24 @@ export const MarkdownFormatExample = {
         EuiMarkdownFormat,
       },
       demo: <MarkdownFormat />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: markdownFormatStylesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: markdownFormatStylesHtml,
+        },
+      ],
+      title: 'Styles',
+      text: <p>This example shows of all the styling modifiers.</p>,
+      props: {
+        EuiMarkdownFormat,
+      },
+      demo: <MarkdownFormatStyles />,
     },
     {
       source: [
