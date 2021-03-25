@@ -27,29 +27,6 @@ import fonts_ams from './global_styling/variables/_typography';
 import { border_ams } from './global_styling/variables/_borders';
 import { title_ams } from './global_styling/variables/title';
 
-// export const amsterdam_light = {
-//   colors: {
-//     ...light_colors_ams,
-//   },
-//   base,
-//   size,
-//   ...fonts_ams,
-//   border: border_ams,
-//   title: title_ams,
-//   // array: [1, 2, 3],
-// };
-
-// export const amsterdam_dark = {
-//   colors: {
-//     ...dark_colors_ams,
-//   },
-//   base,
-//   size,
-//   ...fonts_ams,
-//   border: border_ams,
-//   title: title_ams,
-// };
-
 export const euiThemeAmsterdam = {
   colors: {
     light: light_colors_ams,
