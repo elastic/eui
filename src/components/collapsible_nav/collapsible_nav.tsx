@@ -240,8 +240,9 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       {optionalOverlay}
       {/* Trap focus only when docked={false} */}
       <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
+        {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
         <EuiOutsideClickDetector
-          isDisabled={useOverlayMask || !isOpen}
+          isDisabled={useOverlayMask || navIsDocked}
           onOutsideClick={collapse}>
           <nav id={flyoutID} className={classes} style={flyoutStyle} {...rest}>
             {children}
