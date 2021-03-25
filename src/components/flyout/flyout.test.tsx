@@ -92,6 +92,18 @@ describe('EuiFlyout', () => {
       });
     });
 
+    describe('type=push', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <EuiFlyout onClose={() => {}} type="push" pushBreakpoint="xs" />
+        );
+
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
+      });
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {

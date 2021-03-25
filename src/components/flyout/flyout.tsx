@@ -23,16 +23,32 @@ import React, {
   Fragment,
   HTMLAttributes,
   useEffect,
+  useState,
 } from 'react';
 import classnames from 'classnames';
 
-import { keys, EuiWindowEvent } from '../../services';
+import { keys, EuiWindowEvent, useCombinedRefs } from '../../services';
 
 import { CommonProps, keysOf } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
+import {
+  EuiBreakpointSize,
+  isWithinMinBreakpoint,
+} from '../../services/breakpoint';
+import { useResizeObserver } from '../observer/resize_observer';
+import { throttle } from 'lodash';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
+
+const typeToClassNameMap = {
+  push: 'euiFlyout--push',
+  overlay: null,
+};
+
+export const TYPES = keysOf(typeToClassNameMap);
+type _EuiFlyoutType = typeof TYPES[number];
 
 const sideToClassNameMap = {
   left: 'euiFlyout--left',
@@ -40,7 +56,7 @@ const sideToClassNameMap = {
 };
 
 export const SIDES = keysOf(sideToClassNameMap);
-export type _EuiFlyoutSide = typeof SIDES[number];
+type _EuiFlyoutSide = typeof SIDES[number];
 
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',
@@ -108,6 +124,21 @@ export interface EuiFlyoutProps
    */
   maskProps?: EuiOverlayMaskProps;
   /**
+   * How to display the the flyout in relation to the body content;
+   * `push` keeps it visible, pushing the `<body>` content via padding
+   */
+  type?: _EuiFlyoutType;
+  /**
+   * Pushed flyouts will squish the body too much.
+   * Customize this minimum breakpoint for enabling pushing
+   */
+  pushBreakpoint?: EuiBreakpointSize | number;
+  /**
+   * Forces this interaction on the mask overlay or body content.
+   * Defaults depend on `ownFocus` and `type` values
+   */
+  outsideClickCloses?: boolean;
+  /**
    * Which side of the window to attach to.
    * The `right` option should only be used for navigation.
    */
@@ -127,6 +158,9 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   maxWidth = false,
   style,
   maskProps,
+  type = 'overlay',
+  pushBreakpoint = 'l',
+  outsideClickCloses = false,
   ...rest
 }) => {
   const onKeyDown = (event: KeyboardEvent) => {
@@ -136,13 +170,57 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
     }
   };
 
+  const [isPushed, setWindowIsLargeEnoughToPush] = useState(
+    type === 'push' &&
+      isWithinMinBreakpoint(
+        typeof window === 'undefined' ? 0 : window.innerWidth,
+        pushBreakpoint
+      )
+  );
+
+  const functionToCallOnWindowResize = throttle(() => {
+    if (isWithinMinBreakpoint(window.innerWidth, pushBreakpoint)) {
+      setWindowIsLargeEnoughToPush(true);
+    } else {
+      setWindowIsLargeEnoughToPush(false);
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
+  const setRef = useCombinedRefs([setResizeRef]);
+  // TODO: Allow this hooke to be conditional
+  const dimensions = useResizeObserver(resizeRef);
+
   useEffect(() => {
     document.body.classList.add('euiBody--hasFlyout');
 
+    if (type === 'push') {
+      window.addEventListener('resize', functionToCallOnWindowResize);
+    }
+
+    if (isPushed) {
+      if (side === 'right') {
+        document.body.style.paddingRight = `${dimensions.width}px`;
+      } else if (side === 'left') {
+        document.body.style.paddingLeft = `${dimensions.width}px`;
+      }
+    }
+
     return () => {
       document.body.classList.remove('euiBody--hasFlyout');
+
+      if (type === 'push') {
+        window.removeEventListener('resize', functionToCallOnWindowResize);
+
+        if (side === 'right') {
+          document.body.style.paddingRight = '';
+        } else if (side === 'left') {
+          document.body.style.paddingLeft = '';
+        }
+      }
     };
-  });
+  }, [type, side, dimensions, isPushed, functionToCallOnWindowResize]);
 
   let newStyle;
   let widthClassName;
@@ -167,6 +245,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
 
   const classes = classnames(
     'euiFlyout',
+    typeToClassNameMap[type],
     sideToClassNameMap[side],
     sizeClassName,
     paddingSizeToClassNameMap[paddingSize],
@@ -200,6 +279,8 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
       className={classes}
       tabIndex={0}
       style={newStyle || style}
+      // @ts-ignore TODO
+      ref={setRef}
       {...rest}>
       {closeButton}
       {children}
@@ -209,7 +290,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   // If ownFocus is set, show an overlay behind the flyout and allow the user
   // to click it to close it.
   let optionalOverlay;
-  if (ownFocus) {
+  if (ownFocus && !isPushed) {
     optionalOverlay = (
       <EuiOverlayMask
         onClick={onClose}
@@ -231,8 +312,13 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
        * to allow non-keyboard users the ability to interact with
        * elements outside the flyout.
        */}
-      <EuiFocusTrap clickOutsideDisables={!ownFocus}>
-        {flyoutContent}
+      <EuiFocusTrap clickOutsideDisables={!ownFocus || isPushed}>
+        {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
+        <EuiOutsideClickDetector
+          isDisabled={!outsideClickCloses}
+          onOutsideClick={() => onClose()}>
+          {flyoutContent}
+        </EuiOutsideClickDetector>
       </EuiFocusTrap>
     </Fragment>
   );

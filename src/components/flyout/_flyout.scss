@@ -143,3 +143,13 @@ $flyoutSizes: (
     transform: translateX(0%);
   }
 }
+
+/**
+ * Pushed style (inside body)
+ */
+.euiFlyout.euiFlyout--push {
+  @include euiBottomShadowMedium;
+  z-index: $euiZHeader; // When docked, make it the same level as the header
+  clip-path: none;
+  animation-duration: 0s; // Don't animate on loading a docked nav
+}
