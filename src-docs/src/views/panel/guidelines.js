@@ -36,7 +36,7 @@ export default () => (
       paddingSize="l"
       hasShadow={false}
       style={{ justifyContent: 'center', display: 'flex' }}>
-      <EuiPanel hasShadow={true} hasBorder={false} style={{ maxWidth: 600 }}>
+      <EuiPanel hasShadow={true} hasBorder={false} style={{ maxWidth: 650 }}>
         <EuiTitle size="m">
           <span>Panel 1</span>
         </EuiTitle>
