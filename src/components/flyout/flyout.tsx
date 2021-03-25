@@ -18,12 +18,13 @@
  */
 
 import React, {
-  FunctionComponent,
   CSSProperties,
   Fragment,
-  HTMLAttributes,
+  ComponentType,
   useEffect,
   useState,
+  ComponentProps,
+  PropsWithChildren,
 } from 'react';
 import classnames from 'classnames';
 
@@ -83,71 +84,77 @@ const paddingSizeToClassNameMap = {
 };
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
-export interface EuiFlyoutProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  onClose: () => void;
-  /**
-   * Defines the width of the panel.
-   * Pass a predefined size of `s | m | l`, or pass any number/string compatabile with the CSS `width` attribute
-   */
-  size?: _EuiFlyoutSize | CSSProperties['width'];
-  /**
-   * Customize the padding around the content of the flyout header, body and footer
-   */
-  paddingSize?: EuiFlyoutPaddingSize;
-  /**
-   * Hides the default close button. You must provide another close button somewhere within the flyout.
-   */
-  hideCloseButton?: boolean;
-  /**
-   * Adds an EuiOverlayMask when set to `true`
-   */
-  ownFocus?: boolean;
-  /**
-   * Specify an aria-label for the close button of the flyout.
-   * Default is `'Close this dialog'`.
-   */
-  closeButtonAriaLabel?: string;
-  /**
-   * Sets the max-width of the panel,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
-  maxWidth?: boolean | number | string;
-  /**
-   * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
-   */
-  maskProps?: EuiOverlayMaskProps;
-  /**
-   * How to display the the flyout in relation to the body content;
-   * `push` keeps it visible, pushing the `<body>` content via padding
-   */
-  type?: _EuiFlyoutType;
-  /**
-   * Pushed flyouts will squish the body too much.
-   * Customize this minimum breakpoint for enabling pushing
-   */
-  pushBreakpoint?: EuiBreakpointSize | number;
-  /**
-   * Forces this interaction on the mask overlay or body content.
-   * Defaults depend on `ownFocus` and `type` values
-   */
-  outsideClickCloses?: boolean;
-  /**
-   * Which side of the window to attach to.
-   * The `right` option should only be used for navigation.
-   */
-  side?: _EuiFlyoutSide;
-}
+type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
-export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
+export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
+  ComponentProps<T> & {
+    onClose: () => void;
+    /**
+     * Sets the HTML element for `EuiFlyout`
+     */
+    as?: T;
+    /**
+     * Defines the width of the panel.
+     * Pass a predefined size of `s | m | l`, or pass any number/string compatabile with the CSS `width` attribute
+     */
+    size?: _EuiFlyoutSize | CSSProperties['width'];
+    /**
+     * Customize the padding around the content of the flyout header, body and footer
+     */
+    paddingSize?: _EuiFlyoutPaddingSize;
+    /**
+     * Hides the default close button. You must provide another close button somewhere within the flyout.
+     */
+    hideCloseButton?: boolean;
+    /**
+     * Adds an EuiOverlayMask when set to `true`
+     */
+    ownFocus?: boolean;
+    /**
+     * Specify an aria-label for the close button of the flyout.
+     * Default is `'Close this dialog'`.
+     */
+    closeButtonAriaLabel?: string;
+    /**
+     * Sets the max-width of the panel,
+     * set to `true` to use the default size,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
+     */
+    maxWidth?: boolean | number | string;
+    /**
+     * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
+     */
+    maskProps?: EuiOverlayMaskProps;
+    /**
+     * How to display the the flyout in relation to the body content;
+     * `push` keeps it visible, pushing the `<body>` content via padding
+     */
+    type?: _EuiFlyoutType;
+    /**
+     * Pushed flyouts will squish the body too much.
+     * Customize this minimum breakpoint for enabling pushing
+     */
+    pushBreakpoint?: EuiBreakpointSize | number;
+    /**
+     * Forces this interaction on the mask overlay or body content.
+     * Defaults depend on `ownFocus` and `type` values
+     */
+    outsideClickCloses?: boolean;
+    /**
+     * Which side of the window to attach to.
+     * The `right` option should only be used for navigation.
+     */
+    side?: _EuiFlyoutSide;
+  };
+
+export const EuiFlyout = <T extends ComponentTypes>({
   className,
   children,
+  as: Element = 'div' as T,
   hideCloseButton = false,
   onClose,
   ownFocus = false,
@@ -162,7 +169,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   pushBreakpoint = 'l',
   outsideClickCloses = false,
   ...rest
-}) => {
+}: PropsWithChildren<EuiFlyoutProps<T>>) => {
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
@@ -245,10 +252,10 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
 
   const classes = classnames(
     'euiFlyout',
-    typeToClassNameMap[type],
-    sideToClassNameMap[side],
+    typeToClassNameMap[type as _EuiFlyoutType],
+    sideToClassNameMap[side as _EuiFlyoutSide],
     sizeClassName,
-    paddingSizeToClassNameMap[paddingSize],
+    paddingSizeToClassNameMap[paddingSize as _EuiFlyoutPaddingSize],
     widthClassName,
     className
   );
@@ -274,7 +281,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   }
 
   const flyoutContent = (
-    <div
+    <Element
       role="dialog"
       className={classes}
       tabIndex={0}
@@ -284,7 +291,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
       {...rest}>
       {closeButton}
       {children}
-    </div>
+    </Element>
   );
 
   // If ownFocus is set, show an overlay behind the flyout and allow the user

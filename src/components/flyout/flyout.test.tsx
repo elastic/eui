@@ -104,6 +104,14 @@ describe('EuiFlyout', () => {
       });
     });
 
+    test('is rendered as nav', () => {
+      const component = mount(<EuiFlyout onClose={() => {}} as="nav" />);
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
