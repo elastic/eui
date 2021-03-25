@@ -34,6 +34,14 @@ import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
 
+const sideToClassNameMap = {
+  left: 'euiFlyout--left',
+  right: null,
+};
+
+export const SIDES = keysOf(sideToClassNameMap);
+export type _EuiFlyoutSide = typeof SIDES[number];
+
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',
   m: 'euiFlyout--medium',
@@ -41,13 +49,13 @@ const sizeToClassNameMap = {
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
-export type EuiFlyoutSize = typeof SIZES[number];
+type _EuiFlyoutSize = typeof SIZES[number];
 
 /**
  * Custom type checker for named flyout sizes since the prop
  * `size` can also be CSSProperties['width'] (string | number)
  */
-function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
+function isEuiFlyoutSizeNamed(value: any): value is _EuiFlyoutSize {
   return SIZES.includes(value as any);
 }
 
@@ -69,7 +77,7 @@ export interface EuiFlyoutProps
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatabile with the CSS `width` attribute
    */
-  size?: EuiFlyoutSize | CSSProperties['width'];
+  size?: _EuiFlyoutSize | CSSProperties['width'];
   /**
    * Customize the padding around the content of the flyout header, body and footer
    */
@@ -99,6 +107,11 @@ export interface EuiFlyoutProps
    * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
    */
   maskProps?: EuiOverlayMaskProps;
+  /**
+   * Which side of the window to attach to.
+   * The `right` option should only be used for navigation.
+   */
+  side?: _EuiFlyoutSide;
 }
 
 export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
@@ -107,6 +120,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   hideCloseButton = false,
   onClose,
   ownFocus = false,
+  side = 'right',
   size = 'm',
   paddingSize = 'l',
   closeButtonAriaLabel,
@@ -153,6 +167,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
 
   const classes = classnames(
     'euiFlyout',
+    sideToClassNameMap[side],
     sizeClassName,
     paddingSizeToClassNameMap[paddingSize],
     widthClassName,

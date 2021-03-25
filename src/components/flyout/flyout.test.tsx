@@ -21,15 +21,13 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiFlyout, EuiFlyoutSize, PADDING_SIZES } from './flyout';
+import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
     <div {...props} />
   ),
 }));
-
-const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
@@ -80,6 +78,18 @@ describe('EuiFlyout', () => {
       expect(
         takeMountedSnapshot(component, { hasArrayOutput: true })
       ).toMatchSnapshot();
+    });
+
+    describe('sides', () => {
+      SIDES.forEach((side) => {
+        it(`${side} is rendered`, () => {
+          const component = mount(<EuiFlyout onClose={() => {}} side={side} />);
+
+          expect(
+            takeMountedSnapshot(component, { hasArrayOutput: true })
+          ).toMatchSnapshot();
+        });
+      });
     });
 
     describe('size', () => {

@@ -118,3 +118,28 @@ $flyoutSizes: (
     width: map-get(map-get($flyoutSizes, 'large'), 'min');
   }
 }
+
+/**
+ * Left side flyout (should only be used for navigation)
+ */
+.euiFlyout--left {
+  border-right: $euiFlyoutBorder;
+  border-left: none;
+  right: auto;
+  left: 0;
+  clip-path: polygon(0 0, 120% 0, 120% 100%, 0 100%);
+  animation-name: euiFlyoutLeft;
+}
+
+// Specific keyframes so in comes in from the left
+@keyframes euiFlyoutLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
