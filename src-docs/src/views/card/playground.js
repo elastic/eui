@@ -39,7 +39,6 @@ export const cardConfig = () => {
     ...propsToUse.icon,
     type: PropTypes.ReactNode,
     value: '<EuiIcon type="logoElastic" size="xl" />',
-    // hidden: false,
   };
 
   propsToUse.children = {

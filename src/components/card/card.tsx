@@ -86,7 +86,7 @@ type EuiCardPropsLayout = ExclusiveUnion<
   {
     /**
      * Change to "horizontal" if you need the icon to be left of the content.
-     * Horizontal layouts cannot be used in conjunction with `image`, `footer`, or `textAlign`.
+     * Horizontal layouts cannot be used in conjunction with `image`, `footer`, `textAlign`, or `selectable`.
      */
     layout: 'horizontal';
   }
