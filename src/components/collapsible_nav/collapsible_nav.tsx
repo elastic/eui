@@ -19,6 +19,7 @@
 
 import React, {
   cloneElement,
+  CSSProperties,
   FunctionComponent,
   HTMLAttributes,
   ReactElement,
@@ -43,6 +44,11 @@ export type EuiCollapsibleNavProps = CommonProps &
      * ReactNode to render as this component's content
      */
     children?: ReactNode;
+    /**
+     * The fixed width of the nav flyout.
+     * This width gets added as padding to the body element when `docked` and `affordForDisplacement = true`
+     */
+    width?: CSSProperties['width'];
     /**
      * Keeps navigation flyout visible and push `<body>` content via padding
      */
@@ -74,13 +80,19 @@ export type EuiCollapsibleNavProps = CommonProps &
     closeButtonProps?: EuiButtonEmptyProps;
     onClose?: () => void;
     /**
-     * Adjustments to the EuiOverlayMask
+     * Use an EuiOverlayMask to obscure the content beneath and receive the collapse click event.
+     * If `false`, the nav will still automatically close when clicking on elements outside of the flyout
      */
     useOverlayMask?: boolean;
     /**
      * Adjustments to the EuiOverlayMask
      */
     maskProps?: EuiOverlayMaskProps;
+    /**
+     * Whether the component should apply padding on the document body element to afford for its own displacement when `docked`.
+     * When false, requires manually applying padding to the added `.euiBody--collapsibleNavIsDocked` class.
+     */
+    affordForDisplacement?: boolean;
   };
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
@@ -97,6 +109,9 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   id,
   useOverlayMask = true,
   maskProps,
+  width = 320,
+  style,
+  affordForDisplacement = true,
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
@@ -121,16 +136,28 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
     if (navIsDocked) {
       document.body.classList.add('euiBody--collapsibleNavIsDocked');
+      // start affording for displacement
+      if (affordForDisplacement) document.body.style.paddingLeft = `${width}px`;
     } else if (isOpen) {
       document.body.classList.add('euiBody--collapsibleNavIsOpen');
+      // stop affording for displacement
+      if (affordForDisplacement) document.body.style.paddingLeft = '';
     }
 
     return () => {
       document.body.classList.remove('euiBody--collapsibleNavIsDocked');
       document.body.classList.remove('euiBody--collapsibleNavIsOpen');
       window.removeEventListener('resize', functionToCallOnWindowResize);
+      // stop affording for displacement
+      if (affordForDisplacement) document.body.style.paddingLeft = '';
     };
-  }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
+  }, [
+    navIsDocked,
+    functionToCallOnWindowResize,
+    isOpen,
+    width,
+    affordForDisplacement,
+  ]);
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
@@ -202,6 +229,11 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     </EuiScreenReaderOnly>
   );
 
+  const flyoutStyle = {
+    width,
+    ...style,
+  };
+
   const flyout = (
     <>
       <EuiWindowEvent event="keydown" handler={onKeyDown} />
@@ -211,7 +243,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
         <EuiOutsideClickDetector
           isDisabled={useOverlayMask || !isOpen}
           onOutsideClick={collapse}>
-          <nav id={flyoutID} className={classes} {...rest}>
+          <nav id={flyoutID} className={classes} style={flyoutStyle} {...rest}>
             {children}
             {closeButton}
           </nav>

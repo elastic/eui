@@ -57,6 +57,33 @@ describe('EuiCollapsibleNav', () => {
       ).toMatchSnapshot();
     });
 
+    test('width', () => {
+      const component = mount(
+        <EuiCollapsibleNav {...propsNeededToRender} width={240} />
+      );
+
+      expect(
+        takeMountedSnapshot(component, {
+          hasArrayOutput: true,
+        })
+      ).toMatchSnapshot();
+    });
+
+    test('style', () => {
+      const component = mount(
+        <EuiCollapsibleNav
+          {...propsNeededToRender}
+          style={{ width: 100, color: 'red' }}
+        />
+      );
+
+      expect(
+        takeMountedSnapshot(component, {
+          hasArrayOutput: true,
+        })
+      ).toMatchSnapshot();
+    });
+
     test('isDocked', () => {
       const component = render(
         <EuiCollapsibleNav {...propsNeededToRender} isDocked={true} />
@@ -120,6 +147,29 @@ describe('EuiCollapsibleNav', () => {
         })
       ).toMatchSnapshot();
     });
+
+    test('useOverlayMask can be false', () => {
+      const component = mount(
+        <EuiCollapsibleNav {...propsNeededToRender} useOverlayMask={false} />
+      );
+
+      expect(
+        takeMountedSnapshot(component, {
+          hasArrayOutput: true,
+        })
+      ).toMatchSnapshot();
+    });
+
+    test('affordForDisplacement can be false', () => {
+      const component = render(
+        <EuiCollapsibleNav
+          {...propsNeededToRender}
+          affordForDisplacement={false}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('close button', () => {
@@ -139,7 +189,7 @@ describe('EuiCollapsibleNav', () => {
       const component = mount(
         <EuiCollapsibleNav
           {...propsNeededToRender}
-          closeButtonProps={{ className: 'class', 'data-test-subj': 'test' }}
+          closeButtonProps={requiredProps}
         />
       );
 

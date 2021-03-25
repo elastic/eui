@@ -7,7 +7,6 @@
   border-left: none;
   right: auto;
   left: 0;
-  width: $euiCollapsibleNavWidth;
   max-width: 80vw;
   clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%); // Must include the width of the close button too
   animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
@@ -40,11 +39,6 @@
   .euiCollapsibleNav__closeButton {
     display: none;
   }
-}
-
-.euiBody--collapsibleNavIsDocked {
-  // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
-  padding-left: $euiCollapsibleNavWidth !important; // sass-lint:disable-line no-important
 }
 
 @include euiBreakpoint('xs') {
