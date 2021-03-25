@@ -203,9 +203,11 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          Flyouts come in three predefined <EuiCode>size</EuiCode>s,{' '}
-          <EuiCode>{"'x' | 'm' | 'l'"}</EuiCode>, which define the width
-          relative to the window size with a minimum width defined in pixels.
+          Flyouts come in three predefined <EuiCode>size</EuiCode>s of{' '}
+          <EuiCode>{"'s' | 'm' | 'l'"}</EuiCode>, which define the width
+          <strong>relative to the window size</strong> with a minimum width
+          defined in pixels. You can otherwise supply your own fixed width in
+          number or string format.
         </p>
       ),
       snippet: flyoutLargeSnippet,

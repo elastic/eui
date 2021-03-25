@@ -167,6 +167,27 @@ export default () => {
 
       <EuiSpacer />
 
+      <EuiLink color="secondary" onClick={() => showFlyout(240)}>
+        Show <strong>240</strong> flyout with <strong>no max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="secondary" onClick={() => showFlyout(240, true)}>
+        Show <strong>240</strong> flyout with <strong>default max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="danger" onClick={() => showFlyout(240, 110)}>
+        Show <strong>240</strong> flyout with{' '}
+        <strong>smaller custom max-width</strong> -- max-width wins but width
+        wins on small screens
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="secondary" onClick={() => showFlyout(240, 1600)}>
+        Show <strong>240</strong> flyout with{' '}
+        <strong>larger custom max-width</strong>
+      </EuiLink>
+
+      <EuiSpacer />
+
       <EuiLink color="primary" onClick={() => showFlyout('m', 0)}>
         Trick for forms: <strong>Medium</strong> flyout with{' '}
         <strong>0 as max-width</strong>

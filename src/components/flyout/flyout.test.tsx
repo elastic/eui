@@ -92,6 +92,14 @@ describe('EuiFlyout', () => {
           ).toMatchSnapshot();
         });
       });
+
+      it('accepts custom number', () => {
+        const component = mount(<EuiFlyout onClose={() => {}} size={500} />);
+
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
+      });
     });
 
     describe('paddingSize', () => {

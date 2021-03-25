@@ -34,13 +34,22 @@ import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
 
-export type EuiFlyoutSize = 's' | 'm' | 'l';
-
-const sizeToClassNameMap: { [size in EuiFlyoutSize]: string } = {
+const sizeToClassNameMap = {
   s: 'euiFlyout--small',
   m: 'euiFlyout--medium',
   l: 'euiFlyout--large',
 };
+
+export const SIZES = keysOf(sizeToClassNameMap);
+export type EuiFlyoutSize = typeof SIZES[number];
+
+/**
+ * Custom type checker for named flyout sizes since the prop
+ * `size` can also be CSSProperties['width'] (string | number)
+ */
+function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
+  return SIZES.includes(value as any);
+}
 
 const paddingSizeToClassNameMap = {
   none: 'euiFlyout--paddingNone',
@@ -50,7 +59,6 @@ const paddingSizeToClassNameMap = {
 };
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-
 export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
 export interface EuiFlyoutProps
@@ -58,9 +66,10 @@ export interface EuiFlyoutProps
     HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   /**
-   * Defines the width of the panel
+   * Defines the width of the panel.
+   * Pass a predefined size of `s | m | l`, or pass any number/string compatabile with the CSS `width` attribute
    */
-  size?: EuiFlyoutSize;
+  size?: EuiFlyoutSize | CSSProperties['width'];
   /**
    * Customize the padding around the content of the flyout header, body and footer
    */
@@ -86,9 +95,6 @@ export interface EuiFlyoutProps
    * set to a string for a custom width in custom measurement.
    */
   maxWidth?: boolean | number | string;
-
-  style?: CSSProperties;
-
   /**
    * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
    */
@@ -126,6 +132,9 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
 
   let newStyle;
   let widthClassName;
+  let sizeClassName;
+
+  // Setting max-width
   if (maxWidth === true) {
     widthClassName = 'euiFlyout--maxWidth-default';
   } else if (maxWidth !== false) {
@@ -133,9 +142,18 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
     newStyle = { ...style, maxWidth: value };
   }
 
+  // Setting size
+  if (isEuiFlyoutSizeNamed(size)) {
+    sizeClassName = sizeToClassNameMap[size];
+  } else if (newStyle) {
+    newStyle.width = size;
+  } else {
+    newStyle = { ...style, width: size };
+  }
+
   const classes = classnames(
     'euiFlyout',
-    sizeToClassNameMap[size!],
+    sizeClassName,
     paddingSizeToClassNameMap[paddingSize],
     widthClassName,
     className
