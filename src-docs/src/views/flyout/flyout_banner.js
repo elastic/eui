@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 
 import {
   EuiCallOut,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiFlyout,
   EuiFlyoutHeader,
   EuiFlyoutBody,
-  EuiIcon,
   EuiLink,
   EuiButton,
   EuiText,
-  EuiTextColor,
   EuiTitle,
 } from '../../../../src/components';
 
@@ -25,20 +21,11 @@ export default () => {
   let flyout;
 
   const callOut = (
-    <EuiCallOut>
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <EuiIcon type="help" />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          {' '}
-          <EuiTextColor color="subdued">
-            Here&rsquo;s some stuff that you need to know. This banner helps
-            highlight important information.
-          </EuiTextColor>
-          <EuiLink href="#">View docs</EuiLink>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+    <EuiCallOut iconType="help">
+      <p>
+        Here&rsquo;s some stuff that you need to know. This banner helps
+        highlight important information. <EuiLink href="#">View docs</EuiLink>
+      </p>
     </EuiCallOut>
   );
 
