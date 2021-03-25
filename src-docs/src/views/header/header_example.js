@@ -259,7 +259,7 @@ export const HeaderExample = {
             afford for the header height. EUI supplies a helper mixin that also
             accounts for this height in flyouts and the collapsible nav. Simply
             add{' '}
-            <EuiCode language="scss">@include euiHeaderAffordForFixed;</EuiCode>{' '}
+            <EuiCode language="sass">@include euiHeaderAffordForFixed;</EuiCode>{' '}
             anywhere in your SASS.
           </p>
         </>
