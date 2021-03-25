@@ -175,14 +175,9 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'aria-controls': flyoutID,
           'aria-expanded': isOpen,
           'aria-pressed': isOpen,
-          onClick: (e) => {
-            console.log(e, isOpen);
-            if (isOpen && !isDocked) {
-              // collapse();
-              e.preventDefault();
-            } else {
-              button.props.onClick?.(e);
-            }
+          onMouseUpCapture: (e: React.MouseEvent<HTMLElement>) => {
+            // When EuiOutsideClickDetector is enabled, we don't want both the toggle button and document clicks to happen, they'll cancel eachother out
+            e.nativeEvent.stopImmediatePropagation();
           },
           className: classNames(
             button.props.className,
@@ -213,7 +208,9 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       {optionalOverlay}
       {/* Trap focus only when docked={false} */}
       <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
-        <EuiOutsideClickDetector isDisabled={!isOpen} onOutsideClick={collapse}>
+        <EuiOutsideClickDetector
+          isDisabled={useOverlayMask || !isOpen}
+          onOutsideClick={collapse}>
           <nav id={flyoutID} className={classes} {...rest}>
             {children}
             {closeButton}
@@ -221,14 +218,6 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
         </EuiOutsideClickDetector>
       </EuiFocusTrap>
     </>
-  );
-
-  const flyoutWithOutsideClick = useOverlayMask ? (
-    flyout
-  ) : (
-    <EuiOutsideClickDetector isDisabled={!isOpen} onOutsideClick={collapse}>
-      {flyout}
-    </EuiOutsideClickDetector>
   );
 
   return (

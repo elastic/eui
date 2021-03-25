@@ -8,10 +8,10 @@ import { EuiText } from '../../../../src/components/text';
 import { EuiCode } from '../../../../src/components/code';
 
 export default () => {
-  const [navIsOpen, setNavIsOpen] = useState(
+  const [navIsOpen, setNavIsOpen] = useState<boolean>(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
-  const [navIsDocked, setNavIsDocked] = useState(
+  const [navIsDocked, setNavIsDocked] = useState<boolean>(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
 
@@ -20,7 +20,7 @@ export default () => {
       <EuiCollapsibleNav
         isOpen={navIsOpen}
         isDocked={navIsDocked}
-        useOverlayMask={false}
+        // useOverlayMask={false}
         button={
           <EuiButton onClick={() => setNavIsOpen((isOpen) => !isOpen)}>
             Toggle nav
