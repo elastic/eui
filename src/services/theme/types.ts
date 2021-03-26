@@ -21,10 +21,10 @@ import { RecursiveOmit, RecursivePartial } from '../../components/common';
 import { euiThemeDefault } from './theme';
 
 export const COLOR_MODES_STANDARD = {
-  light: 'light',
-  dark: 'dark',
+  light: 'LIGHT',
+  dark: 'DARK',
 } as const;
-export const COLOR_MODES_INVERSE = 'inverse' as const;
+export const COLOR_MODES_INVERSE = 'INVERSE' as const;
 
 type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
 type EuiThemeColorModeStandard = keyof typeof COLOR_MODES_STANDARD;
@@ -35,7 +35,7 @@ export type EuiThemeColorMode =
 
 // TODO: Make static interface
 export type EuiThemeShape = typeof euiThemeDefault;
-export type EuiThemeColor = EuiThemeShape['colors']['light'];
+export type EuiThemeColor = EuiThemeShape['colors']['LIGHT'];
 
 export type EuiThemeSystem<T = {}> = {
   root: EuiThemeShape & T;

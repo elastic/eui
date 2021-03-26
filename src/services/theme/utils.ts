@@ -39,15 +39,16 @@ export const getColorMode = (
   colorMode?: EuiThemeColorMode,
   parentColorMode?: EuiThemeColorMode
 ) => {
-  if (colorMode == null) {
+  const mode = colorMode?.toUpperCase();
+  if (mode == null) {
     return parentColorMode || DEFAULT_COLOR_MODE;
-  } else if (isInverseColorMode(colorMode)) {
+  } else if (isInverseColorMode(mode)) {
     return parentColorMode === COLOR_MODES_STANDARD.dark ||
       parentColorMode === undefined
       ? COLOR_MODES_STANDARD.light
       : COLOR_MODES_STANDARD.dark;
   } else {
-    return colorMode;
+    return mode;
   }
 };
 
@@ -60,23 +61,28 @@ export const getOn = (
   let node = model;
   while (path.length) {
     const segment = path.shift()!;
+
     if (node.hasOwnProperty(segment) === false) {
-      return undefined;
-    }
-    // TODO: Necessary?
-    // if (colorMode && segment === COLOR_MODE_KEY) {
-    //   if (node[segment].hasOwnProperty(colorMode) === false) {
-    //     return undefined;
-    //   } else {
-    //     node = node[segment][colorMode];
-    //   }
-    // } else {
-    if (node[segment] instanceof Computed) {
-      node = node[segment].getValue(null, null, node, colorMode);
+      if (
+        colorMode &&
+        node.hasOwnProperty(colorMode) === true &&
+        node[colorMode].hasOwnProperty(segment) === true
+      ) {
+        if (node[colorMode][segment] instanceof Computed) {
+          node = node[colorMode][segment].getValue(null, null, node, colorMode);
+        } else {
+          node = node[colorMode][segment];
+        }
+      } else {
+        return undefined;
+      }
     } else {
-      node = node[segment];
+      if (node[segment] instanceof Computed) {
+        node = node[segment].getValue(null, null, node, colorMode);
+      } else {
+        node = node[segment];
+      }
     }
-    // }
   }
 
   return node;
@@ -172,7 +178,7 @@ export const getComputed = <T = EuiThemeShape>(
   ) {
     Object.keys(base).forEach((key) => {
       let newPath = path ? `${path}.${key}` : `${key}`;
-      if ([...Object.keys(COLOR_MODES_STANDARD), colorMode].includes(key)) {
+      if ([...Object.values(COLOR_MODES_STANDARD), colorMode].includes(key)) {
         if (key !== colorMode) {
           return;
         } else {

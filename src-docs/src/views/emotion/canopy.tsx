@@ -32,6 +32,7 @@ import {
   euiThemeDefault,
   buildTheme,
   EuiThemeModifications,
+  getOn,
 } from '../../../../src/services';
 import { EuiCodeBlock } from '../../../../src/components/code';
 import { EuiButton } from '../../../../src/components/button';
@@ -83,8 +84,8 @@ const View = () => {
 const View3 = () => {
   const overrides = {
     colors: {
-      light: { primary: '#8A07BD' },
-      dark: { primary: '#BD07A5' },
+      LIGHT: { primary: '#8A07BD' },
+      DARK: { primary: '#BD07A5' },
     },
   };
   return (
@@ -103,8 +104,8 @@ const View3 = () => {
 const View2 = () => {
   const overrides = {
     colors: {
-      light: { success: '#85E89d' },
-      dark: { success: '#F0FFF4' },
+      LIGHT: { success: '#85E89d' },
+      DARK: { success: '#F0FFF4' },
     },
   };
   return (
@@ -154,7 +155,7 @@ export default () => {
     setOverrides(
       mergeDeep(overrides, {
         colors: {
-          light: {
+          LIGHT: {
             primary: chroma.random().hex(),
           },
         },
@@ -169,7 +170,7 @@ export default () => {
     setOverrides(
       mergeDeep(overrides, {
         colors: {
-          dark: {
+          DARK: {
             primary: chroma.random().hex(),
           },
         },
@@ -188,11 +189,11 @@ export default () => {
   // Difference is due to automatic colorMode reduction during value computation.
   // Makes typing slightly inconvenient, but makes consuming values very convenient.
   type ExtensionsUncomputed = {
-    colors: { light: { myColor: string }; dark: { myColor: string } };
+    colors: { LIGHT: { myColor: string }; DARK: { myColor: string } };
     custom: {
       colors: {
-        light: { customColor: string };
-        dark: { customColor: string };
+        LIGHT: { customColor: string };
+        DARK: { customColor: string };
       };
       mySize: number;
     };
@@ -205,19 +206,19 @@ export default () => {
   // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
   const extend: EuiThemeModifications<ExtensionsUncomputed> = {
     colors: {
-      light: {
+      LIGHT: {
         primary: '#F56407',
         myColor: computed((primary) => primary, 'colors.primary'),
       },
-      dark: {
+      DARK: {
         primary: '#FA924F',
         myColor: computed((primary) => primary, 'colors.primary'),
       },
     },
     custom: {
       colors: {
-        light: { customColor: '#080AEF' },
-        dark: { customColor: '#087EEF' },
+        LIGHT: { customColor: '#080AEF' },
+        DARK: { customColor: '#087EEF' },
       },
       mySize: 5,
     },

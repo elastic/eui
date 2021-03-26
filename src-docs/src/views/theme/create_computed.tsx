@@ -38,7 +38,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 export default () => {
   const primaryOverrides = {
     colors: {
-      light: {
+      LIGHT: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
           (customColorPrimary) => tint(customColorPrimary, 0.8),
@@ -50,7 +50,7 @@ export default () => {
           'colors.customColorPrimary'
         ),
       },
-      dark: {
+      DARK: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
           ([customColorPrimary]) => shade(customColorPrimary, 0.8),

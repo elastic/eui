@@ -29,8 +29,8 @@ import { title_ams } from './global_styling/variables/title';
 
 export const euiThemeAmsterdam = {
   colors: {
-    light: light_colors_ams,
-    dark: dark_colors_ams,
+    LIGHT: light_colors_ams,
+    DARK: dark_colors_ams,
   },
   base,
   size,

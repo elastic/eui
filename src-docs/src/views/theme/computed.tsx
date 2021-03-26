@@ -24,10 +24,10 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 export default () => {
   const primaryOverrides = {
     colors: {
-      light: {
+      LIGHT: {
         primary: '#db1dde',
       },
-      dark: {
+      DARK: {
         primary: '#e378e4',
       },
     },

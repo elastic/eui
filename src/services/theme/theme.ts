@@ -29,8 +29,8 @@ import { title } from '../../global_styling/variables/title';
 
 export const euiThemeDefault = {
   colors: {
-    light: light_colors,
-    dark: dark_colors,
+    LIGHT: light_colors,
+    DARK: dark_colors,
   },
   base,
   size,

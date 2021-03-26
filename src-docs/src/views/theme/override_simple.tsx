@@ -19,8 +19,8 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 export default () => {
   const overrides = {
     colors: {
-      light: { lightShade: '#d3e6df' },
-      dark: { lightShade: '#394c4b' },
+      LIGHT: { lightShade: '#d3e6df' },
+      DARK: { lightShade: '#394c4b' },
     },
   };
 

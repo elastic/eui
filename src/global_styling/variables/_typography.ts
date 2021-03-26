@@ -69,7 +69,7 @@ const font: EuiFont = {
 
 // Font weights
 const fontWeight = {
-  weightLight: '300', // TODO
+  light: '300',
   regular: '400',
   medium: '500',
   semiBold: '600',
