@@ -25,6 +25,7 @@ import React, {
   useState,
   ComponentProps,
   PropsWithChildren,
+  ReactNode,
 } from 'react';
 import classnames from 'classnames';
 
@@ -102,23 +103,6 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      */
     size?: _EuiFlyoutSize | CSSProperties['width'];
     /**
-     * Customize the padding around the content of the flyout header, body and footer
-     */
-    paddingSize?: _EuiFlyoutPaddingSize;
-    /**
-     * Hides the default close button. You must provide another close button somewhere within the flyout.
-     */
-    hideCloseButton?: boolean;
-    /**
-     * Adds an EuiOverlayMask when set to `true`
-     */
-    ownFocus?: boolean;
-    /**
-     * Specify an aria-label for the close button of the flyout.
-     * Default is `'Close this dialog'`.
-     */
-    closeButtonAriaLabel?: string;
-    /**
      * Sets the max-width of the panel,
      * set to `true` to use the default size,
      * set to `false` to not restrict the width,
@@ -126,6 +110,33 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      * set to a string for a custom width in custom measurement.
      */
     maxWidth?: boolean | number | string;
+    /**
+     * Customize the padding around the content of the flyout header, body and footer
+     */
+    paddingSize?: _EuiFlyoutPaddingSize;
+    /**
+     * Adds an EuiOverlayMask when set to `true`
+     */
+    ownFocus?: boolean;
+    /**
+     * Hides the default close button. You must provide another close button somewhere within the flyout.
+     */
+    hideCloseButton?: boolean;
+    /**
+     * Specify an aria-label for the close button of the flyout.
+     * Default is `'Close this dialog'`.
+     */
+    closeButtonAriaLabel?: string;
+    /**
+     * Pass an entirely custom close button component
+     */
+    closeButton?: ReactNode;
+    /**
+     * Position of close button.
+     * `inside`: Floating to just inside the flyout, always top right;
+     * `outside`: Floating just outside the flyout near the top (side dependent on `side`). Helpful when the close button may cover other interactable content.
+     */
+    closeButtonPosition?: 'inside' | 'outside';
     /**
      * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
      */
@@ -162,12 +173,14 @@ export const EuiFlyout = <T extends ComponentTypes>({
   children,
   as: Element = 'div' as T,
   hideCloseButton = false,
+  closeButton,
+  closeButtonAriaLabel,
+  closeButtonPosition = 'inside',
   onClose,
   ownFocus = false,
   side = 'right',
   size = 'm',
   paddingSize = 'l',
-  closeButtonAriaLabel,
   maxWidth = false,
   style,
   maskProps,
@@ -288,13 +301,18 @@ export const EuiFlyout = <T extends ComponentTypes>({
     className
   );
 
-  let closeButton;
-  if (onClose && !hideCloseButton) {
+  if (!closeButton && onClose && !hideCloseButton) {
+    const closeButtonClasses = classnames(
+      'euiFlyout__closeButton',
+      `euiFlyout__closeButton--${closeButtonPosition}`
+    );
+
     closeButton = (
       <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
         {(closeAriaLabel: string) => (
           <EuiButtonIcon
-            className="euiFlyout__closeButton"
+            className={closeButtonClasses}
+            display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
             iconType="cross"
             color="text"
             aria-label={closeButtonAriaLabel || closeAriaLabel}

@@ -57,6 +57,26 @@ describe('EuiFlyout', () => {
       ).toMatchSnapshot();
     });
 
+    test('closeButton for a custom button', () => {
+      const component = mount(
+        <EuiFlyout onClose={() => {}} closeButton={<button>CLOSE</button>} />
+      );
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
+    test('closeButtonPosition can be outside', () => {
+      const component = mount(
+        <EuiFlyout onClose={() => {}} closeButtonPosition="outside" />
+      );
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
     describe('closeButtonLabel', () => {
       test('has a default label for the close button', () => {
         const component = render(<EuiFlyout onClose={() => {}} />);

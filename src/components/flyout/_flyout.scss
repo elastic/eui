@@ -9,6 +9,20 @@
   right: $euiSizeS;
   top: $euiSizeS;
   z-index: 3;
+
+  &--outside {
+    right: auto;
+    left: 0;
+    // Override the hover and focus transitions of buttons
+    // sass-lint:disable-block no-important
+    transform: translateX(calc(-100% - #{$euiSizeL})) !important;
+
+    .euiFlyout--left & {
+      left: auto;
+      right: 0;
+      transform: translateX(calc(100% + #{$euiSizeL})) !important;
+    }
+  }
 }
 
 .euiFlyoutBody__banner {
@@ -93,19 +107,18 @@ $flyoutSizes: (
 }
 
 /**
- * 1. Only small flyouts should NOT takeover the entire screen
+ * 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
  * 2. If a custom maxWidth is set, we need to override it.
  */
 @include euiBreakpoint('xs', 's') {
   // sass-lint:disable-block no-important
-  .euiFlyout:not(.euiFlyout--small) {  /* 1 */
-    max-width: 100vw !important; /* 2 */
+  .euiFlyout {
+    max-width: 90vw !important; /* 1, 2 */
   }
 
   .euiFlyout--small {
     min-width: 0;
     width: map-get(map-get($flyoutSizes, 'small'), 'min');
-    max-width: 90vw; // ensure that it's only partially showing the main content
   }
 
   .euiFlyout--medium {
@@ -116,6 +129,17 @@ $flyoutSizes: (
   .euiFlyout--large {
     min-width: 0;
     width: map-get(map-get($flyoutSizes, 'large'), 'min');
+  }
+
+  // Pull in close buttons a little
+  .euiFlyout__closeButton--outside {
+    // Override the hover and focus transitions of buttons
+    // sass-lint:disable-block no-important
+    transform: translateX(calc(-100% - #{$euiSizeXS})) !important;
+
+    .euiFlyout--left & {
+      transform: translateX(calc(100% + #{$euiSizeXS})) !important;
+    }
   }
 }
 

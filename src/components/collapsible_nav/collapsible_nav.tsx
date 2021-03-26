@@ -26,9 +26,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { htmlIdGenerator } from '../../services';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
-import { EuiI18n } from '../i18n';
-import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiButtonEmptyProps } from '../button';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 
 // Extend all the flyout props except `onClose` because we handle this internally
@@ -121,28 +119,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
             // When EuiOutsideClickDetector is enabled, we don't want both the toggle button and document clicks to happen, they'll cancel eachother out
             e.nativeEvent.stopImmediatePropagation();
           },
-          className: classNames(
-            button.props.className,
-            'euiCollapsibleNav__toggle'
-          ),
         });
-
-  const closeButton = !hideCloseButton && !isDocked && (
-    <EuiScreenReaderOnly showOnFocus>
-      <EuiButtonEmpty
-        onClick={collapse}
-        size="xs"
-        textProps={{ className: 'euiCollapsibleNav__closeButtonText' }}
-        iconType="cross"
-        {...closeButtonProps}
-        className={classNames(
-          'euiCollapsibleNav__closeButton',
-          closeButtonProps && closeButtonProps.className
-        )}>
-        <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
-      </EuiButtonEmpty>
-    </EuiScreenReaderOnly>
-  );
 
   const flyout = (
     <>
@@ -166,10 +143,10 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           onClick: collapse,
           ...maskProps,
         }}
-        hideCloseButton={true} // We created our own
+        hideCloseButton={isDocked || hideCloseButton}
+        closeButtonPosition="outside"
         role={'none'}>
         {children}
-        {closeButton}
       </EuiFlyout>
     </>
   );

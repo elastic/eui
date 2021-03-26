@@ -52,28 +52,7 @@ Array [
       id="id"
       style="width: 320px;"
       tabindex="0"
-    >
-      <button
-        aria-label="aria-label"
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton testClass1 testClass2"
-        data-test-subj="test subject string"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -108,26 +87,7 @@ Array [
       id="id"
       style="width: 320px;"
       tabindex="0"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -157,26 +117,7 @@ Array [
       id="id"
       style="width: 240px;"
       tabindex="0"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -192,7 +133,6 @@ Array [
     aria-controls="id"
     aria-expanded="true"
     aria-pressed="true"
-    class="euiCollapsibleNav__toggle"
   />,
   <div />,
   <div
@@ -213,26 +153,7 @@ Array [
       id="id"
       style="width: 320px;"
       tabindex="0"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -263,26 +184,7 @@ Array [
       id="id"
       style="width: 320px;"
       tabindex="0"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -345,22 +247,16 @@ Array [
       tabindex="0"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+        data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
+        />
       </button>
     </nav>
   </div>,
@@ -378,7 +274,6 @@ Array [
     aria-controls="id"
     aria-expanded="true"
     aria-pressed="true"
-    class="euiCollapsibleNav__toggle"
   />,
   <div
     data-focus-guard="true"
@@ -429,26 +324,7 @@ Array [
       id="id"
       style="width: 240px;"
       tabindex="0"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+    />
   </div>,
   <div
     data-focus-guard="true"
