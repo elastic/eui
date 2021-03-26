@@ -18,7 +18,7 @@
  */
 
 import { keysOf } from '../../components/common';
-import { COLOR_MODE_KEY, computed } from '../../services/theme/utils';
+import { computed } from '../../services/theme/utils';
 import {
   fontSizeFromScale,
   lineHeightFromBaseline,
@@ -84,13 +84,13 @@ type EuiFontSize = {
 };
 const fontSize = SCALES.reduce((acc, elem) => {
   acc[elem] = {
-    fontSize: computed(
-      [`${COLOR_MODE_KEY}.base`, `${COLOR_MODE_KEY}.font.scale.${elem}`],
-      ([base, scale]) => fontSizeFromScale(base, scale)
-    ),
+    fontSize: computed(([base, scale]) => fontSizeFromScale(base, scale), [
+      'base',
+      `font.scale.${elem}`,
+    ]),
     lineHeight: computed(
-      [`${COLOR_MODE_KEY}.base`, `${COLOR_MODE_KEY}.font`],
-      ([base, font]) => lineHeightFromBaseline(base, font, font.scale[elem])
+      ([base, font]) => lineHeightFromBaseline(base, font, font.scale[elem]),
+      ['base', 'font']
     ),
   };
   return acc;

@@ -20,15 +20,22 @@
 import { RecursiveOmit, RecursivePartial } from '../../components/common';
 import { euiThemeDefault } from './theme';
 
-type EuiThemeColorModeInverse = 'inverse';
-type EuiThemeColorModeStandard = 'light' | 'dark';
+export const COLOR_MODES_STANDARD = {
+  light: 'LIGHT',
+  dark: 'DARK',
+} as const;
+export const COLOR_MODES_INVERSE = 'INVERSE' as const;
+
+type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
+type EuiThemeColorModeStandard = keyof typeof COLOR_MODES_STANDARD;
 export type EuiThemeColorMode =
   | string
   | EuiThemeColorModeStandard
   | EuiThemeColorModeInverse;
 
+// TODO: Make static interface
 export type EuiThemeShape = typeof euiThemeDefault;
-export type EuiThemeColor = EuiThemeShape['colors']['light'];
+export type EuiThemeColor = EuiThemeShape['colors']['LIGHT'];
 
 export type EuiThemeSystem<T = {}> = {
   root: EuiThemeShape & T;
@@ -39,7 +46,7 @@ export type EuiThemeSystem<T = {}> = {
 export type EuiThemeModifications<T = {}> = RecursivePartial<EuiThemeShape & T>;
 
 type Colorless<T> = RecursiveOmit<T, 'colors'>;
-// I don't like this.
+// TODO: Refactor after static shape interface is determined
 // Requires manually maintaining sections (e.g., `buttons`) containing colorMode options.
 // Also cannot account for extended theme sections (`T`) that use colorMode options.
 export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {

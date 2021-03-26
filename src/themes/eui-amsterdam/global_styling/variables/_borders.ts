@@ -17,16 +17,13 @@
  * under the License.
  */
 
-import { COLOR_MODE_KEY, computed } from '../../../../services/theme/utils';
+import { computed } from '../../../../services/theme/utils';
 import { border } from '../../../../global_styling/variables/_borders';
 
 export const border_ams = {
   ...border,
   // TODO: Decide if we should always calculate from `base`
-  radius: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.375}px`),
+  radius: computed(([base]) => `${base * 0.375}px`, ['base']),
   // Or we're ok with `calc()` at the global level
-  radiusSmall: computed(
-    [`${COLOR_MODE_KEY}.size.s`],
-    ([sizeS]) => `calc(${sizeS} * 0.5)`
-  ),
+  radiusSmall: computed(([sizeS]) => `calc(${sizeS} * 0.5)`, ['size.s']),
 };

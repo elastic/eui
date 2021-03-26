@@ -18,7 +18,6 @@
  */
 
 import { buildTheme } from '../../services/theme';
-import { COLOR_MODE_KEY } from '../../services/theme/utils';
 import { base, size } from '../../global_styling/variables/_size';
 import {
   light_colors_ams,
@@ -26,32 +25,18 @@ import {
 } from './global_styling/variables/_colors';
 import fonts_ams from './global_styling/variables/_typography';
 import { border_ams } from './global_styling/variables/_borders';
-import { titles_ams } from './global_styling/variables/title';
-
-export const amsterdam_light = {
-  ...light_colors_ams,
-  base,
-  size,
-  ...fonts_ams,
-  border: border_ams,
-  titles: titles_ams,
-  // array: [1, 2, 3],
-};
-
-export const amsterdam_dark = {
-  ...dark_colors_ams,
-  base,
-  size,
-  ...fonts_ams,
-  border: border_ams,
-  titles: titles_ams,
-};
+import { title_ams } from './global_styling/variables/title';
 
 export const euiThemeAmsterdam = {
-  [COLOR_MODE_KEY]: {
-    light: amsterdam_light,
-    dark: amsterdam_dark,
+  colors: {
+    LIGHT: light_colors_ams,
+    DARK: dark_colors_ams,
   },
+  base,
+  size,
+  ...fonts_ams,
+  border: border_ams,
+  title: title_ams,
 };
 
 export const EuiThemeAmsterdam = buildTheme(

@@ -36,16 +36,16 @@ export const focus = {
   light: {
     transparency: 0.1,
     background: computed(
-      ['colors.primary', 'colors.focus.transparency'],
-      ([primary, transparency]) => tint(primary, 1 - transparency)
+      ([primary, transparency]) => tint(primary, 1 - transparency),
+      ['colors.primary', 'focus.transparency']
     ),
     ring: focus_ring,
   },
   dark: {
     transparency: 0.3,
     background: computed(
-      ['colors.primary', 'colors.focus.transparency'],
-      ([primary, transparency]) => shade(primary, 1 - transparency)
+      ([primary, transparency]) => shade(primary, 1 - transparency),
+      ['colors.primary', 'focus.transparency']
     ),
     ring: focus_ring,
   },

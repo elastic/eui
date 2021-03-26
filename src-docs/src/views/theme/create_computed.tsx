@@ -8,7 +8,6 @@ import {
   useEuiTheme,
 } from '../../../../src/services';
 import { shade, tint } from '../../../../src/global_styling/functions/_colors';
-import { COLOR_MODE_KEY } from '../../../../src/services/theme/utils';
 
 interface ThemeExtensions {
   colors: {
@@ -25,7 +24,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <EuiText
       css={{
         background: euiTheme.colors.customColorPrimaryHighlight,
-        padding: euiTheme[COLOR_MODE_KEY].size.xl,
+        padding: euiTheme.size.xl,
         color: euiTheme.colors.customColorPrimaryText,
       }}>
       <p>
@@ -39,28 +38,28 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 export default () => {
   const primaryOverrides = {
     colors: {
-      light: {
+      LIGHT: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => tint(customColorPrimary, 0.8)
+          (customColorPrimary) => tint(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
         ),
         // Need a global contrast function
         customColorPrimaryText: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => shade(customColorPrimary, 0.8)
+          (customColorPrimary) => shade(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
         ),
       },
-      dark: {
+      DARK: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => shade(customColorPrimary, 0.8)
+          ([customColorPrimary]) => shade(customColorPrimary, 0.8),
+          ['colors.customColorPrimary']
         ),
         // Need a global contrast function
         customColorPrimaryText: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => tint(customColorPrimary, 0.8)
+          ([customColorPrimary]) => tint(customColorPrimary, 0.8),
+          ['colors.customColorPrimary']
         ),
       },
     },

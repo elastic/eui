@@ -17,26 +17,23 @@
  * under the License.
  */
 
-import { titles } from '../../../../global_styling/variables/title';
+import { title } from '../../../../global_styling/variables/title';
 import {
   EuiFontScale,
   SCALES,
 } from '../../../../global_styling/variables/_typography';
-import { COLOR_MODE_KEY, computed } from '../../../../services/theme/utils';
+import { computed } from '../../../../services/theme/utils';
 
 // For Amsterdam, change all font-weights to bold and remover letter-spacing
 
 // @ts-ignore TS help
-export const titles_ams: {
+export const title_ams: {
   [mapType in EuiFontScale]: string;
 } = SCALES.reduce((acc, elem) => {
   // @ts-ignore TS help
   acc[elem] = {
-    ...titles[elem],
-    fontWeight: computed(
-      [`${COLOR_MODE_KEY}.fontWeight.bold`],
-      ([fontWeight]) => fontWeight
-    ),
+    ...title[elem],
+    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
     letterSpacing: undefined,
   };
   return acc;

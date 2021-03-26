@@ -17,27 +17,27 @@
  * under the License.
  */
 
-import { COLOR_MODE_KEY, computed } from '../../services/theme/utils';
+import { computed } from '../../services/theme/utils';
 
 export const border = {
   widthThin: '1px',
   widthThick: '2px',
-  color: computed(['colors.lightShade'], ([lightShade]) => lightShade),
+  color: computed(([lightShade]) => lightShade, ['colors.lightShade']),
   radius: '4px',
   radiusSmall: computed(
-    [`${COLOR_MODE_KEY}.border.radius`],
-    ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`
+    ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`,
+    ['border.radius']
   ),
-  thin: computed(
-    [`${COLOR_MODE_KEY}.border.widthThin`, `${COLOR_MODE_KEY}.border.color`],
-    ([widthThin, color]) => `${widthThin} solid ${color}`
-  ),
-  thick: computed(
-    [`${COLOR_MODE_KEY}.border.widthThick`, `${COLOR_MODE_KEY}.border.color`],
-    ([widthThick, color]) => `${widthThick} solid ${color}`
-  ),
-  editable: computed(
-    [`${COLOR_MODE_KEY}.border.widthThick`, `${COLOR_MODE_KEY}.border.color`],
-    ([widthThick, color]) => `${widthThick} dotted ${color}`
-  ),
+  thin: computed(([widthThin, color]) => `${widthThin} solid ${color}`, [
+    'border.widthThin',
+    'border.color',
+  ]),
+  thick: computed(([widthThick, color]) => `${widthThick} solid ${color}`, [
+    'border.widthThick',
+    'border.color',
+  ]),
+  editable: computed(([widthThick, color]) => `${widthThick} dotted ${color}`, [
+    'border.widthThick',
+    'border.color',
+  ]),
 };

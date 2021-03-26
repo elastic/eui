@@ -17,23 +17,27 @@
  * under the License.
  */
 
-import { COLOR_MODE_KEY, computed } from '../../services/theme/utils';
+import { computed } from '../../services/theme/utils';
 
-// HELP: Can we provide the base within this function?
-export function sizeToPixel(base: number, scale: number) {
+// const usingFullTheme = `sizeToPixel({ base: 16, [...] })(0.25)`
+// const usingBaseValue = `sizeToPixel(16)(0.25)`
+export const sizeToPixel = (scale: number = 1) => (
+  themeOrBase: number | { base: number; [key: string]: any }
+) => {
+  const base = typeof themeOrBase === 'object' ? themeOrBase.base : themeOrBase;
   return `${base * scale}px`;
-}
+};
 
 export const base = 16;
 
 export const size = {
-  xs: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.25}px`),
-  s: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.5}px`),
-  m: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 0.75}px`),
-  base: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base}px`),
-  l: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 1.5}px`),
-  xl: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 2}px`),
-  xxl: computed([`${COLOR_MODE_KEY}.base`], ([base]) => `${base * 2.5}px`),
+  xs: computed(sizeToPixel(0.25)),
+  s: computed(sizeToPixel(0.5)),
+  m: computed(sizeToPixel(0.75)),
+  base: computed(sizeToPixel()),
+  l: computed(sizeToPixel(1.5)),
+  xl: computed(sizeToPixel(2)),
+  xxl: computed(sizeToPixel(2.5)),
 };
 
 // $euiButtonMinWidth: $euiSize * 7 !default;
