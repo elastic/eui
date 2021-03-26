@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.12.0`.
+**Bug fixes**
+
+- Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
 
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
 
