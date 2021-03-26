@@ -42,6 +42,7 @@ import {
 import { useResizeObserver } from '../observer/resize_observer';
 import { throttle } from 'lodash';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
+import { HTMLAttributes } from 'enzyme';
 
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
@@ -149,6 +150,11 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      * The `right` option should only be used for navigation.
      */
     side?: _EuiFlyoutSide;
+    /**
+     * Defaults to `dialog` which is best for most cases of the flyout.
+     * Otherwise pass in your own, aria-role, or `none` to remove it and use the semantic `as` element instead
+     */
+    role?: 'none' | HTMLAttributes['role'];
   };
 
 export const EuiFlyout = <T extends ComponentTypes>({
@@ -168,8 +174,12 @@ export const EuiFlyout = <T extends ComponentTypes>({
   type = 'overlay',
   pushBreakpoint = 'l',
   outsideClickCloses = false,
+  role = 'dialog',
   ...rest
 }: PropsWithChildren<EuiFlyoutProps<T>>) => {
+  /**
+   * ESC key closes flyout (always?)
+   */
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
@@ -177,14 +187,23 @@ export const EuiFlyout = <T extends ComponentTypes>({
     }
   };
 
-  const [isPushed, setWindowIsLargeEnoughToPush] = useState(
-    type === 'push' &&
-      isWithinMinBreakpoint(
-        typeof window === 'undefined' ? 0 : window.innerWidth,
-        pushBreakpoint
-      )
+  /**
+   * Setting the initial state of pushed based on the `type` prop
+   * and if the current window size is large enough (larger than `pushBreakpoint`)
+   */
+  const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
+    isWithinMinBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      pushBreakpoint
+    )
   );
 
+  const isPushed = type === 'push' && windowIsLargeEnoughToPush;
+
+  /**
+   * Watcher added to the window to maintain `isPushed` state depending on
+   * the window size compared to the `pushBreakpoint`
+   */
   const functionToCallOnWindowResize = throttle(() => {
     if (isWithinMinBreakpoint(window.innerWidth, pushBreakpoint)) {
       setWindowIsLargeEnoughToPush(true);
@@ -194,18 +213,27 @@ export const EuiFlyout = <T extends ComponentTypes>({
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
 
+  /**
+   * Setting up the refs on the actual flyout element in order to
+   * accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
+   */
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
   const setRef = useCombinedRefs([setResizeRef]);
   // TODO: Allow this hooke to be conditional
   const dimensions = useResizeObserver(resizeRef);
 
   useEffect(() => {
+    // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
     document.body.classList.add('euiBody--hasFlyout');
 
     if (type === 'push') {
+      // Only add the event listener if we'll need to accomodate with padding
       window.addEventListener('resize', functionToCallOnWindowResize);
     }
 
+    /**
+     * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
+     */
     if (isPushed) {
       if (side === 'right') {
         document.body.style.paddingRight = `${dimensions.width}px`;
@@ -282,7 +310,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
 
   const flyoutContent = (
     <Element
-      role="dialog"
+      role={role === 'none' ? undefined : role}
       className={classes}
       tabIndex={0}
       style={newStyle || style}

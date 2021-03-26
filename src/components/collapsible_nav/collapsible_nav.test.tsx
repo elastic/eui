@@ -22,6 +22,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiCollapsibleNav } from './collapsible_nav';
+import { EuiOverlayMaskProps } from '../overlay_mask';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -30,6 +31,12 @@ jest.mock('../overlay_mask', () => ({
 }));
 
 const propsNeededToRender = { id: 'id', isOpen: true };
+const flyoutProps = {
+  size: 240,
+  ownFocus: false,
+  outsideClickCloses: false,
+  maskProps: { headerZindexLocation: 'above' } as EuiOverlayMaskProps,
+};
 
 describe('EuiCollapsibleNav', () => {
   test('is rendered', () => {
@@ -57,24 +64,9 @@ describe('EuiCollapsibleNav', () => {
       ).toMatchSnapshot();
     });
 
-    test('width', () => {
+    test('size', () => {
       const component = mount(
-        <EuiCollapsibleNav {...propsNeededToRender} width={240} />
-      );
-
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
-    });
-
-    test('style', () => {
-      const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          style={{ width: 100, color: 'red' }}
-        />
+        <EuiCollapsibleNav {...propsNeededToRender} size={240} />
       );
 
       expect(
@@ -133,12 +125,9 @@ describe('EuiCollapsibleNav', () => {
       ).toMatchSnapshot();
     });
 
-    test('can alter mask props with maskProps without throwing error', () => {
+    test('accepts EuiFlyout props', () => {
       const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          maskProps={{ headerZindexLocation: 'above' }}
-        />
+        <EuiCollapsibleNav {...propsNeededToRender} {...flyoutProps} />
       );
 
       expect(
@@ -146,36 +135,13 @@ describe('EuiCollapsibleNav', () => {
           hasArrayOutput: true,
         })
       ).toMatchSnapshot();
-    });
-
-    test('useOverlayMask can be false', () => {
-      const component = mount(
-        <EuiCollapsibleNav {...propsNeededToRender} useOverlayMask={false} />
-      );
-
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
-    });
-
-    test('affordForDisplacement can be false', () => {
-      const component = render(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          affordForDisplacement={false}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
     });
   });
 
   describe('close button', () => {
     test('can be hidden', () => {
       const component = mount(
-        <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
+        <EuiCollapsibleNav {...propsNeededToRender} hideCloseButton={true} />
       );
 
       expect(

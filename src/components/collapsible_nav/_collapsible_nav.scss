@@ -1,16 +1,4 @@
-// Extends euiFlyout
-@import '../flyout/variables';
-@import '../flyout/mixins';
-
-.euiCollapsibleNav {
-  @include euiFlyout;
-  border-left: none;
-  right: auto;
-  left: 0;
-  max-width: 80vw;
-  clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%); // Must include the width of the close button too
-  animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
-}
+// Extends <EuiFlyout>
 
 .euiCollapsibleNav__closeButton {
   position: absolute;
@@ -21,23 +9,11 @@
   line-height: 1;
   border-radius: $euiBorderRadius;
 
+
   &:focus {
     @include euiFocusRing;
     // Override default `EuiButtonEmpty` :focus background to ensure better contrast
     background: $euiColorEmptyShade !important; // sass-lint:disable-line no-important
-  }
-}
-
-// The addition of this class is handled through JS
-// via the `dockingBreakpoint` and `isDocked` combination
-.euiCollapsibleNav.euiCollapsibleNav--isDocked {
-  @include euiBottomShadowMedium;
-  z-index: $euiZHeader; // When docked, make it the same level as the header
-  clip-path: none;
-  animation-duration: 0s; // Don't animate on loading a docked nav
-
-  .euiCollapsibleNav__closeButton {
-    display: none;
   }
 }
 
@@ -50,18 +26,5 @@
       // But be sure the text can still be read by a screen reader
       @include euiScreenReaderOnly;
     }
-  }
-}
-
-// Specific keyframes so in comes in from the left
-@keyframes euiCollapsibleNavIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-
-  75% {
-    opacity: 1;
-    transform: translateX(0%);
   }
 }

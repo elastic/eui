@@ -41,6 +41,14 @@ describe('EuiFlyout', () => {
   });
 
   describe('props', () => {
+    test('role can be removed', () => {
+      const component = mount(<EuiFlyout onClose={() => {}} role={'none'} />);
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
     test('close button is not rendered', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
 

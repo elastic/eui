@@ -17,9 +17,10 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
+      tabindex="0"
     />
   </div>,
   <div
@@ -47,9 +48,10 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
+      tabindex="0"
     >
       <button
         aria-label="aria-label"
@@ -101,10 +103,11 @@ Array [
   >
     <nav
       aria-label="aria-label"
-      class="euiCollapsibleNav testClass1 testClass2"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav testClass1 testClass2"
       data-test-subj="test subject string"
       id="id"
       style="width: 320px;"
+      tabindex="0"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
@@ -134,26 +137,26 @@ Array [
 ]
 `;
 
-exports[`EuiCollapsibleNav props affordForDisplacement can be false 1`] = `
+exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
 Array [
-  <div />,
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
   />,
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="1"
   />,
   <div
-    data-focus-lock-disabled="disabled"
+    data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
-      style="width:320px"
+      style="width: 240px;"
+      tabindex="0"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
@@ -177,8 +180,8 @@ Array [
   </div>,
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
   />,
 ]
 `;
@@ -206,58 +209,10 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
-
-exports[`EuiCollapsibleNav props can alter mask props with maskProps without throwing error 1`] = `
-Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
-      style="width: 320px;"
+      tabindex="0"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
@@ -304,9 +259,10 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
+      tabindex="0"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
@@ -352,29 +308,11 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiCollapsibleNav euiCollapsibleNav--isDocked"
+      class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width:320px"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+      tabindex="0"
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -401,9 +339,10 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
+      tabindex="0"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
@@ -444,50 +383,32 @@ Array [
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
+    tabindex="0"
   />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
+    tabindex="1"
   />,
   <div
-    data-focus-lock-disabled="disabled"
+    data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav euiCollapsibleNav--isDocked"
+      class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+      tabindex="0"
+    />
   </div>,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
+    tabindex="0"
   />,
 ]
 `;
 
-exports[`EuiCollapsibleNav props style 1`] = `
+exports[`EuiCollapsibleNav props size 1`] = `
 Array [
   <div />,
   <div
@@ -504,106 +425,10 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      class="euiCollapsibleNav"
-      id="id"
-      style="width: 100px; color: red;"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
-
-exports[`EuiCollapsibleNav props useOverlayMask can be false 1`] = `
-Array [
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
-      style="width: 320px;"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
-
-exports[`EuiCollapsibleNav props width 1`] = `
-Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 240px;"
+      tabindex="0"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"

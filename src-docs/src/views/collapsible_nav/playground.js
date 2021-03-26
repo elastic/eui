@@ -13,16 +13,28 @@ export const collapsibleNavConfig = () => {
     value: true,
   };
 
-  propsToUse.useOverlayMask = {
-    ...propsToUse.useOverlayMask,
+  propsToUse.ownFocus = {
+    ...propsToUse.ownFocus,
     value: false,
     disabled: true,
   };
 
-  propsToUse.width = {
-    ...propsToUse.width,
+  propsToUse.size = {
+    ...propsToUse.size,
     type: PropTypes.Number,
-    value: 320,
+    value: 240,
+  };
+
+  propsToUse.as = {
+    ...propsToUse.as,
+    type: PropTypes.string,
+    value: 'nav',
+  };
+
+  propsToUse.as = {
+    ...propsToUse.as,
+    type: PropTypes.string,
+    value: 'nav',
   };
 
   return {

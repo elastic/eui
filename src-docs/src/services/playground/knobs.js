@@ -324,7 +324,7 @@ const Knob = ({
             }}
           />
         );
-      } else return null;
+      } else return helpText || null;
 
     case PropTypes.Custom:
       if (custom && custom.use) {
@@ -352,9 +352,9 @@ const Knob = ({
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
-      return null;
+      return helpText || null;
     default:
-      return assertUnreachable();
+      return helpText || assertUnreachable();
   }
 };
 
