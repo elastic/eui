@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
 - Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
 
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)

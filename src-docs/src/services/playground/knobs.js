@@ -222,8 +222,8 @@ const Knob = ({
             </>
           }>
           <EuiFieldText
+            aria-label={name}
             placeholder={placeholder}
-            aria-label={description}
             isInvalid={error && error.length > 0}
             compressed
             fullWidth
@@ -240,6 +240,7 @@ const Knob = ({
           isInvalid={error && error.length > 0}
           error={error}>
           <EuiSwitch
+            aria-label={name}
             id={name}
             label=""
             checked={val}
@@ -331,6 +332,7 @@ const Knob = ({
             return (
               <>
                 <EuiSwitch
+                  aria-label={name}
                   id={name}
                   label={custom.label || ''}
                   checked={typeof val !== 'undefined' && Boolean(val)}
