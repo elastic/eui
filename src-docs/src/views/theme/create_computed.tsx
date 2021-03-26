@@ -41,13 +41,13 @@ export default () => {
       light: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ([customColorPrimary]) => tint(customColorPrimary, 0.8),
-          ['colors.customColorPrimary']
+          (customColorPrimary) => tint(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
         ),
         // Need a global contrast function
         customColorPrimaryText: computed(
-          ([customColorPrimary]) => shade(customColorPrimary, 0.8),
-          ['colors.customColorPrimary']
+          (customColorPrimary) => shade(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
         ),
       },
       dark: {

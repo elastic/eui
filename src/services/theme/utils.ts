@@ -27,7 +27,6 @@ import {
   COLOR_MODES_INVERSE,
 } from './types';
 
-// export const COLOR_MODE_KEY = 'colors';
 export const DEFAULT_COLOR_MODE = COLOR_MODES_STANDARD.light;
 
 const isObject = (obj: any) => obj && typeof obj === 'object';
@@ -107,7 +106,7 @@ export const setOn = (
 export class Computed<T> {
   constructor(
     public computer: (...values: any[]) => T,
-    public dependencies: string[] = []
+    public dependencies: string | string[] = []
   ) {}
 
   getValue(
@@ -116,17 +115,25 @@ export class Computed<T> {
     working: EuiThemeComputed,
     colorMode: EuiThemeColorMode
   ) {
-    return this.dependencies.length
-      ? this.computer(
-          this.dependencies.map((dependency) => {
-            return (
-              getOn(working, dependency) ??
-              getOn(modifications, dependency, colorMode) ??
-              getOn(base, dependency, colorMode)
-            );
-          })
-        )
-      : this.computer(working);
+    if (!this.dependencies.length) {
+      return this.computer(working);
+    }
+    if (!Array.isArray(this.dependencies)) {
+      return this.computer(
+        getOn(working, this.dependencies) ??
+          getOn(modifications, this.dependencies, colorMode) ??
+          getOn(base, this.dependencies, colorMode)
+      );
+    }
+    return this.computer(
+      this.dependencies.map((dependency) => {
+        return (
+          getOn(working, dependency) ??
+          getOn(modifications, dependency, colorMode) ??
+          getOn(base, dependency, colorMode)
+        );
+      })
+    );
   }
 }
 
@@ -140,8 +147,12 @@ export function computed<T>(
   dependencies: string[]
 ): T;
 export function computed<T>(
-  comp: ((value: T) => T) | ((value: any[]) => T),
-  dep?: string[]
+  computer: (value: any) => T,
+  dependencies: string
+): T;
+export function computed<T>(
+  comp: ((value: T) => T) | ((value: any) => T) | ((value: any[]) => T),
+  dep?: string | string[]
 ) {
   return new Computed<T>(comp, dep);
 }

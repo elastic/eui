@@ -147,6 +147,12 @@ describe('computed', () => {
     expect(output.computer).toBeInstanceOf(Function);
     expect(output.dependencies).toEqual(['path.to']);
   });
+  it('should transform to Computed with single dependency', () => {
+    const output = computed((path) => path, 'path.to');
+    expect(output).toBeInstanceOf(Computed);
+    expect(output.computer).toBeInstanceOf(Function);
+    expect(output.dependencies).toEqual('path.to');
+  });
   it('should transform to Computed without dependencies array', () => {
     const output = computed((path) => path);
     expect(output).toBeInstanceOf(Computed);

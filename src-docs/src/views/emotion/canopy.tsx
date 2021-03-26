@@ -103,9 +103,7 @@ const View3 = () => {
 const View2 = () => {
   const overrides = {
     colors: {
-      light: {
-        success: computed(() => '#85E89d', ['colors.primary']),
-      },
+      light: { success: '#85E89d' },
       dark: { success: '#F0FFF4' },
     },
   };
@@ -209,11 +207,11 @@ export default () => {
     colors: {
       light: {
         primary: '#F56407',
-        myColor: computed(([primary]) => primary, ['colors.primary']),
+        myColor: computed((primary) => primary, 'colors.primary'),
       },
       dark: {
         primary: '#FA924F',
-        myColor: computed(([primary]) => primary, ['colors.primary']),
+        myColor: computed((primary) => primary, 'colors.primary'),
       },
     },
     custom: {
