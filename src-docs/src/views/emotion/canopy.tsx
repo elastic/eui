@@ -32,7 +32,6 @@ import {
   euiThemeDefault,
   buildTheme,
   EuiThemeModifications,
-  getOn,
 } from '../../../../src/services';
 import { EuiCodeBlock } from '../../../../src/components/code';
 import { EuiButton } from '../../../../src/components/button';
