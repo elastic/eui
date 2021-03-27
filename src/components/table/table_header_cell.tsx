@@ -153,7 +153,46 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         />
       );
     }
-
+    if (readOnly) {
+      return (
+        <CellComponent
+          className={classes}
+          scope={scope}
+          role="columnheader"
+          aria-sort={ariaSortValue}
+          aria-live="polite"
+          style={styleObj}
+          {...rest}>
+          <span className={contentClasses}>
+            <EuiInnerText>
+              {(ref, innerText) => (
+                <EuiI18n
+                  token="euiTableHeaderCell.titleTextWithSort"
+                  default="{innerText}; Sorted in {ariaSortValue} order"
+                  values={{ innerText, ariaSortValue }}>
+                  {(titleTextWithSort: string) => (
+                    <span
+                      title={isSorted ? titleTextWithSort : innerText}
+                      ref={ref}
+                      className="euiTableCellContent__text">
+                      {children}
+                    </span>
+                  )}
+                </EuiI18n>
+              )}
+            </EuiInnerText>
+            <EuiIcon
+              className="euiTableSortIcon"
+              type={isSortAscending ? 'sortUp' : 'sortDown'}
+              size="m"
+            />
+            <EuiScreenReaderOnly>
+              <span>{getScreenCasterDirection()}</span>
+            </EuiScreenReaderOnly>
+          </span>
+        </CellComponent>
+      );
+    }
     return (
       <CellComponent
         className={classes}
