@@ -2,6 +2,10 @@
 
 - Added `stepped color feature` to `EuiColorStops` ([#4613](https://github.com/elastic/eui/pull/4613))
 
+**Bug fixes**
+
+- Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
+
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
 
 - Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))

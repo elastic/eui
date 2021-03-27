@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-
-import { renderToHtml } from '../../services';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -15,31 +14,24 @@ import {
 
 import Flyout from './flyout';
 const flyoutSource = require('!!raw-loader!./flyout');
-const flyoutHtml = renderToHtml(Flyout);
 
 import FlyoutComplicated from './flyout_complicated';
 const flyoutComplicatedSource = require('!!raw-loader!./flyout_complicated');
-const flyoutComplicatedHtml = renderToHtml(FlyoutComplicated);
 
 import FlyoutSmall from './flyout_small';
 const flyoutSmallSource = require('!!raw-loader!./flyout_small');
-const flyoutSmallHtml = renderToHtml(FlyoutSmall);
 
 import FlyoutLarge from './flyout_large';
 const flyoutLargeSource = require('!!raw-loader!./flyout_large');
-const flyoutLargeHtml = renderToHtml(FlyoutLarge);
 
 import FlyoutPaddingMedium from './flyout_padding_medium';
 const FlyoutPaddingMediumSource = require('!!raw-loader!./flyout_padding_medium');
-const FlyoutPaddingMediumHtml = renderToHtml(FlyoutPaddingMedium);
 
 import FlyoutMaxWidth from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
-const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
 import FlyoutWithBanner from './flyout_banner';
 const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
-const flyoutWithBannerHtml = renderToHtml(FlyoutWithBanner);
 
 const flyOutSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
@@ -142,17 +134,22 @@ export const FlyoutExample = {
           type: GuideSectionTypes.JS,
           code: flyoutSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutHtml,
-        },
       ],
       text: (
         <>
           <p>
             <strong>EuiFlyout</strong> is a fixed position panel that pops in
-            from the right side of the screen. It should be used any time you
-            need to perform quick, individual actions to a larger page or list.
+            from the right side of the screen. It should be used to reveal more
+            detailed contextual information or to provide complex forms without
+            losing the user&apos;s current state. It is a good alternative to{' '}
+            <Link to="/layout/modal">modals</Link> when the action is not
+            transient.
+          </p>
+          <p>
+            Like modals, you control the visibilty of the flyout using your own
+            state management, but <strong>EuiFlyout</strong> requires an{' '}
+            <EuiCode>onClose</EuiCode> handler for it&apos;s internal dismiss
+            buttons.
           </p>
 
           <EuiCallOut
@@ -161,13 +158,13 @@ export const FlyoutExample = {
               <>
                 Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> and{' '}
                 <EuiCode>ownFocus</EuiCode> to announce the flyout to screen
-                readers when the user opens it.
+                readers.
               </>
             }
           />
         </>
       ),
-      props: { EuiFlyout, EuiFlyoutHeader, EuiFlyoutBody },
+      props: { EuiFlyout },
       snippet: flyOutSnippet,
       demo: <Flyout />,
     },
@@ -178,127 +175,120 @@ export const FlyoutExample = {
           type: GuideSectionTypes.JS,
           code: flyoutComplicatedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutComplicatedHtml,
-        },
-      ],
-      text: (
-        <p>
-          In this example we use <strong>EuiFlyoutHeader</strong> and{' '}
-          <strong>EuiFlyoutFooter</strong> to allow for fixed position
-          navigation and actions within a flyout. Note that any content within{' '}
-          <strong>EuiFlyoutBody</strong> will automatically overflow.
-        </p>
-      ),
-      props: { EuiFlyoutFooter },
-      snippet: flyoutComplicatedSnippet,
-      demo: <FlyoutComplicated />,
-    },
-    {
-      title: 'Flyout with banner',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flyoutWithBannerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutWithBannerHtml,
-        },
-      ],
-      text: (
-        <p>
-          To highlight some information at the top of a flyout, you can use the{' '}
-          <EuiCode>banner</EuiCode> prop available in{' '}
-          <strong>EuiFlyoutBody</strong>.
-        </p>
-      ),
-      snippet: flyoutWithBannerSnippet,
-      demo: <FlyoutWithBanner />,
-    },
-    {
-      title: 'Small flyout, without ownFocus',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flyoutSmallSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutSmallHtml,
-        },
       ],
       text: (
         <>
           <p>
-            In this example, we set <EuiCode>size</EuiCode> to{' '}
-            <EuiCode>s</EuiCode> and remove the <EuiCode>ownFocus</EuiCode>{' '}
-            prop. Removing <EuiCode>ownFocus</EuiCode> will hide the overlay
-            mask keeping the underlying page content visible and clickable.
+            This component also comes with related child components for ease of
+            creating headers, footers and scrolling body content.{' '}
+            <strong>EuiFlyoutHeader</strong> and{' '}
+            <strong>EuiFlyoutFooter</strong> are pinned to the top and bottom of
+            the flyout, respectively, to allow for always visible navigation and
+            actions. The <strong>EuiFlyoutBody</strong> component will then
+            automatically overflow.
           </p>
         </>
       ),
-      snippet: flyoutSmallSnippet,
-      demo: <FlyoutSmall />,
+      props: { EuiFlyoutHeader, EuiFlyoutBody, EuiFlyoutFooter },
+      snippet: flyoutComplicatedSnippet,
+      demo: <FlyoutComplicated />,
     },
     {
-      title: 'Large flyout',
+      title: 'Sizing',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: flyoutLargeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutLargeHtml,
-        },
       ],
       text: (
         <p>
-          In this example, we set <EuiCode>size</EuiCode> to{' '}
-          <EuiCode>l</EuiCode>.
+          Flyouts come in three predefined <EuiCode>size</EuiCode>s,{' '}
+          <EuiCode>{"'x' | 'm' | 'l'"}</EuiCode>, which define the width
+          relative to the window size with a minimum width defined in pixels.
         </p>
       ),
       snippet: flyoutLargeSnippet,
       demo: <FlyoutLarge />,
+      props: { EuiFlyout },
     },
     {
-      title: 'Flyout padding',
+      title: 'Adjusting padding',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: FlyoutPaddingMediumSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: FlyoutPaddingMediumHtml,
-        },
       ],
       text: (
         <p>
-          All the inner flyout components inherit their{' '}
-          <EuiCode>padding</EuiCode> from the wrapping{' '}
-          <strong>EuiFlyout</strong> component. This ensures that all the
-          horizontal edges line up no matter the <EuiCode>paddingSize</EuiCode>.
-          When using the <EuiCode>{'"none"'}</EuiCode> size, you will need to
-          accomodate your content with some other way of creating distance to
-          the edges of the flyout.
+          All the inner flyout components inherit their padding from the
+          wrapping <strong>EuiFlyout</strong> component. This ensures that all
+          the horizontal edges line up no matter the{' '}
+          <EuiCode>paddingSize</EuiCode>. When using the{' '}
+          <EuiCode>{'"none"'}</EuiCode> size, you will need to accomodate your
+          content with some other way of creating distance to the edges of the
+          flyout.
         </p>
       ),
       snippet: flyoutMediumPaddingSnippet,
       demo: <FlyoutPaddingMedium />,
+      props: { EuiFlyout },
     },
     {
-      title: 'Max width',
+      title: 'Adding a banner',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutWithBannerSource,
+        },
+      ],
+      text: (
+        <p>
+          To highlight some information at the top of a flyout, you can pass an{' '}
+          <Link to="/display/callout">
+            <strong>EuiCallOut</strong>
+          </Link>{' '}
+          to the <EuiCode>banner</EuiCode> prop available in{' '}
+          <strong>EuiFlyoutBody</strong> and its layout will adjust
+          appropriately.
+        </p>
+      ),
+      snippet: flyoutWithBannerSnippet,
+      demo: <FlyoutWithBanner />,
+      props: { EuiFlyoutBody },
+    },
+    {
+      title: 'Without ownFocus',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutSmallSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Like modals, you can, and usually want to, obscure the page content
+            beneath with <EuiCode>ownFocus</EuiCode> which adds an{' '}
+            <Link to="/utilities/overlay-mask">
+              <strong>EuiOverlayMask</strong>
+            </Link>
+            . By not adding this prop, the the underlying page content will be
+            visible and clickable.
+          </p>
+        </>
+      ),
+      snippet: flyoutSmallSnippet,
+      demo: <FlyoutSmall />,
+      props: { EuiFlyout },
+    },
+    {
+      title: 'Understanding max-width',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: flyoutMaxWidthSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutMaxWidthHtml,
         },
       ],
       text: (
