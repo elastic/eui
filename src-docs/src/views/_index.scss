@@ -1,0 +1,17 @@
+$guideDemoHighlightColor: transparentize($euiColorPrimary, .9);
+
+@import './home/home';
+@import './guidelines/index';
+
+@import './datagrid/datagrid';
+@import './date_picker/date_picker';
+@import './elastic_charts/index';
+@import './flex/flex';
+@import './horizontal_rule/horizontal_rule';
+@import './page/page';
+@import './notification_event/notification_event';
+@import './selectable/search';
+@import './spacer/spacer';
+@import './suggest/index';
+@import './text_scaling/text_scaling';
+@import './tree_view/tree_view';
