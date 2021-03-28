@@ -3,6 +3,8 @@
 **Bug fixes**
 
 - Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
+- Fixed responsive sizing of `EuiModal` ([#4670](https://github.com/elastic/eui/pull/4670))
+- Fixed `disabled` interactions of `EuiHeaderSectionItemButton` ([#4670](https://github.com/elastic/eui/pull/4670))
 
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
 
