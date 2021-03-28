@@ -34,7 +34,11 @@ export const HorizontalRuleExample = {
       ),
       props: { EuiHorizontalRule },
       snippet: horizontalRuleSnippet,
-      demo: <HorizontalRule />,
+      demo: (
+        <div className="eui-textCenter">
+          <HorizontalRule />
+        </div>
+      ),
       playground: horizontalRuleConfig,
     },
     {
@@ -54,7 +58,11 @@ export const HorizontalRuleExample = {
         </p>
       ),
       snippet: horizontalRuleMarginSnippet,
-      demo: <HorizontalRuleMargin />,
+      demo: (
+        <div className="guideDemo__highlightHR">
+          <HorizontalRuleMargin />
+        </div>
+      ),
     },
   ],
 };

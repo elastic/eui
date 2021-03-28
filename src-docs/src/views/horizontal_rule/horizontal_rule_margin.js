@@ -3,7 +3,7 @@ import React from 'react';
 import { EuiHorizontalRule, EuiCode } from '../../../../src/components';
 
 export default () => (
-  <div className="guideDemo__highlightHR">
+  <>
     <EuiCode>none</EuiCode>
     <div>
       <EuiHorizontalRule margin="none" />
@@ -32,5 +32,5 @@ export default () => (
     <div>
       <EuiHorizontalRule margin="xxl" />
     </div>
-  </div>
+  </>
 );

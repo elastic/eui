@@ -102,6 +102,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   margin-bottom: $euiSize;
 }
 
+.guideDemo__highlightSpacer .euiCodeBlock {
+  align-self: flex-start;
+  margin-bottom: $euiSize;
+}
+
+
 .guideDemo__highlightGrid .euiFlexItem,
 .guideDemo__highlightGridWrap .euiFlexItem div {
   padding: $euiSize;
