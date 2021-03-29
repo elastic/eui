@@ -18,6 +18,7 @@
  */
 
 import React, {
+  forwardRef,
   FunctionComponent,
   Ref,
   ButtonHTMLAttributes,
@@ -83,7 +84,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   fill?: boolean;
   /**
-   * Any of our named colors. `text` color is set for deprecation
+   * Any of our named colors
    */
   color?: ButtonColor;
   /**
@@ -136,7 +137,7 @@ export type EuiButtonDisplayProps = EuiButtonProps &
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
+const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
       element = 'button',

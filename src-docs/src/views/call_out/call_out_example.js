@@ -4,12 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCallOut,
-  EuiText,
-  EuiSpacer,
-  EuiCode,
-} from '../../../../src/components';
+import { EuiCallOut, EuiText, EuiCode } from '../../../../src/components';
 import callOutConfig from './playground';
 
 import Info from './info';
@@ -90,7 +85,6 @@ export const CallOutExample = {
           </li>
         </ul>
       </EuiText>
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

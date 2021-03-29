@@ -1,5 +1,9 @@
+import { PropTypes } from 'react-view';
 import { EuiAvatar, checkValidColor } from '../../../../src/components/avatar';
-import { propUtilityForPlayground } from '../../services/playground';
+import {
+  propUtilityForPlayground,
+  iconValidator,
+} from '../../services/playground';
 
 export default () => {
   const docgenInfo = Array.isArray(EuiAvatar.__docgenInfo)
@@ -23,6 +27,13 @@ export default () => {
       },
     },
   };
+
+  propsToUse.initialsLength = {
+    ...propsToUse.initialsLength,
+    type: PropTypes.Number,
+  };
+
+  propsToUse.iconType = iconValidator(propsToUse.iconType);
 
   return {
     config: {

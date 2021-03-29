@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiNotificationEventReadButton is rendered 1`] = `
+<button
+  aria-label="Mark eventName as unread"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiNotificationEventReadButton euiNotificationEventReadButton--isRead"
+  data-test-subj="id-notificationEventReadButton"
+  title="Mark as unread"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="dot"
+  />
+</button>
+`;
+
+exports[`EuiNotificationEventReadButton renders isRead to false 1`] = `
+<button
+  aria-label="Mark eventName as read"
+  class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiNotificationEventReadButton"
+  data-test-subj="id-notificationEventReadButton"
+  title="Mark as read"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    data-euiicon-type="dot"
+  />
+</button>
+`;

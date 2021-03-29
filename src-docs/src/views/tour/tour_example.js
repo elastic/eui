@@ -7,7 +7,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
   EuiCode,
-  EuiSpacer,
   EuiText,
   EuiTourStep,
 } from '../../../../src/components';
@@ -65,7 +64,6 @@ export const TourExample = {
         iconType="save"
         title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
       />
-      <EuiSpacer />
     </EuiText>
   ),
   sections: [

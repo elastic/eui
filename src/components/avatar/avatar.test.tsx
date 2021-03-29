@@ -47,6 +47,38 @@ describe('EuiAvatar', () => {
       });
     });
 
+    describe('iconType', () => {
+      it('is rendered', () => {
+        const component = render(<EuiAvatar name="name" iconType="bolt" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconSize is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconSize="xl" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconColor is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconColor="primary" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconColor as null is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconColor={null} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
@@ -82,8 +114,20 @@ describe('EuiAvatar', () => {
     });
 
     describe('color', () => {
-      it('is rendered', () => {
+      it('as string is rendered', () => {
         const component = render(<EuiAvatar name="name" color="#000" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('as null is rendered', () => {
+        const component = render(<EuiAvatar name="name" color={null} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('as plain is rendered', () => {
+        const component = render(<EuiAvatar name="name" color="plain" />);
 
         expect(component).toMatchSnapshot();
       });

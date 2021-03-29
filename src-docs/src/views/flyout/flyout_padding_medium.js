@@ -68,7 +68,7 @@ export default () => {
         <EuiFlyoutBody banner={callOut}>
           <EuiFormRow label="Change the paddingSize">
             <EuiButtonGroup
-              legend="Flyout panel size"
+              legend="Flyout paddingSize"
               color="primary"
               size="s"
               options={sizes}

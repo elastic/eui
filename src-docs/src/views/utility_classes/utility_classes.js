@@ -1,240 +1,88 @@
 import React from 'react';
 
-import {
-  EuiText,
-  EuiCode,
-  EuiSpacer,
-  EuiIcon,
-  EuiTextColor,
-  EuiCodeBlock,
-} from '../../../../src/components';
-
-const longLink =
-  'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool';
+import { EuiCode, EuiSpacer } from '../../../../src/components';
+import { EuiMark } from '../../../../src/components/mark';
+import { UtilityClassesSection } from './utility_classes_section';
 
 const wrappingExampleStyle = {
-  width: 290,
-  padding: 16,
   background: 'rgba(254, 228, 181, 0.5)',
 };
 
 export default () => (
-  <EuiText>
-    <h2>Display</h2>
-
-    <EuiCode className="eui-displayBlock">.eui-displayBlock</EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-displayInline">.eui-displayInline</EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-displayInlineBlock">
-      .eui-displayInlineBlock
-    </EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-fullWidth">
-      .eui-fullWidth (similar to eui-displayBlock but adds 100% width)
-    </EuiCode>
-
-    <EuiSpacer />
-
-    <h2>Text</h2>
-
-    <EuiSpacer />
-
-    <EuiTextColor color="danger">
-      <EuiCode className="eui-textInheritColor">.eui-textInheritColor</EuiCode>{' '}
-      will force text to inherit its color from its parent.
-    </EuiTextColor>
-
-    <EuiSpacer />
-
-    <div className="eui-textLeft">
-      <EuiCode>.eui-textLeft</EuiCode>
-    </div>
-
-    <div className="eui-textCenter">
-      <EuiCode>.eui-textCenter</EuiCode>
-    </div>
-    <div className="eui-textRight">
-      <EuiCode>.eui-textRight</EuiCode>
-    </div>
-
-    <EuiSpacer />
-
-    <EuiSpacer />
-
-    <div style={wrappingExampleStyle} className="eui-textNoWrap">
-      <EuiCode>.eui-textNoWrap</EuiCode> will force text not to wrap even in
-      small containers.
-    </div>
-
-    <EuiSpacer />
-
-    <div style={wrappingExampleStyle} className="eui-textTruncate">
-      <EuiCode>.eui-textTruncate</EuiCode> will ellipsis after a certain point.
-    </div>
-
-    <EuiSpacer />
-
-    <div style={wrappingExampleStyle} className="eui-textBreakWord">
-      <EuiCode>.eui-textBreakWord</EuiCode> will only break up at the end of
-      words. Long urls will still break {longLink}.
-    </div>
-
-    <EuiSpacer />
-
-    <div style={wrappingExampleStyle} className="eui-textBreakAll">
-      <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful
-      for long urls like {longLink}{' '}
-      --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------.
-    </div>
-
-    <EuiSpacer />
-
-    <div
-      style={wrappingExampleStyle}
-      className="eui-textBreakWord eui-textBreakNormal">
-      <EuiCode>.eui-textBreakNormal</EuiCode> revert back to not forcing word
-      breaks. It is <strong>not</strong> useful for long urls like {longLink}.
-    </div>
-
-    <EuiSpacer />
-
-    <h2>Overflows</h2>
-
-    <div
-      style={{
-        height: 180,
-        overflowY: 'hidden',
-        background: wrappingExampleStyle.background,
-      }}>
-      <EuiText
-        className="eui-yScrollWithShadows"
-        size="s"
-        style={{ padding: wrappingExampleStyle.padding }}>
+  <>
+    <UtilityClassesSection
+      code="eui-displayBlock"
+      description={
         <p>
-          The vertical utility requires a wrapping element to control the height
-          with <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the
-          CSS utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
+          Changes the element’s display property to{' '}
+          <EuiCode language="sass">display: block;</EuiCode>
         </p>
+      }
+      example={
+        <EuiMark style={wrappingExampleStyle} className="eui-displayBlock">
+          Displaying block
+        </EuiMark>
+      }
+      snippet={`<span className="eui-displayBlock">
+  /* Your content */
+</span>`}
+    />
+    <EuiSpacer />
+    <UtilityClassesSection
+      code="eui-displayInline"
+      description={
         <p>
-          <b>Example:</b>
+          Changes the element’s display property to{' '}
+          <EuiCode language="sass">display: inline;</EuiCode>
         </p>
-        <EuiCodeBlock language="html" isCopyable paddingSize="s">
-          {`<BodyContent style={{ height: 200, overflowY: 'hidden' }}>
-  <BodyScroll className="eui-yScrollWithShadows" />
-</BodyContent>`}
-        </EuiCodeBlock>
-      </EuiText>
-    </div>
-
+      }
+      example={
+        <EuiMark style={wrappingExampleStyle} className="eui-displayInline">
+          Displaying inline
+        </EuiMark>
+      }
+      snippet={`<div className="eui-displayInline">
+  /* Your content */
+</div>`}
+    />
     <EuiSpacer />
-
-    <div
-      style={{
-        ...wrappingExampleStyle,
-        padding: 0,
-      }}>
-      <div
-        tabIndex="0"
-        className="eui-xScrollWithShadows"
-        style={{ padding: wrappingExampleStyle.padding }}>
-        <EuiText size="s" style={{ width: '150%' }}>
-          <p>
-            When using the horizontal utility{' '}
-            <EuiCode>.eui-xScrollWithShadows</EuiCode>, you may want to add
-            padding to the sides of your content so the mask doesn&apos;t
-            overlay it.
-          </p>
-        </EuiText>
-      </div>
-    </div>
-
+    <UtilityClassesSection
+      code="eui-displayInlineBlock"
+      description={
+        <p>
+          Changes the element’s display property to{' '}
+          <EuiCode language="sass">display: inline-block;</EuiCode>
+        </p>
+      }
+      example={
+        <EuiMark
+          style={wrappingExampleStyle}
+          className="eui-displayInlineBlock">
+          Displaying inline block
+        </EuiMark>
+      }
+      snippet={`<span className="eui-displayInlineBlock">
+  /* Your content */
+</span>`}
+    />
     <EuiSpacer />
-    <h2>Vertical alignment</h2>
-    <EuiSpacer />
-
-    <div>
-      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignTop" />
-      <EuiCode>.eui-alignTop</EuiCode>
-    </div>
-
-    <EuiSpacer />
-
-    <div>
-      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignMiddle" />
-      <EuiCode>.eui-alignMiddle</EuiCode>
-    </div>
-
-    <EuiSpacer />
-
-    <div>
-      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignBottom" />
-      <EuiCode>.eui-alignBottom</EuiCode>
-    </div>
-
-    <EuiSpacer />
-
-    <div>
-      <EuiIcon
-        type="logoElasticStack"
-        size="xxl"
-        className="eui-alignBaseline"
-      />
-      <EuiCode>.eui-alignBaseline</EuiCode>
-    </div>
-
-    <EuiSpacer />
-
-    <h2>Responsive</h2>
-
-    <EuiCode className="eui-hideFor--xs">.eui-hideFor--xs</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="eui-hideFor--s">.eui-hideFor--s</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="eui-hideFor--m">.eui-hideFor--m</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="eui-hideFor--l">.eui-hideFor--l</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="eui-hideFor--xl">.eui-hideFor--xl</EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-showFor--xs">.eui-showFor--xs</EuiCode>
-    <EuiCode className="eui-showFor--s">.eui-showFor--s</EuiCode>
-    <EuiCode className="eui-showFor--m">.eui-showFor--m</EuiCode>
-    <EuiCode className="eui-showFor--l">.eui-showFor--l</EuiCode>
-    <EuiCode className="eui-showFor--xl">.eui-showFor--xl</EuiCode>
-
-    <EuiSpacer />
-
-    <h3>Modifiers</h3>
-    <p>
-      The <EuiCode>.eui-showFor--[size]</EuiCode> classes will force display of{' '}
-      <EuiCode>inline</EuiCode> when showing the element. You can modify this
-      display property by appending <EuiCode>block</EuiCode>,{' '}
-      <EuiCode>inlineBlock</EuiCode>, or <EuiCode>flex</EuiCode> to the class.
-    </p>
-
-    <EuiCode className="eui-showFor--xs">.eui-showFor--xs (inline)</EuiCode>
-    <EuiCode className="eui-showFor--s">.eui-showFor--s (inline)</EuiCode>
-    <EuiCode className="eui-showFor--m">.eui-showFor--m--block</EuiCode>
-    <EuiCode className="eui-showFor--l">.eui-showFor--l--inlineBlock</EuiCode>
-    <EuiCode className="eui-showFor--xl">.eui-showFor--xl--flex</EuiCode>
-
-    <EuiSpacer />
-
-    <div
-      style={{ background: wrappingExampleStyle.background }}
-      className="eui-showFor--xs eui-showFor--s eui-showFor--m--block eui-showFor--l--inlineBlock eui-showFor--xl--flex">
-      <span style={wrappingExampleStyle}>span</span>
-      <span style={wrappingExampleStyle}>span</span>
-      <span style={wrappingExampleStyle}>span</span>
-    </div>
-  </EuiText>
+    <UtilityClassesSection
+      code="eui-fullWidth"
+      description={
+        <p>
+          Changes the element’s display property to{' '}
+          <EuiCode language="sass">display: inline-block;</EuiCode> and adds{' '}
+          <EuiCode language="sass">width: 100%;</EuiCode>
+        </p>
+      }
+      example={
+        <EuiMark style={wrappingExampleStyle} className="eui-fullWidth">
+          Displaying full width
+        </EuiMark>
+      }
+      snippet={`<span className="eui-fullWidth">
+  /* Your content */
+</span>`}
+    />
+  </>
 );

@@ -4,14 +4,12 @@ import {
   EuiButtonGroup,
   EuiSpacer,
   EuiTitle,
-  EuiPanel,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
 const idPrefix = htmlIdGenerator()();
 const idPrefix2 = htmlIdGenerator()();
-const idPrefix3 = htmlIdGenerator()();
 
 export default () => {
   const toggleButtons = [
@@ -59,90 +57,11 @@ export default () => {
     },
   ];
 
-  const toggleButtonsCompressed = [
-    {
-      id: `${idPrefix2}3`,
-      label: 'fine',
-    },
-    {
-      id: `${idPrefix2}4`,
-      label: 'rough',
-    },
-    {
-      id: `${idPrefix2}5`,
-      label: 'coarse',
-    },
-  ];
-
-  const toggleButtonsIcons = [
-    {
-      id: `${idPrefix3}0`,
-      label: 'Align left',
-      iconType: 'editorAlignLeft',
-    },
-    {
-      id: `${idPrefix3}1`,
-      label: 'Align center',
-      iconType: 'editorAlignCenter',
-    },
-    {
-      id: `${idPrefix3}2`,
-      label: 'Align right',
-      iconType: 'editorAlignRight',
-      isDisabled: true,
-    },
-  ];
-
-  const toggleButtonsIconsMulti = [
-    {
-      id: `${idPrefix3}3`,
-      label: 'Bold',
-      name: 'bold',
-      iconType: 'editorBold',
-    },
-    {
-      id: `${idPrefix3}4`,
-      label: 'Italic',
-      name: 'italic',
-      iconType: 'editorItalic',
-      isDisabled: true,
-    },
-    {
-      id: `${idPrefix3}5`,
-      label: 'Underline',
-      name: 'underline',
-      iconType: 'editorUnderline',
-    },
-    {
-      id: `${idPrefix3}6`,
-      label: 'Strikethrough',
-      name: 'strikethrough',
-      iconType: 'editorStrike',
-    },
-  ];
-
-  const toggleButtonsIconsMultiCompressed = toggleButtonsIconsMulti.map(
-    (config) => ({ ...config, id: `${config.id}-compressed` })
-  );
-
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}1`);
   const [toggleIdDisabled, setToggleIdDisabled] = useState(`${idPrefix}4`);
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
     [`${idPrefix2}1`]: true,
   });
-  const [toggleIconIdSelected, setToggleIconIdSelected] = useState(
-    `${idPrefix3}1`
-  );
-  const [toggleIconIdToSelectedMap, setToggleIconIdToSelectedMap] = useState(
-    {}
-  );
-  const [
-    toggleIconIdToSelectedMapIcon,
-    setToggleIconIdToSelectedMapIcon,
-  ] = useState({});
-  const [toggleCompressedIdSelected, setToggleCompressedIdSelected] = useState(
-    `${idPrefix2}4-compressed`
-  );
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
@@ -160,36 +79,6 @@ export default () => {
       },
     };
     setToggleIdToSelectedMap(newToggleIdToSelectedMap);
-  };
-
-  const onChangeIcons = (optionId) => {
-    setToggleIconIdSelected(optionId);
-  };
-
-  const onChangeCompressed = (optionId) => {
-    setToggleCompressedIdSelected(optionId);
-  };
-
-  const onChangeIconsMulti = (optionId) => {
-    const newToggleIconIdToSelectedMap = {
-      ...toggleIconIdToSelectedMap,
-      ...{
-        [optionId]: !toggleIconIdToSelectedMap[optionId],
-      },
-    };
-
-    setToggleIconIdToSelectedMap(newToggleIconIdToSelectedMap);
-  };
-
-  const onChangeIconsMultiIcons = (optionId) => {
-    const newToggleIconIdToSelectedMapIcon = {
-      ...toggleIconIdToSelectedMapIcon,
-      ...{
-        [optionId]: !toggleIconIdToSelectedMapIcon[optionId],
-      },
-    };
-
-    setToggleIconIdToSelectedMapIcon(newToggleIconIdToSelectedMapIcon);
   };
 
   return (
@@ -227,61 +116,6 @@ export default () => {
         isDisabled
         isFullWidth
       />
-      <EuiSpacer size="m" />
-      <EuiTitle size="xxs">
-        <h3>Icons only</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiButtonGroup
-        legend="Text align"
-        options={toggleButtonsIcons}
-        idSelected={toggleIconIdSelected}
-        onChange={(id) => onChangeIcons(id)}
-        isIconOnly
-      />
-      &nbsp;&nbsp;
-      <EuiButtonGroup
-        legend="Text style"
-        options={toggleButtonsIconsMulti}
-        idToSelectedMap={toggleIconIdToSelectedMap}
-        onChange={(id) => onChangeIconsMulti(id)}
-        type="multi"
-        isIconOnly
-      />
-      <EuiSpacer />
-      <EuiPanel style={{ maxWidth: 300 }}>
-        <EuiTitle size="xxxs">
-          <h3>
-            Compressed groups should always be fullWidth so they line up nicely
-            in their small container.
-          </h3>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiButtonGroup
-          name="coarsness"
-          legend="This is a basic group"
-          options={toggleButtonsCompressed}
-          idSelected={toggleCompressedIdSelected}
-          onChange={(id) => onChangeCompressed(id)}
-          buttonSize="compressed"
-          isFullWidth
-        />
-        <EuiSpacer />
-        <EuiTitle size="xxxs">
-          <h3>Unless they are icon only</h3>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiButtonGroup
-          legend="Text style compressed"
-          className="eui-displayInlineBlock"
-          options={toggleButtonsIconsMultiCompressed}
-          idToSelectedMap={toggleIconIdToSelectedMapIcon}
-          onChange={(id) => onChangeIconsMultiIcons(id)}
-          type="multi"
-          buttonSize="compressed"
-          isIconOnly
-        />
-      </EuiPanel>
     </Fragment>
   );
 };

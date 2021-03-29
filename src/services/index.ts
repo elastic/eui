@@ -93,7 +93,7 @@ export { Random } from './random';
 
 export { getSecureRelForTarget } from './security';
 
-export { toInitials } from './string';
+export { toSentenceCase, toInitials, slugify } from './string';
 
 export {
   PropertySortType,

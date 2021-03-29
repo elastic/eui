@@ -143,7 +143,6 @@ export const ElasticChartsPieExample = {
           </EuiFlexItem>
         ))}
       </EuiFlexGroup>
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [
