@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { buildTheme } from './utils';
+import { buildTheme } from '../../services/theme/utils';
 import {
   light_colors,
   dark_colors,

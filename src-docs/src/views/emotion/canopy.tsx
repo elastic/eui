@@ -29,12 +29,12 @@ import {
   WithEuiThemeProps,
   EuiThemeProvider,
   computed,
-  euiThemeDefault,
   buildTheme,
   EuiThemeModifications,
 } from '../../../../src/services';
 import { EuiCodeBlock } from '../../../../src/components/code';
 import { EuiButton } from '../../../../src/components/button';
+import { euiThemeDefault } from '../../../../src/themes/eui/theme';
 
 const View = () => {
   const { euiTheme, colorMode } = useEuiTheme();

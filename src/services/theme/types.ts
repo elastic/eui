@@ -18,7 +18,7 @@
  */
 
 import { RecursiveOmit, RecursivePartial } from '../../components/common';
-import { euiThemeDefault } from './theme';
+import { euiThemeDefault } from '../../themes/eui/theme';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',

@@ -44,4 +44,3 @@ export {
   EuiThemeShape,
   EuiThemeSystem,
 } from './types';
-export { EuiThemeDefault, euiThemeDefault } from './theme';
