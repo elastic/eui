@@ -163,6 +163,7 @@ export interface EuiTableSortingType<T> {
    * Enables the default sorting ability for each column.
    */
   enableAllColumns?: boolean;
+  readOnly?: boolean;
 }
 
 export interface EuiTableSelectionType<T> {

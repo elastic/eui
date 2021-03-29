@@ -310,6 +310,7 @@ interface SortOptions {
   isSortAscending?: boolean;
   onSort?: () => void;
   allowNeutralSort?: boolean;
+  readOnly?: boolean;
 }
 
 function hasPagination<T>(
@@ -843,6 +844,7 @@ export class EuiBasicTable<T = any> extends Component<
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
           sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
+          sorting.readOnly = this.props.sorting.readOnly;
         }
         headers.push(
           <EuiTableHeaderCell
@@ -851,7 +853,6 @@ export class EuiBasicTable<T = any> extends Component<
             width={width}
             mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${name}_${index}`}
-            readOnly={this.props.readOnly}
             {...sorting}>
             {name}
           </EuiTableHeaderCell>
@@ -883,6 +884,7 @@ export class EuiBasicTable<T = any> extends Component<
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
           sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
+          sorting.readOnly = this.props.sorting.readOnly;
         }
       }
       headers.push(
@@ -894,7 +896,6 @@ export class EuiBasicTable<T = any> extends Component<
           hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
-          readOnly={this.props.readOnly}
           {...sorting}>
           {name}
         </EuiTableHeaderCell>
