@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-
-import { renderToHtml } from '../../services';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -9,49 +8,61 @@ import {
   EuiCard,
   EuiCallOut,
   EuiCheckableCard,
+  EuiText,
 } from '../../../../src/components';
-import cardConfig from './playground';
+import { cardConfig, checkableCardConfig } from './playground';
 
 import { EuiCardSelect } from '../../../../src/components/card/card_select';
 
 import Card from './card';
 const cardSource = require('!!raw-loader!./card');
-const cardHtml = renderToHtml(Card);
 
 import CardImage from './card_image';
 const cardImageSource = require('!!raw-loader!./card_image');
-const cardImageHtml = renderToHtml(CardImage);
 
 import CardFooter from './card_footer';
 const cardFooterSource = require('!!raw-loader!./card_footer');
-const cardFooterHtml = renderToHtml(CardFooter);
 
 import CardBeta from './card_beta';
 const cardBetaSource = require('!!raw-loader!./card_beta');
-const cardBetaHtml = renderToHtml(CardBeta);
 
 import CardLayout from './card_layout';
 const cardLayoutSource = require('!!raw-loader!./card_layout');
-const cardLayoutHtml = renderToHtml(CardLayout);
 
 import CardSelectable from './card_selectable';
 const cardSelectableSource = require('!!raw-loader!./card_selectable');
-const cardSelectableHtml = renderToHtml(CardSelectable);
 
 import CardChildren from './card_children';
 const cardChildrenSource = require('!!raw-loader!./card_children');
-const cardChildrenHtml = renderToHtml(CardChildren);
 
 import CardCheckable from './card_checkable';
 const cardCheckableSource = require('!!raw-loader!./card_checkable');
-const cardCheckableHtml = renderToHtml(CardCheckable);
+import CardCheckableCheckbox from './card_checkable_checkbox';
+const cardCheckableCheckboxSource = require('!!raw-loader!./card_checkable_checkbox');
 
 import CardDisplay from './card_display';
 const cardDisplaySource = require('!!raw-loader!./card_display');
-const cardDisplayHtml = renderToHtml(CardDisplay);
 
 export const CardExample = {
   title: 'Card',
+  intro: (
+    <>
+      <EuiText>
+        <p>
+          <strong>EuiCard</strong> is a content-oriented component built on top
+          of{' '}
+          <Link to="/layout/panel">
+            <strong>EuiPanel</strong>
+          </Link>
+          . Be sure to check out the{' '}
+          <Link to="/layout/panel/guidelines">
+            guidelines for properly nesting panels
+          </Link>
+          .
+        </p>
+      </EuiText>
+    </>
+  ),
   sections: [
     {
       title: 'Basic card',
@@ -59,10 +70,6 @@ export const CardExample = {
         {
           type: GuideSectionTypes.JS,
           code: cardSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardHtml,
         },
       ],
       text: (
@@ -93,6 +100,7 @@ export const CardExample = {
   description="description"
   onClick={handleClick}
 />`,
+      playground: cardConfig,
     },
     {
       title: 'Layout',
@@ -100,10 +108,6 @@ export const CardExample = {
         {
           type: GuideSectionTypes.JS,
           code: cardLayoutSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardLayoutHtml,
         },
       ],
       text: (
@@ -146,10 +150,6 @@ export const CardExample = {
         {
           type: GuideSectionTypes.JS,
           code: cardImageSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardImageHtml,
         },
       ],
       text: (
@@ -196,10 +196,6 @@ export const CardExample = {
           type: GuideSectionTypes.JS,
           code: cardFooterSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardFooterHtml,
-        },
       ],
       text: (
         <>
@@ -241,10 +237,6 @@ export const CardExample = {
           type: GuideSectionTypes.JS,
           code: cardBetaSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardBetaHtml,
-        },
       ],
       text: (
         <p>
@@ -276,10 +268,6 @@ export const CardExample = {
         {
           type: GuideSectionTypes.JS,
           code: cardSelectableSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardSelectableHtml,
         },
       ],
       text: (
@@ -320,42 +308,48 @@ export const CardExample = {
     {
       title: 'Checkable',
       text: (
-        <Fragment>
-          <p>
-            <strong>EuiCheckableCard</strong> wraps an <strong>EuiRadio</strong>{' '}
-            or <strong>EuiCheckbox</strong> with a more-prominent panel,
-            allowing for children to be displayed.
-          </p>
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <span>
-                When used as a radio group, you must provide a{' '}
-                <EuiCode>fieldset</EuiCode> with a <EuiCode>legend</EuiCode> for
-                accessibility.
-              </span>
-            }
-          />
-        </Fragment>
+        <p>
+          <strong>EuiCheckableCard</strong> wraps an <strong>EuiRadio</strong>{' '}
+          or <strong>EuiCheckbox</strong> with a more-prominent panel, allowing
+          for children to be displayed.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardCheckableCheckboxSource,
+        },
+      ],
+      props: {
+        EuiCheckableCard,
+      },
+      demo: <CardCheckableCheckbox />,
+      playground: checkableCardConfig,
+    },
+    {
+      text: (
+        <EuiCallOut
+          iconType="accessibility"
+          color="warning"
+          title={
+            <span>
+              When used as a radio group, you must provide a{' '}
+              <EuiCode>fieldset</EuiCode> with a <EuiCode>legend</EuiCode> for
+              accessibility.
+            </span>
+          }
+        />
       ),
       source: [
         {
           type: GuideSectionTypes.JS,
           code: cardCheckableSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardCheckableHtml,
-        },
       ],
       props: {
         EuiCheckableCard,
       },
       demo: <CardCheckable />,
-      demoPanelProps: {
-        color: 'subdued',
-      },
     },
     {
       title: 'Custom children',
@@ -363,10 +357,6 @@ export const CardExample = {
         {
           type: GuideSectionTypes.JS,
           code: cardChildrenSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardChildrenHtml,
         },
       ],
       text: (
@@ -399,15 +389,11 @@ export const CardExample = {
 </EuiCard>`,
     },
     {
-      title: 'Plain cards',
+      title: 'Plain and other colors',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: cardDisplaySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: cardDisplayHtml,
         },
       ],
       text: (
@@ -416,9 +402,10 @@ export const CardExample = {
             If you need a card with no borders or shadows pass{' '}
             <EuiCode language="ts">{'display="plain"'}</EuiCode>. This is a good
             option to avoid nested panels. Adding an interaction to the card
-            will provide the clickable styling on hover. Note that{' '}
-            <EuiCode>plain</EuiCode> display is not available for
-            <EuiCode>selectable</EuiCode> cards.
+            will provide the clickable styling on hover. The{' '}
+            <EuiCode language="ts">display</EuiCode> prop also accepts all other{' '}
+            <strong>EuiPanel</strong> colors like{' '}
+            <EuiCode language="ts">{"'transparent'"}</EuiCode>.
           </p>
           <p>
             For non-interactive cards, reduce or eliminate the padding as needed
@@ -428,9 +415,6 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardDisplay />,
-      demoPanelProps: {
-        color: 'subdued',
-      },
       snippet: `<EuiCard
   title="title"
   description="description"
@@ -438,5 +422,4 @@ export const CardExample = {
 />`,
     },
   ],
-  playground: cardConfig,
 };

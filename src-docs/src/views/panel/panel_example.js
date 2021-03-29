@@ -18,6 +18,7 @@ import {
 } from '../../../../src/components/panel/split_panel/split_panel';
 
 import { panelConfig } from './playground';
+import Guidelines from './guidelines';
 
 import Panel from './panel';
 const panelSource = require('!!raw-loader!./panel');
@@ -30,10 +31,6 @@ const panelShadowHtml = renderToHtml(PanelShadow);
 import PanelColor from './panel_color';
 const panelColorSource = require('!!raw-loader!./panel_color');
 const panelColorHtml = renderToHtml(PanelColor);
-
-import PanelBadge from './panel_badge';
-const panelBadgeSource = require('!!raw-loader!./panel_badge');
-const panelBadgeHtml = renderToHtml(PanelBadge);
 
 import PanelGrow from './panel_grow';
 const panelGrowSource = require('!!raw-loader!./panel_grow');
@@ -90,20 +87,26 @@ const splitPanelSnippet = [
 
 export const PanelExample = {
   title: 'Panel',
+  guidelines: <Guidelines />,
   intro: (
     <>
       <EuiText>
         <p>
-          <strong>EuiPanel</strong> is a building block component. It is
-          commonly used as a base for other larger components like{' '}
+          <strong>EuiPanel</strong> is a building block component. Use it as a
+          layout helper for containing content. It is also commonly used as a
+          base for other larger components like{' '}
           <Link to="/layout/page">
             <strong>EuiPage</strong>
-          </Link>{' '}
-          and{' '}
+          </Link>
+          ,{' '}
           <Link to="/layout/popover">
             <strong>EuiPopover</strong>
           </Link>
-          . Use it as a layout helper for containing content.
+          and{' '}
+          <Link to="/display/card">
+            <strong>EuiCard</strong>
+          </Link>
+          .
         </p>
       </EuiText>
     </>
@@ -127,6 +130,7 @@ export const PanelExample = {
       props: { EuiPanel },
       snippet: panelSnippet,
       demo: <Panel />,
+      playground: panelConfig,
     },
     {
       title: 'Shadow and border',
@@ -261,33 +265,5 @@ export const PanelExample = {
       snippet: splitPanelSnippet,
       demo: <SplitPanel />,
     },
-    {
-      title: 'Panels could be hoverable and have beta badges',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: panelBadgeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: panelBadgeHtml,
-        },
-      ],
-      text: (
-        <EuiCallOut color="warning" title="Deprecation notice">
-          <p>
-            The ability to add <EuiCode>onClick</EuiCode> and{' '}
-            <Link to="/display/badge">beta badges</Link> is being deprecated. We
-            strongly advise using{' '}
-            <Link to="/display/card">
-              <strong>EuiCard</strong>
-            </Link>{' '}
-            for this type of functionality.
-          </p>
-        </EuiCallOut>
-      ),
-      demo: <PanelBadge />,
-    },
   ],
-  playground: panelConfig,
 };

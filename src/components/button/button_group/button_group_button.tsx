@@ -18,10 +18,11 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useRef } from 'react';
 import { EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
+import { htmlIdGenerator } from '../../../../src/services';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -75,18 +76,19 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 }) => {
   // Force element to be a button if disabled
   const el = isDisabled ? 'button' : element;
+  const newId = useRef(htmlIdGenerator()()).current;
 
   let elementProps = {};
   let singleInput;
   if (el === 'label') {
     elementProps = {
       ...elementProps,
-      htmlFor: id,
+      htmlFor: newId,
       onClick: () => onChange(id, value),
     };
     singleInput = (
       <input
-        id={id}
+        id={newId}
         className="euiScreenReaderOnly"
         name={name}
         checked={isSelected}
@@ -94,12 +96,14 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         value={value}
         type="radio"
         onChange={() => onChange(id, value)}
+        data-test-subj={id}
       />
     );
   } else {
     elementProps = {
       ...elementProps,
-      id,
+      id: newId,
+      'data-test-subj': id,
       isSelected,
       type,
       onClick: () => onChange(id),
