@@ -1,14 +1,23 @@
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useState,
+  useContext,
+  useLayoutEffect,
+} from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router';
 
 import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
 import { EuiText } from '../../../../src/components/text';
 import { EuiSwitch } from '../../../../src/components/form';
+import { EuiButton } from '../../../../src/components/button';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
 // @ts-ignore Not TS yet
 import playgroundService from '../../services/playground/playground';
 
+import { ChromeContext } from '../../views/chrome_context';
 import { GuideSectionExample } from './guide_section_parts/guide_section_example';
 import { GuideSectionExampleText } from './guide_section_parts/guide_section_text';
 import {
@@ -23,6 +32,10 @@ export interface GuideSection {
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
+  demoRoute?: {
+    slug: string;
+    demo: ReactNode;
+  };
   demoPanelProps?: GuideSectionExample['demoPanelProps'];
   props?: object;
   playground?: any;
@@ -51,6 +64,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   title,
   text,
   demo,
+  demoRoute,
   source = [],
   props = {},
   playground,
@@ -59,6 +73,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   demoPanelProps,
   snippet,
 }) => {
+  const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
 
   const renderTabs = () => {
@@ -177,6 +192,52 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
           demoPanelProps={demoPanelProps}
         />
       )}
+      {!renderingPlayground && demoRoute && (
+        <GuideSectionExample
+          example={
+            <EuiErrorBoundary>
+              <StandaloneExample
+                path={`${path}/${demoRoute.slug}`}
+                example={demoRoute.demo}
+              />
+            </EuiErrorBoundary>
+          }
+          tabs={renderTabs()}
+          ghostBackground={ghostBackground}
+          demoPanelProps={demoPanelProps}
+        />
+      )}
     </div>
+  );
+};
+
+const Example: FunctionComponent = ({ children }) => {
+  const { setIsChromeHidden } = useContext(ChromeContext);
+  useLayoutEffect(() => {
+    setIsChromeHidden(true);
+    document.body.classList.add('euiBody-hasFullscreenExample');
+    return () => {
+      setIsChromeHidden(false);
+      document.body.classList.remove('euiBody-hasFullscreenExample');
+    };
+  }, [setIsChromeHidden]);
+  return <div className="guideSection__fullscreenExample">{children}</div>;
+};
+
+const StandaloneExample: FunctionComponent<{
+  path: string;
+  example: ReactNode;
+}> = ({ path, example }) => {
+  return (
+    <>
+      <EuiButton href={`/#${path}`} iconType="fullScreen">
+        Goto fullscreen demo
+      </EuiButton>
+      <Switch>
+        <Route path={path}>
+          <Example>{example}</Example>
+        </Route>
+      </Switch>
+    </>
   );
 };

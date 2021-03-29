@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
+import { useRouteMatch } from 'react-router';
 
 import {
   EuiCollapsibleNav,
@@ -21,7 +22,6 @@ import {
 } from '../../../../src/components/list_group';
 import { EuiFlexItem } from '../../../../src/components/flex';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
-import { GuideFullScreen } from '../../services/full_screen/full_screen';
 
 import {
   DeploymentsGroup,
@@ -56,6 +56,7 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 ];
 
 export default () => {
+  const { path } = useRouteMatch();
   const [navIsOpen, setNavIsOpen] = useState(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
@@ -252,31 +253,27 @@ export default () => {
   ];
 
   return (
-    <GuideFullScreen>
-      {(setIsFullScreen) => (
-        <React.Fragment>
-          <EuiHeader
-            position="fixed"
-            sections={[
-              {
-                items: leftSectionItems,
-                borders: 'right',
-              },
-              {
-                items: [
-                  <EuiButtonEmpty
-                    iconType="minimize"
-                    onClick={() => setIsFullScreen(false)}>
-                    Exit full screen
-                  </EuiButtonEmpty>,
-                ],
-              },
-            ]}
-          />
+    <>
+      <EuiHeader
+        position="fixed"
+        sections={[
+          {
+            items: leftSectionItems,
+            borders: 'right',
+          },
+          {
+            items: [
+              <EuiButtonEmpty
+                href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
+                iconType="minimize">
+                Exit full screen
+              </EuiButtonEmpty>,
+            ],
+          },
+        ]}
+      />
 
-          <EuiPage />
-        </React.Fragment>
-      )}
-    </GuideFullScreen>
+      <EuiPage />
+    </>
   );
 };
