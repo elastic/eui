@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import { useRouteMatch } from 'react-router';
 
+import { StandaloneExample } from '../../components/standalone_example';
 import {
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
@@ -55,7 +56,7 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
   { label: 'Elastic.co', href: 'https://elastic.co' },
 ];
 
-export default () => {
+const CollapsibleNavAll = () => {
   const { path } = useRouteMatch();
   const [navIsOpen, setNavIsOpen] = useState(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
@@ -277,3 +278,10 @@ export default () => {
     </>
   );
 };
+
+export default () => (
+  <StandaloneExample
+    slug="collapsible-nav-all"
+    example={<CollapsibleNavAll />}
+  />
+);

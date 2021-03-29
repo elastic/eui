@@ -209,16 +209,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   overflow: auto;
 
   &--withHeader {
-    top: $euiHeaderHeightCompensation;
     bottom: 0;
     height: auto;
     z-index: $euiZHeader - 1;
     display: flex;
     flex-direction: column;
-
-    .euiPageSideBar--sticky {
-      top: 0;
-    }
   }
 }
 

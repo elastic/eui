@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  ReactNode,
-  FunctionComponent,
-} from 'react';
+import React, { useState, ReactNode, FunctionComponent } from 'react';
 import { EuiImage } from '../../../../src/components/image';
 import { EuiButton } from '../../../../src/components/button';
 import { EuiFocusTrap } from '../../../../src/components/focus_trap';
@@ -16,8 +11,13 @@ import content from '../../images/content.svg';
 import contentCenter from '../../images/content_center.svg';
 import sideNav from '../../images/side_nav.svg';
 import single from '../../images/single.svg';
+import {
+  StandaloneExample,
+  ExitStandaloneButton,
+} from '../../components/standalone_example';
 
 export const PageDemo: FunctionComponent<{
+  slug: string;
   children?: (
     button: typeof EuiButton,
     Content: ReactNode,
@@ -25,28 +25,23 @@ export const PageDemo: FunctionComponent<{
     showTemplate: boolean
   ) => ReactNode;
   centered?: boolean;
-}> = ({ children, centered }) => {
+}> = ({ slug, children, centered }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [showTemplate, setShowTemplate] = useState(true);
-  const [fullScreen, setFullScreen] = useState(false);
-  useEffect(() => {
-    if (fullScreen) {
-      document.body.classList.add('guideBody--overflowHidden');
-    }
-    return () => {
-      document.body.classList.remove('guideBody--overflowHidden');
-    };
-  }, [fullScreen]);
 
-  const Button = () => {
-    return fullScreen ? (
-      <EuiButton onClick={() => setFullScreen(false)} fill iconType="minimize">
-        Exit fullscreen
-      </EuiButton>
-    ) : (
-      <EuiButton onClick={() => setFullScreen(true)} fill iconType="fullScreen">
-        Go fullscreen
-      </EuiButton>
+  const FullscreenButton = () => {
+    return (
+      <StandaloneExample
+        slug={slug}
+        example={
+          <EuiFocusTrap>
+            <div className="guideFullScreenOverlay guideFullScreenOverlay--withHeader">
+              {children &&
+                children(ExitStandaloneButton, Content, SideNav, showTemplate)}
+            </div>
+          </EuiFocusTrap>
+        }
+      />
     );
   };
 
@@ -79,16 +74,9 @@ export const PageDemo: FunctionComponent<{
 
   return (
     <>
-      <EuiFocusTrap disabled={!fullScreen}>
-        <div
-          className={
-            fullScreen
-              ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
-              : 'guideDemo__highlightLayout'
-          }>
-          {children && children(Button, Content, SideNav, showTemplate)}
-        </div>
-      </EuiFocusTrap>
+      <div className="guideDemo__highlightLayout">
+        {children && children(FullscreenButton, Content, SideNav, showTemplate)}
+      </div>
       <EuiTextAlign textAlign="right">
         <EuiSpacer />
         <EuiSwitch

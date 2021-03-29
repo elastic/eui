@@ -187,7 +187,7 @@ export const PageExample = {
       },
       playground: pageTemplateConfig,
       demo: (
-        <PageDemo>
+        <PageDemo slug="full-page">
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageTemplate
@@ -248,7 +248,7 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
+        <PageDemo slug="restricting-page-width">
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageRestricingWidthTemplate
@@ -308,7 +308,7 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo centered>
+        <PageDemo slug="centered-page" centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageCenteredBodyTemplate
@@ -366,7 +366,7 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo centered>
+        <PageDemo slug="centered-content" centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageCenteredContentTemplate
@@ -424,7 +424,7 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
+        <PageDemo slug="tabs">
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageSimpleTemplate button={<Button />} content={<Content />} />
@@ -465,7 +465,7 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo centered>
+        <PageDemo slug="simple-centered-body" centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageSimpleCenteredBodyTemplate
@@ -509,7 +509,7 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo centered>
+        <PageDemo slug="simple-centered-content" centered>
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageSimpleEmptyContentTemplate
@@ -564,7 +564,7 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
+        <PageDemo slug="simple-custom-content">
           {(Button, Content, SideNav, showTemplate) =>
             showTemplate ? (
               <PageCustomContentTemplate button={<Button />} />
