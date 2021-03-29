@@ -271,29 +271,31 @@ const colorVis = {
   euiColorVis9_behindText: euiPaletteColorBlind.euiColorVis9.behindText,
 };
 
-const sizes = {
-  euiSize: 16,
-  euiSizeXS: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.25),
-  euiSizeS: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.5),
-  euiSizeM: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 0.75),
-  euiSizeL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 1.5),
-  euiSizeXL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 2),
-  euiSizeXXL: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 2.5),
+const base = 16;
 
-  euiButtonMinWidth: computed(['sizes.euiSize'], ([euiSize]) => euiSize * 7),
+const sizes = {
+  euiSize: computed(['base'], ([base]) => `${base}px`),
+  euiSizeXS: computed(['base'], ([base]) => `${base * 0.25}px`),
+  euiSizeS: computed(['base'], ([base]) => `${base * 0.5}px`),
+  euiSizeM: computed(['base'], ([base]) => `${base * 0.75}px`),
+  euiSizeL: computed(['base'], ([base]) => `${base * 1.5}px`),
+  euiSizeXL: computed(['base'], ([base]) => `${base * 2}px`),
+  euiSizeXXL: computed(['base'], ([base]) => `${base * 2.5}px`),
+
+  euiButtonMinWidth: computed(['base'], ([base]) => `${base * 7}px`),
 
   euiScrollBar: computed(['sizes.euiSize'], ([euiSize]) => euiSize),
   euiScrollBarCorner: computed(
     ['sizes.euiSizeS'],
-    ([euiSizeS]) => euiSizeS * 0.75
+    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
   ),
 };
 
 const borderRadius = {
-  euiBorderRadius: 4,
+  euiBorderRadius: '4px',
   euiBorderRadiusSmall: computed(
     ['borders.euiBorderRadius'],
-    ([euiBorderRadius]) => euiBorderRadius * 0.5
+    ([euiBorderRadius]) => `calc(${euiBorderRadius} * 0.5)`
   ),
 };
 
@@ -329,6 +331,7 @@ export const euiThemeDefault = {
     dark,
   },
   colorVis,
+  base,
   sizes,
   borders: {
     ...borderRadius,
@@ -459,11 +462,11 @@ export const amsterdam_dark = {
 const amsterdam_borderRadius = {
   euiBorderRadius: computed(
     ['sizes.euiSizeS'],
-    ([euiSizeS]) => euiSizeS * 0.75
+    ([euiSizeS]) => `calc(${euiSizeS} * 0.75)`
   ),
   euiBorderRadiusSmall: computed(
     ['sizes.euiSizeS'],
-    ([euiSizeS]) => euiSizeS * 0.5
+    ([euiSizeS]) => `calc(${euiSizeS} * 0.5)`
   ),
 };
 
@@ -473,6 +476,7 @@ export const euiThemeAmsterdam = {
     dark: amsterdam_dark,
   },
   colorVis,
+  base,
   sizes,
   borders: {
     ...amsterdam_borderRadius,

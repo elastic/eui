@@ -1,6 +1,7 @@
 import React from 'react';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
+import { EuiCode } from '../../../../src/components/code';
 import { useEuiTheme } from '../../../../src/services';
 
 export default () => {
@@ -19,10 +20,12 @@ export default () => {
       <div
         css={{
           background: euiTheme.colors.euiColorLightShade,
-          padding: euiTheme.sizes.euiSizeXL,
+          padding: `calc(${euiTheme.sizes.euiSize} * 2)`,
         }}>
         <p>
-          The padding of this box is passed as a raw unit translated to pixels
+          The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
+          because EUI&apos;s theme sizes are string pixel values that are
+          calculated off the theme&apos;s <EuiCode>base</EuiCode>
         </p>
       </div>
     </div>

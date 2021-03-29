@@ -10,7 +10,6 @@ class Block extends React.Component<WithEuiThemeProps> {
 
     const divStyle = css`
       background: ${theme.euiTheme.colors.euiColorLightShade};
-      // This way of providing sizing values doesn't output correctly
       padding: ${theme.euiTheme.sizes.euiSizeXL};
       border-radius: ${theme.euiTheme.borders.euiBorderRadius};
     `;
@@ -18,8 +17,8 @@ class Block extends React.Component<WithEuiThemeProps> {
     return (
       <div css={divStyle}>
         <p>
-          <EuiIcon type="faceSad" /> This box has it&apos;s background, padding,
-          and border-radius controlled by custom css
+          <EuiIcon type="faceHappy" /> This box has it&apos;s background,
+          padding, and border-radius controlled by custom css
         </p>
       </div>
     );
