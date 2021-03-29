@@ -42,7 +42,7 @@ export const BottomBarExample = {
         <>
           <p>
             <strong>EuiBottomBar</strong> is a simple wrapper component that
-            does nothing but fix a bottom bar (usually filled with buttons) to
+            does nothing but affix a dark bar (usually filled with buttons) to
             the bottom of the page. Use it when you have really long pages or
             complicated, multi-page forms. In the case of forms, only invoke it
             if a form is in a savable state.
@@ -51,7 +51,7 @@ export const BottomBarExample = {
             Like many of our other wrapper components,{' '}
             <strong>EuiBottomBar</strong> accepts a{' '}
             <EuiCode>paddingSize</EuiCode> prop, which can be set to{' '}
-            <EuiCode>s / m (default) / l / none</EuiCode>.
+            <EuiCode>s | m (default) | l | none</EuiCode>.
           </p>
         </>
       ),

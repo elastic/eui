@@ -1,44 +1,22 @@
-@include euiPanel($selector: '.euiCheckableCard');
+$euiCheckableCardPadding: map-get($euiPanelPaddingModifiers, 'paddingMedium');
 
 .euiCheckableCard {
   transition: border-color $euiAnimSpeedNormal ease-in;
-  overflow: hidden; // Hides background color inside panel rounded corners
 
   &:not(.euiCheckableCard-isDisabled) {
     &.euiCheckableCard-isChecked {
       border-color: $euiColorPrimary;
     }
-
-    &:focus-within {
-      @include euiFocusRing;
-    }
-  }
-}
-
-.euiCheckableCard__row {
-  display: flex;
-  align-items: stretch;
-}
-
-.euiCheckableCard__control {
-  display: flex;
-  flex: 0 0 $euiSizeXXL;
-  justify-content: center;
-  align-items: center;
-  background-color: map-get($euiCardSelectButtonBackgrounds, 'text');
-  transition: background-color $euiAnimSpeedNormal ease-in;
-
-  .euiCheckableCard-isChecked & {
-    background-color: map-get($euiCardSelectButtonBackgrounds, 'primary');
   }
 }
 
 .euiCheckableCard__label {
-  flex-grow: 1;
-  font-size: $euiFontSize;
-  line-height: $euiSizeL;
-  padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
   cursor: pointer;
+  // Expand the label to cover the whole panel for easier click target
+  display: block;
+  width: calc(100% + #{$euiCheckableCardPadding * 2});
+  padding: $euiCheckableCardPadding;
+  margin: -$euiCheckableCardPadding;
 }
 
 .euiCheckableCard__label-isDisabled {
@@ -47,5 +25,5 @@
 }
 
 .euiCheckableCard__children {
-  padding:  0 $euiSizeS $euiSizeS $euiSize;
+  margin-top: $euiSize;
 }

@@ -1,12 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Expanded `display` prop of `EuiCard` to inherit `color` values from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Added `element` prop to `EuiPanel` for forcing to `div` or `button` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Increased padding on `EuiCheckableCard` with refactor to use `EuiSplitPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
 - Added `position`, `usePortal`, `top`, `right`, `bottom`, and `left` props to `EuiBottomBar` ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `bottomBar` and `bottomBarProps` to `EuiPageTemplate` when `template = 'default'` ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `role="main"` to the `EuiPageContent` component inside of `EuiPageTemplate` ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `bottomBorder` props to `EuiPageHeader` ([#4662](https://github.com/elastic/eui/pull/4662))
 
+**Bug fixes**
+
+- Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
+
 **Breaking changes**
 
+- Removed `betaBadgeLabel`, `betaBadgeTooltipContent`, and `betaBadgeTitle` props from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
 - Changed `EuiBottomBar` positioning styles from being applied at the CSS layer to the `style` property  ([#4662](https://github.com/elastic/eui/pull/4662))
 
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)

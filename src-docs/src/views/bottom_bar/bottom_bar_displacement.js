@@ -32,6 +32,7 @@ export default () => {
         legend="Bottom Bar demo toggle buttons group"
         type="single"
         buttonSize="m"
+        color="primary"
         options={toggleButtons}
         idSelected={toggleIdSelected}
         onChange={(id) => onChange(id)}

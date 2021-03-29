@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiText } from '../../text';
@@ -33,7 +33,7 @@ export type EuiSelectableMessageProps = Omit<
     bordered?: boolean;
   };
 
-export const EuiSelectableMessage: React.FunctionComponent<EuiSelectableMessageProps> = ({
+export const EuiSelectableMessage: FunctionComponent<EuiSelectableMessageProps> = ({
   children,
   className,
   bordered = false,
