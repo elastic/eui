@@ -4,10 +4,10 @@ import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 import { applyTheme } from '../../services';
 import {
   EuiThemeProvider,
-  EuiThemeDefault,
   // EuiThemeAmsterdam,
 } from '../../../../src/services';
 import { EuiThemeAmsterdam } from '../../../../src/themes/eui-amsterdam/theme';
+import { EuiThemeDefault } from '../../../../src/themes/eui/theme';
 
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 

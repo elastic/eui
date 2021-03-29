@@ -25,12 +25,43 @@ import {
   tint,
 } from '../functions/_colors';
 
-export const poles = {
-  ghost: '#FFF',
-  ink: '#000',
+export type _EuiThemeTextColors = {
+  /**
+   * TODO: Allow for `string | keys of LIGHT/DARK` instead of `any`
+   */
+  text: any;
+  title: any;
+  textSubdued: any;
+  textPrimary: string;
+  textAccent: string;
+  textSuccess: string;
+  textWarning: string;
+  textDanger: string;
+  textDisabled: string;
+  link: string;
 };
 
-const textVariants = {
+const textVariants: _EuiThemeTextColors = {
+  // Every color below must be based mathematically on the set above and in a particular order.
+  text: {
+    LIGHT: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
+    DARK: '#DFE5EF',
+  },
+
+  title: {
+    LIGHT: computed(([text]) => shade(text, 0.5), ['colors.text']),
+    DARK: computed(([text]) => text, ['colors.text']),
+  },
+
+  textSubdued: {
+    LIGHT: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
+      'colors.mediumShade',
+    ]),
+    DARK: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
+      'colors.mediumShade',
+    ]),
+  },
+
   textPrimary: computed((theme) => makeHighContrastColor(theme.colors.primary)),
   textAccent: computed(([accent]) => makeHighContrastColor(accent), [
     'colors.accent',
@@ -50,9 +81,23 @@ const textVariants = {
   link: computed(([textPrimary]) => textPrimary, ['colors.textPrimary']),
 };
 
-export const light_colors = {
-  ...poles,
+export type _EuiThemeBaseColors = {
+  primary: string;
+  accent: string;
+  success: string;
+  warning: string;
+  danger: string;
+  emptyShade: string;
+  lightestShade: string;
+  lightShade: string;
+  mediumShade: string;
+  darkShade: string;
+  darkestShade: string;
+  fullShade: string;
+  highlight: string;
+};
 
+export const light_colors: _EuiThemeBaseColors = {
   // Brand
   primary: '#006BB4',
   accent: '#DD0A73',
@@ -71,27 +116,11 @@ export const light_colors = {
   darkestShade: '#343741',
   fullShade: '#000',
 
-  // Backgrounds
-  pageBackground: computed(([lightestShade]) => tint(lightestShade, 0.5), [
-    'colors.lightestShade',
-  ]),
+  // Special
   highlight: '#FFFCDD',
-
-  // Every color below must be based mathematically on the set above and in a particular order.
-  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
-  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
-  disabled: computed(([text]) => tint(text, 0.7), ['colors.text']),
-
-  textSubdued: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
-    'colors.mediumShade',
-  ]),
-
-  ...textVariants,
 };
 
-export const dark_colors = {
-  ...poles,
-
+export const dark_colors: _EuiThemeBaseColors = {
   // Brand
   primary: '#1BA9F5',
   accent: '#F990C0',
@@ -111,19 +140,37 @@ export const dark_colors = {
   fullShade: '#FFF',
 
   // Backgrounds
-  pageBackground: computed(([lightestShade]) => shade(lightestShade, 0.3), [
-    'colors.lightestShade',
-  ]),
   highlight: '#2E2D25',
+};
 
-  // Every color below must be based mathematically on the set above and in a particular order.
-  text: '#DFE5EF',
-  title: computed(([text]) => text, ['colors.text']),
-  disabled: computed(([text]) => shade(text, 0.7), ['colors.text']),
+export type EuiThemeColors = _EuiThemeBaseColors &
+  _EuiThemeTextColors & {
+    disabled: any;
+    pageBackground: any;
+  };
 
-  textSubdued: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
-    'colors.mediumShade',
-  ]),
+export const colors: EuiThemeColors = {
+  LIGHT: light_colors,
+  DARK: dark_colors,
+
+  disabled: {
+    LIGHT: computed(([darkestShade]) => tint(darkestShade, 0.7), [
+      'colors.darkestShade',
+    ]),
+    DARK: computed(([darkestShade]) => shade(darkestShade, 0.7), [
+      'colors.darkestShade',
+    ]),
+  },
+
+  // Backgrounds
+  pageBackground: {
+    LIGHT: computed(([lightestShade]) => tint(lightestShade, 0.5), [
+      'colors.lightestShade',
+    ]),
+    DARK: computed(([lightestShade]) => shade(lightestShade, 0.3), [
+      'colors.lightestShade',
+    ]),
+  },
 
   ...textVariants,
 };

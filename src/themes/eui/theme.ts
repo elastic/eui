@@ -18,20 +18,14 @@
  */
 
 import { buildTheme } from '../../services/theme/utils';
-import {
-  light_colors,
-  dark_colors,
-} from '../../global_styling/variables/_colors';
+import { colors } from '../../global_styling/variables/_colors';
 import { base, size } from '../../global_styling/variables/_size';
 import fonts from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
 import { title } from '../../global_styling/variables/title';
 
 export const euiThemeDefault = {
-  colors: {
-    LIGHT: light_colors,
-    DARK: dark_colors,
-  },
+  colors,
   base,
   size,
   ...fonts,
