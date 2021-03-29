@@ -57,6 +57,7 @@ const confirmModalSnippet = [
 
 export const ModalExample = {
   title: 'Modal',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -136,5 +137,4 @@ export const ModalExample = {
       demo: <OverflowTest />,
     },
   ],
-  guidelines: <Guidelines />,
 };

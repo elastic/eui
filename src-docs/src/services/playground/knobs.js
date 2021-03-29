@@ -222,8 +222,8 @@ const Knob = ({
             </>
           }>
           <EuiFieldText
+            aria-label={name}
             placeholder={placeholder}
-            aria-label={description}
             isInvalid={error && error.length > 0}
             compressed
             fullWidth
@@ -240,6 +240,7 @@ const Knob = ({
           isInvalid={error && error.length > 0}
           error={error}>
           <EuiSwitch
+            aria-label={name}
             id={name}
             label=""
             checked={val}
@@ -312,9 +313,10 @@ const Knob = ({
       }
 
     case PropTypes.ReactNode:
-      if (name === 'children' && !hidden) {
+      if (!hidden) {
         return (
           <EuiTextArea
+            compressed
             placeholder={placeholder}
             value={val}
             onChange={(e) => {
@@ -331,6 +333,7 @@ const Knob = ({
             return (
               <>
                 <EuiSwitch
+                  aria-label={name}
                   id={name}
                   label={custom.label || ''}
                   checked={typeof val !== 'undefined' && Boolean(val)}

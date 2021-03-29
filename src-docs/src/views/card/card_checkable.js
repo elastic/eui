@@ -14,7 +14,6 @@ export default () => {
   const radioName = htmlIdGenerator()();
   const [radio, setRadio] = useState('radio2');
   const [nestedRadio, setNestedRadio] = useState('nestedRadio1');
-  const [checkbox, setCheckbox] = useState(false);
 
   const nestedRadios = [
     {
@@ -79,17 +78,6 @@ export default () => {
           disabled
         />
       </EuiFormFieldset>
-
-      <EuiSpacer size="xl" />
-
-      <EuiCheckableCard
-        id={htmlIdGenerator()()}
-        label="I am a checkbox"
-        checkableType="checkbox"
-        value="checkbox1"
-        checked={checkbox}
-        onChange={() => setCheckbox(!checkbox)}
-      />
     </Fragment>
   );
 };
