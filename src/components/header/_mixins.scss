@@ -4,7 +4,7 @@
 
   .euiHeaderLogo__text,
   .euiHeaderLink,
-  .euiHeaderSectionItem__button {
+  .euiHeaderSectionItemButton {
     color: $euiColorGhost;
   }
 
@@ -20,9 +20,13 @@
 
   .euiHeaderLogo,
   .euiHeaderLink,
-  .euiHeaderSectionItem__button {
+  .euiHeaderSectionItemButton {
+    &:hover {
+      background: transparentize(lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade), .5);
+    }
+
     &:focus {
-      background-color: transparentize(lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade), .5);
+      background: shade($euiColorPrimary, 50%);
     }
   }
 

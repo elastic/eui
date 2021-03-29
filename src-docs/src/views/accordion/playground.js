@@ -1,5 +1,6 @@
 import { PropTypes } from 'react-view';
-import { EuiAccordion, EuiText } from '../../../../src/components/';
+import { EuiAccordion, EuiPanel } from '../../../../src/components/';
+import { htmlIdGenerator } from '../../../../src/services';
 import {
   propUtilityForPlayground,
   createOptionalEnum,
@@ -19,12 +20,15 @@ export const accordionConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.id = {
+    ...propsToUse.id,
+    value: htmlIdGenerator('generated')(),
+  };
+
   propsToUse.children = {
-    value: `<EuiText>
-    <p>
-      Any content inside of <strong>EuiAccordion</strong> will appear here.
-    </p>
-  </EuiText>`,
+    value: `<EuiPanel color="subdued">
+  Any content inside of <strong>EuiAccordion</strong> will appear here.
+</EuiPanel>`,
     type: PropTypes.ReactNode,
     hidden: false,
   };
@@ -33,17 +37,27 @@ export const accordionConfig = () => {
 
   propsToUse.forceState = createOptionalEnum(propsToUse.forceState);
 
+  propsToUse.extraAction = {
+    ...propsToUse.extraAction,
+    type: PropTypes.String,
+  };
+
+  propsToUse.isLoadingMessage = {
+    ...propsToUse.isLoadingMessage,
+    type: PropTypes.String,
+  };
+
   return {
     config: {
       componentName: 'EuiAccordion',
       props: propsToUse,
       scope: {
         EuiAccordion,
-        EuiText,
+        EuiPanel,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiAccordion', 'EuiText'],
+          named: ['EuiAccordion', 'EuiPanel'],
         },
       },
       customProps: {

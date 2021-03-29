@@ -44,9 +44,9 @@ export const HighlightAndMarkExample = {
         </p>
       ),
       props: { EuiHighlight },
-      components: { EuiHighlight },
       snippet: highlightSnippet,
       demo: <Highlight />,
+      playground: highlightConfig,
     },
     {
       title: 'Mark',
@@ -66,10 +66,10 @@ export const HighlightAndMarkExample = {
           <EuiCode>mark</EuiCode> element.
         </p>
       ),
-      components: { EuiMark },
+      props: { EuiMark },
       snippet: markSnippet,
       demo: <Mark />,
+      playground: markConfig,
     },
   ],
-  playground: [highlightConfig, markConfig],
 };

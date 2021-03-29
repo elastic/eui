@@ -1,6 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `31.10.0`.
+- Expanded `display` prop of `EuiCard` to inherit `color` values from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Added `element` prop to `EuiPanel` for forcing to `div` or `button` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Increased padding on `EuiCheckableCard` with refactor to use `EuiSplitPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+
+**Bug fixes**
+
+- Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
+
+**Breaking changes**
+
+- Removed `betaBadgeLabel`, `betaBadgeTooltipContent`, and `betaBadgeTitle` props from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+
+## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
+
+- Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))
+- Added `iconType`, `iconColor`, and `iconSize` props to `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+- Added `'plain'` and `null` as `color` options of `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+
+## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
+
+- Added `EuiNotificationEvent` component ([#4513](https://github.com/elastic/eui/pull/4513))
+- Added `euiAnimation()` method on the `EuiHeaderSectionItemButton` ref ([#4513](https://github.com/elastic/eui/pull/4513))
+- Made `description` prop of `EuiCard` optional ([#4546](https://github.com/elastic/eui/pull/4582))
 
 ## [`31.10.0`](https://github.com/elastic/eui/tree/v31.10.0)
 

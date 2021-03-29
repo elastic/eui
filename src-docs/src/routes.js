@@ -1,4 +1,5 @@
 import React, { createElement, Fragment } from 'react';
+import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
@@ -9,6 +10,7 @@ import { EuiErrorBoundary } from '../../src/components';
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
+// const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -147,6 +149,8 @@ import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
 
+import { NotificationEventExample } from './views/notification_event/notification_event_example';
+
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
@@ -235,20 +239,6 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
 import Canopy from './views/emotion/canopy';
 
-/**
- * Lowercases input and replaces spaces with hyphens:
- * e.g. 'GridView Example' -> 'gridview-example'
- */
-const slugify = (str) => {
-  const parts = str
-    .toLowerCase()
-    .replace(/[-]+/g, ' ')
-    .replace(/[^\w^\s]+/g, '')
-    .replace(/ +/g, ' ')
-    .split(' ');
-  return parts.join('-');
-};
-
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -273,12 +263,13 @@ const createExample = (example, customTitle) => {
     guidelines,
   } = example;
   sections.forEach((section) => {
-    section.id = slugify(section.title || title);
+    section.id = section.title ? slugify(section.title) : undefined;
   });
 
-  const renderedSections = sections.map((section) =>
+  const renderedSections = sections.map((section, index) =>
     createElement(GuideSection, {
-      key: section.title || title,
+      // Using index as the key because not all require a `title`
+      key: index,
       ...section,
     })
   );
@@ -316,6 +307,28 @@ const createExample = (example, customTitle) => {
   };
 };
 
+// const createMarkdownExample = (example, title) => {
+//   const headings = example.default.match(/^(##) (.*)/gm);
+
+//   const sections = headings.map((heading) => {
+//     const title = heading.replace('## ', '');
+
+//     return { id: slugify(title), title: title };
+//   });
+
+//   return {
+//     name: title,
+//     component: () => (
+//       <GuidePage title={title}>
+//         <GuideMarkdownFormat title={title}>
+//           {example.default}
+//         </GuideMarkdownFormat>
+//       </GuidePage>
+//     ),
+//     sections: sections,
+//   };
+// };
+
 const navigation = [
   {
     name: 'Temporary',
@@ -332,6 +345,8 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
+      // TODO uncomment when EuiMarkdownFormat has a better text formatting
+      // createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
@@ -341,10 +356,7 @@ const navigation = [
         name: 'Sass',
         component: SassGuidelines,
       },
-      {
-        name: 'Writing',
-        component: WritingGuidelines,
-      },
+      createExample(WritingGuidelines, 'Writing'),
     ],
   },
   {
@@ -415,6 +427,7 @@ const navigation = [
       ImageExample,
       ListGroupExample,
       LoadingExample,
+      NotificationEventExample,
       ProgressExample,
       StatExample,
       TextExample,

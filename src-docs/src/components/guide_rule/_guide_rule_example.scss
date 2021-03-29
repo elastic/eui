@@ -1,58 +1,24 @@
-/**
-  * 1. Ensure that the borders of the captions line up across the whole example row
-  *    1b. even if the caption spans multiple lines
-  */
-
 .guideRule__example {
   .guideRule__example__panel {
     border-bottom: 2px solid;
-    margin-bottom: $euiSizeS;
-    flex-grow: 1; /* 1 */
 
-    &:not(.euiPanel) {
-      padding-bottom: $euiSize; // only change the bottom padding if it's not an euiPanel
-    }
-  }
-
-  pre {
-    margin-bottom: 0;
-    padding: 0;
-  }
-
-  .guideRule__caption {
-    @include euiFontSizeS;
-    max-height: $euiFontSizeS * $euiLineHeight; /* 1 */
-    overflow-y: visible; /* 1 */
-  }
-
-  // Coloring
-  &.guideRule__example--do {
-    .guideRule__example__panel {
-      border-bottom-color: $euiColorSuccess;
-    }
-
-    .guideRule__caption {
-      color: $euiColorSuccessText;
-    }
-  }
-
-  &.guideRule__example--dont {
-    .guideRule__example__panel {
-      border-bottom-color: $euiColorDanger;
-    }
-
-    .guideRule__caption {
-      color: $euiColorDanger;
-    }
-  }
-
-  &.guideRule__example--frame {
-    .guideRule__example__panel {
-      padding: $euiSizeL;
-      background-color: $euiColorLightestShade;
+    &--flex {
       display: flex;
       align-items: center;
       justify-content: space-around;
     }
   }
 }
+
+.guideRule__example--do {
+  .guideRule__example__panel {
+    border-bottom-color: $euiColorSuccess;
+  }
+}
+
+.guideRule__example--dont {
+  .guideRule__example__panel {
+    border-bottom-color: $euiColorDanger;
+  }
+}
+

@@ -9,7 +9,7 @@ import imageCards from '../../images/cards.svg';
 import imagePages from '../../images/page.svg';
 import imageText from '../../images/text.svg';
 import imageCharts from '../../images/charts.svg';
-import homeIllustration from '../../images/home_illustration.svg';
+import HomeIllustration from './home_illustration';
 
 import {
   EuiCard,
@@ -20,7 +20,6 @@ import {
   EuiText,
   EuiTitle,
   EuiPanel,
-  EuiImage,
   EuiIcon,
   EuiFlexGrid,
   EuiPageContent,
@@ -76,7 +75,7 @@ export const HomeView = () => (
               </EuiText>
             </EuiFlexItem>
             <EuiFlexItem className="eui-textRight">
-              <EuiImage alt="" url={homeIllustration} />
+              <HomeIllustration />
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPanel>
@@ -203,6 +202,17 @@ export const HomeView = () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       </main>
+      <EuiSpacer size="xl" />
+      <footer>
+        <EuiText size="xs" textAlign="center" color="subdued">
+          <p>
+            EUI is licensed under{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
+              Apache License 2.0
+            </EuiLink>
+          </p>
+        </EuiText>
+      </footer>
     </EuiPageContentBody>
   </EuiPageContent>
 );

@@ -107,6 +107,7 @@ export const iconTypes = [
   'indexFlush',
   'indexMapping',
   'indexOpen',
+  'indexRuntime',
   'indexSettings',
   'inputOutput',
   'inspect',

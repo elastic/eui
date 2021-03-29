@@ -11,7 +11,7 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiCallOut,
-  EuiText,
+  EuiTitle,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -141,6 +141,14 @@ const buttonToggleSnippet = [
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
+
+import ButtonGroupIcons from './button_group_icon';
+const buttonGroupIconsSource = require('!!raw-loader!./button_group_icon');
+const buttonGroupIconsHtml = renderToHtml(ButtonGroupIcons);
+
+import ButtonGroupCompressed from './button_group_compressed';
+const buttonGroupCompressedSource = require('!!raw-loader!./button_group_compressed');
+const buttonGroupCompressedHtml = renderToHtml(ButtonGroupCompressed);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
   type="single"
@@ -155,6 +163,8 @@ const buttonGroupSnippet = [
   idSelected={idSelected}
   onChange={(optionId) => {}}
 />`,
+];
+const buttonGroupIconsSnippet = [
   `<EuiButtonGroup
   type="multi"
   isIconOnly
@@ -173,16 +183,6 @@ const buttonGroupSnippet = [
 
 export const ButtonExample = {
   title: 'Button',
-  intro: (
-    <EuiText>
-      <p>
-        <strong>EuiButton</strong> comes in two styles. The{' '}
-        <EuiCode>fill</EuiCode> style should be reserved for the main action and
-        limited in number for a single page. Be sure to read the full{' '}
-        <Link to="/guidelines/button">button usage guidelines</Link>.
-      </p>
-    </EuiText>
-  ),
   sections: [
     {
       source: [
@@ -195,9 +195,18 @@ export const ButtonExample = {
           code: buttonHtml,
         },
       ],
+      text: (
+        <p>
+          <strong>EuiButton</strong> comes in two styles. The{' '}
+          <EuiCode>fill</EuiCode> style should be reserved for the main action
+          and limited in number for a single page. Be sure to read the full{' '}
+          <Link to="/guidelines/button">button usage guidelines</Link>.
+        </p>
+      ),
       props: { EuiButton },
       snippet: buttonSnippet,
       demo: <Button />,
+      playground: Playground,
     },
     {
       title: 'Buttons can also be links',
@@ -478,7 +487,41 @@ export const ButtonExample = {
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupIconsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: buttonGroupIconsHtml,
+        },
+      ],
+      wrapText: false,
+      text: (
+        <EuiTitle size="xs">
+          <h3>Icons only</h3>
+        </EuiTitle>
+      ),
+      demo: <ButtonGroupIcons />,
+      snippet: buttonGroupIconsSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupCompressedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: buttonGroupCompressedHtml,
+        },
+      ],
+      demo: <ButtonGroupCompressed />,
+    },
+    {
       title: 'Ghost',
+      ghostBackground: true,
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -507,5 +550,4 @@ export const ButtonExample = {
     },
   ],
   guidelines: <Guidelines />,
-  playground: Playground,
 };

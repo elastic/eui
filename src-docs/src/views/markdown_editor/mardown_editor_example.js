@@ -7,7 +7,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiMarkdownEditor,
   EuiText,
-  EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
 
@@ -82,7 +81,6 @@ export const MarkdownEditorExample = {
           changes from the preview area to the textarea and vice versa.
         </p>
       </EuiText>
-      <EuiSpacer size="xxl" />
     </Fragment>
   ),
   sections: [

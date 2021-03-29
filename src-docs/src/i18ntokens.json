@@ -2608,6 +2608,134 @@
     "filepath": "src/components/modal/modal.tsx"
   },
   {
+    "token": "euiNotificationEventMessages.accordionButtonText",
+    "defString": "+ {messagesLength} more",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 44,
+        "column": 30
+      },
+      "end": {
+        "line": 48,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_messages.tsx"
+  },
+  {
+    "token": "euiNotificationEventMessages.accordionAriaLabelButtonText",
+    "defString": "+ {messagesLength} messages for {eventName}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 50,
+        "column": 39
+      },
+      "end": {
+        "line": 57,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_messages.tsx"
+  },
+  {
+    "token": "euiNotificationEventMessages.accordionHideText",
+    "defString": "hide",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 59,
+        "column": 28
+      },
+      "end": {
+        "line": 62,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_messages.tsx"
+  },
+  {
+    "token": "euiNotificationEventMeta.contextMenuButton",
+    "defString": "Menu for {eventName}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 145,
+        "column": 14
+      },
+      "end": {
+        "line": 150,
+        "column": 19
+      }
+    },
+    "filepath": "src/components/notification/notification_event_meta.tsx"
+  },
+  {
+    "token": "euiNotificationEventReadButton.markAsReadAria",
+    "defString": "Mark {eventName} as read",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 55,
+        "column": 25
+      },
+      "end": {
+        "line": 61,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_read_button.tsx"
+  },
+  {
+    "token": "euiNotificationEventReadButton.markAsUnreadAria",
+    "defString": "Mark {eventName} as unread",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 63,
+        "column": 27
+      },
+      "end": {
+        "line": 69,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_read_button.tsx"
+  },
+  {
+    "token": "euiNotificationEventReadButton.markAsRead",
+    "defString": "Mark as read",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 71,
+        "column": 21
+      },
+      "end": {
+        "line": 74,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_read_button.tsx"
+  },
+  {
+    "token": "euiNotificationEventReadButton.markAsUnread",
+    "defString": "Mark as unread",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 76,
+        "column": 23
+      },
+      "end": {
+        "line": 79,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/notification/notification_event_read_button.tsx"
+  },
+  {
     "token": "euiPaginationButton.longPageString",
     "defString": "Page {page} of {totalPages}",
     "highlighting": "string",
