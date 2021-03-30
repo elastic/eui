@@ -73,7 +73,7 @@ export const BottomBarExample = {
       text: (
         <>
           <p>
-            Bottom bars default to being fixed position, in a portal at the
+            Bottom bars default to a fixed position, in a portal at the
             bottom of the browser window. Alternatively, you can change the{' '}
             <EuiCode>position</EuiCode> to <EuiCode>sticky</EuiCode> where it
             will render in place but stick to the window only as the window edge

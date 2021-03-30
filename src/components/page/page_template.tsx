@@ -60,7 +60,7 @@ type _EuiPageTemplateTypes = ExclusiveUnion<
      * `centeredContent`: The content inside the panel is centered
      * `empty`: Removes the panneling of the page content
      */
-    template?: typeof TEMPLATES[number];
+    template: typeof TEMPLATES[number];
   }
 >;
 
@@ -119,7 +119,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const classes = classNames('euiPageTemplate', className);
 
   /**
-   * This seems very repitious but it's the most readable, scalable, and maintainable
+   * This seems very repetitious but it's the most readable, scalable, and maintainable
    */
 
   switch (template) {
