@@ -185,7 +185,9 @@ test('renders stepped stop EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops.find('.euiRangeHighlight__progress').prop('style')).toMatchSnapshot();
+  expect(
+    colorStops.find('.euiRangeHighlight__progress').prop('style')
+  ).toMatchSnapshot();
 });
 
 test('renders empty EuiColorStops', () => {
