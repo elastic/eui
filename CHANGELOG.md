@@ -18,6 +18,7 @@
 - Added `indexRuntime` glyph in `EuiIcon` ([#4650](https://github.com/elastic/eui/pull/4650))
 - Added `iconType`, `iconColor`, and `iconSize` props to `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
 - Added `'plain'` and `null` as `color` options of `EuiAvatar` ([#4620](https://github.com/elastic/eui/pull/4620))
+
 ## [`31.11.0`](https://github.com/elastic/eui/tree/v31.11.0)
 
 - Added `EuiNotificationEvent` component ([#4513](https://github.com/elastic/eui/pull/4513))
