@@ -45,6 +45,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
+import { EuiFieldNumberProps } from '../../form/field_number';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
@@ -66,6 +67,23 @@ export interface EuiColorStopsProps extends CommonProps {
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
   showAlpha?: EuiColorPickerProps['showAlpha'];
+  /**
+   * Props passed to the value input field in the color stop popover.
+   * Can be used to configure functionality like append or prepend.
+   */
+  valueInputProps?: Partial<
+    Omit<
+      EuiFieldNumberProps,
+      | 'inputRef'
+      | 'compressed'
+      | 'readOnly'
+      | 'min'
+      | 'max'
+      | 'value'
+      | 'isInvalid'
+      | 'onChange'
+    >
+  >;
 }
 
 // Because of how the thumbs are rendered in the popover, using ref results in an infinite loop.
@@ -141,6 +159,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   stopType = 'gradient',
   swatches,
   showAlpha = false,
+  valueInputProps,
 }) => {
   const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
   const rangeMax: number = useMemo(() => {
@@ -399,6 +418,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         closePopover={() => {
           setOpenedStopId(null);
         }}
+        valueInputProps={valueInputProps}
       />
     ));
   }, [
@@ -417,6 +437,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     sortedStops,
     swatches,
     wrapperRef,
+    valueInputProps,
   ]);
 
   const positions = wrapperRef
