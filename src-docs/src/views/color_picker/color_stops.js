@@ -137,7 +137,7 @@ export default () => {
               <EuiFormRow label="Number of steps" display="columnCompressed">
                 <EuiRange
                   value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  onChange={(e) => setValue(parseInt(e.target.value))}
                   showInput
                   aria-label="Change the number of steps"
                   min={2}
