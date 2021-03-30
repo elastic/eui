@@ -18,13 +18,14 @@
  */
 
 import { buildTheme } from '../../services/theme/utils';
+import { EuiThemeShape } from '../../services/theme/types';
 import { colors } from '../../global_styling/variables/_colors';
 import { base, size } from '../../global_styling/variables/_size';
 import fonts from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
 import { title } from '../../global_styling/variables/title';
 
-export const euiThemeDefault = {
+export const euiThemeDefault: EuiThemeShape = {
   colors,
   base,
   size,

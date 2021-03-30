@@ -68,7 +68,15 @@ const font: EuiFont = {
 };
 
 // Font weights
-const fontWeight = {
+export interface EuiFontWeight {
+  // TODO: Make these CSSProperties['fontWeight']; ?
+  light: string;
+  regular: string;
+  medium: string;
+  semiBold: string;
+  bold: string;
+}
+const fontWeight: EuiFontWeight = {
   light: '300',
   regular: '400',
   medium: '500',
@@ -76,7 +84,7 @@ const fontWeight = {
   bold: '700',
 };
 
-type EuiFontSize = {
+export type EuiFontSize = {
   [mapType in EuiFontScale]: {
     fontSize: string;
     lineHeight: string;

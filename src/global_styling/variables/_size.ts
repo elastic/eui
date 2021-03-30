@@ -28,9 +28,21 @@ export const sizeToPixel = (scale: number = 1) => (
   return `${base * scale}px`;
 };
 
+export type EuiThemeBase = number;
+
 export const base = 16;
 
-export const size = {
+export interface EuiThemeSize {
+  xs: string;
+  s: string;
+  m: string;
+  base: string;
+  l: string;
+  xl: string;
+  xxl: string;
+}
+
+export const size: EuiThemeSize = {
   xs: computed(sizeToPixel(0.25)),
   s: computed(sizeToPixel(0.5)),
   m: computed(sizeToPixel(0.75)),

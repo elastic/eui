@@ -17,8 +17,23 @@
  * under the License.
  */
 
-import { RecursiveOmit, RecursivePartial } from '../../components/common';
-import { euiThemeDefault } from '../../themes/eui/theme';
+import {
+  RecursiveOmit,
+  RecursivePartial,
+  ValueOf,
+} from '../../components/common';
+import { EuiThemeBorder } from '../../global_styling/variables/_borders';
+import { EuiThemeColors } from '../../global_styling/variables/_colors';
+import {
+  EuiThemeBase,
+  EuiThemeSize,
+} from '../../global_styling/variables/_size';
+import { EuiThemeTitle } from '../../global_styling/variables/title';
+import {
+  EuiFont,
+  EuiFontSize,
+  EuiFontWeight,
+} from '../../global_styling/variables/_typography';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -27,15 +42,27 @@ export const COLOR_MODES_STANDARD = {
 export const COLOR_MODES_INVERSE = 'INVERSE' as const;
 
 type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
-type EuiThemeColorModeStandard = keyof typeof COLOR_MODES_STANDARD;
+type EuiThemeColorModeStandard = ValueOf<typeof COLOR_MODES_STANDARD>;
 export type EuiThemeColorMode =
   | string
   | EuiThemeColorModeStandard
   | EuiThemeColorModeInverse;
 
-// TODO: Make static interface
-export type EuiThemeShape = typeof euiThemeDefault;
-export type EuiThemeColor = EuiThemeShape['colors']['LIGHT'];
+export type ColorModeSwitch<T = string> = {
+  [key in EuiThemeColorModeStandard]: T;
+};
+
+export type EuiThemeShape = {
+  colors: EuiThemeColors;
+  base: EuiThemeBase;
+  size: EuiThemeSize;
+  font: EuiFont;
+  fontSize: EuiFontSize;
+  fontWeight: EuiFontWeight;
+  border: EuiThemeBorder;
+  title: EuiThemeTitle;
+};
+export type EuiThemeColor = EuiThemeColors['LIGHT'];
 
 export type EuiThemeSystem<T = {}> = {
   root: EuiThemeShape & T;

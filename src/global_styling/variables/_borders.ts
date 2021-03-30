@@ -19,7 +19,18 @@
 
 import { computed } from '../../services/theme/utils';
 
-export const border = {
+export interface EuiThemeBorder {
+  widthThin: string;
+  widthThick: string;
+  color: string;
+  radius: string;
+  radiusSmall: string;
+  thin: string;
+  thick: string;
+  editable: string;
+}
+
+export const border: EuiThemeBorder = {
   widthThin: '1px',
   widthThick: '2px',
   color: computed(([lightShade]) => lightShade, ['colors.lightShade']),
