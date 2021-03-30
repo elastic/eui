@@ -8,8 +8,6 @@ import {
   EuiFlexItem,
   EuiButtonEmpty,
   EuiPopover,
-  EuiTitle,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import { useColorStopsState } from '../../../../src/services';
