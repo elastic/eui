@@ -25,4 +25,4 @@ jobs:
           operations-per-run: 1000
           remove-stale-when-updated: true
           enable-statistics: true
-          debug-only: true
+          debug-only: false

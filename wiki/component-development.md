@@ -54,12 +54,27 @@ Refer to the [automated accessibility testing guide](automated-accessibility-tes
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
-1. In the `eui` folder, run `yarn build` then `npm pack`. This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
-2. Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap --no-validate`.
-    * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
-    * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
-3. Rebuild Kibana's shared-ui-deps by running `yarn kbn:bootstrap` inside of `kibana/packages/kbn-ui-shared-deps/`.
-4. Run Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't use a previously cached version of EUI.
+#### In EUI run:
+
+```bash
+yarn build && npm pack
+```
+
+This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
+
+#### In Kibana:
+
+Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
+
+```bash
+yarn kbn bootstrap --no-validate && cd packages/kbn-ui-shared-deps/ && yarn kbn:bootstrap && cd ../../ && FORCE_DLL_CREATION=true node scripts/kibana --dev
+```
+
+* The `--no-validate` flag is required when bootstrapping with a `.tgz`.
+  * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
+* Running `yarn kbn:bootstrap` inside of `kibana/packages/kbn-ui-shared-deps/` rebuilds Kibana's shared-ui-deps.
+* Running Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` ensures it doesn't use a previously cached version of EUI.
+
 
 ## Principles
 
