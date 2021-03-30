@@ -343,7 +343,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                   <EuiFieldNumber
                     {...(valueInputProps || {})}
                     inputRef={setNumberInputRef}
-                    compressed
+                    compressed={true}
                     readOnly={readOnly}
                     min={isRangeMin || min == null ? undefined : localMin}
                     max={isRangeMax || max == null ? undefined : localMax}
