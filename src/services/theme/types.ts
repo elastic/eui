@@ -17,11 +17,7 @@
  * under the License.
  */
 
-import {
-  RecursiveOmit,
-  RecursivePartial,
-  ValueOf,
-} from '../../components/common';
+import { RecursivePartial, ValueOf } from '../../components/common';
 import { EuiThemeBorder } from '../../global_styling/variables/_borders';
 import { EuiThemeColors } from '../../global_styling/variables/_colors';
 import {
@@ -72,14 +68,28 @@ export type EuiThemeSystem<T = {}> = {
 
 export type EuiThemeModifications<T = {}> = RecursivePartial<EuiThemeShape & T>;
 
-type Colorless<T> = RecursiveOmit<T, 'colors'>;
-// TODO: Refactor after static shape interface is determined
-// Requires manually maintaining sections (e.g., `buttons`) containing colorMode options.
-// Also cannot account for extended theme sections (`T`) that use colorMode options.
-export type EuiThemeComputed<T = {}> = Colorless<EuiThemeShape & T> & {
+// TODO:
+// Intersection types like `EuiThemeColors` lose members because
+// `T extends ColorModeSwitch<X>`, but inferred `X` does not contain
+// all members; it only contains the first matching member
+// and therefore converting the type excludes all other properties.
+type ConvertColorModeSwitch<
+  T,
+  P = string | number | bigint | boolean | null | undefined
+> = T extends P | ColorModeSwitch<infer X>
+  ? T extends ColorModeSwitch<X>
+    ? X extends P
+      ? X
+      : {
+          [K in keyof X]: ConvertColorModeSwitch<X[K], P>;
+        }
+    : T
+  : {
+      [K in keyof T]: ConvertColorModeSwitch<T[K], P>;
+    };
+
+export type EuiThemeComputed<T = {}> = ConvertColorModeSwitch<
+  EuiThemeShape & T
+> & {
   themeName: string;
-  colors: EuiThemeColor;
-  // buttons: Colorless<EuiThemeShape['buttons']> & {
-  //   colors: EuiThemeShape['buttons']['colors']['light'];
-  // };
 } & T;
