@@ -7,6 +7,7 @@
 **Bug fixes**
 
 - Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
+- Hid `of` text on small screens for compressed `EuiPagination`([#4661](https://github.com/elastic/eui/pull/4661))
 
 **Breaking changes**
 

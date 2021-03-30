@@ -65,7 +65,7 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
 
   const props = {
     className: classes,
-    size: 'xs',
+    size: 's',
     color: 'text',
     'data-test-subj': `pagination-button-${pageIndex}`,
     isDisabled: isPlaceholder || isActive,
