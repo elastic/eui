@@ -40,7 +40,7 @@ import { keys } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiFieldNumber, EuiFormRow } from '../../form';
+import { EuiFieldNumber, EuiFieldNumberProps, EuiFormRow } from '../../form';
 import { EuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -76,6 +76,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   closePopover: () => void;
   'data-index'?: string;
   'aria-valuetext'?: string;
+  valueInputProps?: Partial<EuiFieldNumberProps>;
 }
 
 export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
@@ -104,6 +105,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   closePopover,
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
+  valueInputProps = {},
 }) => {
   const background = useMemo(() => {
     const chromaColor = getChromaColor(color, colorPickerShowAlpha);
@@ -339,6 +341,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                   isInvalid={stopIsInvalid}
                   error={stopIsInvalid ? stopErrorMessage : null}>
                   <EuiFieldNumber
+                    {...valueInputProps}
                     inputRef={setNumberInputRef}
                     compressed={true}
                     readOnly={readOnly}
