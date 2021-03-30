@@ -71,7 +71,19 @@ export interface EuiColorStopsProps extends CommonProps {
    * Props passed to the value input field in the color stop popover.
    * Can be used to configure functionality like append or prepend.
    */
-  valueInputProps?: Partial<EuiFieldNumberProps>;
+  valueInputProps?: Partial<
+    Omit<
+      EuiFieldNumberProps,
+      | 'inputRef'
+      | 'compressed'
+      | 'readOnly'
+      | 'min'
+      | 'max'
+      | 'value'
+      | 'isInvalid'
+      | 'onChange'
+    >
+  >;
 }
 
 // Because of how the thumbs are rendered in the popover, using ref results in an infinite loop.
