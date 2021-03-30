@@ -105,7 +105,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   closePopover,
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
-  valueInputProps,
+  valueInputProps = {},
 }) => {
   const background = useMemo(() => {
     const chromaColor = getChromaColor(color, colorPickerShowAlpha);
@@ -341,7 +341,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                   isInvalid={stopIsInvalid}
                   error={stopIsInvalid ? stopErrorMessage : null}>
                   <EuiFieldNumber
-                    {...(valueInputProps || {})}
+                    {...valueInputProps}
                     inputRef={setNumberInputRef}
                     compressed={true}
                     readOnly={readOnly}
