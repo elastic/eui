@@ -4,6 +4,12 @@ import {
   EuiColorStops,
   EuiFormRow,
   EuiRange,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonEmpty,
+  EuiPopover,
+  EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { useColorStopsState } from '../../../../src/services';
@@ -18,6 +24,7 @@ export default () => {
   const [fixedColorStops, setFixedColorStops] = useColorStopsState(true);
   const [steppedColorStops, setSteppedColorStops] = useColorStopsState(true);
   const [value, setValue] = useState(10);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const [extendedColorStops, setExtendedColorStops] = useState([
     {
@@ -43,6 +50,21 @@ export default () => {
   const handleEmptyChange = (colorStops) => {
     setEmptyColorStops(colorStops);
   };
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty
+      onClick={onButtonClick}
+      iconType="controlsVertical"
+      aria-label="Open settings"
+      color="text"
+      size="xs">
+      Steps
+    </EuiButtonEmpty>
+  );
 
   return (
     <React.Fragment>
@@ -93,25 +115,41 @@ export default () => {
           stopType="fixed"
         />
       </EuiFormRow>
+
       <EuiFormRow label="Stepped color segments">
-        <EuiColorStops
-          label="Stepped color segments"
-          onChange={setSteppedColorStops}
-          colorStops={steppedColorStops}
-          stepNumber={value}
-          min={0}
-          max={100}
-          stopType="stepped"
-        />
+        <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexItem>
+            <EuiColorStops
+              label="Stepped color segments"
+              onChange={setSteppedColorStops}
+              colorStops={steppedColorStops}
+              stepNumber={value}
+              min={0}
+              max={100}
+              stopType="stepped"
+            />
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiPopover
+              panelStyle={{ minWidth: 380 }}
+              button={button}
+              isOpen={isPopoverOpen}
+              closePopover={closePopover}>
+              <EuiFormRow label="Number of steps" display="columnCompressed">
+                <EuiRange
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  showInput
+                  aria-label="Change the number of steps"
+                  min={2}
+                  max={20}
+                />
+              </EuiFormRow>
+            </EuiPopover>
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </EuiFormRow>
-      <EuiRange
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        showInput
-        aria-label="An example of EuiRange"
-        min={2}
-        max={20}
-      />
     </React.Fragment>
   );
 };

@@ -66,7 +66,16 @@ export interface EuiColorStopsProps extends CommonProps {
   max?: number;
   min?: number;
   label: string;
+  /**
+   *  Specify the type of stops:
+   *  `fixed`: individual color blocks.
+   *  `gradient`: each color fades into the next.
+   *  `stepped`: interpolation between colors with a fixed number of steps.
+   */
   stopType?: 'fixed' | 'gradient' | 'stepped';
+  /**
+   * Only works when `stopType="stepped"`
+   */
   stepNumber?: number;
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
