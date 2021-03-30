@@ -173,7 +173,7 @@ test('renders fixed stop EuiColorStops', () => {
 });
 
 test('renders stepped stop EuiColorStops', () => {
-  const colorStops = render(
+  const colorStops = mount(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -185,7 +185,7 @@ test('renders stepped stop EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(colorStops.find('.euiRangeHighlight__progress').prop('style')).toMatchSnapshot();
 });
 
 test('renders empty EuiColorStops', () => {

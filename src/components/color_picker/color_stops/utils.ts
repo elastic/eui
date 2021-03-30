@@ -135,7 +135,7 @@ export const getPositionFromStop = (
   return parseFloat(
     (
       ((stop - min) / (max - min)) *
-      calculateScale(ref ? ref.clientWidth : 100)
+      calculateScale(ref && ref.clientWidth > 0 ? ref.clientWidth : 100)
     ).toFixed(1)
   );
 };
