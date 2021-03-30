@@ -341,17 +341,15 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                   isInvalid={stopIsInvalid}
                   error={stopIsInvalid ? stopErrorMessage : null}>
                   <EuiFieldNumber
-                    {...{
-                      ...(valueInputProps || {}),
-                      inputRef: setNumberInputRef,
-                      compressed: true,
-                      readOnly,
-                      min: isRangeMin || min == null ? undefined : localMin,
-                      max: isRangeMax || max == null ? undefined : localMax,
-                      value: isStopInvalid(stop) ? '' : stop,
-                      isInvalid: stopIsInvalid,
-                      onChange: handleStopInputChange,
-                    }}
+                    {...(valueInputProps || {})}
+                    inputRef={setNumberInputRef}
+                    compressed
+                    readOnly={readOnly}
+                    min={isRangeMin || min == null ? undefined : localMin}
+                    max={isRangeMax || max == null ? undefined : localMax}
+                    value={isStopInvalid(stop) ? '' : stop}
+                    isInvalid={stopIsInvalid}
+                    onChange={handleStopInputChange}
                   />
                 </EuiFormRow>
               )}
