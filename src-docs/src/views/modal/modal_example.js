@@ -108,6 +108,7 @@ const confirmModalLoadingSnippet = [
 
 export const ModalExample = {
   title: 'Modal',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -259,5 +260,4 @@ export const ModalExample = {
       demo: <ModalWidth />,
     },
   ],
-  guidelines: <Guidelines />,
 };

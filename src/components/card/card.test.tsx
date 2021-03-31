@@ -21,9 +21,10 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiCard, SIZES } from './card';
+import { EuiCard } from './card';
 
 import { EuiIcon } from '../icon';
+import { COLORS, SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
@@ -69,6 +70,25 @@ describe('EuiCard', () => {
           title="Card title"
           description="Card description"
           layout="horizontal"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('image', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          image={
+            <div>
+              <img
+                src="https://source.unsplash.com/400x200/?Nature"
+                alt="Nature"
+              />
+            </div>
+          }
         />
       );
 
@@ -129,6 +149,20 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('accepts div props', () => {
+      test('like style', () => {
+        const component = render(
+          <EuiCard
+            title="Card title"
+            description="Card description"
+            style={{ minWidth: 0 }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     test('footer', () => {
       const component = render(
         <EuiCard
@@ -169,16 +203,44 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('display', () => {
+    test('isDisabled', () => {
       const component = render(
-        <EuiCard
-          title="Card title"
-          description="Card description"
-          display="plain"
-        />
+        <EuiCard title="Card title" description="Card description" isDisabled />
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('paddingSize', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              paddingSize={size}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('display', () => {
+      COLORS.forEach((color) => {
+        test(`${color} is rendered`, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              display={color}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
 
     test('selectable', () => {
@@ -193,22 +255,6 @@ describe('EuiCard', () => {
       );
 
       expect(component).toMatchSnapshot();
-    });
-
-    describe('paddingSize', () => {
-      SIZES.forEach((size) => {
-        test(`${size} is applied`, () => {
-          const component = render(
-            <EuiCard
-              title="Card title"
-              description="Card description"
-              paddingSize={size}
-            />
-          );
-
-          expect(component).toMatchSnapshot();
-        });
-      });
     });
   });
 });

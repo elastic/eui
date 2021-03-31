@@ -25,7 +25,10 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
 
   return (
     <EuiSplitPanel.Outer hasBorder hasShadow={false}>
-      <EuiSplitPanel.Inner {...demoPanelProps} className={classes}>
+      <EuiSplitPanel.Inner
+        color="plain"
+        {...demoPanelProps}
+        className={classes}>
         {example}
       </EuiSplitPanel.Inner>
       {(tabs || tabContent) && (
