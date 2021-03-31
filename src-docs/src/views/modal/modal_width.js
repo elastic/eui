@@ -21,7 +21,7 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiModal onClose={closeModal}>
+      <EuiModal style={{ width: 800 }} onClose={closeModal}>
         <EuiModalHeader>
           <EuiModalHeaderTitle>
             <h1>Modal title</h1>
@@ -32,7 +32,7 @@ export default () => {
           This modal has the following setup:
           <EuiSpacer />
           <EuiCodeBlock language="html" isCopyable>
-            {`<EuiModal onClose={closeModal}>
+            {`<EuiModal style={{ width: 800 }} onClose={closeModal}>
   <EuiModalHeader>
     <EuiModalHeaderTitle><h1><!-- Modal title --></h1></EuiModalHeaderTitle>
   </EuiModalHeader>
@@ -61,7 +61,7 @@ export default () => {
 
   return (
     <div>
-      <EuiButton onClick={showModal}>Show modal</EuiButton>
+      <EuiButton onClick={showModal}>Show modal with custom width</EuiButton>
       {modal}
     </div>
   );

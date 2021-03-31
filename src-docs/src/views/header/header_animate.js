@@ -88,7 +88,7 @@ export default () => {
 
   return (
     <>
-      <EuiFlexGroup alignItems="center" gutterSize="m">
+      <EuiFlexGroup responsive={false} alignItems="center" gutterSize="m">
         <EuiFlexItem grow={false}>
           <EuiButton size="s" onClick={notify}>
             Notify & animate
