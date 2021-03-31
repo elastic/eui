@@ -27,7 +27,11 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { keys, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+import {
+  keys,
+  DEFAULT_VISUALIZATION_COLOR,
+  getSteppedGradient,
+} from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
   addStop,
@@ -63,7 +67,17 @@ export interface EuiColorStopsProps extends CommonProps {
   max?: number;
   min?: number;
   label: string;
-  stopType?: 'fixed' | 'gradient';
+  /**
+   *  Specify the type of stops:
+   *  `fixed`: individual color blocks.
+   *  `gradient`: each color fades into the next.
+   *  `stepped`: interpolation between colors with a fixed number of steps.
+   */
+  stopType?: 'fixed' | 'gradient' | 'stepped';
+  /**
+   * Only works when `stopType="stepped"`
+   */
+  stepNumber?: number;
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
   showAlpha?: EuiColorPickerProps['showAlpha'];
@@ -157,6 +171,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   className,
   label,
   stopType = 'gradient',
+  stepNumber = 10,
   swatches,
   showAlpha = false,
   valueInputProps,
@@ -310,7 +325,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     if (isNotInteractive || isTargetAThumb(e.target) || !wrapperRef) return;
     const newStop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const newColorStops = addDefinedStop(colorStops, newStop, addColor);
-
     setFocusStopOnUpdate(newStop);
     handleOnChange(newColorStops);
   };
@@ -461,10 +475,33 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       )}`;
     }
   };
-  const linearGradient = sortedStops.map(
-    stopType === 'gradient' ? gradientStop : fixedStop
-  );
-  const background = `linear-gradient(to right,${linearGradient})`;
+
+  let gradient: string = '';
+
+  if (stopType === 'stepped' && positions.length > 0) {
+    const trailingPercentage = positions[0];
+    const endingPercentage = positions[positions.length - 1];
+    const steppedColors = getSteppedGradient(colorStops, stepNumber);
+    let steppedGradient = '';
+    const percentage =
+      (endingPercentage - trailingPercentage) / steppedColors.length;
+    let percentageSteps =
+      (endingPercentage - trailingPercentage) / steppedColors.length +
+      trailingPercentage;
+    steppedColors.forEach((color) => {
+      steppedGradient = steppedGradient.concat(
+        `${color} ${percentageSteps - percentage}% ${percentageSteps}%, `
+      );
+      percentageSteps = percentageSteps + percentage;
+    });
+    steppedGradient = steppedGradient.substring(0, steppedGradient.length - 2);
+    gradient = `linear-gradient(to right, currentColor ${trailingPercentage}%, ${steppedGradient})`;
+  } else {
+    const linearGradient = sortedStops.map(
+      stopType === 'gradient' ? gradientStop : fixedStop
+    );
+    gradient = `linear-gradient(to right,${linearGradient})`;
+  }
 
   return (
     <EuiRangeWrapper
@@ -504,7 +541,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
           max={max || rangeMax}
           lowerValue={min || rangeMin}
           upperValue={max || rangeMax}
-          background={background}
+          background={gradient}
           compressed={compressed}
         />
         <div

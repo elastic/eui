@@ -173,6 +173,24 @@ test('renders fixed stop EuiColorStops', () => {
   expect(colorStops).toMatchSnapshot();
 });
 
+test('renders stepped stop EuiColorStops', () => {
+  const colorStops = mount(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={colorStopsArray}
+      min={0}
+      max={100}
+      stopType="stepped"
+      stepNumber={10}
+      {...requiredProps}
+    />
+  );
+  expect(
+    colorStops.find('.euiRangeHighlight__progress').prop('style')
+  ).toMatchSnapshot();
+});
+
 test('renders empty EuiColorStops', () => {
   const colorStops = render(
     <EuiColorStops
