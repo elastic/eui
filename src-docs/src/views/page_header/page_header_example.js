@@ -75,16 +75,16 @@ export const PageHeaderExample = {
       demo: <PageHeader />,
       props: { EuiPageHeader },
       snippet: `<EuiPageHeader
-pageTitle="Page title"
-tabs={[
-  { label:"Tab 1", isSelected: true },
-  { label:"Tab 2" }
-]}
-description="Example of a description."
-rightSideItems={[
-  <EuiButton fill>Button 1</EuiButton>,
-  <EuiButton>Button 2</EuiButton>
-]}
+  pageTitle="Page title"
+  tabs={[
+    { label:"Tab 1", isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
+  rightSideItems={[
+    <EuiButton fill>Button 1</EuiButton>,
+    <EuiButton>Button 2</EuiButton>
+  ]}
 />`,
     },
     {
@@ -109,11 +109,11 @@ rightSideItems={[
       demo: <PageHeaderTabs />,
       props: { EuiPageHeader },
       snippet: `<EuiPageHeader
-tabs={[
-  { label:"Tab 1", isSelected: true },
-  { label:"Tab 2" }
-]}
-description="Example of a description."
+  tabs={[
+    { label:"Tab 1", isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
 />`,
     },
     {
