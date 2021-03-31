@@ -56,8 +56,11 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   borderRadius,
   children,
   className,
+  role: _role,
   ...rest
 }) => {
+  // EuiPanel switches to a button element if onClick is provided
+  const role = _role ?? rest.onClick ? undefined : 'main';
   const borderRadiusClass =
     borderRadius === 'none' ? 'euiPageContent--borderRadiusNone' : '';
 
@@ -76,6 +79,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
       className={classes}
       paddingSize={panelPaddingSize ?? paddingSize}
       borderRadius={borderRadius}
+      role={role}
       {...rest}>
       {children}
     </EuiPanel>
