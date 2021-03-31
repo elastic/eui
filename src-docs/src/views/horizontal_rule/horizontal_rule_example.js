@@ -1,22 +1,18 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
-import { EuiHorizontalRule } from '../../../../src/components';
+import { EuiHorizontalRule, EuiCode } from '../../../../src/components';
 
 import { horizontalRuleConfig } from './playground';
 
 import HorizontalRule from './horizontal_rule';
 const horizontalRuleSource = require('!!raw-loader!./horizontal_rule');
-const horizontalRuleHtml = renderToHtml(HorizontalRule);
 
 import HorizontalRuleMargin from './horizontal_rule_margin';
 const horizontalRuleMarginSource = require('!!raw-loader!./horizontal_rule_margin');
-const horizontalRuleMarginHtml = renderToHtml(HorizontalRuleMargin);
 
-const horizontalRuleSnippet = '<EuiHorizontalRule size="quarter" />';
+const horizontalRuleSnippet = '<EuiHorizontalRule />';
 const horizontalRuleMarginSnippet = '<EuiHorizontalRule margin="xs" />';
 
 export const HorizontalRuleExample = {
@@ -28,20 +24,22 @@ export const HorizontalRuleExample = {
           type: GuideSectionTypes.JS,
           code: horizontalRuleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: horizontalRuleHtml,
-        },
       ],
       text: (
         <p>
-          <strong>EuiHorizontalRule</strong> can carry a size. By default it
-          will be full.
+          <strong>EuiHorizontalRule</strong> is a styled{' '}
+          <EuiCode>{'<hr>'}</EuiCode> element. It can be one of three provided
+          sizes (lengths), by default it will be <EuiCode>full</EuiCode>.
         </p>
       ),
       props: { EuiHorizontalRule },
       snippet: horizontalRuleSnippet,
-      demo: <HorizontalRule />,
+      demo: (
+        <div className="eui-textCenter">
+          <HorizontalRule />
+        </div>
+      ),
+      playground: horizontalRuleConfig,
     },
     {
       title: 'Margins',
@@ -50,21 +48,21 @@ export const HorizontalRuleExample = {
           type: GuideSectionTypes.JS,
           code: horizontalRuleMarginSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: horizontalRuleMarginHtml,
-        },
       ],
       text: (
         <p>
-          <strong>EuiHorizontalRule</strong> margins can also be defined.
-          Don&rsquo;t forget that margins will collapse against items that
-          proceed / follow.
+          The spacing added before and after <strong>EuiHorizontalRule</strong>{' '}
+          can be adjusted using the <EuiCode>margin</EuiCode> prop. Don&rsquo;t
+          forget that margins will collapse against items that proceed and/or
+          follow.
         </p>
       ),
       snippet: horizontalRuleMarginSnippet,
-      demo: <HorizontalRuleMargin />,
+      demo: (
+        <div className="guideDemo__highlightHR">
+          <HorizontalRuleMargin />
+        </div>
+      ),
     },
   ],
-  playground: horizontalRuleConfig,
 };

@@ -9,6 +9,8 @@
 **Bug fixes**
 
 - Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
+- Fixed responsive sizing of `EuiModal` ([#4670](https://github.com/elastic/eui/pull/4670))
+- Fixed `disabled` interactions of `EuiHeaderSectionItemButton` ([#4670](https://github.com/elastic/eui/pull/4670))
 - Hid `of` text on small screens for compressed `EuiPagination`([#4661](https://github.com/elastic/eui/pull/4661))
 
 **Breaking changes**
