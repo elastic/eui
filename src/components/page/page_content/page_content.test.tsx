@@ -29,4 +29,28 @@ describe('EuiPageContent', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('verticalPosition is rendered', () => {
+    const component = render(<EuiPageContent verticalPosition="center" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('horizontalPosition is rendered', () => {
+    const component = render(<EuiPageContent horizontalPosition="center" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('accepts panel props', () => {
+    const component = render(
+      <EuiPageContent
+        borderRadius="none"
+        hasShadow={false}
+        paddingSize="none"
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -21,7 +21,12 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../../panel/panel';
+import {
+  EuiPanel,
+  PanelPaddingSize,
+  _EuiPanelProps,
+  _EuiPanelDivlike,
+} from '../../panel/panel';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
@@ -39,7 +44,9 @@ const horizontalPositionToClassNameMap: {
 };
 
 export type EuiPageContentProps = CommonProps &
-  EuiPanelProps & {
+  // Use only the div properties of EuiPanel (not button)
+  _EuiPanelProps &
+  Omit<_EuiPanelDivlike, 'onClick'> & {
     /**
      * **DEPRECATED: use `paddingSize` instead.**
      */
@@ -56,11 +63,9 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   borderRadius,
   children,
   className,
-  role: _role,
+  role = 'main',
   ...rest
 }) => {
-  // EuiPanel switches to a button element if onClick is provided
-  const role = _role ?? rest.onClick ? undefined : 'main';
   const borderRadiusClass =
     borderRadius === 'none' ? 'euiPageContent--borderRadiusNone' : '';
 
