@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `stepNumber` prop and `stepped` as `stopType` option to `EuiColorStops` ([#4613](https://github.com/elastic/eui/pull/4613))
 - Expanded `display` prop of `EuiCard` to inherit `color` values from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
 - Added `element` prop to `EuiPanel` for forcing to `div` or `button` ([#4649](https://github.com/elastic/eui/pull/4649))
 - Increased padding on `EuiCheckableCard` with refactor to use `EuiSplitPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
