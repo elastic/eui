@@ -92,6 +92,7 @@ exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
       style="display:flex"
     >
       <div
@@ -202,6 +203,7 @@ exports[`EuiPageTemplate template is rendered with pageBodyProps 3`] = `
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
       style="display:flex"
     >
       <div
@@ -293,6 +295,7 @@ exports[`EuiPageTemplate template is rendered with pageContentBodyProps 3`] = `
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
       style="display:flex"
     >
       <div
@@ -386,6 +389,7 @@ exports[`EuiPageTemplate template is rendered with pageContentProps 3`] = `
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
       style="display:flex"
     >
       <div
@@ -493,6 +497,7 @@ exports[`EuiPageTemplate template is rendered with pageHeader 3`] = `
     />
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
       style="display:flex"
     >
       <div
@@ -585,6 +590,7 @@ exports[`EuiPageTemplate template paddingSize is rendered 3`] = `
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
       style="display:flex"
     >
       <div

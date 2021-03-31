@@ -139,7 +139,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
             <EuiPageContent
-              role="main"
               verticalPosition="center"
               horizontalPosition="center"
               paddingSize={paddingSize}
@@ -165,7 +164,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {/* Extra page body to get the correct alignment and padding of the centered EuiPageContent */}
             <EuiPageBody paddingSize={paddingSize}>
               <EuiPageContent
-                role="main"
                 verticalPosition="center"
                 horizontalPosition="center"
                 paddingSize={paddingSize}
@@ -197,7 +195,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
             <EuiPageContent
-              role="main"
               verticalPosition="center"
               horizontalPosition="center"
               hasShadow={false}
@@ -229,7 +226,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               paddingSize={paddingSize}
               style={{ display: 'flex' }}>
               <EuiPageContent
-                role="main"
                 verticalPosition="center"
                 horizontalPosition="center"
                 hasShadow={false}
@@ -263,7 +259,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
             <EuiPageContent
-              role="main"
               hasBorder={false}
               hasShadow={false}
               paddingSize={'none'}
@@ -290,7 +285,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               />
             )}
             <EuiPageContent
-              role="main"
               hasBorder={false}
               hasShadow={false}
               paddingSize={'none'}
@@ -346,7 +340,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
                 />
               )}
               <EuiPageContent
-                role="main"
                 hasShadow={false}
                 hasBorder={false}
                 color={'transparent'}
@@ -374,7 +367,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               />
             )}
             <EuiPageContent
-              role="main"
               hasBorder={pageHeader === undefined ? false : undefined}
               hasShadow={false}
               paddingSize={'none'}

@@ -22,7 +22,6 @@ export default ({ button = <></>, content, sideNav }) => (
         tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
       />
       <EuiPageContent
-        role="main"
         hasBorder={false}
         hasShadow={false}
         paddingSize="none"

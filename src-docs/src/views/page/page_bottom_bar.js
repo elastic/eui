@@ -26,7 +26,6 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
             rightSideItems={[button]}
           />
           <EuiPageContent
-            role="main"
             hasBorder={false}
             hasShadow={false}
             paddingSize="none"

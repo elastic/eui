@@ -29,7 +29,6 @@ import { Link } from 'react-router-dom';
 
 export const HomeView = () => (
   <EuiPageContent
-    role="main"
     hasShadow={false}
     hasBorder={false}
     paddingSize="none"
