@@ -7,7 +7,7 @@
 - Added `valueInputProps` prop to `EuiColorStops` ([#4669](https://github.com/elastic/eui/pull/4669))
 - Added `position`, `usePortal`, `top`, `right`, `bottom`, and `left` props to `EuiBottomBar` ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `bottomBar` and `bottomBarProps` to `EuiPageTemplate` when `template = 'default'` ([#4662](https://github.com/elastic/eui/pull/4662))
-- Added `role="main"` to the `EuiPageContent` component inside of `EuiPageTemplate` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `role="main"` to `EuiPageContent` by default ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `bottomBorder` props to `EuiPageHeader` ([#4662](https://github.com/elastic/eui/pull/4662))
 
 **Bug fixes**
