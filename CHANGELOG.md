@@ -8,7 +8,7 @@
 - Added `position`, `usePortal`, `top`, `right`, `bottom`, and `left` props to `EuiBottomBar` ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `bottomBar` and `bottomBarProps` to `EuiPageTemplate` when `template = 'default'` ([#4662](https://github.com/elastic/eui/pull/4662))
 - Added `role="main"` to `EuiPageContent` by default ([#4662](https://github.com/elastic/eui/pull/4662))
-- Added `bottomBorder` props to `EuiPageHeader` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `bottomBorder` prop to `EuiPageHeader` ([#4662](https://github.com/elastic/eui/pull/4662))
 
 **Bug fixes**
 
