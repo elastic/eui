@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `32.0.1`.
+No public interface changes since `32.0.2`.
+
+## [`32.0.2`](https://github.com/elastic/eui/tree/v32.0.2)
+
+**Bug fixes**
+
+- Fixed `htmlIdGenerator` import path in `button_group_button.tsx`
 
 ## [`32.0.1`](https://github.com/elastic/eui/tree/v32.0.1)
 
