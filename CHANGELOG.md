@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `32.0.0`.
+**Bug fixes**
+
+- Fixed block style of `EuiPanel` when rendered as a `<button>` ([#4681](https://github.com/elastic/eui/pull/4681))
 
 ## [`32.0.0`](https://github.com/elastic/eui/tree/v32.0.0)
 
