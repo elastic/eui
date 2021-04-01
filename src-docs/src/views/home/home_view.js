@@ -202,16 +202,14 @@ export const HomeView = () => (
       </EuiFlexGroup>
 
       <EuiSpacer size="xl" />
-      <footer>
-        <EuiText size="xs" textAlign="center" color="subdued">
-          <p>
-            EUI is licensed under{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
-              Apache License 2.0
-            </EuiLink>
-          </p>
-        </EuiText>
-      </footer>
+      <EuiText size="xs" textAlign="center" color="subdued">
+        <p>
+          EUI is licensed under{' '}
+          <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
+            Apache License 2.0
+          </EuiLink>
+        </p>
+      </EuiText>
     </EuiPageContentBody>
   </EuiPageContent>
 );
