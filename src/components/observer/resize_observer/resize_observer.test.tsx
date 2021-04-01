@@ -36,7 +36,7 @@ describe('testResizeObservers', () => {
   beforeAll(() => {
     _originalgetBoundingClientRect =
       HTMLElement.prototype.getBoundingClientRect;
-    HTMLElement.prototype.getBoundingClientRect = function() {
+    HTMLElement.prototype.getBoundingClientRect = function () {
       // use the length of the element's HTML to represent its height
       return { width: 100, height: this.innerHTML.length } as ReturnType<
         GetBoundingClientRect
@@ -89,7 +89,7 @@ describe('testResizeObservers', () => {
       expect.assertions(2);
 
       const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
-        const [ref, setRef] = useState();
+        const [ref, setRef] = useState<Element | null>(null);
         useResizeObserver(ref);
         return <div ref={setRef}>{children}</div>;
       });

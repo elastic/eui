@@ -81,8 +81,6 @@ export const SelectableExample = {
         menus; i.e. the spaces menu in the{' '}
         <Link to="/layout/header">header</Link>.
       </p>
-
-      <EuiSpacer size="s" />
     </EuiText>
   ),
   sections: [
@@ -549,6 +547,21 @@ export const SelectableExample = {
             interaction when the component passes back the altered array of
             options with the selected option having{' '}
             <EuiCode>{"checked: 'on'"}</EuiCode>.
+          </p>
+          <h3>Popover toggle and responsiveness</h3>
+          <p>
+            The default display is to render the search input inline which
+            triggers a popover with the results. Or you can decide to trigger
+            the whole selectable component from a single button. By passing your
+            own button to <EuiCode>popoverButton</EuiCode>, the component will
+            use this to trigger the popover, putting the search inside.
+          </p>
+          <p>
+            This is a great way to handle reducing the size of the component for
+            smaller screens. The component offers a helper prop called{' '}
+            <EuiCode>popoverButtonBreakpoints</EuiCode> which will only render
+            the <EuiCode>popoverButton</EuiCode> if the window size matches
+            named breakpoint(s).
           </p>
         </Fragment>
       ),

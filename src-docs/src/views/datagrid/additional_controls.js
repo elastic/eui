@@ -47,11 +47,11 @@ export default () => {
   );
 
   const setPageIndex = useCallback(
-    pageIndex => setPagination({ ...pagination, pageIndex }),
+    (pageIndex) => setPagination({ ...pagination, pageIndex }),
     [pagination, setPagination]
   );
   const setPageSize = useCallback(
-    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    (pageSize) => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
     [pagination, setPagination]
   );
 
@@ -83,7 +83,7 @@ export default () => {
               iconType="bell"
               color="primary"
               className="euiDataGrid__controlBtn"
-              onClick={() => alert('You clicked me! Hugs.')}>
+              onClick={() => {}}>
               New button
             </EuiButtonEmpty>
             <EuiButtonEmpty
@@ -91,7 +91,7 @@ export default () => {
               iconType="branch"
               color="danger"
               className="euiDataGrid__controlBtn"
-              onClick={() => alert('You clicked me! Hugs.')}>
+              onClick={() => {}}>
               Another button
             </EuiButtonEmpty>
           </Fragment>

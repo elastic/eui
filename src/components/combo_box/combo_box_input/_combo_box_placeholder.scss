@@ -1,7 +1,10 @@
 .euiComboBoxPlaceholder {
+  @include euiTextTruncate;
+  // Afford for the caret. The loading state is accounted for in _combo_box.scss
+  @include euiFormControlLayoutPadding(1, 'right');
   position: absolute;
   pointer-events: none;
-  padding: 0 $euiSizeXS;
+  padding-left: $euiSizeXS;
   line-height: $euiSizeXL;
   color: $euiColorMediumShade;
   margin-bottom: 0 !important; // sass-lint:disable-line no-important

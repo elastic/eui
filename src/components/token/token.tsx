@@ -18,7 +18,7 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import { defaults } from 'lodash';
+import defaults from 'lodash/defaults';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { isColorDark, hexToRgb } from '../../services';
@@ -158,7 +158,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   // If the iconType passed is one of the prefab token types,
   // grab its properties
-  if (iconType in TOKEN_MAP) {
+  if (typeof iconType === 'string' && iconType in TOKEN_MAP) {
     const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
     finalDisplay = defaults(currentDisplay, tokenDisplay);
   } else {

@@ -28,6 +28,7 @@ import {
   keys,
 } from '../../../services';
 import { requiredProps, findTestSubject } from '../../../test';
+import { EuiFieldNumber } from '../../form/field_number';
 
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
@@ -172,6 +173,24 @@ test('renders fixed stop EuiColorStops', () => {
   expect(colorStops).toMatchSnapshot();
 });
 
+test('renders stepped stop EuiColorStops', () => {
+  const colorStops = mount(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={colorStopsArray}
+      min={0}
+      max={100}
+      stopType="stepped"
+      stepNumber={10}
+      {...requiredProps}
+    />
+  );
+  expect(
+    colorStops.find('.euiRangeHighlight__progress').prop('style')
+  ).toMatchSnapshot();
+});
+
 test('renders empty EuiColorStops', () => {
   const colorStops = render(
     <EuiColorStops
@@ -203,6 +222,28 @@ test('popover color selector is shown when the thumb is clicked', () => {
     .simulate('mousedown', { pageX: 0, pageY: 0 });
   const colorSelector = findTestSubject(colorStops, 'euiColorStopPopover');
   expect(colorSelector.length).toBe(1);
+});
+
+test('passes value input props to number input', () => {
+  const colorStops = mount(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={colorStopsArray}
+      min={0}
+      max={100}
+      valueInputProps={{
+        append: '%',
+      }}
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorStops, 'euiColorStopThumb')
+    .first()
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
+  const colorSelector = findTestSubject(colorStops, 'euiColorStopPopover');
+  expect(colorSelector.find(EuiFieldNumber).prop('append')).toEqual('%');
 });
 
 test('stop input updates stops', () => {
@@ -464,7 +505,7 @@ test('add new thumb via click', () => {
   const wrapper = findTestSubject(colorStops, 'euiColorStopsAdd');
   wrapper.simulate('click', { pageX: 45, pageY: 0 });
   expect(onChange).toBeCalled();
-  // This is a very odd expecation.
+  // This is a very odd expectation.
   // But we can't get actual page positions in this environment (no getBoundingClientRect)
   // So we'll expect the _correct_ color and _incorrect_ stop value (NaN),
   // with the `isInvalid` arg _correctly_ true as a result.

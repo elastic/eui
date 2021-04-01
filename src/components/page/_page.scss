@@ -1,20 +1,41 @@
 .euiPage {
+  @include euiPageRestrictWidth;
   display: flex;
-  padding: $euiSize;
   background-color: $euiPageBackgroundColor;
+  flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
+  max-width: 100%; // Ensures Firefox doesn't expand width beyond bounds
 
-  &--restrictWidth-default,
-  &--restrictWidth-custom {
-    margin-left: auto;
-    margin-right: auto;
+  &--grow {
+    flex-grow: 1;
   }
 
-  &--restrictWidth-default {
-    max-width: 1000px;
+  &--column {
+    flex-direction: column;
   }
 
   @include euiBreakpoint('xs', 's') {
     flex-direction: column;
-    // padding: 0; temporarily removing
+  }
+}
+
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPage--#{$modifier} {
+    padding: $amount;
+
+    .euiPageSideBar {
+      min-width: $euiPageSidebarMinWidth;
+      margin-right: $amount;
+
+      // sass-lint:disable-block mixins-before-declarations
+      @include euiBreakpoint('xs', 's') {
+        margin-right: 0;
+        margin-bottom: $amount;
+      }
+    }
+
+    .euiPageHeader {
+      margin-bottom: $amount;
+    }
   }
 }

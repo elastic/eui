@@ -144,7 +144,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     });
   } else {
     if (showToolTips) {
-      childrenOrListItems = React.Children.map(children, child => {
+      childrenOrListItems = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement<Partial<EuiListGroupItemProps>>(child, {
             showToolTip: true,

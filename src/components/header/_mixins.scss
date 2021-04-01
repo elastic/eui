@@ -4,7 +4,7 @@
 
   .euiHeaderLogo__text,
   .euiHeaderLink,
-  .euiHeaderSectionItem__button {
+  .euiHeaderSectionItemButton {
     color: $euiColorGhost;
   }
 
@@ -20,18 +20,17 @@
 
   .euiHeaderLogo,
   .euiHeaderLink,
-  .euiHeaderSectionItem__button {
-    &:hover {
-      background: transparentize(lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade), .5);
-    }
-
+  .euiHeaderSectionItemButton {
     &:focus {
       background: shade($euiColorPrimary, 50%);
     }
   }
 
-  .euiHeaderNotification,
-  .euiHeaderSectionItemButton__notification {
+  .euiHeaderSectionItemButton__notification--badge {
     box-shadow: 0 0 0 1px $backgroundColor;
+  }
+
+  .euiHeaderSectionItemButton__notification--dot {
+    stroke: $backgroundColor;
   }
 }

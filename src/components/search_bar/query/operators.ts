@@ -80,7 +80,7 @@ export const eq = (
 
   if (isArray(fieldValue)) {
     if (fieldValue.length > 0) {
-      return fieldValue.some(item => eq(item, clauseValue, options));
+      return fieldValue.some((item) => eq(item, clauseValue, options));
     } else {
       return eq('', clauseValue, options);
     }
@@ -190,7 +190,9 @@ const greaterThen = (
   }
 
   if (isArray(fieldValue)) {
-    return fieldValue.every(item => greaterThen(item, clauseValue, inclusive));
+    return fieldValue.every((item) =>
+      greaterThen(item, clauseValue, inclusive)
+    );
   }
 
   return false; // unsupported value type

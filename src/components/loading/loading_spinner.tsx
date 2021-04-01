@@ -32,10 +32,16 @@ export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiLoadingSpinnerSize = keyof typeof sizeToClassNameMap;
 
-export const EuiLoadingSpinner: FunctionComponent<CommonProps &
+export type EuiLoadingSpinnerProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     size?: EuiLoadingSpinnerSize;
-  }> = ({ size = 'm', className, ...rest }) => {
+  };
+
+export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
+  size = 'm',
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiLoadingSpinner',
     sizeToClassNameMap[size],

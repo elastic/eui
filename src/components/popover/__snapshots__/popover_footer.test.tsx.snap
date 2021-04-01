@@ -7,3 +7,27 @@ exports[`EuiPopoverFooter is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiPopoverFooter props paddingSize l is rendered 1`] = `
+<div
+  class="euiPopoverFooter euiPopoverFooter--paddingLarge"
+/>
+`;
+
+exports[`EuiPopoverFooter props paddingSize m is rendered 1`] = `
+<div
+  class="euiPopoverFooter euiPopoverFooter--paddingMedium"
+/>
+`;
+
+exports[`EuiPopoverFooter props paddingSize none is rendered 1`] = `
+<div
+  class="euiPopoverFooter euiPopoverFooter--paddingNone"
+/>
+`;
+
+exports[`EuiPopoverFooter props paddingSize s is rendered 1`] = `
+<div
+  class="euiPopoverFooter euiPopoverFooter--paddingSmall"
+/>
+`;

@@ -33,7 +33,7 @@ import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
 
-interface EuiInputPopoverProps
+export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
   disableFocusTrap?: boolean;
   fullWidth?: boolean;
@@ -42,11 +42,11 @@ interface EuiInputPopoverProps
   onPanelResize?: (width?: number) => void;
 }
 
-type Props = CommonProps &
+export type EuiInputPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
-  EuiInputPopoverProps;
+  _EuiInputPopoverProps;
 
-export const EuiInputPopover: FunctionComponent<Props> = ({
+export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
   disableFocusTrap = false,
@@ -55,9 +55,9 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
   onPanelResize,
   ...props
 }) => {
-  const [inputEl, setInputEl] = useState();
-  const [inputElWidth, setInputElWidth] = useState();
-  const [panelEl, setPanelEl] = useState();
+  const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
+  const [inputElWidth, setInputElWidth] = useState<number>();
+  const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
 
   const inputRef = (node: HTMLElement | null) => setInputEl(node);
   const panelRef = (node: HTMLElement | null) => setPanelEl(node);
@@ -89,11 +89,11 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
   }, [setPanelWidth]);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === cascadingMenuKeys.TAB) {
+    if (panelEl && event.key === cascadingMenuKeys.TAB) {
       const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
         return (
           Array.from(el.attributes)
-            .map(el => el.name)
+            .map((el) => el.name)
             .indexOf('data-focus-guard') < 0
         );
       });
@@ -120,7 +120,7 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
       ownFocus={false}
       button={
         <EuiResizeObserver onResize={onResize}>
-          {resizeRef => <div ref={resizeRef}>{input}</div>}
+          {(resizeRef) => <div ref={resizeRef}>{input}</div>}
         </EuiResizeObserver>
       }
       buttonRef={inputRef}

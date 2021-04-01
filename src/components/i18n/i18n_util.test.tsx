@@ -35,6 +35,15 @@ describe('i18n_util', () => {
       ).toEqual('Hello, John');
     });
 
+    it('ignores `undefined` values and still returns a string', () => {
+      expect(
+        processStringToChildren('{greeting}, {name}', {
+          greeting: 'Hello',
+          name: undefined,
+        })
+      ).toEqual('Hello, ');
+    });
+
     describe('escape characters', () => {
       it('backslash escapes opening and closing braces', () => {
         expect(
@@ -57,7 +66,7 @@ describe('i18n_util', () => {
           processStringToChildren(
             'Hello, {name}',
             { greeting: 'Hello', name: 'John' },
-            value => value.toUpperCase()
+            (value) => value.toUpperCase()
           )
         ).toEqual('HELLO, JOHN');
       });

@@ -89,7 +89,7 @@ exports[`EuiCardSelect props isSelected 1`] = `
   <span
     class="euiButtonContent euiButtonEmpty__content"
   >
-    <div
+    <span
       class="euiButtonContent__icon"
       data-euiicon-type="check"
     />

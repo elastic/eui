@@ -34,11 +34,6 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
-
 let id = 0;
 const getId = () => `${id++}`;
 
@@ -103,8 +98,8 @@ describe('EuiPopover', () => {
 
         const component = mount(
           <EuiPopover
+            ownFocus={false}
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen
@@ -121,7 +116,6 @@ describe('EuiPopover', () => {
         const component = mount(
           <EuiPopover
             id={getId()}
-            withTitle
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen={false}
@@ -205,7 +199,7 @@ describe('EuiPopover', () => {
     });
 
     describe('ownFocus', () => {
-      test('defaults to false', () => {
+      test('defaults to true', () => {
         const component = mount(
           <div>
             <EuiPopover
@@ -220,13 +214,13 @@ describe('EuiPopover', () => {
         expect(component.render()).toMatchSnapshot();
       });
 
-      test('renders true', () => {
+      test('renders false', () => {
         const component = mount(
           <div>
             <EuiPopover
+              ownFocus={false}
               id={getId()}
               isOpen
-              ownFocus
               button={<button />}
               closePopover={() => {}}
             />
@@ -264,6 +258,24 @@ describe('EuiPopover', () => {
               button={<button />}
               closePopover={() => {}}
               panelPaddingSize="s"
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
+
+    describe('panelProps', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              panelProps={requiredProps}
               isOpen
             />
           </div>
@@ -341,6 +353,22 @@ describe('EuiPopover', () => {
 
       expect(component.render()).toMatchSnapshot();
     });
+
+    test('buffer for all sides', () => {
+      const component = mount(
+        <div>
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            buffer={[20, 40, 60, 80]}
+            isOpen
+          />
+        </div>
+      );
+
+      expect(component.render()).toMatchSnapshot();
+    });
   });
 
   describe('listener cleanup', () => {
@@ -353,7 +381,7 @@ describe('EuiPopover', () => {
 
       const activeAnimationFrames = new Map<number, number>();
       let nextAnimationFrameId = 0;
-      window.requestAnimationFrame = fn => {
+      window.requestAnimationFrame = (fn) => {
         const animationFrameId = nextAnimationFrameId++;
         activeAnimationFrames.set(animationFrameId, setTimeout(fn));
         return animationFrameId;

@@ -74,14 +74,14 @@ export default () => {
     });
   };
 
-  const changeExample2 = e => {
+  const changeExample2 = (e) => {
     setExample2({
       value: e.target.value,
       isOpen: false,
     });
   };
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
     const indices = selectedOptions.map((s, index) => {
       return (
@@ -155,7 +155,6 @@ export default () => {
         }
         isOpen={example1.isOpen}
         closePopover={closeExample1}
-        ownFocus
         display="block"
         panelPaddingSize="s"
         anchorPosition="downLeft">
@@ -176,7 +175,6 @@ export default () => {
         }
         isOpen={example2.isOpen}
         closePopover={closeExample2}
-        ownFocus
         display="block"
         anchorPosition="downLeft">
         {renderPopover2()}

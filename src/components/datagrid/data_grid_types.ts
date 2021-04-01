@@ -17,8 +17,10 @@
  * under the License.
  */
 
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, JSXElementConstructor, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
+import { EuiListGroupItemProps } from '../list_group';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -53,7 +55,7 @@ export interface EuiDataGridColumn {
    */
   schema?: string;
   /**
-   * Defaults to true. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
+   * Defaults to true, always true if cellActions are defined. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
   /**
@@ -76,6 +78,70 @@ export interface EuiDataGridColumn {
    * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
    */
   displayAsText?: string;
+  /**
+   * Configuration of column actions. Set to false to disable or use #EuiDataGridColumnActions to configure the actions displayed in the header cell of the column.
+   */
+  actions?: false | EuiDataGridColumnActions;
+  /**
+   * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
+   */
+  cellActions?: EuiDataGridColumnCellAction[];
+}
+
+export type EuiDataGridColumnCellAction =
+  | JSXElementConstructor<EuiDataGridColumnCellActionProps>
+  | ((props: EuiDataGridColumnCellActionProps) => ReactNode);
+
+export interface EuiDataGridColumnActions {
+  /**
+   * Show/hide/configure the action to hide a column, provided EuiListGroupItemProps are merged
+   */
+  showHide?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action that switches the actual column with the column to the left side, provided EuiListGroupItemProps are merged
+   */
+  showMoveLeft?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action that switches the actual column with the column to the right side, provided EuiListGroupItemProps are merged
+   */
+  showMoveRight?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to sort ascending by the actual column, provided EuiListGroupItemProps are merged
+   */
+  showSortAsc?: boolean | EuiListGroupItemProps;
+  /**
+   * Show/hide/configure the action to sort descending by the actual column, provided EuiListGroupItemProps are merged
+   */
+  showSortDesc?: boolean | EuiListGroupItemProps;
+  /**
+   * Append additional actions
+   */
+  additional?: EuiListGroupItemProps[];
+}
+
+export interface EuiDataGridColumnCellActionProps {
+  /**
+   * The index of the row that contains cell's data
+   */
+  rowIndex: number;
+  /**
+   * The id of the column that contains the cell's data
+   */
+  columnId: string;
+  /**
+   * React component representing the action displayed in the cell
+   */
+  // Component: ComponentType<EuiButtonEmptyProps | EuiButtonProps>;
+  Component: typeof EuiButtonEmpty | typeof EuiButtonIcon;
+  /**
+   * Determines whether the cell's action is displayed expanded (in the Popover)
+   */
+  isExpanded: boolean;
+  /**
+   * Closes the popover if a cell is expanded.
+   * The prop is provided for an expanded cell only.
+   */
+  closePopover: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -96,6 +162,7 @@ export interface EuiDataGridColumnWidths {
 export type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
 export type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
 export type EuiDataGridStyleHeader = 'shade' | 'underline';
+export type EuiDataGridStyleFooter = 'shade' | 'overline' | 'striped';
 export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
@@ -117,6 +184,10 @@ export interface EuiDataGridStyle {
    */
   header?: EuiDataGridStyleHeader;
   /**
+   * Visual style for the column footers.
+   */
+  footer?: EuiDataGridStyleFooter;
+  /**
    * Will define what visual style to show on row hover
    */
   rowHover?: EuiDataGridStyleRowHover;
@@ -124,6 +195,10 @@ export interface EuiDataGridStyle {
    * Defines the padding with the row and column cells
    */
   cellPadding?: EuiDataGridStyleCellPaddings;
+  /**
+   * If set to true, the footer row will be sticky
+   */
+  stickyFooter?: boolean;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {

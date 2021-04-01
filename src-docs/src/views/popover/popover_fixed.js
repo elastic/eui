@@ -7,9 +7,10 @@ export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const toggleExample = () =>
-    setIsExampleShown(isExampleShown => !isExampleShown);
+    setIsExampleShown((isExampleShown) => !isExampleShown);
 
-  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
@@ -17,17 +18,16 @@ export default () => {
       iconType="arrowDown"
       iconSide="right"
       onClick={onButtonClick}
-      style={{ background: 'white' }}>
+      fill>
       Show fixed popover
     </EuiButton>
   );
 
   return (
     <React.Fragment>
-      <EuiButton onClick={toggleExample}>Toggle Example</EuiButton>
+      <EuiButton onClick={toggleExample}>Toggle example</EuiButton>
       {isExampleShown && (
         <EuiPopover
-          ownFocus
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}

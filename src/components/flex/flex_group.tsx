@@ -27,7 +27,9 @@ export type FlexGroupDirection = keyof typeof directionToClassNameMap;
 export type FlexGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 export type FlexGroupJustifyContent = keyof typeof justifyContentToClassNameMap;
 
-export interface EuiFlexGroupProps {
+export interface EuiFlexGroupProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   alignItems?: FlexGroupAlignItems;
   component?: FlexGroupComponentType;
   direction?: FlexGroupDirection;
@@ -87,9 +89,7 @@ const isValidElement = (
 
 export const EuiFlexGroup = forwardRef<
   HTMLDivElement | HTMLSpanElement,
-  CommonProps &
-    HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
-    EuiFlexGroupProps
+  EuiFlexGroupProps
 >(
   (
     {

@@ -11,7 +11,8 @@ import {
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
@@ -22,6 +23,7 @@ export default () => {
 
   return (
     <EuiPopover
+      ownFocus={false}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}

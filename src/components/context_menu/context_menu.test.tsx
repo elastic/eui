@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiContextMenu } from './context_menu';
+import { EuiContextMenu, SIZES } from './context_menu';
 import { setTimeout } from 'timers';
 
 const panel3 = {
@@ -75,7 +75,7 @@ const panel0 = {
 const panels = [panel0, panel1, panel2, panel3];
 
 export const tick = (ms = 0) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 
@@ -89,6 +89,51 @@ describe('EuiContextMenu', () => {
   it('panel item can contain JSX', () => {
     const component = render(
       <EuiContextMenu panels={panels} initialPanelId={3} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('panel item can be a separator line', () => {
+    const component = render(
+      <EuiContextMenu
+        panels={[
+          {
+            id: 3,
+            title: 'Testing separator',
+            items: [
+              { name: 'Foo', key: 'foo' },
+              { isSeparator: true },
+              { name: 'Bar', key: 'bar' },
+            ],
+          },
+        ]}
+        initialPanelId={3}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('can pass-through horizontal rule props', () => {
+    const component = render(
+      <EuiContextMenu
+        panels={[
+          {
+            id: 3,
+            title: 'Testing separator',
+            items: [
+              {
+                isSeparator: true,
+                key: 'separator',
+                margin: 's',
+                size: 'half',
+              },
+            ],
+          },
+        ]}
+        initialPanelId={3}
+      />
     );
 
     expect(component).toMatchSnapshot();
@@ -121,6 +166,18 @@ describe('EuiContextMenu', () => {
         await tick(20);
 
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        it(`${size} is rendered`, () => {
+          const component = render(
+            <EuiContextMenu panels={panels} initialPanelId={2} size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });

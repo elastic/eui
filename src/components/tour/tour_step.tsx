@@ -40,6 +40,7 @@ import {
 import { EuiTitle } from '../title';
 
 import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
+import { htmlIdGenerator } from '../../services';
 
 type PopoverOverrides = 'button' | 'closePopover';
 
@@ -132,6 +133,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   footerAction,
   ...rest
 }) => {
+  const generatedId = htmlIdGenerator();
+  const titleId = generatedId();
   if (step === 0) {
     console.warn(
       'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'
@@ -213,13 +216,14 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       button={children}
       closePopover={closePopover}
       isOpen={isStepOpen}
+      ownFocus={false}
       panelClassName={classes}
       panelStyle={newStyle || style}
       offset={hasBeacon ? 10 : 0}
+      aria-labelledby={titleId}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
-      withTitle
       {...rest}>
-      <EuiPopoverTitle className="euiTourHeader">
+      <EuiPopoverTitle className="euiTourHeader" id={titleId}>
         <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
           <h1>{subtitle}</h1>
         </EuiTitle>

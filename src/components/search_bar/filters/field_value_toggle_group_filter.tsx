@@ -20,17 +20,21 @@
 import React, { Component } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { Query } from '../query';
+import { OperatorType } from '../query/ast';
 
 export interface FieldValueToggleGroupFilterItemType {
   value: string | number | boolean;
   name: string;
   negatedName?: string;
-  operator?: 'eq' | 'exact' | 'gt' | 'gte' | 'lt' | 'lte';
+  operator?: OperatorType;
 }
 
 export interface FieldValueToggleGroupFilterConfigType {
   type: 'field_value_toggle_group';
   field: string;
+  /**
+   * See #FieldValueToggleGroupFilterItemType
+   */
   items: FieldValueToggleGroupFilterItemType[];
   available?: () => boolean;
 }

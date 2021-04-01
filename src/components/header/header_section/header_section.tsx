@@ -29,13 +29,13 @@ const sideToClassNameMap: { [side in HeaderSectionSide]: string } = {
   right: 'euiHeaderSection--right',
 };
 
-type Props = CommonProps &
+export type EuiHeaderSectionProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     side?: HeaderSectionSide;
     grow?: boolean;
   };
 
-export const EuiHeaderSection: FunctionComponent<Props> = ({
+export const EuiHeaderSection: FunctionComponent<EuiHeaderSectionProps> = ({
   side = 'left',
   children,
   className,

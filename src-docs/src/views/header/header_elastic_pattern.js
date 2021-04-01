@@ -29,6 +29,7 @@ import {
   EuiTitle,
   EuiSelectableTemplateSitewide,
   EuiSelectableMessage,
+  EuiFlexGroup,
 } from '../../../../src/components';
 
 export default ({ theme }) => {
@@ -145,7 +146,7 @@ export default ({ theme }) => {
   const userMenu = (
     <EuiPopover
       id="guideHeaderUserMenuExample"
-      ownFocus
+      repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
           aria-controls="guideHeaderUserMenuExample"
@@ -180,7 +181,7 @@ export default ({ theme }) => {
   const spacesMenu = (
     <EuiPopover
       id="guideHeaderSpacesMenuExample"
-      ownFocus
+      repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
           aria-controls="guideHeaderSpacesMenuExample"
@@ -215,7 +216,7 @@ export default ({ theme }) => {
   const deploymentMenu = (
     <EuiPopover
       id="guideHeaderDeploymentMenuExample"
-      ownFocus
+      repositionOnScroll
       button={
         <EuiBadge
           color={theme.euiColorDarkestShade.rgba}
@@ -238,6 +239,39 @@ export default ({ theme }) => {
     </EuiPopover>
   );
 
+  /**
+   * Sitewide search
+   */
+  const search = (
+    <EuiSelectableTemplateSitewide
+      options={[]}
+      searchProps={{
+        append: '⌘K',
+        compressed: true,
+      }}
+      popoverButton={
+        <EuiHeaderSectionItemButton aria-label="Sitewide search">
+          <EuiIcon type="search" size="m" />
+        </EuiHeaderSectionItemButton>
+      }
+      popoverButtonBreakpoints={['xs', 's']}
+      popoverProps={{
+        repositionOnScroll: true, // Necessary when placing search in a fixed component
+      }}
+      emptyMessage={
+        <EuiSelectableMessage style={{ minHeight: 300 }}>
+          <p>
+            Please see the component page for{' '}
+            <Link to="/forms/selectable">
+              <strong>EuiSelectableTemplateSitewide</strong>
+            </Link>{' '}
+            on how to configure your sitewide search.
+          </p>
+        </EuiSelectableMessage>
+      }
+    />
+  );
+
   return (
     <>
       <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
@@ -246,101 +280,91 @@ export default ({ theme }) => {
       {/* FocusTrap for Docs only */}
       {fullScreen && (
         <EuiFocusTrap>
-          <EuiHeader
-            theme="dark"
-            position="fixed"
-            sections={[
-              {
-                items: [
-                  <EuiHeaderLogo iconType="logoElastic" href="">
-                    Elastic
-                  </EuiHeaderLogo>,
-                ],
-                borders: 'none',
-              },
-              {
-                items: [
-                  <EuiSelectableTemplateSitewide
-                    options={[]}
-                    searchProps={{
-                      append: '⌘K',
-                      compressed: true,
-                    }}
-                    emptyMessage={
-                      <EuiSelectableMessage style={{ minHeight: 300 }}>
-                        <p>
-                          Please see the component page for{' '}
-                          <Link to="/forms/selectable">
-                            <strong>EuiSelectableTemplateSitewide</strong>
-                          </Link>{' '}
-                          on how to configure your sitewide search.
-                        </p>
-                      </EuiSelectableMessage>
-                    }
-                  />,
-                ],
-                borders: 'none',
-              },
-              {
-                items: [
-                  deploymentMenu,
-                  <EuiHeaderSectionItemButton
-                    aria-label="Notifications"
-                    notification={'•'}
-                    onClick={() =>
-                      setIsAlertFlyoutVisible(!isAlertFlyoutVisible)
-                    }>
-                    <EuiIcon type="cheer" size="m" />
-                  </EuiHeaderSectionItemButton>,
-                  userMenu,
-                ],
-                borders: 'none',
-              },
-            ]}
-          />
-          <EuiHeader
-            position="fixed"
-            sections={[
-              {
-                items: [collapsibleNav, spacesMenu],
-                breadcrumbs: [
-                  {
-                    text: 'Management',
-                    onClick: () => {},
-                  },
-                  {
-                    text: 'Users',
-                  },
-                ],
-                borders: 'right',
-              },
-              {
-                items: [
-                  <EuiHeaderLinks>
-                    <EuiHeaderLink>Share</EuiHeaderLink>
-                    <EuiHeaderLink>Clone</EuiHeaderLink>
-                    <EuiButton
-                      iconType="minimize"
-                      style={{ minWidth: 80 }}
-                      size="s"
-                      color="secondary"
-                      onClick={() => {
-                        setFullScreen(false);
-                        document.body.classList.remove(
-                          'euiBody--headerIsFixed--double'
-                        );
+          <EuiFlexGroup
+            className="guideFullScreenOverlay"
+            gutterSize="none"
+            direction="column">
+            <EuiHeader
+              theme="dark"
+              sections={[
+                {
+                  items: [
+                    <EuiHeaderLogo iconType="logoElastic" href="">
+                      Elastic
+                    </EuiHeaderLogo>,
+                    deploymentMenu,
+                  ],
+                  borders: 'none',
+                },
+                {
+                  items: [
+                    <EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>,
+                  ],
+                  borders: 'none',
+                },
+                {
+                  items: [
+                    <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
+                    <EuiHeaderSectionItemButton
+                      notification={true}
+                      aria-label="Notifications: Updates available"
+                      onClick={() =>
+                        setIsAlertFlyoutVisible(!isAlertFlyoutVisible)
+                      }>
+                      <EuiIcon type="cheer" size="m" />
+                    </EuiHeaderSectionItemButton>,
+                    userMenu,
+                  ],
+                  borders: 'none',
+                },
+              ]}
+            />
+            <EuiHeader
+              sections={[
+                {
+                  items: [collapsibleNav, spacesMenu],
+                  breadcrumbs: [
+                    {
+                      text: 'Management',
+                      onClick: () => {},
+                    },
+                    {
+                      text: 'Users',
+                    },
+                  ],
+                  borders: 'right',
+                },
+                {
+                  items: [
+                    <EuiHeaderLinks
+                      popoverProps={{
+                        repositionOnScroll: true, // Necessary when placing search in a fixed component
                       }}>
-                      Exit full screen
-                    </EuiButton>
-                  </EuiHeaderLinks>,
-                ],
-              },
-            ]}
-          />
+                      <EuiHeaderLink color="primary">Share</EuiHeaderLink>
+                      <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
+                      <EuiButton
+                        iconType="minimize"
+                        style={{ minWidth: 80 }}
+                        size="s"
+                        color="primary"
+                        onClick={() => {
+                          setFullScreen(false);
+                          document.body.classList.remove(
+                            'euiBody--headerIsFixed--double'
+                          );
+                        }}>
+                        Exit full screen
+                      </EuiButton>
+                    </EuiHeaderLinks>,
+                  ],
+                },
+              ]}
+            />
 
-          {isAlertFlyoutVisible ? headerAlerts : null}
+            {isAlertFlyoutVisible ? headerAlerts : null}
 
-          <EuiPage className="guideFullScreenOverlay" />
+            <EuiPage />
+          </EuiFlexGroup>
         </EuiFocusTrap>
       )}
     </>

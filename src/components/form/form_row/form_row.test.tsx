@@ -23,10 +23,6 @@ import { requiredProps } from '../../../test';
 
 import { EuiFormRow, DISPLAYS } from './form_row';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 describe('EuiFormRow', () => {
   test('is rendered', () => {
     const component = render(
@@ -60,18 +56,12 @@ describe('EuiFormRow', () => {
     expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
       'generated-id-help'
     );
-    expect(
-      tree
-        .find('EuiFormErrorText')
-        .at(0)
-        .prop('id')
-    ).toEqual('generated-id-error-0');
-    expect(
-      tree
-        .find('EuiFormErrorText')
-        .at(1)
-        .prop('id')
-    ).toEqual('generated-id-error-1');
+    expect(tree.find('EuiFormErrorText').at(0).prop('id')).toEqual(
+      'generated-id-error-0'
+    );
+    expect(tree.find('EuiFormErrorText').at(1).prop('id')).toEqual(
+      'generated-id-error-1'
+    );
     expect(tree.find('input').prop('aria-describedby')).toEqual(
       'generated-id-help generated-id-error-0 generated-id-error-1'
     );
@@ -198,30 +188,8 @@ describe('EuiFormRow', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('displayOnly is rendered', () => {
-      const component = render(
-        <EuiFormRow displayOnly>
-          <span>just some text</span>
-        </EuiFormRow>
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    describe('compressed', () => {
-      test('is rendered', () => {
-        const component = render(
-          <EuiFormRow compressed>
-            <input />
-          </EuiFormRow>
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('display type', () => {
-      DISPLAYS.forEach(display => {
+      DISPLAYS.forEach((display) => {
         test(`${display} is rendered`, () => {
           const component = render(
             <EuiFormRow display={display}>

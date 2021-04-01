@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -7,9 +8,9 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiColorPicker,
+  EuiColorPaletteDisplay,
   EuiColorPalettePicker,
   EuiColorStops,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
 import {
@@ -17,6 +18,10 @@ import {
   EuiColorPalettePickerPaletteFixedProps,
   EuiColorPalettePickerPaletteGradientProps,
 } from '!!prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
+
+import { ColorStop } from '!!prop-loader!../../../../src/components/color_picker/color_stops/color_stop_thumb';
+
+import playgrounds from './playground';
 
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -29,7 +34,34 @@ const colorPickerSnippet = `<EuiColorPicker
 />
 `;
 
-import { ColorPalettePicker } from './color_palette_picker';
+import ColorPaletteDisplay from './color_palette_display';
+const colorPaletteDisplaySource = require('!!raw-loader!./color_palette_display');
+const colorPaletteDisplayHtml = renderToHtml(ColorPaletteDisplay);
+const colorPaletteDisplaySnippet = [
+  `<EuiColorPaletteDisplay
+  palette={euiPaletteColorBlind()}
+/>
+`,
+  `<EuiColorPaletteDisplay
+  palette={[
+    {
+      stop: 100,
+      color: 'white',
+    },
+    {
+      stop: 250,
+      color: 'lightgray',
+    },
+    {
+      stop: 320,
+      color: 'gray',
+    },
+  ]}
+/>
+`,
+];
+
+import ColorPalettePicker from './color_palette_picker';
 const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
 const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
 const colorPalettePickerSnippet = `<EuiColorPalettePicker
@@ -73,6 +105,17 @@ const colorStopsSnippetFixed = `<EuiColorStops
   min={0}
   max={100}
   stopType="fixed"
+/>
+`;
+
+const colorStopsSnippetStepped = `<EuiColorStops
+  label="Stepped color segments"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  stopType="stepped"
+  stepNumber={stepNumber}
 />
 `;
 
@@ -288,7 +331,6 @@ export const ColorPickerExample = {
           <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
-      <EuiSpacer />
     </React.Fragment>
   ),
   sections: [
@@ -338,10 +380,13 @@ export const ColorPickerExample = {
             </p>
             <p>
               Use the <EuiCode>palettes</EuiCode> prop to pass your palettes as
-              an array of objects. For each object, you should pass a palette
-              (array of hex values) and specify the <EuiCode>type</EuiCode>. Use{' '}
-              <EuiCode>fixed</EuiCode> palettes for categorical data and{' '}
-              <EuiCode>gradient</EuiCode> palettes for continuous data.
+              an array <EuiCode>strings</EuiCode> or an array of{' '}
+              <EuiCode>ColorStops</EuiCode> in the form of{' '}
+              <EuiCode>{'{ stop: number, color: string }'}</EuiCode>. For each
+              object, you should pass a palette (array of hex values) and
+              specify the <EuiCode>type</EuiCode>. Use <EuiCode>fixed</EuiCode>{' '}
+              palettes for categorical data and <EuiCode>gradient</EuiCode>{' '}
+              palettes for continuous data.
             </p>
           </EuiText>
         </React.Fragment>
@@ -361,9 +406,55 @@ export const ColorPickerExample = {
         EuiColorPalettePickerPaletteTextProps,
         EuiColorPalettePickerPaletteFixedProps,
         EuiColorPalettePickerPaletteGradientProps,
+        ColorStop,
       },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
+    },
+    {
+      title: 'Color palette display',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Use <strong>EuiColorPaletteDisplay</strong> to show the palette in
+              use for a data visualization.
+            </p>
+            <p>
+              Use the palette prop to pass your palette as an array of color{' '}
+              <EuiCode>strings</EuiCode> or an array of{' '}
+              <EuiCode>ColorStops</EuiCode> in the form of{' '}
+              <EuiCode>{'{ stop: number, color: string }'}</EuiCode>. Use{' '}
+              <EuiCode>fixed</EuiCode> palettes for categorical data and{' '}
+              <EuiCode>gradient</EuiCode> palettes for continuous data.
+            </p>
+            <p>
+              In cases you need to apply a palette, it&apos;s recommended to use
+              the{' '}
+              <Link to="/forms/color-selection#color-palette-picker">
+                <strong>EuiColorPalettePicker</strong>
+              </Link>
+              .
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorPaletteDisplaySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorPaletteDisplayHtml,
+        },
+      ],
+      props: {
+        EuiColorPaletteDisplay,
+        ColorStop,
+      },
+      snippet: colorPaletteDisplaySnippet,
+      demo: <ColorPaletteDisplay />,
     },
     {
       title: 'Color stops',
@@ -389,11 +480,15 @@ export const ColorPickerExample = {
           code: colorStopsHtml,
         },
       ],
-      props: { EuiColorStops },
+      props: {
+        EuiColorStops,
+        ColorStop,
+      },
       snippet: [
         colorStopsSnippetStandard,
         colorStopsSnippetAdd,
         colorStopsSnippetFixed,
+        colorStopsSnippetStepped,
       ],
       demo: <ColorStops />,
     },
@@ -407,9 +502,9 @@ export const ColorPickerExample = {
               defined <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> range
               values. It is also possible to leave the range open-ended for
               cases where the target data set is unknown or maleable. In this
-              case, a user{"'"}s added values will define <EuiCode>min</EuiCode>{' '}
-              and <EuiCode>max</EuiCode> and users will have more freedom over
-              resetting the values on the fly.
+              case, a user&apos;s added values will define{' '}
+              <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> and users will
+              have more freedom over resetting the values on the fly.
             </p>
           </EuiText>
         </React.Fragment>
@@ -648,4 +743,5 @@ export const ColorPickerExample = {
       demo: <KitchenSink />,
     },
   ],
+  playground: playgrounds,
 };

@@ -19,39 +19,73 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
+import {
+  _EuiPageRestrictWidth,
+  setPropsForRestrictedPageWidth,
+} from './_restrict_width';
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiPage--paddingSmall',
+  m: 'euiPage--paddingMedium',
+  l: 'euiPage--paddingLarge',
+};
+
+const directionToClassNameMap = {
+  row: null,
+  column: 'euiPage--column',
+};
+
+export const SIZES = keysOf(paddingSizeToClassNameMap);
+export const DIRECTIONS = keysOf(directionToClassNameMap);
 
 export interface EuiPageProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  restrictWidth?: boolean | number | string;
+    HTMLAttributes<HTMLDivElement>,
+    _EuiPageRestrictWidth {
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: typeof SIZES[number];
+  /**
+   * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
+   * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`
+   */
+  grow?: boolean;
+  /**
+   * Changes the `flex-direction` property.
+   * Flip to `column` when not including a sidebar.
+   */
+  direction?: 'row' | 'column';
 }
 
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
   children,
-  /**
-   * Sets the max-width of the page,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
   restrictWidth = false,
   style,
   className,
+  paddingSize = 'm',
+  grow = true,
+  direction = 'row',
   ...rest
 }) => {
-  let widthClassname;
-  let newStyle;
+  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+    restrictWidth,
+    style
+  );
 
-  if (restrictWidth === true) {
-    widthClassname = 'euiPage--restrictWidth-default';
-  } else if (restrictWidth !== false) {
-    widthClassname = 'euiPage--restrictWidth-custom';
-    newStyle = { ...style, maxWidth: restrictWidth };
-  }
-
-  const classes = classNames('euiPage', widthClassname, className);
+  const classes = classNames(
+    'euiPage',
+    paddingSizeToClassNameMap[paddingSize],
+    directionToClassNameMap[direction],
+    {
+      'euiPage--grow': grow,
+      [`euiPage--${widthClassName}`]: widthClassName,
+    },
+    className
+  );
 
   return (
     <div className={classes} style={newStyle || style} {...rest}>

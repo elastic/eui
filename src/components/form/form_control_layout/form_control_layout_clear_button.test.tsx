@@ -20,15 +20,24 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { EuiFormControlLayoutClearButton } from './form_control_layout_clear_button';
+import { requiredProps } from '../../../test';
 
 describe('EuiFormControlLayoutClearButton', () => {
   test('is rendered', () => {
-    const clear = {
-      onClick: () => null,
-      className: 'customClass',
-      'data-test-subj': 'clearButton',
-    };
-    const component = render(<EuiFormControlLayoutClearButton {...clear} />);
+    const component = render(
+      <EuiFormControlLayoutClearButton
+        onClick={() => null}
+        {...requiredProps}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('size is rendered', () => {
+    const component = render(
+      <EuiFormControlLayoutClearButton onClick={() => null} size="s" />
+    );
 
     expect(component).toMatchSnapshot();
   });

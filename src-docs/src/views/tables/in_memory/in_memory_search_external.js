@@ -7,8 +7,8 @@ import {
   EuiHealth,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSpacer,
-  EuiCheckableCard,
+  EuiFacetGroup,
+  EuiFacetButton,
 } from '../../../../../src/components';
 
 /*
@@ -33,20 +33,11 @@ Example country object:
 }
 */
 
-const initialState = {
-  eu: false,
-  na: false,
-  oc: false,
-  as: false,
-  af: false,
-  sa: false,
-};
-
 const store = createDataStore();
 
 export const Table = () => {
   const [query, setQuery] = useState('');
-  const [state, setState] = useState(initialState);
+  const [selectedOptionId, setSelectedOptionId] = useState(undefined);
 
   const columns = [
     {
@@ -63,7 +54,7 @@ export const Table = () => {
     {
       field: 'github',
       name: 'Github',
-      render: username => (
+      render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -73,13 +64,13 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: date => formatDate(date, 'dobLong'),
+      render: (date) => formatDate(date, 'dobLong'),
       sortable: true,
     },
     {
       field: 'nationality',
       name: 'Nationality',
-      render: countryCode => {
+      render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       },
@@ -88,7 +79,7 @@ export const Table = () => {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: online => {
+      render: (online) => {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
         return <EuiHealth color={color}>{label}</EuiHealth>;
@@ -96,73 +87,69 @@ export const Table = () => {
     },
   ];
 
-  const handleOnChange = search => {
-    setState(initialState);
-    setQuery(search.queryText);
-    return true;
-  };
-
-  const handleCheckbox = e => {
-    switch (e.target.id) {
-      case 'eu': {
-        const isChecked = !state.eu;
-        setQuery(
-          isChecked ? 'nationality:(NL or CZ or NO or IT or GB or GR)' : ''
-        );
-        setState({
-          ...initialState,
-          eu: isChecked,
-        });
-        break;
-      }
-      case 'na': {
-        const isChecked = !state.na;
-        setQuery(isChecked ? 'nationality:(US or CA or MX or HT)' : '');
-        setState({
-          ...initialState,
-          na: isChecked,
-        });
-        break;
-      }
-      case 'oc': {
-        const isChecked = !state.oc;
-        setQuery(isChecked ? 'nationality:(AU or FJ)' : '');
-        setState({
-          ...initialState,
-          oc: isChecked,
-        });
-        break;
-      }
-      case 'as': {
-        const isChecked = !state.as;
-        setQuery(isChecked ? 'nationality:(IL or LB)' : '');
-        setState({
-          ...initialState,
-          as: isChecked,
-        });
-        break;
-      }
-      case 'af': {
-        const isChecked = !state.af;
-        setQuery(isChecked ? 'nationality:(ZA or CG)' : '');
-        setState({
-          ...initialState,
-          af: isChecked,
-        });
-        break;
-      }
-      case 'sa': {
-        const isChecked = !state.sa;
-        setQuery(isChecked ? 'nationality:(CL)' : '');
-        setState({
-          ...initialState,
-          sa: isChecked,
-        });
-        break;
-      }
-      default:
+  const handleOnChange = ({ queryText, error }) => {
+    setSelectedOptionId(undefined);
+    if (!error) {
+      setQuery(queryText);
     }
   };
+
+  const facets = [
+    {
+      id: 'eu',
+      label: 'Europe',
+      isSelected: selectedOptionId === 'eu',
+      onClick: () => {
+        setSelectedOptionId('eu');
+        setQuery('nationality:(NL or CZ or NO or IT or GB or GR)');
+      },
+    },
+    {
+      id: 'na',
+      label: 'North America',
+      isSelected: selectedOptionId === 'na',
+      onClick: () => {
+        setSelectedOptionId('na');
+        setQuery('nationality:(US or CA or MX or HT)');
+      },
+    },
+    {
+      id: 'oc',
+      label: 'Oceania',
+      isSelected: selectedOptionId === 'oc',
+      onClick: () => {
+        setSelectedOptionId('oc');
+        setQuery('nationality:(AU or FJ)');
+      },
+    },
+    {
+      id: 'as',
+      label: 'Asia',
+      isSelected: selectedOptionId === 'as',
+      onClick: () => {
+        setSelectedOptionId('as');
+        setQuery('nationality:(IL or LB)');
+      },
+    },
+    {
+      id: 'af',
+      label: 'Africa',
+      isSelected: selectedOptionId === 'af',
+      onClick: () => {
+        setSelectedOptionId('af');
+        setQuery('nationality:(ZA or CG)');
+      },
+    },
+    {
+      id: 'sa',
+      label: 'South America',
+      isSelected: selectedOptionId === 'sa',
+      onClick: () => {
+        setSelectedOptionId('sa');
+        setQuery('nationality:(CL)');
+      },
+    },
+  ];
 
   const search = {
     query,
@@ -182,7 +169,7 @@ export const Table = () => {
         field: 'nationality',
         name: 'Nationality',
         multiSelect: 'or',
-        options: store.countries.map(country => ({
+        options: store.countries.map((country) => ({
           value: country.code,
           name: country.name,
           view: `${country.flag} ${country.name}`,
@@ -195,73 +182,21 @@ export const Table = () => {
     <Fragment>
       <EuiFlexGroup>
         <EuiFlexItem grow={1}>
-          <div>
-            <EuiCheckableCard
-              id="af"
-              label="Africa"
-              checkableType="radio"
-              value="Africa"
-              checked={state.af}
-              onChange={handleCheckbox}
-            />
-          </div>
-          <EuiSpacer size="s" />
-          <div>
-            <EuiCheckableCard
-              id="as"
-              label="Asia"
-              checkableType="radio"
-              value="Asia"
-              checked={state.as}
-              onChange={handleCheckbox}
-            />
-          </div>
-          <EuiSpacer size="s" />
-          <div>
-            <EuiCheckableCard
-              id="eu"
-              label="Europe"
-              checkableType="radio"
-              value="Europe"
-              checked={state.eu}
-              onChange={handleCheckbox}
-            />
-          </div>
-          <EuiSpacer size="s" />
-          <div>
-            <EuiCheckableCard
-              id="na"
-              label="North America"
-              checkableType="radio"
-              value="North America"
-              checked={state.na}
-              onChange={handleCheckbox}
-            />
-          </div>
-          <EuiSpacer size="s" />
-          <div>
-            <EuiCheckableCard
-              id="oc"
-              label="Oceania"
-              checkableType="radio"
-              value="Oceania"
-              checked={state.oc}
-              onChange={handleCheckbox}
-            />
-          </div>
-          <EuiSpacer size="s" />
-          <div>
-            <EuiCheckableCard
-              id="sa"
-              label="South America"
-              checkableType="radio"
-              value="South America"
-              checked={state.sa}
-              onChange={handleCheckbox}
-            />
-          </div>
+          <EuiFacetGroup>
+            {facets.map((facet) => {
+              return (
+                <EuiFacetButton
+                  key={facet.id}
+                  id={facet.id}
+                  isSelected={facet.isSelected}
+                  onClick={facet.onClick}>
+                  {facet.label}
+                </EuiFacetButton>
+              );
+            })}
+          </EuiFacetGroup>
         </EuiFlexItem>
-        <EuiFlexItem grow={2}>
+        <EuiFlexItem grow={3}>
           <EuiInMemoryTable
             items={store.users}
             columns={columns}

@@ -91,7 +91,9 @@ export class EuiFieldSearch extends Component<
   };
 
   state = {
-    value: this.props.value || '',
+    value:
+      this.props.value ||
+      (this.props.defaultValue ? `${this.props.defaultValue}` : ''),
   };
 
   inputElement: HTMLInputElement | null = null;
@@ -182,7 +184,7 @@ export class EuiFieldSearch extends Component<
   };
 
   componentWillUnmount() {
-    this.cleanups.forEach(cleanup => cleanup());
+    this.cleanups.forEach((cleanup) => cleanup());
   }
 
   setRef = (inputElement: HTMLInputElement | null) => {
@@ -242,8 +244,9 @@ export class EuiFieldSearch extends Component<
       {
         'euiFieldSearch--fullWidth': fullWidth,
         'euiFieldSearch--compressed': compressed,
+        'euiFieldSearch--inGroup': prepend || append,
         'euiFieldSearch-isLoading': isLoading,
-        'euiFieldText--inGroup': prepend || append,
+        'euiFieldSearch-isClearable': isClearable && value,
       },
       className
     );
@@ -268,7 +271,7 @@ export class EuiFieldSearch extends Component<
             name={name}
             placeholder={placeholder}
             className={classes}
-            onKeyUp={e => this.onKeyUp(e, incremental, onSearch)}
+            onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
             ref={this.setRef}
             {...rest}
           />

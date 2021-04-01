@@ -7,7 +7,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 export default () => {
   const [value, setValue] = useState(['', '']);
 
-  const onChange = value => {
+  const onChange = (value) => {
     setValue(value);
   };
 

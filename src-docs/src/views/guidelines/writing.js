@@ -233,7 +233,7 @@ export default {
               </GuideRuleWriting>
             </GuideRuleExample>
           </GuideRule>
-          
+
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"

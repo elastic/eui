@@ -4,7 +4,7 @@
 
 ## New components, features, and bug fixes
 
-When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines][docs-components]. If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
+When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines](wiki/component-development.md). If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
 
 ### How we assign work and define our roadmap
 
@@ -29,6 +29,10 @@ EUI has strict quality and testing standards due to its large downstream footpri
 2. We can commit directly to your PR to get it over the finish line. (faster)
 
 If you have a preference, let us know when you make your PR, but never feel guilty about just handing it off. We're here to help.
+
+### We utilize Github actions to keep the repo tidy
+
+We use Github actions for some automation tasks to keep this repo tidy. Specifically we close out issues and PRs using [the actions/stale workflow](https://github.com/actions/stale) when we notice a lack of activity over a long period of time. This is done as much to remind us of older issues that need attention as it is to keep our total issue count managable. These action counters can easily be soft reset by commenting on the issues/PRs directly.
 
 ## Helpful documents
 

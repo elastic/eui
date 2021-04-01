@@ -117,13 +117,12 @@ const orderingTooltip = (
 
 export const ElasticChartsPieExample = {
   title: 'Part to whole comparisons',
-  isNew: true,
   intro: (
     <Fragment>
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiFlexGroup responsive={false} wrap>
-        {introCards.map(card => (
+        {introCards.map((card) => (
           <EuiFlexItem key={card.title} style={{ minWidth: 170 }}>
             <EuiCard
               layout="horizontal"
@@ -144,7 +143,6 @@ export const ElasticChartsPieExample = {
           </EuiFlexItem>
         ))}
       </EuiFlexGroup>
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

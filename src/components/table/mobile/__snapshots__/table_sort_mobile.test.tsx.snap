@@ -5,7 +5,6 @@ exports[`EuiTableSortMobile is rendered 1`] = `
   class="euiTableSortMobile testClass1 testClass2"
 >
   <div
-    aria-label="aria-label"
     class="euiPopover euiPopover--anchorDownRight"
     data-test-subj="test subject string"
   >
@@ -19,7 +18,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
         <span
           class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
         >
-          <div
+          <span
             class="euiButtonContent__icon"
             data-euiicon-type="arrowDown"
           />

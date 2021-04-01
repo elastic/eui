@@ -232,13 +232,6 @@ function extend() {
     return target
 }
 
-var immutable$1 = /*#__PURE__*/Object.freeze({
-  default: immutable,
-  __moduleExports: immutable
-});
-
-var xtend = ( immutable$1 && immutable ) || immutable$1;
-
 var listeningFocusTrap = null;
 
 function focusTrap(element, userOptions) {
@@ -246,7 +239,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = xtend(
+  var config = immutable(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -1370,9 +1363,10 @@ function cloneDate(date) {
 
 function parseDate(value, _ref) {
   var dateFormat = _ref.dateFormat,
-      locale = _ref.locale;
+      locale = _ref.locale,
+      strictParsing = _ref.strictParsing;
 
-  var m = moment(value, dateFormat, locale || moment.locale(), true);
+  var m = moment(value, dateFormat, locale || moment.locale(), strictParsing);
   return m.isValid() ? m : null;
 }
 
@@ -1558,6 +1552,14 @@ function isSameMonth(date1, date2) {
 function isSameDay(moment1, moment2) {
   if (moment1 && moment2) {
     return moment1.isSame(moment2, "day");
+  } else {
+    return !moment1 && !moment2;
+  }
+}
+
+function isSameTime(moment1, moment2) {
+  if (moment1 && moment2) {
+    return moment1.isSame(moment2, "second");
   } else {
     return !moment1 && !moment2;
   }
@@ -1775,6 +1777,7 @@ var YearDropdown = function (_React$Component) {
       dropdownVisible: false
     }, _this.setReadViewRef = function (ref) {
       _this.readViewref = ref;
+      _this.props.buttonRef(ref);
     }, _this.onReadViewKeyDown = function (event) {
       var eventKey = event.key;
       switch (eventKey) {
@@ -1867,24 +1870,15 @@ var YearDropdown = function (_React$Component) {
       _this.toggleDropdown();
       if (year === _this.props.year) return;
       _this.props.onChange(year);
-    }, _this.toggleDropdown = function (event) {
+    }, _this.toggleDropdown = function () {
+      var isOpen = !_this.state.dropdownVisible;
       _this.setState({
-        dropdownVisible: !_this.state.dropdownVisible
-      }, function () {
-        if (_this.props.adjustDateOnChange) {
-          _this.handleYearChange(_this.props.date, event);
-        }
+        dropdownVisible: isOpen
       });
-    }, _this.handleYearChange = function (date, event) {
-      _this.onSelect(date, event);
-      _this.setOpen();
+      _this.props.onDropdownToggle(isOpen, 'year');
     }, _this.onSelect = function (date, event) {
       if (_this.props.onSelect) {
         _this.props.onSelect(date, event);
-      }
-    }, _this.setOpen = function () {
-      if (_this.props.setOpen) {
-        _this.props.setOpen(true);
       }
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
@@ -1933,7 +1927,9 @@ YearDropdown.propTypes = {
   date: PropTypes.object,
   onSelect: PropTypes.func,
   setOpen: PropTypes.func,
-  accessibleMode: PropTypes.bool
+  accessibleMode: PropTypes.bool,
+  onDropdownToggle: PropTypes.func,
+  buttonRef: PropTypes.func
 };
 
 var MonthDropdownOptions = function (_React$Component) {
@@ -2094,6 +2090,7 @@ var MonthDropdown = function (_React$Component) {
 
     _this.setReadViewRef = function (ref) {
       _this.readViewref = ref;
+      _this.props.buttonRef(ref);
     };
 
     _this.onReadViewKeyDown = function (event) {
@@ -2196,9 +2193,11 @@ var MonthDropdown = function (_React$Component) {
     };
 
     _this.toggleDropdown = function () {
-      return _this.setState({
-        dropdownVisible: !_this.state.dropdownVisible
+      var isOpen = !_this.state.dropdownVisible;
+      _this.setState({
+        dropdownVisible: isOpen
       });
+      _this.props.onDropdownToggle(isOpen, 'month');
     };
 
     _this.localeData = getLocaleDataForLocale(_this.props.locale);
@@ -2265,7 +2264,9 @@ MonthDropdown.propTypes = {
   month: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   useShortMonthInDropdown: PropTypes.bool,
-  accessibleMode: PropTypes.bool
+  accessibleMode: PropTypes.bool,
+  onDropdownToggle: PropTypes.func,
+  buttonRef: PropTypes.func
 };
 
 function generateMonthYears(minDate, maxDate) {
@@ -3607,7 +3608,10 @@ var Calendar = function (_React$Component) {
         onDropdownFocus: function onDropdownFocus() {},
         monthsShown: 1,
         forceShowMonthNavigation: false,
-        timeCaption: "Time"
+        timeCaption: "Time",
+        previousMonthButtonLabel: "Previous Month",
+        nextMonthButtonLabel: "Next Month",
+        enableFocusTrap: true
       };
     }
   }]);
@@ -3616,6 +3620,30 @@ var Calendar = function (_React$Component) {
     classCallCheck(this, Calendar);
 
     var _this = possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.setMonthRef = function (node) {
+      _this.monthRef = node;
+    };
+
+    _this.setYearRef = function (node) {
+      _this.yearRef = node;
+    };
+
+    _this.handleOnDropdownToggle = function (isOpen, dropdown) {
+      _this.setState({ pauseFocusTrap: isOpen });
+      if (!isOpen) {
+        var element = dropdown === 'month' ? _this.monthRef : _this.yearRef;
+        if (element) {
+          // The focus trap has been unpaused and will reinitialize focus
+          // but does so on the wrong element (calendar)
+          // This refocuses the previous element (dropdown button).
+          // Duration arrived at by trial-and-error.
+          setTimeout(function () {
+            return element.focus();
+          }, 25);
+        }
+      }
+    };
 
     _this.handleClickOutside = function (event) {
       _this.props.onClickOutside(event);
@@ -3694,14 +3722,6 @@ var Calendar = function (_React$Component) {
     _this.handleMonthChange = function (date) {
       if (_this.props.onMonthChange) {
         _this.props.onMonthChange(date);
-      }
-      if (_this.props.adjustDateOnChange) {
-        if (_this.props.onSelect) {
-          _this.props.onSelect(date);
-        }
-        if (_this.props.setOpen) {
-          _this.props.setOpen(true);
-        }
       }
       if (_this.props.accessibleMode) {
         _this.handleSelectionChange(date);
@@ -3884,7 +3904,9 @@ var Calendar = function (_React$Component) {
         year: getYear(_this.state.date),
         scrollableYearDropdown: _this.props.scrollableYearDropdown,
         yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
-        accessibleMode: _this.props.accessibleMode
+        accessibleMode: _this.props.accessibleMode,
+        onDropdownToggle: _this.handleOnDropdownToggle,
+        buttonRef: _this.setYearRef
       });
     };
 
@@ -3901,7 +3923,9 @@ var Calendar = function (_React$Component) {
         onChange: _this.changeMonth,
         month: getMonth(_this.state.date),
         useShortMonthInDropdown: _this.props.useShortMonthInDropdown,
-        accessibleMode: _this.props.accessibleMode
+        accessibleMode: _this.props.accessibleMode,
+        onDropdownToggle: _this.handleOnDropdownToggle,
+        buttonRef: _this.setMonthRef
       });
     };
 
@@ -4083,8 +4107,11 @@ var Calendar = function (_React$Component) {
     _this.state = {
       date: _this.localizeDate(_this.getDateInView()),
       selectingDate: null,
-      monthContainer: null
+      monthContainer: null,
+      pauseFocusTrap: false
     };
+    _this.monthRef = React__default.createRef();
+    _this.yearRef = React__default.createRef();
     return _this;
   }
 
@@ -4133,10 +4160,12 @@ var Calendar = function (_React$Component) {
         React__default.createElement(
           focusTrapReact,
           {
+            paused: this.state.pauseFocusTrap,
+            active: this.props.enableFocusTrap,
             tag: FocusTrapContainer,
             focusTrapOptions: {
               onDeactivate: function onDeactivate() {
-                return _this3.props.setOpen(false);
+                return _this3.props.setOpen(false, true);
               },
               initialFocus: initialFocusTarget
             }
@@ -4238,7 +4267,8 @@ Calendar.propTypes = {
   renderCustomHeader: PropTypes.func,
   renderDayContents: PropTypes.func,
   updateSelection: PropTypes.func.isRequired,
-  accessibleMode: PropTypes.bool
+  accessibleMode: PropTypes.bool,
+  enableFocusTrap: PropTypes.bool
 };
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -4271,17 +4301,10 @@ var _aFunction = function (it) {
   return it;
 };
 
-var _aFunction$1 = /*#__PURE__*/Object.freeze({
-  default: _aFunction,
-  __moduleExports: _aFunction
-});
-
-var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
-
 // optional / simple context binding
 
 var _ctx = function (fn, that, length) {
-  aFunction(fn);
+  _aFunction(fn);
   if (that === undefined) return fn;
   switch (length) {
     case 1: return function (a) {
@@ -4455,18 +4478,11 @@ var _cof = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
-var _cof$1 = /*#__PURE__*/Object.freeze({
-  default: _cof,
-  __moduleExports: _cof
-});
-
-var cof = ( _cof$1 && _cof ) || _cof$1;
-
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 
 // eslint-disable-next-line no-prototype-builtins
 var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-  return cof(it) == 'String' ? it.split('') : Object(it);
+  return _cof(it) == 'String' ? it.split('') : Object(it);
 };
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -4561,30 +4577,18 @@ var _objectKeysInternal = function (object, names) {
   return result;
 };
 
-var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
-  default: _objectKeysInternal,
-  __moduleExports: _objectKeysInternal
-});
-
 // IE 8- don't enum bug keys
 var _enumBugKeys = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
-
-var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 var _objectKeys = Object.keys || function keys(O) {
-  return $keys(O, _enumBugKeys);
+  return _objectKeysInternal(O, _enumBugKeys);
 };
-
-var _objectKeys$1 = /*#__PURE__*/Object.freeze({
-  default: _objectKeys,
-  __moduleExports: _objectKeys
-});
 
 var f$1 = Object.getOwnPropertySymbols;
 
@@ -4603,8 +4607,6 @@ var _objectPie = {
 var _toObject = function (it) {
   return Object(_defined(it));
 };
-
-var getKeys = ( _objectKeys$1 && _objectKeys ) || _objectKeys$1;
 
 // 19.1.2.1 Object.assign(target, source, ...)
 
@@ -4632,7 +4634,7 @@ var _objectAssign = !$assign || _fails(function () {
   var isEnum = _objectPie.f;
   while (aLen > index) {
     var S = _iobject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
     var length = keys.length;
     var j = 0;
     var key;
@@ -4654,11 +4656,18 @@ _export(_export.S + _export.F, 'Object', { assign: require$$0$1 });
 
 var assign = _core.Object.assign;
 
-var assign$1 = createCommonjsModule(function (module) {
-module.exports = { "default": assign, __esModule: true };
+var assign$1 = /*#__PURE__*/Object.freeze({
+  default: assign,
+  __moduleExports: assign
 });
 
-unwrapExports(assign$1);
+var require$$0$2 = ( assign$1 && assign ) || assign$1;
+
+var assign$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$2, __esModule: true };
+});
+
+unwrapExports(assign$2);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4666,7 +4675,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$1);
+var _assign2 = _interopRequireDefault(assign$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4722,7 +4731,7 @@ var _redefine = _hide;
 
 var _objectDps = _descriptors ? Object.defineProperties : function defineProperties(O, Properties) {
   _anObject(O);
-  var keys = getKeys(Properties);
+  var keys = _objectKeys(Properties);
   var length = keys.length;
   var i = 0;
   var P;
@@ -4945,7 +4954,12 @@ var iterator$1 = createCommonjsModule(function (module) {
 module.exports = { "default": iterator, __esModule: true };
 });
 
-unwrapExports(iterator$1);
+var iterator$2 = unwrapExports(iterator$1);
+
+var iterator$3 = /*#__PURE__*/Object.freeze({
+  default: iterator$2,
+  __moduleExports: iterator$1
+});
 
 var _meta = createCommonjsModule(function (module) {
 var META = _uid('meta');
@@ -5019,7 +5033,7 @@ var _wksDefine = function (name) {
 
 
 var _enumKeys = function (it) {
-  var result = getKeys(it);
+  var result = _objectKeys(it);
   var getSymbols = _objectGops.f;
   if (getSymbols) {
     var symbols = getSymbols(it);
@@ -5033,7 +5047,7 @@ var _enumKeys = function (it) {
 // 7.2.2 IsArray(argument)
 
 var _isArray = Array.isArray || function isArray(arg) {
-  return cof(arg) == 'Array';
+  return _cof(arg) == 'Array';
 };
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
@@ -5041,7 +5055,7 @@ var _isArray = Array.isArray || function isArray(arg) {
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
 var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return $keys(O, hiddenKeys);
+  return _objectKeysInternal(O, hiddenKeys);
 };
 
 var _objectGopn = {
@@ -5254,7 +5268,7 @@ for (var es6Symbols = (
   'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
 ).split(','), j = 0; es6Symbols.length > j;)_wks(es6Symbols[j++]);
 
-for (var wellKnownSymbols = getKeys(_wks.store), k = 0; wellKnownSymbols.length > k;) _wksDefine(wellKnownSymbols[k++]);
+for (var wellKnownSymbols = _objectKeys(_wks.store), k = 0; wellKnownSymbols.length > k;) _wksDefine(wellKnownSymbols[k++]);
 
 _export(_export.S + _export.F * !USE_NATIVE, 'Symbol', {
   // 19.4.2.1 Symbol.for(key)
@@ -5331,7 +5345,16 @@ var symbol$1 = createCommonjsModule(function (module) {
 module.exports = { "default": symbol, __esModule: true };
 });
 
-unwrapExports(symbol$1);
+var symbol$2 = unwrapExports(symbol$1);
+
+var symbol$3 = /*#__PURE__*/Object.freeze({
+  default: symbol$2,
+  __moduleExports: symbol$1
+});
+
+var _iterator = ( iterator$3 && iterator$2 ) || iterator$3;
+
+var _symbol = ( symbol$3 && symbol$2 ) || symbol$3;
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5339,11 +5362,11 @@ exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator$1);
+var _iterator2 = _interopRequireDefault(_iterator);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$1);
+var _symbol2 = _interopRequireDefault(_symbol);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5411,22 +5434,15 @@ _export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf,
-  __moduleExports: setPrototypeOf
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-var require$$0$2 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
+var setPrototypeOf$2 = unwrapExports(setPrototypeOf$1);
 
-var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
-});
-
-var setPrototypeOf$3 = unwrapExports(setPrototypeOf$2);
-
-var setPrototypeOf$4 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf$3,
-  __moduleExports: setPrototypeOf$2
+var setPrototypeOf$3 = /*#__PURE__*/Object.freeze({
+  default: setPrototypeOf$2,
+  __moduleExports: setPrototypeOf$1
 });
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
@@ -5437,13 +5453,27 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-unwrapExports(create$1);
+var require$$0$3 = ( create$1 && create ) || create$1;
 
-var _setPrototypeOf = ( setPrototypeOf$4 && setPrototypeOf$3 ) || setPrototypeOf$4;
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$3, __esModule: true };
+});
+
+var create$3 = unwrapExports(create$2);
+
+var create$4 = /*#__PURE__*/Object.freeze({
+  default: create$3,
+  __moduleExports: create$2
+});
+
+var _setPrototypeOf = ( setPrototypeOf$3 && setPrototypeOf$2 ) || setPrototypeOf$3;
+
+var _create = ( create$4 && create$3 ) || create$4;
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5455,7 +5485,7 @@ var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
 
 
-var _create2 = _interopRequireDefault(create$1);
+var _create2 = _interopRequireDefault(_create);
 
 
 
@@ -7997,11 +8027,6 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
-var gud$1 = /*#__PURE__*/Object.freeze({
-  default: gud,
-  __moduleExports: gud
-});
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8095,8 +8120,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var _gud = ( gud$1 && gud ) || gud$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8111,7 +8134,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(_gud);
+var _gud2 = _interopRequireDefault(gud);
 
 
 
@@ -8790,7 +8813,9 @@ var DatePicker = function (_React$Component) {
         nextMonthButtonLabel: "Next month",
         renderDayContents: function renderDayContents(date) {
           return date;
-        }
+        },
+
+        strictParsing: false
       };
     }
   }]);
@@ -8816,7 +8841,12 @@ var DatePicker = function (_React$Component) {
         // transforming highlighted days (perhaps nested array)
         // to flat Map for faster access in day.jsx
         highlightDates: getHightLightDaysMap(_this.props.highlightDates),
-        focused: false
+        focused: false,
+        // We attempt to handle focus trap activation manually,
+        // but that is not possible with custom inputs like buttons.
+        // Err on the side of a11y and trap focus when we can't be certain
+        // that the trigger comoponent will work with our keyDown logic.
+        enableFocusTrap: _this.props.customInput && _this.props.customInput.type !== 'input' ? true : false
       };
     };
 
@@ -8855,7 +8885,8 @@ var DatePicker = function (_React$Component) {
         if (!open) {
           _this.setState(function (prev) {
             return {
-              focused: skipSetBlur ? prev.focused : false
+              focused: skipSetBlur ? prev.focused : false,
+              enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
             };
           }, function () {
             !skipSetBlur && _this.setBlur();
@@ -8877,7 +8908,7 @@ var DatePicker = function (_React$Component) {
     _this.handleFocus = function (event) {
       if (!_this.state.preventFocus) {
         _this.props.onFocus(event);
-        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly && !_this.props.accessibleMode) {
+        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly) {
           _this.setOpen(true);
         }
       }
@@ -8959,7 +8990,7 @@ var DatePicker = function (_React$Component) {
       if (!_this.props.shouldCloseOnSelect || _this.props.showTimeSelect) {
         _this.setPreSelection(date);
       } else if (!_this.props.inline) {
-        _this.setOpen(false);
+        _this.setOpen(false, true);
       }
     };
 
@@ -8982,18 +9013,19 @@ var DatePicker = function (_React$Component) {
         return;
       }
 
-      if (!isSameDay(_this.props.selected, changedDate) || _this.props.allowSameDay) {
+      if (changedDate !== null && _this.props.selected) {
+        var selected = _this.props.selected;
+        if (keepInput) selected = newDate(changedDate);
+        changedDate = setTime(newDate(changedDate), {
+          hour: getHour(selected),
+          minute: getMinute(selected),
+          second: getSecond(selected),
+          millisecond: getMillisecond(selected)
+        });
+      }
+
+      if (!isSameTime(_this.props.selected, changedDate) || _this.props.allowSameDay) {
         if (changedDate !== null) {
-          if (_this.props.selected) {
-            var selected = _this.props.selected;
-            if (keepInput) selected = newDate(changedDate);
-            changedDate = setTime(newDate(changedDate), {
-              hour: getHour(selected),
-              minute: getMinute(selected),
-              second: getSecond(selected),
-              millisecond: getMillisecond(selected)
-            });
-          }
           if (!_this.props.inline) {
             _this.setState({
               preSelection: changedDate
@@ -9029,13 +9061,18 @@ var DatePicker = function (_React$Component) {
         millisecond: 0
       });
 
-      _this.setState({
-        preSelection: changedDate
-      });
+      if (!isSameTime(selected, changedDate)) {
+        _this.setState({
+          preSelection: changedDate
+        });
 
-      _this.props.onChange(changedDate);
+        _this.props.onChange(changedDate);
+      }
+
+      _this.props.onSelect(changedDate);
+
       if (_this.props.shouldCloseOnSelect) {
-        _this.setOpen(false);
+        _this.setOpen(false, true);
       }
       _this.setState({ inputValue: null });
     };
@@ -9063,7 +9100,24 @@ var DatePicker = function (_React$Component) {
       if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
         if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
           event.preventDefault();
-          _this.onInputClick();
+          _this.setState({ enableFocusTrap: true }, function () {
+            _this.onInputClick();
+          });
+        }
+        return;
+      }
+      if (_this.state.open && !_this.state.enableFocusTrap) {
+        if (eventKey === "ArrowDown" || eventKey === "Tab") {
+          event.preventDefault();
+          _this.setState({ enableFocusTrap: true }, function () {
+            _this.onInputClick();
+          });
+        } else if (eventKey === "Escape") {
+          event.preventDefault();
+          _this.setOpen(false, true);
+        } else if (eventKey === "Enter") {
+          event.preventDefault();
+          _this.setOpen(false, true);
         }
         return;
       }
@@ -9074,12 +9128,12 @@ var DatePicker = function (_React$Component) {
           _this.handleSelect(copy, event);
           !_this.props.shouldCloseOnSelect && _this.setPreSelection(copy);
         } else {
-          _this.setOpen(false);
+          _this.setOpen(false, true);
         }
       } else if (eventKey === "Escape") {
         event.preventDefault();
 
-        _this.setOpen(false);
+        _this.setOpen(false, true);
         if (!_this.inputOk()) {
           _this.props.onInputError({ code: 1, msg: INPUT_ERR_1 });
         }
@@ -9218,7 +9272,8 @@ var DatePicker = function (_React$Component) {
           popperProps: _this.props.popperProps,
           renderDayContents: _this.props.renderDayContents,
           updateSelection: _this.updateSelection,
-          accessibleMode: _this.props.accessibleMode
+          accessibleMode: _this.props.accessibleMode,
+          enableFocusTrap: _this.state.enableFocusTrap
         },
         _this.props.children
       );
@@ -9237,7 +9292,7 @@ var DatePicker = function (_React$Component) {
 
       return React__default.cloneElement(customInput, (_React$cloneElement = {}, _React$cloneElement[customInputRef] = function (input) {
         _this.input = input;
-      }, _React$cloneElement.value = inputValue, _React$cloneElement.onBlur = _this.handleBlur, _React$cloneElement.onChange = _this.handleChange, _React$cloneElement.onClick = _this.onInputClick, _React$cloneElement.onFocus = _this.handleFocus, _React$cloneElement.onKeyDown = _this.onInputKeyDown, _React$cloneElement.id = _this.props.id, _React$cloneElement.name = _this.props.name, _React$cloneElement.autoFocus = _this.props.autoFocus, _React$cloneElement.placeholder = _this.props.placeholderText, _React$cloneElement.disabled = _this.props.disabled, _React$cloneElement.autoComplete = _this.props.autoComplete, _React$cloneElement.className = className, _React$cloneElement.title = _this.props.title, _React$cloneElement.readOnly = _this.props.readOnly, _React$cloneElement.required = _this.props.required, _React$cloneElement.tabIndex = _this.props.tabIndex, _React$cloneElement["aria-label"] = inputValue, _React$cloneElement));
+      }, _React$cloneElement.value = inputValue, _React$cloneElement.onBlur = _this.handleBlur, _React$cloneElement.onChange = _this.handleChange, _React$cloneElement.onClick = _this.onInputClick, _React$cloneElement.onFocus = _this.handleFocus, _React$cloneElement.onKeyDown = _this.onInputKeyDown, _React$cloneElement.id = _this.props.id, _React$cloneElement.name = _this.props.name, _React$cloneElement.autoFocus = _this.props.autoFocus, _React$cloneElement.placeholder = _this.props.placeholderText, _React$cloneElement.disabled = _this.props.disabled, _React$cloneElement.autoComplete = _this.props.autoComplete, _React$cloneElement.className = className, _React$cloneElement.title = _this.props.title, _React$cloneElement.readOnly = _this.props.readOnly, _React$cloneElement.required = _this.props.required, _React$cloneElement.tabIndex = _this.props.tabIndex, _React$cloneElement["aria-label"] = _this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.', _React$cloneElement));
     };
 
     _this.renderClearButton = function () {
@@ -9434,7 +9489,8 @@ DatePicker.propTypes = {
   renderCustomHeader: PropTypes.func,
   renderDayContents: PropTypes.func,
   accessibleMode: PropTypes.bool,
-  accessibleModeButton: PropTypes.element
+  accessibleModeButton: PropTypes.element,
+  strictParsing: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
 };
 
 

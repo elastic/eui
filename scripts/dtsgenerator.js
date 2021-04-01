@@ -25,7 +25,7 @@ function hasParentIndex(pathToFile) {
 }
 
 const generator = dtsGenerator({
-  name: '@elastic/eui',
+  prefix: '@elastic/eui',
   project: baseDir,
   out: 'eui.d.ts',
   exclude: [

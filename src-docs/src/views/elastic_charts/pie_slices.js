@@ -84,11 +84,11 @@ export default () => {
   const [showLegend, setShowLegend] = useState(false);
   const [showValues, setShowValues] = useState(true);
 
-  const onNumChartsChange = e => {
+  const onNumChartsChange = (e) => {
     setNumSlices(e.target.value);
   };
 
-  const onSliceOrderChange = optionId => {
+  const onSliceOrderChange = (optionId) => {
     const sliceOrderLabel = sliceOrderRadios.find(({ id }) => id === optionId)
       .label;
     if (sliceOrderLabel.includes('Counter')) {
@@ -106,7 +106,7 @@ export default () => {
     setSliceOrderIdSelected(optionId);
   };
 
-  const onGroupChange = e => {
+  const onGroupChange = (e) => {
     setGrouped(e.target.checked);
   };
 
@@ -149,14 +149,14 @@ export default () => {
           <Partition
             id="donutByLanguage"
             data={pieData()}
-            valueAccessor={d => Number(d.percent)}
+            valueAccessor={(d) => Number(d.percent)}
             valueFormatter={showValues ? undefined : () => ''}
             valueGetter={showValues ? 'percent' : undefined}
             layers={[
               {
-                groupByRollup: d => d.browser,
+                groupByRollup: (d) => d.browser,
                 shape: {
-                  fillColor: d =>
+                  fillColor: (d) =>
                     euiChartTheme.theme.colors.vizColors[d.sortIndex],
                 },
               },
@@ -180,7 +180,7 @@ export default () => {
               legend="Chart type"
               options={pieTypeRadios}
               idSelected={pieTypeIdSelected}
-              onChange={id => {
+              onChange={(id) => {
                 setPieTypeIdSelected(id);
               }}
               buttonSize="compressed"
@@ -197,13 +197,13 @@ export default () => {
             <EuiSwitch
               label="Show values"
               checked={showValues}
-              onChange={e => setShowValues(e.target.checked)}
+              onChange={(e) => setShowValues(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Show legend"
               checked={showLegend}
-              onChange={e => setShowLegend(e.target.checked)}
+              onChange={(e) => setShowLegend(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -307,7 +307,7 @@ export default () => {
     }}
   />
 </Chart>`}>
-          {copy => (
+          {(copy) => (
             <EuiButton
               fill
               onClick={copy}

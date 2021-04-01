@@ -23,10 +23,6 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiDualRange } from './dual_range';
 
-jest.mock('./../../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'generated-id',
-}));
-
 const props = {
   onChange: () => {},
 };

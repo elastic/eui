@@ -23,14 +23,26 @@ import { CommonProps } from '../../common';
 
 export interface EuiPageSideBarProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {}
+    HTMLAttributes<HTMLDivElement> {
+  /**
+   * Adds `position: sticky` and affords for any fixed position headers
+   */
+  sticky?: boolean;
+}
 
 export const EuiPageSideBar: FunctionComponent<EuiPageSideBarProps> = ({
   children,
   className,
+  sticky,
   ...rest
 }) => {
-  const classes = classNames('euiPageSideBar', className);
+  const classes = classNames(
+    'euiPageSideBar',
+    {
+      'euiPageSideBar--sticky': sticky,
+    },
+    className
+  );
 
   return (
     <div className={classes} {...rest}>

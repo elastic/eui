@@ -5,10 +5,9 @@ import {
   EuiButton,
   EuiButtonGroup,
   EuiSpacer,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiTitle,
+  EuiPanel,
 } from '../../../../src/components';
+import { EuiFormRow } from '../../../../src/components/form';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -33,9 +32,9 @@ export default () => {
   const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
 
-  const onChange = optionId => {
+  const onChange = (optionId) => {
     setToggleIdSelected(optionId);
-    setLabel(toggleButtons.find(x => x.id === optionId).label);
+    setLabel(toggleButtons.find((x) => x.id === optionId).label);
   };
 
   let isLoadingMessage;
@@ -54,31 +53,25 @@ export default () => {
 
   return (
     <>
-      <EuiFlexGroup alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiTitle size="xs">
-            <h3>isLoadingMessage: </h3>
-          </EuiTitle>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiButtonGroup
-            legend="Accordion loading message group"
-            options={toggleButtons}
-            idSelected={toggleIdSelected}
-            onChange={onChange}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
+      <EuiFormRow label="isLoadingMessage:" display="columnCompressed">
+        <EuiButtonGroup
+          buttonSize="s"
+          legend="Accordion loading message group"
+          options={toggleButtons}
+          idSelected={toggleIdSelected}
+          onChange={onChange}
+        />
+      </EuiFormRow>
       <EuiSpacer size="m" />
       <EuiAccordion
-        id="accordionLoading"
+        id={htmlIdGenerator()()}
         initialIsOpen={true}
-        buttonContent="Click to open"
+        paddingSize={isLoadingMessage ? 'm' : 'none'}
+        buttonContent="Accordion is loading, click to toggle"
         extraAction={<EuiButton size="s">Extra action!</EuiButton>}
         isLoading
         isLoadingMessage={isLoadingMessage}>
-        <div>Opened content.</div>
+        <EuiPanel color="subdued">Opened content.</EuiPanel>
       </EuiAccordion>
     </>
   );

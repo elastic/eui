@@ -24,7 +24,7 @@
 }
 
 // Set scroll bar appearance on Chrome (and firefox).
-@mixin euiScrollBar {
+@mixin euiScrollBar($thumbColor: $euiColorDarkShade, $trackBackgroundColor: transparent) {
   // Firefox's scrollbar coloring cascades, but the sizing does not,
   // so it's being added to this mixin for allowing support wherever custom scrollbars are
   // sass-lint:disable-block no-misspelled-properties
@@ -37,27 +37,42 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: transparentize($euiColorDarkShade, .5);
-    border: $euiScrollBarCorner solid transparent;
+    background-color: transparentize($thumbColor, .5);
+    border: $euiScrollBarCorner solid $trackBackgroundColor;
     background-clip: content-box;
   }
 
   &::-webkit-scrollbar-corner,
   &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: $trackBackgroundColor;
   }
 }
+
+/**
+ * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.
+ *    Browser's supporting `:focus-visible` will still show outline on keyboard focus only.
+ *    Others like Safari, won't show anything at all.
+ */
 
 // Just overflow and scrollbars
 @mixin euiYScroll {
   @include euiScrollBar;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
 }
 
 @mixin euiXScroll {
   @include euiScrollBar;
   overflow-x: auto;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
 }
 
 // The full overflow with shadow
@@ -85,6 +100,13 @@
 @mixin internetExplorerOnly {
   // sass-lint:disable-block no-vendor-prefixes
   @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+// Doesn't have reduced motion turned on
+@mixin euiCanAnimate {
+  @media screen and (prefers-reduced-motion: no-preference) {
     @content;
   }
 }

@@ -8,6 +8,7 @@ import {
   EuiCopy,
   EuiTitle,
   EuiText,
+  EuiPanel,
 } from '../../../../../src/components';
 import { rgbToHex } from '../../../../../src/services';
 
@@ -24,7 +25,7 @@ export const VisPalette = ({ variant }) => {
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiCopy beforeMessage="Click to copy color name" textToCopy={name}>
-              {copy => (
+              {(copy) => (
                 <EuiIcon
                   onClick={copy}
                   size="xl"
@@ -52,13 +53,12 @@ export const VisPalette = ({ variant }) => {
   }
 
   return (
-    <EuiFlexGroup
-      className="guideSection__shadedBox"
-      direction="column"
-      gutterSize="s">
-      {visColorKeys.map(function(color, index) {
-        return renderPaletteColor(visColors, color, index, variant);
-      })}
-    </EuiFlexGroup>
+    <EuiPanel paddingSize="l" color="subdued">
+      <EuiFlexGroup direction="column" gutterSize="s">
+        {visColorKeys.map(function (color, index) {
+          return renderPaletteColor(visColors, color, index, variant);
+        })}
+      </EuiFlexGroup>
+    </EuiPanel>
   );
 };

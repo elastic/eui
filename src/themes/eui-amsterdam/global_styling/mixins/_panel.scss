@@ -3,47 +3,51 @@
     @error 'A $selector must be provided to @mixin euiPanel().';
   } @else {
     #{$selector} {
-
-      @include euiBottomShadowSmall;
-      background-color: $euiColorEmptyShade;
-      border: none;
-      border-radius: $euiBorderRadius;
       flex-grow: 1;
 
       &#{$selector}--flexGrowZero {
         flex-grow: 0;
       }
 
-      &#{$selector}--isClickable {
-        // in case of button wrapper which inherently is inline-block and no width
-        display: block;
-        width: 100%;
-        text-align: left;
+      &#{$selector}--hasShadow {
+        @include euiBottomShadowMedium;
+      }
 
+      &#{$selector}--hasBorder {
+        border: $euiBorderThin;
+        box-shadow: none;
+      }
+
+      &#{$selector}--isClickable {
         // transition the shadow
         transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
 
+        button#{&} {
+          // in case of button wrapper which inherently is inline-block and no width
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+
         &:hover,
         &:focus {
-          @include euiSlightShadowHover;
+          @include euiBottomShadow($color: $euiShadowColor);
           transform: translateY(-2px);
           cursor: pointer;
         }
       }
 
-      &#{$selector}--shadow {
-        @include euiBottomShadowMedium;
-
-        @if (lightness($euiTextColor) < 50) {
-          border-bottom-color: transparentize($euiShadowColor, .5);
-        } @else {
-          // Applied again here in case dark theme overrides light
-          border-bottom-color: $euiBorderColor;
+      // Border Radii
+      @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+        &#{$selector}--#{$modifier} {
+          border-radius: $amount;
         }
+      }
 
-        &#{$selector}--isClickable:hover,
-        &#{$selector}--isClickable:focus {
-          @include euiBottomShadow($color: $euiShadowColor);
+      // Background colors
+      @each $modifier, $amount in $euiPanelBackgroundColorModifiers {
+        &#{$selector}--#{$modifier} {
+          background-color: $amount;
         }
       }
     }

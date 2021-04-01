@@ -20,12 +20,14 @@ const dataGridHtml = renderToHtml(DataGrid);
 
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
+  EuiDataGridColumnActions,
   EuiDataGridPopoverContentProps,
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
@@ -41,9 +43,14 @@ const gridSnippet = `
     // Required. There are 200 total records.
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
-    // The second column B won't allow clicking in to see the content in a popup.
-    // The first column defines a starting width of 150px and prevents the user from resizing it
-    columns={[{ id: 'A', initialWidth: 150, isResizable: false }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
+    // The first column defines a starting width of 150px, prevents the user from resizing it and no actions are displayed
+    // The second column B won't allow clicking in to see the content in a popup and doesn't show move actions in column header cell
+    // The third column provides one additional cell action, that triggers an alert once clicked
+    columns={[
+        { id: 'A', initialWidth: 150, isResizable: false, actions: false },
+        { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
+        { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
+    ]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
@@ -282,8 +289,22 @@ const gridConcepts = [
 
 export const DataGridExample = {
   title: 'Data grid',
+  intro: (
+    <EuiText>
+      <p>
+        <strong>EuiDataGrid</strong> is for displaying large amounts of tabular
+        data. It is a better choice over{' '}
+        <Link to="/tabular-content/tables/">EUI tables</Link> when there are
+        many columns, the data in those columns is fairly uniform, and when
+        schemas and sorting are important for comparison. Although it is similar
+        to traditional spreedsheet software, EuiDataGrid&apos;s current
+        strengths are in rendering rather than creating content.{' '}
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
+      title: 'Core concepts',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -296,16 +317,6 @@ export const DataGridExample = {
       ],
       text: (
         <Fragment>
-          <p>
-            <strong>EuiDataGrid</strong> is for displaying large amounts of
-            tabular data. It is a better choice over{' '}
-            <Link to="/tabular-content/tables/">EUI tables</Link> when there are
-            many columns, the data in those columns is fairly uniform, and when
-            schemas and sorting are important for comparison. Although it is
-            similar to traditional spreedsheet software, EuiDataGrid&apos;s
-            current strengths are in rendering rather than creating content.{' '}
-          </p>
-          <h2>Core concepts</h2>
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
@@ -353,7 +364,9 @@ export const DataGridExample = {
       props: {
         EuiDataGrid,
         EuiDataGridColumn,
+        EuiDataGridColumnCellAction,
         EuiDataGridColumnVisibility,
+        EuiDataGridColumnActions,
         EuiDataGridControlColumn,
         EuiDataGridInMemory,
         EuiDataGridPaginationProps,
@@ -370,11 +383,13 @@ export const DataGridExample = {
           <DataGrid />
         </Fragment>
       ),
-      extraContent: (
+    },
+    {
+      title: 'Snippet with every feature in use',
+      wrapText: false,
+      text: (
         <Fragment>
-          <EuiSpacer size="xxl" />
           <EuiText>
-            <h2>Snippet with every feature in use</h2>
             <p>
               Here is a complicated data grid example meant to give you an idea
               of the data structure and callbacks you&apos;ll need to provide if
@@ -385,9 +400,15 @@ export const DataGridExample = {
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {gridSnippet}
           </EuiCodeBlock>
-          <EuiSpacer size="xl" />
+        </Fragment>
+      ),
+    },
+    {
+      title: 'General props explanation',
+      wrapText: false,
+      text: (
+        <Fragment>
           <EuiText>
-            <h3>General props explanation</h3>
             <p>
               Please check the props tab in the example above for more
               explanation on the lower level object types. The majority of the

@@ -52,7 +52,9 @@ export interface EuiDatePopoverButtonProps {
   utcOffset?: number;
 }
 
-export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = props => {
+export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = (
+  props
+) => {
   const {
     position,
     isDisabled,
@@ -110,7 +112,6 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       anchorPosition={position === 'start' ? 'downLeft' : 'downRight'}
       display="block"
       panelPaddingSize="none"
-      ownFocus
       {...rest}>
       <EuiDatePopoverContent
         value={value}

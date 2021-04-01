@@ -2,7 +2,9 @@ import { PropTypes } from 'react-view';
 import { EuiCodeBlock, EuiCode } from '../../../../src/components/';
 import { propUtilityForPlayground } from '../../services/playground';
 
-const codeDemo = `\n{\`${require('!!raw-loader!./code_examples/example.html')}\`}\n`;
+const codeDemo = `\n{\`${
+  require('!!raw-loader!./code_examples/example.html').default
+}\`}\n`;
 
 export const codeBlockConfig = () => {
   const docgenInfo = Array.isArray(EuiCodeBlock.__docgenInfo)

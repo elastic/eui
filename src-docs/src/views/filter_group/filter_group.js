@@ -71,12 +71,10 @@ export default () => {
       </EuiFilterButton>
       <EuiPopover
         id="popover"
-        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        panelPaddingSize="none"
-        withTitle>
+        panelPaddingSize="none">
         <div className="euiFilterSelect__note">
           <div className="euiFilterSelect__noteContent">
             <EuiIcon type="minusInCircle" />

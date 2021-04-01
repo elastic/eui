@@ -4,10 +4,10 @@ import { EuiAccordion, EuiButton } from '../../../../src/components';
 
 export default () => (
   <EuiAccordion
-    id="accordionExtra"
+    id="accordionExtraWithLeftArrow"
     buttonContent="Click to open"
     extraAction={<EuiButton size="s">Extra action!</EuiButton>}
     paddingSize="l">
-    <div>Opened content.</div>
+    <strong>Opened content.</strong>
   </EuiAccordion>
 );

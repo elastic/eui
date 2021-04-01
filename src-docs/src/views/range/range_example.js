@@ -8,9 +8,10 @@ import {
   EuiCallOut,
   EuiDualRange,
   EuiRange,
-  EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
+
+import { rangeConfig, dualRangeConfig } from './playground';
 
 import {
   EuiRangeLevels,
@@ -61,7 +62,6 @@ export const RangeControlExample = {
           or use a <strong>EuiFieldNumber</strong> instead.
         </p>
       </EuiCallOut>
-      <EuiSpacer />
     </Fragment>
   ),
   sections: [
@@ -424,4 +424,5 @@ export const RangeControlExample = {
       ],
     },
   ],
+  playground: [rangeConfig, dualRangeConfig],
 };

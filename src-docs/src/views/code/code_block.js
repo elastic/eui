@@ -2,11 +2,11 @@ import React from 'react';
 
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
-const htmlCode = require('!!raw-loader!./code_examples/example.html');
+const htmlCode = require('!!raw-loader!./code_examples/example.html').default;
 
-const jsCode = require('!!raw-loader!./code_examples/example.js');
+const jsCode = require('!!raw-loader!./code_examples/example.js').default;
 
-const sqlCode = require('!!raw-loader!./code_examples/example.sql');
+const sqlCode = require('!!raw-loader!./code_examples/example.sql').default;
 
 export default () => (
   <div>

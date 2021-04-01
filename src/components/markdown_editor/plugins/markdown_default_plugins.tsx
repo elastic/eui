@@ -17,19 +17,37 @@
  * under the License.
  */
 
-import { PluggableList } from 'unified';
+// Importing seemingly unused types from `unified` because the definitions
+// are exported for two versions of TypeScript (3.4, 4.0) and implicit
+// imports during eui.d.ts generation default to the incorrect version (3.4).
+// Explicit imports here resolve the version mismatch.
+import {
+  Plugin,
+  PluggableList,
+  // @ts-ignore See above comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Attacher,
+  // @ts-ignore See above comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Pluggable,
+  // @ts-ignore See above comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Settings,
+} from 'unified';
 import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
 import * as MarkdownTooltip from './markdown_tooltip';
 import * as MarkdownCheckbox from './markdown_checkbox';
+import { markdownLinkValidator } from './markdown_link_validator';
 import React, { createElement } from 'react';
 import { EuiLink } from '../../link';
 import { EuiCodeBlock, EuiCode } from '../../code';
 import markdown from 'remark-parse';
 import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
-import { RemarkRehypeHandler } from '../markdown_types';
 import all from 'mdast-util-to-hast/lib/all';
+import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
+import { EuiMarkdownEditorUiPlugin } from './../markdown_types';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
@@ -37,19 +55,14 @@ export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [emoji, { emoticon: true }],
   [MarkdownTooltip.parser, {}],
   [MarkdownCheckbox.parser, {}],
+  [markdownLinkValidator, {}],
 ];
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
 
-const unknownHandler: RemarkRehypeHandler = (h, node) => {
-  return h(node.position!, node.type, node, all(h, node));
+const unknownHandler: Handler = (h, node) => {
+  return h(node, node.type, node, all(h, node));
 };
-
-interface Remark2RehypeOptions {
-  allowDangerousHtml: boolean;
-  handlers: { [key: string]: RemarkRehypeHandler };
-  [key: string]: any;
-}
 
 interface Rehype2ReactOptions {
   components: { [key: string]: React.ComponentType<any> };
@@ -57,7 +70,7 @@ interface Rehype2ReactOptions {
 }
 
 export const getDefaultEuiMarkdownProcessingPlugins = (): [
-  [typeof remark2rehype, Remark2RehypeOptions], // first is well known
+  [Plugin, Remark2RehypeOptions], // first is well known
   [typeof rehype2react, Rehype2ReactOptions], // second is well known
   ...PluggableList // any additional are generic
 ] => [
@@ -90,3 +103,12 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
 ];
 
 export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();
+
+export const getDefaultEuiMarkdownUiPlugins = (): EuiMarkdownEditorUiPlugin[] => {
+  const array = [MarkdownTooltip.plugin];
+  // @ts-ignore __originatedFromEui is a custom property
+  array.__originatedFromEui = true;
+  return array;
+};
+
+export const defaultUiPlugins = getDefaultEuiMarkdownUiPlugins();

@@ -25,7 +25,6 @@ export const badgeConfig = () => {
       use: 'switch',
       label: 'Simulate',
       modifyOtherProps: (val, state, set) => {
-        console.log(val, 'state', state);
         if (val) {
           if (!state.onClickAriaLabel.value) {
             set('onClickAriaLabel', 'onClickAriaLabel');
@@ -42,7 +41,7 @@ export const badgeConfig = () => {
     value: 'Badge content',
     hidden: true,
     custom: {
-      sanitize: val => {
+      sanitize: (val) => {
         return val.replace(/<(?:"[^"]"['"]|'[^']'['"]|[^'">])+>/g, '');
       },
     },

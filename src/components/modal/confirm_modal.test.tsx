@@ -90,6 +90,21 @@ describe('EuiConfirmModal', () => {
     expect(onCancel).toHaveBeenCalledTimes(0);
   });
 
+  test('isLoading', () => {
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        isLoading
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
+
+    findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+    expect(onConfirm).toHaveBeenCalledTimes(0);
+  });
+
   test('onConfirm can be disabled', () => {
     const component = mount(
       <EuiConfirmModal
@@ -142,7 +157,7 @@ describe('EuiConfirmModal', () => {
   });
 
   describe('defaultFocusedButton', () => {
-    test('is cancel', done => {
+    test('is cancel', (done) => {
       const component = mount(
         <EuiConfirmModal
           onCancel={onCancel}
@@ -164,7 +179,7 @@ describe('EuiConfirmModal', () => {
       });
     });
 
-    test('is confirm', done => {
+    test('is confirm', (done) => {
       const component = mount(
         <EuiConfirmModal
           onCancel={onCancel}

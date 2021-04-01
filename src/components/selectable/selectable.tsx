@@ -38,6 +38,7 @@ import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
 import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
+import { Align } from 'react-window';
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -51,7 +52,7 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
   Partial<OptionalEuiSelectableOptionsListProps>;
 
 // `searchProps` can only be specified when `searchable` is true
-type EuiSelectableSearchableProps = ExclusiveUnion<
+type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
     searchable: false;
   },
@@ -63,13 +64,13 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
     /**
      * Passes props down to the `EuiFieldSearch`
      */
-    searchProps?: Partial<EuiSelectableSearchProps>;
+    searchProps?: Partial<EuiSelectableSearchProps<T>>;
   }
 >;
 
-export type EuiSelectableProps = CommonProps &
+export type EuiSelectableProps<T = {}> = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> &
-  EuiSelectableSearchableProps & {
+  EuiSelectableSearchableProps<T> & {
     /**
      * Function that takes the `list` node and then
      * the `search` node (if `searchable` is applied)
@@ -78,16 +79,16 @@ export type EuiSelectableProps = CommonProps &
       list: ReactElement<
         typeof EuiSelectableMessage | typeof EuiSelectableList
       >,
-      search: ReactElement<EuiSelectableSearch> | undefined
+      search: ReactElement<EuiSelectableSearch<T>> | undefined
     ) => ReactNode;
     /**
      * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: Array<Exclude<EuiSelectableOption, 'id'>>;
+    options: Array<EuiSelectableOption<T>>;
     /**
      * Passes back the altered `options` array with selected options as
      */
-    onChange?: (options: EuiSelectableOption[]) => void;
+    onChange?: (options: Array<EuiSelectableOption<T>>) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -118,7 +119,7 @@ export type EuiSelectableProps = CommonProps &
      * Returns `(option, searchValue)`
      */
     renderOption?: (
-      option: EuiSelectableOption,
+      option: EuiSelectableOption<T>,
       searchValue: string
     ) => ReactNode;
     /**
@@ -136,38 +137,48 @@ export type EuiSelectableProps = CommonProps &
      * or a node to replace the whole content.
      */
     emptyMessage?: ReactElement | string;
+    /**
+     * Control whether or not options get filtered internally or if consumer will filter
+     * Default: false
+     */
+    isPreFiltered?: boolean;
   };
 
-export interface EuiSelectableState {
+export interface EuiSelectableState<T> {
   activeOptionIndex?: number;
   searchValue: string;
-  visibleOptions: EuiSelectableOption[];
+  visibleOptions: Array<EuiSelectableOption<T>>;
   isFocused: boolean;
 }
 
-export class EuiSelectable extends Component<
-  EuiSelectableProps,
-  EuiSelectableState
+export class EuiSelectable<T = {}> extends Component<
+  EuiSelectableProps<T>,
+  EuiSelectableState<T>
 > {
   static defaultProps = {
     options: [],
     singleSelection: false,
     searchable: false,
+    isPreFiltered: false,
   };
-
-  private optionsListRef = createRef<EuiSelectableList>();
+  private containerRef = createRef<HTMLDivElement>();
+  private optionsListRef = createRef<EuiSelectableList<T>>();
   rootId = htmlIdGenerator();
-  constructor(props: EuiSelectableProps) {
+  constructor(props: EuiSelectableProps<T>) {
     super(props);
 
-    const { options, singleSelection } = props;
+    const { options, singleSelection, isPreFiltered } = props;
 
     const initialSearchValue = '';
 
-    const visibleOptions = getMatchingOptions(options, initialSearchValue);
+    const visibleOptions = getMatchingOptions<T>(
+      options,
+      initialSearchValue,
+      isPreFiltered
+    );
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
-    const selectedOptions = options.filter(option => option.checked);
+    const selectedOptions = options.filter((option) => option.checked);
     let activeOptionIndex;
     if (singleSelection && selectedOptions.length === 1) {
       if (visibleOptions.includes(selectedOptions[0])) {
@@ -183,14 +194,18 @@ export class EuiSelectable extends Component<
     };
   }
 
-  static getDerivedStateFromProps(
-    nextProps: EuiSelectableProps,
-    prevState: EuiSelectableState
+  static getDerivedStateFromProps<T>(
+    nextProps: EuiSelectableProps<T>,
+    prevState: EuiSelectableState<T>
   ) {
-    const { options } = nextProps;
+    const { options, isPreFiltered } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
-    const matchingOptions = getMatchingOptions(options, searchValue);
+    const matchingOptions = getMatchingOptions<T>(
+      options,
+      searchValue,
+      isPreFiltered
+    );
 
     const stateUpdate = { visibleOptions: matchingOptions, activeOptionIndex };
 
@@ -214,7 +229,7 @@ export class EuiSelectable extends Component<
     }
 
     const firstSelected = this.state.visibleOptions.findIndex(
-      option => option.checked && !option.disabled && !option.isGroupLabel
+      (option) => option.checked && !option.disabled && !option.isGroupLabel
     );
 
     if (firstSelected > -1) {
@@ -222,7 +237,7 @@ export class EuiSelectable extends Component<
     } else {
       this.setState({
         activeOptionIndex: this.state.visibleOptions.findIndex(
-          option => !option.disabled && !option.isGroupLabel
+          (option) => !option.disabled && !option.isGroupLabel
         ),
         isFocused: true,
       });
@@ -253,20 +268,6 @@ export class EuiSelectable extends Component<
             this.state.visibleOptions[this.state.activeOptionIndex]
           );
         }
-        break;
-
-      case keys.HOME:
-        event.preventDefault();
-        event.stopPropagation();
-        this.setState({ activeOptionIndex: 0 });
-        break;
-
-      case keys.END:
-        event.preventDefault();
-        event.stopPropagation();
-        this.setState({
-          activeOptionIndex: this.state.visibleOptions.length - 1,
-        });
         break;
 
       default:
@@ -318,7 +319,7 @@ export class EuiSelectable extends Component<
   };
 
   onSearchChange = (
-    visibleOptions: EuiSelectableOption[],
+    visibleOptions: Array<EuiSelectableOption<T>>,
     searchValue: string
   ) => {
     this.setState(
@@ -333,23 +334,43 @@ export class EuiSelectable extends Component<
         }
       }
     );
+    if (this.props.searchProps && this.props.searchProps.onSearch) {
+      this.props.searchProps.onSearch(searchValue);
+    }
   };
 
-  onContainerBlur = () => {
+  onContainerBlur = (e: React.FocusEvent) => {
+    // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
+    if (this.containerRef.current!.contains(e.relatedTarget as Node)) return;
+
     this.setState({
       activeOptionIndex: undefined,
       isFocused: false,
     });
   };
 
-  onOptionClick = (options: EuiSelectableOption[]) => {
-    this.setState(state => ({
-      visibleOptions: getMatchingOptions(options, state.searchValue),
-      activeOptionIndex: this.state.activeOptionIndex,
-    }));
-    if (this.props.onChange) {
-      this.props.onChange(options);
+  onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
+    const { isPreFiltered, onChange, searchProps } = this.props;
+    const { searchValue } = this.state;
+    const visibleOptions = getMatchingOptions(
+      options,
+      searchValue,
+      isPreFiltered
+    );
+
+    this.setState({ visibleOptions });
+
+    if (onChange) {
+      onChange(options);
     }
+
+    if (searchProps && searchProps.onChange) {
+      searchProps.onChange(visibleOptions, searchValue);
+    }
+  };
+
+  scrollToItem = (index: number, align?: Align) => {
+    this.optionsListRef.current?.listRef?.scrollToItem(index, align);
   };
 
   render() {
@@ -372,6 +393,7 @@ export class EuiSelectable extends Component<
       loadingMessage,
       noMatchesMessage,
       emptyMessage,
+      isPreFiltered,
       ...rest
     } = this.props;
 
@@ -387,8 +409,11 @@ export class EuiSelectable extends Component<
     const {
       'aria-label': searchAriaLabel,
       'aria-describedby': searchAriaDescribedby,
+      onChange: propsOnChange,
+      onSearch,
       ...cleanedSearchProps
-    } = searchProps || unknownAccessibleName;
+    } = (searchProps || unknownAccessibleName) as typeof searchProps &
+      typeof unknownAccessibleName;
     const {
       'aria-label': listAriaLabel,
       'aria-describedby': listAriaDescribedby,
@@ -492,7 +517,7 @@ export class EuiSelectable extends Component<
      */
     const getAccessibleName = (
       props:
-        | Partial<EuiSelectableSearchProps>
+        | Partial<EuiSelectableSearchProps<T>>
         | EuiSelectableOptionsListPropsWithDefaults
         | undefined,
       messageContentId?: string
@@ -534,13 +559,14 @@ export class EuiSelectable extends Component<
     const search = searchable ? (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
-          <EuiSelectableSearch
+          <EuiSelectableSearch<T>
             key="listSearch"
             options={options}
             onChange={this.onSearchChange}
             listId={this.optionsListRef.current ? listId : undefined} // Only pass the listId if it exists on the page
             aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
+            isPreFiltered={isPreFiltered ?? false}
             {...(searchHasAccessibleName
               ? searchAccessibleName
               : { 'aria-label': placeholderName })}
@@ -548,9 +574,7 @@ export class EuiSelectable extends Component<
           />
         )}
       </EuiI18n>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     const listAccessibleName = getAccessibleName(listProps);
     const listHasAccessibleName = Boolean(
@@ -565,7 +589,7 @@ export class EuiSelectable extends Component<
     ) : (
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
-          <EuiSelectableList
+          <EuiSelectableList<T>
             key="list"
             options={options}
             visibleOptions={visibleOptions}
@@ -594,6 +618,7 @@ export class EuiSelectable extends Component<
 
     return (
       <div
+        ref={this.containerRef}
         className={classes}
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}

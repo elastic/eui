@@ -78,7 +78,7 @@ describe('EuiCollapsibleNavGroup', () => {
     });
 
     describe('background', () => {
-      BACKGROUNDS.forEach(color => {
+      BACKGROUNDS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiCollapsibleNavGroup id="id" background={color} />
@@ -114,6 +114,21 @@ describe('EuiCollapsibleNavGroup', () => {
           initialIsOpen={false}
           title="Title"
           id="id"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('accepts accordion props', () => {
+      const component = render(
+        <EuiCollapsibleNavGroup
+          isCollapsible={true}
+          initialIsOpen={false}
+          title="Title"
+          id="id"
+          {...requiredProps}
+          buttonProps={requiredProps}
         />
       );
 

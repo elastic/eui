@@ -18,6 +18,7 @@
  */
 
 import React, {
+  CSSProperties,
   Fragment,
   FunctionComponent,
   ReactElement,
@@ -35,6 +36,8 @@ import {
 } from '../../services';
 
 import { resolveWidthAsStyle } from './utils';
+
+import { useIsWithinBreakpoints } from '../../services/hooks/useIsWithinBreakpoints';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -86,9 +89,13 @@ interface EuiTableRowCellMobileOptionsShape {
    * (typically cells are contained to 50%)
    */
   fullWidth?: boolean;
+  /**
+   * Applies the value to the width of the cell in mobile view (typically 50%)
+   */
+  width?: CSSProperties['width'];
 }
 
-interface EuiTableRowCellProps {
+export interface EuiTableRowCellProps {
   /**
    * Indicates if the column is dedicated to icon-only actions (currently
    * affects mobile only)
@@ -201,7 +208,12 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     euiTableCellContent__hoverItem: showOnHover,
   });
 
-  const styleObj = resolveWidthAsStyle(style, width);
+  const widthValue =
+    useIsWithinBreakpoints(['xs', 's', 'm']) && mobileOptions.width
+      ? mobileOptions.width
+      : width;
+
+  const styleObj = resolveWidthAsStyle(style, widthValue);
 
   function modifyChildren(children: ReactNode) {
     let modifiedChildren = children;

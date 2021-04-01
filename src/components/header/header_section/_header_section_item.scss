@@ -15,21 +15,6 @@
   }
 }
 
-.euiHeaderSectionItem__button {
-  height: $euiHeaderChildSize;
-  min-width: $euiHeaderChildSize;
-  text-align: center;
-  font-size: 0; // aligns icons better vertically
-
-  &:hover {
-    background: $euiColorLightestShade;
-  }
-
-  &:focus {
-    background: $euiFocusBackgroundColor;
-  }
-}
-
 .euiHeaderSectionItem--borderLeft {
   &:after {
     left: 0;
@@ -45,20 +30,8 @@
   }
 }
 
-// SET FOR DEPRECATION: 2/21/20
-// The `euiHeaderNotification` class was needed to be manually applied
-// Now notifications can be automatically added to the buttons via props
-.euiHeaderNotification,
-.euiHeaderSectionItemButton__notification {
-  position: absolute;
-  top: 9%;
-  right: 9%;
-  box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
-}
-
 @include euiBreakpoint('xs') {
-  .euiHeaderSectionItem,
-  .euiHeaderSectionItem__button {
+  .euiHeaderSectionItem {
     min-width: $euiHeaderChildSize * .75;
   }
 
@@ -67,16 +40,5 @@
     &:after {
       display: none;
     }
-  }
-
-  // On small screens just show a small dot indicating there are notifications
-  .euiHeaderNotification,
-  .euiHeaderSectionItemButton__notification {
-    @include size($euiSizeS);
-    top: 20%;
-    min-width: 0;
-    border-radius: $euiSizeS;
-    color: $euiColorAccent;
-    overflow: hidden;
   }
 }

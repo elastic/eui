@@ -5,6 +5,8 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiImage } from '../../../../src/components';
+EuiImage.__docgenInfo.props.src.required = true;
+
 import imageConfig from './playground';
 
 import Image from './image';
@@ -12,7 +14,7 @@ const imageSource = require('!!raw-loader!./image');
 const imageHtml = renderToHtml(Image);
 const imageSnippet = `<EuiImage
   alt={description}
-  url={someUrl}
+  src={someSrc}
 />
 `;
 
@@ -22,7 +24,7 @@ const imageSizesHtml = renderToHtml(ImageSizes);
 const imageSizesSnippet = `<EuiImage
   size="l"
   alt={description}
-  url={someUrl}
+  src={someSrc}
 />
 `;
 
@@ -32,7 +34,20 @@ const imageZoomHtml = renderToHtml(ImageZoom);
 const imageZoomSnippet = `<EuiImage
   allowFullScreen
   alt={description}
-  url={someUrl}
+  src={someSrc}
+/>
+`;
+
+import ImageFloat from './float';
+import { EuiCallOut } from '../../../../src/components/call_out';
+import { Fragment } from 'react-is';
+const imageFloatSource = require('!!raw-loader!./float');
+const imageFloatHtml = renderToHtml(ImageFloat);
+const imageFloatSnippet = `<EuiImage
+  alt={description}
+  src={someSrc}
+  float="left"
+  margin="l"
 />
 `;
 
@@ -114,6 +129,38 @@ export const ImageExample = {
       ),
       demo: <ImageSizes />,
       snippet: imageSizesSnippet,
+    },
+    {
+      title: 'Float images within text',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: imageFloatSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: imageFloatHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            When using <EuiCode>EuiImage</EuiCode> within{' '}
+            <EuiCode>EuiText</EuiCode> it is often useful to apply floats.
+            Almost always you&apos;ll want to pair the <EuiCode>float</EuiCode>{' '}
+            prop usage, with a <EuiCode>margin</EuiCode> prop usage to give
+            space around your image. Margins, when used in combo with floats,
+            will adjust depending upon the position of the float.
+          </p>
+          <EuiCallOut title="Be careful with floats" color="warning">
+            Floats should only be used on images within <strong>large</strong>{' '}
+            bodies of text. Specifically, we only suggest using them with{' '}
+            <EuiCode>EuiText</EuiCode> which comes automatically clears floats.
+          </EuiCallOut>
+        </Fragment>
+      ),
+      demo: <ImageFloat />,
+      snippet: imageFloatSnippet,
     },
   ],
   playground: imageConfig,

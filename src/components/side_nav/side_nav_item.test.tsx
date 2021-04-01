@@ -44,6 +44,30 @@ describe('EuiSideNavItem', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('can have truncation turned off', () => {
+    const component = render(
+      <EuiSideNavItem truncate={false}>Children</EuiSideNavItem>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('can be emphasized', () => {
+    const component = render(
+      <EuiSideNavItem emphasize>Children</EuiSideNavItem>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('can be disabled', () => {
+    const component = render(
+      <EuiSideNavItem disabled>Children</EuiSideNavItem>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('isSelected', () => {
     test('defaults to false', () => {
       const component = render(

@@ -1,19 +1,18 @@
 import React from 'react';
 
-import MarkdownIt from 'markdown-it';
-
-import { EuiText } from '../../../../src';
+import { EuiMarkdownFormat } from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 
-const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md');
-const md = new MarkdownIt();
-const changelog = md.render(changelogSource);
+const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md').default.replace(
+  /## \[`master`\].+?##/s, // remove the `master` heading & contents
+  '##'
+);
 
 export const Changelog = {
   name: 'Changelog',
   component: () => (
     <GuidePage title="Changelog">
-      <EuiText dangerouslySetInnerHTML={{ __html: changelog }} />
+      <EuiMarkdownFormat>{changelogSource}</EuiMarkdownFormat>
     </GuidePage>
   ),
 };

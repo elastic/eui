@@ -21,29 +21,67 @@
     width: 100%;
   }
 
-  &:first-of-type {
+  &.euiDataGridRowCell--firstColumn {
     border-left: $euiBorderThin;
   }
 
-  &:last-of-type {
+  &.euiDataGridRowCell--lastColumn {
     border-right-color: $euiBorderColor;
   }
 
   &:focus {
-    border: 1px solid transparent;
+    @include euiDataGridCellFocus;
     margin-top: -1px;
-    box-shadow: 0 0 0 2px $euiFocusRingColor;
-    border-radius: 1px;
-    z-index: 2; // Needed so it sits above potential striping in the next row
+  }
 
-    .euiDataGridRowCell__expandButton {
-      margin-left: $euiDataGridCellPaddingM;
+  // Only add the transition effect on hover, so that it is instantaneous on focus
+  // Long delays on hover to mitigate the accordion effect
+  &:hover {
+    .euiDataGridRowCell__expandButtonIcon {
+      animation-duration: $euiAnimSpeedExtraFast;
+      animation-name: euiDataGridCellButtonSlideIn;
+      animation-iteration-count: 1;
+      animation-delay: $euiAnimSpeedNormal;
+      animation-fill-mode: forwards;
     }
 
+    .euiDataGridRowCell__actionButtonIcon {
+      animation-duration: $euiAnimSpeedExtraFast;
+      animation-name: euiDataGridCellButtonSlideIn;
+      animation-iteration-count: 1;
+      animation-delay: $euiAnimSpeedNormal;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &:not(:hover),
+  &.euiDataGridRowCell--open {
     .euiDataGridRowCell__expandButtonIcon {
-      display: flex;
-      width: inherit;
-      visibility: visible;
+      animation: none;
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+
+    .euiDataGridRowCell__actionButtonIcon {
+      animation: none;
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+  }
+
+  // on focus, directly show action buttons (without animation), but still slide in the open popover button
+  &:focus {
+    .euiDataGridRowCell__actionButtonIcon {
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+  }
+
+  // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
+  &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
+    .euiDataGridRowCell__expandButtonIcon,
+    .euiDataGridRowCell__actionButtonIcon {
+      display: none;
     }
   }
 
@@ -69,12 +107,14 @@
   &:not(.euiDataGridRowCell--controlColumn) {
     .euiDataGridRowCell__content,
     .euiDataGridRowCell__truncate,
+    &.euiDataGridRowCell__truncate,
     .euiDataGridRowCell__expandContent {
       @include euiTextTruncate;
       overflow: hidden;
       white-space: nowrap;
     }
   }
+
 }
 
 .euiDataGridRowCell__popover {
@@ -99,35 +139,30 @@
   flex-grow: 1;
 }
 
-
 .euiDataGridRowCell__expandButton {
   display: flex;
   flex-grow: 0;
-
-  &-isActive,
-  &:focus {
-    margin-left: $euiDataGridCellPaddingM;
-  }
 }
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;
-  min-height: $euiSizeM;
-  background: $euiColorPrimary;
-  color: $euiColorGhost;
   border-radius: $euiBorderRadius / 2;
-  padding: 0;
   width: 0;
-  min-width: 0;
   overflow: hidden;
-  visibility: hidden;
+  transition: none; // Have to take out the generic transition so it is instaneous on focus
 
-  &-isActive,
-  &:focus {
-    width: inherit;
-    visibility: visible;
-    background: $euiColorPrimary;
+  &-isActive {
+    margin-left: $euiDataGridCellPaddingM;
+    width: $euiSizeM;
   }
+}
+
+.euiDataGridRowCell__actionButtonIcon {
+  height: $euiSizeM;
+  border-radius: $euiBorderRadius / 2;
+  width: 0;
+  overflow: hidden;
+  transition: none; // Have to take out the generic transition so it is instaneous on focus
 }
 
 // Row highlights
@@ -143,8 +178,8 @@
 
 // Stripes
 @include euiDataGridStyles(stripes) {
-  .euiDataGridRow:nth-child(odd) {
-    @include euiDataGridRowCell {
+  @include euiDataGridRowCell {
+    &.euiDataGridRowCell--stripe {
       background: $euiColorLightestShade;
     }
   }
@@ -198,5 +233,17 @@
       // Needed because the focus state adds a border, which needs to be subtracted from padding
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
+  }
+}
+
+@keyframes euiDataGridCellButtonSlideIn {
+  from {
+    margin-left: 0;
+    width: 0;
+  }
+
+  to {
+    margin-left: $euiDataGridCellPaddingM;
+    width: $euiSizeM;
   }
 }

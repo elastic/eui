@@ -6,31 +6,31 @@ exports[`EuiTreeView is rendered 1`] = `
 >
   <p
     class="euiScreenReaderOnly"
-    id="htmlId--instruction"
+    id="euiTreeView_generated-id--instruction"
   >
     You can quickly navigate this list using arrow keys.
   </p>
   <ul
-    aria-describedby="htmlId--instruction"
+    aria-describedby="euiTreeView_generated-id--instruction"
     aria-label="aria-label"
     class="euiTreeView testClass1 testClass2"
     data-test-subj="test subject string"
-    id="htmlId"
+    id="euiTreeView_generated-id"
   >
     <li
       class="euiTreeView__node euiTreeView__node--expanded"
     >
       <button
-        aria-controls="euiNestedTreeView-htmlId"
+        aria-controls="euiTreeView_generated-id_item_one"
         aria-expanded="true"
         class="euiTreeView__nodeInner"
-        data-test-subj="euiTreeViewButton-htmlId"
-        id="htmlId--0--node"
+        data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+        id="item_one"
       >
         <span
           class="euiTreeView__iconWrapper"
         >
-          <div
+          <span
             data-euiicon-type="folderOpen"
           />
         </span>
@@ -41,7 +41,7 @@ exports[`EuiTreeView is rendered 1`] = `
         </span>
       </button>
       <div
-        id="euiNestedTreeView-htmlId"
+        id="euiTreeView_generated-id_item_one"
       >
         <div
           class="euiText euiText--medium euiTreeView__wrapper"
@@ -49,22 +49,21 @@ exports[`EuiTreeView is rendered 1`] = `
           <ul
             aria-label="Item One child of aria-label"
             class="euiTreeView"
-            id="htmlId"
           >
             <li
               class="euiTreeView__node"
             >
               <button
-                aria-controls="euiNestedTreeView-htmlId"
+                aria-controls="euiTreeView_generated-id_item_a"
                 aria-expanded="false"
                 class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-htmlId"
-                id="htmlId--0--node"
+                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+                id="item_a"
               >
                 <span
                   class="euiTreeView__iconWrapper"
                 >
-                  <div
+                  <span
                     data-euiicon-type="document"
                   />
                 </span>
@@ -75,23 +74,23 @@ exports[`EuiTreeView is rendered 1`] = `
                 </span>
               </button>
               <div
-                id="euiNestedTreeView-htmlId"
+                id="euiTreeView_generated-id_item_a"
               />
             </li>
             <li
               class="euiTreeView__node"
             >
               <button
-                aria-controls="euiNestedTreeView-htmlId"
+                aria-controls="euiTreeView_generated-id_item_b"
                 aria-expanded="false"
                 class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-htmlId"
-                id="htmlId--1--node"
+                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+                id="item_b"
               >
                 <span
                   class="euiTreeView__iconWrapper"
                 >
-                  <div
+                  <span
                     data-euiicon-type="arrowRight"
                   />
                 </span>
@@ -102,23 +101,23 @@ exports[`EuiTreeView is rendered 1`] = `
                 </span>
               </button>
               <div
-                id="euiNestedTreeView-htmlId"
+                id="euiTreeView_generated-id_item_b"
               />
             </li>
             <li
               class="euiTreeView__node"
             >
               <button
-                aria-controls="euiNestedTreeView-htmlId"
+                aria-controls="euiTreeView_generated-id_item_c"
                 aria-expanded="false"
                 class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-htmlId"
-                id="htmlId--2--node"
+                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+                id="item_c"
               >
                 <span
                   class="euiTreeView__iconWrapper"
                 >
-                  <div
+                  <span
                     data-euiicon-type="arrowRight"
                   />
                 </span>
@@ -129,7 +128,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 </span>
               </button>
               <div
-                id="euiNestedTreeView-htmlId"
+                id="euiTreeView_generated-id_item_c"
               />
             </li>
           </ul>
@@ -140,11 +139,11 @@ exports[`EuiTreeView is rendered 1`] = `
       class="euiTreeView__node"
     >
       <button
-        aria-controls="euiNestedTreeView-htmlId"
+        aria-controls="euiTreeView_generated-id_item_two"
         aria-expanded="false"
         class="euiTreeView__nodeInner"
-        data-test-subj="euiTreeViewButton-htmlId"
-        id="htmlId--1--node"
+        data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+        id="item_two"
       >
         <span
           class="euiTreeView__nodeLabel"
@@ -153,7 +152,7 @@ exports[`EuiTreeView is rendered 1`] = `
         </span>
       </button>
       <div
-        id="euiNestedTreeView-htmlId"
+        id="euiTreeView_generated-id_item_two"
       />
     </li>
   </ul>

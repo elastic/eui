@@ -19,12 +19,13 @@
 
 import React, { FunctionComponent, useMemo } from 'react';
 import unified, { PluggableList } from 'unified';
+import { VFileContents } from 'vfile';
 import {
   defaultProcessingPlugins,
   defaultParsingPlugins,
 } from './plugins/markdown_default_plugins';
 
-interface EuiMarkdownFormatProps {
+export interface EuiMarkdownFormatProps {
   children: string;
   /** array of unified plugins to parse content into an AST */
   parsingPluginList?: PluggableList;
@@ -38,15 +39,15 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   processingPluginList = defaultProcessingPlugins,
 }) => {
   const processor = useMemo(
-    () =>
-      unified()
-        .use(parsingPluginList)
-        .use(processingPluginList),
+    () => unified().use(parsingPluginList).use(processingPluginList),
     [parsingPluginList, processingPluginList]
   );
   const result = useMemo(() => {
     try {
-      return processor.processSync(children).contents;
+      const processed = processor.processSync(children);
+      // `.result` is intentionally `unknown` (https://github.com/vfile/vfile/pull/53)
+      // cast to something expected.
+      return (processed.result as VFileContents) ?? processed.contents;
     } catch (e) {
       return children;
     }

@@ -9,7 +9,6 @@ import {
   EuiModalBody,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiOverlayMask,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -70,7 +69,7 @@ export default () => {
     setPopover(false);
   };
 
-  const onChange = selectedOptions => {
+  const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
   };
 
@@ -92,14 +91,14 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
       setOptions([...options, newOption]);
     }
 
     // Select the option.
-    setSelected(prevSelected => [...prevSelected, newOption]);
+    setSelected((prevSelected) => [...prevSelected, newOption]);
   };
 
   const comboBox = (
@@ -122,15 +121,15 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
-        <EuiModal onClose={closeModal} style={{ width: '800px' }}>
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
-          </EuiModalHeader>
+      <EuiModal onClose={closeModal} style={{ width: '800px' }}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>
+            <h1>Combo box in a modal</h1>
+          </EuiModalHeaderTitle>
+        </EuiModalHeader>
 
-          <EuiModalBody>{comboBox}</EuiModalBody>
-        </EuiModal>
-      </EuiOverlayMask>
+        <EuiModalBody>{comboBox}</EuiModalBody>
+      </EuiModal>
     );
   }
 
@@ -146,7 +145,6 @@ export default () => {
 
       <EuiPopover
         id="popover"
-        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}>

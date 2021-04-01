@@ -18,26 +18,46 @@
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const gc = require('expose-gc/function');
 const propsParser = require('react-docgen-typescript');
 const template = require('@babel/template');
 const ts = require('typescript');
 const glob = require('glob');
 const util = require('util');
 const { SyntaxKind } = require('typescript');
+const chokidar = require('chokidar');
 
-const files = [
-  ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
-  ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
-];
+const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
+const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
+const bypassWatch = NODE_ENV === 'puppeteer' || NODE_ENV === 'production';
 
 /**
  * To support extended props from tsx files.
  */
-const options = {
+const programOptions = {
   jsx: ts.JsxEmit.React,
 };
+let program;
+function buildProgram() {
+  const files = [
+    ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
+    ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
+  ];
+  program = null;
+  gc();
+  program = ts.createProgram(files, programOptions);
+}
+buildProgram();
 
-const program = ts.createProgram(files, options);
+if (isDevelopment && !bypassWatch) {
+  chokidar
+    .watch(['./src/**/*.(ts|tsx)', './src-docs/**/*.(ts|tsx)'], {
+      ignoreInitial: true, // don't emit `add` event during file discovery
+      ignored: ['__snapshots__', /\.test\./],
+    })
+    .on('add', buildProgram)
+    .on('change', buildProgram);
+}
 
 module.exports = function({ types }) {
   return {
@@ -64,6 +84,7 @@ module.exports = function({ types }) {
             'DragDropContextProps',
             'DraggableProps',
             'DroppableProps',
+            'RefAttributes',
           ];
 
           let docgenResults = [];
@@ -217,10 +238,14 @@ function filterProp(
     return true;
   }
 
-  // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
-  // in the interace in that case replace it with "string | number"
   if (prop.type.name === 'ReactText') {
+    // if prop type is string | number typescript takes it as ReactText if HTMLAttributes are extended
+    // in the interface in that case replace it with "string | number"
     prop.type.name = 'string | number';
+  } else if (prop.type.name === 'Primitive') {
+    // "Primitive" comes from src/services/sort/comparators.ts
+    // TypeScript sees its overlap with `boolean | number | string` and decides to name the type union
+    prop.type.name = 'boolean | number | string';
   }
 
   // if prop.type is ReactElement it will be expanded to show all the  supported

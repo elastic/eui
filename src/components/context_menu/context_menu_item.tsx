@@ -33,10 +33,18 @@ import { EuiIcon } from '../icon';
 import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 
 import { getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
+
+const sizeToClassNameMap = {
+  s: 'euiContextMenuItem--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
 
 export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
@@ -63,6 +71,10 @@ export interface EuiContextMenuItemProps extends CommonProps {
    * How to align icon with content of button
    */
   layoutAlign?: EuiContextMenuItemLayoutAlignment;
+  /**
+   * Reduce the size to `s` when in need of a more compressed menu
+   */
+  size?: keyof typeof sizeToClassNameMap;
 }
 
 type Props = CommonProps &
@@ -90,7 +102,7 @@ export class EuiContextMenuItem extends Component<Props> {
       hasPanel,
       icon,
       buttonRef,
-      disabled,
+      disabled: _disabled,
       layoutAlign = 'center',
       toolTipTitle,
       toolTipContent,
@@ -98,10 +110,13 @@ export class EuiContextMenuItem extends Component<Props> {
       href,
       target,
       rel,
+      size,
       ...rest
     } = this.props;
-
     let iconInstance;
+
+    const isHrefValid = !href || validateHref(href);
+    const disabled = _disabled || !isHrefValid;
 
     if (icon) {
       switch (typeof icon) {
@@ -127,9 +142,14 @@ export class EuiContextMenuItem extends Component<Props> {
       );
     }
 
-    const classes = classNames('euiContextMenuItem', className, {
-      'euiContextMenuItem-isDisabled': disabled,
-    });
+    const classes = classNames(
+      'euiContextMenuItem',
+      size && sizeToClassNameMap[size],
+      className,
+      {
+        'euiContextMenuItem-isDisabled': disabled,
+      }
+    );
 
     const layoutClasses = classNames(
       'euiContextMenu__itemLayout',

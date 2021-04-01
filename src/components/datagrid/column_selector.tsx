@@ -21,6 +21,7 @@ import React, {
   Fragment,
   useState,
   useMemo,
+  useCallback,
   ReactElement,
   ChangeEvent,
 } from 'react';
@@ -56,12 +57,17 @@ const getShowColumnSelectorValue = (
   return showColumnSelector[valueName] !== false;
 };
 
-export const useColumnSelector = (
+export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility,
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
   displayValues: { [key: string]: string }
-): [ReactElement, EuiDataGridColumn[]] => {
+): [
+  ReactElement,
+  EuiDataGridColumn[],
+  (columns: string[]) => void,
+  (colFrom: string, colTo: string) => void
+] => {
   const allowColumnHiding = getShowColumnSelectorValue(
     showColumnSelector,
     'allowHide'
@@ -77,9 +83,23 @@ export const useColumnSelector = (
   );
 
   const { visibleColumns, setVisibleColumns } = columnVisibility;
-  const visibleColumnIds = new Set(visibleColumns);
+  const visibleColumnIds = useMemo(() => new Set(visibleColumns), [
+    visibleColumns,
+  ]);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const setColumns = useCallback(
+    (nextColumns: string[]) => {
+      setSortedColumns(nextColumns);
+
+      const nextVisibleColumns = nextColumns.filter((id) =>
+        visibleColumnIds.has(id)
+      );
+      setVisibleColumns(nextVisibleColumns);
+    },
+    [setSortedColumns, setVisibleColumns, visibleColumnIds]
+  );
 
   function onDragEnd({
     source: { index: sourceIndex },
@@ -91,12 +111,7 @@ export const useColumnSelector = (
       sourceIndex,
       destinationIndex
     );
-    setSortedColumns(nextSortedColumns);
-
-    const nextVisibleColumns = nextSortedColumns.filter(id =>
-      visibleColumnIds.has(id)
-    );
-    setVisibleColumns(nextVisibleColumns);
+    setColumns(nextSortedColumns);
   }
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
@@ -108,7 +123,10 @@ export const useColumnSelector = (
   });
 
   const filteredColumns = sortedColumns.filter(
-    id => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
+    (id) =>
+      (displayValues[id] || id)
+        .toLowerCase()
+        .indexOf(columnSearchText.toLowerCase()) !== -1
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
@@ -141,7 +159,6 @@ export const useColumnSelector = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
-      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
@@ -192,8 +209,10 @@ export const useColumnSelector = (
                     isDragDisabled={!isDragEnabled}>
                     {(provided, state) => (
                       <div
-                        className={`euiDataGridColumnSelector__item ${state.isDragging &&
-                          'euiDataGridColumnSelector__item-isDragging'}`}>
+                        className={`euiDataGridColumnSelector__item ${
+                          state.isDragging &&
+                          'euiDataGridColumnSelector__item-isDragging'
+                        }`}>
                         <EuiFlexGroup gutterSize="m" alignItems="center">
                           <EuiFlexItem>
                             {allowColumnHiding ? (
@@ -203,12 +222,12 @@ export const useColumnSelector = (
                                 checked={visibleColumnIds.has(id)}
                                 compressed
                                 className="euiSwitch--mini"
-                                onChange={event => {
+                                onChange={(event) => {
                                   const {
                                     target: { checked },
                                   } = event;
                                   const nextVisibleColumns = sortedColumns.filter(
-                                    columnId =>
+                                    (columnId) =>
                                       checked
                                         ? visibleColumnIds.has(columnId) ||
                                           id === columnId
@@ -271,14 +290,36 @@ export const useColumnSelector = (
     () =>
       visibleColumns
         .map<EuiDataGridColumn>(
-          columnId =>
+          (columnId) =>
             availableColumns.find(
               ({ id }) => id === columnId
             ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
         )
-        .filter(column => column != null),
+        .filter((column) => column != null),
     [availableColumns, visibleColumns]
   );
+  /**
+   * Used for moving columns left/right, available in the headers actions menu
+   */
+  const switchColumnPos = useCallback(
+    (fromColId: string, toColId: string) => {
+      const moveFromIdx = sortedColumns.indexOf(fromColId);
+      const moveToIdx = sortedColumns.indexOf(toColId);
+      if (moveFromIdx === -1 || moveToIdx === -1) {
+        return;
+      }
+      const nextSortedColumns = [...sortedColumns];
+      nextSortedColumns.splice(moveFromIdx, 1);
+      nextSortedColumns.splice(moveToIdx, 0, fromColId);
+      setColumns(nextSortedColumns);
+    },
+    [setColumns, sortedColumns]
+  );
 
-  return [columnSelector, orderedVisibleColumns];
+  return [
+    columnSelector,
+    orderedVisibleColumns,
+    setVisibleColumns,
+    switchColumnPos,
+  ];
 };

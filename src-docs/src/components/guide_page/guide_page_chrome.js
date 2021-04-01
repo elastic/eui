@@ -1,45 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
-
-import { Link } from 'react-router-dom';
 
 import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
   EuiSideNav,
-  EuiSpacer,
+  EuiPageSideBar,
   EuiText,
-  EuiButtonIcon,
-  EuiPopover,
-  EuiPopoverTitle,
 } from '../../../../src/components';
 
-import { GuideLocaleSelector } from '../guide_locale_selector';
-import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
-
-const scrollTo = position => {
-  $('html, body').animate(
-    {
-      scrollTop: position,
-    },
-    250
-  );
-};
-
-export function scrollToSelector(selector, attempts = 5) {
-  const element = $(selector);
-
-  if (element.length) {
-    scrollTo(element.offset().top - 20);
-  } else if (attempts > 0) {
-    setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
-  }
-}
 
 export class GuidePageChrome extends Component {
   _isMounted = false;
@@ -70,7 +42,7 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  onSearchChange = event => {
+  onSearchChange = (event) => {
     this.setState({
       search: event.target.value,
       isSideNavOpenOnMobile: event.target.value !== '',
@@ -80,12 +52,19 @@ export class GuidePageChrome extends Component {
   scrollNavSectionIntoViewSync = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    const selectedButton = $('.euiSideNavItemButton-isSelected');
-    if (selectedButton.length) {
-      const root = selectedButton.parents('.euiSideNavItem--root');
-      if (root.length) {
-        root.get(0).scrollIntoView();
+    const selectedButton = document.querySelector(
+      '.euiSideNavItemButton-isSelected'
+    );
+    if (selectedButton) {
+      let root = selectedButton.parentNode;
+
+      while (
+        !root.classList.contains('euiSideNavItem--root') &&
+        !root.classList.contains('guideSideNav')
+      ) {
+        root = root.parentNode;
       }
+      root.scrollIntoView();
     }
   };
 
@@ -93,42 +72,6 @@ export class GuidePageChrome extends Component {
     setTimeout(() => {
       this.scrollNavSectionIntoViewSync();
     }, 250);
-  };
-
-  onClickLink = id => {
-    // Scroll to element.
-    scrollToSelector(`#${id}`);
-
-    if (this._isMounted)
-      this.setState(
-        {
-          search: '',
-          isSideNavOpenOnMobile: false,
-        },
-        this.scrollNavSectionIntoView
-      );
-  };
-
-  onClickRoute = () => {
-    // timeout let's IE11 do its thing and update the url
-    // allowing react-router to navigate to the route
-    // otherwise IE11 somehow kills the navigation
-    setTimeout(() => {
-      if (this._isMounted)
-        this.setState(
-          {
-            search: '',
-            isSideNavOpenOnMobile: false,
-          },
-          this.scrollNavSectionIntoView
-        );
-    }, 0);
-
-    // To delay scroll to top when switched to a new page
-    setTimeout(() => {
-      if (document.body) document.body.scrollTop = 0;
-      if (document.documentElement) document.documentElement.scrollTop = 0;
-    }, 1);
   };
 
   onButtonClick() {
@@ -143,65 +86,8 @@ export class GuidePageChrome extends Component {
     });
   }
 
-  renderIdentity() {
-    const button = (
-      <EuiButtonIcon
-        iconType="gear"
-        onClick={this.onButtonClick.bind(this)}
-        aria-label="Open EUI options menu"
-        color="text"
-      />
-    );
-    return (
-      <EuiFlexGroup
-        alignItems="center"
-        gutterSize="s"
-        justifyContent="spaceBetween"
-        responsive={false}
-        wrap>
-        <EuiFlexItem grow={false}>
-          <EuiFlexGroup
-            alignItems="center"
-            gutterSize="s"
-            responsive={false}
-            wrap>
-            <EuiFlexItem grow={false}>
-              <Link to="/" className="guideLogo" aria-label="Go to home page">
-                <EuiIcon type="logoElastic" size="l" />
-              </Link>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <Link to="/" aria-label="Go to home page" className="euiLink">
-                <strong>Elastic UI</strong>
-              </Link>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            id="guidePageChromeThemePopover"
-            button={button}
-            isOpen={this.state.isPopoverOpen}
-            closePopover={this.closePopover.bind(this)}>
-            <EuiPopoverTitle>Docs options</EuiPopoverTitle>
-            <div className="guideOptionsPopover">
-              <GuideThemeSelector />
-              {location.host === 'localhost:8030' ? ( // eslint-disable-line no-restricted-globals
-                <GuideLocaleSelector
-                  onToggleLocale={this.props.onToggleLocale}
-                  selectedLocale={this.props.selectedLocale}
-                />
-              ) : null}
-            </div>
-          </EuiPopover>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-  }
-
   renderSubSections = (href, subSections = [], searchTerm = '') => {
-    const subSectionsWithTitles = subSections.filter(item => {
+    const subSectionsWithTitles = subSections.filter((item) => {
       if (!item.title) {
         return false;
       }
@@ -233,22 +119,21 @@ export class GuidePageChrome extends Component {
       return {
         id: `subSection-${id}`,
         name,
-        href,
-        onClick: this.onClickLink.bind(this, id),
+        href: href.concat(`#${id}`),
       };
     });
   };
 
-  renderSideNav = sideNav => {
+  renderSideNav = (sideNav) => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
     const searchTerm = this.state.search.toLowerCase();
 
-    sideNav.forEach(section => {
+    sideNav.forEach((section) => {
       let hasMatchingSubItem = false;
 
-      const matchingItems = section.items.filter(item => {
+      const matchingItems = section.items.filter((item) => {
         if (item.hidden) {
           return false;
         }
@@ -267,7 +152,7 @@ export class GuidePageChrome extends Component {
         }
       });
 
-      const items = matchingItems.map(item => {
+      const items = matchingItems.map((item) => {
         const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
 
@@ -295,7 +180,6 @@ export class GuidePageChrome extends Component {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
-          onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
@@ -342,24 +226,26 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <div className="guideSideNav">
-        <div className="guideSideNav__identity">
-          {this.renderIdentity()}
-
-          <EuiSpacer size="m" />
-
-          <div className="guideSideNav__search">
+      <EuiPageSideBar className="guideSideNav" sticky>
+        <EuiFlexGroup
+          style={{ height: '100%' }}
+          direction="column"
+          responsive={false}
+          gutterSize="none">
+          <EuiFlexItem grow={false} className="guideSideNav__search">
             <EuiFieldSearch
+              fullWidth
               placeholder="Search"
               value={this.state.search}
               onChange={this.onSearchChange}
               aria-label="Search for a docs section"
             />
-          </div>
-        </div>
-
-        <div className="guideSideNav__content">{sideNavContent}</div>
-      </div>
+          </EuiFlexItem>
+          <EuiFlexItem className="guideSideNav__content">
+            {sideNavContent}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPageSideBar>
     );
   }
 }

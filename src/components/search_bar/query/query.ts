@@ -103,8 +103,13 @@ export class Query {
     return this.ast.getOrFieldClause(field, value);
   }
 
-  addOrFieldValue(field: string, value: Value, must = true) {
-    const ast = this.ast.addOrFieldValue(field, value, must);
+  addOrFieldValue(
+    field: string,
+    value: Value,
+    must = true,
+    operator: OperatorType = Operator.EQ
+  ) {
+    const ast = this.ast.addOrFieldValue(field, value, must, operator);
     return new Query(ast, this.syntax);
   }
 

@@ -134,6 +134,7 @@ const typeToPathMap = {
   email: 'email',
   empty: 'empty',
   emsApp: 'app_ems',
+  eql: 'eql',
   exit: 'exit',
   expand: 'expand',
   expandMini: 'expandMini',
@@ -146,6 +147,7 @@ const typeToPathMap = {
   filebeatApp: 'app_filebeat',
   filter: 'filter',
   flag: 'flag',
+  fold: 'fold',
   folderCheck: 'folder_check',
   folderClosed: 'folder_closed',
   folderExclamation: 'folder_exclamation',
@@ -176,6 +178,7 @@ const typeToPathMap = {
   indexOpen: 'index_open',
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
+  indexRuntime: 'index_runtime',
   indexSettings: 'index_settings',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
@@ -196,7 +199,6 @@ const typeToPathMap = {
   logsApp: 'app_logs',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
-  logoAPM: 'logo_apm',
   logoAppSearch: 'logo_app_search',
   logoAWS: 'logo_aws',
   logoAWSMono: 'logo_aws_mono',
@@ -265,12 +267,15 @@ const typeToPathMap = {
   mapMarker: 'map_marker',
   memory: 'memory',
   menu: 'menu',
+  menuDown: 'menuDown',
   menuLeft: 'menuLeft',
   menuRight: 'menuRight',
+  menuUp: 'menuUp',
   merge: 'merge',
   metricbeatApp: 'app_metricbeat',
   metricsApp: 'app_metrics',
   minimize: 'minimize',
+  minus: 'minus',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
@@ -294,6 +299,7 @@ const typeToPathMap = {
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
   play: 'play',
+  plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',
   popout: 'popout',
@@ -356,6 +362,7 @@ const typeToPathMap = {
   trash: 'trash',
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
+  unfold: 'unfold',
   unlink: 'unlink',
   user: 'user',
   users: 'users',
@@ -673,7 +680,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (isNamedColor(color)) {
         optionalColorClass = colorToClassMap[color];
       } else {
-        optionalCustomStyles = { fill: color };
+        optionalCustomStyles = { color: color };
+        optionalColorClass = 'euiIcon--customColor';
       }
     }
 

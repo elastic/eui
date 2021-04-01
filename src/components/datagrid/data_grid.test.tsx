@@ -19,7 +19,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
-import { EuiDataGrid } from './';
+import { EuiDataGrid, EuiDataGridProps } from './';
 import {
   findTestSubject,
   requiredProps,
@@ -28,17 +28,12 @@ import {
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
-import cheerio from 'cheerio';
-
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
-}));
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
 }
 
-function extractGridData(datagrid: ReactWrapper) {
+function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
   const rows: string[][] = [];
 
   const headerCells = findTestSubject(datagrid, 'dataGridHeaderCell', '|=');
@@ -50,15 +45,18 @@ function extractGridData(datagrid: ReactWrapper) {
   );
   rows.push(headerRow);
 
-  const gridRows = findTestSubject(datagrid, 'dataGridRow');
-  gridRows.forEach((row: any) => {
+  // reduce the virtualized grid of cells into rows
+  const columnCount = datagrid.prop('columnVisibility').visibleColumns.length;
+  const gridCells = findTestSubject(datagrid, 'dataGridRowCell');
+  const visibleRowsCount = gridCells.length / columnCount;
+  for (let i = 0; i < visibleRowsCount; i++) {
     const rowContent: string[] = [];
-    const cells = findTestSubject(row, 'dataGridRowCell');
-    cells.forEach((cell: any) =>
-      rowContent.push(cell.find('[data-test-subj="cell-content"]').text())
-    );
+    for (let j = i * columnCount; j < (i + 1) * columnCount; j++) {
+      const cell = gridCells.at(j);
+      rowContent.push(cell.find('[data-test-subj="cell-content"]').text());
+    }
     rows.push(rowContent);
-  });
+  }
 
   return rows;
 }
@@ -178,10 +176,9 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter
-    .find('button[className*="euiButtonGroup__button--selected"]')
-    .closest('EuiToggle')
-    .find('input[className*="euiButtonToggle__input"]');
+  const activeSort = columnSorter.find(
+    'label[className*="euiButtonGroupButton-isSelected"]'
+  );
 
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
@@ -266,10 +263,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `input[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `label[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    sortButton.simulate('change', [undefined, direction]);
+    sortButton.find('input').simulate('change', [undefined, direction]);
   }
 
   closeColumnSorter(datagrid);
@@ -383,7 +380,7 @@ function setColumnVisibility(
 }
 
 function moveColumnToIndex(
-  datagrid: ReactWrapper,
+  datagrid: ReactWrapper<EuiDataGridProps>,
   columnId: string,
   nextIndex: number
 ) {
@@ -445,6 +442,16 @@ function moveColumnToIndex(
 
 describe('EuiDataGrid', () => {
   describe('rendering', () => {
+    const getBoundingClientRect =
+      window.Element.prototype.getBoundingClientRect;
+    beforeAll(() => {
+      window.Element.prototype.getBoundingClientRect = () =>
+        ({ width: 100, height: 100 } as DOMRect);
+    });
+    afterAll(() => {
+      window.Element.prototype.getBoundingClientRect = getBoundingClientRect;
+    });
+
     it('renders with common and div attributes', () => {
       const component = render(
         <EuiDataGrid
@@ -486,38 +493,6 @@ describe('EuiDataGrid', () => {
       expect(component).toMatchSnapshot();
     });
 
-    it('renders with appropriate role structure', () => {
-      const component = render(
-        <EuiDataGrid
-          {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
-          columnVisibility={{
-            visibleColumns: ['A', 'B'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={3}
-          renderCellValue={({ rowIndex, columnId }) =>
-            `${rowIndex}, ${columnId}`
-          }
-        />
-      );
-
-      // purposefully not using data-test-subj attrs to test role semantics
-      const grid = component.find('[role="grid"]');
-      const rows = grid.children('[role="row"]'); // technically, this test should also allow role=rowgroup but we don't currently use rowgroups
-
-      expect(rows.length).not.toBe(0);
-      expect(grid.children().length).toBe(rows.length);
-
-      rows.each((i, element) => {
-        const $element = cheerio(element);
-        const allCells = $element.children(
-          '[role="columnheader"], [role="rowheader"], [role="gridcell"]'
-        );
-        expect($element.children().length).toBe(allCells.length);
-      });
-    });
-
     it('renders and applies custom props', () => {
       const component = mount(
         <EuiDataGrid
@@ -543,67 +518,87 @@ describe('EuiDataGrid', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell').map(cell => {
+        component.find('.euiDataGridRowCell').map((cell) => {
           const props = cell.props();
           delete props.children;
           return props;
         })
       ).toMatchInlineSnapshot(`
-Array [
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "red",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "blue",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "red",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-  Object {
-    "className": "euiDataGridRowCell customClass",
-    "data-test-subj": "dataGridRowCell",
-    "onBlur": [Function],
-    "onFocus": [Function],
-    "onKeyDown": [Function],
-    "role": "gridcell",
-    "style": Object {
-      "color": "blue",
-      "width": "100px",
-    },
-    "tabIndex": -1,
-  },
-]
-`);
+        Array [
+          Object {
+            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "red",
+              "height": 34,
+              "left": 0,
+              "position": "absolute",
+              "top": "100px",
+              "width": 100,
+            },
+            "tabIndex": -1,
+          },
+          Object {
+            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "blue",
+              "height": 34,
+              "left": 100,
+              "position": "absolute",
+              "top": "100px",
+              "width": 100,
+            },
+            "tabIndex": -1,
+          },
+          Object {
+            "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "red",
+              "height": 34,
+              "left": 0,
+              "position": "absolute",
+              "top": "134px",
+              "width": 100,
+            },
+            "tabIndex": -1,
+          },
+          Object {
+            "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
+            "data-test-subj": "dataGridRowCell",
+            "onBlur": [Function],
+            "onFocus": [Function],
+            "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "role": "gridcell",
+            "style": Object {
+              "color": "blue",
+              "height": 34,
+              "left": 100,
+              "position": "absolute",
+              "top": "134px",
+              "width": 100,
+            },
+            "tabIndex": -1,
+          },
+        ]
+      `);
     });
 
     it('renders correct aria attributes on column headers', () => {
@@ -659,7 +654,7 @@ Array [
         component.find('[role="columnheader"][aria-describedby]').length
       ).toBe(2);
       expect(
-        component.find('[role="columnheader"][aria-describedby="htmlId"]')
+        component.find('[role="columnheader"][aria-describedby="generated-id"]')
           .length
       ).toBe(2);
     });
@@ -758,6 +753,7 @@ Array [
       ).toBe(0);
 
       // style selector
+      component.debug();
       expect(
         findTestSubject(component, 'dataGridStyleSelectorButton').length
       ).toBe(1);
@@ -768,7 +764,7 @@ Array [
       ).toBe(1);
     });
 
-    describe('schema schema classnames', () => {
+    describe('schema classnames', () => {
       it('applies classnames from explicit schemas', () => {
         const component = mount(
           <EuiDataGrid
@@ -790,17 +786,23 @@ Array [
 
         const gridCellClassNames = component
           .find('[className*="euiDataGridRowCell--"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-]
-`);
+          Array [
+            "euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+          ]
+        `);
       });
 
       it('automatically detects column types and applies classnames', () => {
@@ -828,17 +830,17 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--stripe",
+            "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+          ]
+        `);
       });
 
       it('overrides automatically detected column types with supplied schema', () => {
@@ -860,15 +862,15 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+          ]
+        `);
       });
 
       it('detects all of the supported types', () => {
@@ -884,7 +886,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
-            columns={Object.keys(values).map(id => ({ id }))}
+            columns={Object.keys(values).map((id) => ({ id }))}
             columnVisibility={{
               visibleColumns: Object.keys(values),
               setVisibleColumns: () => {},
@@ -897,18 +899,18 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell euiDataGridRowCell--currency",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--currency",
+            "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
+          ]
+        `);
       });
 
       it('accepts extra detectors', () => {
@@ -919,7 +921,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
-            columns={Object.keys(values).map(id => ({ id }))}
+            columns={Object.keys(values).map((id) => ({ id }))}
             columnVisibility={{
               visibleColumns: Object.keys(values),
               setVisibleColumns: () => {},
@@ -946,13 +948,13 @@ Array [
 
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
-          .map(x => x.props().className);
+          .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--ipaddress",
-]
-`);
+          Array [
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
+          ]
+        `);
       });
     });
   });
@@ -975,21 +977,21 @@ Array [
         />
       );
       expect(extractGridData(component)).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "Column 1",
-    "Column 2",
-  ],
-  Array [
-    "Hello, Row 0-Column 1!",
-    "Hello, Row 0-Column 2!",
-  ],
-  Array [
-    "Hello, Row 1-Column 1!",
-    "Hello, Row 1-Column 2!",
-  ],
-]
-`);
+        Array [
+          Array [
+            "Column 1",
+            "Column 2",
+          ],
+          Array [
+            "Hello, Row 0-Column 1!",
+            "Hello, Row 0-Column 2!",
+          ],
+          Array [
+            "Hello, Row 1-Column 1!",
+            "Hello, Row 1-Column 2!",
+          ],
+        ]
+      `);
     });
   });
 
@@ -1036,7 +1038,7 @@ Array [
               pageIndex: 0,
               pageSize: 3,
               pageSizeOptions: [3, 6, 10],
-              onChangePage: jest.fn(pageIndex => {
+              onChangePage: jest.fn((pageIndex) => {
                 const pagination = component.props().pagination;
                 component.setProps({
                   pagination: { ...pagination, pageIndex },
@@ -1097,7 +1099,7 @@ Array [
               pageIndex: 0,
               pageSize: 3,
               pageSizeOptions: [3, 6, 10],
-              onChangePage: jest.fn(pageIndex => {
+              onChangePage: jest.fn((pageIndex) => {
                 const pagination = component.props().pagination;
                 component.setProps({
                   pagination: { ...pagination, pageIndex },
@@ -1162,7 +1164,7 @@ Array [
             pageSize: 3,
             pageSizeOptions: [3, 6, 10],
             onChangePage: jest.fn(),
-            onChangeItemsPerPage: jest.fn(pageSize => {
+            onChangeItemsPerPage: jest.fn((pageSize) => {
               const pagination = component.props().pagination;
               component.setProps({
                 pagination: { ...pagination, pageSize },
@@ -1276,7 +1278,7 @@ Array [
             }}
             rowCount={3}
             renderCellValue={() => 'value'}
-            onColumnResize={args => onColumnResizeCallback(args)}
+            onColumnResize={(args) => onColumnResizeCallback(args)}
           />
         );
 
@@ -1435,7 +1437,7 @@ Array [
 
   describe('column sorting', () => {
     it('calls the onSort callback', () => {
-      const onSort = jest.fn(columns => {
+      const onSort = jest.fn((columns) => {
         component.setProps({ sorting: { columns, onSort } });
         component.update();
       });
@@ -1540,7 +1542,7 @@ Array [
       });
 
       it('sorts in response to user interaction', () => {
-        const onSort = jest.fn(columns => {
+        const onSort = jest.fn((columns) => {
           component.setProps({ sorting: { columns, onSort } });
           component.update();
         });
@@ -1597,7 +1599,7 @@ Array [
       });
 
       it('sorts with all digit groups in numerical-like', () => {
-        const onSort = jest.fn(columns => {
+        const onSort = jest.fn((columns) => {
           component.setProps({ sorting: { columns, onSort } });
           component.update();
         });
@@ -1737,7 +1739,7 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSelector__item')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSelector(component);
 
@@ -1755,7 +1757,7 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSelector__item')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSelector(component);
     });
@@ -1786,7 +1788,7 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSorting__field')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
@@ -1806,15 +1808,285 @@ Array [
       expect(
         popover
           .find('.euiDataGridColumnSorting__field')
-          .map(item => item.text())
+          .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
     });
   });
 
+  describe('render column actions', () => {
+    it('renders various column actions configurations', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'A', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', isSortable: true },
+            {
+              id: 'C',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                showSortAsc: false,
+                showSortDesc: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+            {
+              id: 'D',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+            {
+              id: 'E',
+              isSortable: true,
+              actions: {
+                showHide: { label: '1' },
+                showSortAsc: { label: '2' },
+                showSortDesc: { label: '3' },
+                showMoveLeft: { label: '4' },
+                showMoveRight: { label: '5' },
+                additional: [{ label: 'test' }],
+              },
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B', 'C', 'D', 'E'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      const buttonA = findTestSubject(
+        component,
+        'dataGridHeaderCellActionButton-A'
+      );
+      expect(buttonA.length).toBe(0);
+
+      for (const col of ['B', 'C', 'D', 'E']) {
+        const button = findTestSubject(
+          component,
+          `dataGridHeaderCellActionButton-${col}`
+        );
+        button.simulate('click');
+        component.update();
+        const actionGroup = findTestSubject(
+          component,
+          `dataGridHeaderCellActionGroup-${col}`
+        );
+        expect(actionGroup).toMatchSnapshot();
+      }
+    });
+  });
+
+  describe('render sorting arrows', () => {
+    it('renders sorting arrows when direction is given', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [
+              { id: 'A', direction: 'asc' },
+              { id: 'B', direction: 'desc' },
+            ],
+            onSort: () => {},
+          }}
+          columns={[
+            { id: 'A', isSortable: true },
+            { id: 'B', isSortable: true },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+      const arrowA = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-A'
+      );
+      expect(arrowA.length).toBe(1);
+
+      const arrowB = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-B'
+      );
+      expect(arrowB.length).toBe(1);
+    });
+
+    it('does not render the arrows if the column is not sorted', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [],
+            onSort: () => {},
+          }}
+          columns={[
+            {
+              id: 'C',
+              isSortable: true,
+              actions: {
+                showHide: false,
+                showMoveRight: false,
+                showMoveLeft: false,
+                showSortAsc: false,
+                showSortDesc: false,
+                additional: [{ label: 'test' }],
+              },
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['C'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+      const arrowC = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-C'
+      );
+      expect(arrowC.length).toBe(0);
+    });
+
+    it('renders the icons if they are sorted but user is not allowed to perform any action', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'D', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[{ id: 'D', actions: false }]}
+          columnVisibility={{
+            visibleColumns: ['D'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+      const arrowD = findTestSubject(
+        component,
+        'dataGridHeaderCellSortingIcon-D'
+      );
+      expect(arrowD.length).toBe(1);
+    });
+  });
+
+  describe('render column cell actions', () => {
+    it('renders various column cell actions configurations after cell gets hovered', async () => {
+      const alertFn = jest.fn();
+      const happyFn = jest.fn();
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          sorting={{
+            columns: [{ id: 'A', direction: 'asc' }],
+            onSort: () => {},
+          }}
+          columns={[
+            {
+              id: 'A',
+              isSortable: true,
+              cellActions: [
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => alertFn(rowIndex, columnId)}
+                      iconType="alert"
+                      aria-label="test1 aria label"
+                      data-test-subj={
+                        isExpanded ? 'alertActionPopover' : 'alertAction'
+                      }>
+                      test1
+                    </Component>
+                  );
+                },
+                ({ rowIndex, columnId, Component, isExpanded }) => {
+                  return (
+                    <Component
+                      onClick={() => happyFn(rowIndex, columnId)}
+                      iconType="faceHappy"
+                      aria-label="test2 aria label"
+                      data-test-subj={
+                        isExpanded ? 'happyActionPopover' : 'happyAction'
+                      }>
+                      test2
+                    </Component>
+                  );
+                },
+              ],
+            },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      // cell buttons should not get rendered for unfocused, unhovered cell
+      expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
+      expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
+
+      findTestSubject(component, 'dataGridRowCell').at(1).prop('onMouseEnter')!(
+        {} as React.MouseEvent
+      );
+
+      component.update();
+
+      findTestSubject(component, 'alertAction').at(0).simulate('click');
+      expect(alertFn).toHaveBeenCalledWith(1, 'A');
+      findTestSubject(component, 'happyAction').at(0).simulate('click');
+      expect(happyFn).toHaveBeenCalledWith(1, 'A');
+      alertFn.mockReset();
+      happyFn.mockReset();
+
+      findTestSubject(component, 'dataGridRowCell')
+        .at(1)
+        .simulate('keydown', { key: keys.ENTER });
+      component.update();
+
+      findTestSubject(component, 'alertActionPopover').simulate('click');
+      expect(alertFn).toHaveBeenCalledWith(1, 'A');
+      findTestSubject(component, 'happyActionPopover').simulate('click');
+      expect(happyFn).toHaveBeenCalledWith(1, 'A');
+    });
+  });
+
   describe('keyboard controls', () => {
-    it('supports simple arrow navigation', () => {
+    it('supports simple arrow navigation', async () => {
       let pagination = {
         pageIndex: 0,
         pageSize: 3,
@@ -1832,7 +2104,11 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', actions: false },
+            { id: 'C', actions: false },
+          ]}
           columnVisibility={{
             visibleColumns: ['A', 'B', 'C'],
             setVisibleColumns: () => {},
@@ -1904,9 +2180,9 @@ Array [
       ).toEqual('0, A');
 
       // move down and to the end of the row
-      focusableCell
-        .simulate('keydown', { key: keys.ARROW_DOWN })
-        .simulate('keydown', { key: keys.END });
+      focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
+      focusableCell = getFocusableCell(component);
+      focusableCell.simulate('keydown', { key: keys.END });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
@@ -2028,7 +2304,10 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
+          columns={[
+            { id: 'A', actions: false },
+            { id: 'B', actions: false },
+          ]}
           columnVisibility={{
             visibleColumns: ['A', 'B'],
             setVisibleColumns: () => {},
@@ -2053,9 +2332,7 @@ Array [
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, A');
 
-      findTestSubject(component, 'dataGridRowCell')
-        .at(3)
-        .simulate('focus');
+      findTestSubject(component, 'dataGridRowCell').at(3).simulate('focus');
 
       focusableCell = getFocusableCell(component);
       expect(focusableCell.length).toEqual(1);

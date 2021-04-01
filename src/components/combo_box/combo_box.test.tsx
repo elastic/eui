@@ -32,13 +32,6 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => {
-    return (suffix: string) => `htmlid_${suffix}`;
-  },
-}));
-
 interface TitanOption {
   'data-test-subj'?: 'titanOption';
   label: string;
@@ -206,6 +199,34 @@ describe('props', () => {
 
     expect(component).toMatchSnapshot();
   });
+});
+
+test('does not show multiple checkmarks with duplicate labels', () => {
+  const options = [
+    {
+      label: 'Titan',
+      key: 'titan1',
+    },
+    {
+      label: 'Titan',
+      key: 'titan2',
+    },
+    {
+      label: 'Tethys',
+    },
+  ];
+  const component = mount(
+    <EuiComboBox
+      singleSelection={{ asPlainText: true }}
+      options={options}
+      selectedOptions={[options[1]]}
+    />
+  );
+
+  const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+  searchInput.simulate('focus');
+
+  expect(component.find('EuiFilterSelectItem[checked="on"]').length).toBe(1);
 });
 
 describe('behavior', () => {

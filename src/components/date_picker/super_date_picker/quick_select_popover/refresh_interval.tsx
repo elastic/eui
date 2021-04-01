@@ -40,8 +40,10 @@ import {
 import { keysOf } from '../../../common';
 
 const refreshUnitsOptions: RelativeOption[] = keysOf(timeUnits)
-  .filter(timeUnit => timeUnit === 'h' || timeUnit === 'm' || timeUnit === 's')
-  .map(timeUnit => ({ value: timeUnit, text: timeUnitsPlural[timeUnit] }));
+  .filter(
+    (timeUnit) => timeUnit === 'h' || timeUnit === 'm' || timeUnit === 's'
+  )
+  .map((timeUnit) => ({ value: timeUnit, text: timeUnitsPlural[timeUnit] }));
 
 const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
@@ -100,7 +102,7 @@ export class EuiRefreshInterval extends Component<
 
   generateId = htmlIdGenerator();
 
-  onValueChange: ChangeEventHandler<HTMLInputElement> = event => {
+  onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseFloat(event.target.value);
     this.setState(
       {
@@ -110,7 +112,7 @@ export class EuiRefreshInterval extends Component<
     );
   };
 
-  onUnitsChange: ChangeEventHandler<HTMLSelectElement> = event => {
+  onUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     this.setState(
       {
         units: event.target.value as TimeUnitId,

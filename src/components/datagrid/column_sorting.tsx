@@ -45,7 +45,7 @@ import {
 } from './data_grid_schema';
 import { EuiToken } from '../token';
 
-export const useColumnSorting = (
+export const useDataGridColumnSorting = (
   columns: EuiDataGridColumn[],
   sorting: EuiDataGridSorting | undefined,
   schema: EuiDataGridSchema,
@@ -54,7 +54,7 @@ export const useColumnSorting = (
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-  // prune any non-existant/hidden columns from sorting
+  // prune any non-existent/hidden columns from sorting
   useEffect(() => {
     if (sorting) {
       const nextSortingColumns: EuiDataGridSorting['columns'] = [];
@@ -141,7 +141,6 @@ export const useColumnSorting = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
-      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
@@ -212,8 +211,7 @@ export const useColumnSorting = (
                   isOpen={avilableColumnsisOpen}
                   closePopover={() => setAvailableColumnsIsOpen(false)}
                   anchorPosition="downLeft"
-                  ownFocus
-                  panelPaddingSize="s"
+                  panelPaddingSize="none"
                   button={
                     <EuiButtonEmpty
                       size="xs"

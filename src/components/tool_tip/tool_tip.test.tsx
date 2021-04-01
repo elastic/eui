@@ -23,13 +23,8 @@ import {
   requiredProps,
   findTestSubject,
   takeMountedSnapshot,
-  sleep,
 } from '../../test';
 import { EuiToolTip } from './tool_tip';
-
-jest.mock('./../../services/accessibility', () => ({
-  htmlIdGenerator: () => () => 'id',
-}));
 
 describe('EuiToolTip', () => {
   test('is rendered', () => {
@@ -42,7 +37,8 @@ describe('EuiToolTip', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('shows tooltip on focus', async () => {
+  test('shows tooltip on focus', () => {
+    jest.useFakeTimers();
     const component = mount(
       <EuiToolTip title="title" id="id" content="content" {...requiredProps}>
         <button data-test-subj="trigger">Trigger</button>
@@ -51,7 +47,22 @@ describe('EuiToolTip', () => {
 
     const trigger = findTestSubject(component, 'trigger');
     trigger.simulate('focus');
-    await sleep(260); // wait for showToolTip setTimout
+    jest.advanceTimersByTime(260); // wait for showToolTip setTimeout
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
+  });
+
+  test('display prop renders block', () => {
+    const component = render(
+      <EuiToolTip
+        title="title"
+        id="id"
+        content="content"
+        {...requiredProps}
+        display="block">
+        <button>Trigger</button>
+      </EuiToolTip>
+    );
+
+    expect(component).toMatchSnapshot();
   });
 });

@@ -8,12 +8,12 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiLink,
-  EuiCallOut,
   EuiCode,
   EuiComboBox,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+
+import { EuiComboBoxOptionOption } from '!!prop-loader!../../../../src/components/combo_box/types';
 
 import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
@@ -183,6 +183,18 @@ const startingWithSnippet = `<EuiComboBox
   isClearable={true}
 />`;
 
+import DuplicateOptions from './combo_box_duplicates';
+const duplicateOptionsSource = require('!!raw-loader!./combo_box_duplicates');
+const duplicateOptionsHtml = renderToHtml(DuplicateOptions);
+const duplicateOptionsSnippet = `const options = [{
+  label: 'Label',
+  key: 'label1',
+},
+{
+  label: 'Label',
+  key: 'Label2',
+}]`;
+
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
@@ -196,20 +208,6 @@ export const ComboBoxExample = {
           predetermined list.
         </p>
       </EuiText>
-
-      <EuiSpacer />
-
-      <EuiCallOut title="No duplicate option labels allowed" color="warning">
-        <p>
-          The combo box will have errors if any of the options you pass to it
-          share the same label property. It&rsquo;s OK if options have duplicate
-          values, though. This is because the label is the only thing the combo
-          box is concerned about, since this is what the user sees and what is
-          matched against when the user searches.
-        </p>
-      </EuiCallOut>
-
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [
@@ -224,7 +222,7 @@ export const ComboBoxExample = {
           code: comboBoxHtml,
         },
       ],
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: comboBoxSnippet,
       demo: <ComboBox />,
     },
@@ -246,7 +244,7 @@ export const ComboBoxExample = {
           disabled.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: disabledSnippet,
       demo: <Disabled />,
     },
@@ -272,7 +270,7 @@ export const ComboBoxExample = {
           options there are.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: virtualizedSnippet,
       demo: <Virtualized />,
     },
@@ -295,7 +293,7 @@ export const ComboBoxExample = {
           works within other portal-using components.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       demo: <Containers />,
     },
     {
@@ -322,7 +320,7 @@ export const ComboBoxExample = {
           component.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: colorsSnippet,
       demo: <Colors />,
     },
@@ -356,7 +354,7 @@ export const ComboBoxExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: renderOptionSnippet,
       demo: <RenderOption />,
     },
@@ -378,7 +376,7 @@ export const ComboBoxExample = {
           against the search value.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: groupsSnippet,
       demo: <Groups />,
     },
@@ -414,7 +412,7 @@ export const ComboBoxExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionSnippet,
       demo: <SingleSelection />,
     },
@@ -446,7 +444,7 @@ export const ComboBoxExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionCustomOptionsSnippet,
       demo: <SingleSelectionCustomOptions />,
     },
@@ -468,7 +466,7 @@ export const ComboBoxExample = {
           creation of custom options.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: disallowCustomOptionsSnippet,
       demo: <DisallowCustomOptions />,
     },
@@ -491,7 +489,7 @@ export const ComboBoxExample = {
           custom options.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: customOptionsOnlySnippet,
       demo: <CustomOptionsOnly />,
     },
@@ -515,7 +513,7 @@ export const ComboBoxExample = {
           async is happening.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: asyncSnippet,
       demo: <Async />,
     },
@@ -538,7 +536,7 @@ export const ComboBoxExample = {
           may be pasted from elsewhere such as a comma separated list.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: delimiterSnippet,
       demo: <Delimiter />,
     },
@@ -563,9 +561,33 @@ export const ComboBoxExample = {
           to display those options at the top of the list.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: startingWithSnippet,
       demo: <StartingWith />,
+    },
+    {
+      title: 'Duplicate labels',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: duplicateOptionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: duplicateOptionsHtml,
+        },
+      ],
+      text: (
+        <p>
+          In general, it is not recommended to use duplicate labels on the
+          options because the user has no way to distinguish between them. If
+          you need duplicate labels, you will need to add a unique{' '}
+          <EuiCode language="js">key</EuiCode> for each option.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      demo: <DuplicateOptions />,
+      snippet: duplicateOptionsSnippet,
     },
   ],
 };

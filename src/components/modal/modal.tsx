@@ -25,7 +25,7 @@ import { keys } from '../../services';
 import { EuiButtonIcon } from '../button';
 
 import { EuiFocusTrap } from '../focus_trap';
-
+import { EuiOverlayMask } from '../overlay_mask';
 import { EuiI18n } from '../i18n';
 
 export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -47,7 +47,10 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    * set to a string for a custom width in custom measurement.
    */
   maxWidth?: boolean | number | string;
-  /** specifies what element should initially have focus; Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. */
+  /**
+   * Specifies what element should initially have focus.
+   * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
+   */
   initialFocus?: HTMLElement | (() => HTMLElement) | string;
 }
 
@@ -80,30 +83,34 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   const classes = classnames('euiModal', widthClassName, className);
 
   return (
-    <EuiFocusTrap initialFocus={initialFocus}>
-      {
-        // Create a child div instead of applying these props directly to FocusTrap, or else
-        // fallbackFocus won't work.
-      }
-      <div
-        className={classes}
-        onKeyDown={onKeyDown}
-        tabIndex={0}
-        style={newStyle || style}
-        {...rest}>
-        <EuiI18n token="euiModal.closeModal" default="Closes this modal window">
-          {(closeModal: string) => (
-            <EuiButtonIcon
-              iconType="cross"
-              onClick={onClose}
-              className="euiModal__closeIcon"
-              color="text"
-              aria-label={closeModal}
-            />
-          )}
-        </EuiI18n>
-        <div className="euiModal__flex">{children}</div>
-      </div>
-    </EuiFocusTrap>
+    <EuiOverlayMask>
+      <EuiFocusTrap initialFocus={initialFocus}>
+        {
+          // Create a child div instead of applying these props directly to FocusTrap, or else
+          // fallbackFocus won't work.
+        }
+        <div
+          className={classes}
+          onKeyDown={onKeyDown}
+          tabIndex={0}
+          style={newStyle || style}
+          {...rest}>
+          <EuiI18n
+            token="euiModal.closeModal"
+            default="Closes this modal window">
+            {(closeModal: string) => (
+              <EuiButtonIcon
+                iconType="cross"
+                onClick={onClose}
+                className="euiModal__closeIcon"
+                color="text"
+                aria-label={closeModal}
+              />
+            )}
+          </EuiI18n>
+          <div className="euiModal__flex">{children}</div>
+        </div>
+      </EuiFocusTrap>
+    </EuiOverlayMask>
   );
 };

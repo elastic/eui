@@ -40,7 +40,17 @@ export const addDefinedStop = (
     stop,
     color,
   };
-  return [...colorStops, newStop];
+  colorStops = [...colorStops, newStop];
+  colorStops.sort((a, b) => {
+    if (a.stop < b.stop) {
+      return -1;
+    }
+    if (a.stop > b.stop) {
+      return 1;
+    }
+    return 0;
+  });
+  return colorStops;
 };
 
 export const addStop = (
@@ -49,7 +59,7 @@ export const addStop = (
   max: number
 ) => {
   const index = colorStops.length ? colorStops.length - 1 : 0;
-  const stops = colorStops.map(el => el.stop);
+  const stops = colorStops.map((el) => el.stop);
   const currentStop = stops[index] != null ? stops[index] : max;
   let delta = 1;
   if (index !== 0) {
@@ -91,7 +101,7 @@ export const isInvalid = (
   colorStops: ColorStop[],
   showAlpha: boolean = false
 ) => {
-  return colorStops.some(colorStop => {
+  return colorStops.some((colorStop) => {
     return (
       isColorInvalid(colorStop.color, showAlpha) ||
       isStopInvalid(colorStop.stop)
@@ -125,7 +135,7 @@ export const getPositionFromStop = (
   return parseFloat(
     (
       ((stop - min) / (max - min)) *
-      calculateScale(ref ? ref.clientWidth : 100)
+      calculateScale(ref && ref.clientWidth > 0 ? ref.clientWidth : 100)
     ).toFixed(1)
   );
 };

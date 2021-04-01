@@ -14,7 +14,7 @@ needs of that theme.
 
 ## How to create and test a theme
 
-#### Set up your Sass
+### Set up your Sass
 
 1. Create a `src/themes/my_theme_name/` directory.
 2. Add any `.scss` files you need for your theme in this folder (Ex: `src/themes/my_theme_name/my_theme_color.scss`).
@@ -34,7 +34,7 @@ components load after it.
 @import 'components/index';
 ```
 
-#### Make your theme available in the docs
+### Make your theme available in the docs
 
 Lastly, make sure to include your theme in the `/src-docs/index.js` file so that it's available
 through the theme selector.

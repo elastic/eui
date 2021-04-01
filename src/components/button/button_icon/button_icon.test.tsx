@@ -21,11 +21,13 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiButtonIcon, COLORS } from './button_icon';
+import { EuiButtonIcon, COLORS, DISPLAYS, SIZES } from './button_icon';
 
 describe('EuiButtonIcon', () => {
   test('is rendered', () => {
-    const component = render(<EuiButtonIcon {...requiredProps} />);
+    const component = render(
+      <EuiButtonIcon iconType="user" {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });
@@ -34,7 +36,7 @@ describe('EuiButtonIcon', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonIcon aria-label="button" isDisabled />
+          <EuiButtonIcon iconType="user" aria-label="button" isDisabled />
         );
 
         expect(component).toMatchSnapshot();
@@ -42,7 +44,12 @@ describe('EuiButtonIcon', () => {
 
       it('renders a button even when href is defined', () => {
         const component = render(
-          <EuiButtonIcon aria-label="button" href="#" isDisabled />
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="button"
+            href="#"
+            isDisabled
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -60,10 +67,10 @@ describe('EuiButtonIcon', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach(color => {
+      COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
-            <EuiButtonIcon aria-label="button" color={color} />
+            <EuiButtonIcon iconType="user" aria-label="button" color={color} />
           );
 
           expect(component).toMatchSnapshot();
@@ -71,10 +78,65 @@ describe('EuiButtonIcon', () => {
       });
     });
 
+    describe('display', () => {
+      DISPLAYS.forEach((display) => {
+        test(`${display} is rendered`, () => {
+          const component = render(
+            <EuiButtonIcon
+              iconType="user"
+              aria-label="button"
+              display={display}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiButtonIcon iconType="user" aria-label="button" size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('isSelected', () => {
+      it('is rendered as true', () => {
+        const component = render(
+          <EuiButtonIcon iconType="user" aria-label="button" isSelected />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered as false', () => {
+        const component = render(
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="button"
+            isSelected={false}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('href', () => {
       it('secures the rel attribute when the target is _blank', () => {
         const component = render(
-          <EuiButtonIcon aria-label="button" href="#" target="_blank" />
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="button"
+            href="#"
+            target="_blank"
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -85,7 +147,12 @@ describe('EuiButtonIcon', () => {
       it('supports onClick and href', () => {
         const handler = jest.fn();
         const component = mount(
-          <EuiButtonIcon aria-label="hoi" href="#" onClick={handler} />
+          <EuiButtonIcon
+            iconType="user"
+            aria-label="hoi"
+            href="#"
+            onClick={handler}
+          />
         );
         component.find('a').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
@@ -94,7 +161,7 @@ describe('EuiButtonIcon', () => {
       it('supports onClick as a button', () => {
         const handler = jest.fn();
         const component = mount(
-          <EuiButtonIcon aria-label="hoi" onClick={handler} />
+          <EuiButtonIcon iconType="user" aria-label="hoi" onClick={handler} />
         );
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);

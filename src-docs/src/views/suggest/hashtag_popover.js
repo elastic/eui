@@ -14,7 +14,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export default props => {
+export default (props) => {
   const [isPopoverOpen, setPopover] = useState(false);
 
   const togglePopover = () => {
@@ -43,7 +43,7 @@ export default props => {
       anchorPosition="downLeft"
       panelPaddingSize="none"
       closePopover={closePopover}>
-      <EuiPopoverTitle>SAVED QUERIES</EuiPopoverTitle>
+      <EuiPopoverTitle paddingSize="s">SAVED QUERIES</EuiPopoverTitle>
       <div>
         <EuiText
           size="s"
@@ -74,16 +74,16 @@ export default props => {
           </EuiListGroup>
         </div>
         {props.value !== '' ? (
-          <EuiPopoverFooter>
+          <EuiPopoverFooter paddingSize="s">
             <EuiFlexGroup direction="rowReverse" alignItems="center">
               <EuiFlexItem grow={false}>
-                <EuiButton fill>Save</EuiButton>
+                <EuiButton size="s" fill>
+                  Save
+                </EuiButton>
               </EuiFlexItem>
             </EuiFlexGroup>
           </EuiPopoverFooter>
-        ) : (
-          undefined
-        )}
+        ) : undefined}
       </div>
     </EuiPopover>
   );

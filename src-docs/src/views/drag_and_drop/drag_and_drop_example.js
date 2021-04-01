@@ -92,8 +92,6 @@ export const DragAndDropExample = {
           With that in mind, keep your users' working context in mind.`}
         </p>
       </EuiCallOut>
-
-      <EuiSpacer size="l" />
     </React.Fragment>
   ),
   sections: [

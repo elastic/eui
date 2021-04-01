@@ -43,7 +43,8 @@
 // App icon special cases for fully mono
 .euiIcon--text,
 .euiIcon--subdued,
-.euiIcon--primary {
+.euiIcon--primary,
+.euiIcon--customColor {
   &,
   .euiIcon__fillSecondary {
     fill: currentColor;
