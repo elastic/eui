@@ -725,7 +725,7 @@ export default {
                     Cancel
                   </EuiButtonEmpty>
                   <EuiButton color="danger" size="s">
-                    Remove pattern
+                    Remove index pattern
                   </EuiButton>
                 </EuiFlexGroup>
               </EuiPanel>
