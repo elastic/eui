@@ -23,6 +23,12 @@ exports[`EuiPageContent is rendered 1`] = `
 />
 `;
 
+exports[`EuiPageContent role can be removed 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent"
+/>
+`;
+
 exports[`EuiPageContent verticalPosition is rendered 1`] = `
 <div
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter"

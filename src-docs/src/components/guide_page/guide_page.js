@@ -92,6 +92,7 @@ const GuidePageComponent = ({
       </EuiPageHeader>
 
       <EuiPageContent
+        role="main"
         hasShadow={false}
         paddingSize="none"
         color="transparent"
