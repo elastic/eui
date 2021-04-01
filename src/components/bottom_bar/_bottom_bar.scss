@@ -1,25 +1,34 @@
 .euiBottomBar {
   @include euiBottomShadowFlat($euiShadowColorLarge);
-  background: tintOrShade($euiColorFullShade, 25%, 100%);
+  background: $euiHeaderDarkBackgroundColor;
   color: $euiColorEmptyShade;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiCanAnimate {
+    animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
+  }
+}
+
+.euiBottomBar--fixed {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
   z-index: $euiZHeader - 2;
+}
 
-  &.euiBottomBar--paddingSmall {
-    padding: $euiSizeS;
-  }
+.euiBottomBar--sticky {
+  position: sticky;
+  z-index: $euiZHeader - 2;
+}
 
-  &.euiBottomBar--paddingMedium {
-    padding: $euiSize;
-  }
+.euiBottomBar--paddingSmall {
+  padding: $euiSizeS;
+}
 
-  &.euiBottomBar--paddingLarge {
-    padding: $euiSizeL;
-  }
+.euiBottomBar--paddingMedium {
+  padding: $euiSize;
+}
+
+.euiBottomBar--paddingLarge {
+  padding: $euiSizeL;
 }
 
 @keyframes euiBottomBarAppear {

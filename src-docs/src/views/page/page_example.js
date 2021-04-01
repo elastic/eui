@@ -18,12 +18,18 @@ import {
   EuiPageTemplate,
   EuiCallOut,
   EuiSpacer,
+  EuiBottomBar,
 } from '../../../../src/components';
 
 import PageNew from './page_new';
 const pageNewSource = require('!!raw-loader!./page_new');
 import PageTemplate from './page_template';
 const PageTemplateSource = require('!!raw-loader!./page_template');
+
+import PageBottomBar from './page_bottom_bar';
+const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
+import PageBottomBarTemplate from './page_bottom_bar_template';
+const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
 
 import PageRestricingWidth from './page_restricting_width';
 const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
@@ -82,7 +88,7 @@ export const PageExample = {
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
           full screen, you can see how they would behave in a typical
-          applicaiton layout.
+          application layout.
         </p>
       </EuiCallOut>
     </>
@@ -161,22 +167,25 @@ export const PageExample = {
         EuiPageHeader,
         EuiPageContent,
         EuiPageContentBody,
+        EuiBottomBar,
       },
       playground: pageTemplateConfig,
       demo: (
         <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
+          {(Button, Content, SideNav, showTemplate, BottomBar) =>
             showTemplate ? (
               <PageTemplate
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
               />
             ) : (
               <PageNew
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
               />
             )
           }
@@ -234,6 +243,75 @@ export const PageExample = {
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Showing a bottom bar',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageBottomBarTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: pageBottomBarSource,
+          displayName: 'Components JS',
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Adding an{' '}
+            <Link to="/layout/bottom-bar">
+              <strong>EuiBottomBar</strong>
+            </Link>{' '}
+            can be tricky to use and account for any side bars.{' '}
+            <strong>EuiPageTemplate</strong> handles this nicely by supplying a{' '}
+            <EuiCode>bottomBar</EuiCode> prop for passing the contents of your
+            bottom bar, and <EuiCode>bottomBarProps</EuiCode> that extends{' '}
+            <strong>EuiBottomBar</strong>.
+          </p>
+          <p>
+            It uses the <EuiCode>sticky</EuiCode> position so that it sticks to
+            the bottom of and remains within the bounds of{' '}
+            <strong>EuiPageBody</strong>. This way it will never overlap the{' '}
+            <strong>EuiPageSideBar</strong>, no matter the screen size. It also
+            means not needing to accomodate for the height of the bar in the
+            body element.
+          </p>
+          <EuiCallOut
+            size="s"
+            color="warning"
+            title={
+              <>
+                <strong>EuiPageTemplate</strong> only supports bottom bars in
+                the <EuiCode>default</EuiCode> template.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate, BottomBar) =>
+            showTemplate ? (
+              <PageBottomBarTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
+              />
+            ) : (
+              <PageBottomBar
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
               />
             )
           }
