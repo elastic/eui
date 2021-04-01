@@ -238,12 +238,12 @@ export default {
             <GuideRuleExample
               type="do"
               text="Avoid unneeded words in button labels.">
-              <EuiButton>Create component template</EuiButton>
+              <EuiButton fill>Create component template</EuiButton>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
               text='Use "create a new" or include articles in button labels.'>
-              <EuiButton>Create a new component template</EuiButton>
+              <EuiButton fill>Create a new component template</EuiButton>
             </GuideRuleExample>
           </GuideRule>
           <EuiHorizontalRule />
