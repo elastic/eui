@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-- Fixed `htmlIdGenerator` import path in `button_group_button.tsx`
+- Fixed `htmlIdGenerator` import path in `button_group_button.tsx` ([#4682](https://github.com/elastic/eui/pull/4682))
 
 ## [`32.0.1`](https://github.com/elastic/eui/tree/v32.0.1)
 
