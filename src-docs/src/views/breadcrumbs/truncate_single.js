@@ -42,9 +42,9 @@ export default () => {
 
   return (
     <EuiBreadcrumbs
-      truncate={true}
+      truncate={false}
       breadcrumbs={breadcrumbs}
-      aria-label="An example of EuiBreadcrumbs with truncate prop"
+      aria-label="An example of EuiBreadcrumbs without truncate prop"
     />
   );
 };

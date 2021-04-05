@@ -1,28 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
 import { BreadcrumbResponsiveMaxCount, BreadcrumbProps } from './props';
 
+import { breadcrumbsConfig } from './playground';
+
 import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
-const breadcrumbsHtml = renderToHtml(Breadcrumbs);
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
-const responsiveHtml = renderToHtml(Responsive);
+import ResponsiveCustom from './responsive_custom';
+const responsiveCustomSource = require('!!raw-loader!./responsive_custom');
 
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
-const truncateHtml = renderToHtml(Truncate);
+import TruncateSingle from './truncate_single';
+const truncateSingleSource = require('!!raw-loader!./truncate_single');
 
 import Max from './max';
 const maxSource = require('!!raw-loader!./max');
-const maxHtml = renderToHtml(Max);
 
 const breadcrumpProps = {
   EuiBreadcrumbs,
@@ -38,10 +38,6 @@ export const BreadcrumbsExample = {
         {
           type: GuideSectionTypes.JS,
           code: breadcrumbsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: breadcrumbsHtml,
         },
       ],
       text: (
@@ -63,6 +59,7 @@ export const BreadcrumbsExample = {
         </p>
       ),
       props: breadcrumpProps,
+      playground: breadcrumbsConfig,
       snippet: `<EuiBreadcrumbs
   breadcrumbs={[
     {
@@ -85,10 +82,6 @@ export const BreadcrumbsExample = {
         {
           type: GuideSectionTypes.JS,
           code: maxSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: maxHtml,
         },
       ],
       text: (
@@ -116,10 +109,6 @@ export const BreadcrumbsExample = {
           type: GuideSectionTypes.JS,
           code: truncateSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: truncateHtml,
-        },
       ],
       text: (
         <>
@@ -127,9 +116,7 @@ export const BreadcrumbsExample = {
             <strong>EuiBreadcrumbs</strong> will truncate the full set by
             default, forcing it to a single line and setting a max width on all
             items except for the last. You can turn this off by setting{' '}
-            <EuiCode language="ts">{'truncate={false}'}</EuiCode>. You can also
-            force truncation on single breadcrumb <strong>item</strong> by
-            adding <EuiCode>{'truncate: true'}</EuiCode>.
+            <EuiCode language="ts">{'truncate={false}'}</EuiCode>.
           </p>
         </>
       ),
@@ -141,6 +128,28 @@ export const BreadcrumbsExample = {
   breadcrumbs={breadcrumbs}
   aria-label=""
 />`,
+      ],
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: truncateSingleSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Single item only</h3>
+          <p>
+            You can also force truncation on single breadcrumb{' '}
+            <strong>item</strong> by adding{' '}
+            <EuiCode>{'truncate: true'}</EuiCode>.
+          </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      demo: <TruncateSingle />,
+      snippet: [
         `<EuiBreadcrumbs
   truncate={false}
   breadcrumbs={[
@@ -160,10 +169,6 @@ export const BreadcrumbsExample = {
           type: GuideSectionTypes.JS,
           code: responsiveSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: responsiveHtml,
-        },
       ],
       text: (
         <>
@@ -172,10 +177,6 @@ export const BreadcrumbsExample = {
             default and will collapse breadcrumbs on narrower screens. Setting{' '}
             <EuiCode language="ts">{'responsive={false}'}</EuiCode> will keep
             all breadcrumbs visible at all screens sizes.
-          </p>
-          <p>
-            Alternatively, you can change number of breadcrumbs that show per
-            breakpoint by passing a custom responsive object.
           </p>
         </>
       ),
@@ -187,6 +188,27 @@ export const BreadcrumbsExample = {
   breadcrumbs={breadcrumbs}
   aria-label=""
 />`,
+      ],
+      demo: <Responsive />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: responsiveCustomSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Customizing number of items to display</h3>
+          <p>
+            Alternatively, you can change number of breadcrumbs that show per
+            breakpoint by passing a custom responsive object.
+          </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      snippet: [
         `<EuiBreadcrumbs
   responsive={{
     xs: 2,
@@ -197,7 +219,7 @@ export const BreadcrumbsExample = {
   aria-label=""
 />`,
       ],
-      demo: <Responsive />,
+      demo: <ResponsiveCustom />,
     },
   ],
 };
