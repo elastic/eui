@@ -81,7 +81,7 @@ export default ({
             </div>
             <EuiSpacer />
             <EuiCodeBlock
-              language="html"
+              language="jsx"
               fontSize="m"
               paddingSize="m"
               isCopyable>
