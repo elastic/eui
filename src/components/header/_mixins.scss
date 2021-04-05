@@ -21,10 +21,6 @@
   .euiHeaderLogo,
   .euiHeaderLink,
   .euiHeaderSectionItemButton {
-    &:hover {
-      background: transparentize(lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade), .5);
-    }
-
     &:focus {
       background: shade($euiColorPrimary, 50%);
     }

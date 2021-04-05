@@ -1,84 +1,32 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
-import { GuideSectionTypes } from '../../components';
-
-import { EuiCode, EuiCodeEditor } from '../../../../src/components';
-
-import { codeEditorConfig } from './playground';
-
-import CodeEditor from './code_editor';
-const codeEditorSource = require('!!raw-loader!./code_editor');
-const codeEditorHtml = renderToHtml(CodeEditor);
-
-import ReadOnly from './read_only';
-const readOnlySource = require('!!raw-loader!./read_only');
-const readOnlyrHtml = renderToHtml(ReadOnly);
-
-import CustomMode from './custom_mode';
-const customModeSource = require('!!raw-loader!./custom_mode');
-const customModeHtml = renderToHtml(CustomMode);
+import { EuiCode, EuiLink, EuiCallOut } from '../../../../src/components';
 
 export const CodeEditorExample = {
   title: 'Code editor',
   sections: [
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: codeEditorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: codeEditorHtml,
-        },
-      ],
       text: (
-        <div>
-          <p>
-            The <strong>EuiCodeEditor</strong> component is a wrapper around{' '}
-            <EuiCode>react-ace</EuiCode> (which itself wraps the ACE code
-            editor), that adds an accessible keyboard mode to it. You should
-            always use this component instead of <EuiCode>AceEditor</EuiCode>.
-          </p>
-          <p>
-            All parameters, that you specify are passed down to the underlying{' '}
-            <EuiCode>AceEditor</EuiCode> component.
-          </p>
-        </div>
+        <>
+          <EuiCallOut iconType="alert" color="danger" title="Deprecated">
+            <p>
+              The <strong>EuiCodeEditor</strong>, a wrapper of{' '}
+              <EuiCode>react-ace</EuiCode>, has been deprecated and will be
+              removed in a{' '}
+              <EuiLink href="https://github.com/elastic/eui/issues/1469">
+                future release
+              </EuiLink>
+              .
+              <br />
+              If you are a Kibana developer, we recommend using the{' '}
+              <EuiLink href="https://github.com/elastic/kibana/tree/master/packages/kbn-monaco">
+                <EuiCode>@kbn/monaco</EuiCode> package
+              </EuiLink>{' '}
+              within the Kibana codebase.
+            </p>
+          </EuiCallOut>
+        </>
       ),
-      props: { EuiCodeEditor },
-      demo: <CodeEditor />,
-    },
-    {
-      title: 'Read-only',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: readOnlySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: readOnlyrHtml,
-        },
-      ],
-      demo: <ReadOnly />,
-    },
-    {
-      title: 'Custom mode',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: customModeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customModeHtml,
-        },
-      ],
-      demo: <CustomMode />,
     },
   ],
-  playground: codeEditorConfig,
 };

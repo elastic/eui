@@ -165,11 +165,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 132,
+        "line": 180,
         "column": 8
       },
       "end": {
-        "line": 134,
+        "line": 182,
         "column": 40
       }
     },
@@ -181,11 +181,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 159,
+        "line": 206,
         "column": 14
       },
       "end": {
-        "line": 163,
+        "line": 210,
         "column": 16
       }
     },
@@ -197,11 +197,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 212,
         "column": 14
       },
       "end": {
-        "line": 168,
+        "line": 215,
         "column": 16
       }
     },
@@ -549,11 +549,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 275,
+        "line": 277,
         "column": 8
       },
       "end": {
-        "line": 283,
+        "line": 285,
         "column": 13
       }
     },
@@ -565,11 +565,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 275,
+        "line": 277,
         "column": 8
       },
       "end": {
-        "line": 283,
+        "line": 285,
         "column": 13
       }
     },
@@ -581,11 +581,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 319,
+        "line": 321,
         "column": 12
       },
       "end": {
-        "line": 324,
+        "line": 326,
         "column": 14
       }
     },
@@ -597,11 +597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 329,
+        "line": 331,
         "column": 12
       },
       "end": {
-        "line": 334,
+        "line": 336,
         "column": 65
       }
     },
@@ -613,11 +613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 329,
+        "line": 331,
         "column": 12
       },
       "end": {
-        "line": 334,
+        "line": 336,
         "column": 65
       }
     },
@@ -629,11 +629,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 358,
+        "line": 361,
         "column": 16
       },
       "end": {
-        "line": 360,
+        "line": 363,
         "column": 45
       }
     },
@@ -645,11 +645,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 463,
+        "line": 521,
         "column": 10
       },
       "end": {
-        "line": 471,
+        "line": 529,
         "column": 12
       }
     },
@@ -2597,11 +2597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 95,
+        "line": 98,
         "column": 10
       },
       "end": {
-        "line": 97,
+        "line": 100,
         "column": 47
       }
     },
@@ -2773,11 +2773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 137,
+        "line": 138,
         "column": 4
       },
       "end": {
-        "line": 140,
+        "line": 141,
         "column": 36
       }
     },
@@ -2789,11 +2789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 142,
+        "line": 143,
         "column": 8
       },
       "end": {
-        "line": 144,
+        "line": 145,
         "column": 34
       }
     },
@@ -2805,11 +2805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 169,
+        "line": 170,
         "column": 8
       },
       "end": {
-        "line": 173,
+        "line": 174,
         "column": 50
       }
     },
@@ -2821,11 +2821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 197,
+        "line": 198,
         "column": 8
       },
       "end": {
-        "line": 201,
+        "line": 202,
         "column": 79
       }
     },
@@ -2837,11 +2837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 229,
+        "line": 230,
         "column": 4
       },
       "end": {
-        "line": 232,
+        "line": 233,
         "column": 40
       }
     },
@@ -2853,11 +2853,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 234,
+        "line": 235,
         "column": 8
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 76
       }
     },
@@ -2869,12 +2869,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 264,
-        "column": 10
+        "line": 268,
+        "column": 12
       },
       "end": {
-        "line": 271,
-        "column": 12
+        "line": 275,
+        "column": 14
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"

@@ -25,11 +25,7 @@ import {
 export default () => (
   <>
     <EuiText grow={false}>
-      <p>
-        A modal says “pay attention to me and nothing else.” A modal works best
-        for focusing users&apos; attention on a <strong>short</strong> amount of
-        content and getting them to make a decision.
-      </p>
+      <p>A modal says “pay attention to me and nothing else.”</p>
     </EuiText>
 
     <EuiSpacer size="xxl" />

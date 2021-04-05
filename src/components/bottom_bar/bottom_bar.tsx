@@ -18,10 +18,18 @@
  */
 
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, {
+  CSSProperties,
+  forwardRef,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
+import { useCombinedRefs } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
+import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 
 type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
@@ -36,99 +44,139 @@ export const paddingSizeToClassNameMap: {
   l: 'euiBottomBar--paddingLarge',
 };
 
-export interface EuiBottomBarProps extends CommonProps {
-  /**
-   * Padding applied to the bar. Default is 'm'.
-   */
-  paddingSize: BottomBarPaddingSize;
+export const POSITIONS = ['static', 'fixed', 'sticky'] as const;
+export type _BottomBarPosition = typeof POSITIONS[number];
 
-  /**
-   * Whether the component should apply padding on the document body element to afford for its own displacement height.
-   * Default is true.
-   */
-  affordForDisplacement: boolean;
-
-  /**
-   * Optional class applied to the body element on mount
-   */
-  bodyClassName?: string;
-
-  /**
-   * Customize the screen reader heading that helps users find this control. Default is 'Page level controls'.
-   */
-  landmarkHeading?: string;
-}
-
-export class EuiBottomBar extends Component<EuiBottomBarProps> {
-  static defaultProps = {
-    paddingSize: 'm',
-    affordForDisplacement: true,
+type _BottomBarExclusivePositions = ExclusiveUnion<
+  {
+    position?: 'fixed';
+    /**
+     * Whether to wrap in an EuiPortal which appends the component to the body element.
+     * Only works if `position` is `fixed`.
+     */
+    usePortal?: boolean;
+    /**
+     * Whether the component should apply padding on the document body element to afford for its own displacement height.
+     * Only works if `usePortal` is true and `position` is `fixed`.
+     */
+    affordForDisplacement?: boolean;
+  },
+  {
+    /**
+     * How to position the bottom bar against its parent.
+     */
+    position: 'static' | 'sticky';
+  }
+>;
+export type EuiBottomBarProps = CommonProps &
+  HTMLAttributes<HTMLElement> &
+  _BottomBarExclusivePositions & {
+    /**
+     * Padding applied to the bar. Default is 'm'.
+     */
+    paddingSize?: BottomBarPaddingSize;
+    /**
+     * Optional class applied to the body element on mount.
+     */
+    bodyClassName?: string;
+    /**
+     * Customize the screen reader heading that helps users find this control. Default is 'Page level controls'.
+     */
+    landmarkHeading?: string;
+    /**
+     * Starting vertical position when `fixed` position.
+     * Offset from the top of the window when `sticky` position.
+     * Has no affect on `static` positions.
+     */
+    top?: CSSProperties['top'];
+    /**
+     * Ending horizontal position when `fixed` position.
+     * Has no affect on `static` or `sticky` positions.
+     */
+    right?: CSSProperties['right'];
+    /**
+     * Starting vertical position when `fixed` position.
+     * Offset from the bottom of the window when `sticky` position.
+     * Has no affect on `static` positions.
+     */
+    bottom?: CSSProperties['bottom'];
+    /**
+     * Starting horizontal position when `fixed` position.
+     * Has no affect on `static` or `sticky` positions.
+     */
+    left?: CSSProperties['left'];
   };
 
-  private bar: HTMLElement | null = null;
-
-  componentDidMount() {
-    if (this.props.affordForDisplacement) {
-      const height = this.bar ? this.bar.clientHeight : -1;
-      document.body.style.paddingBottom = `${height}px`;
-    }
-
-    if (this.props.bodyClassName) {
-      document.body.classList.add(this.props.bodyClassName);
-    }
-  }
-
-  componentDidUpdate(prevProps: EuiBottomBarProps) {
-    if (prevProps.affordForDisplacement !== this.props.affordForDisplacement) {
-      if (this.props.affordForDisplacement) {
-        // start affording for displacement
-        const height = this.bar ? this.bar.clientHeight : -1;
-        document.body.style.paddingBottom = `${height}px`;
-      } else {
-        // stop affording for displacement
-        document.body.style.paddingBottom = '';
-      }
-    }
-
-    if (prevProps.bodyClassName !== this.props.bodyClassName) {
-      if (prevProps.bodyClassName) {
-        document.body.classList.remove(prevProps.bodyClassName);
-      }
-      if (this.props.bodyClassName) {
-        document.body.classList.add(this.props.bodyClassName);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.affordForDisplacement) {
-      document.body.style.paddingBottom = '';
-    }
-
-    if (this.props.bodyClassName) {
-      document.body.classList.remove(this.props.bodyClassName);
-    }
-  }
-
-  render() {
-    const {
+export const EuiBottomBar = forwardRef<
+  HTMLElement, // type of element or component the ref will be passed to
+  EuiBottomBarProps // what properties apart from `ref` the component accepts
+>(
+  (
+    {
+      position = 'fixed',
+      paddingSize = 'm',
+      affordForDisplacement = true,
       children,
       className,
-      paddingSize,
       bodyClassName,
       landmarkHeading,
-      affordForDisplacement,
+      usePortal = true,
+      left = 0,
+      right = 0,
+      bottom = 0,
+      top,
+      style,
       ...rest
-    } = this.props;
+    },
+    ref
+  ) => {
+    // Force some props if `fixed` position, but not if the user has supplied these
+    affordForDisplacement =
+      position !== 'fixed' ? false : affordForDisplacement;
+    usePortal = position !== 'fixed' ? false : usePortal;
+
+    const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
+    const setRef = useCombinedRefs([setResizeRef, ref]);
+    // TODO: Allow this hooke to be conditional
+    const dimensions = useResizeObserver(resizeRef);
+
+    useEffect(() => {
+      if (affordForDisplacement && usePortal) {
+        document.body.style.paddingBottom = `${dimensions.height}px`;
+      }
+
+      if (bodyClassName) {
+        document.body.classList.add(bodyClassName);
+      }
+
+      return () => {
+        if (affordForDisplacement && usePortal) {
+          document.body.style.paddingBottom = '';
+        }
+
+        if (bodyClassName) {
+          document.body.classList.remove(bodyClassName);
+        }
+      };
+    }, [affordForDisplacement, usePortal, dimensions, bodyClassName]);
 
     const classes = classNames(
       'euiBottomBar',
+      `euiBottomBar--${position}`,
       paddingSizeToClassNameMap[paddingSize],
       className
     );
 
-    return (
-      <EuiPortal>
+    const newStyle = {
+      left,
+      right,
+      bottom,
+      top,
+      ...style,
+    };
+
+    const bar = (
+      <>
         <EuiI18n
           token="euiBottomBar.screenReaderHeading"
           default="Page level controls">
@@ -140,9 +188,8 @@ export class EuiBottomBar extends Component<EuiBottomBarProps> {
                 landmarkHeading ? landmarkHeading : screenReaderHeading
               }
               className={classes}
-              ref={(node) => {
-                this.bar = node;
-              }}
+              ref={setRef}
+              style={newStyle}
               {...rest}>
               <EuiScreenReaderOnly>
                 <h2>
@@ -169,7 +216,11 @@ export class EuiBottomBar extends Component<EuiBottomBarProps> {
             )}
           </p>
         </EuiScreenReaderOnly>
-      </EuiPortal>
+      </>
     );
+
+    return usePortal ? <EuiPortal>{bar}</EuiPortal> : bar;
   }
-}
+);
+
+EuiBottomBar.displayName = 'EuiBottomBar';

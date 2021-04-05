@@ -3,8 +3,10 @@
   align-items: center;
 
   &__compressedText {
+    // sass-lint:disable-block no-important
     display: inline-flex;
     align-items: center;
+    line-height: 1 !important; // Override EuiText line-height
 
     > *:first-child {
       margin-right: $euiSizeXS;
@@ -18,10 +20,5 @@
 
 .euiPagination__list {
   display: flex;
-}
-
-@include euiBreakpoint('xs', 's') {
-  .euiPagination__list {
-    display: none;
-  }
+  align-items: baseline;
 }

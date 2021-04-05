@@ -25,6 +25,7 @@ import { EuiPaginationButton } from './pagination_button';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
 import { EuiText } from '../text';
+import { EuiHideFor } from '../responsive';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -250,6 +251,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
   );
 
   const selectablePages = pages;
+
   if (compressed) {
     const firstPageButtonCompressed = (
       <PaginationButton pageIndex={activePage} inList={false} />
@@ -257,19 +259,22 @@ export const EuiPagination: FunctionComponent<Props> = ({
     const lastPageButtonCompressed = (
       <PaginationButton pageIndex={pageCount - 1} inList={false} />
     );
+
     return (
       <nav className={classes} {...rest}>
         {previousButton}
-        <EuiText size="s" className="euiPagination__compressedText">
-          <EuiI18n
-            token="euiPagination.pageOfTotalCompressed"
-            default="{page} of {total}"
-            values={{
-              page: firstPageButtonCompressed,
-              total: lastPageButtonCompressed,
-            }}
-          />
-        </EuiText>
+        <EuiHideFor sizes={['xs', 's']}>
+          <EuiText size="s" className="euiPagination__compressedText">
+            <EuiI18n
+              token="euiPagination.pageOfTotalCompressed"
+              default="{page} of {total}"
+              values={{
+                page: firstPageButtonCompressed,
+                total: lastPageButtonCompressed,
+              }}
+            />
+          </EuiText>
+        </EuiHideFor>
         {nextButton}
       </nav>
     );

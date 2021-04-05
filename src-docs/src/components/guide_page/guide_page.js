@@ -92,23 +92,22 @@ const GuidePageComponent = ({
       </EuiPageHeader>
 
       <EuiPageContent
+        role="main"
         hasShadow={false}
         paddingSize="none"
         color="transparent"
         hasBorder={false}
         borderRadius="none">
         <EuiPageContentBody restrictWidth>
-          <main>
-            <Switch>
-              {playground && (
-                <Route path={`${match.path}/playground`}>{playground}</Route>
-              )}
-              {guidelines && (
-                <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-              )}
-              <Route path="">{children}</Route>
-            </Switch>
-          </main>
+          <Switch>
+            {playground && (
+              <Route path={`${match.path}/playground`}>{playground}</Route>
+            )}
+            {guidelines && (
+              <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+            )}
+            <Route path="">{children}</Route>
+          </Switch>
         </EuiPageContentBody>
       </EuiPageContent>
     </>
