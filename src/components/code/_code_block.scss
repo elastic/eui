@@ -176,7 +176,7 @@
     }
   }
 
-  .token.punctuation:not(.interpolation-punctuation):not([class='attr-*']),
+  .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']),
   .token.namespace {
     opacity: .7;
   }
@@ -199,7 +199,7 @@
   .token.interpolation,
   .token.interpolation-punctuation,
   .token.doc-comment .token.keyword,
-  .token.tag .token.attr-value,
+  .token.attr-value,
   .token.url .token.content {
     color: $euiCodeBlockStringColor;
   }
@@ -211,8 +211,8 @@
   .token.variable,
   .token.unit,
   .token.hexcode,
-  .token.tag .token.attr-name,
-  .token.tag .token.attr-equals {
+  .token.attr-name,
+  .token.attr-equals {
     color: $euiCodeBlockNumberColor;
   }
 

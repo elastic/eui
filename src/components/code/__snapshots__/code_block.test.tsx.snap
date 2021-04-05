@@ -182,6 +182,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
         class="euiCodeBlock__line"
       >
         var some = 'code';
+
       </span>
       <span
         class="euiCodeBlock__line"

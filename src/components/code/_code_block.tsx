@@ -39,6 +39,11 @@ import { useMutationObserver } from '../observer/mutation_observer';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOverlayMask } from '../overlay_mask';
 
+type ExtendedRefractorNode = RefractorNode & {
+  lineStart?: number;
+  lineEnd?: number;
+};
+
 const isAstElement = (node: RefractorNode): node is AST.Element =>
   node.hasOwnProperty('type') && node.type === 'element';
 
@@ -65,20 +70,82 @@ const nodeToHtml = (
   return node.value;
 };
 
-const highlightByLine = (code: string, language: string): RefractorNode[] => {
-  const lines = code.split('\n');
-  // Trim lines from end
-  while (lines[lines.length - 1] === '') {
-    lines.splice(-1, 1);
-  }
-  return lines.map((line) => ({
-    type: 'element',
-    tagName: 'span',
-    properties: {
-      className: ['euiCodeBlock__line'],
-    },
-    children: highlight(line ? line : '\n', language),
-  }));
+const addLineData = (
+  nodes: ExtendedRefractorNode[],
+  data = { lineNumber: 1 }
+): ExtendedRefractorNode[] => {
+  return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
+    const lineStart = data.lineNumber;
+    if (node.type === 'text') {
+      if (node.value.indexOf('\n') === -1) {
+        node.lineStart = lineStart;
+        node.lineEnd = lineStart;
+        result.push(node);
+      } else {
+        const lines = node.value.split('\n');
+        lines.forEach((line, i) => {
+          const num = i === 0 ? data.lineNumber : ++data.lineNumber;
+          result.push({
+            type: 'text',
+            value: i === lines.length - 1 ? line : `${line}\n`,
+            lineStart: num,
+            lineEnd: num,
+          });
+        });
+      }
+      return result;
+    }
+
+    if (node.children) {
+      const children = addLineData(node.children, data);
+      const first = children[0];
+      const last = children[children.length - 1];
+      const start = first.lineStart ?? lineStart;
+      const end = last.lineEnd ?? lineStart;
+      if (start !== end) {
+        children.forEach((node) => {
+          result.push(node);
+        });
+      } else {
+        node.lineStart = start;
+        node.lineEnd = end;
+        node.children = children;
+        result.push(node);
+      }
+      return result;
+    }
+
+    result.push(node);
+    return result;
+  }, []);
+};
+
+function wrapLines(nodes: ExtendedRefractorNode[]) {
+  const grouped: ExtendedRefractorNode[][] = [];
+  nodes.forEach((node) => {
+    const lineStart = node.lineStart! - 1;
+    if (grouped[lineStart]) {
+      grouped[lineStart].push(node);
+    } else {
+      grouped[lineStart] = [node];
+    }
+  });
+  const wrapped: RefractorNode[] = [];
+  grouped.forEach((node) => {
+    wrapped.push({
+      type: 'element',
+      tagName: 'span',
+      properties: {
+        className: ['euiCodeBlock__line'],
+      },
+      children: node,
+    });
+  });
+  return wrapped;
+}
+
+const highlightByLine = (children: string, language: string) => {
+  return wrapLines(addLineData(highlight(children, language)));
 };
 
 const fontSizeToClassNameMap = {
