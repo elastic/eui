@@ -106,6 +106,9 @@ export interface EuiPopoverProps {
    * CSS display type for both the popover and anchor
    */
   display?: keyof typeof displayToClassNameMap;
+  /**
+   * Object of props passed to EuiFocusTrap
+   */
   focusTrapProps?: Pick<
     EuiFocusTrapProps,
     'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
