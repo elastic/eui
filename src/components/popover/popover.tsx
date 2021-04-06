@@ -30,7 +30,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
-import { FocusTarget, EuiFocusTrap } from '../focus_trap';
+import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
@@ -106,6 +106,13 @@ export interface EuiPopoverProps {
    * CSS display type for both the popover and anchor
    */
   display?: keyof typeof displayToClassNameMap;
+  /**
+   * Object of props passed to EuiFocusTrap
+   */
+  focusTrapProps?: Pick<
+    EuiFocusTrapProps,
+    'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
+  >;
   /**
    * Show arrow indicating to originating button
    */
@@ -681,6 +688,7 @@ export class EuiPopover extends Component<Props, State> {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
       container,
+      focusTrapProps,
       ...rest
     } = this.props;
 
@@ -750,8 +758,9 @@ export class EuiPopover extends Component<Props, State> {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
+            {...focusTrapProps}
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             onClickOutside={this.onClickOutside}
