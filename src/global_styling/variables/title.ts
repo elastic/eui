@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { CSSProperties } from 'react';
 import { computed } from '../../services/theme/utils';
 import { EuiFontScale, SCALES } from './_typography';
 
@@ -24,7 +25,7 @@ export type EuiThemeTitle = {
   [size in EuiFontScale]: {
     color: string;
     fontSize: string;
-    fontWeight: string;
+    fontWeight: CSSProperties['fontWeight'];
     letterSpacing?: string;
     lineHeight: string;
   };

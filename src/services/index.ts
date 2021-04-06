@@ -140,7 +140,7 @@ export {
   mergeDeep,
   setOn,
   Computed,
-  EuiThemeColor,
+  ComputedThemeShape,
   EuiThemeColorMode,
   EuiThemeComputed,
   EuiThemeModifications,

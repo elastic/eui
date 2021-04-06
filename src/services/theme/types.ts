@@ -58,7 +58,6 @@ export type EuiThemeShape = {
   border: EuiThemeBorder;
   title: EuiThemeTitle;
 };
-export type EuiThemeColor = EuiThemeColors['LIGHT'];
 
 export type EuiThemeSystem<T = {}> = {
   root: EuiThemeShape & T;
@@ -68,12 +67,7 @@ export type EuiThemeSystem<T = {}> = {
 
 export type EuiThemeModifications<T = {}> = RecursivePartial<EuiThemeShape & T>;
 
-// TODO:
-// Intersection types like `EuiThemeColors` lose members because
-// `T extends ColorModeSwitch<X>`, but inferred `X` does not contain
-// all members; it only contains the first matching member
-// and therefore converting the type excludes all other properties.
-type ConvertColorModeSwitch<
+export type ComputedThemeShape<
   T,
   P = string | number | bigint | boolean | null | undefined
 > = T extends P | ColorModeSwitch<infer X>
@@ -81,15 +75,17 @@ type ConvertColorModeSwitch<
     ? X extends P
       ? X
       : {
-          [K in keyof X]: ConvertColorModeSwitch<X[K], P>;
+          [K in keyof (X &
+            Exclude<T, keyof X | keyof ColorModeSwitch>)]: ComputedThemeShape<
+            (X & Exclude<T, keyof X | keyof ColorModeSwitch>)[K],
+            P
+          >;
         }
     : T
   : {
-      [K in keyof T]: ConvertColorModeSwitch<T[K], P>;
+      [K in keyof T]: ComputedThemeShape<T[K], P>;
     };
 
-export type EuiThemeComputed<T = {}> = ConvertColorModeSwitch<
-  EuiThemeShape & T
-> & {
+export type EuiThemeComputed<T = {}> = ComputedThemeShape<EuiThemeShape & T> & {
   themeName: string;
-} & T;
+};

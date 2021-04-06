@@ -31,6 +31,7 @@ import {
   computed,
   buildTheme,
   EuiThemeModifications,
+  ComputedThemeShape,
 } from '../../../../src/services';
 import { EuiCodeBlock } from '../../../../src/components/code';
 import { EuiButton } from '../../../../src/components/button';
@@ -146,7 +147,7 @@ class Block extends React.Component<BlockProps> {
     );
   }
 }
-const BlockWithTheme = withEuiTheme(Block);
+const BlockWithTheme = withEuiTheme<BlockProps>(Block);
 
 export default () => {
   const [overrides, setOverrides] = React.useState({});
@@ -197,10 +198,7 @@ export default () => {
       mySize: number;
     };
   };
-  type ExtensionsComputed = {
-    colors: { myColor: string };
-    custom: { colors: { customColor: string }; mySize: number };
-  };
+  type ExtensionsComputed = ComputedThemeShape<ExtensionsUncomputed>;
 
   // Type (EuiThemeModifications<ExtensionsUncomputed>) only necessary if you want IDE autocomplete support here
   const extend: EuiThemeModifications<ExtensionsUncomputed> = {

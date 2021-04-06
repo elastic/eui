@@ -23,10 +23,11 @@ import {
   shade,
   tint,
 } from '../../../../global_styling/functions/_colors';
-import { poles } from '../../../../global_styling/variables/_colors';
+import { EuiThemeColors } from '../../../../global_styling/variables/_colors';
 
-export const light_colors_ams = {
-  ...poles,
+const light_colors_ams = {
+  ghost: '#FFF',
+  ink: '#000',
 
   // Brand
   primary: '#07C',
@@ -62,8 +63,9 @@ export const light_colors_ams = {
   ]),
 };
 
-export const dark_colors_ams = {
-  ...poles,
+const dark_colors_ams = {
+  ghost: '#FFF',
+  ink: '#000',
 
   // Brand
   primary: '#36A2EF',
@@ -98,3 +100,9 @@ export const dark_colors_ams = {
     'colors.mediumShade',
   ]),
 };
+
+// TODO: Type this correctly when complete
+export const colors_ams = ({
+  LIGHT: light_colors_ams,
+  DARK: dark_colors_ams,
+} as unknown) as EuiThemeColors;
