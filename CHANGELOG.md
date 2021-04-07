@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `32.0.3`.
+
+## [`32.0.3`](https://github.com/elastic/eui/tree/v32.0.3)
+
 **Bug fixes**
 
 - Exported `EuiAvatarProps` ([#4690](https://github.com/elastic/eui/pull/4690))
