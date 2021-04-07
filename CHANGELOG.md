@@ -1,10 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting ([#4638](https://github.com/elastic/eui/pull/4638))
+
+- Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
+
+**Breaking changes**
+
+- Changed some language syntax references in `EuiCodeBlock`, such as `jsx` ([#4638](https://github.com/elastic/eui/pull/4638))
+- Removed ability to parse non-string content in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
+
+## [`32.0.3`](https://github.com/elastic/eui/tree/v32.0.3)
+
+**Bug fixes**
+
+- Exported `EuiAvatarProps` ([#4690](https://github.com/elastic/eui/pull/4690))
+- Fixed type overrides in `EuiCard` ([#4690](https://github.com/elastic/eui/pull/4690))
+
+## [`32.0.2`](https://github.com/elastic/eui/tree/v32.0.2)
 
 **Bug fixes**
 
 - Fixed `htmlIdGenerator` import path in `button_group_button.tsx` ([#4682](https://github.com/elastic/eui/pull/4682))
+- Fixed `EuiColorStops` popover failing to close ([#4687](https://github.com/elastic/eui/pull/4687))
 
 ## [`32.0.1`](https://github.com/elastic/eui/tree/v32.0.1)
 

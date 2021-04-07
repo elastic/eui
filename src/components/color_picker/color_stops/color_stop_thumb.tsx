@@ -244,7 +244,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
 
   const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
     handleTouchInteraction(e);
-    openPopover();
+    if (!isPopoverOpen) {
+      openPopover();
+    }
   };
 
   const classes = classNames(
@@ -255,8 +257,6 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     className
   );
 
-  // console.log('render', stop);
-
   return (
     <EuiPopover
       ref={popoverRef}
@@ -265,8 +265,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       panelPaddingSize="s"
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      ownFocus={isPopoverOpen}
       initialFocus={numberInputRef || undefined}
+      focusTrapProps={{ clickOutsideDisables: false }}
       panelClassName={
         numberInputRef ? undefined : 'euiColorStopPopover-isLoadingPanel'
       }
