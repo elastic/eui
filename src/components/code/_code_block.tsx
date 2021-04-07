@@ -218,7 +218,10 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
-  const [innerTextRef, innerText] = useInnerText('');
+  const [innerTextRef, _innerText] = useInnerText('');
+  const innerText = useMemo(() => _innerText?.replace(/\n\n/g, '\n'), [
+    _innerText,
+  ]);
   const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
   const combinedRef = useCombinedRefs<HTMLPreElement>([
     innerTextRef,
