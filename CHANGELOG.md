@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `32.0.3`.
+**Bug fixes**
+
+- Removed the restriction on `selectable` `EuiCard` with `layout="horizontal"` ([#4692](https://github.com/elastic/eui/pull/4692))
 
 ## [`32.0.3`](https://github.com/elastic/eui/tree/v32.0.3)
 
