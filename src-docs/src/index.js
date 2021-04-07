@@ -51,7 +51,7 @@ ReactDOM.render(
         <ScrollToHash />
         <Switch>
           {routes.map(
-            ({ name, path, sections, isNew, component, from, to }, i) => {
+            ({ name, path, sections, isNew, component, from, to }) => {
               const mainComponent = (
                 <Route
                   key={path}

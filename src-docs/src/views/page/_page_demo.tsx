@@ -1,4 +1,10 @@
-import React, { useState, ReactNode, FunctionComponent } from 'react';
+import React, {
+  ComponentType,
+  ReactElement,
+  useState,
+  FunctionComponent,
+} from 'react';
+import { useRouteMatch } from 'react-router';
 import { EuiImage } from '../../../../src/components/image';
 import { EuiButton } from '../../../../src/components/button';
 import { EuiFocusTrap } from '../../../../src/components/focus_trap';
@@ -7,59 +13,66 @@ import { EuiSwitch } from '../../../../src/components/form';
 import { EuiTextAlign } from '../../../../src/components/text';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 
-import content from '../../images/content.svg';
-import contentCenter from '../../images/content_center.svg';
-import sideNav from '../../images/side_nav.svg';
-import single from '../../images/single.svg';
-import {
-  StandaloneExample,
-  ExitStandaloneButton,
-} from '../../components/standalone_example';
+import contentSvg from '../../images/content.svg';
+import contentCenterSvg from '../../images/content_center.svg';
+import sideNavSvg from '../../images/side_nav.svg';
+import singleSvg from '../../images/single.svg';
+
+const ExitFullscreenDemoButton = () => {
+  const { path } = useRouteMatch();
+  return (
+    <EuiButton
+      fill
+      href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
+      iconType="minimize">
+      Exit full screen
+    </EuiButton>
+  );
+};
 
 export const PageDemo: FunctionComponent<{
   slug: string;
-  children?: (
-    button: typeof EuiButton,
-    Content: ReactNode,
-    SideNav: ReactNode,
-    showTemplate: boolean,
-    BottomBar: ReactNode
-  ) => ReactNode;
+  fullscreen?: boolean;
+  pattern: ComponentType<{
+    button: ReactElement;
+    content: ReactElement;
+    sideNav: ReactElement;
+    bottomBar: ReactElement;
+  }>;
+  template: ComponentType<{
+    button: ReactElement;
+    content: ReactElement;
+    sideNav: ReactElement;
+    bottomBar: ReactElement;
+  }>;
   centered?: boolean;
-}> = ({ slug, children, centered }) => {
+}> = ({ slug, fullscreen, pattern, template, centered }) => {
+  const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [showTemplate, setShowTemplate] = useState(true);
 
-  const FullscreenButton = () => {
-    return (
-      <StandaloneExample
-        slug={slug}
-        example={
-          <EuiFocusTrap>
-            <div className="guideFullScreenOverlay guideFullScreenOverlay--withHeader">
-              {children &&
-                children(ExitStandaloneButton, Content, SideNav, showTemplate)}
-            </div>
-          </EuiFocusTrap>
-        }
-      />
-    );
-  };
+  const button = fullscreen ? (
+    <ExitFullscreenDemoButton />
+  ) : (
+    <EuiButton fill href={`#${path}/${slug}`}>
+      Go fullscreen
+    </EuiButton>
+  );
 
-  const SideNav = () => (
+  const sideNav = (
     <EuiImage
       size={isMobileSize ? 'original' : 'fullWidth'}
       alt="Fake side nav list"
-      url={isMobileSize ? single : sideNav}
+      url={isMobileSize ? singleSvg : sideNavSvg}
     />
   );
 
-  const Content = () => (
+  const content = (
     <>
       <EuiImage
         size="fullWidth"
         alt="Fake paragraph"
-        url={centered ? contentCenter : content}
+        url={centered ? contentCenterSvg : contentSvg}
       />
       {!centered && (
         <>
@@ -67,30 +80,35 @@ export const PageDemo: FunctionComponent<{
           <EuiImage
             size="fullWidth"
             alt="Fake paragraph"
-            url={centered ? contentCenter : content}
+            url={centered ? contentCenterSvg : contentSvg}
           />
         </>
       )}
     </>
   );
 
-  const BottomBar = () => (
+  const bottomBar = (
     <EuiButton size="s" color="ghost">
       Save
     </EuiButton>
   );
 
+  const Child = showTemplate ? template : pattern;
   return (
     <>
-      <EuiFocusTrap disabled={!fullScreen}>
+      <EuiFocusTrap disabled={!fullscreen}>
         <div
           className={
-            fullScreen
+            fullscreen
               ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
               : 'guideDemo__highlightLayout'
           }>
-          {children &&
-            children(Button, Content, SideNav, showTemplate, BottomBar)}
+          <Child
+            button={button}
+            content={content}
+            sideNav={sideNav}
+            bottomBar={bottomBar}
+          />
         </div>
       </EuiFocusTrap>
       <EuiTextAlign textAlign="right">

@@ -31,10 +31,10 @@ const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
 import PageBottomBarTemplate from './page_bottom_bar_template';
 const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
 
-import PageRestricingWidth from './page_restricting_width';
-const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
-import PageRestricingWidthTemplate from './page_restricting_width_template';
-const PageRestricingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+import PageRestrictingWidth from './page_restricting_width';
+const PageRestrictingWidthSource = require('!!raw-loader!./page_restricting_width');
+import PageRestrictingWidthTemplate from './page_restricting_width_template';
+const PageRestrictingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
 
 import PageCenteredBody from './page_centered_body';
 const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
@@ -173,10 +173,19 @@ export const PageExample = {
       demoRoute: {
         slug: 'full-page',
         demo: (
-          <PageDemo template={PageNew} />
+          <PageDemo
+            slug="full-page"
+            pattern={PageNew}
+            template={PageTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="full-page" template={PageTemplate} placeholder />
+          <PageDemo
+            slug="full-page"
+            pattern={PageNew}
+            template={PageTemplate}
+          />
         ),
       },
     },
@@ -185,12 +194,12 @@ export const PageExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PageRestricingWidthTemplateSource,
+          code: PageRestrictingWidthTemplateSource,
           displayName: 'Template JS',
         },
         {
           type: GuideSectionTypes.JS,
-          code: PageRestricingWidthSource,
+          code: PageRestrictingWidthSource,
           displayName: 'Components JS',
         },
       ],
@@ -220,10 +229,19 @@ export const PageExample = {
       demoRoute: {
         slug: 'restricting-page-width',
         demo: (
-          <PageDemo template={PageRestricingWidth} />
+          <PageDemo
+            slug="restricting-page-width"
+            pattern={PageRestrictingWidth}
+            template={PageRestrictingWidthTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="restricting-page-width" template={PageRestricingWidthTemplate} placeholder />
+          <PageDemo
+            slug="restricting-page-width"
+            pattern={PageRestrictingWidth}
+            template={PageRestrictingWidthTemplate}
+          />
         ),
       },
     },
@@ -274,27 +292,24 @@ export const PageExample = {
           />
         </>
       ),
-      demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate, BottomBar) =>
-            showTemplate ? (
-              <PageBottomBarTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            ) : (
-              <PageBottomBar
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            )
-          }
-        </PageDemo>
-      ),
+      demoRoute: {
+        slug: 'bottom-bar',
+        demo: (
+          <PageDemo
+            slug="bottom-bar"
+            pattern={PageBottomBar}
+            template={PageBottomBarTemplate}
+            fullscreen
+          />
+        ),
+        placeholder: (
+          <PageDemo
+            slug="bottom-bar"
+            pattern={PageBottomBar}
+            template={PageBottomBarTemplate}
+          />
+        ),
+      },
     },
     {
       title: 'Centered body',
@@ -333,12 +348,23 @@ export const PageExample = {
         </>
       ),
       demoRoute: {
-        slug: 'centered-page',
+        slug: 'centered-body',
         demo: (
-          <PageDemo template={PageCenteredBody} />
+          <PageDemo
+            slug="centered-body"
+            centered
+            pattern={PageCenteredBody}
+            template={PageCenteredBodyTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="centered-page" template={PageCenteredBodyTemplate} placeholder />
+          <PageDemo
+            slug="centered-body"
+            centered
+            pattern={PageCenteredBody}
+            template={PageCenteredBodyTemplate}
+          />
         ),
       },
       props: { EuiPageTemplate, EuiEmptyPrompt },
@@ -379,10 +405,21 @@ export const PageExample = {
       demoRoute: {
         slug: 'centered-content',
         demo: (
-          <PageDemo template={PageCenteredContent} />
+          <PageDemo
+            slug="centered-content"
+            centered
+            pattern={PageCenteredContent}
+            template={PageCenteredContentTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="centered-content" template={PageCenteredContentTemplate} placeholder />
+          <PageDemo
+            slug="centered-content"
+            centered
+            pattern={PageCenteredContent}
+            template={PageCenteredContentTemplate}
+          />
         ),
       },
     },
@@ -423,10 +460,19 @@ export const PageExample = {
       demoRoute: {
         slug: 'tabs',
         demo: (
-          <PageDemo template={PageSimple} />
+          <PageDemo
+            slug="tabs"
+            pattern={PageSimple}
+            template={PageSimpleTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="tabs" template={PageSimpleTemplate} placeholder />
+          <PageDemo
+            slug="tabs"
+            pattern={PageSimple}
+            template={PageSimpleTemplate}
+          />
         ),
       },
     },
@@ -458,10 +504,21 @@ export const PageExample = {
       demoRoute: {
         slug: 'simple-centered-body',
         demo: (
-          <PageDemo template={PageSimpleCenteredBody} />
+          <PageDemo
+            slug="simple-centered-body"
+            centered
+            pattern={PageSimpleCenteredBody}
+            template={PageSimpleCenteredBodyTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="simple-centered-body" template={PageSimpleCenteredBodyTemplate} placeholder />
+          <PageDemo
+            slug="simple-centered-body"
+            centered
+            pattern={PageSimpleCenteredBody}
+            template={PageSimpleCenteredBodyTemplate}
+          />
         ),
       },
     },
@@ -490,10 +547,21 @@ export const PageExample = {
       demoRoute: {
         slug: 'simple-centered-content',
         demo: (
-          <PageDemo template={PageSimpleEmptyContent} />
+          <PageDemo
+            slug="simple-centered-content"
+            centered
+            pattern={PageSimpleEmptyContent}
+            template={PageSimpleEmptyContentTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="simple-centered-content" template={PageSimpleEmptyContentTemplate} placeholder />
+          <PageDemo
+            slug="simple-centered-content"
+            centered
+            pattern={PageSimpleEmptyContent}
+            template={PageSimpleEmptyContentTemplate}
+          />
         ),
       },
     },
@@ -533,10 +601,19 @@ export const PageExample = {
       demoRoute: {
         slug: 'simple-custom-content',
         demo: (
-          <PageDemo template={PageCustomContent} />
+          <PageDemo
+            slug="simple-custom-content"
+            pattern={PageCustomContent}
+            template={PageCustomContentTemplate}
+            fullscreen
+          />
         ),
         placeholder: (
-          <PageDemo slug="simple-custom-content" template={PageCustomContentTemplate} placeholder />
+          <PageDemo
+            slug="simple-custom-content"
+            pattern={PageCustomContent}
+            template={PageCustomContentTemplate}
+          />
         ),
       },
     },
