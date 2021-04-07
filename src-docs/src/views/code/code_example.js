@@ -51,6 +51,9 @@ export const CodeExample = {
             library
           </EuiLink>
           .
+          <br />
+          The <EuiCode>language</EuiCode> prop can also be omitted to simply
+          render formatted but unhighlighted code.
         </p>
       </EuiText>
       <EuiSpacer />
