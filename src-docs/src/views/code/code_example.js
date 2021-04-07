@@ -4,7 +4,14 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiCodeBlock,
+  EuiLink,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
+} from '../../../../src/components';
 import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
@@ -26,6 +33,41 @@ const codeBlockPreHtml = renderToHtml(CodeBlockPre);
 
 export const CodeExample = {
   title: 'Code',
+  intro: (
+    <>
+      <EuiText>
+        <EuiTitle>
+          <h4>Language syntax options</h4>
+        </EuiTitle>
+        <p>
+          The <strong>EuiCode</strong> and <strong>EuiCodeBlock</strong>{' '}
+          components support{' '}
+          <EuiLink external href="https://github.com/wooorm/refractor#syntaxes">
+            all language syntaxes
+          </EuiLink>{' '}
+          supported by the
+          <EuiCode>prism</EuiCode>{' '}
+          <EuiLink external href="https://prismjs.com/">
+            library
+          </EuiLink>
+          .
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiText>
+        <EuiTitle>
+          <h4>Language syntax distinctions</h4>
+        </EuiTitle>
+        <p>
+          JSX code (often React) has distinct language syntaxes from the base
+          JavaScript and TypeScript languages. For instance, use{' '}
+          <EuiCode>language=&quot;jsx&quot;</EuiCode> or{' '}
+          <EuiCode>language=&quot;tsx&quot;</EuiCode> when the code in question
+          is JSX.
+        </p>
+      </EuiText>
+    </>
+  ),
   sections: [
     {
       title: 'Inline',
