@@ -193,6 +193,7 @@ export class Sizes extends Component {
       <Fragment>
         <EuiPage>
           <EuiPageContent
+            role={null}
             horizontalPosition="center"
             style={{
               width: `${width}%`,

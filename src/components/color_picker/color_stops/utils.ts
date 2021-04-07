@@ -40,7 +40,17 @@ export const addDefinedStop = (
     stop,
     color,
   };
-  return [...colorStops, newStop];
+  colorStops = [...colorStops, newStop];
+  colorStops.sort((a, b) => {
+    if (a.stop < b.stop) {
+      return -1;
+    }
+    if (a.stop > b.stop) {
+      return 1;
+    }
+    return 0;
+  });
+  return colorStops;
 };
 
 export const addStop = (
@@ -125,7 +135,7 @@ export const getPositionFromStop = (
   return parseFloat(
     (
       ((stop - min) / (max - min)) *
-      calculateScale(ref ? ref.clientWidth : 100)
+      calculateScale(ref && ref.clientWidth > 0 ? ref.clientWidth : 100)
     ).toFixed(1)
   );
 };

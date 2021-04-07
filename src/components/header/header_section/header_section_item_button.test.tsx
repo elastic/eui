@@ -123,4 +123,24 @@ describe('EuiHeaderSectionItemButton', () => {
       expect(onClickHandler).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('ref', () => {
+    it('is the button element', () => {
+      const ref = jest.fn();
+      const component = mount(<EuiHeaderSectionItemButton ref={ref} />);
+
+      expect(ref).toHaveBeenCalledTimes(1);
+      expect(ref).toHaveBeenCalledWith(component.find('button').getDOMNode());
+    });
+
+    it('is the anchor element', () => {
+      const ref = jest.fn();
+      const component = mount(
+        <EuiHeaderSectionItemButton href="#" ref={ref} />
+      );
+
+      expect(ref).toHaveBeenCalledTimes(1);
+      expect(ref).toHaveBeenCalledWith(component.find('a').getDOMNode());
+    });
+  });
 });

@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -11,7 +8,6 @@ import { spacerConfig } from './playground';
 
 import Spacer from './spacer';
 const spacerSource = require('!!raw-loader!./spacer');
-const spacerHtml = renderToHtml(Spacer);
 
 const spacerSnippet = '<EuiSpacer size="xs" />';
 
@@ -24,21 +20,14 @@ export const SpacerExample = {
           type: GuideSectionTypes.JS,
           code: spacerSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: spacerHtml,
-        },
       ],
       text: (
         <p>
-          The <strong>EuiSpacer</strong> component is a fancy break tag. Use it
-          to add vertical space between items. Please do not stack them. If
-          passed without a <EuiCode>size</EuiCode> prop, it will default to the
-          large size, which matches the margins of{' '}
-          <Link to="/layout/flex">
-            <strong>EuiFlexGroup</strong>
-          </Link>{' '}
-          elements.
+          The <strong>EuiSpacer</strong> component is for adding vertical space
+          between items and should be used in place of the{' '}
+          <EuiCode>{'<br />'}</EuiCode> tag. There are many different heights
+          you can specify via the <EuiCode>size</EuiCode> prop which align to
+          the EUI vertical grid sizing.
         </p>
       ),
       props: { EuiSpacer },
@@ -48,7 +37,7 @@ export const SpacerExample = {
           <Spacer />
         </div>
       ),
+      playground: spacerConfig,
     },
   ],
-  playground: spacerConfig,
 };

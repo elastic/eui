@@ -22,7 +22,8 @@ export const PageDemo: FunctionComponent<{
     button: typeof EuiButton,
     Content: ReactNode,
     SideNav: ReactNode,
-    showTemplate: boolean
+    showTemplate: boolean,
+    BottomBar: ReactNode
   ) => ReactNode;
   centered?: boolean;
 }> = ({ slug, children, centered }) => {
@@ -52,6 +53,7 @@ export const PageDemo: FunctionComponent<{
       url={isMobileSize ? single : sideNav}
     />
   );
+
   const Content = () => (
     <>
       <EuiImage
@@ -72,11 +74,25 @@ export const PageDemo: FunctionComponent<{
     </>
   );
 
+  const BottomBar = () => (
+    <EuiButton size="s" color="ghost">
+      Save
+    </EuiButton>
+  );
+
   return (
     <>
-      <div className="guideDemo__highlightLayout">
-        {children && children(FullscreenButton, Content, SideNav, showTemplate)}
-      </div>
+      <EuiFocusTrap disabled={!fullScreen}>
+        <div
+          className={
+            fullScreen
+              ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
+              : 'guideDemo__highlightLayout'
+          }>
+          {children &&
+            children(Button, Content, SideNav, showTemplate, BottomBar)}
+        </div>
+      </EuiFocusTrap>
       <EuiTextAlign textAlign="right">
         <EuiSpacer />
         <EuiSwitch

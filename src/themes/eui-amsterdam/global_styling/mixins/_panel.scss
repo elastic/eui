@@ -19,13 +19,15 @@
       }
 
       &#{$selector}--isClickable {
-        // in case of button wrapper which inherently is inline-block and no width
-        display: block;
-        width: 100%;
-        text-align: left;
-
         // transition the shadow
         transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+
+        &:enabled { // This is a good selector for buttons since it doesn't exist on divs
+          // in case of button wrapper which inherently is inline-block and no width
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
 
         &:hover,
         &:focus {

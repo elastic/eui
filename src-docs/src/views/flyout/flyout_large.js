@@ -5,12 +5,30 @@ import {
   EuiFlyoutHeader,
   EuiFlyoutBody,
   EuiButton,
-  EuiText,
   EuiTitle,
+  EuiFormRow,
+  EuiButtonGroup,
 } from '../../../../src/components';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [size, setSize] = useState('l');
+  const [sizeName, setSizeName] = useState('large');
+
+  const sizes = [
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+    {
+      id: 'l',
+      label: 'Large',
+    },
+  ];
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
@@ -22,24 +40,37 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        size="l"
+        size={size}
         aria-labelledby="flyoutLargeTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutLargeTitle">A large flyout</h2>
+            <h2 id="flyoutLargeTitle">A {sizeName.toLowerCase()} flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
-          <EuiText>
-            <p>The large flyout is very wide.</p>
-          </EuiText>
+          <EuiFormRow label="Change the paddingSize">
+            <EuiButtonGroup
+              legend="Flyout size"
+              color="primary"
+              size="s"
+              options={sizes}
+              idSelected={size}
+              onChange={(id) => {
+                const newName = sizes
+                  .find((size) => size.id === id)
+                  .label.toLowerCase();
+                setSize(id);
+                setSizeName(newName);
+              }}
+            />
+          </EuiFormRow>
         </EuiFlyoutBody>
       </EuiFlyout>
     );
   }
   return (
     <div>
-      <EuiButton onClick={showFlyout}>Show large flyout</EuiButton>
+      <EuiButton onClick={showFlyout}>Show flyout to test widths</EuiButton>
       {flyout}
     </div>
   );

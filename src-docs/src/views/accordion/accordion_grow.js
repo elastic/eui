@@ -7,6 +7,7 @@ import {
   EuiText,
   EuiScreenReaderOnly,
 } from '../../../../src/components';
+import { EuiPanel } from '../../../../src/components/panel';
 import { htmlIdGenerator } from '../../../../src/services';
 
 const Rows = () => {
@@ -18,7 +19,7 @@ const Rows = () => {
   const growingAccordianDescriptionId = htmlIdGenerator()();
   const listId = htmlIdGenerator()();
   return (
-    <EuiText>
+    <EuiText size="s">
       <EuiScreenReaderOnly>
         <p id={growingAccordianDescriptionId}>
           Currently height is set to {counter} items
@@ -27,12 +28,16 @@ const Rows = () => {
       <EuiSpacer size="s" />
       <p>
         <EuiButton
+          size="s"
+          iconType="plusInCircleFilled"
           onClick={() => setCounter(counter + 1)}
           aria-controls={listId}
           aria-describedby={growingAccordianDescriptionId}>
           Increase height to {counter + 1} items
         </EuiButton>{' '}
         <EuiButton
+          size="s"
+          iconType="minusInCircleFilled"
           aria-controls={listId}
           aria-describedby={growingAccordianDescriptionId}
           onClick={() => setCounter(Math.max(0, counter - 1))}
@@ -47,10 +52,12 @@ const Rows = () => {
 
 export default () => (
   <EuiAccordion
-    id="accordian7"
+    id={htmlIdGenerator()()}
     buttonContent="Click me to toggle close / open"
     initialIsOpen={true}
-    paddingSize="l">
-    <Rows />
+    paddingSize="s">
+    <EuiPanel color="subdued">
+      <Rows />
+    </EuiPanel>
   </EuiAccordion>
 );
