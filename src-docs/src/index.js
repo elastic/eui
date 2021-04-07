@@ -52,9 +52,10 @@ ReactDOM.render(
         <Switch>
           {routes.map(
             ({ name, path, sections, isNew, component, from, to }, i) => {
-              const mainComponent = () => (
+              const mainComponent = (
                 <Route
-                  key={i}
+                  key={path}
+                  exact
                   path={`/${path}`}
                   render={(props) => {
                     const { location } = props;
@@ -76,14 +77,29 @@ ReactDOM.render(
                 />
               );
 
+              const standaloneSections = (sections || [])
+                .map(({ demoRoute }) => {
+                  if (!demoRoute) return undefined;
+                  const { slug, demo } = demoRoute;
+                  return (
+                    <Route
+                      key={`/${path}/${slug}`}
+                      path={`/${path}/${slug}`}
+                      render={() => demo}
+                    />
+                  );
+                })
+                .filter((x) => !!x);
+
               if (from)
                 return [
-                  mainComponent(),
+                  mainComponent,
+                  ...standaloneSections,
                   <Route exact path={`/${from}`}>
                     <Redirect to={`/${to}`} />
                   </Route>,
                 ];
-              else if (component) return [mainComponent()];
+              else if (component) return [mainComponent, ...standaloneSections];
               return null;
             }
           )}

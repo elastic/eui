@@ -3,7 +3,6 @@ import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import { useRouteMatch } from 'react-router';
 
-import { StandaloneExample } from '../../components/standalone_example';
 import {
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
@@ -279,9 +278,4 @@ const CollapsibleNavAll = () => {
   );
 };
 
-export default () => (
-  <StandaloneExample
-    slug="collapsible-nav-all"
-    example={<CollapsibleNavAll />}
-  />
-);
+export default CollapsibleNavAll;

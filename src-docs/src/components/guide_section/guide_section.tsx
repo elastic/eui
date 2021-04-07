@@ -1,8 +1,10 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
+import { useRouteMatch } from 'react-router';
 
 import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
 import { EuiText } from '../../../../src/components/text';
 import { EuiSwitch } from '../../../../src/components/form';
+import { EuiButton } from '../../../../src/components/button';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
@@ -23,6 +25,11 @@ export interface GuideSection {
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
+  demoRoute?: {
+    slug: string;
+    demo: ReactNode;
+    placeholder?: ReactNode;
+  };
   demoPanelProps?: GuideSectionExample['demoPanelProps'];
   props?: object;
   playground?: any;
@@ -51,6 +58,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   title,
   text,
   demo,
+  demoRoute,
   source = [],
   props = {},
   playground,
@@ -59,6 +67,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   demoPanelProps,
   snippet,
 }) => {
+  const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
 
   const renderTabs = () => {
@@ -165,11 +174,20 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       </GuideSectionExampleText>
 
       {renderingPlayground && renderPlayground()}
-      {!renderingPlayground && demo && (
+      {!renderingPlayground && (demo || demoRoute) && (
         <GuideSectionExample
           example={
             <EuiErrorBoundary>
-              <div>{demo}</div>
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {demoRoute == null ? (
+                <div>{demo}</div>
+              ) : demoRoute.placeholder == null ? (
+                <EuiButton href={`#${path}/${demoRoute.slug}`}>
+                  Goto Fullscreen Example
+                </EuiButton>
+              ) : (
+                demoRoute.placeholder
+              )}
             </EuiErrorBoundary>
           }
           tabs={renderTabs()}
