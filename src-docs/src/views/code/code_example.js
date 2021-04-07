@@ -8,9 +8,7 @@ import {
   EuiCode,
   EuiCodeBlock,
   EuiLink,
-  EuiSpacer,
   EuiText,
-  EuiTitle,
 } from '../../../../src/components';
 import { codeBlockConfig, codeConfig } from './playground';
 
@@ -36,9 +34,6 @@ export const CodeExample = {
   intro: (
     <>
       <EuiText>
-        <EuiTitle>
-          <h4>Language syntax options</h4>
-        </EuiTitle>
         <p>
           The <strong>EuiCode</strong> and <strong>EuiCodeBlock</strong>{' '}
           components support{' '}
@@ -55,12 +50,6 @@ export const CodeExample = {
           The <EuiCode>language</EuiCode> prop can also be omitted to simply
           render formatted but unhighlighted code.
         </p>
-      </EuiText>
-      <EuiSpacer />
-      <EuiText>
-        <EuiTitle>
-          <h4>Language syntax distinctions</h4>
-        </EuiTitle>
         <p>
           JSX code (often React) has distinct language syntaxes from the base
           JavaScript and TypeScript languages. For instance, use{' '}
