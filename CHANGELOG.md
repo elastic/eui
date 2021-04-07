@@ -4,6 +4,13 @@
 
 - Fixed a bug where on hovering an expandable row cell in `EuiDataGrid` a vertical line would show ([#4689](https://github.com/elastic/eui/pull/4689))
 
+## [`32.0.3`](https://github.com/elastic/eui/tree/v32.0.3)
+
+**Bug fixes**
+
+- Exported `EuiAvatarProps` ([#4690](https://github.com/elastic/eui/pull/4690))
+- Fixed type overrides in `EuiCard` ([#4690](https://github.com/elastic/eui/pull/4690))
+
 ## [`32.0.2`](https://github.com/elastic/eui/tree/v32.0.2)
 
 **Bug fixes**

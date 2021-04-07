@@ -93,7 +93,7 @@ type EuiCardPropsLayout = ExclusiveUnion<
 >;
 
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
-  Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'color' | 'title' | 'onClick'> &
   EuiCardPropsLayout & {
     /**
      * Cards are required to have at least a title and a description and/or children
