@@ -272,4 +272,19 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  test('horizontal selectable', () => {
+    const component = render(
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        layout="horizontal"
+        selectable={{
+          onClick: () => {},
+        }}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
