@@ -44,7 +44,13 @@ export type EuiThemeColorMode =
   | EuiThemeColorModeStandard
   | EuiThemeColorModeInverse;
 
-export type ColorModeSwitch<T = string> = {
+export type ColorModeSwitch<T = string> =
+  | {
+      [key in EuiThemeColorModeStandard]: T;
+    }
+  | T;
+
+export type StrictColorModeSwitch<T = string> = {
   [key in EuiThemeColorModeStandard]: T;
 };
 
@@ -76,8 +82,11 @@ export type ComputedThemeShape<
       ? X
       : {
           [K in keyof (X &
-            Exclude<T, keyof X | keyof ColorModeSwitch>)]: ComputedThemeShape<
-            (X & Exclude<T, keyof X | keyof ColorModeSwitch>)[K],
+            Exclude<
+              T,
+              keyof X | keyof StrictColorModeSwitch
+            >)]: ComputedThemeShape<
+            (X & Exclude<T, keyof X | keyof StrictColorModeSwitch>)[K],
             P
           >;
         }

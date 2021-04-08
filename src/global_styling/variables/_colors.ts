@@ -18,7 +18,10 @@
  */
 
 import { computed } from '../../services/theme/utils';
-import { ColorModeSwitch } from '../../services/theme/types';
+import {
+  ColorModeSwitch,
+  StrictColorModeSwitch,
+} from '../../services/theme/types';
 import {
   makeDisabledContrastColor,
   makeHighContrastColor,
@@ -141,7 +144,7 @@ export const dark_colors: _EuiThemeBaseColors = {
   highlight: '#2E2D25',
 };
 
-export type EuiThemeColors = ColorModeSwitch<_EuiThemeBaseColors> &
+export type EuiThemeColors = StrictColorModeSwitch<_EuiThemeBaseColors> &
   _EuiThemeTextColors & {
     ghost: string;
     ink: string;
