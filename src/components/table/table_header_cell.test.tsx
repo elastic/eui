@@ -99,6 +99,13 @@ describe('width and style', () => {
         Test
       </EuiTableHeaderCell>
     );
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('make header-cell inactive', () => {
+    const component = (
+      <EuiTableHeaderCell readOnly={true}>Test</EuiTableHeaderCell>
+    );
 
     expect(render(component)).toMatchSnapshot();
   });

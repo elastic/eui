@@ -153,46 +153,36 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         />
       );
     }
-    if (readOnly) {
-      return (
-        <CellComponent
-          className={classes}
-          scope={scope}
-          role="columnheader"
-          aria-sort={ariaSortValue}
-          aria-live="polite"
-          style={styleObj}
-          {...rest}>
-          <span className={contentClasses}>
-            <EuiInnerText>
-              {(ref, innerText) => (
-                <EuiI18n
-                  token="euiTableHeaderCell.titleTextWithSort"
-                  default="{innerText}; Sorted in {ariaSortValue} order"
-                  values={{ innerText, ariaSortValue }}>
-                  {(titleTextWithSort: string) => (
-                    <span
-                      title={isSorted ? titleTextWithSort : innerText}
-                      ref={ref}
-                      className="euiTableCellContent__text">
-                      {children}
-                    </span>
-                  )}
-                </EuiI18n>
+    const Cell = (
+      <span className={contentClasses}>
+        <EuiInnerText>
+          {(ref, innerText) => (
+            <EuiI18n
+              token="euiTableHeaderCell.titleTextWithSort"
+              default="{innerText}; Sorted in {ariaSortValue} order"
+              values={{ innerText, ariaSortValue }}>
+              {(titleTextWithSort: string) => (
+                <span
+                  title={isSorted ? titleTextWithSort : innerText}
+                  ref={ref}
+                  className="euiTableCellContent__text">
+                  {children}
+                </span>
               )}
-            </EuiInnerText>
-            <EuiIcon
-              className="euiTableSortIcon"
-              type={isSortAscending ? 'sortUp' : 'sortDown'}
-              size="m"
-            />
-            <EuiScreenReaderOnly>
-              <span>{getScreenCasterDirection()}</span>
-            </EuiScreenReaderOnly>
-          </span>
-        </CellComponent>
-      );
-    }
+            </EuiI18n>
+          )}
+        </EuiInnerText>
+        <EuiIcon
+          className="euiTableSortIcon"
+          type={isSortAscending ? 'sortUp' : 'sortDown'}
+          size="m"
+        />
+        <EuiScreenReaderOnly>
+          <span>{getScreenCasterDirection()}</span>
+        </EuiScreenReaderOnly>
+      </span>
+    );
+
     return (
       <CellComponent
         className={classes}
@@ -202,50 +192,17 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         aria-live="polite"
         style={styleObj}
         {...rest}>
-        <button
-          type="button"
-          className={buttonClasses}
-          onClick={onSort}
-          data-test-subj="tableHeaderSortButton">
-          <span className={contentClasses}>
-            <EuiInnerText>
-              {(ref, innerText) => (
-                <EuiI18n
-                  token="euiTableHeaderCell.titleTextWithSort"
-                  default="{innerText}; Sorted in {ariaSortValue} order"
-                  values={{ innerText, ariaSortValue }}>
-                  {(titleTextWithSort: string) => (
-                    <span
-                      title={isSorted ? titleTextWithSort : innerText}
-                      ref={ref}
-                      className="euiTableCellContent__text">
-                      {children}
-                    </span>
-                  )}
-                </EuiI18n>
-              )}
-            </EuiInnerText>
-
-            {isSorted && (
-              <EuiI18n
-                token="euiTableHeaderCell.sortedAriaLabel"
-                default="Sorted in {ariaSortValue} order"
-                values={{ ariaSortValue }}>
-                {(sortedAriaLabel: string) => (
-                  <EuiIcon
-                    className="euiTableSortIcon"
-                    type={isSortAscending ? 'sortUp' : 'sortDown'}
-                    size="m"
-                    aria-label={sortedAriaLabel}
-                  />
-                )}
-              </EuiI18n>
-            )}
-            <EuiScreenReaderOnly>
-              <span>{getScreenCasterDirection()}</span>
-            </EuiScreenReaderOnly>
-          </span>
-        </button>
+        {readOnly ? (
+          Cell
+        ) : (
+          <button
+            type="button"
+            className={buttonClasses}
+            onClick={onSort}
+            data-test-subj="tableHeaderSortButton">
+            {Cell}
+          </button>
+        )}
       </CellComponent>
     );
   }
