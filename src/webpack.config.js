@@ -56,7 +56,7 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
-    guide: './index.js',
+    guide: './index.ts',
   },
 
   context: __dirname,

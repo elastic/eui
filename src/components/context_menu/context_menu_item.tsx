@@ -44,7 +44,8 @@ const sizeToClassNameMap = {
   m: null,
 };
 
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES: ItemSize[] = keysOf(sizeToClassNameMap);
+type ItemSize = keyof typeof sizeToClassNameMap;
 
 export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
