@@ -153,6 +153,8 @@
   // Remove default .euiButtonIcon--fill border
   // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
   border: none;
+  box-shadow: none !important; // sass-lint:disable-line no-important
+
 
   &-isActive {
     margin-left: $euiDataGridCellPaddingM;
