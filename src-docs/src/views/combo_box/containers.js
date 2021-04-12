@@ -123,7 +123,9 @@ export default () => {
     modal = (
       <EuiModal onClose={closeModal} style={{ width: '800px' }}>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>
+            <h1>Combo box in a modal</h1>
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>{comboBox}</EuiModalBody>
@@ -143,7 +145,6 @@ export default () => {
 
       <EuiPopover
         id="popover"
-        ownFocus
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}>

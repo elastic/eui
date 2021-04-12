@@ -46,7 +46,11 @@ export const GuideFullScreen: FunctionComponent<{
         {buttonText}
       </EuiButton>
 
-      {fullScreen && <EuiFocusTrap>{children(setFullScreen)}</EuiFocusTrap>}
+      {fullScreen && (
+        <div className="guideFullScreenOverlay">
+          <EuiFocusTrap>{children(setFullScreen)}</EuiFocusTrap>
+        </div>
+      )}
     </Fragment>
   );
 };

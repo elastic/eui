@@ -17,7 +17,6 @@ const customComponentsHtml = renderToHtml(TextDiffCustomComponents);
 
 export const TextDiffExample = {
   title: 'Text diff',
-  isNew: true,
   sections: [
     {
       source: [

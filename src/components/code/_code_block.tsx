@@ -244,7 +244,6 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
               <EuiCopy textToCopy={textToCopy}>
                 {(copy) => (
                   <EuiButtonIcon
-                    size="s"
                     onClick={copy}
                     iconType="copy"
                     color="text"
@@ -274,7 +273,6 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
         {([fullscreenCollapse, fullscreenExpand]: string[]) => (
           <EuiButtonIcon
             className="euiCodeBlock__fullScreenButton"
-            size="s"
             onClick={toggleFullScreen}
             iconType={isFullScreen ? 'cross' : 'fullScreen'}
             color="text"

@@ -7,7 +7,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiMarkdownEditor,
   EuiText,
-  EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
 
@@ -66,7 +65,6 @@ const markdownEditorHeightSnippet = [
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
   beta: true,
-  isNew: true,
   intro: (
     <Fragment>
       <EuiText>
@@ -83,7 +81,6 @@ export const MarkdownEditorExample = {
           changes from the preview area to the textarea and vice versa.
         </p>
       </EuiText>
-      <EuiSpacer size="xxl" />
     </Fragment>
   ),
   sections: [

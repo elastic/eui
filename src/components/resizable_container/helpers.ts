@@ -134,8 +134,8 @@ export const useContainerCallbacks = ({
     state: EuiResizableContainerState,
     action: EuiResizableContainerAction
   ): EuiResizableContainerState {
-    const getContainerSize = () => {
-      return state.isHorizontal
+    const getContainerSize = (isHorizontal: boolean) => {
+      return isHorizontal
         ? containerRef.current!.getBoundingClientRect().width
         : containerRef.current!.getBoundingClientRect().height;
     };
@@ -153,9 +153,11 @@ export const useContainerCallbacks = ({
 
     switch (action.type) {
       case 'EUI_RESIZABLE_CONTAINER_INIT': {
+        const { isHorizontal } = action.payload;
         return {
           ...state,
-          containerSize: getContainerSize(),
+          isHorizontal,
+          containerSize: getContainerSize(isHorizontal),
         };
       }
       case 'EUI_RESIZABLE_PANEL_REGISTER': {
@@ -547,9 +549,10 @@ export const useContainerCallbacks = ({
   const actions: EuiResizableContainerActions = useMemo(() => {
     return {
       reset: () => dispatch({ type: 'EUI_RESIZABLE_RESET' }),
-      initContainer: () =>
+      initContainer: (isHorizontal: boolean) =>
         dispatch({
           type: 'EUI_RESIZABLE_CONTAINER_INIT',
+          payload: { isHorizontal },
         }),
       registerPanel: (panel: EuiResizablePanelController) =>
         dispatch({

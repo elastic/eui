@@ -11,10 +11,10 @@ const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
 
 const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
-const bypassCache = NODE_ENV === 'puppeteer';
+const isPuppeteer = NODE_ENV === 'puppeteer';
 
 function employCache(loaders) {
-  if (isDevelopment && !bypassCache) {
+  if (isDevelopment && !isPuppeteer) {
     return [
       {
         loader: 'cache-loader',
@@ -135,6 +135,13 @@ const webpackConfig = {
         }),
         disableHostCheck: true,
         historyApiFallback: true,
+        // prevent file watching while running on CI
+        // /app/ represents the entire docker environment
+        watchOptions: isPuppeteer
+          ? {
+              ignored: '**/*',
+            }
+          : undefined,
       }
     : undefined,
   node: {

@@ -30,7 +30,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
-import { FocusTarget, EuiFocusTrap } from '../focus_trap';
+import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
@@ -43,7 +43,7 @@ import {
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { EuiPanel, PanelPaddingSize } from '../panel';
+import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../panel';
 
 import { EuiPortal } from '../portal';
 
@@ -107,6 +107,13 @@ export interface EuiPopoverProps {
    */
   display?: keyof typeof displayToClassNameMap;
   /**
+   * Object of props passed to EuiFocusTrap
+   */
+  focusTrapProps?: Pick<
+    EuiFocusTrapProps,
+    'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
+  >;
+  /**
    * Show arrow indicating to originating button
    */
   hasArrow?: boolean;
@@ -145,6 +152,10 @@ export interface EuiPopoverProps {
    * Standard DOM `style` attribute. Passed to the EuiPanel
    */
   panelStyle?: CSSProperties;
+  /**
+   * Object of props passed to EuiPanel
+   */
+  panelProps?: Omit<EuiPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
@@ -309,7 +320,7 @@ type PropsWithDefaults = Props & {
 export class EuiPopover extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
-    ownFocus: false,
+    ownFocus: true,
     anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
     hasArrow: true,
@@ -458,7 +469,7 @@ export class EuiPopover extends Component<Props, State> {
 
     // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
     const { durationMatch, delayMatch } = Array.prototype.slice
-      .call(this.panel ? this.panel.children : [])
+      .call(this.panel ? [this.panel, ...Array.from(this.panel.children)] : [])
       .reduce(
         ({ durationMatch, delayMatch }, element) => {
           const transitionTimings = getTransitionTimings(element);
@@ -599,8 +610,6 @@ export class EuiPopover extends Component<Props, State> {
           ? anchorBoundingBox.left
           : left,
       zIndex,
-      // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
-      willChange: 'transform, opacity',
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
@@ -663,6 +672,7 @@ export class EuiPopover extends Component<Props, State> {
       closePopover,
       panelClassName,
       panelPaddingSize,
+      panelProps,
       panelRef,
       panelStyle,
       popoverRef,
@@ -678,6 +688,7 @@ export class EuiPopover extends Component<Props, State> {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
       container,
+      focusTrapProps,
       ...rest
     } = this.props;
 
@@ -701,7 +712,8 @@ export class EuiPopover extends Component<Props, State> {
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
-      panelClassName
+      panelClassName,
+      panelProps?.className
     );
 
     let panel;
@@ -746,8 +758,9 @@ export class EuiPopover extends Component<Props, State> {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
+            {...focusTrapProps}
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             onClickOutside={this.onClickOutside}
@@ -756,6 +769,7 @@ export class EuiPopover extends Component<Props, State> {
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }>
             <EuiPanel
+              {...(panelProps as EuiPanelProps)}
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
@@ -767,7 +781,13 @@ export class EuiPopover extends Component<Props, State> {
               aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
-              style={this.state.popoverStyles}>
+              style={{
+                ...this.state.popoverStyles,
+                // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
+                willChange: !this.state.isOpenStable
+                  ? 'transform, opacity'
+                  : undefined,
+              }}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>

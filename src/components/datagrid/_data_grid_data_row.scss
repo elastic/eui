@@ -142,23 +142,18 @@
 .euiDataGridRowCell__expandButton {
   display: flex;
   flex-grow: 0;
-
-  .euiDataGridRowCell__expandButtonIcon {
-    background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
-  }
 }
-
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;
-  min-height: $euiSizeM;
-  background: $euiColorPrimary;
   border-radius: $euiBorderRadius / 2;
-  padding: 0;
   width: 0;
-  min-width: 0;
   overflow: hidden;
   transition: none; // Have to take out the generic transition so it is instaneous on focus
+  box-shadow: none !important; // sass-lint:disable-line no-important
+  // Remove default .euiButtonIcon--fill border
+  // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
+  border: none;
 
   &-isActive {
     margin-left: $euiDataGridCellPaddingM;
@@ -168,11 +163,8 @@
 
 .euiDataGridRowCell__actionButtonIcon {
   height: $euiSizeM;
-  min-height: $euiSizeM;
   border-radius: $euiBorderRadius / 2;
-  padding: 0;
   width: 0;
-  min-width: 0;
   overflow: hidden;
   transition: none; // Have to take out the generic transition so it is instaneous on focus
 }

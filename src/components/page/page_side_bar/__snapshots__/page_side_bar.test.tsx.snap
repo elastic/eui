@@ -7,3 +7,9 @@ exports[`EuiPageSideBar is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiPageSideBar sticky is rendered 1`] = `
+<div
+  class="euiPageSideBar euiPageSideBar--sticky"
+/>
+`;

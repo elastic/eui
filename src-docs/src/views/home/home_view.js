@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import imageIcons from '../../images/icons.svg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
@@ -11,236 +9,207 @@ import imageCards from '../../images/cards.svg';
 import imagePages from '../../images/page.svg';
 import imageText from '../../images/text.svg';
 import imageCharts from '../../images/charts.svg';
-import logoFigma from '../../images/logo-figma.svg';
+import HomeIllustration from './home_illustration';
 
 import {
   EuiCard,
-  EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
   EuiLink,
   EuiSpacer,
   EuiText,
   EuiTitle,
-  EuiToolTip,
-  EuiScreenReaderOnly,
+  EuiPanel,
+  EuiIcon,
+  EuiFlexGrid,
+  EuiPageContent,
+  EuiPageContentBody,
 } from '../../../../src/components';
-
-import { CodeSandboxLink } from '../../components/codesandbox';
-
-const pkg = require('../../../../package.json');
+import { Link } from 'react-router-dom';
 
 export const HomeView = () => (
-  <div className="guideSection__text">
-    <EuiFlexGroup alignItems="center">
-      <EuiFlexItem>
-        <EuiTitle size="l">
-          <h1>Elastic UI framework</h1>
-        </EuiTitle>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiLink href="https://github.com/elastic/eui">
-              <EuiScreenReaderOnly>
-                <span>Elastic repo on GitHub</span>
-              </EuiScreenReaderOnly>
-              <EuiIcon type="logoGithub" aria-hidden="true" />
-            </EuiLink>
+  <EuiPageContent
+    hasShadow={false}
+    hasBorder={false}
+    paddingSize="none"
+    color="transparent"
+    borderRadius="none">
+    <EuiPageContentBody restrictWidth>
+      <EuiPanel color="subdued" hasShadow={false} paddingSize="none">
+        <EuiFlexGroup alignItems="center" gutterSize="none">
+          <EuiFlexItem style={{ padding: 24 }}>
+            <EuiTitle size="l">
+              <h1>Elastic UI</h1>
+            </EuiTitle>
+            <EuiSpacer />
+            <EuiSpacer />
+            <EuiTitle size="s">
+              <h2>The framework powering the Elastic Stack</h2>
+            </EuiTitle>
+            <EuiSpacer size="s" />
+            <EuiText grow={false}>
+              <p>
+                The Elastic UI framework (EUI) is a design library in use at
+                Elastic to build internal products that need to share our
+                aesthetics. It distributes UI React components and static assets
+                for use in building web layouts.
+              </p>
+              <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
+                <EuiFlexItem grow={false}>
+                  <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
+                    <strong>Getting started</strong>
+                  </EuiLink>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <Link to="/package/changelog">
+                    <strong>What&apos;s new</strong>
+                  </Link>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiLink href="https://github.com/elastic/eui/blob/master/CONTRIBUTING.md">
+                    <strong>Contributing</strong>
+                  </EuiLink>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiText>
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <p>
-              Version:{' '}
-              <Link
-                aria-label={`Version ${pkg.version}, View changelog`}
-                to="/package/changelog">
-                <strong>{pkg.version}</strong>
-              </Link>
-            </p>
+          <EuiFlexItem className="eui-textRight">
+            <HomeIllustration />
           </EuiFlexItem>
         </EuiFlexGroup>
-      </EuiFlexItem>
+      </EuiPanel>
+      <EuiSpacer size="xxl" />
+      <EuiFlexGrid columns={3}>
+        <EuiFlexItem>
+          <EuiCard
+            icon={<EuiIcon size="l" type="accessibility" />}
+            layout="horizontal"
+            display="plain"
+            titleSize="xs"
+            title="Accessible to everyone"
+            description="Uses high contrast, color-blind safe palettes and tested with most
+        assistive technology."
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiCard
+            icon={<EuiIcon size="l" type="controlsHorizontal" />}
+            layout="horizontal"
+            display="plain"
+            titleSize="xs"
+            title="Flexible and composable"
+            description="Configurable enough to meet the needs of a wide array of contexts while maintaining brand and low-level consistency."
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiCard
+            icon={<EuiIcon size="l" type="documentEdit" />}
+            layout="horizontal"
+            display="plain"
+            titleSize="xs"
+            title="Well documented and tested"
+            description="Code is friendly to the novice and expert alike."
+          />
+        </EuiFlexItem>
+      </EuiFlexGrid>
+      <EuiSpacer size="xxl" />
+      <EuiFlexGroup
+        gutterSize="l"
+        wrap
+        responsive={false}
+        justifyContent="spaceBetween">
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/navigation/button"
+            textAlign="left"
+            image={imageButtons}
+            title="Buttons"
+            description="Buttons for every usage you might need"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/display/card"
+            textAlign="left"
+            image={imageCards}
+            title="Cards"
+            description="Cards like these help you make repeatable content more presentable"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/elastic-charts/creating-charts"
+            textAlign="left"
+            image={imageCharts}
+            title="Charts"
+            description="Learn charting best practices and how to integrate EUI with the Elastic Charts library"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/layout/flex"
+            textAlign="left"
+            image={imageFlexgrid}
+            title="Flexible layouts"
+            description="Create layouts by using flex groups, grids, and items"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/forms/form-layouts"
+            textAlign="left"
+            image={imageForms}
+            title="Forms"
+            description="Input tags, layouts, and validation for your forms"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/display/icons"
+            textAlign="left"
+            image={imageIcons}
+            title="Icons"
+            description="Our SVG icon library gives you full control over size and color"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/layout/page"
+            textAlign="left"
+            image={imagePages}
+            title="Pages"
+            description="Layout your whole application page with this component and its series of child components"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/tabular-content/tables"
+            textAlign="left"
+            image={imageTables}
+            title="Tables"
+            description="Build tables from individual components or high level wrappers"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
+          <EuiCard
+            href="#/display/text"
+            textAlign="left"
+            image={imageText}
+            title="Text"
+            description="Simple HTML text like paragraphs and lists are wrapped in a single text component for styling"
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
 
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <p>Libraries:</p>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiLink href="https://www.figma.com/community/file/809845546262698150">
-              <EuiScreenReaderOnly>
-                <span>Elastic UI Library on Figma</span>
-              </EuiScreenReaderOnly>
-              <EuiToolTip
-                title="Open Figma Design Library"
-                postiion="down"
-                content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
-                <EuiIcon type={logoFigma} aria-hidden="true" />
-              </EuiToolTip>
-            </EuiLink>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiToolTip
-              title="Download zip"
-              postiion="down"
-              content="Import these sketch files into a new project as libraries.
-                This will provide symbols that match against their EUI component
-                counterparts.">
-              <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-                <EuiScreenReaderOnly>
-                  <span>Elastic UI Library for Sketch</span>
-                </EuiScreenReaderOnly>
-                <EuiIcon type="logoSketch" aria-hidden="true" />
-              </EuiLink>
-            </EuiToolTip>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <CodeSandboxLink>
-              <EuiLink>
-                <strong>Codesandbox</strong>
-              </EuiLink>
-            </CodeSandboxLink>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiIcon type="logoCodesandbox" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-    <EuiSpacer />
-    <EuiText grow={false}>
-      <p>
-        The Elastic UI framework (EUI) is a design library in use at Elastic to
-        build internal products that need to share our aesthetics. It
-        distributes UI React components and static assets for use in building
-        web layouts. Alongside the React components is a SASS/CSS layer that can
-        be used independently on its own. If this is your first time using EUI
-        you might want to read up on{' '}
-        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
-          how to consume EUI
-        </EuiLink>{' '}
-        and{' '}
-        <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">
-          Kibana plugin development
-        </EuiLink>{' '}
-        in general.
-      </p>
-    </EuiText>
-    <EuiSpacer />
-    <EuiFlexGrid gutterSize="l" columns={3}>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/display/icons"
-          textAlign="left"
-          image={imageIcons}
-          title="Icons"
-          description="Our SVG icon library gives you full control over size and color"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/navigation/button"
-          textAlign="left"
-          image={imageButtons}
-          title="Buttons"
-          description="Buttons for every usage you might need"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/display/text"
-          textAlign="left"
-          image={imageText}
-          title="Text"
-          description="Simple HTML text like paragraphs and lists are wrapped in a single text component for styling"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/layout/page"
-          textAlign="left"
-          image={imagePages}
-          title="Pages"
-          description="Layout your whole application page with this component and its series of child components"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/layout/flex"
-          textAlign="left"
-          image={imageFlexgrid}
-          title="Flexible layouts"
-          description="Create layouts by using flex groups, grids, and items"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/display/card"
-          textAlign="left"
-          image={imageCards}
-          title="Cards"
-          description="Cards like these help you make repeatable content more presentable"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/forms/form-layouts"
-          textAlign="left"
-          image={imageForms}
-          title="Forms"
-          description="Input tags, layouts, and validation for your forms"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/tabular-content/tables"
-          textAlign="left"
-          image={imageTables}
-          title="Tables"
-          description="Build tables from individual components or high level wrappers"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/elastic-charts/creating-charts"
-          textAlign="left"
-          image={imageCharts}
-          title="Charts"
-          description="Learn charting best practices and how to integrate EUI with the Elastic Charts library"
-        />
-      </EuiFlexItem>
-    </EuiFlexGrid>
-    <EuiSpacer />
-    <EuiText grow={false}>
-      <h2>Design goals</h2>
-      <dl>
-        <dt>EUI is accessible to everyone.</dt>
-        <dd>
-          Uses high contrast, color-blind safe palettes and tested with most
-          assistive technology.
-        </dd>
-        <dt>EUI is themable.</dt>
-        <dd>
-          Theming involves changing fewer than a dozen lines of code. This means
-          strict variable usage.
-        </dd>
-        <dt>EUI is flexible and composable.</dt>
-        <dd>
-          Configurable enough to meet the needs of a wide array of contexts
-          while maintaining brand and low-level consistency.
-        </dd>
-        <dt>EUI is responsive.</dt>
-        <dd>Supports multiple window sizes from large desktop to mobile.</dd>
-        <dt>EUI is well documented and tested.</dt>
-        <dd>Code is friendly to the novice and expert alike.</dd>
-        <dt>EUI is playful.</dt>
-        <dd>Simple and consistent use of animation brings life.</dd>
-      </dl>
-    </EuiText>
-  </div>
+      <EuiSpacer size="xl" />
+      <EuiText size="xs" textAlign="center" color="subdued">
+        <p>
+          EUI is licensed under{' '}
+          <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
+            Apache License 2.0
+          </EuiLink>
+        </p>
+      </EuiText>
+    </EuiPageContentBody>
+  </EuiPageContent>
 );

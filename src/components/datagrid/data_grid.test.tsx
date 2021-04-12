@@ -908,6 +908,7 @@ describe('EuiDataGrid', () => {
             "euiDataGridRowCell euiDataGridRowCell--datetime",
             "euiDataGridRowCell euiDataGridRowCell--datetime",
             "euiDataGridRowCell euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
           ]
         `);
       });

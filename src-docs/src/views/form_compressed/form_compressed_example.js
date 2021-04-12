@@ -53,7 +53,6 @@ export const FormCompressedExample = {
         color="danger"
         title="Do not use compressed and non-compressed form controls in the same form."
       />
-      <EuiSpacer />
     </Fragment>
   ),
   sections: [
