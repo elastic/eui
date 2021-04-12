@@ -282,10 +282,6 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
    * Applied to table cells => Any cell using render function will set this to be false, leading to unnecessary word breaks. Apply textOnly: true in order to ensure it breaks properly
    */
   textOnly?: boolean;
-  /**
-   * If true, we can disable click event associated with column sorting in edit mode in header cell
-   */
-  readOnly?: boolean;
 }
 
 type BasicTableWithPaginationProps<T> = Omit<

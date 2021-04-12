@@ -142,7 +142,6 @@ export interface EuiTableActionsColumnType<T> {
   description?: string;
   /**
    * A CSS width property. Hints for the required width of the column
-
    */
   width?: string;
 }
@@ -163,6 +162,9 @@ export interface EuiTableSortingType<T> {
    * Enables the default sorting ability for each column.
    */
   enableAllColumns?: boolean;
+  /**
+   * Disables the user's ability to change the sort but still shows the current direction
+   */
   readOnly?: boolean;
 }
 

@@ -79,6 +79,9 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
+    /**
+     * Shows the sort indicator but removes the button
+     */
     readOnly?: boolean;
   };
 
@@ -95,12 +98,11 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     show: true,
   },
   width,
+  style,
+  readOnly,
   // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
-  style,
-  // here the readOnly prop can be accessed for styling the header in view and edit mode
-  readOnly,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
@@ -117,7 +119,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   const CellComponent = children ? 'th' : 'td';
 
-  if (onSort) {
+  if (onSort || isSorted) {
     const buttonClasses = classNames('euiTableHeaderButton', {
       'euiTableHeaderButton-isSorted': isSorted,
     });
@@ -153,7 +155,8 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         />
       );
     }
-    const Cell = (
+
+    const cellContents = (
       <span className={contentClasses}>
         <EuiInnerText>
           {(ref, innerText) => (
@@ -172,14 +175,13 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
             </EuiI18n>
           )}
         </EuiInnerText>
-        <EuiIcon
-          className="euiTableSortIcon"
-          type={isSortAscending ? 'sortUp' : 'sortDown'}
-          size="m"
-        />
-        <EuiScreenReaderOnly>
-          <span>{getScreenCasterDirection()}</span>
-        </EuiScreenReaderOnly>
+        {isSorted && (
+          <EuiIcon
+            className="euiTableSortIcon"
+            type={isSortAscending ? 'sortUp' : 'sortDown'}
+            size="m"
+          />
+        )}
       </span>
     );
 
@@ -192,16 +194,19 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         aria-live="polite"
         style={styleObj}
         {...rest}>
-        {readOnly ? (
-          Cell
-        ) : (
+        {onSort && !readOnly ? (
           <button
             type="button"
             className={buttonClasses}
             onClick={onSort}
             data-test-subj="tableHeaderSortButton">
-            {Cell}
+            {cellContents}
+            <EuiScreenReaderOnly>
+              <span>{getScreenCasterDirection()}</span>
+            </EuiScreenReaderOnly>
           </button>
+        ) : (
+          cellContents
         )}
       </CellComponent>
     );
