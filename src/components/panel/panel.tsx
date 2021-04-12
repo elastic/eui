@@ -97,19 +97,22 @@ export interface _EuiPanelProps extends CommonProps {
   color?: PanelColor;
 }
 
-interface Divlike
+export interface _EuiPanelDivlike
   extends _EuiPanelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
   element?: 'div';
 }
 
-interface Buttonlike
+export interface _EuiPanelButtonlike
   extends _EuiPanelProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   element?: 'button';
 }
 
-export type EuiPanelProps = ExclusiveUnion<Buttonlike, Divlike>;
+export type EuiPanelProps = ExclusiveUnion<
+  _EuiPanelButtonlike,
+  _EuiPanelDivlike
+>;
 
 export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,

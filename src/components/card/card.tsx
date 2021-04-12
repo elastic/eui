@@ -78,22 +78,18 @@ type EuiCardPropsLayout = ExclusiveUnion<
      * Accepts a url in string form or ReactElement for a custom image component
      */
     image?: string | ReactElement;
-    /**
-     * Adds a button to the bottom of the card to allow for in-place selection
-     */
-    selectable?: EuiCardSelectProps;
   },
   {
     /**
      * Change to "horizontal" if you need the icon to be left of the content.
-     * Horizontal layouts cannot be used in conjunction with `image`, `footer`, `textAlign`, or `selectable`.
+     * Horizontal layouts cannot be used in conjunction with `image`, `footer`, or `textAlign`.
      */
     layout: 'horizontal';
   }
 >;
 
 export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
-  Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'color' | 'title' | 'onClick'> &
   EuiCardPropsLayout & {
     /**
      * Cards are required to have at least a title and a description and/or children
@@ -161,6 +157,10 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Padding applied around the content of the card
      */
     paddingSize?: EuiPanelProps['paddingSize'];
+    /**
+     * Adds a button to the bottom of the card to allow for in-place selection
+     */
+    selectable?: EuiCardSelectProps;
   } & (
     | {
         // description becomes optional when children is present
@@ -216,9 +216,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   };
 
   if (layout === 'horizontal') {
-    if (image || footer || textAlign !== 'center' || selectable) {
+    if (image || footer || textAlign !== 'center') {
       throw new Error(
-        "EuiCard: layout = horizontal' cannot be used in conjunction with 'image', 'footer', 'textAlign', or 'selectable'."
+        'EuiCard: `layout="horizontal"` cannot be used in conjunction with `image`, `footer`, or `textAlign`.'
       );
     }
   }

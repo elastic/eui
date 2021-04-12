@@ -533,12 +533,12 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                       href="#__table_generated-id"
                                       isDisabled={false}
                                       onClick={[Function]}
-                                      size="xs"
+                                      size="s"
                                     >
                                       <a
                                         aria-controls="__table_generated-id"
                                         aria-label="Page 1 of 2"
-                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton euiPaginationButton--hideOnMobile"
                                         data-test-subj="pagination-button-0"
                                         href="#__table_generated-id"
                                         onClick={[Function]}
@@ -614,13 +614,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                       href="#__table_generated-id"
                                       isDisabled={true}
                                       onClick={[Function]}
-                                      size="xs"
+                                      size="s"
                                     >
                                       <button
                                         aria-controls="__table_generated-id"
                                         aria-current={true}
                                         aria-label="Page 2 of 2"
-                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
                                         data-test-subj="pagination-button-1"
                                         disabled={true}
                                         onClick={[Function]}

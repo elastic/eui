@@ -108,6 +108,17 @@ const colorStopsSnippetFixed = `<EuiColorStops
 />
 `;
 
+const colorStopsSnippetStepped = `<EuiColorStops
+  label="Stepped color segments"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  stopType="stepped"
+  stepNumber={stepNumber}
+/>
+`;
+
 import ColorStopsRange from './color_stops_range';
 const colorStopsRangeSource = require('!!raw-loader!./color_stops_range');
 const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
@@ -477,6 +488,7 @@ export const ColorPickerExample = {
         colorStopsSnippetStandard,
         colorStopsSnippetAdd,
         colorStopsSnippetFixed,
+        colorStopsSnippetStepped,
       ],
       demo: <ColorStops />,
     },

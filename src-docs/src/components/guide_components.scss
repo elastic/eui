@@ -90,24 +90,27 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guideDemo__highlightSpacer {
-  .euiSpacer {
-    background: transparentize($euiColorPrimary, .9);
-  }
+.guideDemo__highlightHR > div,
+.guideDemo__highlightSpacer .euiSpacer,
+.guideDemo__highlightGrid .euiFlexItem,
+.guideDemo__highlightGridWrap .euiFlexItem div {
+  background: transparentize($euiColorPrimary, .9);
 }
 
-.guideDemo__highlightGrid {
-  .euiFlexItem {
-    background: transparentize($euiColorPrimary, .9);
-    padding: $euiSize;
-  }
+.guideDemo__highlightHR > div {
+  padding: .1px;
+  margin-bottom: $euiSize;
 }
 
-.guideDemo__highlightGridWrap {
-  .euiFlexItem div {
-    background: transparentize($euiColorPrimary, .9);
-    padding: $euiSize;
-  }
+.guideDemo__highlightSpacer .euiCodeBlock {
+  align-self: flex-start;
+  margin-bottom: $euiSize;
+}
+
+
+.guideDemo__highlightGrid .euiFlexItem,
+.guideDemo__highlightGridWrap .euiFlexItem div {
+  padding: $euiSize;
 }
 
 // sass-lint:disable no-important

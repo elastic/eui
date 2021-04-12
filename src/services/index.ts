@@ -70,6 +70,7 @@ export {
   euiPaletteWarm,
   euiPaletteGray,
   HSV,
+  getSteppedGradient,
 } from './color';
 
 export { useColorPickerState, useColorStopsState } from './color_picker';

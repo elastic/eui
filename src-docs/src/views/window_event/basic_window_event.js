@@ -12,7 +12,9 @@ import { ModalExample } from './modal_example_container';
 const BasicModal = ({ onClose }) => (
   <EuiModal onClose={onClose} style={{ width: '800px' }}>
     <EuiModalHeader>
-      <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
+      <EuiModalHeaderTitle>
+        <h1>Example modal</h1>
+      </EuiModalHeaderTitle>
     </EuiModalHeader>
     <EuiModalBody>
       <p>
