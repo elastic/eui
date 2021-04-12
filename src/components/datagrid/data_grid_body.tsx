@@ -525,13 +525,13 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
 
-  // reset height constraint when rowCount or fullscreen setting changes
-  useEffect(() => {
-    setHeight(undefined);
-  }, [rowCount, isFullScreen]);
-
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
+
+  // reset height constraint when rowCount or fullscreen setting changes
+  useEffect(() => {
+    setHeight(wrapperRef.current!.getBoundingClientRect().height);
+  }, [rowCount, isFullScreen]);
 
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
