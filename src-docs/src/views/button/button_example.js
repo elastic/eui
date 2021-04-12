@@ -21,7 +21,6 @@ import Playground from './playground';
 
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
-const buttonHtml = renderToHtml(Button);
 const buttonSnippet = [
   `<EuiButton><!-- Primary button --></EuiButton>
 `,
@@ -190,18 +189,26 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonHtml,
-        },
       ],
       text: (
-        <p>
-          <strong>EuiButton</strong> comes in two styles. The{' '}
-          <EuiCode>fill</EuiCode> style should be reserved for the main action
-          and limited in number for a single page. Be sure to read the full{' '}
-          <Link to="/guidelines/button">button usage guidelines</Link>.
-        </p>
+        <>
+          <p>
+            <strong>EuiButton</strong> comes in two styles. The{' '}
+            <EuiCode>fill</EuiCode> style should be reserved for the main action
+            and limited in number for a single page. Use the small size (
+            <EuiCode>{'size="s"'}</EuiCode>) when placing buttons into smaller
+            containers like popovers.
+          </p>
+          <p>
+            When using colors other than <EuiCode>primary</EuiCode>, be sure
+            that either the words or an icon also represents the status. For
+            instance, don&apos;t rely on color alone to represent dangerous
+            actions but use words like &quot;Delete&quot; not
+            &quot;Confirm&quot;. The <EuiCode>text</EuiCode> color should be
+            used sparingly and only when you need a very subtle button that is
+            not the primary action.
+          </p>
+        </>
       ),
       props: { EuiButton },
       snippet: buttonSnippet,
