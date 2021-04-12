@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `readOnly` as a `sorting` option of `EuiBasicTable` ([#4626](https://github.com/elastic/eui/pull/4626))
+- Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
 
 **Bug fixes**
 
