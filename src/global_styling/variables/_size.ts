@@ -19,8 +19,8 @@
 
 import { computed } from '../../services/theme/utils';
 
-// const usingFullTheme = `sizeToPixel({ base: 16, [...] })(0.25)`
-// const usingBaseValue = `sizeToPixel(16)(0.25)`
+// const usingFullTheme = `sizeToPixel(0.25)({ base: 16, [...] })`
+// const usingBaseValue = `sizeToPixel(0.25)(16)`
 export const sizeToPixel = (scale: number = 1) => (
   themeOrBase: number | { base: number; [key: string]: any }
 ) => {

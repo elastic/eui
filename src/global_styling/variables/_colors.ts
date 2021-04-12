@@ -55,30 +55,38 @@ const textVariants: _EuiThemeTextColors = {
   },
 
   textSubdued: {
-    LIGHT: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
-      'colors.mediumShade',
-    ]),
-    DARK: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
-      'colors.mediumShade',
-    ]),
+    LIGHT: computed(({ colors }) =>
+      makeHighContrastColor(colors.mediumShade)(colors.pageBackground)
+    ),
+    // Or like this?
+    // LIGHT: computed(({ colors }) =>
+    //   makeHighContrastColor(colors.mediumShade, colors.pageBackground)
+    // ),
+    // Or like this?
+    // LIGHT: computed(makeHighContrastColor('colors.mediumShade')),
+    DARK: computed(({ colors }) =>
+      makeHighContrastColor(colors.mediumShade)(colors.pageBackground)
+    ),
   },
 
-  textPrimary: computed((theme) => makeHighContrastColor(theme.colors.primary)),
-  textAccent: computed(([accent]) => makeHighContrastColor(accent), [
-    'colors.accent',
-  ]),
-  textSuccess: computed(([success]) => makeHighContrastColor(success), [
-    'colors.success',
-  ]),
-  textWarning: computed(([warning]) => makeHighContrastColor(warning), [
-    'colors.warning',
-  ]),
-  textDanger: computed(([danger]) => makeHighContrastColor(danger), [
-    'colors.danger',
-  ]),
-  textDisabled: computed(([disabled]) => makeDisabledContrastColor(disabled), [
-    'colors.disabled',
-  ]),
+  textPrimary: computed((theme) =>
+    makeHighContrastColor(theme.colors.primary)(theme)
+  ),
+  textAccent: computed(({ colors }) =>
+    makeHighContrastColor(colors.accent)(colors.pageBackground)
+  ),
+  textSuccess: computed(({ colors }) =>
+    makeHighContrastColor(colors.success)(colors.pageBackground)
+  ),
+  textWarning: computed(({ colors }) =>
+    makeHighContrastColor(colors.warning)(colors.pageBackground)
+  ),
+  textDanger: computed(({ colors }) =>
+    makeHighContrastColor(colors.danger)(colors.pageBackground)
+  ),
+  textDisabled: computed(({ colors }) =>
+    makeDisabledContrastColor(colors.disabled)(colors.pageBackground)
+  ),
   link: computed(([textPrimary]) => textPrimary, ['colors.textPrimary']),
 };
 

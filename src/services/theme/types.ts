@@ -24,6 +24,8 @@ import {
   EuiThemeBase,
   EuiThemeSize,
 } from '../../global_styling/variables/_size';
+import { EuiThemeShadow } from '../../global_styling/variables/_shadows';
+import { EuiThemeFocus } from '../../global_styling/variables/_states';
 import { EuiThemeTitle } from '../../global_styling/variables/title';
 import {
   EuiFont,
@@ -63,6 +65,8 @@ export type EuiThemeShape = {
   fontWeight: EuiFontWeight;
   border: EuiThemeBorder;
   title: EuiThemeTitle;
+  focus: EuiThemeFocus;
+  shadow: EuiThemeShadow;
 };
 
 export type EuiThemeSystem<T = {}> = {

@@ -143,11 +143,7 @@ export class Computed<T> {
   }
 }
 
-export function computed<T>(
-  // TODO: Static interface for EuiThemeShape
-  // computer: (value: EuiThemeShape) => T
-  computer: (value: any) => T
-): T;
+export function computed<T>(computer: (value: EuiThemeComputed) => T): T;
 export function computed<T>(
   computer: (value: any[]) => T,
   dependencies: string[]

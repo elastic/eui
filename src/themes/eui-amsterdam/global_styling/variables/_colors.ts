@@ -33,26 +33,28 @@ const textVariants: _EuiThemeTextColors = {
   text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
   title: computed(([text]) => shade(text, 0.5), ['colors.text']),
 
-  textSubdued: computed(([darkShade]) => makeHighContrastColor(darkShade), [
-    'colors.darkShade',
-  ]),
+  textSubdued: computed(({ colors }) =>
+    makeHighContrastColor(colors.darkShade)(colors.pageBackground)
+  ),
 
-  textPrimary: computed((theme) => makeHighContrastColor(theme.colors.primary)),
-  textAccent: computed(([accent]) => makeHighContrastColor(accent), [
-    'colors.accent',
-  ]),
-  textSuccess: computed(([success]) => makeHighContrastColor(success), [
-    'colors.success',
-  ]),
-  textWarning: computed(([warning]) => makeHighContrastColor(warning), [
-    'colors.warning',
-  ]),
-  textDanger: computed(([danger]) => makeHighContrastColor(danger), [
-    'colors.danger',
-  ]),
-  textDisabled: computed(([disabled]) => makeDisabledContrastColor(disabled), [
-    'colors.disabled',
-  ]),
+  textPrimary: computed((theme) =>
+    makeHighContrastColor(theme.colors.primary)(theme)
+  ),
+  textAccent: computed(({ colors }) =>
+    makeHighContrastColor(colors.accent)(colors.pageBackground)
+  ),
+  textSuccess: computed(({ colors }) =>
+    makeHighContrastColor(colors.success)(colors.pageBackground)
+  ),
+  textWarning: computed(({ colors }) =>
+    makeHighContrastColor(colors.warning)(colors.pageBackground)
+  ),
+  textDanger: computed(({ colors }) =>
+    makeHighContrastColor(colors.danger)(colors.pageBackground)
+  ),
+  textDisabled: computed(({ colors }) =>
+    makeDisabledContrastColor(colors.disabled)(colors.pageBackground)
+  ),
   link: computed(([textPrimary]) => textPrimary, ['colors.textPrimary']),
 };
 

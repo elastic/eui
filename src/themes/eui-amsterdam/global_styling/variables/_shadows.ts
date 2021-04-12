@@ -17,25 +17,10 @@
  * under the License.
  */
 
-import { buildTheme } from '../../services/theme/utils';
-import { EuiThemeShape } from '../../services/theme/types';
-import { colors } from '../../global_styling/variables/_colors';
-import { base, size } from '../../global_styling/variables/_size';
-import { focus } from '../../global_styling/variables/_states';
-import fonts from '../../global_styling/variables/_typography';
-import { border } from '../../global_styling/variables/_borders';
-import { title } from '../../global_styling/variables/title';
-import { shadow } from '../../global_styling/variables/_shadows';
+import { computed } from '../../../../services/theme/utils';
+import { EuiThemeShadow } from '../../../../global_styling/variables/_shadows';
 
-export const euiThemeDefault: EuiThemeShape = {
-  colors,
-  base,
-  size,
-  ...fonts,
-  border,
-  title,
-  focus,
-  shadow,
+export const shadow_ams: EuiThemeShadow = {
+  color: computed(({ colors }) => colors.ink),
+  colorLarge: computed(({ colors }) => colors.ink),
 };
-
-export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');

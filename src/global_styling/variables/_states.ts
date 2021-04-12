@@ -18,35 +18,43 @@
  */
 
 import { computed } from '../../services/theme/utils';
-import { shade, tint } from '../functions/_colors';
+import { ColorModeSwitch } from '../../services/theme/types';
+import { shade, tint, transparentize } from '../functions/_colors';
 
-const focus_ring = {
-  // Colors
-  color: 'rgba($euiColorPrimary, .3)',
-  animStartColor: 'rgba($euiColorPrimary, 0)',
-  animStartSize: '6px',
-  animStartSizeLarge: '10px',
+export interface EuiThemeFocus {
+  transparency: ColorModeSwitch<number>;
+  background: ColorModeSwitch;
+  ring: {
+    color: string;
+    animStartColor: string;
+    animStartSize: string;
+    animStartSizeLarge: string;
+    sizeLarge: string;
+    size: string;
+  };
+}
 
-  // Sizing
-  sizeLarge: '$euiSizeXS',
-  size: '$euiFocusRingSizeLarge * .75',
-};
-
-export const focus = {
-  light: {
-    transparency: 0.1,
-    background: computed(
+export const focus: EuiThemeFocus = {
+  transparency: { LIGHT: 0.1, DARK: 0.3 },
+  background: {
+    LIGHT: computed(
       ([primary, transparency]) => tint(primary, 1 - transparency),
       ['colors.primary', 'focus.transparency']
     ),
-    ring: focus_ring,
-  },
-  dark: {
-    transparency: 0.3,
-    background: computed(
+    DARK: computed(
       ([primary, transparency]) => shade(primary, 1 - transparency),
       ['colors.primary', 'focus.transparency']
     ),
-    ring: focus_ring,
+  },
+  ring: {
+    // Colors
+    color: computed(({ colors }) => transparentize(colors.primary, 0.3)),
+    animStartColor: computed(({ colors }) => transparentize(colors.primary, 0)),
+    animStartSize: '6px',
+    animStartSizeLarge: '10px',
+
+    // Sizing
+    sizeLarge: computed(({ size }) => size.xs),
+    size: computed(({ focus }) => `calc(${focus.ring.sizeLarge} * .75)`),
   },
 };
