@@ -18,9 +18,12 @@
  */
 
 import { computed } from '../../../../services/theme/utils';
-import { border } from '../../../../global_styling/variables/_borders';
+import {
+  border,
+  EuiThemeBorder,
+} from '../../../../global_styling/variables/_borders';
 
-export const border_ams = {
+export const border_ams: EuiThemeBorder = {
   ...border,
   // TODO: Decide if we should always calculate from `base`
   radius: computed(([base]) => `${base * 0.375}px`, ['base']),

@@ -20,14 +20,43 @@
 import { computed } from '../../../../services/theme/utils';
 import {
   makeHighContrastColor,
+  makeDisabledContrastColor,
   shade,
   tint,
 } from '../../../../global_styling/functions/_colors';
-import { poles } from '../../../../global_styling/variables/_colors';
+import {
+  EuiThemeColors,
+  _EuiThemeTextColors,
+} from '../../../../global_styling/variables/_colors';
 
-export const light_colors_ams = {
-  ...poles,
+const textVariants: _EuiThemeTextColors = {
+  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
+  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
 
+  textSubdued: computed(([darkShade]) => makeHighContrastColor(darkShade), [
+    'colors.darkShade',
+  ]),
+
+  textPrimary: computed((theme) => makeHighContrastColor(theme.colors.primary)),
+  textAccent: computed(([accent]) => makeHighContrastColor(accent), [
+    'colors.accent',
+  ]),
+  textSuccess: computed(([success]) => makeHighContrastColor(success), [
+    'colors.success',
+  ]),
+  textWarning: computed(([warning]) => makeHighContrastColor(warning), [
+    'colors.warning',
+  ]),
+  textDanger: computed(([danger]) => makeHighContrastColor(danger), [
+    'colors.danger',
+  ]),
+  textDisabled: computed(([disabled]) => makeDisabledContrastColor(disabled), [
+    'colors.disabled',
+  ]),
+  link: computed(([textPrimary]) => textPrimary, ['colors.textPrimary']),
+};
+
+const light_colors_ams = {
   // Brand
   primary: '#07C',
   accent: '#F04E98',
@@ -46,25 +75,10 @@ export const light_colors_ams = {
   darkestShade: '#343741',
   fullShade: '#000',
 
-  // Backgrounds
-  pageBackground: computed(([lightestShade]) => tint(lightestShade, 0.5), [
-    'colors.lightestShade',
-  ]),
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
-
-  // Every color below must be based mathematically on the set above and in a particular order.
-  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
-  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
-  disabled: '#ABB4C4',
-
-  textSubdued: computed(([darkShade]) => makeHighContrastColor(darkShade), [
-    'colors.darkShade',
-  ]),
 };
 
-export const dark_colors_ams = {
-  ...poles,
-
+const dark_colors_ams = {
   // Brand
   primary: '#36A2EF',
   accent: '#F68FBE',
@@ -83,18 +97,29 @@ export const dark_colors_ams = {
   darkestShade: '#D4DAE5',
   fullShade: '#FFF',
 
-  // Backgrounds
-  pageBackground: computed(([lightestShade]) => shade(lightestShade, 0.3), [
-    'colors.lightestShade',
-  ]),
   highlight: '#2E2D25',
+};
 
-  // Every color below must be based mathematically on the set above and in a particular order.
-  text: '#DFE5EF',
-  title: computed(([text]) => text, ['colors.text']),
-  disabled: '#515761',
+export const colors_ams: EuiThemeColors = {
+  ghost: '#FFF',
+  ink: '#000',
 
-  textSubdued: computed(([mediumShade]) => makeHighContrastColor(mediumShade), [
-    'colors.mediumShade',
-  ]),
+  LIGHT: light_colors_ams,
+  DARK: dark_colors_ams,
+
+  pageBackground: {
+    LIGHT: computed(([lightestShade]) => tint(lightestShade, 0.5), [
+      'colors.lightestShade',
+    ]),
+    DARK: computed(([lightestShade]) => shade(lightestShade, 0.3), [
+      'colors.lightestShade',
+    ]),
+  },
+
+  disabled: {
+    LIGHT: '#ABB4C4',
+    DARK: '#515761',
+  },
+
+  ...textVariants,
 };

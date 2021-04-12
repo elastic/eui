@@ -37,7 +37,7 @@ export {
   Computed,
 } from './utils';
 export {
-  EuiThemeColor,
+  ComputedThemeShape,
   EuiThemeColorMode,
   EuiThemeComputed,
   EuiThemeModifications,

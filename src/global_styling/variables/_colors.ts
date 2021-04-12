@@ -19,6 +19,10 @@
 
 import { computed } from '../../services/theme/utils';
 import {
+  ColorModeSwitch,
+  StrictColorModeSwitch,
+} from '../../services/theme/types';
+import {
   makeDisabledContrastColor,
   makeHighContrastColor,
   shade,
@@ -26,12 +30,9 @@ import {
 } from '../functions/_colors';
 
 export type _EuiThemeTextColors = {
-  /**
-   * TODO: Allow for `string | keys of LIGHT/DARK` instead of `any`
-   */
-  text: any;
-  title: any;
-  textSubdued: any;
+  text: ColorModeSwitch;
+  title: ColorModeSwitch;
+  textSubdued: ColorModeSwitch;
   textPrimary: string;
   textAccent: string;
   textSuccess: string;
@@ -143,13 +144,18 @@ export const dark_colors: _EuiThemeBaseColors = {
   highlight: '#2E2D25',
 };
 
-export type EuiThemeColors = _EuiThemeBaseColors &
+export type EuiThemeColors = StrictColorModeSwitch<_EuiThemeBaseColors> &
   _EuiThemeTextColors & {
-    disabled: any;
-    pageBackground: any;
+    ghost: string;
+    ink: string;
+    disabled: ColorModeSwitch;
+    pageBackground: ColorModeSwitch;
   };
 
 export const colors: EuiThemeColors = {
+  ghost: '#FFF',
+  ink: '#000',
+
   LIGHT: light_colors,
   DARK: dark_colors,
 

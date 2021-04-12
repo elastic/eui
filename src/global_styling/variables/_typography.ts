@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { CSSProperties } from 'react';
 import { keysOf } from '../../components/common';
 import { computed } from '../../services/theme/utils';
 import {
@@ -68,21 +69,28 @@ const font: EuiFont = {
 };
 
 // Font weights
-const fontWeight = {
-  light: '300',
-  regular: '400',
-  medium: '500',
-  semiBold: '600',
-  bold: '700',
+export interface EuiFontWeight {
+  light: CSSProperties['fontWeight'];
+  regular: CSSProperties['fontWeight'];
+  medium: CSSProperties['fontWeight'];
+  semiBold: CSSProperties['fontWeight'];
+  bold: CSSProperties['fontWeight'];
+}
+const fontWeight: EuiFontWeight = {
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semiBold: 600,
+  bold: 700,
 };
 
-type EuiFontSize = {
+export type EuiFontSize = {
   [mapType in EuiFontScale]: {
     fontSize: string;
     lineHeight: string;
   };
 };
-const fontSize = SCALES.reduce((acc, elem) => {
+const fontSize: EuiFontSize = SCALES.reduce((acc, elem) => {
   acc[elem] = {
     fontSize: computed(([base, scale]) => fontSizeFromScale(base, scale), [
       'base',
