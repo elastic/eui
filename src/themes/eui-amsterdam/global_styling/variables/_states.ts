@@ -23,16 +23,6 @@ import {
   focus,
   EuiThemeFocus,
 } from '../../../../global_styling/variables/_states';
-// // Color when not using currentColor
-// $euiFocusRingColor: $euiColorPrimaryText;
-
-// // Sizing
-// $euiFocusRingAnimStartSize: 2px;
-// $euiFocusRingSize: 2px;
-
-// // Transparency
-// $euiFocusTransparency: lightOrDarkTheme(.9, .7);
-// $euiFocusBackgroundColor: transparentize($euiColorPrimary, $euiFocusTransparency);
 
 export const focus_ams: EuiThemeFocus = {
   transparency: { LIGHT: 0.9, DARK: 0.7 },
@@ -41,6 +31,7 @@ export const focus_ams: EuiThemeFocus = {
   ),
   ring: {
     ...focus.ring,
+    // Color when not using currentColor
     color: computed(({ colors }) => colors.textPrimary),
     animStartSize: '2px',
     size: '2px',
