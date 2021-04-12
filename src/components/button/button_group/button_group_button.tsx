@@ -22,7 +22,7 @@ import React, { FunctionComponent, useRef } from 'react';
 import { EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator } from '../../../services';
 
 type Props = EuiButtonGroupOptionProps & {
   /**

@@ -233,6 +233,19 @@ export default {
               </GuideRuleWriting>
             </GuideRuleExample>
           </GuideRule>
+
+          <GuideRule heading="" description="">
+            <GuideRuleExample
+              type="do"
+              text="Avoid unneeded words in button labels.">
+              <EuiButton fill>Create component template</EuiButton>
+            </GuideRuleExample>
+            <GuideRuleExample
+              type="dont"
+              text='Use "create a new" or include articles in button labels.'>
+              <EuiButton fill>Create a new component template</EuiButton>
+            </GuideRuleExample>
+          </GuideRule>
           <EuiHorizontalRule />
         </>
       ),
@@ -712,7 +725,7 @@ export default {
                     Cancel
                   </EuiButtonEmpty>
                   <EuiButton color="danger" size="s">
-                    Remove pattern
+                    Remove index pattern
                   </EuiButton>
                 </EuiFlexGroup>
               </EuiPanel>

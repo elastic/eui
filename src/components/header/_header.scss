@@ -25,10 +25,5 @@
 }
 
 .euiHeader--dark {
-  @if (lightness($euiTextColor) < 50) {
-    @include euiHeaderDarkTheme($backgroundColor: shade($euiColorDarkestShade, 28%));
-  } @else {
-    // Makes forced "dark" theme darker than the typical dark them to separate them visually
-    @include euiHeaderDarkTheme($backgroundColor: shade($euiColorLightestShade, 50%));
-  }
+  @include euiHeaderDarkTheme($euiHeaderDarkBackgroundColor);
 }

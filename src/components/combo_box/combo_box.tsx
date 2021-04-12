@@ -69,7 +69,7 @@ type DrillProps<T> = Pick<
   | 'selectedOptions'
 >;
 
-interface _EuiComboBoxProps<T>
+export interface _EuiComboBoxProps<T>
   extends CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {

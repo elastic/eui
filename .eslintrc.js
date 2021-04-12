@@ -88,7 +88,7 @@ module.exports = {
     'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
     'jsx-a11y/aria-props': 'error',
     'jsx-a11y/aria-proptypes': 'error',
-    'jsx-a11y/aria-role': 'error',
+    'jsx-a11y/aria-role': [2, { ignoreNonDOM: true }],
     'jsx-a11y/aria-unsupported-elements': 'error',
     'jsx-a11y/heading-has-content': 'error',
     'jsx-a11y/html-has-lang': 'error',
