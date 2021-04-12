@@ -8,6 +8,7 @@ import {
   EuiLink,
   EuiText,
   EuiCallOut,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import iconConfig from './playground';
@@ -144,21 +145,24 @@ export const IconExample = {
       demo: <Tokens />,
     },
     {
+      wrapText: false,
       text: (
         <>
-          <h3>Custom tokens</h3>
-          <p>
-            By default, an <EuiCode>iconType</EuiCode> with the token prefix
-            (i.e. those listed above) will have predefined styles. However, any
-            valid <EuiCode>iconType</EuiCode> can be passed and, in either case,
-            the <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,{' '}
-            <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode> can be
-            customized.
-          </p>
+          <EuiText>
+            <h3>Custom tokens</h3>
+            <p>
+              By default, an <EuiCode>iconType</EuiCode> with the token prefix
+              (i.e. those listed above) will have predefined styles. However, any
+              valid <EuiCode>iconType</EuiCode> can be passed and, in either case,
+              the <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,{' '}
+              <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode> can be
+              customized.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <CustomTokens />
         </>
       ),
-      props: { EuiToken },
-      demo: <CustomTokens />,
     },
     {
       title: 'Sizes',
@@ -193,14 +197,20 @@ export const IconExample = {
       demo: <IconColors />,
     },
     {
+      wrapText: false,
       text: (
-        <p>
-          Two-tone icons, like our app style icons, will behave similarly to
-          normal glyphs when provided a specific color by applying the color to
-          <strong>all</strong> the shapes within.
-        </p>
+        <>
+          <EuiText>
+            <p>
+              Two-tone icons, like our app style icons, will behave similarly to
+              normal glyphs when provided a specific color by applying the color to
+              <strong>all</strong> the shapes within.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <AppIconColors />
+        </>
       ),
-      demo: <AppIconColors />,
     },
     {
       title: 'Custom SVGs',

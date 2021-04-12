@@ -16,7 +16,10 @@ import reactSvg from '../../images/custom.svg';
 export default () => (
   <div>
     <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon
           type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
           size="xl"
@@ -25,6 +28,7 @@ export default () => (
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
         <EuiCodeBlock
+          className="eui-textBreakWord"
           language="html"
           isCopyable
           transparentBackground
@@ -37,7 +41,10 @@ export default () => (
     </EuiSplitPanel.Outer>
     <EuiSpacer />
     <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">

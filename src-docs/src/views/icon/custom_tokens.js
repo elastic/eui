@@ -9,8 +9,11 @@ import {
 
 export default () => (
   <>
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiToken iconType="tokenStruct" size="xs" color="gray" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -24,8 +27,11 @@ export default () => (
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiToken iconType="tokenStruct" fill="none" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -39,8 +45,11 @@ export default () => (
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiToken
           iconType="tokenStruct"
           size="m"
@@ -61,8 +70,11 @@ export default () => (
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiToken
           iconType="faceNeutral"
           size="l"

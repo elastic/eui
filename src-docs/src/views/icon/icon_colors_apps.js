@@ -9,8 +9,11 @@ import {
 
 export default () => (
   <>
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon type="gisApp" size="xl" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
@@ -24,8 +27,11 @@ export default () => (
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon type="gisApp" color="text" size="xl" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
@@ -39,8 +45,11 @@ export default () => (
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon type="gisApp" color="primary" size="xl" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
@@ -54,8 +63,11 @@ export default () => (
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} direction="row">
-      <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }}>
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon type="gisApp" color="#DA8B45" size="xl" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
