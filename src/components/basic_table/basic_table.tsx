@@ -810,6 +810,7 @@ export class EuiBasicTable<T = any> extends Component<
         mobileOptions,
         isMobileHeader,
         hideForMobile,
+        readOnly,
       } = column as EuiTableFieldDataColumnType<T>;
 
       const columnAlign = align || this.getAlignForDataType(dataType);
@@ -840,7 +841,7 @@ export class EuiBasicTable<T = any> extends Component<
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
           sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
-          sorting.readOnly = this.props.sorting.readOnly;
+          sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
         headers.push(
           <EuiTableHeaderCell
@@ -880,7 +881,7 @@ export class EuiBasicTable<T = any> extends Component<
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
           sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
-          sorting.readOnly = this.props.sorting.readOnly;
+          sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
       }
       headers.push(
