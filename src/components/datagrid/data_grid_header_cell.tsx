@@ -134,6 +134,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   const [isCellEntered, setIsCellEntered] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
+  const [buttonRef, setButtonRef] = useState<HTMLButtonElement | null>(null);
+
   const enableInteractives = useCallback(() => {
     if (headerRef.current) {
       const interactiveElements = headerRef.current.querySelectorAll(
@@ -331,6 +333,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ) : (
         <button
           className="euiDataGridHeaderCell__button"
+          ref={setButtonRef}
           onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}>
           {sortingArrow}
           <div className="euiDataGridHeaderCell__content">
@@ -350,7 +353,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               />
             }
             isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}>
+            closePopover={() => setIsPopoverOpen(false)}
+            elementsNotOutside={buttonRef ? [buttonRef] : undefined}>
             <div>
               <EuiListGroup
                 listItems={columnActions}
