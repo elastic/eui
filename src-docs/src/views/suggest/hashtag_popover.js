@@ -30,7 +30,7 @@ export default (props) => {
       onClick={togglePopover}
       size="xs"
       iconType="arrowDown"
-      aria-label="hashtag button"
+      aria-label="Saved Queries popover"
       iconSide="right">
       <EuiIcon type="number" />
     </EuiButtonEmpty>
