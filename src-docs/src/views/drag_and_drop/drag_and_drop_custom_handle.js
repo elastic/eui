@@ -47,7 +47,7 @@ export default () => {
               <EuiPanel className="custom" paddingSize="m">
                 <EuiFlexGroup>
                   <EuiFlexItem grow={false}>
-                    <div {...provided.dragHandleProps}>
+                    <div {...provided.dragHandleProps} aria-label="Drag Handle">
                       <EuiIcon type="grab" />
                     </div>
                   </EuiFlexItem>
