@@ -28,7 +28,6 @@ export interface GuideSection {
   demoRoute?: {
     slug: string;
     demo: ReactNode;
-    placeholder?: ReactNode;
   };
   demoPanelProps?: GuideSectionExample['demoPanelProps'];
   props?: object;
@@ -181,12 +180,12 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
               {/* eslint-disable-next-line no-nested-ternary */}
               {demoRoute == null ? (
                 <div>{demo}</div>
-              ) : demoRoute.placeholder == null ? (
+              ) : demo == null ? (
                 <EuiButton href={`#${path}/${demoRoute.slug}`}>
                   Goto Fullscreen Example
                 </EuiButton>
               ) : (
-                demoRoute.placeholder
+                demo
               )}
             </EuiErrorBoundary>
           }
