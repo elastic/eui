@@ -81,6 +81,7 @@ export const CodeExample = {
       snippet: codeSnippet,
       props: { EuiCode },
       demo: <Code />,
+      playground: codeConfig,
     },
     {
       title: 'Code block',
@@ -105,6 +106,7 @@ export const CodeExample = {
       snippet: codeBlockSnippet,
       props: { EuiCodeBlock },
       demo: <CodeBlock />,
+      playground: codeBlockConfig,
     },
     {
       title: 'Code block and white-space',
@@ -131,5 +133,4 @@ export const CodeExample = {
       demo: <CodeBlockPre />,
     },
   ],
-  playground: [codeBlockConfig, codeConfig],
 };
