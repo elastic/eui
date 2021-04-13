@@ -22,7 +22,7 @@
  * into portals.
  */
 
-import React from 'react';
+import { Component, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { keysOf } from '../common';
 
@@ -46,12 +46,12 @@ export interface EuiPortalProps {
   /**
    * ReactNode to render as this component's content
    */
-  children: React.ReactNode;
+  children: ReactNode;
   insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export class EuiPortal extends React.Component<EuiPortalProps> {
+export class EuiPortal extends Component<EuiPortalProps> {
   portalNode: HTMLDivElement;
   constructor(props: EuiPortalProps) {
     super(props);

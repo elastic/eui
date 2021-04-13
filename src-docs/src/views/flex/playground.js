@@ -14,18 +14,17 @@ export const flexGroupConfig = () => {
 
   propsToUse.children = {
     type: PropTypes.ReactNode,
-    value: `<EuiFlexItem>Content grid item</EuiFlexItem>
-    <EuiFlexItem style={{ minWidth: 100 }}>Min-width 300px</EuiFlexItem>
+    value: `<EuiFlexItem>Flex item</EuiFlexItem>
+    <EuiFlexItem grow={false}>Grow false</EuiFlexItem>
     <EuiFlexItem component="span">
     This is a span component
   </EuiFlexItem>
-    <EuiFlexItem>
-      <p>Another content grid item</p>
-      <p>
-        Note how both of these are the same width and height despite having
-        different content?
-      </p>
-    </EuiFlexItem>`,
+  <EuiFlexItem>
+    <p>Another flex item</p>
+    <p>
+      To showcase stretcing (or not) of items
+    </p>
+  </EuiFlexItem>`,
     hidden: false,
   };
 
@@ -55,19 +54,20 @@ export const flexGridConfig = () => {
 
   propsToUse.children = {
     type: PropTypes.ReactNode,
-    value: `<EuiFlexItem>Content grid item</EuiFlexItem>
-      <EuiFlexItem style={{ minWidth: 100 }}>Min-width 300px</EuiFlexItem>
-      <EuiFlexItem component="span">
-      This is a span component
-    </EuiFlexItem>
-      <EuiFlexItem>
-        <p>Another content grid item</p>
-        <p>
-          Note how both of these are the same width and height despite having
-          different content?
-        </p>
-      </EuiFlexItem>`,
+    value: `<EuiFlexItem><div>One</div></EuiFlexItem>
+<EuiFlexItem><div>Two</div></EuiFlexItem>
+<EuiFlexItem><div>Three</div></EuiFlexItem>
+<EuiFlexItem><div>Four</div></EuiFlexItem>
+<EuiFlexItem><div>Five</div></EuiFlexItem>
+<EuiFlexItem><div>Six</div></EuiFlexItem>
+<EuiFlexItem><div>Seven</div></EuiFlexItem>`,
     hidden: false,
+  };
+
+  propsToUse.columns = {
+    ...propsToUse.columns,
+    type: PropTypes.Number,
+    value: 3,
   };
 
   return {

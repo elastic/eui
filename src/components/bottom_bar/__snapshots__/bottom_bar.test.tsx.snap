@@ -4,8 +4,9 @@ exports[`EuiBottomBar is rendered 1`] = `
 Array [
   <section
     aria-label="aria-label"
-    class="euiBottomBar euiBottomBar--paddingMedium testClass1 testClass2"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2"
     data-test-subj="test subject string"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -27,7 +28,8 @@ exports[`EuiBottomBar props affordForDisplacement can be false 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--paddingMedium"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -47,7 +49,8 @@ Array [
 exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
 <section
   aria-label="Page level controls"
-  class="euiBottomBar euiBottomBar--paddingMedium"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+  style="left: 0px; right: 0px; bottom: 0px;"
 >
   <h2
     class="euiScreenReaderOnly"
@@ -57,11 +60,34 @@ exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
 </section>
 `;
 
+exports[`EuiBottomBar props landmarkHeading 1`] = `
+Array [
+  <section
+    aria-label="This should have been label"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      This should have been label
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark called This should have been label with page level controls at the end of the document.
+  </p>,
+]
+`;
+
 exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--paddingLarge"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -82,7 +108,8 @@ exports[`EuiBottomBar props paddingSize m is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--paddingMedium"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -103,7 +130,8 @@ exports[`EuiBottomBar props paddingSize none is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar"
+    class="euiBottomBar euiBottomBar--fixed"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -124,7 +152,140 @@ exports[`EuiBottomBar props paddingSize s is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--paddingSmall"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props position fixed is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props position props are altered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:30px;right:30px;bottom:30px;top:30px"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props position static is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props position sticky is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props style is customized 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:12px;right:0;bottom:0"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiBottomBar props usePortal can be false 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"

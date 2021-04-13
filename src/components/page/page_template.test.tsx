@@ -127,4 +127,17 @@ describe('EuiPageTemplate', () => {
       });
     });
   });
+
+  describe('with bottomBar', () => {
+    test('is rendered', () => {
+      const component = render(
+        <EuiPageTemplate
+          bottomBar="Bottom Bar"
+          bottomBarProps={{ paddingSize: 'none' }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

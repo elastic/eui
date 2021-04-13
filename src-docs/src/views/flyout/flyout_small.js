@@ -8,31 +8,31 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
-  const showFlyout = () => setIsFlyoutVisible(true);
+  const toggleFlyout = () => setIsFlyoutVisible((isVisible) => !isVisible);
+
+  const flyoutTitleId = htmlIdGenerator('flyout')();
 
   let flyout;
   if (isFlyoutVisible) {
     flyout = (
-      <EuiFlyout
-        onClose={closeFlyout}
-        size="s"
-        aria-labelledby="flyoutSmallTitle">
+      <EuiFlyout onClose={closeFlyout} aria-labelledby={flyoutTitleId}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id="flyoutSmallTitle">A small flyout</h2>
+            <h2 id={flyoutTitleId}>A flyout without ownFocus</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
           <EuiText>
             <p>
-              In small flyouts, it is ok to reduce the header size to{' '}
-              <code>s</code>.
+              The page contents is still interactable though screenreader users
+              will find themselves still within the bounds of the flyout.
             </p>
           </EuiText>
         </EuiFlyoutBody>
@@ -41,7 +41,7 @@ export default () => {
   }
   return (
     <div>
-      <EuiButton onClick={showFlyout}>Show small flyout</EuiButton>
+      <EuiButton onClick={toggleFlyout}>Toggle flyout</EuiButton>
 
       {flyout}
     </div>

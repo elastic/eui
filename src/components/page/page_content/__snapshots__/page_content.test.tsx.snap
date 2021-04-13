@@ -1,9 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiPageContent accepts panel props 1`] = `
+<div
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent horizontalPosition is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--horizontalCenter"
+  role="main"
+/>
+`;
+
 exports[`EuiPageContent is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent role can be removed 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent"
+/>
+`;
+
+exports[`EuiPageContent verticalPosition is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter"
+  role="main"
 />
 `;

@@ -30,6 +30,11 @@ export const pageTemplateConfig = () => {
     hidden: false,
   };
 
+  propsToUse.bottomBar = {
+    ...propsToUse.bottomBar,
+    type: PropTypes.String,
+  };
+
   propsToUse.pageSideBar = {
     ...propsToUse.pageSideBar,
     value: 'Side bar',

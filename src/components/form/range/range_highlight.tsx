@@ -49,6 +49,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   // const rangeWidth = (value - min) / (max - min);
   const leftPosition = (lowerValue - min) / (max - min);
   const rangeWidth = (upperValue - lowerValue) / (max - min);
+
   const rangeWidthStyle = {
     background,
     marginLeft: `${leftPosition * 100}%`,

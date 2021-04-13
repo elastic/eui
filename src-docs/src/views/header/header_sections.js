@@ -56,7 +56,7 @@ export default () => {
   );
   const renderUser = (
     <EuiHeaderSectionItemButton disabled aria-label="Account menu">
-      <EuiAvatar name="John Username" size="s" />
+      <EuiAvatar isDisabled name="John Username" size="s" />
     </EuiHeaderSectionItemButton>
   );
 
