@@ -37,18 +37,16 @@ const iconTypesSource = require('!!raw-loader!./icon_types');
 
 export const IconExample = {
   title: 'Icons',
-  intro: (
-    <EuiText>
-      <p>
-        <strong>EuiIcon</strong> is a handy component for using our custom
-        glyphs and logos. The <EuiCode>type</EuiCode> prop accepts either an
-        enumerated name from one of the sets below, a location to a custom SVG
-        asset, or a React Element.
-      </p>
-    </EuiText>
-  ),
   sections: [
     {
+      text: (
+        <p>
+          <strong>EuiIcon</strong> is a handy component for using our custom
+          glyphs and logos. The <EuiCode>type</EuiCode> prop accepts either an
+          enumerated name from one of the sets below, a location to a custom SVG
+          asset, or a React Element.
+        </p>
+      ),
       demo: <EuiIcon type="grid" />,
       props: { EuiIcon },
       playground: iconConfig,
@@ -56,9 +54,10 @@ export const IconExample = {
     {
       text: (
         <EuiCallOut
+          iconType="accessibility"
           title={
             <>
-              For better accessibility it's always recommended to give a
+              For better accessibility it&apos;s always recommended to give a
               descriptive <EuiCode>title</EuiCode> based on the icon use.
             </>
           }
@@ -134,10 +133,10 @@ export const IconExample = {
           <p>
             Tokens are most commonly used to visually signify field or code
             types. An <strong>EuiToken</strong> accepts any valid{' '}
-            <strong>EuiIcon</strong> as its
-            <EuiCode>iconType</EuiCode> property. However, icons designed
-            specifically for use in the <strong>EuiToken</strong> are prefixed
-            with &quot;token&quot; in their name and have pre-defined styles.
+            <strong>EuiIcon</strong> as its <EuiCode>iconType</EuiCode>{' '}
+            property. However, icons designed specifically for use in the{' '}
+            <strong>EuiToken</strong> are prefixed with &quot;token&quot; in
+            their name and have pre-defined styles.
           </p>
         </>
       ),
@@ -152,9 +151,9 @@ export const IconExample = {
             <h3>Custom tokens</h3>
             <p>
               By default, an <EuiCode>iconType</EuiCode> with the token prefix
-              (i.e. those listed above) will have predefined styles. However, any
-              valid <EuiCode>iconType</EuiCode> can be passed and, in either case,
-              the <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,{' '}
+              (i.e. those listed above) will have predefined styles. However,
+              any valid <EuiCode>iconType</EuiCode> can be passed and, in either
+              case, the <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,{' '}
               <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode> can be
               customized.
             </p>
@@ -189,9 +188,9 @@ export const IconExample = {
           </EuiLink>
           &nbsp;which will be passed down through the inline-style{' '}
           <EuiCode>fill</EuiCode>&nbsp; property.{' '}
-          <strong>We recommend relying on the EUI named color palette</strong>
-          &nbsp; unless the custom color is initiated by the user (like as a
-          graph color).
+          <strong>We recommend relying on the EUI named color palette</strong>{' '}
+          unless the custom color is initiated by the user (like as a graph
+          color).
         </p>
       ),
       demo: <IconColors />,
@@ -203,8 +202,8 @@ export const IconExample = {
           <EuiText>
             <p>
               Two-tone icons, like our app style icons, will behave similarly to
-              normal glyphs when provided a specific color by applying the color to
-              <strong>all</strong> the shapes within.
+              normal glyphs when provided a specific color by applying the color
+              to <strong>all</strong> the shapes within.
             </p>
           </EuiText>
           <EuiSpacer />
@@ -220,10 +219,10 @@ export const IconExample = {
             The <EuiCode>type</EuiCode> prop can accept a valid enum, string or
             React SVG Element. When using a custom SVG, please make sure it sits
             on a square canvas and preferably utilizes one of EUI&apos;s sizes
-            (16x16, 32x32...etc).
+            (<EuiCode>16x16</EuiCode> or <EuiCode>32x32</EuiCode>).
           </p>
           <p>
-            When using custom SVGs for simple glyphs,
+            When using custom SVGs for simple glyphs,{' '}
             <strong>remove all fill attributes</strong> on the SVG and utilize
             the CSS helpers if you have complex logos that need to work with
             theming.
