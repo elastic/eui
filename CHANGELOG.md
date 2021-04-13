@@ -1,12 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-
 - Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
+
+**Bug fixes**
+
+- Fixed a bug where on hovering an expandable row cell in `EuiDataGrid` a vertical line would show ([#4689](https://github.com/elastic/eui/pull/4689))
 
 **Breaking changes**
 
 - Changed some language syntax references in `EuiCodeBlock`, such as `jsx` ([#4638](https://github.com/elastic/eui/pull/4638))
 - Removed ability to parse non-string content in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
+
+## [`32.0.4`](https://github.com/elastic/eui/tree/v32.0.4)
+
+**Bug fixes**
+
+- Removed the restriction on `selectable` `EuiCard` with `layout="horizontal"` ([#4692](https://github.com/elastic/eui/pull/4692))
 
 ## [`32.0.3`](https://github.com/elastic/eui/tree/v32.0.3)
 
