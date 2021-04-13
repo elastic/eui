@@ -52,10 +52,9 @@ export const CodeExample = {
         </p>
         <p>
           JSX code (often React) has distinct language syntaxes from the base
-          JavaScript and TypeScript languages. For instance, use{' '}
+          JavaScript and TypeScript languages. For these instances, use{' '}
           <EuiCode>language=&quot;jsx&quot;</EuiCode> or{' '}
-          <EuiCode>language=&quot;tsx&quot;</EuiCode> when the code in question
-          is JSX.
+          <EuiCode>language=&quot;tsx&quot;</EuiCode>.
         </p>
       </EuiText>
     </>
