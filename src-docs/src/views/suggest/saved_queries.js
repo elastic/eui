@@ -123,7 +123,7 @@ export default () => {
             onBlur={onFieldBlur}
             prepend={<HashtagPopover value={value} />}
             append={append}
-            aria-label="EuiSuggest input field"
+            aria-label="Filter"
             suggestions={sampleItems}
             onItemClick={onItemClick}
             onInputChange={getInputValue}
