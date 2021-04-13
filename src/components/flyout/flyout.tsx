@@ -36,12 +36,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
-import {
-  EuiBreakpointSize,
-  isWithinMinBreakpoint,
-} from '../../services/breakpoint';
 import { useResizeObserver } from '../observer/resize_observer';
-import { throttle } from 'lodash';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { HTMLAttributes } from 'enzyme';
 
@@ -147,11 +142,6 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      */
     type?: _EuiFlyoutType;
     /**
-     * Pushed flyouts will squish the body too much.
-     * Customize this minimum breakpoint for enabling pushing
-     */
-    pushBreakpoint?: EuiBreakpointSize | number;
-    /**
      * Forces this interaction on the mask overlay or body content.
      * Defaults depend on `ownFocus` and `type` values
      */
@@ -185,7 +175,6 @@ export const EuiFlyout = <T extends ComponentTypes>({
   style,
   maskProps,
   type = 'overlay',
-  pushBreakpoint = 'l',
   outsideClickCloses = false,
   role = 'dialog',
   ...rest
@@ -200,31 +189,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
     }
   };
 
-  /**
-   * Setting the initial state of pushed based on the `type` prop
-   * and if the current window size is large enough (larger than `pushBreakpoint`)
-   */
-  const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
-    isWithinMinBreakpoint(
-      typeof window === 'undefined' ? 0 : window.innerWidth,
-      pushBreakpoint
-    )
-  );
-
-  const isPushed = type === 'push' && windowIsLargeEnoughToPush;
-
-  /**
-   * Watcher added to the window to maintain `isPushed` state depending on
-   * the window size compared to the `pushBreakpoint`
-   */
-  const functionToCallOnWindowResize = throttle(() => {
-    if (isWithinMinBreakpoint(window.innerWidth, pushBreakpoint)) {
-      setWindowIsLargeEnoughToPush(true);
-    } else {
-      setWindowIsLargeEnoughToPush(false);
-    }
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
+  const isPushed = type === 'push';
 
   /**
    * Setting up the refs on the actual flyout element in order to
@@ -238,11 +203,6 @@ export const EuiFlyout = <T extends ComponentTypes>({
   useEffect(() => {
     // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
     document.body.classList.add('euiBody--hasFlyout');
-
-    if (type === 'push') {
-      // Only add the event listener if we'll need to accomodate with padding
-      window.addEventListener('resize', functionToCallOnWindowResize);
-    }
 
     /**
      * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
@@ -259,8 +219,6 @@ export const EuiFlyout = <T extends ComponentTypes>({
       document.body.classList.remove('euiBody--hasFlyout');
 
       if (type === 'push') {
-        window.removeEventListener('resize', functionToCallOnWindowResize);
-
         if (side === 'right') {
           document.body.style.paddingRight = '';
         } else if (side === 'left') {
@@ -268,7 +226,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
         }
       }
     };
-  }, [type, side, dimensions, isPushed, functionToCallOnWindowResize]);
+  }, [type, side, dimensions, isPushed]);
 
   let newStyle;
   let widthClassName;
@@ -365,10 +323,10 @@ export const EuiFlyout = <T extends ComponentTypes>({
        * to allow non-keyboard users the ability to interact with
        * elements outside the flyout.
        */}
-      <EuiFocusTrap clickOutsideDisables={!ownFocus || isPushed}>
+      <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
         {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
         <EuiOutsideClickDetector
-          isDisabled={!outsideClickCloses}
+          isDisabled={isPushed || !outsideClickCloses}
           onOutsideClick={() => onClose()}>
           {flyoutContent}
         </EuiOutsideClickDetector>

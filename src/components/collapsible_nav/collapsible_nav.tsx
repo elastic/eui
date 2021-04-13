@@ -22,17 +22,23 @@ import React, {
   FunctionComponent,
   ReactElement,
   ReactNode,
+  useEffect,
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { htmlIdGenerator } from '../../services';
+import {
+  htmlIdGenerator,
+  EuiBreakpointSize,
+  isWithinMinBreakpoint,
+} from '../../services';
 import { EuiButtonEmptyProps } from '../button';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import { throttle } from '../color_picker/utils';
 
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<
   EuiFlyoutProps,
-  'onClose' | 'closeButtonAriaLabel' | 'type' | 'pushBreakpoint'
+  'closeButtonAriaLabel' | 'type'
 > & {
   /**
    * ReactNode to render as this component's content
@@ -47,9 +53,9 @@ export type EuiCollapsibleNavProps = Omit<
    */
   isDocked?: boolean;
   /**
-   * Pixel value for customizing the minimum window width for enabling docking
+   * Named breakpoint or pixel value for customizing the minimum window width to enable docking
    */
-  dockedBreakpoint?: EuiFlyoutProps['pushBreakpoint'];
+  dockedBreakpoint?: EuiBreakpointSize | number;
   /**
    * Button for controlling visible state of the nav
    */
@@ -62,7 +68,7 @@ export type EuiCollapsibleNavProps = Omit<
    * Extend the props of the close button, an EuiButtonEmpty
    */
   closeButtonProps?: EuiButtonEmptyProps;
-  onClose?: () => void;
+  // onClose?: () => void;
 };
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
@@ -74,14 +80,12 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   button,
   showButtonIfDocked = false,
   closeButtonProps,
-  dockedBreakpoint = 'l', // Used as EuiFlyout.pushBreakpoint just different name
+  dockedBreakpoint = 'l',
   // Extended EuiFlyout props we manipulate
   onClose,
   maskProps,
   // Setting different EuiFlyout defaults
   ownFocus = true,
-  hideCloseButton = false,
-  outsideClickCloses = true,
   size = 320,
   paddingSize = 'none',
   as = 'nav',
@@ -90,25 +94,60 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
 
+  /**
+   * Setting the initial state of pushed based on the `type` prop
+   * and if the current window size is large enough (larger than `pushBreakpoint`)
+   */
+  const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
+    isWithinMinBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      dockedBreakpoint
+    )
+  );
+
+  const navIsDocked = isDocked && windowIsLargeEnoughToPush;
+
+  /**
+   * Watcher added to the window to maintain `isPushed` state depending on
+   * the window size compared to the `pushBreakpoint`
+   */
+  const functionToCallOnWindowResize = throttle(() => {
+    if (isWithinMinBreakpoint(window.innerWidth, dockedBreakpoint)) {
+      setWindowIsLargeEnoughToPush(true);
+    } else {
+      setWindowIsLargeEnoughToPush(false);
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  useEffect(() => {
+    if (isDocked) {
+      // Only add the event listener if we'll need to accomodate with padding
+      window.addEventListener('resize', functionToCallOnWindowResize);
+    }
+
+    return () => {
+      if (isDocked) {
+        window.removeEventListener('resize', functionToCallOnWindowResize);
+      }
+    };
+  }, [isDocked, functionToCallOnWindowResize]);
+
   const collapse = () => {
     // Skip collapsing if it is docked
-    if (isDocked) {
+    if (navIsDocked) {
       return;
     } else {
       onClose && onClose();
     }
   };
 
-  const classes = classNames(
-    'euiCollapsibleNav',
-    // { 'euiCollapsibleNav--isDocked': navIsDocked },
-    className
-  );
+  const classes = classNames('euiCollapsibleNav', className);
 
   // Show a trigger button if one was passed but
   // not if navIsDocked and showButtonIfDocked is false
   const trigger =
-    isDocked && !showButtonIfDocked
+    navIsDocked && !showButtonIfDocked
       ? undefined
       : button &&
         cloneElement(button as ReactElement, {
@@ -117,44 +156,41 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'aria-pressed': isOpen,
           onMouseUpCapture: (e: React.MouseEvent<HTMLElement>) => {
             // When EuiOutsideClickDetector is enabled, we don't want both the toggle button and document clicks to happen, they'll cancel eachother out
-            e.nativeEvent.stopImmediatePropagation();
+            e.nativeEvent.stopImmediatePropagation(); //TODO: Broken again
           },
         });
 
   const flyout = (
-    <>
-      <EuiFlyout
-        // Flyout props that can be overridden
-        as={as}
-        paddingSize={paddingSize}
-        side={side}
-        size={size}
-        {...rest}
-        // Flyout props we omitted because this component handles it differently
-        type={isDocked ? 'push' : 'overlay'}
-        onClose={onClose}
-        pushBreakpoint={dockedBreakpoint}
-        // Flyout props we extended but manipulate in this component
-        id={flyoutID}
-        className={classes}
-        ownFocus={ownFocus}
-        outsideClickCloses={outsideClickCloses}
-        maskProps={{
-          onClick: collapse,
-          ...maskProps,
-        }}
-        hideCloseButton={isDocked || hideCloseButton}
-        closeButtonPosition="outside"
-        role={'none'}>
-        {children}
-      </EuiFlyout>
-    </>
+    <EuiFlyout
+      // Flyout props that can be overridden
+      as={as}
+      paddingSize={paddingSize}
+      side={side}
+      size={size}
+      {...rest}
+      // Flyout props we omitted because this component handles it differently
+      type={navIsDocked ? 'push' : 'overlay'}
+      onClose={onClose}
+      // Flyout props we extended but manipulate in this component
+      id={flyoutID}
+      className={classes}
+      ownFocus={ownFocus}
+      outsideClickCloses={true}
+      maskProps={{
+        onClick: collapse,
+        ...maskProps,
+      }}
+      hideCloseButton={navIsDocked}
+      closeButtonPosition="outside"
+      role={'none'}>
+      {children}
+    </EuiFlyout>
   );
 
   return (
     <>
       {trigger}
-      {(isOpen || isDocked) && flyout}
+      {(isOpen || navIsDocked) && flyout}
     </>
   );
 };

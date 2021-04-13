@@ -9,10 +9,14 @@ import { EuiCode } from '../../../../src/components/code';
 
 export default () => {
   const [navIsOpen, setNavIsOpen] = useState<boolean>(
-    JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
+    JSON.parse(
+      String(localStorage.getItem('euiCollapsibleNavExample--isDocked'))
+    ) || false
   );
   const [navIsDocked, setNavIsDocked] = useState<boolean>(
-    JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
+    JSON.parse(
+      String(localStorage.getItem('euiCollapsibleNavExample--isDocked'))
+    ) || false
   );
 
   return (
@@ -43,7 +47,10 @@ export default () => {
           <EuiButton
             onClick={() => {
               setNavIsDocked(!navIsDocked);
-              localStorage.setItem('navIsDocked', JSON.stringify(!navIsDocked));
+              localStorage.setItem(
+                'euiCollapsibleNavExample--isDocked',
+                JSON.stringify(!navIsDocked)
+              );
             }}>
             Docked: {navIsDocked ? 'on' : 'off'}
           </EuiButton>

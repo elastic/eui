@@ -30,6 +30,8 @@ export default () => {
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
+        type="push"
+        side="left"
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
         aria-labelledby="flyoutTitle">
@@ -53,7 +55,7 @@ export default () => {
 
   return (
     <div>
-      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+      <EuiButton onClick={() => setIsFlyoutVisible((visible) => !visible)}>
         Show flyout
       </EuiButton>
       {flyout}
