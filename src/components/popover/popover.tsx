@@ -196,11 +196,6 @@ export interface EuiPopoverProps {
    * Usually takes the `id` of the popover title
    */
   'aria-labelledby'?: string;
-  /**
-   * An array of elements considered inside the anchor, click events on these
-   * elements will not close the popover
-   */
-  elementsNotOutside?: HTMLElement[];
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -404,27 +399,9 @@ export class EuiPopover extends Component<Props, State> {
 
   onClickOutside = (event: Event) => {
     // only close the popover if the event source isn't the anchor button
-    // or in the elementsNotOutside array otherwise, it is up to the
-    // anchor to toggle the popover's open status
-    if (this.button) {
-      const { elementsNotOutside = [] } = this.props;
-      const insideElements = [this.button, ...elementsNotOutside];
-      let isOutside = true;
-
-      for (let i = 0; i < insideElements.length; i++) {
-        const insideElement = insideElements[i];
-        if (
-          insideElement === event.target ||
-          insideElement.contains(event.target as Node)
-        ) {
-          isOutside = false;
-          break;
-        }
-      }
-
-      if (isOutside) {
-        this.closePopover();
-      }
+    // otherwise, it is up to the anchor to toggle the popover's open status
+    if (this.button && this.button.contains(event.target as Node) === false) {
+      this.closePopover();
     }
   };
 
@@ -712,7 +689,6 @@ export class EuiPopover extends Component<Props, State> {
       'aria-labelledby': ariaLabelledBy,
       container,
       focusTrapProps,
-      elementsNotOutside,
       ...rest
     } = this.props;
 
