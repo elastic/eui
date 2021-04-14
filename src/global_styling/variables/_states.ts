@@ -19,7 +19,7 @@
 
 import { computed } from '../../services/theme/utils';
 import { ColorModeSwitch } from '../../services/theme/types';
-import { shade, tint, transparentize } from '../functions/_colors';
+import { shade, tint, transparentize } from '../../services/color';
 
 export interface EuiThemeFocus {
   transparency: ColorModeSwitch<number>;

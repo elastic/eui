@@ -18,7 +18,7 @@
  */
 
 import { computed } from '../../../../services/theme/utils';
-import { transparentize } from '../../../../global_styling/functions/_colors';
+import { transparentize } from '../../../../services/color';
 import {
   focus,
   EuiThemeFocus,

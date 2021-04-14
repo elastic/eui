@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { shade, tint } from '../../services/color';
 import { computed } from '../../services/theme/utils';
 import {
   ColorModeSwitch,
@@ -25,14 +26,12 @@ import {
 import {
   makeDisabledContrastColor,
   makeHighContrastColor,
-  shade,
-  tint,
 } from '../functions/_colors';
 
 export type _EuiThemeTextColors = {
   text: ColorModeSwitch;
   title: ColorModeSwitch;
-  textSubdued: ColorModeSwitch;
+  textSubdued: string;
   textPrimary: string;
   textAccent: string;
   textSuccess: string;
@@ -54,39 +53,13 @@ const textVariants: _EuiThemeTextColors = {
     DARK: computed(([text]) => text, ['colors.text']),
   },
 
-  textSubdued: {
-    LIGHT: computed(({ colors }) =>
-      makeHighContrastColor(colors.mediumShade)(colors.pageBackground)
-    ),
-    // Or like this?
-    // LIGHT: computed(({ colors }) =>
-    //   makeHighContrastColor(colors.mediumShade, colors.pageBackground)
-    // ),
-    // Or like this?
-    // LIGHT: computed(makeHighContrastColor('colors.mediumShade')),
-    DARK: computed(({ colors }) =>
-      makeHighContrastColor(colors.mediumShade)(colors.pageBackground)
-    ),
-  },
-
-  textPrimary: computed((theme) =>
-    makeHighContrastColor(theme.colors.primary)(theme)
-  ),
-  textAccent: computed(({ colors }) =>
-    makeHighContrastColor(colors.accent)(colors.pageBackground)
-  ),
-  textSuccess: computed(({ colors }) =>
-    makeHighContrastColor(colors.success)(colors.pageBackground)
-  ),
-  textWarning: computed(({ colors }) =>
-    makeHighContrastColor(colors.warning)(colors.pageBackground)
-  ),
-  textDanger: computed(({ colors }) =>
-    makeHighContrastColor(colors.danger)(colors.pageBackground)
-  ),
-  textDisabled: computed(({ colors }) =>
-    makeDisabledContrastColor(colors.disabled)(colors.pageBackground)
-  ),
+  textSubdued: computed(makeHighContrastColor('colors.mediumShade')),
+  textPrimary: computed(makeHighContrastColor('colors.primary')),
+  textAccent: computed(makeHighContrastColor('colors.accent')),
+  textSuccess: computed(makeHighContrastColor('colors.success')),
+  textWarning: computed(makeHighContrastColor('colors.warning')),
+  textDanger: computed(makeHighContrastColor('colors.danger')),
+  textDisabled: computed(makeDisabledContrastColor('colors.disabled')),
   link: computed(([textPrimary]) => textPrimary, ['colors.textPrimary']),
 };
 

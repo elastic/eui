@@ -7,7 +7,7 @@ import {
   EuiThemeProvider,
   useEuiTheme,
 } from '../../../../src/services';
-import { shade, tint } from '../../../../src/global_styling/functions/_colors';
+import { shade, tint } from '../../../../src/services/color';
 
 interface ThemeExtensions {
   colors: {

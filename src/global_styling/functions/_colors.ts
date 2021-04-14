@@ -18,23 +18,17 @@
  */
 
 import chroma from 'chroma-js';
+import { shade, tint } from '../../services/color';
+import { getOn } from '../../services/theme/utils';
 
-// Mixes a provided color with white.
-export const tint = (color: string, ratio: number) =>
-  chroma.mix(color, '#fff', ratio).hex();
-
-// Mixes a provided color with black.
-export const shade = (color: string, ratio: number) =>
-  chroma.mix(color, '#000', ratio).hex();
-
-export const saturate = (color: string, amount: number) =>
-  chroma(color).set('hsl.s', `+${amount}`).css();
-
-// Given a $foreground and a $background, make the $foreground AA accessibility by slightly
-// adjusting it till the contrast is high enough
-// const usingFullTheme = `makeHighContrastColor('#FFF')({ colors: { pageBackground: '#000'}, [...] })`
-// const usingBaseValue = `makeHighContrastColor('#FFF')('#000')`
-export const makeHighContrastColor = ($foreground: string, $ratio = 4.5) => (
+/**
+ * Creates a new color that meets or exceeds WCAG level AA
+ * @param foreground - Color to manipulate
+ * @param ratio - Amount to change in absolute terms. 0-1.
+ * *
+ * @param themeOrBackground - Color to use as the contrast basis
+ */
+export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
   themeOrBackground:
     | string
     | {
@@ -42,50 +36,57 @@ export const makeHighContrastColor = ($foreground: string, $ratio = 4.5) => (
         [key: string]: any;
       }
 ) => {
-  const $background =
+  const foreground = (typeof themeOrBackground === 'object'
+    ? getOn(themeOrBackground, _foreground)
+    : _foreground) as string;
+  const background =
     typeof themeOrBackground === 'object'
       ? themeOrBackground.colors.pageBackground
       : themeOrBackground;
-  let $contrast = chroma.contrast($foreground, $background);
+  let contrast = chroma.contrast(foreground, background);
 
   // Determine the lightness factor of the background color first to
   // determine whether to shade or tint the foreground.
-  const $brightness = chroma($background).get('hsl.l') * 100;
+  const brightness = chroma(background).get('hsl.l') * 100;
 
-  let $highContrastTextColor = $foreground;
+  let highContrastTextColor = foreground;
 
-  while ($contrast < $ratio) {
-    if ($brightness > 50) {
-      $highContrastTextColor = shade($highContrastTextColor, 0.05);
+  while (contrast < ratio) {
+    if (brightness > 50) {
+      highContrastTextColor = shade(highContrastTextColor, 0.05);
     } else {
-      $highContrastTextColor = tint($highContrastTextColor, 0.05);
+      highContrastTextColor = tint(highContrastTextColor, 0.05);
     }
 
-    $contrast = chroma.contrast($highContrastTextColor, $background);
+    contrast = chroma.contrast(highContrastTextColor, background);
 
-    const $lightness = chroma($highContrastTextColor).get('hsl.l') * 100;
+    const lightness = chroma(highContrastTextColor).get('hsl.l') * 100;
 
-    if ($lightness < 5) {
+    if (lightness < 5) {
       console.warn(
         'High enough contrast could not be determined. Most likely your background color does not adjust for light mode.'
       );
-      return $highContrastTextColor;
+      return highContrastTextColor;
     }
 
-    if ($lightness > 95) {
+    if (lightness > 95) {
       console.warn(
         'High enough contrast could not be determined. Most likely your background color does not adjust for dark mode.'
       );
-      return $highContrastTextColor;
+      return highContrastTextColor;
     }
   }
 
-  return $highContrastTextColor;
+  return highContrastTextColor;
 };
 
-// Disabled content only needs a contrast of at least 2 because there is no interaction available
-// const usingFullTheme = `makeDisabledContrastColor('#FFF')({ colors: { pageBackground: '#000'}, [...] })`
-// const usingBaseValue = `makeDisabledContrastColor('#FFF')('#000')`
+/**
+ * Creates a new color with increased contrast
+ * Disabled content only needs a contrast of at least 2 because there is no interaction available
+ * @param foreground - Color to manipulate
+ * *
+ * @param themeOrBackground - Color to use as the contrast basis
+ */
 export const makeDisabledContrastColor = ($color: string) => (
   themeOrBackground:
     | string
@@ -93,13 +94,4 @@ export const makeDisabledContrastColor = ($color: string) => (
         colors: { pageBackground: string };
         [key: string]: any;
       }
-) => {
-  const $background =
-    typeof themeOrBackground === 'object'
-      ? themeOrBackground.colors.pageBackground
-      : themeOrBackground;
-  return makeHighContrastColor($color, 2)($background);
-};
-
-export const transparentize = (color: string, alpha: number) =>
-  chroma(color).alpha(alpha).css();
+) => makeHighContrastColor($color, 2)(themeOrBackground);

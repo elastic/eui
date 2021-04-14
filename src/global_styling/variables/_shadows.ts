@@ -18,7 +18,7 @@
  */
 
 import { computed } from '../../services/theme/utils';
-import { saturate, shade } from '../functions/_colors';
+import { saturate, shade } from '../../services/color';
 
 export interface EuiThemeShadow {
   color: string;
