@@ -60,6 +60,44 @@ describe('align', () => {
   });
 });
 
+describe('sorting', () => {
+  test('is rendered with isSorted', () => {
+    const component = <EuiTableHeaderCell isSorted>Test</EuiTableHeaderCell>;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('is rendered with isSortAscending', () => {
+    const component = (
+      <EuiTableHeaderCell isSorted isSortAscending>
+        Test
+      </EuiTableHeaderCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('renders a button with onSort', () => {
+    const component = (
+      <EuiTableHeaderCell isSorted onSort={() => {}}>
+        Test
+      </EuiTableHeaderCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('does not render a button with readOnly', () => {
+    const component = (
+      <EuiTableHeaderCell readOnly isSorted onSort={() => {}}>
+        Test
+      </EuiTableHeaderCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+});
+
 describe('width and style', () => {
   const _consoleWarn = console.warn;
   beforeAll(() => {
@@ -99,7 +137,6 @@ describe('width and style', () => {
         Test
       </EuiTableHeaderCell>
     );
-
     expect(render(component)).toMatchSnapshot();
   });
 });
