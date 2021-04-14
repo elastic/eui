@@ -30,6 +30,8 @@ export default () => {
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
+        type="push"
+        size="s"
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
         aria-labelledby="flyoutTitle">

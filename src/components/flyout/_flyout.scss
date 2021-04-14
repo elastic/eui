@@ -1,6 +1,11 @@
 .euiFlyout {
   @include euiFlyout;
   animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  // Remove focus ring because of `tabindex=0`
+  &:focus {
+    outline: none;
+  }
 }
 
 .euiFlyout__closeButton {
@@ -16,6 +21,7 @@
     // Override the hover and focus transitions of buttons
     // sass-lint:disable-block no-important
     transform: translateX(calc(-100% - #{$euiSizeL})) !important;
+    animation: none !important;
 
     .euiFlyout--left & {
       left: auto;

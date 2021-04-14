@@ -26,19 +26,14 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import {
-  htmlIdGenerator,
-  EuiBreakpointSize,
-  isWithinMinBreakpoint,
-} from '../../services';
-import { EuiButtonEmptyProps } from '../button';
+import { htmlIdGenerator, isWithinMinBreakpoint } from '../../services';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { throttle } from '../color_picker/utils';
 
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<
   EuiFlyoutProps,
-  'closeButtonAriaLabel' | 'type'
+  'closeButtonAriaLabel' | 'type' | 'pushBreakpoint'
 > & {
   /**
    * ReactNode to render as this component's content
@@ -55,7 +50,7 @@ export type EuiCollapsibleNavProps = Omit<
   /**
    * Named breakpoint or pixel value for customizing the minimum window width to enable docking
    */
-  dockedBreakpoint?: EuiBreakpointSize | number;
+  dockedBreakpoint?: EuiFlyoutProps['pushMinBreakpoint'];
   /**
    * Button for controlling visible state of the nav
    */
@@ -64,11 +59,6 @@ export type EuiCollapsibleNavProps = Omit<
    * Keeps the display of toggle button when in docked state
    */
   showButtonIfDocked?: boolean;
-  /**
-   * Extend the props of the close button, an EuiButtonEmpty
-   */
-  closeButtonProps?: EuiButtonEmptyProps;
-  // onClose?: () => void;
 };
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
@@ -79,17 +69,16 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   isOpen = false,
   button,
   showButtonIfDocked = false,
-  closeButtonProps,
   dockedBreakpoint = 'l',
-  // Extended EuiFlyout props we manipulate
-  onClose,
-  maskProps,
   // Setting different EuiFlyout defaults
-  ownFocus = true,
-  size = 320,
-  paddingSize = 'none',
   as = 'nav',
+  size = 320,
   side = 'left',
+  role = 'none',
+  ownFocus = true,
+  outsideClickCloses = true,
+  closeButtonPosition = 'outside',
+  paddingSize = 'none',
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
@@ -133,15 +122,6 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     };
   }, [isDocked, functionToCallOnWindowResize]);
 
-  const collapse = () => {
-    // Skip collapsing if it is docked
-    if (navIsDocked) {
-      return;
-    } else {
-      onClose && onClose();
-    }
-  };
-
   const classes = classNames('euiCollapsibleNav', className);
 
   // Show a trigger button if one was passed but
@@ -162,27 +142,22 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   const flyout = (
     <EuiFlyout
-      // Flyout props that can be overridden
-      as={as}
-      paddingSize={paddingSize}
-      side={side}
-      size={size}
-      {...rest}
-      // Flyout props we omitted because this component handles it differently
-      type={navIsDocked ? 'push' : 'overlay'}
-      onClose={onClose}
-      // Flyout props we extended but manipulate in this component
       id={flyoutID}
       className={classes}
+      // Flyout props we set different defaults for
+      as={as}
+      size={size}
+      side={side}
+      role={role}
       ownFocus={ownFocus}
-      outsideClickCloses={true}
-      maskProps={{
-        onClick: collapse,
-        ...maskProps,
-      }}
+      outsideClickCloses={outsideClickCloses}
+      closeButtonPosition={closeButtonPosition}
+      paddingSize={paddingSize}
+      {...rest}
+      // Props dependent on internal docked status
+      type={navIsDocked ? 'push' : 'overlay'}
       hideCloseButton={navIsDocked}
-      closeButtonPosition="outside"
-      role={'none'}>
+      pushMinBreakpoint={dockedBreakpoint}>
       {children}
     </EuiFlyout>
   );

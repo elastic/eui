@@ -29,7 +29,13 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
-import { keys, EuiWindowEvent, useCombinedRefs } from '../../services';
+import {
+  keys,
+  EuiWindowEvent,
+  useCombinedRefs,
+  EuiBreakpointSize,
+  isWithinMinBreakpoint,
+} from '../../services';
 
 import { CommonProps, keysOf } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
@@ -39,6 +45,7 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { HTMLAttributes } from 'enzyme';
+import { throttle } from '../color_picker/utils';
 
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
@@ -156,6 +163,10 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      * Otherwise pass in your own, aria-role, or `none` to remove it and use the semantic `as` element instead
      */
     role?: 'none' | HTMLAttributes['role'];
+    /**
+     * Named breakpoint or pixel value for customizing the minimum window width to enable docking
+     */
+    pushMinBreakpoint?: EuiBreakpointSize | number;
   };
 
 export const EuiFlyout = <T extends ComponentTypes>({
@@ -177,19 +188,34 @@ export const EuiFlyout = <T extends ComponentTypes>({
   type = 'overlay',
   outsideClickCloses = false,
   role = 'dialog',
+  pushMinBreakpoint = 'l',
   ...rest
 }: PropsWithChildren<EuiFlyoutProps<T>>) => {
   /**
-   * ESC key closes flyout (always?)
+   * Setting the initial state of pushed based on the `type` prop
+   * and if the current window size is large enough (larger than `pushMinBreakpoint`)
    */
-  const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      onClose();
-    }
-  };
+  const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
+    isWithinMinBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      pushMinBreakpoint
+    )
+  );
 
-  const isPushed = type === 'push';
+  const isPushed = type === 'push' && windowIsLargeEnoughToPush;
+
+  /**
+   * Watcher added to the window to maintain `isPushed` state depending on
+   * the window size compared to the `pushBreakpoint`
+   */
+  const functionToCallOnWindowResize = throttle(() => {
+    if (isWithinMinBreakpoint(window.innerWidth, pushMinBreakpoint)) {
+      setWindowIsLargeEnoughToPush(true);
+    } else {
+      setWindowIsLargeEnoughToPush(false);
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
 
   /**
    * Setting up the refs on the actual flyout element in order to
@@ -207,11 +233,16 @@ export const EuiFlyout = <T extends ComponentTypes>({
     /**
      * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
      */
-    if (isPushed) {
-      if (side === 'right') {
-        document.body.style.paddingRight = `${dimensions.width}px`;
-      } else if (side === 'left') {
-        document.body.style.paddingLeft = `${dimensions.width}px`;
+    if (type === 'push') {
+      // Only add the event listener if we'll need to accomodate with padding
+      window.addEventListener('resize', functionToCallOnWindowResize);
+
+      if (isPushed) {
+        if (side === 'right') {
+          document.body.style.paddingRight = `${dimensions.width}px`;
+        } else if (side === 'left') {
+          document.body.style.paddingLeft = `${dimensions.width}px`;
+        }
       }
     }
 
@@ -219,6 +250,8 @@ export const EuiFlyout = <T extends ComponentTypes>({
       document.body.classList.remove('euiBody--hasFlyout');
 
       if (type === 'push') {
+        window.removeEventListener('resize', functionToCallOnWindowResize);
+
         if (side === 'right') {
           document.body.style.paddingRight = '';
         } else if (side === 'left') {
@@ -226,7 +259,17 @@ export const EuiFlyout = <T extends ComponentTypes>({
         }
       }
     };
-  }, [type, side, dimensions, isPushed]);
+  }, [type, side, dimensions, isPushed, functionToCallOnWindowResize]);
+
+  /**
+   * ESC key closes flyout (always?)
+   */
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (!isPushed && event.key === keys.ESCAPE) {
+      event.preventDefault();
+      onClose();
+    }
+  };
 
   let newStyle;
   let widthClassName;

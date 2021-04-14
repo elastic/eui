@@ -30,7 +30,7 @@ jest.mock('../overlay_mask', () => ({
   ),
 }));
 
-const propsNeededToRender = { id: 'id', isOpen: true };
+const propsNeededToRender = { id: 'id', isOpen: true, onClose: () => {} };
 const flyoutProps = {
   size: 240,
   ownFocus: false,
@@ -150,25 +150,10 @@ describe('EuiCollapsibleNav', () => {
         })
       ).toMatchSnapshot();
     });
-
-    test('extends EuiButtonEmpty', () => {
-      const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          closeButtonProps={requiredProps}
-        />
-      );
-
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
-    });
   });
 
   test('does not render if isOpen is false', () => {
-    const component = render(<EuiCollapsibleNav id="id" />);
+    const component = render(<EuiCollapsibleNav onClose={() => {}} id="id" />);
 
     expect(component).toMatchSnapshot();
   });

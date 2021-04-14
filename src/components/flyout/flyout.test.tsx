@@ -123,7 +123,7 @@ describe('EuiFlyout', () => {
     describe('type=push', () => {
       test('is rendered', () => {
         const component = mount(
-          <EuiFlyout onClose={() => {}} type="push" pushBreakpoint="xs" />
+          <EuiFlyout onClose={() => {}} type="push" pushMinBreakpoint="xs" />
         );
 
         expect(

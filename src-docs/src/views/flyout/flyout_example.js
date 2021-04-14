@@ -33,6 +33,9 @@ const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 import FlyoutWithBanner from './flyout_banner';
 const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 
+import FlyoutPush from './flyout_push';
+const flyoutPushSource = require('!!raw-loader!./flyout_push');
+
 const flyOutSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
@@ -283,6 +286,37 @@ export const FlyoutExample = {
       ),
       snippet: flyoutSmallSnippet,
       demo: <FlyoutSmall />,
+      props: { EuiFlyout },
+    },
+    {
+      title: 'Push versus overlay',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutPushSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Flyouts are best used as overlays that obscure the content beneath
+            focusing the user&apos;s attention to just what is inside the
+            flyout. However, there are use-cases where flyouts help to present
+            more information while maintaining the user&apos;s current page. You
+            can do this simply by keeping the flyout as an overlay type without
+            an overlay mask, or by changing the type to push.
+          </p>
+          <p>
+            The push type will add padding to the document&apos;s body element
+            to accomodate for the flyout, but it is still fixed position. It
+            also doesn&apos;t work well as the window&apos;s width decreases.
+            You can adjust the minimum breakpoint to which the flyout will push
+            versus overlay with <EuiCode>pushMinBreakpoint</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      snippet: flyoutMaxWidthSnippet,
+      demo: <FlyoutPush />,
       props: { EuiFlyout },
     },
     {
