@@ -1035,6 +1035,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -1072,6 +1073,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -1387,6 +1389,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -1424,6 +1427,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -2006,6 +2010,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -2043,6 +2048,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -2342,6 +2348,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
@@ -2379,6 +2386,7 @@ Array [
                       />
                       <div
                         class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
                           class="euiPopover__anchor euiDataGridHeaderCell__anchor"
