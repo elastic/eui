@@ -30,9 +30,9 @@ import { EuiThemeShadow } from '../../global_styling/variables/_shadows';
 import { EuiThemeFocus } from '../../global_styling/variables/_states';
 import { EuiThemeTitle } from '../../global_styling/variables/title';
 import {
-  EuiFont,
-  EuiFontSize,
-  EuiFontWeight,
+  EuiThemeFont,
+  EuiThemeFontSize,
+  EuiThemeFontWeight,
 } from '../../global_styling/variables/_typography';
 import { EuiThemeZIndex } from '../../global_styling/variables/_z_index';
 
@@ -63,9 +63,9 @@ export type EuiThemeShape = {
   colors: EuiThemeColors;
   base: EuiThemeBase;
   size: EuiThemeSize;
-  font: EuiFont;
-  fontSize: EuiFontSize;
-  fontWeight: EuiFontWeight;
+  font: EuiThemeFont;
+  fontSize: EuiThemeFontSize;
+  fontWeight: EuiThemeFontWeight;
   border: EuiThemeBorder;
   title: EuiThemeTitle;
   focus: EuiThemeFocus;

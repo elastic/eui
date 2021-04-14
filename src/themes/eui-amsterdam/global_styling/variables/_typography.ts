@@ -18,10 +18,10 @@
  */
 
 import fontBase, {
-  EuiFont,
+  EuiThemeFont,
 } from '../../../../global_styling/variables/_typography';
 
-const font: EuiFont = {
+const font: EuiThemeFont = {
   ...fontBase.font,
   family:
     "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",

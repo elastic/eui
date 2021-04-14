@@ -45,7 +45,7 @@ export type EuiFontScale = keyof typeof scale;
 const baseline = 4;
 const lineHeightMultiplier = 1.5;
 
-export type EuiFont = {
+export type EuiThemeFont = {
   family: string;
   familyCode?: string;
   featureSettings?: string;
@@ -55,7 +55,7 @@ export type EuiFont = {
 };
 
 // Families & base font settings
-const font: EuiFont = {
+const font: EuiThemeFont = {
   family:
     "'Inter UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
   familyCode: "'Roboto Mono', Consolas, Menlo, Courier, monospace",
@@ -69,14 +69,14 @@ const font: EuiFont = {
 };
 
 // Font weights
-export interface EuiFontWeight {
+export interface EuiThemeFontWeight {
   light: CSSProperties['fontWeight'];
   regular: CSSProperties['fontWeight'];
   medium: CSSProperties['fontWeight'];
   semiBold: CSSProperties['fontWeight'];
   bold: CSSProperties['fontWeight'];
 }
-const fontWeight: EuiFontWeight = {
+const fontWeight: EuiThemeFontWeight = {
   light: 300,
   regular: 400,
   medium: 500,
@@ -84,13 +84,13 @@ const fontWeight: EuiFontWeight = {
   bold: 700,
 };
 
-export type EuiFontSize = {
+export type EuiThemeFontSize = {
   [mapType in EuiFontScale]: {
     fontSize: string;
     lineHeight: string;
   };
 };
-const fontSize: EuiFontSize = SCALES.reduce((acc, elem) => {
+const fontSize: EuiThemeFontSize = SCALES.reduce((acc, elem) => {
   acc[elem] = {
     fontSize: computed(([base, scale]) => fontSizeFromScale(base, scale), [
       'base',
@@ -102,7 +102,7 @@ const fontSize: EuiFontSize = SCALES.reduce((acc, elem) => {
     ),
   };
   return acc;
-}, {} as EuiFontSize);
+}, {} as EuiThemeFontSize);
 
 // TODO -> MOVE TO COMPONENT
 // $euiCodeFontWeightRegular:  400;
