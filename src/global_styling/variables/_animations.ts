@@ -17,6 +17,8 @@
  * under the License.
  */
 
+import { computed } from '../../services/theme/utils';
+
 export interface EuiThemeAnimation {
   slightBounce: string;
   slightResistance: string;
@@ -27,6 +29,13 @@ export interface EuiThemeAnimation {
     normal: string;
     slow: string;
     extraSlow: string;
+  };
+
+  keyframes: {
+    fadeIn: string;
+    grow: string;
+    focusRingAnimate: string;
+    focusRingAnimateLarge: string;
   };
 }
 
@@ -41,7 +50,64 @@ export const animation: EuiThemeAnimation = {
     slow: '350ms',
     extraSlow: '350ms',
   },
-};
 
-// Keyframe animation declarations can be found in
-// utility/animations.scss
+  keyframes: {
+    fadeIn: `
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`,
+
+    grow: `
+  0% {
+    opacity: 0;
+  }
+
+  1% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`,
+
+    focusRingAnimate: computed(
+      ({ focus }) => `
+  0% {
+    box-shadow: 0 0 0 ${focus.ring.animStartSize} ${focus.ring.animStartColor};
+  }
+
+  100% {
+    box-shadow: 0 0 0 ${focus.ring.size} ${focus.ring.color};
+  }
+`
+    ),
+
+    focusRingAnimateLarge: computed(
+      ({ focus }) => `
+  0% {
+    box-shadow: 0 0 0 ${focus.ring.animStartSizeLarge} ${focus.ring.animStartColor};
+  }
+
+  100% {
+    box-shadow: 0 0 0 ${focus.ring.sizeLarge} ${focus.ring.color};
+  }
+`
+    ),
+
+    // Component specific
+
+    // euiButtonActive {
+    //   50% {
+    //     transform: translateY(1px);
+    //   }
+    // }
+  },
+};
