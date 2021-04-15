@@ -104,7 +104,7 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, id }) => {
+    return subSectionsWithTitles.map(({ title, id, items }) => {
       let name = title;
       if (searchTerm) {
         name = (
@@ -116,11 +116,32 @@ export class GuidePageChrome extends Component {
         );
       }
 
-      return {
-        id: `subSection-${id}`,
-        name,
-        href: href.concat(`#${id}`),
-      };
+      // nested pages
+      if (items) {
+        const subSectionsItems = items.map((item) => {
+          return {
+            id: item.id,
+            name: item.name,
+            href: href.concat(`#${item.id}`),
+          };
+        });
+
+        return {
+          id: `subSection-${id}`,
+          name,
+          href: href.concat(`/${id}`),
+          items: subSectionsItems,
+          isSelected: href.concat(`/${id}`) === window.location.hash,
+          // forceOpen: !!(searchTerm && hasMatchingSubItem),
+          className: 'guideSideNav__item',
+        };
+      } else {
+        return {
+          id: `subSection-${id}`,
+          name,
+          href: href.concat(`#${id}`),
+        };
+      }
     });
   };
 
@@ -154,6 +175,7 @@ export class GuidePageChrome extends Component {
 
       const items = matchingItems.map((item) => {
         const { name, path, sections, isNew } = item;
+
         const href = `#/${path}`;
 
         let newBadge;
@@ -180,10 +202,10 @@ export class GuidePageChrome extends Component {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
-          items: this.renderSubSections(href, sections, searchTerm),
+          items: this.renderSubSections(href, sections, searchTerm, path),
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
-          className: 'guideSideNav__item',
+
           icon: newBadge,
         };
       });
