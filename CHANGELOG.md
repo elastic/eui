@@ -6,6 +6,9 @@
 
 - Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
 
+- Fixed `pagination` prop in EuiInMemoryTable to properly render the table content ([#4714](https://github.com/elastic/eui/pull/4714))
+
+
 **Bug fixes**
 
 - Fixed a bug where on hovering an expandable row cell in `EuiDataGrid` a vertical line would show ([#4689](https://github.com/elastic/eui/pull/4689))
