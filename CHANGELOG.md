@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
 - Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
 
 **Breaking changes**

@@ -51,13 +51,6 @@ export const ResizeObserverExample = {
             will pass a <EuiCode>ref</EuiCode>
             callback which you must put on the element you wish to observe.
           </p>
-          <p>
-            Due to limited browser support (currently not in Safari and IE11),{' '}
-            <strong>EuiResizeObserver</strong> will fallback to using the{' '}
-            <EuiCode>MutationObserver</EuiCode> API with a default set of
-            parameters that approximate the results of{' '}
-            <strong>EuiMutationObserver</strong>.
-          </p>
         </React.Fragment>
       ),
       demo: <ResizeObserver />,
