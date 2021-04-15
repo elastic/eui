@@ -49,7 +49,7 @@ describe('EuiFlyout', () => {
       ).toMatchSnapshot();
     });
 
-    test('close button is not rendered', () => {
+    test('hideCloseButton', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
 
       expect(
@@ -77,7 +77,7 @@ describe('EuiFlyout', () => {
       ).toMatchSnapshot();
     });
 
-    describe('closeButtonLabel', () => {
+    describe('closeButtonAriaLabel', () => {
       test('has a default label for the close button', () => {
         const component = render(<EuiFlyout onClose={() => {}} />);
         const label = component
@@ -174,7 +174,7 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('max width', () => {
+    describe('maxWidth', () => {
       test('can be set to a default', () => {
         const component = mount(
           <EuiFlyout onClose={() => {}} maxWidth={true} />
@@ -206,10 +206,20 @@ describe('EuiFlyout', () => {
       });
     });
 
+    test('outsideClickCloses', () => {
+      const component = mount(
+        <EuiFlyout onClose={() => {}} outsideClickCloses />
+      );
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
     describe('ownFocus', () => {
-      test('is rendered', () => {
+      test('can be false', () => {
         const component = mount(
-          <EuiFlyout onClose={() => {}} ownFocus={true} />
+          <EuiFlyout onClose={() => {}} ownFocus={false} />
         );
 
         expect(
@@ -221,7 +231,6 @@ describe('EuiFlyout', () => {
         const component = mount(
           <EuiFlyout
             onClose={() => {}}
-            ownFocus={true}
             maskProps={{ headerZindexLocation: 'above' }}
           />
         );

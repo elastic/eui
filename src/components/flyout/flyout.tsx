@@ -26,6 +26,7 @@ import React, {
   ComponentProps,
   PropsWithChildren,
   ReactNode,
+  Ref,
 } from 'react';
 import classnames from 'classnames';
 
@@ -167,6 +168,7 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      * Named breakpoint or pixel value for customizing the minimum window width to enable docking
      */
     pushMinBreakpoint?: EuiBreakpointSize | number;
+    ref?: Ref<T>;
   };
 
 export const EuiFlyout = <T extends ComponentTypes>({
@@ -178,7 +180,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
   closeButtonAriaLabel,
   closeButtonPosition = 'inside',
   onClose,
-  ownFocus = false,
+  ownFocus = true,
   side = 'right',
   size = 'm',
   paddingSize = 'l',
@@ -189,6 +191,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
   outsideClickCloses = false,
   role = 'dialog',
   pushMinBreakpoint = 'l',
+  ref,
   ...rest
 }: PropsWithChildren<EuiFlyoutProps<T>>) => {
   /**
@@ -222,7 +225,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
    * accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
    */
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
-  const setRef = useCombinedRefs([setResizeRef]);
+  const setRef = useCombinedRefs([setResizeRef, ref]);
   // TODO: Allow this hooke to be conditional
   const dimensions = useResizeObserver(resizeRef);
 

@@ -36,7 +36,7 @@ const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 import FlyoutPush from './flyout_push';
 const flyoutPushSource = require('!!raw-loader!./flyout_push');
 
-const flyOutSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
+const flyOutSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -48,7 +48,7 @@ const flyOutSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutComplicatedSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
+const flyoutComplicatedSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -66,7 +66,7 @@ const flyoutComplicatedSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutSmallSnippet = `<EuiFlyout size="s" onClose={closeFlyout}>
+const flyoutSmallSnippet = `<EuiFlyout ownFocus={false} size="s" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -92,7 +92,7 @@ const flyoutMediumPaddingSnippet = `<EuiFlyout paddingSize="m" onClose={closeFly
 </EuiFlyout>
 `;
 
-const flyoutMaxWidthSnippet = `<EuiFlyout ownFocus maxWidth={448} onClose={closeFlyout}>
+const flyoutMaxWidthSnippet = `<EuiFlyout maxWidth={448} onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -104,7 +104,7 @@ const flyoutMaxWidthSnippet = `<EuiFlyout ownFocus maxWidth={448} onClose={close
 </EuiFlyout>
 `;
 
-const flyoutLargeSnippet = `<EuiFlyout ownFocus size="l" onClose={closeFlyout}>
+const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -116,7 +116,7 @@ const flyoutLargeSnippet = `<EuiFlyout ownFocus size="l" onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutWithBannerSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
+const flyoutWithBannerSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -125,6 +125,21 @@ const flyoutWithBannerSnippet = `<EuiFlyout ownFocus onClose={closeFlyout}>
   <EuiFlyoutBody banner={callOut}>
     <!-- Flyout body content -->
   </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutPushedSnippet = `<EuiFlyout type={push} onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Flyout body content -->
+  </EuiFlyoutBody>
+  <EuiFlyoutFooter>
+    <EuiButton onClose={closeFlyout}>Close</EuiButton>
+  </EuiFlyoutFooter>
 </EuiFlyout>
 `;
 
@@ -274,15 +289,16 @@ export const FlyoutExample = {
       text: (
         <>
           <p>
-            Like modals, you can, and usually want to, obscure the page content
+            Like modals, you will usually want to obscure the page content
             beneath with <EuiCode>ownFocus</EuiCode> which adds an{' '}
             <Link to="/utilities/overlay-mask">
               <strong>EuiOverlayMask</strong>
             </Link>
             . However, there are use-cases where flyouts present more
             information or controls, but need to maintain the interactions of
-            the page content. By not adding this prop, the the underlying page
-            content will be visible and clickable.
+            the page content. By setting{' '}
+            <EuiCode language="js">{'ownFocus={false}'}</EuiCode>, the
+            underlying page content will be visible and clickable.
           </p>
         </>
       ),
@@ -315,7 +331,7 @@ export const FlyoutExample = {
           </p>
         </Fragment>
       ),
-      snippet: flyoutMaxWidthSnippet,
+      snippet: flyoutPushedSnippet,
       demo: <FlyoutPush />,
       props: { EuiFlyout },
     },

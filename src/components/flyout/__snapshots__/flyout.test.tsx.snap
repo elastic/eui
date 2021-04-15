@@ -2,6 +2,7 @@
 
 exports[`EuiFlyout is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -46,6 +47,7 @@ Array [
 
 exports[`EuiFlyout props accepts div props 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -87,37 +89,9 @@ Array [
 ]
 `;
 
-exports[`EuiFlyout props close button is not rendered 1`] = `
-Array [
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
-      role="dialog"
-      tabindex="0"
-    />
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
-
 exports[`EuiFlyout props closeButton for a custom button 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -151,6 +125,7 @@ Array [
 
 exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -191,8 +166,39 @@ Array [
 ]
 `;
 
+exports[`EuiFlyout props hideCloseButton 1`] = `
+Array [
+  <div />,
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />,
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="1"
+  />,
+  <div
+    data-focus-lock-disabled="false"
+  >
+    <div
+      class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+      role="dialog"
+      tabindex="0"
+    />
+  </div>,
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />,
+]
+`;
+
 exports[`EuiFlyout props is rendered as nav 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -233,8 +239,9 @@ Array [
 ]
 `;
 
-exports[`EuiFlyout props max width can be set to a custom number 1`] = `
+exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -276,8 +283,9 @@ Array [
 ]
 `;
 
-exports[`EuiFlyout props max width can be set to a custom value and measurement 1`] = `
+exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -319,8 +327,9 @@ Array [
 ]
 `;
 
-exports[`EuiFlyout props max width can be set to a default 1`] = `
+exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -336,6 +345,49 @@ Array [
   >
     <div
       class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge euiFlyout--maxWidth-default"
+      role="dialog"
+      tabindex="0"
+    >
+      <button
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside"
+        data-test-subj="euiFlyoutCloseButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
+  </div>,
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />,
+]
+`;
+
+exports[`EuiFlyout props outsideClickCloses 1`] = `
+Array [
+  <div />,
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />,
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="1"
+  />,
+  <div
+    data-focus-lock-disabled="false"
+  >
+    <div
+      class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
       role="dialog"
       tabindex="0"
     >
@@ -404,9 +456,8 @@ Array [
 ]
 `;
 
-exports[`EuiFlyout props ownFocus is rendered 1`] = `
+exports[`EuiFlyout props ownFocus can be false 1`] = `
 Array [
-  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -449,6 +500,7 @@ Array [
 
 exports[`EuiFlyout props paddingSize l is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -491,6 +543,7 @@ Array [
 
 exports[`EuiFlyout props paddingSize m is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -533,6 +586,7 @@ Array [
 
 exports[`EuiFlyout props paddingSize none is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -575,6 +629,7 @@ Array [
 
 exports[`EuiFlyout props paddingSize s is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -617,6 +672,7 @@ Array [
 
 exports[`EuiFlyout props role can be removed 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -658,6 +714,7 @@ Array [
 
 exports[`EuiFlyout props sides left is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -700,6 +757,7 @@ Array [
 
 exports[`EuiFlyout props sides right is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -742,6 +800,7 @@ Array [
 
 exports[`EuiFlyout props size accepts custom number 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -785,6 +844,7 @@ Array [
 
 exports[`EuiFlyout props size l is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -827,6 +887,7 @@ Array [
 
 exports[`EuiFlyout props size m is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -869,6 +930,7 @@ Array [
 
 exports[`EuiFlyout props size s is rendered 1`] = `
 Array [
+  <div />,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
