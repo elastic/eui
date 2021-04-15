@@ -1,5 +1,14 @@
 [
   {
+    "version": "32.1.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.sortedAriaLabel",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "31.11.0",
     "changes": [
       {
