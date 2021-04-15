@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `32.1.0`.
+
+## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
+
 - Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
 
 **Bug fixes**
