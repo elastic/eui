@@ -18,7 +18,7 @@
  */
 
 import chroma from 'chroma-js';
-import { shade, tint } from '../../services/color';
+import { shade, tint, lightness as getLightness } from '../../services/color';
 import { getOn } from '../../services/theme/utils';
 
 /**
@@ -47,7 +47,7 @@ export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
 
   // Determine the lightness factor of the background color first to
   // determine whether to shade or tint the foreground.
-  const brightness = chroma(background).get('hsl.l') * 100;
+  const brightness = getLightness(background);
 
   let highContrastTextColor = foreground;
 
@@ -60,7 +60,7 @@ export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
 
     contrast = chroma.contrast(highContrastTextColor, background);
 
-    const lightness = chroma(highContrastTextColor).get('hsl.l') * 100;
+    const lightness = getLightness(highContrastTextColor);
 
     if (lightness < 5) {
       console.warn(

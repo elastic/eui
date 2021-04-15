@@ -58,3 +58,9 @@ export const saturate = (color: string, amount: number) =>
  */
 export const desaturate = (color: string, amount: number) =>
   chroma(color).set('hsl.s', `-${amount}`).css();
+
+/**
+ * Returns the lightness value of a color. 0-100
+ * @param color
+ */
+export const lightness = (color: string) => chroma(color).get('hsl.l') * 100;

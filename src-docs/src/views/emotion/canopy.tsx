@@ -33,21 +33,23 @@ import {
   EuiThemeModifications,
   ComputedThemeShape,
 } from '../../../../src/services';
+import { useBottomShadowSmall } from '../../../../src/global_styling/mixins/_shadow';
 import { EuiCodeBlock } from '../../../../src/components/code';
 import { EuiButton } from '../../../../src/components/button';
 import { euiThemeDefault } from '../../../../src/themes/eui/theme';
 
 const View = () => {
   const { euiTheme, colorMode } = useEuiTheme();
+  const style = css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: ${euiTheme.font.family};
+    ${useBottomShadowSmall()}
+  `;
   return (
     <div>
-      <div
-        css={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          fontFamily: euiTheme.font.family,
-        }}>
+      <div css={style}>
         <div
           // TODO: FOr docs, add in what a function vs array does in `css` and how to tell if a theme key is returning a single value or a set of properties
           css={[euiTheme.title.xxl, { color: euiTheme.colors.primary }]}>
