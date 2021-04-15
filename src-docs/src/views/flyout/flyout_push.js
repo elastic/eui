@@ -7,25 +7,13 @@ import {
   EuiButton,
   EuiText,
   EuiTitle,
-  EuiCodeBlock,
+  EuiFlyoutFooter,
 } from '../../../../src/components';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
   let flyout;
-
-  const htmlCode = `<EuiFlyout ...>
-  <EuiFlyoutHeader hasBorder>
-    <EuiTitle size="m">
-      <h2></h2>
-    </EuiTitle>
-  </EuiFlyoutHeader>
-  <EuiFlyoutBody>
-    ...
-  </EuiFlyoutBody>
-</EuiFlyout>
-`;
 
   if (isFlyoutVisible) {
     flyout = (
@@ -34,21 +22,27 @@ export default () => {
         size="s"
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="flyoutTitle">
+        aria-labelledby="pushedFlyoutTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutTitle">A typical flyout</h2>
+            <h2 id="pushedFlyoutTitle">A pushed flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
           <EuiText>
             <p>
-              For consistency across the many flyouts, please utilize the
-              following code for implementing the flyout with a header.
+              A pushed flyout typically contains more information about a
+              particular piece of data or complex form controls for editing.
+            </p>
+            <p>
+              Also, it is good to include a close button in the footer for a
+              larger hit target than the small close button provides.
             </p>
           </EuiText>
-          <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
         </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton onClick={() => setIsFlyoutVisible(false)}>Close</EuiButton>
+        </EuiFlyoutFooter>
       </EuiFlyout>
     );
   }
@@ -56,7 +50,7 @@ export default () => {
   return (
     <div>
       <EuiButton onClick={() => setIsFlyoutVisible((visible) => !visible)}>
-        Show flyout
+        Toggle pushed flyout
       </EuiButton>
       {flyout}
     </div>

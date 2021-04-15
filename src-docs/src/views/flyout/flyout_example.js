@@ -142,7 +142,7 @@ export const FlyoutExample = {
         <>
           <p>
             <strong>EuiFlyout</strong> is a fixed position panel that pops in
-            from the right side of the screen. It should be used to reveal more
+            from the side of the window. It should be used to reveal more
             detailed contextual information or to provide complex forms without
             losing the user&apos;s current state. It is a good alternative to{' '}
             <Link to="/layout/modal">modals</Link> when the action is not
@@ -279,8 +279,10 @@ export const FlyoutExample = {
             <Link to="/utilities/overlay-mask">
               <strong>EuiOverlayMask</strong>
             </Link>
-            . By not adding this prop, the the underlying page content will be
-            visible and clickable.
+            . However, there are use-cases where flyouts present more
+            information or controls, but need to maintain the interactions of
+            the page content. By not adding this prop, the the underlying page
+            content will be visible and clickable.
           </p>
         </>
       ),
@@ -299,19 +301,17 @@ export const FlyoutExample = {
       text: (
         <Fragment>
           <p>
-            Flyouts are best used as overlays that obscure the content beneath
-            focusing the user&apos;s attention to just what is inside the
-            flyout. However, there are use-cases where flyouts help to present
-            more information while maintaining the user&apos;s current page. You
-            can do this simply by keeping the flyout as an overlay type without
-            an overlay mask, or by changing the type to push.
+            Another way to allow for continued interactions of the page content
+            while a flyout is visible, is to change the <EuiCode>type</EuiCode>{' '}
+            from <EuiCode>overlay</EuiCode> to <EuiCode>push</EuiCode>.
           </p>
           <p>
-            The push type will add padding to the document&apos;s body element
-            to accomodate for the flyout, but it is still fixed position. It
-            also doesn&apos;t work well as the window&apos;s width decreases.
-            You can adjust the minimum breakpoint to which the flyout will push
-            versus overlay with <EuiCode>pushMinBreakpoint</EuiCode>.
+            A pushed flyout still positions itself as <EuiCode>fixed</EuiCode>,
+            but adds padding to the document&apos;s body element to accomodate
+            for the flyout&apos;s width. Because this squishes the page content,
+            the flyout changes back to <EuiCode>overlay</EuiCode> at smaller
+            window widths. You can adjust this minimum breakpoint with{' '}
+            <EuiCode>pushMinBreakpoint</EuiCode>.
           </p>
         </Fragment>
       ),
