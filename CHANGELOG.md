@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `32.1.0`.
+- Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
 
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 
