@@ -18,7 +18,7 @@
  */
 
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { EuiObserver, Observer } from '../observer';
+import { EuiObserver } from '../observer';
 
 export interface EuiResizeObserverProps {
   /**
@@ -28,19 +28,8 @@ export interface EuiResizeObserverProps {
   onResize: (dimensions: { height: number; width: number }) => void;
 }
 
-// IE11 and Safari don't support the `ResizeObserver` API at the time of writing
 const hasResizeObserver =
-  typeof window !== 'undefined' &&
-  typeof (window as any).ResizeObserver !== 'undefined';
-
-const mutationObserverOptions = {
-  // [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
-  attributes: true, // Account for style changes from `className` or `style`
-  characterData: true, // Account for text content size differences
-  childList: true, // Account for adding/removing child nodes
-  subtree: true, // Account for deep child nodes
-};
-
+  typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
 export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
   name = 'EuiResizeObserver';
 
@@ -49,21 +38,18 @@ export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
     width: 0,
   };
 
-  onResize = () => {
-    if (this.childNode != null) {
-      // Eventually use `clientRect` on the `entries[]` returned natively
-      const { height, width } = this.childNode.getBoundingClientRect();
-      // Check for actual resize event
-      if (this.state.height === height && this.state.width === width) {
-        return;
-      }
-
-      this.props.onResize({
-        height,
-        width,
-      });
-      this.setState({ height, width });
+  onResize: ResizeObserverCallback = ([entry]) => {
+    const { height, width } = entry.contentRect;
+    // Check for actual resize event
+    if (this.state.height === height && this.state.width === width) {
+      return;
     }
+
+    this.props.onResize({
+      height,
+      width,
+    });
+    this.setState({ height, width });
   };
 
   beginObserve = () => {
@@ -74,29 +60,14 @@ export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
   };
 }
 
-const makeCompatibleObserver = (node: Element, callback: () => void) => {
-  const observer = new MutationObserver(callback);
-  observer.observe(node, mutationObserverOptions);
-
-  window.addEventListener('resize', callback);
-
-  const _disconnect = observer.disconnect.bind(observer);
-  observer.disconnect = () => {
-    _disconnect();
-    window.removeEventListener('resize', callback);
-  };
-
-  return observer;
-};
-
-const makeResizeObserver = (node: Element, callback: () => void) => {
-  let observer: Observer | undefined;
+const makeResizeObserver = (
+  node: Element,
+  callback: ResizeObserverCallback
+) => {
+  let observer;
   if (hasResizeObserver) {
-    observer = new (window as any).ResizeObserver(callback);
-    observer!.observe(node);
-  } else {
-    observer = makeCompatibleObserver(node, callback);
-    requestAnimationFrame(callback); // Mimic ResizeObserver behavior of triggering a resize event on init
+    observer = new window.ResizeObserver(callback);
+    observer.observe(node);
   }
   return observer;
 };
@@ -137,15 +108,15 @@ export const useResizeObserver = (
         height: boundingRect.height,
       });
 
-      const observer = makeResizeObserver(container, () => {
-        const boundingRect = container.getBoundingClientRect();
+      const observer = makeResizeObserver(container, ([entry]) => {
+        const { height, width } = entry.contentRect;
         setSize({
-          width: boundingRect.width,
-          height: boundingRect.height,
+          width,
+          height,
         });
       })!;
 
-      return () => observer.disconnect();
+      return () => observer && observer.disconnect();
     } else {
       setSize({ width: 0, height: 0 });
     }
