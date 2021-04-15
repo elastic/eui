@@ -126,12 +126,16 @@ export class GuidePageChrome extends Component {
           };
         });
 
+        const firstSubSectionId = subSections[0].id;
+
+        const hrefToConcat = firstSubSectionId === id ? '' : `/${id}`;
+
         return {
           id: `subSection-${id}`,
           name,
-          href: href.concat(`/${id}`),
+          href: href.concat(hrefToConcat),
           items: subSectionsItems,
-          isSelected: href.concat(`/${id}`) === window.location.hash,
+          isSelected: href.concat(hrefToConcat) === window.location.hash,
           // forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
         };
@@ -205,7 +209,6 @@ export class GuidePageChrome extends Component {
           items: this.renderSubSections(href, sections, searchTerm, path),
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
-
           icon: newBadge,
         };
       });

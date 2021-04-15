@@ -350,6 +350,7 @@ const createGuidelines = (title, guidelines, examples, isNew) => {
       },
     ],
     isNew,
+    isGuideLinePage: true,
   };
 };
 
@@ -545,20 +546,37 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
-    const item = {
-      name: itemName,
-      path: `${slugify(name)}/${slugify(itemName)}`,
-      ...rest,
-    };
+  items: items.map(
+    ({ name: itemName, hasGuidelines, isGuideLinePage, sections, ...rest }) => {
+      let item;
 
-    if (hasGuidelines) {
-      item.from = `guidelines/${slugify(itemName)}`;
-      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      // when is as guidelinePage with multiple tabs the first nav item is the first of the list
+      if (isGuideLinePage) {
+        item = {
+          name: itemName,
+          path: `${slugify(name)}/${slugify(itemName)}/${slugify(
+            sections[0].id
+          )}`,
+          sections,
+          ...rest,
+        };
+      } else {
+        item = {
+          name: itemName,
+          path: `${slugify(name)}/${slugify(itemName)}`,
+          sections,
+          ...rest,
+        };
+      }
+
+      if (hasGuidelines) {
+        item.from = `guidelines/${slugify(itemName)}`;
+        item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      }
+
+      return item;
     }
-
-    return item;
-  }),
+  ),
   ...rest,
 }));
 
