@@ -2,6 +2,10 @@
 
 - Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
 
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed  ([#4714](https://github.com/elastic/eui/pull/4714))
+
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 
 - Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
@@ -12,7 +16,6 @@
 - Fixed a bug in `EuiDataGrid` where key presses in portalled content were being handled by the grid ([#4706](https://github.com/elastic/eui/pull/4706))
 - Fixed `EuiDataGrid`'s header content arrangement prevented closing a header cell's popover ([#4706](https://github.com/elastic/eui/pull/4706))
 - Fixed a performance issue in `EuiDataGrid` when its `rowCount` changes  ([#4706](https://github.com/elastic/eui/pull/4706))
-- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed  ([#4714](https://github.com/elastic/eui/pull/4714))
 
 ## [`32.0.4`](https://github.com/elastic/eui/tree/v32.0.4)
 
