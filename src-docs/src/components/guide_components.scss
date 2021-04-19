@@ -361,33 +361,26 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guideHomePage__illustrationLightShade {
-  fill: $euiColorLightShade;
-}
+.guideHomePage__illustration {
+  @include euiBreakpoint('s', 'm') {
+    justify-content: center;
+  }
 
-.guideHomePage__illustrationEmptyShade {
-  fill: $euiColorEmptyShade;
-}
-
-.guideHomePage__illustrationDots,
-.guideHomePage__illustrationComponents {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .guideHomePage__illustrationEffect {
   display: block;
-  height: auto;
   position: relative;
-  width: auto;
 
-  .guideHomePage__illustrationEffectParts {
-    height: auto;
+  .guideHomePage__illustrationEffectSVG {
     transform: perspective(1600px);
     transform-style: preserve-3d;
     transition: all .3s ease-in-out;
     width: 100%;
+    height: auto;
 
     &:before {
       content: '';
@@ -400,18 +393,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     }
   }
 
-  .guideHomePage__illustrationEffectPartsDots,
-  .guideHomePage__illustrationEffectPartsComps {
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform: translateZ(16px) scale(.9);
-    transition: all .4s ease;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-
   .guideHomePage__illustrationTopLeftCorner {
     height: 50%;
     left: 0;
@@ -420,12 +401,9 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectParts {
+    &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(-5deg) rotateY(5deg);
 
-      .guideHomePage__illustrationEffectPartsDots {
-        transform: translate3d(-.1px, -.1px, 16px) scale(.9);
-      }
     }
   }
 
@@ -437,12 +415,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectParts  {
+    &:hover ~ .guideHomePage__illustrationEffectSVG  {
       transform: perspective(1600px) rotateX(-5deg) rotateY(-5deg);
-
-      .guideHomePage__illustrationEffectPartsDots {
-        transform: translate3d(.1px, -.1px, 16px) scale(.9);
-      }
     }
   }
 
@@ -454,12 +428,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectParts {
+    &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(5deg) rotateY(5deg);
-
-      .guideHomePage__illustrationEffectPartsDots {
-        transform: translate3d(-.1px, .1px, 1px) scale(.9);
-      }
     }
   }
 
@@ -471,13 +441,15 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectParts  {
+    &:hover ~ .guideHomePage__illustrationEffectSVG  {
       transform: perspective(1600px) rotateX(5deg) rotateY(-5deg);
-
-
-      .guideHomePage__illustrationEffectPartsDots {
-        transform: translate3d(.1px, .1px, 1px) scale(.9);
-      }
     }
 	}
+}
+
+
+.guideHomeHero {
+  > * {
+    padding: $euiSizeL;
+  }
 }

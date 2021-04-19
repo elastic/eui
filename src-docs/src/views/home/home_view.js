@@ -36,8 +36,11 @@ export const HomeView = () => (
     borderRadius="none">
     <EuiPageContentBody restrictWidth>
       <EuiPanel color="subdued" hasShadow={false} paddingSize="none">
-        <EuiFlexGroup alignItems="center" gutterSize="none">
-          <EuiFlexItem style={{ padding: 24 }}>
+        <EuiFlexGroup
+          alignItems="center"
+          gutterSize="none"
+          className="guideHomeHero">
+          <EuiFlexItem>
             <EuiTitle size="l">
               <h1>Elastic UI</h1>
             </EuiTitle>
@@ -73,7 +76,7 @@ export const HomeView = () => (
               </EuiFlexGroup>
             </EuiText>
           </EuiFlexItem>
-          <EuiFlexItem className="eui-textRight">
+          <EuiFlexItem>
             <HomeIllustration />
           </EuiFlexItem>
         </EuiFlexGroup>
