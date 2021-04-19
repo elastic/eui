@@ -706,7 +706,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
       <EuiText grow={false}>
         <p>
-          In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> or
+          In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> or{' '}
           <EuiCode>$euiBorderRadiusSmall</EuiCode> to round the corners.
         </p>
       </EuiText>
