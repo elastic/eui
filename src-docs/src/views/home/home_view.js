@@ -9,8 +9,8 @@ import imageCards from '../../images/cards.svg';
 import imagePages from '../../images/page.svg';
 import imageText from '../../images/text.svg';
 import imageCharts from '../../images/charts.svg';
+import imageLogoElastic from '../../images/logo-elastic-horizontal.svg';
 import HomeIllustration from './home_illustration';
-
 import {
   EuiCard,
   EuiFlexGroup,
@@ -39,7 +39,7 @@ export const HomeView = () => (
         <EuiFlexGroup
           alignItems="center"
           gutterSize="none"
-          className="guideHomeHero">
+          className="guideHome__hero">
           <EuiFlexItem>
             <EuiTitle size="l">
               <h1>Elastic UI</h1>
@@ -205,14 +205,31 @@ export const HomeView = () => (
       </EuiFlexGroup>
 
       <EuiSpacer size="xl" />
-      <EuiText size="xs" textAlign="center" color="subdued">
-        <p>
-          EUI is licensed under{' '}
-          <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
-            Apache License 2.0
-          </EuiLink>
-        </p>
-      </EuiText>
+      <div>
+        <EuiText size="xs" textAlign="center" color="subdued">
+          <p>
+            EUI is licensed under{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
+              Apache License 2.0
+            </EuiLink>{' '}
+            | Crafted with{' '}
+            <span
+              role="img"
+              aria-label="love"
+              className="guideHome__footerHeart">
+              ❤️
+            </span>{' '}
+            by{' '}
+            <EuiLink href="http://elastic.co/" external={false} target="_blank">
+              <img
+                alt="Elastic logo"
+                className="guideHome__footerLogo"
+                src={imageLogoElastic}
+              />
+            </EuiLink>
+          </p>
+        </EuiText>
+      </div>
     </EuiPageContentBody>
   </EuiPageContent>
 );

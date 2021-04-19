@@ -447,8 +447,26 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 	}
 }
 
+.guideHome__footer {
+  display: flex;
+  align-items: center;
+}
 
-.guideHomeHero {
+.guideHome__footerHeart {
+  color: $euiColorAccentText;
+}
+
+.guideHome__footerLogo {
+  // sass-lint:disable-block no-important
+  vertical-align: middle;
+  display: inline-block !important;
+  max-width: 60px;
+  margin-bottom: 0 !important;
+  position: relative;
+  top: -2px;
+}
+
+.guideHome__hero {
   > * {
     padding: $euiSizeL;
   }
